@@ -27,7 +27,7 @@
     { "id": "vibration", "name": "振動", "grades": [{ "id": "g2", "name": "2級", "chapters": [] }] }
   ],
   "localOnly": {
-    "note": "公式問題集の複製のため gitignore 済＝個人の勉強用のみ。リポジトリ・配布には含めない。",
-    "files": ["questions/solid2-math.json"]
+    "note": "公式問題集の原本・書き起こしは著作物のため gitignore 済＝個人の勉強用のみ。プロジェクト直下の _原本(非公開)/ に集約。リポジトリ・配布には含めない。",
+    "location": "_原本(非公開)/"
   }
 }
