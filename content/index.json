@@ -1,19 +1,19 @@
 {
   "app": "CAE試験対策",
   "note": "公式問題集(著作物)の複製はリポジトリにコミットしない。コミットしてよいのは自作問題のみ。アプリの実際の階層は src/catalog.ts が正。",
-  "structure": "分野(field) → 級(grade) → 章(chapter) → 問題",
+  "structure": "分野(field) → 級(grade) → 章(chapter) → 問題(番号＋タイトル)",
   "fields": [
     {
-      "id": "common",
-      "name": "計算力学 共通",
+      "id": "solid",
+      "name": "固体力学",
       "grades": [
         {
           "id": "g2",
           "name": "2級",
           "chapters": [
             {
-              "id": "math-basics",
-              "title": "数学の基礎",
+              "id": "ch1",
+              "title": "第1章 数学の基礎",
               "file": "questions/math-basics.json",
               "count": 15,
               "origin": "original",
@@ -23,7 +23,6 @@
         }
       ]
     },
-    { "id": "solid", "name": "固体力学", "grades": [{ "id": "g2", "name": "2級", "chapters": [] }] },
     { "id": "thermal", "name": "熱流体力学", "grades": [{ "id": "g2", "name": "2級", "chapters": [] }] },
     { "id": "vibration", "name": "振動", "grades": [{ "id": "g2", "name": "2級", "chapters": [] }] }
   ],

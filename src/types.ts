@@ -2,6 +2,7 @@
 export type Question = {
   id: string;
   number: string;
+  title?: string;
   question: string;
   choices: string[];
   answer: number; // 1始まりの正解番号

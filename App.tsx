@@ -20,7 +20,8 @@ import {
   type GradeEntry,
 } from './src/catalog';
 
-type Screen = 'field' | 'grade' | 'chapter' | 'quiz' | 'result';
+type Screen = 'field' | 'grade' | 'chapter' | 'questions' | 'quiz' | 'result';
+type Source = 'chapter' | 'single' | 'review';
 
 export default function App() {
   const scheme = useColorScheme();
@@ -29,12 +30,13 @@ export default function App() {
   const [screen, setScreen] = useState<Screen>('field');
   const [field, setField] = useState<FieldEntry | null>(null);
   const [grade, setGrade] = useState<GradeEntry | null>(null);
+  const [chapter, setChapter] = useState<ChapterEntry | null>(null);
   const [wrongIds, setWrongIds] = useState<string[]>([]);
 
   // 出題状態
   const [quiz, setQuiz] = useState<Question[]>([]);
   const [quizTitle, setQuizTitle] = useState('');
-  const [source, setSource] = useState<'chapter' | 'review'>('chapter');
+  const [source, setSource] = useState<Source>('chapter');
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [records, setRecords] = useState<AnswerRecord[]>([]);
@@ -45,7 +47,7 @@ export default function App() {
 
   const wrongQuestions = useMemo(() => questionsByIds(wrongIds), [wrongIds]);
 
-  function beginQuiz(list: Question[], title: string, src: 'chapter' | 'review') {
+  function beginQuiz(list: Question[], title: string, src: Source) {
     if (list.length === 0) return;
     setQuiz(list);
     setQuizTitle(title);
@@ -75,6 +77,8 @@ export default function App() {
     setWrongIds(next);
     setScreen('result');
   }
+
+  const quitTarget: Screen = source === 'review' ? 'field' : 'questions';
 
   // ---------- 描画 ----------
   return (
@@ -127,12 +131,34 @@ export default function App() {
             title={`${field.name}／${grade.name}`}
             subtitle="章を選んでください"
             onBack={() => setScreen('grade')}
-            items={grade.chapters.map((c: ChapterEntry) => ({
+            items={grade.chapters.map((c) => ({
               key: c.id,
               label: c.title,
               sub: `${c.data.questions.length} 問`,
+              onPress: () => {
+                setChapter(c);
+                setScreen('questions');
+              },
+            }))}
+          />
+        )}
+
+        {screen === 'questions' && chapter && (
+          <ListScreen
+            t={t}
+            title={chapter.title}
+            subtitle="問題を選ぶ（1問だけ挑戦）／または全問に挑戦"
+            onBack={() => setScreen('chapter')}
+            topAction={{
+              label: `全 ${chapter.data.questions.length} 問に挑戦（順番に）`,
+              onPress: () => beginQuiz(chapter.data.questions, chapter.title, 'chapter'),
+            }}
+            items={chapter.data.questions.map((q) => ({
+              key: q.id,
+              label: `${q.number}　${q.title ?? q.topic ?? ''}`,
+              sub: wrongIds.includes(q.id) ? '前回まちがえた問題' : undefined,
               onPress: () =>
-                beginQuiz(c.data.questions, `${c.title}`, 'chapter'),
+                beginQuiz([q], `${chapter.title}　${q.number}`, 'single'),
             }))}
           />
         )}
@@ -148,7 +174,7 @@ export default function App() {
             answered={answered}
             onSelect={onSelect}
             onNext={onNext}
-            onQuit={() => setScreen(source === 'review' ? 'field' : 'chapter')}
+            onQuit={() => setScreen(quitTarget)}
           />
         )}
 
@@ -161,6 +187,7 @@ export default function App() {
             wrongCount={wrongQuestions.length}
             onRetry={() => beginQuiz(quiz, quizTitle, source)}
             onReview={() => beginQuiz(wrongQuestions, '間違い復習', 'review')}
+            onBackList={() => setScreen(quitTarget)}
             onHome={() => setScreen('field')}
           />
         )}
@@ -173,7 +200,7 @@ function chapterCount(f: FieldEntry): number {
   return f.grades.reduce((n, g) => n + g.chapters.length, 0);
 }
 
-// ---------- 一覧画面（分野/級/章 共通） ----------
+// ---------- 一覧画面（分野/級/章/問題 共通） ----------
 function ListScreen(props: {
   t: Theme;
   title: string;
@@ -186,6 +213,7 @@ function ListScreen(props: {
     onPress: () => void;
   }[];
   onBack?: () => void;
+  topAction?: { label: string; onPress: () => void };
   reviewCount?: number;
   onReview?: () => void;
 }) {
@@ -200,6 +228,11 @@ function ListScreen(props: {
       <Text style={[styles.title, { color: t.text }]}>{props.title}</Text>
       <Text style={[styles.subtitle, { color: t.sub }]}>{props.subtitle}</Text>
 
+      {props.topAction && (
+        <Button t={t} kind="primary" label={props.topAction.label} onPress={props.topAction.onPress} />
+      )}
+      {props.topAction && <View style={{ height: 8 }} />}
+
       {props.items.map((it) => (
         <Pressable
           key={it.key}
@@ -210,7 +243,7 @@ function ListScreen(props: {
           ]}
         >
           <Text style={[styles.rowLabel, { color: t.text }]}>{it.label}</Text>
-          {it.sub && <Text style={[styles.rowSub, { color: t.sub }]}>{it.sub}</Text>}
+          {it.sub && <Text style={[styles.rowSub, { color: t.wrong }]}>{it.sub}</Text>}
         </Pressable>
       ))}
 
@@ -253,7 +286,7 @@ function QuizScreen(props: {
       </Pressable>
       <Text style={[styles.progress, { color: t.sub }]}>
         {props.title}　{props.index + 1} / {props.total}
-        {q.topic ? `　・　${q.topic}` : ''}
+        {q.title ? `　・　${q.title}` : ''}
       </Text>
       <Text style={[styles.question, { color: t.text }]}>{q.question}</Text>
 
@@ -303,6 +336,7 @@ function ResultScreen(props: {
   wrongCount: number;
   onRetry: () => void;
   onReview: () => void;
+  onBackList: () => void;
   onHome: () => void;
 }) {
   const { t } = props;
@@ -329,7 +363,7 @@ function ResultScreen(props: {
               style={[styles.row, { backgroundColor: t.card, borderColor: t.border }]}
             >
               <Text style={[styles.rowSub, { color: t.wrong, marginBottom: 4 }]}>
-                {q.topic ?? q.number}
+                {q.number}　{q.title ?? q.topic ?? ''}
               </Text>
               <Text style={[styles.rowLabel, { color: t.text, fontWeight: '400' }]}>
                 {q.question}
@@ -350,6 +384,7 @@ function ResultScreen(props: {
         label={props.wrongCount > 0 ? `間違いだけ復習（${props.wrongCount} 問）` : '復習する間違いはありません'}
         onPress={props.onReview}
       />
+      <Button t={t} kind="ghost" label="問題一覧へ戻る" onPress={props.onBackList} />
       <Button t={t} kind="ghost" label="ホームへ" onPress={props.onHome} />
     </ScrollView>
   );

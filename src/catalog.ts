@@ -3,32 +3,26 @@
 // ※React Native(Metro) は動的 import 不可なので、問題ファイルはここで静的に import して束ねる。
 import type { Chapter, Question } from './types';
 
-import mathBasics from '../content/questions/math-basics.json';
+import solidCh1 from '../content/questions/math-basics.json';
 
 export type ChapterEntry = { id: string; title: string; data: Chapter };
 export type GradeEntry = { id: string; name: string; chapters: ChapterEntry[] };
 export type FieldEntry = { id: string; name: string; grades: GradeEntry[] };
 
-// 共通の「数学の基礎」は全分野共通なので独立した分野として置く。
-// 固体/熱流体/振動は枠だけ用意（章が空＝アプリ上は「準備中」表示）。あとで章を足していく。
+// 固体/熱流体/振動の3分野。まだ章が無い級・分野はアプリ上「準備中」表示。
 export const CATALOG: FieldEntry[] = [
   {
-    id: 'common',
-    name: '計算力学 共通',
+    id: 'solid',
+    name: '固体力学',
     grades: [
       {
         id: 'g2',
         name: '2級',
         chapters: [
-          { id: 'math-basics', title: '数学の基礎', data: mathBasics as unknown as Chapter },
+          { id: 'ch1', title: '第1章 数学の基礎', data: solidCh1 as unknown as Chapter },
         ],
       },
     ],
-  },
-  {
-    id: 'solid',
-    name: '固体力学',
-    grades: [{ id: 'g2', name: '2級', chapters: [] }],
   },
   {
     id: 'thermal',

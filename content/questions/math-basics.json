@@ -1,7 +1,7 @@
 {
   "meta": {
-    "grade": "計算力学2級対策（非公式）",
-    "category": "数学の基礎",
+    "grade": "固体力学 2級",
+    "category": "第1章 数学の基礎",
     "chapter": 1,
     "source": "自作オリジナル（公式問題集の複製ではない・一次情報と自作テンプレートに基づく）",
     "origin": "original",
@@ -11,11 +11,17 @@
     {
       "id": "math-calc-det2x2",
       "number": "1-1",
+      "title": "2×2行列の行列式",
       "topic": "行列式",
       "type": "calc",
       "difficulty": 1,
       "question": "2×2 行列 [[4, 3], [2, 5]] の行列式の値はいくらか。",
-      "choices": ["7", "14", "20", "26"],
+      "choices": [
+        "7",
+        "14",
+        "20",
+        "26"
+      ],
       "answer": 2,
       "explanation": "2×2 の行列式は ad−bc。4×5 − 3×2 = 20 − 6 = 14。",
       "hasMath": true,
@@ -25,11 +31,17 @@
     {
       "id": "math-calc-matvec",
       "number": "1-2",
+      "title": "行列とベクトルの積",
       "topic": "行列とベクトルの積",
       "type": "calc",
       "difficulty": 1,
       "question": "行列 [[2, 0], [1, 3]] とベクトル (1, 2)^T の積を計算したとき、結果ベクトルの第2成分はいくらか。",
-      "choices": ["2", "3", "5", "7"],
+      "choices": [
+        "2",
+        "3",
+        "5",
+        "7"
+      ],
       "answer": 4,
       "explanation": "第2成分 = 1×1 + 3×2 = 1 + 6 = 7。",
       "hasMath": true,
@@ -39,11 +51,17 @@
     {
       "id": "math-calc-eig2x2",
       "number": "1-3",
+      "title": "対称行列の固有値",
       "topic": "固有値",
       "type": "calc",
       "difficulty": 2,
       "question": "対称行列 [[2, 1], [1, 2]] の固有値のうち、大きい方の値はいくらか。",
-      "choices": ["1", "2", "3", "4"],
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
       "answer": 3,
       "explanation": "特性方程式 (2−λ)^2 − 1 = 0 より λ = 1, 3。大きい方は 3。",
       "hasMath": true,
@@ -53,11 +71,17 @@
     {
       "id": "math-calc-norm",
       "number": "1-4",
+      "title": "ベクトルの大きさ（ノルム）",
       "topic": "ベクトルのノルム",
       "type": "calc",
       "difficulty": 1,
       "question": "平面ベクトル (6, 8) の大きさ（ユークリッドノルム）はいくらか。",
-      "choices": ["10", "14", "48", "100"],
+      "choices": [
+        "10",
+        "14",
+        "48",
+        "100"
+      ],
       "answer": 1,
       "explanation": "√(6^2 + 8^2) = √(36 + 64) = √100 = 10。",
       "hasMath": true,
@@ -67,11 +91,17 @@
     {
       "id": "math-calc-dot",
       "number": "1-5",
+      "title": "ベクトルの内積",
       "topic": "内積",
       "type": "calc",
       "difficulty": 1,
       "question": "ベクトル (1, 2, 3) と (4, −1, 2) の内積はいくらか。",
-      "choices": ["0", "6", "8", "12"],
+      "choices": [
+        "0",
+        "6",
+        "8",
+        "12"
+      ],
       "answer": 3,
       "explanation": "1×4 + 2×(−1) + 3×2 = 4 − 2 + 6 = 8。",
       "hasMath": true,
@@ -81,11 +111,17 @@
     {
       "id": "math-calc-fwddiff",
       "number": "1-6",
+      "title": "前進差分の計算",
       "topic": "前進差分",
       "type": "calc",
       "difficulty": 2,
       "question": "f(x)=x^2 とする。前進差分 (f(x+h)−f(x))/h を x=2, h=0.1 で計算した近似値はいくらか。",
-      "choices": ["4.0", "4.1", "4.2", "4.41"],
+      "choices": [
+        "4.0",
+        "4.1",
+        "4.2",
+        "4.41"
+      ],
       "answer": 2,
       "explanation": "(f(2.1)−f(2))/0.1 = (4.41 − 4)/0.1 = 4.1。真値 f'(2)=4 よりやや大きい（前進差分は一次精度）。",
       "hasMath": true,
@@ -95,11 +131,17 @@
     {
       "id": "math-calc-centraldiff",
       "number": "1-7",
+      "title": "中央差分の計算",
       "topic": "中央差分",
       "type": "calc",
       "difficulty": 2,
       "question": "f(x)=x^2 とする。中央差分 (f(x+h)−f(x−h))/(2h) を x=2, h=0.1 で計算した近似値はいくらか。",
-      "choices": ["3.8", "4.0", "4.2", "8.0"],
+      "choices": [
+        "3.8",
+        "4.0",
+        "4.2",
+        "8.0"
+      ],
       "answer": 2,
       "explanation": "(f(2.1)−f(1.9))/0.2 = (4.41 − 3.61)/0.2 = 0.8/0.2 = 4.0。二次精度で、2次関数では厳密に真値 f'(2)=4 に一致する。",
       "hasMath": true,
@@ -109,11 +151,17 @@
     {
       "id": "math-calc-2ndderiv",
       "number": "1-8",
+      "title": "2階中央差分の計算",
       "topic": "2階中央差分",
       "type": "calc",
       "difficulty": 2,
       "question": "f(x)=x^3 とする。2階中央差分 (f(x+h)−2f(x)+f(x−h))/h^2 を x=1, h=0.1 で計算した近似値はいくらか。",
-      "choices": ["3.0", "6.0", "6.6", "60"],
+      "choices": [
+        "3.0",
+        "6.0",
+        "6.6",
+        "60"
+      ],
       "answer": 2,
       "explanation": "(f(1.1) − 2f(1) + f(0.9))/0.01 = (1.331 − 2 + 0.729)/0.01 = 0.06/0.01 = 6.0。真値 f''(1)=6x|_{x=1}=6 に一致。",
       "hasMath": true,
@@ -123,11 +171,17 @@
     {
       "id": "math-calc-taylor-exp",
       "number": "1-9",
+      "title": "テイラー展開（一次近似）",
       "topic": "テイラー展開",
       "type": "calc",
       "difficulty": 2,
       "question": "f(x)=e^x を x=0 のまわりで一次までテイラー展開して x=0.1 を代入した近似値はいくらか。",
-      "choices": ["0.1", "1.0", "1.1", "1.105"],
+      "choices": [
+        "0.1",
+        "1.0",
+        "1.1",
+        "1.105"
+      ],
       "answer": 3,
       "explanation": "一次近似は f(x)≈1+x。x=0.1 で 1+0.1=1.1（真値 e^0.1≈1.105 に近い）。",
       "hasMath": true,
@@ -137,11 +191,17 @@
     {
       "id": "math-calc-partial",
       "number": "1-10",
+      "title": "偏微分の計算",
       "topic": "偏微分",
       "type": "calc",
       "difficulty": 2,
       "question": "f(x,y)=x^2 y + y^3 とする。偏微分 ∂f/∂x を点 (x,y)=(2,1) で評価した値はいくらか。",
-      "choices": ["2", "4", "5", "8"],
+      "choices": [
+        "2",
+        "4",
+        "5",
+        "8"
+      ],
       "answer": 2,
       "explanation": "∂f/∂x = 2xy。(2,1) で 2×2×1 = 4。",
       "hasMath": true,
@@ -151,11 +211,17 @@
     {
       "id": "math-mc-regular",
       "number": "1-11",
+      "title": "正則行列の条件",
       "topic": "正則性",
       "type": "mc",
       "difficulty": 1,
       "question": "n 次正方行列 A が正則（逆行列をもつ）であるための必要十分条件は次のうちどれか。",
-      "choices": ["det A = 0", "det A ≠ 0", "A が対称行列である", "A の全成分が正である"],
+      "choices": [
+        "det A = 0",
+        "det A ≠ 0",
+        "A が対称行列である",
+        "A の全成分が正である"
+      ],
       "answer": 2,
       "explanation": "正方行列が逆行列をもつのは行列式が 0 でないとき。det A = 0 のときは正則でない（特異）。",
       "hasMath": true,
@@ -165,11 +231,17 @@
     {
       "id": "math-mc-detprop",
       "number": "1-12",
+      "title": "行列式の性質",
       "topic": "行列式の性質",
       "type": "mc",
       "difficulty": 2,
       "question": "A, B を同じサイズの n 次正方行列、k を実数とする。常に成り立つ関係は次のうちどれか。",
-      "choices": ["det(A+B) = det A + det B", "det(kA) = k · det A", "det(AB) = det A · det B", "det(A^T) = − det A"],
+      "choices": [
+        "det(A+B) = det A + det B",
+        "det(kA) = k · det A",
+        "det(AB) = det A · det B",
+        "det(A^T) = − det A"
+      ],
       "answer": 3,
       "explanation": "行列式は積について乗法的で det(AB)=det A·det B。det(kA)=k^n det A、det(A^T)=det A、和は一般に分配しない。",
       "hasMath": true,
@@ -179,11 +251,17 @@
     {
       "id": "math-mc-eigterm",
       "number": "1-13",
+      "title": "固有値・固有ベクトルの用語",
       "topic": "固有値の用語",
       "type": "mc",
       "difficulty": 1,
       "question": "正方行列 A と零でないベクトル x が Ax = λx（λ はスカラー）を満たすとき、λ を何と呼ぶか。",
-      "choices": ["固有値", "行列式", "トレース", "ランク"],
+      "choices": [
+        "固有値",
+        "行列式",
+        "トレース",
+        "ランク"
+      ],
       "answer": 1,
       "explanation": "Ax=λx を満たすスカラー λ を固有値、対応する x を固有ベクトルという。",
       "hasMath": true,
@@ -193,11 +271,17 @@
     {
       "id": "math-mc-centralorder",
       "number": "1-14",
+      "title": "中央差分の精度次数",
       "topic": "差分の精度次数",
       "type": "mc",
       "difficulty": 2,
       "question": "1階微分の中央差分近似 (f(x+h)−f(x−h))/(2h) の打ち切り誤差は、刻み幅 h について何次のオーダーか。",
-      "choices": ["0次", "1次", "2次", "3次"],
+      "choices": [
+        "0次",
+        "1次",
+        "2次",
+        "3次"
+      ],
       "answer": 3,
       "explanation": "テイラー展開すると奇数次項が相殺し、誤差は h^2 に比例する（二次精度）。",
       "hasMath": true,
@@ -207,6 +291,7 @@
     {
       "id": "math-mc-condnumber",
       "number": "1-15",
+      "title": "条件数と数値誤差",
       "topic": "条件数",
       "type": "mc",
       "difficulty": 2,
