@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import {
+  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -312,6 +313,13 @@ function QuizScreen(props: {
             {isCorrect ? '◯ 正解' : '✕ 不正解'}（正解：{q.answer}）
           </Text>
           <Text style={[styles.explainText, { color: t.text }]}>{q.explanation}</Text>
+          {q.figure ? (
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.figureWrap}>
+              <Text style={[styles.figure, { color: t.text, borderColor: t.border, backgroundColor: t.bg }]}>
+                {q.figure}
+              </Text>
+            </ScrollView>
+          ) : null}
         </View>
       )}
 
@@ -474,6 +482,15 @@ const styles = StyleSheet.create({
   explainBox: { borderWidth: 1, borderRadius: 10, padding: 14, marginTop: 6, marginBottom: 8 },
   verdict: { fontSize: 15, fontWeight: 'bold', marginBottom: 6 },
   explainText: { fontSize: 14, lineHeight: 21 },
+  figureWrap: { marginTop: 10 },
+  figure: {
+    fontFamily: Platform.select({ ios: 'Courier', android: 'monospace', default: 'monospace' }),
+    fontSize: 12,
+    lineHeight: 17,
+    padding: 10,
+    borderWidth: 1,
+    borderRadius: 8,
+  },
   button: {
     borderRadius: 10,
     paddingVertical: 15,
