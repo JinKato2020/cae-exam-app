@@ -3,7 +3,10 @@
 // ※React Native(Metro) は動的 import 不可なので、問題ファイルはここで静的に import して束ねる。
 import type { Chapter, Question } from './types';
 
-import solidCh1 from '../content/questions/math-basics.json';
+import ch1 from '../content/questions/math-basics.json';
+import ch2 from '../content/questions/solid-basics.json';
+import ch3 from '../content/questions/heat-basics.json';
+import ch4 from '../content/questions/fem-basics.json';
 
 export type ChapterEntry = { id: string; title: string; data: Chapter };
 export type GradeEntry = { id: string; name: string; chapters: ChapterEntry[] };
@@ -19,7 +22,10 @@ export const CATALOG: FieldEntry[] = [
         id: 'g2',
         name: '2級',
         chapters: [
-          { id: 'ch1', title: '第1章 数学の基礎', data: solidCh1 as unknown as Chapter },
+          { id: 'ch1', title: '第1章 数学の基礎', data: ch1 as unknown as Chapter },
+          { id: 'ch2', title: '第2章 固体力学の基礎', data: ch2 as unknown as Chapter },
+          { id: 'ch3', title: '第3章 熱伝導の基礎', data: ch3 as unknown as Chapter },
+          { id: 'ch4', title: '第4章 有限要素法の定式化', data: ch4 as unknown as Chapter },
         ],
       },
     ],

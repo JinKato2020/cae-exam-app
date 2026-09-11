@@ -11,14 +11,10 @@
           "id": "g2",
           "name": "2級",
           "chapters": [
-            {
-              "id": "ch1",
-              "title": "第1章 数学の基礎",
-              "file": "questions/math-basics.json",
-              "count": 15,
-              "origin": "original",
-              "status": "committed"
-            }
+            { "id": "ch1", "title": "第1章 数学の基礎", "file": "questions/math-basics.json", "count": 15, "origin": "original", "status": "committed" },
+            { "id": "ch2", "title": "第2章 固体力学の基礎", "file": "questions/solid-basics.json", "count": 15, "origin": "original", "status": "committed" },
+            { "id": "ch3", "title": "第3章 熱伝導の基礎", "file": "questions/heat-basics.json", "count": 15, "origin": "original", "status": "committed" },
+            { "id": "ch4", "title": "第4章 有限要素法の定式化", "file": "questions/fem-basics.json", "count": 15, "origin": "original", "status": "committed" }
           ]
         }
       ]
