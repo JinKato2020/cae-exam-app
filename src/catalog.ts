@@ -7,6 +7,9 @@ import ch1 from '../content/questions/math-basics.json';
 import ch2 from '../content/questions/solid-basics.json';
 import ch3 from '../content/questions/heat-basics.json';
 import ch4 from '../content/questions/fem-basics.json';
+import ch5 from '../content/questions/fem-practice.json';
+import ch6 from '../content/questions/numerical-basics.json';
+import ch7 from '../content/questions/element-tech.json';
 
 export type ChapterEntry = { id: string; title: string; data: Chapter };
 export type GradeEntry = { id: string; name: string; chapters: ChapterEntry[] };
@@ -26,6 +29,9 @@ export const CATALOG: FieldEntry[] = [
           { id: 'ch2', title: '第2章 固体力学の基礎', data: ch2 as unknown as Chapter },
           { id: 'ch3', title: '第3章 熱伝導の基礎', data: ch3 as unknown as Chapter },
           { id: 'ch4', title: '第4章 有限要素法の定式化', data: ch4 as unknown as Chapter },
+          { id: 'ch5', title: '第5章 有限要素法の実践', data: ch5 as unknown as Chapter },
+          { id: 'ch6', title: '第6章 数値計算法の基礎', data: ch6 as unknown as Chapter },
+          { id: 'ch7', title: '第7章 要素テクノロジーの基礎', data: ch7 as unknown as Chapter },
         ],
       },
     ],
