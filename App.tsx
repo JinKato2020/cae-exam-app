@@ -10,43 +10,46 @@ import {
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-import type { AnswerRecord, Chapter, Question } from './src/types';
+import type { AnswerRecord, Question } from './src/types';
 import { loadWrongIds, updateWrongIds } from './src/storage';
+import {
+  CATALOG,
+  questionsByIds,
+  type ChapterEntry,
+  type FieldEntry,
+  type GradeEntry,
+} from './src/catalog';
 
-// 配布ビルドには自作オリジナル問題のみを含める（公式問題集は gitignore 済でローカルのみ）。
-import chapterJson from './content/questions/math-basics.json';
-
-const chapter = chapterJson as unknown as Chapter;
-const ALL_QUESTIONS: Question[] = chapter.questions;
-
-type Screen = 'home' | 'quiz' | 'result';
+type Screen = 'field' | 'grade' | 'chapter' | 'quiz' | 'result';
 
 export default function App() {
   const scheme = useColorScheme();
   const t = scheme === 'dark' ? dark : light;
 
-  const [screen, setScreen] = useState<Screen>('home');
+  const [screen, setScreen] = useState<Screen>('field');
+  const [field, setField] = useState<FieldEntry | null>(null);
+  const [grade, setGrade] = useState<GradeEntry | null>(null);
   const [wrongIds, setWrongIds] = useState<string[]>([]);
 
-  // 出題中の問題列と進行状態
+  // 出題状態
   const [quiz, setQuiz] = useState<Question[]>([]);
+  const [quizTitle, setQuizTitle] = useState('');
+  const [source, setSource] = useState<'chapter' | 'review'>('chapter');
   const [index, setIndex] = useState(0);
-  const [selected, setSelected] = useState<number | null>(null); // 1始まり
+  const [selected, setSelected] = useState<number | null>(null);
   const [records, setRecords] = useState<AnswerRecord[]>([]);
 
-  // 起動時に、前回までの「間違いリスト」を端末から読み込む
   useEffect(() => {
     loadWrongIds().then(setWrongIds);
   }, []);
 
-  const wrongQuestions = useMemo(
-    () => ALL_QUESTIONS.filter((q) => wrongIds.includes(q.id)),
-    [wrongIds]
-  );
+  const wrongQuestions = useMemo(() => questionsByIds(wrongIds), [wrongIds]);
 
-  function startQuiz(list: Question[]) {
+  function beginQuiz(list: Question[], title: string, src: 'chapter' | 'review') {
     if (list.length === 0) return;
     setQuiz(list);
+    setQuizTitle(title);
+    setSource(src);
     setIndex(0);
     setSelected(null);
     setRecords([]);
@@ -68,31 +71,76 @@ export default function App() {
       setSelected(null);
       return;
     }
-    // 最終問題 → 記録を端末に反映して結果画面へ
     const next = await updateWrongIds(wrongIds, records);
     setWrongIds(next);
     setScreen('result');
   }
 
-  // ---------- 画面 ----------
+  // ---------- 描画 ----------
   return (
     <SafeAreaProvider>
       <SafeAreaView style={[styles.container, { backgroundColor: t.bg }]}>
         <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
-        {screen === 'home' && (
-          <HomeScreen
+
+        {screen === 'field' && (
+          <ListScreen
             t={t}
-            total={ALL_QUESTIONS.length}
-            wrongCount={wrongQuestions.length}
-            grade={chapter.meta.grade}
-            category={chapter.meta.category}
-            onStartAll={() => startQuiz(ALL_QUESTIONS)}
-            onStartReview={() => startQuiz(wrongQuestions)}
+            title="CAE 試験対策"
+            subtitle="分野を選んでください"
+            items={CATALOG.map((f) => ({
+              key: f.id,
+              label: f.name,
+              sub: chapterCount(f) > 0 ? `${chapterCount(f)} 章` : '準備中',
+              disabled: chapterCount(f) === 0,
+              onPress: () => {
+                setField(f);
+                setScreen('grade');
+              },
+            }))}
+            reviewCount={wrongQuestions.length}
+            onReview={() => beginQuiz(wrongQuestions, '間違い復習', 'review')}
           />
         )}
+
+        {screen === 'grade' && field && (
+          <ListScreen
+            t={t}
+            title={field.name}
+            subtitle="級を選んでください"
+            onBack={() => setScreen('field')}
+            items={field.grades.map((g) => ({
+              key: g.id,
+              label: g.name,
+              sub: g.chapters.length > 0 ? `${g.chapters.length} 章` : '準備中',
+              disabled: g.chapters.length === 0,
+              onPress: () => {
+                setGrade(g);
+                setScreen('chapter');
+              },
+            }))}
+          />
+        )}
+
+        {screen === 'chapter' && field && grade && (
+          <ListScreen
+            t={t}
+            title={`${field.name}／${grade.name}`}
+            subtitle="章を選んでください"
+            onBack={() => setScreen('grade')}
+            items={grade.chapters.map((c: ChapterEntry) => ({
+              key: c.id,
+              label: c.title,
+              sub: `${c.data.questions.length} 問`,
+              onPress: () =>
+                beginQuiz(c.data.questions, `${c.title}`, 'chapter'),
+            }))}
+          />
+        )}
+
         {screen === 'quiz' && current && (
           <QuizScreen
             t={t}
+            title={quizTitle}
             q={current}
             index={index}
             total={quiz.length}
@@ -100,17 +148,20 @@ export default function App() {
             answered={answered}
             onSelect={onSelect}
             onNext={onNext}
+            onQuit={() => setScreen(source === 'review' ? 'field' : 'chapter')}
           />
         )}
+
         {screen === 'result' && (
           <ResultScreen
             t={t}
+            title={quizTitle}
             quiz={quiz}
             records={records}
-            onRetry={() => startQuiz(quiz)}
-            onReview={() => startQuiz(wrongQuestions)}
             wrongCount={wrongQuestions.length}
-            onHome={() => setScreen('home')}
+            onRetry={() => beginQuiz(quiz, quizTitle, source)}
+            onReview={() => beginQuiz(wrongQuestions, '間違い復習', 'review')}
+            onHome={() => setScreen('field')}
           />
         )}
       </SafeAreaView>
@@ -118,40 +169,64 @@ export default function App() {
   );
 }
 
-// ---------- ホーム ----------
-function HomeScreen(props: {
+function chapterCount(f: FieldEntry): number {
+  return f.grades.reduce((n, g) => n + g.chapters.length, 0);
+}
+
+// ---------- 一覧画面（分野/級/章 共通） ----------
+function ListScreen(props: {
   t: Theme;
-  total: number;
-  wrongCount: number;
-  grade: string;
-  category: string;
-  onStartAll: () => void;
-  onStartReview: () => void;
+  title: string;
+  subtitle: string;
+  items: {
+    key: string;
+    label: string;
+    sub?: string;
+    disabled?: boolean;
+    onPress: () => void;
+  }[];
+  onBack?: () => void;
+  reviewCount?: number;
+  onReview?: () => void;
 }) {
   const { t } = props;
   return (
     <ScrollView contentContainerStyle={styles.content}>
-      <Text style={[styles.title, { color: t.text }]}>CAE 試験対策</Text>
-      <Text style={[styles.subtitle, { color: t.sub }]}>
-        {props.grade}／{props.category}（全 {props.total} 問）
-      </Text>
+      {props.onBack && (
+        <Pressable onPress={props.onBack} style={styles.back}>
+          <Text style={[styles.backText, { color: t.primary }]}>‹ 戻る</Text>
+        </Pressable>
+      )}
+      <Text style={[styles.title, { color: t.text }]}>{props.title}</Text>
+      <Text style={[styles.subtitle, { color: t.sub }]}>{props.subtitle}</Text>
 
-      <Button t={t} label={`全 ${props.total} 問に挑戦`} kind="primary" onPress={props.onStartAll} />
-      <Button
-        t={t}
-        label={
-          props.wrongCount > 0
-            ? `間違いだけ復習（${props.wrongCount} 問）`
-            : '復習する間違いはありません'
-        }
-        kind="review"
-        disabled={props.wrongCount === 0}
-        onPress={props.onStartReview}
-      />
+      {props.items.map((it) => (
+        <Pressable
+          key={it.key}
+          onPress={it.disabled ? undefined : it.onPress}
+          style={[
+            styles.row,
+            { backgroundColor: t.card, borderColor: t.border, opacity: it.disabled ? 0.5 : 1 },
+          ]}
+        >
+          <Text style={[styles.rowLabel, { color: t.text }]}>{it.label}</Text>
+          {it.sub && <Text style={[styles.rowSub, { color: t.sub }]}>{it.sub}</Text>}
+        </Pressable>
+      ))}
 
-      <Text style={[styles.note, { color: t.sub }]}>
-        間違えた問題は端末に記録され、次回も「間違い復習」で挑戦できます。
-      </Text>
+      {props.onReview && (
+        <Button
+          t={t}
+          kind="review"
+          disabled={(props.reviewCount ?? 0) === 0}
+          label={
+            (props.reviewCount ?? 0) > 0
+              ? `間違いだけ復習（${props.reviewCount} 問）`
+              : '復習する間違いはありません'
+          }
+          onPress={props.onReview}
+        />
+      )}
     </ScrollView>
   );
 }
@@ -159,6 +234,7 @@ function HomeScreen(props: {
 // ---------- 出題 ----------
 function QuizScreen(props: {
   t: Theme;
+  title: string;
   q: Question;
   index: number;
   total: number;
@@ -166,28 +242,31 @@ function QuizScreen(props: {
   answered: boolean;
   onSelect: (n: number) => void;
   onNext: () => void;
+  onQuit: () => void;
 }) {
   const { t, q, answered, selected } = props;
   const isCorrect = selected === q.answer;
-
   return (
     <ScrollView contentContainerStyle={styles.content}>
+      <Pressable onPress={props.onQuit} style={styles.back}>
+        <Text style={[styles.backText, { color: t.primary }]}>‹ やめる</Text>
+      </Pressable>
       <Text style={[styles.progress, { color: t.sub }]}>
-        {props.index + 1} / {props.total}
+        {props.title}　{props.index + 1} / {props.total}
         {q.topic ? `　・　${q.topic}` : ''}
       </Text>
       <Text style={[styles.question, { color: t.text }]}>{q.question}</Text>
 
       {q.choices.map((choice, i) => {
         const num = i + 1;
-        const bg = choiceColor(t, { num, answer: q.answer, selected, answered });
+        const c = choiceColor(t, { num, answer: q.answer, selected, answered });
         return (
           <Pressable
             key={num}
             onPress={() => props.onSelect(num)}
-            style={[styles.choice, { backgroundColor: bg.bg, borderColor: bg.border }]}
+            style={[styles.choice, { backgroundColor: c.bg, borderColor: c.border }]}
           >
-            <Text style={[styles.choiceText, { color: bg.text }]}>
+            <Text style={[styles.choiceText, { color: c.text }]}>
               {num}. {choice}
             </Text>
           </Pressable>
@@ -206,8 +285,8 @@ function QuizScreen(props: {
       {answered && (
         <Button
           t={t}
-          label={props.index + 1 < props.total ? '次へ' : '結果を見る'}
           kind="primary"
+          label={props.index + 1 < props.total ? '次へ' : '結果を見る'}
           onPress={props.onNext}
         />
       )}
@@ -218,6 +297,7 @@ function QuizScreen(props: {
 // ---------- 結果 ----------
 function ResultScreen(props: {
   t: Theme;
+  title: string;
   quiz: Question[];
   records: AnswerRecord[];
   wrongCount: number;
@@ -226,32 +306,34 @@ function ResultScreen(props: {
   onHome: () => void;
 }) {
   const { t } = props;
-  const correctCount = props.records.filter((r) => r.correct).length;
+  const correct = props.records.filter((r) => r.correct).length;
   const total = props.quiz.length;
-  const pct = total > 0 ? Math.round((correctCount / total) * 100) : 0;
-  const wrongInThisRun = props.quiz.filter(
+  const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+  const wrong = props.quiz.filter(
     (q) => props.records.find((r) => r.id === q.id)?.correct === false
   );
-
   return (
     <ScrollView contentContainerStyle={styles.content}>
       <Text style={[styles.title, { color: t.text }]}>結果</Text>
+      <Text style={[styles.subtitle, { color: t.sub }]}>{props.title}</Text>
       <Text style={[styles.score, { color: t.text }]}>
-        {correctCount} / {total} 問正解（{pct}%）
+        {correct} / {total} 問正解（{pct}%）
       </Text>
 
-      {wrongInThisRun.length > 0 ? (
+      {wrong.length > 0 ? (
         <View style={{ width: '100%', marginTop: 8 }}>
           <Text style={[styles.subtitle, { color: t.sub }]}>間違えた問題</Text>
-          {wrongInThisRun.map((q) => (
+          {wrong.map((q) => (
             <View
               key={q.id}
-              style={[styles.wrongItem, { backgroundColor: t.card, borderColor: t.border }]}
+              style={[styles.row, { backgroundColor: t.card, borderColor: t.border }]}
             >
-              <Text style={[styles.wrongTopic, { color: t.wrong }]}>
+              <Text style={[styles.rowSub, { color: t.wrong, marginBottom: 4 }]}>
                 {q.topic ?? q.number}
               </Text>
-              <Text style={[styles.wrongQ, { color: t.text }]}>{q.question}</Text>
+              <Text style={[styles.rowLabel, { color: t.text, fontWeight: '400' }]}>
+                {q.question}
+              </Text>
             </View>
           ))}
         </View>
@@ -260,15 +342,15 @@ function ResultScreen(props: {
       )}
 
       <View style={{ height: 8 }} />
-      <Button t={t} label="もう一度（同じ問題）" kind="primary" onPress={props.onRetry} />
+      <Button t={t} kind="primary" label="もう一度" onPress={props.onRetry} />
       <Button
         t={t}
-        label={props.wrongCount > 0 ? `間違いだけ復習（${props.wrongCount} 問）` : '復習する間違いはありません'}
         kind="review"
         disabled={props.wrongCount === 0}
+        label={props.wrongCount > 0 ? `間違いだけ復習（${props.wrongCount} 問）` : '復習する間違いはありません'}
         onPress={props.onReview}
       />
-      <Button t={t} label="ホームへ" kind="ghost" onPress={props.onHome} />
+      <Button t={t} kind="ghost" label="ホームへ" onPress={props.onHome} />
     </ScrollView>
   );
 }
@@ -298,7 +380,6 @@ function Button(props: {
   );
 }
 
-// 選択肢の色（回答後：正解=緑、選んだ誤答=赤、他=通常）
 function choiceColor(
   t: Theme,
   a: { num: number; answer: number; selected: number | null; answered: boolean }
@@ -343,9 +424,14 @@ const dark: Theme = {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   content: { padding: 16, paddingBottom: 40 },
+  back: { paddingVertical: 6, marginBottom: 2 },
+  backText: { fontSize: 15, fontWeight: '600' },
   title: { fontSize: 26, fontWeight: 'bold', marginBottom: 4 },
   subtitle: { fontSize: 14, marginBottom: 16 },
-  note: { fontSize: 13, marginTop: 16, lineHeight: 19 },
+  note: { fontSize: 14, marginTop: 12, lineHeight: 20 },
+  row: { borderWidth: 1, borderRadius: 10, padding: 16, marginBottom: 10 },
+  rowLabel: { fontSize: 17, fontWeight: '600', lineHeight: 23 },
+  rowSub: { fontSize: 13, marginTop: 4 },
   progress: { fontSize: 13, marginBottom: 10 },
   question: { fontSize: 18, lineHeight: 26, fontWeight: '600', marginBottom: 18 },
   choice: { borderWidth: 1.5, borderRadius: 10, padding: 14, marginBottom: 10 },
@@ -362,7 +448,4 @@ const styles = StyleSheet.create({
   },
   buttonText: { fontSize: 16, fontWeight: 'bold' },
   score: { fontSize: 22, fontWeight: 'bold', marginBottom: 8 },
-  wrongItem: { borderWidth: 1, borderRadius: 8, padding: 12, marginBottom: 8 },
-  wrongTopic: { fontSize: 12, fontWeight: 'bold', marginBottom: 4 },
-  wrongQ: { fontSize: 14, lineHeight: 20 },
 });

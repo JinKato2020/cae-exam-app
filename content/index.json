@@ -1,45 +1,34 @@
 {
   "app": "CAE試験対策",
-  "note": "公式問題集(著作物)の複製はリポジトリにコミットしない。コミットしてよいのは自作問題のみ。",
-  "grades": [
+  "note": "公式問題集(著作物)の複製はリポジトリにコミットしない。コミットしてよいのは自作問題のみ。アプリの実際の階層は src/catalog.ts が正。",
+  "structure": "分野(field) → 級(grade) → 章(chapter) → 問題",
+  "fields": [
     {
-      "grade": "計算力学2級対策（非公式）",
-      "note": "配布可能な自作オリジナル問題。公式問題集の複製ではない。",
-      "chapters": [
+      "id": "common",
+      "name": "計算力学 共通",
+      "grades": [
         {
-          "chapter": 1,
-          "title": "数学の基礎",
-          "file": "questions/math-basics.json",
-          "count": 15,
-          "origin": "original",
-          "status": "committed"
+          "id": "g2",
+          "name": "2級",
+          "chapters": [
+            {
+              "id": "math-basics",
+              "title": "数学の基礎",
+              "file": "questions/math-basics.json",
+              "count": 15,
+              "origin": "original",
+              "status": "committed"
+            }
+          ]
         }
       ]
     },
-    {
-      "grade": "サンプル",
-      "chapters": [
-        {
-          "chapter": 0,
-          "title": "動作確認用サンプル（自作）",
-          "file": "questions/sample.json",
-          "count": 2,
-          "status": "committed"
-        }
-      ]
-    },
-    {
-      "grade": "固体2級",
-      "note": "以下は公式問題集の複製のため gitignore 済＝ローカル(個人の勉強用)のみ。リポジトリには含めない。",
-      "chapters": [
-        {
-          "chapter": 1,
-          "title": "計算力学のための数学の基礎",
-          "file": "questions/solid2-math.json",
-          "count": 12,
-          "status": "local-only"
-        }
-      ]
-    }
-  ]
+    { "id": "solid", "name": "固体力学", "grades": [{ "id": "g2", "name": "2級", "chapters": [] }] },
+    { "id": "thermal", "name": "熱流体力学", "grades": [{ "id": "g2", "name": "2級", "chapters": [] }] },
+    { "id": "vibration", "name": "振動", "grades": [{ "id": "g2", "name": "2級", "chapters": [] }] }
+  ],
+  "localOnly": {
+    "note": "公式問題集の複製のため gitignore 済＝個人の勉強用のみ。リポジトリ・配布には含めない。",
+    "files": ["questions/solid2-math.json"]
+  }
 }
