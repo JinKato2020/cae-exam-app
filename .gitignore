@@ -33,3 +33,8 @@ credentials.json
 
 # ローカル一時
 scratchpad/
+
+# 著作物（公式問題集の複製）＝リポジトリに絶対に含めない・ローカル(個人の勉強用)のみ
+固体2級標準問題集/
+*.pdf
+content/questions/solid2-*.json
