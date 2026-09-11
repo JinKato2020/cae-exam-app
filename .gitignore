@@ -1,0 +1,35 @@
+# dependencies
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Native prebuild output（CIで生成）
+/ios
+/android
+
+# Metro
+.metro-health-check*
+
+# debug / logs
+npm-debug.*
+*.log
+
+# macOS / editor
+.DS_Store
+*.pem
+
+# 秘密情報（絶対にコミットしない）
+*.p8
+*.p12
+*.mobileprovision
+*.keystore
+google-services.json
+play-sa.json
+credentials.json
+
+# ローカル一時
+scratchpad/

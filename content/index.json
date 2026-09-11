@@ -1,0 +1,17 @@
+{
+  "app": "CAE試験対策",
+  "grades": [
+    {
+      "grade": "固体2級",
+      "chapters": [
+        {
+          "chapter": 1,
+          "title": "計算力学のための数学の基礎",
+          "file": "questions/solid2-math.json",
+          "count": 12,
+          "status": "data-entered"
+        }
+      ]
+    }
+  ]
+}

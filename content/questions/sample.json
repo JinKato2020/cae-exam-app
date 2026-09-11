@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "grade": "サンプル",
+    "category": "動作確認用サンプル（オリジナル・著作権フリー）",
+    "chapter": 0,
+    "source": "自作（公式問題集の複製ではない）",
+    "note": "リポジトリに置いてよいのはこのような自作問題のみ。公式問題集の複製はコミットしない。",
+    "count": 2
+  },
+  "questions": [
+    {
+      "id": "sample-1",
+      "number": "サンプル1",
+      "question": "2×2 の単位行列 I の行列式 det(I) はいくつか。",
+      "choices": ["0", "1", "2", "4"],
+      "answer": 2,
+      "explanation": "単位行列の行列式は 1。",
+      "hasMath": true
+    },
+    {
+      "id": "sample-2",
+      "number": "サンプル2",
+      "question": "平面ベクトル (3, 4) の大きさ（ノルム）はいくつか。",
+      "choices": ["5", "7", "12", "25"],
+      "answer": 1,
+      "explanation": "√(3^2 + 4^2) = √25 = 5。",
+      "hasMath": true
+    }
+  ]
+}

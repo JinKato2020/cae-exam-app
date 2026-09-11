@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "CAE固体2級対策",
+    "slug": "cae-exam-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "caeexam",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "bundleIdentifier": "com.safa.cae",
+      "buildNumber": "1",
+      "supportsTablet": true,
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.safa.cae",
+      "versionCode": 1001,
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
