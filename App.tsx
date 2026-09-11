@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import {
+  Image,
   Platform,
   Pressable,
   ScrollView,
@@ -13,6 +14,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import type { AnswerRecord, Question } from './src/types';
 import { loadWrongIds, updateWrongIds } from './src/storage';
+import { FIGURES, FIGURE_ASPECT } from './src/figures';
 import {
   CATALOG,
   questionsByIds,
@@ -313,7 +315,13 @@ function QuizScreen(props: {
             {isCorrect ? '◯ 正解' : '✕ 不正解'}（正解：{q.answer}）
           </Text>
           <Text style={[styles.explainText, { color: t.text }]}>{q.explanation}</Text>
-          {q.figure ? (
+          {q.figureImage && FIGURES[q.figureImage] ? (
+            <Image
+              source={FIGURES[q.figureImage]}
+              style={[styles.figureImg, { borderColor: t.border }]}
+              resizeMode="contain"
+            />
+          ) : q.figure ? (
             <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.figureWrap}>
               <Text style={[styles.figure, { color: t.text, borderColor: t.border, backgroundColor: t.bg }]}>
                 {q.figure}
@@ -482,6 +490,14 @@ const styles = StyleSheet.create({
   explainBox: { borderWidth: 1, borderRadius: 10, padding: 14, marginTop: 6, marginBottom: 8 },
   verdict: { fontSize: 15, fontWeight: 'bold', marginBottom: 6 },
   explainText: { fontSize: 14, lineHeight: 21 },
+  figureImg: {
+    width: '100%',
+    aspectRatio: FIGURE_ASPECT,
+    marginTop: 10,
+    borderWidth: 1,
+    borderRadius: 8,
+    backgroundColor: '#ffffff',
+  },
   figureWrap: { marginTop: 10 },
   figure: {
     fontFamily: Platform.select({ ios: 'Courier', android: 'monospace', default: 'monospace' }),
