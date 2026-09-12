@@ -24,6 +24,11 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   fembar: require('../assets/figures/fembar.png'),
   femsprings: require('../assets/figures/femsprings.png'),
   femtruss: require('../assets/figures/femtruss.png'),
+  // 第2章 固体力学の基礎（改訂・本番レベル）
+  stresstransform: require('../assets/figures/stresstransform.png'),
+  squarebar: require('../assets/figures/squarebar.png'),
+  fixedbar2mat: require('../assets/figures/fixedbar2mat.png'),
+  taperbar: require('../assets/figures/taperbar.png'),
 };
 
 // 図の縦横比（全図とも 660x420 で生成）

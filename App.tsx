@@ -15,6 +15,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import type { AnswerRecord, Question } from './src/types';
 import { loadWrongIds, updateWrongIds } from './src/storage';
 import { FIGURES, FIGURE_ASPECT } from './src/figures';
+import { RichText } from './src/MathText';
 import {
   CATALOG,
   questionsByIds,
@@ -291,7 +292,9 @@ function QuizScreen(props: {
         {props.title}　{props.index + 1} / {props.total}
         {q.title ? `　・　${q.title}` : ''}
       </Text>
-      <Text style={[styles.question, { color: t.text }]}>{q.question}</Text>
+      <View style={{ marginBottom: 18 }}>
+        <RichText text={q.question} color={t.text} fontSize={18} bold />
+      </View>
 
       {q.choices.map((choice, i) => {
         const num = i + 1;
@@ -302,9 +305,7 @@ function QuizScreen(props: {
             onPress={() => props.onSelect(num)}
             style={[styles.choice, { backgroundColor: c.bg, borderColor: c.border }]}
           >
-            <Text style={[styles.choiceText, { color: c.text }]}>
-              {num}. {choice}
-            </Text>
+            <RichText text={`${num}. ${choice}`} color={c.text} fontSize={16} />
           </Pressable>
         );
       })}
@@ -314,7 +315,7 @@ function QuizScreen(props: {
           <Text style={[styles.verdict, { color: isCorrect ? t.correct : t.wrong }]}>
             {isCorrect ? '◯ 正解' : '✕ 不正解'}（正解：{q.answer}）
           </Text>
-          <Text style={[styles.explainText, { color: t.text }]}>{q.explanation}</Text>
+          <RichText text={q.explanation} color={t.text} fontSize={14} />
           {q.figureImage && FIGURES[q.figureImage] ? (
             <Image
               source={FIGURES[q.figureImage]}
