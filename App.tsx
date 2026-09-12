@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import {
   Image,
-  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -283,6 +282,9 @@ function QuizScreen(props: {
 }) {
   const { t, q, answered, selected } = props;
   const isCorrect = selected === q.answer;
+  // 図の幅は「コンテナの実測幅」を使う。Fabric(新アーキ)では Image に width:'100%'+aspectRatio
+  // を与えると幅指定が効かず実寸(660dp)で描画され右にはみ出すため、測った幅を数値で渡す。
+  const [figW, setFigW] = useState(0);
   return (
     <ScrollView contentContainerStyle={styles.content}>
       <Pressable onPress={props.onQuit} style={styles.back}>
@@ -317,17 +319,24 @@ function QuizScreen(props: {
           </Text>
           <RichText text={q.explanation} color={t.text} fontSize={14} />
           {q.figureImage && FIGURES[q.figureImage] ? (
-            <Image
-              source={FIGURES[q.figureImage]}
-              style={[styles.figureImg, { borderColor: t.border }]}
-              resizeMode="contain"
-            />
-          ) : q.figure ? (
-            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.figureWrap}>
-              <Text style={[styles.figure, { color: t.text, borderColor: t.border, backgroundColor: t.bg }]}>
-                {q.figure}
-              </Text>
-            </ScrollView>
+            <View
+              style={styles.figureWrap}
+              onLayout={(e) => {
+                const w = e.nativeEvent.layout.width;
+                if (w && Math.abs(w - figW) > 1) setFigW(w);
+              }}
+            >
+              {figW > 0 ? (
+                <Image
+                  source={FIGURES[q.figureImage]}
+                  style={[
+                    styles.figureImg,
+                    { width: figW, height: figW / FIGURE_ASPECT, borderColor: t.border },
+                  ]}
+                  resizeMode="contain"
+                />
+              ) : null}
+            </View>
           ) : null}
         </View>
       )}
@@ -492,22 +501,11 @@ const styles = StyleSheet.create({
   verdict: { fontSize: 15, fontWeight: 'bold', marginBottom: 6 },
   explainText: { fontSize: 14, lineHeight: 21 },
   figureImg: {
-    width: '100%',
-    aspectRatio: FIGURE_ASPECT,
-    marginTop: 10,
     borderWidth: 1,
     borderRadius: 8,
     backgroundColor: '#ffffff',
   },
-  figureWrap: { marginTop: 10 },
-  figure: {
-    fontFamily: Platform.select({ ios: 'Courier', android: 'monospace', default: 'monospace' }),
-    fontSize: 12,
-    lineHeight: 17,
-    padding: 10,
-    borderWidth: 1,
-    borderRadius: 8,
-  },
+  figureWrap: { marginTop: 10, width: '100%' },
   button: {
     borderRadius: 10,
     paddingVertical: 15,

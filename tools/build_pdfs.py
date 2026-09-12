@@ -16,7 +16,9 @@ if not os.path.exists(EDGE):
 # 章番号 → 問題ファイル
 FILES = {1:"math-basics.json",2:"solid-basics.json",3:"heat-basics.json",
          4:"fem-basics.json",5:"fem-practice.json",6:"numerical-basics.json",7:"element-tech.json",
-         8:"modeling-basics.json",9:"boundary-conditions.json"}
+         8:"modeling-basics.json",9:"boundary-conditions.json",
+         10:"prepost-basics.json",11:"verification-basics.json",
+         12:"computer-basics.json",13:"ethics.json"}
 
 def esc(s): return html.escape(s, quote=False)
 

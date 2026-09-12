@@ -12,6 +12,10 @@ import ch6 from '../content/questions/numerical-basics.json';
 import ch7 from '../content/questions/element-tech.json';
 import ch8 from '../content/questions/modeling-basics.json';
 import ch9 from '../content/questions/boundary-conditions.json';
+import ch10 from '../content/questions/prepost-basics.json';
+import ch11 from '../content/questions/verification-basics.json';
+import ch12 from '../content/questions/computer-basics.json';
+import ch13 from '../content/questions/ethics.json';
 
 export type ChapterEntry = { id: string; title: string; data: Chapter };
 export type GradeEntry = { id: string; name: string; chapters: ChapterEntry[] };
@@ -36,6 +40,10 @@ export const CATALOG: FieldEntry[] = [
           { id: 'ch7', title: '第7章 要素テクノロジーの基礎', data: ch7 as unknown as Chapter },
           { id: 'ch8', title: '第8章 モデリングの基礎', data: ch8 as unknown as Chapter },
           { id: 'ch9', title: '第9章 境界条件の使い方の基礎', data: ch9 as unknown as Chapter },
+          { id: 'ch10', title: '第10章 プリポスト処理の基礎', data: ch10 as unknown as Chapter },
+          { id: 'ch11', title: '第11章 結果の検証の基礎', data: ch11 as unknown as Chapter },
+          { id: 'ch12', title: '第12章 コンピューターの基礎', data: ch12 as unknown as Chapter },
+          { id: 'ch13', title: '第13章 計算力学技術者倫理', data: ch13 as unknown as Chapter },
         ],
       },
     ],
