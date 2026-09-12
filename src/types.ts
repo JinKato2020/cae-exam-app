@@ -27,9 +27,3 @@ export type Chapter = {
   };
   questions: Question[];
 };
-
-// 1問ごとの回答記録
-export type AnswerRecord = {
-  id: string;
-  correct: boolean;
-};

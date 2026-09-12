@@ -69,3 +69,16 @@ export function questionsByIds(ids: string[]): Question[] {
   const set = new Set(ids);
   return ALL_QUESTIONS.filter((q) => set.has(q.id));
 }
+
+// 問題ID → 章ID（章別分析・タイル色分けで使う）
+export const QUESTION_CHAPTER: Record<string, string> = (() => {
+  const m: Record<string, string> = {};
+  for (const f of CATALOG) {
+    for (const g of f.grades) {
+      for (const c of g.chapters) {
+        for (const q of c.data.questions) m[q.id] = c.id;
+      }
+    }
+  }
+  return m;
+})();
