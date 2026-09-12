@@ -10,6 +10,8 @@ import ch4 from '../content/questions/fem-basics.json';
 import ch5 from '../content/questions/fem-practice.json';
 import ch6 from '../content/questions/numerical-basics.json';
 import ch7 from '../content/questions/element-tech.json';
+import ch8 from '../content/questions/modeling-basics.json';
+import ch9 from '../content/questions/boundary-conditions.json';
 
 export type ChapterEntry = { id: string; title: string; data: Chapter };
 export type GradeEntry = { id: string; name: string; chapters: ChapterEntry[] };
@@ -32,6 +34,8 @@ export const CATALOG: FieldEntry[] = [
           { id: 'ch5', title: '第5章 有限要素法の実践', data: ch5 as unknown as Chapter },
           { id: 'ch6', title: '第6章 数値計算法の基礎', data: ch6 as unknown as Chapter },
           { id: 'ch7', title: '第7章 要素テクノロジーの基礎', data: ch7 as unknown as Chapter },
+          { id: 'ch8', title: '第8章 モデリングの基礎', data: ch8 as unknown as Chapter },
+          { id: 'ch9', title: '第9章 境界条件の使い方の基礎', data: ch9 as unknown as Chapter },
         ],
       },
     ],

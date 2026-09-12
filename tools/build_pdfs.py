@@ -1,0 +1,96 @@
+# -*- coding: utf-8 -*-
+"""各章の問題・解答・解説・図を1章=1PDFで出力(セッション直下=プロジェクト直下)。
+数式=MathJax(SVG)、図=base64埋め込み。Edge headless の print-to-pdf を使用。
+使い方: python tools/build_pdfs.py [章番号...]   (無指定なら1〜5章)
+再利用可能な恒久ツール。新章を作ったら CHAPTERS に足すだけ。"""
+import json, os, base64, html, subprocess, sys, glob
+
+CAE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+QDIR = os.path.join(CAE, "content", "questions")
+FIG = os.path.join(CAE, "assets", "figures")
+TMP = os.path.join(CAE, "tools", "_pdftmp")
+EDGE = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+if not os.path.exists(EDGE):
+    EDGE = r"C:\Program Files\Microsoft\Edge\Application\msedge.exe"
+
+# 章番号 → 問題ファイル
+FILES = {1:"math-basics.json",2:"solid-basics.json",3:"heat-basics.json",
+         4:"fem-basics.json",5:"fem-practice.json",6:"numerical-basics.json",7:"element-tech.json",
+         8:"modeling-basics.json",9:"boundary-conditions.json"}
+
+def esc(s): return html.escape(s, quote=False)
+
+def img_datauri(key):
+    p=os.path.join(FIG,key+".png")
+    if not os.path.exists(p): return None
+    b=base64.b64encode(open(p,"rb").read()).decode()
+    return "data:image/png;base64,"+b
+
+def expl_html(s):
+    return "".join(f"<div class='eline'>{esc(l.strip())}</div>" for l in s.split("\n") if l.strip())
+
+def card(q):
+    fig=""
+    if q.get("figureImage"):
+        uri=img_datauri(q["figureImage"])
+        if uri: fig=f"<div class='fig'><img src='{uri}'></div>"
+    ch="".join(f"<li class='{'ok' if i+1==q['answer'] else ''}'>{esc(c)}</li>" for i,c in enumerate(q["choices"]))
+    return f"""<div class='card'>
+      <div class='chead'><span class='num'>{esc(q['number'])}</span> <span class='ttl'>{esc(q['title'])}</span>
+        <span class='meta'>難{q.get('difficulty','?')}・{esc(q.get('topic',''))}</span></div>
+      <div class='q'>{esc(q['question'])}</div>{fig}
+      <ol class='choices'>{ch}</ol>
+      <div class='ans'><b>正解 : {q['answer']}</b></div>
+      <div class='exp'>{expl_html(q['explanation'])}</div>
+    </div>"""
+
+def build_html(ch):
+    data=json.load(open(os.path.join(QDIR,FILES[ch]),encoding="utf-8"))
+    cat=data["meta"]["category"]
+    cards="".join(card(q) for q in data["questions"])
+    return cat, f"""<!doctype html><html lang="ja"><head><meta charset="utf-8">
+<title>{esc(cat)}</title>
+<style>
+@page {{ size:A4; margin:14mm 12mm; }}
+body{{font-family:'Meiryo','Yu Gothic',sans-serif;color:#111;line-height:1.65;font-size:11pt;}}
+h1{{font-size:16pt;border-bottom:2px solid #2456c9;padding-bottom:4px;}}
+.sub{{color:#555;font-size:9pt;margin-bottom:8px;}}
+.card{{break-inside:avoid;border:1px solid #ccc;border-radius:8px;padding:10px 12px;margin:9px 0;}}
+.chead{{margin-bottom:4px;}} .num{{font-weight:700;color:#2456c9;}} .ttl{{font-weight:700;}}
+.meta{{color:#666;font-size:8.5pt;}}
+.q{{margin:4px 0;}}
+.fig{{text-align:center;margin:8px 0;}} .fig img{{max-width:74%;border:1px solid #ddd;border-radius:6px;}}
+ol.choices{{margin:6px 0;padding-left:20px;}} ol.choices li.ok{{font-weight:700;background:#eaf7ee;}}
+.ans{{color:#1f9d55;margin:4px 0;}}
+.exp{{background:#f7f7f4;border-left:3px solid #2456c9;padding:6px 10px;border-radius:4px;font-size:10pt;}}
+.eline{{margin:3px 0;}}
+mjx-container{{overflow-x:auto;}}
+</style>
+<script>window.MathJax={{tex:{{inlineMath:[['$','$']]}},svg:{{fontCache:'global'}}}};</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head><body>
+<h1>{esc(cat)}</h1>
+<div class="sub">CAE計算力学技術者 固体力学2級・オリジナル問題（問題／解答／解説／図）</div>
+{cards}
+</body></html>"""
+
+def main():
+    chapters=[int(x) for x in sys.argv[1:]] or [1,2,3,4,5]
+    os.makedirs(TMP,exist_ok=True)
+    for ch in chapters:
+        cat,doc=build_html(ch)
+        hp=os.path.join(TMP,f"ch{ch}.html")
+        open(hp,"w",encoding="utf-8").write(doc)
+        short=cat.split(" ",1)[-1].replace(" ","") if " " in cat else cat
+        out=os.path.join(CAE, f"固体2級_第{ch}章_{short}.pdf")
+        url="file:///"+hp.replace("\\","/")
+        cmd=[EDGE,"--headless=new","--disable-gpu","--no-sandbox",
+             f"--print-to-pdf={out}","--print-to-pdf-no-header",
+             "--virtual-time-budget=25000","--run-all-compositor-stages-before-draw",url]
+        r=subprocess.run(cmd,capture_output=True,timeout=120)
+        ok=os.path.exists(out)
+        print(f"ch{ch}: {'OK' if ok else 'FAIL'}  {out}  ({os.path.getsize(out)//1024 if ok else 0} KB)")
+    print("PDF出力完了")
+
+if __name__=="__main__":
+    main()

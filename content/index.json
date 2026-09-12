@@ -11,19 +11,104 @@
           "id": "g2",
           "name": "2級",
           "chapters": [
-            { "id": "ch1", "title": "第1章 数学の基礎", "file": "questions/math-basics.json", "count": 15, "origin": "original", "status": "committed" },
-            { "id": "ch2", "title": "第2章 固体力学の基礎", "file": "questions/solid-basics.json", "count": 44, "origin": "original", "status": "committed" },
-            { "id": "ch3", "title": "第3章 熱伝導の基礎", "file": "questions/heat-basics.json", "count": 15, "origin": "original", "status": "committed" },
-            { "id": "ch4", "title": "第4章 有限要素法の定式化", "file": "questions/fem-basics.json", "count": 15, "origin": "original", "status": "committed" },
-            { "id": "ch5", "title": "第5章 有限要素法の実践", "file": "questions/fem-practice.json", "count": 15, "origin": "original", "status": "committed" },
-            { "id": "ch6", "title": "第6章 数値計算法の基礎", "file": "questions/numerical-basics.json", "count": 15, "origin": "original", "status": "committed" },
-            { "id": "ch7", "title": "第7章 要素テクノロジーの基礎", "file": "questions/element-tech.json", "count": 15, "origin": "original", "status": "committed" }
+            {
+              "id": "ch1",
+              "title": "第1章 数学の基礎",
+              "file": "questions/math-basics.json",
+              "count": 12,
+              "origin": "original",
+              "status": "committed"
+            },
+            {
+              "id": "ch2",
+              "title": "第2章 固体力学の基礎",
+              "file": "questions/solid-basics.json",
+              "count": 44,
+              "origin": "original",
+              "status": "committed"
+            },
+            {
+              "id": "ch3",
+              "title": "第3章 熱伝導の基礎",
+              "file": "questions/heat-basics.json",
+              "count": 17,
+              "origin": "original",
+              "status": "committed"
+            },
+            {
+              "id": "ch4",
+              "title": "第4章 有限要素法の定式化",
+              "file": "questions/fem-basics.json",
+              "count": 29,
+              "origin": "original",
+              "status": "committed"
+            },
+            {
+              "id": "ch5",
+              "title": "第5章 有限要素法の実践",
+              "file": "questions/fem-practice.json",
+              "count": 26,
+              "origin": "original",
+              "status": "committed"
+            },
+            {
+              "id": "ch6",
+              "title": "第6章 数値計算法の基礎",
+              "file": "questions/numerical-basics.json",
+              "count": 28,
+              "origin": "original",
+              "status": "committed"
+            },
+            {
+              "id": "ch7",
+              "title": "第7章 要素テクノロジーの基礎",
+              "file": "questions/element-tech.json",
+              "count": 25,
+              "origin": "original",
+              "status": "committed"
+            },
+            {
+              "id": "ch8",
+              "title": "第8章 モデリングの基礎",
+              "file": "questions/modeling-basics.json",
+              "count": 24,
+              "origin": "original",
+              "status": "draft"
+            },
+            {
+              "id": "ch9",
+              "title": "第9章 境界条件の使い方の基礎",
+              "file": "questions/boundary-conditions.json",
+              "count": 24,
+              "origin": "original",
+              "status": "draft"
+            }
           ]
         }
       ]
     },
-    { "id": "thermal", "name": "熱流体力学", "grades": [{ "id": "g2", "name": "2級", "chapters": [] }] },
-    { "id": "vibration", "name": "振動", "grades": [{ "id": "g2", "name": "2級", "chapters": [] }] }
+    {
+      "id": "thermal",
+      "name": "熱流体力学",
+      "grades": [
+        {
+          "id": "g2",
+          "name": "2級",
+          "chapters": []
+        }
+      ]
+    },
+    {
+      "id": "vibration",
+      "name": "振動",
+      "grades": [
+        {
+          "id": "g2",
+          "name": "2級",
+          "chapters": []
+        }
+      ]
+    }
   ],
   "localOnly": {
     "note": "公式問題集の原本・書き起こしは著作物のため gitignore 済＝個人の勉強用のみ。プロジェクト直下の _原本(非公開)/ に集約。リポジトリ・配布には含めない。",
