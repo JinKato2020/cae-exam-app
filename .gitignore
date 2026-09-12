@@ -40,3 +40,6 @@ _原本(非公開)/
 固体2級標準問題集/
 *.pdf
 content/questions/solid2-*.json
+
+# PDF生成の一時作業ディレクトリ
+tools/_pdftmp/
