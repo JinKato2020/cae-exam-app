@@ -22,12 +22,15 @@ import { FIGURES, FIGURE_ASPECT } from './src/figures';
 import { RichText } from './src/MathText';
 import { CATALOG, questionsByIds, type ChapterEntry } from './src/catalog';
 import { formulaDoc, type FormulaItem } from './src/formulas';
+import Svg, { Circle, Line, Polygon, Text as SvgText } from 'react-native-svg';
 import {
   chapterStats,
+  fieldStats,
   loadProgress,
   overallStat,
   recordAnswer,
   resetProgress,
+  resetDaily,
   wrongIdsFrom,
   type ProgressMap,
 } from './src/progress';
@@ -35,20 +38,22 @@ import {
 const APP_VERSION = '1.0.0';
 
 // 課程（分野＋級）。固体2級・固体1級のみ表示。他分野はまだ無いので出さない。
-function solid2Chapters(): ChapterEntry[] {
+function solidGradeChapters(gradeId: string): ChapterEntry[] {
   const solid = CATALOG.find((f) => f.id === 'solid');
-  const g2 = solid?.grades.find((g) => g.id === 'g2');
-  return g2?.chapters ?? [];
+  return solid?.grades.find((g) => g.id === gradeId)?.chapters ?? [];
 }
+const solid2Chapters = (): ChapterEntry[] => solidGradeChapters('g2');
+const solid1Chapters = (): ChapterEntry[] => solidGradeChapters('g1');
 type Course = { id: string; name: string; chapters: ChapterEntry[]; ready: boolean };
+// 1級は現在 第8章 のみ完成（他章は準備中）。章側の ready フラグで出し分ける。
 const COURSES: Course[] = [
   { id: 'solid-2', name: '固体力学 2級', chapters: solid2Chapters(), ready: true },
-  { id: 'solid-1', name: '固体力学 1級', chapters: [], ready: false },
+  { id: 'solid-1', name: '固体力学 1級', chapters: solid1Chapters(), ready: true },
 ];
 
 type Tab = 'home' | 'study' | 'formula' | 'settings';
 type StudyView = 'course' | 'chapters' | 'tiles' | 'problem';
-type FormulaView = 'chapters' | 'titles' | 'item';
+type FormulaView = 'course' | 'chapters' | 'titles' | 'item';
 
 export default function App() {
   return (
@@ -77,8 +82,9 @@ function AppInner() {
   // 出題セッション内の選択（問題ID → 選んだ番号）。前後移動しても選択が残る。
   const [answers, setAnswers] = useState<Record<string, number>>({});
 
-  // 公式・用語タブ（章 → タイトル一覧 → 個別解説）
-  const [formulaView, setFormulaView] = useState<FormulaView>('chapters');
+  // 公式・用語タブ（課程 → 章 → タイトル一覧 → 個別解説）
+  const [formulaView, setFormulaView] = useState<FormulaView>('course');
+  const [formulaCourse, setFormulaCourse] = useState<Course | null>(null);
   const [formulaChapterId, setFormulaChapterId] = useState<string | null>(null);
   const [formulaItemId, setFormulaItemId] = useState<string | null>(null);
 
@@ -157,8 +163,13 @@ function AppInner() {
           <FormulaTab
             t={t}
             view={formulaView}
+            course={formulaCourse}
             chapterId={formulaChapterId}
             itemId={formulaItemId}
+            onPickCourse={(c) => {
+              setFormulaCourse(c);
+              setFormulaView('chapters');
+            }}
             onOpenChapter={(id) => {
               setFormulaChapterId(id);
               setFormulaView('titles');
@@ -314,6 +325,7 @@ function HomeTab(props: {
   const { t } = props;
   const overall = useMemo(() => overallStat(props.progress), [props.progress]);
   const stats = useMemo(() => chapterStats(props.progress), [props.progress]);
+  const fields = useMemo(() => fieldStats(props.progress), [props.progress]);
   const attemptedStats = stats.filter((s) => s.attempted > 0);
   const weak = [...attemptedStats].sort((a, b) => a.accuracy - b.accuracy).slice(0, 3);
   const strong = [...attemptedStats].sort((a, b) => b.accuracy - a.accuracy).slice(0, 3);
@@ -329,6 +341,20 @@ function HomeTab(props: {
           <Summary t={t} label="挑戦した問題" value={`${overall.attempted} / ${overall.totalQuestions}`} />
           <Summary t={t} label="正答率" value={`${Math.round(overall.accuracy * 100)}%`} />
           <Summary t={t} label="要復習" value={`${props.wrongCount} 問`} />
+        </View>
+      </View>
+
+      {/* 5分野レーダー（正五角形） */}
+      <Text style={[styles.sectionHead, { color: t.text }]}>分野別のバランス</Text>
+      <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border, alignItems: 'center' }]}>
+        <RadarChart t={t} fields={fields} />
+        <View style={styles.radarLegend}>
+          {fields.map((f) => (
+            <Text key={f.id} style={[styles.radarLegendItem, { color: t.sub }]}>
+              {f.id}：{f.label}（
+              {f.attempted > 0 ? `${Math.round(f.accuracy * 100)}%` : '未挑戦'}）
+            </Text>
+          ))}
         </View>
       </View>
 
@@ -417,6 +443,74 @@ function ProgressBar(props: { t: Theme; accuracy: number; attempted: number }) {
   );
 }
 
+// 正五角形レーダー。5分野の正答率を頂点にプロットする。
+function RadarChart(props: { t: Theme; fields: ReturnType<typeof fieldStats> }) {
+  const { t, fields } = props;
+  const N = fields.length; // 5
+  const size = 250;
+  const cx = size / 2;
+  const cy = size / 2;
+  const R = 82; // データ領域の最大半径
+  const labelR = R + 22; // ラベルを外側に配置
+
+  // 上（12時方向）から時計回りに配置
+  const angle = (i: number) => -Math.PI / 2 + (i * 2 * Math.PI) / N;
+  const at = (i: number, r: number) => ({
+    x: cx + r * Math.cos(angle(i)),
+    y: cy + r * Math.sin(angle(i)),
+  });
+  const poly = (r: number) =>
+    fields.map((_, i) => { const p = at(i, r); return `${p.x},${p.y}`; }).join(' ');
+
+  const grid = [0.25, 0.5, 0.75, 1]; // 目盛りの正五角形
+  const dataPts = fields
+    .map((f, i) => { const p = at(i, R * Math.max(0, Math.min(1, f.accuracy))); return `${p.x},${p.y}`; })
+    .join(' ');
+  const hasData = fields.some((f) => f.attempted > 0);
+
+  return (
+    <Svg width={size} height={size}>
+      {/* 目盛りの正五角形 */}
+      {grid.map((k) => (
+        <Polygon key={k} points={poly(R * k)} fill="none" stroke={t.border} strokeWidth={1} />
+      ))}
+      {/* 中心からの軸線 */}
+      {fields.map((_, i) => {
+        const p = at(i, R);
+        return <Line key={i} x1={cx} y1={cy} x2={p.x} y2={p.y} stroke={t.border} strokeWidth={1} />;
+      })}
+      {/* データ多角形 */}
+      {hasData && (
+        <Polygon points={dataPts} fill={t.primary} fillOpacity={0.22} stroke={t.primary} strokeWidth={2} />
+      )}
+      {/* 各頂点の点 */}
+      {hasData &&
+        fields.map((f, i) => {
+          const p = at(i, R * Math.max(0, Math.min(1, f.accuracy)));
+          return <Circle key={i} cx={p.x} cy={p.y} r={3} fill={t.primary} />;
+        })}
+      {/* 頂点ラベル（分野記号） */}
+      {fields.map((f, i) => {
+        const p = at(i, labelR);
+        return (
+          <SvgText
+            key={f.id}
+            x={p.x}
+            y={p.y}
+            fill={t.sub}
+            fontSize={12}
+            fontWeight="bold"
+            textAnchor="middle"
+            alignmentBaseline="middle"
+          >
+            {f.id}
+          </SvgText>
+        );
+      })}
+    </Svg>
+  );
+}
+
 // ================= 問題タブ =================
 function StudyTab(props: {
   t: Theme;
@@ -465,19 +559,20 @@ function StudyTab(props: {
       <ScrollView contentContainerStyle={styles.content}>
         <BackLink t={t} label="課程を選び直す" onPress={() => props.goBack('course')} />
         <Text style={[styles.title, { color: t.text }]}>{props.course.name}</Text>
-        <Text style={[styles.subtitle, { color: t.sub }]}>章を選んでください（全13章）</Text>
+        <Text style={[styles.subtitle, { color: t.sub }]}>章を選んでください（全 {props.course.chapters.length} 章）</Text>
         {props.course.chapters.map((c) => {
+          const ready = c.ready !== false && c.data.questions.length > 0;
           const ids = c.data.questions.map((q) => q.id);
           const done = ids.filter((id) => props.progress[id]).length;
           return (
             <Pressable
               key={c.id}
-              onPress={() => props.onPickChapter(c)}
-              style={[styles.row, { backgroundColor: t.card, borderColor: t.border }]}
+              onPress={ready ? () => props.onPickChapter(c) : undefined}
+              style={[styles.row, { backgroundColor: t.card, borderColor: t.border, opacity: ready ? 1 : 0.5 }]}
             >
               <Text style={[styles.rowLabel, { color: t.text }]}>{c.title}</Text>
-              <Text style={[styles.rowSub, { color: t.sub }]}>
-                {c.data.questions.length} 問　・　{done > 0 ? `${done} 問挑戦済` : '未挑戦'}
+              <Text style={[styles.rowSub, { color: ready ? t.sub : t.wrong }]}>
+                {ready ? `${c.data.questions.length} 問　・　${done > 0 ? `${done} 問挑戦済` : '未挑戦'}` : '準備中'}
               </Text>
             </Pressable>
           );
@@ -617,8 +712,10 @@ function ProblemScreen(props: {
 function FormulaTab(props: {
   t: Theme;
   view: FormulaView;
+  course: Course | null;
   chapterId: string | null;
   itemId: string | null;
+  onPickCourse: (c: Course) => void;
   onOpenChapter: (id: string) => void;
   onOpenItem: (itemId: string) => void;
   onBack: (v: FormulaView) => void;
@@ -681,27 +778,49 @@ function FormulaTab(props: {
     );
   }
 
-  // 章の一覧
+  // 章の一覧（選んだ課程の中）
+  if (props.view === 'chapters' && props.course) {
+    return (
+      <ScrollView contentContainerStyle={styles.content}>
+        <BackLink t={t} label="課程を選び直す" onPress={() => props.onBack('course')} />
+        <Text style={[styles.title, { color: t.text }]}>{props.course.name}</Text>
+        <Text style={[styles.subtitle, { color: t.sub }]}>章を選ぶと、公式・用語のタイトル一覧が出ます</Text>
+        {props.course.chapters.map((c) => {
+          const fid = c.formulaId ?? c.id;
+          const doc = formulaDoc(fid);
+          const ready = !!doc && c.ready !== false;
+          return (
+            <Pressable
+              key={c.id}
+              onPress={ready ? () => props.onOpenChapter(fid) : undefined}
+              style={[styles.row, { backgroundColor: t.card, borderColor: t.border, opacity: ready ? 1 : 0.5 }]}
+            >
+              <Text style={[styles.rowLabel, { color: t.text }]}>{c.title}</Text>
+              <Text style={[styles.rowSub, { color: ready ? t.sub : t.wrong }]}>
+                {ready ? `${doc!.items.length} 項目` : '準備中'}
+              </Text>
+            </Pressable>
+          );
+        })}
+      </ScrollView>
+    );
+  }
+
+  // 課程の選択
   return (
     <ScrollView contentContainerStyle={styles.content}>
       <Text style={[styles.title, { color: t.text }]}>公式・用語</Text>
-      <Text style={[styles.subtitle, { color: t.sub }]}>章を選ぶと、公式・用語のタイトル一覧が出ます</Text>
-      {solid2Chapters().map((c) => {
-        const doc = formulaDoc(c.id);
-        const ready = !!doc;
-        return (
-          <Pressable
-            key={c.id}
-            onPress={ready ? () => props.onOpenChapter(c.id) : undefined}
-            style={[styles.row, { backgroundColor: t.card, borderColor: t.border, opacity: ready ? 1 : 0.5 }]}
-          >
-            <Text style={[styles.rowLabel, { color: t.text }]}>{c.title}</Text>
-            <Text style={[styles.rowSub, { color: ready ? t.sub : t.wrong }]}>
-              {ready ? `${doc!.items.length} 項目` : '準備中'}
-            </Text>
-          </Pressable>
-        );
-      })}
+      <Text style={[styles.subtitle, { color: t.sub }]}>課程を選んでください</Text>
+      {COURSES.map((c) => (
+        <Pressable
+          key={c.id}
+          onPress={c.ready ? () => props.onPickCourse(c) : undefined}
+          style={[styles.row, { backgroundColor: t.card, borderColor: t.border, opacity: c.ready ? 1 : 0.5 }]}
+        >
+          <Text style={[styles.rowLabel, { color: t.text }]}>{c.name}</Text>
+          <Text style={[styles.rowSub, { color: c.ready ? t.sub : t.wrong }]}>{c.ready ? '公式・用語' : '準備中'}</Text>
+        </Pressable>
+      ))}
     </ScrollView>
   );
 }
@@ -720,7 +839,7 @@ function FormulaCard(props: { t: Theme; item: FormulaItem }) {
       </View>
       {item.formula ? (
         <View style={[styles.formulaBox, { backgroundColor: t.bg, borderColor: t.border }]}>
-          <RichText text={displayMath(item.formula)} color={t.text} fontSize={18} bold />
+          <RichText text={displayMath(item.formula)} color={t.text} fontSize={22} bold />
         </View>
       ) : null}
       <RichText text={item.body} color={t.text} fontSize={14} />
@@ -736,7 +855,11 @@ function FormulaCard(props: { t: Theme; item: FormulaItem }) {
 }
 
 // ================= 設定タブ =================
-function SettingsTab(props: { t: Theme; progress: ProgressMap; onReset: () => void }) {
+function SettingsTab(props: {
+  t: Theme;
+  progress: ProgressMap;
+  onReset: () => void;
+}) {
   const { t } = props;
   const overall = overallStat(props.progress);
 
@@ -754,7 +877,7 @@ function SettingsTab(props: { t: Theme; progress: ProgressMap; onReset: () => vo
       <Text style={[styles.sectionHead, { color: t.text }]}>アプリ情報</Text>
       <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
         <InfoRow t={t} label="バージョン" value={`v${APP_VERSION}`} />
-        <InfoRow t={t} label="収録" value="固体力学 2級・全13章" />
+        <InfoRow t={t} label="収録" value="固体力学 2級（全13章）・1級（第8章）" />
         <InfoRow t={t} label="解いた問題" value={`${overall.attempted} / ${overall.totalQuestions} 問`} />
         <InfoRow t={t} label="外観" value="端末の設定に自動で追従（ライト/ダーク）" last />
       </View>
@@ -765,7 +888,7 @@ function SettingsTab(props: { t: Theme; progress: ProgressMap; onReset: () => vo
       <Text style={[styles.sectionHead, { color: t.text }]}>このアプリについて</Text>
       <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
         <Text style={[styles.bodyText, { color: t.sub }]}>
-          計算力学技術者（CAE）試験の対策アプリです。収録している問題・解説はすべてオリジナルで作成しています。学習の記録は端末内にのみ保存され、外部には送信されません。
+          計算力学技術者（CAE）試験の対策アプリです。収録している問題・解説はすべてオリジナルで作成しています。学習の記録は端末内に保存されます。ログインすると、記録が安全にクラウドへバックアップされ、機種変更や再インストールのあとでも引き継げます。
         </Text>
       </View>
     </ScrollView>
@@ -873,10 +996,16 @@ function fmtDate(ts: number): string {
 
 // 公式は「ディスプレイ数式」（中央・大きめ）で表示したいので、
 // インライン $...$ をブロック $$...$$ に変換する（問題文と同じKaTeX経路）。
+// 公式・用語タブの「主役の数式」を必ず $$…$$（大きい中央表示）に統一する。
 function displayMath(s: string): string {
   const x = s.trim();
-  if (x.startsWith('$$')) return x;
-  if (x.startsWith('$') && x.endsWith('$') && x.length > 2) return `$$${x.slice(1, -1)}$$`;
+  if (x.startsWith('$$')) return x; // すでにディスプレイ表示
+  // 全体が単一の $…$（途中に区切りの $ を含まない）なら $$…$$ へ昇格
+  if (x.startsWith('$') && x.endsWith('$') && x.length > 2 && x.slice(1, -1).indexOf('$') === -1) {
+    return `$$${x.slice(1, -1)}$$`;
+  }
+  // $ を全く含まない素の数式テキストも、まとめてディスプレイ表示にする
+  if (x.indexOf('$') === -1 && x.length > 0) return `$$${x}$$`;
   return x;
 }
 
@@ -921,6 +1050,8 @@ const styles = StyleSheet.create({
   title: { fontSize: 26, fontWeight: 'bold', marginBottom: 4 },
   subtitle: { fontSize: 14, marginBottom: 16 },
   sectionHead: { fontSize: 16, fontWeight: 'bold', marginTop: 18, marginBottom: 8 },
+  radarLegend: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 8 },
+  radarLegendItem: { fontSize: 12, marginHorizontal: 6, marginVertical: 2 },
   bodyText: { fontSize: 14, lineHeight: 21 },
   card: { borderWidth: 1, borderRadius: 12, padding: 14, marginBottom: 10 },
   row: { borderWidth: 1, borderRadius: 10, padding: 16, marginBottom: 10 },
@@ -990,7 +1121,7 @@ const styles = StyleSheet.create({
   badge: { borderRadius: 6, paddingHorizontal: 8, paddingVertical: 3, marginRight: 8 },
   badgeText: { color: '#ffffff', fontSize: 12, fontWeight: 'bold' },
   formulaTerm: { fontSize: 17, fontWeight: 'bold', flex: 1 },
-  formulaBox: { borderWidth: 1, borderRadius: 8, padding: 12, marginBottom: 10 },
+  formulaBox: { borderWidth: 1, borderRadius: 8, paddingVertical: 16, paddingHorizontal: 12, marginBottom: 10 },
   exampleBox: { borderLeftWidth: 3, borderRadius: 4, paddingLeft: 10, paddingVertical: 4, marginTop: 10 },
   exampleLabel: { fontSize: 12, fontWeight: 'bold', marginBottom: 2 },
 

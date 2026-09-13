@@ -17,6 +17,18 @@ if not os.path.exists(EDGE):
 
 def esc(s): return html.escape(s or "", quote=False)
 
+# 主役の数式を必ず $$…$$（MathJax display＝大きい中央表示）に統一する。
+# アプリ側 App.tsx displayMath() と同じ規則。
+def display_math(s):
+    x = (s or "").strip()
+    if x.startswith("$$"):
+        return x
+    if x.startswith("$") and x.endswith("$") and len(x) > 2 and x[1:-1].find("$") == -1:
+        return "$$" + x[1:-1] + "$$"
+    if x.find("$") == -1 and len(x) > 0:
+        return "$$" + x + "$$"
+    return x
+
 def img_datauri(key):
     p = os.path.join(FIG, key + ".png")
     if not os.path.exists(p): return None
@@ -30,7 +42,7 @@ def card(it):
         if uri: fig = f"<div class='fig'><img src='{uri}'></div>"
     badge = "公式" if it.get("kind") == "formula" else "用語"
     bcls = "bformula" if it.get("kind") == "formula" else "bterm"
-    formula = f"<div class='formula'>{esc(it['formula'])}</div>" if it.get("formula") else ""
+    formula = f"<div class='formula'>{esc(display_math(it['formula']))}</div>" if it.get("formula") else ""
     example = ""
     if it.get("example"):
         example = f"<div class='ex'><span class='exlabel'>数値例</span> {esc(it['example'])}</div>"
@@ -42,6 +54,7 @@ def card(it):
     </div>"""
 
 def build_html(doc):
+    grade = doc.get("grade", "2級")
     cards = "".join(card(it) for it in doc["items"])
     intro = f"<div class='intro'>{esc(doc.get('intro',''))}</div>" if doc.get("intro") else ""
     return f"""<!doctype html><html lang="ja"><head><meta charset="utf-8">
@@ -68,24 +81,35 @@ mjx-container{{overflow-x:auto;}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
 </head><body>
 <h1>{esc(doc['title'])}　公式・用語</h1>
-<div class="sub">CAE計算力学技術者 固体力学2級・オリジナル解説（初学者向け：公式／用語／数値例／図）</div>
+<div class="sub">CAE計算力学技術者 固体力学{esc(grade)}・オリジナル解説（初学者向け：公式／用語／数値例／図）</div>
 {intro}{cards}
 </body></html>"""
 
 def main():
-    chapters = [int(x) for x in sys.argv[1:]] or list(range(1, 14))
+    # 引数: 数字=2級のch番号(従来通り) / ファイル名(例 solid1-ch8)=そのJSONを1本ビルド。
+    # 無指定なら2級 ch1〜13。級は各JSONの "grade"(既定 "2級")で判別し 出力先 アプリ/<級>/ を切替。
+    args = sys.argv[1:]
+    tasks = []  # (jsonパス, ラベル)
+    if not args:
+        tasks = [(os.path.join(FDIR, f"ch{ch}.json"), f"ch{ch}") for ch in range(1, 14)]
+    else:
+        for a in args:
+            stem = a[:-5] if a.endswith(".json") else (f"ch{a}" if a.isdigit() else a)
+            tasks.append((os.path.join(FDIR, f"{stem}.json"), stem))
     os.makedirs(TMP, exist_ok=True)
-    os.makedirs(OUTDIR, exist_ok=True)
-    for ch in chapters:
-        fp = os.path.join(FDIR, f"ch{ch}.json")
+    for fp, label in tasks:
         if not os.path.exists(fp):
-            print(f"ch{ch}: SKIP (no json)"); continue
+            print(f"{label}: SKIP (no json)"); continue
         doc = json.load(open(fp, encoding="utf-8"))
+        grade = doc.get("grade", "2級")
+        ch = doc.get("chapter", label)
         title = doc["title"]                       # 例: "第3章 熱伝導の基礎"
         short = title.split(" ", 1)[-1].replace(" ", "") if " " in title else title
-        hp = os.path.join(TMP, f"formula_ch{ch}.html")
+        outdir = os.path.join(CAE, "アプリ", grade)
+        os.makedirs(outdir, exist_ok=True)
+        hp = os.path.join(TMP, f"formula_{grade}_ch{ch}.html")
         open(hp, "w", encoding="utf-8").write(build_html(doc))
-        out = os.path.join(OUTDIR, f"固体2級_公式用語_第{ch}章_{short}.pdf")
+        out = os.path.join(outdir, f"固体{grade}_公式用語_第{ch}章_{short}.pdf")
         url = "file:///" + hp.replace("\\", "/")
         cmd = [EDGE, "--headless=new", "--disable-gpu", "--no-sandbox",
                f"--print-to-pdf={out}", "--print-to-pdf-no-header",

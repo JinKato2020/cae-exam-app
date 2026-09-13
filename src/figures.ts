@@ -1,5 +1,5 @@
 // 問題の図解（実画像）。キー → 画像。
-// ※このファイルは scratchpad/gen_figures_ts.py で自動生成（全問題JSONの figureImage を走査）。
+// ※このファイルは tools/gen_figures_ts.py で自動生成（全問題JSON＋公式JSONの figureImage を走査）。
 // 画像は assets/figures/ に置く（figlib.py で生成した白地660x420 PNG）。
 import type { ImageSourcePropType } from 'react-native';
 
@@ -194,6 +194,25 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   model8Submodel: require('../assets/figures/model8Submodel.png'),
   model8SymAntisym: require('../assets/figures/model8SymAntisym.png'),
   model8ThinPlate: require('../assets/figures/model8ThinPlate.png'),
+  s1e8BeamPlateMap: require('../assets/figures/s1e8BeamPlateMap.png'),
+  s1e8BeamTheory: require('../assets/figures/s1e8BeamTheory.png'),
+  s1e8Conforming: require('../assets/figures/s1e8Conforming.png'),
+  s1e8Drilling: require('../assets/figures/s1e8Drilling.png'),
+  s1e8Formulation: require('../assets/figures/s1e8Formulation.png'),
+  s1e8FourierMode: require('../assets/figures/s1e8FourierMode.png'),
+  s1e8GaussPoints: require('../assets/figures/s1e8GaussPoints.png'),
+  s1e8Hourglass: require('../assets/figures/s1e8Hourglass.png'),
+  s1e8HourglassDOF: require('../assets/figures/s1e8HourglassDOF.png'),
+  s1e8LBB: require('../assets/figures/s1e8LBB.png'),
+  s1e8PatchTest: require('../assets/figures/s1e8PatchTest.png'),
+  s1e8ReducedInt: require('../assets/figures/s1e8ReducedInt.png'),
+  s1e8SelectiveInt: require('../assets/figures/s1e8SelectiveInt.png'),
+  s1e8ShearCenter: require('../assets/figures/s1e8ShearCenter.png'),
+  s1e8ShearLocking: require('../assets/figures/s1e8ShearLocking.png'),
+  s1e8SolidThin: require('../assets/figures/s1e8SolidThin.png'),
+  s1e8ThickIntegr: require('../assets/figures/s1e8ThickIntegr.png'),
+  s1e8Torsion: require('../assets/figures/s1e8Torsion.png'),
+  s1e8VolLocking: require('../assets/figures/s1e8VolLocking.png'),
   // 第9章
   bc9Adiabatic: require('../assets/figures/bc9Adiabatic.png'),
   bc9AntisymBeam: require('../assets/figures/bc9AntisymBeam.png'),
@@ -258,6 +277,26 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   comp12Overflow: require('../assets/figures/comp12Overflow.png'),
   comp12SparseCRS: require('../assets/figures/comp12SparseCRS.png'),
   comp12TwosComp: require('../assets/figures/comp12TwosComp.png'),
+  // 公式・用語の図（問題と共用しない専用図）
+  s1f8BeamEuler: require('../assets/figures/s1f8BeamEuler.png'),
+  s1f8BeamTimo: require('../assets/figures/s1f8BeamTimo.png'),
+  s1f8Conform: require('../assets/figures/s1f8Conform.png'),
+  s1f8Degenerate: require('../assets/figures/s1f8Degenerate.png'),
+  s1f8Drilling: require('../assets/figures/s1f8Drilling.png'),
+  s1f8Fourier: require('../assets/figures/s1f8Fourier.png'),
+  s1f8Gauss: require('../assets/figures/s1f8Gauss.png'),
+  s1f8Hourglass: require('../assets/figures/s1f8Hourglass.png'),
+  s1f8Membrane: require('../assets/figures/s1f8Membrane.png'),
+  s1f8Methods: require('../assets/figures/s1f8Methods.png'),
+  s1f8MixedUP: require('../assets/figures/s1f8MixedUP.png'),
+  s1f8Patch: require('../assets/figures/s1f8Patch.png'),
+  s1f8PlateTheory: require('../assets/figures/s1f8PlateTheory.png'),
+  s1f8Reduced: require('../assets/figures/s1f8Reduced.png'),
+  s1f8ShearCenter: require('../assets/figures/s1f8ShearCenter.png'),
+  s1f8ShearLock: require('../assets/figures/s1f8ShearLock.png'),
+  s1f8ThickInt: require('../assets/figures/s1f8ThickInt.png'),
+  s1f8VolLock: require('../assets/figures/s1f8VolLock.png'),
+  s1f8Warping: require('../assets/figures/s1f8Warping.png'),
 };
 
 // 図の縦横比（全図とも 660x420 で生成）

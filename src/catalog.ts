@@ -17,9 +17,23 @@ import ch11 from '../content/questions/verification-basics.json';
 import ch12 from '../content/questions/computer-basics.json';
 import ch13 from '../content/questions/ethics.json';
 
-export type ChapterEntry = { id: string; title: string; data: Chapter };
+// 固体1級（新トラック）。現在 第8章 要素テクノロジー のみ問題・公式が完成。
+import s1ch8 from '../content/questions/solid1-08-element-technology.json';
+
+// ready: 章が使えるか（省略時は true＝使える）。準備中の章は false。
+// formulaId: 公式・用語の参照キー（FORMULA_DOCS のキー。省略時は id を使う）。
+//   ※2級と1級で章 id が同じ('ch8')でも公式は別物なので、1級側は 's1ch8' を指す。
+export type ChapterEntry = { id: string; title: string; data: Chapter; ready?: boolean; formulaId?: string };
 export type GradeEntry = { id: string; name: string; chapters: ChapterEntry[] };
 export type FieldEntry = { id: string; name: string; grades: GradeEntry[] };
+
+// 1級の準備中プレースホルダ章（問題ゼロ・タップ不可表示用）。
+const s1stub = (n: number, title: string): ChapterEntry => ({
+  id: `ch${n}`,
+  title: `第${n}章 ${title}`,
+  data: { meta: { grade: '固体力学 1級', category: title, chapter: n, count: 0 }, questions: [] },
+  ready: false,
+});
 
 // 固体/熱流体/振動の3分野。まだ章が無い級・分野はアプリ上「準備中」表示。
 export const CATALOG: FieldEntry[] = [
@@ -44,6 +58,23 @@ export const CATALOG: FieldEntry[] = [
           { id: 'ch11', title: '第11章 結果の検証の基礎', data: ch11 as unknown as Chapter },
           { id: 'ch12', title: '第12章 コンピューターの基礎', data: ch12 as unknown as Chapter },
           { id: 'ch13', title: '第13章 計算力学技術者倫理', data: ch13 as unknown as Chapter },
+        ],
+      },
+      {
+        id: 'g1',
+        name: '1級',
+        chapters: [
+          s1stub(1, '非線形解析における応力とひずみ'),
+          s1stub(2, '材料非線形（弾塑性・クリープ・粘弾性）'),
+          s1stub(3, '幾何学的非線形'),
+          s1stub(4, '境界非線形（接触）'),
+          s1stub(5, '破壊力学・疲労解析'),
+          s1stub(6, '動的解析'),
+          s1stub(7, '伝熱解析'),
+          { id: 'ch8', title: '第8章 要素テクノロジー', data: s1ch8 as unknown as Chapter, ready: true, formulaId: 's1ch8' },
+          s1stub(9, '数値解析法'),
+          s1stub(10, '解析の検証'),
+          s1stub(11, '各種モデリング技術'),
         ],
       },
     ],
