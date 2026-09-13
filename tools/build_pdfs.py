@@ -9,6 +9,7 @@ CAE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 QDIR = os.path.join(CAE, "content", "questions")
 FIG = os.path.join(CAE, "assets", "figures")
 TMP = os.path.join(CAE, "tools", "_pdftmp")
+OUTDIR = os.path.join(CAE, "アプリ", "2級")
 EDGE = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 if not os.path.exists(EDGE):
     EDGE = r"C:\Program Files\Microsoft\Edge\Application\msedge.exe"
@@ -77,14 +78,15 @@ mjx-container{{overflow-x:auto;}}
 </body></html>"""
 
 def main():
-    chapters=[int(x) for x in sys.argv[1:]] or [1,2,3,4,5]
+    chapters=[int(x) for x in sys.argv[1:]] or list(range(1,14))
     os.makedirs(TMP,exist_ok=True)
+    os.makedirs(OUTDIR,exist_ok=True)
     for ch in chapters:
         cat,doc=build_html(ch)
         hp=os.path.join(TMP,f"ch{ch}.html")
         open(hp,"w",encoding="utf-8").write(doc)
         short=cat.split(" ",1)[-1].replace(" ","") if " " in cat else cat
-        out=os.path.join(CAE, f"固体2級_第{ch}章_{short}.pdf")
+        out=os.path.join(OUTDIR, f"固体2級_第{ch}章_{short}.pdf")
         url="file:///"+hp.replace("\\","/")
         cmd=[EDGE,"--headless=new","--disable-gpu","--no-sandbox",
              f"--print-to-pdf={out}","--print-to-pdf-no-header",

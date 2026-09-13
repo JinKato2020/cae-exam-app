@@ -48,7 +48,7 @@ const COURSES: Course[] = [
 
 type Tab = 'home' | 'study' | 'formula' | 'settings';
 type StudyView = 'course' | 'chapters' | 'tiles' | 'problem';
-type FormulaView = 'list' | 'detail';
+type FormulaView = 'chapters' | 'titles' | 'item';
 
 export default function App() {
   return (
@@ -77,9 +77,10 @@ function AppInner() {
   // 出題セッション内の選択（問題ID → 選んだ番号）。前後移動しても選択が残る。
   const [answers, setAnswers] = useState<Record<string, number>>({});
 
-  // 公式・用語タブ
-  const [formulaView, setFormulaView] = useState<FormulaView>('list');
+  // 公式・用語タブ（章 → タイトル一覧 → 個別解説）
+  const [formulaView, setFormulaView] = useState<FormulaView>('chapters');
   const [formulaChapterId, setFormulaChapterId] = useState<string | null>(null);
+  const [formulaItemId, setFormulaItemId] = useState<string | null>(null);
 
   useEffect(() => {
     loadProgress().then(setProgress);
@@ -157,11 +158,16 @@ function AppInner() {
             t={t}
             view={formulaView}
             chapterId={formulaChapterId}
-            onOpen={(id) => {
+            itemId={formulaItemId}
+            onOpenChapter={(id) => {
               setFormulaChapterId(id);
-              setFormulaView('detail');
+              setFormulaView('titles');
             }}
-            onBack={() => setFormulaView('list')}
+            onOpenItem={(itemId) => {
+              setFormulaItemId(itemId);
+              setFormulaView('item');
+            }}
+            onBack={(v) => setFormulaView(v)}
           />
         )}
 
@@ -190,11 +196,11 @@ function TabBar(props: {
   onChange: (tab: Tab) => void;
 }) {
   const { t } = props;
-  const items: { key: Tab; icon: string; label: string }[] = [
-    { key: 'home', icon: '📊', label: 'ホーム' },
-    { key: 'study', icon: '📝', label: '問題' },
-    { key: 'formula', icon: '📐', label: '公式・用語' },
-    { key: 'settings', icon: '⚙️', label: '設定' },
+  const items: { key: Tab; label: string }[] = [
+    { key: 'home', label: 'ホーム' },
+    { key: 'study', label: '問題' },
+    { key: 'formula', label: '公式・用語' },
+    { key: 'settings', label: '設定' },
   ];
   return (
     <View
@@ -205,16 +211,97 @@ function TabBar(props: {
     >
       {items.map((it) => {
         const active = props.tab === it.key;
+        const c = active ? t.primary : t.sub;
         return (
           <Pressable key={it.key} style={styles.tabItem} onPress={() => props.onChange(it.key)}>
-            <Text style={[styles.tabIcon, { opacity: active ? 1 : 0.55 }]}>{it.icon}</Text>
-            <Text style={[styles.tabLabel, { color: active ? t.primary : t.sub }]}>{it.label}</Text>
+            <View style={styles.tabIconBox}>
+              <TabIcon tab={it.key} color={c} bg={t.card} />
+            </View>
+            <Text style={[styles.tabLabel, { color: c }]}>{it.label}</Text>
           </Pressable>
         );
       })}
     </View>
   );
 }
+
+// ミニマルな線だけのアイコン（絵文字不使用・新ライブラリ不要・テーマ色に追従）
+function TabIcon(props: { tab: Tab; color: string; bg: string }) {
+  const c = props.color;
+  if (props.tab === 'home') {
+    // 家
+    return (
+      <View style={icon.box}>
+        <View
+          style={{
+            width: 0,
+            height: 0,
+            borderLeftWidth: 8,
+            borderRightWidth: 8,
+            borderBottomWidth: 8,
+            borderLeftColor: 'transparent',
+            borderRightColor: 'transparent',
+            borderBottomColor: c,
+          }}
+        />
+        <View style={{ width: 13, height: 8, borderWidth: 2, borderTopWidth: 0, borderColor: c }} />
+      </View>
+    );
+  }
+  if (props.tab === 'study') {
+    // 問題用紙（枠＋2本線）
+    return (
+      <View style={icon.box}>
+        <View
+          style={{
+            width: 15,
+            height: 19,
+            borderWidth: 2,
+            borderColor: c,
+            borderRadius: 3,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <View style={{ width: 8, height: 2, backgroundColor: c, marginBottom: 3 }} />
+          <View style={{ width: 8, height: 2, backgroundColor: c }} />
+        </View>
+      </View>
+    );
+  }
+  if (props.tab === 'formula') {
+    // 本（枠＋背表紙の線）
+    return (
+      <View style={icon.box}>
+        <View style={{ width: 17, height: 16, borderWidth: 2, borderColor: c, borderRadius: 2 }} />
+        <View style={{ position: 'absolute', width: 2, height: 12, backgroundColor: c }} />
+      </View>
+    );
+  }
+  // 設定（スライダー：3本線＋つまみ）
+  const Row = ({ side }: { side: 'l' | 'r' }) => (
+    <View style={{ width: 20, height: 6, justifyContent: 'center', marginVertical: 1.5 }}>
+      <View style={{ position: 'absolute', left: 0, right: 0, height: 2, backgroundColor: c }} />
+      <View
+        style={[
+          { position: 'absolute', width: 7, height: 7, borderRadius: 4, borderWidth: 2, borderColor: c, backgroundColor: props.bg },
+          side === 'l' ? { left: 3 } : { right: 3 },
+        ]}
+      />
+    </View>
+  );
+  return (
+    <View style={icon.box}>
+      <Row side="r" />
+      <Row side="l" />
+      <Row side="r" />
+    </View>
+  );
+}
+
+const icon = StyleSheet.create({
+  box: { width: 24, height: 24, alignItems: 'center', justifyContent: 'center' },
+});
 
 // ================= ホーム / 分析 =================
 function HomeTab(props: {
@@ -531,42 +618,81 @@ function FormulaTab(props: {
   t: Theme;
   view: FormulaView;
   chapterId: string | null;
-  onOpen: (id: string) => void;
-  onBack: () => void;
+  itemId: string | null;
+  onOpenChapter: (id: string) => void;
+  onOpenItem: (itemId: string) => void;
+  onBack: (v: FormulaView) => void;
 }) {
   const { t } = props;
 
-  if (props.view === 'detail' && props.chapterId) {
+  // 個別解説（タイトルをタップして飛んでくる画面）
+  if (props.view === 'item' && props.chapterId && props.itemId) {
     const doc = formulaDoc(props.chapterId);
+    const item = doc?.items.find((x) => x.id === props.itemId);
     return (
       <ScrollView contentContainerStyle={styles.content}>
-        <BackLink t={t} label="章の一覧へ" onPress={props.onBack} />
-        {doc ? (
-          <>
-            <Text style={[styles.title, { color: t.text }]}>{doc.title}</Text>
-            {doc.intro ? <Text style={[styles.bodyText, { color: t.sub, marginBottom: 12 }]}>{doc.intro}</Text> : null}
-            {doc.items.map((it) => (
-              <FormulaCard key={it.id} t={t} item={it} />
-            ))}
-          </>
+        <BackLink t={t} label="公式・用語の一覧へ" onPress={() => props.onBack('titles')} />
+        {item ? (
+          <FormulaCard t={t} item={item} />
         ) : (
-          <Text style={[styles.bodyText, { color: t.sub }]}>この章の公式・用語は準備中です。</Text>
+          <Text style={[styles.bodyText, { color: t.sub }]}>項目が見つかりません。</Text>
         )}
       </ScrollView>
     );
   }
 
+  // タイトル一覧（目次）
+  if (props.view === 'titles' && props.chapterId) {
+    const doc = formulaDoc(props.chapterId);
+    return (
+      <ScrollView contentContainerStyle={styles.content}>
+        <BackLink t={t} label="章の一覧へ" onPress={() => props.onBack('chapters')} />
+        {doc ? (
+          <>
+            <Text style={[styles.title, { color: t.text }]}>{doc.title}</Text>
+            <Text style={[styles.subtitle, { color: t.sub }]}>
+              タイトルを選ぶと、その解説に移ります（全 {doc.items.length} 項目）
+            </Text>
+            {doc.items.map((it) => (
+              <Pressable
+                key={it.id}
+                onPress={() => props.onOpenItem(it.id)}
+                style={[styles.row, { backgroundColor: t.card, borderColor: t.border }]}
+              >
+                <View style={styles.titleRow}>
+                  <View
+                    style={[
+                      styles.badge,
+                      { backgroundColor: it.kind === 'formula' ? t.primary : t.reviewBtn, marginRight: 10 },
+                    ]}
+                  >
+                    <Text style={styles.badgeText}>{it.kind === 'formula' ? '公式' : '用語'}</Text>
+                  </View>
+                  <Text style={[styles.rowLabel, { color: t.text, flex: 1 }]}>{it.term}</Text>
+                  <Text style={[styles.chevron, { color: t.sub }]}>›</Text>
+                </View>
+              </Pressable>
+            ))}
+          </>
+        ) : (
+          <Text style={[styles.bodyText, { color: t.sub }]}>この章は準備中です。</Text>
+        )}
+      </ScrollView>
+    );
+  }
+
+  // 章の一覧
   return (
     <ScrollView contentContainerStyle={styles.content}>
       <Text style={[styles.title, { color: t.text }]}>公式・用語</Text>
-      <Text style={[styles.subtitle, { color: t.sub }]}>章を選ぶと、頻出の公式と用語を図解つきで解説します</Text>
+      <Text style={[styles.subtitle, { color: t.sub }]}>章を選ぶと、公式・用語のタイトル一覧が出ます</Text>
       {solid2Chapters().map((c) => {
         const doc = formulaDoc(c.id);
         const ready = !!doc;
         return (
           <Pressable
             key={c.id}
-            onPress={ready ? () => props.onOpen(c.id) : undefined}
+            onPress={ready ? () => props.onOpenChapter(c.id) : undefined}
             style={[styles.row, { backgroundColor: t.card, borderColor: t.border, opacity: ready ? 1 : 0.5 }]}
           >
             <Text style={[styles.rowLabel, { color: t.text }]}>{c.title}</Text>
@@ -594,7 +720,7 @@ function FormulaCard(props: { t: Theme; item: FormulaItem }) {
       </View>
       {item.formula ? (
         <View style={[styles.formulaBox, { backgroundColor: t.bg, borderColor: t.border }]}>
-          <RichText text={item.formula} color={t.text} fontSize={17} />
+          <RichText text={displayMath(item.formula)} color={t.text} fontSize={18} bold />
         </View>
       ) : null}
       <RichText text={item.body} color={t.text} fontSize={14} />
@@ -745,6 +871,15 @@ function fmtDate(ts: number): string {
   return `${d.getMonth() + 1}/${d.getDate()}`;
 }
 
+// 公式は「ディスプレイ数式」（中央・大きめ）で表示したいので、
+// インライン $...$ をブロック $$...$$ に変換する（問題文と同じKaTeX経路）。
+function displayMath(s: string): string {
+  const x = s.trim();
+  if (x.startsWith('$$')) return x;
+  if (x.startsWith('$') && x.endsWith('$') && x.length > 2) return `$$${x.slice(1, -1)}$$`;
+  return x;
+}
+
 // ================= テーマ =================
 type Theme = typeof light;
 const light = {
@@ -791,6 +926,8 @@ const styles = StyleSheet.create({
   row: { borderWidth: 1, borderRadius: 10, padding: 16, marginBottom: 10 },
   rowLabel: { fontSize: 17, fontWeight: '600', lineHeight: 23 },
   rowSub: { fontSize: 13, marginTop: 4 },
+  titleRow: { flexDirection: 'row', alignItems: 'center' },
+  chevron: { fontSize: 22, marginLeft: 8, fontWeight: '400' },
 
   // 全体サマリ
   summaryRow: { flexDirection: 'row', justifyContent: 'space-between' },
@@ -882,6 +1019,6 @@ const styles = StyleSheet.create({
     paddingTop: 8,
   },
   tabItem: { flex: 1, alignItems: 'center' },
-  tabIcon: { fontSize: 22 },
-  tabLabel: { fontSize: 11, marginTop: 2, fontWeight: '600' },
+  tabIconBox: { height: 24, justifyContent: 'center', alignItems: 'center' },
+  tabLabel: { fontSize: 11, marginTop: 3, fontWeight: '600' },
 });
