@@ -1,0 +1,70 @@
+{
+  "chapter": 4,
+  "title": "第4章 有限要素法の定式化",
+  "intro": "FEMが「なぜあの形の連立方程式 Ku=f になるのか」を支える原理と部品を扱います。仮想仕事・最小ポテンシャルエネルギー、形状関数、Bマトリックス、要素剛性行列を順に押さえます。",
+  "items": [
+    {
+      "id": "min-potential",
+      "kind": "term",
+      "term": "最小ポテンシャルエネルギー原理",
+      "formula": "$\\Pi = U - W, \\qquad \\delta\\Pi = 0$",
+      "body": "弾性体は「ひずみエネルギーUから外力のした仕事Wを引いた全ポテンシャルΠが最小になる変形」で釣り合います。この最小を探す条件 δΠ=0 が、FEMの連立方程式 Ku=f を生み出す出発点です。仮想仕事の原理と同じ内容を別の言い方で述べたものです。",
+      "example": "ばね（剛性k）を力Fで引くと Π=½kδ²−Fδ。δで微分して0とおくと kδ=F、つまり釣り合いの式が出てきます。",
+      "figureImage": "f4MinPotential"
+    },
+    {
+      "id": "strain-energy",
+      "kind": "formula",
+      "term": "ひずみエネルギー",
+      "formula": "$U = \\tfrac{1}{2}\\int \\sigma\\varepsilon\\,dV = \\tfrac{1}{2}\\dfrac{EA}{L}\\delta^2$",
+      "body": "変形した材料にたくわえられるエネルギーです。ばねの ½kδ² と同じ形で、棒なら剛性 k=EA/L を使います。剛性が高いほど、同じ伸びでも多くのエネルギーをたくわえます。",
+      "example": "E=200 GPa、A=1×10⁻⁴ m²、L=0.5 m の棒（k=EA/L=4×10⁷ N/m）が δ=0.1 mm 伸びたとき U=½×4×10⁷×(1×10⁻⁴)²=0.2 J。",
+      "figureImage": "f4StrainEnergyDensity"
+    },
+    {
+      "id": "shape-function",
+      "kind": "term",
+      "term": "形状関数（内挿関数）",
+      "formula": "$u(x) = \\sum_i N_i(x)\\,u_i, \\qquad \\sum_i N_i = 1$",
+      "body": "要素の中の変位を、節点の値から滑らかに補う関数です。自分の節点では1・他の節点では0になり、全部足すと1になります（この性質が剛体移動を正しく表せる条件）。",
+      "example": "長さLの1次元1次要素では N₁=1−x/L、N₂=x/L。x=0でN₁=1、x=LでN₂=1、どこでもN₁+N₂=1。",
+      "figureImage": "f4ShapeFunc"
+    },
+    {
+      "id": "b-matrix",
+      "kind": "formula",
+      "term": "Bマトリックス（ひずみ-変位行列）",
+      "formula": "$\\varepsilon = B\\,u, \\qquad B = \\left[-\\tfrac{1}{L}\\;\\; \\tfrac{1}{L}\\right]\\ (1次元)$",
+      "body": "節点変位uからひずみεを取り出す行列です。形状関数を微分して作ります。ひずみは変位の微分なので、1次要素ではBが定数になり、要素内のひずみは一定になります（定ひずみ要素）。",
+      "example": "長さL=0.2 mの棒で、左端0・右端0.1 mmのとき ε=(0.1×10⁻³−0)/0.2=5×10⁻⁴。",
+      "figureImage": "f4Bmatrix"
+    },
+    {
+      "id": "element-stiffness",
+      "kind": "formula",
+      "term": "要素剛性行列",
+      "formula": "$k = \\int B^{T} D\\,B\\,dV = \\dfrac{EA}{L}\\begin{bmatrix}1 & -1\\\\ -1 & 1\\end{bmatrix}$",
+      "body": "各要素の「変位と力の関係」をまとめた行列です。BとD（材料の硬さ）から作られます。全要素ぶんを節点番号で足し合わせる（アセンブリ）と、全体剛性行列Kができあがります。行の合計が0になるのは剛体移動で力が出ない性質の表れです。",
+      "example": "E=200 GPa、A=1×10⁻⁴ m²、L=0.5 m なら EA/L=4×10⁷ N/m が係数になります。",
+      "figureImage": "f4Kproperties"
+    },
+    {
+      "id": "d-matrix",
+      "kind": "formula",
+      "term": "Dマトリックス（平面応力）",
+      "formula": "$D = \\dfrac{E}{1-\\nu^2}\\begin{bmatrix}1 & \\nu & 0\\\\ \\nu & 1 & 0\\\\ 0 & 0 & \\tfrac{1-\\nu}{2}\\end{bmatrix}$",
+      "body": "応力とひずみを結ぶ材料の行列です。薄い板で面に垂直な応力が無視できる状態を「平面応力」、長い構造で面に垂直なひずみが0の状態を「平面ひずみ」と呼び、Dの形が変わります。使い分けが第5章・第8章の要点です。",
+      "example": "E=206 GPa、ν=0.3 のとき 係数 E/(1−ν²)=206/(1−0.09)=226 GPa。",
+      "figureImage": "f4PlaneStress"
+    },
+    {
+      "id": "thermal-force",
+      "kind": "formula",
+      "term": "熱ひずみと等価節点力",
+      "formula": "$\\varepsilon_0 = \\alpha\\Delta T, \\qquad F = EA\\,\\alpha\\,\\Delta T\\ (完全拘束の棒)$",
+      "body": "温度が上がると材料は膨張します（初期ひずみ ε₀=αΔT）。これをFEMでは「等価節点力」という仮想の力に置き換えて扱います。両端を完全に固定した棒では、この力がそのまま熱応力になります。",
+      "example": "E=200 GPa、A=1×10⁻⁴ m²、α=12×10⁻⁶ /K、ΔT=50 K のとき F=200×10⁹×1×10⁻⁴×12×10⁻⁶×50=12000 N=12 kN。",
+      "figureImage": "f4ThermalForce"
+    }
+  ]
+}
