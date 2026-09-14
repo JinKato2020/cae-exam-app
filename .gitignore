@@ -51,3 +51,7 @@ tools/_srcimg/
 アプリ/
 preview/
 memory/
+
+# ログイン/同期の雛形（未接続WIP・完成until コミットしない: パイプライン§10-4）
+src/auth/
+src/config/

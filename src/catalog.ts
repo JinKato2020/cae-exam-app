@@ -19,6 +19,7 @@ import ch13 from '../content/questions/ethics.json';
 
 // 固体1級（新トラック）。完成した章から順に有効化する。
 import s1ch1 from '../content/questions/solid1-01-nonlinear-stress-strain.json';
+import s1ch2 from '../content/questions/solid1-02-material-nonlinear.json';
 import s1ch8 from '../content/questions/solid1-08-element-technology.json';
 import s1ch9 from '../content/questions/solid1-09-numerical-analysis.json';
 
@@ -67,7 +68,7 @@ export const CATALOG: FieldEntry[] = [
         name: '1級',
         chapters: [
           { id: 'ch1', title: '第1章 非線形解析における応力とひずみ', data: s1ch1 as unknown as Chapter, ready: true, formulaId: 's1ch1' },
-          s1stub(2, '材料非線形（弾塑性・クリープ・粘弾性）'),
+          { id: 'ch2', title: '第2章 材料非線形（弾塑性・クリープ・粘弾性）', data: s1ch2 as unknown as Chapter, ready: true, formulaId: 's1ch2' },
           s1stub(3, '幾何学的非線形'),
           s1stub(4, '境界非線形（接触）'),
           s1stub(5, '破壊力学・疲労解析'),
