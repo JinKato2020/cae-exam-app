@@ -236,6 +236,14 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   bc9SymAntisym: require('../assets/figures/bc9SymAntisym.png'),
   bc9SymBeam: require('../assets/figures/bc9SymBeam.png'),
   bc9ThermalBC: require('../assets/figures/bc9ThermalBC.png'),
+  s1e9ArcLength: require('../assets/figures/s1e9ArcLength.png'),
+  s1e9CDStability: require('../assets/figures/s1e9CDStability.png'),
+  s1e9DomainDecomp: require('../assets/figures/s1e9DomainDecomp.png'),
+  s1e9EigenConverge: require('../assets/figures/s1e9EigenConverge.png'),
+  s1e9EigenMethods: require('../assets/figures/s1e9EigenMethods.png'),
+  s1e9LoadDispCurves: require('../assets/figures/s1e9LoadDispCurves.png'),
+  s1e9NewmarkBeta: require('../assets/figures/s1e9NewmarkBeta.png'),
+  s1e9NewtonIter: require('../assets/figures/s1e9NewtonIter.png'),
   // 第10章
   pp10AspectRatio: require('../assets/figures/pp10AspectRatio.png'),
   pp10Averaging: require('../assets/figures/pp10Averaging.png'),
@@ -297,6 +305,14 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   s1f8ThickInt: require('../assets/figures/s1f8ThickInt.png'),
   s1f8VolLock: require('../assets/figures/s1f8VolLock.png'),
   s1f8Warping: require('../assets/figures/s1f8Warping.png'),
+  s1f9ArcLength: require('../assets/figures/s1f9ArcLength.png'),
+  s1f9CondError: require('../assets/figures/s1f9CondError.png'),
+  s1f9DDM: require('../assets/figures/s1f9DDM.png'),
+  s1f9EigenConverge: require('../assets/figures/s1f9EigenConverge.png'),
+  s1f9LoadDisp3: require('../assets/figures/s1f9LoadDisp3.png'),
+  s1f9Newton3: require('../assets/figures/s1f9Newton3.png'),
+  s1f9Precond: require('../assets/figures/s1f9Precond.png'),
+  s1f9Stability: require('../assets/figures/s1f9Stability.png'),
 };
 
 // 図の縦横比（全図とも 660x420 で生成）

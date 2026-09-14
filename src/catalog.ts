@@ -19,6 +19,7 @@ import ch13 from '../content/questions/ethics.json';
 
 // 固体1級（新トラック）。現在 第8章 要素テクノロジー のみ問題・公式が完成。
 import s1ch8 from '../content/questions/solid1-08-element-technology.json';
+import s1ch9 from '../content/questions/solid1-09-numerical-analysis.json';
 
 // ready: 章が使えるか（省略時は true＝使える）。準備中の章は false。
 // formulaId: 公式・用語の参照キー（FORMULA_DOCS のキー。省略時は id を使う）。
@@ -72,7 +73,7 @@ export const CATALOG: FieldEntry[] = [
           s1stub(6, '動的解析'),
           s1stub(7, '伝熱解析'),
           { id: 'ch8', title: '第8章 要素テクノロジー', data: s1ch8 as unknown as Chapter, ready: true, formulaId: 's1ch8' },
-          s1stub(9, '数値解析法'),
+          { id: 'ch9', title: '第9章 数値解析法', data: s1ch9 as unknown as Chapter, ready: true, formulaId: 's1ch9' },
           s1stub(10, '解析の検証'),
           s1stub(11, '各種モデリング技術'),
         ],
