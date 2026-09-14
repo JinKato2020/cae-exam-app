@@ -20,6 +20,8 @@ import ch13 from '../content/questions/ethics.json';
 // 固体1級（新トラック）。完成した章から順に有効化する。
 import s1ch1 from '../content/questions/solid1-01-nonlinear-stress-strain.json';
 import s1ch2 from '../content/questions/solid1-02-material-nonlinear.json';
+import s1ch3 from '../content/questions/solid1-03-geometric-nonlinear.json';
+import s1ch4 from '../content/questions/solid1-04-contact-nonlinear.json';
 import s1ch8 from '../content/questions/solid1-08-element-technology.json';
 import s1ch9 from '../content/questions/solid1-09-numerical-analysis.json';
 
@@ -69,8 +71,8 @@ export const CATALOG: FieldEntry[] = [
         chapters: [
           { id: 'ch1', title: '第1章 非線形解析における応力とひずみ', data: s1ch1 as unknown as Chapter, ready: true, formulaId: 's1ch1' },
           { id: 'ch2', title: '第2章 材料非線形（弾塑性・クリープ・粘弾性）', data: s1ch2 as unknown as Chapter, ready: true, formulaId: 's1ch2' },
-          s1stub(3, '幾何学的非線形'),
-          s1stub(4, '境界非線形（接触）'),
+          { id: 'ch3', title: '第3章 幾何学的非線形', data: s1ch3 as unknown as Chapter, ready: true, formulaId: 's1ch3' },
+          { id: 'ch4', title: '第4章 境界非線形（接触）', data: s1ch4 as unknown as Chapter, ready: true, formulaId: 's1ch4' },
           s1stub(5, '破壊力学・疲労解析'),
           s1stub(6, '動的解析'),
           s1stub(7, '伝熱解析'),
