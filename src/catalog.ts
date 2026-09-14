@@ -17,7 +17,8 @@ import ch11 from '../content/questions/verification-basics.json';
 import ch12 from '../content/questions/computer-basics.json';
 import ch13 from '../content/questions/ethics.json';
 
-// 固体1級（新トラック）。現在 第8章 要素テクノロジー のみ問題・公式が完成。
+// 固体1級（新トラック）。完成した章から順に有効化する。
+import s1ch1 from '../content/questions/solid1-01-nonlinear-stress-strain.json';
 import s1ch8 from '../content/questions/solid1-08-element-technology.json';
 import s1ch9 from '../content/questions/solid1-09-numerical-analysis.json';
 
@@ -65,7 +66,7 @@ export const CATALOG: FieldEntry[] = [
         id: 'g1',
         name: '1級',
         chapters: [
-          s1stub(1, '非線形解析における応力とひずみ'),
+          { id: 'ch1', title: '第1章 非線形解析における応力とひずみ', data: s1ch1 as unknown as Chapter, ready: true, formulaId: 's1ch1' },
           s1stub(2, '材料非線形（弾塑性・クリープ・粘弾性）'),
           s1stub(3, '幾何学的非線形'),
           s1stub(4, '境界非線形（接触）'),

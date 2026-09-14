@@ -77,15 +77,16 @@ export type ChapterStat = {
   accuracy: number; // correct / attempted（未挑戦は0）
 };
 
-// 固体2級の章配列（分析はこの級を対象にする）
-function solid2Chapters() {
+// 固体分野の指定した級の章配列（分析はこの級を対象にする。既定は2級）。
+export type GradeId = 'g1' | 'g2';
+function gradeChapters(gradeId: GradeId) {
   const solid = CATALOG.find((f) => f.id === 'solid');
-  const g2 = solid?.grades.find((g) => g.id === 'g2');
-  return g2?.chapters ?? [];
+  const g = solid?.grades.find((gg) => gg.id === gradeId);
+  return g?.chapters ?? [];
 }
 
-export function chapterStats(map: ProgressMap): ChapterStat[] {
-  return solid2Chapters().map((c) => {
+export function chapterStats(map: ProgressMap, gradeId: GradeId = 'g2'): ChapterStat[] {
+  return gradeChapters(gradeId).map((c) => {
     const ids = c.data.questions.map((q) => q.id);
     let attempted = 0;
     let correct = 0;
@@ -113,8 +114,8 @@ export type OverallStat = {
   accuracy: number;
 };
 
-export function overallStat(map: ProgressMap): OverallStat {
-  const stats = chapterStats(map);
+export function overallStat(map: ProgressMap, gradeId: GradeId = 'g2'): OverallStat {
+  const stats = chapterStats(map, gradeId);
   const totalQuestions = stats.reduce((n, s) => n + s.total, 0);
   const attempted = stats.reduce((n, s) => n + s.attempted, 0);
   const correct = stats.reduce((n, s) => n + s.correct, 0);
@@ -129,13 +130,27 @@ export function overallStat(map: ProgressMap): OverallStat {
 // ---- 分野別集計（ホームの正五角形レーダー用） ----
 // 13章を「実際の問題内容から自然に分かれる」5分野に束ねる（正五角形の5頂点）。
 export type FieldDef = { id: string; label: string; chapters: string[] };
-export const FIELDS: FieldDef[] = [
+// 2級（全13章）を5分野に束ねる。
+export const FIELDS_G2: FieldDef[] = [
   { id: 'A', label: '数学・数値', chapters: ['ch1', 'ch6', 'ch12'] }, // 数学/数値計算/コンピュータ
   { id: 'B', label: '材料・熱', chapters: ['ch2', 'ch3'] }, // 固体力学/熱伝導
   { id: 'C', label: 'FEM理論', chapters: ['ch4', 'ch5', 'ch7'] }, // 定式化/実践/要素
   { id: 'D', label: 'モデリング', chapters: ['ch8', 'ch9', 'ch10'] }, // モデリング/境界条件/プリポスト
   { id: 'E', label: '検証・倫理', chapters: ['ch11', 'ch13'] }, // 結果検証/技術者倫理
 ];
+// 1級（全11章）を5分野に束ねる。
+export const FIELDS_G1: FieldDef[] = [
+  { id: 'A', label: '非線形', chapters: ['ch1', 'ch3'] }, // 応力ひずみ/幾何学的非線形
+  { id: 'B', label: '材料・破壊', chapters: ['ch2', 'ch5'] }, // 材料非線形/破壊・疲労
+  { id: 'C', label: '接触・動的', chapters: ['ch4', 'ch6'] }, // 境界非線形(接触)/動的
+  { id: 'D', label: '伝熱・要素', chapters: ['ch7', 'ch8'] }, // 伝熱/要素テクノロジー
+  { id: 'E', label: '数値・検証', chapters: ['ch9', 'ch10', 'ch11'] }, // 数値解析/検証/モデリング
+];
+export function fieldsOf(gradeId: GradeId): FieldDef[] {
+  return gradeId === 'g1' ? FIELDS_G1 : FIELDS_G2;
+}
+// 後方互換（既定=2級）
+export const FIELDS = FIELDS_G2;
 
 export type FieldStat = {
   id: string;
@@ -148,9 +163,9 @@ export type FieldStat = {
 };
 
 // 章別集計を分野単位に束ね直す。
-export function fieldStats(map: ProgressMap): FieldStat[] {
-  const byChapter = new Map(chapterStats(map).map((s) => [s.id, s]));
-  return FIELDS.map((f) => {
+export function fieldStats(map: ProgressMap, gradeId: GradeId = 'g2'): FieldStat[] {
+  const byChapter = new Map(chapterStats(map, gradeId).map((s) => [s.id, s]));
+  return fieldsOf(gradeId).map((f) => {
     let total = 0;
     let attempted = 0;
     let correct = 0;

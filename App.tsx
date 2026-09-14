@@ -33,6 +33,7 @@ import {
   resetDaily,
   wrongIdsFrom,
   type ProgressMap,
+  type GradeId,
 } from './src/progress';
 
 const APP_VERSION = '1.0.0';
@@ -45,7 +46,7 @@ function solidGradeChapters(gradeId: string): ChapterEntry[] {
 const solid2Chapters = (): ChapterEntry[] => solidGradeChapters('g2');
 const solid1Chapters = (): ChapterEntry[] => solidGradeChapters('g1');
 type Course = { id: string; name: string; chapters: ChapterEntry[]; ready: boolean };
-// 1級は現在 第8章 のみ完成（他章は準備中）。章側の ready フラグで出し分ける。
+// 1級は完成した章だけ出す（他章は準備中）。章側の ready フラグで出し分ける。
 const COURSES: Course[] = [
   { id: 'solid-2', name: '固体力学 2級', chapters: solid2Chapters(), ready: true },
   { id: 'solid-1', name: '固体力学 1級', chapters: solid1Chapters(), ready: true },
@@ -323,9 +324,11 @@ function HomeTab(props: {
   onGoStudy: () => void;
 }) {
   const { t } = props;
-  const overall = useMemo(() => overallStat(props.progress), [props.progress]);
-  const stats = useMemo(() => chapterStats(props.progress), [props.progress]);
-  const fields = useMemo(() => fieldStats(props.progress), [props.progress]);
+  // ホームの分析は級ごと。ここで 2級/1級 を切り替える（既定=2級）。
+  const [grade, setGrade] = useState<GradeId>('g2');
+  const overall = useMemo(() => overallStat(props.progress, grade), [props.progress, grade]);
+  const stats = useMemo(() => chapterStats(props.progress, grade), [props.progress, grade]);
+  const fields = useMemo(() => fieldStats(props.progress, grade), [props.progress, grade]);
   const attemptedStats = stats.filter((s) => s.attempted > 0);
   const weak = [...attemptedStats].sort((a, b) => a.accuracy - b.accuracy).slice(0, 3);
   const strong = [...attemptedStats].sort((a, b) => b.accuracy - a.accuracy).slice(0, 3);
@@ -333,7 +336,27 @@ function HomeTab(props: {
   return (
     <ScrollView contentContainerStyle={styles.content}>
       <Text style={[styles.title, { color: t.text }]}>学習の記録</Text>
-      <Text style={[styles.subtitle, { color: t.sub }]}>固体力学 2級</Text>
+      <Text style={[styles.subtitle, { color: t.sub }]}>
+        {grade === 'g1' ? '固体力学 1級' : '固体力学 2級'}
+      </Text>
+
+      {/* 級の切り替え（2級 / 1級） */}
+      <View style={[styles.segment, { borderColor: t.border, backgroundColor: t.card }]}>
+        {(['g2', 'g1'] as GradeId[]).map((g) => {
+          const on = grade === g;
+          return (
+            <Pressable
+              key={g}
+              onPress={() => setGrade(g)}
+              style={[styles.segmentItem, on && { backgroundColor: t.primary }]}
+            >
+              <Text style={[styles.segmentText, { color: on ? '#fff' : t.sub }]}>
+                {g === 'g2' ? '2級' : '1級'}
+              </Text>
+            </Pressable>
+          );
+        })}
+      </View>
 
       {/* 全体サマリ */}
       <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
@@ -862,6 +885,10 @@ function SettingsTab(props: {
 }) {
   const { t } = props;
   const overall = overallStat(props.progress);
+  // 1級で今 使える章（ready）を「第◯・◯章」表記にする（収録欄が古くならないよう動的化）。
+  const g1Ready = solid1Chapters().filter((c) => c.ready !== false && c.data.questions.length > 0);
+  const g1ReadyLabel =
+    g1Ready.length > 0 ? `第${g1Ready.map((c) => c.id.replace('ch', '')).join('・')}章` : '準備中';
 
   function confirmReset() {
     Alert.alert('学習記録をリセット', '正誤や日付の記録をすべて消します。よろしいですか？（元に戻せません）', [
@@ -877,7 +904,7 @@ function SettingsTab(props: {
       <Text style={[styles.sectionHead, { color: t.text }]}>アプリ情報</Text>
       <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
         <InfoRow t={t} label="バージョン" value={`v${APP_VERSION}`} />
-        <InfoRow t={t} label="収録" value="固体力学 2級（全13章）・1級（第8章）" />
+        <InfoRow t={t} label="収録" value={`固体力学 2級（全13章）・1級（${g1ReadyLabel}）`} />
         <InfoRow t={t} label="解いた問題" value={`${overall.attempted} / ${overall.totalQuestions} 問`} />
         <InfoRow t={t} label="外観" value="端末の設定に自動で追従（ライト/ダーク）" last />
       </View>
@@ -1049,6 +1076,10 @@ const styles = StyleSheet.create({
   backText: { fontSize: 15, fontWeight: '600' },
   title: { fontSize: 26, fontWeight: 'bold', marginBottom: 4 },
   subtitle: { fontSize: 14, marginBottom: 16 },
+  // 級切り替えのセグメント（2級 / 1級）
+  segment: { flexDirection: 'row', borderWidth: 1, borderRadius: 10, padding: 3, marginBottom: 16 },
+  segmentItem: { flex: 1, paddingVertical: 8, borderRadius: 8, alignItems: 'center' },
+  segmentText: { fontSize: 14, fontWeight: '600' },
   sectionHead: { fontSize: 16, fontWeight: 'bold', marginTop: 18, marginBottom: 8 },
   radarLegend: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 8 },
   radarLegendItem: { fontSize: 12, marginHorizontal: 6, marginVertical: 2 },

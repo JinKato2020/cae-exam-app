@@ -21,17 +21,25 @@ function buildHtml(text: string, color: string, fontSize: number, bold: boolean)
 <script src="${CDN}/contrib/auto-render.min.js"></script>
 <style>
   html,body{margin:0;padding:0;background:transparent;}
+  /* 子要素(表示数式など)の上下marginが body に相殺で抜けて高さが縮む→縦に切れる、を防ぐ */
+  body{display:flow-root;}
   #c{color:${color};font-size:${fontSize}px;line-height:1.75;font-weight:${bold ? '600' : '400'};
      font-family:-apple-system,'Hiragino Kaku Gothic ProN','Noto Sans JP',Roboto,sans-serif;
-     white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;}
+     white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;padding:2px 0;overflow:visible;}
   .katex{font-size:1.05em;}
+  /* 表示数式は縦を絶対に切らない。横に溢れる長い式だけ横スクロールにする */
+  .katex-display{margin:.35em 0;overflow-x:auto;overflow-y:visible;}
 </style></head><body>
 <div id="c"></div>
 <script>
   document.getElementById('c').textContent = ${payload};
   function post(){
-    var h = Math.ceil(document.body.getBoundingClientRect().height);
-    if (window.ReactNativeWebView) window.ReactNativeWebView.postMessage(String(h));
+    var el = document.getElementById('c');
+    var h = Math.ceil(Math.max(
+      el.scrollHeight, el.getBoundingClientRect().height,
+      document.body.scrollHeight, document.documentElement.scrollHeight
+    ));
+    if (h && window.ReactNativeWebView) window.ReactNativeWebView.postMessage(String(h));
   }
   function run(){
     try {
@@ -40,7 +48,10 @@ function buildHtml(text: string, color: string, fontSize: number, bold: boolean)
         throwOnError:false
       });
     } catch(e) {}
-    post(); setTimeout(post, 250);
+    post();
+    // KaTeXフォントはCDNから遅延読込。読み込み完了・複数タイミングで高さを取り直す
+    [120,300,600,1200].forEach(function(ms){ setTimeout(post, ms); });
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(post).catch(function(){}); }
   }
   if (document.readyState === 'complete') run(); else window.addEventListener('load', run);
 </script></body></html>`;

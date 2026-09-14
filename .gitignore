@@ -46,3 +46,8 @@ tools/_pdftmp/
 
 # 原本PNG化の作業用一時ディレクトリ（コミットしない。_pdftmp は上で登録済み）
 tools/_srcimg/
+
+# 作問の原稿・ローカル作業物（アプリ本体には含めない）
+アプリ/
+preview/
+memory/

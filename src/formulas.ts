@@ -14,6 +14,7 @@ import ch11 from '../content/formulas/ch11.json';
 import ch12 from '../content/formulas/ch12.json';
 import ch13 from '../content/formulas/ch13.json';
 // 固体1級（章 id は2級と重複するため 's1' 接頭辞のキーで束ねる）。
+import s1ch1 from '../content/formulas/solid1-ch1.json';
 import s1ch8 from '../content/formulas/solid1-ch8.json';
 import s1ch9 from '../content/formulas/solid1-ch9.json';
 
@@ -50,6 +51,7 @@ export const FORMULA_DOCS: Record<string, FormulaDoc | null> = {
   ch12: ch12 as unknown as FormulaDoc,
   ch13: ch13 as unknown as FormulaDoc,
   // 固体1級 第8章 要素テクノロジー（catalog の formulaId と一致）
+  s1ch1: s1ch1 as unknown as FormulaDoc,
   s1ch8: s1ch8 as unknown as FormulaDoc,
   s1ch9: s1ch9 as unknown as FormulaDoc,
 };

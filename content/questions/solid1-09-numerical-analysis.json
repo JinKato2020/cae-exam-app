@@ -73,7 +73,9 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "s1e9IterMatrix",
+      "figureHint": "反復解法の反復行列と、反復ごとに解が真値へ近づく様子"
     },
     {
       "id": "solid1-9-4",
@@ -94,7 +96,9 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "s1e9Tridiag",
+      "figureHint": "対称行列を直交変換で三重対角化する帯状の非ゼロ構造"
     },
     {
       "id": "solid1-9-5",
@@ -115,7 +119,9 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "s1e9Bisection",
+      "figureHint": "スツルム列の符号変化数から固有値を二分法で挟み込む"
     },
     {
       "id": "solid1-9-6",
@@ -136,7 +142,9 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "s1e9InvPower",
+      "figureHint": "逆べき乗法が最小固有値へ収束していく反復の様子"
     },
     {
       "id": "solid1-9-7",
@@ -157,7 +165,9 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "s1e9Precond2",
+      "figureHint": "前処理で係数行列の条件数を下げ、収束を速める効果"
     },
     {
       "id": "solid1-9-8",
@@ -178,7 +188,9 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "s1e9CGsearch",
+      "figureHint": "CG法:対称正定行列で共役方向に沿い有限回で最小へ到達"
     },
     {
       "id": "solid1-9-9",
@@ -222,7 +234,9 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "s1e9Spectral",
+      "figureHint": "反復行列のスペクトル半径<1なら収束、>1なら発散"
     },
     {
       "id": "solid1-9-11",
@@ -266,7 +280,9 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "s1e9PosDef",
+      "figureHint": "主小行列式が全て正=正定値、の判定(左上からの小行列)"
     },
     {
       "id": "solid1-9-13",
@@ -287,7 +303,9 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "s1e9Residual",
+      "figureHint": "残差 r=b-Ax の定義と、反復での残差の縮小"
     },
     {
       "id": "solid1-9-14",
@@ -308,7 +326,9 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "s1e9ConvCrit",
+      "figureHint": "非線形反復の収束判定:残差/変位ノルムが許容値以下"
     },
     {
       "id": "solid1-9-15",
@@ -329,7 +349,9 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "s1e9Complexity",
+      "figureHint": "直接法O(n^3)と反復法の演算量オーダーの比較"
     },
     {
       "id": "solid1-9-16",
@@ -373,7 +395,9 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "s1e9TimeInteg",
+      "figureHint": "陰的時間積分でクリープを時間ステップごとに前進"
     },
     {
       "id": "solid1-9-18",
