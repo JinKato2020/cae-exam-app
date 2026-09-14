@@ -43,3 +43,6 @@ content/questions/solid2-*.json
 
 # PDF生成の一時作業ディレクトリ
 tools/_pdftmp/
+
+# 原本PNG化の作業用一時ディレクトリ（コミットしない。_pdftmp は上で登録済み）
+tools/_srcimg/
