@@ -18,6 +18,9 @@ import s1ch1 from '../content/formulas/solid1-ch1.json';
 import s1ch2 from '../content/formulas/solid1-ch2.json';
 import s1ch3 from '../content/formulas/solid1-ch3.json';
 import s1ch4 from '../content/formulas/solid1-ch4.json';
+import s1ch5 from '../content/formulas/solid1-ch5.json';
+import s1ch6 from '../content/formulas/solid1-ch6.json';
+import s1ch7 from '../content/formulas/solid1-ch7.json';
 import s1ch8 from '../content/formulas/solid1-ch8.json';
 import s1ch9 from '../content/formulas/solid1-ch9.json';
 
@@ -58,6 +61,9 @@ export const FORMULA_DOCS: Record<string, FormulaDoc | null> = {
   s1ch2: s1ch2 as unknown as FormulaDoc,
   s1ch3: s1ch3 as unknown as FormulaDoc,
   s1ch4: s1ch4 as unknown as FormulaDoc,
+  s1ch5: s1ch5 as unknown as FormulaDoc,
+  s1ch6: s1ch6 as unknown as FormulaDoc,
+  s1ch7: s1ch7 as unknown as FormulaDoc,
   s1ch8: s1ch8 as unknown as FormulaDoc,
   s1ch9: s1ch9 as unknown as FormulaDoc,
 };

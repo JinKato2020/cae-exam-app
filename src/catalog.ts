@@ -22,6 +22,9 @@ import s1ch1 from '../content/questions/solid1-01-nonlinear-stress-strain.json';
 import s1ch2 from '../content/questions/solid1-02-material-nonlinear.json';
 import s1ch3 from '../content/questions/solid1-03-geometric-nonlinear.json';
 import s1ch4 from '../content/questions/solid1-04-contact-nonlinear.json';
+import s1ch5 from '../content/questions/solid1-05-fracture-fatigue.json';
+import s1ch6 from '../content/questions/solid1-06-dynamic-analysis.json';
+import s1ch7 from '../content/questions/solid1-07-heat-transfer.json';
 import s1ch8 from '../content/questions/solid1-08-element-technology.json';
 import s1ch9 from '../content/questions/solid1-09-numerical-analysis.json';
 
@@ -73,9 +76,9 @@ export const CATALOG: FieldEntry[] = [
           { id: 'ch2', title: '第2章 材料非線形（弾塑性・クリープ・粘弾性）', data: s1ch2 as unknown as Chapter, ready: true, formulaId: 's1ch2' },
           { id: 'ch3', title: '第3章 幾何学的非線形', data: s1ch3 as unknown as Chapter, ready: true, formulaId: 's1ch3' },
           { id: 'ch4', title: '第4章 境界非線形（接触）', data: s1ch4 as unknown as Chapter, ready: true, formulaId: 's1ch4' },
-          s1stub(5, '破壊力学・疲労解析'),
-          s1stub(6, '動的解析'),
-          s1stub(7, '伝熱解析'),
+          { id: 'ch5', title: '第5章 破壊力学・疲労解析', data: s1ch5 as unknown as Chapter, ready: true, formulaId: 's1ch5' },
+          { id: 'ch6', title: '第6章 動的解析', data: s1ch6 as unknown as Chapter, ready: true, formulaId: 's1ch6' },
+          { id: 'ch7', title: '第7章 伝熱解析', data: s1ch7 as unknown as Chapter, ready: true, formulaId: 's1ch7' },
           { id: 'ch8', title: '第8章 要素テクノロジー', data: s1ch8 as unknown as Chapter, ready: true, formulaId: 's1ch8' },
           { id: 'ch9', title: '第9章 数値解析法', data: s1ch9 as unknown as Chapter, ready: true, formulaId: 's1ch9' },
           s1stub(10, '解析の検証'),
