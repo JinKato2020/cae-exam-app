@@ -5,7 +5,8 @@
     "chapter": 5,
     "source": "完全オリジナル(破壊力学・疲労解析)",
     "origin": "original",
-    "count": 20
+    "count": 20,
+    "officialCount": 24
   },
   "questions": [
     {
@@ -29,7 +30,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e5FractureMap",
-      "figureHint": "白地660x420で破壊現象の分類フロー(き裂発生・存在→安定き裂成長:疲労/応力腐食割れ→限界で急速破壊:ぜい性破壊/延性・塑性不安定)"
+      "figureHint": "白地660x420で破壊現象の分類フロー(き裂発生・存在→安定き裂成長:疲労/応力腐食割れ→限界で急速破壊:ぜい性破壊/延性・塑性不安定)",
+      "officialRef": "問5-1",
+      "role": "primary"
     },
     {
       "id": "solid1-5-2",
@@ -52,7 +55,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e5CrackTipSing",
-      "figureHint": "白地660x420でき裂先端からの距離rに対する応力の 1/√r 特異性曲線と、σ=KI/√(2πr) の関係を示す"
+      "figureHint": "白地660x420でき裂先端からの距離rに対する応力の 1/√r 特異性曲線と、σ=KI/√(2πr) の関係を示す",
+      "officialRef": "問5-2",
+      "role": "primary"
     },
     {
       "id": "solid1-5-3",
@@ -75,7 +80,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e5SmallScaleYield",
-      "figureHint": "白地660x420でき裂先端を囲む入れ子構造(外側=弾性のK支配場、内側=塑性域、中心=プロセスゾーン)を同心状に示す"
+      "figureHint": "白地660x420でき裂先端を囲む入れ子構造(外側=弾性のK支配場、内側=塑性域、中心=プロセスゾーン)を同心状に示す",
+      "officialRef": "問5-3",
+      "role": "primary"
     },
     {
       "id": "solid1-5-4",
@@ -98,7 +105,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e5ThreeModes",
-      "figureHint": "白地660x420でモードI(開口)・モードII(面内せん断)・モードIII(面外せん断)の3つのき裂変形を並べて図示"
+      "figureHint": "白地660x420でモードI(開口)・モードII(面内せん断)・モードIII(面外せん断)の3つのき裂変形を並べて図示",
+      "officialRef": "問5-4",
+      "role": "primary"
     },
     {
       "id": "solid1-5-5",
@@ -121,7 +130,9 @@
       "reviewed": true,
       "figure": "required",
       "figureImage": "s1e5Kformula",
-      "figureHint": "白地660x420で幅広平板の中央貫通き裂(全長2a)と遠方一様引張σ、K=σ√(πa)の寸法関係を示す"
+      "figureHint": "白地660x420で幅広平板の中央貫通き裂(全長2a)と遠方一様引張σ、K=σ√(πa)の寸法関係を示す",
+      "officialRef": "問5-2",
+      "role": "branch"
     },
     {
       "id": "solid1-5-6",
@@ -144,7 +155,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e5Similitude",
-      "figureHint": "白地660x420で幾何学的に相似な大小2枚の片側き裂板(き裂a と 3a)を並べ、一様引張と相似則を示す"
+      "figureHint": "白地660x420で幾何学的に相似な大小2枚の片側き裂板(き裂a と 3a)を並べ、一様引張と相似則を示す",
+      "officialRef": "問5-7",
+      "role": "primary"
     },
     {
       "id": "solid1-5-7",
@@ -167,7 +180,9 @@
       "reviewed": true,
       "figure": "required",
       "figureImage": "s1e5TensionBending",
-      "figureHint": "白地660x420で片側き裂板のき裂面上の直線分布応力(σ〜5σ)を、一様な膜成分3σと曲げ成分±2σに分解して示す"
+      "figureHint": "白地660x420で片側き裂板のき裂面上の直線分布応力(σ〜5σ)を、一様な膜成分3σと曲げ成分±2σに分解して示す",
+      "officialRef": "問5-6",
+      "role": "primary"
     },
     {
       "id": "solid1-5-8",
@@ -190,7 +205,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e5GKrelation",
-      "figureHint": "白地660x420でG=(KI^2+KII^2)/E' + (1+ν)KIII^2/E と、平面応力E'=E・平面ひずみE'=E/(1-ν^2)の対比を示す"
+      "figureHint": "白地660x420でG=(KI^2+KII^2)/E' + (1+ν)KIII^2/E と、平面応力E'=E・平面ひずみE'=E/(1-ν^2)の対比を示す",
+      "officialRef": "問5-8",
+      "role": "primary"
     },
     {
       "id": "solid1-5-9",
@@ -213,7 +230,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e5Gcompute",
-      "figureHint": "白地660x420でモードIき裂とG=KI^2/E'、平面ひずみE'=E/(1-ν^2)の代入過程を示す"
+      "figureHint": "白地660x420でモードIき裂とG=KI^2/E'、平面ひずみE'=E/(1-ν^2)の代入過程を示す",
+      "officialRef": "問5-8",
+      "role": "branch"
     },
     {
       "id": "solid1-5-10",
@@ -236,7 +255,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e5Jintegral",
-      "figureHint": "白地660x420でき裂先端を囲む積分経路Γ、外向き法線n、応力・変位を示すJ積分の経路積分の模式図"
+      "figureHint": "白地660x420でき裂先端を囲む積分経路Γ、外向き法線n、応力・変位を示すJ積分の経路積分の模式図",
+      "officialRef": "問5-9",
+      "role": "primary"
     },
     {
       "id": "solid1-5-11",
@@ -259,7 +280,9 @@
       "reviewed": true,
       "figure": "required",
       "figureImage": "s1e5InclinedK",
-      "figureHint": "白地660x420で一様引張中の傾斜き裂(角度β)と、き裂面への垂直応力σcos^2βとせん断τ=σsinβcosβの分解を示す"
+      "figureHint": "白地660x420で一様引張中の傾斜き裂(角度β)と、き裂面への垂直応力σcos^2βとせん断τ=σsinβcosβの分解を示す",
+      "officialRef": "問5-10",
+      "role": "primary"
     },
     {
       "id": "solid1-5-12",
@@ -282,7 +305,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e5MixedFatigue",
-      "figureHint": "白地660x420で混合モードき裂が角度θに折れて進展する様子と、等価ΔKe・Erdogan-Sih方向則を示す"
+      "figureHint": "白地660x420で混合モードき裂が角度θに折れて進展する様子と、等価ΔKe・Erdogan-Sih方向則を示す",
+      "officialRef": "問5-11",
+      "role": "primary"
     },
     {
       "id": "solid1-5-13",
@@ -305,7 +330,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e5Barsoum",
-      "figureHint": "白地660x420で8節点要素の中間節点を1/4点へ移動する図と、一辺を縮退させた三角形特異要素を並べて示す"
+      "figureHint": "白地660x420で8節点要素の中間節点を1/4点へ移動する図と、一辺を縮退させた三角形特異要素を並べて示す",
+      "officialRef": "問5-12",
+      "role": "primary"
     },
     {
       "id": "solid1-5-14",
@@ -328,7 +355,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e5VirtualCrack",
-      "figureHint": "白地660x420でき裂先端近傍の剛体移動領域と、それを囲む変形要素・微小進展量Δaを示す仮想き裂進展法の模式図"
+      "figureHint": "白地660x420でき裂先端近傍の剛体移動領域と、それを囲む変形要素・微小進展量Δaを示す仮想き裂進展法の模式図",
+      "officialRef": "問5-15",
+      "role": "primary"
     },
     {
       "id": "solid1-5-15",
@@ -351,7 +380,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e5CODCTOD",
-      "figureHint": "白地660x420で開口したき裂のCOD(き裂面上の開口)とCTOD(先端の鈍化による開口)の定義位置を示す"
+      "figureHint": "白地660x420で開口したき裂のCOD(き裂面上の開口)とCTOD(先端の鈍化による開口)の定義位置を示す",
+      "officialRef": "問5-17",
+      "role": "primary"
     },
     {
       "id": "solid1-5-16",
@@ -374,7 +405,9 @@
       "reviewed": true,
       "figure": "required",
       "figureImage": "s1e5Goodman",
-      "figureHint": "白地660x420で修正グッドマン線図(縦軸σw・横軸σu の直線)上に平均応力σmと許容応力振幅σaの読み取りを示す"
+      "figureHint": "白地660x420で修正グッドマン線図(縦軸σw・横軸σu の直線)上に平均応力σmと許容応力振幅σaの読み取りを示す",
+      "officialRef": "問5-18",
+      "role": "primary"
     },
     {
       "id": "solid1-5-17",
@@ -397,7 +430,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e5CoffinManson",
-      "figureHint": "白地660x420でε-2N両対数線図に弾性項(傾きb)と塑性項(傾きc)の2直線とその和を示す"
+      "figureHint": "白地660x420でε-2N両対数線図に弾性項(傾きb)と塑性項(傾きc)の2直線とその和を示す",
+      "officialRef": "問5-19",
+      "role": "primary"
     },
     {
       "id": "solid1-5-18",
@@ -420,7 +455,9 @@
       "reviewed": true,
       "figure": "required",
       "figureImage": "s1e5Miner",
-      "figureHint": "白地660x420でS-N線図(疲労限度σfで水平、破線で延長)と損傷和Σni/Ni=1の累積を示す"
+      "figureHint": "白地660x420でS-N線図(疲労限度σfで水平、破線で延長)と損傷和Σni/Ni=1の累積を示す",
+      "officialRef": "問5-21",
+      "role": "primary"
     },
     {
       "id": "solid1-5-19",
@@ -443,7 +480,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e5ParisLaw",
-      "figureHint": "白地660x420でlog(da/dN)対log(ΔK)のS字曲線(A領域とΔKth・B領域の傾きm・C領域)を示す"
+      "figureHint": "白地660x420でlog(da/dN)対log(ΔK)のS字曲線(A領域とΔKth・B領域の傾きm・C領域)を示す",
+      "officialRef": "問5-23",
+      "role": "primary"
     },
     {
       "id": "solid1-5-20",
@@ -466,7 +505,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e5DesignPhil",
-      "figureHint": "白地660x420で安全寿命・フェールセーフ・損傷許容の3設計思想を、椅子の脚の例(太い脚/多脚/点検補修)で対比して示す"
+      "figureHint": "白地660x420で安全寿命・フェールセーフ・損傷許容の3設計思想を、椅子の脚の例(太い脚/多脚/点検補修)で対比して示す",
+      "officialRef": "問5-22",
+      "role": "primary"
     }
   ]
 }

@@ -32,8 +32,14 @@ import {
   resetProgress,
   resetDaily,
   wrongIdsFrom,
+  snapshotFields,
+  loadFieldSnaps,
+  fieldCompareFrom,
   type ProgressMap,
   type GradeId,
+  type QProgress,
+  type FieldSnapStore,
+  type FieldCompare,
 } from './src/progress';
 
 const APP_VERSION = '1.0.0';
@@ -90,7 +96,12 @@ function AppInner() {
   const [formulaItemId, setFormulaItemId] = useState<string | null>(null);
 
   useEffect(() => {
-    loadProgress().then(setProgress);
+    loadProgress().then(async (p) => {
+      setProgress(p);
+      // 分野バランスを1日1回記録しておき、レーダーの「1週前比の成長」を出せるようにする。
+      await snapshotFields(p, 'g2');
+      await snapshotFields(p, 'g1');
+    });
   }, []);
 
   const wrongIds = useMemo(() => wrongIdsFrom(progress), [progress]);
@@ -329,6 +340,16 @@ function HomeTab(props: {
   const overall = useMemo(() => overallStat(props.progress, grade), [props.progress, grade]);
   const stats = useMemo(() => chapterStats(props.progress, grade), [props.progress, grade]);
   const fields = useMemo(() => fieldStats(props.progress, grade), [props.progress, grade]);
+  // レーダーの「1週前比の成長」。端末に貯めた分野スナップショットと今を比べる。
+  const [snaps, setSnaps] = useState<FieldSnapStore>([]);
+  useEffect(() => {
+    loadFieldSnaps().then(setSnaps);
+  }, [props.progress]);
+  const compare: FieldCompare = useMemo(
+    () => fieldCompareFrom(snaps, fields, grade),
+    [snaps, fields, grade]
+  );
+  const hasGrowth = Object.values(compare.growth).some((v) => v != null);
   const attemptedStats = stats.filter((s) => s.attempted > 0);
   const weak = [...attemptedStats].sort((a, b) => a.accuracy - b.accuracy).slice(0, 3);
   const strong = [...attemptedStats].sort((a, b) => b.accuracy - a.accuracy).slice(0, 3);
@@ -370,15 +391,30 @@ function HomeTab(props: {
       {/* 5分野レーダー（正五角形） */}
       <Text style={[styles.sectionHead, { color: t.text }]}>分野別のバランス</Text>
       <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border, alignItems: 'center' }]}>
-        <RadarChart t={t} fields={fields} />
+        <RadarChart t={t} fields={fields} baseAcc={compare.baseAcc} />
         <View style={styles.radarLegend}>
-          {fields.map((f) => (
-            <Text key={f.id} style={[styles.radarLegendItem, { color: t.sub }]}>
-              {f.id}：{f.label}（
-              {f.attempted > 0 ? `${Math.round(f.accuracy * 100)}%` : '未挑戦'}）
-            </Text>
-          ))}
+          {fields.map((f) => {
+            const g = compare.growth[f.id];
+            const gColor = g == null || g === 0 ? t.sub : g > 0 ? t.correct : t.wrong;
+            const gText = g == null ? '' : g > 0 ? ` ▲+${g}` : g < 0 ? ` ▼${g}` : ' ±0';
+            return (
+              <Text key={f.id} style={[styles.radarLegendItem, { color: t.sub }]}>
+                {f.id}：{f.label}（
+                {f.attempted > 0 ? `${Math.round(f.accuracy * 100)}%` : '未挑戦'}）
+                {gText ? <Text style={{ color: gColor, fontWeight: 'bold' }}>{gText}</Text> : null}
+              </Text>
+            );
+          })}
         </View>
+        {hasGrowth ? (
+          <Text style={[styles.radarNote, { color: t.sub }]}>
+            ▲▼ は1週間前との差（pt）。薄い五角形が1週間前の形。
+          </Text>
+        ) : (
+          <Text style={[styles.radarNote, { color: t.sub }]}>
+            続けて解くと、1週間前と比べた分野ごとの伸びがここに出ます。
+          </Text>
+        )}
       </View>
 
       {props.wrongCount > 0 && (
@@ -467,7 +503,12 @@ function ProgressBar(props: { t: Theme; accuracy: number; attempted: number }) {
 }
 
 // 正五角形レーダー。5分野の正答率を頂点にプロットする。
-function RadarChart(props: { t: Theme; fields: ReturnType<typeof fieldStats> }) {
+// baseAcc があれば「約1週間前の形」を薄い五角形で重ねて、伸びを一目で見せる。
+function RadarChart(props: {
+  t: Theme;
+  fields: ReturnType<typeof fieldStats>;
+  baseAcc?: Record<string, number> | null;
+}) {
   const { t, fields } = props;
   const N = fields.length; // 5
   const size = 250;
@@ -490,6 +531,18 @@ function RadarChart(props: { t: Theme; fields: ReturnType<typeof fieldStats> }) 
     .map((f, i) => { const p = at(i, R * Math.max(0, Math.min(1, f.accuracy))); return `${p.x},${p.y}`; })
     .join(' ');
   const hasData = fields.some((f) => f.attempted > 0);
+  // 約1週間前の形（薄い五角形）。基準がある分野だけ点を置く。
+  const basePts =
+    props.baseAcc &&
+    fields.some((f) => props.baseAcc![f.id] != null)
+      ? fields
+          .map((f, i) => {
+            const a = props.baseAcc![f.id];
+            const p = at(i, R * Math.max(0, Math.min(1, a ?? 0)));
+            return `${p.x},${p.y}`;
+          })
+          .join(' ')
+      : null;
 
   return (
     <Svg width={size} height={size}>
@@ -497,6 +550,10 @@ function RadarChart(props: { t: Theme; fields: ReturnType<typeof fieldStats> }) 
       {grid.map((k) => (
         <Polygon key={k} points={poly(R * k)} fill="none" stroke={t.border} strokeWidth={1} />
       ))}
+      {/* 約1週間前の形（薄い比較五角形） */}
+      {basePts && (
+        <Polygon points={basePts} fill="none" stroke={t.sub} strokeWidth={1.5} strokeDasharray="4 3" opacity={0.55} />
+      )}
       {/* 中心からの軸線 */}
       {fields.map((_, i) => {
         const p = at(i, R);
@@ -637,7 +694,9 @@ function StudyTab(props: {
                   {q.title ?? q.topic ?? ''}
                 </Text>
                 <Text style={[styles.tileMeta, { color: p ? (p.lastCorrect ? t.correct : t.wrong) : t.sub }]}>
-                  {p ? `${p.lastCorrect ? '◯' : '✕'} ${fmtDate(p.lastTs)}` : '—'}
+                  {p
+                    ? `${p.lastCorrect ? '◯' : '✕'} ${fmtDate(p.lastTs)}${p.attempts >= 2 ? ` ・${p.attempts}回` : ''}`
+                    : '—'}
                 </Text>
               </Pressable>
             );
@@ -655,6 +714,7 @@ function StudyTab(props: {
         t={t}
         title={props.activeTitle}
         q={q}
+        past={props.progress[q.id]}
         index={props.qIndex}
         total={props.activeList.length}
         selected={props.answers[q.id] ?? null}
@@ -673,6 +733,7 @@ function ProblemScreen(props: {
   t: Theme;
   title: string;
   q: Question;
+  past?: QProgress;
   index: number;
   total: number;
   selected: number | null;
@@ -681,11 +742,12 @@ function ProblemScreen(props: {
   onNext: () => void;
   onBack: () => void;
 }) {
-  const { t, q, selected } = props;
+  const { t, q, selected, past } = props;
   const answered = selected !== null;
   const isCorrect = selected === q.answer;
   const atFirst = props.index === 0;
   const atLast = props.index === props.total - 1;
+  const pastRate = past && past.attempts > 0 ? Math.round((past.correctCount / past.attempts) * 100) : 0;
 
   return (
     <ScrollView contentContainerStyle={styles.content}>
@@ -694,6 +756,23 @@ function ProblemScreen(props: {
         {props.title}　{props.index + 1} / {props.total}
         {q.title ? `　・　${q.title}` : ''}
       </Text>
+      {/* 過去の学習履歴（前回の正誤・回答日・挑戦回数・正答率） */}
+      <Text style={[styles.historyLine, { color: t.sub }]}>
+        学習履歴：
+        {past ? (
+          <Text style={{ color: past.lastCorrect ? t.correct : t.wrong, fontWeight: '600' }}>
+            前回 {past.lastCorrect ? '◯' : '✕'}・{fmtDate(past.lastTs)}・{past.attempts}回挑戦（正答率 {pastRate}%）
+          </Text>
+        ) : (
+          'まだ解いていません'
+        )}
+      </Text>
+      {/* 公式標準問題との対応（§1.6・番号は対応学習用の参照。本アプリは非公認） */}
+      {q.officialRef ? (
+        <Text style={[styles.officialLine, { color: t.sub }]}>
+          公式標準問題 {q.officialRef} に対応{q.role === 'branch' ? '（補足）' : ''}／本アプリは非公認の独自補助教材・番号は対応学習用の参照です
+        </Text>
+      ) : null}
       <View style={{ marginBottom: 18 }}>
         <RichText text={q.question} color={t.text} fontSize={18} bold />
       </View>
@@ -1083,6 +1162,9 @@ const styles = StyleSheet.create({
   sectionHead: { fontSize: 16, fontWeight: 'bold', marginTop: 18, marginBottom: 8 },
   radarLegend: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 8 },
   radarLegendItem: { fontSize: 12, marginHorizontal: 6, marginVertical: 2 },
+  radarNote: { fontSize: 11, marginTop: 8, textAlign: 'center', paddingHorizontal: 8, lineHeight: 16 },
+  historyLine: { fontSize: 13, marginBottom: 6 },
+  officialLine: { fontSize: 12, marginBottom: 14, lineHeight: 17 },
   bodyText: { fontSize: 14, lineHeight: 21 },
   card: { borderWidth: 1, borderRadius: 12, padding: 14, marginBottom: 10 },
   row: { borderWidth: 1, borderRadius: 10, padding: 16, marginBottom: 10 },

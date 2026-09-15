@@ -27,6 +27,8 @@ import s1ch6 from '../content/questions/solid1-06-dynamic-analysis.json';
 import s1ch7 from '../content/questions/solid1-07-heat-transfer.json';
 import s1ch8 from '../content/questions/solid1-08-element-technology.json';
 import s1ch9 from '../content/questions/solid1-09-numerical-analysis.json';
+import s1ch10 from '../content/questions/solid1-10-analysis-verification.json';
+import s1ch11 from '../content/questions/solid1-11-modeling-techniques.json';
 
 // ready: 章が使えるか（省略時は true＝使える）。準備中の章は false。
 // formulaId: 公式・用語の参照キー（FORMULA_DOCS のキー。省略時は id を使う）。
@@ -81,8 +83,8 @@ export const CATALOG: FieldEntry[] = [
           { id: 'ch7', title: '第7章 伝熱解析', data: s1ch7 as unknown as Chapter, ready: true, formulaId: 's1ch7' },
           { id: 'ch8', title: '第8章 要素テクノロジー', data: s1ch8 as unknown as Chapter, ready: true, formulaId: 's1ch8' },
           { id: 'ch9', title: '第9章 数値解析法', data: s1ch9 as unknown as Chapter, ready: true, formulaId: 's1ch9' },
-          s1stub(10, '解析の検証'),
-          s1stub(11, '各種モデリング技術'),
+          { id: 'ch10', title: '第10章 解析の検証', data: s1ch10 as unknown as Chapter, ready: true, formulaId: 's1ch10' },
+          { id: 'ch11', title: '第11章 各種モデリング技術', data: s1ch11 as unknown as Chapter, ready: true, formulaId: 's1ch11' },
         ],
       },
     ],

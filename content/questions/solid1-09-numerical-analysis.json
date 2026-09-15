@@ -5,7 +5,8 @@
     "chapter": 9,
     "source": "完全オリジナル(数値解析法)",
     "origin": "original",
-    "count": 20
+    "count": 20,
+    "officialCount": 14
   },
   "questions": [
     {
@@ -29,7 +30,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e9EigenMethods",
-      "figureHint": "白地660x420。固有値解法の分類ツリー。根=固有値解法→繰返し法(べき乗/逆べき乗/サブスペース)・相似変換法(ヤコビ/ハウスホルダー/ランチョス/QR)・代数的解法(行列式/スツルム/二分)。サブスペース法を大規模向きと強調。"
+      "figureHint": "白地660x420。固有値解法の分類ツリー。根=固有値解法→繰返し法(べき乗/逆べき乗/サブスペース)・相似変換法(ヤコビ/ハウスホルダー/ランチョス/QR)・代数的解法(行列式/スツルム/二分)。サブスペース法を大規模向きと強調。",
+      "officialRef": "問9-1",
+      "role": "primary"
     },
     {
       "id": "solid1-9-2",
@@ -52,7 +55,9 @@
       "reviewed": true,
       "figure": "required",
       "figureImage": "s1e9EigenConverge",
-      "figureHint": "白地660x420。反復回数kに対する固有ベクトル誤差(対数軸)の減衰直線を3本。べき乗法(|λ_{n-1}/λ_n|)・逆べき乗法(|λ_1/λ_2|)・サブスペース法(|λ_1/λ_{p+1}|)で傾きが違い、サブスペースが最急降下。"
+      "figureHint": "白地660x420。反復回数kに対する固有ベクトル誤差(対数軸)の減衰直線を3本。べき乗法(|λ_{n-1}/λ_n|)・逆べき乗法(|λ_1/λ_2|)・サブスペース法(|λ_1/λ_{p+1}|)で傾きが違い、サブスペースが最急降下。",
+      "officialRef": "問9-2",
+      "role": "primary"
     },
     {
       "id": "solid1-9-3",
@@ -75,7 +80,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e9IterMatrix",
-      "figureHint": "反復解法の反復行列と、反復ごとに解が真値へ近づく様子"
+      "figureHint": "反復解法の反復行列と、反復ごとに解が真値へ近づく様子",
+      "officialRef": "問9-7",
+      "role": "branch"
     },
     {
       "id": "solid1-9-4",
@@ -98,7 +105,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e9Tridiag",
-      "figureHint": "対称行列を直交変換で三重対角化する帯状の非ゼロ構造"
+      "figureHint": "対称行列を直交変換で三重対角化する帯状の非ゼロ構造",
+      "officialRef": "問9-4",
+      "role": "primary"
     },
     {
       "id": "solid1-9-5",
@@ -121,7 +130,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e9Bisection",
-      "figureHint": "スツルム列の符号変化数から固有値を二分法で挟み込む"
+      "figureHint": "スツルム列の符号変化数から固有値を二分法で挟み込む",
+      "officialRef": "問9-4",
+      "role": "branch"
     },
     {
       "id": "solid1-9-6",
@@ -144,7 +155,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e9InvPower",
-      "figureHint": "逆べき乗法が最小固有値へ収束していく反復の様子"
+      "figureHint": "逆べき乗法が最小固有値へ収束していく反復の様子",
+      "officialRef": "問9-2",
+      "role": "branch"
     },
     {
       "id": "solid1-9-7",
@@ -167,7 +180,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e9Precond2",
-      "figureHint": "前処理で係数行列の条件数を下げ、収束を速める効果"
+      "figureHint": "前処理で係数行列の条件数を下げ、収束を速める効果",
+      "officialRef": "問9-5",
+      "role": "primary"
     },
     {
       "id": "solid1-9-8",
@@ -190,7 +205,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e9CGsearch",
-      "figureHint": "CG法:対称正定行列で共役方向に沿い有限回で最小へ到達"
+      "figureHint": "CG法:対称正定行列で共役方向に沿い有限回で最小へ到達",
+      "officialRef": "問9-6",
+      "role": "primary"
     },
     {
       "id": "solid1-9-9",
@@ -213,7 +230,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e9CDStability",
-      "figureHint": "白地660x420。時間軸に刻み幅Δtを示し、Δt≤T/π(=2/ω)なら安定(振幅が保たれる波形)、超えると発散(振幅が発散する波形)を上下2段で対比。固有周期Tも図示。"
+      "figureHint": "白地660x420。時間軸に刻み幅Δtを示し、Δt≤T/π(=2/ω)なら安定(振幅が保たれる波形)、超えると発散(振幅が発散する波形)を上下2段で対比。固有周期Tも図示。",
+      "officialRef": "問9-14",
+      "role": "branch"
     },
     {
       "id": "solid1-9-10",
@@ -236,7 +255,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e9Spectral",
-      "figureHint": "反復行列のスペクトル半径<1なら収束、>1なら発散"
+      "figureHint": "反復行列のスペクトル半径<1なら収束、>1なら発散",
+      "officialRef": "問9-7",
+      "role": "primary"
     },
     {
       "id": "solid1-9-11",
@@ -259,7 +280,9 @@
       "reviewed": true,
       "figure": "required",
       "figureImage": "s1e9NewtonIter",
-      "figureHint": "白地660x420。荷重-変位曲線上の反復矢印を3枚で対比。左=ニュートン法(反復ごとに接線の傾きが変わる)、中=準ニュートン法(近似更新)、右=修正ニュートン法(全反復で同じ傾きの平行線・反復多い)。"
+      "figureHint": "白地660x420。荷重-変位曲線上の反復矢印を3枚で対比。左=ニュートン法(反復ごとに接線の傾きが変わる)、中=準ニュートン法(近似更新)、右=修正ニュートン法(全反復で同じ傾きの平行線・反復多い)。",
+      "officialRef": "問9-8",
+      "role": "primary"
     },
     {
       "id": "solid1-9-12",
@@ -282,7 +305,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e9PosDef",
-      "figureHint": "主小行列式が全て正=正定値、の判定(左上からの小行列)"
+      "figureHint": "主小行列式が全て正=正定値、の判定(左上からの小行列)",
+      "officialRef": "問9-6",
+      "role": "branch"
     },
     {
       "id": "solid1-9-13",
@@ -305,7 +330,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e9Residual",
-      "figureHint": "残差 r=b-Ax の定義と、反復での残差の縮小"
+      "figureHint": "残差 r=b-Ax の定義と、反復での残差の縮小",
+      "officialRef": "問9-10",
+      "role": "primary"
     },
     {
       "id": "solid1-9-14",
@@ -328,7 +355,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e9ConvCrit",
-      "figureHint": "非線形反復の収束判定:残差/変位ノルムが許容値以下"
+      "figureHint": "非線形反復の収束判定:残差/変位ノルムが許容値以下",
+      "officialRef": "問9-11",
+      "role": "primary"
     },
     {
       "id": "solid1-9-15",
@@ -351,7 +380,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e9Complexity",
-      "figureHint": "直接法O(n^3)と反復法の演算量オーダーの比較"
+      "figureHint": "直接法O(n^3)と反復法の演算量オーダーの比較",
+      "officialRef": "問9-5",
+      "role": "branch"
     },
     {
       "id": "solid1-9-16",
@@ -374,7 +405,9 @@
       "reviewed": true,
       "figure": "required",
       "figureImage": "s1e9LoadDispCurves",
-      "figureHint": "白地660x420。荷重P-変位u曲線を3枚。(a)単調増加、(b)スナップスルー(荷重最大点で飛移り)、(c)スナップバック(荷重も変位も減少する折返し)。各曲線に荷重制御/変位制御/弧長法の適用可否を注記。"
+      "figureHint": "白地660x420。荷重P-変位u曲線を3枚。(a)単調増加、(b)スナップスルー(荷重最大点で飛移り)、(c)スナップバック(荷重も変位も減少する折返し)。各曲線に荷重制御/変位制御/弧長法の適用可否を注記。",
+      "officialRef": "問9-12",
+      "role": "primary"
     },
     {
       "id": "solid1-9-17",
@@ -397,7 +430,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e9TimeInteg",
-      "figureHint": "陰的時間積分でクリープを時間ステップごとに前進"
+      "figureHint": "陰的時間積分でクリープを時間ステップごとに前進",
+      "officialRef": "問9-14",
+      "role": "branch"
     },
     {
       "id": "solid1-9-18",
@@ -420,7 +455,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e9DomainDecomp",
-      "figureHint": "白地660x420。構造を格子状に部分領域へ分割した図。各部分領域の内部自由度(白丸・縮約対象)と境界上の自由度(黒丸・CG反復対象)を色分けし、粒度=計算量/通信量を注記。"
+      "figureHint": "白地660x420。構造を格子状に部分領域へ分割した図。各部分領域の内部自由度(白丸・縮約対象)と境界上の自由度(黒丸・CG反復対象)を色分けし、粒度=計算量/通信量を注記。",
+      "officialRef": "問9-13",
+      "role": "primary"
     },
     {
       "id": "solid1-9-19",
@@ -443,7 +480,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e9ArcLength",
-      "figureHint": "白地660x420。横軸=変位増分Δu、縦軸=荷重パラメータ増分Δλの平面に半径rの円(超球面の断面)を描き、釣合い経路との交点を求める様子を図示。Δu^TΔu+Δλ^2=r^2を注記。"
+      "figureHint": "白地660x420。横軸=変位増分Δu、縦軸=荷重パラメータ増分Δλの平面に半径rの円(超球面の断面)を描き、釣合い経路との交点を求める様子を図示。Δu^TΔu+Δλ^2=r^2を注記。",
+      "officialRef": "問9-12",
+      "role": "branch"
     },
     {
       "id": "solid1-9-20",
@@ -466,7 +505,9 @@
       "reviewed": true,
       "figure": "required",
       "figureImage": "s1e9NewmarkBeta",
-      "figureHint": "白地660x420。左=中心差分法(β=0,γ=1/2・陽解法・Δt≤T/πの条件付き安定領域を斜線で示す)、右=ニューマークβ法(陰解法・β≥1/4等で無条件安定の全域)を安定領域の図で対比。"
+      "figureHint": "白地660x420。左=中心差分法(β=0,γ=1/2・陽解法・Δt≤T/πの条件付き安定領域を斜線で示す)、右=ニューマークβ法(陰解法・β≥1/4等で無条件安定の全域)を安定領域の図で対比。",
+      "officialRef": "問9-14",
+      "role": "primary"
     }
   ]
 }

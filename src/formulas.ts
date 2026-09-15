@@ -23,6 +23,8 @@ import s1ch6 from '../content/formulas/solid1-ch6.json';
 import s1ch7 from '../content/formulas/solid1-ch7.json';
 import s1ch8 from '../content/formulas/solid1-ch8.json';
 import s1ch9 from '../content/formulas/solid1-ch9.json';
+import s1ch10 from '../content/formulas/solid1-ch10.json';
+import s1ch11 from '../content/formulas/solid1-ch11.json';
 
 export type FormulaItem = {
   id: string;
@@ -66,6 +68,8 @@ export const FORMULA_DOCS: Record<string, FormulaDoc | null> = {
   s1ch7: s1ch7 as unknown as FormulaDoc,
   s1ch8: s1ch8 as unknown as FormulaDoc,
   s1ch9: s1ch9 as unknown as FormulaDoc,
+  s1ch10: s1ch10 as unknown as FormulaDoc,
+  s1ch11: s1ch11 as unknown as FormulaDoc,
 };
 
 export function formulaDoc(chapterId: string): FormulaDoc | null {

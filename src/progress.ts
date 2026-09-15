@@ -289,6 +289,89 @@ export function dailyDigest(map: DailyMap): DailyDigest {
   return { streak, last30, trend, weekDelta };
 }
 
+// ---- 分野別スナップショット（ホームのレーダー「1週前比の成長」表示用） ----
+// 分野ごとの正答率を1日1回・級ごとに端末へ貯める。
+// これがあると「今の五角形」と「約1週間前の五角形」を比べて伸びを出せる。
+const FSNAP_KEY = 'cae.fieldsnap.v1';
+export type FieldSnap = {
+  ts: number; // 記録した時刻
+  grade: GradeId;
+  acc: Record<string, number>; // 分野id → 正答率(0..1)
+  att: Record<string, number>; // 分野id → 挑戦数
+};
+export type FieldSnapStore = FieldSnap[];
+
+export async function loadFieldSnaps(): Promise<FieldSnapStore> {
+  try {
+    const raw = await AsyncStorage.getItem(FSNAP_KEY);
+    if (!raw) return [];
+    const arr = JSON.parse(raw);
+    return Array.isArray(arr) ? (arr as FieldSnapStore) : [];
+  } catch {
+    return [];
+  }
+}
+
+// 現在の分野正答率を記録する。同じ級の当日分が既にあれば何もしない（1日1回）。
+// 40日より古いスナップショットは間引く。
+export async function snapshotFields(map: ProgressMap, gradeId: GradeId): Promise<void> {
+  try {
+    const store = await loadFieldSnaps();
+    const today = ymd(new Date());
+    if (store.some((s) => s.grade === gradeId && ymd(new Date(s.ts)) === today)) return;
+    const fs = fieldStats(map, gradeId);
+    // 全分野が未挑戦なら記録しない（空の基準を作らない）。
+    if (!fs.some((f) => f.attempted > 0)) return;
+    const acc: Record<string, number> = {};
+    const att: Record<string, number> = {};
+    for (const f of fs) {
+      acc[f.id] = f.accuracy;
+      att[f.id] = f.attempted;
+    }
+    const cutoff = Date.now() - 40 * 86400000;
+    const next = [...store.filter((s) => s.ts >= cutoff), { ts: Date.now(), grade: gradeId, acc, att }];
+    await AsyncStorage.setItem(FSNAP_KEY, JSON.stringify(next));
+  } catch {
+    /* 保存失敗はクラッシュさせない */
+  }
+}
+
+export async function resetFieldSnaps(): Promise<void> {
+  try {
+    await AsyncStorage.removeItem(FSNAP_KEY);
+  } catch {
+    /* noop */
+  }
+}
+
+export type FieldGrowth = Record<string, number | null>; // 分野id → 変化ポイント(現在-約1週前)。基準無しは null。
+export type FieldCompare = {
+  growth: FieldGrowth;
+  baseAcc: Record<string, number> | null; // 約1週前の分野正答率（レーダーの薄い比較図用）
+  baseTs: number | null;
+};
+
+// 「7日以上前で最も新しい」スナップショットを基準にして、分野ごとの伸び(pt)を出す。
+export function fieldCompareFrom(
+  store: FieldSnapStore,
+  current: FieldStat[],
+  gradeId: GradeId
+): FieldCompare {
+  const cutoff = Date.now() - 7 * 86400000;
+  const base = store
+    .filter((s) => s.grade === gradeId && s.ts <= cutoff)
+    .sort((a, b) => b.ts - a.ts)[0];
+  const growth: FieldGrowth = {};
+  for (const f of current) {
+    if (!base || base.acc[f.id] == null || (base.att?.[f.id] ?? 0) === 0) {
+      growth[f.id] = null; // 1週前にその分野の記録が無ければ比較しない
+      continue;
+    }
+    growth[f.id] = Math.round(f.accuracy * 100) - Math.round(base.acc[f.id] * 100);
+  }
+  return { growth, baseAcc: base ? base.acc : null, baseTs: base ? base.ts : null };
+}
+
 // 問題ID → 章ID（未使用の警告回避のため re-export ラッパ）
 export function chapterOf(id: string): string | undefined {
   return QUESTION_CHAPTER[id];

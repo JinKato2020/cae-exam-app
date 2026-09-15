@@ -5,7 +5,8 @@
     "chapter": 4,
     "source": "完全オリジナル(境界非線形・接触)",
     "origin": "original",
-    "count": 20
+    "count": 20,
+    "officialCount": 14
   },
   "questions": [
     {
@@ -29,7 +30,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e4ContactDefinition",
-      "figureHint": "白地660x420で2物体が距離0で接する様子と、圧縮のみ伝わる不可侵条件を矢印で示す"
+      "figureHint": "白地660x420で2物体が距離0で接する様子と、圧縮のみ伝わる不可侵条件を矢印で示す",
+      "officialRef": "問4-1",
+      "role": "primary"
     },
     {
       "id": "solid1-4-2",
@@ -52,7 +55,9 @@
       "reviewed": true,
       "figure": "required",
       "figureImage": "s1e4GapFunction",
-      "figureHint": "白地660x420で2物体表面と法線n1、g=(x2−x1)·n1、g>0離間・g=0接触・g<0貫通の3状態を並べる"
+      "figureHint": "白地660x420で2物体表面と法線n1、g=(x2−x1)·n1、g>0離間・g=0接触・g<0貫通の3状態を並べる",
+      "officialRef": "問4-2",
+      "role": "branch"
     },
     {
       "id": "solid1-4-3",
@@ -75,7 +80,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e4KKT",
-      "figureHint": "白地660x420でg軸とσ軸の直交グラフにg≥0,σ≤0,σg=0の相補領域(L字)を描く"
+      "figureHint": "白地660x420でg軸とσ軸の直交グラフにg≥0,σ≤0,σg=0の相補領域(L字)を描く",
+      "officialRef": "問4-2",
+      "role": "primary"
     },
     {
       "id": "solid1-4-4",
@@ -98,7 +105,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e4MasterSlave",
-      "figureHint": "白地660x420で固く粗メッシュの物体=マスター面、軟らか細メッシュの物体=スレーブ面を上下に並べ滑り方向矢印"
+      "figureHint": "白地660x420で固く粗メッシュの物体=マスター面、軟らか細メッシュの物体=スレーブ面を上下に並べ滑り方向矢印",
+      "officialRef": "問4-1",
+      "role": "branch"
     },
     {
       "id": "solid1-4-5",
@@ -121,7 +130,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e4RigidSurface",
-      "figureHint": "白地660x420で変形しない剛体面(マスター)と変形するスレーブ面の接触、接触要素は方向固定であることを併記"
+      "figureHint": "白地660x420で変形しない剛体面(マスター)と変形するスレーブ面の接触、接触要素は方向固定であることを併記",
+      "officialRef": "問4-3",
+      "role": "primary"
     },
     {
       "id": "solid1-4-6",
@@ -144,7 +155,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e4PointVsSurface",
-      "figureHint": "白地660x420で点接触(節点を一致させる整合メッシュ)と面接触(節点-セグメント拘束の不整合メッシュ)を左右比較"
+      "figureHint": "白地660x420で点接触(節点を一致させる整合メッシュ)と面接触(節点-セグメント拘束の不整合メッシュ)を左右比較",
+      "officialRef": "問4-4",
+      "role": "primary"
     },
     {
       "id": "solid1-4-7",
@@ -167,7 +180,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e4Lagrange",
-      "figureHint": "白地660x420で直列ばねK1-K2の1次元接触モデル、接触点でg=u2−u3、乗数λが接触力に対応する様子"
+      "figureHint": "白地660x420で直列ばねK1-K2の1次元接触モデル、接触点でg=u2−u3、乗数λが接触力に対応する様子",
+      "officialRef": "問4-5",
+      "role": "primary"
     },
     {
       "id": "solid1-4-8",
@@ -190,7 +205,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e4Penalty",
-      "figureHint": "白地660x420でペナルティばねαが節点2-3間に入り、微小貫通g=−F/αとu3=u2+F/αを図示"
+      "figureHint": "白地660x420でペナルティばねαが節点2-3間に入り、微小貫通g=−F/αとu3=u2+F/αを図示",
+      "officialRef": "問4-5",
+      "role": "branch"
     },
     {
       "id": "solid1-4-9",
@@ -213,7 +230,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e4AugmentedLagrange",
-      "figureHint": "白地660x420でUzawa反復ごとに乗数λが更新され残留貫通gが0へ収束していく折れ線"
+      "figureHint": "白地660x420でUzawa反復ごとに乗数λが更新され残留貫通gが0へ収束していく折れ線",
+      "officialRef": "問4-5",
+      "role": "branch"
     },
     {
       "id": "solid1-4-10",
@@ -236,7 +255,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e4PseudoLoad",
-      "figureHint": "白地660x420でマスターセグメント面積A・貫入深さL・要素体積V・反発力f=KA²L/Vの組み立てを図解"
+      "figureHint": "白地660x420でマスターセグメント面積A・貫入深さL・要素体積V・反発力f=KA²L/Vの組み立てを図解",
+      "officialRef": "問4-6",
+      "role": "primary"
     },
     {
       "id": "solid1-4-11",
@@ -259,7 +280,9 @@
       "reviewed": true,
       "figure": "required",
       "figureImage": "s1e4CoulombSmooth",
-      "figureHint": "白地660x420で摩擦力-相対速度のステップ関数(不連続)とtanh平滑化した連続曲線を重ねる"
+      "figureHint": "白地660x420で摩擦力-相対速度のステップ関数(不連続)とtanh平滑化した連続曲線を重ねる",
+      "officialRef": "問4-9",
+      "role": "primary"
     },
     {
       "id": "solid1-4-12",
@@ -282,7 +305,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e4ShearYield",
-      "figureHint": "白地660x420でミーゼス降伏条件からτy=σy/√3の関係(引張とせん断の降伏応力比)を示す"
+      "figureHint": "白地660x420でミーゼス降伏条件からτy=σy/√3の関係(引張とせん断の降伏応力比)を示す",
+      "officialRef": "問4-8",
+      "role": "primary"
     },
     {
       "id": "solid1-4-13",
@@ -305,7 +330,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e4FrictionCompare",
-      "figureHint": "白地660x420で加工進展に対しクーロン摩擦は増加・せん断摩擦は一定となる摩擦力の比較グラフ"
+      "figureHint": "白地660x420で加工進展に対しクーロン摩擦は増加・せん断摩擦は一定となる摩擦力の比較グラフ",
+      "officialRef": "問4-8",
+      "role": "branch"
     },
     {
       "id": "solid1-4-14",
@@ -328,7 +355,9 @@
       "reviewed": true,
       "figure": "required",
       "figureImage": "s1e4StickSlip",
-      "figureHint": "白地660x420で摩擦力-相対滑りのステップ関数と、固着付近に有限剛性を入れて平滑遷移させた曲線を対比"
+      "figureHint": "白地660x420で摩擦力-相対滑りのステップ関数と、固着付近に有限剛性を入れて平滑遷移させた曲線を対比",
+      "officialRef": "問4-10",
+      "role": "primary"
     },
     {
       "id": "solid1-4-15",
@@ -351,7 +380,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e4Chattering",
-      "figureHint": "白地660x420で接触・解離を繰り返す振動波形と、構造減衰で高周波が減衰し収束する波形を対比"
+      "figureHint": "白地660x420で接触・解離を繰り返す振動波形と、構造減衰で高周波が減衰し収束する波形を対比",
+      "officialRef": "問4-7",
+      "role": "primary"
     },
     {
       "id": "solid1-4-16",
@@ -374,7 +405,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e4LoadPath",
-      "figureHint": "白地660x420で摩擦あり=経路依存(増分で解が変わる)・摩擦なし=経路非依存の荷重-変位曲線を対比"
+      "figureHint": "白地660x420で摩擦あり=経路依存(増分で解が変わる)・摩擦なし=経路非依存の荷重-変位曲線を対比",
+      "officialRef": "問4-11",
+      "role": "primary"
     },
     {
       "id": "solid1-4-17",
@@ -397,7 +430,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e4FrictionHeat",
-      "figureHint": "白地660x420で摩擦力×相対滑り量=摩擦仕事増分→変換係数→熱流束→熱伝導解析の発熱項という流れ図"
+      "figureHint": "白地660x420で摩擦力×相対滑り量=摩擦仕事増分→変換係数→熱流束→熱伝導解析の発熱項という流れ図",
+      "officialRef": "問4-12",
+      "role": "primary"
     },
     {
       "id": "solid1-4-18",
@@ -420,7 +455,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e4ContactSearch",
-      "figureHint": "白地660x420で総当りO(n²)の全ペア照合と、2分木O(n log n)による探索の比較を模式化"
+      "figureHint": "白地660x420で総当りO(n²)の全ペア照合と、2分木O(n log n)による探索の比較を模式化",
+      "officialRef": "問4-13",
+      "role": "primary"
     },
     {
       "id": "solid1-4-19",
@@ -443,7 +480,9 @@
       "reviewed": true,
       "figure": "required",
       "figureImage": "s1e4HertzPressure",
-      "figureHint": "白地660x420で円形接触面と、中央最大・縁ゼロの半楕円圧力分布 pmax=3P/2πa² を断面で描く"
+      "figureHint": "白地660x420で円形接触面と、中央最大・縁ゼロの半楕円圧力分布 pmax=3P/2πa² を断面で描く",
+      "officialRef": "問4-14",
+      "role": "primary"
     },
     {
       "id": "solid1-4-20",
@@ -466,7 +505,9 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e4HertzExponent",
-      "figureHint": "白地660x420で両対数軸に a∝P^(1/3)、pmax∝P^(1/3) の傾き1/3の直線を描き荷重依存を示す"
+      "figureHint": "白地660x420で両対数軸に a∝P^(1/3)、pmax∝P^(1/3) の傾き1/3の直線を描き荷重依存を示す",
+      "officialRef": "問4-14",
+      "role": "branch"
     }
   ]
 }
