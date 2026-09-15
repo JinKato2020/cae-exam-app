@@ -136,6 +136,31 @@ def check_file(path, all_titles):
     if dup:   warn.append(f"章内トピック重複: {dup}")
     if cross: warn.append(f"章間トピック重複(要統合): {cross[:6]}")
 
+    # --- 公式標準問題との1:1対応/枝問ポリシー(§1.6) ---
+    #  officialRef を1問でも持てば発動（既存章=未タグは無検査で通す＝後方互換）。
+    if any("officialRef" in q for q in qs):
+        prim = {}  # officialRef -> 本体(primary)件数
+        for q in qs:
+            num = q.get("number", "?"); ref = q.get("officialRef"); role = q.get("role")
+            if not ref: hard.append(f"{num}: officialRef 欠落（1:1方針=全問に公式対応を付与）")
+            if role not in ("primary", "branch"): hard.append(f"{num}: role は 'primary'|'branch' 必須(現:{role})")
+            if role == "primary" and ref: prim[ref] = prim.get(ref, 0) + 1
+        for ref, c in prim.items():
+            if c > 1: hard.append(f"公式 {ref} に本体(primary)が{c}問（1:1違反=公式1問にアプリ本体は1問）")
+        for q in qs:
+            if q.get("role") == "branch":
+                ref = q.get("officialRef")
+                if ref and ref not in prim:
+                    hard.append(f"{q.get('number')}: 枝問の対応先 {ref} に本体が無い（枝問は既存の公式番号に付ける・新番号禁止）")
+        oc = d.get("meta", {}).get("officialCount"); P = len(prim)
+        b = sum(1 for q in qs if q.get("role") == "branch")
+        if isinstance(oc, int):
+            if P > oc: hard.append(f"本体(標準問題)が公式Nを超過: 本体{P} > 公式{oc}（『超えない』違反）")
+            elif P < oc: warn.append(f"1:1に不足: 本体{P} < 公式{oc}（公式{oc}問に本体が足りない=追加作成候補）")
+        else:
+            info.append("meta.officialCount 未設定（公式Nを入れると1:1超過を自動ガード）")
+        info.append(f"1:1対応: 本体{P}・枝問{b}（officialRef方針・§1.6）")
+
     verdict = "FAIL" if hard else ("WARN" if warn else "PASS")
     return verdict, n, ans, hard, warn, info, review
 
