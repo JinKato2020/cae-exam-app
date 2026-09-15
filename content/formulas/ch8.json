@@ -63,8 +63,8 @@
       "id": "units",
       "kind": "term",
       "term": "単位系の整合",
-      "body": "FEMは単位を自動では扱わないので、長さ・力・質量・時間の単位を一貫させる必要があります。食い違うと応力や固有振動数が桁違いに間違います。よく使うのは mm・N・MPa・tonne の組（このとき密度は tonne/mm³）です。",
-      "example": "鋼の密度は SI で 7800 kg/m³ですが、mm-N-MPa系では 7.8×10⁻⁹ tonne/mm³ に直して入力します。",
+      "body": "FEMは単位を自動では扱わないので、長さ・力・質量・時間の単位を一貫させる必要があります。食い違うと応力や固有振動数が桁違いに間違います。よく使うのは mm・N・MPa・tonne の組（このとき密度は $\\mathrm{tonne/mm^3}$）です。",
+      "example": "鋼の密度は SI で $7800\\ \\mathrm{kg/m^3}$ですが、mm-N-MPa系では $7.8\\times10^{-9}\\ \\mathrm{tonne/mm^3}$ に直して入力します。",
       "figureImage": "model8SpringEq"
     }
   ]
