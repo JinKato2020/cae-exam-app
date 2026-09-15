@@ -5,7 +5,7 @@
     "chapter": 7,
     "source": "標準問題集(伝熱解析)",
     "origin": "original",
-    "count": 20,
+    "count": 21,
     "officialCount": 12
   },
   "questions": [
@@ -507,6 +507,31 @@
       "figureImage": "s1e7BiotNumber",
       "figureHint": "白地660x420でビオ数Bi=hL/λの意味(表面の熱伝達hと内部の熱伝導λ/Lの比)を物体断面で図示し、Bi小=温度一様/Bi大=温度こう配大を対比",
       "officialRef": "問7-12",
+      "role": "primary"
+    },
+    {
+      "id": "solid1-7-21",
+      "number": "7-21",
+      "title": "灰色体2面間の多重反射級数",
+      "topic": "灰色体の多重反射",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "十分に近接した平行2平面(面1・面2、放射率=吸収率 $\\varepsilon_1,\\varepsilon_2$、透過なし)がある。面1の単位面積から放射されるエネルギーを $E_1$ とするとき、反射を繰り返して最終的に面2が吸収するエネルギー $Q_2$ を多重反射の級数で表したものとして、最も妥当なものはどれか。",
+      "choices": [
+        "$Q_2=\\varepsilon_2 E_1+\\varepsilon_2(1-\\varepsilon_1)(1-\\varepsilon_2)E_1+\\cdots$",
+        "$Q_2=\\varepsilon_1 E_1+\\varepsilon_1(1-\\varepsilon_1)(1-\\varepsilon_2)E_1+\\cdots$",
+        "$Q_2=(1-\\varepsilon_2)E_1+(1-\\varepsilon_2)(1-\\varepsilon_1)(1-\\varepsilon_2)E_1+\\cdots$",
+        "$Q_2=\\varepsilon_2 E_1+\\varepsilon_2(1-\\varepsilon_2)E_1+\\cdots$"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】灰色体は入射エネルギーの一部だけを吸収し残りを反射する。放射率=吸収率 $\\varepsilon$ の面は、入射のうち $\\varepsilon$ を吸収し $(1-\\varepsilon)$ を反射する(透過なし)。\n【考え方】面1から放射された $E_1$ が面2に届くと、面2は $\\varepsilon_2 E_1$ を吸収し $(1-\\varepsilon_2)E_1$ を反射する。反射分は面1で $(1-\\varepsilon_1)$ 倍に反射されて再び面2へ戻り、面2はそのうち $\\varepsilon_2$ を吸収する($=\\varepsilon_2(1-\\varepsilon_1)(1-\\varepsilon_2)E_1$)。以降は1往復ごとに $(1-\\varepsilon_1)(1-\\varepsilon_2)$ 倍となる等比級数である。初項が $\\varepsilon_2 E_1$ の(1)が妥当。\n【計算】公比 $r=(1-\\varepsilon_1)(1-\\varepsilon_2)$ の等比級数の和は $Q_2=\\dfrac{\\varepsilon_2 E_1}{1-(1-\\varepsilon_1)(1-\\varepsilon_2)}=\\dfrac{\\varepsilon_2 E_1}{\\varepsilon_1+\\varepsilon_2-\\varepsilon_1\\varepsilon_2}$。検算として $\\varepsilon_1=\\varepsilon_2=1$(黒体)を代入すると分母が $1$ となり $Q_2=E_1$(入射を全部吸収)で妥当。\n【ポイント】面2が吸収する初項は必ず $\\varepsilon_2 E_1$(吸収率は面2の $\\varepsilon_2$)。1往復で戻る割合は両面の反射率の積 $(1-\\varepsilon_1)(1-\\varepsilon_2)$ である。\n【引っかけ】(2)は初項を $\\varepsilon_1 E_1$ としているが、面2の吸収なので吸収率は $\\varepsilon_2$ が正しい。(3)は初項 $(1-\\varepsilon_2)E_1$ が吸収ではなく反射する分である。(4)は公比に $(1-\\varepsilon_1)$ を欠き、面1での反射を無視している。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "figure": "helpful",
+      "figureImage": "s1e7MultiReflect",
+      "figureHint": "白地660x420で平行2灰色体面(面1・面2)間の多重反射を矢印で描き、面2が各回に吸収する項(eps2E1, eps2(1-eps1)(1-eps2)E1, ...)と総和 Q2=eps2E1/(1-(1-eps1)(1-eps2)) を示す",
+      "officialRef": "問7-8",
       "role": "primary"
     }
   ]
