@@ -5,7 +5,8 @@
     "chapter": 3,
     "source": "完全オリジナル(公式問題集の複製ではない・一次資料をテンプレートに基づき作成)",
     "origin": "original",
-    "count": 17
+    "count": 18,
+    "officialCount": 17
   },
   "questions": [
     {
@@ -27,7 +28,9 @@
       "hasMath": true,
       "figureImage": "heatplate",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "officialRef": "問3-1",
+      "role": "primary"
     },
     {
       "id": "heat-3-2",
@@ -50,7 +53,9 @@
       "reviewed": true,
       "figureImage": "h3Analogy",
       "figure": "helpful",
-      "figureHint": "構造(σ=Eε)と熱伝導(q=k∇T)の物理量対応表"
+      "figureHint": "構造(σ=Eε)と熱伝導(q=k∇T)の物理量対応表",
+      "officialRef": "問3-2",
+      "role": "primary"
     },
     {
       "id": "heat-3-3",
@@ -73,7 +78,9 @@
       "reviewed": true,
       "figureImage": "h3Transient",
       "figure": "helpful",
-      "figureHint": "過渡の曲線が時間とともに定常の直線へ漸近"
+      "figureHint": "過渡の曲線が時間とともに定常の直線へ漸近",
+      "officialRef": "問3-3",
+      "role": "primary"
     },
     {
       "id": "heat-3-4",
@@ -96,7 +103,9 @@
       "reviewed": true,
       "figureImage": "h3Shapes",
       "figure": "helpful",
-      "figureHint": "平板=直線・円筒=対数曲線の温度分布を並置"
+      "figureHint": "平板=直線・円筒=対数曲線の温度分布を並置",
+      "officialRef": "問3-4",
+      "role": "primary"
     },
     {
       "id": "heat-3-5",
@@ -117,7 +126,9 @@
       "hasMath": true,
       "figureImage": "twolayerwall",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "officialRef": "問3-5",
+      "role": "primary"
     },
     {
       "id": "heat-3-6",
@@ -140,7 +151,9 @@
       "reviewed": true,
       "figureImage": "h3Isotherm",
       "figure": "helpful",
-      "figureHint": "等温線が断熱境界に垂直、熱は境界に沿う"
+      "figureHint": "等温線が断熱境界に垂直、熱は境界に沿う",
+      "officialRef": "問3-6",
+      "role": "primary"
     },
     {
       "id": "heat-3-7",
@@ -163,30 +176,34 @@
       "reviewed": true,
       "figureImage": "h3Genheat",
       "figure": "helpful",
-      "figureHint": "一様発熱で中央最高の上に凸の放物線分布"
+      "figureHint": "一様発熱で中央最高の上に凸の放物線分布",
+      "officialRef": "問3-7",
+      "role": "primary"
     },
     {
       "id": "heat-3-8",
       "number": "3-8",
-      "title": "一定熱流束を受ける物体の非定常応答",
-      "topic": "非定常・熱流束境界",
+      "title": "熱流束流入と内部発熱がある定常壁の温度分布",
+      "topic": "内部発熱＋熱流束",
       "type": "mc",
       "difficulty": 2,
-      "question": "十分厚い(半無限とみなせる)物体の表面に、時刻ゼロから一定の熱流束を与え続ける。表面温度の時間変化として最も適切なものはどれか。",
+      "question": "定常状態の平面壁に、高温側の面から一定の熱流束 $q>0$ が流入し、さらに壁の内部で一様な発熱率 $\\dot q>0$ が生じている。冷却側の面は温度 $T_0$ に保たれている。壁の厚さ方向の温度分布の形として最も適切なものはどれか。",
       "choices": [
-        "表面温度は一瞬で一定値に達し、その後は変わらない",
-        "表面温度は上昇と下降を周期的に繰り返す",
-        "表面温度は時間とともに単調に上昇し続け、定常には達しない",
-        "表面温度は初期温度のまま変化しない"
+        "直線的に下がり、こう配（傾き）はどこでも一定",
+        "下に凸の曲線で、高温側ほどこう配が急",
+        "上に凸の曲線で、冷却側へ向かうほどこう配が急",
+        "壁の中央が最も低く、両面へ向かって温度が上がる"
       ],
       "answer": 3,
-      "explanation": "【基礎】一定熱流束を与え続けると、熱は物体内部へ蓄えられ続ける。半無限体では熱を捨てる先(反対側の低温境界)がないため、いつまでも温度が上がり続ける。\n【考え方】理論上、表面温度上昇は $\\sqrt{t}$ に比例して増え続ける。放熱境界がないので「定常」という頭打ちが存在しない。\n【ポイント】熱流束一定条件(ノイマン境界)と温度固定条件(ディリクレ境界)では過渡応答がまったく違う。前者は温度が伸び続け、後者は与えた温度へ漸近する。\n【引っかけ】①即座に定常はあり得ない。②周期変化するのは入力が周期的な場合。④熱を受け取れば必ず温度は上がる。",
+      "explanation": "【基礎】発熱がある定常一次元の式は $k\\dfrac{d^2T}{dx^2}+\\dot q=0$。$\\dot q$ が一定なら二階微分が負の一定値になり、温度は上に凸の放物線になる。\n【考え方】熱流束 $q(x)=-k\\dfrac{dT}{dx}$ は、発熱で生まれた熱が次々と加わるため、冷却側へ向かって単調に増える。したがってこう配 $|dT/dx|$ も冷却側ほど急になる。\n【ポイント】発熱なしの平板＝直線、一様発熱＝放物線。さらに片側から熱流束も入ると、分布は冷却側で最も急な“上に凸”のカーブになる。熱の出口は冷却側だけなので、そこに近いほど流れる熱が多い。\n【引っかけ】①直線は発熱ゼロの場合。②高温側ほど急は逆（熱の出口は冷却側）。④中央最低は、発熱ではなく両面加熱＋中央冷却のような別条件のとき。",
       "hasMath": true,
+      "figureImage": "h3FluxGen",
+      "figure": "helpful",
+      "figureHint": "定常壁：熱流束流入＋一様発熱で冷却側ほど急な上に凸の温度分布",
       "origin": "original",
       "reviewed": true,
-      "figureImage": "h3Semiinf",
-      "figure": "helpful",
-      "figureHint": "半無限体の表面温度は√tで上がり続け定常なし"
+      "officialRef": "問3-8",
+      "role": "primary"
     },
     {
       "id": "heat-3-9",
@@ -207,7 +224,9 @@
       "hasMath": true,
       "figureImage": "pipe",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "officialRef": "問3-9",
+      "role": "primary"
     },
     {
       "id": "heat-3-10",
@@ -230,7 +249,9 @@
       "reviewed": true,
       "figureImage": "h3Uvalue",
       "figure": "helpful",
-      "figureHint": "熱伝達→伝導→熱伝達の直列抵抗と和の逆数"
+      "figureHint": "熱伝達→伝導→熱伝達の直列抵抗と和の逆数",
+      "officialRef": "問3-10",
+      "role": "primary"
     },
     {
       "id": "heat-3-11",
@@ -253,7 +274,9 @@
       "reviewed": true,
       "figureImage": "h3Rate",
       "figure": "helpful",
-      "figureHint": "3抵抗の棒グラフで最大R_h2が律速と示す"
+      "figureHint": "3抵抗の棒グラフで最大R_h2が律速と示す",
+      "officialRef": "問3-11",
+      "role": "primary"
     },
     {
       "id": "heat-3-12",
@@ -274,7 +297,9 @@
       "hasMath": true,
       "figureImage": "multilayer",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "officialRef": "問3-12",
+      "role": "primary"
     },
     {
       "id": "heat-3-13",
@@ -297,7 +322,9 @@
       "reviewed": true,
       "figureImage": "h3Lambdah",
       "figure": "helpful",
-      "figureHint": "λは内部の伝導、hは表面と流体の間で役割別"
+      "figureHint": "λは内部の伝導、hは表面と流体の間で役割別",
+      "officialRef": "問3-13",
+      "role": "primary"
     },
     {
       "id": "heat-3-14",
@@ -320,7 +347,9 @@
       "reviewed": true,
       "figureImage": "h3Deltat",
       "figure": "helpful",
-      "figureHint": "同一qでh小の面ほど表面温度落差が大きい"
+      "figureHint": "同一qでh小の面ほど表面温度落差が大きい",
+      "officialRef": "問3-14",
+      "role": "primary"
     },
     {
       "id": "heat-3-15",
@@ -343,7 +372,9 @@
       "reviewed": true,
       "figureImage": "h3Cylconv",
       "figure": "helpful",
-      "figureHint": "円管で外側熱伝達が弱いと外側区間の落差最大"
+      "figureHint": "円管で外側熱伝達が弱いと外側区間の落差最大",
+      "officialRef": "問3-15",
+      "role": "primary"
     },
     {
       "id": "heat-3-16",
@@ -366,7 +397,9 @@
       "reviewed": true,
       "figureImage": "h3Adiabatic",
       "figure": "helpful",
-      "figureHint": "断熱面はq_x=0すなわち∂T/∂x=0"
+      "figureHint": "断熱面はq_x=0すなわち∂T/∂x=0",
+      "officialRef": "問3-16",
+      "role": "primary"
     },
     {
       "id": "heat-3-17",
@@ -389,7 +422,34 @@
       "reviewed": true,
       "figureImage": "h3Pipebc",
       "figure": "helpful",
-      "figureHint": "内外面=熱伝達境界、長手切断面=断熱の割当"
+      "figureHint": "内外面=熱伝達境界、長手切断面=断熱の割当",
+      "officialRef": "問3-17",
+      "role": "primary"
+    },
+    {
+      "id": "heat-3-18",
+      "number": "3-18",
+      "title": "一定熱流束を受ける物体の非定常応答",
+      "topic": "非定常・熱流束境界",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "十分厚い(半無限とみなせる)物体の表面に、時刻ゼロから一定の熱流束を与え続ける。表面温度の時間変化として最も適切なものはどれか。",
+      "choices": [
+        "表面温度は一瞬で一定値に達し、その後は変わらない",
+        "表面温度は上昇と下降を周期的に繰り返す",
+        "表面温度は時間とともに単調に上昇し続け、定常には達しない",
+        "表面温度は初期温度のまま変化しない"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】一定熱流束を与え続けると、熱は物体内部へ蓄えられ続ける。半無限体では熱を捨てる先(反対側の低温境界)がないため、いつまでも温度が上がり続ける。\n【考え方】理論上、表面温度上昇は $\\sqrt{t}$ に比例して増え続ける。放熱境界がないので「定常」という頭打ちが存在しない。\n【ポイント】熱流束一定条件(ノイマン境界)と温度固定条件(ディリクレ境界)では過渡応答がまったく違う。前者は温度が伸び続け、後者は与えた温度へ漸近する。\n【引っかけ】①即座に定常はあり得ない。②周期変化するのは入力が周期的な場合。④熱を受け取れば必ず温度は上がる。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "figureImage": "h3Semiinf",
+      "figure": "helpful",
+      "figureHint": "半無限体の表面温度は√tで上がり続け定常なし",
+      "officialRef": "問3-8",
+      "role": "branch"
     }
   ]
 }

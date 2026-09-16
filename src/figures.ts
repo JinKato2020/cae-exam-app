@@ -117,6 +117,7 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   h3Analogy: require('../assets/figures/h3Analogy.png'),
   h3Cylconv: require('../assets/figures/h3Cylconv.png'),
   h3Deltat: require('../assets/figures/h3Deltat.png'),
+  h3FluxGen: require('../assets/figures/h3FluxGen.png'),
   h3Genheat: require('../assets/figures/h3Genheat.png'),
   h3Isotherm: require('../assets/figures/h3Isotherm.png'),
   h3Lambdah: require('../assets/figures/h3Lambdah.png'),
