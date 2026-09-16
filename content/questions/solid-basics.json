@@ -5,7 +5,8 @@
     "chapter": 2,
     "source": "オリジナル問題（公式問題集の複製ではない・一次資料と自作テンプレートに基づく）",
     "origin": "original",
-    "count": 44
+    "count": 44,
+    "officialCount": 44
   },
   "questions": [
     {
@@ -29,7 +30,9 @@
       "reviewed": true,
       "figureImage": "s2ShearModulus",
       "figure": "helpful",
-      "figureHint": "正方形要素がせん断で平行四辺形に変形しγを示す（G=τ/γ）"
+      "figureHint": "正方形要素がせん断で平行四辺形に変形しγを示す（G=τ/γ）",
+      "officialRef": "問2-1",
+      "role": "primary"
     },
     {
       "id": "solid2-2-2",
@@ -52,7 +55,9 @@
       "reviewed": true,
       "figureImage": "s2PoissonRod",
       "figure": "helpful",
-      "figureHint": "引張で軸は伸び横は縮む丸棒（ν=-εt/εa）"
+      "figureHint": "引張で軸は伸び横は縮む丸棒（ν=-εt/εa）",
+      "officialRef": "問2-2",
+      "role": "primary"
     },
     {
       "id": "solid2-2-3",
@@ -75,7 +80,9 @@
       "reviewed": true,
       "figureImage": "s2PoissonBar",
       "figure": "helpful",
-      "figureHint": "材料別ポアソン比の棒グラフ（ゴム0.5が非圧縮）"
+      "figureHint": "材料別ポアソン比の棒グラフ（ゴム0.5が非圧縮）",
+      "officialRef": "問2-3",
+      "role": "primary"
     },
     {
       "id": "solid2-2-4",
@@ -98,7 +105,9 @@
       "reviewed": true,
       "figureImage": "s2StressStrainCurve",
       "figure": "helpful",
-      "figureHint": "応力ひずみ線図の各部（E・降伏点・引張強さ・破断）"
+      "figureHint": "応力ひずみ線図の各部（E・降伏点・引張強さ・破断）",
+      "officialRef": "問2-4",
+      "role": "primary"
     },
     {
       "id": "solid2-2-5",
@@ -121,7 +130,9 @@
       "reviewed": true,
       "figureImage": "s2OffsetYield",
       "figure": "helpful",
-      "figureHint": "0.2%オフセット法：平行線と曲線の交点が耐力"
+      "figureHint": "0.2%オフセット法：平行線と曲線の交点が耐力",
+      "officialRef": "問2-5",
+      "role": "primary"
     },
     {
       "id": "solid2-2-6",
@@ -142,7 +153,9 @@
       "hasMath": true,
       "figureImage": "stresstransform",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "officialRef": "問2-6",
+      "role": "primary"
     },
     {
       "id": "solid2-2-7",
@@ -162,7 +175,12 @@
       "explanation": "【基礎】垂直ひずみは対応方向の偏微分 $\\varepsilon_x=\\dfrac{\\partial u}{\\partial x}$ 等。せん断ひずみは2つの和 $\\gamma_{xy}=\\dfrac{\\partial u}{\\partial y}+\\dfrac{\\partial v}{\\partial x}$。\n【計算】$\\varepsilon_x=2\\times10^{-3},\\ \\varepsilon_y=4\\times10^{-3},\\ \\varepsilon_z=\\dfrac{\\partial w}{\\partial z}=0$、$\\gamma_{xy}=1\\times10^{-3}+3\\times10^{-3}=4\\times10^{-3}$。\n【ポイント】定数項($1,2$)は微分で消える＝ひずみに寄与しない(剛体移動)。\n【引っかけ】①④は $\\gamma_{xy}$ で片方の偏微分だけを取った。②は定数をそのままひずみにした誤り。",
       "hasMath": true,
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "officialRef": "問2-7",
+      "role": "primary",
+      "figureImage": "s2StrainDisp",
+      "figure": "helpful",
+      "figureHint": "微小正方形の変形で εx,εy,γxy と変位u,vを可視化"
     },
     {
       "id": "solid2-2-8",
@@ -183,7 +201,9 @@
       "hasMath": true,
       "figureImage": "squarebar",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "officialRef": "問2-8",
+      "role": "primary"
     },
     {
       "id": "solid2-2-9",
@@ -204,7 +224,9 @@
       "hasMath": true,
       "figureImage": "fixedbar2mat",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "officialRef": "問2-9",
+      "role": "primary"
     },
     {
       "id": "solid2-2-10",
@@ -225,7 +247,9 @@
       "hasMath": true,
       "figureImage": "taperbar",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "officialRef": "問2-10",
+      "role": "primary"
     },
     {
       "id": "solid-rigidbar-wire",
@@ -248,7 +272,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2RigidBarWire",
-      "figure": "required"
+      "figure": "required",
+      "officialRef": "問2-11",
+      "role": "primary"
     },
     {
       "id": "solid-rigidplate-twobars",
@@ -271,7 +297,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2RigidPlate2Bars",
-      "figure": "required"
+      "figure": "required",
+      "officialRef": "問2-12",
+      "role": "primary"
     },
     {
       "id": "solid-conjugate-shear",
@@ -294,7 +322,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2ConjugateShear",
-      "figure": "helpful"
+      "figure": "helpful",
+      "officialRef": "問2-13",
+      "role": "primary"
     },
     {
       "id": "solid-uniform-shear-load",
@@ -317,7 +347,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2PureShear",
-      "figure": "helpful"
+      "figure": "helpful",
+      "officialRef": "問2-14",
+      "role": "primary"
     },
     {
       "id": "solid-hollow-tmax",
@@ -340,7 +372,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2HollowShaft",
-      "figure": "helpful"
+      "figure": "helpful",
+      "officialRef": "問2-15",
+      "role": "primary"
     },
     {
       "id": "solid-torsion-principal-dir",
@@ -363,7 +397,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2TorsionPrincipal",
-      "figure": "helpful"
+      "figure": "helpful",
+      "officialRef": "問2-16",
+      "role": "primary"
     },
     {
       "id": "solid-mohr-correspondence",
@@ -386,7 +422,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2MohrCompare",
-      "figure": "helpful"
+      "figure": "helpful",
+      "officialRef": "問2-17",
+      "role": "primary"
     },
     {
       "id": "solid-principal-plane-stress",
@@ -409,7 +447,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2PrincipalMohr",
-      "figure": "helpful"
+      "figure": "helpful",
+      "officialRef": "問2-18",
+      "role": "primary"
     },
     {
       "id": "solid-3d-pure-shear",
@@ -432,7 +472,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2Mohr3DShear",
-      "figure": "helpful"
+      "figure": "helpful",
+      "officialRef": "問2-19",
+      "role": "primary"
     },
     {
       "id": "solid-overhang-reactions",
@@ -455,7 +497,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2OverhangBeam",
-      "figure": "required"
+      "figure": "required",
+      "officialRef": "問2-20",
+      "role": "primary"
     },
     {
       "id": "solid-overhang-maxmoment",
@@ -478,7 +522,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2BMD",
-      "figure": "required"
+      "figure": "required",
+      "officialRef": "問2-21",
+      "role": "primary"
     },
     {
       "id": "s2-2-22",
@@ -501,7 +547,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2CantileverUDL",
-      "figure": "required"
+      "figure": "required",
+      "officialRef": "問2-22",
+      "role": "primary"
     },
     {
       "id": "s2-2-23",
@@ -524,7 +572,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2CantMoment",
-      "figure": "helpful"
+      "figure": "helpful",
+      "officialRef": "問2-23",
+      "role": "primary"
     },
     {
       "id": "s2-2-24",
@@ -543,9 +593,13 @@
       "answer": 1,
       "explanation": "【基礎】$P,L$ が一定なら $\\delta\\propto\\dfrac{1}{EI}$。すなわちたわみは曲げ剛性 $EI$ に反比例する。\n【考え方】$\\delta$ を $\\dfrac14$ にするには $EI$ を $4$ 倍にすればよい。$EI$ の倍率が $4$ になる組合せを選ぶ。$E$ を $2$ 倍・$I$ を $2$ 倍にすると $EI$ は $2\\times2=4$ 倍となり、$\\delta$ は $\\dfrac14$ になる。\n【ポイント】たわみ低減で効くのは剛性 $EI$ の積であり、$E$ と $I$ のどちらを何倍しても積が同じなら効果は同じ。実務では $I$ を大きくする(断面を高くする)方が容易なことが多い。\n【引っかけ】②は $I$ を $2$ 倍だけなので $EI$ は $2$ 倍にしかならず、$\\delta$ は $\\dfrac12$ にしかならない。③は $EI$ が $16$ 倍となり $\\delta$ は $\\dfrac{1}{16}$ で行き過ぎ。④は $E\\times I$ の積が $\\dfrac12\\times2=1$ 倍で剛性が変わらず、たわみは元のまま。",
       "hasMath": true,
-      "figureHint": "",
+      "figureHint": "単純支持はり中央たわみδが曲げ剛性EIに反比例",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "officialRef": "問2-24",
+      "role": "primary",
+      "figureImage": "s2BeamDeflEI",
+      "figure": "helpful"
     },
     {
       "id": "s2-2-25",
@@ -568,7 +622,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2SectionZ",
-      "figure": "helpful"
+      "figure": "helpful",
+      "officialRef": "問2-25",
+      "role": "primary"
     },
     {
       "id": "s2-2-26",
@@ -591,7 +647,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2IsectionInertia",
-      "figure": "helpful"
+      "figure": "helpful",
+      "officialRef": "問2-26",
+      "role": "primary"
     },
     {
       "id": "s2-2-27",
@@ -614,7 +672,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2Truss2Bar",
-      "figure": "required"
+      "figure": "required",
+      "officialRef": "問2-27",
+      "role": "primary"
     },
     {
       "id": "s2-2-28",
@@ -637,7 +697,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2FBD",
-      "figure": "helpful"
+      "figure": "helpful",
+      "officialRef": "問2-28",
+      "role": "primary"
     },
     {
       "id": "s2-2-29",
@@ -660,7 +722,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2CantReactions",
-      "figure": "required"
+      "figure": "required",
+      "officialRef": "問2-29",
+      "role": "primary"
     },
     {
       "id": "s2-2-30",
@@ -683,7 +747,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2ThinCylinder",
-      "figure": "required"
+      "figure": "required",
+      "officialRef": "問2-30",
+      "role": "primary"
     },
     {
       "id": "s2-2-31",
@@ -702,9 +768,13 @@
       "answer": 3,
       "explanation": "【基礎】ミーゼス条件は「せん断ひずみエネルギー(偏差応力による形状変化のエネルギー)」が臨界値に達すると降伏するとする理論。相当応力は主応力で $\\sigma_{eq}=\\sqrt{\\dfrac12\\left[(\\sigma_1-\\sigma_2)^2+(\\sigma_2-\\sigma_3)^2+(\\sigma_3-\\sigma_1)^2\\right]}$。\n【考え方】この式は主応力の「差」だけで決まる。3主応力に同じ量(静水圧成分)を足しても差は変わらないため相当応力は不変。したがって「静水圧応力が増すほど相当応力が増し降伏しやすくなる」とする③は誤り。静水圧は体積変化を起こすが形状変化エネルギーには寄与しないため、延性金属の降伏に影響しないのが正しい理解。\n【ポイント】ミーゼスは静水圧非依存(偏差応力のみで決まる)。単軸引張 $\\sigma_1=\\sigma,\\ \\sigma_2=\\sigma_3=0$ では $\\sigma_{eq}=\\sigma$ となり、$\\sigma_Y$ と直接比較できる。\n【引っかけ】①②④はいずれも正しい記述。③だけが静水圧依存という誤った主張で、これが選ぶべき「誤り」。",
       "hasMath": true,
-      "figureHint": "",
+      "figureHint": "σ1-σ2面でミーゼス楕円・トレスカ六角・最大主応力正方を比較",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "officialRef": "問2-31",
+      "role": "primary",
+      "figureImage": "s2YieldSurface",
+      "figure": "helpful"
     },
     {
       "id": "s2-2-32",
@@ -723,9 +793,13 @@
       "answer": 1,
       "explanation": "【基礎】平面応力のミーゼス相当応力は $\\sigma_{eq}=\\sqrt{\\sigma_x^2-\\sigma_x\\sigma_y+\\sigma_y^2+3\\tau_{xy}^2}$。$\\sigma_{eq}\\ge\\sigma_Y$ で降伏、$\\sigma_{eq}<\\sigma_Y$ なら弾性(降伏しない)。\n【考え方】各項を丁寧に代入する。符号(特に $\\sigma_y$ が負)と $\\tau$ の $3$ 倍に注意。\n【計算】$\\sigma_x^2=10000$、$-\\sigma_x\\sigma_y=-100\\times(-50)=+5000$、$\\sigma_y^2=2500$、$3\\tau^2=3\\times1600=4800$。合計 $=10000+5000+2500+4800=22300$。$\\sigma_{eq}=\\sqrt{22300}\\approx149.3\\,\\mathrm{MPa}$。$149.3<200$ なので降伏しない。\n【ポイント】$-\\sigma_x\\sigma_y$ の符号を落とすと値が大きく変わる。せん断は必ず $3\\tau^2$ で寄与する。\n【引っかけ】②の $170\\,\\mathrm{MPa}$ はトレスカ的な最大せん断基準の相当応力 $\\sigma_1-\\sigma_3=2R=170$ と混同したもの。③は $-\\sigma_x\\sigma_y$ の符号を誤って $\\sigma_{eq}$ を過大評価した例。④はせん断項 $3\\tau^2$ を無視した誤り。正しくは①。",
       "hasMath": true,
-      "figureHint": "",
+      "figureHint": "ミーゼス楕円に4応力点、外=降伏/内=安全を判定",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "officialRef": "問2-32",
+      "role": "primary",
+      "figureImage": "s2MisesJudge",
+      "figure": "helpful"
     },
     {
       "id": "s2-2-33",
@@ -744,9 +818,13 @@
       "answer": 2,
       "explanation": "【基礎】最大せん断応力は $\\tau_{\\max}=\\dfrac{\\sigma_1-\\sigma_3}{2}$ で、$\\sigma_1$ と $\\sigma_3$ の作用面に対して $45^\\circ$ 傾いた面に生じる(中間主応力 $\\sigma_2$ は関与しない)。八面体面は 3 つの主軸に対して等しい角をなす面(方向余弦の大きさがすべて等しい面)で、そこに生じるせん断応力が $\\tau_{oct}=\\dfrac13\\sqrt{(\\sigma_1-\\sigma_2)^2+(\\sigma_2-\\sigma_3)^2+(\\sigma_3-\\sigma_1)^2}$。\n【考え方】主応力面はせん断が $0$ の面なので、そこに最大せん断が生じることはない。最大せん断はそこから $45^\\circ$ 回した面。八面体面は 1 主軸に垂直ではなく、3 主軸と等傾斜。これらを正しく述べているのは②。\n【ポイント】$\\tau_{oct}$ とミーゼス相当応力は比例関係 $\\tau_{oct}=\\dfrac{\\sqrt2}{3}\\sigma_{eq}$ にあり、$\\tau_{oct}$ は常に $\\tau_{\\max}$ 以下(等しくなるのは特別な場合)。\n【引っかけ】①は最大せん断がせん断ゼロの主応力面上に生じるとした矛盾。③は八面体面を 1 主軸に垂直な面と誤認したもの。④は大小関係を逆に述べた誤り($\\tau_{oct}\\le\\tau_{\\max}$ が正しい)。正しいのは②。",
       "hasMath": true,
-      "figureHint": "主応力立方体と、最大せん断が生じる45°面、3主軸と等角をなす八面体面を描き分けた図",
+      "figureHint": "主応力空間の八面体面と静水圧軸(σ1=σ2=σ3)",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "officialRef": "問2-33",
+      "role": "primary",
+      "figureImage": "s2Octahedral",
+      "figure": "helpful"
     },
     {
       "id": "solid2-ch2-34",
@@ -765,9 +843,13 @@
       "answer": 2,
       "explanation": "【基礎】脆性材料は塑性変形をほとんど伴わず、垂直応力による分離(へき開・引張破壊)で壊れる。延性材料はすべり(せん断)による塑性変形を経て降伏・破壊する。破壊の物理が違えば着目すべき応力も違う。\n【考え方】脆性材料には最大主応力説(引張の最大主応力が限界に達すると破壊)が対応する。延性材料には最大せん断応力説(トレスカ)やせん断ひずみエネルギー説(ミーゼスの相当応力)が対応し、せん断成分で評価する。\n【ポイント】静水圧(平均応力)成分は延性材料の降伏にはほとんど寄与せず、降伏を支配するのは偏差応力(せん断成分)である。だから延性側でミーゼス応力を使う。\n【引っかけ】選択肢①は脆性と延性を逆にした典型的な取り違え。③は静水圧が降伏を支配しないという基本を無視。④は延性材料をせん断で評価するという要点を落としている。正しいのは②。",
       "hasMath": false,
-      "figureHint": "同一の多軸応力状態に対し、脆性=最大主応力、延性=ミーゼス応力で評価する対応表",
+      "figureHint": "脆性=最大主応力(正方)と延性=ミーゼス(楕円)の対比",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "officialRef": "問2-34",
+      "role": "primary",
+      "figureImage": "s2BrittleDuctile",
+      "figure": "helpful"
     },
     {
       "id": "solid2-ch2-35",
@@ -790,7 +872,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2FatigueSurface",
-      "figure": "helpful"
+      "figure": "helpful",
+      "officialRef": "問2-35",
+      "role": "primary"
     },
     {
       "id": "solid2-ch2-36",
@@ -813,7 +897,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2GoodmanDiagram",
-      "figure": "helpful"
+      "figure": "helpful",
+      "officialRef": "問2-36",
+      "role": "primary"
     },
     {
       "id": "solid2-ch2-37",
@@ -836,7 +922,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2SNCurve",
-      "figure": "helpful"
+      "figure": "helpful",
+      "officialRef": "問2-37",
+      "role": "primary"
     },
     {
       "id": "solid2-ch2-38",
@@ -859,7 +947,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2NotchStress",
-      "figure": "helpful"
+      "figure": "helpful",
+      "officialRef": "問2-38",
+      "role": "primary"
     },
     {
       "id": "solid2-ch2-39",
@@ -882,7 +972,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2PlateHoles",
-      "figure": "required"
+      "figure": "required",
+      "officialRef": "問2-39",
+      "role": "primary"
     },
     {
       "id": "solid2-ch2-40",
@@ -905,7 +997,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2ThermalContrast",
-      "figure": "helpful"
+      "figure": "helpful",
+      "officialRef": "問2-40",
+      "role": "primary"
     },
     {
       "id": "solid2-ch2-41",
@@ -928,7 +1022,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2HalfHeatedBar",
-      "figure": "required"
+      "figure": "required",
+      "officialRef": "問2-41",
+      "role": "primary"
     },
     {
       "id": "solid2-ch2-42",
@@ -951,7 +1047,9 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2TwoBarsThermal",
-      "figure": "required"
+      "figure": "required",
+      "officialRef": "問2-42",
+      "role": "primary"
     },
     {
       "id": "solid2-ch2-43",
@@ -970,9 +1068,13 @@
       "answer": 4,
       "explanation": "【基礎】各試験は測る特性が異なる。引張試験:応力-ひずみ線図から引張強さ・耐力(降伏点)・伸び・絞り・ヤング率などを評価。シャルピー衝撃試験:切欠き試験片を衝撃破断させ、吸収エネルギー(靱性)や延性-脆性遷移温度を評価。硬さ試験(ビッカース等):圧子の押込み抵抗=硬さを評価。\n【考え方】試験目的と評価量を正しく結び付ける。①はシャルピーでヤング率を測るとする誤り(ヤング率は主に引張試験や動的法)。②は引張で硬さを測るとする取り違え。③は硬さ試験で破壊靱性を第一義に測るとする誤り(破壊靱性は専用の $K_{IC}$ 試験)。\n【ポイント】ヤング率≠硬さ≠靱性≠強度。各特性に対応する試験を対にして覚える。\n【引っかけ】①②③はいずれも試験と特性を取り違えている。すべて正しく対応させた④が正解。",
       "hasMath": false,
-      "figureHint": "引張試験・シャルピー衝撃試験・硬さ試験と評価特性を結ぶ対応表",
+      "figureHint": "シャルピー・ビッカース・クリープ試験の模式図",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "officialRef": "問2-43",
+      "role": "primary",
+      "figureImage": "s2MaterialTests",
+      "figure": "helpful"
     },
     {
       "id": "solid2-ch2-44",
@@ -991,9 +1093,13 @@
       "answer": 3,
       "explanation": "【基礎】細長い棒を伝わる縦波(1次元応力波)の速度は $c=\\sqrt{E/\\rho}$。$E$ が大きく $\\rho$ が小さいほど速い。次元は $\\sqrt{(\\mathrm{Pa})/(\\mathrm{kg/m^3})}=\\sqrt{\\mathrm{m^2/s^2}}=\\mathrm{m/s}$ で速度になる。\n【計算】$c=\\sqrt{\\dfrac{206\\times10^9}{7850}}=\\sqrt{2.62\\times10^7}\\approx5.12\\times10^3\\ \\mathrm{m/s}\\approx5120\\ \\mathrm{m/s}$(Python検算済み、5122.7 m/s)。\n【ポイント】鋼中の縦弾性波速度はおよそ 5000〜5200 m/s と覚えておくとよい。\n【引っかけ】①約3200 m/sは横波(せん断波)$\\sqrt{G/\\rho}$($G\\approx79\\ \\mathrm{GPa}$)の値で、縦波と混同したもの。②約4300 m/sは中間の誤値。④約5900 m/sは無限媒体中の縦波(体積弾性を含む)寄りの過大値。細長い棒の縦波は③の約5100 m/s。",
       "hasMath": true,
-      "figureHint": "棒の一端に衝撃を与え、応力波が速度cで軸方向に伝わる様子",
+      "figureHint": "固体棒の応力波伝ぱ C=√(E/ρ)、σ=EV/C",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "officialRef": "問2-44",
+      "role": "primary",
+      "figureImage": "s2StressWave",
+      "figure": "helpful"
     }
   ]
 }
