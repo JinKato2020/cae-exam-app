@@ -42,18 +42,20 @@ import {
   type FieldSnapStore,
   type FieldCompare,
 } from './src/progress';
-import Paywall from './src/pro/Paywall';
+import Paywall, { type PayTarget } from './src/pro/Paywall';
 import {
   loadProState,
-  saveProActive,
+  saveOwned,
   saveDevPro,
-  effectiveIsPro,
+  hasAnyPurchase,
   isLocked,
+  entOfQuestion,
+  ENTITLEMENTS,
   FREE_PER_CHAPTER,
   DEFAULT_PRO_STATE,
   type ProState,
 } from './src/pro/proState';
-import { initPurchases, syncEntitlement } from './src/pro/purchases';
+import { initPurchases, syncEntitlements, restore as restorePurchases } from './src/pro/purchases';
 
 const APP_VERSION = '1.0.0';
 
@@ -66,6 +68,12 @@ const solid2Chapters = (): ChapterEntry[] => solidGradeChapters('g2');
 const solid1Chapters = (): ChapterEntry[] => solidGradeChapters('g1');
 type Course = { id: string; name: string; chapters: ChapterEntry[]; ready: boolean };
 // 1級は完成した章だけ出す（他章は準備中）。章側の ready フラグで出し分ける。
+// 問題 → その問題が属する買い切り(分野×級)。ロック中にタップされたら、その級のPaywallを開くため。
+function payTargetOf(q: Question): PayTarget | null {
+  const e = entOfQuestion(q.id);
+  return e ? { key: e.key, title: e.title } : null;
+}
+
 const COURSES: Course[] = [
   { id: 'solid-2', name: '固体力学 2級', chapters: solid2Chapters(), ready: true },
   { id: 'solid-1', name: '固体力学 1級', chapters: solid1Chapters(), ready: true },
@@ -98,10 +106,30 @@ function AppInner() {
   const [tab, setTab] = useState<Tab>('home');
   const [progress, setProgress] = useState<ProgressMap>({});
 
-  // Pro（買い切り）状態と購入画面の表示。
+  // Pro（買い切り＝分野×級ごと）状態と購入画面の表示。target＝今売る級。
   const [proSt, setProSt] = useState<ProState>(DEFAULT_PRO_STATE);
   const [showPaywall, setShowPaywall] = useState(false);
-  const isPro = effectiveIsPro(proSt);
+  const [payTarget, setPayTarget] = useState<PayTarget | null>(null);
+
+  // ロック中の問題／設定から購入画面を開く。target＝その級（無ければ最初の未購入級）。
+  function openPaywall(target: PayTarget | null) {
+    const fallback = ENTITLEMENTS.find((e) => !proSt.owned.includes(e.key)) ?? ENTITLEMENTS[0] ?? null;
+    setPayTarget(target ?? (fallback ? { key: fallback.key, title: fallback.title } : null));
+    setShowPaywall(true);
+  }
+
+  // 「購入を復元」：全級をまとめて復元し、端末に反映。
+  async function restoreAll() {
+    const owned = await restorePurchases();
+    if (owned) {
+      await saveOwned(owned);
+      setProSt((s) => ({ ...s, owned }));
+    }
+    Alert.alert(
+      owned && owned.length > 0 ? '購入を復元しました' : '復元できる購入がありません',
+      owned && owned.length > 0 ? '購入済みの級が有効になりました。' : '同じApple IDで購入済みかご確認ください。',
+    );
+  }
 
   // 問題タブのサブ画面状態
   const [studyView, setStudyView] = useState<StudyView>('course');
@@ -130,16 +158,16 @@ function AppInner() {
   }, []);
 
   // Proの初期化・同期。まず端末保存値を読み（オフラインでも即反映）、次にストアと同期して最新化。
-  // キー未設定(src/config/revenuecat.ts が空)なら syncEntitlement は null＝状態を変えない＝アプリは従来どおり無料動作。
+  // キー未設定(src/config/revenuecat.ts が空)なら syncEntitlements は null＝状態を変えない＝アプリは従来どおり無料動作。
   useEffect(() => {
     (async () => {
       const local = await loadProState();
       setProSt(local);
       await initPurchases(null);
-      const active = await syncEntitlement();
-      if (typeof active === 'boolean') {
-        await saveProActive(active);
-        setProSt((s) => ({ ...s, active }));
+      const owned = await syncEntitlements();
+      if (owned) {
+        await saveOwned(owned);
+        setProSt((s) => ({ ...s, owned }));
       }
     })();
   }, []);
@@ -228,8 +256,8 @@ function AppInner() {
             onSelectAnswer={onSelectAnswer}
             setQIndex={setQIndex}
             goBack={(v) => setStudyView(v)}
-            isPro={isPro}
-            onOpenPaywall={() => setShowPaywall(true)}
+            proState={proSt}
+            onOpenPaywall={openPaywall}
           />
         )}
 
@@ -264,9 +292,10 @@ function AppInner() {
               const cleared = await resetProgress();
               setProgress(cleared);
             }}
-            isPro={isPro}
+            owned={proSt.owned}
             devPro={proSt.devPro}
-            onOpenPaywall={() => setShowPaywall(true)}
+            onOpenPaywall={openPaywall}
+            onRestoreAll={restoreAll}
             onToggleDevPro={async (on) => {
               await saveDevPro(on);
               setProSt((s) => ({ ...s, devPro: on }));
@@ -281,7 +310,7 @@ function AppInner() {
 
       {showPaywall && (
         <View style={StyleSheet.absoluteFill}>
-          <Paywall t={t} onClose={() => setShowPaywall(false)} onPurchased={onProUnlocked} />
+          <Paywall t={t} target={payTarget} onClose={() => setShowPaywall(false)} onPurchased={onProUnlocked} />
         </View>
       )}
     </View>
@@ -679,8 +708,8 @@ function StudyTab(props: {
   onSelectAnswer: (q: Question, n: number) => void;
   setQIndex: (i: number) => void;
   goBack: (v: StudyView) => void;
-  isPro: boolean;
-  onOpenPaywall: () => void;
+  proState: ProState;
+  onOpenPaywall: (target: PayTarget | null) => void;
 }) {
   const { t } = props;
 
@@ -805,8 +834,8 @@ function StudyTab(props: {
         onPrev={() => props.setQIndex(Math.max(props.qIndex - 1, 0))}
         onNext={() => props.setQIndex(Math.min(props.qIndex + 1, props.activeList.length - 1))}
         onBack={() => props.goBack(props.chapter ? 'tiles' : 'course')}
-        locked={isLocked(q, props.isPro)}
-        onOpenPaywall={props.onOpenPaywall}
+        locked={isLocked(q, props.proState)}
+        onOpenPaywall={() => props.onOpenPaywall(payTargetOf(q))}
       />
     );
   }
@@ -898,12 +927,12 @@ function ProblemScreen(props: {
           style={[styles.lockBox, { backgroundColor: t.card, borderColor: t.primary }]}
         >
           <Text style={styles.lockEmoji}>🔒</Text>
-          <Text style={[styles.lockTitle, { color: t.text }]}>この問題の正解・解説・図はPro（買い切り）で解除</Text>
+          <Text style={[styles.lockTitle, { color: t.text }]}>この問題の正解・解説・図は買い切りで解除</Text>
           <Text style={[styles.lockSub, { color: t.sub }]}>
-            各章の最初の{FREE_PER_CHAPTER}問は無料です。{FREE_PER_CHAPTER + 1}問目以降の答え合わせ・解説・図はProで見られます（公式・用語は無料）。
+            各章の最初の{FREE_PER_CHAPTER}問は無料です。{FREE_PER_CHAPTER + 1}問目以降の答え合わせ・解説・図は、この級の買い切りで見られます（公式・用語は無料）。
           </Text>
           <View style={[styles.lockBtn, { backgroundColor: t.primary }]}>
-            <Text style={styles.lockBtnTxt}>Proで解除する</Text>
+            <Text style={styles.lockBtnTxt}>この級を解除する</Text>
           </View>
         </Pressable>
       )}
@@ -1069,9 +1098,10 @@ function SettingsTab(props: {
   t: Theme;
   progress: ProgressMap;
   onReset: () => void;
-  isPro: boolean;
+  owned: string[];
   devPro: boolean;
-  onOpenPaywall: () => void;
+  onOpenPaywall: (target: PayTarget | null) => void;
+  onRestoreAll: () => void;
   onToggleDevPro: (on: boolean) => void;
   themePref: ThemePref;
   onChangeTheme: (p: ThemePref) => void;
@@ -1125,15 +1155,31 @@ function SettingsTab(props: {
         })}
       </View>
 
-      <Text style={[styles.sectionHead, { color: t.text }]}>Pro（買い切り）</Text>
+      <Text style={[styles.sectionHead, { color: t.text }]}>買い切り（級ごと）</Text>
       <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
-        <InfoRow t={t} label="状態" value={props.isPro ? 'Pro（解除済み）' : '無料'} last />
+        {ENTITLEMENTS.map((e, i) => {
+          const owned = props.devPro || props.owned.includes(e.key);
+          return (
+            <View key={e.key}>
+              <InfoRow
+                t={t}
+                label={e.title}
+                value={owned ? '解除済み' : '未購入'}
+                last={i === ENTITLEMENTS.length - 1}
+              />
+              {!owned ? (
+                <Button
+                  t={t}
+                  kind="primary"
+                  label={`${e.title}を購入する`}
+                  onPress={() => props.onOpenPaywall({ key: e.key, title: e.title })}
+                />
+              ) : null}
+            </View>
+          );
+        })}
       </View>
-      {props.isPro ? (
-        <Button t={t} kind="ghost" label="購入を復元する" onPress={props.onOpenPaywall} />
-      ) : (
-        <Button t={t} kind="primary" label="Pro（買い切り）を見る・購入する" onPress={props.onOpenPaywall} />
-      )}
+      <Button t={t} kind="ghost" label="購入を復元する" onPress={props.onRestoreAll} />
 
       <Text style={[styles.sectionHead, { color: t.text }]}>学習記録</Text>
       <Button t={t} kind="danger" label="学習記録をリセット" onPress={confirmReset} />

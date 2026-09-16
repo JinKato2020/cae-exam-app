@@ -8,7 +8,7 @@ import Purchases, {
   type PurchasesOffering,
   type PurchasesPackage,
 } from 'react-native-purchases';
-import { revenueCatApiKey, purchasesConfigured, PRO_ENTITLEMENT_ID, LIFETIME_PACKAGE_ID } from '../config/revenuecat';
+import { revenueCatApiKey, purchasesConfigured } from '../config/revenuecat';
 
 let configured = false;
 
@@ -25,17 +25,18 @@ export async function initPurchases(appUserID?: string | null): Promise<void> {
   }
 }
 
-/** CustomerInfo から「今Proか」を読む純粋な写像。 */
-function isProActive(info: CustomerInfo): boolean {
-  return !!info.entitlements.active[PRO_ENTITLEMENT_ID];
+/** CustomerInfo から「今持っている買い切りkeyの一覧」を読む純粋な写像。
+ *  RevenueCat の active な Entitlement の識別子（= proState の entKey と一致させる）をそのまま返す。 */
+function activeKeys(info: CustomerInfo): string[] {
+  return Object.keys(info.entitlements.active);
 }
 
-/** RevenueCat と同期して「今Proか」を返す。呼び出し側は結果を端末へ保存する。
+/** RevenueCat と同期して「今持っている買い切りkey一覧」を返す。呼び出し側は結果を端末へ保存する。
  *  未設定・通信失敗時は null(=状態を変えない＝端末に保存済みの前回値を保つ)。 */
-export async function syncEntitlement(): Promise<boolean | null> {
+export async function syncEntitlements(): Promise<string[] | null> {
   if (!configured) return null;
   try {
-    return isProActive(await Purchases.getCustomerInfo());
+    return activeKeys(await Purchases.getCustomerInfo());
   } catch {
     return null;
   }
@@ -51,40 +52,40 @@ export async function getCurrentOffering(): Promise<PurchasesOffering | null> {
   }
 }
 
-/** 買い切りとして表示する1パッケージを選ぶ。指定IDが無ければ最初のパッケージ。無ければ null。 */
-export function pickLifetimePackage(offering: PurchasesOffering | null): PurchasesPackage | null {
+/** 指定key（分野×級）の買い切りパッケージを選ぶ。Package識別子が key と一致するものを返す。無ければ null。 */
+export function pickPackage(offering: PurchasesOffering | null, key: string): PurchasesPackage | null {
   if (!offering) return null;
   const pkgs = offering.availablePackages ?? [];
-  return pkgs.find((p) => p.identifier === LIFETIME_PACKAGE_ID) ?? pkgs[0] ?? null;
+  return pkgs.find((p) => p.identifier === key) ?? null;
 }
 
-/** 購入。成功して権利(pro)が立ったら true。ユーザーキャンセル・失敗は false。 */
-export async function purchase(pkg: PurchasesPackage): Promise<boolean> {
-  if (!configured) return false;
+/** 購入。成功後に「今持っている買い切りkey一覧」を返す。ユーザーキャンセル・失敗は null。 */
+export async function purchase(pkg: PurchasesPackage): Promise<string[] | null> {
+  if (!configured) return null;
   try {
     const { customerInfo } = await Purchases.purchasePackage(pkg);
-    return isProActive(customerInfo);
+    return activeKeys(customerInfo);
   } catch {
-    return false; // キャンセルもここに来る(RevenueCatはキャンセルを例外で返す)
+    return null; // キャンセルもここに来る(RevenueCatはキャンセルを例外で返す)
   }
 }
 
-/** 購入の復元(Apple審査で必須)。復元後にProなら true。 */
-export async function restore(): Promise<boolean> {
-  if (!configured) return false;
+/** 購入の復元(Apple審査で必須)。復元後に「今持っている買い切りkey一覧」を返す。失敗は null。 */
+export async function restore(): Promise<string[] | null> {
+  if (!configured) return null;
   try {
-    return isProActive(await Purchases.restorePurchases());
+    return activeKeys(await Purchases.restorePurchases());
   } catch {
-    return false;
+    return null;
   }
 }
 
-/** ログイン時: RevenueCat のユーザーを実IDへ紐付け(機種変・複数端末で権利がfollowする)。→ 現在Proか。 */
-export async function linkAccount(userId: string): Promise<boolean | null> {
+/** ログイン時: RevenueCat のユーザーを実IDへ紐付け(機種変・複数端末で権利がfollowする)。→ 今持っているkey一覧。 */
+export async function linkAccount(userId: string): Promise<string[] | null> {
   if (!configured) return null;
   try {
     const { customerInfo } = await Purchases.logIn(userId);
-    return isProActive(customerInfo);
+    return activeKeys(customerInfo);
   } catch {
     return null;
   }

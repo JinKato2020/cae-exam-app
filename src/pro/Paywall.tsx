@@ -1,13 +1,13 @@
-// 購入画面（Paywall）。CAEの配色(Theme)に合わせた自前UI。買い切り1商品（iOS）。
-// 価格はストア登録値を RevenueCat 経由で表示（アプリに金額を書かない）。
+// 購入画面（Paywall）。CAEの配色(Theme)に合わせた自前UI。買い切りは「分野×級」ごと（iOS）。
+// target で「今ロックされた級」を1つ受け取り、その級だけを売る。価格はストア登録値を RevenueCat 経由で表示。
 // Apple審査の必須要素: 価格の明示 /「購入を復元」/ 規約・プライバシーへの導線。
 // キー未設定・商品未登録のうちは pkg=null →「まもなく提供」を出すだけ（壊れない）。
 import { useEffect, useState } from 'react';
 import { View, Text, Pressable, ScrollView, ActivityIndicator, Alert, Linking, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import type { PurchasesPackage } from 'react-native-purchases';
-import { getCurrentOffering, pickLifetimePackage, purchase, restore, syncEntitlement } from './purchases';
-import { saveProActive } from './proState';
+import { getCurrentOffering, pickPackage, purchase, restore, syncEntitlements } from './purchases';
+import { saveOwned } from './proState';
 import { TERMS_URL, PRIVACY_URL } from '../config/revenuecat';
 
 type PayTheme = {
@@ -15,8 +15,16 @@ type PayTheme = {
   primary: string; correct: string; amber: string; disabled: string;
 };
 
-export default function Paywall(props: { t: PayTheme; onClose: () => void; onPurchased: () => void }) {
-  const { t } = props;
+/** 購入対象＝分野×級（key は RevenueCat の Package/Entitlement 識別子・title は見出し）。 */
+export type PayTarget = { key: string; title: string };
+
+export default function Paywall(props: {
+  t: PayTheme;
+  target: PayTarget | null;
+  onClose: () => void;
+  onPurchased: () => void;
+}) {
+  const { t, target } = props;
   const s = makeStyles(t);
   const [pkg, setPkg] = useState<PurchasesPackage | null>(null);
   const [loading, setLoading] = useState(true);
@@ -25,27 +33,27 @@ export default function Paywall(props: { t: PayTheme; onClose: () => void; onPur
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const off = await getCurrentOffering();
+      const off = target ? await getCurrentOffering() : null;
       if (!cancelled) {
-        setPkg(pickLifetimePackage(off));
+        setPkg(target ? pickPackage(off, target.key) : null);
         setLoading(false);
       }
     })();
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [target]);
 
   async function onBuy() {
-    if (busy || !pkg) return;
+    if (busy || !pkg || !target) return;
     setBusy(true);
-    const ok = await purchase(pkg);
-    if (ok) {
-      await saveProActive(true);
-      Alert.alert('ありがとうございます', 'すべての問題の正解・解説・図が見られるようになりました。');
+    const owned = await purchase(pkg);
+    if (owned && owned.includes(target.key)) {
+      await saveOwned(owned);
+      Alert.alert('ありがとうございます', `${target.title}のすべての問題の正解・解説・図が見られるようになりました。`);
       props.onPurchased();
     } else {
-      // キャンセルも false。静かに戻す（誤タップ配慮で失敗メッセージは出さない）
+      // キャンセル・失敗。静かに戻す（誤タップ配慮で失敗メッセージは出さない）
       setBusy(false);
     }
   }
@@ -53,12 +61,12 @@ export default function Paywall(props: { t: PayTheme; onClose: () => void; onPur
   async function onRestore() {
     if (busy) return;
     setBusy(true);
-    const ok = await restore();
-    const active = ok ? true : await syncEntitlement();
-    if (typeof active === 'boolean') await saveProActive(active);
+    const owned = (await restore()) ?? (await syncEntitlements());
+    if (owned) await saveOwned(owned);
     setBusy(false);
-    if (active) {
-      Alert.alert('購入を復元しました', 'Proが有効になりました。');
+    if (owned && owned.length > 0) {
+      const got = target && owned.includes(target.key);
+      Alert.alert('購入を復元しました', got ? `${target!.title}が有効になりました。` : '購入済みの級が有効になりました。');
       props.onPurchased();
     } else {
       Alert.alert('復元できる購入がありません', '同じApple IDで購入済みかご確認ください。');
@@ -70,22 +78,22 @@ export default function Paywall(props: { t: PayTheme; onClose: () => void; onPur
       <ScrollView contentContainerStyle={s.scroll} showsVerticalScrollIndicator={false}>
         <View style={s.hero}>
           <Text style={s.heroEmoji}>🎓</Text>
-          <Text style={s.title}>CAE Pro（買い切り）</Text>
-          <Text style={s.subtitle}>一度の購入で、すべての問題をずっと使えます。</Text>
+          <Text style={s.title}>{target ? `${target.title}（買い切り）` : 'CAE 買い切り'}</Text>
+          <Text style={s.subtitle}>一度の購入で、この級のすべての問題をずっと使えます。</Text>
         </View>
 
         <View style={s.benefits}>
-          <Text style={s.benefit}>✓ すべての章・すべての問題の「正解・解説・図」が見放題</Text>
-          <Text style={s.benefit}>✓ 2級・1級の全章に対応</Text>
+          <Text style={s.benefit}>✓ {target ? target.title : 'この級'}の全章・全問題の「正解・解説・図」が見放題</Text>
           <Text style={s.benefit}>✓ 買い切り（月額なし）。一度きりの購入で永久に有効</Text>
           <Text style={s.benefit}>✓ 公式・用語ページは無料のまま（購入は問題の解説向け）</Text>
+          <Text style={s.benefit}>✓ 他の級は必要になったら別々に購入できます</Text>
         </View>
 
         {loading ? (
           <ActivityIndicator color={t.primary} style={{ marginVertical: 28 }} />
         ) : pkg ? (
           <Pressable style={[s.buy, busy && s.busy]} onPress={onBuy} disabled={busy} hitSlop={4}>
-            <Text style={s.buyLabel}>このアプリを解除する</Text>
+            <Text style={s.buyLabel}>この級を解除する</Text>
             <Text style={s.buyPrice}>{pkg.product.priceString}（買い切り）</Text>
           </Pressable>
         ) : (

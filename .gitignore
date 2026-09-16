@@ -54,4 +54,6 @@ memory/
 
 # ログイン/同期の雛形（未接続WIP・完成until コミットしない: パイプライン§10-4）
 src/auth/
-src/config/
+src/config/*
+# revenuecat.ts は公開キー(appl_)＋公開URLのみで完成済み＝アプリ本体がimportするため追跡する(firebase.ts等は除外のまま)
+!src/config/revenuecat.ts
