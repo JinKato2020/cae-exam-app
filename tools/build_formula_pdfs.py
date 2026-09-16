@@ -19,15 +19,76 @@ def esc(s): return html.escape(s or "", quote=False)
 
 # 主役の数式を必ず $$…$$（MathJax display＝大きい中央表示）に統一する。
 # アプリ側 App.tsx displayMath() と同じ規則。
+# 長い公式は横に収まらないと右が切れる。ただ縮小すると読めないので、できる限り改行して
+# 各行を短くする（App.tsx wrapLongDisplay と同じロジック）：
+#   ① トップレベルの \quad / \qquad で独立式を分割
+#   ② それでも長い行は トップレベルの + と（先頭以外の）= でさらに改行
+# 括弧・ブレース(\{ \} 含む)の深さ0だけが対象。割れない単一長大式はそのまま(A4ならほぼ収まる)。
+import re as _re
+
+def _esc_depth(s, i, depth):
+    nx = s[i + 1] if i + 1 < len(s) else ""
+    if nx in "{([": return depth + 1
+    if nx in "})]": return max(0, depth - 1)
+    return depth
+
+def _split_quad(inner):
+    parts = []; depth = 0; last = 0; i = 0; n = len(inner)
+    while i < n:
+        c = inner[i]
+        if c == "\\":
+            m = _re.match(r"\\q?quad(?![a-zA-Z])", inner[i:])
+            if depth == 0 and m:
+                parts.append(inner[last:i]); i += len(m.group(0)); last = i; continue
+            depth = _esc_depth(inner, i, depth); i += 2; continue
+        if c in "{([": depth += 1
+        elif c in "})]": depth = max(0, depth - 1)
+        i += 1
+    parts.append(inner[last:])
+    return [p.strip() for p in parts if p.strip()]
+
+def _break_ops(seg):
+    idx = []; depth = 0; i = 0; n = len(seg)
+    while i < n:
+        c = seg[i]
+        if c == "\\":
+            depth = _esc_depth(seg, i, depth); i += 2; continue
+        if c in "{([": depth += 1; i += 1; continue
+        if c in "})]": depth = max(0, depth - 1); i += 1; continue
+        if depth == 0:
+            if c == "+" and i > 0: idx.append(i)
+            elif c == "=" and i > 8: idx.append(i)
+        i += 1
+    if not idx:
+        return [seg]
+    lines = []; start = 0
+    for p in idx:
+        if p > start: lines.append(seg[start:p])
+        start = p
+    lines.append(seg[start:])
+    return [s.strip() for s in lines if s.strip()]
+
+def wrap_long(inner):
+    if len(inner) < 50:
+        return inner
+    lines = []
+    for seg in _split_quad(inner):
+        lines += _break_ops(seg) if len(seg) >= 60 else [seg]
+    if len(lines) <= 1:
+        return inner
+    return r"\begin{gather*}" + r" \\ ".join(lines) + r"\end{gather*}"
+
 def display_math(s):
     x = (s or "").strip()
-    if x.startswith("$$"):
+    if x.startswith("$$") and x.endswith("$$") and len(x) > 4:
+        inner = x[2:-2]
+    elif x.startswith("$") and x.endswith("$") and len(x) > 2 and x[1:-1].find("$") == -1:
+        inner = x[1:-1]
+    elif x.find("$") == -1 and len(x) > 0:
+        inner = x
+    else:
         return x
-    if x.startswith("$") and x.endswith("$") and len(x) > 2 and x[1:-1].find("$") == -1:
-        return "$$" + x[1:-1] + "$$"
-    if x.find("$") == -1 and len(x) > 0:
-        return "$$" + x + "$$"
-    return x
+    return "$$" + wrap_long(inner) + "$$"
 
 def img_datauri(key):
     p = os.path.join(FIG, key + ".png")

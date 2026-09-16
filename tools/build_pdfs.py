@@ -47,11 +47,12 @@ def card(q):
       <div class='exp'>{expl_html(q['explanation'])}</div>
     </div>"""
 
-def build_html(ch):
-    data=json.load(open(os.path.join(QDIR,FILES[ch]),encoding="utf-8"))
-    cat=data["meta"]["category"]
+def build_html(data):
+    meta=data["meta"]
+    grade="1級" if "1級" in meta.get("grade","") else "2級"
+    cat=meta["category"]; ch=meta.get("chapter")
     cards="".join(card(q) for q in data["questions"])
-    return cat, f"""<!doctype html><html lang="ja"><head><meta charset="utf-8">
+    return grade, ch, cat, f"""<!doctype html><html lang="ja"><head><meta charset="utf-8">
 <title>{esc(cat)}</title>
 <style>
 @page {{ size:A4; margin:14mm 12mm; }}
@@ -73,27 +74,43 @@ mjx-container{{overflow-x:auto;}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
 </head><body>
 <h1>{esc(cat)}</h1>
-<div class="sub">CAE計算力学技術者 固体力学2級・オリジナル問題（問題／解答／解説／図）</div>
+<div class="sub">CAE計算力学技術者 固体力学{grade}・オリジナル問題（問題／解答／解説／図）</div>
 {cards}
 </body></html>"""
 
 def main():
-    chapters=[int(x) for x in sys.argv[1:]] or list(range(1,14))
+    # 引数: 数字=2級のch番号(従来通り) / ファイル名stem(例 solid1-01-nonlinear-stress-strain)=そのJSONを1本ビルド。
+    # 無指定なら2級 ch1〜13。級は各JSONの meta.grade で判別し 出力先 アプリ/<級>/ を切替。
+    args=sys.argv[1:]
+    tasks=[]  # 問題JSONの絶対パス
+    if not args:
+        tasks=[os.path.join(QDIR,FILES[ch]) for ch in range(1,14)]
+    else:
+        for a in args:
+            if a.isdigit():
+                tasks.append(os.path.join(QDIR,FILES[int(a)]))
+            else:
+                stem=a[:-5] if a.endswith(".json") else a
+                tasks.append(os.path.join(QDIR,f"{stem}.json"))
     os.makedirs(TMP,exist_ok=True)
-    os.makedirs(OUTDIR,exist_ok=True)
-    for ch in chapters:
-        cat,doc=build_html(ch)
-        hp=os.path.join(TMP,f"ch{ch}.html")
-        open(hp,"w",encoding="utf-8").write(doc)
+    for fp in tasks:
+        if not os.path.exists(fp):
+            print(f"{fp}: SKIP (no json)"); continue
+        data=json.load(open(fp,encoding="utf-8"))
+        grade,ch,cat,doc=build_html(data)
         short=cat.split(" ",1)[-1].replace(" ","") if " " in cat else cat
-        out=os.path.join(OUTDIR, f"固体2級_第{ch}章_{short}.pdf")
+        outdir=os.path.join(CAE,"アプリ",grade)
+        os.makedirs(outdir,exist_ok=True)
+        hp=os.path.join(TMP,f"q_{grade}_ch{ch}.html")
+        open(hp,"w",encoding="utf-8").write(doc)
+        out=os.path.join(outdir, f"固体{grade}_第{ch}章_{short}.pdf")
         url="file:///"+hp.replace("\\","/")
         cmd=[EDGE,"--headless=new","--disable-gpu","--no-sandbox",
              f"--print-to-pdf={out}","--print-to-pdf-no-header",
              "--virtual-time-budget=25000","--run-all-compositor-stages-before-draw",url]
         r=subprocess.run(cmd,capture_output=True,timeout=120)
         ok=os.path.exists(out)
-        print(f"ch{ch}: {'OK' if ok else 'FAIL'}  {out}  ({os.path.getsize(out)//1024 if ok else 0} KB)")
+        print(f"ch{ch}({grade}): {'OK' if ok else 'FAIL'}  {out}  ({os.path.getsize(out)//1024 if ok else 0} KB)")
     print("PDF出力完了")
 
 if __name__=="__main__":

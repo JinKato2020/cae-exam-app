@@ -16,6 +16,7 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import type { Question } from './src/types';
 import { FIGURES, FIGURE_ASPECT } from './src/figures';
@@ -41,6 +42,18 @@ import {
   type FieldSnapStore,
   type FieldCompare,
 } from './src/progress';
+import Paywall from './src/pro/Paywall';
+import {
+  loadProState,
+  saveProActive,
+  saveDevPro,
+  effectiveIsPro,
+  isLocked,
+  FREE_PER_CHAPTER,
+  DEFAULT_PRO_STATE,
+  type ProState,
+} from './src/pro/proState';
+import { initPurchases, syncEntitlement } from './src/pro/purchases';
 
 const APP_VERSION = '1.0.0';
 
@@ -59,6 +72,7 @@ const COURSES: Course[] = [
 ];
 
 type Tab = 'home' | 'study' | 'formula' | 'settings';
+type ThemePref = 'system' | 'light' | 'dark';
 type StudyView = 'course' | 'chapters' | 'tiles' | 'problem';
 type FormulaView = 'course' | 'chapters' | 'titles' | 'item';
 
@@ -70,13 +84,24 @@ export default function App() {
   );
 }
 
+const THEME_KEY = 'cae.theme'; // 'system' | 'light' | 'dark'
+const HOME_GRADE_KEY = 'cae.homeGrade'; // ホームで前回開いた級 'g1' | 'g2'
+
 function AppInner() {
-  const scheme = useColorScheme();
+  const systemScheme = useColorScheme();
+  // 外観の好み（システム追従／ライト固定／ダーク固定）。端末に保存。
+  const [themePref, setThemePref] = useState<ThemePref>('system');
+  const scheme = themePref === 'system' ? systemScheme : themePref;
   const t = scheme === 'dark' ? dark : light;
   const insets = useSafeAreaInsets();
 
   const [tab, setTab] = useState<Tab>('home');
   const [progress, setProgress] = useState<ProgressMap>({});
+
+  // Pro（買い切り）状態と購入画面の表示。
+  const [proSt, setProSt] = useState<ProState>(DEFAULT_PRO_STATE);
+  const [showPaywall, setShowPaywall] = useState(false);
+  const isPro = effectiveIsPro(proSt);
 
   // 問題タブのサブ画面状態
   const [studyView, setStudyView] = useState<StudyView>('course');
@@ -103,6 +128,41 @@ function AppInner() {
       await snapshotFields(p, 'g1');
     });
   }, []);
+
+  // Proの初期化・同期。まず端末保存値を読み（オフラインでも即反映）、次にストアと同期して最新化。
+  // キー未設定(src/config/revenuecat.ts が空)なら syncEntitlement は null＝状態を変えない＝アプリは従来どおり無料動作。
+  useEffect(() => {
+    (async () => {
+      const local = await loadProState();
+      setProSt(local);
+      await initPurchases(null);
+      const active = await syncEntitlement();
+      if (typeof active === 'boolean') {
+        await saveProActive(active);
+        setProSt((s) => ({ ...s, active }));
+      }
+    })();
+  }, []);
+
+  // 購入・復元の成功後に呼ぶ（保存はPaywall側で済んでいる）。端末値を読み直してPro反映＆画面を閉じる。
+  async function onProUnlocked() {
+    setProSt(await loadProState());
+    setShowPaywall(false);
+  }
+
+  // 外観の好みを端末から復元。
+  useEffect(() => {
+    AsyncStorage.getItem(THEME_KEY)
+      .then((v) => {
+        if (v === 'light' || v === 'dark' || v === 'system') setThemePref(v);
+      })
+      .catch(() => {});
+  }, []);
+
+  function changeTheme(pref: ThemePref) {
+    setThemePref(pref);
+    AsyncStorage.setItem(THEME_KEY, pref).catch(() => {});
+  }
 
   const wrongIds = useMemo(() => wrongIdsFrom(progress), [progress]);
   const wrongQuestions = useMemo(() => questionsByIds(wrongIds), [wrongIds]);
@@ -168,6 +228,8 @@ function AppInner() {
             onSelectAnswer={onSelectAnswer}
             setQIndex={setQIndex}
             goBack={(v) => setStudyView(v)}
+            isPro={isPro}
+            onOpenPaywall={() => setShowPaywall(true)}
           />
         )}
 
@@ -202,11 +264,26 @@ function AppInner() {
               const cleared = await resetProgress();
               setProgress(cleared);
             }}
+            isPro={isPro}
+            devPro={proSt.devPro}
+            onOpenPaywall={() => setShowPaywall(true)}
+            onToggleDevPro={async (on) => {
+              await saveDevPro(on);
+              setProSt((s) => ({ ...s, devPro: on }));
+            }}
+            themePref={themePref}
+            onChangeTheme={changeTheme}
           />
         )}
       </SafeAreaView>
 
       <TabBar t={t} tab={tab} insetsBottom={insets.bottom} onChange={setTab} />
+
+      {showPaywall && (
+        <View style={StyleSheet.absoluteFill}>
+          <Paywall t={t} onClose={() => setShowPaywall(false)} onPurchased={onProUnlocked} />
+        </View>
+      )}
     </View>
   );
 }
@@ -335,8 +412,19 @@ function HomeTab(props: {
   onGoStudy: () => void;
 }) {
   const { t } = props;
-  // ホームの分析は級ごと。ここで 2級/1級 を切り替える（既定=2級）。
+  // ホームの分析は級ごと。左=1級 / 右=2級。起動時は「前回開いた級」を復元（初回のみ2級）。
   const [grade, setGrade] = useState<GradeId>('g2');
+  useEffect(() => {
+    AsyncStorage.getItem(HOME_GRADE_KEY)
+      .then((v) => {
+        if (v === 'g1' || v === 'g2') setGrade(v);
+      })
+      .catch(() => {});
+  }, []);
+  function chooseGrade(g: GradeId) {
+    setGrade(g);
+    AsyncStorage.setItem(HOME_GRADE_KEY, g).catch(() => {});
+  }
   const overall = useMemo(() => overallStat(props.progress, grade), [props.progress, grade]);
   const stats = useMemo(() => chapterStats(props.progress, grade), [props.progress, grade]);
   const fields = useMemo(() => fieldStats(props.progress, grade), [props.progress, grade]);
@@ -361,14 +449,14 @@ function HomeTab(props: {
         {grade === 'g1' ? '固体力学 1級' : '固体力学 2級'}
       </Text>
 
-      {/* 級の切り替え（2級 / 1級） */}
+      {/* 級の切り替え（1級=左 / 2級=右） */}
       <View style={[styles.segment, { borderColor: t.border, backgroundColor: t.card }]}>
-        {(['g2', 'g1'] as GradeId[]).map((g) => {
+        {(['g1', 'g2'] as GradeId[]).map((g) => {
           const on = grade === g;
           return (
             <Pressable
               key={g}
-              onPress={() => setGrade(g)}
+              onPress={() => chooseGrade(g)}
               style={[styles.segmentItem, on && { backgroundColor: t.primary }]}
             >
               <Text style={[styles.segmentText, { color: on ? '#fff' : t.sub }]}>
@@ -444,24 +532,7 @@ function HomeTab(props: {
         </>
       )}
 
-      {/* 章別 正答率バー */}
-      <Text style={[styles.sectionHead, { color: t.text }]}>章別の正答率</Text>
-      {stats.map((s) => (
-        <View key={s.id} style={[styles.card, { backgroundColor: t.card, borderColor: t.border, marginBottom: 8 }]}>
-          <View style={styles.barHeadRow}>
-            <Text style={[styles.barTitle, { color: t.text }]} numberOfLines={1}>
-              {s.title}
-            </Text>
-            <Text style={[styles.barPct, { color: t.sub }]}>
-              {s.attempted > 0 ? `${Math.round(s.accuracy * 100)}%` : '未挑戦'}
-            </Text>
-          </View>
-          <ProgressBar t={t} accuracy={s.accuracy} attempted={s.attempted} />
-          <Text style={[styles.barSub, { color: t.sub }]}>
-            {s.attempted} / {s.total} 問挑戦・{s.correct} 問正解
-          </Text>
-        </View>
-      ))}
+      {/* 章別の正答率は「問題」タブの各章タイトル下へ移動（見やすさのため） */}
     </ScrollView>
   );
 }
@@ -608,6 +679,8 @@ function StudyTab(props: {
   onSelectAnswer: (q: Question, n: number) => void;
   setQIndex: (i: number) => void;
   goBack: (v: StudyView) => void;
+  isPro: boolean;
+  onOpenPaywall: () => void;
 }) {
   const { t } = props;
 
@@ -644,6 +717,8 @@ function StudyTab(props: {
           const ready = c.ready !== false && c.data.questions.length > 0;
           const ids = c.data.questions.map((q) => q.id);
           const done = ids.filter((id) => props.progress[id]).length;
+          const correct = ids.filter((id) => props.progress[id]?.lastCorrect).length;
+          const acc = done > 0 ? correct / done : 0;
           return (
             <Pressable
               key={c.id}
@@ -654,6 +729,14 @@ function StudyTab(props: {
               <Text style={[styles.rowSub, { color: ready ? t.sub : t.wrong }]}>
                 {ready ? `${c.data.questions.length} 問　・　${done > 0 ? `${done} 問挑戦済` : '未挑戦'}` : '準備中'}
               </Text>
+              {ready && done > 0 && (
+                <View style={{ marginTop: 8 }}>
+                  <ProgressBar t={t} accuracy={acc} attempted={done} />
+                  <Text style={[styles.barSub, { color: t.sub }]}>
+                    正答率 {Math.round(acc * 100)}%　・　{correct} / {done} 問正解
+                  </Text>
+                </View>
+              )}
             </Pressable>
           );
         })}
@@ -722,6 +805,8 @@ function StudyTab(props: {
         onPrev={() => props.setQIndex(Math.max(props.qIndex - 1, 0))}
         onNext={() => props.setQIndex(Math.min(props.qIndex + 1, props.activeList.length - 1))}
         onBack={() => props.goBack(props.chapter ? 'tiles' : 'course')}
+        locked={isLocked(q, props.isPro)}
+        onOpenPaywall={props.onOpenPaywall}
       />
     );
   }
@@ -741,8 +826,11 @@ function ProblemScreen(props: {
   onPrev: () => void;
   onNext: () => void;
   onBack: () => void;
+  locked: boolean;
+  onOpenPaywall: () => void;
 }) {
   const { t, q, selected, past } = props;
+  const locked = props.locked;
   const answered = selected !== null;
   const isCorrect = selected === q.answer;
   const atFirst = props.index === 0;
@@ -779,11 +867,14 @@ function ProblemScreen(props: {
 
       {q.choices.map((choice, i) => {
         const num = i + 1;
-        const c = choiceColor(t, { num, answer: q.answer, selected, answered });
+        // ロック中は正誤の色分け（＝正解の露出）をしない。タップは購入導線へ。
+        const c = locked
+          ? choiceColor(t, { num, answer: -1, selected: null, answered: false })
+          : choiceColor(t, { num, answer: q.answer, selected, answered });
         return (
           <Pressable
             key={num}
-            onPress={() => props.onSelect(num)}
+            onPress={() => (locked ? props.onOpenPaywall() : props.onSelect(num))}
             style={[styles.choice, { backgroundColor: c.bg, borderColor: c.border }]}
           >
             <RichText text={`${num}. ${choice}`} color={c.text} fontSize={16} />
@@ -791,7 +882,7 @@ function ProblemScreen(props: {
         );
       })}
 
-      {answered && (
+      {!locked && answered && (
         <View style={[styles.explainBox, { backgroundColor: t.card, borderColor: t.border }]}>
           <Text style={[styles.verdict, { color: isCorrect ? t.correct : t.wrong }]}>
             {isCorrect ? '◯ 正解' : '✕ 不正解'}（正解：{q.answer}）
@@ -799,6 +890,22 @@ function ProblemScreen(props: {
           <RichText text={q.explanation} color={t.text} fontSize={14} />
           {q.figureImage && FIGURES[q.figureImage] ? <AutoFigure t={t} source={FIGURES[q.figureImage]} /> : null}
         </View>
+      )}
+
+      {locked && (
+        <Pressable
+          onPress={props.onOpenPaywall}
+          style={[styles.lockBox, { backgroundColor: t.card, borderColor: t.primary }]}
+        >
+          <Text style={styles.lockEmoji}>🔒</Text>
+          <Text style={[styles.lockTitle, { color: t.text }]}>この問題の正解・解説・図はPro（買い切り）で解除</Text>
+          <Text style={[styles.lockSub, { color: t.sub }]}>
+            各章の最初の{FREE_PER_CHAPTER}問は無料です。{FREE_PER_CHAPTER + 1}問目以降の答え合わせ・解説・図はProで見られます（公式・用語は無料）。
+          </Text>
+          <View style={[styles.lockBtn, { backgroundColor: t.primary }]}>
+            <Text style={styles.lockBtnTxt}>Proで解除する</Text>
+          </View>
+        </Pressable>
       )}
 
       {/* 前へ / 次へ */}
@@ -941,7 +1048,8 @@ function FormulaCard(props: { t: Theme; item: FormulaItem }) {
       </View>
       {item.formula ? (
         <View style={[styles.formulaBox, { backgroundColor: t.bg, borderColor: t.border }]}>
-          <RichText text={displayMath(item.formula)} color={t.text} fontSize={22} bold />
+          {/* 公式は縮小せず文字サイズを揃える。長い式ではみ出す分は横スクロール（右端フェードで誘導） */}
+          <RichText text={displayMath(item.formula)} color={t.text} fontSize={22} bold scroll bg={t.bg} />
         </View>
       ) : null}
       <RichText text={item.body} color={t.text} fontSize={14} />
@@ -961,13 +1069,34 @@ function SettingsTab(props: {
   t: Theme;
   progress: ProgressMap;
   onReset: () => void;
+  isPro: boolean;
+  devPro: boolean;
+  onOpenPaywall: () => void;
+  onToggleDevPro: (on: boolean) => void;
+  themePref: ThemePref;
+  onChangeTheme: (p: ThemePref) => void;
 }) {
   const { t } = props;
-  const overall = overallStat(props.progress);
-  // 1級で今 使える章（ready）を「第◯・◯章」表記にする（収録欄が古くならないよう動的化）。
-  const g1Ready = solid1Chapters().filter((c) => c.ready !== false && c.data.questions.length > 0);
-  const g1ReadyLabel =
-    g1Ready.length > 0 ? `第${g1Ready.map((c) => c.id.replace('ch', '')).join('・')}章` : '準備中';
+  // バージョン表示を7回タップで開発用ロック解除（Android風の隠しジェスチャ。TestFlightでも使える）。
+  const [verTaps, setVerTaps] = useState(0);
+  function onTapVersion() {
+    const n = verTaps + 1;
+    if (n >= 7) {
+      setVerTaps(0);
+      const next = !props.devPro;
+      props.onToggleDevPro(next);
+      Alert.alert('開発用ロック', next ? '解除しました（全問アンロック）。' : '元に戻しました（無料表示）。');
+    } else {
+      setVerTaps(n);
+      if (n >= 4) Alert.alert('開発用ロック', `あと ${7 - n} 回タップで切り替わります。`);
+    }
+  }
+
+  const themeOptions: { key: ThemePref; label: string }[] = [
+    { key: 'system', label: 'システム' },
+    { key: 'light', label: 'ライト' },
+    { key: 'dark', label: 'ダーク' },
+  ];
 
   function confirmReset() {
     Alert.alert('学習記録をリセット', '正誤や日付の記録をすべて消します。よろしいですか？（元に戻せません）', [
@@ -980,13 +1109,31 @@ function SettingsTab(props: {
     <ScrollView contentContainerStyle={styles.content}>
       <Text style={[styles.title, { color: t.text }]}>設定</Text>
 
-      <Text style={[styles.sectionHead, { color: t.text }]}>アプリ情報</Text>
-      <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
-        <InfoRow t={t} label="バージョン" value={`v${APP_VERSION}`} />
-        <InfoRow t={t} label="収録" value={`固体力学 2級（全13章）・1級（${g1ReadyLabel}）`} />
-        <InfoRow t={t} label="解いた問題" value={`${overall.attempted} / ${overall.totalQuestions} 問`} />
-        <InfoRow t={t} label="外観" value="端末の設定に自動で追従（ライト/ダーク）" last />
+      <Text style={[styles.sectionHead, { color: t.text }]}>外観</Text>
+      <View style={[styles.segment, { borderColor: t.border }]}>
+        {themeOptions.map((o) => {
+          const on = props.themePref === o.key;
+          return (
+            <Pressable
+              key={o.key}
+              onPress={() => props.onChangeTheme(o.key)}
+              style={[styles.segmentItem, on && { backgroundColor: t.primary }]}
+            >
+              <Text style={[styles.segmentText, { color: on ? '#fff' : t.sub }]}>{o.label}</Text>
+            </Pressable>
+          );
+        })}
       </View>
+
+      <Text style={[styles.sectionHead, { color: t.text }]}>Pro（買い切り）</Text>
+      <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
+        <InfoRow t={t} label="状態" value={props.isPro ? 'Pro（解除済み）' : '無料'} last />
+      </View>
+      {props.isPro ? (
+        <Button t={t} kind="ghost" label="購入を復元する" onPress={props.onOpenPaywall} />
+      ) : (
+        <Button t={t} kind="primary" label="Pro（買い切り）を見る・購入する" onPress={props.onOpenPaywall} />
+      )}
 
       <Text style={[styles.sectionHead, { color: t.text }]}>学習記録</Text>
       <Button t={t} kind="danger" label="学習記録をリセット" onPress={confirmReset} />
@@ -997,6 +1144,13 @@ function SettingsTab(props: {
           計算力学技術者（CAE）試験の対策アプリです。収録している問題・解説はすべてオリジナルで作成しています。学習の記録は端末内に保存されます。ログインすると、記録が安全にクラウドへバックアップされ、機種変更や再インストールのあとでも引き継げます。
         </Text>
       </View>
+
+      {/* 最下部のバージョン表示。7回タップで開発用ロック解除（隠しジェスチャ）。 */}
+      <Pressable onPress={onTapVersion} style={styles.versionFooter} hitSlop={8}>
+        <Text style={[styles.versionText, { color: t.sub }]}>
+          CAE 固体力学　v{APP_VERSION}{props.devPro ? '　・　開発ロック解除中' : ''}
+        </Text>
+      </Pressable>
     </ScrollView>
   );
 }
@@ -1103,16 +1257,94 @@ function fmtDate(ts: number): string {
 // 公式は「ディスプレイ数式」（中央・大きめ）で表示したいので、
 // インライン $...$ をブロック $$...$$ に変換する（問題文と同じKaTeX経路）。
 // 公式・用語タブの「主役の数式」を必ず $$…$$（大きい中央表示）に統一する。
+//
+// 長い公式は横に収まらないと右が切れる。ただ縮小すると 34% 等になって読めないので、
+// できる限り「改行して縦に積む」ことで各行を短くし、原寸に近い大きさで読ませる：
+//   ① 独立した複数式を区切る トップレベルの \quad / \qquad で分割
+//   ② それでも長い行は トップレベルの + と（先頭以外の）= でさらに改行
+// いずれも括弧・ブレースの深さ0だけが対象で、\left(…\right) や {…} の中は分割しない。
+// ここまでやっても割れない単一の長大式だけ、最後に MathText 側の縮小で収める。
+
+// 括弧/ブレース深さ0の \quad / \qquad で分割。
+function splitTopQuad(inner: string): string[] {
+  const parts: string[] = [];
+  let depth = 0;
+  let last = 0;
+  for (let i = 0; i < inner.length; i++) {
+    const c = inner[i];
+    if (c === '\\') {
+      const m = /^\\q?quad(?![a-zA-Z])/.exec(inner.slice(i));
+      if (depth === 0 && m) {
+        parts.push(inner.slice(last, i));
+        i += m[0].length - 1;
+        last = i + 1;
+      } else {
+        const nx = inner[i + 1]; // \{ \} \( \) \[ \] は括弧として深さに反映
+        if (nx === '{' || nx === '(' || nx === '[') depth++;
+        else if (nx === '}' || nx === ')' || nx === ']') depth = Math.max(0, depth - 1);
+        i += 1; // 次の1文字を消費（\left \right \, なども1文字読み飛ばし）
+      }
+      continue;
+    }
+    if (c === '{' || c === '(' || c === '[') depth++;
+    else if (c === '}' || c === ')' || c === ']') depth = Math.max(0, depth - 1);
+  }
+  parts.push(inner.slice(last));
+  return parts.map((p) => p.trim()).filter((p) => p.length > 0);
+}
+
+// 1本の式を、括弧/ブレース深さ0の「+」と（先頭以外の）「=」の直前で改行して複数行に。
+// 継続行は演算子始まり（+ や =）になる。分割点が無ければ元の1行を返す。
+function breakAtOps(seg: string): string[] {
+  const idx: number[] = [];
+  let depth = 0;
+  for (let i = 0; i < seg.length; i++) {
+    const c = seg[i];
+    if (c === '\\') { // \{ \} \( \) \[ \] は括弧として深さに反映。他は次の1文字を読み飛ばす
+      const nx = seg[i + 1];
+      if (nx === '{' || nx === '(' || nx === '[') depth++;
+      else if (nx === '}' || nx === ')' || nx === ']') depth = Math.max(0, depth - 1);
+      i += 1; continue;
+    }
+    if (c === '{' || c === '(' || c === '[') { depth++; continue; }
+    if (c === '}' || c === ')' || c === ']') { depth = Math.max(0, depth - 1); continue; }
+    if (depth !== 0) continue;
+    if (c === '+' && i > 0) idx.push(i);
+    else if (c === '=' && i > 8) idx.push(i); // 先頭付近の = (左辺が短い) は割らず「LHS=RHS」を保つ
+  }
+  if (idx.length === 0) return [seg];
+  const lines: string[] = [];
+  let start = 0;
+  for (const p of idx) {
+    if (p > start) lines.push(seg.slice(start, p));
+    start = p;
+  }
+  lines.push(seg.slice(start));
+  return lines.map((s) => s.trim()).filter((s) => s.length > 0);
+}
+
+function wrapLongDisplay(inner: string): string {
+  if (inner.length < 50) return inner; // 短い式は現状どおり1行
+  const lines: string[] = [];
+  for (const seg of splitTopQuad(inner)) {
+    if (seg.length >= 60) lines.push(...breakAtOps(seg));
+    else lines.push(seg);
+  }
+  if (lines.length <= 1) return inner; // 割れない→縮小に任せる
+  return `\\begin{gather*}${lines.join(' \\\\ ')}\\end{gather*}`;
+}
+
 function displayMath(s: string): string {
   const x = s.trim();
-  if (x.startsWith('$$')) return x; // すでにディスプレイ表示
-  // 全体が単一の $…$（途中に区切りの $ を含まない）なら $$…$$ へ昇格
-  if (x.startsWith('$') && x.endsWith('$') && x.length > 2 && x.slice(1, -1).indexOf('$') === -1) {
-    return `$$${x.slice(1, -1)}$$`;
-  }
-  // $ を全く含まない素の数式テキストも、まとめてディスプレイ表示にする
-  if (x.indexOf('$') === -1 && x.length > 0) return `$$${x}$$`;
-  return x;
+  let inner: string;
+  if (x.startsWith('$$') && x.endsWith('$$') && x.length > 4) inner = x.slice(2, -2);
+  // 全体が単一の $…$（途中に区切りの $ を含まない）
+  else if (x.startsWith('$') && x.endsWith('$') && x.length > 2 && x.slice(1, -1).indexOf('$') === -1)
+    inner = x.slice(1, -1);
+  // $ を全く含まない素の数式テキスト
+  else if (x.indexOf('$') === -1 && x.length > 0) inner = x;
+  else return x; // $ を途中に含む複合テキストは触らない
+  return `$$${wrapLongDisplay(inner)}$$`;
 }
 
 // ================= テーマ =================
@@ -1220,6 +1452,14 @@ const styles = StyleSheet.create({
   choice: { borderWidth: 1.5, borderRadius: 10, padding: 14, marginBottom: 10 },
   explainBox: { borderWidth: 1, borderRadius: 10, padding: 14, marginTop: 6, marginBottom: 8 },
   verdict: { fontSize: 15, fontWeight: 'bold', marginBottom: 6 },
+  lockBox: { borderWidth: 1.5, borderRadius: 12, padding: 18, marginTop: 6, marginBottom: 8, alignItems: 'center', gap: 8 },
+  lockEmoji: { fontSize: 30 },
+  lockTitle: { fontSize: 15, fontWeight: '700', textAlign: 'center', lineHeight: 22 },
+  lockSub: { fontSize: 13, textAlign: 'center', lineHeight: 20 },
+  lockBtn: { borderRadius: 10, paddingVertical: 12, paddingHorizontal: 22, marginTop: 4 },
+  lockBtnTxt: { color: '#ffffff', fontSize: 15, fontWeight: '800' },
+  versionFooter: { alignItems: 'center', paddingVertical: 20, marginTop: 12 },
+  versionText: { fontSize: 12 },
   navRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 12, gap: 10 },
   navButton: {
     flex: 1,
