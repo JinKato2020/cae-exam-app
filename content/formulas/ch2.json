@@ -40,6 +40,42 @@
       "figureImage": "s2ConjugateShear"
     },
     {
+      "id": "stress-strain-curve",
+      "kind": "term",
+      "term": "公称応力-ひずみ線図",
+      "formula": "$\\sigma_\\text{公称} = \\dfrac{P}{A_0}, \\qquad \\varepsilon_\\text{公称} = \\dfrac{\\Delta L}{L_0}$",
+      "body": "引張試験で材料の性質を調べる基本の曲線です。最初は直線（弾性域＝フックの法則）、降伏点を過ぎると塑性変形が始まり、変形が進むほど強くなる「加工硬化」を経て、最大値の点が引張強さ。その後は局部的に細る「くびれ」が起き、荷重が下がって破断します。応力・ひずみを「初期の」断面積・長さで割ったものが公称値、「変形中の」断面積・長さで割ったものが真応力・真ひずみです。",
+      "example": "標点距離 $L_0=50\\,\\mathrm{mm}$ の試験片が破断までに $10\\,\\mathrm{mm}$ 伸びたら、公称の破断ひずみは $\\varepsilon=10/50=0.2$（20%）。真ひずみは $\\ln(1+0.2)\\approx0.18$ と少し小さくなります。",
+      "figureImage": "s2StressStrainCurve"
+    },
+    {
+      "id": "offset-yield",
+      "kind": "term",
+      "term": "0.2%耐力（オフセット耐力）",
+      "formula": "$\\sigma_{0.2} :$ 永久ひずみ $0.2\\%$ を残す応力",
+      "body": "アルミ合金や銅合金などは、鋼のようなはっきりした降伏点が現れません。そこで「荷重を抜いても 0.2% の変形が残る応力」を降伏点の代わりの目安に使います。求め方は、ひずみ軸の 0.2%（=0.002）の点から弾性域の直線と平行な線を引き、曲線との交点の応力を読む「オフセット法」です。",
+      "example": "ひずみ 0.002 の点から傾き E の平行線を引き、応力ひずみ曲線とぶつかった高さが $\\sigma_{0.2}=250\\,\\mathrm{MPa}$ なら、それがこの材料の 0.2%耐力です。",
+      "figureImage": "s2OffsetYield"
+    },
+    {
+      "id": "strain-displacement",
+      "kind": "formula",
+      "term": "ひずみと変位の関係（微小ひずみ）",
+      "formula": "$\\varepsilon_x = \\dfrac{\\partial u}{\\partial x}, \\quad \\gamma_{xy} = \\dfrac{\\partial u}{\\partial y} + \\dfrac{\\partial v}{\\partial x}$",
+      "body": "変位（各点がどれだけ動いたか）u, v からひずみを計算する式です。垂直ひずみ ε は「同じ向きの変位が距離とともにどれだけ増えるか」、せん断ひずみ γ は「直角だった角がどれだけ崩れたか」を表します。FEM（有限要素法）が変位を先に求めてからひずみ・応力を出すのは、この関係を使うためです。",
+      "example": "$u = 0.001x$、$v = 0.004y$（mm）なら $\\varepsilon_x=0.001$、$\\varepsilon_y=0.004$、$\\gamma_{xy}=\\partial u/\\partial y+\\partial v/\\partial x=0+0=0$。",
+      "figureImage": "s2StrainDisp"
+    },
+    {
+      "id": "stress-transformation",
+      "kind": "formula",
+      "term": "応力の座標変換",
+      "formula": "$\\sigma_{x'} = \\sigma_x\\cos^2\\theta + \\sigma_y\\sin^2\\theta + \\tau_{xy}\\sin 2\\theta$",
+      "body": "同じ応力状態でも、見る面の向き（角度θ）を変えると読み取れる垂直応力・せん断応力の値は変わります。この式で任意の向きの応力に換算できます。特にせん断応力がゼロになる向きの垂直応力が「主応力」で、設計で最も重要な値になります。",
+      "example": "$\\sigma_x=100$, $\\sigma_y=20$, $\\tau_{xy}=0\\,\\mathrm{MPa}$ の面を $\\theta=45^\\circ$ 回すと $\\sigma_{x'}=100\\cdot\\tfrac12+20\\cdot\\tfrac12+0=60\\,\\mathrm{MPa}$、せん断は $\\tau_{x'y'}=-(100-20)/2=-40\\,\\mathrm{MPa}$ が生じます。",
+      "figureImage": "s2PrincipalMohr"
+    },
+    {
       "id": "mohr",
       "kind": "term",
       "term": "モールの応力円と主応力",
@@ -47,6 +83,51 @@
       "body": "面の向きを変えると応力の値が変わります。せん断がゼロになる特別な向きの垂直応力が主応力（最大・最小）で、これを図で読み取る道具がモールの応力円です。",
       "example": "σx=100, σy=20, τxy=30 (MPa) のとき 中心=60、半径$=\\sqrt{40^2+30^2}=50$。よって σ1=110 MPa, σ2=10 MPa。",
       "figureImage": "s2MohrCompare"
+    },
+    {
+      "id": "bar-elongation",
+      "kind": "formula",
+      "term": "棒の伸び",
+      "formula": "$\\delta = \\dfrac{PL}{EA}$",
+      "body": "断面積 A・長さ L・縦弾性係数 E の棒を軸方向の力 P で引くときの伸びです。フックの法則 $\\sigma=E\\varepsilon$ に $\\sigma=P/A$、$\\varepsilon=\\delta/L$ を代入して得られます。断面や材料が途中で変わる棒は、区間ごとに計算して足し合わせ、太さが連続的に変わる棒は積分します。",
+      "example": "$P=10\\,\\mathrm{kN}$、$L=1\\,\\mathrm{m}$、$A=100\\,\\mathrm{mm^2}$、$E=200\\,\\mathrm{GPa}$ のとき $\\delta = \\dfrac{10000\\times1000}{200000\\times100}=0.5\\,\\mathrm{mm}$。",
+      "figureImage": "s2PoissonBar"
+    },
+    {
+      "id": "composite-bar",
+      "kind": "term",
+      "term": "組合せ棒・不静定と適合条件",
+      "formula": "剛性 $k=\\dfrac{EA}{L}$（並列は $F_i=k_i\\,\\delta$、直列は同じ軸力）",
+      "body": "力のつり合いだけでは軸力が決まらない構造を「不静定」といいます。このときは変形のつじつま（＝適合条件：結合部で伸びが一致する等）を追加して解きます。2本を剛体でつないで並列にした棒は、各棒が伸び δ を共有し、固い棒（k が大きい方）ほど大きな力を分担します。",
+      "example": "並列2棒で $k_1=4\\times10^4$、$k_2=2\\times10^4\\,\\mathrm{N/mm}$、荷重 $P=30\\,\\mathrm{kN}$ のとき共通の伸び $\\delta=P/(k_1+k_2)=0.5\\,\\mathrm{mm}$、太い棒の分担は $F_1=k_1\\delta=20\\,\\mathrm{kN}$。",
+      "figureImage": "s2RigidPlate2Bars"
+    },
+    {
+      "id": "truss-joint",
+      "kind": "term",
+      "term": "トラスと節点法",
+      "formula": "各節点で $\\sum F_x = 0, \\quad \\sum F_y = 0$",
+      "body": "細い棒（部材）をピンでつないだ骨組みがトラスです。ピン結合なので各部材は「引張か圧縮の軸力だけ」を受け、曲げは生じません（モーメントのつり合いは不要）。1つの節点に集まる力を水平・鉛直に分解してつり合わせる「節点法」で、部材の内力を順に求めます。",
+      "example": "天井から $30^\\circ$ と $60^\\circ$ で張った2部材の交点に鉛直荷重 P を吊るすと、$x$: $S_2\\cos60^\\circ - S_1\\cos30^\\circ=0$、$y$: $S_2\\sin60^\\circ + S_1\\sin30^\\circ = P$ の2式から $S_1,S_2$ が決まります。",
+      "figureImage": "s2Truss2Bar"
+    },
+    {
+      "id": "torsion",
+      "kind": "formula",
+      "term": "丸軸のねじり",
+      "formula": "$T = G I_p \\dfrac{\\theta}{L}, \\qquad \\tau_{\\max} = \\dfrac{T\\,r}{I_p}, \\qquad I_p = \\dfrac{\\pi}{32}\\left(D^4-d^4\\right)$",
+      "body": "丸い軸をねじると、断面には中心からの距離に比例したせん断応力が生じ、外周で最大になります。ねじりにくさは断面の「極断面二次モーメント $I_p$」で決まり、中実丸軸は $\\pi D^4/32$、中空は外径・内径の4乗の差で効きます。表面は純せん断状態なので、主応力は軸から45°の向きに現れます。",
+      "example": "外径 $D=40$、内径 $d=20\\,\\mathrm{mm}$ なら $I_p=\\dfrac{\\pi}{32}(40^4-20^4)\\approx2.36\\times10^5\\,\\mathrm{mm^4}$。許容 $\\tau=50\\,\\mathrm{MPa}$ のとき許容トルク $T=\\tau I_p/(D/2)\\approx590\\,\\mathrm{N\\!\\cdot\\!m}$。",
+      "figureImage": "s2HollowShaft"
+    },
+    {
+      "id": "beam-reactions",
+      "kind": "term",
+      "term": "反力・せん断力図・曲げモーメント図",
+      "formula": "$\\sum F = 0, \\quad \\sum M = 0$（つり合い）",
+      "body": "はりを解く出発点は、支点の反力を力とモーメントのつり合いから求めることです。次に、はりを任意の位置で切って「切り口より片側」の力・モーメントを合計すると、その位置のせん断力 V と曲げモーメント M が分かります。位置ごとに並べた図が SFD（せん断力図）・BMD（曲げモーメント図）で、最大曲げモーメントの位置＝最も危険な断面です。自由体図（FBD）はこの計算の下書きです。",
+      "example": "スパン $l$ の単純支持はりの中央に P を載せると、両端反力は各 $P/2$、中央で曲げモーメントが最大 $M_{\\max}=Pl/4$ になります。",
+      "figureImage": "s2BMD"
     },
     {
       "id": "bending",
@@ -67,6 +148,42 @@
       "figureImage": "s2CantileverUDL"
     },
     {
+      "id": "beam-deflection",
+      "kind": "formula",
+      "term": "はりのたわみと曲げ剛性EI",
+      "formula": "$\\delta \\propto \\dfrac{1}{EI}\\qquad$（中央集中荷重の単純支持はり: $\\delta=\\dfrac{PL^3}{48EI}$）",
+      "body": "はりのたわみ（曲がり量）は、縦弾性係数 E と断面二次モーメント I の積「曲げ剛性 EI」に反比例します。EI を大きくすればたわみは小さくなります。荷重の掛け方や支持のしかたで係数（例では 48）は変わりますが、「EI に反比例」「スパン L の3乗に比例」という関係は共通です。",
+      "example": "中央たわみを $1/4$ にしたいとき、E と I をそれぞれ2倍にすれば $EI$ が4倍になり、たわみは $1/4$ になります（断面を大きく・材料を固くの両方が効く）。",
+      "figureImage": "s2BeamDeflEI"
+    },
+    {
+      "id": "thin-cylinder",
+      "kind": "formula",
+      "term": "薄肉円筒の応力",
+      "formula": "$\\sigma_\\theta = \\dfrac{pd}{2t}, \\qquad \\sigma_a = \\dfrac{pd}{4t} = \\dfrac{\\sigma_\\theta}{2}$",
+      "body": "内圧 p を受ける薄肉の円筒（径 d、板厚 t）では、円周方向の応力（フープ応力）$\\sigma_\\theta$ が最も大きく、軸方向応力 $\\sigma_a$ はその半分です。だから圧力容器は縦（軸方向）の割れ＝周方向応力による破れが起きやすくなります。板厚が径に比べて十分薄い（目安 d/t≳20）ときに使える近似です。",
+      "example": "$p=2\\,\\mathrm{MPa}$、$d=1\\,\\mathrm{m}=1000\\,\\mathrm{mm}$、$t=5\\,\\mathrm{mm}$ なら $\\sigma_\\theta=\\dfrac{2\\times1000}{2\\times5}=200\\,\\mathrm{MPa}$、$\\sigma_a=100\\,\\mathrm{MPa}$。",
+      "figureImage": "s2ThinCylinder"
+    },
+    {
+      "id": "yield-criteria",
+      "kind": "term",
+      "term": "降伏条件（3つの説）と相当応力",
+      "formula": "$\\sigma_M = \\sqrt{\\dfrac{(\\sigma_1-\\sigma_2)^2+(\\sigma_2-\\sigma_3)^2+(\\sigma_3-\\sigma_1)^2}{2}}$（ミーゼス）",
+      "body": "多軸の複雑な応力が「いつ降伏するか」を1つの値で判定するのが相当応力です。代表的な3説は、最大主応力説（$\\max|\\sigma_i|=\\sigma_y$・脆性材向き）、最大せん断応力説（トレスカ）、せん断ひずみエネルギー説（ミーゼス）。延性金属にはミーゼスが最も広く使われ、ミーゼス相当応力 $\\sigma_M$ が降伏応力 $\\sigma_y$ を超えたら降伏、と判断します。静水圧（全方向等しい応力）だけでは降伏しないのが特徴です。",
+      "example": "$\\sigma_1=250$, $\\sigma_2=100$, $\\sigma_3=0\\,\\mathrm{MPa}$ なら $\\sigma_M=\\sqrt{\\tfrac{150^2+100^2+250^2}{2}}\\approx218\\,\\mathrm{MPa}$。$\\sigma_y=300$ なら降伏せず安全側。",
+      "figureImage": "s2YieldSurface"
+    },
+    {
+      "id": "brittle-ductile",
+      "kind": "term",
+      "term": "脆性材料・延性材料の破損則",
+      "formula": "脆性 → 最大主応力／延性 → ミーゼス相当応力",
+      "body": "壊れ方が違えば、着目すべき応力も変わります。鋳鉄・コンクリート・ガラスなどの脆性材料は、粘らずに割れるので「最大主応力（引張）」が引張強さに達するかで評価します。鋼などの延性材料は、降伏して塑性変形してから壊れるので「せん断ひずみエネルギー説（ミーゼス相当応力）」で降伏を判定します。同じ部品でも材料の種類で使う破損則を選ぶことが大切です。",
+      "example": "多軸引張を受ける部品が鋳鉄なら最大主応力 $\\sigma_1$ を引張強さと比較、構造用鋼ならミーゼス応力 $\\sigma_M$ を降伏応力と比較します。",
+      "figureImage": "s2BrittleDuctile"
+    },
+    {
       "id": "stress-concentration",
       "kind": "term",
       "term": "応力集中",
@@ -83,6 +200,33 @@
       "body": "静的には壊れない小さな力でも、繰り返し受けると壊れるのが疲労です。平均応力σmと振幅応力σaの組み合わせが安全かを判定するのがグッドマン線図。線の内側なら安全側です。",
       "example": "疲労限 σw=200 MPa、引張強さ σB=400 MPa のとき、平均応力 σm=200 MPa なら許容振幅は $\\sigma_a=200\\times(1-200/400)=100\\,\\mathrm{MPa}$。",
       "figureImage": "s2GoodmanDiagram"
+    },
+    {
+      "id": "thermal-stress",
+      "kind": "formula",
+      "term": "熱ひずみと熱応力",
+      "formula": "$\\varepsilon_T = \\alpha\\,\\Delta T, \\qquad \\sigma_T = -E\\,\\alpha\\,\\Delta T$（完全拘束時）",
+      "body": "温度が $\\Delta T$ 変わると、材料は $\\alpha\\Delta T$ だけ伸び縮みしようとします（α＝線膨張係数）。自由に伸び縮みできれば応力は生じませんが、両端を固定するなど変形を妨げられると熱応力が発生します。全体を完全に拘束すると $\\sigma_T=-E\\alpha\\Delta T$（昇温で圧縮）。一部だけ温度が変わる場合も、周りの材料が拘束するため熱応力が生じます。",
+      "example": "鋼（$E=206\\,\\mathrm{GPa}$、$\\alpha=12\\times10^{-6}/\\mathrm{K}$）を両端固定で $\\Delta T=50\\,\\mathrm{K}$ 昇温すると $\\sigma_T=-206000\\times12\\times10^{-6}\\times50\\approx-124\\,\\mathrm{MPa}$（圧縮）。",
+      "figureImage": "s2TwoBarsThermal"
+    },
+    {
+      "id": "material-test",
+      "kind": "term",
+      "term": "材料試験（じん性・硬さ・高温強度）",
+      "formula": "シャルピー→じん性 ／ ビッカース→硬さ ／ クリープ→高温強度",
+      "body": "目的に応じた代表的な試験があります。シャルピー衝撃試験は、切欠きを付けた試験片を振子ハンマで打ち割り、吸収エネルギーから「粘り強さ（じん性）」を測ります。ビッカース硬さ試験は、対面角136°のダイヤモンド四角錐圧子でくぼみを付け、荷重÷くぼみ表面積で「硬さ」を求めます。クリープ試験は、高温で一定応力を掛け続け、時間とともに進む変形と破断を調べ「高温強度」を評価します。",
+      "example": "高温で長時間使うタービン部品はクリープ試験、耐衝撃部材は低温でのシャルピー吸収エネルギー、表面の耐摩耗性はビッカース硬さで評価する、という使い分けをします。",
+      "figureImage": "s2MaterialTests"
+    },
+    {
+      "id": "stress-wave",
+      "kind": "formula",
+      "term": "応力波の伝ぱ速度",
+      "formula": "$C = \\sqrt{\\dfrac{E}{\\rho}}$",
+      "body": "棒を衝撃で叩くと、応力の変化が波となって棒の中を伝わります。その速さ C は縦弾性係数 E と密度 ρ だけで決まり、加えた応力の大きさには関係しません。固いほど（E 大）速く、重いほど（ρ 大）遅くなります。一軸衝撃では、粒子速度 V と応力に $\\sigma=EV/C$ の関係があります。",
+      "example": "炭素鋼は $E\\approx206\\,\\mathrm{GPa}$、$\\rho\\approx7850\\,\\mathrm{kg/m^3}$ なので $C=\\sqrt{206\\times10^9/7850}\\approx5100\\,\\mathrm{m/s}$。",
+      "figureImage": "s2StressWave"
     }
   ]
 }
