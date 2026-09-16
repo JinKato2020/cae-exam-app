@@ -1,8 +1,44 @@
 {
   "chapter": 5,
   "title": "第5章 有限要素法の実践",
-  "intro": "第4章の部品を使って実際に解く段階です。全体剛性行列の組立て、境界条件の入れ方、分布荷重や自重の扱い、平面応力/平面ひずみ・軸対称の選び方、熱応力までを押さえます。",
+  "intro": "有限要素法を実際に使うための実装知識を扱います。アイソパラメトリック要素(座標変換・ヤコビ行列・形状関数)、高次要素、外荷重・境界条件の与え方、変位境界条件の処理、熱応力(初期ひずみ法)、残留応力(焼きばめ・貼合わせ)までを順に押さえます。",
   "items": [
+    {
+      "id": "isoparametric",
+      "kind": "term",
+      "term": "アイソパラメトリック要素",
+      "formula": "$x=\\sum_i N_i x_i,\\qquad u=\\sum_i N_i u_i$",
+      "body": "要素内の位置座標と変位を、まったく同じ形状関数 $N_i$ で補間する要素です。座標と変位に同じ関数を使うため、座標変換に必要な微分と、ひずみ-変位マトリックス[B]に必要な微分を同じ式で計算でき、定式化・プログラム化が容易になります。形状関数の次数は要素タイプ次第(4節点=1次、8節点=2次)。",
+      "example": "4節点要素は1次(線形)のiso要素、8節点要素は2次のiso要素。曲げ(2次変形)は1次要素1つでは表現できない。",
+      "figureImage": null
+    },
+    {
+      "id": "shape-func-4node",
+      "kind": "formula",
+      "term": "4節点四辺形の形状関数",
+      "formula": "$N_i=\\tfrac{1}{4}(1+\\xi_i\\xi)(1+\\eta_i\\eta)$",
+      "body": "正規化局所座標 $(\\xi,\\eta)\\in[-1,1]$ で定義される4節点四辺形の形状関数です。節点1$(-1,-1)$,2$(1,-1)$,3$(1,1)$,4$(-1,1)$ に対して定まり、各 $N_i$ は自分の節点で1・他節点で0、要素内のどこでも和は1になります。",
+      "example": "$N_1=(1-\\xi)(1-\\eta)/4,\\ N_2=(1+\\xi)(1-\\eta)/4,\\ N_3=(1+\\xi)(1+\\eta)/4,\\ N_4=(1-\\xi)(1+\\eta)/4$。",
+      "figureImage": null
+    },
+    {
+      "id": "jacobian",
+      "kind": "formula",
+      "term": "ヤコビ行列",
+      "formula": "$J=\\begin{bmatrix}\\partial x/\\partial\\xi & \\partial y/\\partial\\xi\\\\ \\partial x/\\partial\\eta & \\partial y/\\partial\\eta\\end{bmatrix}$",
+      "body": "iso要素の形状関数は局所座標 $(\\xi,\\eta)$ で定義されますが、ひずみを与える[B]には全体座標 $(x,y)$ での微分が要ります。ヤコビ行列は局所↔全体の微分を結び、その逆行列 $J^{-1}$ を掛けて全体座標での微分 $\\partial N/\\partial x,\\ \\partial N/\\partial y$ を求めます。$\\det J$ は局所→全体の面積(体積)拡大率で、ガウス数値積分の重みにも使われます。",
+      "example": "$\\{\\partial N/\\partial\\xi;\\ \\partial N/\\partial\\eta\\}=J\\{\\partial N/\\partial x;\\ \\partial N/\\partial y\\}$ より $\\{\\partial N/\\partial x;\\ \\partial N/\\partial y\\}=J^{-1}\\{\\partial N/\\partial\\xi;\\ \\partial N/\\partial\\eta\\}$。",
+      "figureImage": null
+    },
+    {
+      "id": "higher-order",
+      "kind": "term",
+      "term": "高次要素(セレンディピティ/ラグランジュ)",
+      "formula": "変位が $n$ 次 $\\Rightarrow$ こう配(ひずみ)は $(n-1)$ 次",
+      "body": "節点をなるべく境界に置き内部節点を減らすのがセレンディピティ要素(例:20節点六面体)、内部節点も規則的に配置するのがラグランジュ要素です。ひずみは変位の微分なので次数が1つ下がり、8節点四辺形は変位が概ね2次・ひずみは概ね1次で近似されます。",
+      "example": "三角形1次要素は変位1次・ひずみ0次(要素内一定)。8節点四辺形は変位2次・ひずみ1次。",
+      "figureImage": null
+    },
     {
       "id": "assembly",
       "kind": "term",
@@ -62,6 +98,24 @@
       "body": "温まると膨張しようとしますが、両端が完全に固定されていると伸びられず、内部に圧縮応力が生じます。これが熱応力です。膨張を妨げるほど大きくなり、マイナス符号は圧縮を表します。",
       "example": "E=200 GPa、$\\alpha=12\\times10^{-6}$ /K、ΔT=40 K のとき $\\sigma=-200\\times10^9\\times12\\times10^{-6}\\times40=-96$ MPa（96 MPaの圧縮）。",
       "figureImage": "f5InitStrain"
+    },
+    {
+      "id": "thermal-strain-vector",
+      "kind": "formula",
+      "term": "熱ひずみベクトルと初期ひずみ法",
+      "formula": "$\\{\\varepsilon_0\\}=\\{\\alpha\\theta,\\ \\alpha\\theta,\\ 0\\}^{T},\\qquad \\{\\sigma\\}=[D](\\{\\varepsilon\\}-\\{\\varepsilon_0\\})$",
+      "body": "温度変化 $\\theta$ による熱ひずみは各垂直方向に等しく生じ、せん断ひずみは生じません(2次元では $\\{\\alpha\\theta,\\ \\alpha\\theta,\\ 0\\}$)。これを初期ひずみ $\\varepsilon_0$ として扱い、応力は全ひずみから初期ひずみを引いた弾性ひずみで $\\sigma=[D](\\varepsilon-\\varepsilon_0)$ と計算します。等価節点力 $\\int B^{T}[D]\\varepsilon_0\\,dV$ として右辺に組み込みます。",
+      "example": "完全拘束($\\varepsilon=0$)で加熱すると $\\sigma=-[D]\\varepsilon_0$ の圧縮応力。線膨張係数 $\\alpha$ の入力が必要。",
+      "figureImage": "f5InitStrain"
+    },
+    {
+      "id": "residual-stress",
+      "kind": "formula",
+      "term": "残留応力の初期ひずみ置換(焼きばめ・貼合わせ)",
+      "formula": "$\\{\\sigma\\}=[D](\\{\\varepsilon\\}-\\{\\varepsilon_I\\})\\quad(\\varepsilon_I=\\text{初期ひずみ})$",
+      "body": "塑性ひずみや幾何学的な干渉量を初期ひずみ $\\varepsilon_I$ に置き換えて残留応力を解析します。焼きばめ(しめしろ $\\delta$、径 $D$)では丸軸に $x,y,z$ 方向 $\\delta/D$ の初期ひずみ(厚板側は $-\\delta/D$)を与えて線形弾性解析します。引張状態で接着し除荷する場合は、部材を自然形状に戻す『逆符号』の初期ひずみを与えます。",
+      "example": "焼きばめ:丸軸に $+\\delta/D$、厚板に $-\\delta/D$。引張 $\\sigma$ で接着→除荷:与える初期ひずみは $-\\sigma/E$ など逆符号。",
+      "figureImage": "f5ShrinkFit"
     },
     {
       "id": "convergence",
