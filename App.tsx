@@ -77,9 +77,13 @@ function payTargetOf(q: Question): PayTarget | null {
   return e ? { key: e.key, title: e.title } : null;
 }
 
+// 分野順は固体→熱流体→振動。各分野は1級を上に。熱流体・振動は章がまだ無いので
+// ready:false＝「準備中」表示（タップ不可・薄表示。問題/公式タブ側が ready で出し分ける）。
 const COURSES: Course[] = [
-  { id: 'solid-2', name: '固体力学 2級', chapters: solid2Chapters(), ready: true },
   { id: 'solid-1', name: '固体力学 1級', chapters: solid1Chapters(), ready: true },
+  { id: 'solid-2', name: '固体力学 2級', chapters: solid2Chapters(), ready: true },
+  { id: 'thermal', name: '熱流体力学', chapters: [], ready: false },
+  { id: 'vibration', name: '振動', chapters: [], ready: false },
 ];
 
 type Tab = 'home' | 'study' | 'formula' | 'settings';
@@ -1158,30 +1162,23 @@ function SettingsTab(props: {
         })}
       </View>
 
-      <Text style={[styles.sectionHead, { color: t.text }]}>買い切り（級ごと）</Text>
+      <Text style={[styles.sectionHead, { color: t.text }]}>購入</Text>
       <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
         {ENTITLEMENTS.map((e, i) => {
           const owned = props.devPro || props.owned.includes(e.key);
           return (
-            <View key={e.key}>
-              <InfoRow
-                t={t}
-                label={e.title}
-                value={owned ? '解除済み' : '未購入'}
-                last={i === ENTITLEMENTS.length - 1}
-              />
-              {!owned ? (
-                <Button
-                  t={t}
-                  kind="primary"
-                  label={`${e.title}を購入する`}
-                  onPress={() => props.onOpenPaywall({ key: e.key, title: e.title })}
-                />
-              ) : null}
-            </View>
+            <InfoRow
+              key={e.key}
+              t={t}
+              label={e.title}
+              value={owned ? '解除済み' : '未購入'}
+              last={i === ENTITLEMENTS.length - 1}
+            />
           );
         })}
       </View>
+      {/* 級ごとの個別ボタンはやめ、「プレミアムの購入」1つに集約。押すと購入画面（Paywallで級を選ぶ）を開く。 */}
+      <Button t={t} kind="primary" label="プレミアムの購入" onPress={() => props.onOpenPaywall(null)} />
       <Button t={t} kind="ghost" label="購入を復元する" onPress={props.onRestoreAll} />
 
       <Text style={[styles.sectionHead, { color: t.text }]}>学習記録</Text>
