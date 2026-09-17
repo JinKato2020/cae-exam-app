@@ -2,9 +2,11 @@ import { useEffect, useMemo, useState } from 'react';
 import {
   Alert,
   Image,
+  Linking,
   Pressable,
   ScrollView,
   StyleSheet,
+  Switch,
   Text,
   useColorScheme,
   View,
@@ -43,6 +45,7 @@ import {
   type FieldCompare,
 } from './src/progress';
 import Paywall, { type PayTarget } from './src/pro/Paywall';
+import { TERMS_URL, PRIVACY_URL } from './src/config/revenuecat';
 import {
   loadProState,
   saveOwned,
@@ -1190,6 +1193,36 @@ function SettingsTab(props: {
           計算力学技術者（CAE）試験の対策アプリです。収録している問題・解説はすべてオリジナルで作成しています。学習の記録は端末内に保存されます。ログインすると、記録が安全にクラウドへバックアップされ、機種変更や再インストールのあとでも引き継げます。
         </Text>
       </View>
+
+      {/* 審査必須：利用規約・プライバシーポリシーへの導線（購入画面だけでなく設定からも常に到達可能に）。 */}
+      <Text style={[styles.sectionHead, { color: t.text }]}>規約</Text>
+      <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
+        <Pressable onPress={() => Linking.openURL(TERMS_URL)} style={{ paddingVertical: 10 }} hitSlop={8}>
+          <Text style={[styles.bodyText, { color: t.primary }]}>利用規約</Text>
+        </Pressable>
+        <View style={{ height: 1, backgroundColor: t.border }} />
+        <Pressable onPress={() => Linking.openURL(PRIVACY_URL)} style={{ paddingVertical: 10 }} hitSlop={8}>
+          <Text style={[styles.bodyText, { color: t.primary }]}>プライバシーポリシー</Text>
+        </Pressable>
+      </View>
+
+      {/* 開発者用：開発ビルド(__DEV__=true)のときだけ表示。TestFlight/本番では出ないので一般ユーザーには見えない。
+          本番でも切り替えたいときは最下部バージョンの7回タップ（隠しジェスチャ）を使う。 */}
+      {__DEV__ ? (
+        <>
+          <Text style={[styles.sectionHead, { color: t.text }]}>開発者用（開発ビルドのみ表示）</Text>
+          <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
+            <View style={styles.infoRow}>
+              <Text style={[styles.infoLabel, { color: t.text }]}>Proモード全解除（devPro）</Text>
+              <Switch
+                value={props.devPro}
+                onValueChange={props.onToggleDevPro}
+                trackColor={{ true: t.primary, false: t.border }}
+              />
+            </View>
+          </View>
+        </>
+      ) : null}
 
       {/* 最下部のバージョン表示。7回タップで開発用ロック解除（隠しジェスチャ）。 */}
       <Pressable onPress={onTapVersion} style={styles.versionFooter} hitSlop={8}>
