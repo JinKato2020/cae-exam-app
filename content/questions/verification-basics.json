@@ -32,7 +32,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "ver11HoleQtr",
-      "figureHint": "白地660x420。円孔付き帯板の1/4対称モデル。最小断面の公称応力σnomと孔縁の応力集中σmax=α·σnomの位置を矢印で示す"
+      "figureHint": "白地660x420。円孔付き帯板の1/4対称モデル。最小断面の公称応力σnomと孔縁の応力集中σmax=α·σnomの位置を矢印で示す",
+      "relatedFormulas": [
+        "vv"
+      ]
     },
     {
       "id": "ver-11-1b",
@@ -57,7 +60,10 @@
       "role": "branch",
       "figure": "helpful",
       "figureImage": "ver11Singularity",
-      "figureHint": "白地660x420。再入隅角(凹角)先端で、メッシュ細分化に伴い応力ピークが発散する模式(応力 対 要素サイズの曲線を添える)"
+      "figureHint": "白地660x420。再入隅角(凹角)先端で、メッシュ細分化に伴い応力ピークが発散する模式(応力 対 要素サイズの曲線を添える)",
+      "relatedFormulas": [
+        "singularity"
+      ]
     },
     {
       "id": "ver-11-1c",
@@ -80,7 +86,10 @@
       "reviewed": true,
       "officialRef": "問11-1",
       "role": "branch",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "singularity"
+      ]
     },
     {
       "id": "ver-11-2",
@@ -103,7 +112,10 @@
       "reviewed": true,
       "officialRef": "問11-2",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "vv"
+      ]
     },
     {
       "id": "ver-11-3",
@@ -128,7 +140,11 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "ver11CylExtrap",
-      "figureHint": "白地660x420。内圧円筒の軸対称モデルで、内表面から5mm・15mmの要素中心応力を直線外挿し距離0の内表面応力を推定する図"
+      "figureHint": "白地660x420。内圧円筒の軸対称モデルで、内表面から5mm・15mmの要素中心応力を直線外挿し距離0の内表面応力を推定する図",
+      "relatedFormulas": [
+        "convergence-order",
+        "error-estimate"
+      ]
     },
     {
       "id": "ver-11-3b",
@@ -153,7 +169,10 @@
       "role": "branch",
       "figure": "helpful",
       "figureImage": "ver11HpMethod",
-      "figureHint": "白地660x420。左=同じ領域を細かく再分割(h法)、右=要素内の補間次数を1次から2次へ上げる(p法)の対比"
+      "figureHint": "白地660x420。左=同じ領域を細かく再分割(h法)、右=要素内の補間次数を1次から2次へ上げる(p法)の対比",
+      "relatedFormulas": [
+        "hp-method"
+      ]
     },
     {
       "id": "ver-11-3c",
@@ -176,7 +195,11 @@
       "reviewed": true,
       "officialRef": "問11-3",
       "role": "branch",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "error-estimate",
+        "convergence-order"
+      ]
     },
     {
       "id": "ver-11-3d",
@@ -199,7 +222,10 @@
       "reviewed": true,
       "officialRef": "問11-3",
       "role": "branch",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "convergence-order"
+      ]
     },
     {
       "id": "ver-11-3e",
@@ -224,7 +250,10 @@
       "role": "branch",
       "figure": "helpful",
       "figureImage": "ver11StressJump",
-      "figureHint": "白地660x420。共有節点で応力120と150が食い違う隣接2要素、ジャンプ量30と平均135を示す"
+      "figureHint": "白地660x420。共有節点で応力120と150が食い違う隣接2要素、ジャンプ量30と平均135を示す",
+      "relatedFormulas": [
+        "error-estimate"
+      ]
     },
     {
       "id": "ver-11-4",
@@ -247,7 +276,10 @@
       "reviewed": true,
       "officialRef": "問11-4",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "vv"
+      ]
     },
     {
       "id": "ver-11-4b",
@@ -270,7 +302,10 @@
       "reviewed": true,
       "officialRef": "問11-4",
       "role": "branch",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "sanity-checks"
+      ]
     },
     {
       "id": "ver-11-5",
@@ -295,7 +330,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "ver11BeamPos",
-      "figureHint": "白地660x420。単純支持はりの左端から200mmに集中荷重、たわみ曲線が左右非対称で最大たわみ位置が中央寄りにずれる様子"
+      "figureHint": "白地660x420。単純支持はりの左端から200mmに集中荷重、たわみ曲線が左右非対称で最大たわみ位置が中央寄りにずれる様子",
+      "relatedFormulas": [
+        "sanity-checks"
+      ]
     },
     {
       "id": "ver-11-5b",
@@ -320,7 +358,10 @@
       "role": "branch",
       "figure": "helpful",
       "figureImage": "ver11SymmetryBreak",
-      "figureHint": "白地660x420。対称形状・対称荷重なのに変形が左右非対称に出た様子(正:対称/誤:非対称)を並べる"
+      "figureHint": "白地660x420。対称形状・対称荷重なのに変形が左右非対称に出た様子(正:対称/誤:非対称)を並べる",
+      "relatedFormulas": [
+        "sanity-checks"
+      ]
     },
     {
       "id": "ver-11-6",
@@ -343,7 +384,10 @@
       "reviewed": true,
       "officialRef": "問11-6",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "sanity-checks"
+      ]
     },
     {
       "id": "ver-11-7",
@@ -366,7 +410,10 @@
       "reviewed": true,
       "officialRef": "問11-7",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "sanity-checks"
+      ]
     },
     {
       "id": "ver-11-8",
@@ -391,7 +438,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "ver11RigidFBD",
-      "figureHint": "白地660x420。片持ちはり1+長さaの剛体要素+引張はり2の接合点で、軸力Pの作用線ずれがモーメントP·aを生むフリーボディダイアグラム"
+      "figureHint": "白地660x420。片持ちはり1+長さaの剛体要素+引張はり2の接合点で、軸力Pの作用線ずれがモーメントP·aを生むフリーボディダイアグラム",
+      "relatedFormulas": [
+        "sanity-checks"
+      ]
     },
     {
       "id": "ver-11-8b",
@@ -416,7 +466,10 @@
       "role": "branch",
       "figure": "helpful",
       "figureImage": "ver11StVenant",
-      "figureHint": "白地660x420。端部で異なる局所荷重の与え方(点/分布)が、離れた断面ではほぼ同一の応力分布へ収束する図"
+      "figureHint": "白地660x420。端部で異なる局所荷重の与え方(点/分布)が、離れた断面ではほぼ同一の応力分布へ収束する図",
+      "relatedFormulas": [
+        "st-venant"
+      ]
     },
     {
       "id": "ver-11-9",
@@ -439,7 +492,10 @@
       "reviewed": true,
       "officialRef": "問11-9",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "sanity-checks"
+      ]
     },
     {
       "id": "ver-11-10",
@@ -464,7 +520,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "ver11WallTemp",
-      "figureHint": "白地660x420。円筒断熱壁(内レンガ+外ブロック)の半径方向定常温度分布。レンガ側は緩やか・ブロック側は急な勾配、外表面で温度飛びを示す"
+      "figureHint": "白地660x420。円筒断熱壁(内レンガ+外ブロック)の半径方向定常温度分布。レンガ側は緩やか・ブロック側は急な勾配、外表面で温度飛びを示す",
+      "relatedFormulas": [
+        "sanity-checks"
+      ]
     },
     {
       "id": "ver-11-11",
@@ -487,7 +546,10 @@
       "reviewed": true,
       "officialRef": "問11-11",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "sanity-checks"
+      ]
     },
     {
       "id": "ver-11-11b",
@@ -512,7 +574,10 @@
       "role": "branch",
       "figure": "helpful",
       "figureImage": "ver11RigidMode",
-      "figureHint": "白地660x420。拘束不足で宙に浮いた物体が並進+回転する剛体モードを矢印で示す(応力ゼロを併記)"
+      "figureHint": "白地660x420。拘束不足で宙に浮いた物体が並進+回転する剛体モードを矢印で示す(応力ゼロを併記)",
+      "relatedFormulas": [
+        "sanity-checks"
+      ]
     },
     {
       "id": "ver-11-11c",
@@ -537,7 +602,10 @@
       "role": "branch",
       "figure": "helpful",
       "figureImage": "ver11TriLoad",
-      "figureHint": "白地660x420。長さ100mmの辺に一端0・他端6N/mmの三角形分布線荷重、面積=総荷重300Nを示す"
+      "figureHint": "白地660x420。長さ100mmの辺に一端0・他端6N/mmの三角形分布線荷重、面積=総荷重300Nを示す",
+      "relatedFormulas": [
+        "sanity-checks"
+      ]
     },
     {
       "id": "ver-11-12",
@@ -560,7 +628,10 @@
       "reviewed": true,
       "officialRef": "問11-12",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "vv"
+      ]
     },
     {
       "id": "ver-11-13",
@@ -583,7 +654,10 @@
       "reviewed": true,
       "officialRef": "問11-13",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "vv"
+      ]
     },
     {
       "id": "ver-11-14",
@@ -606,7 +680,10 @@
       "reviewed": true,
       "officialRef": "問11-14",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "vv"
+      ]
     },
     {
       "id": "ver-11-15",
@@ -629,7 +706,10 @@
       "reviewed": true,
       "officialRef": "問11-15",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "vv"
+      ]
     },
     {
       "id": "ver-11-16",
@@ -654,7 +734,11 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "ver11VVProc",
-      "figureHint": "白地660x420。ASME V&V手順図。現実現象→概念モデルから左に数理モデル(A)→計算モデル(B)、右に物理モデル(D)、A→B間にコード検証(C)の空欄を配置した縦フロー"
+      "figureHint": "白地660x420。ASME V&V手順図。現実現象→概念モデルから左に数理モデル(A)→計算モデル(B)、右に物理モデル(D)、A→B間にコード検証(C)の空欄を配置した縦フロー",
+      "relatedFormulas": [
+        "vv",
+        "code-sol-verif"
+      ]
     },
     {
       "id": "ver-11-17",
@@ -677,7 +761,11 @@
       "reviewed": true,
       "officialRef": "問11-17",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "vv",
+        "code-sol-verif"
+      ]
     }
   ]
 }

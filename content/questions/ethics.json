@@ -53,7 +53,10 @@
       "reviewed": true,
       "officialRef": "問13-2",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "no-falsification"
+      ]
     },
     {
       "id": "eth-13-3",
@@ -76,7 +79,10 @@
       "reviewed": true,
       "officialRef": "問13-3",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "ip-confidentiality"
+      ]
     },
     {
       "id": "eth-13-4",
@@ -99,7 +105,10 @@
       "reviewed": true,
       "officialRef": "問13-4",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "ip-confidentiality"
+      ]
     },
     {
       "id": "eth-13-5",
@@ -122,7 +131,10 @@
       "reviewed": true,
       "officialRef": "問13-5",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "ip-confidentiality"
+      ]
     },
     {
       "id": "eth-13-6",
@@ -145,7 +157,10 @@
       "reviewed": true,
       "officialRef": "問13-6",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "ip-confidentiality"
+      ]
     },
     {
       "id": "eth-13-7",
@@ -191,7 +206,10 @@
       "reviewed": true,
       "officialRef": "問13-8",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "whistleblowing"
+      ]
     },
     {
       "id": "eth-13-9",
@@ -214,7 +232,11 @@
       "reviewed": true,
       "officialRef": "問13-9",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "ip-confidentiality",
+        "conflict-of-interest"
+      ]
     },
     {
       "id": "eth-13-10",
@@ -260,7 +282,11 @@
       "reviewed": true,
       "officialRef": "問13-11",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "verification-duty",
+        "whistleblowing"
+      ]
     },
     {
       "id": "eth-13-12",
@@ -283,7 +309,10 @@
       "reviewed": true,
       "officialRef": "問13-12",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "ip-confidentiality"
+      ]
     },
     {
       "id": "eth-13-2-b1",
@@ -306,7 +335,11 @@
       "reviewed": true,
       "officialRef": "問13-2",
       "role": "branch",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "no-falsification",
+        "limits-disclosure"
+      ]
     },
     {
       "id": "eth-13-2-b2",
@@ -329,7 +362,10 @@
       "reviewed": true,
       "officialRef": "問13-2",
       "role": "branch",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "no-falsification"
+      ]
     },
     {
       "id": "eth-13-4-b1",
@@ -352,7 +388,10 @@
       "reviewed": true,
       "officialRef": "問13-4",
       "role": "branch",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "ip-confidentiality"
+      ]
     },
     {
       "id": "eth-13-6-b1",
@@ -375,7 +414,12 @@
       "reviewed": true,
       "officialRef": "問13-6",
       "role": "branch",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "safety-first",
+        "whistleblowing",
+        "ip-confidentiality"
+      ]
     },
     {
       "id": "eth-13-6-b2",
@@ -398,7 +442,10 @@
       "reviewed": true,
       "officialRef": "問13-6",
       "role": "branch",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "ip-confidentiality"
+      ]
     },
     {
       "id": "eth-13-7-b1",
@@ -421,7 +468,11 @@
       "reviewed": true,
       "officialRef": "問13-7",
       "role": "branch",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "limits-disclosure",
+        "verification-duty"
+      ]
     },
     {
       "id": "eth-13-8-b1",
@@ -444,7 +495,11 @@
       "reviewed": true,
       "officialRef": "問13-8",
       "role": "branch",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "whistleblowing",
+        "safety-first"
+      ]
     },
     {
       "id": "eth-13-8-b2",
@@ -467,7 +522,11 @@
       "reviewed": true,
       "officialRef": "問13-8",
       "role": "branch",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "verification-duty",
+        "no-falsification"
+      ]
     }
   ]
 }

@@ -30,7 +30,10 @@
       "officialRef": "問5-1",
       "role": "primary",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "relatedFormulas": [
+        "isoparametric"
+      ]
     },
     {
       "title": "スーパー/サブパラメトリック要素",
@@ -53,7 +56,10 @@
       "officialRef": "問5-2",
       "role": "primary",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "relatedFormulas": [
+        "isoparametric"
+      ]
     },
     {
       "title": "4節点要素と8節点要素の形状関数の次数",
@@ -76,7 +82,11 @@
       "officialRef": "問5-3",
       "role": "primary",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "relatedFormulas": [
+        "shape-func-4node",
+        "higher-order"
+      ]
     },
     {
       "title": "4節点・8節点四辺形要素の性質",
@@ -99,7 +109,11 @@
       "officialRef": "問5-4",
       "role": "primary",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "relatedFormulas": [
+        "isoparametric",
+        "shape-func-4node"
+      ]
     },
     {
       "title": "局所座標から全体座標への変換式",
@@ -122,7 +136,11 @@
       "officialRef": "問5-5",
       "role": "primary",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "relatedFormulas": [
+        "isoparametric",
+        "shape-func-4node"
+      ]
     },
     {
       "title": "4節点要素が表現できない変形モード",
@@ -145,7 +163,12 @@
       "officialRef": "問5-6",
       "role": "primary",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "relatedFormulas": [
+        "shape-func-4node",
+        "higher-order",
+        "isoparametric"
+      ]
     },
     {
       "title": "ヤコビ行列の役割",
@@ -168,7 +191,11 @@
       "officialRef": "問5-7",
       "role": "primary",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "relatedFormulas": [
+        "isoparametric",
+        "jacobian"
+      ]
     },
     {
       "title": "節点無し変数(非適合モード)",
@@ -191,7 +218,11 @@
       "officialRef": "問5-8",
       "role": "primary",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "relatedFormulas": [
+        "shape-func-4node",
+        "higher-order"
+      ]
     },
     {
       "title": "セレンディピティ要素とラグランジュ要素",
@@ -214,7 +245,10 @@
       "officialRef": "問5-9",
       "role": "primary",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "relatedFormulas": [
+        "higher-order"
+      ]
     },
     {
       "title": "8節点要素の変位とひずみの近似次数",
@@ -237,7 +271,10 @@
       "officialRef": "問5-10",
       "role": "primary",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "relatedFormulas": [
+        "higher-order"
+      ]
     },
     {
       "id": "fem-5-11",
@@ -262,7 +299,10 @@
       "figureImage": "f5Pressure2Nodal",
       "figureHint": "2節点直線辺に台形状の分布圧力p1=200,p2=400が作用し、形状関数重みでf1=13333,f2=16667に配分される図",
       "officialRef": "問5-11",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "pressure-nodal"
+      ]
     },
     {
       "id": "fem-5-12",
@@ -287,7 +327,10 @@
       "figureImage": "f5BodyForce",
       "figureHint": "鉛直な棒要素に自重が体積積分で両端の節点力19.25Nずつに換算される図",
       "officialRef": "問5-12",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "body-force"
+      ]
     },
     {
       "title": "死荷重の定義",
@@ -310,7 +353,10 @@
       "officialRef": "問5-13",
       "role": "primary",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "relatedFormulas": [
+        "body-force"
+      ]
     },
     {
       "id": "fem-5-14",
@@ -335,7 +381,10 @@
       "figureImage": "f5DirichletNeumann",
       "figureHint": "固定端(変位規定=ディリクレ、左辺の行列側で処理)と荷重を受ける端(力規定=ノイマン、右辺の荷重ベクトルで処理)を対比する図",
       "officialRef": "問5-14",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "bc-types"
+      ]
     },
     {
       "id": "fem-5-15",
@@ -360,7 +409,10 @@
       "figureImage": "f5Reduction",
       "figureHint": "同じ既知変位u1=0を、行列縮約(行列を小さくする)と対角置換(対角1・非対角0で右辺に代入)の2通りで処理する様子を並べた図",
       "officialRef": "問5-15",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "bc-types"
+      ]
     },
     {
       "title": "ディリクレ条件とノイマン条件の記述",
@@ -383,7 +435,10 @@
       "officialRef": "問5-16",
       "role": "primary",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "relatedFormulas": [
+        "bc-types"
+      ]
     },
     {
       "id": "fem-5-17",
@@ -408,7 +463,10 @@
       "figureImage": "f5Symmetry",
       "figureHint": "対称面上の節点に法線方向変位のみ0(ローラー支持記号)を課し、面内方向は自由とする半分モデルの図",
       "officialRef": "問5-17",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "bc-types"
+      ]
     },
     {
       "id": "fem-5-17b",
@@ -433,7 +491,10 @@
       "figureImage": "f5SymTruss",
       "figureHint": "白地に、頂点から左右対称45度に伸びる2本のトラス部材と、頂点への鉛直荷重P、対称軸の破線を描き、頂点の水平変位が0であることを示す図",
       "officialRef": "問5-17",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "bc-types"
+      ]
     },
     {
       "title": "熱伝導問題のディリクレ境界条件",
@@ -456,7 +517,10 @@
       "officialRef": "問5-18",
       "role": "primary",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "relatedFormulas": [
+        "bc-types"
+      ]
     },
     {
       "id": "fem-5-19",
@@ -481,7 +545,11 @@
       "figureImage": "f5SeriesSprings",
       "figureHint": "節点1固定・節点4に強制変位u4=6を与える3連ばね(k1=100,k2=200,k3=200)でu2=3,u3=4.5を示す図",
       "officialRef": "問5-19",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "bc-types",
+        "assembly"
+      ]
     },
     {
       "id": "fem-5-20",
@@ -506,7 +574,11 @@
       "figureImage": "f5BarSeries2El",
       "figureHint": "白地に、左端を固定した2要素の棒(節点1固定・節点2中間・節点3先端)を描き、節点3に右向きの軸力P=3600N、各要素にEA/L=600と900を添える図",
       "officialRef": "問5-20",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "bc-types",
+        "assembly"
+      ]
     },
     {
       "id": "fem-5-21",
@@ -529,7 +601,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問5-21",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "bc-types"
+      ]
     },
     {
       "id": "fem-5-22",
@@ -552,7 +627,11 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問5-22",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "thermal-strain-vector",
+        "thermal-stress"
+      ]
     },
     {
       "id": "fem-5-23",
@@ -575,7 +654,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問5-23",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "thermal-strain-vector"
+      ]
     },
     {
       "id": "fem-5-23b",
@@ -600,7 +682,11 @@
       "figureImage": "f5InitStrain",
       "figureHint": "自然に伸びたい長さ(破線)と両端固定で実際には伸びない長さ(実線)の差を初期ひずみとして示し、圧縮応力が生じることを示す図",
       "officialRef": "問5-23",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "thermal-stress",
+        "thermal-strain-vector"
+      ]
     },
     {
       "id": "fem-5-24",
@@ -675,7 +761,10 @@
       "figureImage": "f5ShrinkFit",
       "figureHint": "軸と穴のしめしろ(半径方向の重なり)と接触面圧力を示す焼きばめ断面図",
       "officialRef": "問5-26",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "residual-stress"
+      ]
     },
     {
       "id": "fem-5-27",
@@ -700,7 +789,11 @@
       "figureImage": "f5Bimetal",
       "figureHint": "線膨張係数の異なる2層を加熱すると膨張差で反るバイメタルの図",
       "officialRef": "問5-27",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "residual-stress",
+        "thermal-strain-vector"
+      ]
     },
     {
       "title": "引張状態で接着した部材の残留応力の解析",
@@ -723,7 +816,10 @@
       "officialRef": "問5-28",
       "role": "primary",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "relatedFormulas": [
+        "residual-stress"
+      ]
     },
     {
       "id": "fem-5-29",
@@ -746,7 +842,11 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問5-29",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "assembly",
+        "bc-types"
+      ]
     }
   ]
 }

@@ -30,7 +30,10 @@
       "reviewed": true,
       "officialRef": "問12-1",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "numerical-errors"
+      ]
     },
     {
       "id": "comp-12-2",
@@ -53,7 +56,10 @@
       "reviewed": true,
       "officialRef": "問12-2",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "numerical-errors"
+      ]
     },
     {
       "id": "comp-12-3",
@@ -76,7 +82,10 @@
       "reviewed": true,
       "officialRef": "問12-3",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "numerical-errors"
+      ]
     },
     {
       "id": "comp-12-4",
@@ -101,7 +110,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "comp12InfoLoss",
-      "figureHint": "白地660x420で1234と1.987を桁を揃えて並べ、小さい値の下位桁がはみ出て消える情報落ちの様子を示す"
+      "figureHint": "白地660x420で1234と1.987を桁を揃えて並べ、小さい値の下位桁がはみ出て消える情報落ちの様子を示す",
+      "relatedFormulas": [
+        "numerical-errors"
+      ]
     },
     {
       "id": "comp-12-5",
@@ -126,7 +138,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "comp12Cancellation",
-      "figureHint": "白地660x420で1.2346-1.2345=0.0001の桁の並びを示し、上位桁が消えて有効桁が減る様子を強調する"
+      "figureHint": "白地660x420で1.2346-1.2345=0.0001の桁の並びを示し、上位桁が消えて有効桁が減る様子を強調する",
+      "relatedFormulas": [
+        "numerical-errors"
+      ]
     },
     {
       "id": "comp-12-6",
@@ -220,7 +235,10 @@
       "reviewed": true,
       "officialRef": "問12-9",
       "role": "primary",
-      "figure": "none"
+      "figure": "none",
+      "relatedFormulas": [
+        "twos-complement"
+      ]
     },
     {
       "id": "comp-12-10",
@@ -709,7 +727,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "comp12ParallelMemory",
-      "figureHint": "白地660x420で共有メモリ型(全CPUが1つのメモリを参照)と分散メモリ型(各CPUが自分のメモリを持ち通信)を左右に対比する"
+      "figureHint": "白地660x420で共有メモリ型(全CPUが1つのメモリを参照)と分散メモリ型(各CPUが自分のメモリを持ち通信)を左右に対比する",
+      "relatedFormulas": [
+        "amdahl"
+      ]
     },
     {
       "id": "comp-12-31",
@@ -734,7 +755,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "comp12ParallelEff",
-      "figureHint": "白地660x420で理想の1/n(4台で1/4)の計算時間と実際の計算時間を棒で比べ、効率62.5%を示す"
+      "figureHint": "白地660x420で理想の1/n(4台で1/4)の計算時間と実際の計算時間を棒で比べ、効率62.5%を示す",
+      "relatedFormulas": [
+        "amdahl"
+      ]
     },
     {
       "id": "comp-12-32",

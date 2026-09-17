@@ -32,7 +32,10 @@
       "figureImage": "elem7Continuity",
       "figureHint": "隣接2要素の共有辺で節点変位は一致(変位連続)だが、要素ごとの応力値が境界で段差(不連続)になる様子を示す",
       "role": "primary",
-      "officialRef": "問7-1"
+      "officialRef": "問7-1",
+      "relatedFormulas": [
+        "continuity"
+      ]
     },
     {
       "id": "elem-7-2",
@@ -57,7 +60,10 @@
       "figureImage": "elem7HeatFlux",
       "figureHint": "辺共有2要素で温度は連続、熱流束ベクトルが境界で段差(不連続)になる様子を示す",
       "role": "primary",
-      "officialRef": "問7-2"
+      "officialRef": "問7-2",
+      "relatedFormulas": [
+        "continuity"
+      ]
     },
     {
       "id": "elem-7-3",
@@ -82,7 +88,10 @@
       "figureImage": "elem7CST",
       "figureHint": "3節点三角形要素の内部でひずみ・応力が一様(塗りが一定)であることを、線形変位u=a0+a1x+a2yと併記して示す",
       "role": "primary",
-      "officialRef": "問7-3"
+      "officialRef": "問7-3",
+      "relatedFormulas": [
+        "cst"
+      ]
     },
     {
       "id": "elem-7-4",
@@ -107,7 +116,10 @@
       "figureImage": "elem7CstStrain",
       "figureHint": "三角形A(0,0)・B(5,0)・C(0,4)を番号付きで描き、x方向にA-B間の変位差からεx=∂u/∂xが要素内一定に決まること、および要素内部の応力勾配(応力集中)は表現できないことを示す(x,y軸を添える)",
       "role": "primary",
-      "officialRef": "問7-4"
+      "officialRef": "問7-4",
+      "relatedFormulas": [
+        "cst"
+      ]
     },
     {
       "id": "elem-7-5",
@@ -132,7 +144,10 @@
       "figureImage": "elem7OrderElem",
       "figureHint": "一次要素(頂点のみ・直線辺)と高次要素(辺中点あり・曲線辺)を並べ、節点数・辺の表現力の違いを対比する",
       "role": "primary",
-      "officialRef": "問7-5"
+      "officialRef": "問7-5",
+      "relatedFormulas": [
+        "element-quality"
+      ]
     },
     {
       "id": "elem-7-6",
@@ -155,7 +170,10 @@
       "reviewed": true,
       "figure": "none",
       "role": "primary",
-      "officialRef": "問7-6"
+      "officialRef": "問7-6",
+      "relatedFormulas": [
+        "element-quality"
+      ]
     },
     {
       "id": "elem-7-7",
@@ -178,7 +196,10 @@
       "reviewed": true,
       "figure": "none",
       "role": "primary",
-      "officialRef": "問7-7"
+      "officialRef": "問7-7",
+      "relatedFormulas": [
+        "quadratic-element-field"
+      ]
     },
     {
       "id": "elem-7-8",
@@ -203,7 +224,11 @@
       "figureImage": "elem7CurvedIso",
       "figureHint": "8節点四辺形の中間節点を円弧上に配置して曲線境界を近似する図と、直線中点に置いて円弧からずれる図を対比する",
       "role": "primary",
-      "officialRef": "問7-8"
+      "officialRef": "問7-8",
+      "relatedFormulas": [
+        "eight-node-arc",
+        "isoparametric"
+      ]
     },
     {
       "id": "elem-7-8b",
@@ -228,7 +253,10 @@
       "figureImage": "elem7ShapeFunc",
       "figureHint": "1次元2節点要素の形状関数N1・N2のグラフを描き、自節点で1・他節点で0、和が常に1になることを示す",
       "role": "branch",
-      "officialRef": "問7-8"
+      "officialRef": "問7-8",
+      "relatedFormulas": [
+        "isoparametric"
+      ]
     },
     {
       "id": "elem-7-8c",
@@ -253,7 +281,10 @@
       "figureImage": "elem7Isopar",
       "figureHint": "局所座標(ξ,η)の正方形要素から、同じ形状関数Nを用いて全体座標(x,y)の四辺形要素へ、座標と変位の両方を対応づけて写像する様子を示す",
       "role": "branch",
-      "officialRef": "問7-8"
+      "officialRef": "問7-8",
+      "relatedFormulas": [
+        "isoparametric"
+      ]
     },
     {
       "id": "elem-7-8d",
@@ -278,7 +309,11 @@
       "figureImage": "elem7Jacobian",
       "figureHint": "正常な要素(det J>0)と、過度にゆがんで裏返りかけた要素(det J<=0)を対比し、写像が破綻する様子を示す",
       "role": "branch",
-      "officialRef": "問7-8"
+      "officialRef": "問7-8",
+      "relatedFormulas": [
+        "jacobian",
+        "isoparametric"
+      ]
     },
     {
       "id": "elem-7-8e",
@@ -303,7 +338,10 @@
       "figureImage": "elem7DetJ",
       "figureHint": "局所2×2(面積4)から全体8×6(面積48)への写像でdetJ=12になること、および長方形要素が妥当な要素であることを示す",
       "role": "branch",
-      "officialRef": "問7-8"
+      "officialRef": "問7-8",
+      "relatedFormulas": [
+        "jacobian"
+      ]
     },
     {
       "id": "elem-7-9",
@@ -328,7 +366,10 @@
       "figureImage": "elem7ElemClass",
       "figureHint": "構造要素(トラス・はり・シェル)と連続体要素(平面要素・三次元ソリッド要素)に分類する対応図を示す",
       "role": "primary",
-      "officialRef": "問7-9"
+      "officialRef": "問7-9",
+      "relatedFormulas": [
+        "element-types"
+      ]
     },
     {
       "id": "elem-7-9b",
@@ -353,7 +394,10 @@
       "figureImage": "elem7Truss",
       "figureHint": "トラス要素をピン節点の棒で描き、軸方向の引張・圧縮力のみを伝え曲げは伝えないことを示す",
       "role": "branch",
-      "officialRef": "問7-9"
+      "officialRef": "問7-9",
+      "relatedFormulas": [
+        "element-types"
+      ]
     },
     {
       "id": "elem-7-10",
@@ -378,7 +422,10 @@
       "figureImage": "elem7BeamDOF",
       "figureHint": "はり要素の各節点に、たわみw(縦矢印)とたわみ角θ(回転)の2自由度がある様子を示す",
       "role": "primary",
-      "officialRef": "問7-10"
+      "officialRef": "問7-10",
+      "relatedFormulas": [
+        "beam-dof-nodal"
+      ]
     },
     {
       "id": "elem-7-10b",
@@ -403,7 +450,10 @@
       "figureImage": "elem7ShellSolidDOF",
       "figureHint": "シェル要素の節点(面外並進+面内2方向の曲げ回転、法線まわりの回転は含まない)と、ソリッド要素の節点(並進のみ、回転なし)を対比して示す",
       "role": "branch",
-      "officialRef": "問7-10"
+      "officialRef": "問7-10",
+      "relatedFormulas": [
+        "element-types"
+      ]
     },
     {
       "id": "elem-7-11",
@@ -426,7 +476,11 @@
       "reviewed": true,
       "figure": "none",
       "role": "primary",
-      "officialRef": "問7-11"
+      "officialRef": "問7-11",
+      "relatedFormulas": [
+        "element-quality",
+        "tet-hex-selection"
+      ]
     },
     {
       "id": "elem-7-12",
@@ -451,7 +505,10 @@
       "figureImage": "elem7HexTet",
       "figureHint": "六面体要素と四面体要素の形を並べ、六面体=規則配置で高精度・四面体=複雑形状の自動メッシュ向きという特徴を示す",
       "role": "primary",
-      "officialRef": "問7-12"
+      "officialRef": "問7-12",
+      "relatedFormulas": [
+        "tet-hex-selection"
+      ]
     },
     {
       "id": "elem-7-12b",
@@ -476,7 +533,10 @@
       "figureImage": "elem7VolLock",
       "figureHint": "非圧縮に近い材料で体積一定条件により低次要素が過剰拘束され、変形できず過度に硬くなる様子を示す",
       "role": "branch",
-      "officialRef": "問7-12"
+      "officialRef": "問7-12",
+      "relatedFormulas": [
+        "locking"
+      ]
     },
     {
       "id": "elem-7-12c",
@@ -501,7 +561,10 @@
       "figureImage": "elem7Aspect",
       "figureHint": "アスペクト比が1に近い良い要素と、細長い・ゆがんだ悪い要素を対比して示す",
       "role": "branch",
-      "officialRef": "問7-12"
+      "officialRef": "問7-12",
+      "relatedFormulas": [
+        "element-quality"
+      ]
     },
     {
       "id": "elem-7-13",
@@ -524,7 +587,10 @@
       "reviewed": true,
       "figure": "none",
       "role": "primary",
-      "officialRef": "問7-13"
+      "officialRef": "問7-13",
+      "relatedFormulas": [
+        "cst"
+      ]
     },
     {
       "id": "elem-7-14",
@@ -549,7 +615,10 @@
       "figureImage": "elem7Node4v8",
       "figureHint": "4節点(応力が層ごと段状)と8節点(要素内で高さ方向に線形の曲げ応力)を対比し、少ない8節点要素で曲げ応力を表せることを示す",
       "role": "primary",
-      "officialRef": "問7-14"
+      "officialRef": "問7-14",
+      "relatedFormulas": [
+        "element-quality"
+      ]
     },
     {
       "id": "elem-7-14b",
@@ -574,7 +643,11 @@
       "figureImage": "elem7GaussPts",
       "figureHint": "4節点四辺形の2×2=4ガウス点と、8節点六面体の2×2×2=8ガウス点の配置を対比して示す",
       "role": "branch",
-      "officialRef": "問7-14"
+      "officialRef": "問7-14",
+      "relatedFormulas": [
+        "full-integration-points",
+        "integration-order"
+      ]
     },
     {
       "id": "elem-7-14c",
@@ -599,7 +672,11 @@
       "figureImage": "elem7Reduced",
       "figureHint": "完全積分(2×2点)と次数低減積分(中央1点)を対比し、1点積分で砂時計モードが生じ得ることを示す",
       "role": "branch",
-      "officialRef": "問7-14"
+      "officialRef": "問7-14",
+      "relatedFormulas": [
+        "integration-order",
+        "locking"
+      ]
     },
     {
       "id": "elem-7-14d",
@@ -624,7 +701,11 @@
       "figureImage": "elem7ShearLock",
       "figureHint": "純曲げを受ける4節点要素で、理想は辺が曲がる(破線)のに要素は直線辺のまま(実線)で角に寄生せん断が生じる様子を示す",
       "role": "branch",
-      "officialRef": "問7-14"
+      "officialRef": "問7-14",
+      "relatedFormulas": [
+        "locking",
+        "integration-order"
+      ]
     },
     {
       "id": "elem-7-14e",
@@ -649,7 +730,11 @@
       "figureImage": "elem7Hourglass",
       "figureHint": "1点積分の四辺形要素が砂時計状にくびれるゼロエネルギー変形モードを、積分点でひずみが出ない様子とともに示す",
       "role": "branch",
-      "officialRef": "問7-14"
+      "officialRef": "問7-14",
+      "relatedFormulas": [
+        "locking",
+        "integration-order"
+      ]
     },
     {
       "id": "elem-7-15",
@@ -672,7 +757,10 @@
       "reviewed": true,
       "figure": "none",
       "role": "primary",
-      "officialRef": "問7-15"
+      "officialRef": "問7-15",
+      "relatedFormulas": [
+        "element-quality"
+      ]
     },
     {
       "id": "elem-7-15b",
@@ -697,7 +785,10 @@
       "figureImage": "elem7AspectBend",
       "figureHint": "(A)3×12分割(ほぼ正方形の要素)と(B)12×3分割(極端に扁平な要素)を対比し、扁平要素で曲げ精度が落ちることを示す",
       "role": "branch",
-      "officialRef": "問7-15"
+      "officialRef": "問7-15",
+      "relatedFormulas": [
+        "element-quality"
+      ]
     },
     {
       "id": "elem-7-16",
@@ -720,7 +811,11 @@
       "reviewed": true,
       "figure": "none",
       "role": "primary",
-      "officialRef": "問7-16"
+      "officialRef": "問7-16",
+      "relatedFormulas": [
+        "cst",
+        "isoparametric"
+      ]
     },
     {
       "id": "elem-7-16b",
@@ -768,7 +863,11 @@
       "reviewed": true,
       "figure": "none",
       "role": "primary",
-      "officialRef": "問7-17"
+      "officialRef": "問7-17",
+      "relatedFormulas": [
+        "jacobian",
+        "stiffness-position-independent"
+      ]
     }
   ]
 }

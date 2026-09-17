@@ -30,7 +30,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問3-1",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "fourier"
+      ]
     },
     {
       "id": "heat-3-2",
@@ -55,7 +58,10 @@
       "figure": "helpful",
       "figureHint": "構造(σ=Eε)と熱伝導(q=k∇T)の物理量対応表",
       "officialRef": "問3-2",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "analogy"
+      ]
     },
     {
       "id": "heat-3-3",
@@ -80,7 +86,10 @@
       "figure": "helpful",
       "figureHint": "過渡の曲線が時間とともに定常の直線へ漸近",
       "officialRef": "問3-3",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "diffusivity"
+      ]
     },
     {
       "id": "heat-3-4",
@@ -105,7 +114,11 @@
       "figure": "helpful",
       "figureHint": "平板=直線・円筒=対数曲線の温度分布を並置",
       "officialRef": "問3-4",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "dist-shape",
+        "cylinder"
+      ]
     },
     {
       "id": "heat-3-5",
@@ -128,7 +141,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問3-5",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "thermal-resistance"
+      ]
     },
     {
       "id": "heat-3-6",
@@ -153,7 +169,11 @@
       "figure": "helpful",
       "figureHint": "等温線が断熱境界に垂直、熱は境界に沿う",
       "officialRef": "問3-6",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "boundary-conditions",
+        "fourier"
+      ]
     },
     {
       "id": "heat-3-7",
@@ -178,7 +198,10 @@
       "figure": "helpful",
       "figureHint": "一様発熱で中央最高の上に凸の放物線分布",
       "officialRef": "問3-7",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "steady-eq"
+      ]
     },
     {
       "id": "heat-3-8",
@@ -203,7 +226,11 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問3-8",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "steady-eq",
+        "fourier"
+      ]
     },
     {
       "id": "heat-3-9",
@@ -226,7 +253,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問3-9",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "cylinder"
+      ]
     },
     {
       "id": "heat-3-10",
@@ -251,7 +281,12 @@
       "figure": "helpful",
       "figureHint": "熱伝達→伝導→熱伝達の直列抵抗と和の逆数",
       "officialRef": "問3-10",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "u-value",
+        "thermal-resistance",
+        "convection"
+      ]
     },
     {
       "id": "heat-3-11",
@@ -276,7 +311,11 @@
       "figure": "helpful",
       "figureHint": "3抵抗の棒グラフで最大R_h2が律速と示す",
       "officialRef": "問3-11",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "dominant-resistance",
+        "thermal-resistance"
+      ]
     },
     {
       "id": "heat-3-12",
@@ -299,7 +338,11 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問3-12",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "u-value",
+        "convection"
+      ]
     },
     {
       "id": "heat-3-13",
@@ -324,7 +367,11 @@
       "figure": "helpful",
       "figureHint": "λは内部の伝導、hは表面と流体の間で役割別",
       "officialRef": "問3-13",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "k-vs-h",
+        "lambda-property"
+      ]
     },
     {
       "id": "heat-3-14",
@@ -349,7 +396,10 @@
       "figure": "helpful",
       "figureHint": "同一qでh小の面ほど表面温度落差が大きい",
       "officialRef": "問3-14",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "convection"
+      ]
     },
     {
       "id": "heat-3-15",
@@ -374,7 +424,12 @@
       "figure": "helpful",
       "figureHint": "円管で外側熱伝達が弱いと外側区間の落差最大",
       "officialRef": "問3-15",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "dominant-resistance",
+        "cylinder",
+        "convection"
+      ]
     },
     {
       "id": "heat-3-16",
@@ -399,7 +454,11 @@
       "figure": "helpful",
       "figureHint": "断熱面はq_x=0すなわち∂T/∂x=0",
       "officialRef": "問3-16",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "boundary-conditions",
+        "fourier"
+      ]
     },
     {
       "id": "heat-3-17",
@@ -424,7 +483,11 @@
       "figure": "helpful",
       "figureHint": "内外面=熱伝達境界、長手切断面=断熱の割当",
       "officialRef": "問3-17",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "boundary-conditions",
+        "convection"
+      ]
     },
     {
       "id": "heat-3-18",
@@ -449,7 +512,11 @@
       "figure": "helpful",
       "figureHint": "半無限体の表面温度は√tで上がり続け定常なし",
       "officialRef": "問3-8",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "diffusivity",
+        "boundary-conditions"
+      ]
     }
   ]
 }

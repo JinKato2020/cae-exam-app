@@ -53,7 +53,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-1",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "units"
+      ]
     },
     {
       "id": "model-8-2",
@@ -76,7 +79,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-2",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "symmetry"
+      ]
     },
     {
       "id": "model-8-2b",
@@ -101,7 +107,10 @@
       "figureImage": "model8SymAntisym",
       "figureHint": "対称形状+反対称ねじり荷重は単純対称モデル不可",
       "officialRef": "問8-2",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "symmetry"
+      ]
     },
     {
       "id": "model-8-3",
@@ -124,7 +133,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-3",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "symmetry"
+      ]
     },
     {
       "id": "model-8-4",
@@ -147,7 +159,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-4",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "symmetry"
+      ]
     },
     {
       "id": "model-8-5",
@@ -170,7 +185,11 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-5",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "element-types",
+        "submodeling"
+      ]
     },
     {
       "id": "model-8-5b",
@@ -195,7 +214,10 @@
       "figureImage": "model8Simplify",
       "figureHint": "着目部から離れた小穴は削除可・危険断面の切欠きは保持",
       "officialRef": "問8-5",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "simplify"
+      ]
     },
     {
       "id": "model-8-5c",
@@ -220,7 +242,11 @@
       "figureImage": "model8Singularity",
       "figureHint": "鋭角部で応力が発散し細分で収束しない模式図",
       "officialRef": "問8-5",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "simplify",
+        "mesh-refine"
+      ]
     },
     {
       "id": "model-8-5d",
@@ -245,7 +271,10 @@
       "figureImage": "model8Submodel",
       "figureHint": "粗い全体解析→着目部を切出し変位を境界に与え詳細解析",
       "officialRef": "問8-5",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "submodeling"
+      ]
     },
     {
       "id": "model-8-5e",
@@ -270,7 +299,10 @@
       "figureImage": "model8LumpedMass",
       "figureHint": "搭載機器を集中質量点+剛体結合で等価化",
       "officialRef": "問8-5",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "simplify"
+      ]
     },
     {
       "id": "model-8-5f",
@@ -295,7 +327,10 @@
       "figureImage": "model8SpringEq",
       "figureHint": "ボルトを軸ばねk=EA/Lで等価化",
       "officialRef": "問8-5",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "beam-truss-formulation"
+      ]
     },
     {
       "id": "model-8-6",
@@ -318,7 +353,12 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-6",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "axisymmetric",
+        "mesh-refine",
+        "element-types"
+      ]
     },
     {
       "id": "model-8-6b",
@@ -343,7 +383,10 @@
       "figureImage": "model8MeshRefine",
       "figureHint": "応力集中部を細かく一様部を粗くするメッシュ",
       "officialRef": "問8-6",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "mesh-refine"
+      ]
     },
     {
       "id": "model-8-6c",
@@ -368,7 +411,10 @@
       "figureImage": "model8Convergence",
       "figureHint": "要素数を増やすと着目量が一定値に漸近する収束曲線",
       "officialRef": "問8-6",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "convergence-speed"
+      ]
     },
     {
       "id": "model-8-6d",
@@ -393,7 +439,10 @@
       "figureImage": "model8ConvSpeed",
       "figureHint": "変位は速く応力(ピーク)は遅く収束する2曲線",
       "officialRef": "問8-6",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "convergence-speed"
+      ]
     },
     {
       "id": "model-8-6e",
@@ -418,7 +467,10 @@
       "figureImage": "model8Aspect",
       "figureHint": "長辺20短辺4の要素とアスペクト比=5",
       "officialRef": "問8-6",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "aspect-jacobian"
+      ]
     },
     {
       "id": "model-8-6f",
@@ -443,7 +495,10 @@
       "figureImage": "model8Jacobian",
       "figureHint": "良い要素と凹んで歪んだ(ヤコビアン負)要素の対比",
       "officialRef": "問8-6",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "aspect-jacobian"
+      ]
     },
     {
       "id": "model-8-6g",
@@ -468,7 +523,10 @@
       "figureImage": "model8ElemOrder",
       "figureHint": "1次四面体と2次(辺中間節点)四面体の比較",
       "officialRef": "問8-6",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "element-types"
+      ]
     },
     {
       "id": "model-8-6h",
@@ -493,7 +551,10 @@
       "figureImage": "model8ConvError",
       "figureHint": "切欠き最大応力がメッシュ細分で180→207に漸近",
       "officialRef": "問8-6",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "convergence-speed"
+      ]
     },
     {
       "id": "model-8-7",
@@ -516,7 +577,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-7",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "axisymmetric"
+      ]
     },
     {
       "id": "model-8-8",
@@ -539,7 +603,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-8",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "axisymmetric"
+      ]
     },
     {
       "id": "model-8-9",
@@ -562,7 +629,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-9",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "plane-stress-strain"
+      ]
     },
     {
       "id": "model-8-9b",
@@ -587,7 +657,10 @@
       "figureImage": "model8PlaneStressEz",
       "figureHint": "平面応力σz=0の薄板と板厚方向の縮みεz",
       "officialRef": "問8-9",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "plane-stress-strain"
+      ]
     },
     {
       "id": "model-8-10",
@@ -610,7 +683,11 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-10",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "axisymmetric",
+        "element-types"
+      ]
     },
     {
       "id": "model-8-10b",
@@ -658,7 +735,11 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-11",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "beam-truss-formulation",
+        "element-types"
+      ]
     },
     {
       "id": "model-8-12",
@@ -681,7 +762,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-12",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "plane-stress-strain"
+      ]
     },
     {
       "id": "model-8-12b",
@@ -706,7 +790,10 @@
       "figureImage": "model8PlaneStrain",
       "figureHint": "軸方向に長いダム断面=平面ひずみ(εz=0)の模式図",
       "officialRef": "問8-12",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "plane-stress-strain"
+      ]
     },
     {
       "id": "model-8-13",
@@ -729,7 +816,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-13",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "element-types"
+      ]
     },
     {
       "id": "model-8-13b",
@@ -754,7 +844,11 @@
       "figureImage": "model8Solid3D",
       "figureHint": "板・軸対称・はりに帰着できない塊状部品=3Dソリッド",
       "officialRef": "問8-13",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "idealization",
+        "element-types"
+      ]
     },
     {
       "id": "model-8-14",
@@ -777,7 +871,11 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-14",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "element-types",
+        "beam-truss-formulation"
+      ]
     },
     {
       "id": "model-8-15",
@@ -800,7 +898,11 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-15",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "nonaxisym-fourier",
+        "axisymmetric"
+      ]
     },
     {
       "id": "model-8-15b",
@@ -825,7 +927,11 @@
       "figureImage": "model8AxisymLoad",
       "figureHint": "軸対称形状でも横風は非軸対称で単純軸対称不可",
       "officialRef": "問8-15",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "axisymmetric",
+        "nonaxisym-fourier"
+      ]
     },
     {
       "id": "model-8-16",
@@ -848,7 +954,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-16",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "interface-stress"
+      ]
     },
     {
       "id": "model-8-17",
@@ -871,7 +980,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-17",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "interface-stress"
+      ]
     },
     {
       "id": "model-8-18",
@@ -894,7 +1006,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-18",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "d-matrix"
+      ]
     },
     {
       "id": "model-8-19",
@@ -917,7 +1032,11 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-19",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "d-matrix",
+        "plane-stress-strain"
+      ]
     },
     {
       "id": "model-8-20",
@@ -940,7 +1059,11 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-20",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "d-matrix",
+        "plane-stress-strain"
+      ]
     },
     {
       "id": "model-8-21",
@@ -965,7 +1088,11 @@
       "figureImage": "model8Biaxial",
       "figureHint": "平面ひずみ板にσx=p,σy=2pの2軸応力",
       "officialRef": "問8-21",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "plane-stress-strain",
+        "d-matrix"
+      ]
     },
     {
       "id": "model-8-22",
@@ -988,7 +1115,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-22",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "beam-truss-formulation"
+      ]
     },
     {
       "id": "model-8-22b",
@@ -1013,7 +1143,11 @@
       "figureImage": "model8DimIdeal",
       "figureHint": "細長い支柱を1D梁/2D/3Dで理想化する比較図",
       "officialRef": "問8-22",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "idealization",
+        "element-types"
+      ]
     },
     {
       "id": "model-8-23",
@@ -1036,7 +1170,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-23",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "beam-truss-formulation"
+      ]
     },
     {
       "id": "model-8-23b",
@@ -1061,7 +1198,11 @@
       "figureImage": "model8BeamLimit",
       "figureHint": "細長い梁(はり有効)と背の高い短い梁(せん断変形大)",
       "officialRef": "問8-23",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "beam-truss-formulation",
+        "idealization"
+      ]
     },
     {
       "id": "model-8-24",
@@ -1084,7 +1225,11 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-24",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "plane-stress-strain",
+        "axisymmetric"
+      ]
     },
     {
       "id": "model-8-25",
@@ -1109,7 +1254,10 @@
       "figureImage": "model8ThinPlate",
       "figureHint": "薄板を平面ひずみで解くとεz=0を強制し実際と不一致",
       "officialRef": "問8-25",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "plane-stress-strain"
+      ]
     },
     {
       "id": "model-8-26",
@@ -1132,7 +1280,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-26",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "plane-stress-strain"
+      ]
     },
     {
       "id": "model-8-26b",
@@ -1157,7 +1308,10 @@
       "figureImage": "model8PlaneStrainSz",
       "figureHint": "平面ひずみ要素の面内応力とεz=0→σz=ν(σx+σy)",
       "officialRef": "問8-26",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "plane-stress-strain"
+      ]
     },
     {
       "id": "model-8-27",
@@ -1180,7 +1334,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問8-27",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "axisymmetric"
+      ]
     }
   ]
 }

@@ -31,7 +31,10 @@
       "figureImage": "bc9DofSolidShell",
       "figureHint": "白地660x420。ソリッド節点=並進3矢印のみ、シェル節点=並進3＋回転3の記号を並べて対比",
       "officialRef": "問9-1",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "dof-constraint"
+      ]
     },
     {
       "id": "bc-9-2",
@@ -55,7 +58,10 @@
       "figureImage": "bc9EnforcedDisp",
       "figureHint": "白地660x420。1節点に測定変位δを強制変位として与え、そこに現れる反力Rを矢印で示す",
       "officialRef": "問9-2",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "enforced-disp"
+      ]
     },
     {
       "id": "bc-9-3",
@@ -79,7 +85,10 @@
       "figureImage": "bc9RollerPin",
       "figureHint": "白地660x420。ローラー支持記号(法線方向1拘束)とピン支持記号(2方向拘束)を並べ、拘束方向の矢印を添える",
       "officialRef": "問9-3",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "supports"
+      ]
     },
     {
       "id": "bc-9-4",
@@ -103,7 +112,10 @@
       "figureImage": "bc9InclinedRoller",
       "figureHint": "白地660x420。傾いた斜面に沿う局所軸x'(斜面方向)・y'(法線方向)を描き、法線方向を拘束・斜面方向は滑り自由と示す",
       "officialRef": "問9-4",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "mpc"
+      ]
     },
     {
       "id": "bc-9-5",
@@ -127,7 +139,11 @@
       "figureImage": "bc9ThreePointBeam",
       "figureHint": "白地660x420。三点曲げのはり要素モデル。中央C点に下向き荷重P、両端A・Bに支持記号。各BC案(y拘束のみ/xy拘束/片側xy片側y/C点x拘束)を小図で対比し、x方向拘束が無い案が剛体的に横滑りする様子を矢印で示す",
       "officialRef": "問9-5",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "rigid-body-mode",
+        "supports"
+      ]
     },
     {
       "id": "bc-9-6",
@@ -149,7 +165,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問9-6",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "equivalent-nodal"
+      ]
     },
     {
       "id": "bc-9-7",
@@ -173,7 +192,10 @@
       "figureImage": "bc9EqRow",
       "figureHint": "白地660x420。5節点4要素の辺に一様荷重、配分比1:2:2:2:1を各節点への矢印長で示す",
       "officialRef": "問9-7",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "equivalent-nodal"
+      ]
     },
     {
       "id": "bc-9-8",
@@ -197,7 +219,10 @@
       "figureImage": "bc9ElementReaction",
       "figureHint": "白地660x420。1個の四辺形要素、上辺に水平力F、下辺左右にA・Bピン支持。x反力の和=-F、上下逆向きのy反力が偶力を作り水平力のモーメントと釣り合う様子(幅b・高さH)を矢印で示す",
       "officialRef": "問9-8",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "reaction-balance"
+      ]
     },
     {
       "id": "bc-9-9",
@@ -221,7 +246,10 @@
       "figureImage": "bc9EqTriLoad",
       "figureHint": "白地660x420。一次要素辺に0→w0の三角形分布、最大側w0L/3・ゼロ側w0L/6の配分を矢印で示す",
       "officialRef": "問9-9",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "equivalent-nodal"
+      ]
     },
     {
       "id": "bc-9-10",
@@ -245,7 +273,10 @@
       "figureImage": "bc9DiscretizeRatios",
       "figureHint": "白地660x420。4種の等価節点力配分比を並べる:4節点要素の物体力(各1/4)、8節点二次要素の物体力(隅-1/12・中間1/3)、2節点辺の表面力(1/2:1/2)、3節点辺の表面力(1/6:2/3:1/6)。各節点に数値ラベルを付し誤りを判別できるようにする",
       "officialRef": "問9-10",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "equivalent-nodal"
+      ]
     },
     {
       "id": "bc-9-11",
@@ -269,7 +300,10 @@
       "figureImage": "bc9SelfWeightBeam",
       "figureHint": "白地660x420。長さ方向に8分割した単純支持ばり(4節点一次要素の帯)。自重を各節点へ配分し、端節点=W/32、内部の共有節点=W/16(2倍)になる様子を下向き矢印の長さで対比",
       "officialRef": "問9-11",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "equivalent-nodal"
+      ]
     },
     {
       "id": "bc-9-12",
@@ -293,7 +327,10 @@
       "figureImage": "bc9PressureApply",
       "figureHint": "白地660x420。長方形板の上辺に一様分布荷重。妥当な方法=上辺に接する要素面へ圧力分布荷重を定義(分布した矢印)、不適=各節点に等しい集中荷重(端が半分になる)や強制変位、を小図で対比",
       "officialRef": "問9-12",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "equivalent-nodal"
+      ]
     },
     {
       "id": "bc-9-13",
@@ -317,7 +354,10 @@
       "figureImage": "bc9ThickCylQuarter",
       "figureHint": "白地660x420。厚肉円筒の1/4モデル(内径側の円弧に内圧p)。内面円弧を8節点二次要素で分割し、隅節点1/6・中間節点2/3、2要素共有の隅節点は2倍(1/3)になる等価節点力を矢印で示す",
       "officialRef": "問9-13",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "equivalent-nodal"
+      ]
     },
     {
       "id": "bc-9-14",
@@ -341,7 +381,10 @@
       "figureImage": "bc9HolePlateQuarter",
       "figureHint": "白地660x420。円孔をもつ薄板の応力集中解析の1/4対称モデル。下辺AB(x軸=対称軸)はy方向固定・x自由、左辺DE(y軸=対称軸)はx方向固定・y自由、上辺に引張。円孔は原点側。各辺のローラー拘束記号を示す",
       "officialRef": "問9-14",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "sym-antisym"
+      ]
     },
     {
       "id": "bc-9-15",
@@ -365,7 +408,11 @@
       "figureImage": "bc9AxisymCylBC",
       "figureHint": "白地660x420。内圧を受ける円筒の軸対称モデル。回転軸(z)を左に置いた矩形断面、内圧p、軸方向対称性を使い高さ半分・下端をz方向ローラー支持。半径方向は拘束不要(周方向応力で自己平衡)を注記",
       "officialRef": "問9-15",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "sym-antisym",
+        "rigid-body-mode"
+      ]
     },
     {
       "id": "bc-9-16",
@@ -389,7 +436,10 @@
       "figureImage": "bc9SymBeam",
       "figureHint": "白地660x420。単純支持ばりの半分モデル、中央対称面でu・θを拘束・v自由の記号を示す",
       "officialRef": "問9-16",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "sym-antisym"
+      ]
     },
     {
       "id": "bc-9-17",
@@ -413,7 +463,10 @@
       "figureImage": "bc9AntisymCenter",
       "figureHint": "白地660x420。片端固定・他端にモーメント荷重を受ける平面要素部材の1/2モデル。センターラインが反対称軸で、線上の節点にx方向変位u=0(uを拘束)を課す様子。対称でなく反対称であることを応力の向きで示す",
       "officialRef": "問9-17",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "sym-antisym"
+      ]
     },
     {
       "id": "bc-9-18",
@@ -437,7 +490,10 @@
       "figureImage": "bc9CrackPlateQuarter",
       "figureHint": "白地660x420。中央き裂板を1/4モデル化。左辺x拘束、下辺の一部(き裂に相当する区間)はy拘束せず残りをy拘束、上辺にy方向引張。境界条件から「垂直方向引張の中央き裂板」と判別できる配置",
       "officialRef": "問9-18",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "sym-antisym"
+      ]
     },
     {
       "id": "bc-9-19",
@@ -461,7 +517,11 @@
       "figureImage": "bc9DiscCyclic",
       "figureHint": "白地660x420。内圧を受け、ピッチπ/4で8個の円孔をもつディスク。半分(π)・1/4(π/2)・1/8セクター(π/4)・1/16(π/8)の4つの対称モデル候補を小図で並べ、半分モデルは並進剛体モードの拘束が不足=不適であることを示す",
       "officialRef": "問9-19",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "rigid-body-mode",
+        "sym-antisym"
+      ]
     },
     {
       "id": "bc-9-20",
@@ -485,7 +545,11 @@
       "figureImage": "bc9AnnulusSector",
       "figureHint": "白地660x420。有孔円板の内側に分布力p。A-A(x軸上)とB-B(x'-y'に傾いた境界)で囲む1セクターを取り出し、A-Aはy固定・x自由、B-Bは局所座標x'-y'に変換しx'自由・y'拘束(対称条件)。余分な点拘束はしない",
       "officialRef": "問9-20",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "sym-antisym",
+        "mpc"
+      ]
     },
     {
       "id": "bc-9-21",
@@ -509,7 +573,10 @@
       "figureImage": "bc9AntisymBeamFix",
       "figureHint": "白地660x420。両端固定ばりが中央対称位置で逆向き集中力を受ける反対称問題の1/2モデル。中央(反対称面)でu・vを拘束(たわみv=0、軸u=0)し回転θは自由にする様子を示す",
       "officialRef": "問9-21",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "sym-antisym"
+      ]
     },
     {
       "id": "bc-9-22",
@@ -533,7 +600,10 @@
       "figureImage": "bc9DiscCompress",
       "figureHint": "白地660x420。上下から対向圧縮荷重Pを受ける円板の1/4扇形モデル。上端に半分の集中荷重P/2、左辺x拘束、下辺y方向ローラー拘束。荷重が半分になる点を強調",
       "officialRef": "問9-22",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "sym-antisym"
+      ]
     },
     {
       "id": "bc-9-23",
@@ -555,7 +625,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問9-23",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "rigid-body-mode"
+      ]
     },
     {
       "id": "bc-9-24",
@@ -577,7 +650,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問9-24",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "rigid-body-mode"
+      ]
     },
     {
       "id": "bc-9-25",
@@ -601,7 +677,10 @@
       "figureImage": "bc9RbmRemove2D",
       "figureHint": "白地660x420。2次元物体を1点ピン(並進2拘束)＋別点ローラー(回転を止める1拘束)で支え、剛体3モードを除く様子",
       "officialRef": "問9-25",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "rigid-body-mode"
+      ]
     },
     {
       "id": "bc-9-26",
@@ -625,7 +704,10 @@
       "figureImage": "bc9FrameStability",
       "figureHint": "白地660x420。柱とはりからなる4つの構造(ラーメン/トラス)。○=ピン接合、他=剛接合。回転拘束が全く無く不安定(剛体モード未拘束)な構造を×印で示し、他は安定を示す",
       "officialRef": "問9-26",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "rigid-body-mode"
+      ]
     },
     {
       "id": "bc-9-27",
@@ -649,7 +731,10 @@
       "figureImage": "bc9MeshRbmFix",
       "figureHint": "白地660x420。矩形板メッシュ。下辺の節点群がy方向ローラー拘束、左上隅節点に荷重Fx,Fy。x方向剛体移動が残るため、下辺左端の1節点をx方向に追加拘束すると解ける様子。荷重点は拘束しない注記",
       "officialRef": "問9-27",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "rigid-body-mode"
+      ]
     },
     {
       "id": "bc-9-28",
@@ -671,7 +756,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問9-28",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "mpc"
+      ]
     },
     {
       "id": "bc-9-29",
@@ -695,7 +783,10 @@
       "figureImage": "bc9MpcMidNode",
       "figureHint": "白地660x420。粗要素辺の端節点1・3の中点に細要素の節点2、u2v2=(1と3の平均)のMPC関係を示す",
       "officialRef": "問9-29",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "mpc"
+      ]
     },
     {
       "id": "bc-9-30",
@@ -719,7 +810,10 @@
       "figureImage": "bc9RigidSlideMPC",
       "figureHint": "白地660x420。構造上部の節点1,2,3,4がy方向にスライドする剛体を介して荷重Pを受ける。摩擦無し=x自由。節点2,3,4のy変位を節点1のy変位に一致させるMPC(y方向のみ)を矢印で示す",
       "officialRef": "問9-30",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "mpc"
+      ]
     },
     {
       "id": "bc-9-31",
@@ -743,7 +837,10 @@
       "figureImage": "bc9InclinedMPC",
       "figureHint": "白地660x420。水平面とπ/4をなす斜面をスライドする節点。局所座標x'(斜面方向)・y'(法線)への変換を示し、法線変位v'=0からMPC u-v=0(v=u)が導かれる様子",
       "officialRef": "問9-31",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "mpc"
+      ]
     },
     {
       "id": "bc-9-32",
@@ -767,7 +864,10 @@
       "figureImage": "bc9MpcBeamPlane",
       "figureHint": "白地660x420。はり節点Bと平面要素側の節点(オフセットy)、u=u_B-yθの剛体リンクMPCで回転を伝える図",
       "officialRef": "問9-32",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "mpc"
+      ]
     },
     {
       "id": "bc-9-33",
@@ -791,7 +891,10 @@
       "figureImage": "bc9CylAxialMPC",
       "figureHint": "白地660x420。円管の軸対称断面(r-z)、下端z拘束・上端はz変位一様のMPCで平面保持を示す",
       "officialRef": "問9-33",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "mpc"
+      ]
     },
     {
       "id": "bc-9-6b",
@@ -815,7 +918,10 @@
       "figureImage": "bc9Centrifugal",
       "figureHint": "白地660x420。回転軸まわりに半径rの節点(質量m)、角速度ωと外向き遠心力F=mω²rの矢印",
       "officialRef": "問9-6",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "equivalent-nodal"
+      ]
     },
     {
       "id": "bc-9-7b",
@@ -839,7 +945,10 @@
       "figureImage": "bc9EqLinearEdge",
       "figureHint": "白地660x420。一次要素辺に一様圧力p、合力を両端2節点へ等分(各1/2)する矢印を示す",
       "officialRef": "問9-7",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "equivalent-nodal"
+      ]
     },
     {
       "id": "bc-9-8b",
@@ -863,7 +972,10 @@
       "figureImage": "bc9ReactionBeam",
       "figureHint": "白地660x420。単純支持ばり、Aからa=1mに荷重P、両端支持の反力R_A・R_Bを上向き矢印で示す",
       "officialRef": "問9-8",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "reaction-balance"
+      ]
     },
     {
       "id": "bc-9-10b",
@@ -887,7 +999,10 @@
       "figureImage": "bc9EqQuadEdge",
       "figureHint": "白地660x420。二次要素辺の3節点に一様荷重、配分比1/6:2/3:1/6を矢印長で示す",
       "officialRef": "問9-10",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "equivalent-nodal"
+      ]
     },
     {
       "id": "bc-9-11b",
@@ -911,7 +1026,10 @@
       "figureImage": "bc9SelfWeightQuad",
       "figureHint": "白地660x420。正方形4節点要素、自重を各節点に1/4ずつ下向き矢印で配分",
       "officialRef": "問9-11",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "equivalent-nodal"
+      ]
     },
     {
       "id": "bc-9-12b",
@@ -935,7 +1053,10 @@
       "figureImage": "bc9PressureInclined",
       "figureHint": "白地660x420。x軸から30°傾いた辺に法線方向圧力p、節点力をx・y成分に分解する図",
       "officialRef": "問9-12",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "equivalent-nodal"
+      ]
     },
     {
       "id": "bc-9-17b",
@@ -959,7 +1080,10 @@
       "figureImage": "bc9SymAntisym",
       "figureHint": "白地660x420。鉛直対称線を境に、対称条件(u=0・v自由)と反対称条件(v=0・u自由)の拘束を左右で対比",
       "officialRef": "問9-17",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "sym-antisym"
+      ]
     },
     {
       "id": "bc-9-24b",
@@ -981,7 +1105,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問9-24",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "rigid-body-mode"
+      ]
     },
     {
       "id": "bc-9-27b",
@@ -1005,7 +1132,10 @@
       "figureImage": "bc9PointConstraint",
       "figureHint": "白地660x420。左=1点拘束で反力集中・応力集中の×印、右=接触範囲に分散拘束した正しい例を対比",
       "officialRef": "問9-27",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "supports"
+      ]
     },
     {
       "id": "bc-9-33b",
@@ -1029,7 +1159,10 @@
       "figureImage": "bc9ThermalBC",
       "figureHint": "白地660x420。物体の各辺に温度規定T・熱流束q・対流(周囲温度T∞と係数h)の3種境界条件を並べて示す",
       "officialRef": "問9-33",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "enforced-disp"
+      ]
     },
     {
       "id": "bc-9-33c",
@@ -1053,7 +1186,10 @@
       "figureImage": "bc9Adiabatic",
       "figureHint": "白地660x420。物体の一辺に「指定なし=熱流束q=0(断熱)」を示し、他辺の温度規定と対比",
       "officialRef": "問9-33",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "enforced-disp"
+      ]
     }
   ]
 }

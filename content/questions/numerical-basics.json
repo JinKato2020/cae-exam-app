@@ -32,7 +32,10 @@
       "figureImage": "num6Sparse",
       "figureHint": "多くが0の疎行列(非零を点で表示)と、その右に『値の並び+行添字+列添字』の3本の配列を対応させた圧縮格納の模式図。",
       "role": "primary",
-      "officialRef": "問6-1"
+      "officialRef": "問6-1",
+      "relatedFormulas": [
+        "bandwidth"
+      ]
     },
     {
       "id": "num-6-2",
@@ -57,7 +60,10 @@
       "figureImage": "num6Bandwidth",
       "figureHint": "n×n行列で対角を中心に半バンド幅bの一定帯(左)と、列ごとに高さが違うスカイライン(右)を並べ、スカイラインのほうが帯の中の無駄な0が少ないことを示す2枚組の図。",
       "role": "primary",
-      "officialRef": "問6-2"
+      "officialRef": "問6-2",
+      "relatedFormulas": [
+        "bandwidth"
+      ]
     },
     {
       "id": "num-6-3",
@@ -82,7 +88,10 @@
       "figureImage": "num6GaussSteps",
       "figureHint": "上段: 前進消去で係数行列が満杯→上三角(下三角側が0)になる様子を行列パターンで示し、下段: 後退代入が最下段の未知数から上へ矢印で戻る流れ。",
       "role": "primary",
-      "officialRef": "問6-3"
+      "officialRef": "問6-3",
+      "relatedFormulas": [
+        "gauss-elim"
+      ]
     },
     {
       "id": "num-6-3b",
@@ -107,7 +116,10 @@
       "figureImage": "num6ForwardElim",
       "figureHint": "3x3行列の前進消去を3段階で示す。元の満杯行列→第1列下2成分が0→第2列の下1成分が0(上三角)へと変化し、右下成分に『4』を強調表示。",
       "role": "branch",
-      "officialRef": "問6-3"
+      "officialRef": "問6-3",
+      "relatedFormulas": [
+        "gauss-elim"
+      ]
     },
     {
       "id": "num-6-3c",
@@ -132,7 +144,10 @@
       "figureImage": "num6BackSub",
       "figureHint": "上三角の3本の式を縦に並べ、最下段 2x3=6 から x3=3、次に x2=-1、最後に x1=2 と下から上へ矢印で解が伝播する後退代入の流れ図(3元とも解を明示)。",
       "role": "branch",
-      "officialRef": "問6-3"
+      "officialRef": "問6-3",
+      "relatedFormulas": [
+        "gauss-elim"
+      ]
     },
     {
       "id": "num-6-3d",
@@ -157,7 +172,10 @@
       "figureImage": "num6Pivot",
       "figureHint": "ある列で対角位置に小さな値(例0.001)がある行列と、絶対値最大の行を入れ替えて対角に大きな値を置いた行列を左右に並べ、入れ替えで乗数が小さくなることを示す。",
       "role": "branch",
-      "officialRef": "問6-3"
+      "officialRef": "問6-3",
+      "relatedFormulas": [
+        "gauss-elim"
+      ]
     },
     {
       "id": "num-6-4",
@@ -182,7 +200,10 @@
       "figureImage": "num6LUSplit",
       "figureHint": "満杯の正方行列 A が、下三角(対角含む下側だけ塗り)L と上三角(対角含む上側だけ塗り)U の積 A=LU に分かれる様子を模式的に示す。",
       "role": "primary",
-      "officialRef": "問6-4"
+      "officialRef": "問6-4",
+      "relatedFormulas": [
+        "lu"
+      ]
     },
     {
       "id": "num-6-4b",
@@ -207,7 +228,11 @@
       "figureImage": "num6Complexity",
       "figureHint": "横軸n・縦軸演算量で n^3/3 の急上昇カーブを描き、n と 2n の位置に破線を引いて縦の高さの比が 8 になることを注記する曲線グラフ。",
       "role": "branch",
-      "officialRef": "問6-4"
+      "officialRef": "問6-4",
+      "relatedFormulas": [
+        "gauss-elim",
+        "lu"
+      ]
     },
     {
       "id": "num-6-4c",
@@ -232,7 +257,11 @@
       "figureImage": "num6Cholesky",
       "figureHint": "対称行列 A が下三角 L とその転置 L^T の積 A=L L^T に分かれる様子を示し、対称なので L だけ計算すればよい(半分)ことを矢印で強調。",
       "role": "branch",
-      "officialRef": "問6-4"
+      "officialRef": "問6-4",
+      "relatedFormulas": [
+        "lu",
+        "cg-iccg"
+      ]
     },
     {
       "id": "num-6-5",
@@ -257,7 +286,10 @@
       "figureImage": "num6LUCalc",
       "figureHint": "A=LU の分解結果 L=[[1,0,0],[3,1,0],[2,-1,1]], U=[[1,2,1],[0,2,3],[0,0,4]] を並べ、l32=-1 の計算経路(a32 - l31*u12 を u22 で割る)を矢印で示す。",
       "role": "primary",
-      "officialRef": "問6-5"
+      "officialRef": "問6-5",
+      "relatedFormulas": [
+        "lu"
+      ]
     },
     {
       "id": "num-6-6",
@@ -282,7 +314,11 @@
       "figureImage": "num6IterProps",
       "figureHint": "反復法の1サイクル『x_new = 行列ベクトル積+加減算 → 残差を計算 → 判定(小さい?)→ 収束/継続』を示すループ図。",
       "role": "primary",
-      "officialRef": "問6-6"
+      "officialRef": "問6-6",
+      "relatedFormulas": [
+        "jacobi-gs",
+        "direct-vs-iter"
+      ]
     },
     {
       "id": "num-6-6b",
@@ -307,7 +343,10 @@
       "figureImage": "num6Jacobi",
       "figureHint": "3本の更新式を並べ、x2 の式の右辺 x1,x3 に『前の反復値(0,0)』を代入する矢印を示し、x2=(2+0+0)/4=0.5 を強調。ヤコビ=すべて旧値、を注記。",
       "role": "branch",
-      "officialRef": "問6-6"
+      "officialRef": "問6-6",
+      "relatedFormulas": [
+        "jacobi-gs"
+      ]
     },
     {
       "id": "num-6-6c",
@@ -332,7 +371,10 @@
       "figureImage": "num6GaussSeidel",
       "figureHint": "2式を縦に並べ、x1=(6-0)/4=1.5 を先に求め、その1.5を下の x2 の式へすぐ代入して x2=(12-3)/5=1.8 とする流れを矢印で示す。GS=最新値を即利用、を注記。",
       "role": "branch",
-      "officialRef": "問6-6"
+      "officialRef": "問6-6",
+      "relatedFormulas": [
+        "jacobi-gs"
+      ]
     },
     {
       "id": "num-6-6d",
@@ -357,7 +399,10 @@
       "figureImage": "num6JacVsGS",
       "figureHint": "同じ更新式について、ヤコビ(右辺は全部『k回目』の値)とガウスザイデル(右辺の一部が『k+1回目』の最新値)の参照タイミングの違いを2列で対比する図。",
       "role": "branch",
-      "officialRef": "問6-6"
+      "officialRef": "問6-6",
+      "relatedFormulas": [
+        "jacobi-gs"
+      ]
     },
     {
       "id": "num-6-6e",
@@ -382,7 +427,10 @@
       "figureImage": "num6SOR",
       "figureHint": "横軸を緩和係数ω、縦軸を収束の速さ(反復回数)にとり、ω=1(GS)から最適ωで反復回数が最小になり、ω→0やω→2で悪化・発散する谷型のカーブを描く。",
       "role": "branch",
-      "officialRef": "問6-6"
+      "officialRef": "問6-6",
+      "relatedFormulas": [
+        "sor"
+      ]
     },
     {
       "id": "num-6-6f",
@@ -407,7 +455,10 @@
       "figureImage": "num6SOROptimal",
       "figureHint": "横軸ω・縦軸反復回数のグラフに、ρJ=0.8から求めたω_opt=1.25の位置で反復回数が最小になる谷を描き、ω=1(GS)やω=1.47などの位置と比較する。",
       "role": "branch",
-      "officialRef": "問6-6"
+      "officialRef": "問6-6",
+      "relatedFormulas": [
+        "sor"
+      ]
     },
     {
       "id": "num-6-6g",
@@ -432,7 +483,10 @@
       "figureImage": "num6DiagDom",
       "figureHint": "1行分の行列成分を棒グラフで表し、対角成分|a_ii|の棒が他成分の絶対値の合計Σ|a_ij|の棒より高い『対角優位』の状態を示す。",
       "role": "branch",
-      "officialRef": "問6-6"
+      "officialRef": "問6-6",
+      "relatedFormulas": [
+        "convergence-cond"
+      ]
     },
     {
       "id": "num-6-7",
@@ -457,7 +511,12 @@
       "figureImage": "num6DirectVsIter",
       "figureHint": "左に『直接法: 有限回の演算で厳密解(ガウス消去/LU/コレスキー)』、右に『反復法: 初期値→更新を繰り返し収束(ヤコビ/GS/SOR/CG)』を対比する2列の流れ図。",
       "role": "primary",
-      "officialRef": "問6-7"
+      "officialRef": "問6-7",
+      "relatedFormulas": [
+        "direct-vs-iter",
+        "lu",
+        "cg-iccg"
+      ]
     },
     {
       "id": "num-6-7b",
@@ -482,7 +541,10 @@
       "figureImage": "num6SpectralRadius",
       "figureHint": "複素平面に半径1の単位円を描き、固有値 +0.5 と -0.5 を実軸上に点で示す。両点が単位円の内側にある(ρ=0.5<1)ので収束、と注記。",
       "role": "branch",
-      "officialRef": "問6-7"
+      "officialRef": "問6-7",
+      "relatedFormulas": [
+        "convergence-cond"
+      ]
     },
     {
       "id": "num-6-7c",
@@ -507,7 +569,10 @@
       "figureImage": "num6CG",
       "figureHint": "対称正定値の2変数二次形式の等高線(同心楕円)上で、CGが互いに共役な方向に2ステップで谷底(解)へ到達する経路を矢印で描く。",
       "role": "branch",
-      "officialRef": "問6-7"
+      "officialRef": "問6-7",
+      "relatedFormulas": [
+        "cg-iccg"
+      ]
     },
     {
       "id": "num-6-7d",
@@ -532,7 +597,11 @@
       "figureImage": "num6Precond",
       "figureHint": "固有値の散らばりを数直線上の点群で表し、前処理前は広く散らばり(条件数大)、前処理後は1付近に密集(条件数小)する様子を上下2段で対比し、κ=100×0.1%=10%の誤差増幅を吹き出しで注記する。",
       "role": "branch",
-      "officialRef": "問6-7"
+      "officialRef": "問6-7",
+      "relatedFormulas": [
+        "condition-number",
+        "cg-iccg"
+      ]
     },
     {
       "id": "num-6-7e",
@@ -557,7 +626,10 @@
       "figureImage": "num6ConditionNumber",
       "figureHint": "固有値 λ=8 と λ=2 を数直線に示し、条件数 κ=λmax/λmin=8/2=4 の計算を注記。比が大きいほど悪条件、と補足。",
       "role": "branch",
-      "officialRef": "問6-7"
+      "officialRef": "問6-7",
+      "relatedFormulas": [
+        "condition-number"
+      ]
     },
     {
       "id": "num-6-8",
@@ -580,7 +652,11 @@
       "reviewed": true,
       "figure": "none",
       "role": "primary",
-      "officialRef": "問6-8"
+      "officialRef": "問6-8",
+      "relatedFormulas": [
+        "gauss-integration",
+        "newton-cotes"
+      ]
     },
     {
       "id": "num-6-9",
@@ -605,7 +681,10 @@
       "figureImage": "num6NumIntWhy",
       "figureHint": "正方形の等パラメトリック要素の内部に2x2=4個のガウス積分点(×印)を配置し、各点の関数値×重みの和で積分を近似する様子を示す。",
       "role": "primary",
-      "officialRef": "問6-9"
+      "officialRef": "問6-9",
+      "relatedFormulas": [
+        "gauss-integration"
+      ]
     },
     {
       "id": "num-6-10",
@@ -628,7 +707,12 @@
       "reviewed": true,
       "figure": "none",
       "role": "primary",
-      "officialRef": "問6-10"
+      "officialRef": "問6-10",
+      "relatedFormulas": [
+        "integration-points",
+        "gauss-integration",
+        "newton-cotes"
+      ]
     },
     {
       "id": "num-6-11",
@@ -653,7 +737,10 @@
       "figureImage": "num6GaussAccuracy",
       "figureHint": "1次元区間[-1,1]上でf(x)=x^4+x^2を描き、2点ガウス近似(誤差あり)と3点ガウス近似(厳密に一致)を比較し、n点→2n-1次まで厳密という対応表を併記。",
       "role": "primary",
-      "officialRef": "問6-11"
+      "officialRef": "問6-11",
+      "relatedFormulas": [
+        "gauss-integration"
+      ]
     },
     {
       "id": "num-6-11b",
@@ -703,7 +790,10 @@
       "figureImage": "num6GaussCalc",
       "figureHint": "区間[-1,1]に積分点±1/√3を×で示し、各点で f=x^2+1=4/3、重み1を掛けて和=8/3 とする計算を吹き出しで併記。",
       "role": "primary",
-      "officialRef": "問6-12"
+      "officialRef": "問6-12",
+      "relatedFormulas": [
+        "gauss-integration"
+      ]
     },
     {
       "id": "num-6-13",
@@ -728,7 +818,11 @@
       "figureImage": "num6ElemGauss",
       "figureHint": "立方体(8節点六面体)要素の内部に、各辺方向2点の2x2x2=8個のガウス積分点(×印)を格子状に配置して示す。",
       "role": "primary",
-      "officialRef": "問6-13"
+      "officialRef": "問6-13",
+      "relatedFormulas": [
+        "gauss-integration",
+        "integration-points"
+      ]
     },
     {
       "id": "num-6-14",
@@ -751,7 +845,11 @@
       "reviewed": true,
       "figure": "none",
       "role": "primary",
-      "officialRef": "問6-14"
+      "officialRef": "問6-14",
+      "relatedFormulas": [
+        "lagrange",
+        "hermite"
+      ]
     },
     {
       "id": "num-6-15",
@@ -776,7 +874,10 @@
       "figureImage": "num6Lagrange",
       "figureHint": "xy平面に3点(0,1)(2,5)(4,17)を打ち、それらを通る2次曲線を描いて x=1 での縦線と交点 y=2 を強調。直線補間(y=3)との違いも点線で示す。",
       "role": "primary",
-      "officialRef": "問6-15"
+      "officialRef": "問6-15",
+      "relatedFormulas": [
+        "lagrange"
+      ]
     }
   ]
 }

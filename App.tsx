@@ -23,7 +23,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Question } from './src/types';
 import { FIGURES, FIGURE_ASPECT } from './src/figures';
 import { RichText } from './src/MathText';
-import { CATALOG, questionsByIds, type ChapterEntry } from './src/catalog';
+import { CATALOG, questionsByIds, QUESTION_FORMULA_ID, type ChapterEntry } from './src/catalog';
 import { formulaDoc, type FormulaItem } from './src/formulas';
 import Svg, { Circle, Line, Polygon, Text as SvgText } from 'react-native-svg';
 import {
@@ -277,6 +277,16 @@ function AppInner() {
             goBack={(v) => setStudyView(v)}
             proState={proSt}
             onOpenPaywall={openPaywall}
+            onOpenFormula={(formulaId, itemId) => {
+              // 問題画面から公式・用語カードへ直接ジャンプ。戻る導線のため course も合わせる。
+              setFormulaChapterId(formulaId);
+              setFormulaItemId(itemId);
+              setFormulaView('item');
+              setFormulaCourse(
+                course ?? COURSES.find((c) => c.chapters.some((ch) => (ch.formulaId ?? ch.id) === formulaId)) ?? null
+              );
+              setTab('formula');
+            }}
           />
         )}
 
@@ -786,6 +796,7 @@ function StudyTab(props: {
   goBack: (v: StudyView) => void;
   proState: ProState;
   onOpenPaywall: (target: PayTarget | null) => void;
+  onOpenFormula: (formulaId: string, itemId: string) => void;
 }) {
   const { t } = props;
 
@@ -912,6 +923,7 @@ function StudyTab(props: {
         onBack={() => props.goBack(props.chapter ? 'tiles' : 'course')}
         locked={isLocked(q, props.proState)}
         onOpenPaywall={() => props.onOpenPaywall(payTargetOf(q))}
+        onOpenFormula={props.onOpenFormula}
       />
     );
   }
@@ -947,6 +959,19 @@ function sectionAccent(t: Theme, label: string | null): string {
   return t.primary;
 }
 
+// 問題に紐づく関連用語・公式を、その問題の章の formulas から解決する。
+// （章 id は級間で衝突するため QUESTION_FORMULA_ID で必ず formulaId を引く）
+function relatedFormulaItems(q: Question): FormulaItem[] {
+  const ids = q.relatedFormulas;
+  if (!ids || ids.length === 0) return [];
+  const doc = formulaDoc(QUESTION_FORMULA_ID[q.id]);
+  if (!doc) return [];
+  const byId = new Map(doc.items.map((it) => [it.id, it]));
+  return ids
+    .map((id) => byId.get(id))
+    .filter((x): x is FormulaItem => !!x);
+}
+
 function ProblemScreen(props: {
   t: Theme;
   title: string;
@@ -961,6 +986,7 @@ function ProblemScreen(props: {
   onBack: () => void;
   locked: boolean;
   onOpenPaywall: () => void;
+  onOpenFormula: (formulaId: string, itemId: string) => void;
 }) {
   const { t, q, selected, past } = props;
   const locked = props.locked;
@@ -969,6 +995,8 @@ function ProblemScreen(props: {
   const atFirst = props.index === 0;
   const atLast = props.index === props.total - 1;
   const pastRate = past && past.attempts > 0 ? Math.round((past.correctCount / past.attempts) * 100) : 0;
+  const related = relatedFormulaItems(q);
+  const relFormulaId = QUESTION_FORMULA_ID[q.id];
 
   return (
     <ScrollView contentContainerStyle={styles.content}>
@@ -1104,6 +1132,35 @@ function ProblemScreen(props: {
           </View>
         </Pressable>
       )}
+
+      {/* 関連する用語・公式（無料。タップで公式・用語カードへ移動） */}
+      {related.length > 0 ? (
+        <View style={[styles.qRelated, { backgroundColor: t.card }]}>
+          <Text style={[styles.qRelatedHead, { color: t.sub }]}>関連する用語・公式</Text>
+          <View style={styles.qRelatedRow}>
+            {related.map((it) => (
+              <Pressable
+                key={it.id}
+                onPress={() => props.onOpenFormula(relFormulaId, it.id)}
+                style={[styles.qRelatedChip, { borderColor: t.border, backgroundColor: t.bg }]}
+              >
+                <View
+                  style={[
+                    styles.qRelatedBadge,
+                    { backgroundColor: it.kind === 'formula' ? t.primary : t.reviewBtn },
+                  ]}
+                >
+                  <Text style={styles.qRelatedBadgeTxt}>{it.kind === 'formula' ? '公式' : '用語'}</Text>
+                </View>
+                <Text style={[styles.qRelatedTxt, { color: t.text }]} numberOfLines={1}>
+                  {it.term}
+                </Text>
+                <Text style={[styles.qRelatedChev, { color: t.sub }]}>›</Text>
+              </Pressable>
+            ))}
+          </View>
+        </View>
+      ) : null}
 
       {/* 前へ / 次の問題へ */}
       <View style={styles.qNav}>
@@ -1767,6 +1824,23 @@ const styles = StyleSheet.create({
   qSec: { marginTop: 14 },
   qSecLabel: { alignSelf: 'flex-start', paddingHorizontal: 9, paddingVertical: 4, borderRadius: 7, marginBottom: 7 },
   qSecLabelTxt: { fontSize: 11, fontWeight: '800', letterSpacing: 0.3 },
+  qRelated: { marginTop: 16, padding: 14, borderRadius: 14 },
+  qRelatedHead: { fontSize: 11, fontWeight: '800', letterSpacing: 0.3, marginBottom: 9 },
+  qRelatedRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+  qRelatedChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 7,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderRadius: 11,
+    borderWidth: 1.5,
+    maxWidth: '100%',
+  },
+  qRelatedBadge: { paddingHorizontal: 7, paddingVertical: 2, borderRadius: 6 },
+  qRelatedBadgeTxt: { color: '#ffffff', fontSize: 10, fontWeight: '800' },
+  qRelatedTxt: { fontSize: 13, fontWeight: '700', flexShrink: 1 },
+  qRelatedChev: { fontSize: 16, fontWeight: '700' },
   qNav: { flexDirection: 'row', gap: 11, marginTop: 22 },
   qNavPrev: { paddingVertical: 14, paddingHorizontal: 18, borderRadius: 14, borderWidth: 1.5 },
   qNavPrevTxt: { fontSize: 14, fontWeight: '700' },

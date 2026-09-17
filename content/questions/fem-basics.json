@@ -32,7 +32,10 @@
       "figureImage": "f4Discretize",
       "figureHint": "連続体を三角形の要素と節点に分割する離散化のイメージ",
       "officialRef": "問4-1",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "shape-function"
+      ]
     },
     {
       "title": "離散化の手法として正しくないもの",
@@ -57,7 +60,10 @@
       "id": "fem-4-2",
       "number": "4-2",
       "officialRef": "問4-2",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "weighted-residual"
+      ]
     },
     {
       "id": "fem-4-3",
@@ -80,7 +86,12 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問4-3",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "weighted-residual",
+        "virtual-work",
+        "min-potential"
+      ]
     },
     {
       "id": "fem-4-4",
@@ -105,7 +116,10 @@
       "figureImage": "femStepbar",
       "figureHint": "左端が壁に固定された水平な段付き棒。左半分を太く(断面積A1・長さL1・区間1)、右半分を細く(断面積A2・長さL2・区間2)描き、右端に右向きの軸方向引張荷重Pの矢印を付す。",
       "officialRef": "問4-4",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "strain-energy"
+      ]
     },
     {
       "id": "fem-4-5",
@@ -130,7 +144,10 @@
       "figureImage": "f4StrainEnergyDensity",
       "figureHint": "σ-ε線図の三角形の面積が U0=½σε であることを図示",
       "officialRef": "問4-5",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "strain-energy"
+      ]
     },
     {
       "id": "fem-4-6",
@@ -155,7 +172,11 @@
       "figureImage": "f4Complementary",
       "figureHint": "σ-ε線図の下側=ひずみエネルギー・上側=補エネルギー",
       "officialRef": "問4-6",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "energy-methods",
+        "min-potential"
+      ]
     },
     {
       "id": "fem-4-7",
@@ -180,7 +201,11 @@
       "figureImage": "f4MinPotential",
       "figureHint": "Πの下に凸な曲線の最小点が真の平衡状態であることを図示",
       "officialRef": "問4-7",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "min-potential",
+        "strain-energy"
+      ]
     },
     {
       "id": "fem-4-8",
@@ -203,7 +228,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問4-8",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "energy-methods"
+      ]
     },
     {
       "id": "fem-4-9",
@@ -228,7 +256,10 @@
       "figureImage": "f4TrussTwoBar",
       "figureHint": "節点Cから左上の壁へ水平から30度上方に斜め棒CA、右上の壁へ水平から60度上方に斜め棒CBを描く。節点Cに鉛直下向き荷重P=20kNの矢印、角度θA=30°・θB=60°の表記、両壁の固定支持記号を付す。",
       "officialRef": "問4-9",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "virtual-work"
+      ]
     },
     {
       "id": "fem-4-10",
@@ -251,7 +282,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問4-10",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "virtual-work"
+      ]
     },
     {
       "id": "fem-4-11",
@@ -274,7 +308,11 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問4-11",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "virtual-work",
+        "strain-displacement"
+      ]
     },
     {
       "id": "fem-4-12",
@@ -299,7 +337,10 @@
       "figureImage": "f4Traction",
       "figureHint": "体積力(V上∫dV)と表面力(S上∫dS)の作用位置の違い",
       "officialRef": "問4-12",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "virtual-work"
+      ]
     },
     {
       "id": "fem-4-13",
@@ -324,7 +365,10 @@
       "figureImage": "f4ThermalForce",
       "figureHint": "両端固定の棒が温度上昇し等価節点力 f=EAαΔT を生む様子",
       "officialRef": "問4-13",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "thermal-force"
+      ]
     },
     {
       "id": "fem-4-14",
@@ -347,7 +391,11 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問4-14",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "virtual-work",
+        "weighted-residual"
+      ]
     },
     {
       "id": "fem-4-15",
@@ -372,7 +420,10 @@
       "figureImage": "f4ShapeFunc",
       "figureHint": "形状関数が自節点で1・他節点で0となる山型を図示",
       "officialRef": "問4-15",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "shape-function"
+      ]
     },
     {
       "id": "fem-4-16",
@@ -397,7 +448,10 @@
       "figureImage": "f4LinearInterp",
       "figureHint": "節点値を直線で結ぶ線形補間で x=3L/4 の u=7.5mm を求める",
       "officialRef": "問4-16",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "shape-function"
+      ]
     },
     {
       "title": "2次元のひずみ-変位関係",
@@ -420,7 +474,10 @@
       "id": "fem-4-17",
       "number": "4-17",
       "officialRef": "問4-17",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "strain-displacement"
+      ]
     },
     {
       "id": "fem-4-18",
@@ -445,7 +502,11 @@
       "figureImage": "f4CstConstant",
       "figureHint": "変位が1次のCST要素では応力・ひずみが要素内で一定",
       "officialRef": "問4-18",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "shape-function",
+        "b-matrix"
+      ]
     },
     {
       "id": "fem-4-19",
@@ -470,7 +531,11 @@
       "figureImage": "f4FemChain",
       "figureHint": "節点変位dから[N][B][D]で変位・ひずみ・応力を得る流れ",
       "officialRef": "問4-19",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "shape-function",
+        "b-matrix"
+      ]
     },
     {
       "id": "fem-4-20",
@@ -495,7 +560,10 @@
       "figureImage": "f4Bmatrix",
       "figureHint": "CSTの[B]が節点座標差 bi,ci と 1/(2A) で決まる定数",
       "officialRef": "問4-20",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "b-matrix"
+      ]
     },
     {
       "id": "fem-4-21",
@@ -520,7 +588,10 @@
       "figureImage": "f4PlaneStress",
       "figureHint": "薄板(平面応力・σz=0・面外に自由伸縮)と厚い/長い部材(平面ひずみ・εz=0・面外拘束)の対比図",
       "officialRef": "問4-21",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "d-matrix"
+      ]
     },
     {
       "id": "fem-4-22",
@@ -545,7 +616,10 @@
       "figureImage": "femSpringSeries",
       "figureHint": "左端が壁に固定された節点1から、ばねk1で節点2、ばねk2で節点3、ばねk3で節点4へ直列に並べた水平ばね系。節点番号1・2・3・4、k1=100・k2=200・k3=400の表記、節点4に右向き荷重P=800Nの矢印を付す。",
       "officialRef": "問4-22",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "element-stiffness"
+      ]
     },
     {
       "id": "fem-4-23",
@@ -570,7 +644,11 @@
       "figureImage": "f4InclinedSpring",
       "figureHint": "60度傾いたばねのx-x・y-y・x-y方向剛性成分をk cos^2θ・k sin^2θ・k sinθcosθで分解する図",
       "officialRef": "問4-23",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "element-stiffness",
+        "stiffness-properties"
+      ]
     },
     {
       "id": "fem-4-24",
@@ -595,7 +673,10 @@
       "figureImage": "f4Kproperties",
       "figureHint": "剛性行列の対称性・帯(バンド)構造・拘束前は特異を図示",
       "officialRef": "問4-24",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "stiffness-properties"
+      ]
     },
     {
       "id": "fem-4-25",
@@ -620,7 +701,11 @@
       "figureImage": "f4RigidBody",
       "figureHint": "全節点を同じδ平行移動→変形なし→ひずみ0→行和0",
       "officialRef": "問4-25",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "stiffness-properties",
+        "shape-function"
+      ]
     },
     {
       "id": "fem-4-26",
@@ -645,7 +730,11 @@
       "figureImage": "femAssembly",
       "figureHint": "節点1-2-3-4を一直線に並べ、節点1-2を要素A(k1)、2-3を要素B(k2)、3-4を要素C(k3)で結ぶ。節点番号1・2・3・4と各要素のばね定数を明示し、節点3を丸で囲んで強調する。",
       "officialRef": "問4-26",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "stiffness-properties",
+        "element-stiffness"
+      ]
     },
     {
       "title": "荷重境界条件と変位境界条件の相補性",
@@ -720,7 +809,11 @@
       "figureImage": "f4AreaCoord",
       "figureHint": "三角形内の点で3つの小三角形の面積比 L1+L2+L3=1",
       "officialRef": "問4-29",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "area-coordinate",
+        "shape-function"
+      ]
     }
   ]
 }

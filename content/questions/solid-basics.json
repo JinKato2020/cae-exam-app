@@ -32,7 +32,11 @@
       "figure": "helpful",
       "figureHint": "正方形要素がせん断で平行四辺形に変形しγを示す（G=τ/γ）",
       "officialRef": "問2-1",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "shear",
+        "poisson"
+      ]
     },
     {
       "id": "solid2-2-2",
@@ -57,7 +61,10 @@
       "figure": "helpful",
       "figureHint": "引張で軸は伸び横は縮む丸棒（ν=-εt/εa）",
       "officialRef": "問2-2",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "poisson"
+      ]
     },
     {
       "id": "solid2-2-3",
@@ -82,7 +89,10 @@
       "figure": "helpful",
       "figureHint": "材料別ポアソン比の棒グラフ（ゴム0.5が非圧縮）",
       "officialRef": "問2-3",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "poisson"
+      ]
     },
     {
       "id": "solid2-2-4",
@@ -107,7 +117,10 @@
       "figure": "helpful",
       "figureHint": "応力ひずみ線図の各部（E・降伏点・引張強さ・破断）",
       "officialRef": "問2-4",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "stress-strain-curve"
+      ]
     },
     {
       "id": "solid2-2-5",
@@ -132,7 +145,10 @@
       "figure": "helpful",
       "figureHint": "0.2%オフセット法：平行線と曲線の交点が耐力",
       "officialRef": "問2-5",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "offset-yield"
+      ]
     },
     {
       "id": "solid2-2-6",
@@ -155,7 +171,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-6",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "stress-transformation"
+      ]
     },
     {
       "id": "solid2-2-7",
@@ -180,7 +199,10 @@
       "role": "primary",
       "figureImage": "s2StrainDisp",
       "figure": "helpful",
-      "figureHint": "微小正方形の変形で εx,εy,γxy と変位u,vを可視化"
+      "figureHint": "微小正方形の変形で εx,εy,γxy と変位u,vを可視化",
+      "relatedFormulas": [
+        "strain-displacement"
+      ]
     },
     {
       "id": "solid2-2-8",
@@ -203,7 +225,11 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-8",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "normal-stress",
+        "hooke"
+      ]
     },
     {
       "id": "solid2-2-9",
@@ -226,7 +252,11 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-9",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "composite-bar",
+        "bar-elongation"
+      ]
     },
     {
       "id": "solid2-2-10",
@@ -249,7 +279,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-10",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "bar-elongation"
+      ]
     },
     {
       "id": "solid-rigidbar-wire",
@@ -274,7 +307,10 @@
       "figureImage": "s2RigidBarWire",
       "figure": "required",
       "officialRef": "問2-11",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "bar-elongation"
+      ]
     },
     {
       "id": "solid-rigidplate-twobars",
@@ -299,7 +335,11 @@
       "figureImage": "s2RigidPlate2Bars",
       "figure": "required",
       "officialRef": "問2-12",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "composite-bar",
+        "bar-elongation"
+      ]
     },
     {
       "id": "solid-conjugate-shear",
@@ -349,7 +389,10 @@
       "figureImage": "s2PureShear",
       "figure": "helpful",
       "officialRef": "問2-14",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "mohr"
+      ]
     },
     {
       "id": "solid-hollow-tmax",
@@ -374,7 +417,10 @@
       "figureImage": "s2HollowShaft",
       "figure": "helpful",
       "officialRef": "問2-15",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "torsion"
+      ]
     },
     {
       "id": "solid-torsion-principal-dir",
@@ -399,7 +445,11 @@
       "figureImage": "s2TorsionPrincipal",
       "figure": "helpful",
       "officialRef": "問2-16",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "torsion",
+        "mohr"
+      ]
     },
     {
       "id": "solid-mohr-correspondence",
@@ -424,7 +474,10 @@
       "figureImage": "s2MohrCompare",
       "figure": "helpful",
       "officialRef": "問2-17",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "mohr"
+      ]
     },
     {
       "id": "solid-principal-plane-stress",
@@ -449,7 +502,11 @@
       "figureImage": "s2PrincipalMohr",
       "figure": "helpful",
       "officialRef": "問2-18",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "mohr",
+        "stress-transformation"
+      ]
     },
     {
       "id": "solid-3d-pure-shear",
@@ -474,7 +531,10 @@
       "figureImage": "s2Mohr3DShear",
       "figure": "helpful",
       "officialRef": "問2-19",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "mohr"
+      ]
     },
     {
       "id": "solid-overhang-reactions",
@@ -499,7 +559,10 @@
       "figureImage": "s2OverhangBeam",
       "figure": "required",
       "officialRef": "問2-20",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "beam-reactions"
+      ]
     },
     {
       "id": "solid-overhang-maxmoment",
@@ -524,7 +587,10 @@
       "figureImage": "s2BMD",
       "figure": "required",
       "officialRef": "問2-21",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "beam-reactions"
+      ]
     },
     {
       "id": "s2-2-22",
@@ -549,7 +615,10 @@
       "figureImage": "s2CantileverUDL",
       "figure": "required",
       "officialRef": "問2-22",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "beam-reactions"
+      ]
     },
     {
       "id": "s2-2-23",
@@ -574,7 +643,10 @@
       "figureImage": "s2CantMoment",
       "figure": "helpful",
       "officialRef": "問2-23",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "beam-reactions"
+      ]
     },
     {
       "id": "s2-2-24",
@@ -599,7 +671,11 @@
       "officialRef": "問2-24",
       "role": "primary",
       "figureImage": "s2BeamDeflEI",
-      "figure": "helpful"
+      "figure": "helpful",
+      "relatedFormulas": [
+        "beam-deflection",
+        "inertia"
+      ]
     },
     {
       "id": "s2-2-25",
@@ -624,7 +700,11 @@
       "figureImage": "s2SectionZ",
       "figure": "helpful",
       "officialRef": "問2-25",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "bending",
+        "inertia"
+      ]
     },
     {
       "id": "s2-2-26",
@@ -649,7 +729,10 @@
       "figureImage": "s2IsectionInertia",
       "figure": "helpful",
       "officialRef": "問2-26",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "inertia"
+      ]
     },
     {
       "id": "s2-2-27",
@@ -674,7 +757,10 @@
       "figureImage": "s2Truss2Bar",
       "figure": "required",
       "officialRef": "問2-27",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "truss-joint"
+      ]
     },
     {
       "id": "s2-2-28",
@@ -699,7 +785,10 @@
       "figureImage": "s2FBD",
       "figure": "helpful",
       "officialRef": "問2-28",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "beam-reactions"
+      ]
     },
     {
       "id": "s2-2-29",
@@ -724,7 +813,10 @@
       "figureImage": "s2CantReactions",
       "figure": "required",
       "officialRef": "問2-29",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "beam-reactions"
+      ]
     },
     {
       "id": "s2-2-30",
@@ -749,7 +841,11 @@
       "figureImage": "s2ThinCylinder",
       "figure": "required",
       "officialRef": "問2-30",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "thin-cylinder",
+        "poisson"
+      ]
     },
     {
       "id": "s2-2-31",
@@ -774,7 +870,10 @@
       "officialRef": "問2-31",
       "role": "primary",
       "figureImage": "s2YieldSurface",
-      "figure": "helpful"
+      "figure": "helpful",
+      "relatedFormulas": [
+        "yield-criteria"
+      ]
     },
     {
       "id": "s2-2-32",
@@ -799,7 +898,10 @@
       "officialRef": "問2-32",
       "role": "primary",
       "figureImage": "s2MisesJudge",
-      "figure": "helpful"
+      "figure": "helpful",
+      "relatedFormulas": [
+        "yield-criteria"
+      ]
     },
     {
       "id": "s2-2-33",
@@ -824,7 +926,11 @@
       "officialRef": "問2-33",
       "role": "primary",
       "figureImage": "s2Octahedral",
-      "figure": "helpful"
+      "figure": "helpful",
+      "relatedFormulas": [
+        "yield-criteria",
+        "mohr"
+      ]
     },
     {
       "id": "solid2-ch2-34",
@@ -849,7 +955,11 @@
       "officialRef": "問2-34",
       "role": "primary",
       "figureImage": "s2BrittleDuctile",
-      "figure": "helpful"
+      "figure": "helpful",
+      "relatedFormulas": [
+        "brittle-ductile",
+        "yield-criteria"
+      ]
     },
     {
       "id": "solid2-ch2-35",
@@ -874,7 +984,11 @@
       "figureImage": "s2FatigueSurface",
       "figure": "helpful",
       "officialRef": "問2-35",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "fatigue",
+        "stress-concentration"
+      ]
     },
     {
       "id": "solid2-ch2-36",
@@ -899,7 +1013,10 @@
       "figureImage": "s2GoodmanDiagram",
       "figure": "helpful",
       "officialRef": "問2-36",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "fatigue"
+      ]
     },
     {
       "id": "solid2-ch2-37",
@@ -924,7 +1041,10 @@
       "figureImage": "s2SNCurve",
       "figure": "helpful",
       "officialRef": "問2-37",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "fatigue"
+      ]
     },
     {
       "id": "solid2-ch2-38",
@@ -949,7 +1069,11 @@
       "figureImage": "s2NotchStress",
       "figure": "helpful",
       "officialRef": "問2-38",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "stress-concentration",
+        "fatigue"
+      ]
     },
     {
       "id": "solid2-ch2-39",
@@ -974,7 +1098,10 @@
       "figureImage": "s2PlateHoles",
       "figure": "required",
       "officialRef": "問2-39",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "stress-concentration"
+      ]
     },
     {
       "id": "solid2-ch2-40",
@@ -999,7 +1126,10 @@
       "figureImage": "s2ThermalContrast",
       "figure": "helpful",
       "officialRef": "問2-40",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "thermal-stress"
+      ]
     },
     {
       "id": "solid2-ch2-41",
@@ -1024,7 +1154,11 @@
       "figureImage": "s2HalfHeatedBar",
       "figure": "required",
       "officialRef": "問2-41",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "thermal-stress",
+        "bar-elongation"
+      ]
     },
     {
       "id": "solid2-ch2-42",
@@ -1049,7 +1183,11 @@
       "figureImage": "s2TwoBarsThermal",
       "figure": "required",
       "officialRef": "問2-42",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "thermal-stress",
+        "bar-elongation"
+      ]
     },
     {
       "id": "solid2-ch2-43",
@@ -1074,7 +1212,10 @@
       "officialRef": "問2-43",
       "role": "primary",
       "figureImage": "s2MaterialTests",
-      "figure": "helpful"
+      "figure": "helpful",
+      "relatedFormulas": [
+        "material-test"
+      ]
     },
     {
       "id": "solid2-ch2-44",
@@ -1099,7 +1240,10 @@
       "officialRef": "問2-44",
       "role": "primary",
       "figureImage": "s2StressWave",
-      "figure": "helpful"
+      "figure": "helpful",
+      "relatedFormulas": [
+        "stress-wave"
+      ]
     }
   ]
 }

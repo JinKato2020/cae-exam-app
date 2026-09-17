@@ -123,3 +123,17 @@ export const QUESTION_CHAPTER: Record<string, string> = (() => {
   }
   return m;
 })();
+
+// 問題ID → 公式ドキュメントID（関連用語・公式リンクの解決に使う。
+//   章 id は2級/1級で衝突する('ch1'等)ので、必ず formulaId(あれば)を優先して引く）
+export const QUESTION_FORMULA_ID: Record<string, string> = (() => {
+  const m: Record<string, string> = {};
+  for (const f of CATALOG) {
+    for (const g of f.grades) {
+      for (const c of g.chapters) {
+        for (const q of c.data.questions) m[q.id] = c.formulaId ?? c.id;
+      }
+    }
+  }
+  return m;
+})();
