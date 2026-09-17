@@ -136,6 +136,39 @@ def iso_box(d,ox,oy,w,h,dp):
     d.polygon([(ox,oy),(ox+dx,oy-dy),(ox+w+dx,oy-dy),(ox+w,oy)],outline=BLACK,width=3,fill=FILL2)
     d.polygon([(ox+w,oy),(ox+w+dx,oy-dy),(ox+w+dx,oy+h-dy),(ox+w,oy+h)],outline=BLACK,width=3,fill=FILL3)
 
+def _isoslab(d,ox,oy,w,h,dx,dy,crackface=False):
+    """アイソメ直方体スラブ1枚(前面/上面/右面)。crackface=Trueなら上面をき裂面として濃色に。"""
+    d.polygon([(ox,oy),(ox+w,oy),(ox+w,oy+h),(ox,oy+h)],outline=BLACK,width=2,fill=FILL1)          # 前面
+    d.polygon([(ox,oy),(ox+dx,oy-dy),(ox+w+dx,oy-dy),(ox+w,oy)],outline=BLACK,width=2,
+              fill=(255,236,236) if crackface else FILL2)                                            # 上面(=き裂面)
+    d.polygon([(ox+w,oy),(ox+w+dx,oy-dy),(ox+w+dx,oy+h-dy),(ox+w,oy+h)],outline=BLACK,width=2,fill=FILL3)  # 右面
+
+def crack_mode(d,cx,cy,mode):
+    """き裂の3変形モードを立体(アイソメ)で描く。cy=き裂面の高さ。mode=1:開口 2:面内せん断 3:面外せん断。
+    直方体を上下2スラブに割り、モード別に相対変位させて赤矢印で運動方向を示す。"""
+    w,hh,dp=92,40,52
+    dx,dy=int(dp*0.8),int(dp*0.5)     # 42,26
+    bx=cx-w//2-dx//2
+    uy,ly=cy-hh,cy                    # 上/下スラブの前面左上y(変位前)
+    if mode==1:      # 開口:縦に開く
+        op=12; u=(bx,uy-op); l=(bx,ly+op)
+    elif mode==2:    # 面内せん断:き裂進展方向(x)にずれる
+        s=18; u=(bx+s,uy); l=(bx-s,ly)
+    else:            # 面外せん断:き裂前縁方向(z=奥行)にずれる
+        kx,ky=16,10; u=(bx+kx,uy-ky); l=(bx-kx,ly+ky)
+    # 上スラブ(奥)→下スラブの順。割れた面(上スラブの下面/下スラブの上面)を淡赤で見せる
+    _isoslab(d,u[0],u[1],w,hh,dx,dy)                 # 上スラブ
+    _isoslab(d,l[0],l[1],w,hh,dx,dy,crackface=True)  # 下スラブ(上面=き裂面)
+    if mode==1:
+        arrow(d,u[0]+w//2,u[1]-6,u[0]+w//2,u[1]-34,RED,4,14)
+        arrow(d,l[0]+w//2,l[1]+hh+6,l[0]+w//2,l[1]+hh+34,RED,4,14)
+    elif mode==2:
+        arrow(d,u[0]+w-6,u[1]+hh//2,u[0]+w+28,u[1]+hh//2,RED,4,14)
+        arrow(d,l[0]+6,l[1]+hh//2,l[0]-28,l[1]+hh//2,RED,4,14)
+    else:
+        arrow(d,u[0]+w//2,u[1]+hh//2,u[0]+w//2+34,u[1]+hh//2-20,RED,4,13)
+        arrow(d,l[0]+w//2,l[1]+hh//2,l[0]+w//2-34,l[1]+hh//2+20,RED,4,13)
+
 def angle_arc(d,cx,cy,r,a0,a1,label="",col=GRAY):
     """a0,a1は度(数学系:反時計回り、右=0°)。画像座標に変換して描く。"""
     d.arc((cx-r,cy-r,cx+r,cy+r), -a1, -a0, fill=col, width=2)

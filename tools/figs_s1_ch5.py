@@ -94,28 +94,14 @@ im, d = new()
 title(d, "き裂の3変形モード(重ね合わせで一般変形を表現)")
 
 
-def mode_block(d, cx, cy, w=110, h=90):
-    # 中央に水平き裂(左半分)をもつ直方体
-    d.rectangle((cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2), outline=BLACK, width=2, fill=FILL1)
-    d.line((cx - w / 2, cy, cx, cy), fill=BLACK, width=4)
-
-
-# モードI: 開口(上下に開く)
-mode_block(d, 150, 200)
-force(d, 150, 155, 0, -40, "", RED)
-force(d, 150, 245, 0, 40, "", RED)
-ctext(d, 150, 300, "モードI: 開口形\n(上下に開く)", FT)
-# モードII: 面内せん断(面に沿ってずれる)
-mode_block(d, 355, 200)
-force(d, 355, 152, 55, 0, "", GREEN)
-force(d, 355, 248, -55, 0, "", GREEN)
-ctext(d, 355, 300, "モードII: 面内せん断\n(面内でずれる)", FT)
-# モードIII: 面外せん断(奥行き方向にずれる)
-mode_block(d, 555, 200)
-arrow(d, 555, 165, 585, 145, BLUE, 3, 11)  # 奥へ
-arrow(d, 555, 235, 525, 255, BLUE, 3, 11)  # 手前へ
-ctext(d, 555, 300, "モードIII: 面外せん断\n(奥行きにずれる)", FT)
-ctext(d, 330, 392, "一般のき裂変形 = I + II + III の重ね合わせ", FT, GRAY)
+# 立体(アイソメ)の直方体を上下2スラブに割り、モード別に相対変位＋赤矢印で示す(→figlib.crack_mode)
+crack_mode(d, 150, 205, 1)
+ctext(d, 150, 300, "モードI: 開口形\n(垂直に引き離す)", FT)
+crack_mode(d, 360, 205, 2)
+ctext(d, 360, 300, "モードII: 面内せん断\n(き裂面に沿って前後にずれる)", FT)
+crack_mode(d, 558, 205, 3)
+ctext(d, 558, 300, "モードIII: 面外せん断\n(奥行き方向にずれる)", FT)
+ctext(d, W / 2, 392, "一般のき裂変形 = モードI + II + III の重ね合わせ", FT, GRAY)
 save(im, "s1e5ThreeModes")
 
 # 5-5 中央貫通き裂と K=sigma*sqrt(pi*a)

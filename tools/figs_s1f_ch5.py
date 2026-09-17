@@ -59,33 +59,17 @@ def singularity():
 # ============================================================
 def modes():
     im, d = new(); title(d, "き裂の3つの変形モード")
-    bw, bh = 150, 150
-    tops = [("Mode I (開口)", 40), ("Mode II (面内せん断)", 255), ("Mode III (面外せん断)", 470)]
-    ytop = 140
-    for lab, x0 in tops:
-        d.rectangle((x0, ytop, x0 + bw, ytop + bh), outline=BLACK, width=2, fill=FILL1)
-        ctext(d, x0 + bw / 2, ytop + bh + 30, lab, FT)
-    yc = ytop + bh / 2
-    # Mode I: 上に引く / 下に引く(き裂が縦に開く)
-    x0 = 40; cx = x0 + bw / 2
-    d.line((x0, yc, cx, yc - 8), fill=BLACK, width=3)
-    d.line((x0, yc, cx, yc + 8), fill=BLACK, width=3)   # 開いたき裂
-    node(d, cx, yc, 3)
-    force(d, cx, ytop - 28, 0, 22, "", RED)
-    force(d, cx, ytop + bh + 6, 0, -22, "", RED)
-    ctext(d, x0 + bw / 2, ytop - 40, "垂直に引離す", FT, RED)
-    # Mode II: 面内で前後にずらす(上=右 / 下=左)
-    x0 = 255; cx = x0 + bw / 2
-    d.line((x0, yc, x0 + bw, yc), fill=BLACK, width=2)
-    force(d, x0 + 20, yc - 30, 55, 0, "", RED)          # 上半分 右へ
-    force(d, x0 + bw - 20, yc + 30, -55, 0, "", RED)    # 下半分 左へ
-    ctext(d, x0 + bw / 2, ytop - 20, "面内で ずらす", FT, RED)
-    # Mode III: 面外(z方向)にねじる(上=手前 / 下=奥)= 斜め矢印で表現
-    x0 = 470; cx = x0 + bw / 2
-    d.line((x0, yc, x0 + bw, yc), fill=BLACK, width=2)
-    arrow(d, cx - 10, yc - 12, cx + 42, yc - 40, RED, 3, 12)   # 上半分 面外へ(+z)
-    arrow(d, cx + 10, yc + 12, cx - 42, yc + 40, RED, 3, 12)   # 下半分 面外へ(-z)
-    ctext(d, x0 + bw / 2, ytop - 20, "面外(z)へずらす", FT, RED)
+    # 立体(アイソメ)の直方体を上下2スラブに割り、モード別に相対変位＋赤矢印で示す(→figlib.crack_mode)
+    cy = 200
+    crack_mode(d, 150, cy, 1)
+    ctext(d, 150, 300, "モードI: 開口", FS, RED)
+    ctext(d, 150, 322, "垂直に引き離す", FT, GRAY)
+    crack_mode(d, 360, cy, 2)
+    ctext(d, 360, 300, "モードII: 面内せん断", FS, RED)
+    ctext(d, 360, 322, "き裂面に沿い前後へ", FT, GRAY)
+    crack_mode(d, 558, cy, 3)
+    ctext(d, 558, 300, "モードIII: 面外せん断", FS, RED)
+    ctext(d, 558, 322, "き裂前縁(奥行)方向へ", FT, GRAY)
     ctext(d, W / 2, H - 22, "実際のき裂変形は I・II・III の重ね合わせ", FT, GRAY)
     save(im, "s1f5Modes")
 

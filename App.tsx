@@ -34,6 +34,9 @@ import {
   recordAnswer,
   resetProgress,
   resetDaily,
+  loadDaily,
+  recordDaily,
+  dailyDigest,
   wrongIdsFrom,
   snapshotFields,
   loadFieldSnaps,
@@ -43,6 +46,8 @@ import {
   type QProgress,
   type FieldSnapStore,
   type FieldCompare,
+  type DailyMap,
+  type DailyDigest,
 } from './src/progress';
 import Paywall, { type PayTarget } from './src/pro/Paywall';
 import { TERMS_URL, PRIVACY_URL } from './src/config/revenuecat';
@@ -112,6 +117,8 @@ function AppInner() {
 
   const [tab, setTab] = useState<Tab>('home');
   const [progress, setProgress] = useState<ProgressMap>({});
+  // 日別ログ（連続日数・今日の学習量・直近の活動グラフ用）
+  const [daily, setDaily] = useState<DailyMap>({});
 
   // Pro（買い切り＝分野×級ごと）状態と購入画面の表示。target＝今売る級。
   const [proSt, setProSt] = useState<ProState>(DEFAULT_PRO_STATE);
@@ -162,6 +169,7 @@ function AppInner() {
       await snapshotFields(p, 'g2');
       await snapshotFields(p, 'g1');
     });
+    loadDaily().then(setDaily);
   }, []);
 
   // Proの初期化・同期。まず端末保存値を読み（オフラインでも即反映）、次にストアと同期して最新化。
@@ -216,8 +224,11 @@ function AppInner() {
   async function onSelectAnswer(q: Question, choiceNum: number) {
     if (answers[q.id] != null) return; // 既に回答済みなら無視
     setAnswers((a) => ({ ...a, [q.id]: choiceNum }));
-    const next = await recordAnswer(progress, q.id, choiceNum === q.answer);
+    const correct = choiceNum === q.answer;
+    const next = await recordAnswer(progress, q.id, correct);
     setProgress(next);
+    // 「今日 何問解いて 何問正解したか」を日単位で記録（継続日数・活動グラフの素）。
+    setDaily(await recordDaily(daily, correct));
   }
 
   return (
@@ -228,6 +239,7 @@ function AppInner() {
           <HomeTab
             t={t}
             progress={progress}
+            daily={daily}
             wrongCount={wrongQuestions.length}
             onReview={() => openProblems(wrongQuestions, '間違い復習')}
             onGoStudy={() => {
@@ -298,6 +310,7 @@ function AppInner() {
             onReset={async () => {
               const cleared = await resetProgress();
               setProgress(cleared);
+              setDaily(await resetDaily());
             }}
             owned={proSt.owned}
             devPro={proSt.devPro}
@@ -443,11 +456,14 @@ const icon = StyleSheet.create({
 function HomeTab(props: {
   t: Theme;
   progress: ProgressMap;
+  daily: DailyMap;
   wrongCount: number;
   onReview: () => void;
   onGoStudy: () => void;
 }) {
   const { t } = props;
+  // 継続日数・今日の学習量・直近の活動（級に依らず端末全体の学習ログから）。
+  const digest = useMemo(() => dailyDigest(props.daily), [props.daily]);
   // ホームの分析は級ごと。左=1級 / 右=2級。起動時は「前回開いた級」を復元（初回のみ2級）。
   const [grade, setGrade] = useState<GradeId>('g2');
   useEffect(() => {
@@ -484,6 +500,9 @@ function HomeTab(props: {
       <Text style={[styles.subtitle, { color: t.sub }]}>
         {grade === 'g1' ? '固体力学 1級' : '固体力学 2級'}
       </Text>
+
+      {/* 継続日数・今日の学習量・今週の伸び（モチベーション帯） */}
+      <StreakHero t={t} digest={digest} />
 
       {/* 級の切り替え（1級=左 / 2級=右） */}
       <View style={[styles.segment, { borderColor: t.border, backgroundColor: t.card }]}>
@@ -570,6 +589,56 @@ function HomeTab(props: {
 
       {/* 章別の正答率は「問題」タブの各章タイトル下へ移動（見やすさのため） */}
     </ScrollView>
+  );
+}
+
+// ホーム上部のモチベーション帯。継続日数を主役に、今日の学習量・今週の伸び・
+// 直近14日の活動棒（高さ=解いた量 / 色=その日の正答率）を1枚に集約する。
+function StreakHero(props: { t: Theme; digest: DailyDigest }) {
+  const { t, digest } = props;
+  const today = digest.last30[digest.last30.length - 1] ?? { n: 0, c: 0 };
+  const todayPct = today.n > 0 ? Math.round((today.c / today.n) * 100) : 0;
+  const strip = digest.last30.slice(-14); // 直近14日（古い→新しい）
+  const maxN = Math.max(1, ...strip.map((d) => d.n));
+  const wd = digest.weekDelta;
+  const wdColor = wd > 0 ? t.correct : wd < 0 ? t.wrong : t.sub;
+  const wdText = wd > 0 ? `▲+${wd}` : wd < 0 ? `▼${wd}` : '±0';
+  return (
+    <View style={styles.heroWrap}>
+      {/* 継続日数タイル（主役） */}
+      <View style={[styles.heroStreak, { backgroundColor: t.primary }]}>
+        <Text style={styles.heroFlame}>🔥</Text>
+        <Text style={styles.heroStreakNum}>{digest.streak}</Text>
+        <Text style={styles.heroStreakLabel}>日連続</Text>
+      </View>
+      {/* 今日 ＋ 今週の伸び ＋ 直近14日の活動 */}
+      <View style={[styles.heroRight, { backgroundColor: t.card, borderColor: t.border }]}>
+        <View style={styles.heroTopRow}>
+          <View style={{ flexShrink: 1 }}>
+            <Text style={[styles.heroToday, { color: t.text }]}>
+              今日 <Text style={{ color: t.primary }}>{today.n}</Text> 問
+            </Text>
+            <Text style={[styles.heroTodaySub, { color: t.sub }]}>
+              {today.n > 0 ? `正答率 ${todayPct}%` : 'まだ今日の記録なし'}
+            </Text>
+          </View>
+          <View style={{ alignItems: 'flex-end' }}>
+            <Text style={[styles.heroWeekDelta, { color: wdColor }]}>{wdText}</Text>
+            <Text style={[styles.heroTodaySub, { color: t.sub }]}>今週の正答率</Text>
+          </View>
+        </View>
+        {/* 直近14日：棒の高さ=解いた量 / 色=その日の正答率 */}
+        <View style={styles.heroStrip}>
+          {strip.map((d, i) => {
+            const h = d.n > 0 ? 4 + Math.round((d.n / maxN) * 14) : 3;
+            const pct = d.n > 0 ? (d.c / d.n) * 100 : -1;
+            const color =
+              pct < 0 ? t.border : pct >= 80 ? t.correct : pct >= 50 ? t.amber : t.wrong;
+            return <View key={i} style={[styles.heroBar, { height: h, backgroundColor: color }]} />;
+          })}
+        </View>
+      </View>
+    </View>
   );
 }
 
@@ -1532,36 +1601,39 @@ function displayMath(s: string): string {
 }
 
 // ================= テーマ =================
+// 配色は「ネイビー1色を主役」に統一。中立色（白/グレー）＋正誤の緑・赤だけを添える。
+// primary=ブランドのネイビー、reviewBtn=同系のセカンダリ青（色相を増やさない）、
+// amber=「引っかけ/中位」を示す唯一の暖色アクセント。ビビッド・紫は使わない。
 type Theme = typeof light;
 const light = {
   bg: '#ffffff',
-  text: '#1a1a1a',
-  sub: '#666666',
-  card: '#f6f7f9',
-  border: '#dfe3e8',
-  primary: '#2563eb',
-  reviewBtn: '#7c3aed',
-  amber: '#f59e0b',
+  text: '#16233a', // ネイビー寄りの濃色（黒より柔らかく統一感）
+  sub: '#5f6b7a',
+  card: '#f4f6f9',
+  border: '#e3e8ef',
+  primary: '#1f3d63', // ブランドのネイビー（ボタン・選択・ヘッダー・レーダー）
+  reviewBtn: '#3a6491', // 同じ青系のセカンダリ（復習・用語バッジ）
+  amber: '#d98a2b', // 唯一の暖色アクセント（注意・中位の正答率）
   disabled: '#c8ccd2',
-  correct: '#16a34a',
-  correctBg: '#e7f6ec',
-  wrong: '#dc2626',
-  wrongBg: '#fdeaea',
+  correct: '#2f9e63', // ソフトな緑（正解フィードバック専用）
+  correctBg: '#e6f4ec',
+  wrong: '#d1544f', // ソフトな赤（不正解フィードバック専用）
+  wrongBg: '#fbe9e8',
 };
 const dark: Theme = {
   bg: '#0f1115',
-  text: '#f2f3f5',
-  sub: '#9aa0a6',
-  card: '#1a1d23',
-  border: '#2a2e35',
-  primary: '#3b82f6',
-  reviewBtn: '#8b5cf6',
-  amber: '#f59e0b',
+  text: '#eef1f5',
+  sub: '#9aa4b0',
+  card: '#171b22',
+  border: '#29303a',
+  primary: '#3d6aa6', // ネイビーの明るめ（暗背景で白文字が読める）
+  reviewBtn: '#5586bd',
+  amber: '#dd9a3a',
   disabled: '#3a3f47',
-  correct: '#22c55e',
-  correctBg: '#132b1c',
-  wrong: '#ef4444',
-  wrongBg: '#2b1414',
+  correct: '#35b877',
+  correctBg: '#12291d',
+  wrong: '#e0625d',
+  wrongBg: '#2a1514',
 };
 
 const styles = StyleSheet.create({
@@ -1576,6 +1648,19 @@ const styles = StyleSheet.create({
   segmentItem: { flex: 1, paddingVertical: 8, borderRadius: 8, alignItems: 'center' },
   segmentText: { fontSize: 14, fontWeight: '600' },
   sectionHead: { fontSize: 16, fontWeight: 'bold', marginTop: 18, marginBottom: 8 },
+  // モチベーション帯（継続日数・今日・活動棒）
+  heroWrap: { flexDirection: 'row', marginBottom: 12 },
+  heroStreak: { width: 96, borderRadius: 12, paddingVertical: 12, marginRight: 10, alignItems: 'center', justifyContent: 'center' },
+  heroFlame: { fontSize: 22 },
+  heroStreakNum: { color: '#fff', fontSize: 30, fontWeight: 'bold', lineHeight: 34 },
+  heroStreakLabel: { color: '#fff', fontSize: 12, opacity: 0.9 },
+  heroRight: { flex: 1, borderWidth: 1, borderRadius: 12, padding: 12, justifyContent: 'space-between' },
+  heroTopRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' },
+  heroToday: { fontSize: 18, fontWeight: 'bold' },
+  heroTodaySub: { fontSize: 11, marginTop: 2 },
+  heroWeekDelta: { fontSize: 18, fontWeight: 'bold' },
+  heroStrip: { flexDirection: 'row', alignItems: 'flex-end', height: 20, marginTop: 10 },
+  heroBar: { flex: 1, borderRadius: 2, marginHorizontal: 1.5, minWidth: 3 },
   radarLegend: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 8 },
   radarLegendItem: { fontSize: 12, marginHorizontal: 6, marginVertical: 2 },
   radarNote: { fontSize: 11, marginTop: 8, textAlign: 'center', paddingHorizontal: 8, lineHeight: 16 },

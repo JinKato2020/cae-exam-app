@@ -87,33 +87,33 @@
               "id": "ch10",
               "title": "第10章 プリポスト処理の基礎",
               "file": "questions/prepost-basics.json",
-              "count": 24,
+              "count": 41,
               "origin": "original",
-              "status": "draft"
+              "status": "committed"
             },
             {
               "id": "ch11",
               "title": "第11章 結果の検証の基礎",
               "file": "questions/verification-basics.json",
-              "count": 24,
+              "count": 28,
               "origin": "original",
-              "status": "draft"
+              "status": "committed"
             },
             {
               "id": "ch12",
               "title": "第12章 コンピューターの基礎",
               "file": "questions/computer-basics.json",
-              "count": 24,
+              "count": 33,
               "origin": "original",
-              "status": "draft"
+              "status": "committed"
             },
             {
               "id": "ch13",
               "title": "第13章 計算力学技術者倫理",
               "file": "questions/ethics.json",
-              "count": 22,
+              "count": 20,
               "origin": "original",
-              "status": "draft"
+              "status": "committed"
             }
           ]
         }
