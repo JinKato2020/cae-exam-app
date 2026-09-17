@@ -1206,23 +1206,20 @@ function SettingsTab(props: {
         </Pressable>
       </View>
 
-      {/* 開発者用：開発ビルド(__DEV__=true)のときだけ表示。TestFlight/本番では出ないので一般ユーザーには見えない。
-          本番でも切り替えたいときは最下部バージョンの7回タップ（隠しジェスチャ）を使う。 */}
-      {__DEV__ ? (
-        <>
-          <Text style={[styles.sectionHead, { color: t.text }]}>開発者用（開発ビルドのみ表示）</Text>
-          <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
-            <View style={styles.infoRow}>
-              <Text style={[styles.infoLabel, { color: t.text }]}>Proモード全解除（devPro）</Text>
-              <Switch
-                value={props.devPro}
-                onValueChange={props.onToggleDevPro}
-                trackColor={{ true: t.primary, false: t.border }}
-              />
-            </View>
-          </View>
-        </>
-      ) : null}
+      {/* 開発用：Proモード全解除(devPro)トグル。TestFlight/実機での動作確認用に常時表示している。
+          ⚠️ App Store 公開版でも一般ユーザーに見えてしまうため、公開ビルド前に必ず除去または __DEV__ で囲い直すこと。
+          （本番で隠したまま切り替えたいときは、最下部バージョンの7回タップの隠しジェスチャも併用可） */}
+      <Text style={[styles.sectionHead, { color: t.text }]}>開発用</Text>
+      <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
+        <View style={styles.infoRow}>
+          <Text style={[styles.infoLabel, { color: t.text }]}>Proモード全解除（devPro）</Text>
+          <Switch
+            value={props.devPro}
+            onValueChange={props.onToggleDevPro}
+            trackColor={{ true: t.primary, false: t.border }}
+          />
+        </View>
+      </View>
 
       {/* 最下部のバージョン表示。7回タップで開発用ロック解除（隠しジェスチャ）。 */}
       <Pressable onPress={onTapVersion} style={styles.versionFooter} hitSlop={8}>
