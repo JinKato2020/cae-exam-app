@@ -32,7 +32,11 @@
       "figureImage": "s1e11CouplingClass",
       "figureHint": "白地660x420でクラスI(2領域が境界で接し境界条件で連成)とクラスII(2領域が重複し支配方程式で連成)の対比模式",
       "officialRef": "問11(1)-1",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-1",
+        "s1ch11-2"
+      ]
     },
     {
       "id": "solid1-11-02",
@@ -57,7 +61,10 @@
       "figureImage": "s1e11OneWay",
       "figureHint": "白地660x420で温度場ソルバー→(温度・熱ひずみ)→応力場ソルバーの一方向データフロー図(逆向き矢印なし)",
       "officialRef": "問11(1)-2",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-1"
+      ]
     },
     {
       "id": "solid1-11-03",
@@ -80,7 +87,11 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問11(1)-3",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-2",
+        "s1ch11-3"
+      ]
     },
     {
       "id": "solid1-11-04",
@@ -105,7 +116,10 @@
       "figureImage": "s1e11Staggered",
       "figureHint": "白地660x420で連成解法の系統図(一体型＝強連成／分離型→互い違い法＝弱連成・ブロック反復＝強連成)",
       "officialRef": "問11(1)-4",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-4"
+      ]
     },
     {
       "id": "solid1-11-21",
@@ -130,7 +144,10 @@
       "figureImage": "s1e11Sequential",
       "figureHint": "白地660x420で逐次互い違い法のデータフロー（y_{n+1}を予測→式Xでx_{n+1}→最新x_{n+1}で式Yからy_{n+1}）",
       "officialRef": "問11(1)-5",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-4"
+      ]
     },
     {
       "id": "solid1-11-05",
@@ -155,7 +172,10 @@
       "figureImage": "s1e11Mullins",
       "figureHint": "白地660x420でゴムの応力-伸長比曲線(初回曲線・A点で除荷→低応力経路・再載荷で同経路→A超で初回曲線に復帰)",
       "officialRef": "問11(2)-1",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-5"
+      ]
     },
     {
       "id": "solid1-11-06",
@@ -180,7 +200,10 @@
       "figureImage": "s1e11DynViscoEllipse",
       "figureHint": "白地660x420で応力-ひずみのリサージュ楕円(位相差δ・ε=0でσ=±σ0 sinδの切片・長軸の傾き)",
       "officialRef": "問11(2)-2",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-6"
+      ]
     },
     {
       "id": "solid1-11-07",
@@ -205,7 +228,10 @@
       "figureImage": "s1e11Payne",
       "figureHint": "白地660x420で複素弾性率E*がひずみ振幅の増大につれ低下する曲線(小振幅=楕円→大振幅=眼鏡型の挿図)",
       "officialRef": "問11(2)-3",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-7"
+      ]
     },
     {
       "id": "solid1-11-08",
@@ -230,7 +256,10 @@
       "figureImage": "s1e11Master",
       "figureHint": "白地660x420で3温度の応力緩和カーブを対数時間軸でシフトし1本のマスターカーブに重ねる模式(シフト量logα)",
       "officialRef": "問11(2)-4",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-8"
+      ]
     },
     {
       "id": "solid1-11-09",
@@ -255,7 +284,11 @@
       "figureImage": "s1e11Maxwell",
       "figureHint": "白地660x420で一般化マクスウェルモデル(長期弾性率バネE∞と複数のE_i-η_i直列マクスウェル要素が並列)",
       "officialRef": "問11(2)-5",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-9",
+        "s1ch11-10"
+      ]
     },
     {
       "id": "solid1-11-22",
@@ -278,7 +311,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問11(3)-1",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-11"
+      ]
     },
     {
       "id": "solid1-11-10",
@@ -303,7 +339,10 @@
       "figureImage": "s1e11Effective",
       "figureHint": "白地660x420で断面積Aの棒に荷重F・内部の微小空隙で有効面積(1−D)Aに減少する模式",
       "officialRef": "問11(3)-2",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-12"
+      ]
     },
     {
       "id": "solid1-11-11",
@@ -328,7 +367,10 @@
       "figureImage": "s1e11Gurson",
       "figureHint": "白地660x420で母材中の同心球形ボイドを含む代表体積要素(ボイド率fの成長・合体の模式)",
       "officialRef": "問11(3)-3",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-13"
+      ]
     },
     {
       "id": "solid1-11-12",
@@ -353,7 +395,10 @@
       "figureImage": "s1e11Cohesive",
       "figureHint": "白地660x420でき裂先端前方の結合力域(牽引力トラクションと開口量の分離則グラフを併記)",
       "officialRef": "問11(3)-4",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-14"
+      ]
     },
     {
       "id": "solid1-11-13",
@@ -376,7 +421,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問11(4)-1",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-15"
+      ]
     },
     {
       "id": "solid1-11-14",
@@ -399,7 +447,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問11(4)-2",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-16"
+      ]
     },
     {
       "id": "solid1-11-23",
@@ -424,7 +475,10 @@
       "figureImage": "s1e11Reciprocity",
       "figureHint": "白地660x420で直交異方性ラミナ（繊維方向=軸1・E1大／軸2・E2小）と相反則ν12/E1=ν21/E2の模式",
       "officialRef": "問11(4)-3",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-16"
+      ]
     },
     {
       "id": "solid1-11-15",
@@ -449,7 +503,10 @@
       "figureImage": "s1e11OffAxis",
       "figureHint": "白地660x420で材料主軸1-2をθ回転したx-y座標・繊維方向と荷重方向のずれで垂直応力→せん断ひずみが生じる模式",
       "officialRef": "問11(4)-4",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-16"
+      ]
     },
     {
       "id": "solid1-11-24",
@@ -474,7 +531,10 @@
       "figureImage": "s1e11LoadVsDisp",
       "figureHint": "白地660x420で強制変位→ひずみ等しい→応力で比較、分布荷重→変位差→変位・ひずみで比較の2列対比",
       "officialRef": "問11(4)-5",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-16"
+      ]
     },
     {
       "id": "solid1-11-16",
@@ -497,7 +557,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問11(4)-6",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-17"
+      ]
     },
     {
       "id": "solid1-11-17",
@@ -522,7 +585,10 @@
       "figureImage": "s1e11Laminate",
       "figureHint": "白地660x420で積層板の板厚方向z座標(中央面z=0・各層界面z_k)と面内力N・曲げモーメントMの定義",
       "officialRef": "問11(4)-7",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-18"
+      ]
     },
     {
       "id": "solid1-11-18",
@@ -547,7 +613,10 @@
       "figureImage": "s1e11Fsdt",
       "figureHint": "白地660x420で板厚方向のせん断ひずみ分布(FSDT=板厚方向一定・HSDT=高次曲線)の対比",
       "officialRef": "問11(4)-8",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-19"
+      ]
     },
     {
       "id": "solid1-11-19",
@@ -572,7 +641,10 @@
       "figureImage": "s1e11Crack",
       "figureHint": "白地660x420で分散クラックモデル(要素全体に平滑化)と離散クラックモデル(要素境界に沿うき裂)の対比模式",
       "officialRef": "問11(5)-1",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-20"
+      ]
     },
     {
       "id": "solid1-11-20",
@@ -597,7 +669,10 @@
       "figureImage": "s1e11Dilatancy",
       "figureHint": "白地660x420でせん断による砂粒子の乗り上げと体積変化(密な砂=膨張・緩い砂=収縮)の模式",
       "officialRef": "問11(5)-2",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch11-20"
+      ]
     }
   ]
 }

@@ -57,7 +57,10 @@
       "figureImage": "s1e7Fourier",
       "figureHint": "白地660x420で厚さLの平板を高温側120℃から低温側20℃へ直線的に温度が下がる分布と、右向きの熱流束q=λΔT/Lの矢印を描く",
       "officialRef": "問7-1",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "s1ch7-3"
+      ]
     },
     {
       "id": "solid1-7-3",
@@ -82,7 +85,10 @@
       "figureImage": "s1e7ThermalDiff",
       "figureHint": "白地660x420で温度伝導率κ=λ/(ρc)の式と、分子λ・分母ρc（密度×比熱＝熱容量）の意味を注記した対応図",
       "officialRef": "問7-1",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "s1ch7-2"
+      ]
     },
     {
       "id": "solid1-7-4",
@@ -107,7 +113,10 @@
       "figureImage": "s1e7BoundaryCond",
       "figureHint": "白地660x420で4種の境界条件（温度規定T=T̄、熱流束規定q=q̄・断熱、熱伝達q=h(T-Tf)、ふく射q=εσF(T⁴-Tr⁴)）を物体の各辺に割り当てた図",
       "officialRef": "問7-1",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "s1ch7-4"
+      ]
     },
     {
       "id": "solid1-7-5",
@@ -132,7 +141,11 @@
       "figureImage": "s1e7HeatEquation",
       "figureHint": "白地660x420で非定常熱伝導方程式∂T/∂t=κ∇²Tと、必要な入力（初期温度・境界条件・物性ρ,c,λ）を箇条書きで示す模式図",
       "officialRef": "問7-1",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch7-1",
+        "s1ch7-2"
+      ]
     },
     {
       "id": "solid1-7-6",
@@ -157,7 +170,10 @@
       "figureImage": "s1e7SeriesSolution",
       "figureHint": "白地660x420で温度分布が初期状態から時間経過とともに直線分布(T1+(T2-T1)x/l)へ近づく複数曲線を描き、定常項・過渡項(exp減衰)を注記",
       "officialRef": "問7-1",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "s1ch7-5"
+      ]
     },
     {
       "id": "solid1-7-7",
@@ -182,7 +198,10 @@
       "figureImage": "s1e7ThetaMethod",
       "figureHint": "白地660x420で時間軸t_n〜t_{n+1}上の評価点をθ=0(前進差分)・θ=1/2(クランク・ニコルソン)・θ=1(後退差分)で示し、安定性(条件付き/無条件)を注記した表",
       "officialRef": "問7-4",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch7-7"
+      ]
     },
     {
       "id": "solid1-7-8",
@@ -207,7 +226,10 @@
       "figureImage": "s1e7StabilityLimit",
       "figureHint": "白地660x420で20分割した棒(δ=0.05)と、安定条件κΔt/δ²≤1/2からΔt≤δ²/(2κ)=0.00125を導く計算過程を示す",
       "officialRef": "問7-4",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "s1ch7-8"
+      ]
     },
     {
       "id": "solid1-7-9",
@@ -232,7 +254,10 @@
       "figureImage": "s1e7StabAccuracy",
       "figureHint": "白地660x420で「安定性(発散しない)」と「精度(真の解に近い)」を別軸として示し、Δt大でも安定だが精度は低下する様子を解析解と数値解の比較曲線で描く",
       "officialRef": "問7-4",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "s1ch7-7"
+      ]
     },
     {
       "id": "solid1-7-10",
@@ -257,7 +282,11 @@
       "figureImage": "s1e7SteadyLimit",
       "figureHint": "白地660x420で非定常(時間項あり・初期条件必要・ρc要)と定常(時間項なし・初期条件不要・λのみ)を左右で対比し、∂T/∂t=0で定常に移行する矢印を描く",
       "officialRef": "問7-2",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "s1ch7-1",
+        "s1ch7-2"
+      ]
     },
     {
       "id": "solid1-7-11",
@@ -282,7 +311,10 @@
       "figureImage": "s1e7HollowCylinder",
       "figureHint": "白地660x420で中空円筒(内半径a・外半径b、内面h1・外面h2)の断面と、速い昇温時に内面応力が昇温終了時にピークを示す周方向応力の時間変化グラフを併記",
       "officialRef": "問7-2",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch7-10"
+      ]
     },
     {
       "id": "solid1-7-12",
@@ -307,7 +339,10 @@
       "figureImage": "s1e7FemHeat",
       "figureHint": "白地660x420で[C]{∂T/∂t}+[K]{T}={F}の各項の名称(熱容量・熱伝導・熱流束)を注記し、時間項を0にすると定常[K]{T}={F}になる流れを示す",
       "officialRef": "問7-3",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch7-6"
+      ]
     },
     {
       "id": "solid1-7-13",
@@ -332,7 +367,10 @@
       "figureImage": "s1e7CapConductMat",
       "figureHint": "白地660x420で熱容量[c]=∫ρc[N]^T[N]dV(時間変化)と熱伝導[k]=∫λ(∂N/∂x…)dV(空間こう配)の構成物性を対比した図",
       "officialRef": "問7-3",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "s1ch7-6"
+      ]
     },
     {
       "id": "solid1-7-14",
@@ -357,7 +395,10 @@
       "figureImage": "s1e7Nonlinear",
       "figureHint": "白地660x420で非線形の2要因(温度依存物性λ(T)・ふく射のT⁴)と、反復計算/非定常で定常解を得る解法を箇条書きで示す模式図",
       "officialRef": "問7-5",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch7-9"
+      ]
     },
     {
       "id": "solid1-7-15",
@@ -382,7 +423,11 @@
       "figureImage": "s1e7LambdaTdep",
       "figureHint": "白地660x420で平面壁内の温度分布を2曲線で描く：λ一定=直線、λが温度とともに増加=上に凸(高温側で傾き緩)。高温側と低温側を明示",
       "officialRef": "問7-6",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch7-9",
+        "s1ch7-3"
+      ]
     },
     {
       "id": "solid1-7-16",
@@ -407,7 +452,12 @@
       "figureImage": "s1e7StefanBoltz",
       "figureHint": "白地660x420で黒体E_b=σT⁴と灰色体E=εσT⁴の放射、真空を越えて伝わるふく射、キルヒホッフの法則ε=αを注記した模式図",
       "officialRef": "問7-7",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch7-11",
+        "s1ch7-12",
+        "s1ch7-13"
+      ]
     },
     {
       "id": "solid1-7-17",
@@ -432,7 +482,10 @@
       "figureImage": "s1e7GrayPlates",
       "figureHint": "白地660x420で平行2灰色体面(T1,ε1とT2,ε2)の間の多重反射とふく射伝熱、係数f=1/(1/ε1+1/ε2-1)を注記した図",
       "officialRef": "問7-9",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch7-14"
+      ]
     },
     {
       "id": "solid1-7-18",
@@ -457,7 +510,11 @@
       "figureImage": "s1e7RadShield",
       "figureHint": "白地660x420で面1(T1)と面2(T2)の間に薄板3を挿入した図と、放射率がすべて等しいとき伝熱量が半分(Q*=Q/2)になることを直列抵抗のイメージで示す",
       "officialRef": "問7-10",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch7-15",
+        "s1ch7-14"
+      ]
     },
     {
       "id": "solid1-7-19",
@@ -482,7 +539,10 @@
       "figureImage": "s1e7ViewFactor",
       "figureHint": "白地660x420で向かい合う面1(A1=4)と面2(A2=2)を描き、F12=Q12/(A1E1)=0.15と相反則A1F12=A2F21からF21=0.30を導く計算過程を示す",
       "officialRef": "問7-11",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch7-16"
+      ]
     },
     {
       "id": "solid1-7-20",
@@ -507,7 +567,11 @@
       "figureImage": "s1e7BiotNumber",
       "figureHint": "白地660x420でビオ数Bi=hL/λの意味(表面の熱伝達hと内部の熱伝導λ/Lの比)を物体断面で図示し、Bi小=温度一様/Bi大=温度こう配大を対比",
       "officialRef": "問7-12",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch7-17",
+        "s1ch7-18"
+      ]
     },
     {
       "id": "solid1-7-21",
@@ -532,7 +596,11 @@
       "figureImage": "s1e7MultiReflect",
       "figureHint": "白地660x420で平行2灰色体面(面1・面2)間の多重反射を矢印で描き、面2が各回に吸収する項(eps2E1, eps2(1-eps1)(1-eps2)E1, ...)と総和 Q2=eps2E1/(1-(1-eps1)(1-eps2)) を示す",
       "officialRef": "問7-8",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch7-14",
+        "s1ch7-13"
+      ]
     }
   ]
 }

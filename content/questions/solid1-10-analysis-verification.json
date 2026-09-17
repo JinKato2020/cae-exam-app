@@ -32,7 +32,10 @@
       "figureImage": "s1e10VerifySteps",
       "figureHint": "白地660x420で非線形解析の4段階手順(単純化モデル→線形解析→非線形解析→パラメータ感度)を左右フローで並べ、各段にASME V&V対応(検証/計算結果検証/妥当性確認/不確かさ)を添える",
       "officialRef": "問10-1",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-2"
+      ]
     },
     {
       "id": "solid1-10-2",
@@ -57,7 +60,10 @@
       "figureImage": "s1e10DiskCollapse",
       "figureHint": "白地660x420で外周固定・一様圧力pを受ける円板の軸対称断面(板厚t・半径a)を描き、固定端近傍に塑性ヒンジ(降伏域)を示す",
       "officialRef": "問10-2",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-3"
+      ]
     },
     {
       "id": "solid1-10-3",
@@ -82,7 +88,10 @@
       "figureImage": "s1e10MeshAspect",
       "figureHint": "白地660x420でアスペクト比の良い要素(正方形に近い)と悪い要素(細長い)の比較、および圧力-中央変位曲線で崩壊荷重が急増する点を模式的に示す",
       "officialRef": "問10-3",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-3"
+      ]
     },
     {
       "id": "solid1-10-4",
@@ -107,7 +116,10 @@
       "figureImage": "s1e10PunchLimit",
       "figureHint": "白地660x420で半無限領域を有限領域で近似したパンチ押込み問題(上面から剛体パンチ、周囲にディリクレ境界)と塑性すべり域を模式的に描く",
       "officialRef": "問10-4",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-5"
+      ]
     },
     {
       "id": "solid1-10-5",
@@ -132,7 +144,10 @@
       "figureImage": "s1e10CantHinge",
       "figureHint": "白地660x420で固定端の片持ちはりを5個のはり要素に分割し、各要素中央の積分点(×印)を示し、固定端から最寄り積分点までL/10・そこから荷重点まで9L/10を寸法線で描く",
       "officialRef": "問10-5",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-6"
+      ]
     },
     {
       "id": "solid1-10-6",
@@ -157,7 +172,10 @@
       "figureImage": "s1e10PlateBuckle",
       "figureHint": "白地660x420でa/b=2の単純支持板の座屈波形をm=2(半波2個・反対称)とm=3(半波3個)で並べ、x=a/2の対称線を破線で示す",
       "officialRef": "問10-6",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-7"
+      ]
     },
     {
       "id": "solid1-10-7",
@@ -182,7 +200,10 @@
       "figureImage": "s1e10CreepRedist",
       "figureHint": "白地660x420で横軸log(時間)・縦軸相当応力の再分布曲線(内面応力は低下・外面応力は上昇し一定に漸近)と、厚肉円筒断面(内圧p・内半径a・外半径b)を併記",
       "officialRef": "問10-7",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-8"
+      ]
     },
     {
       "id": "solid1-10-8",
@@ -207,7 +228,10 @@
       "figureImage": "s1e10WeldCouple",
       "figureHint": "白地660x420で「非定常熱伝導解析→各時刻の温度場→熱弾塑性解析→残留応力」の一方向フローを矢印で描き、応力場から温度場へは戻らない(独立)ことを示す",
       "officialRef": "問10-8",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-9"
+      ]
     },
     {
       "id": "solid1-10-9",
@@ -232,7 +256,10 @@
       "figureImage": "s1e10Hardening",
       "figureHint": "白地660x420で応力-ひずみ線図に等方硬化・移動硬化・複合硬化の3つの繰返しループを描き、初期降伏点と反転後の再降伏点(バウシンガー効果)を示す",
       "officialRef": "問10-9",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-10"
+      ]
     },
     {
       "id": "solid1-10-10",
@@ -255,7 +282,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問10-10",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-11"
+      ]
     },
     {
       "id": "solid1-10-11",
@@ -280,7 +310,10 @@
       "figureImage": "s1e10NormalDist",
       "figureHint": "白地660x420で正規分布曲線を描き、平均μと、測定値のばらつき幅σ(標準偏差)、平均値のばらつき幅σ/√n(標準誤差)を対比して示す",
       "officialRef": "問10-11",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-12"
+      ]
     },
     {
       "id": "solid1-10-12",
@@ -305,7 +338,10 @@
       "figureImage": "s1e10PDCA",
       "figureHint": "白地660x420でPDCAサイクルを円環矢印で描き、各象限にPlan(標準プロセス策定)・Do(解析実施)・Check(満足度調査)・Act(プロセス改善)を配置",
       "officialRef": "問10-12",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-14"
+      ]
     },
     {
       "id": "solid1-10-13",
@@ -328,7 +364,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問10-13",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-15"
+      ]
     },
     {
       "id": "solid1-10-14",
@@ -351,7 +390,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問10-15",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-15"
+      ]
     },
     {
       "id": "solid1-10-15",
@@ -376,7 +418,10 @@
       "figureImage": "s1e10Workflow",
       "figureHint": "白地660x420で解析業務の標準実施手順を縦フロー図にし、契約内容の確認→顧客要件明確化→実行計画書→解析計画書→メッシュ作成→事前検証→計算実行→解析の検証→妥当性確認→報告書→最終検査・納品を並べ、空欄(1)(2)(3)を強調",
       "officialRef": "問10-16",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-16"
+      ]
     },
     {
       "id": "solid1-10-16",
@@ -399,7 +444,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問10-18",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-16"
+      ]
     },
     {
       "id": "solid1-10-17",
@@ -424,7 +472,10 @@
       "figureImage": "s1e10VandV",
       "figureHint": "白地660x420で検証(Verification:入力・計算結果が論理的/数値的に正しいか)と妥当性確認(Validation:結果が工学的用途に適合するか・独立手法と比較)を左右2欄で対比する",
       "officialRef": "問10-19",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-1"
+      ]
     },
     {
       "id": "solid1-10-18",
@@ -447,7 +498,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問10-20",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-18"
+      ]
     },
     {
       "id": "solid1-10-19",
@@ -470,7 +524,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問10-21",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-19"
+      ]
     },
     {
       "id": "solid1-10-20",
@@ -495,7 +552,10 @@
       "figureImage": "s1e10VerifyTiming",
       "figureHint": "白地660x420で時間軸上に購入ソフト検証の4タイミング(購入時・ハードリニューアル・OSバージョンアップ・ソフトバージョンアップ)をマーカーで並べ、各契機に再検証・記録が入ることを示す",
       "officialRef": "問10-22",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-19"
+      ]
     },
     {
       "id": "solid1-10-21",
@@ -518,7 +578,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問10-14",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-17"
+      ]
     },
     {
       "id": "solid1-10-22",
@@ -541,7 +604,10 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問10-17",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch10-17"
+      ]
     }
   ]
 }

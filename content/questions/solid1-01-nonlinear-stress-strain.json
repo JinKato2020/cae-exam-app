@@ -32,7 +32,11 @@
       "figureImage": "s1e1SmallLarge",
       "figureHint": "微小変形(直線近似)と有限変形(大回転・非線形)の違いを正方形/棒の変形で対比",
       "officialRef": "問1-1",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch1-finite-vs-infinitesimal",
+        "s1ch1-material-geometric-tl-ul"
+      ]
     },
     {
       "id": "solid1-1-2",
@@ -57,7 +61,10 @@
       "figureImage": "s1e1DeformGrad",
       "figureHint": "白地660x420で基準配置の微小ベクトルdXが変形勾配Fにより現配置の微小ベクトルdxへ写像される様子を矢印で示す",
       "officialRef": "問1-3",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch1-deformation-gradient"
+      ]
     },
     {
       "id": "solid1-1-3",
@@ -82,7 +89,11 @@
       "figureImage": "s1e1GreenDef",
       "figureHint": "グリーン・ラグランジュひずみ E=1/2(FtF-I) を基準配置の線素長さ変化で図示",
       "officialRef": "問1-4",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch1-green-lagrange",
+        "s1ch1-cauchy-green"
+      ]
     },
     {
       "id": "solid1-1-4",
@@ -107,7 +118,11 @@
       "figureImage": "s1e1Almansi",
       "figureHint": "アルマンジ(現配置基準)とグリーン(基準配置基準)ひずみの基準の違いを2配置で対比",
       "officialRef": "問1-5",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch1-almansi",
+        "s1ch1-cauchy-green"
+      ]
     },
     {
       "id": "solid1-1-5",
@@ -132,7 +147,11 @@
       "figureImage": "s1e1RigidRot",
       "figureHint": "剛体回転だけ加えても線素長さ不変=ひずみ0。回転前後の正方形で示す",
       "officialRef": "問1-6",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch1-strain-rigid-rotation",
+        "s1ch1-polar-decomposition"
+      ]
     },
     {
       "id": "solid1-1-6",
@@ -157,7 +176,11 @@
       "figureImage": "s1e1SymSplit",
       "figureHint": "2階テンソルを対称部+反対称部に分解する概念(行列成分の分割)",
       "officialRef": "問1-7",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch1-deformation-gradient",
+        "s1ch1-polar-decomposition"
+      ]
     },
     {
       "id": "solid1-1-7",
@@ -182,7 +205,10 @@
       "figureImage": "s1e1PolarDecomp",
       "figureHint": "白地660x420で右極分解F=RU(伸長→回転)と左極分解F=VR(回転→伸長)を単位正方形の変形で対比する",
       "officialRef": "問1-10",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch1-polar-decomposition"
+      ]
     },
     {
       "id": "solid1-1-8",
@@ -207,7 +233,10 @@
       "figureImage": "s1e1TrueNominal",
       "figureHint": "白地660x420で初期長さL0の丸棒が現長さlへ伸び、公称ひずみと対数ひずみの定義式を並べて示す",
       "officialRef": "問1-9",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch1-log-strain"
+      ]
     },
     {
       "id": "solid1-1-9",
@@ -232,7 +261,10 @@
       "figureImage": "s1e1StressConv",
       "figureHint": "断面積A0→aへ縮小、公称σn=P/A0と真σt=P/a、σt=σn(1+εn)",
       "officialRef": "問1-16",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "s1ch1-nominal-true-stress"
+      ]
     },
     {
       "id": "solid1-1-10",
@@ -257,7 +289,11 @@
       "figureImage": "s1e1GLcompute",
       "figureHint": "F→C=FtF→E=1/2(C-I) の計算フローを行列で段階表示",
       "officialRef": "問1-8",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch1-green-lagrange",
+        "s1ch1-cauchy-green"
+      ]
     },
     {
       "id": "solid1-1-11",
@@ -282,7 +318,10 @@
       "figureImage": "s1e1Jacobian",
       "figureHint": "単位立方体が変形し体積 dv=J dV、J=detF の体積比を図示",
       "officialRef": "問1-13",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "s1ch1-jacobian"
+      ]
     },
     {
       "id": "solid1-1-12",
@@ -307,7 +346,10 @@
       "figureImage": "s1e1Traction",
       "figureHint": "白地660x420で応力テンソルTの面に立てた法線nと応力ベクトルt=Tnの関係を斜面上で示す",
       "officialRef": "問1-11",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch1-cauchy-stress"
+      ]
     },
     {
       "id": "solid1-1-13",
@@ -332,7 +374,10 @@
       "figureImage": "s1e1CauchyComp",
       "figureHint": "コーシー応力テンソルの成分:立方体各面の垂直/せん断応力",
       "officialRef": "問1-14",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch1-cauchy-stress"
+      ]
     },
     {
       "id": "solid1-1-14",
@@ -357,7 +402,10 @@
       "figureImage": "s1e1Kirchhoff",
       "figureHint": "キルヒホッフ応力 τ=Jσ、基準体積換算の応力を配置対比で",
       "officialRef": "問1-12",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "s1ch1-kirchhoff-stress"
+      ]
     },
     {
       "id": "solid1-1-15",
@@ -382,7 +430,10 @@
       "figureImage": "s1e1PK1",
       "figureHint": "第1PK応力=現配置の力÷基準配置の面積、変形前後の断面で",
       "officialRef": "問1-12",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch1-piola-kirchhoff"
+      ]
     },
     {
       "id": "solid1-1-16",
@@ -407,7 +458,11 @@
       "figureImage": "s1e1PK2",
       "figureHint": "第2PK応力Sと共役なグリーンひずみE、基準配置での応力",
       "officialRef": "問1-13",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch1-piola-kirchhoff",
+        "s1ch1-work-conjugate"
+      ]
     },
     {
       "id": "solid1-1-17",
@@ -432,7 +487,10 @@
       "figureImage": "s1e1Conjugate",
       "figureHint": "仕事共役ペア(σ-D, τ-D, S- Edot, P-Fdot)の対応表を線画で",
       "officialRef": "問1-15",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch1-work-conjugate"
+      ]
     },
     {
       "id": "solid1-1-18",
@@ -457,7 +515,11 @@
       "figureImage": "s1e1StressStrain",
       "figureHint": "白地660x420で公称応力ひずみ線図と真応力ひずみ線図を同一グラフに重ね、弾性から塑性・ひずみ硬化までの差を示す",
       "officialRef": "問1-16",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch1-nominal-true-stress",
+        "s1ch1-log-strain"
+      ]
     },
     {
       "id": "solid1-1-19",
@@ -482,7 +544,10 @@
       "figureImage": "s1e1VelGrad",
       "figureHint": "白地660x420で速度勾配LがストレッチングD(変形)とスピンW(回転)へ分解される様子を矢印で示す",
       "officialRef": "問1-17",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch1-velocity-gradient"
+      ]
     },
     {
       "id": "solid1-1-20",
@@ -507,7 +572,11 @@
       "figureImage": "s1e1NonlinTypes",
       "figureHint": "材料非線形(応力ひずみ曲線が非線形)と幾何学的非線形(大変形/回転)の分類",
       "officialRef": "問1-18",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch1-objective-stress-rate",
+        "s1ch1-material-geometric-tl-ul"
+      ]
     },
     {
       "id": "solid1-1-21",
@@ -532,7 +601,10 @@
       "figureImage": "s1e1NonlinCause",
       "figureHint": "白地660x420で剛体並進(大変位でもひずみ0=非線形の直接原因でない)と、剛体回転成分・断面変化(=非線形の要因)を対比した図",
       "officialRef": "問1-2",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch1-finite-vs-infinitesimal"
+      ]
     }
   ]
 }

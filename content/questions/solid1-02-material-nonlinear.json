@@ -32,7 +32,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-1",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-strain-decomp"
+      ]
     },
     {
       "id": "solid1-02-02",
@@ -57,7 +60,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-2",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-mises"
+      ]
     },
     {
       "id": "solid1-02-03",
@@ -82,7 +88,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-3",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-mises"
+      ]
     },
     {
       "id": "solid1-02-04",
@@ -107,7 +116,11 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-4",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-mises",
+        "s1ch2-tresca"
+      ]
     },
     {
       "id": "solid1-02-21",
@@ -132,7 +145,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-5",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-mohr-coulomb"
+      ]
     },
     {
       "id": "solid1-02-05",
@@ -157,7 +173,11 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-6",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-mohr-coulomb",
+        "s1ch2-drucker-prager"
+      ]
     },
     {
       "id": "solid1-02-06",
@@ -182,7 +202,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-7",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-isotropic-hardening"
+      ]
     },
     {
       "id": "solid1-02-07",
@@ -207,7 +230,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-8",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-kinematic-hardening"
+      ]
     },
     {
       "id": "solid1-02-22",
@@ -232,7 +258,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-9",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-kinematic-hardening"
+      ]
     },
     {
       "id": "solid1-02-08",
@@ -257,7 +286,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-10",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-kinematic-hardening"
+      ]
     },
     {
       "id": "solid1-02-23",
@@ -282,7 +314,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-11",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-prandtl-reuss"
+      ]
     },
     {
       "id": "solid1-02-09",
@@ -307,7 +342,11 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-12",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-flow-rule",
+        "s1ch2-prandtl-reuss"
+      ]
     },
     {
       "id": "solid1-02-10",
@@ -332,7 +371,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-13",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-flow-rule"
+      ]
     },
     {
       "id": "solid1-02-11",
@@ -357,7 +399,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-14",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-equiv-stress"
+      ]
     },
     {
       "id": "solid1-02-12",
@@ -382,7 +427,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-15",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-equiv-stress"
+      ]
     },
     {
       "id": "solid1-02-24",
@@ -405,7 +453,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-16",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-rigid-plastic"
+      ]
     },
     {
       "id": "solid1-02-25",
@@ -428,7 +479,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-17",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-rigid-plastic"
+      ]
     },
     {
       "id": "solid1-02-26",
@@ -451,7 +505,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-18",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-rigid-plastic"
+      ]
     },
     {
       "id": "solid1-02-13",
@@ -476,7 +533,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-19",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-shakedown"
+      ]
     },
     {
       "id": "solid1-02-14",
@@ -526,7 +586,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-21",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-thermal"
+      ]
     },
     {
       "id": "solid1-02-27",
@@ -549,7 +612,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-22",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-thermal"
+      ]
     },
     {
       "id": "solid1-02-16",
@@ -574,7 +640,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-23",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-thermal"
+      ]
     },
     {
       "id": "solid1-02-28",
@@ -597,7 +666,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-24",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-thermal"
+      ]
     },
     {
       "id": "solid1-02-17",
@@ -622,7 +694,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-25",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-creep-norton"
+      ]
     },
     {
       "id": "solid1-02-18",
@@ -647,7 +722,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-26",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-creep-hardening"
+      ]
     },
     {
       "id": "solid1-02-19",
@@ -672,7 +750,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-27",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-viscoelastic"
+      ]
     },
     {
       "id": "solid1-02-29",
@@ -695,7 +776,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-28",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-hyperelastic"
+      ]
     },
     {
       "id": "solid1-02-20",
@@ -720,7 +804,10 @@
       "origin": "original",
       "reviewed": true,
       "officialRef": "問2-29",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch2-hyperelastic"
+      ]
     }
   ]
 }

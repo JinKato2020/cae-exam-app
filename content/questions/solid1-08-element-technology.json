@@ -32,7 +32,11 @@
       "figureImage": "s1e8BeamTheory",
       "figureHint": "白地660x420。同じ片持ちはりを2枚。左=ベルヌーイ・オイラー(断面がたわみ曲線に垂直を保つ)、右=ティモシェンコ(断面がせん断角γだけ回転)。断面線・法線・γ弧を明示。",
       "officialRef": "問8-1",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "beam-euler",
+        "beam-timoshenko"
+      ]
     },
     {
       "id": "solid1-8-2",
@@ -57,7 +61,10 @@
       "figureImage": "s1e8ShearCenter",
       "figureHint": "白地660x420。溝形(チャンネル)断面。図心Gとせん断中心Sが離れる事を示し、荷重PがSを通れば「ねじれ無し」、Gを通ると「ねじれ発生」を回転矢印で対比。",
       "officialRef": "問8-2",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "shear-center"
+      ]
     },
     {
       "id": "solid1-8-3",
@@ -82,7 +89,10 @@
       "figureImage": "s1e8Torsion",
       "figureHint": "白地660x420。左=円形閉断面のサンブナンねじり(そり無し・T=GJθ'・トルク円弧)、右=H形開断面の曲げねじり(上下フランジが逆向きに面内曲げ→そり)を対比。",
       "officialRef": "問8-3",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "stvenant-warping-torsion"
+      ]
     },
     {
       "id": "solid1-8-4",
@@ -107,7 +117,12 @@
       "figureImage": "s1e8BeamPlateMap",
       "figureHint": "白地660x420。2×2表。行=法線が垂直を保つ/せん断で傾く、列=はり(1次元)/板(2次元)。セル=Bernoulli-Euler/Kirchhoff/Timoshenko/Mindlin。",
       "officialRef": "問8-4",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "beam-euler",
+        "beam-timoshenko",
+        "plate-kirchhoff-mindlin"
+      ]
     },
     {
       "id": "solid1-8-5",
@@ -132,7 +147,10 @@
       "figureImage": "s1e8Drilling",
       "figureHint": "白地660x420。同一平面上の複数シェル要素が共有する節点。面法線まわりの回転θz(ドリリング)を弧矢印で示し「剛性なし→剛性行列が特異」と注記。",
       "officialRef": "問8-5",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "drilling-dof"
+      ]
     },
     {
       "id": "solid1-8-6",
@@ -157,7 +175,10 @@
       "figureImage": "s1e8Formulation",
       "figureHint": "白地660x420。ツリー図。根=板・シェル要素の定式化→変位法/混合法、下段に縮退(退化)シェル・離散キルヒホッフ(DKT)・混成場を分類する概念整理図。",
       "officialRef": "問8-6",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "displacement-mixed-method"
+      ]
     },
     {
       "id": "solid1-8-7",
@@ -182,7 +203,10 @@
       "figureImage": "s1e8FourierMode",
       "figureHint": "白地660x420。円断面の周方向フーリエ変形モード3つ。n=0 一様半径変位、n=1 横移動(剛体的)、n=2 だ円化。破線=元形状・実線=変形。",
       "officialRef": "問8-7",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "axisym-fourier"
+      ]
     },
     {
       "id": "solid1-8-8",
@@ -207,7 +231,10 @@
       "figureImage": "s1e8ThickIntegr",
       "figureHint": "白地660x420。厚さ方向の線分上の積分点。上=Newton-Cotes(両端を含む等間隔)、下=Gauss(内部のみ・端点なし)を端点の有無で対比。",
       "officialRef": "問8-8",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "thickness-integration"
+      ]
     },
     {
       "id": "solid1-8-9",
@@ -232,7 +259,12 @@
       "figureImage": "s1e8ReducedInt",
       "figureHint": "白地660x420。シェル/四角形要素面上の積分点。左=完全積分2×2(4点)、右=低減積分1点。薄肉で剛性過大→低減で緩和と注記。",
       "officialRef": "問8-9",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "degenerate-shell",
+        "shear-locking",
+        "reduced-integration"
+      ]
     },
     {
       "id": "solid1-8-10",
@@ -257,7 +289,11 @@
       "figureImage": "s1e8Conforming",
       "figureHint": "白地660x420。隣接2要素の共有辺。左=適合(辺上で変位が連続・隙間無し)、右=非適合(辺に隙間・食い違い)を対比。",
       "officialRef": "問8-10",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "conforming-nonconforming",
+        "patch-test"
+      ]
     },
     {
       "id": "solid1-8-11",
@@ -282,7 +318,10 @@
       "figureImage": "s1e8PatchTest",
       "figureHint": "白地660x420。いびつな小要素パッチ(内部節点あり)に一様応力σの境界条件を与え、内部で定応力を再現すれば合格、を模式化。",
       "officialRef": "問8-11",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "patch-test"
+      ]
     },
     {
       "id": "solid1-8-12",
@@ -307,7 +346,11 @@
       "figureImage": "s1e8GaussPoints",
       "figureHint": "白地660x420。六面体要素3つに積分点を前面投影で図示。(a)2×2×2=8、(b)1×1×1=1、(c)3×3×3=27。各方向n点→n³と明示。",
       "officialRef": "問8-12",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "gauss-order",
+        "reduced-integration"
+      ]
     },
     {
       "id": "solid1-8-13",
@@ -332,7 +375,10 @@
       "figureImage": "s1e8ShearLocking",
       "figureHint": "白地660x420。片持ちはりの端荷重曲げ。左=理想の曲げ(たわみ大)、右=1次要素で辺が直線のまま偽せん断γが出て硬くたわみ過小、を対比。",
       "officialRef": "問8-13",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "shear-locking"
+      ]
     },
     {
       "id": "solid1-8-14",
@@ -357,7 +403,10 @@
       "figureImage": "s1e8VolLocking",
       "figureHint": "白地660x420。ν<0.5(体積変化を許し変形できる)と ν≈0.5(体積一定拘束で動けない)を2つの要素で対比し体積ロッキングを説明。",
       "officialRef": "問8-14",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "volumetric-locking"
+      ]
     },
     {
       "id": "solid1-8-15",
@@ -382,7 +431,11 @@
       "figureImage": "s1e8SelectiveInt",
       "figureHint": "白地660x420。四角形1次要素。偏差(せん断)項=2×2の4点(赤丸)、体積項=中央1点(青三角)を記号で分けて1枚に示す選択的低減積分。",
       "officialRef": "問8-15",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "reduced-integration",
+        "volumetric-locking"
+      ]
     },
     {
       "id": "solid1-8-16",
@@ -407,7 +460,10 @@
       "figureImage": "s1e8LBB",
       "figureHint": "白地660x420。要素に変位節点(●)と圧力/乗数点(△)。左=安定(圧力を低次に)、右=不安定(同次数)でLBB(inf-sup)条件の可否を模式化。",
       "officialRef": "問8-16",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "mixed-up"
+      ]
     },
     {
       "id": "solid1-8-17",
@@ -432,7 +488,12 @@
       "figureImage": "s1e8SolidThin",
       "figureHint": "白地660x420。薄板を厚さ1層ソリッドでメッシュ。上=完全積分でロッキング(硬い)、下=低減積分でたわむがアワーグラス発生、を対比。",
       "officialRef": "問8-17",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "shear-locking",
+        "reduced-integration",
+        "hourglass"
+      ]
     },
     {
       "id": "solid1-8-18",
@@ -457,7 +518,10 @@
       "figureImage": "s1e8Hourglass",
       "figureHint": "白地660x420。4節点要素の砂時計状ゼロエネルギー変形モード([+,-,+,-]キーストン=対辺が逆向きに動く砂時計形)を破線の元形状と対比して明示。",
       "officialRef": "問8-18",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "hourglass"
+      ]
     },
     {
       "id": "solid1-8-19",
@@ -482,7 +546,10 @@
       "figureImage": "s1e8HourglassDOF",
       "figureHint": "白地660x420。4節点要素の自由度勘定(全8→剛体3→変形5→うちアワーグラス2)を文字で示し、1点積分で検知できない2つのHGモード形状を図示。",
       "officialRef": "問8-19",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "hourglass"
+      ]
     },
     {
       "id": "solid1-8-19b",
@@ -504,7 +571,10 @@
       "origin": "original",
       "reviewed": true,
       "role": "branch",
-      "officialRef": "問8-19"
+      "officialRef": "問8-19",
+      "relatedFormulas": [
+        "hourglass"
+      ]
     }
   ]
 }

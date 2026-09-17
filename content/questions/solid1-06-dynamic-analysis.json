@@ -32,7 +32,10 @@
       "figureImage": "s1e6EqMotion",
       "figureHint": "白地660x420で運動方程式M{ddot u}+C{dot u}+K{u}=fの各項（慣性/減衰/弾性）と対応する物理量を並べた対応図",
       "officialRef": "問6-1",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch6-1"
+      ]
     },
     {
       "id": "solid1-6-2",
@@ -57,7 +60,10 @@
       "figureImage": "s1e6WaveSpeed",
       "figureHint": "白地660x420で細長い棒を波面が右へ進む縦弾性波の模式図、v=sqrt(E/rho)を添える",
       "officialRef": "問6-2",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch6-2"
+      ]
     },
     {
       "id": "solid1-6-3",
@@ -82,7 +88,10 @@
       "figureImage": "s1e6PSWave",
       "figureHint": "白地660x420でP波（進行方向に平行な疎密振動）とS波（進行方向に垂直なせん断振動）を上下2段で比較",
       "officialRef": "問6-3",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch6-2"
+      ]
     },
     {
       "id": "solid1-6-4",
@@ -107,7 +116,10 @@
       "figureImage": "s1e6ConsistMass",
       "figureHint": "白地660x420で2節点棒要素と線形形状関数N1,N2のグラフ、整合質量[[2,1],[1,2]]を添える",
       "officialRef": "問6-4",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch6-3"
+      ]
     },
     {
       "id": "solid1-6-5",
@@ -132,7 +144,10 @@
       "figureImage": "s1e6MassOp",
       "figureHint": "白地660x420で剛性[B]^T[D][B]と質量[N]^T[N]の行列積の規模を帯グラフで比較",
       "officialRef": "問6-5",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch6-4"
+      ]
     },
     {
       "id": "solid1-6-6",
@@ -157,7 +172,10 @@
       "figureImage": "s1e6Rayleigh",
       "figureHint": "白地660x420で横軸omega縦軸zetaのU字曲線、alpha/omega項（低周波）とbeta*omega項（高周波）の合成を示す",
       "officialRef": "問6-6",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch6-5"
+      ]
     },
     {
       "id": "solid1-6-7",
@@ -182,7 +200,10 @@
       "figureImage": "s1e6Hourglass",
       "figureHint": "白地660x420で四角形1点積分要素が砂時計状（アワーグラス）に変形するゼロエネルギーモードを描く",
       "officialRef": "問6-7",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch6-6"
+      ]
     },
     {
       "id": "solid1-6-8",
@@ -207,7 +228,10 @@
       "figureImage": "s1e6CrashEnergy",
       "figureHint": "白地660x420で横軸時間の運動エネルギー減少曲線と内部エネルギー増大曲線、和がほぼ一定の全エネルギー線",
       "officialRef": "問6-8",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch6-7"
+      ]
     },
     {
       "id": "solid1-6-9",
@@ -232,7 +256,10 @@
       "figureImage": "s1e6CentralDiff",
       "figureHint": "白地660x420で時間軸上のt_{n-1},t_n,t_{n+1}の3点ステンシルを描き、2時刻から次を求める二段法を示す",
       "officialRef": "問6-9",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch6-8"
+      ]
     },
     {
       "id": "solid1-6-10",
@@ -257,7 +284,10 @@
       "figureImage": "s1e6Newmark",
       "figureHint": "白地660x420で1ステップ内の加速度の時刻歴を、平均加速度法（水平一定）と線形加速度法（直線）で比較",
       "officialRef": "問6-10",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch6-9"
+      ]
     },
     {
       "id": "solid1-6-11",
@@ -282,7 +312,10 @@
       "figureImage": "s1e6NumDamp",
       "figureHint": "白地660x420で高周波モードの振幅が数値減衰で急速に抑えられ低周波モードは保たれる様子を2波形で示す",
       "officialRef": "問6-11",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch6-10"
+      ]
     },
     {
       "id": "solid1-6-12",
@@ -307,7 +340,10 @@
       "figureImage": "s1e6ExpImp",
       "figureHint": "白地660x420で陽解法（対角M・逆行列不要）と陰解法（連立方程式を解く）の計算フローを左右で対比",
       "officialRef": "問6-12",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch6-11"
+      ]
     },
     {
       "id": "solid1-6-13",
@@ -332,7 +368,10 @@
       "figureImage": "s1e6Courant",
       "figureHint": "白地660x420で長さellの要素内を1ステップで進む応力波、進行距離v*dtがellを超えない条件を図示",
       "officialRef": "問6-13",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch6-12"
+      ]
     },
     {
       "id": "solid1-6-21",
@@ -357,7 +396,10 @@
       "figureImage": "s1e6AutoDt",
       "figureHint": "白地660x420で応力-ひずみ線図。弾性勾配E（基準・破線）、金属は降伏後に勾配低下、非金属は勾配がEを超えて増大する2曲線",
       "officialRef": "問6-14",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch6-12"
+      ]
     },
     {
       "id": "solid1-6-14",
@@ -382,7 +424,11 @@
       "figureImage": "s1e6MassScale",
       "figureHint": "白地660x420で小要素領域と大要素領域で別々のdtを使うマルチタイムステップと、密度増で波速を下げるマススケーリングを図示",
       "officialRef": "問6-15",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch6-13",
+        "s1ch6-14"
+      ]
     },
     {
       "id": "solid1-6-22",
@@ -407,7 +453,10 @@
       "figureImage": "s1e6DynRelax",
       "figureHint": "白地660x420で時間-変位軸に減衰振動が静的釣り合い線へ収束する動的緩和法の模式。マススケーリングの注記を添える",
       "officialRef": "問6-16",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch6-14"
+      ]
     },
     {
       "id": "solid1-6-15",
@@ -432,7 +481,10 @@
       "figureImage": "s1e6SDOF",
       "figureHint": "白地660x420で壁からばねk（ばね記号）でつるした質量mの1自由度系、omega_n=sqrt(k/m)を添える",
       "officialRef": "問6-17",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch6-15"
+      ]
     },
     {
       "id": "solid1-6-16",
@@ -457,7 +509,10 @@
       "figureImage": "s1e6TwoDOF",
       "figureHint": "白地660x420で壁-k1-m1-k2-m2と直列につないだ2質点2ばね系を描き変位x1,x2を示す",
       "officialRef": "問6-17",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "s1ch6-16"
+      ]
     },
     {
       "id": "solid1-6-17",
@@ -482,7 +537,10 @@
       "figureImage": "s1e6ModeSuper",
       "figureHint": "白地660x420で3つの固有モード波形を重ね合わせて全体応答を合成するモード重合の模式図",
       "officialRef": "問6-18",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch6-17"
+      ]
     },
     {
       "id": "solid1-6-23",
@@ -505,7 +563,11 @@
       "reviewed": true,
       "figure": "none",
       "officialRef": "問6-19",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch6-17",
+        "s1ch6-18"
+      ]
     },
     {
       "id": "solid1-6-18",
@@ -530,7 +592,10 @@
       "figureImage": "s1e6RespSpec",
       "figureHint": "白地660x420でS_D→ひずみ、S_V→エネルギー、S_A→力の3対1対応を矢印で結んだ対応図",
       "officialRef": "問6-20",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch6-18"
+      ]
     },
     {
       "id": "solid1-6-19",
@@ -555,7 +620,10 @@
       "figureImage": "s1e6SdSvSa",
       "figureHint": "白地660x420でS_D,S_V=omega*S_D,S_A=omega^2*S_Dの関係を3本のバーと掛け算矢印で示す",
       "officialRef": "問6-20",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "s1ch6-18"
+      ]
     },
     {
       "id": "solid1-6-20",
@@ -580,7 +648,10 @@
       "figureImage": "s1e6Resonance",
       "figureHint": "白地660x420で横軸omega/Omega縦軸Mの共振曲線を減衰比zeta違いで数本描き、omega/Omega=1近傍のピークを示す",
       "officialRef": "問6-21",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch6-19"
+      ]
     }
   ]
 }

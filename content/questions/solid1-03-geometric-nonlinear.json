@@ -32,7 +32,11 @@
       "figureImage": "s1e3GeoNLJudge",
       "figureHint": "白地660x420で太短柱・初期張力膜・面内圧縮薄板・周辺固定円板の4事例を2x2で小さく描く",
       "officialRef": "問3-1",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1f3-6",
+        "s1f3-9"
+      ]
     },
     {
       "id": "solid1-3-2",
@@ -57,7 +61,11 @@
       "figureImage": "s1e3BeamLargeRot",
       "figureHint": "白地660x420で片持ちはりが先端まで大きくたわむが断面の微小ひずみを拡大枠で示す",
       "officialRef": "問3-2",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1f3-6",
+        "s1f3-2"
+      ]
     },
     {
       "id": "solid1-3-3",
@@ -82,7 +90,10 @@
       "figureImage": "s1e3FollowerForce",
       "figureHint": "白地660x420でたわんだ片持ち柱の先端接線方向に追従する圧縮荷重矢印(Beckの柱)を描く",
       "officialRef": "問3-3",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1f3-10"
+      ]
     },
     {
       "id": "solid1-3-4",
@@ -107,7 +118,10 @@
       "figureImage": "s1e3PolarDecomp",
       "figureHint": "白地660x420で正方要素→ストレッチUで伸長→回転Rで傾く2段変形をF=RUとして描く",
       "officialRef": "問3-2",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "s1f3-2"
+      ]
     },
     {
       "id": "solid1-3-5",
@@ -132,7 +146,10 @@
       "figureImage": "s1e3StretchBar",
       "figureHint": "白地660x420で長さLの棒がlに伸びる様子と伸び比λ=l/Lの定義を描く",
       "officialRef": "問3-4",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "s1f3-3"
+      ]
     },
     {
       "id": "solid1-3-6",
@@ -157,7 +174,11 @@
       "figureImage": "s1e3StressMeasures",
       "figureHint": "白地660x420で変形前断面積基準(PK応力)と現配置断面積基準(コーシー応力)を対比して描く",
       "officialRef": "問3-5",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "s1f3-4",
+        "s1f3-5"
+      ]
     },
     {
       "id": "solid1-3-7",
@@ -182,7 +203,11 @@
       "figureImage": "s1e3TrussUniaxial",
       "figureHint": "白地660x420で初期長さLの一軸トラス端に鉛直変位uと荷重Fが作用する図",
       "officialRef": "問3-4",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1f3-3",
+        "s1f3-4"
+      ]
     },
     {
       "id": "solid1-3-8",
@@ -207,7 +232,11 @@
       "figureImage": "s1e3TLUL",
       "figureHint": "白地660x420で参照配置を時刻0にとるTL法と時刻tにとるUL法の2配置を並べて描く",
       "officialRef": "問3-5",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1f3-7",
+        "s1f3-8"
+      ]
     },
     {
       "id": "solid1-3-9",
@@ -232,7 +261,11 @@
       "figureImage": "s1e3RigidRotStress",
       "figureHint": "白地660x420で棒をX1方向に伸ばし90度回転しても主応力方向が元の物質線に付随する様子を描く",
       "officialRef": "問3-6",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1f3-3",
+        "s1f3-4"
+      ]
     },
     {
       "id": "solid1-3-10",
@@ -257,7 +290,11 @@
       "figureImage": "s1e3TangentStiff",
       "figureHint": "白地660x420でK_T=K0(増分)+K_L(初期変位)+K_G(初期応力)の構成を式の模式図で描く",
       "officialRef": "問3-8",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1f3-8",
+        "s1f3-9"
+      ]
     },
     {
       "id": "solid1-3-11",
@@ -282,7 +319,11 @@
       "figureImage": "s1e3LoadDispCritical",
       "figureHint": "白地660x420で荷重変位曲線上の極限点と分岐点で接線勾配が水平(特異)になる様子を描く",
       "officialRef": "問3-9",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1f3-8",
+        "s1f3-14"
+      ]
     },
     {
       "id": "solid1-3-12",
@@ -307,7 +348,10 @@
       "figureImage": "s1e3BucklingTypes",
       "figureHint": "白地660x420で分岐座屈(分岐点で枝分かれ)と飛移り座屈(極限点で飛移り)の荷重変位曲線を2つ並べて描く",
       "officialRef": "問3-10",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1f3-14"
+      ]
     },
     {
       "id": "solid1-3-13",
@@ -332,7 +376,10 @@
       "figureImage": "s1e3ColumnBC",
       "figureHint": "白地660x420で4種の境界条件(単純支持・両端固定・片持ち・固定-単純)の座屈モード形を並べて描く",
       "officialRef": "問3-11",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1f3-11"
+      ]
     },
     {
       "id": "solid1-3-14",
@@ -357,7 +404,10 @@
       "figureImage": "s1e3EulerColumn",
       "figureHint": "白地660x420で両端単純支持柱の第1次座屈モード(半波の正弦形)とPcr=π^2EI/l^2を描く",
       "officialRef": "問3-11",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "s1f3-11"
+      ]
     },
     {
       "id": "solid1-3-15",
@@ -382,7 +432,11 @@
       "figureImage": "s1e3EigenBuckling",
       "figureHint": "白地660x420で(K0+λKG)v=0の一般固有値問題と座屈荷重λPの関係を模式的に描く",
       "officialRef": "問3-14",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1f3-12",
+        "s1f3-13"
+      ]
     },
     {
       "id": "solid1-3-16",
@@ -407,7 +461,10 @@
       "figureImage": "s1e3LinearBucklingNG",
       "figureHint": "白地660x420でリング・集中荷重アーチ・オイラー柱・直下柱骨組の4構造の座屈前挙動を比較して描く",
       "officialRef": "問3-15",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1f3-12"
+      ]
     },
     {
       "id": "solid1-3-17",
@@ -432,7 +489,10 @@
       "figureImage": "s1e3ImperfectionCurve",
       "figureHint": "白地660x420で初期たわみ振幅の異なる柱のP-w曲線がPcr漸近線に近づく様子を描く",
       "officialRef": "問3-13",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1f3-15"
+      ]
     },
     {
       "id": "solid1-3-18",
@@ -457,7 +517,10 @@
       "figureImage": "s1e3Elastica",
       "figureHint": "白地660x420で座屈後に大きくたわんだ弾性柱(エラスティカ)の形状と安定な荷重増加曲線を描く",
       "officialRef": "問3-12",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1f3-15"
+      ]
     },
     {
       "id": "solid1-3-19",
@@ -482,7 +545,11 @@
       "figureImage": "s1e3LogStrain",
       "figureHint": "白地660x420で単軸棒の伸びと対数ひずみln(1+u)・コーシー応力の関係を描く",
       "officialRef": "問3-7",
-      "role": "primary"
+      "role": "primary",
+      "relatedFormulas": [
+        "s1f3-5",
+        "s1f3-7"
+      ]
     },
     {
       "id": "solid1-3-20",
@@ -507,7 +574,10 @@
       "figureImage": "s1e3GeoStiffness",
       "figureHint": "白地660x420で初期張力を導入した膜/ケーブルが幾何剛性で安定化する様子を描く",
       "officialRef": "問3-8",
-      "role": "branch"
+      "role": "branch",
+      "relatedFormulas": [
+        "s1f3-9"
+      ]
     }
   ]
 }
