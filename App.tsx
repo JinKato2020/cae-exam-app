@@ -850,6 +850,34 @@ function StudyTab(props: {
   return null;
 }
 
+// 解説文（【基礎】…【引っかけ】…）をラベル別ブロックに分解する。【】が無ければ全体を1ブロック。
+function parseExplanation(text: string): { label: string | null; body: string }[] {
+  const out: { label: string | null; body: string }[] = [];
+  const re = /【([^】]+)】/g;
+  let m: RegExpExecArray | null;
+  let idx = 0;
+  let cur: string | null = null;
+  while ((m = re.exec(text)) !== null) {
+    const body = text.slice(idx, m.index).trim();
+    if (body) out.push({ label: cur, body });
+    cur = m[1];
+    idx = re.lastIndex;
+  }
+  const tail = text.slice(idx).trim();
+  if (tail) out.push({ label: cur, body: tail });
+  if (out.length === 0 && text.trim()) out.push({ label: null, body: text.trim() });
+  return out;
+}
+
+// 解説ラベルの色（意味で色分け）。基礎=控えめ / ポイント=緑 / 引っかけ=アンバー / その他=主色。
+function sectionAccent(t: Theme, label: string | null): string {
+  if (!label) return t.sub;
+  if (label.indexOf('ポイント') >= 0) return t.correct;
+  if (label.indexOf('引っかけ') >= 0 || label.indexOf('注意') >= 0) return t.amber;
+  if (label.indexOf('基礎') >= 0) return t.sub;
+  return t.primary;
+}
+
 function ProblemScreen(props: {
   t: Theme;
   title: string;
@@ -875,56 +903,120 @@ function ProblemScreen(props: {
 
   return (
     <ScrollView contentContainerStyle={styles.content}>
-      <BackLink t={t} label="一覧へ戻る" onPress={props.onBack} />
-      <Text style={[styles.progress, { color: t.sub }]}>
-        {props.title}　{props.index + 1} / {props.total}
-        {q.title ? `　・　${q.title}` : ''}
-      </Text>
-      {/* 過去の学習履歴（前回の正誤・回答日・挑戦回数・正答率） */}
-      <Text style={[styles.historyLine, { color: t.sub }]}>
-        学習履歴：
-        {past ? (
-          <Text style={{ color: past.lastCorrect ? t.correct : t.wrong, fontWeight: '600' }}>
-            前回 {past.lastCorrect ? '◯' : '✕'}・{fmtDate(past.lastTs)}・{past.attempts}回挑戦（正答率 {pastRate}%）
-          </Text>
-        ) : (
-          'まだ解いていません'
-        )}
-      </Text>
-      {/* 公式標準問題との対応（§1.6・番号は対応学習用の参照。本アプリは非公認） */}
-      {q.officialRef ? (
-        <Text style={[styles.officialLine, { color: t.sub }]}>
-          公式標準問題 {q.officialRef} に対応{q.role === 'branch' ? '（補足）' : ''}／本アプリは非公認の独自補助教材・番号は対応学習用の参照です
+      {/* 上部バー：戻る・課程/章・問番号 */}
+      <View style={styles.qTopbar}>
+        <Pressable onPress={props.onBack} hitSlop={8} style={[styles.qChev, { backgroundColor: t.card }]}>
+          <Text style={[styles.qChevTxt, { color: t.text }]}>‹</Text>
+        </Pressable>
+        <Text style={[styles.qSetLabel, { color: t.sub }]} numberOfLines={1}>
+          {props.title}
         </Text>
-      ) : null}
-      <View style={{ marginBottom: 18 }}>
+        <View style={[styles.qCounter, { backgroundColor: t.primary + '18' }]}>
+          <Text style={[styles.qCounterTxt, { color: t.primary }]}>
+            {props.index + 1} / {props.total}
+          </Text>
+        </View>
+      </View>
+
+      {/* 進捗バー */}
+      <View style={[styles.qTrack, { backgroundColor: t.border }]}>
+        <View
+          style={[
+            styles.qTrackFill,
+            { backgroundColor: t.primary, width: `${Math.round(((props.index + 1) / props.total) * 100)}%` },
+          ]}
+        />
+      </View>
+
+      {/* チップ：学習履歴・公式対応 */}
+      <View style={styles.qChipRow}>
+        <View
+          style={[
+            styles.qChip,
+            { backgroundColor: (past ? (past.lastCorrect ? t.correct : t.wrong) : t.sub) + '18' },
+          ]}
+        >
+          {past ? (
+            <>
+              <View style={[styles.qChipDot, { backgroundColor: past.lastCorrect ? t.correct : t.wrong }]} />
+              <Text style={[styles.qChipTxt, { color: past.lastCorrect ? t.correct : t.wrong }]}>
+                前回{past.lastCorrect ? '◯' : '✕'} {pastRate}%
+              </Text>
+            </>
+          ) : (
+            <Text style={[styles.qChipTxt, { color: t.sub }]}>未挑戦</Text>
+          )}
+        </View>
+        {q.officialRef ? (
+          <View style={[styles.qChip, { backgroundColor: t.primary + '18' }]}>
+            <Text style={[styles.qChipTxt, { color: t.primary }]}>
+              公式 {q.officialRef.replace(/^問/, '')}{q.role === 'branch' ? '（補足）' : ''}
+            </Text>
+          </View>
+        ) : null}
+      </View>
+
+      {/* 問題文（主役・余白広め） */}
+      <View style={styles.qQuestion}>
         <RichText text={q.question} color={t.text} fontSize={18} bold />
       </View>
 
-      {q.choices.map((choice, i) => {
-        const num = i + 1;
-        // ロック中は正誤の色分け（＝正解の露出）をしない。タップは購入導線へ。
-        const c = locked
-          ? choiceColor(t, { num, answer: -1, selected: null, answered: false })
-          : choiceColor(t, { num, answer: q.answer, selected, answered });
-        return (
-          <Pressable
-            key={num}
-            onPress={() => (locked ? props.onOpenPaywall() : props.onSelect(num))}
-            style={[styles.choice, { backgroundColor: c.bg, borderColor: c.border }]}
-          >
-            <RichText text={`${num}. ${choice}`} color={c.text} fontSize={16} />
-          </Pressable>
-        );
-      })}
+      {/* 図（ロック中は有料コンテンツなので出さない） */}
+      {!locked && q.figureImage && FIGURES[q.figureImage] ? (
+        <View style={[styles.qFigCard, { backgroundColor: t.card }]}>
+          <AutoFigure t={t} source={FIGURES[q.figureImage]} />
+        </View>
+      ) : null}
 
+      {/* 選択肢：丸番号カード */}
+      <View style={styles.qChoices}>
+        {q.choices.map((choice, i) => {
+          const num = i + 1;
+          // ロック中は正誤の色分け（＝正解の露出）をしない。タップは購入導線へ。
+          const c = locked
+            ? choiceColor(t, { num, answer: -1, selected: null, answered: false })
+            : choiceColor(t, { num, answer: q.answer, selected, answered });
+          const isAns = !locked && answered && num === q.answer;
+          return (
+            <Pressable
+              key={num}
+              onPress={() => (locked ? props.onOpenPaywall() : props.onSelect(num))}
+              style={[styles.qOpt, { backgroundColor: c.bg, borderColor: c.border }]}
+            >
+              <View style={[styles.qOptIdx, { backgroundColor: isAns ? t.correct : t.border }]}>
+                <Text style={[styles.qOptIdxTxt, { color: isAns ? '#ffffff' : t.sub }]}>{num}</Text>
+              </View>
+              <View style={styles.qOptTxt}>
+                <RichText text={choice} color={c.text} fontSize={15} />
+              </View>
+              {isAns ? <Text style={[styles.qOptTick, { color: t.correct }]}>✓</Text> : null}
+            </Pressable>
+          );
+        })}
+      </View>
+
+      {/* 解説：正誤＋ラベル別ブロック */}
       {!locked && answered && (
-        <View style={[styles.explainBox, { backgroundColor: t.card, borderColor: t.border }]}>
-          <Text style={[styles.verdict, { color: isCorrect ? t.correct : t.wrong }]}>
-            {isCorrect ? '◯ 正解' : '✕ 不正解'}（正解：{q.answer}）
-          </Text>
-          <RichText text={q.explanation} color={t.text} fontSize={14} />
-          {q.figureImage && FIGURES[q.figureImage] ? <AutoFigure t={t} source={FIGURES[q.figureImage]} /> : null}
+        <View style={[styles.qExplain, { backgroundColor: t.card }]}>
+          <View style={styles.qVerdictRow}>
+            <View style={[styles.qVerdictPill, { backgroundColor: isCorrect ? t.correct : t.wrong }]}>
+              <Text style={styles.qVerdictPillTxt}>{isCorrect ? '正解' : '不正解'}</Text>
+            </View>
+            <Text style={[styles.qVerdictAns, { color: t.sub }]}>正解は {q.answer}</Text>
+          </View>
+          {parseExplanation(q.explanation).map((sec, i) => {
+            const accent = sectionAccent(t, sec.label);
+            return (
+              <View key={i} style={styles.qSec}>
+                {sec.label ? (
+                  <View style={[styles.qSecLabel, { backgroundColor: accent + '22' }]}>
+                    <Text style={[styles.qSecLabelTxt, { color: accent }]}>{sec.label}</Text>
+                  </View>
+                ) : null}
+                <RichText text={sec.body} color={t.text} fontSize={14} />
+              </View>
+            );
+          })}
         </View>
       )}
 
@@ -944,11 +1036,30 @@ function ProblemScreen(props: {
         </Pressable>
       )}
 
-      {/* 前へ / 次へ */}
-      <View style={styles.navRow}>
-        <NavButton t={t} label="‹ 前へ" disabled={atFirst} onPress={props.onPrev} />
-        <NavButton t={t} label="次へ ›" disabled={atLast} onPress={props.onNext} />
+      {/* 前へ / 次の問題へ */}
+      <View style={styles.qNav}>
+        <Pressable
+          onPress={props.onPrev}
+          disabled={atFirst}
+          style={[styles.qNavPrev, { borderColor: t.border, opacity: atFirst ? 0.4 : 1 }]}
+        >
+          <Text style={[styles.qNavPrevTxt, { color: t.sub }]}>‹ 前へ</Text>
+        </Pressable>
+        <Pressable
+          onPress={props.onNext}
+          disabled={atLast}
+          style={[styles.qNavNext, { backgroundColor: t.primary, opacity: atLast ? 0.4 : 1 }]}
+        >
+          <Text style={styles.qNavNextTxt}>次の問題へ ›</Text>
+        </Pressable>
       </View>
+
+      {/* 非公認の注記（毎問の長文はやめ、下に小さく） */}
+      {q.officialRef ? (
+        <Text style={[styles.qDisclaimer, { color: t.sub }]}>
+          本アプリは非公認の独自補助教材です。番号は対応学習用の参照です。
+        </Text>
+      ) : null}
     </ScrollView>
   );
 }
@@ -1541,6 +1652,42 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
   },
+
+  // 出題（新デザイン）
+  qTopbar: { flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 12 },
+  qChev: { width: 34, height: 34, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
+  qChevTxt: { fontSize: 20, fontWeight: '700', lineHeight: 22, marginTop: -2 },
+  qSetLabel: { flex: 1, fontSize: 12, fontWeight: '600' },
+  qCounter: { paddingHorizontal: 11, paddingVertical: 6, borderRadius: 999 },
+  qCounterTxt: { fontSize: 12, fontWeight: '700', fontVariant: ['tabular-nums'] },
+  qTrack: { height: 5, borderRadius: 999, overflow: 'hidden', marginBottom: 18 },
+  qTrackFill: { height: '100%', borderRadius: 999 },
+  qChipRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 7, marginBottom: 16 },
+  qChip: { flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 10, paddingVertical: 6, borderRadius: 999 },
+  qChipDot: { width: 7, height: 7, borderRadius: 4 },
+  qChipTxt: { fontSize: 12, fontWeight: '700' },
+  qQuestion: { marginBottom: 20 },
+  qFigCard: { borderRadius: 14, padding: 12, marginBottom: 20 },
+  qChoices: { gap: 10 },
+  qOpt: { flexDirection: 'row', alignItems: 'center', gap: 12, borderWidth: 1.5, borderRadius: 15, paddingVertical: 12, paddingHorizontal: 14 },
+  qOptIdx: { width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
+  qOptIdxTxt: { fontSize: 13, fontWeight: '700' },
+  qOptTxt: { flex: 1 },
+  qOptTick: { fontSize: 16, fontWeight: '800' },
+  qExplain: { borderRadius: 18, padding: 16, marginTop: 20 },
+  qVerdictRow: { flexDirection: 'row', alignItems: 'center', gap: 9, marginBottom: 6 },
+  qVerdictPill: { paddingHorizontal: 12, paddingVertical: 6, borderRadius: 999 },
+  qVerdictPillTxt: { color: '#ffffff', fontSize: 12, fontWeight: '800' },
+  qVerdictAns: { fontSize: 12, fontWeight: '600' },
+  qSec: { marginTop: 14 },
+  qSecLabel: { alignSelf: 'flex-start', paddingHorizontal: 9, paddingVertical: 4, borderRadius: 7, marginBottom: 7 },
+  qSecLabelTxt: { fontSize: 11, fontWeight: '800', letterSpacing: 0.3 },
+  qNav: { flexDirection: 'row', gap: 11, marginTop: 22 },
+  qNavPrev: { paddingVertical: 14, paddingHorizontal: 18, borderRadius: 14, borderWidth: 1.5 },
+  qNavPrevTxt: { fontSize: 14, fontWeight: '700' },
+  qNavNext: { flex: 1, alignItems: 'center', paddingVertical: 14, borderRadius: 14 },
+  qNavNextTxt: { color: '#ffffff', fontSize: 14, fontWeight: '800' },
+  qDisclaimer: { fontSize: 10, textAlign: 'center', lineHeight: 15, marginTop: 16 },
 
   // 公式カード
   formulaHead: { flexDirection: 'row', alignItems: 'center', marginBottom: 10 },
