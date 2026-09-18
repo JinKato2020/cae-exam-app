@@ -87,6 +87,11 @@ function solidGradeChapters(gradeId: string): ChapterEntry[] {
 }
 const solid2Chapters = (): ChapterEntry[] => solidGradeChapters('g2');
 const solid1Chapters = (): ChapterEntry[] => solidGradeChapters('g1');
+// 分野×級の章一覧をカタログから引く（コース定義で使う汎用版）。
+function fieldGradeChapters(fieldId: string, gradeId: string): ChapterEntry[] {
+  const f = CATALOG.find((x) => x.id === fieldId);
+  return f?.grades.find((g) => g.id === gradeId)?.chapters ?? [];
+}
 type Course = { id: string; name: string; chapters: ChapterEntry[]; ready: boolean };
 // 1級は完成した章だけ出す（他章は準備中）。章側の ready フラグで出し分ける。
 // 問題 → その問題が属する買い切り(分野×級)。ロック中にタップされたら、その級のPaywallを開くため。
@@ -95,12 +100,14 @@ function payTargetOf(q: Question): PayTarget | null {
   return e ? { key: e.key, title: e.title } : null;
 }
 
-// 分野順は固体→熱流体→振動。各分野は1級を上に。熱流体・振動は章がまだ無いので
-// ready:false＝「準備中」表示（タップ不可・薄表示。問題/公式タブ側が ready で出し分ける）。
+// 分野順は固体→熱流体→振動。各分野は1級を上に。
+// 熱流体は2級を全章リリース済み。1級は中身をこれから作るので枠だけ用意（章0＝開くと「全 0 章」、
+// カタログに章を足せば自動で並ぶ）。振動はまだ無いので ready:false＝「準備中」表示。
 const COURSES: Course[] = [
   { id: 'solid-1', name: '固体力学 1級', chapters: solid1Chapters(), ready: true },
   { id: 'solid-2', name: '固体力学 2級', chapters: solid2Chapters(), ready: true },
-  { id: 'thermal', name: '熱流体力学', chapters: [], ready: false },
+  { id: 'thermal-1', name: '熱流体力学 1級', chapters: fieldGradeChapters('thermal', 'g1'), ready: true },
+  { id: 'thermal-2', name: '熱流体力学 2級', chapters: fieldGradeChapters('thermal', 'g2'), ready: true },
   { id: 'vibration', name: '振動', chapters: [], ready: false },
 ];
 
@@ -643,7 +650,8 @@ const home = StyleSheet.create({
   wtileV: { color: HOME.text, fontWeight: '800', fontSize: 17 },
   wtileL: { color: HOME.muted, fontSize: 10, marginTop: 3 },
   examCard: { position: 'relative', overflow: 'hidden', borderRadius: 20, borderWidth: 1, borderColor: 'rgba(251,191,36,0.4)', backgroundColor: '#0E1728' },
-  examBgWrap: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 120 },
+  examBgWrap: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 104, overflow: 'hidden' },
+  examImg: { position: 'absolute', left: 0, right: 0, bottom: 0, width: '100%', aspectRatio: 900 / 506, opacity: 0.9 },
   examIn: { position: 'relative', padding: 16, paddingBottom: 96 },
   examHead: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   examIco: { width: 44, height: 44, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(251,191,36,0.16)', borderWidth: 1, borderColor: 'rgba(251,191,36,0.4)' },
@@ -764,6 +772,49 @@ function HomeTab(props: {
       </ImageBackground>
 
       <View style={home.body}>
+        {/* 章別の到達度と成長（ヒーロー直下・レーダー3期比較＋週サマリ＋弱点克服） */}
+        <View style={home.secH}>
+          <Text style={home.secTitle}>章別の到達度と成長</Text>
+          <Text style={home.secSub}>{subjectLabel} · 全{stats.length}章</Text>
+        </View>
+        <View style={[home.card, home.radarCard]}>
+          {/* モック準拠: FEM解析画像をカード全面に敷き(opacity .55)、放射状グラデで中心を活かしつつ周辺を暗く。
+              ※ react-native-svg の RadialGradient は rx/ry ではなく r（cx,cy,r）を使う。rx/ry だと暗転が効かず画像が偏って明るく残る。 */}
+          <Image source={HOME_IMG.radarbg} style={[StyleSheet.absoluteFill, { opacity: 0.55 }]} resizeMode="cover" />
+          <Svg style={StyleSheet.absoluteFill} pointerEvents="none">
+            <Defs>
+              <RadialGradient id="radVeil" cx="50%" cy="40%" r="78%">
+                <Stop offset="0" stopColor="#060A13" stopOpacity={0.68} />
+                <Stop offset="0.52" stopColor="#060A13" stopOpacity={0.5} />
+                <Stop offset="1" stopColor="#060A13" stopOpacity={0.88} />
+              </RadialGradient>
+            </Defs>
+            <Rect x="0" y="0" width="100%" height="100%" fill="url(#radVeil)" />
+          </Svg>
+          <View style={home.radarInner}>
+            <View style={{ alignItems: 'center' }}>
+              <GrowthRadar stats={stats} week={weekAcc} month={monthAcc} />
+            </View>
+            <View style={home.rlegend}>
+              <View style={home.rlegItem}><View style={[home.rlegLine, { backgroundColor: HOME.cyan }]} /><Text style={home.rlegTxt}>今週</Text></View>
+              <View style={home.rlegItem}><View style={[home.rlegDash, { borderTopColor: HOME.good }]} /><Text style={home.rlegTxt}>先週</Text></View>
+              <View style={home.rlegItem}><View style={[home.rlegDash, { borderTopColor: HOME.faint }]} /><Text style={home.rlegTxt}>先月</Text></View>
+            </View>
+            <Text style={home.rnote}>
+              軸＝各章の正答率。今週の線が外へ広がるほど成長。{!weekAcc && !monthAcc ? '（続けると先週・先月の線が増えます）' : ''}
+            </Text>
+            <View style={home.wgrid}>
+              <View style={home.wtile}><Text style={home.wtileV}>🔥{digest.streak}</Text><Text style={home.wtileL}>継続</Text></View>
+              <View style={home.wtile}><Text style={[home.wtileV, { color: HOME.cyan }]}>{today.n}</Text><Text style={home.wtileL}>今日</Text></View>
+              <View style={home.wtile}><Text style={home.wtileV}>{weekN}</Text><Text style={home.wtileL}>今週の問題</Text></View>
+              <View style={home.wtile}><Text style={[home.wtileV, { color: wdColor }]}>{wdText}</Text><Text style={home.wtileL}>今週正答率</Text></View>
+            </View>
+            <Pressable style={[home.cta, { marginTop: 14 }]} onPress={props.onReview} disabled={props.wrongCount === 0}>
+              <Text style={home.ctaTxt}>⚡ 弱点を克服{props.wrongCount > 0 ? `（要復習 ${props.wrongCount}問）` : '（なし）'}</Text>
+            </Pressable>
+          </View>
+        </View>
+
         {/* 今日のミッション（未挑戦から DAILY_GOAL 問） */}
         <View style={[home.card, home.cardGlow]}>
           <View style={home.missionTop}>
@@ -813,48 +864,6 @@ function HomeTab(props: {
           </View>
         </View>
 
-        {/* 章別の到達度と成長（レーダー3期比較＋週サマリ＋弱点克服） */}
-        <View style={home.secH}>
-          <Text style={home.secTitle}>章別の到達度と成長</Text>
-          <Text style={home.secSub}>{subjectLabel} · 全{stats.length}章</Text>
-        </View>
-        <View style={[home.card, home.radarCard]}>
-          {/* モック準拠: FEM解析画像をカード全面に敷き(opacity .55)、放射状グラデで中心を活かしつつ周辺を暗く。 */}
-          <Image source={HOME_IMG.radarbg} style={[StyleSheet.absoluteFill, { opacity: 0.55 }]} resizeMode="cover" />
-          <Svg style={StyleSheet.absoluteFill} pointerEvents="none">
-            <Defs>
-              <RadialGradient id="radVeil" cx="50%" cy="40%" rx="78%" ry="78%">
-                <Stop offset="0" stopColor="#060A13" stopOpacity={0.68} />
-                <Stop offset="0.52" stopColor="#060A13" stopOpacity={0.5} />
-                <Stop offset="1" stopColor="#060A13" stopOpacity={0.88} />
-              </RadialGradient>
-            </Defs>
-            <Rect x="0" y="0" width="100%" height="100%" fill="url(#radVeil)" />
-          </Svg>
-          <View style={home.radarInner}>
-            <View style={{ alignItems: 'center' }}>
-              <GrowthRadar stats={stats} week={weekAcc} month={monthAcc} />
-            </View>
-            <View style={home.rlegend}>
-              <View style={home.rlegItem}><View style={[home.rlegLine, { backgroundColor: HOME.cyan }]} /><Text style={home.rlegTxt}>今週</Text></View>
-              <View style={home.rlegItem}><View style={[home.rlegDash, { borderTopColor: HOME.good }]} /><Text style={home.rlegTxt}>先週</Text></View>
-              <View style={home.rlegItem}><View style={[home.rlegDash, { borderTopColor: HOME.faint }]} /><Text style={home.rlegTxt}>先月</Text></View>
-            </View>
-            <Text style={home.rnote}>
-              軸＝各章の正答率。今週の線が外へ広がるほど成長。{!weekAcc && !monthAcc ? '（続けると先週・先月の線が増えます）' : ''}
-            </Text>
-            <View style={home.wgrid}>
-              <View style={home.wtile}><Text style={home.wtileV}>🔥{digest.streak}</Text><Text style={home.wtileL}>継続</Text></View>
-              <View style={home.wtile}><Text style={[home.wtileV, { color: HOME.cyan }]}>{today.n}</Text><Text style={home.wtileL}>今日</Text></View>
-              <View style={home.wtile}><Text style={home.wtileV}>{weekN}</Text><Text style={home.wtileL}>今週の問題</Text></View>
-              <View style={home.wtile}><Text style={[home.wtileV, { color: wdColor }]}>{wdText}</Text><Text style={home.wtileL}>今週正答率</Text></View>
-            </View>
-            <Pressable style={[home.cta, { marginTop: 14 }]} onPress={props.onReview} disabled={props.wrongCount === 0}>
-              <Text style={home.ctaTxt}>⚡ 弱点を克服{props.wrongCount > 0 ? `（要復習 ${props.wrongCount}問）` : '（なし）'}</Text>
-            </Pressable>
-          </View>
-        </View>
-
         {/* 試験前の準備（モック準拠: 琥珀の淡い温かみ＋下部にデスク画像がマスクでふわっと出る） */}
         <View style={home.examCard}>
           {/* 琥珀→ネイビーの淡いグラデを土台に敷く（カード全体をほのかに温める） */}
@@ -868,8 +877,9 @@ function HomeTab(props: {
             <Rect x="0" y="0" width="100%" height="100%" fill="url(#examAmber)" />
           </Svg>
           <View style={home.examBgWrap}>
-            {/* 下部120pxに勉強デスク画像(opacity .9)。上へ向かってフェードアウトさせ、下半分をしっかり見せる。 */}
-            <Image source={HOME_IMG.exambg} style={[StyleSheet.absoluteFill, { opacity: 0.9 }]} resizeMode="cover" />
+            {/* 画像を下寄せ配置（机・ノート・PCが見える位置）。上部の窓＝夜景は帯からはみ出して隠れる。
+                absoluteFill+coverだと縦中央=窓が出て机が切れるため、bottom固定＋アスペクト比で下端を合わせる。 */}
+            <Image source={HOME_IMG.exambg} style={home.examImg} resizeMode="cover" />
             <Svg style={StyleSheet.absoluteFill} pointerEvents="none">
               <Defs>
                 <LinearGradient id="examFade" x1="0" y1="0" x2="0" y2="1">

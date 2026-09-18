@@ -39,6 +39,8 @@ import t2ch10 from '../content/formulas/thermal2-ch10.json';
 import t2ch11 from '../content/formulas/thermal2-ch11.json';
 // 熱流体力学 1級（単相流）
 import t1ch1 from '../content/formulas/thermal1-ch1.json';
+import t1ch2 from '../content/formulas/thermal1-ch2.json';
+import t1ch3 from '../content/formulas/thermal1-ch3.json';
 
 export type FormulaItem = {
   id: string;
@@ -98,6 +100,8 @@ export const FORMULA_DOCS: Record<string, FormulaDoc | null> = {
   t2ch11: t2ch11 as unknown as FormulaDoc,
   // 熱流体力学 1級（単相流）
   t1ch1: t1ch1 as unknown as FormulaDoc,
+  t1ch2: t1ch2 as unknown as FormulaDoc,
+  t1ch3: t1ch3 as unknown as FormulaDoc,
 };
 
 export function formulaDoc(chapterId: string): FormulaDoc | null {
