@@ -1,13 +1,17 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Alert,
   Image,
+  ImageBackground,
   Linking,
+  Modal,
+  PanResponder,
   Pressable,
   ScrollView,
   StyleSheet,
   Switch,
   Text,
+  TextInput,
   useColorScheme,
   View,
   type DimensionValue,
@@ -25,7 +29,7 @@ import { FIGURES, FIGURE_ASPECT } from './src/figures';
 import { RichText } from './src/MathText';
 import { CATALOG, questionsByIds, QUESTION_FORMULA_ID, type ChapterEntry } from './src/catalog';
 import { formulaDoc, type FormulaItem } from './src/formulas';
-import Svg, { Circle, Line, Polygon, Text as SvgText } from 'react-native-svg';
+import Svg, { Circle, Line, Polygon, Text as SvgText, Defs, LinearGradient, Stop, Rect } from 'react-native-svg';
 import {
   chapterStats,
   fieldStats,
@@ -41,11 +45,16 @@ import {
   snapshotFields,
   loadFieldSnaps,
   fieldCompareFrom,
+  snapshotChapters,
+  loadChapterSnaps,
+  chapterSeriesAt,
   type ProgressMap,
   type GradeId,
   type QProgress,
   type FieldSnapStore,
   type FieldCompare,
+  type ChapterSnapStore,
+  type ChapterStat,
   type DailyMap,
   type DailyDigest,
 } from './src/progress';
@@ -66,6 +75,8 @@ import {
 import { initPurchases, syncEntitlements, restore as restorePurchases } from './src/pro/purchases';
 
 const APP_VERSION = '1.0.0';
+const EXAM_DATE_KEY = 'cae.examdate.v1'; // 受験日（YYYY-MM-DD）
+const DAILY_GOAL = 10; // 今日のミッション＝1日の目標問題数（可変パラメータ）
 
 // 課程（分野＋級）。固体2級・固体1級のみ表示。他分野はまだ無いので出さない。
 function solidGradeChapters(gradeId: string): ChapterEntry[] {
@@ -161,16 +172,29 @@ function AppInner() {
   const [formulaCourse, setFormulaCourse] = useState<Course | null>(null);
   const [formulaChapterId, setFormulaChapterId] = useState<string | null>(null);
   const [formulaItemId, setFormulaItemId] = useState<string | null>(null);
+  // 問題画面から公式へ飛んだか（true の時、公式カードに「問題に戻る」を出す）
+  const [formulaFrom, setFormulaFrom] = useState<null | 'study'>(null);
+  // 受験日（YYYY-MM-DD）。ホームの「試験まであと◯日」に使う。
+  const [examDate, setExamDate] = useState<string | null>(null);
 
   useEffect(() => {
     loadProgress().then(async (p) => {
       setProgress(p);
-      // 分野バランスを1日1回記録しておき、レーダーの「1週前比の成長」を出せるようにする。
+      // 分野バランス＋章別を1日1回記録しておき、レーダーの成長比較（今週/先週/先月）を出せるようにする。
       await snapshotFields(p, 'g2');
       await snapshotFields(p, 'g1');
+      await snapshotChapters(p, 'g2');
+      await snapshotChapters(p, 'g1');
     });
     loadDaily().then(setDaily);
+    AsyncStorage.getItem(EXAM_DATE_KEY).then((v) => { if (v) setExamDate(v); }).catch(() => {});
   }, []);
+
+  function saveExamDate(v: string | null) {
+    setExamDate(v);
+    if (v) AsyncStorage.setItem(EXAM_DATE_KEY, v).catch(() => {});
+    else AsyncStorage.removeItem(EXAM_DATE_KEY).catch(() => {});
+  }
 
   // Proの初期化・同期。まず端末保存値を読み（オフラインでも即反映）、次にストアと同期して最新化。
   // キー未設定(src/config/revenuecat.ts が空)なら syncEntitlements は null＝状態を変えない＝アプリは従来どおり無料動作。
@@ -221,6 +245,19 @@ function AppInner() {
     setTab('study');
   }
 
+  // 今日のミッション：未挑戦（まだ一度も解いていない）問題を集めて出題（踏破率アップ）。
+  function solveUnattempted(gradeId: GradeId) {
+    const all = solidGradeChapters(gradeId).flatMap((c) => c.data.questions);
+    const un = all.filter((q) => !progress[q.id]);
+    openProblems(un.length ? un : all, '今日のミッション');
+  }
+
+  // 章別ステータス/レーダーの章をタップ → その章の問題を開く。
+  function openChapterById(gradeId: GradeId, chapterId: string) {
+    const c = solidGradeChapters(gradeId).find((x) => x.id === chapterId);
+    if (c) openProblems(c.data.questions, c.title);
+  }
+
   async function onSelectAnswer(q: Question, choiceNum: number) {
     if (answers[q.id] != null) return; // 既に回答済みなら無視
     setAnswers((a) => ({ ...a, [q.id]: choiceNum }));
@@ -246,6 +283,15 @@ function AppInner() {
               setStudyView('course');
               setTab('study');
             }}
+            onGoFormula={() => {
+              setFormulaFrom(null);
+              setFormulaView('course');
+              setTab('formula');
+            }}
+            onSolveUnattempted={solveUnattempted}
+            onOpenChapter={openChapterById}
+            examDate={examDate}
+            onSetExamDate={saveExamDate}
           />
         )}
 
@@ -285,6 +331,7 @@ function AppInner() {
               setFormulaCourse(
                 course ?? COURSES.find((c) => c.chapters.some((ch) => (ch.formulaId ?? ch.id) === formulaId)) ?? null
               );
+              setFormulaFrom('study');
               setTab('formula');
             }}
           />
@@ -310,6 +357,11 @@ function AppInner() {
               setFormulaView('item');
             }}
             onBack={(v) => setFormulaView(v)}
+            fromStudy={formulaFrom === 'study'}
+            onBackToStudy={() => {
+              setFormulaFrom(null);
+              setTab('study');
+            }}
           />
         )}
 
@@ -336,7 +388,7 @@ function AppInner() {
         )}
       </SafeAreaView>
 
-      <TabBar t={t} tab={tab} insetsBottom={insets.bottom} onChange={setTab} />
+      <TabBar t={t} tab={tab} insetsBottom={insets.bottom} onChange={(k) => { setFormulaFrom(null); setTab(k); }} />
 
       {showPaywall && (
         <View style={StyleSheet.absoluteFill}>
@@ -463,6 +515,162 @@ const icon = StyleSheet.create({
 });
 
 // ================= ホーム / 分析 =================
+// FEMホームの画像素材（assets/home/・黒背景の解析画像）。
+const HOME_IMG = {
+  header: require('./assets/home/header.jpg'),
+  beam: require('./assets/home/beam.jpg'),
+  frame: require('./assets/home/frame.jpg'),
+  radarbg: require('./assets/home/radarbg.jpg'),
+  exambg: require('./assets/home/exambg.jpg'),
+};
+// ホーム専用のダーク世界観パレット（アプリのテーマに依らず常にこの世界観で表示）。
+const HOME = {
+  bg0: '#060A13', bg2: '#0E1728', surface: 'rgba(150,190,235,0.06)',
+  border: 'rgba(125,199,255,0.16)', borderStrong: 'rgba(125,199,255,0.32)',
+  text: '#EAF2FF', muted: '#8CA1C1', faint: '#5C6E8C',
+  cyan: '#3BE6F2', cyanDeep: '#0B93B4', good: '#4ADE80', warn: '#FBBF24', bad: '#FB7185',
+};
+// 写真の上に文字を載せるための暗幕（react-native-svg の縦グラデ）。id は衝突回避のため一意に。
+function Veil(props: { id: string; stops: { o: number; op: number }[] }) {
+  return (
+    <Svg style={StyleSheet.absoluteFill} pointerEvents="none">
+      <Defs>
+        <LinearGradient id={props.id} x1="0" y1="0" x2="0" y2="1">
+          {props.stops.map((s, i) => (
+            <Stop key={i} offset={s.o} stopColor="#060A13" stopOpacity={s.op} />
+          ))}
+        </LinearGradient>
+      </Defs>
+      <Rect x="0" y="0" width="100%" height="100%" fill={`url(#${props.id})`} />
+    </Svg>
+  );
+}
+
+// 受験日までの残り日数（過ぎていれば負・未設定は null）。
+function examDaysLeft(dateStr: string | null): number | null {
+  if (!dateStr) return null;
+  const d = new Date(dateStr + 'T00:00:00');
+  if (isNaN(d.getTime())) return null;
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  return Math.round((d.getTime() - today.getTime()) / 86400000);
+}
+
+// 章別レーダー：軸＝各章の正答率。今週(シアン塗り)/先週(緑破線)/先月(灰破線)の3期を重ねて成長を見せる。
+function GrowthRadar(props: {
+  stats: ChapterStat[];
+  week: Record<string, number> | null;
+  month: Record<string, number> | null;
+}) {
+  const items = props.stats;
+  const N = Math.max(items.length, 3);
+  const size = 236, cx = size / 2, cy = size / 2, R = 86, labelR = R + 13;
+  const ang = (i: number) => -Math.PI / 2 + (i * 2 * Math.PI) / N;
+  const at = (i: number, r: number) => ({ x: cx + r * Math.cos(ang(i)), y: cy + r * Math.sin(ang(i)) });
+  const clip = (v: number) => Math.max(0, Math.min(1, v));
+  const toPoly = (vals: number[]) =>
+    items.map((_, i) => { const p = at(i, R * clip(vals[i])); return `${p.x.toFixed(1)},${p.y.toFixed(1)}`; }).join(' ');
+  const ring = (k: number) =>
+    items.map((_, i) => { const p = at(i, R * k); return `${p.x.toFixed(1)},${p.y.toFixed(1)}`; }).join(' ');
+  const cur = items.map((s) => s.accuracy);
+  const week = props.week ? items.map((s) => props.week![s.id] ?? 0) : null;
+  const month = props.month ? items.map((s) => props.month![s.id] ?? 0) : null;
+  return (
+    <Svg width={size} height={size}>
+      {[0.25, 0.5, 0.75, 1].map((k) => (
+        <Polygon key={k} points={ring(k)} fill="none" stroke="rgba(125,199,255,0.15)" strokeWidth={1} />
+      ))}
+      {items.map((_, i) => { const p = at(i, R); return (
+        <Line key={i} x1={cx} y1={cy} x2={p.x} y2={p.y} stroke="rgba(125,199,255,0.12)" strokeWidth={1} />
+      ); })}
+      {month ? <Polygon points={toPoly(month)} fill="none" stroke="#5C6E8C" strokeWidth={1.3} strokeDasharray="3,3" /> : null}
+      {week ? <Polygon points={toPoly(week)} fill="none" stroke="#4ADE80" strokeWidth={1.6} strokeDasharray="4,3" /> : null}
+      <Polygon points={toPoly(cur)} fill="rgba(59,230,242,0.16)" stroke="#3BE6F2" strokeWidth={2} />
+      {items.map((s, i) => { const p = at(i, labelR); return (
+        <SvgText key={s.id} x={p.x} y={p.y} fill="#8CA1C1" fontSize={9} fontWeight="bold" textAnchor="middle" alignmentBaseline="middle">
+          {String(i + 1)}
+        </SvgText>
+      ); })}
+    </Svg>
+  );
+}
+
+const home = StyleSheet.create({
+  scroll: { paddingBottom: 28 },
+  hero: { height: 300, justifyContent: 'flex-end' },
+  heroImg: {},
+  heroTop: { position: 'absolute', top: 14, left: 16, right: 16, flexDirection: 'row', justifyContent: 'flex-start' },
+  nowtag: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 8, paddingHorizontal: 14, borderRadius: 999, backgroundColor: 'rgba(59,230,242,0.16)', borderWidth: 1, borderColor: HOME.cyan },
+  nowdot: { width: 7, height: 7, borderRadius: 4, backgroundColor: HOME.cyan },
+  nowtagTxt: { color: '#EAF2FF', fontWeight: '800', fontSize: 14 },
+  nowchev: { color: '#EAF2FF', fontSize: 11, opacity: 0.85 },
+  heroCopy: { paddingHorizontal: 20, paddingBottom: 16 },
+  kicker: { color: '#CBDAF0', fontSize: 13 },
+  headline: { color: HOME.text, fontWeight: '900', fontSize: 28, marginTop: 6 },
+  pct: { color: HOME.cyan, fontSize: 44, fontWeight: '900' },
+  pctSmall: { color: HOME.cyan, fontSize: 20, fontWeight: '900' },
+  prog: { marginTop: 12, height: 8, borderRadius: 999, backgroundColor: 'rgba(255,255,255,0.12)', borderWidth: 1, borderColor: HOME.border, overflow: 'hidden' },
+  progFill: { height: '100%', backgroundColor: HOME.cyan },
+  capRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 6 },
+  capTxt: { color: '#93A6C4', fontSize: 11 },
+  body: { paddingHorizontal: 16, paddingTop: 8, gap: 14 },
+  card: { backgroundColor: HOME.surface, borderWidth: 1, borderColor: HOME.border, borderRadius: 20, padding: 16 },
+  cardGlow: { borderColor: HOME.borderStrong },
+  missionTop: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+  missionIco: { width: 44, height: 44, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(59,230,242,0.12)', borderWidth: 1, borderColor: HOME.borderStrong },
+  missionH3: { color: HOME.text, fontSize: 17, fontWeight: '900' },
+  missionP: { color: HOME.muted, fontSize: 12, marginTop: 3 },
+  missionCount: { color: HOME.cyan, fontWeight: '800', fontSize: 15 },
+  mini: { marginTop: 12, height: 7, borderRadius: 999, backgroundColor: 'rgba(255,255,255,0.06)', overflow: 'hidden' },
+  miniFill: { height: '100%', backgroundColor: HOME.cyan },
+  cta: { marginTop: 14, borderRadius: 14, paddingVertical: 15, alignItems: 'center', backgroundColor: HOME.cyan },
+  ctaTxt: { color: '#04141b', fontWeight: '900', fontSize: 16 },
+  duo: { flexDirection: 'row', gap: 12 },
+  imgCard: { flex: 1, height: 150, borderRadius: 18, overflow: 'hidden', borderWidth: 1, borderColor: HOME.border, justifyContent: 'flex-end', padding: 14 },
+  cardImg: {},
+  tag: { position: 'absolute', top: 12, left: 12, paddingVertical: 5, paddingHorizontal: 9, borderRadius: 999, backgroundColor: 'rgba(9,14,26,0.55)', borderWidth: 1, borderColor: HOME.borderStrong },
+  tagTxt: { color: HOME.cyan, fontWeight: '700', fontSize: 10 },
+  imgCardIn: {},
+  cardH4: { color: HOME.text, fontSize: 16, fontWeight: '900' },
+  cardP: { color: '#B6C6E0', fontSize: 11, marginTop: 3 },
+  secH: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 6, marginBottom: -2, paddingHorizontal: 2 },
+  secTitle: { color: HOME.text, fontSize: 16, fontWeight: '900' },
+  secSub: { color: HOME.cyan, fontSize: 12 },
+  radarCard: { position: 'relative', overflow: 'hidden' },
+  radarInner: { position: 'relative' },
+  rlegend: { flexDirection: 'row', justifyContent: 'center', gap: 16, marginTop: 8 },
+  rlegItem: { flexDirection: 'row', alignItems: 'center', gap: 6 },
+  rlegLine: { width: 16, height: 3, borderRadius: 2 },
+  rlegTxt: { color: HOME.muted, fontSize: 11 },
+  rnote: { color: HOME.faint, fontSize: 11, textAlign: 'center', marginTop: 8 },
+  wgrid: { flexDirection: 'row', gap: 8, marginTop: 14 },
+  wtile: { flex: 1, backgroundColor: 'rgba(255,255,255,0.03)', borderWidth: 1, borderColor: HOME.border, borderRadius: 12, paddingVertical: 10, alignItems: 'center' },
+  wtileV: { color: HOME.text, fontWeight: '800', fontSize: 17 },
+  wtileL: { color: HOME.muted, fontSize: 10, marginTop: 3 },
+  examCard: { position: 'relative', overflow: 'hidden', borderRadius: 20, borderWidth: 1, borderColor: 'rgba(251,191,36,0.4)', backgroundColor: '#0E1728' },
+  examBgWrap: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 128 },
+  examIn: { position: 'relative', padding: 16, paddingBottom: 78 },
+  examHead: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+  examIco: { width: 44, height: 44, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(251,191,36,0.16)', borderWidth: 1, borderColor: 'rgba(251,191,36,0.4)' },
+  examLi: { flexDirection: 'row', alignItems: 'center', gap: 9, marginTop: 8 },
+  examDot: { width: 6, height: 6, borderRadius: 3, backgroundColor: HOME.warn },
+  examLiTxt: { color: '#EAF2FF', fontSize: 13, flex: 1 },
+  examCautn: { color: '#F6C89A', fontSize: 11, marginTop: 11 },
+  quote: { borderRadius: 20, borderWidth: 1, borderColor: HOME.border, paddingVertical: 22, paddingHorizontal: 18, alignItems: 'center', backgroundColor: 'rgba(14,23,40,0.5)' },
+  quoteJa: { color: '#DCE8FA', fontWeight: '700', fontSize: 15, textAlign: 'center' },
+  quoteEn: { color: HOME.cyan, fontWeight: '700', fontSize: 11, letterSpacing: 2, marginTop: 8 },
+  modalWrap: { flex: 1, backgroundColor: 'rgba(3,6,12,0.62)', justifyContent: 'flex-end' },
+  sheet: { backgroundColor: HOME.bg2, borderTopLeftRadius: 20, borderTopRightRadius: 20, borderTopWidth: 1, borderColor: HOME.borderStrong, padding: 18, gap: 8 },
+  sheetH: { color: HOME.text, fontWeight: '900', fontSize: 16, textAlign: 'center', marginBottom: 4 },
+  sheetSec: { color: HOME.muted, fontSize: 11, marginTop: 6 },
+  opt: { backgroundColor: HOME.surface, borderWidth: 1, borderColor: HOME.border, borderRadius: 12, paddingVertical: 13, paddingHorizontal: 14 },
+  optOn: { borderColor: HOME.cyan, backgroundColor: 'rgba(59,230,242,0.12)' },
+  optTxt: { color: HOME.text, fontWeight: '700', fontSize: 15 },
+  dateInput: { backgroundColor: HOME.surface, borderWidth: 1, borderColor: HOME.border, borderRadius: 12, paddingVertical: 12, paddingHorizontal: 14, color: HOME.text, fontSize: 16 },
+  clearBtn: { alignItems: 'center', paddingVertical: 10 },
+  clearTxt: { color: HOME.muted, fontSize: 13 },
+});
+
 function HomeTab(props: {
   t: Theme;
   progress: ProgressMap;
@@ -470,6 +678,11 @@ function HomeTab(props: {
   wrongCount: number;
   onReview: () => void;
   onGoStudy: () => void;
+  onGoFormula: () => void;
+  onSolveUnattempted: (gradeId: GradeId) => void;
+  onOpenChapter: (gradeId: GradeId, chapterId: string) => void;
+  examDate: string | null;
+  onSetExamDate: (v: string | null) => void;
 }) {
   const { t } = props;
   // 継続日数・今日の学習量・直近の活動（級に依らず端末全体の学習ログから）。
@@ -504,101 +717,224 @@ function HomeTab(props: {
   const weak = [...attemptedStats].sort((a, b) => a.accuracy - b.accuracy).slice(0, 3);
   const strong = [...attemptedStats].sort((a, b) => b.accuracy - a.accuracy).slice(0, 3);
 
+  // ---- FEM世界観ホーム ----
+  const [chapSnaps, setChapSnaps] = useState<ChapterSnapStore>([]);
+  useEffect(() => { loadChapterSnaps().then(setChapSnaps); }, [props.progress]);
+  const [showGrade, setShowGrade] = useState(false);
+  const [showDate, setShowDate] = useState(false);
+  const [dateDraft, setDateDraft] = useState('');
+
+  // サブ部品へ渡すダーク派生テーマ
+  const ht = { ...t, bg: HOME.bg0, card: HOME.surface, text: HOME.text, sub: HOME.muted,
+    border: HOME.border, primary: HOME.cyan, correct: HOME.good, wrong: HOME.bad, amber: HOME.warn } as Theme;
+  const subjectLabel = `固体力学 ${grade === 'g1' ? '1級' : '2級'}`;
+  const daysLeft = examDaysLeft(props.examDate);
+  const coverPct = overall.totalQuestions > 0 ? Math.round((overall.attempted / overall.totalQuestions) * 100) : 0;
+  const today = digest.last30[digest.last30.length - 1] ?? { key: '', n: 0, c: 0 };
+  const goalDone = Math.min(today.n, DAILY_GOAL);
+  const goalPct = Math.round((goalDone / DAILY_GOAL) * 100);
+  const weekN = digest.last30.slice(-7).reduce((a, d) => a + d.n, 0);
+  const wd = digest.weekDelta;
+  const wdColor = wd > 0 ? HOME.good : wd < 0 ? HOME.bad : HOME.muted;
+  const wdText = wd > 0 ? `▲+${wd}` : wd < 0 ? `▼${wd}` : '±0';
+  const weekAcc = chapterSeriesAt(chapSnaps, grade, 7);
+  const monthAcc = chapterSeriesAt(chapSnaps, grade, 28);
+
   return (
-    <ScrollView contentContainerStyle={styles.content}>
-      <Text style={[styles.title, { color: t.text }]}>学習の記録</Text>
-      <Text style={[styles.subtitle, { color: t.sub }]}>
-        {grade === 'g1' ? '固体力学 1級' : '固体力学 2級'}
-      </Text>
+    <>
+    <ScrollView style={{ backgroundColor: HOME.bg0 }} contentContainerStyle={home.scroll}>
+      {/* ヒーロー（FEM解析建築の夜景） */}
+      <ImageBackground source={HOME_IMG.header} style={home.hero} imageStyle={home.heroImg}>
+        <Veil id="heroVeil" stops={[{ o: 0, op: 0.72 }, { o: 0.3, op: 0 }, { o: 0.58, op: 0 }, { o: 1, op: 1 }]} />
+        <View style={home.heroTop}>
+          <Pressable style={home.nowtag} onPress={() => setShowGrade(true)}>
+            <View style={home.nowdot} />
+            <Text style={home.nowtagTxt}>{subjectLabel}</Text>
+            <Text style={home.nowchev}>▾</Text>
+          </Pressable>
+        </View>
+        <View style={home.heroCopy}>
+          <Text style={home.kicker}>解析する力が、未来のものづくりを支える。</Text>
+          <Pressable onPress={() => { setDateDraft(props.examDate ?? ''); setShowDate(true); }}>
+            {daysLeft == null ? (
+              <Text style={home.headline}>受験日を設定 <Text style={home.pctSmall}>›</Text></Text>
+            ) : daysLeft >= 0 ? (
+              <Text style={home.headline}>試験まで あと <Text style={home.pct}>{daysLeft}</Text> 日</Text>
+            ) : (
+              <Text style={home.headline}>受験日が過ぎています</Text>
+            )}
+          </Pressable>
+          <View style={home.prog}><View style={[home.progFill, { width: `${coverPct}%` as DimensionValue }]} /></View>
+          <View style={home.capRow}>
+            <Text style={home.capTxt}>学習範囲 {overall.attempted}/{overall.totalQuestions}問 踏破</Text>
+            <Text style={home.capTxt}>継続 {digest.streak}日</Text>
+          </View>
+        </View>
+      </ImageBackground>
 
-      {/* 継続日数・今日の学習量・今週の伸び（モチベーション帯） */}
-      <StreakHero t={t} digest={digest} />
+      <View style={home.body}>
+        {/* 今日のミッション（未挑戦から DAILY_GOAL 問） */}
+        <View style={[home.card, home.cardGlow]}>
+          <View style={home.missionTop}>
+            <View style={home.missionIco}><Text style={{ fontSize: 20 }}>📐</Text></View>
+            <View style={{ flex: 1 }}>
+              <Text style={home.missionH3}>今日のミッション</Text>
+              <Text style={home.missionP}>未挑戦から{DAILY_GOAL}問 · あと{Math.max(0, DAILY_GOAL - goalDone)}問（踏破率アップ）</Text>
+            </View>
+            <Text style={home.missionCount}>{goalDone}/{DAILY_GOAL}</Text>
+          </View>
+          <View style={home.mini}><View style={[home.miniFill, { width: `${goalPct}%` as DimensionValue }]} /></View>
+          <Pressable style={home.cta} onPress={() => props.onSolveUnattempted(grade)}>
+            <Text style={home.ctaTxt}>▶ 未挑戦を解く</Text>
+          </Pressable>
+        </View>
 
-      {/* 級の切り替え（1級=左 / 2級=右） */}
-      <View style={[styles.segment, { borderColor: t.border, backgroundColor: t.card }]}>
-        {(['g1', 'g2'] as GradeId[]).map((g) => {
-          const on = grade === g;
-          return (
-            <Pressable
-              key={g}
-              onPress={() => chooseGrade(g)}
-              style={[styles.segmentItem, on && { backgroundColor: t.primary }]}
-            >
-              <Text style={[styles.segmentText, { color: on ? '#fff' : t.sub }]}>
-                {g === 'g2' ? '2級' : '1級'}
-              </Text>
+        {/* 用語問題 / 計算・数値問題 */}
+        <View style={home.duo}>
+          <Pressable style={home.imgCard} onPress={props.onGoFormula}>
+            <ImageBackground source={HOME_IMG.beam} style={StyleSheet.absoluteFill} imageStyle={home.cardImg}>
+              <Veil id="veilBeam" stops={[{ o: 0, op: 0.05 }, { o: 0.45, op: 0.5 }, { o: 1, op: 0.94 }]} />
+            </ImageBackground>
+            <View style={home.tag}><Text style={home.tagTxt}>用語</Text></View>
+            <View style={home.imgCardIn}>
+              <Text style={home.cardH4}>用語問題</Text>
+              <Text style={home.cardP}>公式・専門用語を確認</Text>
+            </View>
+          </Pressable>
+          <Pressable style={home.imgCard} onPress={props.onGoStudy}>
+            <ImageBackground source={HOME_IMG.frame} style={StyleSheet.absoluteFill} imageStyle={home.cardImg}>
+              <Veil id="veilFrame" stops={[{ o: 0, op: 0.05 }, { o: 0.45, op: 0.5 }, { o: 1, op: 0.94 }]} />
+            </ImageBackground>
+            <View style={home.tag}><Text style={home.tagTxt}>演習</Text></View>
+            <View style={home.imgCardIn}>
+              <Text style={home.cardH4}>計算・数値問題</Text>
+              <Text style={home.cardP}>手を動かして得点源に</Text>
+            </View>
+          </Pressable>
+        </View>
+
+        {/* 全体サマリ */}
+        <View style={[home.card, { paddingVertical: 14 }]}>
+          <View style={styles.summaryRow}>
+            <Summary t={ht} label="挑戦した問題" value={`${overall.attempted} / ${overall.totalQuestions}`} />
+            <Summary t={ht} label="正答率" value={`${Math.round(overall.accuracy * 100)}%`} />
+            <Summary t={ht} label="要復習" value={`${props.wrongCount} 問`} />
+          </View>
+        </View>
+
+        {/* 章別の到達度と成長（レーダー3期比較＋週サマリ＋弱点克服） */}
+        <View style={home.secH}>
+          <Text style={home.secTitle}>章別の到達度と成長</Text>
+          <Text style={home.secSub}>{subjectLabel} · 全{stats.length}章</Text>
+        </View>
+        <View style={[home.card, home.radarCard]}>
+          <Image source={HOME_IMG.radarbg} style={[StyleSheet.absoluteFill, { opacity: 0.5 }]} resizeMode="cover" />
+          <View style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(6,10,19,0.5)' }]} />
+          <View style={home.radarInner}>
+            <View style={{ alignItems: 'center' }}>
+              <GrowthRadar stats={stats} week={weekAcc} month={monthAcc} />
+            </View>
+            <View style={home.rlegend}>
+              <View style={home.rlegItem}><View style={[home.rlegLine, { backgroundColor: HOME.cyan }]} /><Text style={home.rlegTxt}>今週</Text></View>
+              <View style={home.rlegItem}><View style={[home.rlegLine, { backgroundColor: HOME.good }]} /><Text style={home.rlegTxt}>先週</Text></View>
+              <View style={home.rlegItem}><View style={[home.rlegLine, { backgroundColor: HOME.faint }]} /><Text style={home.rlegTxt}>先月</Text></View>
+            </View>
+            <Text style={home.rnote}>
+              軸＝各章の正答率。今週の線が外へ広がるほど成長。{!weekAcc && !monthAcc ? '（続けると先週・先月の線が増えます）' : ''}
+            </Text>
+            <View style={home.wgrid}>
+              <View style={home.wtile}><Text style={home.wtileV}>🔥{digest.streak}</Text><Text style={home.wtileL}>継続</Text></View>
+              <View style={home.wtile}><Text style={[home.wtileV, { color: HOME.cyan }]}>{today.n}</Text><Text style={home.wtileL}>今日</Text></View>
+              <View style={home.wtile}><Text style={home.wtileV}>{weekN}</Text><Text style={home.wtileL}>今週の問題</Text></View>
+              <View style={home.wtile}><Text style={[home.wtileV, { color: wdColor }]}>{wdText}</Text><Text style={home.wtileL}>今週正答率</Text></View>
+            </View>
+            <Pressable style={[home.cta, { marginTop: 14 }]} onPress={props.onReview} disabled={props.wrongCount === 0}>
+              <Text style={home.ctaTxt}>⚡ 弱点を克服{props.wrongCount > 0 ? `（要復習 ${props.wrongCount}問）` : '（なし）'}</Text>
             </Pressable>
-          );
-        })}
-      </View>
+          </View>
+        </View>
 
-      {/* 全体サマリ */}
-      <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
-        <View style={styles.summaryRow}>
-          <Summary t={t} label="挑戦した問題" value={`${overall.attempted} / ${overall.totalQuestions}`} />
-          <Summary t={t} label="正答率" value={`${Math.round(overall.accuracy * 100)}%`} />
-          <Summary t={t} label="要復習" value={`${props.wrongCount} 問`} />
+        {/* 試験前の準備（下端に画像フェード） */}
+        <View style={home.examCard}>
+          <View style={home.examBgWrap}>
+            <Image source={HOME_IMG.exambg} style={StyleSheet.absoluteFill} resizeMode="cover" />
+            <Svg style={StyleSheet.absoluteFill} pointerEvents="none">
+              <Defs>
+                <LinearGradient id="examFade" x1="0" y1="0" x2="0" y2="1">
+                  <Stop offset="0" stopColor="#0E1728" stopOpacity={1} />
+                  <Stop offset="0.66" stopColor="#0E1728" stopOpacity={0} />
+                </LinearGradient>
+              </Defs>
+              <Rect x="0" y="0" width="100%" height="100%" fill="url(#examFade)" />
+            </Svg>
+          </View>
+          <View style={home.examIn}>
+            <View style={home.examHead}>
+              <View style={home.examIco}><Text style={{ fontSize: 20 }}>📋</Text></View>
+              <View style={{ flex: 1 }}>
+                <Text style={home.missionH3}>試験前の準備</Text>
+                <Text style={home.missionP}>本番で力を出し切るために</Text>
+              </View>
+            </View>
+            {['足切りルール（不合格になる条件）を確認', '持ち物チェック（受験票・電卓・時計 ほか）', '前日に見直す重要公式まとめ'].map((li) => (
+              <View key={li} style={home.examLi}><View style={home.examDot} /><Text style={home.examLiTxt}>{li}</Text></View>
+            ))}
+            <Text style={home.examCautn}>※ 足切り・持ち込み可否は必ず公式の受験要項でご確認ください</Text>
+          </View>
+        </View>
+
+        {/* 名言（最後） */}
+        <View style={home.quote}>
+          <Text style={home.quoteJa}>「解析する力は、いつか世界の構造を支える。」</Text>
+          <Text style={home.quoteEn}>ANALYZE · SOLVE · BUILD A BETTER TOMORROW</Text>
         </View>
       </View>
+    </ScrollView>
 
-      {/* 5分野レーダー（正五角形） */}
-      <Text style={[styles.sectionHead, { color: t.text }]}>分野別のバランス</Text>
-      <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border, alignItems: 'center' }]}>
-        <RadarChart t={t} fields={fields} baseAcc={compare.baseAcc} />
-        <View style={styles.radarLegend}>
-          {fields.map((f) => {
-            const g = compare.growth[f.id];
-            const gColor = g == null || g === 0 ? t.sub : g > 0 ? t.correct : t.wrong;
-            const gText = g == null ? '' : g > 0 ? ` ▲+${g}` : g < 0 ? ` ▼${g}` : ' ±0';
+    {/* 分野・級セレクター */}
+    <Modal visible={showGrade} transparent animationType="fade" onRequestClose={() => setShowGrade(false)}>
+      <Pressable style={home.modalWrap} onPress={() => setShowGrade(false)}>
+        <Pressable style={home.sheet} onPress={() => {}}>
+          <Text style={home.sheetH}>学習する分野・級を選ぶ</Text>
+          <Text style={home.sheetSec}>分野</Text>
+          <View style={[home.opt, home.optOn]}><Text style={home.optTxt}>固体力学</Text></View>
+          <Text style={home.sheetSec}>級</Text>
+          {(['g1', 'g2'] as GradeId[]).map((g) => {
+            const on = grade === g;
             return (
-              <Text key={f.id} style={[styles.radarLegendItem, { color: t.sub }]}>
-                {f.id}：{f.label}（
-                {f.attempted > 0 ? `${Math.round(f.accuracy * 100)}%` : '未挑戦'}）
-                {gText ? <Text style={{ color: gColor, fontWeight: 'bold' }}>{gText}</Text> : null}
-              </Text>
+              <Pressable key={g} style={[home.opt, on && home.optOn]} onPress={() => { chooseGrade(g); setShowGrade(false); }}>
+                <Text style={home.optTxt}>{g === 'g1' ? '1級' : '2級'}</Text>
+              </Pressable>
             );
           })}
-        </View>
-        {hasGrowth ? (
-          <Text style={[styles.radarNote, { color: t.sub }]}>
-            ▲▼ は1週間前との差（pt）。薄い五角形が1週間前の形。
-          </Text>
-        ) : (
-          <Text style={[styles.radarNote, { color: t.sub }]}>
-            続けて解くと、1週間前と比べた分野ごとの伸びがここに出ます。
-          </Text>
-        )}
-      </View>
+        </Pressable>
+      </Pressable>
+    </Modal>
 
-      {props.wrongCount > 0 && (
-        <Button t={t} kind="review" label={`間違いだけ復習（${props.wrongCount} 問）`} onPress={props.onReview} />
-      )}
-
-      {overall.attempted === 0 && (
-        <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
-          <Text style={[styles.bodyText, { color: t.sub }]}>
-            まだ記録がありません。「問題」タブから章を選んで解いてみましょう。
-          </Text>
-          <Button t={t} kind="primary" label="問題を解きに行く" onPress={props.onGoStudy} />
-        </View>
-      )}
-
-      {/* 苦手・得意 */}
-      {weak.length > 0 && (
-        <>
-          <Text style={[styles.sectionHead, { color: t.text }]}>苦手な章（優先復習）</Text>
-          {weak.map((s) => (
-            <RankRow key={s.id} t={t} stat={s} tone="weak" />
-          ))}
-          <Text style={[styles.sectionHead, { color: t.text }]}>得意な章</Text>
-          {strong.map((s) => (
-            <RankRow key={s.id} t={t} stat={s} tone="strong" />
-          ))}
-        </>
-      )}
-
-      {/* 章別の正答率は「問題」タブの各章タイトル下へ移動（見やすさのため） */}
-    </ScrollView>
+    {/* 受験日 */}
+    <Modal visible={showDate} transparent animationType="fade" onRequestClose={() => setShowDate(false)}>
+      <Pressable style={home.modalWrap} onPress={() => setShowDate(false)}>
+        <Pressable style={home.sheet} onPress={() => {}}>
+          <Text style={home.sheetH}>受験日を設定</Text>
+          <Text style={home.sheetSec}>日付（YYYY-MM-DD）</Text>
+          <TextInput
+            value={dateDraft}
+            onChangeText={setDateDraft}
+            placeholder="2026-12-13"
+            placeholderTextColor={HOME.faint}
+            style={home.dateInput}
+            autoCapitalize="none"
+          />
+          <Pressable style={home.cta} onPress={() => { props.onSetExamDate(dateDraft.trim() || null); setShowDate(false); }}>
+            <Text style={home.ctaTxt}>保存</Text>
+          </Pressable>
+          <Pressable style={home.clearBtn} onPress={() => { props.onSetExamDate(null); setShowDate(false); }}>
+            <Text style={home.clearTxt}>クリア</Text>
+          </Pressable>
+        </Pressable>
+      </Pressable>
+    </Modal>
+    </>
   );
 }
 
@@ -972,6 +1308,23 @@ function relatedFormulaItems(q: Question): FormulaItem[] {
     .filter((x): x is FormulaItem => !!x);
 }
 
+// 横スワイプで前後移動。縦スクロールは邪魔しない（横成分が縦より十分大きい時だけ発火）。
+function useSwipeNav(onLeft: () => void, onRight: () => void) {
+  const cb = useRef({ onLeft, onRight });
+  cb.current = { onLeft, onRight };
+  const pan = useRef(
+    PanResponder.create({
+      onMoveShouldSetPanResponder: (_e, g) =>
+        Math.abs(g.dx) > 24 && Math.abs(g.dx) > Math.abs(g.dy) * 1.8,
+      onPanResponderRelease: (_e, g) => {
+        if (g.dx <= -50) cb.current.onLeft();
+        else if (g.dx >= 50) cb.current.onRight();
+      },
+    })
+  ).current;
+  return pan.panHandlers;
+}
+
 function ProblemScreen(props: {
   t: Theme;
   title: string;
@@ -997,8 +1350,11 @@ function ProblemScreen(props: {
   const pastRate = past && past.attempts > 0 ? Math.round((past.correctCount / past.attempts) * 100) : 0;
   const related = relatedFormulaItems(q);
   const relFormulaId = QUESTION_FORMULA_ID[q.id];
+  // 左スワイプ=次の問題 / 右スワイプ=前の問題（ボタンと同じ動作。両端はクランプ済）
+  const pan = useSwipeNav(props.onNext, props.onPrev);
 
   return (
+    <View style={{ flex: 1 }} {...pan}>
     <ScrollView contentContainerStyle={styles.content}>
       {/* 上部バー：戻る・課程/章・問番号 */}
       <View style={styles.qTopbar}>
@@ -1058,8 +1414,8 @@ function ProblemScreen(props: {
         <RichText text={q.question} color={t.text} fontSize={18} bold />
       </View>
 
-      {/* 図（ロック中は有料コンテンツなので出さない） */}
-      {!locked && q.figureImage && FIGURES[q.figureImage] ? (
+      {/* 図：解答に必要(figure:'required')なら常時。それ以外(helpful等)は答えを示唆しうるので回答後のみ出す。 */}
+      {!locked && q.figureImage && FIGURES[q.figureImage] && (q.figure === 'required' || answered) ? (
         <View style={[styles.qFigCard, { backgroundColor: t.card }]}>
           <AutoFigure t={t} source={FIGURES[q.figureImage]} />
         </View>
@@ -1187,6 +1543,7 @@ function ProblemScreen(props: {
         </Text>
       ) : null}
     </ScrollView>
+    </View>
   );
 }
 
@@ -1201,22 +1558,23 @@ function FormulaTab(props: {
   onOpenChapter: (id: string) => void;
   onOpenItem: (itemId: string) => void;
   onBack: (v: FormulaView) => void;
+  fromStudy?: boolean;
+  onBackToStudy?: () => void;
 }) {
   const { t } = props;
 
-  // 個別解説（タイトルをタップして飛んでくる画面）
+  // 個別解説（タイトルをタップ、または問題からのリンクで飛んでくる画面）
   if (props.view === 'item' && props.chapterId && props.itemId) {
-    const doc = formulaDoc(props.chapterId);
-    const item = doc?.items.find((x) => x.id === props.itemId);
     return (
-      <ScrollView contentContainerStyle={styles.content}>
-        <BackLink t={t} label="公式・用語の一覧へ" onPress={() => props.onBack('titles')} />
-        {item ? (
-          <FormulaCard t={t} item={item} />
-        ) : (
-          <Text style={[styles.bodyText, { color: t.sub }]}>項目が見つかりません。</Text>
-        )}
-      </ScrollView>
+      <FormulaItemScreen
+        t={t}
+        chapterId={props.chapterId}
+        itemId={props.itemId}
+        fromStudy={props.fromStudy}
+        onBackToStudy={props.onBackToStudy}
+        onOpenItem={props.onOpenItem}
+        onBackToList={() => props.onBack('titles')}
+      />
     );
   }
 
@@ -1304,6 +1662,68 @@ function FormulaTab(props: {
         </Pressable>
       ))}
     </ScrollView>
+  );
+}
+
+// 公式・用語の個別ページ。隣の項目へボタン/スワイプで移動。問題から来た時は「問題に戻る」を出す。
+function FormulaItemScreen(props: {
+  t: Theme;
+  chapterId: string;
+  itemId: string;
+  fromStudy?: boolean;
+  onBackToStudy?: () => void;
+  onOpenItem: (itemId: string) => void;
+  onBackToList: () => void;
+}) {
+  const { t } = props;
+  const doc = formulaDoc(props.chapterId);
+  const items = doc?.items ?? [];
+  const idx = items.findIndex((x) => x.id === props.itemId);
+  const item = idx >= 0 ? items[idx] : undefined;
+  const prev = idx > 0 ? items[idx - 1] : null;
+  const next = idx >= 0 && idx < items.length - 1 ? items[idx + 1] : null;
+  const goPrev = () => { if (prev) props.onOpenItem(prev.id); };
+  const goNext = () => { if (next) props.onOpenItem(next.id); };
+  const pan = useSwipeNav(goNext, goPrev); // 左スワイプ=次 / 右スワイプ=前
+
+  return (
+    <View style={{ flex: 1 }} {...pan}>
+      <ScrollView contentContainerStyle={styles.content}>
+        {props.fromStudy && props.onBackToStudy ? (
+          <BackLink t={t} label="問題に戻る" onPress={props.onBackToStudy} />
+        ) : (
+          <BackLink t={t} label="公式・用語の一覧へ" onPress={props.onBackToList} />
+        )}
+        {item ? (
+          <>
+            <FormulaCard t={t} item={item} />
+            {/* 隣の用語へ（スワイプでも移動可） */}
+            <View style={styles.qNav}>
+              <Pressable
+                onPress={goPrev}
+                disabled={!prev}
+                style={[styles.qNavPrev, { borderColor: t.border, opacity: prev ? 1 : 0.4 }]}
+              >
+                <Text style={[styles.qNavPrevTxt, { color: t.sub }]}>‹ 前の用語</Text>
+              </Pressable>
+              <Pressable
+                onPress={goNext}
+                disabled={!next}
+                style={[styles.qNavNext, { backgroundColor: t.primary, opacity: next ? 1 : 0.4 }]}
+              >
+                <Text style={styles.qNavNextTxt}>次の用語 ›</Text>
+              </Pressable>
+            </View>
+            {/* 問題から来た時は、一覧へも行けるよう下に補助リンク */}
+            {props.fromStudy ? (
+              <BackLink t={t} label="公式・用語の一覧へ" onPress={props.onBackToList} />
+            ) : null}
+          </>
+        ) : (
+          <Text style={[styles.bodyText, { color: t.sub }]}>項目が見つかりません。</Text>
+        )}
+      </ScrollView>
+    </View>
   );
 }
 

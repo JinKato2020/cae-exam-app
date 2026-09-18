@@ -376,3 +376,60 @@ export function fieldCompareFrom(
 export function chapterOf(id: string): string | undefined {
   return QUESTION_CHAPTER[id];
 }
+
+// ---- 章別スナップショット（ホームの章別レーダー「今週/先週/先月」比較用）----
+// 章ごとの正答率を1日1回・級ごとに端末へ貯める。今の形・約1週前・約1か月前の3本を重ねて成長を見せる。
+const CSNAP_KEY = 'cae.chaptersnap.v1';
+export type ChapterSnap = {
+  ts: number;
+  grade: GradeId;
+  acc: Record<string, number>; // 章id → 正答率(0..1)
+  att: Record<string, number>; // 章id → 挑戦数
+};
+export type ChapterSnapStore = ChapterSnap[];
+
+export async function loadChapterSnaps(): Promise<ChapterSnapStore> {
+  try {
+    const raw = await AsyncStorage.getItem(CSNAP_KEY);
+    if (!raw) return [];
+    const a = JSON.parse(raw);
+    return Array.isArray(a) ? (a as ChapterSnapStore) : [];
+  } catch {
+    return [];
+  }
+}
+
+// 現在の章別正答率を記録（同じ級の当日分があれば何もしない＝1日1回）。60日より古いものは間引く。
+export async function snapshotChapters(map: ProgressMap, gradeId: GradeId): Promise<void> {
+  try {
+    const store = await loadChapterSnaps();
+    const today = ymd(new Date());
+    if (store.some((s) => s.grade === gradeId && ymd(new Date(s.ts)) === today)) return;
+    const cs = chapterStats(map, gradeId);
+    if (!cs.some((c) => c.attempted > 0)) return; // 全章未挑戦なら記録しない
+    const acc: Record<string, number> = {};
+    const att: Record<string, number> = {};
+    for (const c of cs) {
+      acc[c.id] = c.accuracy;
+      att[c.id] = c.attempted;
+    }
+    const cutoff = Date.now() - 60 * 86400000;
+    const next = [...store.filter((s) => s.ts >= cutoff), { ts: Date.now(), grade: gradeId, acc, att }];
+    await AsyncStorage.setItem(CSNAP_KEY, JSON.stringify(next));
+  } catch {
+    /* 保存失敗はクラッシュさせない */
+  }
+}
+
+// 指定日数以上前で最も新しいスナップの章別正答率を返す（無ければ null）。先週=7日, 先月=28日 で使う。
+export function chapterSeriesAt(
+  store: ChapterSnapStore,
+  gradeId: GradeId,
+  minAgeDays: number
+): Record<string, number> | null {
+  const cutoff = Date.now() - minAgeDays * 86400000;
+  const snap = store
+    .filter((s) => s.grade === gradeId && s.ts <= cutoff)
+    .sort((a, b) => b.ts - a.ts)[0];
+  return snap ? snap.acc : null;
+}
