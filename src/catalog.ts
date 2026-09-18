@@ -30,6 +30,13 @@ import s1ch9 from '../content/questions/solid1-09-numerical-analysis.json';
 import s1ch10 from '../content/questions/solid1-10-analysis-verification.json';
 import s1ch11 from '../content/questions/solid1-11-modeling-techniques.json';
 
+// 熱流体力学 2級
+import t2ch1 from '../content/questions/thermal2-01-math-basics.json';
+import t2ch2 from '../content/questions/thermal2-02-fluid-basics.json';
+import t2ch3 from '../content/questions/thermal2-03-thermo-heat.json';
+import t2ch4 from '../content/questions/thermal2-04-numerical-methods.json';
+import t2ch5 from '../content/questions/thermal2-05-grid-generation.json';
+
 // ready: 章が使えるか（省略時は true＝使える）。準備中の章は false。
 // formulaId: 公式・用語の参照キー（FORMULA_DOCS のキー。省略時は id を使う）。
 //   ※2級と1級で章 id が同じ('ch8')でも公式は別物なので、1級側は 's1ch8' を指す。
@@ -92,7 +99,19 @@ export const CATALOG: FieldEntry[] = [
   {
     id: 'thermal',
     name: '熱流体力学',
-    grades: [{ id: 'g2', name: '2級', chapters: [] }],
+    grades: [
+      {
+        id: 'g2',
+        name: '2級',
+        chapters: [
+          { id: 'ch1', title: '第1章 計算力学のための数学の基礎', data: t2ch1 as unknown as Chapter, ready: true, formulaId: 't2ch1' },
+          { id: 'ch2', title: '第2章 流体力学の基礎', data: t2ch2 as unknown as Chapter, ready: true, formulaId: 't2ch2' },
+          { id: 'ch3', title: '第3章 熱力学・伝熱学の基礎', data: t2ch3 as unknown as Chapter, ready: true, formulaId: 't2ch3' },
+          { id: 'ch4', title: '第4章 数値計算法', data: t2ch4 as unknown as Chapter, ready: true, formulaId: 't2ch4' },
+          { id: 'ch5', title: '第5章 格子生成法', data: t2ch5 as unknown as Chapter, ready: true, formulaId: 't2ch5' },
+        ],
+      },
+    ],
   },
   {
     id: 'vibration',

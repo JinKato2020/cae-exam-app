@@ -122,6 +122,44 @@ def check_file(path, all_titles):
     if miss:
         warn.append(f"図PNG欠落 {len(miss)}: {miss}（tools/gen_figures_ts.py も参照）")
 
+    # --- 図の必須化＋「回答前/回答後」タグ整合(FAIL・恒久ルール／ユーザー厳命2026-09-18) ---
+    #   厳命: 初学者のため【全問に例外なく図を付ける】。かつ各図は回答前/回答後を明示する。
+    #   仕組み: App.tsx は figure=='required' の時だけ図を回答前から表示し、'helpful' は回答後(解説と一緒)。
+    #   ゆえに全問が「figureImage(図キー) を持ち、figure が required か helpful」でなければならない。
+    #     required = 問題理解に必要で答えを示唆しない図（回答前から表示）
+    #     helpful  = 答えの根拠/答えを示唆しうる図（回答後に解説と一緒に表示）
+    #   ※ 'none'・未設定・図キー欠落・不正タグは【すべて禁止＝抜け穴封じ】。作図が難しい抽象題材でも
+    #     概念図/対比表/各項ラベル図などで必ず1枚付ける（[[cae-figure-before-after-rule]]）。
+    no_or_bad_fig = [q.get("number") for q in qs
+                     if q.get("figure") not in ("required", "helpful") or not q.get("figureImage")]
+    if no_or_bad_fig:
+        hard.append(
+            f"図なし/不完全な問 {len(no_or_bad_fig)}/{n}: {no_or_bad_fig}"
+            f"（全問に図必須。figureImage(図キー)＋前後タグ required=回答前 / helpful=回答後 を必ず付ける。"
+            f"none・未設定・図キー欠落・不正タグは禁止）")
+
+    # --- 回答前(required)の図に答えが写り込む事故ガード(FAIL) ---
+    #   過去事故: 答えを図に描いて回答前(required)に出しネタバレ。required図は問題理解用で
+    #   【答え・正解の値・結論を描かない】。少しでも答えを示唆するなら helpful(回答後)にする。
+    #   PNGの中身は機械判定できないので、説明(figureHint)に正解がそのまま写る典型ケースを検出する。
+    def _n(s): return re.sub(r"[\s$\\{}()\[\]、。,\.]+", "", str(s or ""))
+    spoiler = []
+    for q in qs:
+        if q.get("figure") != "required":
+            continue
+        a = q.get("answer")
+        chs = q.get("choices", [])
+        if not (isinstance(a, int) and 1 <= a <= len(chs)):
+            continue
+        ans_txt = _n(chs[a-1]); hint = _n(q.get("figureHint", ""))
+        # 正解選択肢の本文(数値/式)がそのまま図の説明に含まれる＝回答前に答えを見せる疑い
+        if len(ans_txt) >= 4 and ans_txt in hint:
+            spoiler.append(q.get("number"))
+    if spoiler:
+        hard.append(
+            f"回答前(required)の図に正解が写り込む疑い {len(spoiler)}: {spoiler}"
+            f"（答えを図に描いて回答前に出す事故。helpful=回答後に回すか、図から答え・結論を除く）")
+
     # --- トピック重複(WARN) ---
     keys = [(q.get("number"), norm(q.get("title","")), q.get("title","")) for q in qs]
     seen = {}; dup = []

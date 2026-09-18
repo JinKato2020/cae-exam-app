@@ -113,6 +113,9 @@ ol.choices li{display:flex; gap:11px; align-items:flex-start; padding:11px 14px;
 .figure{margin:0 0 18px; text-align:center;}
 .figure img{max-width:100%; border:1px solid var(--border); border-radius:10px; background:#fff;}
 .figure figcaption{font-size:12.5px; color:var(--faint); margin-top:7px;}
+.figbadge{display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:999px; margin-right:6px;}
+.figbadge.before{background:#dcfce7; color:#166534;}
+.figbadge.after{background:#e0e7ff; color:#3730a3;}
 .ans-line{font-family:"Zen Kaku Gothic New",sans-serif; font-weight:700; font-size:15px;
   color:var(--ok); margin:0 0 14px; display:flex; align-items:center; gap:8px;}
 .ans-line .chip{font-family:"Roboto Mono",monospace; background:var(--ok); color:#fff;
@@ -154,8 +157,10 @@ function renderExplanation(text){
 }
 function figureHtml(q){
   const key=q.figureImage; if(!key||!FIGS[key]) return "";
-  const cap=q.figureHint?`<figcaption>${esc(q.figureHint)}</figcaption>`:"";
-  return `<figure class="figure"><img alt="図: ${esc(q.title)}" src="${FIGS[key]}">${cap}</figure>`;
+  const before=q.figure==='required';
+  const badge=before?'<span class="figbadge before">回答前に表示</span>':'<span class="figbadge after">回答後に表示</span>';
+  const hint=q.figureHint?" "+esc(q.figureHint):"";
+  return `<figure class="figure"><img alt="図: ${esc(q.title)}" src="${FIGS[key]}"><figcaption>${badge}${hint}</figcaption></figure>`;
 }
 function buildCard(q){
   const el=document.createElement("article"); el.className="card";
@@ -171,10 +176,11 @@ function buildCard(q){
     </div>
     <h2 class="q-title">${esc(q.title)}</h2>
     <p class="q-body">${esc(q.question)}</p>
+    ${q.figure==='required'?figureHtml(q):''}
     <ol class="choices">${choices}</ol>
     <button class="ghost reveal-btn" aria-pressed="false">答えと解説</button>
     <div class="explain" hidden>
-      ${figureHtml(q)}
+      ${q.figure!=='required'?figureHtml(q):''}
       <p class="ans-line">正解 <span class="chip">${MARKS[q.answer-1]}</span></p>
       ${renderExplanation(q.explanation)}
     </div>`;

@@ -1,0 +1,117 @@
+{
+  "grade": "2級",
+  "chapter": 1,
+  "title": "第1章 計算力学のための数学の基礎",
+  "intro": "計算力学で流れや熱を解くために欠かせない数学の道具を、初学者向けにまとめます。偏微分方程式の3つの型(双曲・放物・楕円)と与えるべき条件、テイラー展開による近似、ベクトル・テンソルの計算、ナブラ演算子と発散定理、そしてフーリエ級数まで、公式解説に忠実に噛み砕いて整理します。",
+  "items": [
+    {
+      "id": "t2ch1-advection",
+      "kind": "formula",
+      "term": "移流方程式（双曲型）",
+      "formula": "\\dfrac{\\partial f}{\\partial t}+c\\dfrac{\\partial f}{\\partial x}=0",
+      "body": "量$f$が一定速度$c$で流れに運ばれる様子を表す方程式です。解は$f(x,t)=f(x-ct,0)$、つまり最初の分布が形を全く変えずに、そのまま速度$c$で$+x$方向へ平行移動します。波動方程式を$(\\partial/\\partial t-c\\,\\partial/\\partial x)(\\partial/\\partial t+c\\,\\partial/\\partial x)f$と因数分解した片割れにあたり、情報が有限の速さで伝わる「双曲型」の代表例です。",
+      "example": "$c=2$で初期に$x=1$にあった山は、時刻$t=3$では$x=1+2\\times3=7$へ移動する。高さや形は変わらない。",
+      "figureImage": "t2f1Advection"
+    },
+    {
+      "id": "t2ch1-diffusion",
+      "kind": "formula",
+      "term": "拡散方程式（放物型）",
+      "formula": "\\dfrac{\\partial f}{\\partial t}=A\\dfrac{\\partial^2 f}{\\partial x^2}\\quad(A>0)",
+      "body": "熱や物質が濃い所から薄い所へ広がる様子を表す方程式です。右辺の2階微分は分布の曲がり具合で、上に凸(山)なら負、下に凸(谷)なら正の変化を与えるため、でこぼこをならして分布をなだらかにします(平滑化)。「放物型」に分類され、鋭い山は時間とともに低く広がっていきます。総量$\\int f\\,dx$は境界の勾配だけで変化し、境界で勾配が0なら総量は保存されます。",
+      "example": "$\\dfrac{d}{dt}\\displaystyle\\int_{-a}^{b} f\\,dx=\\Big[A\\dfrac{\\partial f}{\\partial x}\\Big]_{-a}^{b}$。両端で勾配$\\partial f/\\partial x=0$なら右辺は0で総量は一定。",
+      "figureImage": "t2f1Diffusion"
+    },
+    {
+      "id": "t2ch1-diffusion-flux",
+      "kind": "term",
+      "term": "拡散流束（フラックス）",
+      "body": "拡散で単位面積・単位時間あたりに通り抜ける量のことで、拡散係数と勾配の積$-A\\,\\partial f/\\partial x$で表されます。勾配が急なほど流束は大きく、符号のマイナスは「濃い方から薄い方へ」流れることを意味します。層流では拡散係数はほぼ一定ですが、乱流の渦による混合では見かけの拡散係数が場所や状態で変わる変数になります。",
+      "example": "温度差が大きい(勾配が急な)壁ほど熱流束が大きく、よく熱が逃げる。"
+    },
+    {
+      "id": "t2ch1-pde-types",
+      "kind": "term",
+      "term": "2階PDEの型分類と初期・境界条件",
+      "body": "2階の偏微分方程式は、解の性質によって双曲型・放物型・楕円型の3つに分けられます。双曲型(移流・波動)は情報が有限速度で伝わるので主に初期条件、放物型(拡散・熱伝導)は時間発展と空間の広がりの両方をもつので初期条件と境界条件の両方、楕円型(ラプラス/ポアソン、定常場)は領域全体のつり合いなので境界条件を必要とします。型によって「特性線」の性質が異なり、与えるべき条件も変わります。熱流体の場の方程式はこれらが連立した偏微分方程式です。",
+      "example": "拡散方程式は放物型なので、初期分布(t=0の状態)と両端の温度や流束(境界条件)の両方を決めて初めて解ける。",
+      "figureImage": "t2f1PdeTypes"
+    },
+    {
+      "id": "t2ch1-taylor",
+      "kind": "formula",
+      "term": "テイラー展開・マクローリン展開",
+      "formula": "f(x)=f(0)+xf'(0)+\\dfrac{x^2}{2}f''(0)+\\dfrac{x^3}{6}f'''(0)+\\cdots",
+      "body": "なめらかな関数を、ある点(マクローリン展開では$x=0$)のまわりで多項式に近似する道具です。次数を上げるほど元の関数に近づき、$x=0$の近くほど少ない項数でよく一致します。有限差分法など、微分を離散点のデータで近似する手法の導出や誤差評価の土台になります。",
+      "example": "$\\sqrt{1+x}=(1+x)^{1/2}$は$f(0)=1,\\ f'(0)=\\tfrac12,\\ f''(0)=-\\tfrac14$なので、第3項まででは$\\sqrt{1+x}\\approx 1+\\dfrac{1}{2}x-\\dfrac{1}{8}x^2$。",
+      "figureImage": "t2f1Taylor"
+    },
+    {
+      "id": "t2ch1-cross-product",
+      "kind": "formula",
+      "term": "ベクトルの外積",
+      "formula": "\\boldsymbol{u}\\times\\boldsymbol{v}=\\begin{pmatrix}u_2v_3-u_3v_2\\\\u_3v_1-u_1v_3\\\\u_1v_2-u_2v_1\\end{pmatrix}",
+      "body": "2つのベクトルから新しいベクトルを作る積です。大きさは2つのベクトルが張る平行四辺形の面積$|\\boldsymbol{u}||\\boldsymbol{v}|\\sin\\theta$に等しく、向きは「$\\boldsymbol{u}$から$\\boldsymbol{v}$へ右ねじを回したときにねじが進む方向」で決まります。結合則$a\\boldsymbol{u}\\times\\boldsymbol{v}=\\boldsymbol{u}\\times a\\boldsymbol{v}$と分配則は成り立ち、同じベクトル同士は$\\boldsymbol{v}\\times\\boldsymbol{v}=\\boldsymbol{0}$。ただし交換則は成り立たず、順序を入れ替えると符号が反転して$\\boldsymbol{u}\\times\\boldsymbol{v}=-\\boldsymbol{v}\\times\\boldsymbol{u}$(反交換)となる点に注意します。",
+      "example": "$\\boldsymbol{e_1}\\times\\boldsymbol{e_2}=\\boldsymbol{e_3}$だが$\\boldsymbol{e_2}\\times\\boldsymbol{e_1}=-\\boldsymbol{e_3}$。順序で向きが逆になる。",
+      "figureImage": "t2f1Cross"
+    },
+    {
+      "id": "t2ch1-tensor-eigen",
+      "kind": "formula",
+      "term": "2階テンソルの固有値",
+      "formula": "|\\lambda\\mathbf{E}-\\mathbf{A}|=0",
+      "body": "2階テンソル(行列)$\\mathbf{A}$に対し、特性方程式$|\\lambda\\mathbf{E}-\\mathbf{A}|=0$($\\mathbf{E}$は単位行列)を満たす$\\lambda_1,\\lambda_2,\\lambda_3$(重根を含む)を固有値といいます。応力テンソルなら固有値は主応力にあたり、その方向(固有ベクトル)ではせん断成分が消えます。3次の方程式なので3つの固有値が得られます。",
+      "example": "対称な応力テンソルの3つの固有値が主応力$\\sigma_1,\\sigma_2,\\sigma_3$。その方向面ではせん断応力がゼロになる。"
+    },
+    {
+      "id": "t2ch1-tensor-invariants",
+      "kind": "formula",
+      "term": "2階テンソルの3つの不変量",
+      "formula": "\\lambda^3-\\mathrm{I_A}\\lambda^2+\\mathrm{II_A}\\lambda-\\mathrm{III_A}=0",
+      "body": "特性方程式を$\\lambda$の3次式に展開したときの係数$\\mathrm{I_A},\\mathrm{II_A},\\mathrm{III_A}$を不変量といいます。第1不変量$\\mathrm{I_A}=a_{11}+a_{22}+a_{33}$は対角成分の和(トレース)、第3不変量$\\mathrm{III_A}=\\det\\mathbf{A}$は行列式、第2不変量$\\mathrm{II_A}$は2次の小行列式の和です。これらは座標軸を回転させても値が変わらない「不変量」で、直交変換(回転)$\\mathbf{B}=\\mathbf{P}\\mathbf{A}\\mathbf{P}^{-1}$に対して固有方程式ごと保存されるためです。物理量を座標系によらず特徴づけるのに使います。",
+      "example": "$\\mathrm{I_A}=\\mathrm{tr}\\,\\mathbf{A}$(トレース)、$\\mathrm{III_A}=\\det\\mathbf{A}$。座標軸をどう回しても、この2つの値は変わらない。"
+    },
+    {
+      "id": "t2ch1-nabla-product",
+      "kind": "formula",
+      "term": "∇·(fv)：スカラー×ベクトルの積の微分",
+      "formula": "\\nabla\\cdot(f\\boldsymbol{v})=(\\nabla f)\\cdot\\boldsymbol{v}+f(\\nabla\\cdot\\boldsymbol{v})",
+      "body": "ナブラ演算子$\\nabla=\\left(\\dfrac{\\partial}{\\partial x_1},\\dfrac{\\partial}{\\partial x_2},\\dfrac{\\partial}{\\partial x_3}\\right)$は、スカラーに作用すると勾配$\\nabla f$(最も増える向きと急さ)、ベクトルと内積をとると発散$\\nabla\\cdot\\boldsymbol{v}$(単位体積あたりの湧き出し)を表します。スカラー$f$とベクトル$\\boldsymbol{v}$の積の発散は、ふつうの積の微分と同じく2項に分かれ、$(\\nabla f)\\cdot\\boldsymbol{v}+f(\\nabla\\cdot\\boldsymbol{v})$となります。連続の式など保存則の式変形で頻繁に使います。",
+      "example": "連続の式$\\partial\\rho/\\partial t+\\nabla\\cdot(\\rho\\boldsymbol{v})=0$にこの公式を使うと$\\partial\\rho/\\partial t+\\boldsymbol{v}\\cdot\\nabla\\rho+\\rho\\nabla\\cdot\\boldsymbol{v}=0$。非圧縮($D\\rho/Dt=0$)なら$\\nabla\\cdot\\boldsymbol{v}=0$。"
+    },
+    {
+      "id": "t2ch1-cylindrical",
+      "kind": "formula",
+      "term": "デカルト⇔円柱座標の偏微分",
+      "formula": "\\dfrac{\\partial}{\\partial x}=\\cos\\theta\\dfrac{\\partial}{\\partial r}-\\dfrac{\\sin\\theta}{r}\\dfrac{\\partial}{\\partial\\theta}",
+      "body": "円管や回転体の解析では円柱座標$(r,\\theta,z)$が便利です。デカルト座標との関係は$x=r\\cos\\theta,\\ y=r\\sin\\theta,\\ z=z$。連鎖律を使うと、デカルト座標の偏微分は$r$と$\\theta$の偏微分で書けます。$\\partial/\\partial x=\\cos\\theta\\,\\partial/\\partial r-(\\sin\\theta/r)\\,\\partial/\\partial\\theta$、$\\partial/\\partial y=\\sin\\theta\\,\\partial/\\partial r+(\\cos\\theta/r)\\,\\partial/\\partial\\theta$。分母は必ず$r$(座標$x,y$ではない)で、$x$側がマイナス・$y$側がプラス、という符号に注意します。",
+      "example": "$\\dfrac{\\partial}{\\partial y}=\\sin\\theta\\dfrac{\\partial}{\\partial r}+\\dfrac{\\cos\\theta}{r}\\dfrac{\\partial}{\\partial\\theta}$。分母を$x,y$と書くのは誤り。",
+      "figureImage": "t2f1Cylindrical"
+    },
+    {
+      "id": "t2ch1-gauss",
+      "kind": "formula",
+      "term": "ガウスの発散定理",
+      "formula": "\\iiint_V \\nabla\\cdot\\boldsymbol{v}\\,dV=\\iint_S \\boldsymbol{v}\\cdot\\boldsymbol{n}\\,dS",
+      "body": "領域$V$の内部で起きている「湧き出し」の総和が、その表面$S$から外へ出ていく流れの総和に等しい、という定理です($\\boldsymbol{n}$は外向き単位法線)。左辺の発散$\\nabla\\cdot\\boldsymbol{v}$は単位体積あたりの湧き出し、右辺の$\\boldsymbol{v}\\cdot\\boldsymbol{n}$は表面に垂直な速度成分(流出量)です。体積積分を面積分に置き換えられるので、質量・運動量・エネルギー保存則の導出で中心的な役割を果たします。$\\boldsymbol{v}\\cdot\\boldsymbol{n}$を$\\boldsymbol{v}\\times\\boldsymbol{n}$としたり、名前をストークスの定理とするのは誤りです。",
+      "example": "水槽の内部で湧き出す水の総量は、壁面から外へ出ていく水の総量と等しい。これを式にしたのが発散定理。",
+      "figureImage": "t2f1Gauss"
+    },
+    {
+      "id": "t2ch1-kronecker-epsilon",
+      "kind": "formula",
+      "term": "クロネッカーのデルタと置換記号（総和規約）",
+      "formula": "\\epsilon_{ijk}\\epsilon_{lmk}=\\delta_{il}\\delta_{jm}-\\delta_{im}\\delta_{jl}",
+      "body": "クロネッカーのデルタ$\\delta_{ij}$は$i=j$のとき1、それ以外0で、単位行列の成分です。置換記号(エディントンのイプシロン)$\\epsilon_{ijk}$は、添字が(1,2,3)の偶置換なら$+1$、奇置換なら$-1$、同じ添字を含めば0で、外積や行列式を簡潔に書けます。同じ添字が2回現れたら和をとる「総和規約」を使うのが約束です。この規約のもとで$\\delta_{jj}=\\delta_{11}+\\delta_{22}+\\delta_{33}=3$、$\\epsilon_{ijk}\\epsilon_{ljk}=2\\delta_{il}$、$\\epsilon_{ijk}\\epsilon_{ijk}=2\\delta_{ii}=6$となります。",
+      "example": "3次元では$\\delta_{ii}=3$、$\\epsilon_{ijk}\\epsilon_{ijk}=6$。$\\epsilon_{ijk}\\epsilon_{ijk}=2$とするのは誤り。"
+    },
+    {
+      "id": "t2ch1-fourier",
+      "kind": "formula",
+      "term": "フーリエ級数の係数公式",
+      "formula": "a_n=\\dfrac1L\\displaystyle\\int_{-L}^{L}f(x)\\cos\\!\\big(\\tfrac{n\\pi x}{L}\\big)dx,\\quad b_n=\\dfrac1L\\displaystyle\\int_{-L}^{L}f(x)\\sin\\!\\big(\\tfrac{n\\pi x}{L}\\big)dx",
+      "body": "区間$[-L,L]$の関数を、いろいろな波長の$\\cos$と$\\sin$の和で表すのがフーリエ級数$f(x)=\\tfrac12 a_0+\\sum_{n=1}^{\\infty}\\{a_n\\cos(\\tfrac{n\\pi x}{L})+b_n\\sin(\\tfrac{n\\pi x}{L})\\}$です。各係数は上の積分で求めます。関数が奇関数なら$\\cos$成分$a_n=0$、偶関数なら$\\sin$成分$b_n=0$になるので、対称性を先に見ると計算が楽になります。",
+      "example": "$f(x)=2x$は奇関数なので$a_n=0$。積分すると$b_n=\\dfrac{4L}{n\\pi}(-1)^{n+1}$。"
+    }
+  ]
+}

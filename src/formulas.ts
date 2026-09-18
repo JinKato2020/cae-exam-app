@@ -26,6 +26,12 @@ import s1ch9 from '../content/formulas/solid1-ch9.json';
 import s1ch10 from '../content/formulas/solid1-ch10.json';
 import s1ch11 from '../content/formulas/solid1-ch11.json';
 
+import t2ch1 from '../content/formulas/thermal2-ch1.json';
+import t2ch2 from '../content/formulas/thermal2-ch2.json';
+import t2ch3 from '../content/formulas/thermal2-ch3.json';
+import t2ch4 from '../content/formulas/thermal2-ch4.json';
+import t2ch5 from '../content/formulas/thermal2-ch5.json';
+
 export type FormulaItem = {
   id: string;
   kind: 'formula' | 'term';
@@ -70,6 +76,12 @@ export const FORMULA_DOCS: Record<string, FormulaDoc | null> = {
   s1ch9: s1ch9 as unknown as FormulaDoc,
   s1ch10: s1ch10 as unknown as FormulaDoc,
   s1ch11: s1ch11 as unknown as FormulaDoc,
+  // 熱流体力学 2級
+  t2ch1: t2ch1 as unknown as FormulaDoc,
+  t2ch2: t2ch2 as unknown as FormulaDoc,
+  t2ch3: t2ch3 as unknown as FormulaDoc,
+  t2ch4: t2ch4 as unknown as FormulaDoc,
+  t2ch5: t2ch5 as unknown as FormulaDoc,
 };
 
 export function formulaDoc(chapterId: string): FormulaDoc | null {
