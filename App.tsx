@@ -505,6 +505,7 @@ const HOME_IMG = {
   header: require('./assets/home/header.jpg'),
   beam: require('./assets/home/beam.jpg'),
   frame: require('./assets/home/frame.jpg'),
+  formula: require('./assets/home/formula.jpg'),
   radarbg: require('./assets/home/radarbg.jpg'),
   exambg: require('./assets/home/exambg.jpg'),
 };
@@ -634,6 +635,7 @@ const home = StyleSheet.create({
   rlegend: { flexDirection: 'row', justifyContent: 'center', gap: 16, marginTop: 8 },
   rlegItem: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   rlegLine: { width: 16, height: 3, borderRadius: 2 },
+  rlegDash: { width: 16, height: 0, borderTopWidth: 3, borderStyle: 'dashed' },
   rlegTxt: { color: HOME.muted, fontSize: 11 },
   rnote: { color: HOME.faint, fontSize: 11, textAlign: 'center', marginTop: 8 },
   wgrid: { flexDirection: 'row', gap: 8, marginTop: 14 },
@@ -645,6 +647,7 @@ const home = StyleSheet.create({
   examIn: { position: 'relative', padding: 16, paddingBottom: 96 },
   examHead: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   examIco: { width: 44, height: 44, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(251,191,36,0.16)', borderWidth: 1, borderColor: 'rgba(251,191,36,0.4)' },
+  examChev: { color: HOME.cyan, fontSize: 22, fontWeight: '700', marginLeft: 4 },
   examLi: { flexDirection: 'row', alignItems: 'center', gap: 9, marginTop: 8 },
   examDot: { width: 6, height: 6, borderRadius: 3, backgroundColor: HOME.warn },
   examLiTxt: { color: '#EAF2FF', fontSize: 13, flex: 1 },
@@ -744,7 +747,6 @@ function HomeTab(props: {
           </Pressable>
         </View>
         <View style={home.heroCopy}>
-          <Text style={home.kicker}>解析する力が、未来のものづくりを支える。</Text>
           <View>
             {daysLeft != null && daysLeft >= 0 ? (
               <Text style={home.headline}>試験まで あと <Text style={home.pct}>{daysLeft}</Text> 日</Text>
@@ -781,13 +783,13 @@ function HomeTab(props: {
         {/* 用語問題 / 計算・数値問題 */}
         <View style={home.duo}>
           <Pressable style={home.imgCard} onPress={props.onGoFormula}>
-            <ImageBackground source={HOME_IMG.beam} style={StyleSheet.absoluteFill} imageStyle={home.cardImg}>
-              <Veil id="veilBeam" stops={[{ o: 0, op: 0.05 }, { o: 0.45, op: 0.5 }, { o: 1, op: 0.94 }]} />
+            <ImageBackground source={HOME_IMG.formula} style={StyleSheet.absoluteFill} imageStyle={home.cardImg}>
+              <Veil id="veilFormula" stops={[{ o: 0, op: 0.02 }, { o: 0.5, op: 0.42 }, { o: 1, op: 0.92 }]} />
             </ImageBackground>
             <View style={home.tag}><Text style={home.tagTxt}>用語</Text></View>
             <View style={home.imgCardIn}>
               <Text style={home.cardH4}>用語問題</Text>
-              <Text style={home.cardP}>公式・専門用語を確認</Text>
+              <Text style={home.cardP}>公式・専門用語を一問一答で</Text>
             </View>
           </Pressable>
           <Pressable style={home.imgCard} onPress={props.onGoStudy}>
@@ -835,8 +837,8 @@ function HomeTab(props: {
             </View>
             <View style={home.rlegend}>
               <View style={home.rlegItem}><View style={[home.rlegLine, { backgroundColor: HOME.cyan }]} /><Text style={home.rlegTxt}>今週</Text></View>
-              <View style={home.rlegItem}><View style={[home.rlegLine, { backgroundColor: HOME.good }]} /><Text style={home.rlegTxt}>先週</Text></View>
-              <View style={home.rlegItem}><View style={[home.rlegLine, { backgroundColor: HOME.faint }]} /><Text style={home.rlegTxt}>先月</Text></View>
+              <View style={home.rlegItem}><View style={[home.rlegDash, { borderTopColor: HOME.good }]} /><Text style={home.rlegTxt}>先週</Text></View>
+              <View style={home.rlegItem}><View style={[home.rlegDash, { borderTopColor: HOME.faint }]} /><Text style={home.rlegTxt}>先月</Text></View>
             </View>
             <Text style={home.rnote}>
               軸＝各章の正答率。今週の線が外へ広がるほど成長。{!weekAcc && !monthAcc ? '（続けると先週・先月の線が増えます）' : ''}
@@ -853,16 +855,27 @@ function HomeTab(props: {
           </View>
         </View>
 
-        {/* 試験前の準備（下端に画像フェード） */}
+        {/* 試験前の準備（モック準拠: 琥珀の淡い温かみ＋下部にデスク画像がマスクでふわっと出る） */}
         <View style={home.examCard}>
+          {/* 琥珀→ネイビーの淡いグラデを土台に敷く（カード全体をほのかに温める） */}
+          <Svg style={StyleSheet.absoluteFill} pointerEvents="none">
+            <Defs>
+              <LinearGradient id="examAmber" x1="0" y1="0" x2="0" y2="1">
+                <Stop offset="0" stopColor="#FBBF24" stopOpacity={0.12} />
+                <Stop offset="1" stopColor="#0E1728" stopOpacity={0.55} />
+              </LinearGradient>
+            </Defs>
+            <Rect x="0" y="0" width="100%" height="100%" fill="url(#examAmber)" />
+          </Svg>
           <View style={home.examBgWrap}>
-            {/* モック準拠: 下部120pxに勉強デスク画像(opacity .9)を敷き、上へフェード。 */}
+            {/* 下部120pxに勉強デスク画像(opacity .9)。上へ向かってフェードアウトさせ、下半分をしっかり見せる。 */}
             <Image source={HOME_IMG.exambg} style={[StyleSheet.absoluteFill, { opacity: 0.9 }]} resizeMode="cover" />
             <Svg style={StyleSheet.absoluteFill} pointerEvents="none">
               <Defs>
                 <LinearGradient id="examFade" x1="0" y1="0" x2="0" y2="1">
                   <Stop offset="0" stopColor="#0E1728" stopOpacity={1} />
-                  <Stop offset="0.66" stopColor="#0E1728" stopOpacity={0} />
+                  <Stop offset="0.5" stopColor="#0E1728" stopOpacity={0.55} />
+                  <Stop offset="1" stopColor="#0E1728" stopOpacity={0} />
                 </LinearGradient>
               </Defs>
               <Rect x="0" y="0" width="100%" height="100%" fill="url(#examFade)" />
@@ -875,6 +888,7 @@ function HomeTab(props: {
                 <Text style={home.missionH3}>試験前の準備</Text>
                 <Text style={home.missionP}>本番で力を出し切るために</Text>
               </View>
+              <Text style={home.examChev}>›</Text>
             </View>
             {['足切りルール（不合格になる条件）を確認', '持ち物チェック（受験票・電卓・時計 ほか）', '前日に見直す重要公式まとめ'].map((li) => (
               <View key={li} style={home.examLi}><View style={home.examDot} /><Text style={home.examLiTxt}>{li}</Text></View>

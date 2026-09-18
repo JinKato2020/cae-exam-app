@@ -37,6 +37,7 @@ import t2ch3 from '../content/questions/thermal2-03-thermo-heat.json';
 import t2ch4 from '../content/questions/thermal2-04-numerical-methods.json';
 import t2ch5 from '../content/questions/thermal2-05-grid-generation.json';
 import t2ch6 from '../content/questions/thermal2-06-turbulence.json';
+import t2ch7 from '../content/questions/thermal2-07-boundary-conditions.json';
 
 // ready: 章が使えるか（省略時は true＝使える）。準備中の章は false。
 // formulaId: 公式・用語の参照キー（FORMULA_DOCS のキー。省略時は id を使う）。
@@ -111,6 +112,7 @@ export const CATALOG: FieldEntry[] = [
           { id: 'ch4', title: '第4章 数値計算法', data: t2ch4 as unknown as Chapter, ready: true, formulaId: 't2ch4' },
           { id: 'ch5', title: '第5章 格子生成法', data: t2ch5 as unknown as Chapter, ready: true, formulaId: 't2ch5' },
           { id: 'ch6', title: '第6章 乱流モデル', data: t2ch6 as unknown as Chapter, ready: true, formulaId: 't2ch6' },
+          { id: 'ch7', title: '第7章 境界条件', data: t2ch7 as unknown as Chapter, ready: true, formulaId: 't2ch7' },
         ],
       },
     ],
