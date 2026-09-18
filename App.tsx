@@ -29,7 +29,7 @@ import { FIGURES, FIGURE_ASPECT } from './src/figures';
 import { RichText } from './src/MathText';
 import { CATALOG, questionsByIds, QUESTION_FORMULA_ID, type ChapterEntry } from './src/catalog';
 import { formulaDoc, type FormulaItem } from './src/formulas';
-import Svg, { Circle, Line, Polygon, Text as SvgText, Defs, LinearGradient, Stop, Rect } from 'react-native-svg';
+import Svg, { Circle, Line, Polygon, Text as SvgText, Defs, LinearGradient, RadialGradient, Stop, Rect } from 'react-native-svg';
 import {
   chapterStats,
   fieldStats,
@@ -121,10 +121,7 @@ const THEME_KEY = 'cae.theme'; // 'system' | 'light' | 'dark'
 const HOME_GRADE_KEY = 'cae.homeGrade'; // ホームで前回開いた級 'g1' | 'g2'
 
 function AppInner() {
-  const systemScheme = useColorScheme();
-  // 外観の好み（システム追従／ライト固定／ダーク固定）。端末に保存。
-  const [themePref, setThemePref] = useState<ThemePref>('system');
-  // FEMネイビー世界観をアプリ全体で統一（ホームと同じ暗色＋シアンのアクセント）。
+  // FEMネイビー世界観をアプリ全体で統一（ホームと同じ暗色＋シアンのアクセント。ライト/ダークは廃止）。
   const t = navy;
   const insets = useSafeAreaInsets();
 
@@ -209,20 +206,6 @@ function AppInner() {
     setShowPaywall(false);
   }
 
-  // 外観の好みを端末から復元。
-  useEffect(() => {
-    AsyncStorage.getItem(THEME_KEY)
-      .then((v) => {
-        if (v === 'light' || v === 'dark' || v === 'system') setThemePref(v);
-      })
-      .catch(() => {});
-  }, []);
-
-  function changeTheme(pref: ThemePref) {
-    setThemePref(pref);
-    AsyncStorage.setItem(THEME_KEY, pref).catch(() => {});
-  }
-
   const wrongIds = useMemo(() => wrongIdsFrom(progress), [progress]);
   const wrongQuestions = useMemo(() => questionsByIds(wrongIds), [wrongIds]);
 
@@ -260,10 +243,23 @@ function AppInner() {
     setDaily(await recordDaily(daily, correct));
   }
 
+  // ボトムナビのタブをスワイプでも切替（左=次のタブ / 右=前のタブ）。ただし問題画面・
+  // 公式/用語の個別画面では前後移動が優先（内側のスワイプが担当するのでタブは切り替えない）。
+  const TAB_ORDER: Tab[] = ['home', 'study', 'formula', 'settings'];
+  function swipeTab(dir: 1 | -1) {
+    if (tab === 'study' && studyView === 'problem') return;
+    if (tab === 'formula' && formulaView === 'item') return;
+    const i = TAB_ORDER.indexOf(tab);
+    const ni = i + dir;
+    if (ni >= 0 && ni < TAB_ORDER.length) { setFormulaFrom(null); setTab(TAB_ORDER[ni]); }
+  }
+  const tabPan = useSwipeNav(() => swipeTab(1), () => swipeTab(-1));
+
   return (
     <View style={[styles.container, { backgroundColor: t.bg }]}>
       <StatusBar style="light" />
       <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right']}>
+        <View style={{ flex: 1 }} {...tabPan}>
         {tab === 'home' && (
           <HomeTab
             t={t}
@@ -372,10 +368,9 @@ function AppInner() {
               await saveDevPro(on);
               setProSt((s) => ({ ...s, devPro: on }));
             }}
-            themePref={themePref}
-            onChangeTheme={changeTheme}
           />
         )}
+        </View>
       </SafeAreaView>
 
       <TabBar t={t} tab={tab} insetsBottom={insets.bottom} onChange={(k) => { setFormulaFrom(null); setTab(k); }} />
@@ -635,7 +630,6 @@ const home = StyleSheet.create({
   secTitle: { color: HOME.text, fontSize: 16, fontWeight: '900' },
   secSub: { color: HOME.cyan, fontSize: 12 },
   radarCard: { position: 'relative', overflow: 'hidden' },
-  radarBgBand: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 200 },
   radarInner: { position: 'relative' },
   rlegend: { flexDirection: 'row', justifyContent: 'center', gap: 16, marginTop: 8 },
   rlegItem: { flexDirection: 'row', alignItems: 'center', gap: 6 },
@@ -647,7 +641,7 @@ const home = StyleSheet.create({
   wtileV: { color: HOME.text, fontWeight: '800', fontSize: 17 },
   wtileL: { color: HOME.muted, fontSize: 10, marginTop: 3 },
   examCard: { position: 'relative', overflow: 'hidden', borderRadius: 20, borderWidth: 1, borderColor: 'rgba(251,191,36,0.4)', backgroundColor: '#0E1728' },
-  examBgWrap: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 190 },
+  examBgWrap: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 120 },
   examIn: { position: 'relative', padding: 16, paddingBottom: 96 },
   examHead: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   examIco: { width: 44, height: 44, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(251,191,36,0.16)', borderWidth: 1, borderColor: 'rgba(251,191,36,0.4)' },
@@ -823,12 +817,18 @@ function HomeTab(props: {
           <Text style={home.secSub}>{subjectLabel} · 全{stats.length}章</Text>
         </View>
         <View style={[home.card, home.radarCard]}>
-          {/* FEM解析画像は縦長カード全体に伸ばすと拡大され過ぎる（縮尺がおかしくなる）ため、
-              下部に画像本来の縦横比に近い帯として敷き、上へフェードさせて自然に見せる。 */}
-          <View style={home.radarBgBand} pointerEvents="none">
-            <Image source={HOME_IMG.radarbg} style={StyleSheet.absoluteFill} resizeMode="cover" />
-            <Veil id="radarVeil" stops={[{ o: 0, op: 1 }, { o: 0.5, op: 0.72 }, { o: 1, op: 0.5 }]} />
-          </View>
+          {/* モック準拠: FEM解析画像をカード全面に敷き(opacity .55)、放射状グラデで中心を活かしつつ周辺を暗く。 */}
+          <Image source={HOME_IMG.radarbg} style={[StyleSheet.absoluteFill, { opacity: 0.55 }]} resizeMode="cover" />
+          <Svg style={StyleSheet.absoluteFill} pointerEvents="none">
+            <Defs>
+              <RadialGradient id="radVeil" cx="50%" cy="40%" rx="78%" ry="78%">
+                <Stop offset="0" stopColor="#060A13" stopOpacity={0.68} />
+                <Stop offset="0.52" stopColor="#060A13" stopOpacity={0.5} />
+                <Stop offset="1" stopColor="#060A13" stopOpacity={0.88} />
+              </RadialGradient>
+            </Defs>
+            <Rect x="0" y="0" width="100%" height="100%" fill="url(#radVeil)" />
+          </Svg>
           <View style={home.radarInner}>
             <View style={{ alignItems: 'center' }}>
               <GrowthRadar stats={stats} week={weekAcc} month={monthAcc} />
@@ -856,7 +856,8 @@ function HomeTab(props: {
         {/* 試験前の準備（下端に画像フェード） */}
         <View style={home.examCard}>
           <View style={home.examBgWrap}>
-            <Image source={HOME_IMG.exambg} style={StyleSheet.absoluteFill} resizeMode="cover" />
+            {/* モック準拠: 下部120pxに勉強デスク画像(opacity .9)を敷き、上へフェード。 */}
+            <Image source={HOME_IMG.exambg} style={[StyleSheet.absoluteFill, { opacity: 0.9 }]} resizeMode="cover" />
             <Svg style={StyleSheet.absoluteFill} pointerEvents="none">
               <Defs>
                 <LinearGradient id="examFade" x1="0" y1="0" x2="0" y2="1">
@@ -1743,8 +1744,6 @@ function SettingsTab(props: {
   onOpenPaywall: (target: PayTarget | null) => void;
   onRestoreAll: () => void;
   onToggleDevPro: (on: boolean) => void;
-  themePref: ThemePref;
-  onChangeTheme: (p: ThemePref) => void;
 }) {
   const { t } = props;
   // バージョン表示を7回タップで開発用ロック解除（Android風の隠しジェスチャ。TestFlightでも使える）。
@@ -1762,12 +1761,6 @@ function SettingsTab(props: {
     }
   }
 
-  const themeOptions: { key: ThemePref; label: string }[] = [
-    { key: 'system', label: 'システム' },
-    { key: 'light', label: 'ライト' },
-    { key: 'dark', label: 'ダーク' },
-  ];
-
   function confirmReset() {
     Alert.alert('学習記録をリセット', '正誤や日付の記録をすべて消します。よろしいですか？（元に戻せません）', [
       { text: 'キャンセル', style: 'cancel' },
@@ -1778,22 +1771,6 @@ function SettingsTab(props: {
   return (
     <ScrollView contentContainerStyle={styles.content}>
       <Text style={[styles.title, { color: t.text }]}>設定</Text>
-
-      <Text style={[styles.sectionHead, { color: t.text }]}>外観</Text>
-      <View style={[styles.segment, { borderColor: t.border }]}>
-        {themeOptions.map((o) => {
-          const on = props.themePref === o.key;
-          return (
-            <Pressable
-              key={o.key}
-              onPress={() => props.onChangeTheme(o.key)}
-              style={[styles.segmentItem, on && { backgroundColor: t.primary }]}
-            >
-              <Text style={[styles.segmentText, { color: on ? '#fff' : t.sub }]}>{o.label}</Text>
-            </Pressable>
-          );
-        })}
-      </View>
 
       <Text style={[styles.sectionHead, { color: t.text }]}>購入</Text>
       <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
