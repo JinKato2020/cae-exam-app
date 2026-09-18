@@ -75,7 +75,9 @@ import {
 import { initPurchases, syncEntitlements, restore as restorePurchases } from './src/pro/purchases';
 
 const APP_VERSION = '1.0.0';
-const EXAM_DATE_KEY = 'cae.examdate.v1'; // 受験日（YYYY-MM-DD）
+// 規定の受験日（公式・JSME 2026年度・級ごと）。出典: https://www.jsme.or.jp/cee/examinee/outline（2026-09-18確認）
+// 固体力学 1級=11/27(金) / 2級=12/4(金)。設定させず、この規定日を選択中の級に連動して自動表示する。
+const OFFICIAL_EXAM_DATES: Record<GradeId, string> = { g1: '2026-11-27', g2: '2026-12-04' };
 const DAILY_GOAL = 10; // 今日のミッション＝1日の目標問題数（可変パラメータ）
 
 // 課程（分野＋級）。固体2級・固体1級のみ表示。他分野はまだ無いので出さない。
@@ -122,8 +124,8 @@ function AppInner() {
   const systemScheme = useColorScheme();
   // 外観の好み（システム追従／ライト固定／ダーク固定）。端末に保存。
   const [themePref, setThemePref] = useState<ThemePref>('system');
-  const scheme = themePref === 'system' ? systemScheme : themePref;
-  const t = scheme === 'dark' ? dark : light;
+  // FEMネイビー世界観をアプリ全体で統一（ホームと同じ暗色＋シアンのアクセント）。
+  const t = navy;
   const insets = useSafeAreaInsets();
 
   const [tab, setTab] = useState<Tab>('home');
@@ -174,9 +176,6 @@ function AppInner() {
   const [formulaItemId, setFormulaItemId] = useState<string | null>(null);
   // 問題画面から公式へ飛んだか（true の時、公式カードに「問題に戻る」を出す）
   const [formulaFrom, setFormulaFrom] = useState<null | 'study'>(null);
-  // 受験日（YYYY-MM-DD）。ホームの「試験まであと◯日」に使う。
-  const [examDate, setExamDate] = useState<string | null>(null);
-
   useEffect(() => {
     loadProgress().then(async (p) => {
       setProgress(p);
@@ -187,14 +186,7 @@ function AppInner() {
       await snapshotChapters(p, 'g1');
     });
     loadDaily().then(setDaily);
-    AsyncStorage.getItem(EXAM_DATE_KEY).then((v) => { if (v) setExamDate(v); }).catch(() => {});
   }, []);
-
-  function saveExamDate(v: string | null) {
-    setExamDate(v);
-    if (v) AsyncStorage.setItem(EXAM_DATE_KEY, v).catch(() => {});
-    else AsyncStorage.removeItem(EXAM_DATE_KEY).catch(() => {});
-  }
 
   // Proの初期化・同期。まず端末保存値を読み（オフラインでも即反映）、次にストアと同期して最新化。
   // キー未設定(src/config/revenuecat.ts が空)なら syncEntitlements は null＝状態を変えない＝アプリは従来どおり無料動作。
@@ -270,7 +262,7 @@ function AppInner() {
 
   return (
     <View style={[styles.container, { backgroundColor: t.bg }]}>
-      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
+      <StatusBar style="light" />
       <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right']}>
         {tab === 'home' && (
           <HomeTab
@@ -290,8 +282,6 @@ function AppInner() {
             }}
             onSolveUnattempted={solveUnattempted}
             onOpenChapter={openChapterById}
-            examDate={examDate}
-            onSetExamDate={saveExamDate}
           />
         )}
 
@@ -556,6 +546,14 @@ function examDaysLeft(dateStr: string | null): number | null {
   return Math.round((d.getTime() - today.getTime()) / 86400000);
 }
 
+// 規定受験日の表示ラベル（例: 11月27日(金)）。
+const WEEKDAY_JA = ['日', '月', '火', '水', '木', '金', '土'];
+function fmtExamDate(dateStr: string): string {
+  const d = new Date(dateStr + 'T00:00:00');
+  if (isNaN(d.getTime())) return dateStr;
+  return `${d.getMonth() + 1}月${d.getDate()}日(${WEEKDAY_JA[d.getDay()]})`;
+}
+
 // 章別レーダー：軸＝各章の正答率。今週(シアン塗り)/先週(緑破線)/先月(灰破線)の3期を重ねて成長を見せる。
 function GrowthRadar(props: {
   stats: ChapterStat[];
@@ -637,6 +635,7 @@ const home = StyleSheet.create({
   secTitle: { color: HOME.text, fontSize: 16, fontWeight: '900' },
   secSub: { color: HOME.cyan, fontSize: 12 },
   radarCard: { position: 'relative', overflow: 'hidden' },
+  radarBgBand: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 200 },
   radarInner: { position: 'relative' },
   rlegend: { flexDirection: 'row', justifyContent: 'center', gap: 16, marginTop: 8 },
   rlegItem: { flexDirection: 'row', alignItems: 'center', gap: 6 },
@@ -648,8 +647,8 @@ const home = StyleSheet.create({
   wtileV: { color: HOME.text, fontWeight: '800', fontSize: 17 },
   wtileL: { color: HOME.muted, fontSize: 10, marginTop: 3 },
   examCard: { position: 'relative', overflow: 'hidden', borderRadius: 20, borderWidth: 1, borderColor: 'rgba(251,191,36,0.4)', backgroundColor: '#0E1728' },
-  examBgWrap: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 128 },
-  examIn: { position: 'relative', padding: 16, paddingBottom: 78 },
+  examBgWrap: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 190 },
+  examIn: { position: 'relative', padding: 16, paddingBottom: 96 },
   examHead: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   examIco: { width: 44, height: 44, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(251,191,36,0.16)', borderWidth: 1, borderColor: 'rgba(251,191,36,0.4)' },
   examLi: { flexDirection: 'row', alignItems: 'center', gap: 9, marginTop: 8 },
@@ -681,8 +680,6 @@ function HomeTab(props: {
   onGoFormula: () => void;
   onSolveUnattempted: (gradeId: GradeId) => void;
   onOpenChapter: (gradeId: GradeId, chapterId: string) => void;
-  examDate: string | null;
-  onSetExamDate: (v: string | null) => void;
 }) {
   const { t } = props;
   // 継続日数・今日の学習量・直近の活動（級に依らず端末全体の学習ログから）。
@@ -721,14 +718,13 @@ function HomeTab(props: {
   const [chapSnaps, setChapSnaps] = useState<ChapterSnapStore>([]);
   useEffect(() => { loadChapterSnaps().then(setChapSnaps); }, [props.progress]);
   const [showGrade, setShowGrade] = useState(false);
-  const [showDate, setShowDate] = useState(false);
-  const [dateDraft, setDateDraft] = useState('');
 
   // サブ部品へ渡すダーク派生テーマ
   const ht = { ...t, bg: HOME.bg0, card: HOME.surface, text: HOME.text, sub: HOME.muted,
     border: HOME.border, primary: HOME.cyan, correct: HOME.good, wrong: HOME.bad, amber: HOME.warn } as Theme;
   const subjectLabel = `固体力学 ${grade === 'g1' ? '1級' : '2級'}`;
-  const daysLeft = examDaysLeft(props.examDate);
+  const examDate = OFFICIAL_EXAM_DATES[grade]; // 級に連動した規定の受験日（自動・設定不要）
+  const daysLeft = examDaysLeft(examDate);
   const coverPct = overall.totalQuestions > 0 ? Math.round((overall.attempted / overall.totalQuestions) * 100) : 0;
   const today = digest.last30[digest.last30.length - 1] ?? { key: '', n: 0, c: 0 };
   const goalDone = Math.min(today.n, DAILY_GOAL);
@@ -755,15 +751,14 @@ function HomeTab(props: {
         </View>
         <View style={home.heroCopy}>
           <Text style={home.kicker}>解析する力が、未来のものづくりを支える。</Text>
-          <Pressable onPress={() => { setDateDraft(props.examDate ?? ''); setShowDate(true); }}>
-            {daysLeft == null ? (
-              <Text style={home.headline}>受験日を設定 <Text style={home.pctSmall}>›</Text></Text>
-            ) : daysLeft >= 0 ? (
+          <View>
+            {daysLeft != null && daysLeft >= 0 ? (
               <Text style={home.headline}>試験まで あと <Text style={home.pct}>{daysLeft}</Text> 日</Text>
             ) : (
-              <Text style={home.headline}>受験日が過ぎています</Text>
+              <Text style={home.headline}>受験おつかれさまでした</Text>
             )}
-          </Pressable>
+            <Text style={home.capTxt}>{grade === 'g1' ? '1級' : '2級'} 試験日 {fmtExamDate(examDate)}</Text>
+          </View>
           <View style={home.prog}><View style={[home.progFill, { width: `${coverPct}%` as DimensionValue }]} /></View>
           <View style={home.capRow}>
             <Text style={home.capTxt}>学習範囲 {overall.attempted}/{overall.totalQuestions}問 踏破</Text>
@@ -828,8 +823,12 @@ function HomeTab(props: {
           <Text style={home.secSub}>{subjectLabel} · 全{stats.length}章</Text>
         </View>
         <View style={[home.card, home.radarCard]}>
-          <Image source={HOME_IMG.radarbg} style={[StyleSheet.absoluteFill, { opacity: 0.5 }]} resizeMode="cover" />
-          <View style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(6,10,19,0.5)' }]} />
+          {/* FEM解析画像は縦長カード全体に伸ばすと拡大され過ぎる（縮尺がおかしくなる）ため、
+              下部に画像本来の縦横比に近い帯として敷き、上へフェードさせて自然に見せる。 */}
+          <View style={home.radarBgBand} pointerEvents="none">
+            <Image source={HOME_IMG.radarbg} style={StyleSheet.absoluteFill} resizeMode="cover" />
+            <Veil id="radarVeil" stops={[{ o: 0, op: 1 }, { o: 0.5, op: 0.72 }, { o: 1, op: 0.5 }]} />
+          </View>
           <View style={home.radarInner}>
             <View style={{ alignItems: 'center' }}>
               <GrowthRadar stats={stats} week={weekAcc} month={monthAcc} />
@@ -911,29 +910,6 @@ function HomeTab(props: {
       </Pressable>
     </Modal>
 
-    {/* 受験日 */}
-    <Modal visible={showDate} transparent animationType="fade" onRequestClose={() => setShowDate(false)}>
-      <Pressable style={home.modalWrap} onPress={() => setShowDate(false)}>
-        <Pressable style={home.sheet} onPress={() => {}}>
-          <Text style={home.sheetH}>受験日を設定</Text>
-          <Text style={home.sheetSec}>日付（YYYY-MM-DD）</Text>
-          <TextInput
-            value={dateDraft}
-            onChangeText={setDateDraft}
-            placeholder="2026-12-13"
-            placeholderTextColor={HOME.faint}
-            style={home.dateInput}
-            autoCapitalize="none"
-          />
-          <Pressable style={home.cta} onPress={() => { props.onSetExamDate(dateDraft.trim() || null); setShowDate(false); }}>
-            <Text style={home.ctaTxt}>保存</Text>
-          </Pressable>
-          <Pressable style={home.clearBtn} onPress={() => { props.onSetExamDate(null); setShowDate(false); }}>
-            <Text style={home.clearTxt}>クリア</Text>
-          </Pressable>
-        </Pressable>
-      </Pressable>
-    </Modal>
     </>
   );
 }
@@ -1958,7 +1934,7 @@ function Button(props: {
       ? t.wrong
       : 'transparent';
   const bg = props.disabled ? t.disabled : base;
-  const textColor = props.kind === 'ghost' ? t.sub : '#ffffff';
+  const textColor = props.kind === 'ghost' ? t.sub : props.kind === 'primary' ? t.onPrimary : '#ffffff';
   return (
     <Pressable
       onPress={props.disabled ? undefined : props.onPress}
@@ -2096,6 +2072,7 @@ const light = {
   correctBg: '#e6f4ec',
   wrong: '#d1544f', // ソフトな赤（不正解フィードバック専用）
   wrongBg: '#fbe9e8',
+  onPrimary: '#ffffff', // primary（塗り）の上に載せる文字色
 };
 const dark: Theme = {
   bg: '#0f1115',
@@ -2111,6 +2088,26 @@ const dark: Theme = {
   correctBg: '#12291d',
   wrong: '#e0625d',
   wrongBg: '#2a1514',
+  onPrimary: '#ffffff',
+};
+
+// FEMネイビー世界観をアプリ全体に適用するテーマ（ホームと同じ暗色＋シアンのアクセント）。
+// ホーム＝HOMEパレット、その他タブ＝この navy を使い、全画面で世界観を統一する。
+const navy: Theme = {
+  bg: '#060A13',        // HOME.bg0
+  text: '#EAF2FF',      // HOME.text
+  sub: '#8CA1C1',       // HOME.muted
+  card: '#0E1728',      // HOME.bg2（不透明カード＝読みやすさ確保）
+  border: 'rgba(125,199,255,0.18)',
+  primary: '#3BE6F2',   // HOME.cyan（主ボタン。上の文字は onPrimary の濃紺）
+  reviewBtn: '#0B93B4', // HOME.cyanDeep（セカンダリ）
+  amber: '#FBBF24',     // HOME.warn
+  disabled: '#2A3852',
+  correct: '#4ADE80',   // HOME.good
+  correctBg: 'rgba(74,222,128,0.16)',
+  wrong: '#FB7185',     // HOME.bad
+  wrongBg: 'rgba(251,113,133,0.16)',
+  onPrimary: '#06121F', // シアンの上は濃紺文字（白だと読めない）
 };
 
 const styles = StyleSheet.create({
