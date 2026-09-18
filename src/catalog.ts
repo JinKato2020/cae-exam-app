@@ -42,6 +42,8 @@ import t2ch8 from '../content/questions/thermal2-08-post-processing.json';
 import t2ch9 from '../content/questions/thermal2-09-verification.json';
 import t2ch10 from '../content/questions/thermal2-10-computer-basics.json';
 import t2ch11 from '../content/questions/thermal2-11-ethics.json';
+// 熱流体力学 1級（単相流）
+import t1ch1 from '../content/questions/thermal1-01-single-phase-physics.json';
 
 // ready: 章が使えるか（省略時は true＝使える）。準備中の章は false。
 // formulaId: 公式・用語の参照キー（FORMULA_DOCS のキー。省略時は id を使う）。
@@ -121,6 +123,15 @@ export const CATALOG: FieldEntry[] = [
           { id: 'ch9', title: '第9章 結果の検証方法の基礎', data: t2ch9 as unknown as Chapter, ready: true, formulaId: 't2ch9' },
           { id: 'ch10', title: '第10章 コンピューターの基礎', data: t2ch10 as unknown as Chapter, ready: true, formulaId: 't2ch10' },
           { id: 'ch11', title: '第11章 計算力学技術者倫理', data: t2ch11 as unknown as Chapter, ready: true, formulaId: 't2ch11' },
+        ],
+      },
+      {
+        // 熱流体力学 1級：中身はこれから作成。章を1つ追加するだけでアプリに自動反映される
+        // （空のうちは「全 0 章」表示）。formulaId は 1級側の公式ドキュメントを指す想定（例 't1ch1'）。
+        id: 'g1',
+        name: '1級',
+        chapters: [
+          { id: 'ch1', title: '第1章 単相流の物理', data: t1ch1 as unknown as Chapter, ready: true, formulaId: 't1ch1' },
         ],
       },
     ],
