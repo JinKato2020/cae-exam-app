@@ -36,6 +36,7 @@ import t2ch7 from '../content/formulas/thermal2-ch7.json';
 import t2ch8 from '../content/formulas/thermal2-ch8.json';
 import t2ch9 from '../content/formulas/thermal2-ch9.json';
 import t2ch10 from '../content/formulas/thermal2-ch10.json';
+import t2ch11 from '../content/formulas/thermal2-ch11.json';
 
 export type FormulaItem = {
   id: string;
@@ -92,6 +93,7 @@ export const FORMULA_DOCS: Record<string, FormulaDoc | null> = {
   t2ch8: t2ch8 as unknown as FormulaDoc,
   t2ch9: t2ch9 as unknown as FormulaDoc,
   t2ch10: t2ch10 as unknown as FormulaDoc,
+  t2ch11: t2ch11 as unknown as FormulaDoc,
 };
 
 export function formulaDoc(chapterId: string): FormulaDoc | null {

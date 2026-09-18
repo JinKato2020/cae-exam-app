@@ -41,6 +41,7 @@ import t2ch7 from '../content/questions/thermal2-07-boundary-conditions.json';
 import t2ch8 from '../content/questions/thermal2-08-post-processing.json';
 import t2ch9 from '../content/questions/thermal2-09-verification.json';
 import t2ch10 from '../content/questions/thermal2-10-computer-basics.json';
+import t2ch11 from '../content/questions/thermal2-11-ethics.json';
 
 // ready: 章が使えるか（省略時は true＝使える）。準備中の章は false。
 // formulaId: 公式・用語の参照キー（FORMULA_DOCS のキー。省略時は id を使う）。
@@ -119,6 +120,7 @@ export const CATALOG: FieldEntry[] = [
           { id: 'ch8', title: '第8章 ポスト処理の基礎', data: t2ch8 as unknown as Chapter, ready: true, formulaId: 't2ch8' },
           { id: 'ch9', title: '第9章 結果の検証方法の基礎', data: t2ch9 as unknown as Chapter, ready: true, formulaId: 't2ch9' },
           { id: 'ch10', title: '第10章 コンピューターの基礎', data: t2ch10 as unknown as Chapter, ready: true, formulaId: 't2ch10' },
+          { id: 'ch11', title: '第11章 計算力学技術者倫理', data: t2ch11 as unknown as Chapter, ready: true, formulaId: 't2ch11' },
         ],
       },
     ],
