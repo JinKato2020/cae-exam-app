@@ -41,7 +41,7 @@
       "topic": "渦度輸送方程式",
       "type": "mc",
       "difficulty": 3,
-      "question": "2 次元非圧縮流れで速度成分を $u,v$、渦度を $\\zeta=\\dfrac{\\partial u}{\\partial y}-\\dfrac{\\partial v}{\\partial x}$ と定義する。流れ関数 $\\psi$ を $u=\\dfrac{\\partial\\psi}{\\partial y},\\ v=-\\dfrac{\\partial\\psi}{\\partial x}$ で導入するとき、渦度 $\\zeta$ と流れ関数 $\\psi$ の関係として正しいものはどれか。",
+      "question": "2 次元非圧縮流れで速度成分を $u,v$、渦度を $\\zeta=\\dfrac{\\partial v}{\\partial x}-\\dfrac{\\partial u}{\\partial y}$ と定義する。流れ関数 $\\psi$ を $u=\\dfrac{\\partial\\psi}{\\partial y},\\ v=-\\dfrac{\\partial\\psi}{\\partial x}$ で導入するとき、渦度 $\\zeta$ と流れ関数 $\\psi$ の関係として正しいものはどれか。",
       "choices": [
         "$\\zeta=-\\nabla^2\\psi=-\\left(\\dfrac{\\partial^2\\psi}{\\partial x^2}+\\dfrac{\\partial^2\\psi}{\\partial y^2}\\right)$",
         "$\\zeta=\\nabla^2\\psi=\\dfrac{\\partial^2\\psi}{\\partial x^2}+\\dfrac{\\partial^2\\psi}{\\partial y^2}$",
@@ -49,7 +49,7 @@
         "$\\zeta=\\dfrac{\\partial^2\\psi}{\\partial x^2}-\\dfrac{\\partial^2\\psi}{\\partial y^2}$"
       ],
       "answer": 1,
-      "explanation": "【基礎】流れ関数は連続の式 $\\dfrac{\\partial u}{\\partial x}+\\dfrac{\\partial v}{\\partial y}=0$ を自動的に満たすように導入される補助関数で、$u=\\partial\\psi/\\partial y,\\ v=-\\partial\\psi/\\partial x$ と定義する。\n【考え方】定義を渦度の式に代入する。$\\dfrac{\\partial u}{\\partial y}=\\dfrac{\\partial^2\\psi}{\\partial y^2}$、$\\dfrac{\\partial v}{\\partial x}=-\\dfrac{\\partial^2\\psi}{\\partial x^2}$。よって $\\zeta=\\dfrac{\\partial^2\\psi}{\\partial y^2}-\\left(-\\dfrac{\\partial^2\\psi}{\\partial x^2}\\right)=\\dfrac{\\partial^2\\psi}{\\partial x^2}+\\dfrac{\\partial^2\\psi}{\\partial y^2}$…ではなく、符号に注意すると $\\zeta=-\\nabla^2\\psi$ となる（$v=-\\partial\\psi/\\partial x$ の負号が効く）。\n【ポイント】この $\\zeta=-\\nabla^2\\psi$ と、圧力を消去して得た渦度輸送方程式 $\\dfrac{\\partial\\zeta}{\\partial t}+u\\dfrac{\\partial\\zeta}{\\partial x}+v\\dfrac{\\partial\\zeta}{\\partial y}=\\dfrac{\\mu}{\\rho}\\nabla^2\\zeta$ を連立して解く手法が「渦度‑流れ関数法」。圧力が式から消えるのが利点。\n【引っかけ】②は $v=-\\partial\\psi/\\partial x$ の負号を落として符号を逆にした誤り。③は 2 階微分を 1 階微分と取り違えた誤り。④はラプラシアンの片方の符号を反転させた誤り（これは調和共役の式であって渦度ではない）。",
+      "explanation": "【基礎】流れ関数は連続の式 $\\dfrac{\\partial u}{\\partial x}+\\dfrac{\\partial v}{\\partial y}=0$ を自動的に満たすように導入される補助関数で、$u=\\partial\\psi/\\partial y,\\ v=-\\partial\\psi/\\partial x$ と定義する。\n【考え方】標準の 2 次元渦度 $\\zeta=\\partial v/\\partial x-\\partial u/\\partial y$ に代入する。$\\dfrac{\\partial v}{\\partial x}=\\dfrac{\\partial}{\\partial x}\\!\\left(-\\dfrac{\\partial\\psi}{\\partial x}\\right)=-\\dfrac{\\partial^2\\psi}{\\partial x^2}$、$\\dfrac{\\partial u}{\\partial y}=\\dfrac{\\partial^2\\psi}{\\partial y^2}$。よって $\\zeta=-\\dfrac{\\partial^2\\psi}{\\partial x^2}-\\dfrac{\\partial^2\\psi}{\\partial y^2}=-\\nabla^2\\psi$。\n【ポイント】この $\\zeta=-\\nabla^2\\psi$ と、圧力を消去して得た渦度輸送方程式 $\\dfrac{\\partial\\zeta}{\\partial t}+u\\dfrac{\\partial\\zeta}{\\partial x}+v\\dfrac{\\partial\\zeta}{\\partial y}=\\dfrac{\\mu}{\\rho}\\nabla^2\\zeta$ を連立して解く手法が「渦度‑流れ関数法」。圧力が式から消えるのが利点。\n【引っかけ】②は $v=-\\partial\\psi/\\partial x$ の負号を落として符号を逆にした $\\zeta=+\\nabla^2\\psi$ の誤り。③は 2 階微分を 1 階微分と取り違えた誤り。④はラプラシアンの片方の符号を反転させた誤り（これは調和共役の式であって渦度ではない）。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -74,7 +74,7 @@
         "約 6.7×10⁻⁴ m/s"
       ],
       "answer": 3,
-      "explanation": "【基礎】バッキンガムのπ定理は、$n$ 個の物理量が $m$ 個の基本単位で表されるとき、独立な無次元数は $n-m$ 個であることを示す。ここでは $a,K,\\rho$ の 3 量、基本単位は m・kg・s の 3 つ。\n【考え方】各次元は $a\\,[\\mathrm{m/s}]$、$K\\,[\\mathrm{kg/(m\\,s^2)}]=[\\mathrm{Pa}]$、$\\rho\\,[\\mathrm{kg/m^3}]$。無次元量 $\\pi=a^2\\rho/K$ が唯一つくれる（$[\\mathrm{m^2/s^2}]\\cdot[\\mathrm{kg/m^3}]/[\\mathrm{kg/(m\\,s^2)}]=$ 無次元）。$\\pi$ が定数 $C$ に等しく、実験的に $C=1$ ゆえ $a=\\sqrt{K/\\rho}$。\n【計算】$a=\\sqrt{\\dfrac{2.2\\times10^{9}}{1000}}=\\sqrt{2.2\\times10^{6}}\\approx1483\\,\\mathrm{m/s}\\approx1480\\,\\mathrm{m/s}$（実際の水中音速に一致）。\n【ポイント】平方根と割り算の組合せが本質。次元を合わせれば係数を除いて構造 $a=\\sqrt{K/\\rho}$ が一意に決まる。\n【引っかけ】①は平方根を付け忘れ $a=K/\\rho=2.2\\times10^{6}$ とした誤り。②は次元を取り違え $a=\\sqrt{K\\rho}=1.48\\times10^{6}$ とした誤り。④は無次元数を逆に取り $a=\\sqrt{\\rho/K}=6.7\\times10^{-4}$ とした誤り。",
+      "explanation": "【基礎】バッキンガムのπ定理は、$n$ 個の物理量の次元行列のランク $r$（互いに独立な次元の数）を用いて、独立な無次元数が $n-r$ 個であることを示す。ここでは $a,K,\\rho$ の 3 量だが、$K$ の次元は $a^2\\rho$ と一致して従属するためランクは $r=2$。よって無次元数は $n-r=3-2=1$ 個。\n【考え方】各次元は $a\\,[\\mathrm{m/s}]$、$K\\,[\\mathrm{kg/(m\\,s^2)}]=[\\mathrm{Pa}]$、$\\rho\\,[\\mathrm{kg/m^3}]$。無次元量 $\\pi=a^2\\rho/K$ が唯一つくれる（$[\\mathrm{m^2/s^2}]\\cdot[\\mathrm{kg/m^3}]/[\\mathrm{kg/(m\\,s^2)}]=$ 無次元）。$\\pi$ が定数 $C$ に等しく、実験的に $C=1$ ゆえ $a=\\sqrt{K/\\rho}$。\n【計算】$a=\\sqrt{\\dfrac{2.2\\times10^{9}}{1000}}=\\sqrt{2.2\\times10^{6}}\\approx1483\\,\\mathrm{m/s}\\approx1480\\,\\mathrm{m/s}$（実際の水中音速に一致）。\n【ポイント】平方根と割り算の組合せが本質。次元を合わせれば係数を除いて構造 $a=\\sqrt{K/\\rho}$ が一意に決まる。\n【引っかけ】①は平方根を付け忘れ $a=K/\\rho=2.2\\times10^{6}$ とした誤り。②は次元を取り違え $a=\\sqrt{K\\rho}=1.48\\times10^{6}$ とした誤り。④は無次元数を逆に取り $a=\\sqrt{\\rho/K}=6.7\\times10^{-4}$ とした誤り。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -174,7 +174,7 @@
         "乱流エネルギー $k$ のピークは壁面近くにあり、境界層外縁では比較的小さい"
       ],
       "answer": 2,
-      "explanation": "【基礎】壁近傍では全せん断応力が壁面せん断応力 $\\tau_w=\\rho u_\\tau^2$ にほぼ等しい。粘性底層では粘性応力が支配し $U^+=y^+$、対数域では乱流応力が支配し対数則 $U^+=\\dfrac{1}{\\kappa}\\ln y^+ +C$（$\\kappa=0.41,\\ C=5.0$）が成り立つ。\n【考え方】圧力勾配ゼロでは壁近傍のレイノルズせん断応力 $-\\rho\\overline{u'v'}$ は $\\tau_w=\\rho u_\\tau^2$ にほぼ等しい。したがって $-\\overline{u'v'}/u_\\tau^2\\approx1$ であって「1 よりはるかに大きい」は誤り。よって②が適切でない。\n【ポイント】$u_\\tau$ はまさにこの応力バランスを 1 に規格化するための速度スケール。乱流エネルギーの生成 $-\\overline{u'v'}\\,\\partial\\bar U/\\partial y$ は速度勾配の大きい壁近傍で最大となるため $k$ のピークも壁近く。\n【引っかけ】①③④はいずれも壁法則・対数則・乱流エネルギー分布の正しい記述。②だけが「≈1」であるべき無次元応力を「≫1」と誤って述べており、これが適切でない記述。",
+      "explanation": "【基礎】壁近傍の一定応力層では、粘性応力とレイノルズ応力の和（全せん断応力）が壁面せん断応力 $\\tau_w=\\rho u_\\tau^2$ にほぼ等しく保たれる。粘性底層では粘性応力が支配し $U^+=y^+$、対数域では乱流応力が支配し対数則 $U^+=\\dfrac{1}{\\kappa}\\ln y^+ +C$（$\\kappa=0.41,\\ C=5.0$）が成り立つ。\n【考え方】圧力勾配ゼロの対数域では全せん断応力の大部分をレイノルズ応力 $-\\rho\\overline{u'v'}$ が担い、$\\tau_w=\\rho u_\\tau^2$ にほぼ等しくなる。したがって $-\\overline{u'v'}/u_\\tau^2$ は高々 1 程度で、「1 よりはるかに大きい」は誤り。よって②が適切でない（壁面そのものでは $u'=v'=0$ でレイノルズ応力は 0、粘性応力が $\\tau_w$ を担う）。\n【ポイント】$u_\\tau$ はこの応力バランスを規格化する速度スケール。乱流エネルギーの生成 $-\\overline{u'v'}\\,\\partial\\bar U/\\partial y$ は速度勾配の大きい壁近傍（バッファ層）で最大となるため $k$ のピークも壁近く。\n【引っかけ】①③④はいずれも壁法則・対数則・乱流エネルギー分布の正しい記述。②だけが「$\\approx1$」であるべき無次元応力を「$\\gg1$」と誤って述べており、これが適切でない記述。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -316,7 +316,7 @@
       "topic": "準1次元ノズル流れ",
       "type": "mc",
       "difficulty": 3,
-      "question": "衝撃波がなくエントロピー変化のない準 1 次元ノズル内の圧縮性流れを考える。マッハ数 $M$、流れ方向 $x$、断面積 $A(x)$ について、$\\dfrac{du}{u}=\\dfrac{1}{M^2-1}\\dfrac{dA}{A}$、$\\dfrac{dT}{T}=\\dfrac{(\\gamma-1)M^2}{M^2-1}\\dfrac{dA}{A}$ が成り立つ。流速を増加させるには、亜音速 $M<1$ では (a)、超音速 $M>1$ では (b) とする必要がある。さらに $M<1$ で (a) としたとき温度は (c) する。空欄の組合せとして正しいものはどれか。",
+      "question": "衝撃波がなくエントロピー変化のない準 1 次元ノズル内の圧縮性流れを考える。マッハ数 $M$、流れ方向 $x$、断面積 $A(x)$ について、$\\dfrac{du}{u}=\\dfrac{1}{M^2-1}\\dfrac{dA}{A}$、$\\dfrac{dT}{T}=-\\dfrac{(\\gamma-1)M^2}{M^2-1}\\dfrac{dA}{A}$ が成り立つ。流速を増加させるには、亜音速 $M<1$ では (a)、超音速 $M>1$ では (b) とする必要がある。さらに $M<1$ で (a) としたとき温度は (c) する。空欄の組合せとして正しいものはどれか。",
       "choices": [
         "(a) $\\dfrac{dA}{dx}>0$、(b) $\\dfrac{dA}{dx}<0$、(c) 温度は増加",
         "(a) $\\dfrac{dA}{dx}<0$、(b) $\\dfrac{dA}{dx}>0$、(c) 温度は減少",
@@ -324,7 +324,7 @@
         "(a) $\\dfrac{dA}{dx}>0$、(b) $\\dfrac{dA}{dx}>0$、(c) 温度は減少"
       ],
       "answer": 2,
-      "explanation": "【基礎】面積‑速度関係 $\\dfrac{du}{u}=\\dfrac{1}{M^2-1}\\dfrac{dA}{A}$ の符号は係数 $\\dfrac{1}{M^2-1}$ の符号で決まる。$M<1$ では $M^2-1<0$、$M>1$ では $M^2-1>0$。\n【考え方】流速増加 $du/u>0$ が必要。$M<1$（係数が負）では $dA<0$、すなわち断面積が狭まる（$dA/dx<0$）と流速が増す。$M>1$（係数が正）では逆に $dA>0$（末広がり $dA/dx>0$）で流速が増す。これがラバルノズル（先細り→末広がり）の原理。\n【考え方(温度)】$M<1$ で $dA<0$ のとき、温度式 $\\dfrac{dT}{T}=\\dfrac{(\\gamma-1)M^2}{M^2-1}\\dfrac{dA}{A}$ は、係数 $\\dfrac{(\\gamma-1)M^2}{M^2-1}<0$ と $dA<0$ の積で右辺が正…ではなく、負×負の符号を慎重に追うと $dT/T<0$。エネルギー保存の観点でも、流速（運動エネルギー）が増えれば熱エネルギーが減り温度は下がる。よって温度は減少。\n【ポイント】(a) 先細り $dA/dx<0$、(b) 末広がり $dA/dx>0$、(c) 温度減少。\n【引っかけ】①は亜音速・超音速の断面積条件を入れ替え、温度変化も逆にした誤り。③は超音速側の条件を誤り、温度も逆。④は亜音速側の条件を誤り、断面積条件を取り違えたもの。",
+      "explanation": "【基礎】面積‑速度関係 $\\dfrac{du}{u}=\\dfrac{1}{M^2-1}\\dfrac{dA}{A}$ の符号は係数 $\\dfrac{1}{M^2-1}$ の符号で決まる。$M<1$ では $M^2-1<0$、$M>1$ では $M^2-1>0$。\n【考え方】流速増加 $du/u>0$ が必要。$M<1$（係数が負）では $dA<0$、すなわち断面積が狭まる（$dA/dx<0$）と流速が増す。$M>1$（係数が正）では逆に $dA>0$（末広がり $dA/dx>0$）で流速が増す。これがラバルノズル（先細り→末広がり）の原理。\n【考え方(温度)】温度式は $\\dfrac{dT}{T}=-\\dfrac{(\\gamma-1)M^2}{M^2-1}\\dfrac{dA}{A}$。$M<1$ で加速するときは $dA<0$。係数 $-\\dfrac{(\\gamma-1)M^2}{M^2-1}$ は $M^2-1<0$ より正で、これに $dA/A<0$ を掛けるので $dT/T<0$。エネルギー保存の観点でも、流速（運動エネルギー）が増えれば熱エネルギーが減り温度は下がる。よって温度は減少。\n【ポイント】(a) 先細り $dA/dx<0$、(b) 末広がり $dA/dx>0$、(c) 温度減少。\n【引っかけ】①は亜音速・超音速の断面積条件を入れ替え、温度変化も逆にした誤り。③は超音速側の条件を誤り、温度も逆。④は亜音速側の条件を誤り、断面積条件を取り違えたもの。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
