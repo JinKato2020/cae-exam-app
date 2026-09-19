@@ -726,10 +726,6 @@ function HomeTab(props: {
       })
       .catch(() => {});
   }, []);
-  function chooseGrade(g: GradeId) {
-    setGrade(g);
-    AsyncStorage.setItem(HOME_GRADE_KEY, g).catch(() => {});
-  }
   // ホームの分析対象の分野（固体/熱流体/…）。起動時は前回開いた分野を復元（初回のみ固体）。
   const [field, setField] = useState<FieldId>('solid');
   useEffect(() => {
@@ -739,15 +735,6 @@ function HomeTab(props: {
       })
       .catch(() => {});
   }, []);
-  function chooseField(f: FieldId) {
-    setField(f);
-    AsyncStorage.setItem(HOME_FIELD_KEY, f).catch(() => {});
-    // 選んだ分野で今の級が未整備なら、使える級へ寄せる（空のホームを見せない）。
-    if (!disciplineReady(f, grade)) {
-      const alt: GradeId = grade === 'g1' ? 'g2' : 'g1';
-      if (disciplineReady(f, alt)) chooseGrade(alt);
-    }
-  }
   const overall = useMemo(() => overallStat(props.progress, grade, field), [props.progress, grade, field]);
   const stats = useMemo(() => chapterStats(props.progress, grade, field), [props.progress, grade, field]);
   const fields = useMemo(() => fieldStats(props.progress, grade, field), [props.progress, grade, field]);
@@ -769,6 +756,15 @@ function HomeTab(props: {
   const [chapSnaps, setChapSnaps] = useState<ChapterSnapStore>([]);
   useEffect(() => { loadChapterSnaps().then(setChapSnaps); }, [props.progress]);
   const [showGrade, setShowGrade] = useState(false);
+  // 分野と級を1タップでまとめて確定（固体1級/固体2級/熱流体1級…の6ボタン用）。
+  // 従来は分野と級を別々に押す必要があり「両方変えたい」時に片方だけ確定してしまっていた。
+  function chooseFieldGrade(f: FieldId, g: GradeId) {
+    setField(f);
+    AsyncStorage.setItem(HOME_FIELD_KEY, f).catch(() => {});
+    setGrade(g);
+    AsyncStorage.setItem(HOME_GRADE_KEY, g).catch(() => {});
+    setShowGrade(false);
+  }
 
   // サブ部品へ渡すダーク派生テーマ
   const ht = { ...t, bg: HOME.bg0, card: HOME.surface, text: HOME.text, sub: HOME.muted,
@@ -966,37 +962,24 @@ function HomeTab(props: {
       <Pressable style={home.modalWrap} onPress={() => setShowGrade(false)}>
         <Pressable style={home.sheet} onPress={() => {}}>
           <Text style={home.sheetH}>学習する分野・級を選ぶ</Text>
-          <Text style={home.sheetSec}>分野</Text>
-          {DISCIPLINES.map((d) => {
-            const on = field === d.id;
-            // その分野がどちらの級でも未整備なら「準備中」で無効化（例: 振動は今後追加）。
-            const ready = disciplineReady(d.id, 'g1') || disciplineReady(d.id, 'g2');
-            return (
-              <Pressable
-                key={d.id}
-                disabled={!ready}
-                style={[home.opt, on && home.optOn, !ready && { opacity: 0.4 }]}
-                onPress={() => { chooseField(d.id); setShowGrade(false); }}
-              >
-                <Text style={home.optTxt}>{d.label}{ready ? '' : '（準備中）'}</Text>
-              </Pressable>
-            );
-          })}
-          <Text style={home.sheetSec}>級</Text>
-          {(['g1', 'g2'] as GradeId[]).map((g) => {
-            const on = grade === g;
-            const ready = disciplineReady(field, g);
-            return (
-              <Pressable
-                key={g}
-                disabled={!ready}
-                style={[home.opt, on && home.optOn, !ready && { opacity: 0.4 }]}
-                onPress={() => { chooseGrade(g); setShowGrade(false); }}
-              >
-                <Text style={home.optTxt}>{g === 'g1' ? '1級' : '2級'}{ready ? '' : '（準備中）'}</Text>
-              </Pressable>
-            );
-          })}
+          {/* 分野×級を1タップで確定できる6ボタン（固体1級/固体2級/熱流体1級/熱流体2級/振動1級/振動2級）。
+              「両方を変えたい」時に片方だけ確定してしまう問題を解消。未整備の組は「準備中」で無効化。 */}
+          {DISCIPLINES.flatMap((d) =>
+            (['g1', 'g2'] as GradeId[]).map((g) => {
+              const on = field === d.id && grade === g;
+              const ready = disciplineReady(d.id, g);
+              return (
+                <Pressable
+                  key={`${d.id}-${g}`}
+                  disabled={!ready}
+                  style={[home.opt, on && home.optOn, !ready && { opacity: 0.4 }]}
+                  onPress={() => chooseFieldGrade(d.id, g)}
+                >
+                  <Text style={home.optTxt}>{d.label} {g === 'g1' ? '1級' : '2級'}{ready ? '' : '（準備中）'}</Text>
+                </Pressable>
+              );
+            })
+          )}
         </Pressable>
       </Pressable>
     </Modal>

@@ -114,8 +114,14 @@ def card(it):
       {example}{fig}
     </div>"""
 
-def build_html(doc):
-    grade = doc.get("grade", "2級")
+def subject_of(path_or_name):
+    """ファイル名から分野を判別: thermal*→熱流体 / それ以外(solid*・ch*)→固体。"""
+    b = os.path.basename(path_or_name).lower()
+    if "thermal" in b: return "熱流体", "熱流体力学"
+    return "固体", "固体力学"
+
+def build_html(doc, subject_full="固体力学"):
+    grade = "1級" if "1級" in doc.get("grade", "2級") else "2級"
     cards = "".join(card(it) for it in doc["items"])
     intro = f"<div class='intro'>{esc(doc.get('intro',''))}</div>" if doc.get("intro") else ""
     return f"""<!doctype html><html lang="ja"><head><meta charset="utf-8">
@@ -142,7 +148,7 @@ mjx-container{{overflow-x:auto;}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
 </head><body>
 <h1>{esc(doc['title'])}　公式・用語</h1>
-<div class="sub">CAE計算力学技術者 固体力学{esc(grade)}・オリジナル解説（初学者向け：公式／用語／数値例／図）</div>
+<div class="sub">CAE計算力学技術者 {subject_full}{esc(grade)}・オリジナル解説（初学者向け：公式／用語／数値例／図）</div>
 {intro}{cards}
 </body></html>"""
 
@@ -162,15 +168,16 @@ def main():
         if not os.path.exists(fp):
             print(f"{label}: SKIP (no json)"); continue
         doc = json.load(open(fp, encoding="utf-8"))
-        grade = doc.get("grade", "2級")
+        grade = "1級" if "1級" in doc.get("grade", "2級") else "2級"
+        subj_short, subj_full = subject_of(fp)
         ch = doc.get("chapter", label)
         title = doc["title"]                       # 例: "第3章 熱伝導の基礎"
         short = title.split(" ", 1)[-1].replace(" ", "") if " " in title else title
-        outdir = os.path.join(CAE, "アプリ", grade)
+        outdir = os.path.join(CAE, "アプリ", subj_short + grade)
         os.makedirs(outdir, exist_ok=True)
-        hp = os.path.join(TMP, f"formula_{grade}_ch{ch}.html")
-        open(hp, "w", encoding="utf-8").write(build_html(doc))
-        out = os.path.join(outdir, f"固体{grade}_公式用語_第{ch}章_{short}.pdf")
+        hp = os.path.join(TMP, f"formula_{subj_short}{grade}_ch{ch}.html")
+        open(hp, "w", encoding="utf-8").write(build_html(doc, subj_full))
+        out = os.path.join(outdir, f"{subj_short}{grade}_公式用語_第{ch}章_{short}.pdf")
         url = "file:///" + hp.replace("\\", "/")
         cmd = [EDGE, "--headless=new", "--disable-gpu", "--no-sandbox",
                f"--print-to-pdf={out}", "--print-to-pdf-no-header",

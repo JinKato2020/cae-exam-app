@@ -59,6 +59,8 @@ import t1ch13 from '../content/questions/thermal1-13-interface-tracking.json';
 import t1ch14 from '../content/questions/thermal1-14-particle-tracking.json';
 import t1ch15 from '../content/questions/thermal1-15-phase-change.json';
 import t1ch16 from '../content/questions/thermal1-16-verification-validation.json';
+import t1ch17 from '../content/questions/thermal1-17-combustion-basics1.json';
+import t1ch18 from '../content/questions/thermal1-18-combustion-basics2.json';
 
 // ready: 章が使えるか（省略時は true＝使える）。準備中の章は false。
 // formulaId: 公式・用語の参照キー（FORMULA_DOCS のキー。省略時は id を使う）。
@@ -162,6 +164,8 @@ export const CATALOG: FieldEntry[] = [
           { id: 'ch14', title: '第14章 粒子追跡モデル', data: t1ch14 as unknown as Chapter, ready: true, formulaId: 't1ch14' },
           { id: 'ch15', title: '第15章 相変化', data: t1ch15 as unknown as Chapter, ready: true, formulaId: 't1ch15' },
           { id: 'ch16', title: '第16章 結果の検証と妥当性確認', data: t1ch16 as unknown as Chapter, ready: true, formulaId: 't1ch16' },
+          { id: 'ch17', title: '第17章 燃焼の基礎1', data: t1ch17 as unknown as Chapter, ready: true, formulaId: 't1ch17' },
+          { id: 'ch18', title: '第18章 燃焼の基礎2', data: t1ch18 as unknown as Chapter, ready: true, formulaId: 't1ch18' },
         ],
       },
     ],

@@ -47,7 +47,13 @@ def card(q):
       <div class='exp'>{expl_html(q['explanation'])}</div>
     </div>"""
 
-def build_html(data):
+def subject_of(path_or_name):
+    """ファイル名から分野を判別: thermal*→熱流体 / それ以外(solid*・ch*)→固体。"""
+    b=os.path.basename(path_or_name).lower()
+    if "thermal" in b: return "熱流体","熱流体力学"
+    return "固体","固体力学"
+
+def build_html(data, subject_full="固体力学"):
     meta=data["meta"]
     grade="1級" if "1級" in meta.get("grade","") else "2級"
     cat=meta["category"]; ch=meta.get("chapter")
@@ -74,7 +80,7 @@ mjx-container{{overflow-x:auto;}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
 </head><body>
 <h1>{esc(cat)}</h1>
-<div class="sub">CAE計算力学技術者 固体力学{grade}・オリジナル問題（問題／解答／解説／図）</div>
+<div class="sub">CAE計算力学技術者 {subject_full}{grade}・オリジナル問題（問題／解答／解説／図）</div>
 {cards}
 </body></html>"""
 
@@ -97,13 +103,14 @@ def main():
         if not os.path.exists(fp):
             print(f"{fp}: SKIP (no json)"); continue
         data=json.load(open(fp,encoding="utf-8"))
-        grade,ch,cat,doc=build_html(data)
+        subj_short,subj_full=subject_of(fp)
+        grade,ch,cat,doc=build_html(data,subj_full)
         short=cat.split(" ",1)[-1].replace(" ","") if " " in cat else cat
-        outdir=os.path.join(CAE,"アプリ",grade)
+        outdir=os.path.join(CAE,"アプリ",subj_short+grade)
         os.makedirs(outdir,exist_ok=True)
-        hp=os.path.join(TMP,f"q_{grade}_ch{ch}.html")
+        hp=os.path.join(TMP,f"q_{subj_short}{grade}_ch{ch}.html")
         open(hp,"w",encoding="utf-8").write(doc)
-        out=os.path.join(outdir, f"固体{grade}_第{ch}章_{short}.pdf")
+        out=os.path.join(outdir, f"{subj_short}{grade}_第{ch}章_{short}.pdf")
         url="file:///"+hp.replace("\\","/")
         cmd=[EDGE,"--headless=new","--disable-gpu","--no-sandbox",
              f"--print-to-pdf={out}","--print-to-pdf-no-header",
