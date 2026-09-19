@@ -51,6 +51,7 @@ import t1ch5 from '../content/questions/thermal1-05-turbulence-models.json';
 import t1ch6 from '../content/questions/thermal1-06-design-application.json';
 import t1ch7 from '../content/questions/thermal1-07-acceleration-and-postprocessing.json';
 import t1ch8 from '../content/questions/thermal1-08-results-and-evaluation.json';
+import t1ch9 from '../content/questions/thermal1-09-multiphase-basics.json';
 
 // ready: 章が使えるか（省略時は true＝使える）。準備中の章は false。
 // formulaId: 公式・用語の参照キー（FORMULA_DOCS のキー。省略時は id を使う）。
@@ -146,6 +147,7 @@ export const CATALOG: FieldEntry[] = [
           { id: 'ch6', title: '第6章 設計応用', data: t1ch6 as unknown as Chapter, ready: true, formulaId: 't1ch6' },
           { id: 'ch7', title: '第7章 高速化とポスト処理', data: t1ch7 as unknown as Chapter, ready: true, formulaId: 't1ch7' },
           { id: 'ch8', title: '第8章 結果と評価', data: t1ch8 as unknown as Chapter, ready: true, formulaId: 't1ch8' },
+          { id: 'ch9', title: '第9章 混相流の基礎', data: t1ch9 as unknown as Chapter, ready: true, formulaId: 't1ch9' },
         ],
       },
     ],
