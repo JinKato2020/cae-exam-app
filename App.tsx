@@ -650,9 +650,9 @@ const home = StyleSheet.create({
   wtileV: { color: HOME.text, fontWeight: '800', fontSize: 17 },
   wtileL: { color: HOME.muted, fontSize: 10, marginTop: 3 },
   examCard: { position: 'relative', overflow: 'hidden', borderRadius: 20, borderWidth: 1, borderColor: 'rgba(251,191,36,0.4)', backgroundColor: '#0E1728' },
-  examBgWrap: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 104, overflow: 'hidden' },
-  examImg: { position: 'absolute', left: 0, right: 0, bottom: 0, width: '100%', aspectRatio: 900 / 506, opacity: 0.9 },
-  examIn: { position: 'relative', padding: 16, paddingBottom: 96 },
+  examBgWrap: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 168, overflow: 'hidden' },
+  examImg: { position: 'absolute', left: 0, right: 0, bottom: 0, width: '100%', aspectRatio: 900 / 506, opacity: 1 },
+  examIn: { position: 'relative', padding: 16, paddingBottom: 150 },
   examHead: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   examIco: { width: 44, height: 44, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(251,191,36,0.16)', borderWidth: 1, borderColor: 'rgba(251,191,36,0.4)' },
   examChev: { color: HOME.cyan, fontSize: 22, fontWeight: '700', marginLeft: 4 },
@@ -884,7 +884,7 @@ function HomeTab(props: {
               <Defs>
                 <LinearGradient id="examFade" x1="0" y1="0" x2="0" y2="1">
                   <Stop offset="0" stopColor="#0E1728" stopOpacity={1} />
-                  <Stop offset="0.5" stopColor="#0E1728" stopOpacity={0.55} />
+                  <Stop offset="0.42" stopColor="#0E1728" stopOpacity={0.35} />
                   <Stop offset="1" stopColor="#0E1728" stopOpacity={0} />
                 </LinearGradient>
               </Defs>
