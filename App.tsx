@@ -513,8 +513,8 @@ const HOME_IMG = {
   beam: require('./assets/home/beam.jpg'),
   frame: require('./assets/home/frame.jpg'),
   formula: require('./assets/home/formula.jpg'),
-  radarbg: require('./assets/home/radarbg.jpg'),
-  exambg: require('./assets/home/exambg.jpg'),
+  radarbg: require('./assets/home/radarbg.png'),
+  exambg: require('./assets/home/exambg.png'),
 };
 // ホーム専用のダーク世界観パレット（アプリのテーマに依らず常にこの世界観で表示）。
 const HOME = {
