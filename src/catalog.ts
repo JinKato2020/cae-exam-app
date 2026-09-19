@@ -63,6 +63,10 @@ import t1ch17 from '../content/questions/thermal1-17-combustion-basics1.json';
 import t1ch18 from '../content/questions/thermal1-18-combustion-basics2.json';
 import t1ch19 from '../content/questions/thermal1-19-combustion-reactions.json';
 import t1ch20 from '../content/questions/thermal1-20-laminar-premixed-flame.json';
+import t1ch21 from '../content/questions/thermal1-21-laminar-diffusion-flame.json';
+import t1ch22 from '../content/questions/thermal1-22-turbulent-flame.json';
+import t1ch23 from '../content/questions/thermal1-23-multiphase-combustion.json';
+import t1ch24 from '../content/questions/thermal1-24-solution-verification.json';
 
 // ready: 章が使えるか（省略時は true＝使える）。準備中の章は false。
 // formulaId: 公式・用語の参照キー（FORMULA_DOCS のキー。省略時は id を使う）。
@@ -170,6 +174,10 @@ export const CATALOG: FieldEntry[] = [
           { id: 'ch18', title: '第18章 燃焼の基礎2', data: t1ch18 as unknown as Chapter, ready: true, formulaId: 't1ch18' },
           { id: 'ch19', title: '第19章 燃焼反応', data: t1ch19 as unknown as Chapter, ready: true, formulaId: 't1ch19' },
           { id: 'ch20', title: '第20章 層流予混合火炎', data: t1ch20 as unknown as Chapter, ready: true, formulaId: 't1ch20' },
+          { id: 'ch21', title: '第21章 層流拡散火炎', data: t1ch21 as unknown as Chapter, ready: true, formulaId: 't1ch21' },
+          { id: 'ch22', title: '第22章 乱流火炎', data: t1ch22 as unknown as Chapter, ready: true, formulaId: 't1ch22' },
+          { id: 'ch23', title: '第23章 混相燃焼', data: t1ch23 as unknown as Chapter, ready: true, formulaId: 't1ch23' },
+          { id: 'ch24', title: '第24章 解の検証', data: t1ch24 as unknown as Chapter, ready: true, formulaId: 't1ch24' },
         ],
       },
     ],
