@@ -47,6 +47,7 @@ import t1ch1 from '../content/questions/thermal1-01-single-phase-physics.json';
 import t1ch2 from '../content/questions/thermal1-02-single-phase-calc1.json';
 import t1ch3 from '../content/questions/thermal1-03-single-phase-calc2.json';
 import t1ch4 from '../content/questions/thermal1-04-grid-handling.json';
+import t1ch5 from '../content/questions/thermal1-05-turbulence-models.json';
 
 // ready: 章が使えるか（省略時は true＝使える）。準備中の章は false。
 // formulaId: 公式・用語の参照キー（FORMULA_DOCS のキー。省略時は id を使う）。
@@ -138,6 +139,7 @@ export const CATALOG: FieldEntry[] = [
           { id: 'ch2', title: '第2章 単相流の計算法1', data: t1ch2 as unknown as Chapter, ready: true, formulaId: 't1ch2' },
           { id: 'ch3', title: '第3章 単相流の計算法2', data: t1ch3 as unknown as Chapter, ready: true, formulaId: 't1ch3' },
           { id: 'ch4', title: '第4章 格子の取り扱い', data: t1ch4 as unknown as Chapter, ready: true, formulaId: 't1ch4' },
+          { id: 'ch5', title: '第5章 乱流解析と乱流モデル', data: t1ch5 as unknown as Chapter, ready: true, formulaId: 't1ch5' },
         ],
       },
     ],
