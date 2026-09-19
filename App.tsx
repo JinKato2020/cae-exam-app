@@ -50,6 +50,7 @@ import {
   chapterSeriesAt,
   type ProgressMap,
   type GradeId,
+  type FieldId,
   type QProgress,
   type FieldSnapStore,
   type FieldCompare,
@@ -75,9 +76,31 @@ import {
 import { initPurchases, syncEntitlements, restore as restorePurchases } from './src/pro/purchases';
 
 const APP_VERSION = '1.0.0';
-// 規定の受験日（公式・JSME 2026年度・級ごと）。出典: https://www.jsme.or.jp/cee/examinee/outline（2026-09-18確認）
-// 固体力学 1級=11/27(金) / 2級=12/4(金)。設定させず、この規定日を選択中の級に連動して自動表示する。
-const OFFICIAL_EXAM_DATES: Record<GradeId, string> = { g1: '2026-11-27', g2: '2026-12-04' };
+// 規定の受験日（公式・JSME 2026年度・分野×級ごと）。出典: https://www.jsme.or.jp/cee/examinee/outline（2026-09-19確認）
+// 1級は各分野とも 11/27(金)。2級は 固体=12/4(金) / 熱流体・振動=12/3(木)。
+// 設定させず、選択中の分野・級に連動して自動表示する。分野は CATALOG.id と一致（'solid'|'thermal'|'vibration'）。
+const OFFICIAL_EXAM_DATES: Record<FieldId, Record<GradeId, string>> = {
+  solid: { g1: '2026-11-27', g2: '2026-12-04' },
+  thermal: { g1: '2026-11-27', g2: '2026-12-03' },
+  vibration: { g1: '2026-11-27', g2: '2026-12-03' },
+};
+
+// ホーム上部で切り替えられる分野（＝CATALOG の分野id）。振動は今後の追加に備えて枠だけ用意。
+// ready はカタログに実データの章があるかで自動判定するので、ここに足すだけで選べるようになる。
+const DISCIPLINES: { id: FieldId; label: string }[] = [
+  { id: 'solid', label: '固体力学' },
+  { id: 'thermal', label: '熱流体力学' },
+  { id: 'vibration', label: '振動' },
+];
+// その分野×級が使えるか（カタログに章が1つでもあるか）。振動のように未整備なら false＝選べるが準備中表示。
+function disciplineReady(fieldId: FieldId, gradeId: GradeId): boolean {
+  const f = CATALOG.find((x) => x.id === fieldId);
+  const g = f?.grades.find((gg) => gg.id === gradeId);
+  return (g?.chapters?.length ?? 0) > 0;
+}
+function disciplineLabel(fieldId: FieldId): string {
+  return DISCIPLINES.find((d) => d.id === fieldId)?.label ?? '固体力学';
+}
 const DAILY_GOAL = 10; // 今日のミッション＝1日の目標問題数（可変パラメータ）
 
 // 課程（分野＋級）。固体2級・固体1級のみ表示。他分野はまだ無いので出さない。
@@ -126,6 +149,7 @@ export default function App() {
 
 const THEME_KEY = 'cae.theme'; // 'system' | 'light' | 'dark'
 const HOME_GRADE_KEY = 'cae.homeGrade'; // ホームで前回開いた級 'g1' | 'g2'
+const HOME_FIELD_KEY = 'cae.homeField'; // ホームで前回開いた分野 'solid' | 'thermal' | 'vibration'
 
 function AppInner() {
   // FEMネイビー世界観をアプリ全体で統一（ホームと同じ暗色＋シアンのアクセント。ライト/ダークは廃止）。
@@ -184,10 +208,14 @@ function AppInner() {
     loadProgress().then(async (p) => {
       setProgress(p);
       // 分野バランス＋章別を1日1回記録しておき、レーダーの成長比較（今週/先週/先月）を出せるようにする。
-      await snapshotFields(p, 'g2');
-      await snapshotFields(p, 'g1');
-      await snapshotChapters(p, 'g2');
-      await snapshotChapters(p, 'g1');
+      // 分野×級ごとに別々のスナップとして貯める（固体と熱流体が混ざらないよう分野キーで分離）。
+      for (const d of DISCIPLINES) {
+        for (const g of ['g1', 'g2'] as GradeId[]) {
+          if (!disciplineReady(d.id, g)) continue;
+          await snapshotFields(p, g, d.id);
+          await snapshotChapters(p, g, d.id);
+        }
+      }
     });
     loadDaily().then(setDaily);
   }, []);
@@ -228,15 +256,15 @@ function AppInner() {
   }
 
   // 今日のミッション：未挑戦（まだ一度も解いていない）問題を集めて出題（踏破率アップ）。
-  function solveUnattempted(gradeId: GradeId) {
-    const all = solidGradeChapters(gradeId).flatMap((c) => c.data.questions);
+  function solveUnattempted(gradeId: GradeId, fieldId: FieldId = 'solid') {
+    const all = fieldGradeChapters(fieldId, gradeId).flatMap((c) => c.data.questions);
     const un = all.filter((q) => !progress[q.id]);
     openProblems(un.length ? un : all, '今日のミッション');
   }
 
   // 章別ステータス/レーダーの章をタップ → その章の問題を開く。
-  function openChapterById(gradeId: GradeId, chapterId: string) {
-    const c = solidGradeChapters(gradeId).find((x) => x.id === chapterId);
+  function openChapterById(gradeId: GradeId, chapterId: string, fieldId: FieldId = 'solid') {
+    const c = fieldGradeChapters(fieldId, gradeId).find((x) => x.id === chapterId);
     if (c) openProblems(c.data.questions, c.title);
   }
 
@@ -683,8 +711,8 @@ function HomeTab(props: {
   onReview: () => void;
   onGoStudy: () => void;
   onGoFormula: () => void;
-  onSolveUnattempted: (gradeId: GradeId) => void;
-  onOpenChapter: (gradeId: GradeId, chapterId: string) => void;
+  onSolveUnattempted: (gradeId: GradeId, fieldId: FieldId) => void;
+  onOpenChapter: (gradeId: GradeId, chapterId: string, fieldId: FieldId) => void;
 }) {
   const { t } = props;
   // 継続日数・今日の学習量・直近の活動（級に依らず端末全体の学習ログから）。
@@ -702,17 +730,35 @@ function HomeTab(props: {
     setGrade(g);
     AsyncStorage.setItem(HOME_GRADE_KEY, g).catch(() => {});
   }
-  const overall = useMemo(() => overallStat(props.progress, grade), [props.progress, grade]);
-  const stats = useMemo(() => chapterStats(props.progress, grade), [props.progress, grade]);
-  const fields = useMemo(() => fieldStats(props.progress, grade), [props.progress, grade]);
+  // ホームの分析対象の分野（固体/熱流体/…）。起動時は前回開いた分野を復元（初回のみ固体）。
+  const [field, setField] = useState<FieldId>('solid');
+  useEffect(() => {
+    AsyncStorage.getItem(HOME_FIELD_KEY)
+      .then((v) => {
+        if (v && DISCIPLINES.some((d) => d.id === v)) setField(v);
+      })
+      .catch(() => {});
+  }, []);
+  function chooseField(f: FieldId) {
+    setField(f);
+    AsyncStorage.setItem(HOME_FIELD_KEY, f).catch(() => {});
+    // 選んだ分野で今の級が未整備なら、使える級へ寄せる（空のホームを見せない）。
+    if (!disciplineReady(f, grade)) {
+      const alt: GradeId = grade === 'g1' ? 'g2' : 'g1';
+      if (disciplineReady(f, alt)) chooseGrade(alt);
+    }
+  }
+  const overall = useMemo(() => overallStat(props.progress, grade, field), [props.progress, grade, field]);
+  const stats = useMemo(() => chapterStats(props.progress, grade, field), [props.progress, grade, field]);
+  const fields = useMemo(() => fieldStats(props.progress, grade, field), [props.progress, grade, field]);
   // レーダーの「1週前比の成長」。端末に貯めた分野スナップショットと今を比べる。
   const [snaps, setSnaps] = useState<FieldSnapStore>([]);
   useEffect(() => {
     loadFieldSnaps().then(setSnaps);
   }, [props.progress]);
   const compare: FieldCompare = useMemo(
-    () => fieldCompareFrom(snaps, fields, grade),
-    [snaps, fields, grade]
+    () => fieldCompareFrom(snaps, fields, grade, field),
+    [snaps, fields, grade, field]
   );
   const hasGrowth = Object.values(compare.growth).some((v) => v != null);
   const attemptedStats = stats.filter((s) => s.attempted > 0);
@@ -727,8 +773,8 @@ function HomeTab(props: {
   // サブ部品へ渡すダーク派生テーマ
   const ht = { ...t, bg: HOME.bg0, card: HOME.surface, text: HOME.text, sub: HOME.muted,
     border: HOME.border, primary: HOME.cyan, correct: HOME.good, wrong: HOME.bad, amber: HOME.warn } as Theme;
-  const subjectLabel = `固体力学 ${grade === 'g1' ? '1級' : '2級'}`;
-  const examDate = OFFICIAL_EXAM_DATES[grade]; // 級に連動した規定の受験日（自動・設定不要）
+  const subjectLabel = `${disciplineLabel(field)} ${grade === 'g1' ? '1級' : '2級'}`;
+  const examDate = OFFICIAL_EXAM_DATES[field]?.[grade] ?? OFFICIAL_EXAM_DATES.solid[grade]; // 分野×級に連動した規定の受験日（自動・設定不要）
   const daysLeft = examDaysLeft(examDate);
   const coverPct = overall.totalQuestions > 0 ? Math.round((overall.attempted / overall.totalQuestions) * 100) : 0;
   const today = digest.last30[digest.last30.length - 1] ?? { key: '', n: 0, c: 0 };
@@ -738,8 +784,8 @@ function HomeTab(props: {
   const wd = digest.weekDelta;
   const wdColor = wd > 0 ? HOME.good : wd < 0 ? HOME.bad : HOME.muted;
   const wdText = wd > 0 ? `▲+${wd}` : wd < 0 ? `▼${wd}` : '±0';
-  const weekAcc = chapterSeriesAt(chapSnaps, grade, 7);
-  const monthAcc = chapterSeriesAt(chapSnaps, grade, 28);
+  const weekAcc = chapterSeriesAt(chapSnaps, grade, 7, field);
+  const monthAcc = chapterSeriesAt(chapSnaps, grade, 28, field);
 
   return (
     <>
@@ -826,7 +872,7 @@ function HomeTab(props: {
             <Text style={home.missionCount}>{goalDone}/{DAILY_GOAL}</Text>
           </View>
           <View style={home.mini}><View style={[home.miniFill, { width: `${goalPct}%` as DimensionValue }]} /></View>
-          <Pressable style={home.cta} onPress={() => props.onSolveUnattempted(grade)}>
+          <Pressable style={home.cta} onPress={() => props.onSolveUnattempted(grade, field)}>
             <Text style={home.ctaTxt}>▶ 未挑戦を解く</Text>
           </Pressable>
         </View>
@@ -921,13 +967,33 @@ function HomeTab(props: {
         <Pressable style={home.sheet} onPress={() => {}}>
           <Text style={home.sheetH}>学習する分野・級を選ぶ</Text>
           <Text style={home.sheetSec}>分野</Text>
-          <View style={[home.opt, home.optOn]}><Text style={home.optTxt}>固体力学</Text></View>
+          {DISCIPLINES.map((d) => {
+            const on = field === d.id;
+            // その分野がどちらの級でも未整備なら「準備中」で無効化（例: 振動は今後追加）。
+            const ready = disciplineReady(d.id, 'g1') || disciplineReady(d.id, 'g2');
+            return (
+              <Pressable
+                key={d.id}
+                disabled={!ready}
+                style={[home.opt, on && home.optOn, !ready && { opacity: 0.4 }]}
+                onPress={() => { chooseField(d.id); setShowGrade(false); }}
+              >
+                <Text style={home.optTxt}>{d.label}{ready ? '' : '（準備中）'}</Text>
+              </Pressable>
+            );
+          })}
           <Text style={home.sheetSec}>級</Text>
           {(['g1', 'g2'] as GradeId[]).map((g) => {
             const on = grade === g;
+            const ready = disciplineReady(field, g);
             return (
-              <Pressable key={g} style={[home.opt, on && home.optOn]} onPress={() => { chooseGrade(g); setShowGrade(false); }}>
-                <Text style={home.optTxt}>{g === 'g1' ? '1級' : '2級'}</Text>
+              <Pressable
+                key={g}
+                disabled={!ready}
+                style={[home.opt, on && home.optOn, !ready && { opacity: 0.4 }]}
+                onPress={() => { chooseGrade(g); setShowGrade(false); }}
+              >
+                <Text style={home.optTxt}>{g === 'g1' ? '1級' : '2級'}{ready ? '' : '（準備中）'}</Text>
               </Pressable>
             );
           })}

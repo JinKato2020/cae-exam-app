@@ -77,16 +77,17 @@ export type ChapterStat = {
   accuracy: number; // correct / attempted（未挑戦は0）
 };
 
-// 固体分野の指定した級の章配列（分析はこの級を対象にする。既定は2級）。
+// 分野×級の章配列（分析対象。既定は固体・2級）。fieldId は CATALOG の分野id（'solid'|'thermal'|'vibration'…）。
 export type GradeId = 'g1' | 'g2';
-function gradeChapters(gradeId: GradeId) {
-  const solid = CATALOG.find((f) => f.id === 'solid');
-  const g = solid?.grades.find((gg) => gg.id === gradeId);
+export type FieldId = string; // CATALOG の分野id。未指定は 'solid'（後方互換）
+function gradeChapters(gradeId: GradeId, fieldId: FieldId = 'solid') {
+  const field = CATALOG.find((f) => f.id === fieldId);
+  const g = field?.grades.find((gg) => gg.id === gradeId);
   return g?.chapters ?? [];
 }
 
-export function chapterStats(map: ProgressMap, gradeId: GradeId = 'g2'): ChapterStat[] {
-  return gradeChapters(gradeId).map((c) => {
+export function chapterStats(map: ProgressMap, gradeId: GradeId = 'g2', fieldId: FieldId = 'solid'): ChapterStat[] {
+  return gradeChapters(gradeId, fieldId).map((c) => {
     const ids = c.data.questions.map((q) => q.id);
     let attempted = 0;
     let correct = 0;
@@ -114,8 +115,8 @@ export type OverallStat = {
   accuracy: number;
 };
 
-export function overallStat(map: ProgressMap, gradeId: GradeId = 'g2'): OverallStat {
-  const stats = chapterStats(map, gradeId);
+export function overallStat(map: ProgressMap, gradeId: GradeId = 'g2', fieldId: FieldId = 'solid'): OverallStat {
+  const stats = chapterStats(map, gradeId, fieldId);
   const totalQuestions = stats.reduce((n, s) => n + s.total, 0);
   const attempted = stats.reduce((n, s) => n + s.attempted, 0);
   const correct = stats.reduce((n, s) => n + s.correct, 0);
@@ -146,8 +147,39 @@ export const FIELDS_G1: FieldDef[] = [
   { id: 'D', label: '伝熱・要素', chapters: ['ch7', 'ch8'] }, // 伝熱/要素テクノロジー
   { id: 'E', label: '数値・検証', chapters: ['ch9', 'ch10', 'ch11'] }, // 数値解析/検証/モデリング
 ];
-export function fieldsOf(gradeId: GradeId): FieldDef[] {
-  return gradeId === 'g1' ? FIELDS_G1 : FIELDS_G2;
+export function fieldsOf(gradeId: GradeId, fieldId: FieldId = 'solid'): FieldDef[] {
+  if (fieldId === 'solid') return gradeId === 'g1' ? FIELDS_G1 : FIELDS_G2;
+  return autoFields(gradeId, fieldId);
+}
+// 章id 'ch12' → 12（数字が無ければ0）。
+function chapterNum(id: string): number {
+  const m = /(\d+)/.exec(id);
+  return m ? parseInt(m[1], 10) : 0;
+}
+// 固体以外の分野は章構成が可変（章が増える）ため、curated な5分野を持たない。
+// 章を最大5グループへ均等分割してレーダー軸を自動生成する（ラベル＝章番号レンジ「1–3章」）。
+// これで熱流体・振動など新分野を追加してもホームのレーダーが破綻せず、章追加にも自動追従する。
+function autoFields(gradeId: GradeId, fieldId: FieldId): FieldDef[] {
+  const chs = gradeChapters(gradeId, fieldId);
+  const n = chs.length;
+  if (n === 0) return [];
+  const groups = Math.min(5, n);
+  const per = Math.ceil(n / groups);
+  const tags = ['A', 'B', 'C', 'D', 'E'];
+  const out: FieldDef[] = [];
+  for (let g = 0; g < groups; g++) {
+    const slice = chs.slice(g * per, (g + 1) * per);
+    if (slice.length === 0) continue;
+    const nums = slice.map((c) => chapterNum(c.id));
+    const lo = nums[0];
+    const hi = nums[nums.length - 1];
+    out.push({
+      id: tags[out.length],
+      label: lo === hi ? `${lo}章` : `${lo}–${hi}章`,
+      chapters: slice.map((c) => c.id),
+    });
+  }
+  return out;
 }
 // 後方互換（既定=2級）
 export const FIELDS = FIELDS_G2;
@@ -163,9 +195,9 @@ export type FieldStat = {
 };
 
 // 章別集計を分野単位に束ね直す。
-export function fieldStats(map: ProgressMap, gradeId: GradeId = 'g2'): FieldStat[] {
-  const byChapter = new Map(chapterStats(map, gradeId).map((s) => [s.id, s]));
-  return fieldsOf(gradeId).map((f) => {
+export function fieldStats(map: ProgressMap, gradeId: GradeId = 'g2', fieldId: FieldId = 'solid'): FieldStat[] {
+  const byChapter = new Map(chapterStats(map, gradeId, fieldId).map((s) => [s.id, s]));
+  return fieldsOf(gradeId, fieldId).map((f) => {
     let total = 0;
     let attempted = 0;
     let correct = 0;
@@ -296,6 +328,7 @@ const FSNAP_KEY = 'cae.fieldsnap.v1';
 export type FieldSnap = {
   ts: number; // 記録した時刻
   grade: GradeId;
+  field?: FieldId; // 分野（固体/熱流体/…）。旧データに無ければ 'solid' 扱い
   acc: Record<string, number>; // 分野id → 正答率(0..1)
   att: Record<string, number>; // 分野id → 挑戦数
 };
@@ -314,12 +347,12 @@ export async function loadFieldSnaps(): Promise<FieldSnapStore> {
 
 // 現在の分野正答率を記録する。同じ級の当日分が既にあれば何もしない（1日1回）。
 // 40日より古いスナップショットは間引く。
-export async function snapshotFields(map: ProgressMap, gradeId: GradeId): Promise<void> {
+export async function snapshotFields(map: ProgressMap, gradeId: GradeId, fieldId: FieldId = 'solid'): Promise<void> {
   try {
     const store = await loadFieldSnaps();
     const today = ymd(new Date());
-    if (store.some((s) => s.grade === gradeId && ymd(new Date(s.ts)) === today)) return;
-    const fs = fieldStats(map, gradeId);
+    if (store.some((s) => s.grade === gradeId && (s.field ?? 'solid') === fieldId && ymd(new Date(s.ts)) === today)) return;
+    const fs = fieldStats(map, gradeId, fieldId);
     // 全分野が未挑戦なら記録しない（空の基準を作らない）。
     if (!fs.some((f) => f.attempted > 0)) return;
     const acc: Record<string, number> = {};
@@ -329,7 +362,7 @@ export async function snapshotFields(map: ProgressMap, gradeId: GradeId): Promis
       att[f.id] = f.attempted;
     }
     const cutoff = Date.now() - 40 * 86400000;
-    const next = [...store.filter((s) => s.ts >= cutoff), { ts: Date.now(), grade: gradeId, acc, att }];
+    const next = [...store.filter((s) => s.ts >= cutoff), { ts: Date.now(), grade: gradeId, field: fieldId, acc, att }];
     await AsyncStorage.setItem(FSNAP_KEY, JSON.stringify(next));
   } catch {
     /* 保存失敗はクラッシュさせない */
@@ -355,11 +388,12 @@ export type FieldCompare = {
 export function fieldCompareFrom(
   store: FieldSnapStore,
   current: FieldStat[],
-  gradeId: GradeId
+  gradeId: GradeId,
+  fieldId: FieldId = 'solid'
 ): FieldCompare {
   const cutoff = Date.now() - 7 * 86400000;
   const base = store
-    .filter((s) => s.grade === gradeId && s.ts <= cutoff)
+    .filter((s) => s.grade === gradeId && (s.field ?? 'solid') === fieldId && s.ts <= cutoff)
     .sort((a, b) => b.ts - a.ts)[0];
   const growth: FieldGrowth = {};
   for (const f of current) {
@@ -383,6 +417,7 @@ const CSNAP_KEY = 'cae.chaptersnap.v1';
 export type ChapterSnap = {
   ts: number;
   grade: GradeId;
+  field?: FieldId; // 分野。旧データに無ければ 'solid' 扱い
   acc: Record<string, number>; // 章id → 正答率(0..1)
   att: Record<string, number>; // 章id → 挑戦数
 };
@@ -400,12 +435,12 @@ export async function loadChapterSnaps(): Promise<ChapterSnapStore> {
 }
 
 // 現在の章別正答率を記録（同じ級の当日分があれば何もしない＝1日1回）。60日より古いものは間引く。
-export async function snapshotChapters(map: ProgressMap, gradeId: GradeId): Promise<void> {
+export async function snapshotChapters(map: ProgressMap, gradeId: GradeId, fieldId: FieldId = 'solid'): Promise<void> {
   try {
     const store = await loadChapterSnaps();
     const today = ymd(new Date());
-    if (store.some((s) => s.grade === gradeId && ymd(new Date(s.ts)) === today)) return;
-    const cs = chapterStats(map, gradeId);
+    if (store.some((s) => s.grade === gradeId && (s.field ?? 'solid') === fieldId && ymd(new Date(s.ts)) === today)) return;
+    const cs = chapterStats(map, gradeId, fieldId);
     if (!cs.some((c) => c.attempted > 0)) return; // 全章未挑戦なら記録しない
     const acc: Record<string, number> = {};
     const att: Record<string, number> = {};
@@ -414,7 +449,7 @@ export async function snapshotChapters(map: ProgressMap, gradeId: GradeId): Prom
       att[c.id] = c.attempted;
     }
     const cutoff = Date.now() - 60 * 86400000;
-    const next = [...store.filter((s) => s.ts >= cutoff), { ts: Date.now(), grade: gradeId, acc, att }];
+    const next = [...store.filter((s) => s.ts >= cutoff), { ts: Date.now(), grade: gradeId, field: fieldId, acc, att }];
     await AsyncStorage.setItem(CSNAP_KEY, JSON.stringify(next));
   } catch {
     /* 保存失敗はクラッシュさせない */
@@ -425,11 +460,12 @@ export async function snapshotChapters(map: ProgressMap, gradeId: GradeId): Prom
 export function chapterSeriesAt(
   store: ChapterSnapStore,
   gradeId: GradeId,
-  minAgeDays: number
+  minAgeDays: number,
+  fieldId: FieldId = 'solid'
 ): Record<string, number> | null {
   const cutoff = Date.now() - minAgeDays * 86400000;
   const snap = store
-    .filter((s) => s.grade === gradeId && s.ts <= cutoff)
+    .filter((s) => s.grade === gradeId && (s.field ?? 'solid') === fieldId && s.ts <= cutoff)
     .sort((a, b) => b.ts - a.ts)[0];
   return snap ? snap.acc : null;
 }

@@ -1,0 +1,145 @@
+{
+  "grade": "熱流体力学 1級",
+  "chapter": 13,
+  "title": "第13章 界面追跡・捕獲法",
+  "intro": "本章は、変形を伴う気液界面や液液界面を『界面を陽に追う直接解法』で扱う手法群を学びます。平均化モデル(多流体モデルなど)が平均化した基礎式を実験相関式で閉じるのに対し、界面追跡・捕獲法は界面における境界条件(跳躍条件)を考慮して瞬時局所の基礎式を平均化せず直接解くため『混相流の直接解法』と呼ばれます。固定格子を用いる場合、界面をある相の体積存在率で表すVOF法、界面からの符号付き距離関数で表すLevel Set法(いずれも界面捕獲法)、界面上に線素・三角形要素を配置して追うFront Tracking法(界面追跡法)が代表です。移動格子ではALE法が、純ラグランジュ法の欠点である格子の極端変形を避けます。理論の骨格として、相関数(ヘビサイド関数)X_kの勾配が界面上のデルタ関数となり瞬時局所界面積濃度に結び付くこと、界面追跡方程式 ∂φ/∂t+u・∇φ=0 と平均曲率 κ=-∇・(∇φ/|∇φ|)、Level Set関数の距離関数性を回復する再初期化方程式、平滑化ヘビサイドを微分して得る平滑化デルタ関数とCSFモデルによる表面張力(体積力)化、その陽解法安定条件、VOF高さ関数による曲率評価、Phase Field法(保存型Cahn-Hilliard/非保存型Allen-Cahn)、界面再構成法(SLIC・PLIC・MARS)、界面の跳躍条件までを、公式標準問題の解説編に忠実に噛み砕きます。移流方程式の数値解法はFTCSが不安定でTVD・CIP・ラグランジュ法が用いられること、球形気泡の上昇速度予測には等価直径あたり約20セルが目安であることなど、実務的な勘所も押さえます。",
+  "items": [
+    {
+      "id": "t1ch13-1",
+      "kind": "term",
+      "term": "界面捕獲法(固定格子・関数φ)",
+      "body": "界面捕獲法は、空間に固定した格子の上に界面を表す関数 $\\phi$ を導入し、$\\phi$ が一定となる場所を界面とみなして界面の位置とその時間変化を捉える手法です。代表例はVOF法(体積存在率を変数)、密度関数法、Level Set法(界面からの距離を変数)です。界面上にマーカーを置かず、固定格子で $\\phi$ を移流させた結果から界面の位置・方向を算出する(=界面再構成)点が特徴で、計算格子点が界面上にあるとは限りません。長所は界面のちぎれ・合体などの位相変化を自然に扱えること、短所は界面が有限の厚みを持ちやすく数値拡散や体積保存の課題が残ることです。",
+      "example": "水面のような気液界面を、各セルの体積率F(0〜1)でとらえ、F=0.5付近を界面とみなす。格子は動かさず、Fの分布の移流だけで界面の運動を表す。",
+      "figureImage": "t1f13Capturing"
+    },
+    {
+      "id": "t1ch13-2",
+      "kind": "term",
+      "term": "界面追跡法(Front Tracking)",
+      "body": "界面追跡法は、固定格子上に界面を表す要素(二次元なら線素、三次元なら三角形要素)を配置し、その要素群(マーカー)の運動を追跡して界面を表す手法です。TryggvasonのFront Tracking法が代表で、界面そのものを陽に持つため界面を鋭く保てます。ただし界面近傍の4セル程度にわたって密度や粘性係数を滑らかに分布させて背景の固定格子と連成するため、実際には4格子サイズ程度の界面厚さを有します(界面厚さが厳密に零なのは境界適合格子法)。要素の再配置や位相変化(合体・分裂)の扱いが課題です。",
+      "example": "上昇する気泡の界面を三角形要素で覆い、要素の頂点を流れとともに動かして気泡の変形を追う。界面は鋭いが、近傍数セルで物性を滑らかに遷移させる。",
+      "figureImage": "t1f13Tracking"
+    },
+    {
+      "id": "t1ch13-3",
+      "kind": "term",
+      "term": "VOF法(Volume of Fluid)",
+      "formula": "\\frac{\\partial F}{\\partial t}+\\boldsymbol{u}\\cdot\\nabla F=0,\\qquad F=\\frac{\\text{相の占める体積}}{\\text{セル体積}}",
+      "body": "VOF法は、ある相の体積存在率 $F$(セルを相が占める割合、$0\\le F\\le1$)を変数とし、固定格子上でその移流を計算する界面捕獲法です。$F$ の分布から界面形状を再構成します。体積保存式に基づくため体積保存性に原理的に優れますが、$F$ が0か1へ鋭く変化するため、界面再構成(SLIC・PLICなど)を工夫しないと界面がなまる(数値拡散)ことがあります。また移流項を高次差分にするだけでは各相の体積が常に厳密に保存するとは限らず、ソレノイダル条件と適切な移流計算が必要です。",
+      "example": "F=1が液、F=0が気体、0<F<1が界面セル。PLICで界面を区分的線分に復元してからFを移流させると、界面をシャープに保ちやすい。",
+      "figureImage": "t1f13VOF"
+    },
+    {
+      "id": "t1ch13-4",
+      "kind": "term",
+      "term": "Level Set法(符号付き距離関数)",
+      "formula": "\\frac{\\partial \\phi}{\\partial t}+\\boldsymbol{u}\\cdot\\nabla\\phi=0,\\qquad \\phi=0\\ (\\text{界面}),\\ |\\nabla\\phi|=1",
+      "body": "Level Set法は、界面からの符号付き距離を表す関数 $\\phi$ を変数とし、固定格子上でその移流 $\\partial\\phi/\\partial t+\\boldsymbol{u}\\cdot\\nabla\\phi=0$ を計算する界面捕獲法です。$\\phi=0$ を界面とし、法線や曲率を $\\phi$ の微分から滑らかに評価できる利点があります(界面の数値拡散が少ない)。一方、移流を続けると $|\\nabla\\phi|=1$ の距離関数性が崩れて体積が保存しにくくなるため、後述の再初期化方程式で距離関数性を回復させます。VOF法とLevel Set法は『体積存在率か距離関数か』という変数の違いで対比されます。",
+      "example": "界面の内側でφ<0、外側でφ>0、界面上でφ=0。曲率κ=-∇・(∇φ/|∇φ|)が滑らかに求まるので表面張力の計算に向く。",
+      "figureImage": "t1f13LevelSet"
+    },
+    {
+      "id": "t1ch13-5",
+      "kind": "term",
+      "term": "ALE法(Arbitrary Lagrangian Eulerian)",
+      "body": "ALE法は、移動境界流れを解く構造格子(物体適合格子)手法の一つで、格子の移動速度を流体の移動速度とは独立(Arbitrary=任意)に定めるのが要点です。純ラグランジュ法では格子が流体と一体に動くため大変形で格子が極端に歪む欠点がありますが、ALE法は移動する界面の形状は界面に追従して保ちつつ、その他の領域の格子の極端な変形を防ぎます。オイラー的(固定格子)とラグランジュ的(流体追従)の中間に位置づけられます。固定格子の界面捕獲法・追跡法とは異なり、格子自体を動かす手法である点に注意します。",
+      "example": "自由表面のスロッシングで、表面に沿う格子は液面に追従させ、遠方の格子はゆっくり動かして歪みを抑える。",
+      "figureImage": "t1f13ALE"
+    },
+    {
+      "id": "t1ch13-6",
+      "kind": "formula",
+      "term": "相関数X_kの勾配と瞬時局所界面積濃度",
+      "formula": "\\nabla X_k=-\\delta(\\boldsymbol{x}-\\boldsymbol{x}_i)\\,\\boldsymbol{n}_k,\\quad \\frac{\\partial X_k}{\\partial t}+\\boldsymbol{u}_i\\cdot\\nabla X_k=0,\\quad a_i=\\delta(\\boldsymbol{x}-\\boldsymbol{x}_i),\\quad X_k^{\\,2}=X_k",
+      "body": "相関数(相指示関数)$X_k$ は $k$ 相内で1、$k$ 相以外で0となるヘビサイド関数です。その勾配は界面上のみで値を持つデルタ関数となり、$k$ 相の外向き法線 $\\boldsymbol{n}_k$ とは反対向きに現れるため $\\nabla X_k=-\\delta(\\boldsymbol{x}-\\boldsymbol{x}_i)\\boldsymbol{n}_k$(符号に注意)。界面とともに移動するので $\\partial X_k/\\partial t+\\boldsymbol{u}_i\\cdot\\nabla X_k=0$。デルタ関数を検査体積で体積積分すると界面総面積となるため、単位体積あたり界面面積すなわち瞬時局所界面積濃度そのものであり $a_i=\\delta(\\boldsymbol{x}-\\boldsymbol{x}_i)$。$X_k$ は0か1の定数なので二乗しても不変で $X_k^2=X_k$ が成り立ちます。",
+      "example": "気泡内でX=1、外でX=0。∇Xは気泡表面だけに立ち、向きは外向き法線と逆。∫δ dV=界面面積。",
+      "figureImage": "t1f13PhaseIndicator"
+    },
+    {
+      "id": "t1ch13-7",
+      "kind": "formula",
+      "term": "界面追跡方程式と平均曲率",
+      "formula": "\\frac{\\partial \\phi}{\\partial t}+\\boldsymbol{u}\\cdot\\nabla\\phi=0,\\qquad \\boldsymbol{n}=\\frac{\\nabla\\phi}{|\\nabla\\phi|},\\qquad \\kappa=-\\nabla\\cdot\\boldsymbol{n}=-\\nabla\\cdot\\!\\left(\\frac{\\nabla\\phi}{|\\nabla\\phi|}\\right)",
+      "body": "界面を $\\phi(\\boldsymbol{x},t)=$ 一定 で表すと、界面は流れとともに移流するので界面追跡方程式は $\\partial\\phi/\\partial t+\\boldsymbol{u}\\cdot\\nabla\\phi=0$ です。非圧縮流れ $\\nabla\\cdot\\boldsymbol{u}=0$ なら保存形 $\\partial\\phi/\\partial t+\\nabla\\cdot(\\boldsymbol{u}\\phi)=0$ とも書けます。界面の単位法線は $\\boldsymbol{n}=\\nabla\\phi/|\\nabla\\phi|$、平均曲率はその発散の符号を反転して $\\kappa=-\\nabla\\cdot\\boldsymbol{n}=-\\nabla\\cdot(\\nabla\\phi/|\\nabla\\phi|)$。曲率はスカラー量であり、$-\\nabla\\phi/|\\nabla\\phi|$(法線ベクトルそのもの)と取り違えないことが要点です。この曲率は表面張力項の計算に用います。",
+      "example": "Level Set関数φなら、法線も曲率もφの微分から一発で求まる。表面張力はσκで界面に働く。",
+      "figureImage": "t1f13Curvature"
+    },
+    {
+      "id": "t1ch13-8",
+      "kind": "formula",
+      "term": "再初期化方程式(距離関数性の回復)",
+      "formula": "\\frac{\\partial \\phi}{\\partial \\tau}=\\mathrm{sign}(\\phi_0)\\left[1-|\\nabla\\phi|\\right]",
+      "body": "Level Set法では界面の移流に伴い、$\\phi$ の『界面からの符号付き距離($|\\nabla\\phi|=1$)』という性質が徐々に崩れます。これを回復するのが再初期化方程式で、擬似時間 $\\tau$ を進めて定常に達すると $|\\nabla\\phi|=1$ が満たされます。$\\mathrm{sign}(\\phi_0)$($\\phi_0$=再初期化前の関数)は界面の内外で符号を保ち、$|\\nabla\\phi|>1$ なら $\\phi$ を減らし、$<1$ なら増やして距離関数へ収束させます。式中の $\\phi_0$ は sign 関数の中だけに現れ、それ以外は未知量 $\\phi$ である点が要点です。単なる移流方程式や拡散方程式では距離関数性は回復しません。",
+      "example": "移流でφの等高線間隔が不均一になったら、界面位置(φ=0)は動かさずに等間隔(|∇φ|=1)へ整え直す。",
+      "figureImage": "t1f13Reinitialization"
+    },
+    {
+      "id": "t1ch13-9",
+      "kind": "formula",
+      "term": "平滑化ヘビサイド関数と平滑化デルタ関数",
+      "formula": "H_\\varepsilon(\\phi)=\\frac{1}{2}\\left[\\frac{\\phi}{\\varepsilon}+\\frac{1}{\\pi}\\sin\\frac{\\pi\\phi}{\\varepsilon}\\right],\\qquad \\delta_\\varepsilon(\\phi)=\\frac{dH_\\varepsilon}{d\\phi}=\\frac{1}{2}\\left[\\frac{1}{\\varepsilon}+\\frac{1}{\\varepsilon}\\cos\\frac{\\pi\\phi}{\\varepsilon}\\right]\\quad(|\\phi|<\\varepsilon)",
+      "body": "Level Set法で界面近傍の物性値や物理量を滑らかに扱うため、幅 $\\varepsilon$ で平滑化したヘビサイド関数 $H_\\varepsilon$ を用います($|\\phi|\\le-\\varepsilon$ で $-1/2$、$|\\phi|\\ge\\varepsilon$ で $1/2$ 等、定義域で場合分け)。CSFモデルの表面張力項に必要な平滑化デルタ関数 $\\delta_\\varepsilon$ は、整合性から $H_\\varepsilon$ の微分 $\\delta_\\varepsilon=dH_\\varepsilon/d\\phi$ として得ます。$|\\phi|<\\varepsilon$ で $H_\\varepsilon=\\tfrac{1}{2}[\\phi/\\varepsilon+(1/\\pi)\\sin(\\pi\\phi/\\varepsilon)]$ を微分すると $\\delta_\\varepsilon=\\tfrac{1}{2}[1/\\varepsilon+(1/\\varepsilon)\\cos(\\pi\\phi/\\varepsilon)]$ となり、$|\\phi|\\ge\\varepsilon$ では $\\delta_\\varepsilon=0$。$\\phi=0$ ではピーク $\\delta_\\varepsilon(0)=1/\\varepsilon$ を取ります。",
+      "example": "ε=2Δx程度に取り、界面から±εの帯だけで表面張力を体積力として分布させる。φ=0で最大1/ε、|φ|=εでゼロの釣鐘状。",
+      "figureImage": "t1f13SmoothedHeaviside"
+    },
+    {
+      "id": "t1ch13-10",
+      "kind": "term",
+      "term": "CSFモデル(表面張力の体積力化)",
+      "body": "CSF(Continuum Surface Force)モデルは、界面を含む計算セルにおいて表面張力の効果を『外力(体積力)』として運動量式に与える方法です。表面張力を界面に作用する面力ではなく、平滑化デルタ関数 $\\delta_\\varepsilon$ で界面近傍に分布させた体積力 $\\boldsymbol{f}_{sv}\\sim\\sigma\\kappa\\,\\delta_\\varepsilon\\,\\boldsymbol{n}$ として扱うため、固定格子上で界面を陽に切り出さずに表面張力を計算できます($\\sigma$=表面張力係数、$\\kappa$=曲率、$\\boldsymbol{n}$=法線)。VOF法・Level Set法いずれとも組み合わせられます。表面張力は界面の運動学的な扱い(界面再構成)とは別系統のモデルである点に注意します。",
+      "example": "界面セルにσκδ_εの体積力を加えるだけで、界面の切り出しなしに表面張力を再現できる。曲率κはφやFから評価する。",
+      "figureImage": "t1f13CSF"
+    },
+    {
+      "id": "t1ch13-11",
+      "kind": "formula",
+      "term": "表面張力を含む陽解法の安定条件",
+      "formula": "\\Delta t<C\\left(\\frac{\\rho}{\\sigma}\\right)^{1/2}(\\Delta x)^{3/2}",
+      "body": "CSFモデルで表面張力(毛管波)を陽解法で解くとき、時間刻み $\\Delta t$ には安定条件 $\\Delta t<C(\\rho/\\sigma)^{1/2}(\\Delta x)^{3/2}$ が課されます($\\rho$=密度、$\\sigma$=表面張力係数、$\\Delta x$=格子幅、$C$=無次元係数)。これは表面張力波の速度に対し、波が1ステップで1セルを越えない条件から導かれ、外力項の扱いに準拠します。次元は $[\\rho/\\sigma]=\\mathrm{s^2/m^3}$ なので $(\\rho/\\sigma)^{1/2}(\\Delta x)^{3/2}$ が時間の次元 s を与えます。$\\Delta x$ を細かくすると $\\Delta t$ が $(\\Delta x)^{3/2}$ で厳しくなる(表面張力律速)点が実務上重要です。",
+      "example": "ρ=10³, σ=0.1, Δx=1mm, C=1なら Δt<(10⁴)^{1/2}(10⁻³)^{3/2}≈3×10⁻³s。格子を半分にすると許容Δtは約1/2.8になる。",
+      "figureImage": "t1f13SurfaceTensionStability"
+    },
+    {
+      "id": "t1ch13-12",
+      "kind": "formula",
+      "term": "VOF高さ関数による曲率評価",
+      "formula": "|n_y|>|n_x|:\\ |\\kappa|=\\frac{\\left|\\partial^2 H^y/\\partial x^2\\right|}{\\left[1+\\left(\\partial H^y/\\partial x\\right)^2\\right]^{3/2}},\\qquad H^y_{i,j}=(F_{i,j-1}+F_{i,j}+F_{i,j+1})\\,\\Delta y",
+      "body": "VOF法では、界面法線の主方向に体積率 $F$ を積み上げた『高さ関数』から曲率を評価します。界面法線 $\\boldsymbol{n}=(n_x,n_y)$ が $|n_y|>|n_x|$(界面が主に $x$ 方向に伸びる)のときは、列ごとに $F$ を $y$ 方向に足した高さ関数 $H^y$ を作り、曲線 $y=H^y(x)$ の曲率式 $|\\kappa|=|H''|/[1+(H')^2]^{3/2}$ を用いて $|\\kappa|=|\\partial^2H^y/\\partial x^2|/[1+(\\partial H^y/\\partial x)^2]^{3/2}$ とします。逆に $|n_x|>|n_y|$ なら $H^x$ を $y$ で微分して $|\\kappa|=|\\partial^2H^x/\\partial y^2|/[1+(\\partial H^x/\\partial y)^2]^{3/2}$。分母の指数 $3/2$ と、法線の主方向に応じた高さ関数の取り方が要点です。",
+      "example": "∂H^y/∂x=0.75, ∂²H^y/∂x²=50 m⁻¹なら |κ|=50/[1+0.5625]^{3/2}=50/1.953≈26 m⁻¹。",
+      "figureImage": "t1f13HeightFunction"
+    },
+    {
+      "id": "t1ch13-13",
+      "kind": "term",
+      "term": "Phase Field法(Cahn-HilliardとAllen-Cahn)",
+      "formula": "\\text{保存型}:\\ \\frac{\\partial \\phi}{\\partial t}=M\\left(\\nabla^2 f'(\\phi)-\\xi\\nabla^4\\phi\\right)\\ (\\text{Cahn-Hilliard}),\\qquad \\text{非保存型}:\\ \\text{Allen-Cahn}",
+      "body": "Phase Field法(拡散界面モデル)は、熱力学的観点から系の自由エネルギー(バルクの自由エネルギーや界面エネルギー)を秩序変数 $\\phi$ で記述し、界面を有限幅で滑らかに扱う手法です。保存型秩序変数の時間発展はCahn-Hilliard方程式 $\\partial\\phi/\\partial t=M(\\nabla^2 f'(\\phi)-\\xi\\nabla^4\\phi)$ で表され、右辺第1項 $\\nabla^2 f'(\\phi)$ はバルクエネルギー起因、第2項 $-\\xi\\nabla^4\\phi$ は界面エネルギー起因です。$\\phi$ の総量は保存されます。$M$ はモビリティで界面厚みには関係しません。非保存型秩序変数にはAllen-Cahn方程式があり、蒸発凝縮といった相変化問題にはAllen-Cahnが用いられます。",
+      "example": "合金の相分離や気液界面をφの滑らかな遷移で表す。厚みはξ(界面エネルギー)側で決まり、Mは緩和の速さ。",
+      "figureImage": "t1f13PhaseField"
+    },
+    {
+      "id": "t1ch13-14",
+      "kind": "term",
+      "term": "界面再構成法(SLIC・PLIC・MARS)",
+      "body": "界面捕獲法では界面上にマーカーを置かないため、固定格子で移流させた体積率や距離関数の結果から界面の位置や方向を算出します。これを界面再構成と呼びます。代表的な界面再構成法に、界面を格子軸に平行な階段状で近似するSLIC、各セル内で界面を区分的な線分(平面)で近似し体積率と法線に合わせるPLIC、マーカーと再構成を組み合わせるMARSなどがあります。これらは界面の運動学的な扱い(位置・方向の算出)に関する手法です。一方、CSFは表面張力を体積力として与えるモデルであり、界面再構成とは直接関係のない別系統の手法である点に注意します。",
+      "example": "同じ体積率0.5でも、SLICは階段状、PLICは傾いた線分で界面を復元する。PLICのほうが界面をシャープに保ちやすい。",
+      "figureImage": "t1f13Reconstruction"
+    },
+    {
+      "id": "t1ch13-15",
+      "kind": "term",
+      "term": "気液界面の跳躍条件(界面境界条件)",
+      "body": "気液界面では、相変化の有無にかかわらず界面をはさんで物理量(圧力・速度勾配・応力・エネルギー流束など)が不連続に跳びます。これを表すのが跳躍条件で、界面での力学的・熱的なつり合いから導かれ、直接解法(界面追跡・捕獲法)では界面の境界条件として陽に課します。跳躍条件に本質的に関与するのは、表面張力(界面をはさむ圧力の跳び=ラプラス圧 $\\Delta p=\\sigma\\kappa$)、蒸発・凝縮(相変化に伴う質量・運動量・エネルギーの跳び)、粘性応力(界面での応力のつり合い)などです。一方、気液の密度比は両相の物性に関する量であり、界面での力学的な跳躍そのものとは直接関係しません。",
+      "example": "静止気泡ではラプラス圧Δp=σκで内圧が外より高い。蒸発があれば界面で質量流束と運動量の跳びが生じる。",
+      "figureImage": "t1f13JumpCondition"
+    },
+    {
+      "id": "t1ch13-16",
+      "kind": "term",
+      "term": "移流方程式の数値解法と計算が困難な現象",
+      "body": "界面の移流方程式 $\\partial\\phi/\\partial t+u\\,\\partial\\phi/\\partial x=0$ を安定に解くことが界面法の要です。FTCS法(時間前進・空間中心差分)は移流方程式を安定に解けず不適切で、TVD法(リミッターで数値振動を抑制)、CIP法(補間で鋭い分布を保持)、ラグランジュ法($D\\phi/Dt=0$ で界面上の粒子を移流)が用いられます。実務では、球形気泡の上昇速度を精度良く予測するには等価直径あたり約20セルの解像度が目安です。連続体スケールの界面法で最も困難な対象は、界面が無から生じる現象(例:均一加熱平板上の気泡核生成)で、これは分子スケールの多重スケール問題として原理的に扱えません。気泡・液滴の合体を正しく予測できる手法も現状ありません。",
+      "example": "矩形波の移流でFTCSは振動・発散、CIPは鋭さを保つ。気泡核生成は連続体スケールでは計算できない。",
+      "figureImage": "t1f13Challenges"
+    }
+  ]
+}

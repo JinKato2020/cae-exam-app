@@ -55,6 +55,10 @@ import t1ch9 from '../content/questions/thermal1-09-multiphase-basics.json';
 import t1ch10 from '../content/questions/thermal1-10-bubbles-droplets-particles.json';
 import t1ch11 from '../content/questions/thermal1-11-waves-interfaces.json';
 import t1ch12 from '../content/questions/thermal1-12-averaging-models.json';
+import t1ch13 from '../content/questions/thermal1-13-interface-tracking.json';
+import t1ch14 from '../content/questions/thermal1-14-particle-tracking.json';
+import t1ch15 from '../content/questions/thermal1-15-phase-change.json';
+import t1ch16 from '../content/questions/thermal1-16-verification-validation.json';
 
 // ready: 章が使えるか（省略時は true＝使える）。準備中の章は false。
 // formulaId: 公式・用語の参照キー（FORMULA_DOCS のキー。省略時は id を使う）。
@@ -154,6 +158,10 @@ export const CATALOG: FieldEntry[] = [
           { id: 'ch10', title: '第10章 気泡・液滴・粒子', data: t1ch10 as unknown as Chapter, ready: true, formulaId: 't1ch10' },
           { id: 'ch11', title: '第11章 波と界面', data: t1ch11 as unknown as Chapter, ready: true, formulaId: 't1ch11' },
           { id: 'ch12', title: '第12章 平均化モデル', data: t1ch12 as unknown as Chapter, ready: true, formulaId: 't1ch12' },
+          { id: 'ch13', title: '第13章 界面追跡・捕獲法', data: t1ch13 as unknown as Chapter, ready: true, formulaId: 't1ch13' },
+          { id: 'ch14', title: '第14章 粒子追跡モデル', data: t1ch14 as unknown as Chapter, ready: true, formulaId: 't1ch14' },
+          { id: 'ch15', title: '第15章 相変化', data: t1ch15 as unknown as Chapter, ready: true, formulaId: 't1ch15' },
+          { id: 'ch16', title: '第16章 結果の検証と妥当性確認', data: t1ch16 as unknown as Chapter, ready: true, formulaId: 't1ch16' },
         ],
       },
     ],
