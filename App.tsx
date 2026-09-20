@@ -68,6 +68,8 @@ import {
   hasAnyPurchase,
   isLocked,
   entOfQuestion,
+  entKey,
+  entInfoByKey,
   ENTITLEMENTS,
   FREE_PER_CHAPTER,
   DEFAULT_PRO_STATE,
@@ -172,9 +174,14 @@ function AppInner() {
   const [showPaywall, setShowPaywall] = useState(false);
   const [payTarget, setPayTarget] = useState<PayTarget | null>(null);
 
-  // ロック中の問題／設定から購入画面を開く。target＝その級（無ければ最初の未購入級）。
+  // ロック中の問題／設定から購入画面を開く。
+  // target 指定あり（ロック問題からの導線）＝その級をそのまま売る。
+  // target 未指定（設定の「プレミアムの購入」）＝ホームで選択中の分野×級を既定にする（動的追従）。
+  //   選択中が課金対象でない（例：振動＝準備中で問題なし）時は、未購入の級→先頭 の順でフォールバック。
   function openPaywall(target: PayTarget | null) {
-    const fallback = ENTITLEMENTS.find((e) => !proSt.owned.includes(e.key)) ?? ENTITLEMENTS[0] ?? null;
+    const current = entInfoByKey(entKey(field, grade)); // ホーム選択中の分野×級（課金対象なら見つかる）
+    const fallback =
+      current ?? ENTITLEMENTS.find((e) => !proSt.owned.includes(e.key)) ?? ENTITLEMENTS[0] ?? null;
     setPayTarget(target ?? (fallback ? { key: fallback.key, title: fallback.title } : null));
     setShowPaywall(true);
   }
