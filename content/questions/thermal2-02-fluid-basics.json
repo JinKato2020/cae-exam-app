@@ -43,7 +43,7 @@
       "difficulty": 2,
       "question": "密度 $\\rho$・粘度 $\\mu$ 一定の運動方程式を、代表速度 $V$・代表長さ $L$・$p^*=p/(\\rho V^2)$ で無次元化すると、粘性項に係数 $\\dfrac{\\mu}{\\rho VL}$、重力項に係数 $\\dfrac{Lg}{V^2}$ が現れる。これらに対応する無次元数と物理的意味の組合せとして正しいものはどれか。",
       "choices": [
-        "$\\dfrac{\\mu}{\\rho VL}=\\dfrac{1}{Re}$($Re=\\rho VL/\\mu$:慣性力と粘性力の比)、$\\dfrac{Lg}{V^2}=\\dfrac{1}{Fr^2}$($Fr=V/\\sqrt{Lg}$:慣性力と重力の比)",
+        "$\\dfrac{\\mu}{\\rho VL}=\\dfrac{1}{Re}$($Re=\\rho VL/\\mu$:慣性力と粘性力の比)、$\\dfrac{Lg}{V^2}=\\dfrac{1}{Fr^2}$($Fr=V/\\sqrt{Lg}$、$Fr^2$ が慣性力と重力の比＝Fr はその平方根)",
         "$\\dfrac{\\mu}{\\rho VL}=Re$(慣性力と粘性力の比)、$\\dfrac{Lg}{V^2}=Fr$(慣性力と重力の比)",
         "$\\dfrac{\\mu}{\\rho VL}=\\dfrac{1}{Fr}$、$\\dfrac{Lg}{V^2}=\\dfrac{1}{Re}$",
         "どちらの係数も無次元ではなく、単位をもつ有次元量である"
