@@ -1838,7 +1838,7 @@ function SettingsTab(props: {
       <Text style={[styles.sectionHead, { color: t.text }]}>このアプリについて</Text>
       <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
         <Text style={[styles.bodyText, { color: t.sub }]}>
-          計算力学技術者（CAE）試験の対策アプリです。収録している問題・解説はすべてオリジナルで作成しています。学習の記録は端末内に保存されます。ログインすると、記録が安全にクラウドへバックアップされ、機種変更や再インストールのあとでも引き継げます。
+          計算力学技術者（CAE）試験の対策アプリです。収録している問題・解説・図はすべてオリジナルで作成しています。学習の記録は端末内に保存されます。
         </Text>
       </View>
 
@@ -1886,7 +1886,7 @@ function SettingsTab(props: {
       {/* 最下部のバージョン表示。7回タップで開発用ロック解除（隠しジェスチャ）。 */}
       <Pressable onPress={onTapVersion} style={styles.versionFooter} hitSlop={8}>
         <Text style={[styles.versionText, { color: t.sub }]}>
-          CAE 固体力学　v{APP_VERSION}{props.devPro ? '　・　開発ロック解除中' : ''}
+          計算力学技術者　v{APP_VERSION}{props.devPro ? '　・　開発ロック解除中' : ''}
         </Text>
       </Pressable>
     </ScrollView>
