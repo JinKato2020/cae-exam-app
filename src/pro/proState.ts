@@ -106,7 +106,10 @@ export async function loadProState(): Promise<ProState> {
     }
     // 旧・単一Pro('1')だった端末は「全部の級を持っていた」扱いに移行（既存ユーザーを剥がさない）。
     if (!o && legacy === '1') owned = ENTITLEMENTS.map((e) => e.key);
-    return { owned, devPro: d === '1' };
+    // 開発用の全解除(devPro)は「開発中(__DEV__)だけ」有効。公開/TestFlightビルド(__DEV__=false)では
+    // テスト端末に残った保存値(d==='1')があっても無視し、裏口を確実にオフにする（2026-09-20 公開方針）。
+    const devPro = typeof __DEV__ !== 'undefined' && __DEV__ ? d === '1' : false;
+    return { owned, devPro };
   } catch {
     return { ...DEFAULT_PRO_STATE };
   }
