@@ -21,6 +21,14 @@ const ANDROID_KEY = '';
 export const TERMS_URL = 'https://jinkato2020.github.io/cae-legal/terms.html';
 export const PRIVACY_URL = 'https://jinkato2020.github.io/cae-legal/privacy.html';
 
+// 問い合わせ窓口。JLPT等 別アプリと同じ受信箱(contact@safa-lang.com)を共有するため、
+// 件名に必ず【CAE】を自動付与して、どのアプリからの問い合わせか一目で分かるようにする(混同防止)。
+export const SUPPORT_EMAIL = 'contact@safa-lang.com';
+export const SUPPORT_SUBJECT = '【CAE】お問い合わせ';
+/** タップでメール作成（宛先＋件名「【CAE】お問い合わせ」を自動セット）。Linking.openURL に渡す。 */
+export const SUPPORT_MAILTO_URL =
+  `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(SUPPORT_SUBJECT)}`;
+
 /** 今のプラットフォームの公開SDKキー。未設定なら ''(=課金を起動しない)。 */
 export function revenueCatApiKey(): string {
   return (Platform.OS === 'ios' ? IOS_KEY : ANDROID_KEY).trim();

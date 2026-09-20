@@ -60,7 +60,7 @@ import {
   type DailyDigest,
 } from './src/progress';
 import Paywall, { type PayTarget } from './src/pro/Paywall';
-import { TERMS_URL, PRIVACY_URL } from './src/config/revenuecat';
+import { TERMS_URL, PRIVACY_URL, SUPPORT_MAILTO_URL } from './src/config/revenuecat';
 import {
   loadProState,
   saveOwned,
@@ -134,10 +134,16 @@ const COURSES: Course[] = [
   { id: 'vibration', name: '振動', chapters: [], ready: false },
 ];
 
+// 分野×級 → コース（問題/公式タブが表示する対象）。ホームの選択に問題/公式タブを追従させる要。
+function courseOf(fieldId: FieldId, gradeId: GradeId): Course | null {
+  const id = fieldId === 'vibration' ? 'vibration' : `${fieldId}-${gradeId === 'g1' ? '1' : '2'}`;
+  return COURSES.find((c) => c.id === id) ?? null;
+}
+
 type Tab = 'home' | 'study' | 'formula' | 'settings';
 type ThemePref = 'system' | 'light' | 'dark';
-type StudyView = 'course' | 'chapters' | 'tiles' | 'problem';
-type FormulaView = 'course' | 'chapters' | 'titles' | 'item';
+type StudyView = 'chapters' | 'tiles' | 'problem';
+type FormulaView = 'chapters' | 'titles' | 'item';
 
 export default function App() {
   return (
@@ -186,9 +192,24 @@ function AppInner() {
     );
   }
 
-  // 問題タブのサブ画面状態
-  const [studyView, setStudyView] = useState<StudyView>('course');
-  const [course, setCourse] = useState<Course | null>(null);
+  // ホームで選んだ分野×級を「アプリ全体の唯一の選択」として保持（問題/公式タブもこれに追従＝
+  // タブ側で分野・級を選び直す2度手間をなくす）。起動時は前回値を復元（初回のみ固体2級）。
+  const [grade, setGrade] = useState<GradeId>('g2');
+  const [field, setField] = useState<FieldId>('solid');
+  useEffect(() => {
+    AsyncStorage.getItem(HOME_GRADE_KEY).then((v) => { if (v === 'g1' || v === 'g2') setGrade(v); }).catch(() => {});
+    AsyncStorage.getItem(HOME_FIELD_KEY).then((v) => { if (v && DISCIPLINES.some((d) => d.id === v)) setField(v as FieldId); }).catch(() => {});
+  }, []);
+  function chooseFieldGrade(f: FieldId, g: GradeId) {
+    setField(f); AsyncStorage.setItem(HOME_FIELD_KEY, f).catch(() => {});
+    setGrade(g); AsyncStorage.setItem(HOME_GRADE_KEY, g).catch(() => {});
+  }
+  // 選択中の分野×級に対応するコース。問題タブ・公式タブはこれをそのまま表示する。
+  const course = useMemo(() => courseOf(field, grade), [field, grade]);
+  const formulaCourse = course; // 公式・用語も同じ分野×級に追従
+
+  // 問題タブのサブ画面状態（コース選択画面は廃止＝章の目次から始まる）
+  const [studyView, setStudyView] = useState<StudyView>('chapters');
   const [chapter, setChapter] = useState<ChapterEntry | null>(null);
   // 出題中のリスト（章の全問 or 復習リスト）と現在位置
   const [activeList, setActiveList] = useState<Question[]>([]);
@@ -198,8 +219,7 @@ function AppInner() {
   const [answers, setAnswers] = useState<Record<string, number>>({});
 
   // 公式・用語タブ（課程 → 章 → タイトル一覧 → 個別解説）
-  const [formulaView, setFormulaView] = useState<FormulaView>('course');
-  const [formulaCourse, setFormulaCourse] = useState<Course | null>(null);
+  const [formulaView, setFormulaView] = useState<FormulaView>('chapters');
   const [formulaChapterId, setFormulaChapterId] = useState<string | null>(null);
   const [formulaItemId, setFormulaItemId] = useState<string | null>(null);
   // 問題画面から公式へ飛んだか（true の時、公式カードに「問題に戻る」を出す）
@@ -243,6 +263,11 @@ function AppInner() {
 
   const wrongIds = useMemo(() => wrongIdsFrom(progress), [progress]);
   const wrongQuestions = useMemo(() => questionsByIds(wrongIds), [wrongIds]);
+  // 要復習（間違い）はホームで選んだ分野×級に限定する。固体1級の弱点を熱流体1級のホームに出さない＝混同防止。
+  const courseWrongQuestions = useMemo(() => {
+    const ids = new Set(fieldGradeChapters(field, grade).flatMap((c) => c.data.questions.map((q) => q.id)));
+    return wrongQuestions.filter((q) => ids.has(q.id));
+  }, [wrongQuestions, field, grade]);
 
   // 出題を開始（章 or 復習）。startIndex から表示。
   function openProblems(list: Question[], title: string, startIndex = 0) {
@@ -300,15 +325,18 @@ function AppInner() {
             t={t}
             progress={progress}
             daily={daily}
-            wrongCount={wrongQuestions.length}
-            onReview={() => openProblems(wrongQuestions, '間違い復習')}
+            grade={grade}
+            field={field}
+            onChooseFieldGrade={chooseFieldGrade}
+            wrongCount={courseWrongQuestions.length}
+            onReview={() => openProblems(courseWrongQuestions, '間違い復習')}
             onGoStudy={() => {
-              setStudyView('course');
+              setStudyView('chapters');
               setTab('study');
             }}
             onGoFormula={() => {
               setFormulaFrom(null);
-              setFormulaView('course');
+              setFormulaView('chapters');
               setTab('formula');
             }}
             onSolveUnattempted={solveUnattempted}
@@ -327,11 +355,6 @@ function AppInner() {
             qIndex={qIndex}
             answers={answers}
             progress={progress}
-            onPickCourse={(c) => {
-              setCourse(c);
-              setChapter(null);
-              setStudyView('chapters');
-            }}
             onPickChapter={(c) => {
               setChapter(c);
               setStudyView('tiles');
@@ -345,13 +368,10 @@ function AppInner() {
             proState={proSt}
             onOpenPaywall={openPaywall}
             onOpenFormula={(formulaId, itemId) => {
-              // 問題画面から公式・用語カードへ直接ジャンプ。戻る導線のため course も合わせる。
+              // 問題画面から公式・用語カードへ直接ジャンプ（公式コースは選択中の分野×級に自動追従）。
               setFormulaChapterId(formulaId);
               setFormulaItemId(itemId);
               setFormulaView('item');
-              setFormulaCourse(
-                course ?? COURSES.find((c) => c.chapters.some((ch) => (ch.formulaId ?? ch.id) === formulaId)) ?? null
-              );
               setFormulaFrom('study');
               setTab('formula');
             }}
@@ -365,10 +385,6 @@ function AppInner() {
             course={formulaCourse}
             chapterId={formulaChapterId}
             itemId={formulaItemId}
-            onPickCourse={(c) => {
-              setFormulaCourse(c);
-              setFormulaView('chapters');
-            }}
             onOpenChapter={(id) => {
               setFormulaChapterId(id);
               setFormulaView('titles');
@@ -707,6 +723,9 @@ function HomeTab(props: {
   t: Theme;
   progress: ProgressMap;
   daily: DailyMap;
+  grade: GradeId;
+  field: FieldId;
+  onChooseFieldGrade: (f: FieldId, g: GradeId) => void;
   wrongCount: number;
   onReview: () => void;
   onGoStudy: () => void;
@@ -717,24 +736,9 @@ function HomeTab(props: {
   const { t } = props;
   // 継続日数・今日の学習量・直近の活動（級に依らず端末全体の学習ログから）。
   const digest = useMemo(() => dailyDigest(props.daily), [props.daily]);
-  // ホームの分析は級ごと。左=1級 / 右=2級。起動時は「前回開いた級」を復元（初回のみ2級）。
-  const [grade, setGrade] = useState<GradeId>('g2');
-  useEffect(() => {
-    AsyncStorage.getItem(HOME_GRADE_KEY)
-      .then((v) => {
-        if (v === 'g1' || v === 'g2') setGrade(v);
-      })
-      .catch(() => {});
-  }, []);
-  // ホームの分析対象の分野（固体/熱流体/…）。起動時は前回開いた分野を復元（初回のみ固体）。
-  const [field, setField] = useState<FieldId>('solid');
-  useEffect(() => {
-    AsyncStorage.getItem(HOME_FIELD_KEY)
-      .then((v) => {
-        if (v && DISCIPLINES.some((d) => d.id === v)) setField(v);
-      })
-      .catch(() => {});
-  }, []);
+  // 分野×級はアプリ共通の選択（AppInner保持）をそのまま使う。問題/公式タブと必ず一致させるため。
+  const grade = props.grade;
+  const field = props.field;
   const overall = useMemo(() => overallStat(props.progress, grade, field), [props.progress, grade, field]);
   const stats = useMemo(() => chapterStats(props.progress, grade, field), [props.progress, grade, field]);
   const fields = useMemo(() => fieldStats(props.progress, grade, field), [props.progress, grade, field]);
@@ -759,10 +763,7 @@ function HomeTab(props: {
   // 分野と級を1タップでまとめて確定（固体1級/固体2級/熱流体1級…の6ボタン用）。
   // 従来は分野と級を別々に押す必要があり「両方変えたい」時に片方だけ確定してしまっていた。
   function chooseFieldGrade(f: FieldId, g: GradeId) {
-    setField(f);
-    AsyncStorage.setItem(HOME_FIELD_KEY, f).catch(() => {});
-    setGrade(g);
-    AsyncStorage.setItem(HOME_GRADE_KEY, g).catch(() => {});
+    props.onChooseFieldGrade(f, g); // アプリ共通の選択を更新（保存も親側）。問題/公式タブも自動追従。
     setShowGrade(false);
   }
 
@@ -1174,7 +1175,6 @@ function StudyTab(props: {
   qIndex: number;
   answers: Record<string, number>;
   progress: ProgressMap;
-  onPickCourse: (c: Course) => void;
   onPickChapter: (c: ChapterEntry) => void;
   onPickTile: (i: number) => void;
   onSelectAnswer: (q: Question, n: number) => void;
@@ -1186,33 +1186,10 @@ function StudyTab(props: {
 }) {
   const { t } = props;
 
-  // 課程選択
-  if (props.view === 'course') {
-    return (
-      <ScrollView contentContainerStyle={styles.content}>
-        <Text style={[styles.title, { color: t.text }]}>問題</Text>
-        <Text style={[styles.subtitle, { color: t.sub }]}>学習する課程を選んでください</Text>
-        {COURSES.map((c) => (
-          <Pressable
-            key={c.id}
-            onPress={c.ready ? () => props.onPickCourse(c) : undefined}
-            style={[styles.row, { backgroundColor: t.card, borderColor: t.border, opacity: c.ready ? 1 : 0.5 }]}
-          >
-            <Text style={[styles.rowLabel, { color: t.text }]}>{c.name}</Text>
-            <Text style={[styles.rowSub, { color: c.ready ? t.sub : t.wrong }]}>
-              {c.ready ? `全 ${c.chapters.length} 章` : '準備中'}
-            </Text>
-          </Pressable>
-        ))}
-      </ScrollView>
-    );
-  }
-
-  // 章の目次
+  // 章の目次（コース＝分野×級はホームの選択に追従。タブ側での課程選択は廃止）
   if (props.view === 'chapters' && props.course) {
     return (
       <ScrollView contentContainerStyle={styles.content}>
-        <BackLink t={t} label="課程を選び直す" onPress={() => props.goBack('course')} />
         <Text style={[styles.title, { color: t.text }]}>{props.course.name}</Text>
         <Text style={[styles.subtitle, { color: t.sub }]}>章を選んでください（全 {props.course.chapters.length} 章）</Text>
         {props.course.chapters.map((c) => {
@@ -1306,7 +1283,7 @@ function StudyTab(props: {
         onSelect={(n) => props.onSelectAnswer(q, n)}
         onPrev={() => props.setQIndex(Math.max(props.qIndex - 1, 0))}
         onNext={() => props.setQIndex(Math.min(props.qIndex + 1, props.activeList.length - 1))}
-        onBack={() => props.goBack(props.chapter ? 'tiles' : 'course')}
+        onBack={() => props.goBack(props.chapter ? 'tiles' : 'chapters')}
         locked={isLocked(q, props.proState)}
         onOpenPaywall={() => props.onOpenPaywall(payTargetOf(q))}
         onOpenFormula={props.onOpenFormula}
@@ -1604,7 +1581,6 @@ function FormulaTab(props: {
   course: Course | null;
   chapterId: string | null;
   itemId: string | null;
-  onPickCourse: (c: Course) => void;
   onOpenChapter: (id: string) => void;
   onOpenItem: (itemId: string) => void;
   onBack: (v: FormulaView) => void;
@@ -1668,11 +1644,10 @@ function FormulaTab(props: {
     );
   }
 
-  // 章の一覧（選んだ課程の中）
+  // 章の一覧（コース＝分野×級はホームの選択に追従。タブ側での課程選択は廃止）
   if (props.view === 'chapters' && props.course) {
     return (
       <ScrollView contentContainerStyle={styles.content}>
-        <BackLink t={t} label="課程を選び直す" onPress={() => props.onBack('course')} />
         <Text style={[styles.title, { color: t.text }]}>{props.course.name}</Text>
         <Text style={[styles.subtitle, { color: t.sub }]}>章を選ぶと、公式・用語のタイトル一覧が出ます</Text>
         {props.course.chapters.map((c) => {
@@ -1696,21 +1671,11 @@ function FormulaTab(props: {
     );
   }
 
-  // 課程の選択
+  // 選択中の分野×級がまだ準備中（章なし）の場合のフォールバック。
   return (
     <ScrollView contentContainerStyle={styles.content}>
       <Text style={[styles.title, { color: t.text }]}>公式・用語</Text>
-      <Text style={[styles.subtitle, { color: t.sub }]}>課程を選んでください</Text>
-      {COURSES.map((c) => (
-        <Pressable
-          key={c.id}
-          onPress={c.ready ? () => props.onPickCourse(c) : undefined}
-          style={[styles.row, { backgroundColor: t.card, borderColor: t.border, opacity: c.ready ? 1 : 0.5 }]}
-        >
-          <Text style={[styles.rowLabel, { color: t.text }]}>{c.name}</Text>
-          <Text style={[styles.rowSub, { color: c.ready ? t.sub : t.wrong }]}>{c.ready ? '公式・用語' : '準備中'}</Text>
-        </Pressable>
-      ))}
+      <Text style={[styles.subtitle, { color: t.sub }]}>この分野・級は準備中です。</Text>
     </ScrollView>
   );
 }
@@ -1819,9 +1784,12 @@ function SettingsTab(props: {
   onToggleDevPro: (on: boolean) => void;
 }) {
   const { t } = props;
-  // バージョン表示を7回タップで開発用ロック解除（Android風の隠しジェスチャ。TestFlightでも使える）。
+  // バージョン表示を7回タップで開発用ロック解除（隠しジェスチャ）。
+  // 【公開方針 2026-09-20】発売版では裏口を一切残さない＝開発中(__DEV__)のみ有効。
+  // 公開/TestFlightビルド(__DEV__=false)では何も起きない。開発者の無料利用は ASC のオファーコード(100%割引)で行う。
   const [verTaps, setVerTaps] = useState(0);
   function onTapVersion() {
+    if (!__DEV__) return; // 本番では隠しジェスチャを無効化
     const n = verTaps + 1;
     if (n >= 7) {
       setVerTaps(0);
@@ -1886,20 +1854,34 @@ function SettingsTab(props: {
         </Pressable>
       </View>
 
-      {/* 開発用：Proモード全解除(devPro)トグル。TestFlight/実機での動作確認用に常時表示している。
-          ⚠️ App Store 公開版でも一般ユーザーに見えてしまうため、公開ビルド前に必ず除去または __DEV__ で囲い直すこと。
-          （本番で隠したまま切り替えたいときは、最下部バージョンの7回タップの隠しジェスチャも併用可） */}
-      <Text style={[styles.sectionHead, { color: t.text }]}>開発用</Text>
+      {/* お問い合わせ導線：JLPT等 別アプリと同じ受信箱を共有するため、件名に【CAE】を自動付与して混同を防ぐ。 */}
+      <Text style={[styles.sectionHead, { color: t.text }]}>お問い合わせ</Text>
       <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
-        <View style={styles.infoRow}>
-          <Text style={[styles.infoLabel, { color: t.text }]}>Proモード全解除（devPro）</Text>
-          <Switch
-            value={props.devPro}
-            onValueChange={props.onToggleDevPro}
-            trackColor={{ true: t.primary, false: t.border }}
-          />
-        </View>
+        <Pressable onPress={() => Linking.openURL(SUPPORT_MAILTO_URL)} style={{ paddingVertical: 10 }} hitSlop={8}>
+          <Text style={[styles.bodyText, { color: t.primary }]}>お問い合わせ（メール）</Text>
+        </Pressable>
+        <Text style={[styles.bodyText, { color: t.sub, fontSize: 12 }]}>
+          タップするとメールが開き、件名に「【CAE】お問い合わせ」が自動で入ります。
+        </Text>
       </View>
+
+      {/* 開発用：Proモード全解除(devPro)トグル。開発中(__DEV__)のみ表示。
+          公開/TestFlightビルドでは表示されない＝一般ユーザーに裏口を見せない（2026-09-20 公開方針）。 */}
+      {__DEV__ && (
+        <>
+          <Text style={[styles.sectionHead, { color: t.text }]}>開発用</Text>
+          <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
+            <View style={styles.infoRow}>
+              <Text style={[styles.infoLabel, { color: t.text }]}>Proモード全解除（devPro）</Text>
+              <Switch
+                value={props.devPro}
+                onValueChange={props.onToggleDevPro}
+                trackColor={{ true: t.primary, false: t.border }}
+              />
+            </View>
+          </View>
+        </>
+      )}
 
       {/* 最下部のバージョン表示。7回タップで開発用ロック解除（隠しジェスチャ）。 */}
       <Pressable onPress={onTapVersion} style={styles.versionFooter} hitSlop={8}>

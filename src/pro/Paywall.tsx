@@ -5,10 +5,10 @@
 import { useEffect, useState } from 'react';
 import { View, Text, Pressable, ScrollView, ActivityIndicator, Alert, Linking, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import type { PurchasesPackage } from 'react-native-purchases';
+import type { PurchasesPackage, PurchasesOffering } from 'react-native-purchases';
 import { getCurrentOffering, pickPackage, purchase, restore, syncEntitlements } from './purchases';
-import { saveOwned } from './proState';
-import { TERMS_URL, PRIVACY_URL } from '../config/revenuecat';
+import { saveOwned, ENTITLEMENTS } from './proState';
+import { TERMS_URL, PRIVACY_URL, SUPPORT_MAILTO_URL } from '../config/revenuecat';
 
 type PayTheme = {
   bg: string; text: string; sub: string; card: string; border: string;
@@ -26,37 +26,39 @@ export default function Paywall(props: {
 }) {
   const { t, target } = props;
   const s = makeStyles(t);
-  const [pkg, setPkg] = useState<PurchasesPackage | null>(null);
+  const [offering, setOffering] = useState<PurchasesOffering | null>(null);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const off = target ? await getCurrentOffering() : null;
+      const off = await getCurrentOffering();
       if (!cancelled) {
-        setPkg(target ? pickPackage(off, target.key) : null);
+        setOffering(off);
         setLoading(false);
       }
     })();
     return () => {
       cancelled = true;
     };
-  }, [target]);
+  }, []);
 
-  async function onBuy() {
-    if (busy || !pkg || !target) return;
+  // 級を1つ買う。成功したら保存して閉じる。キャンセル・失敗は静かに戻す（誤タップ配慮でメッセージ無し）。
+  async function buy(pkg: PurchasesPackage, key: string, title: string) {
+    if (busy) return;
     setBusy(true);
     const owned = await purchase(pkg);
-    if (owned && owned.includes(target.key)) {
+    if (owned && owned.includes(key)) {
       await saveOwned(owned);
-      Alert.alert('ありがとうございます', `${target.title}のすべての問題の正解・解説・図が見られるようになりました。`);
+      Alert.alert('ありがとうございます', `${title}のすべての問題の正解・解説・図が見られるようになりました。`);
       props.onPurchased();
     } else {
-      // キャンセル・失敗。静かに戻す（誤タップ配慮で失敗メッセージは出さない）
       setBusy(false);
     }
   }
+
+  const singlePkg = target ? pickPackage(offering, target.key) : null;
 
   async function onRestore() {
     if (busy) return;
@@ -91,13 +93,38 @@ export default function Paywall(props: {
 
         {loading ? (
           <ActivityIndicator color={t.primary} style={{ marginVertical: 28 }} />
-        ) : pkg ? (
-          <Pressable style={[s.buy, busy && s.busy]} onPress={onBuy} disabled={busy} hitSlop={4}>
-            <Text style={s.buyLabel}>この級を解除する</Text>
-            <Text style={s.buyPrice}>{pkg.product.priceString}（買い切り）</Text>
-          </Pressable>
+        ) : target ? (
+          // 級が1つに決まっている時（ロック問題からの導線）：その級だけを解除。
+          singlePkg ? (
+            <Pressable style={[s.buy, busy && s.busy]} onPress={() => buy(singlePkg, target.key, target.title)} disabled={busy} hitSlop={4}>
+              <Text style={s.buyLabel}>{target.title}を解除する</Text>
+              <Text style={s.buyPrice}>{singlePkg.product.priceString}（買い切り）</Text>
+            </Pressable>
+          ) : (
+            <Text style={s.soon}>購入はまもなく提供予定です。</Text>
+          )
         ) : (
-          <Text style={s.soon}>購入はまもなく提供予定です。</Text>
+          // 級を指定せず開いた時（設定の「プレミアムの購入」）：どの級を解除するか一覧から選ぶ。
+          <View style={{ gap: 10 }}>
+            {ENTITLEMENTS.map((e) => {
+              const p = pickPackage(offering, e.key);
+              return (
+                <Pressable
+                  key={e.key}
+                  style={[s.entRow, (busy || !p) && s.busy]}
+                  onPress={p ? () => buy(p, e.key, e.title) : undefined}
+                  disabled={busy || !p}
+                  hitSlop={4}
+                >
+                  <View style={{ flex: 1 }}>
+                    <Text style={s.entTitle}>{e.title}</Text>
+                    <Text style={s.entSub}>{p ? `${p.product.priceString}（買い切り）` : 'まもなく提供予定'}</Text>
+                  </View>
+                  {p ? <Text style={s.entCta}>解除</Text> : null}
+                </Pressable>
+              );
+            })}
+          </View>
         )}
 
         <Pressable style={s.restore} onPress={onRestore} disabled={busy} hitSlop={8}>
@@ -121,6 +148,11 @@ export default function Paywall(props: {
                 <Text style={s.link}>プライバシーポリシー</Text>
               </Pressable>
             ) : null}
+            <Text style={s.sep}>·</Text>
+            {/* JLPT等と同じ受信箱を共有するため、件名に【CAE】を自動付与して混同防止。 */}
+            <Pressable onPress={() => Linking.openURL(SUPPORT_MAILTO_URL)} hitSlop={8}>
+              <Text style={s.link}>お問い合わせ</Text>
+            </Pressable>
           </View>
         ) : null}
 
@@ -150,6 +182,15 @@ function makeStyles(t: PayTheme) {
     busy: { opacity: 0.5 },
     buyLabel: { fontSize: 17, fontWeight: '800', color: '#ffffff' },
     buyPrice: { fontSize: 14, color: '#ffffff', opacity: 0.92 },
+    // 級を選ぶ一覧の1行（設定「プレミアムの購入」から開いた時）
+    entRow: {
+      flexDirection: 'row', alignItems: 'center', gap: 12,
+      backgroundColor: t.card, borderColor: t.border, borderWidth: 1, borderRadius: 14,
+      paddingVertical: 14, paddingHorizontal: 16,
+    },
+    entTitle: { fontSize: 16, fontWeight: '700', color: t.text },
+    entSub: { fontSize: 13, color: t.sub, marginTop: 3 },
+    entCta: { fontSize: 15, fontWeight: '800', color: t.primary },
     restore: { alignItems: 'center', paddingVertical: 12, marginTop: 2 },
     restoreTxt: { fontSize: 15, fontWeight: '700', color: t.primary },
     note: { fontSize: 12, color: t.sub, textAlign: 'center', lineHeight: 18, marginTop: 4 },

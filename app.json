@@ -24,6 +24,18 @@
     },
     "web": {
       "bundler": "metro"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a5f08353-e0cf-4ff5-ac07-9377ca130617"
+      }
+    },
+    "owner": "jinkato1914",
+    "updates": {
+      "url": "https://u.expo.dev/a5f08353-e0cf-4ff5-ac07-9377ca130617",
+      "requestHeaders": {
+        "expo-channel-name": "production"
+      }
     }
   }
 }
