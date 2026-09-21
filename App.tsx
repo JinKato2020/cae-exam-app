@@ -25,10 +25,12 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import type { Question } from './src/types';
-import { FIGURES, FIGURE_ASPECT } from './src/figures';
+import { FIGURE_ASPECT } from './src/figures';
+import { figureSource, hasFigure } from './src/data/figureStore';
 import { RichText } from './src/MathText';
 import { CATALOG, questionsByIds, QUESTION_FORMULA_ID, type ChapterEntry } from './src/catalog';
 import { formulaDoc, type FormulaItem } from './src/formulas';
+import { initContent } from './src/data/initContent';
 import Svg, { Circle, Line, Polygon, Text as SvgText, Defs, LinearGradient, RadialGradient, Stop, Rect } from 'react-native-svg';
 import {
   chapterStats,
@@ -105,13 +107,6 @@ function disciplineLabel(fieldId: FieldId): string {
 }
 const DAILY_GOAL = 10; // 今日のミッション＝1日の目標問題数（可変パラメータ）
 
-// 課程（分野＋級）。固体2級・固体1級のみ表示。他分野はまだ無いので出さない。
-function solidGradeChapters(gradeId: string): ChapterEntry[] {
-  const solid = CATALOG.find((f) => f.id === 'solid');
-  return solid?.grades.find((g) => g.id === gradeId)?.chapters ?? [];
-}
-const solid2Chapters = (): ChapterEntry[] => solidGradeChapters('g2');
-const solid1Chapters = (): ChapterEntry[] => solidGradeChapters('g1');
 // 分野×級の章一覧をカタログから引く（コース定義で使う汎用版）。
 function fieldGradeChapters(fieldId: string, gradeId: string): ChapterEntry[] {
   const f = CATALOG.find((x) => x.id === fieldId);
@@ -128,18 +123,22 @@ function payTargetOf(q: Question): PayTarget | null {
 // 分野順は固体→熱流体→振動。各分野は1級を上に。
 // 熱流体は2級を全章リリース済み。1級は中身をこれから作るので枠だけ用意（章0＝開くと「全 0 章」、
 // カタログに章を足せば自動で並ぶ）。振動はまだ無いので ready:false＝「準備中」表示。
-const COURSES: Course[] = [
-  { id: 'solid-1', name: '固体力学 1級', chapters: solid1Chapters(), ready: true },
-  { id: 'solid-2', name: '固体力学 2級', chapters: solid2Chapters(), ready: true },
-  { id: 'thermal-1', name: '熱流体力学 1級', chapters: fieldGradeChapters('thermal', 'g1'), ready: true },
-  { id: 'thermal-2', name: '熱流体力学 2級', chapters: fieldGradeChapters('thermal', 'g2'), ready: true },
-  { id: 'vibration', name: '振動', chapters: [], ready: false },
-];
+// コースの静的メタ（名前・準備中フラグ）。章はカタログから毎回引く＝OTAの差し替えを受けられる
+// （固定配列にすると起動時のカタログで凍結され、OTA更新が反映されないため）。
+const COURSE_META: Record<string, { name: string; ready: boolean }> = {
+  'solid-1': { name: '固体力学 1級', ready: true },
+  'solid-2': { name: '固体力学 2級', ready: true },
+  'thermal-1': { name: '熱流体力学 1級', ready: true },
+  'thermal-2': { name: '熱流体力学 2級', ready: true },
+  vibration: { name: '振動', ready: false },
+};
 
 // 分野×級 → コース（問題/公式タブが表示する対象）。ホームの選択に問題/公式タブを追従させる要。
 function courseOf(fieldId: FieldId, gradeId: GradeId): Course | null {
   const id = fieldId === 'vibration' ? 'vibration' : `${fieldId}-${gradeId === 'g1' ? '1' : '2'}`;
-  return COURSES.find((c) => c.id === id) ?? null;
+  const meta = COURSE_META[id];
+  if (!meta) return null;
+  return { id, name: meta.name, chapters: fieldGradeChapters(fieldId, gradeId), ready: meta.ready };
 }
 
 type Tab = 'home' | 'study' | 'formula' | 'settings';
@@ -148,9 +147,15 @@ type StudyView = 'chapters' | 'tiles' | 'problem';
 type FormulaView = 'chapters' | 'titles' | 'item';
 
 export default function App() {
+  // 起動時に一度だけコンテンツOTAを初期化（端末キャッシュの差し替えを反映→カタログ再構築）。
+  // 完了するまでは短い暗色スプラッシュ（ローカル読込のみなので通常は一瞬。ネット同期は裏で走る＝次回反映）。
+  const [contentReady, setContentReady] = useState(false);
+  useEffect(() => {
+    initContent().finally(() => setContentReady(true));
+  }, []);
   return (
     <SafeAreaProvider>
-      <AppInner />
+      {contentReady ? <AppInner /> : <View style={{ flex: 1, backgroundColor: '#0b1526' }} />}
     </SafeAreaProvider>
   );
 }
@@ -1449,9 +1454,9 @@ function ProblemScreen(props: {
       </View>
 
       {/* 図：解答に必要(figure:'required')なら常時。それ以外(helpful等)は答えを示唆しうるので回答後のみ出す。 */}
-      {!locked && q.figureImage && FIGURES[q.figureImage] && (q.figure === 'required' || answered) ? (
+      {!locked && q.figureImage && hasFigure(q.figureImage) && (q.figure === 'required' || answered) ? (
         <View style={[styles.qFigCard, { backgroundColor: t.card }]}>
-          <AutoFigure t={t} source={FIGURES[q.figureImage]} />
+          <AutoFigure t={t} source={figureSource(q.figureImage)} />
         </View>
       ) : null}
 
@@ -1774,7 +1779,7 @@ function FormulaCard(props: { t: Theme; item: FormulaItem }) {
           <RichText text={item.example} color={t.text} fontSize={14} />
         </View>
       ) : null}
-      {item.figureImage && FIGURES[item.figureImage] ? <AutoFigure t={t} source={FIGURES[item.figureImage]} /> : null}
+      {item.figureImage && hasFigure(item.figureImage) ? <AutoFigure t={t} source={figureSource(item.figureImage)} /> : null}
     </View>
   );
 }

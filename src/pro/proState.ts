@@ -26,7 +26,7 @@ export function entKey(fieldId: string, gradeId: string): string {
 }
 
 // カタログから「課金対象になる分野×級」の一覧を作る。問題が1問も無い級（準備中）は課金対象に含めない。
-export const ENTITLEMENTS: EntInfo[] = (() => {
+function buildEntitlements(): EntInfo[] {
   const list: EntInfo[] = [];
   for (const f of CATALOG) {
     for (const g of f.grades) {
@@ -36,10 +36,9 @@ export const ENTITLEMENTS: EntInfo[] = (() => {
     }
   }
   return list;
-})();
-
+}
 // 問題ID → その問題が属する買い切りkey。ロック判定と「どの級のPaywallを開くか」に使う。
-const ENT_OF_QID: Map<string, string> = (() => {
+function buildEntOfQid(): Map<string, string> {
   const m = new Map<string, string>();
   for (const f of CATALOG) {
     for (const g of f.grades) {
@@ -48,11 +47,10 @@ const ENT_OF_QID: Map<string, string> = (() => {
     }
   }
   return m;
-})();
-
+}
 // 章ごとに先頭 FREE_PER_CHAPTER 問の問題IDを集めた「無料集合」。
 // 章/復習など出題順に関係なく、問題そのものが無料かどうかで判定できる（＝どの入口でも一貫）。
-export const FREE_QUESTION_IDS: Set<string> = (() => {
+function buildFreeQuestionIds(): Set<string> {
   const s = new Set<string>();
   for (const f of CATALOG) {
     for (const g of f.grades) {
@@ -62,7 +60,20 @@ export const FREE_QUESTION_IDS: Set<string> = (() => {
     }
   }
   return s;
-})();
+}
+
+// live binding。OTAでカタログが更新されたら initContent→rebuildProState() で作り直す
+// （新しい分野・級を棚から追加しても課金対象・無料集合が正しく追従する）。
+export let ENTITLEMENTS: EntInfo[] = buildEntitlements();
+let ENT_OF_QID: Map<string, string> = buildEntOfQid();
+export let FREE_QUESTION_IDS: Set<string> = buildFreeQuestionIds();
+
+/** OTAの差し替え（カタログ再構築）後に Pro 関連の派生を作り直す。 */
+export function rebuildProState(): void {
+  ENTITLEMENTS = buildEntitlements();
+  ENT_OF_QID = buildEntOfQid();
+  FREE_QUESTION_IDS = buildFreeQuestionIds();
+}
 
 /** key から表示情報を引く。 */
 export function entInfoByKey(key: string): EntInfo | null {
