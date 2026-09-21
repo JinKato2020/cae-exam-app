@@ -707,7 +707,7 @@ const home = StyleSheet.create({
   wtileL: { color: HOME.muted, fontSize: 10, marginTop: 3 },
   examCard: { position: 'relative', overflow: 'hidden', borderRadius: 20, borderWidth: 1, borderColor: 'rgba(251,191,36,0.4)', backgroundColor: '#0E1728' },
   examBgWrap: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 168, overflow: 'hidden' },
-  examImg: { position: 'absolute', left: 0, right: 0, bottom: 0, width: '100%', aspectRatio: 900 / 506, opacity: 1 },
+  examImg: { position: 'absolute', left: 0, right: 0, bottom: 0, width: '100%', aspectRatio: 1232 / 472, opacity: 1 },
   examIn: { position: 'relative', padding: 16, paddingBottom: 150 },
   examHead: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   examIco: { width: 44, height: 44, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(251,191,36,0.16)', borderWidth: 1, borderColor: 'rgba(251,191,36,0.4)' },
@@ -833,19 +833,7 @@ function HomeTab(props: {
           <Text style={home.secSub}>{subjectLabel} · 全{stats.length}章</Text>
         </View>
         <View style={[home.card, home.radarCard]}>
-          {/* モック準拠: FEM解析画像をカード全面に敷き(opacity .55)、放射状グラデで中心を活かしつつ周辺を暗く。
-              ※ react-native-svg の RadialGradient は rx/ry ではなく r（cx,cy,r）を使う。rx/ry だと暗転が効かず画像が偏って明るく残る。 */}
-          <Image source={HOME_IMG.radarbg} style={[StyleSheet.absoluteFill, { opacity: 0.55 }]} resizeMode="cover" />
-          <Svg style={StyleSheet.absoluteFill} pointerEvents="none">
-            <Defs>
-              <RadialGradient id="radVeil" cx="50%" cy="40%" r="78%">
-                <Stop offset="0" stopColor="#060A13" stopOpacity={0.68} />
-                <Stop offset="0.52" stopColor="#060A13" stopOpacity={0.5} />
-                <Stop offset="1" stopColor="#060A13" stopOpacity={0.88} />
-              </RadialGradient>
-            </Defs>
-            <Rect x="0" y="0" width="100%" height="100%" fill="url(#radVeil)" />
-          </Svg>
+          {/* 背景画像なし（土台の不透明カード HOME.surface の上にレーダーを表示）。 */}
           <View style={home.radarInner}>
             <View style={{ alignItems: 'center' }}>
               <GrowthRadar stats={stats} week={weekAcc} month={monthAcc} />
