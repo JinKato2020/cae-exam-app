@@ -85,13 +85,15 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問11(1)-3",
       "role": "primary",
       "relatedFormulas": [
         "s1ch11-2",
         "s1ch11-3"
-      ]
+      ],
+      "figureImage": "s1e11CoupledClass",
+      "figureHint": "連成問題クラスII(領域重複・構成則)とクラスI(境界)の対比"
     },
     {
       "id": "solid1-11-04",
@@ -168,7 +170,7 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "s1e11Mullins",
       "figureHint": "白地660x420でゴムの応力-伸長比曲線(初回曲線・A点で除荷→低応力経路・再載荷で同経路→A超で初回曲線に復帰)",
       "officialRef": "問11(2)-1",
@@ -196,7 +198,7 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "s1e11DynViscoEllipse",
       "figureHint": "白地660x420で応力-ひずみのリサージュ楕円(位相差δ・ε=0でσ=±σ0 sinδの切片・長軸の傾き)",
       "officialRef": "問11(2)-2",
@@ -214,13 +216,13 @@
       "difficulty": 2,
       "question": "高分子材料の動的粘弾性試験で、ひずみ振幅を大きくすると応力-ひずみ曲線がきれいな楕円から複雑な軌跡になり、貯蔵弾性率が変化する。この現象名と貯蔵弾性率の傾向として最も適切なものはどれか。",
       "choices": [
-        "ペイン効果と呼ばれ、ひずみ振幅が大きいほど貯蔵弾性率は小さくなる。入力周波数の3倍・5倍などの高周波応答成分が現れ、同一周波数成分の寄与が相対的に下がるためである。",
+        "ペイン効果と呼ばれ、ひずみ振幅が大きいほど貯蔵弾性率は小さくなる。主に充填材（フィラー）の網目構造がひずみ振幅の増大とともに崩れる振幅依存の非線形性によるものである。",
         "マリンス効果と呼ばれ、ひずみ振幅が大きいほど貯蔵弾性率は大きくなる。高調波成分の増加が同一周波数の応答をかえって強めるためである。",
         "ペイン効果と呼ばれるが、貯蔵弾性率はひずみ振幅の大小によらずほぼ一定に保たれ、損失弾性率だけが振幅とともに変化する。",
         "エントロピー効果と呼ばれ、ひずみ振幅が大きいほど損失正接が零に近づき、材料が純弾性的に振る舞うようになる。"
       ],
       "answer": 1,
-      "explanation": "【基礎】ひずみ振幅が大きくなると、入力周波数に対し3倍・5倍・7倍といった高調波で応答する応力成分が生じ、応力-ひずみ曲線がきれいな楕円でなく眼鏡型の複雑な軌跡になる。\n【考え方】貯蔵弾性率は入力と同じ周波数で応答する応力成分から求めるが、高調波成分が増えるとその同一周波数成分の相対的な寄与が下がり、貯蔵弾性率が低下する。複素弾性率 $E^{*}=\\sqrt{E'^2+E''^2}$ をひずみ振幅に対しプロットすると低下していく。これをペイン効果という。\n【ポイント】ペイン効果＝ひずみ振幅の増大で貯蔵弾性率が低下(振幅依存)。マリンス効果は変形履歴依存で別。\n【引っかけ】選択肢2は名称(マリンス効果)も傾向(増大)も誤りで、高調波が同一周波数応答を強めるという理由付けも成り立たない。選択肢3は貯蔵弾性率が低下する傾向を一定としている。選択肢4は名称が別現象で、損失正接が零に近づくという説明にも根拠がない。",
+      "explanation": "【基礎】ひずみ振幅が大きくなると、入力周波数に対し3倍・5倍・7倍といった高調波で応答する応力成分が生じ、応力-ひずみ曲線がきれいな楕円でなく眼鏡型の複雑な軌跡になる。\n【考え方】充填材を含むゴムでは、ひずみ振幅が大きくなると充填材どうしの網目構造が壊れて実効的な剛性が下がり、貯蔵弾性率が低下する（振幅依存の非線形）。振幅が大きいと入力の3倍・5倍などの高調波成分も現れるが、これは非線形応答の現れであって貯蔵弾性率低下そのものの主因ではない。複素弾性率 $E^{*}=\\sqrt{E'^2+E''^2}$ をひずみ振幅に対しプロットすると低下していく。これをペイン効果という。\n【ポイント】ペイン効果＝ひずみ振幅の増大で貯蔵弾性率が低下(振幅依存)。主因は充填材網目の崩壊。マリンス効果は変形履歴依存で別。\n【引っかけ】選択肢2は名称(マリンス効果)も傾向(増大)も誤りで、高調波が同一周波数応答を強めるという理由付けも成り立たない。選択肢3は貯蔵弾性率が低下する傾向を一定としている。選択肢4は名称が別現象で、損失正接が零に近づくという説明にも根拠がない。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -309,12 +311,14 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問11(3)-1",
       "role": "primary",
       "relatedFormulas": [
         "s1ch11-11"
-      ]
+      ],
+      "figureImage": "s1e11DamageMech",
+      "figureHint": "微視空隙を損傷変数Dに平均化・有効応力σ/(1−D)の概念図"
     },
     {
       "id": "solid1-11-10",
@@ -335,7 +339,7 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "s1e11Effective",
       "figureHint": "白地660x420で断面積Aの棒に荷重F・内部の微小空隙で有効面積(1−D)Aに減少する模式",
       "officialRef": "問11(3)-2",
@@ -419,12 +423,14 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問11(4)-1",
       "role": "primary",
       "relatedFormulas": [
         "s1ch11-15"
-      ]
+      ],
+      "figureImage": "s1e11ElasTensorSym",
+      "figureHint": "弾性テンソルの対称性の縮約(81→36→21独立)と6×6上三角"
     },
     {
       "id": "solid1-11-14",
@@ -445,12 +451,14 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問11(4)-2",
       "role": "primary",
       "relatedFormulas": [
         "s1ch11-16"
-      ]
+      ],
+      "figureImage": "s1e11Orthotropic",
+      "figureHint": "異方性21→直交異方性9→等方性2の進行と9定数の内訳"
     },
     {
       "id": "solid1-11-23",
@@ -555,12 +563,14 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問11(4)-6",
       "role": "primary",
       "relatedFormulas": [
         "s1ch11-17"
-      ]
+      ],
+      "figureImage": "s1e11ThermalExp",
+      "figureHint": "線膨張係数の等方性(一様膨張)と異方性(方向差)の対比"
     },
     {
       "id": "solid1-11-17",

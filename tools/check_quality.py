@@ -130,8 +130,16 @@ def check_file(path, all_titles):
     #     helpful  = 答えの根拠/答えを示唆しうる図（回答後に解説と一緒に表示）
     #   ※ 'none'・未設定・図キー欠落・不正タグは【すべて禁止＝抜け穴封じ】。作図が難しい抽象題材でも
     #     概念図/対比表/各項ラベル図などで必ず1枚付ける（[[cae-figure-before-after-rule]]）。
+    #   例外: 文章主体で意味のある図が作れない題材(ISO9001品質保証・倫理・契約など)は
+    #     q["figureExempt"]=true（かつ理由 figureExemptReason 必須）で図必須から除外(2026-09-21ユーザー承認)。
+    #     技術題材ではこのフラグは使わない＝抜け穴にしない。
     no_or_bad_fig = [q.get("number") for q in qs
-                     if q.get("figure") not in ("required", "helpful") or not q.get("figureImage")]
+                     if not q.get("figureExempt")
+                     and (q.get("figure") not in ("required", "helpful") or not q.get("figureImage"))]
+    bad_exempt = [q.get("number") for q in qs
+                  if q.get("figureExempt") and not str(q.get("figureExemptReason","")).strip()]
+    if bad_exempt:
+        hard.append(f"figureExempt に理由(figureExemptReason)が無い問 {len(bad_exempt)}: {bad_exempt}")
     if no_or_bad_fig:
         hard.append(
             f"図なし/不完全な問 {len(no_or_bad_fig)}/{n}: {no_or_bad_fig}"

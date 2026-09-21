@@ -140,7 +140,7 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "s1e5Kformula",
       "figureHint": "白地660x420で幅広平板の中央貫通き裂(全長2a)と遠方一様引張σ、K=σ√(πa)の寸法関係を示す",
       "officialRef": "問5-2",
@@ -225,7 +225,7 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "s1e5TensionBending",
       "figureHint": "白地660x420で片側き裂板のき裂面上の直線分布応力(σ〜5σ)を、一様な膜成分3σと曲げ成分±2σに分解して示す",
       "officialRef": "問5-6",
@@ -337,7 +337,7 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "s1e5InclinedK",
       "figureHint": "白地660x420で一様引張中の傾斜き裂(角度β)と、き裂面への垂直応力σcos^2βとせん断τ=σsinβcosβの分解を示す",
       "officialRef": "問5-10",
@@ -422,12 +422,14 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問5-13",
       "role": "primary",
       "relatedFormulas": [
         "s1ch5-12"
-      ]
+      ],
+      "figureImage": "s1e5SingularElem",
+      "figureHint": "き裂先端の σ∝1/√r と u∝√r のグラフ"
     },
     {
       "id": "solid1-5-23",
@@ -448,7 +450,7 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "s1e5EnergyKI",
       "figureHint": "白地660x420で対称性利用の上半分モデル、対称面(き裂線)、き裂長さaとΔa、節点荷重Pa〜Pdと開口変位増分、G=ΣPΔv/Δa・KI=√(EG)を示す",
       "officialRef": "問5-14",
@@ -560,7 +562,7 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "s1e5Goodman",
       "figureHint": "白地660x420で修正グッドマン線図(縦軸σw・横軸σu の直線)上に平均応力σmと許容応力振幅σaの読み取りを示す",
       "officialRef": "問5-18",
@@ -645,7 +647,7 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "s1e5Miner",
       "figureHint": "白地660x420でS-N線図(疲労限度σfで水平、破線で延長)と損傷和Σni/Ni=1の累積を示す",
       "officialRef": "問5-21",
@@ -726,12 +728,14 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問5-24",
       "role": "primary",
       "relatedFormulas": [
         "s1ch5-19"
-      ]
+      ],
+      "figureImage": "s1e5Paris",
+      "figureHint": "パリス則の両対数線図とΔK=15の計算(3.4e-8 m/cycle)"
     }
   ]
 }

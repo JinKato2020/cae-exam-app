@@ -140,7 +140,7 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "s1e10CantHinge",
       "figureHint": "白地660x420で固定端の片持ちはりを5個のはり要素に分割し、各要素中央の積分点(×印)を示し、固定端から最寄り積分点までL/10・そこから荷重点まで9L/10を寸法線で描く",
       "officialRef": "問10-5",
@@ -280,12 +280,14 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問10-10",
       "role": "primary",
       "relatedFormulas": [
         "s1ch10-11"
-      ]
+      ],
+      "figureImage": "s1e10ValidExp",
+      "figureHint": "解析値と実験値(誤差バー)の比較と検証の2注意点"
     },
     {
       "id": "solid1-10-11",
@@ -367,7 +369,9 @@
       "role": "primary",
       "relatedFormulas": [
         "s1ch10-15"
-      ]
+      ],
+      "figureExempt": true,
+      "figureExemptReason": "ISO9001品質保証の三要素(概念・文章主体)"
     },
     {
       "id": "solid1-10-14",
@@ -393,7 +397,9 @@
       "role": "primary",
       "relatedFormulas": [
         "s1ch10-15"
-      ]
+      ],
+      "figureExempt": true,
+      "figureExemptReason": "解析要員の力量(ISO9001・文章主体)"
     },
     {
       "id": "solid1-10-15",
@@ -447,7 +453,9 @@
       "role": "primary",
       "relatedFormulas": [
         "s1ch10-16"
-      ]
+      ],
+      "figureExempt": true,
+      "figureExemptReason": "実行/解析計画書(ISO9001・文章主体)"
     },
     {
       "id": "solid1-10-17",
@@ -501,7 +509,9 @@
       "role": "primary",
       "relatedFormulas": [
         "s1ch10-18"
-      ]
+      ],
+      "figureExempt": true,
+      "figureExemptReason": "妥当性確認の方法(ISO9001・文章主体)"
     },
     {
       "id": "solid1-10-19",
@@ -527,7 +537,9 @@
       "role": "primary",
       "relatedFormulas": [
         "s1ch10-19"
-      ]
+      ],
+      "figureExempt": true,
+      "figureExemptReason": "トレーサビリティ(ISO9001・文章主体)"
     },
     {
       "id": "solid1-10-20",
@@ -581,7 +593,9 @@
       "role": "primary",
       "relatedFormulas": [
         "s1ch10-17"
-      ]
+      ],
+      "figureExempt": true,
+      "figureExemptReason": "アウトソーシング品質責任(ISO9001・文章主体)"
     },
     {
       "id": "solid1-10-22",
@@ -607,7 +621,9 @@
       "role": "primary",
       "relatedFormulas": [
         "s1ch10-17"
-      ]
+      ],
+      "figureExempt": true,
+      "figureExemptReason": "契約内容の確認(ISO9001・文章主体)"
     }
   ]
 }
