@@ -548,6 +548,14 @@
               "formulaId": "v1ch4",
               "ready": true,
               "formula": "content/formulas/vib1-ch4.json"
+            },
+            {
+              "id": "ch5",
+              "title": "第5章 構造複合系の解析",
+              "content": "content/questions/vib1-05-structural-coupled-systems.json",
+              "formulaId": "v1ch5",
+              "ready": true,
+              "formula": "content/formulas/vib1-ch5.json"
             }
           ]
         },
