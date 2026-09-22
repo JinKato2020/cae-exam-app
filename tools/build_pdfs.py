@@ -48,10 +48,26 @@ def card(q):
     </div>"""
 
 def subject_of(path_or_name):
-    """ファイル名から分野を判別: thermal*→熱流体 / それ以外(solid*・ch*)→固体。"""
+    """ファイル名から分野を判別: vib*→振動 / thermal*→熱流体 / それ以外(solid*・ch*)→固体。"""
     b=os.path.basename(path_or_name).lower()
+    if "vib" in b: return "振動","振動"
     if "thermal" in b: return "熱流体","熱流体力学"
     return "固体","固体力学"
+
+def versioned_out(outdir, stem, ext=".pdf"):
+    """作成/修正のたびに版を残す。初版=<stem><ext>、以降の保存は<stem>_r1,_r2…と自動採番。
+    既存ファイルは上書きしない=履歴を保全。最新版=最大の r 番号(初版のみなら無印)。"""
+    base = os.path.join(outdir, stem + ext)
+    if not os.path.exists(base):
+        return base
+    n = 0
+    pre = stem + "_r"
+    for f in os.listdir(outdir):
+        if f.startswith(pre) and f.endswith(ext):
+            tail = f[len(pre):-len(ext)]
+            if tail.isdigit():
+                n = max(n, int(tail))
+    return os.path.join(outdir, f"{stem}_r{n+1}{ext}")
 
 def build_html(data, subject_full="固体力学"):
     meta=data["meta"]
@@ -110,7 +126,7 @@ def main():
         os.makedirs(outdir,exist_ok=True)
         hp=os.path.join(TMP,f"q_{subj_short}{grade}_ch{ch}.html")
         open(hp,"w",encoding="utf-8").write(doc)
-        out=os.path.join(outdir, f"{subj_short}{grade}_第{ch}章_{short}.pdf")
+        out=versioned_out(outdir, f"{subj_short}{grade}_第{ch}章_{short}")
         url="file:///"+hp.replace("\\","/")
         cmd=[EDGE,"--headless=new","--disable-gpu","--no-sandbox",
              f"--print-to-pdf={out}","--print-to-pdf-no-header",

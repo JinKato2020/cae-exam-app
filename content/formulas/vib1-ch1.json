@@ -1,0 +1,167 @@
+{
+  "grade": "1級",
+  "chapter": 1,
+  "title": "第1章 解析力学",
+  "intro": "解析力学は、力のつり合いを直接扱うニュートン力学に対し、エネルギーと変分(仮想変位)を用いて運動を記述する枠組みである。ダランベールの原理・仮想仕事の原理からラグランジュの運動方程式・ハミルトンの原理へと進み、連続体振動の運動方程式と境界条件、さらにレイリー・リッツ法や有限要素法などの近似解法までを一貫した原理で結ぶ。本章はこれらの基礎概念と数値解析への橋渡しを扱う。",
+  "items": [
+    {
+      "id": "v1ch1-dalembert",
+      "kind": "formula",
+      "term": "ダランベールの原理",
+      "formula": "F_1+F_2+\\cdots+F_n-ma=0",
+      "body": "ニュートンの運動方程式 $\\sum F=ma$ の右辺を移項し、$-ma$ を「慣性力」という見かけの力とみなす立場。これにより加速中の系でも『力の総和が零』というつり合い式の形になり、動力学問題を静力学のつり合い問題として扱える。",
+      "example": "自由落下する質量mでは重力mgと慣性力-maがつり合い、a=gとなる。",
+      "figureImage": "v1f1Dalembert"
+    },
+    {
+      "id": "v1ch1-inertia-force",
+      "kind": "term",
+      "term": "慣性力(慣性抵抗)",
+      "formula": "-ma",
+      "body": "加速度をもつ立場で導入する見かけの力。大きさは $ma$、向きは加速度 $a$ と逆。実在の相互作用ではなく、第三法則の反作用でも減衰力でもない点に注意。導入すると運動方程式をつり合い式の形に書ける。",
+      "example": "エレベータが上向き加速度aで動くとき、乗客は下向きの見かけの力m(g+a)を床から受けると感じる。",
+      "figureImage": "v1f1InertiaForce"
+    },
+    {
+      "id": "v1ch1-virtual-work",
+      "kind": "formula",
+      "term": "仮想仕事の原理・仮想変位",
+      "formula": "\\delta W=(F-ma)\\cdot\\delta r=0",
+      "body": "仮想変位 $\\delta r$ は拘束条件を満たす微小変位(なめらかな拘束では拘束方向に垂直=運動を許す方向)。なめらかな拘束力 $S$ は $\\delta r$ と直交し仮想仕事が零になるため、拘束力を含まない運動方程式が得られる。これが仮想仕事の原理の利点。",
+      "example": "なめらかな斜面上の物体では、垂直抗力は斜面に沿う仮想変位に仕事をせず式から消える。",
+      "figureImage": "v1f1VirtualWork"
+    },
+    {
+      "id": "v1ch1-conservative-force",
+      "kind": "formula",
+      "term": "保存力とポテンシャル・つり合い条件",
+      "formula": "F=-\\nabla U,\\quad \\delta U=0",
+      "body": "保存力はポテンシャル $U$ の勾配にマイナスを付けたもの(成分で $F_x=-\\partial U/\\partial x$ など)。つり合い(加速度零)では仮想仕事 $\\delta W=-\\delta U=0$ より、任意の仮想変位に対しポテンシャルが停留する($\\delta U=0$)。停留は極小(安定)・極大・鞍点を含む。",
+      "example": "ばねでは U=½kx²、復元力 F=-dU/dx=-kx。つり合いはU最小のx=0。",
+      "figureImage": "v1f1ConservativeForce"
+    },
+    {
+      "id": "v1ch1-generalized-coord",
+      "kind": "term",
+      "term": "一般化座標・自由度・拘束条件",
+      "body": "自由度は系の配置を一意に定めるのに必要な独立変数の最小個数。一般化座標 $q_1,\\cdots,q_n$ はその独立変数として選ぶ座標で、角度や距離など解析に便利なものを自由に選べる。拘束条件は変数間の関係式で、自由度を減らす。自由度=質点数×次元数-拘束条件数。",
+      "example": "平面内の単振子は質点1個(2次元=2)から糸長一定の拘束1つを引き、自由度1(角度θ)。",
+      "figureImage": "v1f1GeneralizedCoord"
+    },
+    {
+      "id": "v1ch1-lagrangian",
+      "kind": "formula",
+      "term": "ラグランジアン",
+      "formula": "L=T-U",
+      "body": "運動エネルギー $T$ からポテンシャル $U$ を引いた量。和($T+U$=全力学的エネルギー)ではなく差である点に注意。ラグランジュの運動方程式やハミルトンの原理で中心的役割を果たす関数。",
+      "example": "ばね質量系では T=½m(dx/dt)², U=½kx² より L=½m(dx/dt)²-½kx²。",
+      "figureImage": "v1f1Lagrangian"
+    },
+    {
+      "id": "v1ch1-lagrange-eq",
+      "kind": "formula",
+      "term": "ラグランジュの運動方程式",
+      "formula": "\\frac{d}{dt}\\left(\\frac{\\partial L}{\\partial \\dot q_r}\\right)-\\frac{\\partial L}{\\partial q_r}=0",
+      "body": "各一般化座標 $q_r$($r=1,\\cdots,n$)について1本ずつ立てる運動方程式。第2項の符号はマイナス。エネルギー($L$)を微分するだけで拘束力を含まない運動方程式が得られ、多自由度・連成系に強い。方程式の本数は自由度に等しい。",
+      "example": "単振子ではL=½m(l dθ/dt)²-mgl(1-cosθ)から d²θ/dt²+(g/l)sinθ=0が得られる。",
+      "figureImage": "v1f1LagrangeEq"
+    },
+    {
+      "id": "v1ch1-hamilton",
+      "kind": "formula",
+      "term": "ハミルトンの原理",
+      "formula": "\\delta\\int_{t_1}^{t_2}L\\,dt=0",
+      "body": "始点・終点を固定した多くの仮想経路のうち、実際の運動は作用積分 $\\int L\\,dt$ を停留させる経路であるという原理。停留は変分が零の意味で、必ずしも最小ではない。この原理からラグランジュの運動方程式が導かれる。",
+      "example": "連続体でもTとUを積分形で表せば、ハミルトンの原理から運動方程式と境界条件が同時に得られる。",
+      "figureImage": "v1f1Hamilton"
+    },
+    {
+      "id": "v1ch1-pendulum",
+      "kind": "formula",
+      "term": "単振子の運動方程式",
+      "formula": "\\ddot\\theta+\\frac{g}{l}\\sin\\theta=0",
+      "body": "糸長 $l$・質量 $m$ の単振子をラグランジュ方程式で解くと得られる。微小振動では $\\sin\\theta\\approx\\theta$ と線形化でき、固有角振動数 $\\omega=\\sqrt{g/l}$。固有角振動数は糸長のみで決まり質量に依存しない。",
+      "example": "l=0.98m, g=9.8m/s²ならω=√(g/l)=√10≈3.16 rad/s。",
+      "figureImage": "v1f1Pendulum"
+    },
+    {
+      "id": "v1ch1-bar-vibration",
+      "kind": "formula",
+      "term": "棒の縦振動(エネルギーと運動方程式)",
+      "formula": "T=\\int_0^l\\frac{\\rho A}{2}\\left(\\frac{\\partial y}{\\partial t}\\right)^2dx,\\ U=\\int_0^l\\frac{EA}{2}\\left(\\frac{\\partial y}{\\partial x}\\right)^2dx,\\ \\rho A\\frac{\\partial^2 y}{\\partial t^2}-EA\\frac{\\partial^2 y}{\\partial x^2}=0",
+      "body": "断面積 $A$・密度 $\\rho$・ヤング率 $E$ の棒の軸方向(縦)振動。運動エネルギーとひずみエネルギーを積分で表し、ハミルトンの原理から運動方程式が得られる。同時に端部で境界条件も導かれる。",
+      "example": "波動速度 c=√(E/ρ)。鋼(E=200GPa,ρ=8000)ではc=5000 m/s。",
+      "figureImage": "v1f1BarVibration"
+    },
+    {
+      "id": "v1ch1-boundary-conditions",
+      "kind": "term",
+      "term": "幾何学的境界条件と力学的境界条件",
+      "formula": "y=0\\ \\text{(幾何学的)},\\quad EA\\frac{\\partial y}{\\partial x}+ky=0\\ \\text{(力学的)}",
+      "body": "幾何学的境界条件(本質的境界条件)は変位に関する条件で、固定端 $y=0$ など(はりではたわみとたわみ角の両方)。力学的境界条件(自然境界条件)は力・勾配に関する条件で、自由端 $EA\\,\\partial y/\\partial x=0$、ばね端 $EA\\,\\partial y/\\partial x+ky=0$ など。近似解法では前者を形状関数に課し、後者は近似的に満たされる。",
+      "example": "片持ちはり:固定端でy=0かつy'=0(幾何学的)、自由端でモーメント・せん断力=0(力学的)。",
+      "figureImage": "v1f1BoundaryConditions"
+    },
+    {
+      "id": "v1ch1-rayleigh",
+      "kind": "formula",
+      "term": "レイリー法",
+      "formula": "y=\\phi(x)q(t),\\quad \\omega=\\sqrt{\\frac{k^*}{m^*}}",
+      "body": "変位を1個の仮定形状 $\\phi(x)$ と時間関数 $q(t)$ の積で近似し、等価質量 $m^*=\\int\\rho A\\phi^2dx$、等価剛性 $k^*=\\int EA(\\phi')^2dx$ から固有角振動数を見積もる方法。$\\phi(x)$ は幾何学的境界条件を満たす必要があり、真のモード形状に近いほど精度が高い。得られる値は真値の上界(過大評価)。",
+      "example": "一端固定他端自由の棒でφ=x/lとするとω=√(3E/ρ)/l≈1.73c/l(厳密値1.57c/lをやや上回る)。",
+      "figureImage": "v1f1Rayleigh"
+    },
+    {
+      "id": "v1ch1-rayleigh-ritz",
+      "kind": "formula",
+      "term": "レイリー・リッツ法と離散化運動方程式",
+      "formula": "y=\\sum_{i=1}^N\\phi_i(x)q_i(t),\\quad [M]\\{\\ddot q\\}+[K]\\{q\\}=\\{f(t)\\}",
+      "body": "変位を複数の仮定形状 $\\phi_i(x)$ の重ね合わせで近似し、連続体を有限自由度の離散系に変換する方法。$[M]=\\int\\rho A\\{\\phi\\}\\{\\phi\\}^Tdx$、$[K]=\\int EA\\{\\phi'\\}\\{\\phi'\\}^Tdx$、$\\{f\\}=\\int f(x,t)\\{\\phi\\}dx$。関数の数Nを増やすほど精度が上がる。有限要素法はこの考え方に局所的形状関数を組み合わせたもの。",
+      "example": "集中外力f(x,t)=δ(x-xf)f(t)では右辺が f(t){φ(xf)} に集約される。",
+      "figureImage": "v1f1RayleighRitz"
+    },
+    {
+      "id": "v1ch1-weighted-residual",
+      "kind": "term",
+      "term": "重みつき残差法",
+      "formula": "\\int_0^l R(x,t)\\,w(x)\\,dx=0",
+      "body": "運動方程式の残差 $R$(近似解を代入した際の誤差)に重み関数 $w$ を掛けて積分し零とおくことで近似解を定める方法。重み関数の選び方でガラーキン法・選点法などに分類される。重みを仮想変位とみなし部分積分すると、ハミルトンの原理(変分原理)の弱形式と等価になる。",
+      "example": "両端固定棒で重みw=仮想変位δyと置くとハミルトンの原理と同一の弱形式が得られる。",
+      "figureImage": "v1f1WeightedResidual"
+    },
+    {
+      "id": "v1ch1-galerkin-family",
+      "kind": "term",
+      "term": "ガラーキン法・ペトロフガラーキン法・選点法",
+      "body": "重みつき残差法の分類。ガラーキン法は重み関数=基底関数(→係数行列が対称)、ペトロフ・ガラーキン法は重み関数≠基底関数(→一般に非対称)、選点法は重み関数にディラックのデルタ関数を用いる(指定点で残差を零にする)。有限要素法はガラーキン法に基づく。",
+      "example": "ガラーキン法は重み=形状関数なので、係数行列の(i,j)と(j,i)成分が等しくなり対称。",
+      "figureImage": "v1f1GalerkinFamily"
+    },
+    {
+      "id": "v1ch1-fem",
+      "kind": "term",
+      "term": "有限要素法(疎な対称行列)",
+      "body": "ガラーキン法に、各節点まわりだけで零でない局所的な形状関数を組み合わせた数値解法。ガラーキン法(重み=形状関数)により係数行列は対称、形状関数の局所性により非零成分が対角付近に集中して疎になる。疎かつ対称という性質が計算効率上有利。",
+      "example": "節点数が多くても各行の非零成分は隣接節点分だけなので、記憶量・計算量を大きく節約できる。",
+      "figureImage": "v1f1FEM"
+    },
+    {
+      "id": "v1ch1-euler-lagrange",
+      "kind": "formula",
+      "term": "変分法・オイラーの微分方程式",
+      "formula": "I[y]=\\int_a^b f(x,y,y')\\,dx,\\quad \\frac{\\partial f}{\\partial y}-\\frac{d}{dx}\\left(\\frac{\\partial f}{\\partial y'}\\right)=0",
+      "body": "汎関数 $I[y]$ を停留させる関数 $y(x)$ が満たす微分方程式がオイラーの微分方程式。$\\delta I=0$ を部分積分し両端で $\\delta y=0$ とすると導かれる。独立変数 $x$ を時間 $t$、$f$ をラグランジアン $L$ とみなすとラグランジュの運動方程式に一致し、ハミルトンの原理からラグランジュ方程式が導けることを示す。微分方程式を解かず停留する $y$ を直接近似する手法が直接法(リッツ法)。",
+      "example": "2点間の最短経路(f=√(1+y'²))ではオイラー方程式からy'=一定、すなわち直線が得られる。",
+      "figureImage": "v1f1EulerLagrange"
+    },
+    {
+      "id": "v1ch1-torsion",
+      "kind": "formula",
+      "term": "ねじり振動",
+      "formula": "I\\frac{\\partial^2\\theta}{\\partial t^2}-GJ\\frac{\\partial^2\\theta}{\\partial x^2}=0",
+      "body": "丸棒のねじり振動の運動方程式。$\\theta$ はねじれ角、$I$ は単位長さ当たりの極慣性モーメント、$GJ$ はねじり剛性($G$ は横弾性係数、$J$ は断面二次極モーメント)。棒の縦振動と同じ形の波動方程式で、変位が『ねじれ角』に置き換わる。固定端でθ=0(幾何学的)、自由端でGJ∂θ/∂x=0(力学的=トルク零)。",
+      "example": "片端固定・片端自由の丸棒は縦振動の棒と同じ境界条件構造をもつ(固定端で角拘束、自由端でトルク零)。",
+      "figureImage": "v1f1Torsion"
+    }
+  ]
+}
