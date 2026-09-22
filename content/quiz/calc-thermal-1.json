@@ -1,0 +1,352 @@
+{
+  "meta": {
+    "field": "thermal",
+    "grade": "1級",
+    "kind": "calc",
+    "title": "熱流体力学1級 計算・数値問題",
+    "count": 20,
+    "origin": "original"
+  },
+  "questions": [
+    {
+      "id": "qc-thermal-1-1",
+      "number": "計算1",
+      "question": "水(動粘度 $\\nu=1.0\\times10^{-6}\\,\\mathrm{m^2/s}$)が代表長さ $L=0.05\\,\\mathrm{m}$、速度 $V=2.0\\,\\mathrm{m/s}$ で流れる。レイノルズ数はいくらか。",
+      "choices": [
+        "$1.0\\times10^{5}$",
+        "$5.0\\times10^{4}$",
+        "$2.0\\times10^{5}$",
+        "$1.0\\times10^{4}$"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】$Re=VL/\\nu$。\n【考え方】$Re=(2.0\\times0.05)/(1.0\\times10^{-6})=0.1/10^{-6}=1.0\\times10^{5}$。\n【ポイント】$10^{5}$ 程度は十分な乱流域。\n【引っかけ】$5.0\\times10^{4}$ は $L$ を半分に取り違えた誤り、$2.0\\times10^{5}$ は $V$ の二重計上。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-thermal-1-2",
+      "number": "計算2",
+      "question": "空気(比熱比 $\\gamma=1.4$、気体定数 $R=287\\,\\mathrm{J/(kg\\,K)}$)、温度 $T=288\\,\\mathrm{K}$ の流れが $V=170\\,\\mathrm{m/s}$ のとき、マッハ数はおよそいくらか。",
+      "choices": [
+        "0.71",
+        "0.50",
+        "0.35",
+        "1.00"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】音速 $a=\\sqrt{\\gamma R T}$、マッハ数 $M=V/a$。\n【考え方】$a=\\sqrt{1.4\\times287\\times288}=\\sqrt{1.157\\times10^{5}}\\approx340\\,\\mathrm{m/s}$、$M=170/340=0.50$。\n【ポイント】$M<0.3$ が非圧縮の目安、$0.5$ は圧縮性を考慮すべき域。\n【引っかけ】0.71 は音速を $\\sqrt{RT}\\approx287$ と誤ったとき、0.35 は音速を過大評価した誤り。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-thermal-1-3",
+      "number": "計算3",
+      "question": "並列化率 $p=0.8$ のプログラムを $n=4$ 並列で実行する。アムダールの法則による理論加速比はいくらか。",
+      "choices": [
+        "4.0",
+        "3.33",
+        "2.5",
+        "5.0"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】$S_n=1/\\{p/n+(1-p)\\}$。\n【考え方】$S_4=1/(0.8/4+0.2)=1/(0.2+0.2)=1/0.4=2.5$。\n【ポイント】逐次部20%があるため4並列でも2.5倍止まり、上限は $S_\\infty=1/0.2=5$。\n【引っかけ】4.0は理想加速比(逐次部無視)、5.0は無限並列の上限値。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-thermal-1-4",
+      "number": "計算4",
+      "question": "均質流モデル(スリップ比 $S=1$)で、質量クオリティ $x=0.10$、気相密度 $\\rho_G=1\\,\\mathrm{kg/m^3}$、液相密度 $\\rho_L=1000\\,\\mathrm{kg/m^3}$ のときのボイド率はおよそいくらか。",
+      "choices": [
+        "0.10",
+        "0.90",
+        "0.009",
+        "0.99"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】$\\alpha=1/\\{1+\\frac{1-x}{x}\\frac{\\rho_G}{\\rho_L}S\\}$。\n【考え方】$\\frac{1-x}{x}=9$、$\\frac{\\rho_G}{\\rho_L}=0.001$ より分母 $=1+9\\times0.001=1.009$、$\\alpha=0.991\\approx0.99$。\n【ポイント】質量割合は1割でも、気相は軽いため体積では約99%を占める。\n【引っかけ】0.10 はクオリティと混同、0.009 は $\\alpha$ の補正項だけを答えた誤り。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-thermal-1-5",
+      "number": "計算5",
+      "question": "水中($\\rho_L=1000\\,\\mathrm{kg/m^3}$、粘度 $\\mu=1.0\\times10^{-3}\\,\\mathrm{Pa\\,s}$)を、直径 $d=100\\,\\mu\\mathrm{m}$、密度 $\\rho_p=2000\\,\\mathrm{kg/m^3}$ の球が沈降する。ストークス域の終端速度はおよそいくらか。$g=9.8\\,\\mathrm{m/s^2}$。",
+      "choices": [
+        "$5.4\\times10^{-3}\\,\\mathrm{m/s}$",
+        "$1.1\\times10^{-2}\\,\\mathrm{m/s}$",
+        "$5.4\\times10^{-2}\\,\\mathrm{m/s}$",
+        "$2.7\\times10^{-3}\\,\\mathrm{m/s}$"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】ストークス終端速度 $U=(\\rho_p-\\rho)g d^2/(18\\mu)$。\n【考え方】$U=(1000)\\times9.8\\times(10^{-4})^2/(18\\times10^{-3})=9.8\\times10^{-5}/0.018=5.4\\times10^{-3}\\,\\mathrm{m/s}$。\n【ポイント】密度差 $(\\rho_p-\\rho)=1000$ を用いる(浮力を差し引く)。\n【引っかけ】$1.1\\times10^{-2}$ は密度差でなく $\\rho_p$ をそのまま使った誤り。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-thermal-1-6",
+      "number": "計算6",
+      "question": "表面張力 $\\sigma=0.072\\,\\mathrm{N/m}$ の水滴(半径 $r=1.0\\,\\mathrm{mm}$、界面は1枚)の内外圧力差はおよそいくらか。",
+      "choices": [
+        "288 Pa",
+        "144 Pa",
+        "72 Pa",
+        "72000 Pa"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】単一界面のヤング・ラプラス式 $\\Delta p=2\\sigma/r$。\n【考え方】$\\Delta p=2\\times0.072/(1.0\\times10^{-3})=0.144/10^{-3}=144\\,\\mathrm{Pa}$。\n【ポイント】液滴(界面1枚)は $2\\sigma/r$、シャボン玉(界面2枚)は $4\\sigma/r$。\n【引っかけ】288 Pa は界面2枚の式 $4\\sigma/r$ を誤用、72 Pa は係数2を落とした誤り。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-thermal-1-7",
+      "number": "計算7",
+      "question": "量論空燃比 $(A/F)_{st}=15$ の燃料を、実際の空燃比 $(A/F)_{actual}=20$ で燃焼させた。当量比 $\\phi$ はいくらか。",
+      "choices": [
+        "1.33",
+        "1.25",
+        "0.75",
+        "0.67"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】$\\phi=(A/F)_{st}/(A/F)_{actual}$。\n【考え方】$\\phi=15/20=0.75$。$\\phi<1$ なので燃料希薄(リーン)燃焼。\n【ポイント】空気過剰率は $\\lambda=1/\\phi=1.33$ となり、両者の向きが逆であることに注意。\n【引っかけ】1.33 は当量比と空気過剰率を取り違えた誤り。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-thermal-1-8",
+      "number": "計算8",
+      "question": "アレニウス式 $k=A\\exp(-E/R^{0}T)$ で $E/R^{0}=1.0\\times10^{4}\\,\\mathrm{K}$ とする。温度を $T_1=1000\\,\\mathrm{K}$ から $T_2=2000\\,\\mathrm{K}$ に上げると、反応速度定数の比 $k_2/k_1$ はおよそいくらか。",
+      "choices": [
+        "0.0067",
+        "22026",
+        "12.2",
+        "148"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】$k_2/k_1=\\exp\\{(E/R^{0})(1/T_1-1/T_2)\\}$。\n【考え方】$1/T_1-1/T_2=10^{-3}-5\\times10^{-4}=5\\times10^{-4}$、指数 $=10^{4}\\times5\\times10^{-4}=5$、$e^{5}\\approx148$。\n【ポイント】温度2倍で反応速度が約150倍と、指数関数的に急増する。\n【引っかけ】0.0067 は $e^{-5}$(符号ミス)、22026 は $e^{10}$(温度差の取り違え)。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-thermal-1-9",
+      "number": "計算9",
+      "question": "初期温度 $T_{ini}=300\\,\\mathrm{K}$、単位質量あたり発熱量 $q=2.0\\times10^{6}\\,\\mathrm{J/kg}$、定圧比熱 $c_p=1200\\,\\mathrm{J/(kg\\,K)}$(生成ガス)を一定とする。断熱火炎温度はおよそいくらか。",
+      "choices": [
+        "1967 K",
+        "1667 K",
+        "2267 K",
+        "1367 K"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】$T_f=T_{ini}+q/c_p$(比熱一定の簡易評価)。\n【考え方】$\\Delta T=2.0\\times10^{6}/1200\\approx1667\\,\\mathrm{K}$、$T_f=300+1667=1967\\,\\mathrm{K}$。\n【ポイント】発熱を比熱で割った温度上昇に初期温度を足す。\n【引っかけ】1667 K は初期温度 $T_{ini}$ の加算を忘れた誤り。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-thermal-1-10",
+      "number": "計算10",
+      "question": "気流(密度 $\\rho=1.2\\,\\mathrm{kg/m^3}$)中に置かれた直径 $d=1.0\\,\\mathrm{mm}$ の液滴に相対速度 $u=50\\,\\mathrm{m/s}$ が作用する。表面張力 $\\sigma=0.072\\,\\mathrm{N/m}$ のときのウェーバー数はおよそいくらか。",
+      "choices": [
+        "4.2",
+        "42",
+        "416",
+        "0.42"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】$We=\\rho u^2 d/\\sigma$。\n【考え方】$We=1.2\\times50^2\\times10^{-3}/0.072=1.2\\times2500\\times10^{-3}/0.072=3/0.072\\approx42$。\n【ポイント】臨界ウェーバー数(概ね12前後)を大きく超えており、液滴は分裂する。\n【引っかけ】0.42 は $u$ を非二乗で扱った誤り、416 は $\\sigma$ の桁を取り違えた誤り。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-thermal-1-11",
+      "number": "計算11",
+      "question": "1次元移流計算で流速 $u=2.0\\,\\mathrm{m/s}$、格子幅 $\\Delta x=5.0\\times10^{-3}\\,\\mathrm{m}$、時間刻み $\\Delta t=1.0\\times10^{-3}\\,\\mathrm{s}$ とする。クーラン数 $C$ はいくらか。",
+      "choices": [
+        "4.0",
+        "2.5",
+        "0.4",
+        "0.04"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】クーラン数 $C=u\\,\\Delta t/\\Delta x$。\n【考え方】$C=2.0\\times10^{-3}/(5.0\\times10^{-3})=2\\times10^{-3}/5\\times10^{-3}=0.4$。\n【ポイント】陽解法では $C\\le1$ が安定の目安で、$0.4$ は安定側。\n【引っかけ】2.5 は分母分子を逆にした誤り、0.04 は桁の取り違え。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-thermal-1-12",
+      "number": "計算12",
+      "question": "平板まわりの対流でヌセルト数 $Nu=100$、流体の熱伝導率 $\\lambda=0.60\\,\\mathrm{W/(m\\,K)}$、代表長さ $L=0.10\\,\\mathrm{m}$ のとき、平均熱伝達率 $h$ はいくらか。",
+      "choices": [
+        "60 W/(m²K)",
+        "6000 W/(m²K)",
+        "16.7 W/(m²K)",
+        "600 W/(m²K)"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】$Nu=hL/\\lambda$ より $h=Nu\\,\\lambda/L$。\n【考え方】$h=100\\times0.60/0.10=60/0.10=600\\,\\mathrm{W/(m^2K)}$。\n【ポイント】$Nu$ は無次元熱伝達率であり、$\\lambda/L$ を掛けて次元を回復する。\n【引っかけ】60 は $L$ で割り忘れた誤り、6000 は $L$ を10倍に取り違えた誤り。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-thermal-1-13",
+      "number": "計算13",
+      "question": "あるCFDコードを $n=8$ 並列で実行したところ、実測加速比が $S_8=6.0$ であった。並列化効率 $E$ はいくらか。",
+      "choices": [
+        "0.75",
+        "0.48",
+        "1.33",
+        "0.86"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】並列化効率 $E=S_n/n$。\n【考え方】$E=6.0/8=0.75$(75%)。\n【ポイント】理想の $E=1$ に届かないのは通信・負荷不均衡・逐次部のため。\n【引っかけ】1.33 は $n/S_n$ の逆算、0.48 は $S_n/n^{2}$ など次元を誤った値。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-thermal-1-14",
+      "number": "計算14",
+      "question": "空気の定圧比熱 $c_p=1005\\,\\mathrm{J/(kg\\,K)}$、粘度 $\\mu=1.8\\times10^{-5}\\,\\mathrm{Pa\\,s}$、熱伝導率 $\\lambda=0.026\\,\\mathrm{W/(m\\,K)}$ のとき、プラントル数はおよそいくらか。",
+      "choices": [
+        "1.43",
+        "0.70",
+        "0.026",
+        "0.35"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】$Pr=c_p\\mu/\\lambda$。\n【考え方】$Pr=1005\\times1.8\\times10^{-5}/0.026=0.0181/0.026\\approx0.70$。\n【ポイント】空気の $Pr$ は約0.7で、運動量拡散と熱拡散がほぼ同程度。\n【引っかけ】1.43 は分母分子を逆にした値(=1/Pr)。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-thermal-1-15",
+      "number": "計算15",
+      "question": "ある混合気でシュミット数 $Sc=1.4$、プラントル数 $Pr=0.70$ である。ルイス数 $Le$ はいくらか。",
+      "choices": [
+        "0.50",
+        "1.0",
+        "2.0",
+        "0.98"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】$Le=\\alpha/D=Sc/Pr$。\n【考え方】$Le=1.4/0.70=2.0$。\n【ポイント】$Le>1$ は熱拡散が物質拡散より速いことを意味する。\n【引っかけ】0.50 は $Pr/Sc$ の逆算、0.98 は $Sc\\times Pr$ を誤って掛けた値。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-thermal-1-16",
+      "number": "計算16",
+      "question": "気液二相の混合体で、圧力 $P=1.0\\times10^{5}\\,\\mathrm{Pa}$、ボイド率 $\\alpha=0.5$、液相密度 $\\rho_L=1000\\,\\mathrm{kg/m^3}$ のとき、簡易式 $a=\\sqrt{P/\\{\\alpha(1-\\alpha)\\rho_L\\}}$ による二相音速はいくらか。",
+      "choices": [
+        "400 m/s",
+        "44.7 m/s",
+        "14.1 m/s",
+        "20 m/s"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】$a=\\sqrt{P/\\{\\alpha(1-\\alpha)\\rho_L\\}}$。\n【考え方】$\\alpha(1-\\alpha)\\rho_L=0.5\\times0.5\\times1000=250$、$a=\\sqrt{10^{5}/250}=\\sqrt{400}=20\\,\\mathrm{m/s}$。\n【ポイント】気液混合では音速が単相より劇的に低下する(数十m/s台)。\n【引っかけ】400 は平方根を取り忘れた値。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-thermal-1-17",
+      "number": "計算17",
+      "question": "直径 $1\\,\\mathrm{mm}$ の液滴が2個と、直径 $2\\,\\mathrm{mm}$ の液滴が1個ある。ザウター平均径 $D_{32}$ はおよそいくらか。",
+      "choices": [
+        "1.67 mm",
+        "1.33 mm",
+        "1.50 mm",
+        "2.0 mm"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】$D_{32}=\\sum n_i D_i^3/\\sum n_i D_i^2$。\n【考え方】分子 $=2\\times1^3+1\\times2^3=2+8=10$、分母 $=2\\times1^2+1\\times2^2=2+4=6$、$D_{32}=10/6\\approx1.67\\,\\mathrm{mm}$。\n【ポイント】大径の液滴が体積・表面積を通じて強く効くため算術平均より大きくなる。\n【引っかけ】1.33 mm は個数平均径 $(2\\times1+2)/3$ を答えた誤り。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-thermal-1-18",
+      "number": "計算18",
+      "question": "ドリフトフラックスモデル $\\langle\\alpha\\rangle=\\langle j_G\\rangle/\\{C_0\\langle j\\rangle+v_{gj}\\}$ で、分布定数 $C_0=1.2$、気相見かけ速度 $j_G=1.0\\,\\mathrm{m/s}$、全体積流束 $j=2.0\\,\\mathrm{m/s}$、ドリフト速度 $v_{gj}=0.25\\,\\mathrm{m/s}$ のとき、ボイド率はおよそいくらか。",
+      "choices": [
+        "0.50",
+        "0.38",
+        "0.42",
+        "0.34"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】$\\langle\\alpha\\rangle=\\langle j_G\\rangle/\\{C_0\\langle j\\rangle+v_{gj}\\}$。\n【考え方】分母 $=1.2\\times2.0+0.25=2.4+0.25=2.65$、$\\alpha=1.0/2.65\\approx0.38$。\n【ポイント】$C_0>1$ とドリフト速度により、単純な $j_G/j=0.5$ より小さくなる。\n【引っかけ】0.50 は $C_0$ とドリフトを無視して $j_G/j$ とした誤り。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-thermal-1-19",
+      "number": "計算19",
+      "question": "円管(管摩擦係数 $\\lambda=0.020$、長さ $L=10\\,\\mathrm{m}$、内径 $d=0.10\\,\\mathrm{m}$)を流速 $V=3.0\\,\\mathrm{m/s}$ の流体が流れる。単位質量あたりの摩擦損失 $E_l$ はいくらか。",
+      "choices": [
+        "18 m²/s²",
+        "4.5 m²/s²",
+        "9.0 m²/s²",
+        "90 m²/s²"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】$E_l=\\lambda\\dfrac{L}{d}\\dfrac{V^2}{2}$。\n【考え方】$L/d=100$、$V^2/2=9/2=4.5$、$E_l=0.020\\times100\\times4.5=2\\times4.5=9.0\\,\\mathrm{m^2/s^2}$。\n【ポイント】単位質量あたりの損失はエネルギー/質量で $\\mathrm{m^2/s^2}$ の次元をもつ。\n【引っかけ】18 は $V^2/2$ でなく $V^2$ を用いた誤り、4.5 は $\\lambda(L/d)$ の係数を落とした誤り。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-thermal-1-20",
+      "number": "計算20",
+      "question": "$D^2$ 則 $D^2(t)=D_0^2-Kt$ に従う液滴の蒸発を考える。初期径 $D_0=100\\,\\mu\\mathrm{m}$、蒸発定数 $K=1.0\\times10^{-8}\\,\\mathrm{m^2/s}$ のとき、液滴が消滅するまでの時間はおよそいくらか。",
+      "choices": [
+        "0.5 s",
+        "10 s",
+        "0.1 s",
+        "1.0 s"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】$D=0$ となる寿命 $t=D_0^2/K$。\n【考え方】$D_0=100\\,\\mu\\mathrm{m}=1.0\\times10^{-4}\\,\\mathrm{m}$、$D_0^2=1.0\\times10^{-8}\\,\\mathrm{m^2}$、$t=10^{-8}/10^{-8}=1.0\\,\\mathrm{s}$。\n【ポイント】$D^2$ 則では径の2乗が時間に比例して直線的に減少する。\n【引っかけ】$D_0$ を二乗せずに用いると桁を大きく誤る。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    }
+  ]
+}

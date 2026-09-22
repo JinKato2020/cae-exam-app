@@ -1,0 +1,345 @@
+{
+  "meta": { "field": "vibration", "grade": "1級", "kind": "calc", "title": "振動1級 計算・数値問題", "count": 20, "origin": "original" },
+  "questions": [
+    {
+      "id": "qc-vibration-1-1",
+      "number": "計算1",
+      "question": "糸長 $l=2.45\\,\\mathrm{m}$ の単振子の微小振動の固有角振動数はいくらか。$g=9.8\\,\\mathrm{m/s^2}$、$\\omega=\\sqrt{g/l}$ とする。",
+      "choices": [
+        "$2\\,\\mathrm{rad/s}$",
+        "$0.5\\,\\mathrm{rad/s}$",
+        "$4\\,\\mathrm{rad/s}$",
+        "$1\\,\\mathrm{rad/s}$"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】単振子の固有角振動数は $\\omega=\\sqrt{g/l}$。\n【考え方】$g/l=9.8/2.45=4$ なので $\\omega=\\sqrt4=2\\,\\mathrm{rad/s}$。\n【ポイント】糸長だけで決まり質量にはよらない。\n【引っかけ】$\\sqrt{l/g}=0.5$ は逆数、$4$ は平方根を取り忘れた値。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-vibration-1-2",
+      "number": "計算2",
+      "question": "$m=2\\,\\mathrm{kg}$、$k=800\\,\\mathrm{N/m}$ の1自由度系の無減衰固有角振動数 $\\omega_n=\\sqrt{k/m}$ はいくらか。",
+      "choices": [
+        "$400\\,\\mathrm{rad/s}$",
+        "$20\\,\\mathrm{rad/s}$",
+        "$2\\,\\mathrm{rad/s}$",
+        "$40\\,\\mathrm{rad/s}$"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】$\\omega_n=\\sqrt{k/m}$。\n【考え方】$k/m=800/2=400$、$\\omega_n=\\sqrt{400}=20\\,\\mathrm{rad/s}$。\n【ポイント】剛性が大きいほど、質量が小さいほど固有振動数は高い。\n【引っかけ】$400$ は平方根を取り忘れた $k/m$ の値。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-vibration-1-3",
+      "number": "計算3",
+      "question": "$m=2\\,\\mathrm{kg}$、$k=200\\,\\mathrm{N/m}$ の系の臨界減衰係数 $c_c=2\\sqrt{mk}$ はいくらか。",
+      "choices": [
+        "$20\\,\\mathrm{N\\cdot s/m}$",
+        "$800\\,\\mathrm{N\\cdot s/m}$",
+        "$40\\,\\mathrm{N\\cdot s/m}$",
+        "$400\\,\\mathrm{N\\cdot s/m}$"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】臨界減衰係数は $c_c=2\\sqrt{mk}$。\n【考え方】$mk=2\\times200=400$、$\\sqrt{400}=20$、$c_c=2\\times20=40\\,\\mathrm{N\\cdot s/m}$。\n【ポイント】係数2を忘れないこと。\n【引っかけ】$20$ は係数2の掛け忘れ、$400$ は平方根の取り忘れ。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-vibration-1-4",
+      "number": "計算4",
+      "question": "臨界減衰係数 $c_c=40\\,\\mathrm{N\\cdot s/m}$ の系に実際の減衰 $c=8\\,\\mathrm{N\\cdot s/m}$ がある。減衰比 $\\zeta=c/c_c$ はいくらか。",
+      "choices": [
+        "$5$",
+        "$0.4$",
+        "$0.32$",
+        "$0.2$"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】減衰比は $\\zeta=c/c_c$。\n【考え方】$\\zeta=8/40=0.2$。\n【ポイント】$\\zeta<1$ なので不足減衰、振動しながら減衰する。\n【引っかけ】$5$ は分母分子を逆にした値。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-vibration-1-5",
+      "number": "計算5",
+      "question": "無減衰固有角振動数 $\\omega_n=10\\,\\mathrm{rad/s}$、減衰比 $\\zeta=0.6$ のとき、減衰固有角振動数 $\\omega_d=\\omega_n\\sqrt{1-\\zeta^2}$ はいくらか。",
+      "choices": [
+        "$8\\,\\mathrm{rad/s}$",
+        "$6\\,\\mathrm{rad/s}$",
+        "$10\\,\\mathrm{rad/s}$",
+        "$4\\,\\mathrm{rad/s}$"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】$\\omega_d=\\omega_n\\sqrt{1-\\zeta^2}$。\n【考え方】$1-0.6^2=1-0.36=0.64$、$\\sqrt{0.64}=0.8$、$\\omega_d=10\\times0.8=8\\,\\mathrm{rad/s}$。\n【ポイント】減衰があるぶん無減衰より少し遅くなる。\n【引っかけ】$6=10(1-\\zeta)$ は $\\sqrt{1-\\zeta^2}$ を $1-\\zeta$ と誤ったもの。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-vibration-1-6",
+      "number": "計算6",
+      "question": "減衰比 $\\zeta=0.025$ の系の共振倍率(Q値)を $Q\\approx1/(2\\zeta)$ で見積もるといくらか。",
+      "choices": [
+        "$40$",
+        "$20$",
+        "$10$",
+        "$0.05$"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】減衰が小さいとき共振倍率は $Q\\approx1/(2\\zeta)$。\n【考え方】$Q=1/(2\\times0.025)=1/0.05=20$。\n【ポイント】静的変位のおよそ20倍まで増幅されうる。\n【引っかけ】$40=1/\\zeta$ は係数2の掛け忘れ、$0.05=2\\zeta$ は逆数。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-vibration-1-7",
+      "number": "計算7",
+      "question": "外力振幅 $F=50\\,\\mathrm{N}$、剛性 $k=500\\,\\mathrm{N/m}$、減衰比 $\\zeta=0.05$ の系の共振付近での振幅を $X\\approx X_{st}/(2\\zeta)$($X_{st}=F/k$)で見積もるといくらか。",
+      "choices": [
+        "$0.1\\,\\mathrm{m}$",
+        "$0.5\\,\\mathrm{m}$",
+        "$1.0\\,\\mathrm{m}$",
+        "$2.0\\,\\mathrm{m}$"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】静的変位 $X_{st}=F/k$、共振振幅 $X\\approx X_{st}/(2\\zeta)$。\n【考え方】$X_{st}=50/500=0.1\\,\\mathrm{m}$、$X=0.1/(2\\times0.05)=0.1/0.1=1.0\\,\\mathrm{m}$。\n【ポイント】共振で静的変位の10倍に増幅されている。\n【引っかけ】$0.1$ は静的変位のまま、$2.0$ は $1/\\zeta$ を掛けた過大値。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 4,
+      "origin": "original"
+    },
+    {
+      "id": "qc-vibration-1-8",
+      "number": "計算8",
+      "question": "ヤング率 $E=200\\,\\mathrm{GPa}$、密度 $\\rho=8000\\,\\mathrm{kg/m^3}$ の鋼棒の縦振動の波動速度 $c=\\sqrt{E/\\rho}$ はいくらか。",
+      "choices": [
+        "$2500\\,\\mathrm{m/s}$",
+        "$25000\\,\\mathrm{m/s}$",
+        "$1250\\,\\mathrm{m/s}$",
+        "$5000\\,\\mathrm{m/s}$"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】縦波速度は $c=\\sqrt{E/\\rho}$。\n【考え方】$E/\\rho=200\\times10^9/8000=2.5\\times10^7$、$\\sqrt{2.5\\times10^7}=5000\\,\\mathrm{m/s}$。\n【ポイント】鋼の縦波速度はおよそ $5000\\,\\mathrm{m/s}$。\n【引っかけ】単位換算($\\mathrm{GPa}=10^9\\,\\mathrm{Pa}$)を誤ると桁がずれる。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 4,
+      "origin": "original"
+    },
+    {
+      "id": "qc-vibration-1-9",
+      "number": "計算9",
+      "question": "質量行列 $[M]=\\mathrm{diag}(3,3)\\,\\mathrm{kg}$、モードベクトル $\\{\\phi\\}=\\{1,-1\\}^T$ のときのモード質量 $\\bar m=\\{\\phi\\}^T[M]\\{\\phi\\}$ はいくらか。",
+      "choices": [
+        "$6\\,\\mathrm{kg}$",
+        "$0\\,\\mathrm{kg}$",
+        "$3\\,\\mathrm{kg}$",
+        "$12\\,\\mathrm{kg}$"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】モード質量は $\\bar m=\\{\\phi\\}^T[M]\\{\\phi\\}$。\n【考え方】$3\\times1^2+3\\times(-1)^2=3+3=6\\,\\mathrm{kg}$。\n【ポイント】二乗するので符号は効かず、逆位相でも各項は正で足される。\n【引っかけ】$0$ は符号をそのまま足した誤り($3-3$)。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 4,
+      "origin": "original"
+    },
+    {
+      "id": "qc-vibration-1-10",
+      "number": "計算10",
+      "question": "あるモードのモード剛性 $\\bar k=200$、モード質量 $\\bar m=2$ のとき、モード固有角振動数 $\\omega=\\sqrt{\\bar k/\\bar m}$ はいくらか。",
+      "choices": [
+        "$100\\,\\mathrm{rad/s}$",
+        "$10\\,\\mathrm{rad/s}$",
+        "$20\\,\\mathrm{rad/s}$",
+        "$5\\,\\mathrm{rad/s}$"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】モード固有角振動数は1自由度と同じ $\\omega=\\sqrt{\\bar k/\\bar m}$。\n【考え方】$\\bar k/\\bar m=200/2=100$、$\\omega=\\sqrt{100}=10\\,\\mathrm{rad/s}$。\n【ポイント】各モードを独立な1自由度系として扱える。\n【引っかけ】$100$ は平方根の取り忘れ。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 3,
+      "origin": "original"
+    },
+    {
+      "id": "qc-vibration-1-11",
+      "number": "計算11",
+      "question": "デュフィング系 $m\\ddot x+kx+\\beta x^3=0$ の背骨曲線 $\\omega=\\sqrt{k/m+\\dfrac{3\\beta}{4m}x_0^2}$ で、$k=64$、$m=1$、$\\beta=3$、振幅 $x_0=4$ のときの $\\omega$ はいくらか。",
+      "choices": [
+        "$8\\,\\mathrm{rad/s}$",
+        "$14\\,\\mathrm{rad/s}$",
+        "$10\\,\\mathrm{rad/s}$",
+        "$12\\,\\mathrm{rad/s}$"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】硬化ばねでは振動数が振幅に依存する。\n【考え方】$k/m=64$、$\\dfrac{3\\beta}{4m}x_0^2=\\dfrac{3\\times3}{4}\\times16=\\dfrac{9}{4}\\times16=36$、$\\omega=\\sqrt{64+36}=\\sqrt{100}=10\\,\\mathrm{rad/s}$。\n【ポイント】$\\beta>0$ なので振幅が大きいほど振動数が上がる。\n【引っかけ】$8=\\sqrt{64}$ は非線形項を無視した線形固有振動数。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 4,
+      "origin": "original"
+    },
+    {
+      "id": "qc-vibration-1-12",
+      "number": "計算12",
+      "question": "質量 $m=10\\,\\mathrm{kg}$ の構造物を、自重 $m_s=6\\,\\mathrm{kg}$ のコイルばねで支える。ばね質量を考慮した等価質量 $m+m_s/3$ はいくらか。",
+      "choices": [
+        "$16\\,\\mathrm{kg}$",
+        "$13\\,\\mathrm{kg}$",
+        "$10\\,\\mathrm{kg}$",
+        "$12\\,\\mathrm{kg}$"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】コイルばね自身の質量は $1/3$ が等価質量に加わる(レイリー法)。\n【考え方】$m+m_s/3=10+6/3=10+2=12\\,\\mathrm{kg}$。\n【ポイント】ばねが一様に伸縮する仮定から運動エネルギーを積分すると $m_s/3$ が出る。\n【引っかけ】$16=m+m_s$ は全ばね質量を足した誤り、$13$ は $m_s/2$ を足した誤り。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 4,
+      "origin": "original"
+    },
+    {
+      "id": "qc-vibration-1-13",
+      "number": "計算13",
+      "question": "剛性 $k=1200\\,\\mathrm{N/m}$、構造物質量 $m=10\\,\\mathrm{kg}$、コイルばね質量 $m_s=6\\,\\mathrm{kg}$。ばね質量を考慮した固有角振動数 $\\omega=\\sqrt{k/(m+m_s/3)}$ はいくらか。",
+      "choices": [
+        "$10\\,\\mathrm{rad/s}$",
+        "$11\\,\\mathrm{rad/s}$",
+        "$20\\,\\mathrm{rad/s}$",
+        "$8.7\\,\\mathrm{rad/s}$"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】等価質量は $m+m_s/3=10+2=12\\,\\mathrm{kg}$。\n【考え方】$\\omega=\\sqrt{1200/12}=\\sqrt{100}=10\\,\\mathrm{rad/s}$。\n【ポイント】ばね質量を無視すると $\\sqrt{1200/10}\\approx11\\,\\mathrm{rad/s}$ と高めに出てしまう。\n【引っかけ】$11$ はばね質量を無視した過大評価。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 4,
+      "origin": "original"
+    },
+    {
+      "id": "qc-vibration-1-14",
+      "number": "計算14",
+      "question": "レイリー減衰の減衰比 $\\zeta=\\dfrac{\\alpha}{2\\omega}+\\dfrac{\\beta\\omega}{2}$ で、$\\alpha=2$、$\\beta=0$、$\\omega=10\\,\\mathrm{rad/s}$ のときの $\\zeta$ はいくらか。",
+      "choices": [
+        "$0.2$",
+        "$0.1$",
+        "$1.0$",
+        "$0.05$"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】レイリー減衰では $\\zeta=\\alpha/(2\\omega)+\\beta\\omega/2$。\n【考え方】$\\beta=0$ なので $\\zeta=2/(2\\times10)=2/20=0.1$。\n【ポイント】$\\alpha$ の項は振動数が高いほど小さくなる(低振動数側で効く)。\n【引っかけ】$0.2=\\alpha/\\omega$ は係数2の扱いを誤ったもの。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 4,
+      "origin": "original"
+    },
+    {
+      "id": "qc-vibration-1-15",
+      "number": "計算15",
+      "question": "繊維($E_f=400\\,\\mathrm{GPa}$、断面積比 $A_f=1$)とマトリックス($E_m=100\\,\\mathrm{GPa}$、$A_m=3$)の複合材の繊維方向等価ヤング率 $E=\\dfrac{E_fA_f+E_mA_m}{A_f+A_m}$ はいくらか。",
+      "choices": [
+        "$250\\,\\mathrm{GPa}$",
+        "$325\\,\\mathrm{GPa}$",
+        "$175\\,\\mathrm{GPa}$",
+        "$100\\,\\mathrm{GPa}$"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】繊維方向は等ひずみ=並列ばねで、断面積で重み付けした混合則になる。\n【考え方】$E=(400\\times1+100\\times3)/(1+3)=(400+300)/4=700/4=175\\,\\mathrm{GPa}$。\n【ポイント】面積比の大きいマトリックス側に近い値になる。\n【引っかけ】$250=(400+100)/2$ は面積比を無視した単純平均。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 4,
+      "origin": "original"
+    },
+    {
+      "id": "qc-vibration-1-16",
+      "number": "計算16",
+      "question": "縦弾性係数 $E_s=6\\,\\mathrm{GPa}$ と $E_A=2\\,\\mathrm{GPa}$ の層を厚さ半々($V_s=V_A=0.5$)で積層方向に重ねた積層材の等価剛性 $\\dfrac{1}{E_z}=\\dfrac{V_s}{E_s}+\\dfrac{V_A}{E_A}$ から $E_z$ はいくらか。",
+      "choices": [
+        "$4\\,\\mathrm{GPa}$",
+        "$6\\,\\mathrm{GPa}$",
+        "$2\\,\\mathrm{GPa}$",
+        "$3\\,\\mathrm{GPa}$"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】積層方向は同じ力が順に伝わる直列ばねで、たわみやすさ(1/剛性)を足す。\n【考え方】$1/E_z=0.5/6+0.5/2=1/12+1/4=1/12+3/12=4/12=1/3$、$E_z=3\\,\\mathrm{GPa}$。\n【ポイント】柔らかい層があると全体もその向きに柔らかくなり、平均より小さくなる。\n【引っかけ】$4=(6+2)/2$ は直列を単純平均と誤ったもの。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 4,
+      "origin": "original"
+    },
+    {
+      "id": "qc-vibration-1-17",
+      "number": "計算17",
+      "question": "ポアソン比 $\\nu=0.25$ の材料を1方向に微小ひずみ $\\varepsilon=0.02$ 与えたときの体積変化率 $\\Delta V/V=\\varepsilon(1-2\\nu)$ はいくらか。",
+      "choices": [
+        "$0.01\\ (1\\%)$",
+        "$0\\ (\\text{体積不変})$",
+        "$0.02\\ (2\\%)$",
+        "$0.005$"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】微小ひずみでの体積変化率は $\\Delta V/V=\\varepsilon(1-2\\nu)$。\n【考え方】$1-2\\times0.25=0.5$、$\\Delta V/V=0.02\\times0.5=0.01=1\\%$。\n【ポイント】$\\nu=0.5$ なら $1-2\\nu=0$ で体積不変(非圧縮)。\n【引っかけ】体積不変になるのは $\\nu=0.5$ のときで、$\\nu=0.25$ では体積は増える。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 4,
+      "origin": "original"
+    },
+    {
+      "id": "qc-vibration-1-18",
+      "number": "計算18",
+      "question": "軸間距離 $L=10\\,\\mathrm{m}$ の前後車輪が同じ路面を踏むとき、速度 $v=72\\,\\mathrm{km/h}$ での後輪入力の時間遅れ $\\tau=3.6L/v$ はいくらか。",
+      "choices": [
+        "$0.72\\,\\mathrm{s}$",
+        "$0.5\\,\\mathrm{s}$",
+        "$1.0\\,\\mathrm{s}$",
+        "$0.14\\,\\mathrm{s}$"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】速度が $\\mathrm{km/h}$、距離が $\\mathrm{m}$ のとき $\\tau=3.6L/v$。\n【考え方】$\\tau=3.6\\times10/72=36/72=0.5\\,\\mathrm{s}$。\n【ポイント】$v=72\\,\\mathrm{km/h}=20\\,\\mathrm{m/s}$ なので $\\tau=L/v=10/20=0.5\\,\\mathrm{s}$ とも一致する。\n【引っかけ】$3.6$ の換算係数を落とすと桁がずれる。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 4,
+      "origin": "original"
+    },
+    {
+      "id": "qc-vibration-1-19",
+      "number": "計算19",
+      "question": "質量 $m=5\\,\\mathrm{kg}$ の1自由度系が地面加速度 $\\ddot x_0=2\\,\\mathrm{m/s^2}$ の地震を受ける。相対変位表示 $m\\ddot y+ky=-m\\ddot x_0$ の右辺に現れる等価外力の大きさはいくらか。",
+      "choices": [
+        "$2.5\\,\\mathrm{N}$",
+        "$7\\,\\mathrm{N}$",
+        "$10\\,\\mathrm{N}$",
+        "$5\\,\\mathrm{N}$"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】支持が揺れる問題は相対変位 $y=x-x_0$ で書くと、右辺が地面加速度×質量の慣性力になる。\n【考え方】等価外力の大きさは $m\\ddot x_0=5\\times2=10\\,\\mathrm{N}$。\n【ポイント】加速度入力は相対座標で解くと外力問題に置き換わる。\n【引っかけ】$2.5=\\ddot x_0/m$、$7=m+\\ddot x_0$ はいずれも積 $m\\ddot x_0$ の誤り。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 4,
+      "origin": "original"
+    },
+    {
+      "id": "qc-vibration-1-20",
+      "number": "計算20",
+      "question": "圧縮荷重 $F=8\\,\\mathrm{N}$ を受け自由支持したコイルばねの倒れモードが $I\\ddot\\theta=Fl\\theta$ で表される。$l=2\\,\\mathrm{m}$、$I=4\\,\\mathrm{kg\\cdot m^2}$ のとき、$\\theta=\\theta_0 e^{\\lambda t}$ の $\\lambda=\\sqrt{Fl/I}$ の大きさはいくらか。",
+      "choices": [
+        "$4\\ \\mathrm{s^{-1}}$",
+        "$1\\ \\mathrm{s^{-1}}$",
+        "$8\\ \\mathrm{s^{-1}}$",
+        "$2\\ \\mathrm{s^{-1}}$"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】圧縮荷重が負の剛性として作用し $I\\ddot\\theta=Fl\\theta$、$\\lambda=\\pm\\sqrt{Fl/I}$。\n【考え方】$Fl/I=8\\times2/4=16/4=4$、$\\lambda=\\sqrt4=2\\ \\mathrm{s^{-1}}$。\n【ポイント】正の実根があるため倒れやすい(不安定)ことを表す。\n【引っかけ】$4=Fl/I$ は平方根の取り忘れ。圧縮量($Fl$)が大きいほど倒れやすい。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 4,
+      "origin": "original"
+    }
+  ]
+}

@@ -28,7 +28,7 @@ import type { Question } from './src/types';
 import { FIGURE_ASPECT } from './src/figures';
 import { figureSource, hasFigure } from './src/data/figureStore';
 import { RichText } from './src/MathText';
-import { CATALOG, questionsByIds, QUESTION_FORMULA_ID, type ChapterEntry } from './src/catalog';
+import { CATALOG, questionsByIds, QUESTION_FORMULA_ID, quizList, type ChapterEntry } from './src/catalog';
 import { formulaDoc, type FormulaItem } from './src/formulas';
 import { initContent } from './src/data/initContent';
 import Svg, { Circle, Line, Polygon, Text as SvgText, Defs, LinearGradient, RadialGradient, Stop, Rect } from 'react-native-svg';
@@ -148,14 +148,16 @@ type FormulaView = 'chapters' | 'titles' | 'item';
 
 export default function App() {
   // 起動時に一度だけコンテンツOTAを初期化（端末キャッシュの差し替えを反映→カタログ再構築）。
-  // 完了するまでは短い暗色スプラッシュ（ローカル読込のみなので通常は一瞬。ネット同期は裏で走る＝次回反映）。
+  // 完了するまでは短い暗色スプラッシュ（ローカル読込のみなので通常は一瞬）。ネット同期は裏で走り、
+  // 更新があれば contentVersion を上げて "この起動中に" 画面へ反映する（＝2回起動しなくてよい）。
   const [contentReady, setContentReady] = useState(false);
+  const [contentVersion, setContentVersion] = useState(0);
   useEffect(() => {
-    initContent().finally(() => setContentReady(true));
+    initContent(() => setContentVersion((v) => v + 1)).finally(() => setContentReady(true));
   }, []);
   return (
     <SafeAreaProvider>
-      {contentReady ? <AppInner /> : <View style={{ flex: 1, backgroundColor: '#0b1526' }} />}
+      {contentReady ? <AppInner contentVersion={contentVersion} /> : <View style={{ flex: 1, backgroundColor: '#0b1526' }} />}
     </SafeAreaProvider>
   );
 }
@@ -164,7 +166,7 @@ const THEME_KEY = 'cae.theme'; // 'system' | 'light' | 'dark'
 const HOME_GRADE_KEY = 'cae.homeGrade'; // ホームで前回開いた級 'g1' | 'g2'
 const HOME_FIELD_KEY = 'cae.homeField'; // ホームで前回開いた分野 'solid' | 'thermal' | 'vibration'
 
-function AppInner() {
+function AppInner(props: { contentVersion: number }) {
   // FEMネイビー世界観をアプリ全体で統一（ホームと同じ暗色＋シアンのアクセント。ライト/ダークは廃止）。
   const t = navy;
   const insets = useSafeAreaInsets();
@@ -217,7 +219,7 @@ function AppInner() {
     setGrade(g); AsyncStorage.setItem(HOME_GRADE_KEY, g).catch(() => {});
   }
   // 選択中の分野×級に対応するコース。問題タブ・公式タブはこれをそのまま表示する。
-  const course = useMemo(() => courseOf(field, grade), [field, grade]);
+  const course = useMemo(() => courseOf(field, grade), [field, grade, props.contentVersion]);
   const formulaCourse = course; // 公式・用語も同じ分野×級に追従
 
   // 問題タブのサブ画面状態（コース選択画面は廃止＝章の目次から始まる）
@@ -279,7 +281,7 @@ function AppInner() {
   const courseWrongQuestions = useMemo(() => {
     const ids = new Set(fieldGradeChapters(field, grade).flatMap((c) => c.data.questions.map((q) => q.id)));
     return wrongQuestions.filter((q) => ids.has(q.id));
-  }, [wrongQuestions, field, grade]);
+  }, [wrongQuestions, field, grade, props.contentVersion]);
 
   // 出題を開始（章 or 復習）。startIndex から表示。
   function openProblems(list: Question[], title: string, startIndex = 0) {
@@ -350,6 +352,18 @@ function AppInner() {
               setFormulaFrom(null);
               setFormulaView('chapters');
               setTab('formula');
+            }}
+            onGoTermQuiz={() => {
+              // 用語問題の専用セット（分野×級）。未配信なら公式・用語タブへフォールバック。
+              const list = quizList('term', field, grade);
+              if (list.length > 0) openProblems(list, '用語問題');
+              else { setFormulaFrom(null); setFormulaView('chapters'); setTab('formula'); }
+            }}
+            onGoCalcQuiz={() => {
+              // 計算・数値問題の専用セット（分野×級）。未配信なら問題タブへフォールバック。
+              const list = quizList('calc', field, grade);
+              if (list.length > 0) openProblems(list, '計算・数値問題');
+              else { setStudyView('chapters'); setTab('study'); }
             }}
             onSolveUnattempted={solveUnattempted}
             onOpenChapter={openChapterById}
@@ -742,6 +756,8 @@ function HomeTab(props: {
   onReview: () => void;
   onGoStudy: () => void;
   onGoFormula: () => void;
+  onGoTermQuiz: () => void;
+  onGoCalcQuiz: () => void;
   onSolveUnattempted: (gradeId: GradeId, fieldId: FieldId) => void;
   onOpenChapter: (gradeId: GradeId, chapterId: string, fieldId: FieldId) => void;
 }) {
@@ -876,7 +892,7 @@ function HomeTab(props: {
 
         {/* 用語問題 / 計算・数値問題 */}
         <View style={home.duo}>
-          <Pressable style={home.imgCard} onPress={props.onGoFormula}>
+          <Pressable style={home.imgCard} onPress={props.onGoTermQuiz}>
             <ImageBackground source={HOME_IMG.formula} style={StyleSheet.absoluteFill} imageStyle={home.cardImg}>
               <Veil id="veilFormula" stops={[{ o: 0, op: 0.02 }, { o: 0.5, op: 0.42 }, { o: 1, op: 0.92 }]} />
             </ImageBackground>
@@ -886,7 +902,7 @@ function HomeTab(props: {
               <Text style={home.cardP}>公式・専門用語を一問一答で</Text>
             </View>
           </Pressable>
-          <Pressable style={home.imgCard} onPress={props.onGoStudy}>
+          <Pressable style={home.imgCard} onPress={props.onGoCalcQuiz}>
             <ImageBackground source={HOME_IMG.frame} style={StyleSheet.absoluteFill} imageStyle={home.cardImg}>
               <Veil id="veilFrame" stops={[{ o: 0, op: 0.05 }, { o: 0.45, op: 0.5 }, { o: 1, op: 0.94 }]} />
             </ImageBackground>

@@ -1,0 +1,352 @@
+{
+  "meta": {
+    "field": "solid",
+    "grade": "2級",
+    "kind": "calc",
+    "title": "固体力学2級 計算・数値問題",
+    "count": 20,
+    "origin": "original"
+  },
+  "questions": [
+    {
+      "id": "qc-solid-2-1",
+      "number": "計算1",
+      "question": "断面積 $A=200\\,\\mathrm{mm^2}$ の丸棒を軸方向に $P=20\\,\\mathrm{kN}$ で引くとき、垂直応力 $\\sigma=P/A$ に最も近いものはどれか。",
+      "choices": [
+        "$50\\,\\mathrm{MPa}$",
+        "$100\\,\\mathrm{MPa}$",
+        "$200\\,\\mathrm{MPa}$",
+        "$400\\,\\mathrm{MPa}$"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】$\\sigma=P/A$。単位は $\\mathrm{MPa}=\\mathrm{N/mm^2}$。\n【計算】$20\\,\\mathrm{kN}=20000\\,\\mathrm{N}$ なので $\\sigma=20000/200=100\\,\\mathrm{MPa}$。\n【ポイント】力を $\\mathrm{N}$、面積を $\\mathrm{mm^2}$ にそろえると $\\mathrm{MPa}$ が直接出ます。\n【引っかけ】①は $P=10\\,\\mathrm{kN}$ と誤読、③は面積を100と誤り、④はさらに半分にした誤りです。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 2,
+      "origin": "original"
+    },
+    {
+      "id": "qc-solid-2-2",
+      "number": "計算2",
+      "question": "縦弾性係数 $E=210\\,\\mathrm{GPa}$ の鋼に、弾性ひずみ $\\varepsilon=0.001$ が生じている。フックの法則 $\\sigma=E\\varepsilon$ による応力に最も近いものはどれか。",
+      "choices": [
+        "$210\\,\\mathrm{MPa}$",
+        "$21\\,\\mathrm{MPa}$",
+        "$2100\\,\\mathrm{MPa}$",
+        "$105\\,\\mathrm{MPa}$"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】弾性域では $\\sigma=E\\varepsilon$。\n【計算】$\\sigma=210\\times10^9\\times0.001=210\\times10^6\\,\\mathrm{Pa}=210\\,\\mathrm{MPa}$。\n【ポイント】$\\mathrm{GPa}\\times$（無次元ひずみ）は $\\mathrm{GPa}$ 単位で、$\\times1000$ すれば $\\mathrm{MPa}$。$210\\,\\mathrm{GPa}\\times0.001=0.21\\,\\mathrm{GPa}=210\\,\\mathrm{MPa}$ とも計算できます。\n【引っかけ】②は桁を1つ間違い、③は逆にひずみを0.01と誤り、④は $E$ を半分にした誤りです。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 2,
+      "origin": "original"
+    },
+    {
+      "id": "qc-solid-2-3",
+      "number": "計算3",
+      "question": "$E=208\\,\\mathrm{GPa}$、ポアソン比 $\\nu=0.3$ の等方性材料について、せん断弾性係数 $G=\\dfrac{E}{2(1+\\nu)}$ に最も近いものはどれか。",
+      "choices": [
+        "$104\\,\\mathrm{GPa}$",
+        "$160\\,\\mathrm{GPa}$",
+        "$80\\,\\mathrm{GPa}$",
+        "$277\\,\\mathrm{GPa}$"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】等方性材料の独立な弾性定数は2つで、$G$ は $E$ と $\\nu$ から決まる従属量です。\n【計算】$G=208/(2\\times1.3)=208/2.6=80\\,\\mathrm{GPa}$。\n【ポイント】鋼の $G$ は実測でおよそ80GPaと一致します。\n【引っかけ】①は $\\nu$ を忘れ $E/2$、②は係数2を忘れ $E/(1+\\nu)=160$、④は分母を誤ったものです。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 2,
+      "origin": "original"
+    },
+    {
+      "id": "qc-solid-2-4",
+      "number": "計算4",
+      "question": "$E=200\\,\\mathrm{GPa}$、断面積 $A=100\\,\\mathrm{mm^2}$、長さ $L=2\\,\\mathrm{m}$ の棒を $P=20\\,\\mathrm{kN}$ で引くときの伸び $\\delta=\\dfrac{PL}{EA}$ に最も近いものはどれか。",
+      "choices": [
+        "$0.5\\,\\mathrm{mm}$",
+        "$1.0\\,\\mathrm{mm}$",
+        "$4.0\\,\\mathrm{mm}$",
+        "$2.0\\,\\mathrm{mm}$"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】$\\delta=PL/(EA)$。単位を $\\mathrm{N,\\ mm,\\ MPa}$ にそろえます。\n【計算】$P=20000\\,\\mathrm{N}$、$L=2000\\,\\mathrm{mm}$、$E=200000\\,\\mathrm{MPa}$ より $\\delta=\\dfrac{20000\\times2000}{200000\\times100}=\\dfrac{4\\times10^7}{2\\times10^7}=2.0\\,\\mathrm{mm}$。\n【ポイント】$\\mathrm{MPa}=\\mathrm{N/mm^2}$ なので、この単位系だと答えは $\\mathrm{mm}$ で出ます。\n【引っかけ】①③は $L$ や $A$ の換算ミス、②は分子分母の一方を2倍し忘れた誤りです。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 2,
+      "origin": "original"
+    },
+    {
+      "id": "qc-solid-2-5",
+      "number": "計算5",
+      "question": "縦ひずみ $\\varepsilon=0.002$、ポアソン比 $\\nu=0.3$ のとき、直径 $D=20\\,\\mathrm{mm}$ の丸棒の直径の縮み量に最も近いものはどれか。",
+      "choices": [
+        "$0.012\\,\\mathrm{mm}$",
+        "$0.006\\,\\mathrm{mm}$",
+        "$0.040\\,\\mathrm{mm}$",
+        "$0.12\\,\\mathrm{mm}$"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】横ひずみ $=\\nu\\times$ 縦ひずみ $=0.3\\times0.002=0.0006$。\n【計算】縮み量 $=D\\times$ 横ひずみ $=20\\times0.0006=0.012\\,\\mathrm{mm}$。\n【ポイント】縦に伸ばすと横は縮む。ポアソン比はその縮み割合です。\n【引っかけ】②は $\\nu$ を0.15と誤り、③は縦ひずみをそのまま使い、④は桁を1つ間違えたものです。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 2,
+      "origin": "original"
+    },
+    {
+      "id": "qc-solid-2-6",
+      "number": "計算6",
+      "question": "幅 $b=30\\,\\mathrm{mm}$、高さ $h=60\\,\\mathrm{mm}$ の長方形断面の断面二次モーメント $I=\\dfrac{bh^3}{12}$ に最も近いものはどれか。",
+      "choices": [
+        "$270000\\,\\mathrm{mm^4}$",
+        "$540000\\,\\mathrm{mm^4}$",
+        "$1080000\\,\\mathrm{mm^4}$",
+        "$90000\\,\\mathrm{mm^4}$"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】長方形断面は $I=bh^3/12$。高さ $h$ の3乗で効きます。\n【計算】$I=30\\times60^3/12=30\\times216000/12=6480000/12=540000\\,\\mathrm{mm^4}$。\n【ポイント】$h$ が3乗なので、縦長に使うほど格段に曲げに強くなります。\n【引っかけ】①は半分、③は2倍、④は $b$ と $h$ を取り違えた（$60\\times30^3/12$）誤りです。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 2,
+      "origin": "original"
+    },
+    {
+      "id": "qc-solid-2-7",
+      "number": "計算7",
+      "question": "幅 $b=20\\,\\mathrm{mm}$、高さ $h=30\\,\\mathrm{mm}$ の長方形断面のはりに、曲げモーメント $M=600\\,\\mathrm{N\\!\\cdot\\!m}$ が作用する。断面係数 $Z=\\dfrac{bh^2}{6}$ を用いた最大曲げ応力 $\\sigma=M/Z$ に最も近いものはどれか。",
+      "choices": [
+        "$100\\,\\mathrm{MPa}$",
+        "$150\\,\\mathrm{MPa}$",
+        "$200\\,\\mathrm{MPa}$",
+        "$300\\,\\mathrm{MPa}$"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】$\\sigma_{\\max}=M/Z$、$Z=bh^2/6$。\n【計算】$Z=20\\times30^2/6=20\\times900/6=3000\\,\\mathrm{mm^3}$。$M=600\\,\\mathrm{N\\!\\cdot\\!m}=600000\\,\\mathrm{N\\!\\cdot\\!mm}$ より $\\sigma=600000/3000=200\\,\\mathrm{MPa}$。\n【ポイント】$M$ を $\\mathrm{N\\!\\cdot\\!mm}$ に直すのを忘れないこと（$\\times1000$）。\n【引っかけ】①は $M$ の換算忘れの逆補正、②は $Z$ の係数を誤り、④は $M$ を2倍にした誤りです。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 2,
+      "origin": "original"
+    },
+    {
+      "id": "qc-solid-2-8",
+      "number": "計算8",
+      "question": "内圧 $p=3\\,\\mathrm{MPa}$、内径 $d=800\\,\\mathrm{mm}$、板厚 $t=6\\,\\mathrm{mm}$ の薄肉円筒の円周方向応力（フープ応力）$\\sigma_\\theta=\\dfrac{pd}{2t}$ に最も近いものはどれか。",
+      "choices": [
+        "$100\\,\\mathrm{MPa}$",
+        "$150\\,\\mathrm{MPa}$",
+        "$400\\,\\mathrm{MPa}$",
+        "$200\\,\\mathrm{MPa}$"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】薄肉円筒のフープ応力 $\\sigma_\\theta=pd/(2t)$。軸方向応力はその半分です。\n【計算】$\\sigma_\\theta=3\\times800/(2\\times6)=2400/12=200\\,\\mathrm{MPa}$。\n【ポイント】フープ応力が最大なので、圧力容器は周方向応力による縦割れが起きやすくなります。\n【引っかけ】①は軸方向応力 $pd/(4t)=100$、③は $2t$ を $t$ と誤り、②は係数の取り違えです。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 2,
+      "origin": "original"
+    },
+    {
+      "id": "qc-solid-2-9",
+      "number": "計算9",
+      "question": "平面応力状態 $\\sigma_x=80$, $\\sigma_y=20$, $\\tau_{xy}=40\\,\\mathrm{MPa}$ における最大主応力 $\\sigma_1$ に最も近いものはどれか。",
+      "choices": [
+        "$100\\,\\mathrm{MPa}$",
+        "$50\\,\\mathrm{MPa}$",
+        "$130\\,\\mathrm{MPa}$",
+        "$0\\,\\mathrm{MPa}$"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】$\\sigma_{1,2}=\\dfrac{\\sigma_x+\\sigma_y}{2}\\pm\\sqrt{\\left(\\dfrac{\\sigma_x-\\sigma_y}{2}\\right)^2+\\tau_{xy}^2}$。\n【計算】中心 $=(80+20)/2=50$、半径 $=\\sqrt{30^2+40^2}=\\sqrt{2500}=50$。よって $\\sigma_1=50+50=100\\,\\mathrm{MPa}$。\n【ポイント】$30$-$40$-$50$ の直角三角形になっているのがポイントです。\n【引っかけ】②は中心（平均）の値、④は最小主応力 $\\sigma_2=50-50=0$、③は半径の計算違いです。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 2,
+      "origin": "original"
+    },
+    {
+      "id": "qc-solid-2-10",
+      "number": "計算10",
+      "question": "純せん断状態（主応力が $\\sigma_1=+100$, $\\sigma_2=-100$, $\\sigma_3=0\\,\\mathrm{MPa}$）のミーゼス相当応力 $\\sigma_M$ に最も近いものはどれか。",
+      "choices": [
+        "$100\\,\\mathrm{MPa}$",
+        "$173\\,\\mathrm{MPa}$",
+        "$200\\,\\mathrm{MPa}$",
+        "$141\\,\\mathrm{MPa}$"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】$\\sigma_M=\\sqrt{\\dfrac{(\\sigma_1-\\sigma_2)^2+(\\sigma_2-\\sigma_3)^2+(\\sigma_3-\\sigma_1)^2}{2}}$。\n【計算】$\\sigma_M=\\sqrt{\\dfrac{200^2+100^2+100^2}{2}}=\\sqrt{\\dfrac{60000}{2}}=\\sqrt{30000}\\approx173\\,\\mathrm{MPa}$。純せん断では $\\sigma_M=\\sqrt{3}\\,\\tau$ で $\\tau=100$ でも同じ値です。\n【ポイント】$\\sqrt{3}\\approx1.73$ を覚えておくと速いです。\n【引っかけ】③は差の最大200を半分にした値、④は $\\sqrt{2}\\times100$、①は主応力の絶対値そのままの誤りです。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 2,
+      "origin": "original"
+    },
+    {
+      "id": "qc-solid-2-11",
+      "number": "計算11",
+      "question": "両端を完全に拘束した鋼棒（$E=200\\,\\mathrm{GPa}$、線膨張係数 $\\alpha=12\\times10^{-6}/\\mathrm{K}$）を $\\Delta T=50\\,\\mathrm{K}$ 昇温したときに生じる熱応力の大きさ $|\\sigma|=E\\alpha\\Delta T$ に最も近いものはどれか。",
+      "choices": [
+        "$60\\,\\mathrm{MPa}$",
+        "$240\\,\\mathrm{MPa}$",
+        "$120\\,\\mathrm{MPa}$",
+        "$1200\\,\\mathrm{MPa}$"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】完全拘束の熱応力は $\\sigma=-E\\alpha\\Delta T$（昇温で圧縮）。大きさは $E\\alpha\\Delta T$。\n【計算】$|\\sigma|=200000\\times12\\times10^{-6}\\times50=200000\\times6\\times10^{-4}=120\\,\\mathrm{MPa}$。\n【ポイント】自由に伸びられれば応力は生じず、拘束されるからこそ熱応力が出ます。\n【引っかけ】①は $\\Delta T=25$、②は $\\Delta T=100$、④は $\\mathrm{GPa}$ 換算の桁ミスです。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 2,
+      "origin": "original"
+    },
+    {
+      "id": "qc-solid-2-12",
+      "number": "計算12",
+      "question": "長さ $L=2\\,\\mathrm{m}$ の棒（線膨張係数 $\\alpha=11\\times10^{-6}/\\mathrm{K}$）を自由な状態で $\\Delta T=100\\,\\mathrm{K}$ 昇温したときの伸び $\\delta=\\alpha\\Delta T\\,L$ に最も近いものはどれか。",
+      "choices": [
+        "$1.1\\,\\mathrm{mm}$",
+        "$0.22\\,\\mathrm{mm}$",
+        "$11\\,\\mathrm{mm}$",
+        "$2.2\\,\\mathrm{mm}$"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】熱ひずみ $\\varepsilon_T=\\alpha\\Delta T$、伸び $\\delta=\\varepsilon_T\\,L$。\n【計算】$\\varepsilon_T=11\\times10^{-6}\\times100=1.1\\times10^{-3}$。$\\delta=1.1\\times10^{-3}\\times2000\\,\\mathrm{mm}=2.2\\,\\mathrm{mm}$。\n【ポイント】自由膨張なので応力は生じず、単純に伸びだけが出ます。\n【引っかけ】①は $\\Delta T=50$、②は $L=0.4\\,\\mathrm{m}$、③は桁を1つ間違えた誤りです。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 2,
+      "origin": "original"
+    },
+    {
+      "id": "qc-solid-2-13",
+      "number": "計算13",
+      "question": "熱伝導率 $k=0.5\\,\\mathrm{W/(m\\cdot K)}$、面積 $A=2\\,\\mathrm{m^2}$、厚さ $L=0.05\\,\\mathrm{m}$ の平板の両面に温度差 $\\Delta T=30\\,\\mathrm{K}$ があるときの熱流量 $Q=\\dfrac{kA\\Delta T}{L}$ に最も近いものはどれか。",
+      "choices": [
+        "$600\\,\\mathrm{W}$",
+        "$300\\,\\mathrm{W}$",
+        "$60\\,\\mathrm{W}$",
+        "$1200\\,\\mathrm{W}$"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】フーリエの法則（定常）$Q=kA\\Delta T/L$。\n【計算】$Q=0.5\\times2\\times30/0.05=30/0.05=600\\,\\mathrm{W}$。\n【ポイント】厚さ $L$ が分母。薄いほど（$L$ 小）熱がよく流れます。\n【引っかけ】②は $L=0.1$、③は $L=0.5$、④は $\\Delta T=60$ とした誤りです。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 2,
+      "origin": "original"
+    },
+    {
+      "id": "qc-solid-2-14",
+      "number": "計算14",
+      "question": "厚さ $L=0.2\\,\\mathrm{m}$、熱伝導率 $k=0.4\\,\\mathrm{W/(m\\cdot K)}$、面積 $A=5\\,\\mathrm{m^2}$ の壁の熱抵抗 $R=\\dfrac{L}{kA}$ に最も近いものはどれか。",
+      "choices": [
+        "$0.5\\,\\mathrm{K/W}$",
+        "$0.1\\,\\mathrm{K/W}$",
+        "$1.0\\,\\mathrm{K/W}$",
+        "$0.04\\,\\mathrm{K/W}$"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】熱抵抗 $R=L/(kA)$。電気回路の抵抗に対応します。\n【計算】$R=0.2/(0.4\\times5)=0.2/2=0.1\\,\\mathrm{K/W}$。\n【ポイント】直列に重ねた壁は $R$ を足し算すれば全体が求まります。\n【引っかけ】①は $A$ を1と誤り、③は $kA$ を0.2と誤り、④は逆数関係を取り違えた誤りです。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 2,
+      "origin": "original"
+    },
+    {
+      "id": "qc-solid-2-15",
+      "number": "計算15",
+      "question": "熱伝達率 $h=20\\,\\mathrm{W/(m^2\\cdot K)}$、表面温度 $80\\,^\\circ\\mathrm{C}$、周囲の流体温度 $20\\,^\\circ\\mathrm{C}$ のとき、単位面積あたりの放熱量 $q=h(T_s-T_\\infty)$ に最も近いものはどれか。",
+      "choices": [
+        "$300\\,\\mathrm{W/m^2}$",
+        "$600\\,\\mathrm{W/m^2}$",
+        "$1200\\,\\mathrm{W/m^2}$",
+        "$2000\\,\\mathrm{W/m^2}$"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】ニュートンの冷却則 $q=h(T_s-T_\\infty)$。\n【計算】$q=20\\times(80-20)=20\\times60=1200\\,\\mathrm{W/m^2}$。\n【ポイント】温度差は摂氏でもケルビンでも差は同じなので、そのまま引けます。\n【引っかけ】①は温度差を15、②は30と誤り、④は $h=$ 別値としたキリのよい誤答です。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 2,
+      "origin": "original"
+    },
+    {
+      "id": "qc-solid-2-16",
+      "number": "計算16",
+      "question": "公称応力 $\\sigma_\\text{公称}=50\\,\\mathrm{MPa}$ の板に、応力集中係数 $\\alpha=3$ の小さな穴がある。穴の縁での最大応力 $\\sigma_{\\max}=\\alpha\\,\\sigma_\\text{公称}$ に最も近いものはどれか。",
+      "choices": [
+        "$50\\,\\mathrm{MPa}$",
+        "$17\\,\\mathrm{MPa}$",
+        "$100\\,\\mathrm{MPa}$",
+        "$150\\,\\mathrm{MPa}$"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】$\\sigma_{\\max}=\\alpha\\,\\sigma_\\text{公称}$。応力集中係数は最大応力の倍率です。\n【計算】$\\sigma_{\\max}=3\\times50=150\\,\\mathrm{MPa}$。\n【ポイント】疲労はこうした応力集中部から始まりやすく、角を丸めると $\\alpha$ が下がります。\n【引っかけ】②は $\\alpha$ で割り算した誤り、③は $\\alpha=2$、①は集中を無視した誤りです。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 2,
+      "origin": "original"
+    },
+    {
+      "id": "qc-solid-2-17",
+      "number": "計算17",
+      "question": "剛性 $k_1=3\\times10^4\\,\\mathrm{N/mm}$ と $k_2=1\\times10^4\\,\\mathrm{N/mm}$ の2本の棒を剛体板で並列につなぎ、荷重 $P=20\\,\\mathrm{kN}$ を掛ける。共通の伸び $\\delta=P/(k_1+k_2)$ を求めたうえで、剛性の大きい棒が分担する力 $F_1=k_1\\delta$ に最も近いものはどれか。",
+      "choices": [
+        "$15\\,\\mathrm{kN}$",
+        "$5\\,\\mathrm{kN}$",
+        "$10\\,\\mathrm{kN}$",
+        "$20\\,\\mathrm{kN}$"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】並列では2本が同じ伸び $\\delta$ を共有し、$\\delta=P/(k_1+k_2)$。固い棒ほど大きな力を分担します。\n【計算】$\\delta=20000/(4\\times10^4)=0.5\\,\\mathrm{mm}$。$F_1=k_1\\delta=3\\times10^4\\times0.5=15000\\,\\mathrm{N}=15\\,\\mathrm{kN}$。\n【ポイント】力は剛性の比 $k_1:k_2=3:1$ で分配され、$20\\times3/4=15\\,\\mathrm{kN}$ とも求まります。\n【引っかけ】②は細い棒の分担 $F_2=5\\,\\mathrm{kN}$、③は等分、④は全荷重をそのままとした誤りです。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 2,
+      "origin": "original"
+    },
+    {
+      "id": "qc-solid-2-18",
+      "number": "計算18",
+      "question": "理論たわみ $10.0\\,\\mathrm{mm}$ に対し、FEM解が $9.5\\,\\mathrm{mm}$ であった。相対誤差 $\\dfrac{|u_\\text{FEM}-u_\\text{理論}|}{|u_\\text{理論}|}$ に最も近いものはどれか。",
+      "choices": [
+        "$0.5\\,\\%$",
+        "$5\\,\\%$",
+        "$50\\,\\%$",
+        "$0.05\\,\\%$"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】相対誤差は真値との差を真値で割った割合です。\n【計算】$\\dfrac{|9.5-10.0|}{10.0}=\\dfrac{0.5}{10.0}=0.05=5\\,\\%$。\n【ポイント】応力は変位より収束が遅いので、応力で収束を確認するのが安全です。\n【引っかけ】①③④はいずれも小数から%への換算（$\\times100$）の桁を誤ったものです。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 2,
+      "origin": "original"
+    },
+    {
+      "id": "qc-solid-2-19",
+      "number": "計算19",
+      "question": "プログラムの $80\\%$（並列化率 $p=0.8$）が並列化可能なとき、プロセッサ数を無限に増やしたときの最大速度向上 $S_{\\max}=\\dfrac{1}{1-p}$ に最も近いものはどれか。",
+      "choices": [
+        "$1.25$ 倍",
+        "$8$ 倍",
+        "$5$ 倍",
+        "$80$ 倍"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】アムダールの法則。並列化できない部分 $(1-p)$ が頭打ちを作ります。\n【計算】$S_{\\max}=1/(1-0.8)=1/0.2=5$ 倍。\n【ポイント】いくらプロセッサを増やしても、直列部分が残る限り速度向上には上限があります。\n【引っかけ】①は $1/p$、②は $p\\times10$ の見当違い、④は $p$ を%のまま使った誤りです。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 2,
+      "origin": "original"
+    },
+    {
+      "id": "qc-solid-2-20",
+      "number": "計算20",
+      "question": "1次要素の辺（2節点）に等分布圧力 $p=2\\,\\mathrm{MPa}$ がかかる。辺の長さ $L=100\\,\\mathrm{mm}$、厚さ $t=10\\,\\mathrm{mm}$ のとき、総力 $F=pLt$ を両端の節点へ等分したときの1節点あたりの力に最も近いものはどれか。",
+      "choices": [
+        "$2000\\,\\mathrm{N}$",
+        "$500\\,\\mathrm{N}$",
+        "$250\\,\\mathrm{N}$",
+        "$1000\\,\\mathrm{N}$"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】分布圧力は等価節点力に直す。1次要素の辺（2節点）では両端に半分ずつ配分します。\n【計算】総力 $F=pLt=2\\times100\\times10=2000\\,\\mathrm{N}$。1節点あたり $2000/2=1000\\,\\mathrm{N}$。\n【ポイント】$\\mathrm{MPa}=\\mathrm{N/mm^2}$ なので $\\mathrm{mm}$ 系では力が $\\mathrm{N}$ で直接出ます。\n【引っかけ】①は総力を分配し忘れ、②③は2次要素の配分比（$1/6,4/6$）と混同した誤りです。",
+      "type": "mc",
+      "hasMath": true,
+      "difficulty": 2,
+      "origin": "original"
+    }
+  ]
+}
