@@ -580,6 +580,14 @@
               "formulaId": "v1ch8",
               "ready": true,
               "formula": "content/formulas/vib1-ch8.json"
+            },
+            {
+              "id": "ch9",
+              "title": "第9章 結果の検証と考察",
+              "content": "content/questions/vib1-09-result-verification.json",
+              "formulaId": "v1ch9",
+              "ready": true,
+              "formula": "content/formulas/vib1-ch9.json"
             }
           ]
         },
