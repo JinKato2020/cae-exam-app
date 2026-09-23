@@ -24,7 +24,7 @@ import {
 } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import type { Question } from './src/types';
+import type { Question, Chapter } from './src/types';
 import { FIGURE_ASPECT } from './src/figures';
 import { figureSource, hasFigure } from './src/data/figureStore';
 import { RichText } from './src/MathText';
@@ -307,6 +307,28 @@ function AppInner(props: { contentVersion: number }) {
     if (c) openProblems(c.data.questions, c.title);
   }
 
+  // ホームの「用語問題／計算・数値問題」カード → まずタイトル一覧（tiles）を出し、
+  // タイルを選ぶと個別問題へ。章と同じ導線なので、問題→一覧→ホームと戻れる。
+  // 章に属さない専用セットなので合成の ChapterEntry（id='__quiz__'）に包んで tiles に流用する。
+  function openQuiz(kind: 'term' | 'calc', label: string) {
+    const list = quizList(kind, field, grade);
+    if (list.length === 0) {
+      // 未配信ならフォールバック（用語→公式・用語タブ／計算→問題タブの章目次）。
+      if (kind === 'term') { setFormulaFrom(null); setFormulaView('chapters'); setTab('formula'); }
+      else { setStudyView('chapters'); setTab('study'); }
+      return;
+    }
+    const synthetic: ChapterEntry = {
+      id: '__quiz__',
+      title: label,
+      data: { meta: { grade: '', category: label, chapter: 0, count: list.length }, questions: list } as Chapter,
+      ready: true,
+    };
+    setChapter(synthetic);
+    setStudyView('tiles');
+    setTab('study');
+  }
+
   async function onSelectAnswer(q: Question, choiceNum: number) {
     if (answers[q.id] != null) return; // 既に回答済みなら無視
     setAnswers((a) => ({ ...a, [q.id]: choiceNum }));
@@ -353,18 +375,8 @@ function AppInner(props: { contentVersion: number }) {
               setFormulaView('chapters');
               setTab('formula');
             }}
-            onGoTermQuiz={() => {
-              // 用語問題の専用セット（分野×級）。未配信なら公式・用語タブへフォールバック。
-              const list = quizList('term', field, grade);
-              if (list.length > 0) openProblems(list, '用語問題');
-              else { setFormulaFrom(null); setFormulaView('chapters'); setTab('formula'); }
-            }}
-            onGoCalcQuiz={() => {
-              // 計算・数値問題の専用セット（分野×級）。未配信なら問題タブへフォールバック。
-              const list = quizList('calc', field, grade);
-              if (list.length > 0) openProblems(list, '計算・数値問題');
-              else { setStudyView('chapters'); setTab('study'); }
-            }}
+            onGoTermQuiz={() => openQuiz('term', '用語問題')}
+            onGoCalcQuiz={() => openQuiz('calc', '計算・数値問題')}
             onSolveUnattempted={solveUnattempted}
             onOpenChapter={openChapterById}
           />
@@ -391,6 +403,7 @@ function AppInner(props: { contentVersion: number }) {
             onSelectAnswer={onSelectAnswer}
             setQIndex={setQIndex}
             goBack={(v) => setStudyView(v)}
+            onExitHome={() => setTab('home')}
             proState={proSt}
             onOpenPaywall={openPaywall}
             onOpenFormula={(formulaId, itemId) => {
@@ -1196,6 +1209,7 @@ function StudyTab(props: {
   onSelectAnswer: (q: Question, n: number) => void;
   setQIndex: (i: number) => void;
   goBack: (v: StudyView) => void;
+  onExitHome: () => void;
   proState: ProState;
   onOpenPaywall: (target: PayTarget | null) => void;
   onOpenFormula: (formulaId: string, itemId: string) => void;
@@ -1242,9 +1256,15 @@ function StudyTab(props: {
   // タイル一覧
   if (props.view === 'tiles' && props.chapter) {
     const qs = props.chapter.data.questions;
+    // ホームの用語/計算カードから来た専用セットは「__quiz__」。戻る先は章目次でなくホーム。
+    const isQuiz = props.chapter.id === '__quiz__';
     return (
       <ScrollView contentContainerStyle={styles.content}>
-        <BackLink t={t} label="章の目次へ" onPress={() => props.goBack('chapters')} />
+        <BackLink
+          t={t}
+          label={isQuiz ? 'ホームへ' : '章の目次へ'}
+          onPress={() => (isQuiz ? props.onExitHome() : props.goBack('chapters'))}
+        />
         <Text style={[styles.title, { color: t.text }]}>{props.chapter.title}</Text>
         <Text style={[styles.subtitle, { color: t.sub }]}>
           問題を選ぶ（緑=正解／赤=不正解／灰=未挑戦）
@@ -1269,7 +1289,7 @@ function StudyTab(props: {
               >
                 <Text style={[styles.tileNum, { color: t.text }]}>{q.number}</Text>
                 <Text style={[styles.tileTitle, { color: t.sub }]} numberOfLines={2}>
-                  {q.title ?? q.topic ?? ''}
+                  {tileHeading(q)}
                 </Text>
                 <Text style={[styles.tileMeta, { color: p ? (p.lastCorrect ? t.correct : t.wrong) : t.sub }]}>
                   {p
@@ -1308,6 +1328,19 @@ function StudyTab(props: {
   }
 
   return null;
+}
+
+// タイル見出し。章の問題は title/topic を持つが、ホームの専用セット（用語/計算）は
+// title が無いので、問題文の冒頭を見出しに使う（数式記号は簡易に除去して読みやすく）。
+function tileHeading(q: Question): string {
+  if (q.title) return q.title;
+  if (q.topic) return q.topic;
+  return (q.question ?? '')
+    .replace(/\$+/g, '')
+    .replace(/\\[a-zA-Z]+/g, ' ')
+    .replace(/[{}\\]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 // 解説文（【基礎】…【引っかけ】…）をラベル別ブロックに分解する。【】が無ければ全体を1ブロック。
