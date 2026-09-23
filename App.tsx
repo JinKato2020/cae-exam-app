@@ -61,6 +61,7 @@ import {
   type DailyMap,
   type DailyDigest,
 } from './src/progress';
+import { maybeAskForReview } from './src/review';
 import Paywall, { type PayTarget } from './src/pro/Paywall';
 import { TERMS_URL, PRIVACY_URL, SUPPORT_MAILTO_URL } from './src/config/revenuecat';
 import {
@@ -365,6 +366,9 @@ function AppInner(props: { contentVersion: number }) {
     setProgress(next);
     // 「今日 何問解いて 何問正解したか」を日単位で記録（継続日数・活動グラフの素）。
     setDaily(await recordDaily(daily, correct));
+    // 問題を解いた直後（＝良い体験の直後）に、累計が節目に達していればレビュー依頼。
+    // 実際に出すか・回数は OS が判断し、条件未達なら静かに何もしない（src/review.ts）。
+    void maybeAskForReview(Object.keys(next).length);
   }
 
   // ボトムナビのタブをスワイプでも切替（左=次のタブ / 右=前のタブ）。ただし問題画面・
@@ -1947,21 +1951,37 @@ function SettingsTab(props: {
       <Text style={[styles.title, { color: t.text }]}>設定</Text>
 
       <Text style={[styles.sectionHead, { color: t.text }]}>購入</Text>
+      <Text style={[styles.bodyText, { color: t.sub, fontSize: 12, marginBottom: 6 }]}>
+        「未購入」の行をタップすると、その分野・級の購入画面が直接開きます。
+      </Text>
       <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
         {ENTITLEMENTS.map((e, i) => {
           const owned = props.devPro || props.owned.includes(e.key);
+          const last = i === ENTITLEMENTS.length - 1;
+          const rowStyle = [styles.infoRow, last ? null : { borderBottomWidth: 1, borderColor: t.border }];
+          // 購入済みの級は静的表示。未購入の級はタップでその級のPaywallへ直接遷移（分かりやすさ優先）。
+          if (owned) {
+            return (
+              <View key={e.key} style={rowStyle}>
+                <Text style={[styles.infoLabel, { color: t.sub }]}>{e.title}</Text>
+                <Text style={[styles.infoValue, { color: t.text }]}>解除済み</Text>
+              </View>
+            );
+          }
           return (
-            <InfoRow
+            <Pressable
               key={e.key}
-              t={t}
-              label={e.title}
-              value={owned ? '解除済み' : '未購入'}
-              last={i === ENTITLEMENTS.length - 1}
-            />
+              onPress={() => props.onOpenPaywall({ key: e.key, title: e.title })}
+              style={rowStyle}
+              hitSlop={4}
+            >
+              <Text style={[styles.infoLabel, { color: t.text }]}>{e.title}</Text>
+              <Text style={[styles.infoValue, { color: t.primary }]}>未購入 ›</Text>
+            </Pressable>
           );
         })}
       </View>
-      {/* 級ごとの個別ボタンはやめ、「プレミアムの購入」1つに集約。押すと購入画面（Paywallで級を選ぶ）を開く。 */}
+      {/* 各行から直接その級を購入できるが、まとめて開きたい人向けに一括の入口も残す（ホーム選択中の級が既定）。 */}
       <Button t={t} kind="primary" label="プレミアムの購入" onPress={() => props.onOpenPaywall(null)} />
       <Button t={t} kind="ghost" label="購入を復元する" onPress={props.onRestoreAll} />
 
@@ -2023,16 +2043,6 @@ function SettingsTab(props: {
         </Text>
       </Pressable>
     </ScrollView>
-  );
-}
-
-function InfoRow(props: { t: Theme; label: string; value: string; last?: boolean }) {
-  const { t } = props;
-  return (
-    <View style={[styles.infoRow, props.last ? null : { borderBottomWidth: 1, borderColor: t.border }]}>
-      <Text style={[styles.infoLabel, { color: t.sub }]}>{props.label}</Text>
-      <Text style={[styles.infoValue, { color: t.text }]}>{props.value}</Text>
-    </View>
   );
 }
 
