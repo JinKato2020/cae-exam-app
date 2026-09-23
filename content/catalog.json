@@ -564,6 +564,14 @@
               "formulaId": "v1ch6",
               "ready": true,
               "formula": "content/formulas/vib1-ch6.json"
+            },
+            {
+              "id": "ch7",
+              "title": "第7章 流体連成系の解析基礎",
+              "content": "content/questions/vib1-07-fluid-coupled-systems.json",
+              "formulaId": "v1ch7",
+              "ready": true,
+              "formula": "content/formulas/vib1-ch7.json"
             }
           ]
         },
