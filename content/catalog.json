@@ -556,6 +556,14 @@
               "formulaId": "v1ch5",
               "ready": true,
               "formula": "content/formulas/vib1-ch5.json"
+            },
+            {
+              "id": "ch6",
+              "title": "第6章 音響連成系の解析基礎",
+              "content": "content/questions/vib1-06-acoustic-coupled-systems.json",
+              "formulaId": "v1ch6",
+              "ready": true,
+              "formula": "content/formulas/vib1-ch6.json"
             }
           ]
         },
