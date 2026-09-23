@@ -572,6 +572,14 @@
               "formulaId": "v1ch7",
               "ready": true,
               "formula": "content/formulas/vib1-ch7.json"
+            },
+            {
+              "id": "ch8",
+              "title": "第8章 振動の数値計算技術",
+              "content": "content/questions/vib1-08-numerical-computation.json",
+              "formulaId": "v1ch8",
+              "ready": true,
+              "formula": "content/formulas/vib1-ch8.json"
             }
           ]
         },
