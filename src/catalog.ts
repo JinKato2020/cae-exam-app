@@ -71,6 +71,14 @@ export function quizList(kind: 'term' | 'calc', fieldId: string, gradeId: string
   return doc?.questions ?? [];
 }
 
+// ホーム「試験前の準備」カード＝合格・足切りルール（分野×級ごと・OTAで差し替え可）。
+// content/exam/passrule-<分野>-<級数字>.json を getContent で解決。無ければ null（呼出し側で同梱既定へフォールバック）。
+export type ExamRuleDoc = { title?: string; rules: string[]; plain: string; note?: string; sourceLabel?: string; sourceUrl?: string };
+export function examRule(fieldId: string, gradeId: string): ExamRuleDoc | null {
+  const g = gradeId === 'g1' ? '1' : '2';
+  return getContent<ExamRuleDoc>(`content/exam/passrule-${fieldId}-${g}.json`);
+}
+
 // live binding（export let）＝ rebuildCatalog で作り直すと、呼出し時に読む消費側へ自動反映される。
 export let CATALOG: FieldEntry[] = buildCatalog();
 export let FORMULA_KEY_BY_ID: Record<string, string> = buildFormulaKeyById();

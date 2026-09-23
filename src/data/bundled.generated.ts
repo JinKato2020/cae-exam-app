@@ -3,6 +3,12 @@
 // キーは manifest と同じ相対パス。値は require（Metro が JSON をバンドルする）。
 export const BUNDLED: Record<string, unknown> = {
   'content/catalog.json': require('../../content/catalog.json'),
+  'content/exam/passrule-solid-1.json': require('../../content/exam/passrule-solid-1.json'),
+  'content/exam/passrule-solid-2.json': require('../../content/exam/passrule-solid-2.json'),
+  'content/exam/passrule-thermal-1.json': require('../../content/exam/passrule-thermal-1.json'),
+  'content/exam/passrule-thermal-2.json': require('../../content/exam/passrule-thermal-2.json'),
+  'content/exam/passrule-vibration-1.json': require('../../content/exam/passrule-vibration-1.json'),
+  'content/exam/passrule-vibration-2.json': require('../../content/exam/passrule-vibration-2.json'),
   'content/formulas/ch1.json': require('../../content/formulas/ch1.json'),
   'content/formulas/ch10.json': require('../../content/formulas/ch10.json'),
   'content/formulas/ch11.json': require('../../content/formulas/ch11.json'),

@@ -28,7 +28,7 @@ import type { Question, Chapter } from './src/types';
 import { FIGURE_ASPECT } from './src/figures';
 import { figureSource, hasFigure } from './src/data/figureStore';
 import { RichText } from './src/MathText';
-import { CATALOG, questionsByIds, QUESTION_FORMULA_ID, quizList, type ChapterEntry } from './src/catalog';
+import { CATALOG, questionsByIds, QUESTION_FORMULA_ID, quizList, examRule, type ChapterEntry } from './src/catalog';
 import { formulaDoc, type FormulaItem } from './src/formulas';
 import { initContent } from './src/data/initContent';
 import Svg, { Circle, Line, Polygon, Text as SvgText, Defs, LinearGradient, RadialGradient, Stop, Rect } from 'react-native-svg';
@@ -96,6 +96,34 @@ const DISCIPLINES: { id: FieldId; label: string }[] = [
   { id: 'thermal', label: '熱流体力学' },
   { id: 'vibration', label: '振動' },
 ];
+
+// ── 合格・足切りルール（本番の判定基準）──────────────────────────────
+// 出典＝日本機械学会 2025年度「計算力学技術者（CAE技術者）1・2級 認定試験のご案内」
+//   https://www.jsme.or.jp/cee/uploads/sites/3/2025/06/25cmnintei12.pdf
+// 固体力学・熱流体力学・振動の3分野いずれも合格基準は共通で、条件は級だけで異なる（同案内より）。
+// 数値は上記一次情報の原文どおり。年度で変わり得るため画面には必ず公式確認の注意を併記する。
+const EXAM_PASS_RULES: Record<GradeId, { rules: string[]; plain: string }> = {
+  g2: {
+    rules: [
+      '全体の正答率が 70％以上であること。',
+      'かつ、全問不正解の分野が 2 分野以下であること。',
+    ],
+    // 素人にも分かる噛み砕き（足切り＝ここに引っかかると総合点が良くても不合格）。
+    plain: '「全体で7割以上」に加えて、1問も正解できない分野が3つ以上あると足切りで不合格になります。得意分野だけで点を稼ぎ、苦手分野を捨て過ぎないことが大切です。',
+  },
+  g1: {
+    rules: [
+      '全体の正答率が 50％以上であること。',
+      'かつ、正答率 70％以上の分野が 3 分野以上あること。',
+      'かつ、全問不正解の分野が 2 分野以下であること。',
+    ],
+    plain: '全体で5割以上でも、「7割以上取れた分野が3つ以上」なければ合格できません。さらに、1問も正解できない分野が3つ以上あると足切りで不合格です。広く得点し、極端な苦手分野を作らないことが鍵です。',
+  },
+};
+const EXAM_RULE_SOURCE = {
+  label: '出典：日本機械学会 2025年度 計算力学技術者（CAE技術者）1・2級 認定試験のご案内',
+  url: 'https://www.jsme.or.jp/cee/uploads/sites/3/2025/06/25cmnintei12.pdf',
+};
 // その分野×級が使えるか（カタログに章が1つでもあるか）。振動のように未整備なら false＝選べるが準備中表示。
 function disciplineReady(fieldId: FieldId, gradeId: GradeId): boolean {
   const f = CATALOG.find((x) => x.id === fieldId);
@@ -756,6 +784,18 @@ const home = StyleSheet.create({
   dateInput: { backgroundColor: HOME.surface, borderWidth: 1, borderColor: HOME.border, borderRadius: 12, paddingVertical: 12, paddingHorizontal: 14, color: HOME.text, fontSize: 16 },
   clearBtn: { alignItems: 'center', paddingVertical: 10 },
   clearTxt: { color: HOME.muted, fontSize: 13 },
+  // 合格・足切りルール モーダル
+  ruleBadge: { alignSelf: 'center', backgroundColor: 'rgba(251,191,36,0.14)', borderWidth: 1, borderColor: 'rgba(251,191,36,0.45)', borderRadius: 999, paddingVertical: 4, paddingHorizontal: 12, marginBottom: 6 },
+  ruleBadgeTxt: { color: HOME.warn, fontWeight: '800', fontSize: 12 },
+  ruleSecH: { color: HOME.cyan, fontWeight: '800', fontSize: 12, marginTop: 10, marginBottom: 2 },
+  ruleRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 10, backgroundColor: HOME.surface, borderWidth: 1, borderColor: HOME.border, borderRadius: 12, paddingVertical: 11, paddingHorizontal: 12, marginTop: 6 },
+  ruleNum: { width: 22, height: 22, borderRadius: 11, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(59,230,242,0.16)', borderWidth: 1, borderColor: 'rgba(59,230,242,0.4)' },
+  ruleNumTxt: { color: HOME.cyan, fontWeight: '900', fontSize: 12 },
+  ruleTxt: { color: '#EAF2FF', fontSize: 14, flex: 1, lineHeight: 21, fontWeight: '600' },
+  rulePlain: { color: HOME.text, fontSize: 13, lineHeight: 21, marginTop: 4 },
+  ruleNote: { color: HOME.muted, fontSize: 11, lineHeight: 17, marginTop: 8 },
+  ruleSrcBtn: { paddingVertical: 8, marginTop: 8 },
+  ruleSrcTxt: { color: HOME.cyan, fontSize: 12, textDecorationLine: 'underline' },
 });
 
 function HomeTab(props: {
@@ -801,6 +841,7 @@ function HomeTab(props: {
   const [chapSnaps, setChapSnaps] = useState<ChapterSnapStore>([]);
   useEffect(() => { loadChapterSnaps().then(setChapSnaps); }, [props.progress]);
   const [showGrade, setShowGrade] = useState(false);
+  const [showExamRule, setShowExamRule] = useState(false); // 試験前の準備カード→合格・足切りルールの詳細モーダル
   // 分野と級を1タップでまとめて確定（固体1級/固体2級/熱流体1級…の6ボタン用）。
   // 従来は分野と級を別々に押す必要があり「両方変えたい」時に片方だけ確定してしまっていた。
   function chooseFieldGrade(f: FieldId, g: GradeId) {
@@ -812,6 +853,15 @@ function HomeTab(props: {
   const ht = { ...t, bg: HOME.bg0, card: HOME.surface, text: HOME.text, sub: HOME.muted,
     border: HOME.border, primary: HOME.cyan, correct: HOME.good, wrong: HOME.bad, amber: HOME.warn } as Theme;
   const subjectLabel = `${disciplineLabel(field)} ${grade === 'g1' ? '1級' : '2級'}`;
+  // 試験前の準備カードの合格・足切りルール（分野×級ごと・OTAで差し替え可）。
+  // OTA/同梱の content/exam/passrule-*.json を優先し、万一無ければ同梱既定（EXAM_PASS_RULES）へフォールバック。
+  const examRuleDoc = examRule(field, grade) ?? {
+    rules: EXAM_PASS_RULES[grade].rules,
+    plain: EXAM_PASS_RULES[grade].plain,
+    note: '※「分野」＝試験内のいくつかの出題区分のこと。全問不正解の分野が3つ以上になると、総合点に関わらず足切りで不合格です。',
+    sourceLabel: EXAM_RULE_SOURCE.label,
+    sourceUrl: EXAM_RULE_SOURCE.url,
+  };
   const examDate = OFFICIAL_EXAM_DATES[field]?.[grade] ?? OFFICIAL_EXAM_DATES.solid[grade]; // 分野×級に連動した規定の受験日（自動・設定不要）
   const daysLeft = examDaysLeft(examDate);
   const coverPct = overall.totalQuestions > 0 ? Math.round((overall.attempted / overall.totalQuestions) * 100) : 0;
@@ -936,8 +986,9 @@ function HomeTab(props: {
           </View>
         </View>
 
-        {/* 試験前の準備（モック準拠: 琥珀の淡い温かみ＋下部にデスク画像がマスクでふわっと出る） */}
-        <View style={home.examCard}>
+        {/* 試験前の準備（モック準拠: 琥珀の淡い温かみ＋下部にデスク画像がマスクでふわっと出る）。
+            タップで、いま選んでいる分野×級の「合格・足切りルール」詳細モーダルを開く。 */}
+        <Pressable style={home.examCard} onPress={() => setShowExamRule(true)}>
           {/* 琥珀→ネイビーの淡いグラデを土台に敷く（カード全体をほのかに温める） */}
           <Svg style={StyleSheet.absoluteFill} pointerEvents="none">
             <Defs>
@@ -972,12 +1023,12 @@ function HomeTab(props: {
               </View>
               <Text style={home.examChev}>›</Text>
             </View>
-            {['足切りルール（不合格になる条件）を確認', '持ち物チェック（受験票・電卓・時計 ほか）', '前日に見直す重要公式まとめ'].map((li) => (
+            {[`${subjectLabel}の足切り・合格ルールを確認`, '持ち物チェック（受験票・電卓・時計 ほか）', '前日に見直す重要公式まとめ'].map((li) => (
               <View key={li} style={home.examLi}><View style={home.examDot} /><Text style={home.examLiTxt}>{li}</Text></View>
             ))}
-            <Text style={home.examCautn}>※ 足切り・持ち込み可否は必ず公式の受験要項でご確認ください</Text>
+            <Text style={home.examCautn}>※ タップで詳細 ／ 足切り・持ち込み可否は必ず公式の受験要項でご確認ください</Text>
           </View>
-        </View>
+        </Pressable>
 
         {/* 名言（最後） */}
         <View style={home.quote}>
@@ -1010,6 +1061,39 @@ function HomeTab(props: {
               );
             })
           )}
+        </Pressable>
+      </Pressable>
+    </Modal>
+
+    {/* 合格・足切りルール詳細（いま選んでいる分野×級に連動）。数値は公式案内の原文どおり＋要公式確認。 */}
+    <Modal visible={showExamRule} transparent animationType="fade" onRequestClose={() => setShowExamRule(false)}>
+      <Pressable style={home.modalWrap} onPress={() => setShowExamRule(false)}>
+        <Pressable style={home.sheet} onPress={() => {}}>
+          <Text style={home.sheetH}>合格・足切りルール</Text>
+          <View style={home.ruleBadge}><Text style={home.ruleBadgeTxt}>{subjectLabel}</Text></View>
+
+          <Text style={home.ruleSecH}>合格の基準（すべて満たすと合格）</Text>
+          {examRuleDoc.rules.map((r, i) => (
+            <View key={i} style={home.ruleRow}>
+              <View style={home.ruleNum}><Text style={home.ruleNumTxt}>{i + 1}</Text></View>
+              <Text style={home.ruleTxt}>{r}</Text>
+            </View>
+          ))}
+
+          <Text style={home.ruleSecH}>かみ砕くと</Text>
+          <Text style={home.rulePlain}>{examRuleDoc.plain}</Text>
+          {!!examRuleDoc.note && <Text style={home.ruleNote}>{examRuleDoc.note}</Text>}
+
+          {!!examRuleDoc.sourceUrl && (
+            <Pressable onPress={() => Linking.openURL(examRuleDoc.sourceUrl!)} hitSlop={8} style={home.ruleSrcBtn}>
+              <Text style={home.ruleSrcTxt}>{examRuleDoc.sourceLabel ?? '出典（公式PDF）'}（公式PDFを開く ›）</Text>
+            </Pressable>
+          )}
+          <Text style={home.examCautn}>※ 基準は年度で変わることがあります。受験前に必ず公式の受験要項でご確認ください。</Text>
+
+          <Pressable onPress={() => setShowExamRule(false)} style={home.clearBtn}>
+            <Text style={home.clearTxt}>閉じる</Text>
+          </Pressable>
         </Pressable>
       </Pressable>
     </Modal>
