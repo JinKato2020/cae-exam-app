@@ -409,7 +409,7 @@
         "約 $1414\\,\\mathrm{N\\cdot m}$"
       ],
       "answer": 2,
-      "explanation": "【基礎】丸軸のねじりでは最大せん断応力は外表面に生じ、$\\tau_{\\max}=\\dfrac{T}{Z_p}$。中空丸軸の極断面係数は $Z_p=\\dfrac{\\pi(d_o^4-d_i^4)}{16\\,d_o}$。許容トルクは $T_{\\max}=\\tau_a Z_p$。\n【計算】$Z_p=\\dfrac{\\pi(40^4-20^4)}{16\\times40}=\\dfrac{\\pi(2560000-160000)}{640}=\\dfrac{\\pi\\times2400000}{640}\\approx1.178\\times10^4\\,\\mathrm{mm^3}$。$T_{\\max}=60\\times1.178\\times10^4\\approx7.07\\times10^5\\,\\mathrm{N\\cdot mm}=707\\,\\mathrm{N\\cdot m}$。\n【ポイント】中空断面では内径の4乗を引く。$Z_p$ の分母は外径 $d_o$(表面での応力を評価するため)。\n【引っかけ】①中空を無視して中実 $Z_p=\\pi d_o^3/16$ とすると $754\\,\\mathrm{N\\cdot m}$(穴の分を過大評価)。③分母に $d_i$ を使うなど断面係数を取り違え。④単位換算や係数16の扱いを誤り約2倍にした。",
+      "explanation": "【基礎】丸軸のねじりでは最大せん断応力は外表面に生じ、$\\tau_{\\max}=\\dfrac{T}{Z_p}$。中空丸軸の極断面係数は $Z_p=\\dfrac{\\pi(d_o^4-d_i^4)}{16\\,d_o}$。許容トルクは $T_{\\max}=\\tau_a Z_p$。\n【計算】$Z_p=\\dfrac{\\pi(40^4-20^4)}{16\\times40}=\\dfrac{\\pi(2560000-160000)}{640}=\\dfrac{\\pi\\times2400000}{640}\\approx1.178\\times10^4\\,\\mathrm{mm^3}$。$T_{\\max}=60\\times1.178\\times10^4\\approx7.07\\times10^5\\,\\mathrm{N\\cdot mm}=707\\,\\mathrm{N\\cdot m}$。\n【ポイント】中空断面では内径の4乗を引く。$Z_p$ の分母は外径 $d_o$(表面での応力を評価するため)。$\\dfrac{1}{16}$ と $\\dfrac{1}{32}$ の取り違えに注意: ねじれ角に使う極断面二次モーメントは $I_p=\\dfrac{\\pi(d_o^4-d_i^4)}{32}$(32で割る)だが、応力を直接求める極断面係数は $Z_p=\\dfrac{I_p}{d_o/2}=\\dfrac{\\pi(d_o^4-d_i^4)}{16\\,d_o}$ となり、半径 $d_o/2$ で割る分だけ分母の32が16に変わる。$\\tau_{\\max}=T/Z_p$ には $Z_p$(16)を使う。\n【引っかけ】①中空を無視して中実 $Z_p=\\pi d_o^3/16$ とすると $754\\,\\mathrm{N\\cdot m}$(穴の分を過大評価)。③ねじりの極断面係数 $\\pi d^3/16$ を曲げの断面係数 $\\pi d^3/32$ と取り違え(かつ中空を無視)すると $Z_p=\\pi d_o^3/32\\approx6.28\\times10^3\\,\\mathrm{mm^3}$ となり約 $377\\,\\mathrm{N\\cdot m}$。④$Z_p$ の分母を外径 $d_o$ でなく内径 $d_i$ にすると $Z_p=\\pi(d_o^4-d_i^4)/(16\\,d_i)\\approx2.36\\times10^4\\,\\mathrm{mm^3}$ となり約 $1414\\,\\mathrm{N\\cdot m}$(約2倍)。",
       "hasMath": true,
       "figureHint": "中空丸軸断面（外径40内径20）とねじりトルク",
       "origin": "original",
@@ -585,7 +585,7 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2BMD",
-      "figure": "required",
+      "figure": "helpful",
       "officialRef": "問2-21",
       "role": "primary",
       "relatedFormulas": [
