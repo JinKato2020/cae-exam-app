@@ -87,7 +87,7 @@
       "reviewed": true,
       "officialRef": "問1-3",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "mathEigenVec",
       "figureHint": "白地660x420。原点から固有ベクトル(2,1)方向の直線を描き、Aによる変換後も同じ直線上に6倍で伸びることを矢印で示す(固有値6)。もう一方の固有ベクトル(1,-2)方向は1倍(不変)として併記し、2直線が直交することを示す。",
       "relatedFormulas": [
@@ -218,7 +218,7 @@
       "reviewed": true,
       "officialRef": "問1-8",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "mathStressEquil",
       "figureHint": "白地660x420。微小直方体(または微小長方形)の各面に垂直応力σと せん断応力τ、および反対面での増分項(∂σ/∂x)dx等を矢印で描き、x方向の力の釣合いと、モーメント釣合いから τxy=τyx を示す。"
     },
@@ -408,7 +408,7 @@
       "reviewed": true,
       "officialRef": "問1-6",
       "role": "branch",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "mathCrossProduct",
       "figureHint": "白地660x420。原点からa=(4,-3,0)(xy平面内)とb=(0,0,1)(z軸方向)を矢印で描き、2ベクトルが張る平行四辺形(面積5)を灰色で塗り、外積ベクトル(-3,-4,0)を垂直に描く。",
       "relatedFormulas": [
@@ -436,7 +436,7 @@
       "reviewed": true,
       "officialRef": "問1-5",
       "role": "branch",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "mathGradientDir",
       "figureHint": "白地660x420。点(1,2)における等高線と勾配ベクトル(4,13)を描き、方向d=(3,4)の単位ベクトルへ勾配を正射影して方向微分12.8を得る様子を示す。",
       "relatedFormulas": [
@@ -492,7 +492,7 @@
       "reviewed": true,
       "officialRef": "問1-6",
       "role": "branch",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "mathTrapezoid",
       "figureHint": "白地660x420。曲線y=x^3の下に区間[0,1]と[1,2]の2つの台形を描き、節点での高さ0,1,8、台形近似5と真値4(過大評価)の差を示す。",
       "relatedFormulas": [

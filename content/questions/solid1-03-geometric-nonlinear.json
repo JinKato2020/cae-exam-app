@@ -199,7 +199,7 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "s1e3TrussUniaxial",
       "figureHint": "白地660x420で初期長さLの一軸トラス端に鉛直変位uと荷重Fが作用する図",
       "officialRef": "問3-4",

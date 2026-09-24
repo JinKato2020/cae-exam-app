@@ -30,7 +30,9 @@
       "reviewed": true,
       "officialRef": "問12-1",
       "role": "primary",
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "comp12RoundNearest",
+      "figureHint": "白地660x420。数直線上で表現できる離散値の間にある真の値を最も近い表現値へ丸める様子を示す",
       "relatedFormulas": [
         "numerical-errors"
       ]
@@ -56,7 +58,9 @@
       "reviewed": true,
       "officialRef": "問12-2",
       "role": "primary",
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "comp12SumOrder",
+      "figureHint": "白地660x420。同じ和でも大きい数から足す場合と小さい数からまとめて足す場合で誤差の蓄積が変わる様子を対比する",
       "relatedFormulas": [
         "numerical-errors"
       ]
@@ -82,7 +86,9 @@
       "reviewed": true,
       "officialRef": "問12-3",
       "role": "primary",
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "comp12IntDiv",
+      "figureHint": "白地660x420。1÷2が実数では0.5、整数では小数点以下を切り捨てて0になる違いを示す",
       "relatedFormulas": [
         "numerical-errors"
       ]
@@ -189,7 +195,9 @@
       "reviewed": true,
       "officialRef": "問12-7",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12VirtualMem",
+      "figureHint": "白地660x420。主記憶が不足するとハードディスクのスワップ領域を主記憶の代わりに使う仕組みを示す"
     },
     {
       "id": "comp-12-8",
@@ -212,7 +220,9 @@
       "reviewed": true,
       "officialRef": "問12-8",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12ProcTech",
+      "figureHint": "白地660x420。FPU/GPGPU/DSP/キャッシュそれぞれの役割を対照表で示す"
     },
     {
       "id": "comp-12-9",
@@ -235,7 +245,9 @@
       "reviewed": true,
       "officialRef": "問12-9",
       "role": "primary",
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "comp12AddrSpace",
+      "figureHint": "白地660x420。32ビット機と64ビット機でアドレス空間が大きく広がる一方、精度は自動で2倍にならないことを示す",
       "relatedFormulas": [
         "twos-complement"
       ]
@@ -261,7 +273,9 @@
       "reviewed": true,
       "officialRef": "問12-10",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12SpeedupTech",
+      "figureHint": "白地660x420。マルチコア/パイプライン/キャッシュは演算の高速化、DMAは転送の効率化であることを対照表で示す"
     },
     {
       "id": "comp-12-11",
@@ -284,7 +298,9 @@
       "reviewed": true,
       "officialRef": "問12-11",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12CdMedia",
+      "figureHint": "白地660x420。CD-ROM(読出専用)/CD-R(1回書込)/CD-RW(書換可)の対応を略号の意味とともに表で示す"
     },
     {
       "id": "comp-12-12",
@@ -307,7 +323,9 @@
       "reviewed": true,
       "officialRef": "問12-12",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12MediaCapacity",
+      "figureHint": "白地660x420。CD-R/USB/DVD-RAM/Blu-rayの代表的容量を対数目盛の棒で比較する"
     },
     {
       "id": "comp-12-13",
@@ -355,7 +373,9 @@
       "reviewed": true,
       "officialRef": "問12-14",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12OsRole",
+      "figureHint": "白地660x420。ハード上でOSが資源管理と操作環境(UI)を提供し、その上でアプリが動く層構造を示す"
     },
     {
       "id": "comp-12-15",
@@ -378,7 +398,9 @@
       "reviewed": true,
       "officialRef": "問12-15",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12OsOrigins",
+      "figureHint": "白地660x420。Windows/UNIX/Linux/macOSの開発元と系統を対照表で示す"
     },
     {
       "id": "comp-12-16",
@@ -401,7 +423,9 @@
       "reviewed": true,
       "officialRef": "問12-16",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12OsLicense",
+      "figureHint": "白地660x420。Windows/macOS/商用UNIXは商用、Linuxは無償(OSS)というライセンスの違いを表で示す"
     },
     {
       "id": "comp-12-17",
@@ -424,7 +448,9 @@
       "reviewed": true,
       "officialRef": "問12-17",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12OsUpgrade",
+      "figureHint": "白地660x420。互換性確認→検証環境で確認→本番更新という安全な手順の流れを示す"
     },
     {
       "id": "comp-12-18",
@@ -447,7 +473,9 @@
       "reviewed": true,
       "officialRef": "問12-18",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12OsSelect",
+      "figureHint": "白地660x420。対応OS・連携・性能は妥当な観点、普及度だけで決めるのは不十分という選定観点を表で示す"
     },
     {
       "id": "comp-12-19",
@@ -470,7 +498,9 @@
       "reviewed": true,
       "officialRef": "問12-19",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12CompInterp",
+      "figureHint": "白地660x420。コンパイラ型(事前に一括変換)とインタプリタ型(実行時に1行ずつ翻訳)の違いを対比する"
     },
     {
       "id": "comp-12-20",
@@ -493,7 +523,9 @@
       "reviewed": true,
       "officialRef": "問12-20",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12PlatformDep",
+      "figureHint": "白地660x420。コンパイル結果は特定CPU/OS向けで、同じ環境では動くが異なる環境では動かないことを示す"
     },
     {
       "id": "comp-12-21",
@@ -516,7 +548,9 @@
       "reviewed": true,
       "officialRef": "問12-21",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12LangFeatures",
+      "figureHint": "白地660x420。FORTRAN/COBOL/Java/C言語の得意分野と特徴を対照表で示す"
     },
     {
       "id": "comp-12-22",
@@ -539,7 +573,9 @@
       "reviewed": true,
       "officialRef": "問12-22",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12LangHistory",
+      "figureHint": "白地660x420。FORTRAN(1950年代)とC言語(1970年代)の起源を年代軸で示す"
     },
     {
       "id": "comp-12-23",
@@ -562,7 +598,9 @@
       "reviewed": true,
       "officialRef": "問12-23",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12LangLevel",
+      "figureHint": "白地660x420。C++/Java/Perlは高水準、アセンブリ言語は機械寄りの低水準という位置づけを帯で示す"
     },
     {
       "id": "comp-12-24",
@@ -585,7 +623,9 @@
       "reviewed": true,
       "officialRef": "問12-24",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12FloatingSeats",
+      "figureHint": "白地660x420。導入台数は契約数を超えてよく、同時起動数だけが契約本数に制限される様子を示す"
     },
     {
       "id": "comp-12-25",
@@ -633,7 +673,9 @@
       "reviewed": true,
       "officialRef": "問12-26",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12LanWan",
+      "figureHint": "白地660x420。LANは建物内の近接区域、WANは通信事業者回線で広域を結ぶという範囲の違いを対比する"
     },
     {
       "id": "comp-12-27",
@@ -656,7 +698,9 @@
       "reviewed": true,
       "officialRef": "問12-27",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12SecureTransfer",
+      "figureHint": "白地660x420。暗号化なしではネットワーク経由は盗み見の恐れがあり、記録メディアの郵送は経路を使わず安全なことを対比する"
     },
     {
       "id": "comp-12-28",
@@ -679,7 +723,9 @@
       "reviewed": true,
       "officialRef": "問12-28",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12NfsShare",
+      "figureHint": "白地660x420。NFS(ファイル共有)/NIS(管理)/RAID(ディスク)/FTP(転送)の用途の違いを表で示す"
     },
     {
       "id": "comp-12-29",
@@ -702,7 +748,9 @@
       "reviewed": true,
       "officialRef": "問12-29",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12FtpProtocol",
+      "figureHint": "白地660x420。FTPはファイル転送、SMTP/POP3/IMAP4はメール用というプロトコルの用途を表で示す"
     },
     {
       "id": "comp-12-30",
@@ -781,7 +829,9 @@
       "reviewed": true,
       "officialRef": "問12-32",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12ReverseEng",
+      "figureHint": "白地660x420。順方向開発と対比し、リバースは実装(完成物)から設計仕様を抽出することを示す"
     },
     {
       "id": "comp-12-33",
@@ -804,7 +854,9 @@
       "reviewed": true,
       "officialRef": "問12-33",
       "role": "primary",
-      "figure": "none"
+      "figure": "helpful",
+      "figureImage": "comp12SecPolicy",
+      "figureHint": "白地660x420。基本方針→対策基準→実施手順という情報セキュリティポリシーの階層を示す"
     }
   ]
 }

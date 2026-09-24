@@ -174,7 +174,8 @@
       "role": "primary",
       "relatedFormulas": [
         "stress-transformation"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "solid2-2-7",
@@ -229,7 +230,8 @@
       "relatedFormulas": [
         "normal-stress",
         "hooke"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "solid2-2-9",
@@ -256,7 +258,8 @@
       "relatedFormulas": [
         "composite-bar",
         "bar-elongation"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "solid2-2-10",
@@ -282,7 +285,8 @@
       "role": "primary",
       "relatedFormulas": [
         "bar-elongation"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "solid-rigidbar-wire",
@@ -305,7 +309,7 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2RigidBarWire",
-      "figure": "required",
+      "figure": "helpful",
       "officialRef": "問2-11",
       "role": "primary",
       "relatedFormulas": [
@@ -333,7 +337,7 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2RigidPlate2Bars",
-      "figure": "required",
+      "figure": "helpful",
       "officialRef": "問2-12",
       "role": "primary",
       "relatedFormulas": [
@@ -557,7 +561,7 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2OverhangBeam",
-      "figure": "required",
+      "figure": "helpful",
       "officialRef": "問2-20",
       "role": "primary",
       "relatedFormulas": [
@@ -613,7 +617,7 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2CantileverUDL",
-      "figure": "required",
+      "figure": "helpful",
       "officialRef": "問2-22",
       "role": "primary",
       "relatedFormulas": [
@@ -755,7 +759,7 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2Truss2Bar",
-      "figure": "required",
+      "figure": "helpful",
       "officialRef": "問2-27",
       "role": "primary",
       "relatedFormulas": [
@@ -811,7 +815,7 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2CantReactions",
-      "figure": "required",
+      "figure": "helpful",
       "officialRef": "問2-29",
       "role": "primary",
       "relatedFormulas": [
@@ -1096,7 +1100,7 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2PlateHoles",
-      "figure": "required",
+      "figure": "helpful",
       "officialRef": "問2-39",
       "role": "primary",
       "relatedFormulas": [
@@ -1152,7 +1156,7 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2HalfHeatedBar",
-      "figure": "required",
+      "figure": "helpful",
       "officialRef": "問2-41",
       "role": "primary",
       "relatedFormulas": [
@@ -1181,7 +1185,7 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "s2TwoBarsThermal",
-      "figure": "required",
+      "figure": "helpful",
       "officialRef": "問2-42",
       "role": "primary",
       "relatedFormulas": [

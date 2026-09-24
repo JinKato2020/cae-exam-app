@@ -34,7 +34,8 @@
       "role": "primary",
       "relatedFormulas": [
         "dof-constraint"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-2",
@@ -61,7 +62,8 @@
       "role": "primary",
       "relatedFormulas": [
         "enforced-disp"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-3",
@@ -88,7 +90,8 @@
       "role": "primary",
       "relatedFormulas": [
         "supports"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-4",
@@ -115,7 +118,8 @@
       "role": "primary",
       "relatedFormulas": [
         "mpc"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-5",
@@ -143,7 +147,8 @@
       "relatedFormulas": [
         "rigid-body-mode",
         "supports"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-6",
@@ -164,11 +169,14 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
+      "figureImage": "bc9EqForceTypes",
+      "figureHint": "白地660x420。物体力(自重rho*g・遠心力rho*r*w^2)と表面力(圧力p)の与え方を表で対比",
       "officialRef": "問9-6",
       "role": "primary",
       "relatedFormulas": [
         "equivalent-nodal"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-7",
@@ -195,7 +203,8 @@
       "role": "primary",
       "relatedFormulas": [
         "equivalent-nodal"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-8",
@@ -222,7 +231,8 @@
       "role": "primary",
       "relatedFormulas": [
         "reaction-balance"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-9",
@@ -249,7 +259,8 @@
       "role": "primary",
       "relatedFormulas": [
         "equivalent-nodal"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-10",
@@ -276,7 +287,8 @@
       "role": "primary",
       "relatedFormulas": [
         "equivalent-nodal"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-11",
@@ -303,7 +315,8 @@
       "role": "primary",
       "relatedFormulas": [
         "equivalent-nodal"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-12",
@@ -330,7 +343,8 @@
       "role": "primary",
       "relatedFormulas": [
         "equivalent-nodal"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-13",
@@ -357,7 +371,8 @@
       "role": "primary",
       "relatedFormulas": [
         "equivalent-nodal"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-14",
@@ -384,7 +399,8 @@
       "role": "primary",
       "relatedFormulas": [
         "sym-antisym"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-15",
@@ -412,7 +428,8 @@
       "relatedFormulas": [
         "sym-antisym",
         "rigid-body-mode"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-16",
@@ -439,7 +456,8 @@
       "role": "primary",
       "relatedFormulas": [
         "sym-antisym"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-17",
@@ -466,7 +484,8 @@
       "role": "primary",
       "relatedFormulas": [
         "sym-antisym"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-18",
@@ -493,7 +512,8 @@
       "role": "primary",
       "relatedFormulas": [
         "sym-antisym"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-19",
@@ -521,7 +541,8 @@
       "relatedFormulas": [
         "rigid-body-mode",
         "sym-antisym"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-20",
@@ -549,7 +570,8 @@
       "relatedFormulas": [
         "sym-antisym",
         "mpc"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-21",
@@ -576,7 +598,8 @@
       "role": "primary",
       "relatedFormulas": [
         "sym-antisym"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-22",
@@ -603,7 +626,8 @@
       "role": "primary",
       "relatedFormulas": [
         "sym-antisym"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-23",
@@ -624,11 +648,14 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
+      "figureImage": "bc9RigidModeCount",
+      "figureHint": "白地660x420。2次元=並進2+回転1=3、3次元=並進3+回転3=6の剛体モードを図示",
       "officialRef": "問9-23",
       "role": "primary",
       "relatedFormulas": [
         "rigid-body-mode"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-24",
@@ -649,11 +676,14 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
+      "figureImage": "bc9RigidModeProps",
+      "figureHint": "白地660x420。剛体モードは形が変わらず動く(ひずみ0・Kφ=0)ことを変形前後で図示",
       "officialRef": "問9-24",
       "role": "primary",
       "relatedFormulas": [
         "rigid-body-mode"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-25",
@@ -680,7 +710,8 @@
       "role": "primary",
       "relatedFormulas": [
         "rigid-body-mode"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-26",
@@ -707,7 +738,8 @@
       "role": "primary",
       "relatedFormulas": [
         "rigid-body-mode"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-27",
@@ -734,7 +766,8 @@
       "role": "primary",
       "relatedFormulas": [
         "rigid-body-mode"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-28",
@@ -755,11 +788,14 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
+      "figureImage": "bc9MpcDofRule",
+      "figureHint": "白地660x420。MPCで独立自由度の再利用はOK、同じ従属自由度の重複はNGを対比",
       "officialRef": "問9-28",
       "role": "primary",
       "relatedFormulas": [
         "mpc"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-29",
@@ -786,7 +822,8 @@
       "role": "primary",
       "relatedFormulas": [
         "mpc"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-30",
@@ -813,7 +850,8 @@
       "role": "primary",
       "relatedFormulas": [
         "mpc"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-31",
@@ -840,7 +878,8 @@
       "role": "primary",
       "relatedFormulas": [
         "mpc"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-32",
@@ -867,7 +906,8 @@
       "role": "primary",
       "relatedFormulas": [
         "mpc"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-33",
@@ -894,7 +934,8 @@
       "role": "primary",
       "relatedFormulas": [
         "mpc"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-6b",
@@ -921,7 +962,8 @@
       "role": "branch",
       "relatedFormulas": [
         "equivalent-nodal"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-7b",
@@ -948,7 +990,8 @@
       "role": "branch",
       "relatedFormulas": [
         "equivalent-nodal"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-8b",
@@ -975,7 +1018,8 @@
       "role": "branch",
       "relatedFormulas": [
         "reaction-balance"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-10b",
@@ -1002,7 +1046,8 @@
       "role": "branch",
       "relatedFormulas": [
         "equivalent-nodal"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-11b",
@@ -1029,7 +1074,8 @@
       "role": "branch",
       "relatedFormulas": [
         "equivalent-nodal"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-12b",
@@ -1056,7 +1102,8 @@
       "role": "branch",
       "relatedFormulas": [
         "equivalent-nodal"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-17b",
@@ -1083,7 +1130,8 @@
       "role": "branch",
       "relatedFormulas": [
         "sym-antisym"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-24b",
@@ -1104,11 +1152,14 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
+      "figureImage": "bc9ConstraintBalance",
+      "figureHint": "白地660x420。拘束の不足(特異で解けない)・適切・過剰(不自然な反力)を3枚で対比",
       "officialRef": "問9-24",
       "role": "branch",
       "relatedFormulas": [
         "rigid-body-mode"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-27b",
@@ -1135,7 +1186,8 @@
       "role": "branch",
       "relatedFormulas": [
         "supports"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-33b",
@@ -1162,7 +1214,8 @@
       "role": "branch",
       "relatedFormulas": [
         "enforced-disp"
-      ]
+      ],
+      "figure": "helpful"
     },
     {
       "id": "bc-9-33c",
@@ -1189,7 +1242,8 @@
       "role": "branch",
       "relatedFormulas": [
         "enforced-disp"
-      ]
+      ],
+      "figure": "helpful"
     }
   ]
 }

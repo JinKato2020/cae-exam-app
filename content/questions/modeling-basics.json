@@ -28,7 +28,9 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "model8Purpose",
+      "figureHint": "白地660x420で製品開発の段階(概念設計→詳細設計→製造・運用→破損原因調査)を時間軸に並べ、概念設計・詳細設計・破損調査の各段で解析が活用されることを示す",
       "officialRef": "問8-1",
       "role": "primary"
     },
@@ -51,7 +53,9 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "model8UnitSys",
+      "figureHint": "白地660x420でmm–N単位系の対応表(長さmm・力N・応力と弾性係数はN/mm²=MPa)と、1GPa=1000MPa=1000N/mm²の換算を示す",
       "officialRef": "問8-1",
       "role": "branch",
       "relatedFormulas": [
@@ -77,12 +81,14 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問8-2",
       "role": "primary",
       "relatedFormulas": [
         "symmetry"
-      ]
+      ],
+      "figureImage": "model8SaddleAxial",
+      "figureHint": "白地660x420で、サドル支持の横置き円筒容器(片側固定・片側スライド)に軸(長手)方向地震を与えた側面図。"
     },
     {
       "id": "model-8-2b",
@@ -131,12 +137,14 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問8-3",
       "role": "primary",
       "relatedFormulas": [
         "symmetry"
-      ]
+      ],
+      "figureImage": "model8SaddleTransverse",
+      "figureHint": "白地660x420で、横置き円筒容器に長手直交・水平方向の地震荷重を与えた上面図。"
     },
     {
       "id": "model-8-4",
@@ -157,12 +165,14 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問8-4",
       "role": "primary",
       "relatedFormulas": [
         "symmetry"
-      ]
+      ],
+      "figureImage": "model8ArchBridge",
+      "figureHint": "白地660x420で、脚をa-b-c-o-c-b-aと対称配置した連続アーチ高架橋と中央脚oの沈下を示す図。"
     },
     {
       "id": "model-8-5",
@@ -183,13 +193,15 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問8-5",
       "role": "primary",
       "relatedFormulas": [
         "element-types",
         "submodeling"
-      ]
+      ],
+      "figureImage": "model8NozzleThermal",
+      "figureHint": "白地660x420で、円筒胴に板厚の異なるノズルが交差し、交差部へ低温流体を注入する図。"
     },
     {
       "id": "model-8-5b",
@@ -351,14 +363,16 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問8-6",
       "role": "primary",
       "relatedFormulas": [
         "axisymmetric",
         "mesh-refine",
         "element-types"
-      ]
+      ],
+      "figureImage": "model8SkirtVessel",
+      "figureHint": "白地660x420で、スカート支持高圧容器の軸対称半断面と、取付部の応力集中位置を示す図。"
     },
     {
       "id": "model-8-6b",
@@ -575,12 +589,14 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問8-7",
       "role": "primary",
       "relatedFormulas": [
         "axisymmetric"
-      ]
+      ],
+      "figureImage": "model8LNGTank",
+      "figureHint": "白地660x420で、地下円筒LNGタンク(本体壁・止水壁・ドーム屋根)の軸対称半断面図。"
     },
     {
       "id": "model-8-8",
@@ -601,12 +617,14 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問8-8",
       "role": "primary",
       "relatedFormulas": [
         "axisymmetric"
-      ]
+      ],
+      "figureImage": "model8Dumbbell",
+      "figureHint": "白地660x420で、ダンベル形丸棒引張試験片を軸方向に引張る軸対称(回転対称)形状の図。"
     },
     {
       "id": "model-8-9",
@@ -627,12 +645,14 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問8-9",
       "role": "primary",
       "relatedFormulas": [
         "plane-stress-strain"
-      ]
+      ],
+      "figureImage": "model8PlateHole",
+      "figureHint": "白地660x420で、円孔付き薄板の面内一様引張と、孔縁(荷重直交)の応力集中位置を示す図。"
     },
     {
       "id": "model-8-9b",
@@ -681,13 +701,15 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問8-10",
       "role": "primary",
       "relatedFormulas": [
         "axisymmetric",
         "element-types"
-      ]
+      ],
+      "figureImage": "model8BoltCircle",
+      "figureHint": "白地660x420で、フランジ周方向に離散配置した取付けボルト(周期/サイクリック対称)を示す平面図。"
     },
     {
       "id": "model-8-10b",
@@ -733,13 +755,15 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問8-11",
       "role": "primary",
       "relatedFormulas": [
         "beam-truss-formulation",
         "element-types"
-      ]
+      ],
+      "figureImage": "model8Tower",
+      "figureHint": "白地660x420で、円管部材の鉄塔(脚柱・横材・斜材ブレース)に水平風荷重を与えた図。"
     },
     {
       "id": "model-8-12",
@@ -760,12 +784,14 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問8-12",
       "role": "primary",
       "relatedFormulas": [
         "plane-stress-strain"
-      ]
+      ],
+      "figureImage": "model8Tunnel",
+      "figureHint": "白地660x420で、断面一様の長いトンネルの横断面と長手方向(平面ひずみ)を示す図。"
     },
     {
       "id": "model-8-12b",
@@ -814,12 +840,14 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問8-13",
       "role": "primary",
       "relatedFormulas": [
         "element-types"
-      ]
+      ],
+      "figureImage": "model8Hook",
+      "figureHint": "白地660x420で、曲率をもつ太い断面の吊りフック(曲がりはり)に荷重を掛けた図。"
     },
     {
       "id": "model-8-13b",
@@ -869,13 +897,15 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問8-14",
       "role": "primary",
       "relatedFormulas": [
         "element-types",
         "beam-truss-formulation"
-      ]
+      ],
+      "figureImage": "model8ChannelBeam",
+      "figureHint": "白地660x420で、厚肉溝形(開断面)はりの曲げ+ねじり(せん断中心と図心のずれ)を示す断面図。"
     },
     {
       "id": "model-8-15",
@@ -896,13 +926,15 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問8-15",
       "role": "primary",
       "relatedFormulas": [
         "nonaxisym-fourier",
         "axisymmetric"
-      ]
+      ],
+      "figureImage": "model8Silo",
+      "figureHint": "白地660x420で、円錐屋根付き円筒サイロ(地面固定)に横風荷重を与えた図。"
     },
     {
       "id": "model-8-15b",
@@ -952,12 +984,14 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
       "officialRef": "問8-16",
       "role": "primary",
       "relatedFormulas": [
         "interface-stress"
-      ]
+      ],
+      "figureImage": "model8Interface",
+      "figureHint": "白地660x420で、上材A/下材Bの界面上の節点を囲む要素1〜6を上下に配置した概念図。"
     },
     {
       "id": "model-8-17",
@@ -978,7 +1012,9 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "model8OutputContour",
+      "figureHint": "白地660x420で節点値コンター(なめらかに補間)と要素値コンター(要素ごと一色で不連続)を左右で対比し、異材界面での応力不連続を示す",
       "officialRef": "問8-17",
       "role": "primary",
       "relatedFormulas": [
@@ -1004,7 +1040,9 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "model8Dmat3D",
+      "figureHint": "白地660x420で三次元の応力6成分(σx σy σz τxy τyz τzx)と、それを結ぶ6行6列の対称な応力ひずみ行列[D]を示す",
       "officialRef": "問8-18",
       "role": "primary",
       "relatedFormulas": [
@@ -1030,7 +1068,9 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "model8DmatPStrain",
+      "figureHint": "白地660x420で平面ひずみ(εz=0・σz≠0・係数の分母(1+ν)(1−2ν))と平面応力(σz=0・εz≠0・係数の分母1−ν²)の応力ひずみ行列を左右で対比する",
       "officialRef": "問8-19",
       "role": "primary",
       "relatedFormulas": [
@@ -1057,7 +1097,9 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "model8DmatPStress",
+      "figureHint": "白地660x420で平面応力の応力ひずみ行列の骨格(対角1・非対角ν・せん断(1−ν)/2)と、せん断成分が係数[ア]·(1−ν)/2=G=E/2(1+ν)に等しいことから係数を決める関係を示す",
       "officialRef": "問8-20",
       "role": "primary",
       "relatedFormulas": [
@@ -1113,7 +1155,9 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "model8TrussK",
+      "figureHint": "白地660x420で2節点トラス要素を軸方向ばね(軸剛性EA/L)として描き、局所座標の軸(x)方向のみ剛性をもち直交(y)方向の剛性は0であることを示す",
       "officialRef": "問8-22",
       "role": "primary",
       "relatedFormulas": [
@@ -1168,7 +1212,9 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "model8EulerBeam",
+      "figureHint": "白地660x420でベルヌーイ・オイラーはりのたわみ曲線と、平面を保ち中立面に垂直な断面がたわみ角θ=dw/dxだけ傾き、軸方向変位u=−z·dw/dxがzに比例することを示す",
       "officialRef": "問8-23",
       "role": "primary",
       "relatedFormulas": [
@@ -1223,7 +1269,9 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "model8Idealize3",
+      "figureHint": "白地660x420で二次元理想化の3種(平面応力=薄板σz0/εz残る、平面ひずみ=長い厚いεz0/σz残る、軸対称=回転体で面内3＋周方向1の4成分)を3列で対比する",
       "officialRef": "問8-24",
       "role": "primary",
       "relatedFormulas": [
@@ -1278,7 +1326,9 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "model8ThickStrain",
+      "figureHint": "白地660x420で厚さ方向に変形しにくい厚肉体を描き、εz=0の拘束から板厚方向にσz≠0が従属的に生じること(平面ひずみ)を示す",
       "officialRef": "問8-26",
       "role": "primary",
       "relatedFormulas": [
@@ -1332,7 +1382,9 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "model8Revolve",
+      "figureHint": "白地660x420で回転軸まわりのr–z断面を回転させて三次元回転体を作る様子を描き、回転対称なら3次元問題を二次元(r–z)でモデル化・解析できることを示す",
       "officialRef": "問8-27",
       "role": "primary",
       "relatedFormulas": [

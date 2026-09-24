@@ -86,7 +86,9 @@
       "reviewed": true,
       "officialRef": "問11-1",
       "role": "branch",
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "ver11SingularSpots",
+      "figureHint": "白地660x420。点荷重直下・点拘束近傍・鋭い再入隅先端の3つが応力特異点で、平板内部の一般部はなだらかで特異点にならない対比図。",
       "relatedFormulas": [
         "singularity"
       ]
@@ -112,7 +114,9 @@
       "reviewed": true,
       "officialRef": "問11-2",
       "role": "primary",
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "ver11PlateDefl",
+      "figureHint": "白地660x420。周縁固定の円板に一様圧力が作用し中央でたわみ最大となる断面図。曲げ剛性Dとたわみ式・諸元を併記。",
       "relatedFormulas": [
         "vv"
       ]
@@ -195,7 +199,9 @@
       "reviewed": true,
       "officialRef": "問11-3",
       "role": "branch",
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "ver11EnergyNorm",
+      "figureHint": "白地660x420。エネルギーノルム誤差は細分化で単調減少する全体尺度、局所の一点応力は特異点で収束しない対比の収束曲線。",
       "relatedFormulas": [
         "error-estimate",
         "convergence-order"
@@ -222,7 +228,9 @@
       "reviewed": true,
       "officialRef": "問11-3",
       "role": "branch",
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "ver11ConvOrder",
+      "figureHint": "白地660x420。誤差と要素寸法の両対数プロットで勾配が収束次数p。2メッシュの点とp=log(e1/e2)/log(h1/h2)を併記。",
       "relatedFormulas": [
         "convergence-order"
       ]
@@ -276,7 +284,9 @@
       "reviewed": true,
       "officialRef": "問11-4",
       "role": "primary",
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "ver11ThinTorsion",
+      "figureHint": "白地660x420。開断面(C形)はそりを拘束せず低剛性、スポット溶接で閉断面化するとそりが拘束され高剛性となるねじりの対比図。",
       "relatedFormulas": [
         "vv"
       ]
@@ -302,7 +312,9 @@
       "reviewed": true,
       "officialRef": "問11-4",
       "role": "branch",
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "ver11Hourglass",
+      "figureHint": "白地660x420。次数低減(1点)積分要素の砂時計形ゼロエネルギーモードと、アワーグラスE/全ひずみE比の点検を示す図。",
       "relatedFormulas": [
         "sanity-checks"
       ]
@@ -384,7 +396,9 @@
       "reviewed": true,
       "officialRef": "問11-6",
       "role": "primary",
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "ver11LoadArrange",
+      "figureHint": "白地660x420。総和が等しい荷重を中央1点集中・等分布・複数点分散で与えた単純支持はりのたわみ比較。中央集中が最大。",
       "relatedFormulas": [
         "sanity-checks"
       ]
@@ -410,7 +424,9 @@
       "reviewed": true,
       "officialRef": "問11-7",
       "role": "primary",
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "ver11MomentPeak",
+      "figureHint": "白地660x420。単純支持はり中央集中荷重の曲げモーメント図(荷重点で最大)とσ=M/Zの関係を示す図。",
       "relatedFormulas": [
         "sanity-checks"
       ]
@@ -492,10 +508,12 @@
       "reviewed": true,
       "officialRef": "問11-9",
       "role": "primary",
-      "figure": "none",
+      "figure": "helpful",
       "relatedFormulas": [
         "sanity-checks"
-      ]
+      ],
+      "figureImage": "ver11RigidHoleStrip",
+      "figureHint": "白地660x420で、帯板中央に剛体円孔部を埋め込み荷重方向に一様引張し、中心線(対称線)を示す図。"
     },
     {
       "id": "ver-11-10",
@@ -546,7 +564,9 @@
       "reviewed": true,
       "officialRef": "問11-11",
       "role": "primary",
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "ver11ReactSum",
+      "figureHint": "白地660x420。面内荷重を受け下端拘束した平板で、拘束点反力の合力が外荷重の合力と大きさ等しく逆向きになる釣合い検証図。",
       "relatedFormulas": [
         "sanity-checks"
       ]
@@ -628,7 +648,9 @@
       "reviewed": true,
       "officialRef": "問11-12",
       "role": "primary",
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "ver11UnitMMN",
+      "figureHint": "白地660x420。mm・N・MPa(N/mm^2)の一貫単位系で応力=力/面積=N/mm^2=MPaとなることを示す表。",
       "relatedFormulas": [
         "vv"
       ]
@@ -654,7 +676,9 @@
       "reviewed": true,
       "officialRef": "問11-13",
       "role": "primary",
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "ver11UnitSI",
+      "figureHint": "白地660x420。SI一貫単位系(m・Pa・N)で慣性力の次元が合うよう質量密度はkg/m^3とする単位整合図。",
       "relatedFormulas": [
         "vv"
       ]
@@ -680,7 +704,9 @@
       "reviewed": true,
       "officialRef": "問11-14",
       "role": "primary",
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "ver11StressEindep",
+      "figureHint": "白地660x420。荷重制御の線形弾性で応力σ=F/AはEに依存せず、ひずみ・変位のみEに反比例することを示す図。",
       "relatedFormulas": [
         "vv"
       ]
@@ -706,7 +732,9 @@
       "reviewed": true,
       "officialRef": "問11-15",
       "role": "primary",
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "ver11UnitMismatch",
+      "figureHint": "白地660x420。単位不統一(mm・GPa・MPa)で応力は荷重に比例し換算で復元可、ひずみ・変位はE単位不整合で正しくならない対比図。",
       "relatedFormulas": [
         "vv"
       ]
@@ -761,7 +789,9 @@
       "reviewed": true,
       "officialRef": "問11-17",
       "role": "primary",
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "ver11VerifValid",
+      "figureHint": "白地660x420。検証(理論解と比較)と妥当性確認(実験と比較)の違いを2枚のフローで対比した図。",
       "relatedFormulas": [
         "vv",
         "code-sol-verif"

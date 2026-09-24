@@ -364,14 +364,14 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "s1e10Quality3",
+      "figureHint": "白地660x420で工学シミュレーションの品質を支える3本柱(①解析ソフトウェアの検証②適切な解析プロセス③十分な力量を有する解析要員)を示す",
       "officialRef": "問10-13",
       "role": "primary",
       "relatedFormulas": [
         "s1ch10-15"
-      ],
-      "figureExempt": true,
-      "figureExemptReason": "ISO9001品質保証の三要素(概念・文章主体)"
+      ]
     },
     {
       "id": "solid1-10-14",
@@ -392,14 +392,14 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "s1e10Competence",
+      "figureHint": "白地660x420で『知識＋技能』を実際の問題に適用できる能力が力量であることを矢印で示し、知識・技能の保有や経験年数だけでは力量でないことを添える",
       "officialRef": "問10-15",
       "role": "primary",
       "relatedFormulas": [
         "s1ch10-15"
-      ],
-      "figureExempt": true,
-      "figureExemptReason": "解析要員の力量(ISO9001・文章主体)"
+      ]
     },
     {
       "id": "solid1-10-15",
@@ -448,14 +448,14 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "s1e10PlanDocs",
+      "figureHint": "白地660x420で実行計画書(管理面:工程・要員・プロジェクト管理)と解析計画書(技術面:解析条件・モデル化・手順＋検証/妥当性確認の方法)の役割を左右で対比する",
       "officialRef": "問10-18",
       "role": "primary",
       "relatedFormulas": [
         "s1ch10-16"
-      ],
-      "figureExempt": true,
-      "figureExemptReason": "実行/解析計画書(ISO9001・文章主体)"
+      ]
     },
     {
       "id": "solid1-10-17",
@@ -504,14 +504,14 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "s1e10ValidMethods",
+      "figureHint": "白地660x420で妥当性確認=解析結果を独立した手法(手計算・工学式/理論解、妥当性確認済みの類似解析、実験・実機計測)と比較することを示す",
       "officialRef": "問10-20",
       "role": "primary",
       "relatedFormulas": [
         "s1ch10-18"
-      ],
-      "figureExempt": true,
-      "figureExemptReason": "妥当性確認の方法(ISO9001・文章主体)"
+      ]
     },
     {
       "id": "solid1-10-19",
@@ -532,14 +532,14 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "s1e10Trace",
+      "figureHint": "白地660x420で対象物→解析目的→モデル化→解析データ→手法/手順→結果の履歴の連鎖を示し、その実現には適切な記録の作成・保持が重要であることを添える",
       "officialRef": "問10-21",
       "role": "primary",
       "relatedFormulas": [
         "s1ch10-19"
-      ],
-      "figureExempt": true,
-      "figureExemptReason": "トレーサビリティ(ISO9001・文章主体)"
+      ]
     },
     {
       "id": "solid1-10-20",
@@ -588,14 +588,14 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "s1e10Outsource",
+      "figureHint": "白地660x420で顧客から受託した発注者(納品物件の品質責任は残る)が委託先へ社内に準じる品質活動を要求する関係を示す",
       "officialRef": "問10-14",
       "role": "primary",
       "relatedFormulas": [
         "s1ch10-17"
-      ],
-      "figureExempt": true,
-      "figureExemptReason": "アウトソーシング品質責任(ISO9001・文章主体)"
+      ]
     },
     {
       "id": "solid1-10-22",
@@ -616,14 +616,14 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "figure": "none",
+      "figure": "helpful",
+      "figureImage": "s1e10Contract",
+      "figureHint": "白地660x420で契約内容の確認で重要な4項目(納期・契約金額・業務範囲(業務所掌)・瑕疵担保条項)を並べ、契約内容は『契約書』の表題に限らないことを添える",
       "officialRef": "問10-17",
       "role": "primary",
       "relatedFormulas": [
         "s1ch10-17"
-      ],
-      "figureExempt": true,
-      "figureExemptReason": "契約内容の確認(ISO9001・文章主体)"
+      ]
     }
   ]
 }
