@@ -638,7 +638,10 @@
             {
               "id": "ch6",
               "title": "第6章 要素の選択・メッシング",
-              "ready": false
+              "ready": true,
+              "content": "content/questions/vib2-06-element-meshing.json",
+              "formula": "content/formulas/vib2-ch6.json",
+              "formulaId": "v2ch6"
             },
             {
               "id": "ch7",
