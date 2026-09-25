@@ -654,7 +654,10 @@
             {
               "id": "ch8",
               "title": "第8章 境界条件および荷重条件",
-              "ready": false
+              "ready": true,
+              "content": "content/questions/vib2-08-boundary-load-conditions.json",
+              "formula": "content/formulas/vib2-ch8.json",
+              "formulaId": "v2ch8"
             },
             {
               "id": "ch9",
