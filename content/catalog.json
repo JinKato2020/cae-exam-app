@@ -646,7 +646,10 @@
             {
               "id": "ch7",
               "title": "第7章 モデリングの基礎",
-              "ready": false
+              "ready": true,
+              "content": "content/questions/vib2-07-modeling-basics.json",
+              "formula": "content/formulas/vib2-ch7.json",
+              "formulaId": "v2ch7"
             },
             {
               "id": "ch8",
