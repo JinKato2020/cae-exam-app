@@ -36,6 +36,25 @@ async function readJson<T>(uri: string, fallback: T): Promise<T> {
   try { return JSON.parse(await FileSystem.readAsStringAsync(uri)) as T; } catch { return fallback; }
 }
 
+// ── OTA診断（実機で「なぜ同期できないか」を設定画面に出すため）──────────────
+// 本番(TestFlight/公開)は隠しジェスチャ(__DEV__)が無効なので、常時見える診断を用意する。
+// 中身は接続先とファイル数・エラーだけ＝機密なし。
+export type SyncDiag = {
+  base: string; when: number; step: string; manifestOk: boolean;
+  remoteFiles: number; need: number; downloaded: number; failed: number;
+  cacheDir: string; error: string;
+};
+let lastDiag: SyncDiag = {
+  base: BASE, when: 0, step: 'not-run', manifestOk: false,
+  remoteFiles: 0, need: 0, downloaded: 0, failed: 0, cacheDir: DIR, error: '',
+};
+export function getSyncDiag(): SyncDiag { return lastDiag; }
+
+function errMsg(e: unknown): string {
+  if (e instanceof Error) return (e.name || 'Error') + ': ' + (e.message || '');
+  try { return String(e); } catch { return 'unknown'; }
+}
+
 async function ensureDir(): Promise<void> {
   const info = await FileSystem.getInfoAsync(DIR);
   if (!info.exists) await FileSystem.makeDirectoryAsync(DIR, { intermediates: true });
@@ -89,35 +108,50 @@ export async function loadCache(): Promise<CacheLoad> {
   } catch { return empty; }
 }
 
-/** 裏で最新を取り込む：棚のmanifestと差分を取り、変わったファイルだけDLしてキャッシュ保存。 */
+/** 裏で最新を取り込む：棚のmanifestと差分を取り、変わったファイルだけDLしてキャッシュ保存。
+ *  途中経過と失敗理由を lastDiag に記録する（設定画面の診断で表示＝実機の原因追跡用）。 */
 export async function syncContent(): Promise<{ updated: number }> {
+  const d: SyncDiag = {
+    base: BASE, when: Date.now(), step: 'start', manifestOk: false,
+    remoteFiles: 0, need: 0, downloaded: 0, failed: 0, cacheDir: DIR, error: '',
+  };
   try {
-    await ensureDir();
-    const remoteText = await fetchTextTimeout(BASE + '_manifest.json', 8000);
-    if (!remoteText) return { updated: 0 };
-    const remote = JSON.parse(remoteText) as ManifestLike;
+    await ensureDir(); d.step = 'dir-ready';
+    const mf = await fetchManifest(BASE + '_manifest.json', 8000);
+    if (!mf.text) { d.step = 'manifest-fail'; d.error = 'manifest: ' + (mf.error || 'empty'); lastDiag = d; return { updated: 0 }; }
+    d.manifestOk = true; d.step = 'manifest-ok';
+    const remote = JSON.parse(mf.text) as ManifestLike;
+    d.remoteFiles = Object.keys(remote.files ?? {}).length;
     const cachedShas = await readJson<Record<string, string>>(SHA_PATH, {});
     const have = await effectiveShas(cachedShas);
     const need = diffKeys(remote, have);
+    d.need = need.length; d.step = 'downloading';
     let updated = 0;
     for (const key of need) {
       const local = DIR + enc(key);
-      const res = await FileSystem.downloadAsync(BASE + key, local).catch(() => null);
+      const res = await FileSystem.downloadAsync(BASE + key, local).catch((e) => { if (!d.error) d.error = 'dl ' + key + ': ' + errMsg(e); return null; });
       if (res && res.status === 200) { cachedShas[key] = remote.files[key].sha256; updated++; }
+      else { d.failed++; if (res && !d.error) d.error = 'dl ' + key + ' → http ' + res.status; }
     }
+    d.downloaded = updated; d.step = 'done';
     await FileSystem.writeAsStringAsync(SHA_PATH, JSON.stringify(cachedShas)).catch(() => {});
     await FileSystem.writeAsStringAsync(BUNDLE_TAG_PATH, bundleTag()).catch(() => {});
+    lastDiag = d;
     return { updated };
-  } catch { return { updated: 0 }; }
+  } catch (e) {
+    d.error = (d.error ? d.error + ' | ' : '') + 'sync: ' + errMsg(e);
+    d.step = d.step + '-catch'; lastDiag = d;
+    return { updated: 0 };
+  }
 }
 
-async function fetchTextTimeout(url: string, ms: number): Promise<string | null> {
+async function fetchManifest(url: string, ms: number): Promise<{ text: string | null; error: string; status: number }> {
   try {
     const ctrl = new AbortController();
     const t = setTimeout(() => ctrl.abort(), ms);
     const r = await fetch(url, { signal: ctrl.signal });
     clearTimeout(t);
-    if (!r.ok) return null;
-    return await r.text();
-  } catch { return null; }
+    if (!r.ok) return { text: null, error: 'http ' + r.status, status: r.status };
+    return { text: await r.text(), error: '', status: r.status };
+  } catch (e) { return { text: null, error: errMsg(e), status: 0 }; }
 }

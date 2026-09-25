@@ -31,6 +31,7 @@ import { RichText } from './src/MathText';
 import { CATALOG, questionsByIds, QUESTION_FORMULA_ID, quizList, examRule, type ChapterEntry } from './src/catalog';
 import { formulaDoc, type FormulaItem } from './src/formulas';
 import { initContent } from './src/data/initContent';
+import { getSyncDiag, syncContent, type SyncDiag } from './src/data/contentOta';
 import Svg, { Circle, Line, Polygon, Text as SvgText, Defs, LinearGradient, RadialGradient, Stop, Rect } from 'react-native-svg';
 import {
   chapterStats,
@@ -80,7 +81,8 @@ import {
 } from './src/pro/proState';
 import { initPurchases, syncEntitlements, restore as restorePurchases } from './src/pro/purchases';
 
-const APP_VERSION = '1.0.0';
+// バージョン表示は app.json（唯一の出所）から読む。ベタ書きすると更新し忘れて古い値が残る（実害: 1.1.1 なのに 1.0.0 表示）。
+const APP_VERSION: string = (require('./app.json') as { expo?: { version?: string } }).expo?.version ?? '1.0.0';
 // 規定の受験日（公式・JSME 2026年度・分野×級ごと）。出典: https://www.jsme.or.jp/cee/examinee/outline（2026-09-19確認）
 // 1級は各分野とも 11/27(金)。2級は 固体=12/4(金) / 熱流体・振動=12/3(木)。
 // 設定させず、選択中の分野・級に連動して自動表示する。分野は CATALOG.id と一致（'solid'|'thermal'|'vibration'）。
@@ -1925,6 +1927,17 @@ function SettingsTab(props: {
   // 【公開方針 2026-09-20】発売版では裏口を一切残さない＝開発中(__DEV__)のみ有効。
   // 公開/TestFlightビルド(__DEV__=false)では何も起きない。開発者の無料利用は ASC のオファーコード(100%割引)で行う。
   const [verTaps, setVerTaps] = useState(0);
+  // コンテンツ同期の診断（実機で「準備中のまま」の原因を見るため・常時表示）。
+  const [diag, setDiag] = useState<SyncDiag>(() => getSyncDiag());
+  const [syncing, setSyncing] = useState(false);
+  async function onManualSync() {
+    if (syncing) return;
+    setSyncing(true);
+    try { await syncContent(); } catch { /* 診断側で捕捉 */ }
+    setDiag(getSyncDiag());
+    setSyncing(false);
+    Alert.alert('コンテンツ同期', '同期を実行しました。新しい章が「準備中」から変わらない場合は、いちどアプリを完全に終了して再起動してください。');
+  }
   function onTapVersion() {
     if (!__DEV__) return; // 本番では隠しジェスチャを無効化
     const n = verTaps + 1;
@@ -2035,6 +2048,34 @@ function SettingsTab(props: {
           </View>
         </>
       )}
+
+      {/* コンテンツ同期の診断（常時表示・機密なし）。新章が「準備中」のまま出ない時の原因追跡用。 */}
+      <Text style={[styles.sectionHead, { color: t.text }]}>コンテンツ同期（診断）</Text>
+      <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
+        <Text style={[styles.bodyText, { color: t.sub, fontSize: 12, marginBottom: 8 }]}>
+          最新の問題データを取り込む状態です。章が「準備中」のまま出ない時はここを確認し、「今すぐ同期」を押してください。
+        </Text>
+        {[
+          ['最終同期', diag.when ? new Date(diag.when).toLocaleString() : '未実行'],
+          ['状態', diag.step + (diag.manifestOk ? '（manifest OK）' : '（manifest NG）')],
+          ['サーバー件数', String(diag.remoteFiles)],
+          ['要更新 / 取得', `${diag.need} / ${diag.downloaded}` + (diag.failed ? `（失敗 ${diag.failed}）` : '')],
+          ['接続先', diag.base],
+          ['エラー', diag.error || 'なし'],
+        ].map(([k, v]) => (
+          <View key={k} style={{ flexDirection: 'row', paddingVertical: 3 }}>
+            <Text style={{ color: t.sub, fontSize: 12, width: 96 }}>{k}</Text>
+            <Text style={{ color: t.text, fontSize: 12, flex: 1 }} selectable>{v}</Text>
+          </View>
+        ))}
+        <Pressable
+          onPress={onManualSync}
+          disabled={syncing}
+          style={{ marginTop: 10, backgroundColor: t.primary, opacity: syncing ? 0.6 : 1, paddingVertical: 10, borderRadius: 8, alignItems: 'center' }}
+        >
+          <Text style={{ color: '#ffffff', fontSize: 14, fontWeight: '600' }}>{syncing ? '同期中…' : '今すぐ同期'}</Text>
+        </Pressable>
+      </View>
 
       {/* 最下部のバージョン表示。7回タップで開発用ロック解除（隠しジェスチャ）。 */}
       <Pressable onPress={onTapVersion} style={styles.versionFooter} hitSlop={8}>
