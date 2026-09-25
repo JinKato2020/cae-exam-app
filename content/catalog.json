@@ -662,7 +662,10 @@
             {
               "id": "ch9",
               "title": "第9章 数値計算法の基礎",
-              "ready": false
+              "ready": true,
+              "content": "content/questions/vib2-09-numerical-methods.json",
+              "formula": "content/formulas/vib2-ch9.json",
+              "formulaId": "v2ch9"
             },
             {
               "id": "ch10",
