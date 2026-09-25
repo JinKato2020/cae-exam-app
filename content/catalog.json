@@ -678,7 +678,10 @@
             {
               "id": "ch11",
               "title": "第11章 結果検証の基礎",
-              "ready": false
+              "ready": true,
+              "content": "content/questions/vib2-11-result-verification.json",
+              "formula": "content/formulas/vib2-ch11.json",
+              "formulaId": "v2ch11"
             },
             {
               "id": "ch12",
