@@ -670,7 +670,10 @@
             {
               "id": "ch10",
               "title": "第10章 ポスト処理の基礎",
-              "ready": false
+              "ready": true,
+              "content": "content/questions/vib2-10-post-processing.json",
+              "formula": "content/formulas/vib2-ch10.json",
+              "formulaId": "v2ch10"
             },
             {
               "id": "ch11",
