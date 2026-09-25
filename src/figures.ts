@@ -92,6 +92,8 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   v1e1SpringSupportBar: require('../assets/figures/v1e1SpringSupportBar.png'),
   v1e1TorsionRod: require('../assets/figures/v1e1TorsionRod.png'),
   v1e1WeightedResidual: require('../assets/figures/v1e1WeightedResidual.png'),
+  v2e1ComplexPlane: require('../assets/figures/v2e1ComplexPlane.png'),
+  v2e1CoordRotation: require('../assets/figures/v2e1CoordRotation.png'),
   // 第2章 固体力学の基礎
   fixedbar2mat: require('../assets/figures/fixedbar2mat.png'),
   s1e2AssocFlow: require('../assets/figures/s1e2AssocFlow.png'),
@@ -2349,6 +2351,8 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   v1f9StrainEnergyShare: require('../assets/figures/v1f9StrainEnergyShare.png'),
   v1f9StressStiffening: require('../assets/figures/v1f9StressStiffening.png'),
   v1f9TwoInputPSD: require('../assets/figures/v1f9TwoInputPSD.png'),
+  v2f1ComplexPlane: require('../assets/figures/v2f1ComplexPlane.png'),
+  v2f1CoordRotation: require('../assets/figures/v2f1CoordRotation.png'),
   ver11ForceBalance: require('../assets/figures/ver11ForceBalance.png'),
   ver11LoadDistrib: require('../assets/figures/ver11LoadDistrib.png'),
   ver11StressExtrap: require('../assets/figures/ver11StressExtrap.png'),
