@@ -622,7 +622,10 @@
             {
               "id": "ch4",
               "title": "第4章 振動工学および音響工学の基礎",
-              "ready": false
+              "ready": true,
+              "content": "content/questions/vib2-04-vibration-acoustics.json",
+              "formula": "content/formulas/vib2-ch4.json",
+              "formulaId": "v2ch4"
             },
             {
               "id": "ch5",
