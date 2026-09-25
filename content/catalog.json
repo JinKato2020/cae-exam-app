@@ -630,7 +630,10 @@
             {
               "id": "ch5",
               "title": "第5章 有限要素法の基礎",
-              "ready": false
+              "ready": true,
+              "content": "content/questions/vib2-05-fem-basics.json",
+              "formula": "content/formulas/vib2-ch5.json",
+              "formulaId": "v2ch5"
             },
             {
               "id": "ch6",
