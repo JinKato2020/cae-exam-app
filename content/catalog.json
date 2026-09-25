@@ -686,7 +686,10 @@
             {
               "id": "ch12",
               "title": "第12章 コンピューターの基礎",
-              "ready": false
+              "ready": true,
+              "content": "content/questions/vib2-12-computer-basics.json",
+              "formula": "content/formulas/vib2-ch12.json",
+              "formulaId": "v2ch12"
             },
             {
               "id": "ch13",
