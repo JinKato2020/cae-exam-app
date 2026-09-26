@@ -1,6 +1,7 @@
 // コンテンツOTA本体：棚(Cloudflare R2)から「変わったファイルだけ」落として端末キャッシュへ保存する。
-// 読込は起動時に loadCachedOverrides() でキャッシュを読み、その後 syncContent() が裏で最新を取り込む
-// （＝次回起動で反映。今の起動は待たせない）。JLPTアプリ src/data/content/ota.ts の方式を移植。
+// 読込は起動時に loadCache() でキャッシュを読み、その後 syncContent() が裏で最新を取り込む。
+// 取り込みで更新があれば initContent の onApplied が同じ起動中に画面へ反映する（＝2回起動は不要）。
+// 目次/実ファイルはキャッシュ避け(?t / ?v=sha, no-store)で必ず最新を掴む。JLPT ota.ts 方式を移植。
 //
 // SDK54 は expo-file-system/legacy を使う（新APIは default import が無反応になる罠があるため）。
 import * as FileSystem from 'expo-file-system/legacy';
@@ -93,7 +94,10 @@ export async function loadCache(): Promise<CacheLoad> {
 export async function syncContent(): Promise<{ updated: number }> {
   try {
     await ensureDir();
-    const remoteText = await fetchTextTimeout(BASE + '_manifest.json', 8000);
+    // 目次(_manifest.json)は毎回「今の最新」を掴む必要がある。端末やCDNの古いキャッシュを掴むと
+    // 「変化なし」と誤判定し、1回目の起動で何もDLしない＝2回起動が必要になる（実機で実害）。
+    // そこで毎回ユニークなURL(?t=時刻)＋no-store で必ず最新の目次を取る。
+    const remoteText = await fetchTextTimeout(BASE + `_manifest.json?t=${Date.now()}`, 8000);
     if (!remoteText) return { updated: 0 };
     const remote = JSON.parse(remoteText) as ManifestLike;
     const cachedShas = await readJson<Record<string, string>>(SHA_PATH, {});
@@ -102,7 +106,9 @@ export async function syncContent(): Promise<{ updated: number }> {
     let updated = 0;
     for (const key of need) {
       const local = DIR + enc(key);
-      const res = await FileSystem.downloadAsync(BASE + key, local).catch(() => null);
+      // 実ファイルも、中身が変わると値が変わる指紋(sha)を ?v= に付けて古いキャッシュを避ける。
+      const url = BASE + key + '?v=' + remote.files[key].sha256;
+      const res = await FileSystem.downloadAsync(url, local).catch(() => null);
       if (res && res.status === 200) { cachedShas[key] = remote.files[key].sha256; updated++; }
     }
     await FileSystem.writeAsStringAsync(SHA_PATH, JSON.stringify(cachedShas)).catch(() => {});
@@ -115,7 +121,7 @@ async function fetchTextTimeout(url: string, ms: number): Promise<string | null>
   try {
     const ctrl = new AbortController();
     const t = setTimeout(() => ctrl.abort(), ms);
-    const r = await fetch(url, { signal: ctrl.signal });
+    const r = await fetch(url, { signal: ctrl.signal, cache: 'no-store' });
     clearTimeout(t);
     if (!r.ok) return null;
     return await r.text();
