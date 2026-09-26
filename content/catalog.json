@@ -694,7 +694,10 @@
             {
               "id": "ch13",
               "title": "第13章 計算力学技術者倫理",
-              "ready": false
+              "ready": true,
+              "content": "content/questions/vib2-13-ethics.json",
+              "formula": "content/formulas/vib2-ch13.json",
+              "formulaId": "v2ch13"
             }
           ]
         }
