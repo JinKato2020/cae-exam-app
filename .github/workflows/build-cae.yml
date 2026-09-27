@@ -1,5 +1,5 @@
 name: CAE試験対策 (iOS/Android ビルド)
-run-name: "${{ inputs.build_number && format('{0} — CAE {1} ビルド', inputs.build_number, inputs.platforms) || format('CAE ビルド ({0})', inputs.platforms) }}"
+run-name: "${{ inputs.build_number && format('CAE v{0} ({1}) — {2} ビルド', inputs.app_version, inputs.build_number, inputs.platforms) || format('CAE v{0} — {1} ビルド', inputs.app_version, inputs.platforms) }}"
 
 # =============================================================================
 # CAE試験対策アプリ — JLPTアプリ(build-jlpt.yml)を土台に、CAE用へ簡素化。
@@ -33,9 +33,14 @@ on:
         type: choice
         options: ['both', 'ios', 'android']
       build_number:
-        description: 'Build番号(=1000+commit数・iOS/Android同一値)。空ならジョブ内で計算'
+        description: 'Build番号(=1150+commit数・iOS/Android同一値)。空ならジョブ内で計算(空だとタイトルに番号は出ない)'
         required: false
         default: ''
+        type: string
+      app_version:
+        description: 'タイトル表示用のアプリ版(app.jsonのversionに合わせる)。例 1.2.0'
+        required: false
+        default: '1.2.0'
         type: string
       submit:
         description: 'iOS: ビルド後 TestFlight へ提出(既定true)'
