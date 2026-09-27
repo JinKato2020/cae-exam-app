@@ -20,7 +20,11 @@
     "android": {
       "package": "com.safa.nepali.jp",
       "versionCode": 1274,
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#011C4C"
+      }
     },
     "web": {
       "bundler": "metro"
