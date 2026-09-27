@@ -48,11 +48,17 @@ on:
         type: boolean
         default: false
       submit_android:
-        description: 'Android: ビルド後 Play へ自動提出。draft=下書き(公開はConsoleで手動) / completed=即本番公開 / none=提出しない'
+        description: 'Android提出: draft=下書き(公開はConsoleで手動) / completed=そのトラックへ配信 / none=提出しない'
         required: false
         default: 'draft'
         type: choice
         options: ['draft', 'completed', 'none']
+      android_track:
+        description: '配信先トラック: internal=内部/ alpha=クローズド/ beta=オープン/ production=本番'
+        required: false
+        default: 'alpha'
+        type: choice
+        options: ['internal', 'alpha', 'beta', 'production']
 
 permissions:
   contents: read
@@ -346,6 +352,6 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
           packageName: com.safa.nepali.jp
           releaseFiles: android/app/build/outputs/bundle/release/*.aab
-          track: production
+          track: ${{ inputs.android_track }}
           status: ${{ inputs.submit_android }}
           changesNotSentForReview: ${{ inputs.submit_android == 'draft' }}
