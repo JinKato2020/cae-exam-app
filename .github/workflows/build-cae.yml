@@ -4,7 +4,7 @@ run-name: "${{ inputs.build_number && format('{0} — CAE {1} ビルド', inputs
 # =============================================================================
 # CAE試験対策アプリ — JLPTアプリ(build-jlpt.yml)を土台に、CAE用へ簡素化。
 #  ① build-ios     : 手動時 → iOS ビルド & TestFlight 提出 (com.safa.cae)
-#  ② build-android : 手動時 → Android AAB 生成（Play自動提出はまだ入れない＝安全側）
+#  ② build-android : 手動時 → Android AAB 生成 → Play へ自動提出（既定=draft下書き。com.safa.nepali.jp）
 #  「ビルドして」= iOS+Android 両方が既定(platforms=both)。①②は別ランナーで並列。
 #
 # 版番号(CLAUDE.md E2): run-name の先頭に必ず番号を出す。
@@ -20,6 +20,7 @@ run-name: "${{ inputs.build_number && format('{0} — CAE {1} ビルド', inputs
 #             APP_STORE_CONNECT_KEY_ID / APP_STORE_CONNECT_ISSUER_ID / APP_STORE_CONNECT_API_KEY_BASE64
 #             IOS_PROVISIONING_PROFILE_CAE_BASE64
 #   Android : ANDROID_KEYSTORE_BASE64 / ANDROID_KEYSTORE_PASSWORD / ANDROID_KEY_ALIAS / ANDROID_KEY_PASSWORD
+#   Play提出: GOOGLE_PLAY_SERVICE_ACCOUNT_JSON （サービスアカウントJSON全文。com.safa.nepali.jp のリリース権限が必要）
 # =============================================================================
 
 on:
@@ -46,6 +47,12 @@ on:
         description: 'iOS: 1日上限ガードを無視して強制提出(既定false)。error 90382 覚悟の時のみ'
         type: boolean
         default: false
+      submit_android:
+        description: 'Android: ビルド後 Play へ自動提出。draft=下書き(公開はConsoleで手動) / completed=即本番公開 / none=提出しない'
+        required: false
+        default: 'draft'
+        type: choice
+        options: ['draft', 'completed', 'none']
 
 permissions:
   contents: read
@@ -98,7 +105,7 @@ jobs:
 
       - name: Calculate build number
         run: |
-          BUILD_NUMBER=$((1000 + $(git rev-list --count HEAD)))
+          BUILD_NUMBER=$((1150 + $(git rev-list --count HEAD)))
           WANT="${{ inputs.build_number }}"
           if [ -n "$WANT" ] && [ "$WANT" != "$BUILD_NUMBER" ]; then
             echo "::error::run-nameの番号($WANT)と実際のビルド番号($BUILD_NUMBER)が不一致。dispatch後にコミットが載った可能性。再実行してください"
@@ -245,7 +252,7 @@ jobs:
           xcrun altool --upload-app --file "$IPA_PATH" --type ios --apiKey "$KEY_ID" --apiIssuer "$ISSUER_ID"
           rm -rf ~/.appstoreconnect
 
-  # ② Androidビルド(手動時のみ)。AAB を生成してアーティファクト化（Play自動提出はまだ入れない）。
+  # ② Androidビルド(手動時のみ)。AAB を生成 → Play へ自動提出（既定=draft下書き。公開はConsoleで手動）。
   build-android:
     if: github.event_name == 'workflow_dispatch' && (inputs.platforms == 'both' || inputs.platforms == 'android')
     runs-on: ubuntu-latest
@@ -277,7 +284,7 @@ jobs:
         run: npm ci || npm install
       - name: Calculate versionCode (1000+commit・iOS Build番号と同一値)
         run: |
-          BUILD_NUMBER=$((1000 + $(git rev-list --count HEAD)))
+          BUILD_NUMBER=$((1150 + $(git rev-list --count HEAD)))
           WANT="${{ inputs.build_number }}"
           if [ -n "$WANT" ] && [ "$WANT" != "$BUILD_NUMBER" ]; then
             echo "::error::run-nameの番号($WANT)と実際のversionCode($BUILD_NUMBER)が不一致。再実行してください"
@@ -328,3 +335,17 @@ jobs:
           name: cae-android-aab-${{ env.BUILD_NUMBER }}
           path: android/app/build/outputs/bundle/release/*.aab
           retention-days: 30
+
+      # Play へ自動提出（既定=draft: ファイルだけ上げて公開はConsoleで手動）。
+      #   com.safa.nepali.jp は Play アプリ署名が有効・本番許可済みの既存アプリ（載せ替え）。
+      #   サービスアカウント: github-actions-uploader@learning-nepali.iam.gserviceaccount.com
+      - name: Play へ自動提出 (com.safa.nepali.jp)
+        if: ${{ inputs.submit_android != 'none' }}
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
+          packageName: com.safa.nepali.jp
+          releaseFiles: android/app/build/outputs/bundle/release/*.aab
+          track: production
+          status: ${{ inputs.submit_android }}
+          changesNotSentForReview: ${{ inputs.submit_android == 'draft' }}
