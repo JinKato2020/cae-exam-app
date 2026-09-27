@@ -1,4 +1,4 @@
-// RevenueCat の「公開SDKキー」設定（CAE専用・iOSのみ）。
+// RevenueCat の「公開SDKキー」設定（CAE専用・iOS/Android）。
 // これは公開キー（アプリに埋め込んで安全。秘密鍵ではない）。空のうちは課金機能は一切起動しない(no-op)＝
 // アプリは今までどおり無料で全部動く。CAE用のRevenueCatプロジェクトを作り、そのiOS公開キーをここに入れて初めて有効化。
 //   入れ方: RevenueCat ダッシュボード → Project → API keys → Apple App Store の "appl_..." を IOS_KEY へ。
@@ -7,8 +7,8 @@ import { Platform } from 'react-native';
 
 // ▼▼ CAE用RevenueCatのiOS公開キー（appl_...）。2026-09-16 設定。 ▼▼
 const IOS_KEY = 'appl_qvyTIYAdQbBhSifdwfVIAmxKCUe';
-// ▲▲ （Androidは当面対象外。将来 goog_... を足す場合はここに） ▲▲
-const ANDROID_KEY = '';
+// ▲▲ CAE用RevenueCatのAndroid公開キー（goog_...）。2026-09-27 設定。Google Play=com.safa.nepali.jp ▲▲
+const ANDROID_KEY = 'goog_ZqItVqIEXCEvNmVQaMfyGVKXSct';
 
 // 【買い切りの単位＝分野×級】RevenueCat の Entitlement / Package の識別子は、
 //   src/pro/proState.ts の entKey(fieldId, gradeId)（例 'solid_g2' / 'solid_g1'）と一致させること。
