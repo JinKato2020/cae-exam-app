@@ -17,6 +17,7 @@ import {
   type DimensionValue,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import appConfig from './app.json';
 import {
   SafeAreaProvider,
   SafeAreaView,
@@ -80,7 +81,8 @@ import {
 } from './src/pro/proState';
 import { initPurchases, syncEntitlements, restore as restorePurchases } from './src/pro/purchases';
 
-const APP_VERSION = '1.0.0';
+// 設定画面下部のバージョン表示は app.json の version を自動参照（版を上げても追従・ベタ書きしない）。
+const APP_VERSION = appConfig.expo.version;
 // 規定の受験日（公式・JSME 2026年度・分野×級ごと）。出典: https://www.jsme.or.jp/cee/examinee/outline（2026-09-19確認）
 // 1級は各分野とも 11/27(金)。2級は 固体=12/4(金) / 熱流体・振動=12/3(木)。
 // 設定させず、選択中の分野・級に連動して自動表示する。分野は CATALOG.id と一致（'solid'|'thermal'|'vibration'）。
