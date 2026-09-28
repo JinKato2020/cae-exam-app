@@ -4,8 +4,10 @@ run-name: "${{ inputs.build_number && format('CAE v{0} ({1}) — {2} ビルド',
 # =============================================================================
 # CAE試験対策アプリ — JLPTアプリ(build-jlpt.yml)を土台に、CAE用へ簡素化。
 #  ① build-ios     : 手動時 → iOS ビルド & TestFlight 提出 (com.safa.cae)
-#  ② build-android : 手動時 → Android AAB 生成 → Play へ自動提出（既定=draft下書き。com.safa.nepali.jp）
+#  ② build-android : 手動時 → Android AAB 生成 → Play へ自動提出（既定=internalトラックへcompleted配信。com.safa.nepali.jp）
 #  「ビルドして」= iOS+Android 両方が既定(platforms=both)。①②は別ランナーで並列。
+#  ★配信先の既定は「内部テスト(internal)」。ユーザー指示: 今後「ビルド」= 内部テストへ提出してアップする
+#    (クローズド=alpha へ出したい時のみ dispatch で android_track=alpha を明示する)。
 #
 # 版番号(CLAUDE.md E2): run-name の先頭に必ず番号を出す。
 #   Build番号 = iOS CFBundleVersion = Android versionCode = 1000 + commit数（両OS同一値）。
@@ -53,15 +55,15 @@ on:
         type: boolean
         default: false
       submit_android:
-        description: 'Android提出: draft=下書き(公開はConsoleで手動) / completed=そのトラックへ配信 / none=提出しない'
+        description: 'Android提出: completed=そのトラックへ配信(既定・内部テストへ実際に出る) / draft=下書きのみ(公開はConsoleで手動) / none=提出しない'
         required: false
-        default: 'draft'
+        default: 'completed'
         type: choice
-        options: ['draft', 'completed', 'none']
+        options: ['completed', 'draft', 'none']
       android_track:
-        description: '配信先トラック: internal=内部/ alpha=クローズド/ beta=オープン/ production=本番'
+        description: '配信先トラック: internal=内部テスト(既定・「ビルドして」の行き先)/ alpha=クローズド/ beta=オープン/ production=本番'
         required: false
-        default: 'alpha'
+        default: 'internal'
         type: choice
         options: ['internal', 'alpha', 'beta', 'production']
 
@@ -347,7 +349,7 @@ jobs:
           path: android/app/build/outputs/bundle/release/*.aab
           retention-days: 30
 
-      # Play へ自動提出（既定=draft: ファイルだけ上げて公開はConsoleで手動）。
+      # Play へ自動提出（既定=internalトラックへ completed 配信 → 内部テストで実際にテスト可能）。
       #   com.safa.nepali.jp は Play アプリ署名が有効・本番許可済みの既存アプリ（載せ替え）。
       #   サービスアカウント: github-actions-uploader@learning-nepali.iam.gserviceaccount.com
       - name: Play へ自動提出 (com.safa.nepali.jp)
