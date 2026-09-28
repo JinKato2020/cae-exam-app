@@ -35,7 +35,8 @@
       "figureHint": "白地660x420。円孔付き帯板の1/4対称モデル。最小断面の公称応力σnomと孔縁の応力集中σmax=α·σnomの位置を矢印で示す",
       "relatedFormulas": [
         "vv"
-      ]
+      ],
+      "preFigureImage": "ver11HoleSetup"
     },
     {
       "id": "ver-11-1b",
@@ -119,7 +120,8 @@
       "figureHint": "白地660x420。周縁固定の円板に一様圧力が作用し中央でたわみ最大となる断面図。曲げ剛性Dとたわみ式・諸元を併記。",
       "relatedFormulas": [
         "vv"
-      ]
+      ],
+      "preFigureImage": "ver11PlateSetup"
     },
     {
       "id": "ver-11-3",

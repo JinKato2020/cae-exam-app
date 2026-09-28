@@ -119,7 +119,8 @@
       "officialRef": "問7-4",
       "relatedFormulas": [
         "cst"
-      ]
+      ],
+      "preFigureImage": "elem7CstSetup"
     },
     {
       "id": "elem-7-5",

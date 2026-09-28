@@ -175,7 +175,8 @@
       "relatedFormulas": [
         "stress-transformation"
       ],
-      "figure": "helpful"
+      "figure": "helpful",
+      "preFigureImage": "s2StressTransformSetup"
     },
     {
       "id": "solid2-2-7",
@@ -259,7 +260,7 @@
         "composite-bar",
         "bar-elongation"
       ],
-      "figure": "helpful"
+      "figure": "required"
     },
     {
       "id": "solid2-2-10",
@@ -344,7 +345,8 @@
       "relatedFormulas": [
         "composite-bar",
         "bar-elongation"
-      ]
+      ],
+      "preFigureImage": "s2RigidPlate2BarsSetup"
     },
     {
       "id": "solid-conjugate-shear",
@@ -425,7 +427,8 @@
       "role": "primary",
       "relatedFormulas": [
         "torsion"
-      ]
+      ],
+      "preFigureImage": "s2HollowShaftSetup"
     },
     {
       "id": "solid-torsion-principal-dir",
@@ -511,7 +514,8 @@
       "relatedFormulas": [
         "mohr",
         "stress-transformation"
-      ]
+      ],
+      "preFigureImage": "s2PrincipalSetup"
     },
     {
       "id": "solid-3d-pure-shear",
@@ -539,7 +543,8 @@
       "role": "primary",
       "relatedFormulas": [
         "mohr"
-      ]
+      ],
+      "preFigureImage": "s2PureShearSetup"
     },
     {
       "id": "solid-overhang-reactions",
@@ -567,7 +572,8 @@
       "role": "primary",
       "relatedFormulas": [
         "beam-reactions"
-      ]
+      ],
+      "preFigureImage": "s2OverhangBeamSetup"
     },
     {
       "id": "solid-overhang-maxmoment",
@@ -595,7 +601,8 @@
       "role": "primary",
       "relatedFormulas": [
         "beam-reactions"
-      ]
+      ],
+      "preFigureImage": "s2OverhangBeamSetup"
     },
     {
       "id": "s2-2-22",
@@ -623,7 +630,8 @@
       "role": "primary",
       "relatedFormulas": [
         "beam-reactions"
-      ]
+      ],
+      "preFigureImage": "s2CantileverUDLSetup"
     },
     {
       "id": "s2-2-23",
@@ -765,7 +773,8 @@
       "role": "primary",
       "relatedFormulas": [
         "truss-joint"
-      ]
+      ],
+      "preFigureImage": "s2Truss2BarSetup"
     },
     {
       "id": "s2-2-28",
@@ -821,7 +830,8 @@
       "role": "primary",
       "relatedFormulas": [
         "beam-reactions"
-      ]
+      ],
+      "preFigureImage": "s2CantReactionsSetup"
     },
     {
       "id": "s2-2-30",
@@ -906,7 +916,8 @@
       "figure": "helpful",
       "relatedFormulas": [
         "yield-criteria"
-      ]
+      ],
+      "preFigureImage": "s2MisesSetup"
     },
     {
       "id": "s2-2-33",
@@ -1106,7 +1117,8 @@
       "role": "primary",
       "relatedFormulas": [
         "stress-concentration"
-      ]
+      ],
+      "preFigureImage": "s2PlateHolesSetup"
     },
     {
       "id": "solid2-ch2-40",
@@ -1163,7 +1175,8 @@
       "relatedFormulas": [
         "thermal-stress",
         "bar-elongation"
-      ]
+      ],
+      "preFigureImage": "s2HalfHeatedBarSetup"
     },
     {
       "id": "solid2-ch2-42",
@@ -1192,7 +1205,8 @@
       "relatedFormulas": [
         "thermal-stress",
         "bar-elongation"
-      ]
+      ],
+      "preFigureImage": "s2TwoBarsThermalSetup"
     },
     {
       "id": "solid2-ch2-43",

@@ -1019,7 +1019,8 @@
       "relatedFormulas": [
         "reaction-balance"
       ],
-      "figure": "helpful"
+      "figure": "helpful",
+      "preFigureImage": "bc9ReactionBeamSetup"
     },
     {
       "id": "bc-9-10b",
