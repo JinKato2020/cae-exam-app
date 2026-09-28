@@ -130,9 +130,10 @@
       "reviewed": true,
       "officialRef": "問2-5",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e2SpringMassForce",
-      "figureHint": "白地660x420。左に質量mの質点、中央にばね定数kのばね、右端に力fの矢印を描いた1次元モデル図。数値や加速度の答えは書かない。"
+      "figure": "helpful",
+      "figureImage": "v2eDeriv2_5",
+      "figureHint": "白地660x420。左に質量mの質点、中央にばね定数kのばね、右端に力fの矢印を描いた1次元モデル図。数値や加速度の答えは書かない。",
+      "preFigureImage": "v2e2SpringMassForce"
     },
     {
       "id": "vib2-2-6",
@@ -280,9 +281,10 @@
       "reviewed": true,
       "officialRef": "問2-11",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e2StackedBlocks",
-      "figureHint": "白地660x420。摩擦のない床の上に台m1、その上に物体m2を載せ、台に初速v0の矢印を付けた配置図。共通速度の答えは書かない。"
+      "figure": "helpful",
+      "figureImage": "v2eDeriv2_11",
+      "figureHint": "白地660x420。摩擦のない床の上に台m1、その上に物体m2を載せ、台に初速v0の矢印を付けた配置図。共通速度の答えは書かない。",
+      "preFigureImage": "v2e2StackedBlocks"
     },
     {
       "id": "vib2-2-12",
@@ -405,9 +407,10 @@
       "reviewed": true,
       "officialRef": "問2-16",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e2CircularMotion",
-      "figureHint": "白地660x420。xy平面で原点Oから半径lの糸で結ばれ角速度ωで回る質点m、接線方向の速度矢印をラベルした円運動図。運動量・角運動量の値は書かない。"
+      "figure": "helpful",
+      "figureImage": "v2eDeriv2_16",
+      "figureHint": "白地660x420。xy平面で原点Oから半径lの糸で結ばれ角速度ωで回る質点m、接線方向の速度矢印をラベルした円運動図。運動量・角運動量の値は書かない。",
+      "preFigureImage": "v2e2CircularMotion"
     },
     {
       "id": "vib2-2-17",
@@ -430,9 +433,10 @@
       "reviewed": true,
       "officialRef": "問2-17",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e2RadiusHalved",
-      "figureHint": "白地660x420。半径lの円と、糸をたぐって半径l/2に縮めた円を重ねて描いた図(before/afterの半径のみ)。角速度の答え(4ω等)は書かない。"
+      "figure": "helpful",
+      "figureImage": "v2eDeriv2_17",
+      "figureHint": "白地660x420。半径lの円と、糸をたぐって半径l/2に縮めた円を重ねて描いた図(before/afterの半径のみ)。角速度の答え(4ω等)は書かない。",
+      "preFigureImage": "v2e2RadiusHalved"
     },
     {
       "id": "vib2-2-18",
@@ -480,9 +484,10 @@
       "reviewed": true,
       "officialRef": "問2-19",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e2BarTwoMasses",
-      "figureHint": "白地660x420。長さL・質量2mの棒の両端に質点mを描き、中心を通り棒に直交する回転軸を破線で示した配置図。慣性モーメントの答えは書かない。"
+      "figure": "helpful",
+      "figureImage": "v2eDeriv2_19",
+      "figureHint": "白地660x420。長さL・質量2mの棒の両端に質点mを描き、中心を通り棒に直交する回転軸を破線で示した配置図。慣性モーメントの答えは書かない。",
+      "preFigureImage": "v2e2BarTwoMasses"
     },
     {
       "id": "vib2-2-20",
@@ -505,9 +510,10 @@
       "reviewed": true,
       "officialRef": "問2-20",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e2BarEndAxis",
-      "figureHint": "白地660x420。長さl・質量mの棒に、重心Gを通る軸(z')と一端Oを通る軸(z)を破線で描き、G-O間の距離をl/2とラベルした図。I_Oの答えは書かない。"
+      "figure": "helpful",
+      "figureImage": "v2eDeriv2_20",
+      "figureHint": "白地660x420。長さl・質量mの棒に、重心Gを通る軸(z')と一端Oを通る軸(z)を破線で描き、G-O間の距離をl/2とラベルした図。I_Oの答えは書かない。",
+      "preFigureImage": "v2e2BarEndAxis"
     },
     {
       "id": "vib2-2-21",
@@ -580,9 +586,10 @@
       "reviewed": true,
       "officialRef": "問2-23",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e2InclineSlideRoll",
-      "figureHint": "白地660x420。傾角θの斜面上に、すべり落ちる直方体(a1)と転がり落ちる球(a2)を並べて描いた図。加速度の値や大小関係の結論は書かない。"
+      "figure": "helpful",
+      "figureImage": "v2eDeriv2_23",
+      "figureHint": "白地660x420。傾角θの斜面上に、すべり落ちる直方体(a1)と転がり落ちる球(a2)を並べて描いた図。加速度の値や大小関係の結論は書かない。",
+      "preFigureImage": "v2e2InclineSlideRoll"
     }
   ]
 }

@@ -230,9 +230,10 @@
       "reviewed": true,
       "officialRef": "問3-9",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e3SquareShear",
-      "figureHint": "白地660x420。一辺10mmの正方形断面と、その断面に平行に作用するせん断力Q=3.0kNの矢印を示した図。応力の値や答えは書かない。"
+      "figure": "helpful",
+      "figureImage": "v2eDeriv3_9",
+      "figureHint": "白地660x420。一辺10mmの正方形断面と、その断面に平行に作用するせん断力Q=3.0kNの矢印を示した図。応力の値や答えは書かない。",
+      "preFigureImage": "v2e3SquareShear"
     },
     {
       "id": "vib2-3-10",
@@ -255,9 +256,10 @@
       "reviewed": true,
       "officialRef": "問3-10",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e3ShearStrainCalc",
-      "figureHint": "白地660x420。せん断応力τが作用して微小要素が角度γだけせん断変形する様子を、τの矢印とせん断角γでラベルした図。数値や答えは書かない。"
+      "figure": "helpful",
+      "figureImage": "v2eDeriv3_10",
+      "figureHint": "白地660x420。せん断応力τが作用して微小要素が角度γだけせん断変形する様子を、τの矢印とせん断角γでラベルした図。数値や答えは書かない。",
+      "preFigureImage": "v2e3ShearStrainCalc"
     },
     {
       "id": "vib2-3-11",
@@ -280,9 +282,10 @@
       "reviewed": true,
       "officialRef": "問3-11",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e3SteppedBarAxial",
-      "figureHint": "白地660x420。左端固定の長さ2Lの棒に、中央(左端からL)へP1、右端へP2の軸方向力矢印を描き、2区間(各長さL)と断面積A・縦弾性係数Eをラベルした図。変位の式や答えは書かない。"
+      "figure": "helpful",
+      "figureImage": "v2eDeriv3_11",
+      "figureHint": "白地660x420。左端固定の長さ2Lの棒に、中央(左端からL)へP1、右端へP2の軸方向力矢印を描き、2区間(各長さL)と断面積A・縦弾性係数Eをラベルした図。変位の式や答えは書かない。",
+      "preFigureImage": "v2e3SteppedBarAxial"
     },
     {
       "id": "vib2-3-12",
@@ -305,9 +308,10 @@
       "reviewed": true,
       "officialRef": "問3-12",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e3HollowCircleI",
-      "figureHint": "白地660x420。外径D=40mm・内径d=20mmの中空円断面を描き、中立軸(水平線)と外径・内径の寸法をラベルした図。断面二次モーメントの値や式は書かない。"
+      "figure": "helpful",
+      "figureImage": "v2eDeriv3_12",
+      "figureHint": "白地660x420。外径D=40mm・内径d=20mmの中空円断面を描き、中立軸(水平線)と外径・内径の寸法をラベルした図。断面二次モーメントの値や式は書かない。",
+      "preFigureImage": "v2e3HollowCircleI"
     },
     {
       "id": "vib2-3-13",
@@ -355,9 +359,10 @@
       "reviewed": true,
       "officialRef": "問3-14",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e3SimpleBeamReactions",
-      "figureHint": "白地660x420。長さL=4mの単純支持はり(左端Aピン・右端Bローラ)に、Aから1mの位置へ下向き集中荷重P=600Nの矢印、両端に反力RA・RBの上向き矢印をラベルした図。反力の値や答えは書かない。"
+      "figure": "helpful",
+      "figureImage": "v2eDeriv3_14",
+      "figureHint": "白地660x420。長さL=4mの単純支持はり(左端Aピン・右端Bローラ)に、Aから1mの位置へ下向き集中荷重P=600Nの矢印、両端に反力RA・RBの上向き矢印をラベルした図。反力の値や答えは書かない。",
+      "preFigureImage": "v2e3SimpleBeamReactions"
     },
     {
       "id": "vib2-3-15",

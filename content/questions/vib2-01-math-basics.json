@@ -102,8 +102,8 @@
       "reviewed": true,
       "officialRef": "問1-4",
       "role": "primary",
-      "figureExempt": true,
-      "figureExemptReason": "数値ベクトルの内積・平行判定による1次独立/直交の判定問題。数値計算で判定でき、図は必須でないため図なしとする。"
+      "figure": "helpful",
+      "figureImage": "v2eDeriv1_4"
     },
     {
       "id": "vib2-1-5",
@@ -368,8 +368,8 @@
       "reviewed": true,
       "officialRef": "問1-15",
       "role": "primary",
-      "figureExempt": true,
-      "figureExemptReason": "判別式 b^2-4ac=0 を各係数で計算し重根条件を判定する計算問題。計算そのものが本質で、図示する対象がないため図は不要。"
+      "figure": "helpful",
+      "figureImage": "v2eDeriv1_15"
     },
     {
       "id": "vib2-1-16",
