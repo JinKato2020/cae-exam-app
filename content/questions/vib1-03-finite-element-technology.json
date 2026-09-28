@@ -518,13 +518,13 @@
       "difficulty": 3,
       "question": "回転慣性を含むチモシェンコはり要素の運動エネルギー $T=\\\\dfrac12\\\\int\\\\rho A\\\\dot w^2 dx+\\\\dfrac12\\\\int\\\\rho I\\\\dot\\\\theta^2 dx$ から質量行列を作る。横変位 $w=[N_1\\\\ 0\\\\ N_2\\\\ 0]\\\\{d\\\\}$、回転角 $\\\\theta=[0\\\\ N_1\\\\ 0\\\\ N_2]\\\\{d\\\\}$($\\\\{d\\\\}=\\\\{w_1,\\\\theta_1,w_2,\\\\theta_2\\\\}^T$)とするとき、要素質量行列の形として正しいものはどれか。",
       "choices": [
-        "$\\\\displaystyle\\\\int_0^L \\\\begin{bmatrix}N_1&0\\\\\\\\0&N_1\\\\\\\\N_2&0\\\\\\\\0&N_2\\\\end{bmatrix}\\\\begin{bmatrix}\\\\rho A&0\\\\\\\\0&\\\\rho I\\\\end{bmatrix}\\\\begin{bmatrix}N_1&0&N_2&0\\\\\\\\0&N_1&0&N_2\\\\end{bmatrix}dx$",
+        "$\\displaystyle\\int_0^L \\begin{bmatrix}N_1&0\\\\0&N_1\\\\N_2&0\\\\0&N_2\\end{bmatrix}\\begin{bmatrix}\\rho A&0\\\\0&\\rho I\\end{bmatrix}\\begin{bmatrix}N_1&0&N_2&0\\\\0&N_1&0&N_2\\end{bmatrix}dx$",
         "$\\\\displaystyle\\\\int_0^L \\\\rho A\\\\,[N_1\\\\ N_2]^T[N_1\\\\ N_2]\\\\,dx$",
-        "$\\\\displaystyle\\\\int_0^L \\\\begin{bmatrix}N_1&0\\\\\\\\0&N_1\\\\\\\\N_2&0\\\\\\\\0&N_2\\\\end{bmatrix}\\\\begin{bmatrix}\\\\rho I&0\\\\\\\\0&\\\\rho A\\\\end{bmatrix}\\\\begin{bmatrix}N_1&0&N_2&0\\\\\\\\0&N_1&0&N_2\\\\end{bmatrix}dx$",
-        "$\\\\displaystyle\\\\int_0^L \\\\begin{bmatrix}N_1'&0\\\\\\\\0&N_1'\\\\\\\\N_2'&0\\\\\\\\0&N_2'\\\\end{bmatrix}\\\\begin{bmatrix}\\\\rho A&0\\\\\\\\0&\\\\rho I\\\\end{bmatrix}\\\\begin{bmatrix}N_1'&0&N_2'&0\\\\\\\\0&N_1'&0&N_2'\\\\end{bmatrix}dx$"
+        "$\\displaystyle\\int_0^L \\begin{bmatrix}N_1&0\\\\0&N_1\\\\N_2&0\\\\0&N_2\\end{bmatrix}\\begin{bmatrix}\\rho I&0\\\\0&\\rho A\\end{bmatrix}\\begin{bmatrix}N_1&0&N_2&0\\\\0&N_1&0&N_2\\end{bmatrix}dx$",
+        "$\\displaystyle\\int_0^L \\begin{bmatrix}N_1'&0\\\\0&N_1'\\\\N_2'&0\\\\0&N_2'\\end{bmatrix}\\begin{bmatrix}\\rho A&0\\\\0&\\rho I\\end{bmatrix}\\begin{bmatrix}N_1'&0&N_2'&0\\\\0&N_1'&0&N_2'\\end{bmatrix}dx$"
       ],
       "answer": 1,
-      "explanation": "【基礎】$w$ と $\\\\theta$ をそれぞれ形状関数行で表し、運動エネルギーの並進分($\\\\rho A\\\\dot w^2$)と回転分($\\\\rho I\\\\dot\\\\theta^2$)を1つの二次形式にまとめる。\n【考え方】形状関数行列を $[N]=\\\\begin{bmatrix}N_1&0&N_2&0\\\\\\\\0&N_1&0&N_2\\\\end{bmatrix}$、物性を $\\\\mathrm{diag}(\\\\rho A,\\\\rho I)$ とすると、質量行列は $\\\\int[N]^T\\\\mathrm{diag}(\\\\rho A,\\\\rho I)[N]dx$。並進行に $\\\\rho A$、回転行に $\\\\rho I$ が対応する。\n【ポイント】形状関数そのもの(微分なし)を両側に、中央に $\\\\mathrm{diag}(\\\\rho A,\\\\rho I)$。$4\\\\times4$ 行列になる。\n【引っかけ】②は回転慣性($\\\\rho I$)項を落とした $2\\\\times2$ で、回転自由度を含まない。③は $\\\\rho A$ と $\\\\rho I$ の位置を取り違えている(並進に $\\\\rho I$、回転に $\\\\rho A$ が付く誤り)。④は形状関数の微分 $N'$ を用いており、これは剛性行列の形。",
+      "explanation": "【基礎】$w$ と $\\\\theta$ をそれぞれ形状関数行で表し、運動エネルギーの並進分($\\\\rho A\\\\dot w^2$)と回転分($\\\\rho I\\\\dot\\\\theta^2$)を1つの二次形式にまとめる。\n【考え方】形状関数行列を $[N]=\\begin{bmatrix}N_1&0&N_2&0\\\\0&N_1&0&N_2\\end{bmatrix}$、物性を $\\\\mathrm{diag}(\\\\rho A,\\\\rho I)$ とすると、質量行列は $\\\\int[N]^T\\\\mathrm{diag}(\\\\rho A,\\\\rho I)[N]dx$。並進行に $\\\\rho A$、回転行に $\\\\rho I$ が対応する。\n【ポイント】形状関数そのもの(微分なし)を両側に、中央に $\\\\mathrm{diag}(\\\\rho A,\\\\rho I)$。$4\\\\times4$ 行列になる。\n【引っかけ】②は回転慣性($\\\\rho I$)項を落とした $2\\\\times2$ で、回転自由度を含まない。③は $\\\\rho A$ と $\\\\rho I$ の位置を取り違えている(並進に $\\\\rho I$、回転に $\\\\rho A$ が付く誤り)。④は形状関数の微分 $N'$ を用いており、これは剛性行列の形。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -591,7 +591,7 @@
       "topic": "アイソパラメトリック要素とヤコビ行列",
       "type": "mc",
       "difficulty": 3,
-      "question": "2次元アイソパラメトリック要素で、正規化座標 $(\\\\xi,\\\\eta)$ と物理座標 $(x,y)$ の微分が $\\\\begin{Bmatrix}\\\\partial N/\\\\partial\\\\xi\\\\\\\\\\\\partial N/\\\\partial\\\\eta\\\\end{Bmatrix}=[J]\\\\begin{Bmatrix}\\\\partial N/\\\\partial x\\\\\\\\\\\\partial N/\\\\partial y\\\\end{Bmatrix}$ と表される。ヤコビ行列 $[J]=\\\\begin{bmatrix}\\\\partial x/\\\\partial\\\\xi & (a)\\\\\\\\(b) & \\\\partial y/\\\\partial\\\\eta\\\\end{bmatrix}$ の $(a),(b)$ の正しい組合せはどれか。",
+      "question": "2次元アイソパラメトリック要素で、正規化座標 $(\\\\xi,\\\\eta)$ と物理座標 $(x,y)$ の微分が $\\\\begin{Bmatrix}\\\\partial N/\\\\partial\\\\xi\\\\\\\\\\\\partial N/\\\\partial\\\\eta\\\\end{Bmatrix}=[J]\\\\begin{Bmatrix}\\\\partial N/\\\\partial x\\\\\\\\\\\\partial N/\\\\partial y\\\\end{Bmatrix}$ と表される。ヤコビ行列 $[J]=\\begin{bmatrix}\\partial x/\\partial\\xi & (a)\\\\(b) & \\partial y/\\partial\\eta\\end{bmatrix}$ の $(a),(b)$ の正しい組合せはどれか。",
       "choices": [
         "$(a)=\\\\partial x/\\\\partial\\\\eta,\\\\ (b)=\\\\partial y/\\\\partial\\\\xi$",
         "$(a)=\\\\partial y/\\\\partial\\\\eta,\\\\ (b)=\\\\partial x/\\\\partial\\\\xi$",
@@ -741,7 +741,7 @@
       "topic": "音響管の1次元有限要素",
       "type": "mc",
       "difficulty": 3,
-      "question": "両端閉の音響管(長さ $L=0.10\\\\,\\\\mathrm{m}$、音速 $c=340\\\\,\\\\mathrm{m/s}$)を2節点1次要素1個で離散化すると、$[M]\\\\{\\\\ddot p\\\\}+[K]\\\\{p\\\\}=\\\\{0\\\\}$、$[M]=L\\\\begin{bmatrix}1/3&1/6\\\\\\\\1/6&1/3\\\\end{bmatrix}$、$[K]=\\\\dfrac{c^2}{L}\\\\begin{bmatrix}1&-1\\\\\\\\-1&1\\\\end{bmatrix}$ となる。剛体モード($\\\\omega=0$)を除いた非零の固有角振動数 $\\\\omega$ に最も近いのはどれか。",
+      "question": "両端閉の音響管(長さ $L=0.10\\\\,\\\\mathrm{m}$、音速 $c=340\\\\,\\\\mathrm{m/s}$)を2節点1次要素1個で離散化すると、$[M]\\\\{\\\\ddot p\\\\}+[K]\\\\{p\\\\}=\\\\{0\\\\}$、$[M]=L\\begin{bmatrix}1/3&1/6\\\\1/6&1/3\\end{bmatrix}$、$[K]=\\dfrac{c^2}{L}\\begin{bmatrix}1&-1\\\\-1&1\\end{bmatrix}$ となる。剛体モード($\\\\omega=0$)を除いた非零の固有角振動数 $\\\\omega$ に最も近いのはどれか。",
       "choices": [
         "$1.1\\\\times10^{4}\\\\,\\\\mathrm{rad/s}$",
         "$1.2\\\\times10^{4}\\\\,\\\\mathrm{rad/s}$",
