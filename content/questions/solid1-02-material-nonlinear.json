@@ -587,6 +587,7 @@
       "hasMath": true,
       "figure": "helpful",
       "figureImage": "s1e2ThermalYield",
+      "preFigureImage": "s1e2ThermalYieldSetup",
       "figureHint": "白地660x420で両端固定部材と、σy-T低下線・熱応力2T線の交点(降伏温度約130度)を示すσy-T線図",
       "explanation": "【基礎】両端固定で加熱すると熱膨張が拘束され、圧縮の熱応力$\\sigma=E\\alpha T$が生じる。これが降伏応力$\\sigma_y$に達すると降伏する。\n【考え方】熱応力$E\\alpha T$と温度依存の降伏応力$\\sigma_y=300-0.3T$を等値して$T$を解く。降伏応力が温度で下がる効果を落とさないこと。\n【計算】熱応力$=E\\alpha T=200000\\times1\\times10^{-5}\\times T=2T\\ (\\mathrm{MPa})$。$2T=300-0.3T\\Rightarrow2.3T=300\\Rightarrow T\\approx130^\\circ\\mathrm{C}$。\n【ポイント】降伏応力の温度低下を考えるぶん、一定の降伏応力で計算するより低い温度で降伏する。鋼に近い値で、熱応力の効果は小さくない。\n【引っかけ】選択肢2($150^\\circ\\mathrm{C}$)は$\\sigma_y$の温度低下を無視し$2T=300$とした値。選択肢3・4は係数処理を誤った値。",
       "origin": "original",

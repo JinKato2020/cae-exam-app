@@ -226,6 +226,7 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e4Penalty",
+      "preFigureImage": "s1e4PenaltySetup",
       "figureHint": "白地660x420でペナルティばねαが節点2-3間に入り、微小貫通g=−F/αとu3=u2+F/αを図示",
       "officialRef": "問4-5",
       "role": "branch",

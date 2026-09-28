@@ -400,7 +400,7 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
-      "figure": "helpful",
+      "figure": "required",
       "figureImage": "s1e3EulerColumn",
       "figureHint": "白地660x420で両端単純支持柱の第1次座屈モード(半波の正弦形)とPcr=π^2EI/l^2を描く",
       "officialRef": "問3-11",
