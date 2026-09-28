@@ -180,9 +180,10 @@
       "reviewed": true,
       "officialRef": "問10-7",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e10StiffnessRatio",
-      "figureHint": "白地660x420。横軸に剛性倍率k2/k1、縦軸に固有振動数比f2/f1をとり、f=√k の平方根曲線を描いた計算用グラフ。読み取り目盛のみ(回答前・中立)"
+      "figure": "helpful",
+      "figureImage": "v2eDeriv10_7",
+      "figureHint": "白地660x420。横軸に剛性倍率k2/k1、縦軸に固有振動数比f2/f1をとり、f=√k の平方根曲線を描いた計算用グラフ。読み取り目盛のみ(回答前・中立)",
+      "preFigureImage": "v2e10StiffnessRatio"
     },
     {
       "id": "vib2-10-8",
@@ -380,9 +381,10 @@
       "reviewed": true,
       "officialRef": "問10-15",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e10SPL",
-      "figureHint": "白地660x420。L=20log10(p/p0)の定義式と基準音圧p0=2e-5 Paを示し、横軸p/p0(対数)・縦軸L(dB)の直線を描いた計算用グラフ。目盛のみ(回答前・中立)"
+      "figure": "helpful",
+      "figureImage": "v2eDeriv10_15",
+      "figureHint": "白地660x420。L=20log10(p/p0)の定義式と基準音圧p0=2e-5 Paを示し、横軸p/p0(対数)・縦軸L(dB)の直線を描いた計算用グラフ。目盛のみ(回答前・中立)",
+      "preFigureImage": "v2e10SPL"
     },
     {
       "id": "vib2-10-16",
@@ -455,9 +457,10 @@
       "reviewed": true,
       "officialRef": "問10-18",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e10OctaveBand",
-      "figureHint": "白地660x420。周波数軸(対数)上に中心800Hzのバンドを置き、下限=fc/2^(1/6)・上限=fc×2^(1/6)の帯域端を示す計算用の帯域図。数値は伏せ倍率記号のみ(回答前・中立)"
+      "figure": "helpful",
+      "figureImage": "v2eDeriv10_18",
+      "figureHint": "白地660x420。周波数軸(対数)上に中心800Hzのバンドを置き、下限=fc/2^(1/6)・上限=fc×2^(1/6)の帯域端を示す計算用の帯域図。数値は伏せ倍率記号のみ(回答前・中立)",
+      "preFigureImage": "v2e10OctaveBand"
     },
     {
       "id": "vib2-10-19",

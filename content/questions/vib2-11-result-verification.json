@@ -56,7 +56,7 @@
       "officialRef": "問11-2",
       "role": "primary",
       "figure": "helpful",
-      "figureImage": "v2e11DriftIntegral",
+      "figureImage": "v2eDeriv11_2",
       "figureHint": "一定加速度オフセットを2階積分すると変位が放物線状に増大する概念グラフ"
     },
     {
@@ -455,9 +455,10 @@
       "reviewed": true,
       "officialRef": "問11-18",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e11FreqRes",
-      "figureHint": "サンプリング周波数と点数から周波数分解能が決まる関係図(数値は伏せる)"
+      "figure": "helpful",
+      "figureImage": "v2eDeriv11_18",
+      "figureHint": "サンプリング周波数と点数から周波数分解能が決まる関係図(数値は伏せる)",
+      "preFigureImage": "v2e11FreqRes"
     },
     {
       "id": "vib2-11-19",
