@@ -20,11 +20,12 @@ for p in glob.glob(os.path.join(QDIR,"*.json")):
     data=json.load(open(p,encoding="utf-8"))
     ch=data.get("meta",{}).get("chapter",99)
     for q in data.get("questions",[]):
-        k=q.get("figureImage")
-        if k:
-            used[k]=ch
-            if not os.path.exists(os.path.join(FIG,k+".png")):
-                missing.append((k,q["number"]))
+        # figureImage(回答後の解説図) と preFigureImage(回答前の配置図) の両方を登録
+        for k in (q.get("figureImage"), q.get("preFigureImage")):
+            if k:
+                used[k]=ch
+                if not os.path.exists(os.path.join(FIG,k+".png")):
+                    missing.append((k,q["number"]))
 
 # 公式・用語(content/formulas/*.json)の figureImage も登録。問題と共用の図(既にusedにある)は
 # 元の章グループを保ち、公式専用の図(例 s1f8*)だけ FORMULA_GROUP にまとめる。

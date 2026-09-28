@@ -151,6 +151,7 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   s2PrincipalMohr: require('../assets/figures/s2PrincipalMohr.png'),
   s2PureShear: require('../assets/figures/s2PureShear.png'),
   s2RigidBarWire: require('../assets/figures/s2RigidBarWire.png'),
+  s2RigidBarWireSetup: require('../assets/figures/s2RigidBarWireSetup.png'),
   s2RigidPlate2Bars: require('../assets/figures/s2RigidPlate2Bars.png'),
   s2SNCurve: require('../assets/figures/s2SNCurve.png'),
   s2SectionZ: require('../assets/figures/s2SectionZ.png'),

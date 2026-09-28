@@ -314,7 +314,8 @@
       "role": "primary",
       "relatedFormulas": [
         "bar-elongation"
-      ]
+      ],
+      "preFigureImage": "s2RigidBarWireSetup"
     },
     {
       "id": "solid-rigidplate-twobars",

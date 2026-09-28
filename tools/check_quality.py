@@ -117,10 +117,25 @@ def check_file(path, all_titles):
     # --- 図の欠落(WARN) --- path=<root>/content/questions/<f>.json → root は3階層上
     root_of = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(path))))
     figdir = os.path.join(root_of, "assets", "figures")
-    miss = sorted({q["figureImage"] for q in qs
-                   if q.get("figureImage") and not os.path.exists(os.path.join(figdir, q["figureImage"]+".png"))})
+    figkeys = set()
+    for q in qs:
+        for kk in (q.get("figureImage"), q.get("preFigureImage")):  # 回答後図＋回答前図の両方
+            if kk:
+                figkeys.add(kk)
+    miss = sorted({k for k in figkeys if not os.path.exists(os.path.join(figdir, k+".png"))})
     if miss:
         warn.append(f"図PNG欠落 {len(miss)}: {miss}（tools/gen_figures_ts.py も参照）")
+
+    # --- 前後2図(preFigureImage)の整合(FAIL・恒久ルール[[cae-figure-before-after-rule]]) ---
+    #   必要に応じ1問に図を2枚持てる: preFigureImage=回答前(答えを一切示さない配置図/概念図)、
+    #   figureImage=回答後(答えの根拠・解説図)。前後で出し分ける(App.tsx)。
+    #   ・preFigureImage を使うなら figureImage(回答後図) も必須。回答前だけ図で回答後に図なしは不可。
+    #   ・回答前図に答えを描かない(値・結論・公式の結果)。描くなら回答後(figureImage)に回す。
+    pre_bad = [q.get("number") for q in qs
+               if q.get("preFigureImage") and not q.get("figureImage")]
+    if pre_bad:
+        hard.append(f"preFigureImage(回答前図)があるのに figureImage(回答後図)が無い問 {len(pre_bad)}: {pre_bad}"
+                    f"（前後2図は回答前=preFigureImage/回答後=figureImage の対で使う）")
 
     # --- 図の必須化＋「回答前/回答後」タグ整合(FAIL・恒久ルール／ユーザー厳命2026-09-18) ---
     #   厳命: 初学者のため【全問に例外なく図を付ける】。かつ各図は回答前/回答後を明示する。

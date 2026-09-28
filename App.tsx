@@ -1580,12 +1580,23 @@ function ProblemScreen(props: {
         <RichText text={q.question} color={t.text} fontSize={18} bold />
       </View>
 
-      {/* 図：解答に必要(figure:'required')なら常時。それ以外(helpful等)は答えを示唆しうるので回答後のみ出す。 */}
-      {!locked && q.figureImage && hasFigure(q.figureImage) && (q.figure === 'required' || answered) ? (
-        <View style={[styles.qFigCard, { backgroundColor: t.card }]}>
-          <AutoFigure t={t} source={figureSource(q.figureImage)} />
-        </View>
-      ) : null}
+      {/* 図：回答前と回答後で出し分ける（前後2図に対応）。
+          ・回答前 = preFigureImage（答えを一切示さない配置図）を優先。無ければ figure:'required' の時だけ figureImage を出す。
+          ・回答後 = figureImage（解説図・答えの根拠）。
+          preFigureImage を持たない従来問題は今まで通り（required=前/helpful=後）。 */}
+      {(() => {
+        if (locked) return null;
+        const key = !answered
+          ? (q.preFigureImage && hasFigure(q.preFigureImage)
+              ? q.preFigureImage
+              : (q.figure === 'required' && q.figureImage && hasFigure(q.figureImage) ? q.figureImage : null))
+          : (q.figureImage && hasFigure(q.figureImage) ? q.figureImage : null);
+        return key ? (
+          <View style={[styles.qFigCard, { backgroundColor: t.card }]}>
+            <AutoFigure t={t} source={figureSource(key)} />
+          </View>
+        ) : null;
+      })()}
 
       {/* 選択肢：丸番号カード */}
       <View style={styles.qChoices}>
