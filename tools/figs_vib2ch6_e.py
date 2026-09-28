@@ -152,13 +152,12 @@ def beam_shape_order(name):  # 6-1 required
 
 def tri_constant_strain(name):  # 6-2 required
     im, d = new()
-    title(d, "3節点三角形要素：要素内ひずみが一様")
+    title(d, "3節点三角形要素と要素内のひずみ")
     P1 = (150, 330); P2 = (470, 330); P3 = (300, 130)
     tri(d, P1, P2, P3, fill=FILL2)
     for p, lb in [(P1, "節点1"), (P2, "節点2"), (P3, "節点3")]:
         node(d, p[0], p[1], 8, "white")
         ctext(d, p[0], p[1] + (26 if p[1] > 250 else -26), lb, FT, GRAY)
-    ctext(d, 305, 275, "要素内ひずみ 一様", FS, RED)
     ctext(d, W / 2, 380, "{epsilon} = [B]{ue}", F, BLUE)
     save(im, name)
 
@@ -347,7 +346,7 @@ def shell_approx(name):  # 6-8 required
 def adaptive_rhp(name):  # 6-9 required
     im, d = new()
     title(d, "アダプティブメッシュ法：R法・H法・P法")
-    labels = ["R法（節点を移動）", "H法（要素を細分）", "P法（次数を上げる）"]
+    labels = ["R法", "H法", "P法"]
     ox0 = 60
     for k in range(3):
         ox = ox0 + k * 200
@@ -439,20 +438,13 @@ def lumped_mass_elem(name):  # 6-12 required
     d.ellipse((cx - 14, cy - 14, cx + 14, cy + 14), outline=BLACK, width=3, fill=FILL3)
     ctext(d, cx, cy, "m", FS)
     ctext(d, cx, cy + 34, "形状を持たない1点", FT, GRAY)
-    # 属性の吹き出し
-    block(d, 150, 110, 220, 44, "質量 m", FT, FILL1)
-    arrow(d, 190, 132, cx - 12, cy - 10, GRAY, 2, 9)
-    block(d, 500, 130, 250, 44, "重心まわりの慣性モーメント", FT, FILL1)
-    arrow(d, 430, 150, cx + 12, cy - 8, GRAY, 2, 9)
-    block(d, 470, 330, 220, 44, "慣性乗積", FT, FILL1)
-    arrow(d, 400, 320, cx + 12, cy + 8, GRAY, 2, 9)
-    note(d, "検討する周波数範囲で剛体とみなせる部品に使用")
+    note(d, "検討する周波数範囲で剛体とみなせる部品を1点で表す")
     save(im, name)
 
 
 def gauss_points(name):  # 6-13 required
     im, d = new()
-    title(d, "積分点（ガウス点）：応力・ひずみの評価点")
+    title(d, "積分点（ガウス点）と数値積分")
     # 左：1次元要素
     y = 150
     x0, x1 = 70, 300
@@ -480,7 +472,7 @@ def gauss_points(name):  # 6-13 required
     # 1つの積分点から近い節点へ外挿矢印
     arrow(d, gs[0][0], gs[0][1], ox + 8, oy + 8, GREEN, 2, 8)
     ctext(d, ox + s / 2, oy + s + 26, "四辺形要素の積分点（×）", FT, GRAY)
-    ctext(d, ox + s / 2, oy + s + 50, "応力・ひずみは積分点で評価", FT, RED)
+    ctext(d, ox + s / 2, oy + s + 50, "物理量は積分点で評価", FT, RED)
     save(im, name)
 
 

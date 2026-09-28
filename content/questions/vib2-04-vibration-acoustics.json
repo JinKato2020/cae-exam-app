@@ -680,7 +680,7 @@
       "reviewed": true,
       "officialRef": "問4-27",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e427",
       "figureHint": "問4-26と同じ剛体+2ばね系。連成項(k2l2-k1l1)を示す配置図"
     },

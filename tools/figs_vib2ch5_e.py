@@ -83,13 +83,8 @@ def discretize_map(name):  # 5-1 required
         d.line((ox, oy + i * 45, ox + 3 * 45, oy + i * 45), fill=LGRAY, width=1)
         d.line((ox + i * 45, oy, ox + i * 45, oy + 3 * 45), fill=LGRAY, width=1)
     ctext(d, ox + 68, oy + 3 * 45 + 30, "節点・要素（有限自由度）", FT, GRAY)
-    # 下：手法名の枠(空間離散化 と 時間積分)
-    block(d, 200, 360, 300, 54, "", FILL1)
-    ctext(d, 200, 344, "空間の離散化", FT, GRAY)
-    ctext(d, 200, 368, "FEM / BEM / FDM", FS)
-    block(d, 500, 360, 220, 54, "", FILL1)
-    ctext(d, 500, 344, "時間の扱い", FT, GRAY)
-    ctext(d, 500, 368, "時間積分法", FS)
+    # 下：離散化の概念のみ（手法の分類・正解は回答後に示す）
+    note(d, "連続体の自由度を有限個に置き換えて近似する")
     save(im, name)
 
 
@@ -119,7 +114,6 @@ def shape_func_interp(name):  # 5-2 required
         pts.append((x, y))
     plot(d, 0, 0, pts, BLUE)
     ctext(d, (xL + xR) / 2, oy - 120, "u(x) = 形状関数で補間", FT, BLUE)
-    note(d, "要素が変われば形状関数も変わる")
     save(im, name)
 
 
@@ -186,21 +180,15 @@ def potential_spring(name):  # 5-5 required
 
 def disp_stress_method(name):  # 5-6 required
     im, d = new()
-    title(d, "変位法の流れ（未知量＝節点変位）")
-    y1, y2 = 150, 300
-    block(d, 150, y1, 180, 54, "節点変位")
-    block(d, 430, y1, 200, 54, "ひずみ")
-    block(d, 430, y2, 200, 54, "応力")
-    block(d, 150, y2, 180, 54, "剛性方程式")
-    # 節点変位 →(ひずみ-変位関係)→ ひずみ
-    arrow(d, 240, y1, 330, y1, BLACK, 3, 12)
-    ctext(d, 285, y1 - 18, "ひずみ-変位関係", FT, GRAY)
-    # ひずみ →(応力-ひずみ関係)→ 応力
-    arrow(d, 430, y1 + 27, 430, y2 - 27, BLACK, 3, 12)
-    ctext(d, 540, (y1 + y2) / 2, "応力-ひずみ関係", FT, GRAY, "mm")
-    # 応力 → 剛性方程式
-    arrow(d, 330, y2, 240, y2, BLACK, 3, 12)
-    ctext(d, 285, y2 - 18, "つり合い", FT, GRAY)
+    title(d, "有限要素法の2つの定式化")
+    # 左：変位法
+    block(d, 170, 170, 200, 60, "変位法")
+    ctext(d, 170, 250, "未知量：節点変位", FT, GRAY)
+    # 右：応力法
+    block(d, 480, 170, 200, 60, "応力法")
+    ctext(d, 480, 250, "未知量：応力", FT, GRAY)
+    dash(d, W / 2, 90, W / 2, 320, LGRAY)
+    note(d, "どちらの物理量を未知数に選ぶかが異なる")
     save(im, name)
 
 
