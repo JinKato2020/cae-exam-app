@@ -266,7 +266,7 @@
       "topic": "熱伝導",
       "type": "mc",
       "difficulty": 3,
-      "question": "厚さ $L=8\\,\\mathrm{mm}$ の広い鉄板($\\lambda=65\\,\\mathrm{W/(m\\cdot K)}$)の両面を $30\\,^\\circ\\mathrm{C}$ と $10\\,^\\circ\\mathrm{C}$ に保ち定常状態にした。板内の温度分布は直線となる。このとき面積 $1\\,\\mathrm{m^2}$ を1時間に通過する熱量 $Q$ に最も近いものはどれか。",
+      "question": "厚さ $L=8\\,\\mathrm{mm}$ の広い鉄板($\\lambda=65\\,\\mathrm{W/(m\\cdot K)}$)の両面を $30\\,{}^\\circ\\mathrm{C}$ と $10\\,{}^\\circ\\mathrm{C}$ に保ち定常状態にした。板内の温度分布は直線となる。このとき面積 $1\\,\\mathrm{m^2}$ を1時間に通過する熱量 $Q$ に最も近いものはどれか。",
       "choices": [
         "$1.63\\times10^5\\,\\mathrm{J}$",
         "$5.85\\times10^5\\,\\mathrm{J}$",

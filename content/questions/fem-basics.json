@@ -357,7 +357,7 @@
       "topic": "初期ひずみの等価節点力",
       "type": "mc",
       "difficulty": 3,
-      "question": "断面積 $A=2\\,\\mathrm{cm}^2$、ヤング率 $E=210\\,\\mathrm{GPa}$、線膨張係数 $\\alpha=11\\times10^{-6}\\,/^{\\circ}\\mathrm{C}$ の1次元棒要素が、温度上昇 $\\Delta T=80\\,^{\\circ}\\mathrm{C}$ を受ける。この初期(熱)ひずみに相当する等価節点力の大きさ $f=EA\\,\\alpha\\,\\Delta T$ はいくらか。",
+      "question": "断面積 $A=2\\,\\mathrm{cm}^2$、ヤング率 $E=210\\,\\mathrm{GPa}$、線膨張係数 $\\alpha=11\\times10^{-6}\\,/^{\\circ}\\mathrm{C}$ の1次元棒要素が、温度上昇 $\\Delta T=80\\,{}^{\\circ}\\mathrm{C}$ を受ける。この初期(熱)ひずみに相当する等価節点力の大きさ $f=EA\\,\\alpha\\,\\Delta T$ はいくらか。",
       "choices": [
         "$3.70\\,\\mathrm{kN}$",
         "$369.6\\,\\mathrm{kN}$",

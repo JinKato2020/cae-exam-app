@@ -146,7 +146,7 @@
       "topic": "ギブス自由エネルギー",
       "type": "mc",
       "difficulty": 1,
-      "question": "$25\\,^{\\circ}\\mathrm{C}$・$1\\,\\mathrm{atm}$ を基準としたとき、標準生成ギブス自由エネルギー $\\Delta G_f^{\\circ}$ が $0$ でない物質は次のうちどれか。",
+      "question": "$25\\,{}^{\\circ}\\mathrm{C}$・$1\\,\\mathrm{atm}$ を基準としたとき、標準生成ギブス自由エネルギー $\\Delta G_f^{\\circ}$ が $0$ でない物質は次のうちどれか。",
       "choices": [
         "酸素 $\\mathrm{O_2}$",
         "窒素 $\\mathrm{N_2}$",

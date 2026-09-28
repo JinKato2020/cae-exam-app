@@ -291,7 +291,7 @@
       "topic": "膜状凝縮,層流液膜,局所熱流束,フーリエ則,飽和温度",
       "type": "mc",
       "difficulty": 2,
-      "question": "蒸気雰囲気中の鉛直冷却面上の層流液膜（膜状凝縮）で、液膜内の温度が直線分布のとき局所熱流束は $q_x=\\lambda(T_S-T_W)/\\delta$ で表される。$\\lambda=0.68\\,\\mathrm{W/(m\\cdot K)}$、飽和温度 $T_S=100\\,^\\circ\\mathrm{C}$、冷却面温度 $T_W=80\\,^\\circ\\mathrm{C}$、液膜厚 $\\delta=1.0\\times10^{-4}\\,\\mathrm{m}$ のとき $q_x$ に最も近いものはどれか。",
+      "question": "蒸気雰囲気中の鉛直冷却面上の層流液膜（膜状凝縮）で、液膜内の温度が直線分布のとき局所熱流束は $q_x=\\lambda(T_S-T_W)/\\delta$ で表される。$\\lambda=0.68\\,\\mathrm{W/(m\\cdot K)}$、飽和温度 $T_S=100\\,{}^\\circ\\mathrm{C}$、冷却面温度 $T_W=80\\,{}^\\circ\\mathrm{C}$、液膜厚 $\\delta=1.0\\times10^{-4}\\,\\mathrm{m}$ のとき $q_x$ に最も近いものはどれか。",
       "choices": [
         "約1.4×10^4 W/m^2",
         "約1.4×10^5 W/m^2",
