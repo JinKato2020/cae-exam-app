@@ -359,4 +359,8 @@ jobs:
           releaseFiles: android/app/build/outputs/bundle/release/*.aab
           track: ${{ inputs.android_track }}
           status: ${{ inputs.submit_android }}
-          changesNotSentForReview: ${{ inputs.submit_android == 'draft' }}
+          # このアプリ(com.safa.nepali.jp)は変更が自動で審査に回る設定のため、
+          # changesNotSentForReview を true で送ると Google に拒否される
+          # （error: "Changes are sent for review automatically. The query parameter
+          #  changesNotSentForReview must not be set."）。常に false 固定にする。
+          changesNotSentForReview: false
