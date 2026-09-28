@@ -651,6 +651,7 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e5Miner",
+      "preFigureImage": "s1e5MinerSetup",
       "figureHint": "白地660x420でS-N線図(疲労限度σfで水平、破線で延長)と損傷和Σni/Ni=1の累積を示す",
       "officialRef": "問5-21",
       "role": "primary",

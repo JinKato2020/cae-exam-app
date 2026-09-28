@@ -543,6 +543,7 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e3LogStrain",
+      "preFigureImage": "s1e3LogStrainSetup",
       "figureHint": "白地660x420で単軸棒の伸びと対数ひずみln(1+u)・コーシー応力の関係を描く",
       "officialRef": "問3-7",
       "role": "primary",

@@ -224,6 +224,7 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e7StabilityLimit",
+      "preFigureImage": "s1e7StabilitySetup",
       "figureHint": "白地660x420で20分割した棒(δ=0.05)と、安定条件κΔt/δ²≤1/2からΔt≤δ²/(2κ)=0.00125を導く計算過程を示す",
       "officialRef": "問7-4",
       "role": "branch",

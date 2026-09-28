@@ -422,6 +422,7 @@
       "hasMath": true,
       "figure": "helpful",
       "figureImage": "s1e2StressStatesMohr",
+      "preFigureImage": "s1e2StressStatesSetup",
       "figureHint": "白地660x420で平面応力3状態(a単軸200/b二軸100,-100/cせん断100)のモール円と相当応力を対比する",
       "explanation": "【基礎】平面応力では$\\bar\\sigma=\\sqrt{\\sigma_{11}^2-\\sigma_{11}\\sigma_{22}+\\sigma_{22}^2+3\\sigma_{12}^2}$(ミーゼス)を使うと計算が速い。\n【考え方】3つの応力状態それぞれについてこの式に代入して比較する。\n【計算】(a)単軸: $\\bar\\sigma=\\sqrt{200^2}=200$。(b)二軸: $\\bar\\sigma=\\sqrt{100^2-100\\cdot(-100)+(-100)^2}=\\sqrt{30000}=100\\sqrt3\\approx173$。(c)純せん断: $\\bar\\sigma=\\sqrt{3\\cdot100^2}=100\\sqrt3\\approx173$。よって$\\bar\\sigma(a)=200>\\bar\\sigma(b)=\\bar\\sigma(c)\\approx173$。\n【ポイント】純せん断$\\tau=100$と、大きさの等しい二軸引張圧縮$(100,-100)$は、いずれもミーゼス相当応力が$\\sqrt3\\times100$で等しい。\n【引っかけ】選択肢1は3状態の応力の絶対値だけを見て等しいと誤認。選択肢2は大小が逆。選択肢3は(b)と(c)を別値と誤ったもの。",
       "origin": "original",

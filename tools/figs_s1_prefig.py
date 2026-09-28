@@ -159,6 +159,150 @@ def f_creep():           # 10-7
     save(im, "s1e10CreepRedistSetup")
 
 
+# ── 追加(2026-09-28): レビュー指摘の計算問題へ「与件だけ」の回答前図を横展開 ──
+# いずれも答え・正解値・結論は一切描かない(=required相当)。figureImage(解説図)は回答後のまま。
+
+def f_gl_compute():      # 1-10
+    im, d = new(); title(d, "変形勾配Fで単位正方形を変形(E₁₁,E₁₂を求める)")
+    Ox, Oy, S = 175, 315, 120
+    F = [[1.2, 0.1], [0.0, 1.0]]
+    ref = [(0, 0), (1, 0), (1, 1), (0, 1)]
+    P = lambda a, b: (Ox + a * S, Oy - b * S)
+    T = lambda a, b: (Ox + (F[0][0] * a + F[0][1] * b) * S, Oy - (F[1][0] * a + F[1][1] * b) * S)
+    d.polygon([T(a, b) for a, b in ref], outline=BLACK, width=3, fill=FILL1)   # 変形後
+    d.polygon([P(a, b) for a, b in ref], outline=GRAY, width=2)                # 変形前(基準)
+    ctext(d, Ox + 0.5 * S, Oy + 22, "変形前(基準)", FT, GRAY)
+    ctext(d, T(1, 1)[0] + 10, T(1, 1)[1] - 16, "変形後", FT, BLACK, "lm")
+    ctext(d, 500, 118, "変形勾配 F", FS)
+    matrix_grid(d, 452, 138, [["1.2", "0.1"], ["0", "1.0"]], cell=52)
+    note(d, "与件: F=[[1.2,0.1],[0,1.0]]。E=½(F^T·F−I)。E₁₁ と E₁₂ の組は?")
+    save(im, "s1e1GLcomputeSetup")
+
+
+def _stress_elem(d, cx, cy, s11, s22, s12, cap):
+    h = 54; L = 30
+    d.rectangle((cx - h / 2, cy - h / 2, cx + h / 2, cy + h / 2), outline=BLACK, width=3, fill=FILL1)
+    ty = cy - h // 2 - L - 16; by = cy + h // 2 + L + 14
+    ctext(d, cx, cy - h // 2 - L - 42, cap, FS, BLACK)
+    if s11:
+        c = RED if s11 > 0 else BLUE
+        if s11 > 0:
+            arrow(d, cx + h / 2, cy, cx + h / 2 + L, cy, c, 3, 11); arrow(d, cx - h / 2, cy, cx - h / 2 - L, cy, c, 3, 11)
+        else:
+            arrow(d, cx + h / 2 + L, cy, cx + h / 2, cy, c, 3, 11); arrow(d, cx - h / 2 - L, cy, cx - h / 2, cy, c, 3, 11)
+        ctext(d, cx, ty, f"σ₁₁={s11:g}", FT, c)
+    if s22:
+        c = RED if s22 > 0 else BLUE
+        if s22 > 0:
+            arrow(d, cx, cy - h / 2, cx, cy - h / 2 - L, c, 3, 11); arrow(d, cx, cy + h / 2, cx, cy + h / 2 + L, c, 3, 11)
+        else:
+            arrow(d, cx, cy - h / 2 - L, cx, cy - h / 2, c, 3, 11); arrow(d, cx, cy + h / 2 + L, cx, cy + h / 2, c, 3, 11)
+        ctext(d, cx, by, f"σ₂₂={s22:g}", FT, c)
+    if s12:
+        arrow(d, cx - h / 2, cy - h / 2, cx + h / 2, cy - h / 2, GREEN, 3, 10)
+        arrow(d, cx + h / 2, cy + h / 2, cx - h / 2, cy + h / 2, GREEN, 3, 10)
+        arrow(d, cx + h / 2, cy - h / 2, cx + h / 2, cy + h / 2, GREEN, 3, 10)
+        arrow(d, cx - h / 2, cy + h / 2, cx - h / 2, cy - h / 2, GREEN, 3, 10)
+        ctext(d, cx, ty, f"τ₁₂={s12:g}", FT, GREEN)
+
+
+def f_equivstress():     # 2-12
+    im, d = new(); title(d, "3つの平面応力状態(相当応力の大小関係を求める)")
+    _stress_elem(d, 150, 215, 200, 0, 0, "(a)")
+    _stress_elem(d, 340, 215, 100, -100, 0, "(b)")
+    _stress_elem(d, 530, 215, 0, 0, 100, "(c)")
+    note(d, "与件: 平面応力 (a)=(200,0,0) (b)=(100,−100,0) (c)=(0,0,100)MPa。相当応力の大小は?")
+    save(im, "s1e2StressStatesSetup")
+
+
+def f_logstrain():       # 3-19
+    im, d = new(); title(d, "1要素の棒を引張る(UL法・対数ひずみで荷重fを求める)")
+    y, x0, x1 = 210, 150, 380
+    wall(d, x0, y - 46, y + 46, side=-1)
+    d.rectangle((x0, y - 26, x1, y + 26), outline=BLACK, width=3, fill=FILL1)
+    ctext(d, (x0 + x1) / 2, y, "1要素・単位断面積", FT, GRAY)
+    force(d, x1, y, 90, 0, "f (求める)", RED)
+    arrow(d, x1, y + 52, x1 + 70, y + 52, BLUE, 2, 10)
+    ctext(d, x1 + 35, y + 70, "変位 u", FT, BLUE)
+    dim(d, x0, y - 70, x1, y - 70, "初期長さ")
+    note(d, "与件: UL法・単位断面積, ε=ln(1+u), T=Eε, E=100, u=0.5 (ln1.5≈0.405)。荷重 f は?")
+    save(im, "s1e3LogStrainSetup")
+
+
+def f_miner():           # 5-18
+    im, d = new(); title(d, "S-N線図(疲労限度あり)・マイナー則/修正マイナー則")
+    ox, oy, xlen, ylen = 150, 330, 410, 240
+    axes(d, ox, oy, xlen, ylen, "N(繰返し数・log)", "応力振幅 σ")
+    yf = oy - 70
+    pts = [(ox + 20, oy - ylen + 20), (ox + 120, oy - 150), (ox + 230, oy - 95),
+           (ox + 320, oy - 76), (ox + xlen - 10, yf + 2)]
+    plot(d, ox, oy, pts, BLUE, 3)
+    for xx in range(ox, ox + xlen, 16):
+        d.line((xx, yf, xx + 8, yf), fill=GRAY, width=2)
+    ctext(d, ox + xlen - 6, yf - 12, "疲労限度 σf", FT, GRAY, "rm")
+    def mark(px, py, lab, col):
+        d.ellipse((px - 5, py - 5, px + 5, py + 5), outline=col, width=3)
+        ctext(d, px, py - 16, lab, FT, col)
+    mark(ox + 120, oy - 150, "σ₁", RED)
+    mark(ox + 230, oy - 95, "σ₂", RED)
+    y3 = yf + 40
+    d.ellipse((ox + 300 - 5, y3 - 5, ox + 300 + 5, y3 + 5), outline=GREEN, width=3)
+    ctext(d, ox + 300, y3 + 16, "σ₃(疲労限度以下)", FT, GREEN)
+    note(d, "与件: σ₁ n₁=1e5(N₁=5e5), σ₂ n₂=1e5(N₂=2.5e5) 後に σ₃(N₃=1e6)。n₃ は?")
+    save(im, "s1e5MinerSetup")
+
+
+def f_stability():       # 7-8
+    im, d = new(); title(d, "長さ1の棒を20要素に分割(陽解法の安定なΔtを求める)")
+    y, x0, x1 = 225, 120, 560
+    ctext(d, (x0 + x1) / 2, 150, "1次元非定常熱伝導・前進オイラー法(陽解法)  κ=1", FT, GRAY)
+    d.rectangle((x0, y - 24, x1, y + 24), outline=BLACK, width=3, fill=FILL1)
+    n = 20; step = (x1 - x0) / n
+    for i in range(1, n):
+        xx = x0 + i * step
+        d.line((xx, y - 24, xx, y + 24), fill=GRAY, width=1)
+    d.rectangle((x0, y - 24, x0 + step, y + 24), outline=RED, width=3)
+    ctext(d, x0 + step / 2, y - 40, "δ=Δx=0.05", FT, RED)
+    dim(d, x0, y + 56, x1, y + 56, "全長 l=1 (20要素)")
+    ctext(d, (x0 + x1) / 2, 320, "安定条件  κΔt/δ² ≤ 1/2", FS, BLUE)
+    note(d, "与件: l=1・20要素(δ=0.05)・κ=1・陽解法, 安定条件 κΔt/δ²≤1/2。安定な Δt 上限は?")
+    save(im, "s1e7StabilitySetup")
+
+
+def f_hourglass():       # 8-19
+    im, d = new(); title(d, "2次元4節点要素・1点積分(アワーグラスモード数を求める)")
+    cx, cy, s = 300, 220, 90
+    xs = [cx - s, cx + s, cx + s, cx - s]; ys = [cy - s, cy - s, cy + s, cy + s]
+    d.polygon(list(zip(xs, ys)), outline=BLACK, width=3, fill=FILL1)
+    d.line((cx - 9, cy - 9, cx + 9, cy + 9), fill=RED, width=3)
+    d.line((cx - 9, cy + 9, cx + 9, cy - 9), fill=RED, width=3)
+    ctext(d, cx, cy + 22, "1点積分", FT, RED)
+    for nx, ny in zip(xs, ys):
+        node(d, nx, ny)
+        sx = 1 if nx > cx else -1; sy = 1 if ny > cy else -1
+        arrow(d, nx, ny, nx + 30 * sx, ny, BLUE, 2, 8)
+        arrow(d, nx, ny, nx, ny + 30 * sy, BLUE, 2, 8)
+    ctext(d, cx, cy - s - 30, "各節点2自由度(u,v) → 全自由度 8", FS, BLACK)
+    note(d, "与件: 2D4節点要素・各節点2自由度・1点積分。アワーグラスモードは何個?")
+    save(im, "s1e8HourglassSetup")
+
+
+def f_ortho():           # 11-23
+    im, d = new(); title(d, "直交異方性板(材料主軸1,2)・ν₂₁とQ₁₁を求める")
+    x0, y0, x1, y1 = 180, 150, 470, 320
+    d.rectangle((x0, y0, x1, y1), outline=BLACK, width=3, fill=FILL1)
+    for yy in range(y0 + 20, y1, 24):
+        d.line((x0 + 8, yy, x1 - 8, yy), fill=LGRAY, width=2)
+    cxm, cym = (x0 + x1) // 2, (y0 + y1) // 2
+    arrow(d, cxm, cym, cxm + 110, cym, BLACK, 3, 12)
+    ctext(d, x1 + 12, cym, "軸1 E₁=200GPa", FS, BLACK, "lm")
+    arrow(d, cxm, cym, cxm, cym - 110, BLACK, 3, 12)
+    ctext(d, cxm, cym - 124, "軸2 E₂=50GPa", FS, BLACK)
+    ctext(d, cxm, y1 + 24, "ν₁₂=0.25 ,  相反則 ν₁₂/E₁ = ν₂₁/E₂", FS, BLUE)
+    note(d, "与件: 直交異方性・平面応力, E₁=200, E₂=50GPa, ν₁₂=0.25。ν₂₁ と Q₁₁ は?")
+    save(im, "s1e11OrthoSetup")
+
+
 if __name__ == "__main__":
     f_thermal_yield()
     f_penalty()
@@ -169,4 +313,12 @@ if __name__ == "__main__":
     f_disk()
     f_platebuckle()
     f_creep()
-    print("done: 9 preFigureImage for solid1")
+    # 追加(2026-09-28) 計算問題の回答前図
+    f_gl_compute()
+    f_equivstress()
+    f_logstrain()
+    f_miner()
+    f_stability()
+    f_hourglass()
+    f_ortho()
+    print("done: 16 preFigureImage for solid1 (9 existing + 7 new)")

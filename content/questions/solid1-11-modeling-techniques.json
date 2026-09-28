@@ -481,6 +481,7 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e11Reciprocity",
+      "preFigureImage": "s1e11OrthoSetup",
       "figureHint": "白地660x420で直交異方性ラミナ（繊維方向=軸1・E1大／軸2・E2小）と相反則ν12/E1=ν21/E2の模式",
       "officialRef": "問11(4)-3",
       "role": "primary",

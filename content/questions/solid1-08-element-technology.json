@@ -544,6 +544,7 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e8HourglassDOF",
+      "preFigureImage": "s1e8HourglassSetup",
       "figureHint": "白地660x420。4節点要素の自由度勘定(全8→剛体3→変形5→うちアワーグラス2)を文字で示し、1点積分で検知できない2つのHGモード形状を図示。",
       "officialRef": "問8-19",
       "role": "primary",
