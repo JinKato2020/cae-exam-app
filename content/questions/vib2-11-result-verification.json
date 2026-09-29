@@ -105,7 +105,7 @@
       "reviewed": true,
       "officialRef": "問11-4",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e11CheckData",
       "figureHint": "加速度計取付けとゴムマウント確認項目を並べたチェック概念図"
     },
@@ -245,7 +245,7 @@
       "choices": [
         "加振点応答FRFは共振周波数で位相が常に+90°進む特性を示す",
         "加振点と応答点が逆位相となるモードでも、共振では必ず位相が−90°遅れる",
-        "加振点応答FRFは共振周波数で常に位相が−90°遅れる特性を示し、これを満たすものが正しいFRFと判断できる",
+        "孤立したモードをもつ理想的な比例減衰系では、駆動点まわりのFRFは各共振周波数で位相が−90°付近を通る性質があり、これを目安に正しいFRFを判定できる",
         "位相情報はFRF選択には使えず、振幅ピークの本数だけで正しいFRFを判断する"
       ],
       "answer": 3,
@@ -280,7 +280,7 @@
       "reviewed": true,
       "officialRef": "問11-11",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e11ShaftSensor",
       "figureHint": "軸系の停止時/運転中センサと加振器の配置模式図"
     },
@@ -305,7 +305,7 @@
       "reviewed": true,
       "officialRef": "問11-12",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e11NodeElement",
       "figureHint": "節点座標と要素結合・工学単位系の確認項目ラベル図"
     },

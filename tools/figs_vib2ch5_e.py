@@ -396,11 +396,12 @@ def global_assembly(name):  # 5-15 required
     title(d, "直列2ばねの全体剛性行列の組立")
     cy = 115
     xs = [130, 300, 470]
-    wall(d, 100, cy - 34, cy + 34, side=1, n=5)
+    # 節点1〜3はすべて自由（壁拘束なし）。拘束は次問5-16で導入する。
     for i in range(2):
         spring(d, xs[i], cy, xs[i + 1], coils=5, amp=13)
     for i, x in enumerate(xs):
         node(d, x, cy, 7, "white"); ctext(d, x, cy - 30, str(i + 1), FT, GRAY)
+    ctext(d, xs[0] - 8, cy + 26, "自由", FT, GRAY, "rm")
     ctext(d, (xs[0] + xs[1]) / 2, cy + 26, "k1", FT, BLUE)
     ctext(d, (xs[1] + xs[2]) / 2, cy + 26, "k2", FT, GREEN)
     # 3x3 全体行列に 2x2 要素行列を重ねる配置

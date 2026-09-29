@@ -80,7 +80,7 @@
       "reviewed": true,
       "officialRef": "問3-3",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e3ShearStrainAngles",
       "figureHint": "白地660x420。正方形の微小要素が平行四辺形にせん断変形し、x辺の傾き∂v/∂xとy辺の傾き∂u/∂yの2つの角をラベルした図。式や答えは書かない。"
     },
@@ -130,7 +130,7 @@
       "reviewed": true,
       "officialRef": "問3-5",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e3StressStrainTerms",
       "figureHint": "白地660x420。断面に働く内力を面積で割る応力の定義図と、弾性域(直線)・塑性域(残留変形)を分けた応力ひずみ線図の模式を並べた用語整理図。各記述の正誤は書かない。"
     },
@@ -410,7 +410,7 @@
       "reviewed": true,
       "officialRef": "問3-16",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e3FreeEndBC",
       "figureHint": "白地660x420。はりの自由端を拡大し、外力なしで曲げモーメントM=0・せん断力Q=0であることを示す模式図と、たわみyの座標。境界条件の式や答えは書かない。"
     },
@@ -435,7 +435,7 @@
       "reviewed": true,
       "officialRef": "問3-17",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e3SimpleSupportBC",
       "figureHint": "白地660x420。はりの単純支持端(ピン/ローラ)を拡大し、たわみy=0(支点で沈まない)と曲げモーメントM=0(回転自由)を示す模式図。境界条件の式や答えは書かない。"
     }

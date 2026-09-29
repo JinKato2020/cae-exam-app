@@ -30,7 +30,7 @@
       "reviewed": true,
       "officialRef": "第6-1",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e6BeamShapeOrder",
       "figureHint": "2節点はり要素。左に軸方向の伸び(直線的な補間)、右に曲げによるたわみ(なめらかな曲線＋各節点に回転角θ)を描く。次数の数値や正解は書かない"
     },
@@ -80,7 +80,7 @@
       "reviewed": true,
       "officialRef": "第6-3",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e6ElementCompare",
       "figureHint": "3節点三角形要素と4節点四角形要素を左右に、下段に同じ要素数で低次要素と高次要素(辺の中間に追加節点)の節点配置比較。正誤は示さない"
     },
@@ -155,7 +155,7 @@
       "reviewed": true,
       "officialRef": "第6-6",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e6PlateBendingElems",
       "figureHint": "板の曲げモデルを、左=低次要素で細かく分割、右=高次要素で粗く分割、として節点数を比較する対比図。どちらが効率的かの結論は書かない"
     },
@@ -180,7 +180,7 @@
       "reviewed": true,
       "officialRef": "第6-7",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e6PlateShellTypes",
       "figureHint": "薄板(Kirchhoff)要素と厚板(Reissner-Mindlin)要素の断面変形を対比。中立面への断面の垂直/回転、板厚と広がりの比を示す。正しくない記述は示さない"
     },
@@ -205,7 +205,7 @@
       "reviewed": true,
       "officialRef": "第6-8",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e6ShellApprox",
       "figureHint": "薄肉シェル(板厚tが代表寸法Lよりずっと小さい)を2次元応力状態で近似する模式。曲面シェルは分割を密にする注記。正しい記述は示さない"
     },
@@ -230,7 +230,7 @@
       "reviewed": true,
       "officialRef": "第6-9",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e6AdaptiveRHP",
       "figureHint": "同じ領域に対しR法(節点を移動)・H法(要素を細分)・P法(次数を上げる)の3手法を小さく3枚並べる。(a)(b)の正解の組合せは書かない"
     },
@@ -269,7 +269,7 @@
       "question": "中実部品（中身が詰まった部品）の要素分割として、正しくないものはどれか。",
       "choices": [
         "モデル作成に時間はかかるが、六面体1次要素でモデル化した",
-        "剛性を精度良く評価するため、四面体1次要素で分割した",
+        "剛性を精度良く評価するため、粗い四面体1次要素だけで分割した",
         "解析精度を重視して、六面体2次要素でモデル化した",
         "解析精度とモデル作成の効率を考え、節点数は多くなるが四面体2次要素で分割した"
       ],
@@ -305,7 +305,7 @@
       "reviewed": true,
       "officialRef": "第6-12",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e6LumpedMassElem",
       "figureHint": "集中質量要素(スカラー要素)=形状を持たない1点として描き、属性として質量・重心まわりの慣性モーメント・慣性乗積を吹き出しで示す。(a)(b)の正解は書かない"
     },

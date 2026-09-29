@@ -225,7 +225,9 @@ def momentum_vs_energy(name):  # 2-10 helpful
     arrow(d, 360, 158, 475, 250, BLACK, 3, 13); ctext(d, 458, 208, "×v して積分", FT, GRAY)
     block(d, 175, 300, 240, 60, "運動量保存\nΣ m v = 一定", FS, FILL2)
     block(d, 485, 300, 240, 60, "力学的エネルギー保存\n½mv² + U = 一定", FS, FILL2)
-    note(d, "出発点は同じ運動方程式だが、量も意味も異なる")
+    ctext(d, 175, 350, "条件: 外力の合力 = 0", FT, RED)
+    ctext(d, 485, 350, "条件: 非保存力の仕事 = 0", FT, RED)
+    note(d, "同じ運動方程式が出発点だが、成立条件・量・意味は異なる")
     save(im, name)
 
 

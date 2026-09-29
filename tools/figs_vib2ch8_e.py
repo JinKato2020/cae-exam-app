@@ -538,22 +538,21 @@ def bearing_stiffness(name):  # 8-17 required
 
 def psd_derivatives(name):  # 8-18 required
     im, d = new()
-    title(d, "変位・速度・加速度のPSD（同一横軸・両対数）")
+    title(d, "変位・速度・加速度のPSD（両対数・S_x一定を仮定した例）")
     ox, oy = 110, 340
     axes(d, ox, oy, 470, 260, "周波数（対数）", "PSD（対数）")
-    xL = ox + 470
-    # 低周波の1点で交わり、高域で開く3直線（傾き大=最上、小=最下）
     x0 = ox + 60
-    y0 = oy - 40           # 交点
-    slopes = [(0.60, "(a)", BLUE), (0.42, "(b)", GREEN), (0.24, "(c)", ORANGE)]
-    for sl, lab, col in slopes:
-        x1 = ox + 440
+    y0 = oy - 40           # 低周波側の基準点
+    x1 = ox + 430
+    # S_v=ω²S_x, S_a=ω⁴S_x → 両対数では傾きの差が +2, +4。
+    # 変位PSD(S_x)を平坦と仮定した例なので 変位=傾き0, 速度=+2, 加速度=+4。
+    lines = [(0.48, "加速度 +4", BLUE), (0.24, "速度 +2", GREEN), (0.00, "変位 0", ORANGE)]
+    for sl, lab, col in lines:
         y1 = y0 - (x1 - x0) * sl
         plot(d, 0, 0, [(x0, y0), (x1, y1)], col, 3)
-        ctext(d, x1 + 14, y1, lab, FS, col, "lm")
+        ctext(d, x1 + 12, y1, lab, FT, col, "lm")
     node(d, x0, y0, 4, RED)
-    ctext(d, x0 + 6, y0 + 16, "低周波で一致", FT, GRAY, "lm")
-    note(d, "高域ほど3曲線の差が開く（各曲線の対応は伏せる）")
+    note(d, "S_x(変位PSD)一定を仮定した例。一般に決まるのは傾きの差(+2,+4)のみ")
     save(im, name)
 
 

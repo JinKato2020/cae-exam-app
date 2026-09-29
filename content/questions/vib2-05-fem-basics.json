@@ -80,7 +80,7 @@
       "reviewed": true,
       "officialRef": "問5-3",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e5BeamElementDOF",
       "figureHint": "2節点はり要素。各節点にたわみw(上下矢印)と回転角θ(回転矢印)の自由度を描く。数値や行列は書かない"
     },
@@ -180,7 +180,7 @@
       "reviewed": true,
       "officialRef": "問5-7",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e5BEMvsFEM",
       "figureHint": "同じ形状に対し、有限要素法(領域全体を要素分割)と境界要素法(境界線だけを分割)を左右に並べた対比図。正解は示さない"
     },
@@ -255,7 +255,7 @@
       "reviewed": true,
       "officialRef": "問5-10",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e5NodeInterp",
       "figureHint": "三角形要素の頂点に節点(●)を置き、要素内部の1点の値を各節点の値から矢印で補間する様子。語句の正解は書かない"
     },
@@ -280,7 +280,7 @@
       "reviewed": true,
       "officialRef": "問5-11",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e5WeightedResidual",
       "figureHint": "残差R(x)の曲線に重み関数w(x)を掛けて積分=0にするイメージ。ガラーキン/選点法/最小二乗の重みの違いを小さく併記(正解は示さない)"
     },
@@ -455,7 +455,7 @@
       "reviewed": true,
       "officialRef": "問5-18",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e5TriMass",
       "figureHint": "3節点三角形要素(頂点に節点●、要素面積A)。整合=面積上で積分、集中=全質量を3節点へ配分、の2通りの考え方を矢印で(どちらが正しい記述かは示さない)"
     },
@@ -480,7 +480,7 @@
       "reviewed": true,
       "officialRef": "問5-19",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e5BarConsistentMass",
       "figureHint": "2節点棒要素。線密度μ・全長l・座標x、形状関数L1=1-x/l とL2=x/l のグラフを添える。整合質量行列の計算結果は書かない"
     }

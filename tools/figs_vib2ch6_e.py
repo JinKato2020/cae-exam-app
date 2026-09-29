@@ -306,7 +306,7 @@ def plate_shell_types(name):  # 6-7 required
         d.line((px - nx * 26, py - ny * 26, px + nx * 26, py + ny * 26),
                fill=RED, width=3)
     ctext(d, (x0 + x1) / 2, cy + 90, "薄板：断面は中立面に垂直", FT, RED)
-    ctext(d, (x0 + x1) / 2, cy + 114, "広がり >= 板厚の約10倍", FT, GRAY)
+    ctext(d, (x0 + x1) / 2, cy + 114, "広がり ≫ 板厚（目安・精度で変わる）", FT, GRAY)
     # 右：厚板 = 断面が回転（せん断変形）
     x2, x3 = 380, 590
     pts2 = []

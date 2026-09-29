@@ -182,8 +182,7 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2eDeriv10_7",
-      "figureHint": "白地660x420。横軸に剛性倍率k2/k1、縦軸に固有振動数比f2/f1をとり、f=√k の平方根曲線を描いた計算用グラフ。読み取り目盛のみ(回答前・中立)",
-      "preFigureImage": "v2e10StiffnessRatio"
+      "figureHint": "白地660x420。横軸に剛性倍率k2/k1、縦軸に固有振動数比f2/f1をとり、f=√k の平方根曲線を描いた計算用グラフ。読み取り目盛のみ(回答前・中立)"
     },
     {
       "id": "vib2-10-8",
@@ -231,7 +230,7 @@
       "reviewed": true,
       "officialRef": "問10-9",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e10ModelCheck",
       "figureHint": "白地660x420。妥当性チェック項目(剛体モード数・力の総和・単位/桁・境界条件)を並べたチェックリスト枠の中立図(回答前・答えを示唆しない)"
     },
@@ -356,7 +355,7 @@
       "reviewed": true,
       "officialRef": "問10-14",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e10Weighting",
       "figureHint": "白地660x420。横軸周波数(対数)・縦軸重み(dB)にA特性(中音域を持ち上げ低音を落とす)とC特性(ほぼ平坦)の2曲線を描いた比較グラフ(回答前・中立)"
     },

@@ -20,20 +20,20 @@ def _dash_line(d, x1, y1, x2, y2, col=GRAY, wd=2, dash=8):
 def coord_rotation(name):
     """xy座標系を角θだけ回転した x'y' 座標系。点Pの成分が座標系で変わることを示す。"""
     im, d = new()
-    title(d, "座標系のθ回転（xy → x'y'）")
+    title(d, "座標系を時計まわりにθ回転（xy → x'y'）")
     ox, oy = 300, 250          # 原点
     L = 165
     # 元の座標軸 x(右), y(上)
     arrow(d, ox, oy, ox + L, oy, BLACK, 2, 11); ctext(d, ox + L + 12, oy, "x", FS, BLACK, "lm")
     arrow(d, ox, oy, ox, oy - L, BLACK, 2, 11); ctext(d, ox - 12, oy - L - 4, "y", FS, BLACK, "rm")
-    # 回転後の座標軸 x'(θ), y'(θ+90)  θ=30°(反時計回り)
-    th = math.radians(30)
+    # 回転後の座標軸 x'(-θ), y'(-θ+90)  θ=30°(時計回り) ※設問=時計まわり・変換[[c,-s],[s,c]]と整合
+    th = math.radians(-30)
     x1 = (ox + L * math.cos(th), oy - L * math.sin(th))
     y1 = (ox + L * math.cos(th + math.pi / 2), oy - L * math.sin(th + math.pi / 2))
-    arrow(d, ox, oy, x1[0], x1[1], BLUE, 3, 12); ctext(d, x1[0] + 12, x1[1] - 4, "x'", FS, BLUE, "lm")
-    arrow(d, ox, oy, y1[0], y1[1], BLUE, 3, 12); ctext(d, y1[0] - 12, y1[1] - 6, "y'", FS, BLUE, "rm")
-    # 角θ
-    angle_arc(d, ox, oy, 52, 0, 30, "θ", GRAY)
+    arrow(d, ox, oy, x1[0], x1[1], BLUE, 3, 12); ctext(d, x1[0] + 12, x1[1] + 6, "x'", FS, BLUE, "lm")
+    arrow(d, ox, oy, y1[0], y1[1], BLUE, 3, 12); ctext(d, y1[0] + 12, y1[1] - 6, "y'", FS, BLUE, "lm")
+    # 角θ（x軸から時計まわり=下向き）
+    angle_arc(d, ox, oy, 52, -30, 0, "θ", GRAY)
     # 点P と 両座標系での成分（破線）
     P = (ox + 128, oy - 96)
     node(d, P[0], P[1], 6, "white", RED); ctext(d, P[0] + 14, P[1] - 10, "P", FS, RED, "lm")

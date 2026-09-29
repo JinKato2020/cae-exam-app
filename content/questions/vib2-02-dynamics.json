@@ -30,7 +30,7 @@
       "reviewed": true,
       "officialRef": "問2-1",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e2NewtonThreeLaws",
       "figureHint": "白地660x420。3枚のパネルで慣性(力なしで等速)・運動(力の矢印と加速度の矢印)・作用反作用(2物体間の逆向き2矢印)を並べた概念図。正誤の印は描かない。"
     },
@@ -55,7 +55,7 @@
       "reviewed": true,
       "officialRef": "問2-2",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e2MomentumForceLaw",
       "figureHint": "白地660x420。運動量ベクトルmvと外力fの関係を示す概念図(d(mv)/dt=fの向き対応)＋作用反作用の2物体対の小図。正誤の印は描かない。"
     },
@@ -80,7 +80,7 @@
       "reviewed": true,
       "officialRef": "問2-3",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e2ProportionAccel",
       "figureHint": "白地660x420。質量ブロックmに力fの矢印を加え、生じる加速度aの矢印を同じ向きに描いた概念図。数値や正解の比例関係の結論は書かない。"
     },
@@ -105,7 +105,7 @@
       "reviewed": true,
       "officialRef": "問2-4",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e2Translation1D",
       "figureHint": "白地660x420。x軸上を並進する質量mの質点に、位置x・速度v・加速度a・力fの記号と矢印をラベルした1次元モデル図。運動方程式の答えは書かない。"
     },
@@ -181,7 +181,7 @@
       "reviewed": true,
       "officialRef": "問2-7",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e2NonInertial",
       "figureHint": "白地660x420。加速度a0で運動する座標系(観測者)と、その中の質点に働く実力fと慣性力(-m a0)の矢印をラベルした概念図。正しい記述の結論は書かない。"
     },
@@ -231,7 +231,7 @@
       "reviewed": true,
       "officialRef": "問2-9",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e2MomentumConserv",
       "figureHint": "白地660x420。2質点が内力f・-fを及ぼし合う衝突の概念図。各質点の速度矢印と内力の対をラベル。保存する/しないの結論は書かない。"
     },
@@ -561,7 +561,7 @@
       "reviewed": true,
       "officialRef": "問2-22",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e2PlanarMotionDOF",
       "figureHint": "白地660x420。xy平面内の剛体に、x方向並進・y方向並進・z軸まわり回転の3自由度を矢印でラベルした概念図。連成の有無の結論は書かない。"
     },

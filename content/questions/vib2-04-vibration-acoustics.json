@@ -305,7 +305,7 @@
       "reviewed": true,
       "officialRef": "問4-12",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e412",
       "figureHint": "一端ピン支持の剛体棒に距離aで鉛直ばねkを付けた配置図・微小角theta"
     },
@@ -430,7 +430,7 @@
       "reviewed": true,
       "officialRef": "問4-17",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e417",
       "figureHint": "天井ジョイントから下垂する剛体棒(長さb・重心b/2)に距離aで水平ばねk。重力mgと微小角theta"
     },
@@ -455,7 +455,7 @@
       "reviewed": true,
       "officialRef": "問4-18",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e418",
       "figureHint": "問4-17と同じ下垂棒系。ばね復元ka^2theta・重力復元(b/2)mgthetaが同符号で働く配置図"
     },
@@ -471,7 +471,7 @@
         "$c<2\\sqrt{mk}$",
         "$c<\\sqrt{2mk}$",
         "$c>\\sqrt{2mk}$",
-        "$c>2\\sqrt{mk}$"
+        "$c\\ge 2\\sqrt{mk}$"
       ],
       "answer": 4,
       "explanation": "【基礎】臨界減衰係数 $c_c=2\\sqrt{mk}$。減衰比 $\\zeta=c/(2\\sqrt{mk})$。\n【考え方】$\\zeta\\ge1$(=$c\\ge2\\sqrt{mk}$)で特性根が実数になり、振動せず単調に減衰(過減衰・臨界減衰)。\n【ポイント】$\\zeta<1$ なら特性根は複素数で振動的。境界が $c=2\\sqrt{mk}$。\n【引っかけ】$\\sqrt{2mk}$ は係数を取り違えた値。臨界減衰は $2\\sqrt{mk}$。",
@@ -730,7 +730,7 @@
       "reviewed": true,
       "officialRef": "問4-29",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e429",
       "figureHint": "N自由度系→モード変換→独立な1自由度モード振動子(ξ1,ξ2,ξ3)への分解概念図"
     },
@@ -855,7 +855,7 @@
       "reviewed": true,
       "officialRef": "問4-34",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e434",
       "figureHint": "壁-k-m-k-m-k-壁の2自由度系に外力{3,1}cos(ωt)が働く配置図"
     },
