@@ -741,6 +741,7 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "femThickSolid",
+      "preFigureImage": "femThickSolidSetup",
       "figureHint": "3辺が同程度の寸法をもつ直方体ブロックを等角図で描き、薄板でも細長い棒でもない塊であることを示す",
       "officialRef": "問5-24",
       "role": "primary"

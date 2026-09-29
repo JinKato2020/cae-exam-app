@@ -64,19 +64,19 @@ def f_HolePlateTension():
 
 # ===== 2. 丸穴片持ちはり =====
 def f_HoleCantilever():
-    im, d = new(); title(d, "丸穴片持ちはり(穴周りを板厚方向に細分)")
+    im, d = new(); title(d, "丸穴片持ちはり(穴周りと高さ方向を細分)")
     wall(d, 130, 140, 300)
     x0, x1, yt, yb = 130, 520, 150, 290
     cx, cy, r = 320, 220, 30
     d.rectangle((x0, yt, x1, yb), outline=BLACK, width=3)
     grid(d, x0, yt, x1, yb, 9, 4)
-    # 穴周りは板厚方向(縦)に複数要素で細分
+    # 穴周りは高さ(せい)方向(縦)に複数要素で細分
     for gx in range(int(cx - 70), int(cx + 71), 14):
         d.line((gx, yt, gx, yb), fill=LGRAY, width=1)
     d.ellipse((cx - r, cy - r, cx + r, cy + r), fill="white", outline=BLACK, width=3)
     rings(d, cx, cy, r, r + 26, 3, 16)
     force(d, x1 - 6, yt - 2, 0, 46, "F")
-    note(d, "穴の近くほど要素を小さく(板厚方向に複数層)")
+    note(d, "穴の近くほど要素を小さく(曲げのため高さ方向に複数層。板厚=面外とは別)")
     save(im, "pp10HoleCantilever")
 
 # ===== 3. V切欠き薄板 =====

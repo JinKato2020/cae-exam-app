@@ -563,25 +563,32 @@ def model8Interface():
 # 18. ver11RigidHoleStrip : 帯板中央の剛体円孔部・一様引張
 # ============================================================
 def ver11RigidHoleStrip():
-    im, d = new(); title(d, "帯板中央の剛体円孔部を含む一様引張")
-    x0, x1, y0, y1 = 130, 530, 150, 290
+    im, d = new(); title(d, "剛体円孔部を含む帯板：中心線上の荷重方向変位")
+    x0, x1, y0, y1 = 150, 540, 118, 200
     cy = (y0 + y1) / 2
+    wall(d, x0, y0 - 12, y1 + 12, side=1)                     # 左端固定
     d.rectangle((x0, y0, x1, y1), outline=BLACK, width=3, fill=FILL1)
-    # 中央の剛体円部
-    cx, r = (x0 + x1) / 2, 46
+    cx, r = (x0 + x1) / 2, 36
     d.ellipse((cx - r, cy - r, cx + r, cy + r), outline=BLACK, width=3, fill="white")
     hatch_circle2(d, cx, cy, r - 3, GRAY)
-    ctext(d, cx, cy - r - 14, "剛体円孔部", FT, BLACK)
-    # 一様引張(荷重方向=水平)
-    for yy in (y0 + 30, cy, y1 - 30):
-        arrow(d, x0, yy, x0 - 44, yy, RED, 3, 12)
-        arrow(d, x1, yy, x1 + 44, yy, RED, 3, 12)
-    ctext(d, x0 - 50, y0 + 10, "一様引張", FT, RED, "rm")
-    ctext(d, x1 + 50, y0 + 10, "一様引張", FT, RED, "lm")
-    # 中心線(対称線)
-    dashed(d, x0 - 20, cy, x1 + 20, cy, BLUE)
-    ctext(d, x1 + 24, cy + 16, "中心線(対称線)", FT, BLUE, "lm")
-    note(d, "荷重方向・形状とも上下対称。中心線を対称面として上半分だけをモデル化できる。")
+    ctext(d, cx, y0 - 12, "剛体円孔部", FT, BLACK)
+    for yy in (y0 + 20, cy, y1 - 20):                         # 右端 一様引張
+        arrow(d, x1, yy, x1 + 40, yy, RED, 3, 12)
+    ctext(d, x1 + 44, cy, "引張(右)", FT, RED, "lm")
+    ctext(d, x0 - 8, y1 + 14, "左端固定", FT, GRAY, "rm")
+    # u(x) 分布グラフ
+    gy = 372                                                  # u=0 の基線
+    arrow(d, x0, gy, x0, 240, BLACK, 2, 10); ctext(d, x0 - 10, 236, "u", FT, BLACK, "rm")
+    arrow(d, x0, gy, x1 + 22, gy, BLACK, 2, 10); ctext(d, x1 + 26, gy, "x", FT, BLACK, "lm")
+    xa, xb = cx - r, cx + r
+    ya = gy - 52                                              # プラトー高さ
+    ymax = gy - 112                                           # 右端(最大)
+    plot(d, 0, 0, [(x0, gy), (xa, ya), (xb, ya), (x1, ymax)], col=BLUE, wd=4)
+    dashed(d, xa, gy, xa, ya, GRAY); dashed(d, xb, gy, xb, ya, GRAY)
+    ctext(d, cx, ya - 14, "剛体部＝平坦(プラトー)", FT, RED)
+    ctext(d, (x0 + xa) / 2 - 6, gy - 20, "弾性部", FT, BLUE)
+    ctext(d, (xb + x1) / 2 + 6, gy - 96, "弾性部:右へ増加", FT, BLUE, "mm")
+    note(d, "剛体部は同一変位で平坦、左右の弾性部はなめらかに変化し荷重方向へ全体として増加。")
     save(im, "ver11RigidHoleStrip")
 
 
