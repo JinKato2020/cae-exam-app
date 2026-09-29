@@ -231,6 +231,30 @@ def f_galloping_lift_dir():
     save(im, "v1e7GallopingLiftDirection")
 
 
+# ================================================ 7-6/7-7 配置図(回答前・中立) preFigure
+def f_galloping_setup():
+    im, d = new(); title(d, "配置図:ばね支持の半円柱(平面が風上)に一様風")
+    cx, cy = 360, 225
+    # 半円柱(平らな面を左=風上へ)
+    d.pieslice((cx - 40, cy - 55, cx + 70, cy + 55), -90, 90, outline=BLACK, width=3, fill=FILL1)
+    d.line((cx + 15, cy - 55, cx + 15, cy + 55), fill=BLACK, width=3)
+    ctext(d, cx + 20, cy, "半円柱", FT, GRAY, "lm")
+    # ばね吊り(上)
+    spring(d, cx + 15, cy - 55, cx + 15, cy - 120, coils=4, amp=9)
+    hwall(d, cx - 40, cx + 70, cy - 124, side=-1, n=6)
+    ctext(d, cx + 40, cy - 92, "ばね k", FT, GRAY, "lm")
+    # 一様風(左から)
+    for yy in (cy - 35, cy, cy + 35):
+        arrow(d, 80, yy, 205, yy, GRAY, 2, 11)
+    ctext(d, 120, cy - 58, "一様風 V", FS, GRAY)
+    # 上下1自由度(与条件・中立=灰色。力や成長は描かない)
+    arrow(d, cx + 105, cy - 28, cx + 105, cy - 66, GRAY, 2, 10)
+    arrow(d, cx + 105, cy + 28, cx + 105, cy + 66, GRAY, 2, 10)
+    ctext(d, cx + 120, cy, "上下に運動", FT, GRAY, "lm")
+    note(d, "与条件のみ: 半円柱の平面が風上・ばね支持・上下1自由度(力や現象は示さない)")
+    save(im, "v1e7GallopingSetup")
+
+
 # ================================================ 7-8 カルマン渦の放出 (helpful)
 def f_karman_shedding():
     im, d = new(); title(d, "配管内円柱の後流:上下交互のカルマン渦が周期的に放出")
@@ -593,6 +617,7 @@ def main():
     f_sloshing_vs_bulging()
     f_galloping_half_cylinder()
     f_galloping_lift_dir()
+    f_galloping_setup()
     f_karman_shedding()
     f_karman_resonance()
     f_lock_in()

@@ -157,7 +157,8 @@
    "role": "primary",
    "figure": "helpful",
    "figureImage": "v1e7GallopingHalfCylinder",
-   "figureHint": "ばねで吊られ上下に運動する半円柱の平らな面に横から一様風が当たる様子を描き、小さな乱れから振幅が増大していく自励振動(ギャロッピング)であることを示す模式図(白地660x420、機構のみ・装飾禁止)"
+   "figureHint": "ばねで吊られ上下に運動する半円柱の平らな面に横から一様風が当たる様子を描き、小さな乱れから振幅が増大していく自励振動(ギャロッピング)であることを示す模式図(白地660x420、機構のみ・装飾禁止)",
+   "preFigureImage": "v1e7GallopingSetup"
   },
   {
    "id": "vib1-7-7",
@@ -182,7 +183,8 @@
    "role": "primary",
    "figure": "helpful",
    "figureImage": "v1e7GallopingLiftDirection",
-   "figureHint": "上向きに運動中の半円柱に、見かけの迎え角の変化により運動と同じ上向きの揚力が生じ、運動を助長して自励振動になる力の向きを矢印で示す模式図(白地660x420、機構のみ・装飾禁止)"
+   "figureHint": "上向きに運動中の半円柱に、見かけの迎え角の変化により運動と同じ上向きの揚力が生じ、運動を助長して自励振動になる力の向きを矢印で示す模式図(白地660x420、機構のみ・装飾禁止)",
+   "preFigureImage": "v1e7GallopingSetup"
   },
   {
    "id": "vib1-7-8",
