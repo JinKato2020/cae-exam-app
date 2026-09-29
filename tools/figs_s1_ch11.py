@@ -341,29 +341,26 @@ def f_OffAxis():
 
 # ---------------------------------------------------------------- 11-17
 def f_Laminate():
-    im, d = new(); title(d, "積層板の板厚方向 z 座標(ABD剛性)")
+    im, d = new(); title(d, "均質一枚板の板厚方向 z 座標(ABD剛性)")
     xl, xr = 150, 360
-    ys = [130, 170, 210, 250, 290]   # 界面(4層)
-    for k in range(len(ys)-1):
-        fill = [FILL1, FILL2, FILL3, FILL2][k]
-        d.rectangle((xl, ys[k], xr, ys[k+1]), outline=BLACK, width=2, fill=fill)
-    zmid = (ys[0]+ys[-1])/2
+    ytop, ybot = 140, 290             # 一枚板の上下面(積層でなく単層)
+    d.rectangle((xl, ytop, xr, ybot), outline=BLACK, width=3, fill=FILL1)
+    zmid = (ytop+ybot)/2
+    ctext(d, (xl+xr)/2, ytop+26, "均質材 Q₁₁", FS, GRAY)
     # z軸
     zx = 400
-    arrow(d, zx, ys[-1]+30, zx, ys[0]-30, BLACK, 2, 11); ctext(d, zx, ys[0]-40, "z", FS)
+    arrow(d, zx, ybot+30, zx, ytop-30, BLACK, 2, 11); ctext(d, zx, ytop-40, "z", FS)
     d.line((xl, zmid, 470, zmid), fill=RED, width=2)   # 中央面 z=0
-    ctext(d, 435, zmid-13, "中央面 z=0", FT, RED)
-    labs = ["z0", "z1", "z2", "z3", "z4"]
-    for k, y in enumerate(ys):
+    ctext(d, (xl+xr)/2, zmid-14, "z=0(中央面)", FT, RED)
+    for y, lab in [(ytop, "+h/2"), (ybot, "-h/2")]:    # 上下面のみ
         d.line((zx-6, y, zx+6, y), fill=BLACK, width=2)
-        ctext(d, zx+24, y, labs[k], FT, GRAY, "lm")
+        ctext(d, zx+24, y, lab, FT, GRAY, "lm")
     # N と M
     arrow(d, xl-45, zmid, xl, zmid, GREEN, 4, 13); ctext(d, xl-52, zmid, "N", F, GREEN, "rm")
     d.arc((500, 190, 590, 280), 40, 320, fill=BLUE, width=4)
     arrow(d, 585, 205, 578, 190, BLUE, 3, 10)
     ctext(d, 545, 300, "M(曲げ)", FT, BLUE)
-    ctext(d, 545, 150, "面内力 N", FT, GREEN)
-    note(d, "各層剛性を z で積分 → 面内A・カップリングB・曲げD (対称積層で B=0)")
+    note(d, "一枚板を z=-h/2〜+h/2 で積分 → A=Q₁₁h, B=0(中央面対称), D=Q₁₁h³/12")
     save(im, "s1e11Laminate")
 
 # ---------------------------------------------------------------- 11-18
