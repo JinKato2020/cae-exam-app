@@ -1,5 +1,5 @@
 name: CAE試験対策 (iOS/Android ビルド)
-run-name: "${{ inputs.build_number && format('CAE v{0} ({1}) — {2} ビルド', inputs.app_version, inputs.build_number, inputs.platforms) || format('CAE v{0} — {1} ビルド', inputs.app_version, inputs.platforms) }}"
+run-name: "${{ inputs.build_number && format('CAE v{0} ({1}) — {2} ビルド', inputs.app_version, inputs.build_number, inputs.platforms) || format('CAE v{0} (番号未指定※tools/build_cae.ps1推奨) — {1} ビルド', inputs.app_version, inputs.platforms) }}"
 
 # =============================================================================
 # CAE試験対策アプリ — JLPTアプリ(build-jlpt.yml)を土台に、CAE用へ簡素化。
@@ -125,6 +125,8 @@ jobs:
             exit 1
           fi
           echo "BUILD_NUMBER=$BUILD_NUMBER" >> $GITHUB_ENV
+          # アプリ設定画面の表示用にビルド番号をJSへ埋め込む(バンドル前)。
+          echo "export const BUILD_NUMBER = '$BUILD_NUMBER';" > src/buildInfo.ts
           APP_VERSION=$(node -p "require('./app.json').expo.version" 2>/dev/null || echo "?")
           echo "## 📦 ${BUILD_NUMBER} — iOS build ・ CAE v$APP_VERSION (TestFlight)" >> $GITHUB_STEP_SUMMARY
 
@@ -304,6 +306,8 @@ jobs:
             exit 1
           fi
           echo "BUILD_NUMBER=$BUILD_NUMBER" >> $GITHUB_ENV
+          # アプリ設定画面の表示用にビルド番号をJSへ埋め込む(バンドル前)。
+          echo "export const BUILD_NUMBER = '$BUILD_NUMBER';" > src/buildInfo.ts
           APP_VERSION=$(node -p "require('./app.json').expo.version" 2>/dev/null || echo "?")
           echo "## 🤖 ${BUILD_NUMBER} — Android AAB ・ CAE v$APP_VERSION" >> $GITHUB_STEP_SUMMARY
       - name: Expo prebuild (Android)

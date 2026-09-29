@@ -32,6 +32,7 @@ import { RichText } from './src/MathText';
 import { CATALOG, questionsByIds, QUESTION_FORMULA_ID, quizList, examRule, type ChapterEntry } from './src/catalog';
 import { formulaDoc, type FormulaItem } from './src/formulas';
 import { initContent } from './src/data/initContent';
+import { BUILD_NUMBER } from './src/buildInfo';
 import Svg, { Circle, Line, Polygon, Text as SvgText, Defs, LinearGradient, RadialGradient, Stop, Rect } from 'react-native-svg';
 import {
   chapterStats,
@@ -2052,7 +2053,7 @@ function SettingsTab(props: {
       {/* 最下部のバージョン表示。7回タップで開発用ロック解除（隠しジェスチャ）。 */}
       <Pressable onPress={onTapVersion} style={styles.versionFooter} hitSlop={8}>
         <Text style={[styles.versionText, { color: t.sub }]}>
-          計算力学技術者　v{APP_VERSION}{props.devPro ? '　・　開発ロック解除中' : ''}
+          計算力学技術者　v{APP_VERSION} ({BUILD_NUMBER}){props.devPro ? '　・　開発ロック解除中' : ''}
         </Text>
       </Pressable>
     </ScrollView>
