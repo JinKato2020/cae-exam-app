@@ -324,10 +324,10 @@ def f_weak_form():
         ctext(d, ox + w / 2, oy + 56, lab, FT, GRAY)
     panel(70, 150, 150, "N", "N (ハット型)")
     panel(260, 150, 150, "N1", "dN/dx (段差)")
-    panel(450, 150, 150, "Nd", "d2N/dx2 (無限大)")
+    panel(450, 150, 150, "Nd", "d2N/dx2 (デルタ関数)")
     box(d, 90, 300, 570, 350, FILL1)
     ctext(d, 330, 325, "部分積分: int Phi'' W dx -> -int Phi' W' dx + [Phi' W]", FT)
-    note(d, "2階微分が無限大になるのを避け微分階数を1つ下げる(弱形式)")
+    note(d, "2階微分は通常定義されず分布(デルタ関数)。部分積分で階数を1つ下げる(弱形式)")
     save(im, "v1e6WeakForm")
 
 

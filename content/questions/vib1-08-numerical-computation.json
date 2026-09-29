@@ -66,7 +66,7 @@
       "topic": "Newmark-β法",
       "type": "mc",
       "difficulty": 3,
-      "question": "運動方程式を数値積分するNewmark-$\\beta$法において、パラメータ $\\beta$ の値は時間区間 $[t_n,\\,t_{n+1}]$ 内の加速度の仮定に対応する。$\\beta=1/6$、$\\beta=1/4$ の各仮定と、これらの解法の分類の組合せとして正しいものはどれか。",
+      "question": "運動方程式を数値積分するNewmark-$\\beta$法（$\\gamma=1/2$）において、パラメータ $\\beta$ の値は時間区間 $[t_n,\\,t_{n+1}]$ 内の加速度の仮定に対応する。$\\beta=1/6$、$\\beta=1/4$ の各仮定と、これらの解法の分類の組合せとして正しいものはどれか。",
       "choices": [
         "$\\beta=1/6$:区間内で加速度を平均値と仮定、$\\beta=1/4$:加速度を一次式と仮定、いずれも陽解法",
         "$\\beta=1/6$:加速度を一次式と仮定、$\\beta=1/4$:加速度を平均値と仮定、いずれも陽解法",
@@ -74,7 +74,7 @@
         "$\\beta=1/6$:加速度を一次式(線形)と仮定、$\\beta=1/4$:加速度を平均値(一定)と仮定、いずれも陰解法"
       ],
       "answer": 4,
-      "explanation": "【基礎】Newmark-$\\beta$法の変位式で $\\beta=1/6$ とすると、区間内の加速度を時刻について線形(一次式)に補間した線形加速度法に一致する。$\\beta=1/4$ とすると加速度を区間内で一定値(両端の平均値)とした平均加速度法に一致する。\n【考え方】どちらも $t_{n+1}$ の変位・速度が同時刻の未知加速度 $\\ddot u_{n+1}$ を含む式で表されるため、連立して解く必要がある=陰解法。\n【ポイント】$\\beta=1/6$→一次式(線形加速度)、$\\beta=1/4$→平均値(一定加速度)、ともに陰解法。\n【引っかけ】一次式と平均値を入れ替えた選択肢、陽解法とした選択肢は誤り。平均加速度法は無条件安定の代表例で陽解法ではない。",
+      "explanation": "【基礎】Newmark-$\\beta$法の変位式で $\\beta=1/6$ とすると、区間内の加速度を時刻について線形(一次式)に補間した線形加速度法に一致する。$\\beta=1/4$ とすると加速度を区間内で一定値(両端の平均値)とした平均加速度法に一致する。\n【考え方】どちらも $t_{n+1}$ の変位・速度が同時刻の未知加速度 $\\ddot u_{n+1}$ を含む式で表されるため、連立して解く必要がある=陰解法。\n【ポイント】$\\beta=1/6$→一次式(線形加速度)、$\\beta=1/4$→平均値(一定加速度)、ともに陰解法（いずれも $\\gamma=1/2$）。\n【引っかけ】一次式と平均値を入れ替えた選択肢、陽解法とした選択肢は誤り。平均加速度法は無条件安定の代表例で陽解法ではない。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -280,7 +280,7 @@
       "reviewed": true,
       "officialRef": "問8-11",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v1e8GaussQuadrature",
       "figureHint": "区間-1〜+1の被積分関数と積分点・重みの記号を示し、n点で(2n-1)次まで厳密という関係式を提示した与件図(必要点数の答えは書かない、白地660x420)"
     },
@@ -324,7 +324,7 @@
         "$\\alpha_{rks}=\\dfrac{\\{\\phi_s\\}^{T}\\left(-\\lambda_r\\dfrac{\\partial[M]}{\\partial p_k}+\\dfrac{\\partial[K]}{\\partial p_k}\\right)\\{\\phi_r\\}}{\\lambda_s-\\lambda_r}$"
       ],
       "answer": 3,
-      "explanation": "【基礎】$\\frac{\\partial\\{\\phi_r\\}}{\\partial p_k}=\\sum_h\\alpha_{rkh}\\{\\phi_h\\}$ を固有値感度の途中式に代入し、左から $\\{\\phi_s\\}^{T}$($s\\neq r$)を掛けて直交性 $\\{\\phi_s\\}^{T}[M]\\{\\phi_s\\}=1$、$\\{\\phi_s\\}^{T}[K]\\{\\phi_s\\}=\\lambda_s$ を用いる。\n【考え方】整理すると $\\{\\phi_s\\}^{T}\\left(\\frac{\\partial[K]}{\\partial p_k}-\\lambda_r\\frac{\\partial[M]}{\\partial p_k}\\right)\\{\\phi_r\\}+\\alpha_{rks}(\\lambda_s-\\lambda_r)=0$。よって $\\alpha_{rks}=\\dfrac{\\{\\phi_s\\}^{T}\\left(-\\lambda_r\\frac{\\partial[M]}{\\partial p_k}+\\frac{\\partial[K]}{\\partial p_k}\\right)\\{\\phi_r\\}}{\\lambda_r-\\lambda_s}$。\n【ポイント】分母は $\\lambda_r-\\lambda_s$($=-(\\lambda_s-\\lambda_r)$)、分子は $s$ 次と $r$ 次で挟んだ2次形式。\n【引っかけ】固有値感度そのもの(①)、$s=r$ の場合の式(②)は $s\\neq r$ の答えではない。分母の符号を逆にした④も誤り。",
+      "explanation": "【基礎】$\\frac{\\partial\\{\\phi_r\\}}{\\partial p_k}=\\sum_h\\alpha_{rkh}\\{\\phi_h\\}$ を固有値感度の途中式に代入し、左から $\\{\\phi_s\\}^{T}$($s\\neq r$)を掛けて直交性 $\\{\\phi_s\\}^{T}[M]\\{\\phi_s\\}=1$、$\\{\\phi_s\\}^{T}[K]\\{\\phi_s\\}=\\lambda_s$ を用いる。\n【考え方】整理すると $\\{\\phi_s\\}^{T}\\left(\\frac{\\partial[K]}{\\partial p_k}-\\lambda_r\\frac{\\partial[M]}{\\partial p_k}\\right)\\{\\phi_r\\}+\\alpha_{rks}(\\lambda_s-\\lambda_r)=0$。よって $\\alpha_{rks}=\\dfrac{\\{\\phi_s\\}^{T}\\left(-\\lambda_r\\frac{\\partial[M]}{\\partial p_k}+\\frac{\\partial[K]}{\\partial p_k}\\right)\\{\\phi_r\\}}{\\lambda_r-\\lambda_s}$。\n【ポイント】分母は $\\lambda_r-\\lambda_s$($=-(\\lambda_s-\\lambda_r)$)、分子は $s$ 次と $r$ 次で挟んだ2次形式。なお $s=r$ の係数は正規化条件の微分から $\\alpha_{rkr}=-\\tfrac12\\{\\phi_r\\}^{T}\\frac{\\partial[M]}{\\partial p_k}\\{\\phi_r\\}$(②)で別に定まり、展開式はこれと $s\\neq r$ の係数を合わせて完成する。\n【引っかけ】固有値感度そのもの(①)、$s=r$ の場合の式(②)は $s\\neq r$ の答えではない。分母の符号を逆にした④も誤り。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,

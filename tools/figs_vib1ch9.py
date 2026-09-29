@@ -311,7 +311,7 @@ def f_washing_machine():
 
 # ================================================ 9-12 モータ回転数と共振 (helpful)
 def f_motor_rpm_resonance():
-    im, d = new(); title(d, "rpm軸:12000rpm(200Hz)で共振 -> 剛性up で 250Hz超へ移動")
+    im, d = new(); title(d, "12000rpm(200Hz)で共振→剛性upで250Hz超へ逃がす")
     ox, oy = 90, 345; xr, ym = 500, 255
     # x axis in rpm, resonance response
     X = lambda rpm: ox + rpm / 20000.0 * xr
@@ -319,7 +319,7 @@ def f_motor_rpm_resonance():
         return lambda rpm: h / (1 + ((rpm - rpm0) / wdt) ** 2)
     axes(d, ox, oy, xr + 30, ym + 25, "回転数 rpm", "応答")
     p1 = peak(12000, 8.0, 700)
-    p2 = peak(15000, 5.5, 900)  # 250Hz=15000rpm
+    p2 = peak(16500, 5.5, 900)  # >250Hz: 対策後の共振点を運転上限15000rpmより右へ
     Y = lambda a: oy - min(a, 9) / 9 * ym
     c1 = [(X(r), Y(p1(r))) for r in range(0, 20001, 100)]
     c2 = [(X(r), Y(p2(r))) for r in range(0, 20001, 100)]
@@ -328,10 +328,10 @@ def f_motor_rpm_resonance():
     dsh(d, X(12000), oy, X(12000), Y(8.0), RED)
     ctext(d, X(12000), oy + 16, "12000rpm", FT, RED)
     ctext(d, X(12000), Y(8.0) - 12, "現状(200Hz)", FT, BLUE)
-    dsh(d, X(15000), oy, X(15000), Y(5.5), GRAY)
-    ctext(d, X(15000) + 6, oy + 16, "15000rpm", FT, GREEN, "lm")
-    ctext(d, X(15000) + 6, Y(5.5) - 12, "剛性up(250Hz)", FT, GREEN, "lm")
-    arrow(d, X(12200), Y(8.0), X(14800), Y(6.0), ORANGE, 2, 11)
+    dsh(d, X(15000), oy, X(15000), oy - ym, GRAY)
+    ctext(d, X(15000), oy - ym - 6, "15000rpm(運転上限)", FT, GRAY)
+    ctext(d, X(16500), Y(5.5) - 14, "剛性up(>250Hz)", FT, GREEN)
+    arrow(d, X(12200), Y(8.0), X(16200), Y(6.0), ORANGE, 2, 11)
     note(d, "固有振動数を運転回転数より上へ逃がす")
     save(im, "v1e9MotorRpmResonance")
 
@@ -556,7 +556,7 @@ def f_max_response_meaning():
 
 # ================================================ 9-22 乗り心地PSD (helpful)
 def f_ride_comfort_psd():
-    im, d = new(); title(d, "乗り心地:軌道不整PSD -> 車輪加速度 P_i -> |H|^2 -> 車体 P_0")
+    im, d = new(); title(d, "乗り心地:軌道不整→車輪P_i→|H|^2→車体P_0")
     flowbox(d, 110, 150, 140, 60, "軌道不整\nPSD S(f)", (225, 235, 245), FT)
     arrow(d, 180, 150, 245, 150, BLACK, 3, 12)
     flowbox(d, 320, 150, 140, 60, "車輪入力 P_i", (245, 240, 225), FT)

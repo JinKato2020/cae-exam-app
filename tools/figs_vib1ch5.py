@@ -398,7 +398,7 @@ def f_strain_energy():
 
 # ================================================ 5-14 焼き嵌めステータ (helpful)
 def f_shrink_fit():
-    im, d = new(); title(d, "モータのステータ断面:鉄心・コイル・ケース(焼き嵌め結合=有限剛性)")
+    im, d = new(); title(d, "焼き嵌めステータ:鉄心-ケースは有限剛性で結合")
     cx, cy = 330, 230
     # case (outer ring)
     d.ellipse((cx - 150, cy - 150, cx + 150, cy + 150), outline=BLACK, width=4)

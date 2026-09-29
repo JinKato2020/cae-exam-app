@@ -746,14 +746,14 @@ def f_duffing_forced():
 
 # ================================================ 2-31 主共振+高調波/分数調波 (helpful)
 def f_hysteresis_jump():
-    im, d = new(); title(d, "主共振の両側に高調波・分数調波共振の小ピーク")
+    im, d = new(); title(d, "副共振:低周波側=高調波 / 高周波側=分数調波")
     ox, oy = 90, 345; xr, ym = 500, 255
     X = lambda r: ox + r / 3.0 * xr
-    axes(d, ox, oy, xr + 30, ym + 25, "励振振動数 w", "応答")
+    axes(d, ox, oy, xr + 30, ym + 25, "励振振動数 w (wn=1)", "応答")
     def bump(r0, h, wdt):
         return lambda r: h / (1 + ((r - r0) / wdt) ** 2)
-    peaks = [(1.0, 8.0, 0.05, "主共振", RED), (0.5, 2.2, 0.03, "分数調波 w/2", GREEN),
-             (2.0, 2.6, 0.05, "高調波 2w", ORANGE), (3.0, 1.6, 0.05, "3w", ORANGE)]
+    peaks = [(1.0, 8.0, 0.05, "主共振", RED), (0.5, 2.2, 0.03, "高調波 2w", ORANGE),
+             (2.0, 2.6, 0.05, "分数調波 w/2", GREEN), (3.0, 1.6, 0.05, "分数調波 w/3", GREEN)]
     fns = [bump(r0, h, w) for r0, h, w, _, _ in peaks]
     Y = lambda a: oy - min(a, 9) / 9 * ym
     pts = []
