@@ -162,12 +162,17 @@ def f04():
     for i in range(6):
         xx = x0 + i * (x1 - x0) / 5
         d.line((xx, ys[0], xx, ys[-1]), fill=LGRAY, width=1)
-    # Δ1,Δ2,Δ3 の寸法(右側)
+    # Δ1,Δ2,Δ3 の寸法(右側・色分け＋引き出し線で重なりを回避)
     dx = x1 + 30
     labs = ["Δ1", "Δ2", "Δ3"]
+    cols = [RED, BLUE, GREEN]
+    laby = [342, 300, 258]          # 引き出しラベルの縦位置(互いに離す)
     for k in range(3):
-        dim(d, dx, ys[k], dx, ys[k + 1], labs[k], col=GRAY)
-    ctext(d, x0 + (x1 - x0) / 2, wy + 40, "壁面", FS, BLACK)
+        mid = (ys[k] + ys[k + 1]) / 2
+        dim(d, dx, ys[k], dx, ys[k + 1], "", col=cols[k])          # 色分けした寸法ブラケット
+        d.line((dx + 8, mid, dx + 40, laby[k]), fill=cols[k], width=1)  # 引き出し線
+        ctext(d, dx + 46, laby[k], labs[k], FS, cols[k], "lm")
+    ctext(d, x0 - 45, wy, "壁面", FS, BLACK)
     ctext(d, W / 2, 66, "Δ1 = 0.2 mm,  拡大比 r = 1.25", F)
     note(d, "外側へ向かって格子幅を一定比で拡大していく")
     save(im, "t2e5StretchLayers")

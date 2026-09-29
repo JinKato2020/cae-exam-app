@@ -30,7 +30,7 @@
       "reviewed": true,
       "officialRef": "問4-1",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "t2e4PdeDiscriminant",
       "figureHint": "2階PDE一般形 A u_xx + B u_xy + C u_yy と判別式 D=B^2-4AC の符号→型(双曲/放物/楕円)の対応表。本問の具体的な判別結果や答えは書かない。"
     },
@@ -155,7 +155,7 @@
       "reviewed": true,
       "officialRef": "問4-6",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "t2e4EulerMarch",
       "figureHint": "オイラー陽解法の時間前進の模式図。t軸に初期点 y0=5 を置き、Δt=0.1 刻みで2ステップ進む矢印と更新式 y^{n+1}=y^n+Δt·f(y^n) を示す。数値解(答え)は書かない。"
     },
@@ -266,7 +266,7 @@
       "topic": "CFL数（クーラン数）",
       "type": "mc",
       "difficulty": 2,
-      "question": "移流方程式 $\\dfrac{\\partial \\phi}{\\partial t}+u\\dfrac{\\partial \\phi}{\\partial x}=0$ を差分法で解く。移流速度 $u=4\\,\\mathrm{m/s}$、格子幅 $\\Delta x=0.02\\,\\mathrm{m}$ のとき、クーラン数（CFL数）を1以下に保つために許される最大の時間刻み $\\Delta t$ はいくらか。",
+      "question": "移流方程式 $\\dfrac{\\partial \\phi}{\\partial t}+u\\dfrac{\\partial \\phi}{\\partial x}=0$ を1次精度風上差分＋前進オイラー法で解く。移流速度 $u=4\\,\\mathrm{m/s}$、格子幅 $\\Delta x=0.02\\,\\mathrm{m}$ のとき、クーラン数（CFL数）を1以下に保つために許される最大の時間刻み $\\Delta t$ はいくらか。",
       "choices": [
         "0.08 s",
         "0.02 s",
@@ -274,13 +274,13 @@
         "0.005 s"
       ],
       "answer": 4,
-      "explanation": "【基礎】クーラン数（CFL数）は「1ステップで情報が伝わる距離」と「格子幅」の比で、$\\mathrm{CFL}=\\dfrac{u\\,\\Delta t}{\\Delta x}$ で定義される。情報の伝達距離は速度×時間刻み $=u\\Delta t$。陽解法の安定条件としてしばしば $\\mathrm{CFL}\\le 1$ が要求される。\n【考え方】まず定義式を立て、$\\mathrm{CFL}\\le 1$ を $\\Delta t$ について解く（2段階）。$\\dfrac{u\\Delta t}{\\Delta x}\\le 1 \\Rightarrow \\Delta t\\le \\dfrac{\\Delta x}{u}$。\n【計算】$\\Delta t_{\\max}=\\dfrac{\\Delta x}{u}=\\dfrac{0.02}{4}=0.005\\,\\mathrm{s}$。よって正解は④。\n【ポイント】CFLは無次元。最大時間刻みは格子幅を速度で割った $\\Delta x/u$。格子を細かくする（$\\Delta x$ を小さくする）ほど、安定に使える $\\Delta t$ も小さくなる。\n【引っかけ】①0.08は $u\\times\\Delta x=4\\times0.02$ と掛けてしまった誤り。②0.02は $\\Delta x$ をそのまま $\\Delta t$ とした誤り。③0.0025は $\\dfrac{\\Delta x}{2u}$ など余計に2で割った誤り。定義 $\\mathrm{CFL}=u\\Delta t/\\Delta x$ を正しく変形することが要。",
+      "explanation": "【基礎】クーラン数（CFL数）は「1ステップで情報が伝わる距離」と「格子幅」の比で、$\\mathrm{CFL}=\\dfrac{u\\,\\Delta t}{\\Delta x}$ で定義される。情報の伝達距離は速度×時間刻み $=u\\Delta t$。陽解法の安定条件としてしばしば $\\mathrm{CFL}\\le 1$ が要求される。\n【考え方】まず定義式を立て、$\\mathrm{CFL}\\le 1$ を $\\Delta t$ について解く（2段階）。$\\dfrac{u\\Delta t}{\\Delta x}\\le 1 \\Rightarrow \\Delta t\\le \\dfrac{\\Delta x}{u}$。\n【計算】$\\Delta t_{\\max}=\\dfrac{\\Delta x}{u}=\\dfrac{0.02}{4}=0.005\\,\\mathrm{s}$。よって正解は④。\n【ポイント】CFLは無次元。最大時間刻みは格子幅を速度で割った $\\Delta x/u$。格子を細かくする（$\\Delta x$ を小さくする）ほど、安定に使える $\\Delta t$ も小さくなる。なお安定条件の具体形は空間・時間スキームに依存し、中心差分などは別途の対処を要する。\n【引っかけ】①0.08は $u\\times\\Delta x=4\\times0.02$ と掛けてしまった誤り。②0.02は $\\Delta x$ をそのまま $\\Delta t$ とした誤り。③0.0025は $\\dfrac{\\Delta x}{2u}$ など余計に2で割った誤り。定義 $\\mathrm{CFL}=u\\Delta t/\\Delta x$ を正しく変形することが要。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-11",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "t2e4CourantCFL",
       "figureHint": "格子幅Δxの1マスと、1ステップの情報伝達距離 uΔt を矢印で対比し、定義 CFL=uΔt/Δx と与件 u=4・Δx=0.02 を示す。Δtの答えは書かない。"
     },

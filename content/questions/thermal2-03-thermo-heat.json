@@ -380,7 +380,7 @@
       "reviewed": true,
       "officialRef": "問3-15",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "t2e3Convection",
       "figureHint": "白地660x420。壁面(温度Tw)に沿って主流(温度T)が流れ、壁から流体へ熱が伝わる設定図。TwがTより高い向きの矢印と熱伝達率hを与件で示す(熱流束の式や答えは書かない)。"
     },
@@ -430,7 +430,7 @@
       "reviewed": true,
       "officialRef": "問3-17",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "t2e3Boussinesq",
       "figureHint": "白地660x420。加熱された鉛直平板に沿って上昇する自然対流。重力gは下向き、座標xは上向き、基準温度T0と流体温度Tの温度差、体膨張係数βを与件で示す(外力項の式は書かない)。"
     },

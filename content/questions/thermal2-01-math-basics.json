@@ -230,7 +230,7 @@
       "reviewed": true,
       "officialRef": "問1-9",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "t2e1Gauss",
       "figureHint": "白地660x420で閉じた領域Vとなめらかな表面S、表面上の外向き単位法線n、表面を横切って流出する流れvの矢印を描く。内部の発散の総和=表面からの流出の総和という概念を示す。"
     },
@@ -280,7 +280,7 @@
       "reviewed": true,
       "officialRef": "問1-11",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "t2e1FourierLine",
       "figureHint": "白地660x420で区間[-π,π]の関数f(x)=xの直線グラフ(原点対称の奇関数)を描き、周期2πで繰り返す様子を点線で補足する。"
     }
