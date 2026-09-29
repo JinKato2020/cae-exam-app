@@ -849,6 +849,7 @@ function HomeTab(props: {
   useEffect(() => { loadChapterSnaps().then(setChapSnaps); }, [props.progress]);
   const [showGrade, setShowGrade] = useState(false);
   const [showExamRule, setShowExamRule] = useState(false); // 試験前の準備カード→合格・足切りルールの詳細モーダル
+  const insets = useSafeAreaInsets(); // Android のボトムナビ等でシート最下部の選択肢が隠れないよう下余白に足す
   // 分野と級を1タップでまとめて確定（固体1級/固体2級/熱流体1級…の6ボタン用）。
   // 従来は分野と級を別々に押す必要があり「両方変えたい」時に片方だけ確定してしまっていた。
   function chooseFieldGrade(f: FieldId, g: GradeId) {
@@ -1048,7 +1049,7 @@ function HomeTab(props: {
     {/* 分野・級セレクター */}
     <Modal visible={showGrade} transparent animationType="fade" onRequestClose={() => setShowGrade(false)}>
       <Pressable style={home.modalWrap} onPress={() => setShowGrade(false)}>
-        <Pressable style={home.sheet} onPress={() => {}}>
+        <Pressable style={[home.sheet, { paddingBottom: 18 + insets.bottom }]} onPress={() => {}}>
           <Text style={home.sheetH}>学習する分野・級を選ぶ</Text>
           {/* 分野×級を1タップで確定できる6ボタン（固体1級/固体2級/熱流体1級/熱流体2級/振動1級/振動2級）。
               「両方を変えたい」時に片方だけ確定してしまう問題を解消。未整備の組は「準備中」で無効化。 */}
