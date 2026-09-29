@@ -115,6 +115,24 @@ def tri_split_nodes(name):  # 8-2 helpful
     save(im, name)
 
 
+def tri_split_nodes_pre(name):  # 8-2 回答前（配置のみ・大小や数値は示さない）
+    im, d = new()
+    title(d, "正方形を対角線で2つの三角形1次要素に分割")
+    x0, y0, x1, y1 = 200, 130, 440, 370
+    d.rectangle((x0, y0, x1, y1), outline=BLACK, width=3, fill=FILL1)
+    d.line((x0, y0, x1, y1), fill=BLACK, width=3)
+    ctext(d, x0 + 70, y0 + 150, "要素I", FT, GRAY)
+    ctext(d, x0 + 165, y0 + 80, "要素II", FT, GRAY)
+    # 比較する節点の位置だけを a / b で示す（どちらが大きいかは示さない）
+    node(d, x1, y0, 8, "white"); ctext(d, x1 + 18, y0 - 6, "a", FS, BLACK, "lm")
+    node(d, x0, y1, 8, "white"); ctext(d, x0 - 18, y1 + 6, "a", FS, BLACK, "rm")
+    node(d, x0, y0, 8, FILL3); ctext(d, x0 - 18, y0 - 6, "b", FS, BLACK, "rm")
+    node(d, x1, y1, 8, FILL3); ctext(d, x1 + 18, y1 + 6, "b", FS, BLACK, "lm")
+    ctext(d, (x0 + x1) / 2, y1 + 34, "a=角の節点 / b=対角線上の節点（荷重の大小は回答後）", FT, GRAY)
+    dim(d, x0, y0 - 22, x1, y0 - 22, "一辺 1.5 m", col=GRAY)
+    save(im, name)
+
+
 def simple_support_beam(name):  # 8-3 required
     im, d = new()
     title(d, "はりの単純支持（各節点：横変位 w と傾き w'）")
@@ -654,6 +672,7 @@ def rail_wheel_unbalance(name):  # 8-21 required
 if __name__ == "__main__":
     quad_pressure_nodes("v2e8QuadPressureNodes")       # 8-1 required
     tri_split_nodes("v2e8TriSplitNodes")               # 8-2 helpful
+    tri_split_nodes_pre("v2e8TriSplitNodesPre")        # 8-2 回答前（配置のみ）
     simple_support_beam("v2e8SimpleSupportBeam")       # 8-3 required
     sym_plane_lpart("v2e8SymPlaneLpart")               # 8-4 required
     hex_mirror("v2e8HexMirror")                        # 8-5 required

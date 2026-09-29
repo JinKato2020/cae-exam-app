@@ -56,6 +56,7 @@
       "officialRef": "問8-2",
       "role": "primary",
       "figure": "helpful",
+      "preFigureImage": "v2e8TriSplitNodesPre",
       "figureImage": "v2e8TriSplitNodes",
       "figureHint": "正方形を対角線で2つの三角形に分割した図。角の単独節点にF_a、対角線上で2三角形が共有する節点にF_bのラベルを付ける。共有関係が見えると答えが推測できるため回答後に見せる根拠図"
     },

@@ -572,6 +572,30 @@ def door_hinge(name):  # required
     # ピン軸まわり回転
     curve_arrow(d, 430, 225, 40, 300, 60, GREEN, 2, 10)
     ctext(d, 500, 225, "ピン軸回転", FT, GREEN, "lm")
+    # 回答後：多点拘束節点(d)の自由度の扱いを明示
+    d.rectangle((150, 335, 630, 405), outline=GREEN, width=2, fill=FILL1)
+    ctext(d, 390, 353, "多重(多点拘束)節点(d)：並進 x・y・z を結合", FT, BLACK)
+    ctext(d, 390, 376, "ピン軸まわりの回転のみ解放（残り5自由度は拘束）", FT, GREEN)
+    save(im, name)
+
+
+def door_hinge_pre(name):  # 7-18 回答前（構造とピン位置の設定のみ・自由度の答えは伏せる）
+    im, d = new()
+    title(d, "ドアヒンジ構造（ドア側／ボディ側ブラケット・ピン）")
+    axes(d, 70, 380, 80, 60, "x", "y", GRAY)
+    d.polygon([(180, 150), (240, 150), (240, 300), (180, 300)],
+              outline=BLACK, width=3, fill=FILL2)
+    ctext(d, 210, 320, "ボディ側ブラケット", FT, GRAY)
+    d.polygon([(360, 170), (500, 170), (500, 280), (360, 280)],
+              outline=BLACK, width=3, fill=FILL1)
+    ctext(d, 430, 300, "ドア側ブラケット", FT, GRAY)
+    d.rectangle((240, 175, 360, 195), outline=BLACK, width=2, fill=FILL3)
+    d.rectangle((240, 255, 360, 275), outline=BLACK, width=2, fill=FILL3)
+    d.line((300, 160, 300, 290), fill=BLUE, width=5)
+    ctext(d, 300, 145, "ピン", FT, BLUE)
+    node(d, 300, 185, 7, "white"); ctext(d, 275, 185, "A点", FT, RED, "rm")
+    node(d, 300, 265, 7, "white"); ctext(d, 275, 265, "B点", FT, RED, "rm")
+    ctext(d, 390, 360, "各部材と結合部の要素・自由度の割り当ては回答後", FT, GRAY)
     save(im, name)
 
 
@@ -619,5 +643,6 @@ if __name__ == "__main__":
     spot_weld_bolt("v2e7SpotWeldBolt")
     damping_material_mesh("v2e7DampingMaterialMesh")
     door_hinge("v2e7DoorHinge")
+    door_hinge_pre("v2e7DoorHingePre")
     step_mesh_uniform("v2e7StepMeshUniform")
     print("done 19")

@@ -456,6 +456,7 @@
       "officialRef": "問7-18",
       "role": "primary",
       "figure": "required",
+      "preFigureImage": "v2e7DoorHingePre",
       "figureImage": "v2e7DoorHinge",
       "figureHint": "ドアヒンジの構造とFEMモデル化図。ドア側ブラケット・ボディ側ブラケット・ピン、結合位置のA点とB点、基本座標系、ドアがピン軸まわりに回転する様子を示す。要素種類や正解は書かない"
     },

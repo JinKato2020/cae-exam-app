@@ -31,7 +31,8 @@
       "officialRef": "問9-1",
       "role": "primary",
       "figure": "required",
-      "figureImage": "v2e9MatrixForm",
+      "preFigureImage": "v2e9MatrixForm",
+      "figureImage": "v2e9MatrixFormAns",
       "figureHint": "連立1次方程式を行列形式[A]{x}={b}へ並べ替える対応関係の模式図。行が式・列が変数に対応することを矢印で示す。係数の具体値や解は書かず空欄枠と対応矢印のみ(回答前に見せてよい)"
     },
     {
@@ -106,7 +107,8 @@
       "officialRef": "問9-4",
       "role": "primary",
       "figure": "required",
-      "figureImage": "v2e9LUDecomp",
+      "preFigureImage": "v2e9LUDecomp",
+      "figureImage": "v2e9LUDecompAns",
       "figureHint": "正方行列AをL(対角1の下三角)とU(上三角)の積に分解する概念図。三角形の網掛けでLとUの非ゼロ配置を示す。具体的な数値やピボット値は書かない(回答前に見せてよい)"
     },
     {
@@ -406,7 +408,8 @@
       "officialRef": "問9-16",
       "role": "primary",
       "figure": "required",
-      "figureImage": "v2e9FirstOrderForm",
+      "preFigureImage": "v2e9FirstOrderForm",
+      "figureImage": "v2e9FirstOrderFormAns",
       "figureHint": "2階のMCK形運動方程式を状態ベクトル{x;ẋ}で1階の状態方程式に拡張するブロック構成図。行列ブロックの中身の式は空欄枠で示し、符号や結論は書かない(回答前に見せてよい)"
     },
     {
