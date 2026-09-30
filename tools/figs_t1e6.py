@@ -149,29 +149,52 @@ def f_pump_impeller():
 
 
 # ============================================================ 6-3 ディフューザ(required)
-def f_diffuser():
-    im, d = new()
-    title(d, "ディフューザ(拡大流路)：入口A1・U1 → 出口A2・U2")
-    # 壁(入口は狭く・出口は広い)
+def _diffuser_base(d):
+    """ディフューザ形状＋流速矢印。矢印の長さ＝流速（下流ほど短い＝減速）。方向は左→右で一定。"""
     x0, x1 = 150, 540
     d.line((x0, 175, x1, 110), fill=BLACK, width=3)   # 上壁
     d.line((x0, 245, x1, 310), fill=BLACK, width=3)   # 下壁
     d.line((x0, 175, x0, 245), fill=BLACK, width=2)   # 入口面
     d.line((x1, 110, x1, 310), fill=BLACK, width=2)   # 出口面
-    # 入口の速い流れ(短く密な矢印)
-    for yy in (195, 210, 225):
-        arrow(d, x0 + 8, yy, x0 + 55, yy, BLUE, 2, 9)
+    # 入口＝速い（長い矢印）
+    for yy in (192, 210, 228):
+        arrow(d, x0 + 8, yy, x0 + 70, yy, BLUE, 3, 11)
     ctext(d, x0 - 6, 210, "U1(速い)", FT, BLUE, "rm")
-    # 中間〜出口へ向かって太くなる矢印(減速)
-    arrow(d, 300, 210, 355, 210, BLUE, 4, 14)
-    arrow(d, 420, 210, 460, 210, BLUE, 7, 18)
+    # 中間＝やや減速（中くらい）
+    for yy in (198, 222):
+        arrow(d, 320, yy, 320 + 42, yy, BLUE, 3, 11)
+    # 出口＝遅い（短い矢印）。速度の大きさを長さで表す＝減速と一致
+    for yy in (185, 210, 235):
+        arrow(d, 470, yy, 470 + 24, yy, BLUE, 3, 10)
     ctext(d, x1 + 8, 210, "U2(遅い)", FT, BLUE, "lm")
-    ctext(d, 345, 240, "減速＝動圧を静圧へ", FT, GRAY)
     # 面積の寸法(A1, A2)
     dim(d, x0 - 26, 175, x0 - 26, 245, "A1", col=GRAY)
     dim(d, x1 + 26, 110, x1 + 26, 310, "A2", col=GRAY)
-    ctext(d, 345, 355, "面積比 AR = A2 / A1", FS, BLACK)
-    note(d, "流路が広がり流れが減速する設定のみ（静圧回復係数の値は描かない）")
+    ctext(d, 345, 340, "面積比 AR = A2 / A1（本問 AR=2）", FT, BLACK)
+    ctext(d, 345, 362, "矢印の長さ＝流速（下流ほど遅い）", FT, GRAY)
+
+
+def f_diffuser_setup():
+    im, d = new()
+    title(d, "ディフューザ(拡大流路)：入口A1・U1 → 出口A2・U2")
+    _diffuser_base(d)
+    note(d, "流路が広がり減速する設定のみ（静圧回復係数の値・結論は描かない：回答前）")
+    save(im, "t1e6DiffuserSetup")
+
+
+def f_diffuser():
+    im, d = new()
+    title(d, "ディフューザの静圧回復（導出・回答後）")
+    _diffuser_base(d)
+    # 結論（回答後）
+    box(d, 470, 92, 650, 175, (238, 244, 236))
+    ctext(d, 560, 112, "連続式", FT, BLACK)
+    ctext(d, 560, 134, "U2=U1·A1/A2", FT, BLACK)
+    ctext(d, 560, 156, "= U1/2", FT, RED)
+    box(d, 55, 92, 245, 175, (238, 244, 236))
+    ctext(d, 150, 112, "静圧回復係数", FT, BLACK)
+    ctext(d, 150, 134, "Cp=1−(U2/U1)²", FT, BLACK)
+    ctext(d, 150, 156, "= 0.75", FT, RED)
     save(im, "t1e6Diffuser")
 
 
@@ -313,26 +336,52 @@ def f_car_aero():
 
 
 # ============================================================ 6-8 カルマン渦(required)
-def f_karman_vortex():
-    im, d = new()
-    title(d, "円柱(電線)まわりのカルマン渦：一様流U・直径D")
-    # 一様流
+def vortex(d, cx, cy, r, ccw, col=RED, wd=2):
+    """回転向きが一目で分かる渦。上下端に接線方向の矢印を付ける。
+    ccw=True(反時計): 上端は左向き・下端は右向き。ccw=False(時計): その逆。"""
+    d.ellipse((cx - r, cy - r, cx + r, cy + r), outline=col, width=wd)
+    if ccw:
+        arrow(d, cx + 13, cy - r, cx - 13, cy - r, col, wd + 1, 9)   # 上端←（左向き）
+        arrow(d, cx - 13, cy + r, cx + 13, cy + r, col, wd + 1, 9)   # 下端→（右向き）
+    else:
+        arrow(d, cx - 13, cy - r, cx + 13, cy - r, col, wd + 1, 9)   # 上端→
+        arrow(d, cx + 13, cy + r, cx - 13, cy + r, col, wd + 1, 9)   # 下端←
+
+
+def _karman_base(d):
+    ccx, ccy, r = 165, 210, 30
     for yy in (150, 190, 230, 270):
-        arrow(d, 40, yy, 120, yy, BLUE, 2, 11)
+        arrow(d, 40, yy, 110, yy, BLUE, 2, 11)
     ctext(d, 70, 128, "一様流 U", FS, BLUE)
-    # 円柱
-    ccx, ccy, r = 175, 210, 30
     d.ellipse((ccx - r, ccy - r, ccx + r, ccy + r), outline=BLACK, width=3, fill=FILL1)
     dim(d, ccx - r, ccy + r + 26, ccx + r, ccy + r + 26, "D", col=GRAY)
     ctext(d, ccx, ccy - r - 16, "円柱(電線断面)", FT, BLACK)
-    # 交互のカルマン渦列(上下で回転向きを変えた渦を千鳥に)
-    xs = [260, 330, 400, 470, 540]
-    for i, x in enumerate(xs):
-        up = (i % 2 == 0)
-        cy = ccy - 45 if up else ccy + 45
-        swirl(d, x, cy, 18, cw=up, col=RED, wd=2)
-    ctext(d, 400, 320, "交互に放出される渦列", FT, RED)
-    note(d, "円柱と背後の渦列の配置のみ（放出周波数の値・答えは描かない）")
+    # 上列＝反時計、下列＝時計（列ごとに逆向き）を千鳥に
+    upper = [250, 350, 450]
+    lower = [300, 400, 500]
+    for x in upper:
+        vortex(d, x, ccy - 46, 18, ccw=True, col=RED)
+    for x in lower:
+        vortex(d, x, ccy + 46, 18, ccw=False, col=GREEN)
+    ctext(d, 375, 320, "上列と下列で逆回転の渦を交互放出", FT, BLACK)
+
+
+def f_karman_vortex_setup():
+    im, d = new()
+    title(d, "円柱(電線)まわりのカルマン渦：一様流U・直径D")
+    _karman_base(d)
+    note(d, "円柱と渦列の配置のみ（放出周波数の値・答えは描かない：回答前）")
+    save(im, "t1e6KarmanVortexSetup")
+
+
+def f_karman_vortex():
+    im, d = new()
+    title(d, "カルマン渦の放出周波数（導出・回答後）")
+    _karman_base(d)
+    box(d, 470, 92, 650, 170, (238, 244, 236))
+    ctext(d, 560, 112, "f = St·U/D", FT, BLACK)
+    ctext(d, 560, 134, "= 0.2×15/0.03", FT, BLACK)
+    ctext(d, 560, 156, "= 100 Hz", FT, RED)
     save(im, "t1e6KarmanVortex")
 
 
@@ -469,11 +518,13 @@ def f_electronics():
 if __name__ == "__main__":
     f_optimization()
     f_pump_impeller()
+    f_diffuser_setup()
     f_diffuser()
     f_bluff_streamline()
     f_room_airflow()
     f_office_thermal()
     f_car_aero()
+    f_karman_vortex_setup()
     f_karman_vortex()
     f_helical_strake()
     f_analysis_framework()

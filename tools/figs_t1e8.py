@@ -196,22 +196,12 @@ def f_airfoil_cl_alpha():
     im, d = new()
     title(d, "薄翼の揚力係数-迎角曲線")
     ox, oy = 100, 350
-    axes(d, ox, oy, 470, 300, "迎角 α", "揚力係数 CL")
+    axes(d, ox, oy, 470, 300, "迎角 α", "CL")
     sx = 470 / 20.0
     sy = 270 / 1.7
     px = lambda a: ox + a * sx
     py = lambda c: oy - c * sy
-    # 実際の傾向：α=12で失速→急低下
-    act = []
-    for a in [i * 0.5 for i in range(0, 41)]:
-        if a <= 12:
-            c = 0.10 * a
-        else:
-            c = 1.20 - 0.16 * (a - 12)
-        act.append((px(a), py(max(c, 0.1))))
-    curve(d, act, RED, 3)
-    ctext(d, px(15.5), py(0.35), "実際", FT, RED, "lm")
-    # 標準k-ε：失速角が右へ、ピーク後は緩やか
+    # 標準k-ε：失速角が右へ、ピーク後は緩やか（先に描く）
     ke = []
     for a in [i * 0.5 for i in range(0, 41)]:
         if a <= 16:
@@ -220,9 +210,27 @@ def f_airfoil_cl_alpha():
             c = 1.52 - 0.05 * (a - 16)
         ke.append((px(a), py(c)))
     curve(d, ke, BLUE, 3)
-    ctext(d, px(17), py(1.55), "計算(k-ε)", FT, BLUE, "lm")
+    ctext(d, px(19.2), py(1.05), "計算(k-ε)", FT, BLUE, "lm")
+    # 実際の傾向：α=0から全域を描く（失速前の直線部＋α=12で失速→急低下）
+    act = []
+    for a in [i * 0.5 for i in range(0, 41)]:
+        if a <= 12:
+            c = 0.10 * a
+        else:
+            c = 1.20 - 0.16 * (a - 12)
+        act.append((px(a), py(max(c, 0.1))))
+    curve(d, act, RED, 3)
+    ctext(d, px(6.5), py(1.05), "実際", FT, RED, "lm")
+    # 失速角の目印（両モデル）
+    dash(d, px(12), oy, px(12), py(1.2), RED, 2, 7, 5)
+    ctext(d, px(12), py(1.2) - 12, "失速(実際)", FT, RED)
+    dash(d, px(16), oy, px(16), py(1.52), BLUE, 2, 7, 5)
+    ctext(d, px(16) + 2, py(1.52) - 12, "失速(k-ε)", FT, BLUE, "lm")
+    # 失速前は両者ほぼ一致（直線部を捉える）
+    d.line((px(1), py(0.02), px(11), py(0.02)), fill=GRAY, width=2)
+    ctext(d, px(6), py(0.02) + 16, "失速前：両者ほぼ一致(直線部)", FT, GRAY)
     # 翼型の小アイコン
-    ax, ay = 150, 110
+    ax, ay = 150, 95
     d.polygon([(ax, ay), (ax + 90, ay - 10), (ax + 130, ay), (ax + 90, ay + 4), (ax, ay)],
               outline=BLACK, width=2, fill=FILL1)
     save(im, "t1e8AirfoilCLalpha")
@@ -264,30 +272,51 @@ def f_les_compare_matrix():
 
 
 # ============================================================ 8-7 サイクロンの旋回速度分布(required)
-def f_cyclone_vortex():
-    im, d = new()
-    title(d, "サイクロン断面の旋回方向速度分布")
+def _cyclone_base(d):
+    """軸＋k-ε計算結果（内壁0→中心へ直線増加）。x=0:内壁, x=1:中心軸。"""
     ox, oy = 105, 345
-    axes(d, ox, oy, 470, 285, "半径位置(内壁→中心軸)", "旋回速度")
     xl = 470
-    # 計算(k-ε)：内壁0→中心へ直線増加(三角形)
+    axes(d, ox, oy, xl, 285, "半径位置(内壁→中心軸)", "旋回速度")
     d.line((ox, oy, ox + xl, oy - 0.88 * 265), fill=BLUE, width=3)
     ctext(d, ox + xl - 8, oy - 0.88 * 265 - 14, "計算(k-ε)", FT, BLUE, "rm")
-    # 参考：ランキン渦(外側=自由渦で減少・中心付近=強制渦で0へ、途中ピーク)
+    return ox, oy, xl
+
+
+def f_cyclone_vortex_setup():
+    im, d = new()
+    title(d, "サイクロン断面の旋回方向速度分布（計算結果）")
+    _cyclone_base(d)
+    note(d, "評価対象の計算(k-ε)結果のみ（参考分布・答えは描かない：回答前）")
+    save(im, "t1e8CycloneVortexSetup")
+
+
+def f_cyclone_vortex():
+    im, d = new()
+    title(d, "旋回速度分布：計算 vs 本来のランキン渦（回答後）")
+    ox, oy, xl = _cyclone_base(d)
+    # 本来のランキン渦＋壁面無滑り。r=中心からの距離=(1-u)。
+    peak, rc, delta = 0.72, 0.32, 0.10
+    vedge = peak * rc / (1 - delta)
     pts = []
-    for k in range(0, 471, 6):
-        u = k / 470.0                       # 0=内壁, 1=中心
-        # ピークを u=0.55 付近に。壁(左)で0、中心(右)で0
-        if u < 0.55:
-            v = 0.62 * (u / 0.55)           # 自由渦側の立ち上がり(壁で0)
-        else:
-            v = 0.62 * ((1 - u) / 0.45)     # 強制渦側(中心で0)
+    for k in range(0, xl + 1, 4):
+        u = k / xl                       # 0=内壁, 1=中心
+        r = 1 - u
+        if u < delta:                    # 壁近傍：無滑りで0へ
+            v = vedge * (u / delta)
+        elif r > rc:                     # 自由渦 uθ∝1/r
+            v = peak * rc / r
+        else:                            # 強制渦 uθ∝r（中心で0）
+            v = peak * (r / rc)
         pts.append((ox + k, oy - v * 265))
-    dash_pts = pts
-    for i in range(len(dash_pts) - 1):
-        if i % 2 == 0:
-            d.line((dash_pts[i][0], dash_pts[i][1], dash_pts[i + 1][0], dash_pts[i + 1][1]), fill=GRAY, width=2)
-    ctext(d, ox + 0.55 * xl, oy - 0.62 * 265 - 16, "ランキン渦(参考)", FT, GRAY)
+    for i in range(len(pts) - 1):
+        if i % 3 != 2:
+            d.line((pts[i][0], pts[i][1], pts[i + 1][0], pts[i + 1][1]), fill=GRAY, width=2)
+    # 領域ラベル
+    ctext(d, ox + 0.05 * xl, oy - 0.10 * 265 - 4, "壁面", FT, RED, "lm")
+    ctext(d, ox + 0.06 * xl, oy - 0.10 * 265 + 16, "無滑り0", FT, RED, "lm")
+    ctext(d, ox + 0.34 * xl, oy - 0.42 * 265 - 14, "自由渦 uθ∝1/r", FT, GRAY, "lm")
+    ctext(d, ox + 0.80 * xl, oy - 0.30 * 265 - 14, "強制渦 uθ∝r", FT, GRAY, "mm")
+    ctext(d, ox + 0.66 * xl, oy - 0.72 * 265 - 14, "ランキン渦(参考)", FT, BLACK, "mm")
     save(im, "t1e8CycloneVortex")
 
 
@@ -386,9 +415,10 @@ def f_drag_scatter():
 
 
 # ============================================================ 8-11 建物まわり k-ε vs ASM(required)
-def f_building_ke_asm():
-    im, d = new()
-    title(d, "建物まわり乱流：実験・k-ε・ASM の比較")
+def _building_base(d, reveal):
+    """reveal=False(回答前): 前面よどみの円は3枚とも同サイズ・「乱れ過大」注記なし。
+    reveal=True(回答後): k-ε枠の前面よどみを大きく＋「乱れ過大」を明示。
+    上面の剥離渦/剥離消失は問題文で与えた観察結果なので両方に描く。"""
     names = ["(1) 実験", "(2) k-ε", "(3) ASM"]
     x0s = [40, 245, 450]
     pw = 170
@@ -396,28 +426,38 @@ def f_building_ke_asm():
     for idx, x0 in enumerate(x0s):
         cx = x0 + pw / 2
         ctext(d, cx, 72, names[idx], FS, BLACK)
-        # 床
         d.line((x0, floor, x0 + pw, floor), fill=BLACK, width=3)
-        # 建物(立方体)
         bx0, bx1 = cx - 30, cx + 30
         bt = floor - 70
         box(d, bx0, bt, bx1, floor, FILL2)
-        # 流入
         arrow(d, x0 + 2, bt + 20, bx0 - 4, bt + 20, BLUE, 2, 9)
-        # 前面よどみ部の乱れエネルギー(k-εでは過大=大きめ)
-        r = 30 if idx == 1 else 14
+        # 前面よどみ部の乱れエネルギー
+        r = 30 if (reveal and idx == 1) else 14
         d.ellipse((bx0 - r, bt + 10 - r / 2, bx0 - 2, bt + 10 + r / 2), outline=RED, width=2)
-        if idx == 1:
+        if reveal and idx == 1:
             ctext(d, bx0 - 20, bt - 6, "乱れ過大", FT, RED)
-        # 上面の剥離渦：実験・ASMは有り、k-εは消失(直進)
+        # 上面：k-εは剥離消失(直進)、実験・ASMは剥離渦（いずれも与えられた観察）
         if idx == 1:
             arrow(d, bx0 - 6, bt - 6, bx1 + 30, bt - 10, BLUE, 2, 9)
             ctext(d, cx, bt - 26, "剥離消失", FT, GRAY)
         else:
             swirl(d, cx, bt - 22, 20, cw=True, col=BLUE, wd=2)
             ctext(d, cx, bt - 48, "剥離渦", FT, GRAY)
-        # 後方循環
         swirl(d, bx1 + 22, floor - 28, 16, cw=False, col=GREEN, wd=2)
+
+
+def f_building_ke_asm_setup():
+    im, d = new()
+    title(d, "建物まわり乱流：実験・k-ε・ASM の比較")
+    _building_base(d, reveal=False)
+    note(d, "各モデルの観察結果のみ（原因の注記＝答えは描かない：回答前）")
+    save(im, "t1e8BuildingKeASMSetup")
+
+
+def f_building_ke_asm():
+    im, d = new()
+    title(d, "建物まわり乱流：k-ε前面よどみの乱れ過大（回答後）")
+    _building_base(d, reveal=True)
     save(im, "t1e8BuildingKeASM")
 
 
@@ -533,10 +573,12 @@ if __name__ == "__main__":
     f_advection_schemes()
     f_airfoil_cl_alpha()
     f_les_compare_matrix()
+    f_cyclone_vortex_setup()
     f_cyclone_vortex()
     f_piv_cfd()
     f_bend_secondary_flow()
     f_drag_scatter()
+    f_building_ke_asm_setup()
     f_building_ke_asm()
     f_les_log_law()
     f_three_errors()
