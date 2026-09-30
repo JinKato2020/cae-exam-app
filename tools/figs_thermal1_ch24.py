@@ -103,36 +103,36 @@ def swirl_recirc():
 # 24-3 t1e24RansEnsemble : 瞬時(LES)と平均(RANS)火炎面の対比
 def rans_ensemble():
     im, d = new(); title(d, "円筒容器内の予混合火炎伝播 : 瞬時(LES) と 平均(RANS)")
-    # 左:LES的な瞬時しわ状火炎面
-    lcx, lcy, R = 175, 245, 95
+    bases = (38, 66, 94)
+    # 左:LES的な瞬時しわ状火炎面(点火は中心上部->下方へ伝播)
     box(d, 70, 150, 285, 355, "white", 2)
     ctext(d, 178, 132, "瞬時場(LES的)", FT, BLUE)
-    node(d, lcx, lcy - 55, 5, fill=RED, col=RED)
-    ctext(d, lcx + 8, lcy - 68, "Ig", FT, RED, "lm")
-    # しわ状の閉曲線
-    prev = None
-    for i in range(0, 361, 4):
-        a = math.radians(i)
-        rr = R * (1 + 0.16 * math.sin(7 * a) * math.cos(2 * a))
-        p = (lcx + rr * math.cos(a) * 0.95, (lcy - 55) + rr * math.sin(a) * 0.95)
-        if prev is not None:
-            d.line((prev[0], prev[1], p[0], p[1]), fill=RED, width=2)
-        prev = p
-    ctext(d, lcx, lcy + 92, "しわ状火炎面", FT, RED)
-    # 右:RANS的な滑らかな同心円
-    rcx, rcy = 470, 245
+    lcx, igy = 178, 178   # 点火位置=中心上部
+    node(d, lcx, igy, 5, fill=RED, col=RED)
+    ctext(d, lcx + 10, igy - 4, "Ig", FT, RED, "lm")
+    for base in bases:
+        prev = None
+        for i in range(0, 181, 4):
+            a = math.radians(i)
+            rr = base * (1 + 0.14 * math.sin(7 * a))
+            p = (lcx + rr * math.cos(a), igy + rr * math.sin(a))
+            if prev is not None:
+                d.line((prev[0], prev[1], p[0], p[1]), fill=RED, width=2)
+            prev = p
+    ctext(d, lcx, 345, "しわ状火炎面", FT, RED)
+    # 右:RANS的な滑らかな同心半円(点火は中心上部)
+    rcx, rigy = 470, 178
     box(d, 375, 150, 590, 355, "white", 2)
     ctext(d, 482, 132, "アンサンブル平均(RANS的)", FT, GREEN)
-    node(d, rcx, rcy - 55, 5, fill=RED, col=RED)
-    ctext(d, rcx + 8, rcy - 68, "Ig", FT, RED, "lm")
-    for rr in (40, 66, 92):
-        d.ellipse((rcx - rr, (rcy - 55) - rr * 0.95, rcx + rr, (rcy - 55) + rr * 0.95),
-                  outline=GREEN, width=2)
-    ctext(d, rcx, rcy + 92, "滑らかな同心円状", FT, GREEN)
+    node(d, rcx, rigy, 5, fill=RED, col=RED)
+    ctext(d, rcx + 10, rigy - 4, "Ig", FT, RED, "lm")
+    for rr in bases:
+        d.arc((rcx - rr, rigy - rr, rcx + rr, rigy + rr), 0, 180, fill=GREEN, width=2)
+    ctext(d, rcx, 345, "滑らかな同心円状", FT, GREEN)
     # r/z 軸(小さく)
-    arrow(d, 300, 375, 355, 375, BLACK, 2, 9); ctext(d, 360, 375, "r", FT, BLACK, "lm")
-    arrow(d, 300, 375, 300, 335, BLACK, 2, 9); ctext(d, 300, 328, "z", FT, BLACK)
-    note(d, "容器 phi100mm 厚さ20mm. 平均操作で個々の渦のしわがならされる")
+    arrow(d, 300, 378, 355, 378, BLACK, 2, 9); ctext(d, 360, 378, "r", FT, BLACK, "lm")
+    arrow(d, 300, 378, 300, 340, BLACK, 2, 9); ctext(d, 300, 333, "z", FT, BLACK)
+    note(d, "容器 phi100mm 厚さ20mm. 点火は中心上部(Ig). 平均操作で個々のしわがならされる")
     save(im, "t1e24RansEnsemble")
 
 
@@ -240,10 +240,12 @@ def mix_frac_spray():
     # 左:ガス拡散火炎(気相のみ・保存)
     box(d, 55, 100, 320, 300, (235, 244, 250), 2)
     ctext(d, 187, 122, "ガス拡散火炎(気相のみ)", FT, BLUE)
-    # 下流方向にZ一定
+    # 下流方向: 反応の源項はないが混合・輸送で空間変化
     arrow(d, 90, 200, 300, 200, GRAY, 2, 11); ctext(d, 300, 216, "下流 x", FT, GRAY, "rm")
-    dashed(d, 90, 165, 300, 165, BLUE, 2, 8, 5)
-    ctext(d, 195, 150, "Z 一定(保存量)", FT, BLUE)
+    gpts = [(90 + i * 2.05, 150 + (i / 100) * 38) for i in range(0, 101)]
+    d.line(gpts, fill=BLUE, width=3, joint="curve")
+    ctext(d, 187, 134, "反応の源項なし", FT, BLUE)
+    ctext(d, 187, 152, "(混合・輸送で空間変化)", FT, BLUE)
     # 右:噴霧火炎(蒸発で気相へ供給・非保存)
     box(d, 340, 100, 605, 300, (250, 240, 232), 2)
     ctext(d, 472, 122, "噴霧火炎(液滴あり)", FT, RED)
@@ -253,13 +255,17 @@ def mix_frac_spray():
         node(d, dx, 210, 6, fill=(235, 235, 235), col=BLACK)
         arrow(d, dx, 205, dx, 185, ORANGE, 2, 8)
     ctext(d, 445, 172, "液滴から蒸発", FT, ORANGE)
-    # Zが増加する上り曲線
-    pts = [(375 + i * 2.1, 250 - (i / 100) * 55) for i in range(0, 101)]
+    # Z: 蒸発で増加するが希釈・輸送で局所的に減少もする(非単調)
+    pts = []
+    for i in range(0, 101):
+        t = i / 100
+        v = 0.75 * math.sin(t * math.pi * 0.9) + 0.1 * t
+        pts.append((375 + t * 210, 250 - v * 55))
     d.line(pts, fill=RED, width=3, joint="curve")
-    ctext(d, 560, 195, "Z 増加", FT, RED, "lm")
+    ctext(d, 500, 190, "Z 非単調(増減)", FT, RED)
     box(d, 55, 320, 605, 405, FILL1, 2)
-    ctext(d, 330, 345, "ガス火炎 : 気相に燃料源なし -> Z は反応で不変(保存量)", FT, BLUE)
-    ctext(d, 330, 378, "噴霧火炎 : 液滴蒸発が気相の燃料源 -> Z は下流で増加(非保存)", FT, RED)
+    ctext(d, 330, 345, "ガス火炎 : 反応の源項なし(保存スカラー)だが混合・輸送で空間変化", FT, BLUE)
+    ctext(d, 330, 378, "噴霧火炎 : 液滴蒸発が源項 -> Z は増加と局所的減少(非単調)", FT, RED)
     save(im, "t1e24MixFracSpray")
 
 

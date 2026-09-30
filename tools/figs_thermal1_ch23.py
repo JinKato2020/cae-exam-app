@@ -50,27 +50,46 @@ def drag_curve():
     ctext(d, ox + xl + 26, oy, "Re_p (対数)", FS, BLACK, "lm")
     arrow(d, ox, oy, ox, oy - yl - 10, BLACK, 2, 11)
     ctext(d, ox - 12, oy - yl - 12, "C_D (対数)", FS, BLACK, "rm")
-    # ストークス則 C_D=24/Re_p : 両対数で傾き -1 の直線
-    d.line((ox + 0.06 * xl, oy - 0.90 * yl, ox + 0.55 * xl, oy - 0.34 * yl), fill=RED, width=3)
-    ctext(d, ox + 0.12 * xl, oy - 0.86 * yl, "ストークス則 C_D=24/Re_p", FT, RED, "lm")
-    # 実測抗力曲線(Re_p増で頭打ち・ニュートン域で一定へ)
+    # Re_p<<1 域を破線枠で(与件: この低Re領域での抗力係数の関係を問う)
+    xL = ox + 0.06 * xl; xR = ox + 0.30 * xl
+    dashed(d, xL, oy, xL, oy - yl - 4, LGRAY, 1, 6, 5)
+    dashed(d, xR, oy, xR, oy - yl - 4, LGRAY, 1, 6, 5)
+    ctext(d, (xL + xR) / 2, oy - yl + 6, "Re_p << 1 域", FT, GRAY)
+    note(d, "粒子レイノルズ数 Re_p に対する抗力係数 C_D の関係(両対数軸)を考える")
+    save(im, "t1e23DragCurve")
+
+
+# 23-1 (回答後) t1e23DragCurveAns : 抗力係数曲線の答え
+def drag_curve_ans():
+    im, d = new(); title(d, "粒子の抗力係数曲線  C_D - Re_p (両対数)")
+    ox, oy, xl, yl = 110, 350, 470, 250
+    arrow(d, ox, oy, ox + xl + 20, oy, BLACK, 2, 11)
+    ctext(d, ox + xl + 26, oy, "Re_p (対数)", FS, BLACK, "lm")
+    arrow(d, ox, oy, ox, oy - yl - 10, BLACK, 2, 11)
+    ctext(d, ox - 12, oy - yl - 12, "C_D (対数)", FS, BLACK, "rm")
+    # ストークス則 C_D=24/Re_p(固体球): 両対数で傾き -1 の直線
+    d.line((ox + 0.06 * xl, oy - 0.90 * yl, ox + 0.60 * xl, oy - 0.30 * yl), fill=RED, width=3)
+    ctext(d, ox + 0.10 * xl, oy - 0.93 * yl, "固体球 C_D=24/Re_p", FT, RED, "lm")
+    # 気泡 C_D=16/Re_p: 平行(やや下方)の直線
+    d.line((ox + 0.06 * xl, oy - 0.78 * yl, ox + 0.60 * xl, oy - 0.18 * yl), fill=GREEN, width=3)
+    ctext(d, ox + 0.30 * xl, oy - 0.32 * yl, "気泡 C_D=16/Re_p", FT, GREEN, "lm")
+    # 実測抗力曲線(高Reで頭打ち C_D≈0.44)
     pts = []
     for i in range(0, 201):
         t = i / 200
-        # 左は直線に沿い、右で頭打ち(0.44付近)へ漸近
         v = 0.90 - 0.62 * t
         floor = 0.16
         v = max(v, floor + 0.05 * math.exp(-6 * (t - 0.55)))
         pts.append((ox + (0.06 + 0.88 * t) * xl, oy - v * yl))
     d.line(pts, fill=BLUE, width=3, joint="curve")
-    ctext(d, ox + 0.78 * xl, oy - 0.24 * yl, "実測(頭打ち)", FT, BLUE, "lm")
-    # Re_p<<1 域を破線枠で
+    ctext(d, ox + 0.70 * xl, oy - 0.24 * yl, "実測(高Reで C_D≈0.44)", FT, BLUE, "lm")
+    # Re_p<<1 域
     xL = ox + 0.06 * xl; xR = ox + 0.30 * xl
     dashed(d, xL, oy, xL, oy - yl - 4, LGRAY, 1, 6, 5)
     dashed(d, xR, oy, xR, oy - yl - 4, LGRAY, 1, 6, 5)
     ctext(d, (xL + xR) / 2, oy - yl + 6, "Re_p << 1 域", FT, GRAY)
-    note(d, "低Re_p域ではストークス則(傾き-1)に一致し, Re_p増で抗力係数は頭打ちになる")
-    save(im, "t1e23DragCurve")
+    note(d, "低Re_p域は 固体球 24/Re_p・気泡 16/Re_p, 高Reで実測は C_D≈0.44 に頭打ち")
+    save(im, "t1e23DragCurveAns")
 
 
 # 23-2 t1e23Preferential : 選択的移動(渦から弾き出される粒子)(helpful)
@@ -187,9 +206,30 @@ def atomization():
         rr = 8
         d.ellipse((x - rr, y - rr, x + rr, y + rr), outline=BLUE, width=2, fill=(232, 240, 250))
     ctext(d, 495, 118, "小液滴群(直径 D/alpha)", FT, BLUE)
-    ctext(d, 495, 340, "個数 増 / 表面積総和 増", FT, RED)
-    note(d, "総体積は保存. 径を1/alphaにすると個数はalpha^3倍, 表面積総和はalpha倍に増える")
+    note(d, "大液滴1個が微粒化し, 総体積を保ったまま直径 D/alpha の多数の小液滴になる")
     save(im, "t1e23Atomization")
+
+
+# 23-5 (回答後) t1e23AtomizationAns : 微粒化の個数比・表面積比
+def atomization_ans():
+    im, d = new(); title(d, "微粒化  大きな1個の液滴 -> 多数の小液滴(体積は同じ)")
+    c1x, c1y, r1 = 150, 220, 78
+    pcircle(d, c1x, c1y, r1, (232, 240, 250), BLUE, 3)
+    dim(d, c1x - r1, c1y + r1 + 22, c1x + r1, c1y + r1 + 22, "D = 1mm", col=GRAY)
+    ctext(d, c1x, c1y - r1 - 18, "大液滴 1個", FT, BLUE)
+    arrow(d, 250, c1y, 350, c1y, GRAY, 3, 13)
+    ctext(d, 300, c1y - 18, "alpha=100", FT, RED)
+    import random
+    random.seed(3)
+    for _ in range(46):
+        x = random.uniform(400, 590)
+        y = random.uniform(140, 320)
+        rr = 8
+        d.ellipse((x - rr, y - rr, x + rr, y + rr), outline=BLUE, width=2, fill=(232, 240, 250))
+    ctext(d, 495, 118, "小液滴群(D=10um)", FT, BLUE)
+    ctext(d, 495, 338, "個数 10^6 倍 / 表面積総和 10^2(100)倍", FT, RED)
+    note(d, "径を1/100(1mm->10um)にすると個数はalpha^3=10^6倍, 表面積総和はalpha=100倍")
+    save(im, "t1e23AtomizationAns")
 
 
 # 23-6 t1e23LiquidColumn : 液柱分裂(WAVE, blob->parcel)(helpful)
@@ -287,6 +327,19 @@ def sauter_d32():
     save(im, "t1e23SauterD32")
 
 
+# 23-8 (回答後) t1e23SauterD32Ans : ザウター平均粒径の算定値
+def sauter_d32_ans():
+    im, d = new(); title(d, "ザウター平均粒径 D32 の算定")
+    box(d, 55, 95, 605, 205, "white", 2)
+    ctext(d, 330, 128, "D32 = (n_i D_i^3 の総和) / (n_i D_i^2 の総和)", FS, BLACK)
+    ctext(d, 330, 168, "n_i D_i^3 の総和 = 3.0x10^6 ,  n_i D_i^2 の総和 = 1.2x10^5", FT, RED)
+    box(d, 55, 225, 605, 330, (250, 236, 236), 2)
+    ctext(d, 330, 258, "D32 = 3.0x10^6 / 1.2x10^5", FS, BLACK)
+    ctext(d, 330, 300, "D32 = 25 um", FL, RED)
+    note(d, "体積(3乗和)と表面積(2乗和)を一致させる代表径 D32 = 25um")
+    save(im, "t1e23SauterD32Ans")
+
+
 # 23-9 t1e23BoilingAltitude : 沸騰と高度(飽和蒸気圧曲線)(helpful)
 def boiling_altitude():
     im, d = new(); title(d, "飽和蒸気圧曲線と沸点  山上は低圧で低温沸騰")
@@ -295,12 +348,12 @@ def boiling_altitude():
     ctext(d, ox + xl + 26, oy, "温度 T", FS, BLACK, "lm")
     arrow(d, ox, oy, ox, oy - yl - 10, BLACK, 2, 11)
     ctext(d, ox - 12, oy - yl - 12, "飽和蒸気圧 Psat", FS, BLACK, "rm")
-    # 飽和蒸気圧曲線(指数的に増加)
+    # 飽和蒸気圧曲線(温度とともに単調増加・頭打ちなし)
+    v0, kk = 0.10, 2.197
     pts = []
     for i in range(0, 201):
         t = i / 200
-        v = 0.10 * math.exp(2.4 * t)
-        v = min(v, 0.95)
+        v = v0 * math.exp(kk * t)
         pts.append((ox + t * xl, oy - v * yl))
     d.line(pts, fill=BLUE, width=3, joint="curve")
     ctext(d, ox + 0.62 * xl, oy - 0.40 * yl, "飽和蒸気圧曲線", FT, BLUE, "lm")
@@ -314,7 +367,7 @@ def boiling_altitude():
     ctext(d, ox + xl - 6, y2 - 12, "山上の低い気圧", FT, ORANGE, "rm")
     # 交点
     def tx_at(v):
-        return ox + (math.log(v / 0.10) / 2.4) * xl
+        return ox + (math.log(v / v0) / kk) * xl
     x1 = tx_at(0.72); x2 = tx_at(0.50)
     node(d, x1, y1, 5, fill=BLACK); node(d, x2, y2, 5, fill=ORANGE, col=ORANGE)
     dashed(d, x1, y1, x1, oy, GRAY, 1, 6, 5); ctext(d, x1, oy + 16, "100degC", FT, BLACK)
@@ -362,7 +415,7 @@ def dsquared_history():
     yA = 0.86   # 初期(ほぼ平坦の加熱)
     yB = 0.78   # A終わり
     yC = 0.30   # B終わり(蒸発で減少)
-    yE = 0.06   # 燃えつき
+    yE = 0.0    # 燃えつき(D^2 -> 0)
     def X(t): return ox + t * xl
     def Y(v): return oy - v * yl
     # A: ほぼ平坦
@@ -376,18 +429,18 @@ def dsquared_history():
     ctext(d, X((0.02 + tA) / 2), oy - yl + 6, "A 加熱", FT, GRAY)
     ctext(d, X((tA + tB) / 2), oy - yl + 6, "B 蒸発", FT, GREEN)
     ctext(d, X((tB + tend) / 2), oy - yl + 6, "C 燃焼", FT, RED)
-    # t1(着火, B途中〜Bで) t2(燃えつき)
-    node(d, X(tA), oy, 5, fill=ORANGE, col=ORANGE); ctext(d, X(tA), oy + 16, "t1 着火", FT, ORANGE)
+    # t1(着火=B/C境界) t2(燃えつき=D^2->0)
+    node(d, X(tB), Y(yC), 5, fill=ORANGE, col=ORANGE); ctext(d, X(tB), oy + 16, "t1 着火", FT, ORANGE)
     node(d, X(tend), Y(yE), 5, fill=RED, col=RED); ctext(d, X(tend), oy + 16, "t2 燃えつき", FT, RED)
-    note(d, "A加熱->B蒸発(t1で自然着火)->C燃焼(t2で燃えつき). A+Bが着火遅れに相当")
+    note(d, "A加熱->B蒸発->C燃焼. 着火はB末尾(t1), t2でD^2->0. 着火遅れ=A+B(t1まで)")
     save(im, "t1e23DsquaredHistory")
 
 
 # 23-12 t1e23Extinction : 単一液滴の消炎(球殻火炎+質量流束)(required)
 def extinction():
-    im, d = new(); title(d, "単一液滴の拡散燃焼と消炎  直径減少で滞留時間短->消炎")
-    stages = [(160, 42, 92, "大直径: 火炎保持"),
-              (400, 26, 66, "小直径: 消炎へ")]
+    im, d = new(); title(d, "単一液滴の拡散燃焼  液滴・球殻火炎・燃料蒸気の質量流束")
+    stages = [(160, 42, 92, "大直径"),
+              (400, 26, 66, "小直径")]
     cy = 235
     for cx, rd, rf, lab in stages:
         # 火炎(球殻)
@@ -403,9 +456,31 @@ def extinction():
         ctext(d, cx, cy + rf + 22, lab, FS, BLACK)
     ctext(d, 280, cy, "縮小", FT, GRAY)
     arrow(d, 250, cy, 320, cy, GRAY, 3, 12)
-    ctext(d, 400, 120, "燃料蒸気の質量流束は直径に反比例して増大", FT, GREEN)
-    note(d, "直径が小さくなると反応場の滞留時間が短くなり(Da<<1), 球殻火炎が消える")
+    ctext(d, 400, 120, "赤破線=球殻火炎 / 緑=燃料蒸気の質量流束", FT, GREEN)
+    note(d, "直径の異なる液滴の拡散燃焼(液滴・球殻火炎・燃料蒸気の質量流束)を考える")
     save(im, "t1e23Extinction")
+
+
+# 23-12 (回答後) t1e23ExtinctionAns : 直径減少による消炎過程
+def extinction_ans():
+    im, d = new(); title(d, "単一液滴の消炎  直径減少 -> 滞留時間短 -> Da低下 -> 消炎")
+    cy = 205
+    steps = [(120, 40, 78, "大直径", "火炎保持"),
+             (330, 26, 56, "中直径", "滞留時間 短"),
+             (540, 15, 34, "小直径", "Da<臨界 消炎")]
+    for cx, rd, rf, lab, sub in steps:
+        dashed_circle(d, cx, cy, rf, RED, 2)
+        pcircle(d, cx, cy, rd, (232, 240, 250), BLUE, 3)
+        for a in range(0, 360, 60):
+            rad = math.radians(a)
+            arrow(d, cx + rd * math.cos(rad), cy + rd * math.sin(rad),
+                  cx + (rf - 6) * math.cos(rad), cy + (rf - 6) * math.sin(rad), GREEN, 2, 8)
+        ctext(d, cx, cy + rf + 24, lab, FS, BLACK)
+        ctext(d, cx, cy + rf + 46, sub, FT, RED)
+    for ax in (200, 410):
+        arrow(d, ax, cy, ax + 60, cy, GRAY, 3, 12)
+    note(d, "直径が小さいほど反応場の滞留時間が短く, Da(=滞留/反応時間)が臨界を下回ると消炎")
+    save(im, "t1e23ExtinctionAns")
 
 
 # 23-13 t1e23GroupCombustion : 群燃焼の4形態(helpful)
@@ -413,41 +488,57 @@ def group_combustion():
     im, d = new(); title(d, "群燃焼数 G と噴霧火炎の燃焼形態(Gの小さい順)")
     import random
     labels = ["単一液滴燃焼", "内部群燃焼", "外部群燃焼", "外殻燃焼"]
-    cxs = [130, 300, 460, 590]
-    cy = 220
-    R = 52
+    fposs = ["個別火炎が包む", "火炎は雲の内部", "火炎は雲の表面付近", "火炎は雲の外殻"]
+    cxs = [90, 250, 410, 570]
+    cy = 195
+    R = 46
     for k, (cx, lab) in enumerate(zip(cxs, labels)):
-        # 液滴塊(点群)
         random.seed(20 + k)
         drops = []
-        for _ in range(9):
-            a = random.uniform(0, 2 * math.pi); rr = random.uniform(0, R * 0.8)
+        for _ in range(11):
+            a = random.uniform(0, 2 * math.pi); rr = random.uniform(0, R * 0.78)
             drops.append((cx + rr * math.cos(a), cy + rr * math.sin(a)))
-        # 塊の外周
+        # 液滴群の外周(雲の境界)
         dashed_circle(d, cx, cy, R, LGRAY, 1)
+        for (x, y) in drops:
+            d.ellipse((x - 3, y - 3, x + 3, y + 3), outline=BLUE, width=1, fill=BLUE)
         if k == 0:
-            # 各液滴に個別の火炎
+            # 単一液滴燃焼: 酸素が中心まで到達し各液滴に個別火炎
+            for a in range(0, 360, 45):
+                rad = math.radians(a)
+                arrow(d, cx + (R + 20) * math.cos(rad), cy + (R + 20) * math.sin(rad),
+                      cx + (R - 6) * math.cos(rad), cy + (R - 6) * math.sin(rad), GREEN, 1, 7)
             for (x, y) in drops:
-                dashed_circle(d, x, y, 9, RED, 1)
-                d.ellipse((x - 3, y - 3, x + 3, y + 3), outline=BLUE, width=1, fill=BLUE)
+                dashed_circle(d, x, y, 8, RED, 1)
         elif k == 1:
-            # 内部の一部に群火炎(内側の集団を囲む)
-            for (x, y) in drops:
-                d.ellipse((x - 3, y - 3, x + 3, y + 3), outline=BLUE, width=1, fill=BLUE)
-            dashed_circle(d, cx, cy, R * 0.55, RED, 2)
+            # 内部群燃焼: 火炎は雲の内部, 中心に蒸発領域, 酸素はやや内部まで
+            for a in range(0, 360, 60):
+                rad = math.radians(a)
+                arrow(d, cx + (R + 20) * math.cos(rad), cy + (R + 20) * math.sin(rad),
+                      cx + (R * 0.6) * math.cos(rad), cy + (R * 0.6) * math.sin(rad), GREEN, 1, 7)
+            dashed_circle(d, cx, cy, R * 0.35, GRAY, 1)   # 内部の蒸発領域
+            dashed_circle(d, cx, cy, R * 0.62, RED, 2)    # 群火炎(内部)
         elif k == 2:
-            for (x, y) in drops:
-                d.ellipse((x - 3, y - 3, x + 3, y + 3), outline=BLUE, width=1, fill=BLUE)
-            dashed_circle(d, cx, cy, R * 0.9, RED, 2)
+            # 外部群燃焼: 火炎は雲の表面付近, 内部の大半が蒸発領域(酸素は届かない)
+            for a in range(0, 360, 60):
+                rad = math.radians(a)
+                arrow(d, cx + (R + 22) * math.cos(rad), cy + (R + 22) * math.sin(rad),
+                      cx + (R + 4) * math.cos(rad), cy + (R + 4) * math.sin(rad), GREEN, 1, 7)
+            dashed_circle(d, cx, cy, R * 0.72, GRAY, 1)   # 蒸発領域(広い)
+            dashed_circle(d, cx, cy, R * 0.98, RED, 2)    # 火炎(表面付近)
         else:
-            # 外殻だけに火炎
-            for (x, y) in drops:
-                d.ellipse((x - 3, y - 3, x + 3, y + 3), outline=BLUE, width=1, fill=BLUE)
-            dashed_circle(d, cx, cy, R + 6, RED, 3)
-        ctext(d, cx, cy + R + 26, lab, FT, BLACK)
-    arrow(d, 90, 350, 600, 350, GRAY, 2, 11)
-    ctext(d, 345, 368, "G 小 ------------------------> G 大", FT, GRAY)
-    note(d, "G小=内部まで酸素供給され個々に燃焼. G大=外殻に火炎が偏る(赤破線=火炎)")
+            # 外殻燃焼: 火炎は雲の外側, 大半が蒸発コア
+            for a in range(0, 360, 90):
+                rad = math.radians(a)
+                arrow(d, cx + (R + 30) * math.cos(rad), cy + (R + 30) * math.sin(rad),
+                      cx + (R + 12) * math.cos(rad), cy + (R + 12) * math.sin(rad), GREEN, 1, 7)
+            dashed_circle(d, cx, cy, R * 0.85, GRAY, 1)   # 蒸発コア(大)
+            dashed_circle(d, cx, cy, R + 12, RED, 3)      # 火炎(外殻)
+        ctext(d, cx, cy + R + 30, lab, FT, BLACK)
+        ctext(d, cx, cy + R + 50, fposs[k], FT, RED)
+    arrow(d, 70, 360, 600, 360, GRAY, 2, 11)
+    ctext(d, 335, 378, "G 小(酸素が内部まで届く) ---> G 大(酸素は外殻のみ)", FT, GRAY)
+    note(d, "緑=酸素供給 / 灰破線=蒸発領域 / 赤破線=火炎. G増で火炎は内部から外殻へ移る", y=340)
     save(im, "t1e23GroupCombustion")
 
 
@@ -537,17 +628,21 @@ def pulverized_coal():
 # ============================================================
 if __name__ == "__main__":
     drag_curve()          # 23-1
+    drag_curve_ans()      # 23-1 (回答後)
     preferential()        # 23-2
     collision_modes()     # 23-3
     weber_breakup()       # 23-4
     atomization()         # 23-5
+    atomization_ans()     # 23-5 (回答後)
     liquid_column()       # 23-6
     ddm_scheme()          # 23-7
     sauter_d32()          # 23-8
+    sauter_d32_ans()      # 23-8 (回答後)
     boiling_altitude()    # 23-9
     kelvin_eq()           # 23-10
     dsquared_history()    # 23-11
     extinction()          # 23-12
+    extinction_ans()      # 23-12 (回答後)
     group_combustion()    # 23-13
     coal_proximate()      # 23-14
     pulverized_coal()     # 23-15
