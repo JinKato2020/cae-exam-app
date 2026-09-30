@@ -340,11 +340,12 @@ def karlovitz_shear():
     bx = 70
     ys = [130, 165, 200, 235, 270, 305]
     lengths = [120, 100, 82, 64, 46, 28]  # 上ほど長い
+    # A点の流れ矢印(左上向き)と向きをそろえるため、背景せん断流も左向きに描く
     for y, Lg in zip(ys, lengths):
-        arrow(d, bx, y, bx + Lg, y, BLUE, 2, 10)
-    d.line((bx, 120, bx, 315), fill=GRAY, width=1)
-    ctext(d, bx - 6, 118, "y", FT, GRAY, "rm")
-    ctext(d, bx + 60, 100, "速度分布 Uu(y) (せん断流)", FT, BLUE)
+        arrow(d, bx + Lg, y, bx, y, BLUE, 2, 10)
+    d.line((bx + max(lengths) + 6, 120, bx + max(lengths) + 6, 315), fill=GRAY, width=1)
+    ctext(d, bx + max(lengths) + 12, 118, "y", FT, GRAY, "lm")
+    ctext(d, bx + 70, 100, "速度分布 Uu(y) (せん断流)", FT, BLUE)
     # 中央:湾曲した火炎面(曲率半径R)
     fcx, fcy, R = 470, 220, 150
     # 円弧の一部(左に凸)

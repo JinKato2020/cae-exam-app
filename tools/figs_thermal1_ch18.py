@@ -373,35 +373,24 @@ def stefan_boltzmann():
 
 # 18-12 t1e18GasRadiationBeer : ガスふく射のビール則(required)
 def gas_radiation_beer():
-    im, d = new(); title(d, "ガス層を通るふく射の減衰  I(x) = I(0) exp(-kappa x)")
+    im, d = new(); title(d, "ガス層(CO2・水蒸気)を通るふく射")
     # ガス層(厚さx)
-    gx0, gx1, gy0, gy1 = 180, 470, 120, 250
+    gx0, gx1, gy0, gy1 = 180, 470, 150, 300
     d.rectangle((gx0, gy0, gx1, gy1), outline=BLACK, width=2, fill=(238, 242, 248))
-    ctext(d, (gx0 + gx1) / 2, gy0 - 14, "ガス層(CO2・水蒸気)", FT, GRAY)
-    dim(d, gx0, gy1 + 22, gx1, gy1 + 22, "層の厚さ x", col=GRAY)
-    # 入射・透過
-    arrow(d, 90, 185, gx0, 185, RED, 4, 14)
-    ctext(d, 120, 165, "I(0)", FT, RED)
-    arrow(d, gx1, 185, 590, 185, RED, 2, 12)
-    ctext(d, 555, 165, "I(x)", FT, RED)
-    # 減衰曲線(層内で指数的に弱まる)
-    ox, oy, xl, yl = gx0, 380, gx1 - gx0, 110
-    pts = []
-    for i in range(0, 201):
-        t = i / 200
-        val = math.exp(-2.3 * t)
-        pts.append((ox + t * xl, oy - val * yl))
-    d.line(pts, fill=BLUE, width=3, joint="curve")
-    d.line((ox, oy, ox + xl, oy), fill=BLACK, width=1)
-    ctext(d, ox + xl * 0.55, oy - 0.75 * yl, "指数関数的に減衰", FT, BLUE, "lm")
-    ctext(d, ox - 6, oy - yl, "強度", FT, GRAY, "rm")
-    note(d, "層が厚いほど吸収が進みふく射強度が指数的に弱まる(kappa=吸収係数)")
+    ctext(d, (gx0 + gx1) / 2, gy0 - 16, "ガス層(CO2・水蒸気)", FT, GRAY)
+    dim(d, gx0, gy1 + 26, gx1, gy1 + 26, "層の厚さ x", col=GRAY)
+    # 入射・透過(透過側は細い矢印で弱まりを示す。法則・曲線は回答後へ)
+    arrow(d, 80, 225, gx0, 225, RED, 4, 14)
+    ctext(d, 118, 205, "入射光 I(0)", FT, RED)
+    arrow(d, gx1, 225, 600, 225, RED, 2, 12)
+    ctext(d, 558, 205, "透過光 I(x)", FT, RED)
+    note(d, "入射光がガス層(厚さx)を通って弱まる. 厚さと強度の関係は各自")
     save(im, "t1e18GasRadiationBeer")
 
 
 # 18-13 t1e18SurfaceReactionSites : 表面反応と活性点(required)
 def surface_reaction_sites():
-    im, d = new(); title(d, "触媒表面の活性点上での CO 酸化(反応前後)")
+    im, d = new(); title(d, "触媒表面の活性点上での CO 酸化(反応前の占有)")
     # 反応前(左)
     def surface(x0, x1, y, occ):
         # 触媒表面(下地)と活性点を丸で。occ = リスト[(ラベル,色) or None]
@@ -425,11 +414,11 @@ def surface_reaction_sites():
     # 矢印
     arrow(d, 330, 210, 400, 210, BLACK, 3, 13)
     ctext(d, 365, 188, "反応", FT, GRAY)
-    # 反応後(右)
+    # 反応後(右) — 生成物と活性点の内訳(答え)は描かない
     ctext(d, 500, 95, "反応後", FS, BLACK)
-    surface(410, 620, 250, [("CO2", RED), None, None])
-    ctext(d, 515, 285, "CO2(s) + 空き活性点  (活性点は保存)", FT, GRAY)
-    note(d, "吸着種1つが活性点1つを占有. 反応前後で活性点の総数を数える")
+    surface(410, 620, 250, [("CO2", RED), ("?", GRAY), ("?", GRAY)])
+    ctext(d, 515, 285, "CO2(s) + ?  (活性点の収支を合わせる)", FT, GRAY)
+    note(d, "吸着種1つが活性点1つを占有. 活性点の総数が保存するよう反応式を釣り合わせる(反応後の内訳は各自)")
     save(im, "t1e18SurfaceReactionSites")
 
 

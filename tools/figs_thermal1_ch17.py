@@ -179,8 +179,8 @@ def lewis_number():
     ctext(d, 165, 120, "熱の拡散", FS, RED)
     ctext(d, 165, 148, "(熱拡散率 alpha)", FT, RED)
     for i, yy in enumerate([190, 230, 270]):
-        arrow(d, 120 - i * 0, yy, fx - 20, yy, RED, 3, 12)
-    ctext(d, 150, 305, "温度勾配で熱が広がる", FT, GRAY)
+        arrow(d, fx - 20, yy, 120, yy, RED, 3, 12)
+    ctext(d, 150, 305, "反応帯(高温)から予熱側(低温)へ", FT, GRAY)
     # 右: 物質の拡散(濃度勾配)
     ctext(d, 495, 120, "物質(反応物)の拡散", FS, BLUE)
     ctext(d, 495, 148, "(拡散係数 D)", FT, BLUE)
@@ -322,17 +322,17 @@ def favre_averaging():
     ctext(d, 150, 145, "f = f_bar + f'", F, BLACK)
     ctext(d, 150, 185, "f_bar = 単純平均, f' = 変動", FT, GRAY)
     box(d, 380, 120, 610, 190, (250, 250, 250))
-    ctext(d, 495, 145, "変動の単純平均はゼロ", FT, BLACK)
-    ctext(d, 495, 172, "( f' のバー = 0 )", FS, BLUE)
+    ctext(d, 495, 145, "f_bar: 単純(時間)平均", FT, BLACK)
+    ctext(d, 495, 172, "f': 平均からのずれ(変動)", FT, GRAY)
     # 下段: ファーブル分解
     box(d, 40, 240, 620, 380, (235, 245, 235))
     ctext(d, 150, 265, "ファーブル分解(密度加重平均)", FS, GREEN)
     ctext(d, 150, 305, "f = f_tilde + f''", F, BLACK)
     ctext(d, 150, 345, "f_tilde = rho 加重平均", FT, GRAY)
     box(d, 380, 280, 610, 350, (250, 250, 250))
-    ctext(d, 495, 305, "変動の密度加重平均はゼロ", FT, BLACK)
-    ctext(d, 495, 332, "( f'' のチルダ = 0 )", FS, GREEN)
-    note(d, "消える対: レイノルズ変動<->単純平均, ファーブル変動<->密度加重平均")
+    ctext(d, 495, 305, "f_tilde: 密度加重平均", FT, BLACK)
+    ctext(d, 495, 332, "f'': 加重平均からのずれ", FT, GRAY)
+    note(d, "2通りの平均と分解の定義(どの変動が消えるかは各自)")
     save(im, "t1e17FavreAveraging")
 
 
@@ -418,7 +418,7 @@ def continuity():
 # 17-14 t1e17StateEquation : 多成分状態方程式の導出フロー(required・式なし)
 # ============================================================
 def state_equation():
-    im, d = new(); title(d, "多成分理想気体の状態方程式(導出の流れ)")
+    im, d = new(); title(d, "多成分理想気体の状態方程式(記号の整理)")
     # 左: 複数化学種が混在する箱
     box(d, 40, 100, 250, 320, (250, 250, 250))
     ctext(d, 145, 122, "混合気体", FT, GRAY)
@@ -428,24 +428,16 @@ def state_equation():
     for (px, py, col, lab) in specs:
         pcircle(d, px, py, 18, FILL1, col, 2); ctext(d, px, py, lab, FT, col)
     ctext(d, 145, 305, "化学種 i が混在", FT, GRAY)
-    # 矢印1: 各種のモル濃度
-    arrow(d, 258, 210, 320, 210, BLACK, 3, 12)
-    box(d, 325, 150, 500, 270, (235, 242, 250))
-    ctext(d, 412, 175, "各化学種の", FT, BLACK)
-    ctext(d, 412, 205, "モル濃度", FS, BLUE)
-    ctext(d, 412, 235, "rho Yi / Wi", FT, BLACK)
-    # 矢印2: 総和 -> 全モル濃度
-    arrow(d, 412, 278, 412, 320, BLACK, 3, 12)
-    ctext(d, 412, 300, "総和", FT, GRAY, "lm")
-    box(d, 300, 328, 525, 388, (235, 245, 235))
-    ctext(d, 412, 358, "全モル濃度 c = 各種の和", FT, GREEN)
-    # 矢印3: 理想気体式へ
-    arrow(d, 528, 358, 600, 358, BLACK, 3, 12)
-    box(d, 540, 150, 640, 300, FILL2)
-    ctext(d, 590, 200, "理想", FT, BLACK)
-    ctext(d, 590, 228, "気体", FT, BLACK)
-    ctext(d, 590, 262, "p = c R0 T", FT, RED)
-    note(d, "各種モル濃度 rho Yi/Wi を足して全モル濃度 -> p=cR0T へ(最終式は各自)")
+    # 記号の定義パネル(導出・最終式は回答後の解説へ)
+    box(d, 320, 105, 640, 315, (250, 250, 250))
+    ctext(d, 480, 128, "記号の定義", FT, BLACK)
+    defs = ["p : 圧力", "rho : 密度", "T : 温度", "R0 : 一般気体定数",
+            "Yi : 化学種 i の質量分率", "Wi : 化学種 i の分子量"]
+    for j, s in enumerate(defs):
+        ctext(d, 342, 160 + j * 26, s, FT, GRAY, "lm")
+    box(d, 360, 330, 600, 388, FILL2)
+    ctext(d, 480, 359, "状態方程式  p = ?", FS, BLACK)
+    note(d, "混合気の記号を整理して状態方程式の形を選ぶ(導出は解説で)")
     save(im, "t1e17StateEquation")
 
 
