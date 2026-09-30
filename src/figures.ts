@@ -600,6 +600,7 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   f5SerendipLagrange: require('../assets/figures/f5SerendipLagrange.png'),
   f5SeriesSprings: require('../assets/figures/f5SeriesSprings.png'),
   f5ShrinkFit: require('../assets/figures/f5ShrinkFit.png'),
+  f5ShrinkFitSetup: require('../assets/figures/f5ShrinkFitSetup.png'),
   f5SolveFlow: require('../assets/figures/f5SolveFlow.png'),
   f5SymTruss: require('../assets/figures/f5SymTruss.png'),
   f5Symmetry: require('../assets/figures/f5Symmetry.png'),
