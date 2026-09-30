@@ -207,29 +207,29 @@ def fall_off_curve():
     ctext(d, ox + xl + 26, oy, "log P", FS, BLACK, "lm")
     arrow(d, ox, oy, ox, oy - yl - 10, BLACK, 2, 11)
     ctext(d, ox - 12, oy - yl - 12, "log k", FS, BLACK, "rm")
-    # 低圧漸近線(傾き1)
-    lx0, lx1 = ox + 20, ox + 250
-    ly0, ly1 = oy - 20, oy - 0.62 * yl
-    dashed(d, lx0, ly0, lx1 + 80, ly1 - 60, GRAY, 2, 8, 5)
-    ctext(d, ox + 90, oy - 0.30 * yl, "低圧: 傾き1", FT, BLUE)
-    # 高圧漸近線(水平 k_inf)
-    ky = oy - 0.82 * yl
-    dashed(d, ox + 180, ky, ox + xl, ky, GRAY, 2, 8, 5)
+    # k = k_inf * Pr/(1+Pr), Pr ∝ P. log-logで 傾き d(logk)/d(logP)=1/(1+Pr):
+    #   低圧(Pr->0)で1, 高圧(Pr->∞)で0 へ単調減少 -> 上に凸(concave)の曲線
+    v_inf, A = 0.82, 0.30
+
+    def V(t):
+        logPr = -2.0 + 4.2 * t          # 横軸 logP に比例(Pr∝P)
+        Pr = 10 ** logPr
+        return v_inf + A * (logPr - math.log10(1 + Pr))
+    # 低圧漸近線(圧力に比例=log-logで直線・破線)
+    la1t = 0.60
+    la0 = v_inf + A * (-2.0)
+    la1 = v_inf + A * (-2.0 + 4.2 * la1t)
+    dashed(d, ox, oy - la0 * yl, ox + la1t * xl, oy - la1 * yl, GRAY, 2, 8, 5)
+    ctext(d, ox + 0.11 * xl, oy - 0.33 * yl, "低圧漸近線", FT, BLUE, "lm")
+    # 高圧漸近線(水平 k_inf・破線)
+    ky = oy - v_inf * yl
+    dashed(d, ox + 0.40 * xl, ky, ox + xl, ky, GRAY, 2, 8, 5)
     ctext(d, ox + xl - 30, ky - 14, "高圧: k_inf に漸近", FT, RED, "rm")
-    # S字曲線(fall-off)
-    pts = []
-    for i in range(0, 471):
-        t = i / 470
-        # 低圧で傾き1、高圧で水平
-        lo = 0.08 + 0.90 * t          # 低圧漸近(直線)
-        hi = 0.82                      # 高圧漸近(水平)
-        w = 0.5 * (1 + math.tanh((t - 0.55) * 6))  # 遷移の重み
-        v = lo * (1 - w) + hi * w
-        v = min(v, 0.82)
-        pts.append((ox + t * xl, oy - v * yl))
+    # フォールオフ曲線(傾きが1->0へ単調に緩くなる・上に凸. 傾き増加区間なし)
+    pts = [(ox + (i / 470) * xl, oy - V(i / 470) * yl) for i in range(0, 471)]
     d.line(pts, fill=BLACK, width=3, joint="curve")
-    ctext(d, ox + xl * 0.5, oy - 0.95 * yl, "遷移域 = フォールオフ領域", FT, GRAY)
-    note(d, "低圧は圧力比例・高圧は頭打ち. 傾きの数値は各自")
+    ctext(d, ox + xl * 0.54, oy - 0.56 * yl, "フォールオフ領域", FT, GRAY)
+    note(d, "低圧は圧力に比例・高圧は頭打ち. 傾きは単調に緩くなる(上に凸)")
     save(im, "t1e19FallOffCurve")
 
 

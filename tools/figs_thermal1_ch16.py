@@ -158,8 +158,8 @@ def damped_oscillation():
     im, d = new(); title(d, "気泡の自由振動(振幅が急激に減衰)")
     ox, oy, xl, yl = 90, 235, 500, 150
     axes(d, ox, oy, xl + 20, yl + 10, "時間 t", "")
-    # 縦軸ラベル
-    ctext(d, ox - 30, oy - yl - 4, "気泡半径", FT, BLACK, "rm")
+    # 縦軸ラベル(0=平衡を中心に減衰する変位)
+    ctext(d, ox - 6, oy - yl - 20, "平衡半径からの変位", FT, BLACK, "lm")
     # 平衡線
     dashed(d, ox, oy, ox + xl, oy, GRAY, 1, 6, 5)
     ctext(d, ox + xl + 24, oy, "平衡", FT, GRAY, "lm")

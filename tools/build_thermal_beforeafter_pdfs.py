@@ -81,17 +81,17 @@ def build_html(data, subject_full, grade, after):
 <title>{esc(cat)}</title>
 <style>
 @page {{ size:A4; margin:14mm 12mm; }}
-body{{font-family:'Meiryo','Yu Gothic',sans-serif;color:#111;line-height:1.65;font-size:11pt;}}
-h1{{font-size:16pt;border-bottom:2px solid #2456c9;padding-bottom:4px;}}
-.sub{{color:#555;font-size:9pt;margin-bottom:8px;}}
-.card{{break-inside:avoid;border:1px solid #ccc;border-radius:8px;padding:10px 12px;margin:9px 0;}}
+body{{font-family:'Meiryo','Yu Gothic',sans-serif;color:#111;line-height:1.55;font-size:10.5pt;}}
+h1{{font-size:15pt;border-bottom:2px solid #2456c9;padding-bottom:3px;margin:0 0 2px;}}
+.sub{{color:#555;font-size:9pt;margin-bottom:6px;}}
+.card{{break-inside:avoid;border:1px solid #ccc;border-radius:8px;padding:8px 11px;margin:6px 0;}}
 .chead{{margin-bottom:4px;}} .num{{font-weight:700;color:#2456c9;}} .ttl{{font-weight:700;}}
 .meta{{color:#666;font-size:8.5pt;}}
 .q{{margin:4px 0;}}
-.fig{{text-align:center;margin:8px 0;}} .fig img{{max-width:74%;border:1px solid #ddd;border-radius:6px;}}
-ol.choices{{margin:6px 0;padding-left:20px;}} ol.choices li.ok{{font-weight:700;background:#eaf7ee;}}
+.fig{{text-align:center;margin:6px 0;}} .fig img{{max-width:60%;border:1px solid #ddd;border-radius:6px;}}
+ol.choices{{margin:5px 0;padding-left:20px;}} ol.choices li.ok{{font-weight:700;background:#eaf7ee;}}
 .ans{{color:#1f9d55;margin:4px 0;}}
-.exp{{background:#f7f7f4;border-left:3px solid #2456c9;padding:6px 10px;border-radius:4px;font-size:10pt;}}
+.exp{{background:#f7f7f4;border-left:3px solid #2456c9;padding:6px 10px;border-radius:4px;font-size:9.5pt;break-inside:auto;}}
 .eline{{margin:3px 0;}}
 mjx-container{{overflow-x:auto;}}
 </style>

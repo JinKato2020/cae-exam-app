@@ -411,11 +411,11 @@ def dsquared_history():
     arrow(d, ox, oy, ox, oy - yl - 10, BLACK, 2, 11)
     ctext(d, ox - 12, oy - yl - 12, "(粒径)^2 = D^2", FS, BLACK, "rm")
     # 期間区切り: A[0..tA], B[tA..tB], C[tB..tend]
-    tA, tB, tend = 0.22, 0.60, 0.92
-    yA = 0.86   # 初期(ほぼ平坦の加熱)
-    yB = 0.78   # A終わり
-    yC = 0.30   # B終わり(蒸発で減少)
-    yE = 0.0    # 燃えつき(D^2 -> 0)
+    tA, tB, tend = 0.20, 0.52, 0.86
+    yA = 0.90   # 初期(ほぼ平坦の加熱)
+    yB = 0.82   # A終わり
+    yC = 0.55   # B終わり(蒸発でゆるやかに直線減少)
+    yE = 0.0    # 燃えつき(D^2 -> 0). C(燃焼)はBより急に減少
     def X(t): return ox + t * xl
     def Y(v): return oy - v * yl
     # A: ほぼ平坦

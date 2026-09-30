@@ -245,7 +245,7 @@
       "topic": "保存スカラー（Conserved Scalar）",
       "type": "mc",
       "difficulty": 2,
-      "question": "空気とメタン（CH4）の拡散火炎において、保存スカラー（Conserved Scalar）として用いることができる量はどれか。",
+      "question": "空気とメタン（CH4）の拡散火炎において、窒素を含む反応（NO生成など）は無視できるものとする。保存スカラー（Conserved Scalar）として用いることができる量はどれか。",
       "choices": [
         "CH4の質量分率",
         "N2の質量分率",

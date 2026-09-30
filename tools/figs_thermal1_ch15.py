@@ -326,7 +326,6 @@ def critical_heat_flux_tube():
     # 出口
     arrow(d, 562, 210, 610, 210, GRAY, 3, 13)
     ctext(d, 590, 185, "出口", FT, GRAY); ctext(d, 585, 235, "クオリティ最大", FT, GRAY)
-    ctext(d, 335, 330, "限界熱流束状態への移行はクオリティ最大の出口で生じる", FT, GRAY)
     note(d, "x=(1/h_V)(4qL/GD - h_IN) で出口クオリティが決まる(数値は各自)")
     save(im, "t1e15CriticalHeatFluxTube")
 
@@ -618,7 +617,8 @@ def step_pressure_response():
     D1, D2 = 0.85, 0.45
     dashed(d, ox, Y(D1), ox + xl, Y(D1), LGRAY, 1, 6, 5); ctext(d, ox - 8, Y(D1), "D1", FT, GRAY, "rm")
     d.line((ox, Y(D2), ox + xl, Y(D2)), fill=GREEN, width=2); ctext(d, ox + xl + 6, Y(D2), "D2", FT, GREEN, "lm")
-    # 応答: D1から急収縮しD2を行き過ぎ、減衰リバウンド
+    # 応答: D1から(増加せず)ただちに収縮し, D2を下回って行き過ぎ, 減衰リバウンドでD2へ
+    #   v(tt)=D2+(D1-D2)exp(-λtt)cos(ωtt): tt=0でちょうどD1から始まり, 直後は単調収縮
     pts = []
     for i in range(121):
         t = i / 120
@@ -627,10 +627,10 @@ def step_pressure_response():
         else:
             tt = (t - 0.12) / 0.88
             osc = math.exp(-3.0 * tt) * math.cos(2 * math.pi * 2.2 * tt)
-            v = D2 + (D1 - D2) * osc * 1.15
+            v = D2 + (D1 - D2) * osc
         pts.append((X(t), Y(max(v, 0.05))))
     d.line(pts, fill=BLUE, width=3, joint="curve")
-    ctext(d, X(0.22), Y(0.12), "深く収縮(行き過ぎ)", FT, RED)
+    ctext(d, X(0.26), Y(0.20), "D2を下回り行き過ぎ", FT, RED)
     ctext(d, X(0.6), Y(0.72), "減衰リバウンド", FT, BLUE)
     ctext(d, X(0.9), Y(D2) - 26, "D2 に収束", FT, GREEN)
     note(d, "D1から急収縮しD2を通り越し, 減衰しながら跳ね返ってD2に落ち着く")

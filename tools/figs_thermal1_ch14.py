@@ -401,7 +401,7 @@ def block_partition():
 # 14-13 t1e14BBOSedimentation : 沈降球の力のつり合い(required・数値なし)
 # ============================================================
 def bbo_sedimentation():
-    im, d = new(); title(d, "静止流体中を沈降する球形粒子(Re << 1)")
+    im, d = new(); title(d, "静止流体中を沈降する球形粒子(ストークス近似 Re_p<=1)")
     # 流体背景(薄い水平線)
     for yy in range(120, 360, 26):
         d.line((90, yy, 570, yy), fill=(232, 238, 245), width=1)
@@ -409,14 +409,14 @@ def bbo_sedimentation():
     pcircle(d, cx, cy, 40, FILL1); ctext(d, cx, cy, "a, rho_p", FT)
     # 重力(下)
     force(d, cx, cy + 40, 0, 70, "重力 (rho_p)", RED)
-    # 浮力(上)
-    force(d, cx - 22, cy - 40, 0, -60, "浮力 (rho)", BLUE)
-    # ストークス抗力(上)
-    force(d, cx + 22, cy - 40, 0, -60, "抗力 6*pi*mu*a*U", GREEN)
+    # 浮力(上・左へ振ってラベル左寄せ)
+    force(d, cx - 20, cy - 40, -10, -58, "浮力 (rho)", BLUE)
+    # ストークス抗力(上・右へ振り長めにしてラベル右寄せ・高さをずらす)
+    force(d, cx + 20, cy - 40, 10, -74, "抗力 6*pi*mu*a*U", GREEN)
     # 沈降方向
     arrow(d, 520, 180, 520, 300, GRAY, 2, 11); ctext(d, 540, 240, "沈降 U", FT, GRAY, "lm")
     ctext(d, cx, 360, "終端状態では 重力 = 浮力 + ストークス抗力 でつり合う", FT, GRAY)
-    note(d, "粒子レイノルズ数 Re << 1(ストークス域). 加速度・非定常抗力は終端で消える")
+    note(d, "ストークス近似(Re_p<=1)の域. 加速度・非定常抗力は終端で消える")
     save(im, "t1e14BBOSedimentation")
 
 
