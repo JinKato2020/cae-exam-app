@@ -266,19 +266,19 @@
     {
       "id": "solid2-2-10",
       "number": "2-10",
-      "title": "円錐テーパ棒の伸び",
-      "topic": "可変断面・積分",
+      "title": "楔形平板(幅が線形変化)の伸び",
+      "topic": "断面が変化する棒の伸び — 楔形平板(幅が線形→対数)",
       "type": "mc",
       "difficulty": 3,
-      "question": "直径が一端 $d_1$ から他端 $d_2$ へ直線的に細くなる円錐台状の丸棒(長さ $L$、縦弾性係数 $E$)に、軸方向引張荷重 $P$ が作用する。全体の伸び $\\delta$ として正しいものはどれか。",
+      "question": "厚さ $t$ が一定で、幅が両端の $b$ から中央の $a$($a>b$)まで直線的に変化する対称な楔形平板(全長 $2L$、縦弾性係数 $E$)の両端に、軸方向引張荷重 $P$ を作用させる。全体の伸び $\\delta$ として正しいものはどれか。",
       "choices": [
-        "$\\delta=\\dfrac{16PL}{\\pi E\\,(d_1+d_2)^2}$",
-        "$\\delta=\\dfrac{4PL}{\\pi E\\, d_1 d_2}$",
-        "$\\delta=\\dfrac{4PL}{\\pi E\\, d_1^{2}}$",
-        "$\\delta=\\dfrac{PL}{\\pi E\\, d_1 d_2}$"
+        "$\\delta=\\dfrac{2PL}{E\\,t\\,(a-b)}\\,\\ln\\dfrac{a}{b}$",
+        "$\\delta=\\dfrac{4PL}{E\\,t\\,(a+b)}$",
+        "$\\delta=\\dfrac{PL}{E\\,t\\,(a-b)}\\,\\ln\\dfrac{a}{b}$",
+        "$\\delta=\\dfrac{2PL}{E\\,t\\,(a-b)}\\cdot\\dfrac{a}{b}$"
       ],
-      "answer": 2,
-      "explanation": "【基礎】断面が変わるので $\\delta=\\dfrac{PL}{AE}$ は使えない。微小要素で $d\\delta=\\dfrac{P\\,dx}{E\\,A(x)}$、$A(x)=\\dfrac{\\pi d(x)^2}{4}$、$d(x)$ は $d_1\\to d_2$ の1次関数。\n【計算】$\\delta=\\dfrac{4P}{\\pi E}\\displaystyle\\int_0^L\\dfrac{dx}{d(x)^2}=\\dfrac{4P}{\\pi E}\\cdot\\dfrac{L}{d_1 d_2}=\\dfrac{4PL}{\\pi E\\, d_1 d_2}$。\n【ポイント】丸棒(面積 $\\propto d^2$)は $1/d^2$ 積分なので答えに対数は出ず $\\dfrac{1}{d_1 d_2}$ になる。幅が線形の角棒だと $\\ln$ が出る。\n【引っかけ】①平均直径で一様棒とみなす最頻出の誤り。③両端が同径($d_1$)と誤る。④係数 $4$ を落とした。",
+      "answer": 1,
+      "explanation": "【基礎】断面が変わるので $\\delta=\\dfrac{PL}{AE}$ は使えない。微小要素で $d\\delta=\\dfrac{P\\,dx}{E\\,A(x)}$。厚さ $t$ 一定・幅が線形なので、中央からの距離 $x$ を用いて $A(x)=\\{a-(a-b)\\dfrac{x}{L}\\}\\,t$(断面積は $x$ に線形)。\n【計算】対称なので右半分($0\\le x\\le L$)を2倍する。$\\delta=2\\displaystyle\\int_0^L\\dfrac{P\\,dx}{E\\,A(x)}=\\dfrac{2P}{E t}\\int_0^L\\dfrac{dx}{a-(a-b)x/L}=\\dfrac{2PL}{E\\,t\\,(a-b)}\\ln\\dfrac{a}{b}$。\n【ポイント】断面積が幅に比例＝$x$ に線形なので、積分は $1/(1$次式$)$ となり対数 $\\ln(a/b)$ が現れる。これが本問の要点。\n【引っかけ】②平均幅 $(a+b)/2$ の一様棒とみなすと $\\dfrac{4PL}{Et(a+b)}$ で対数が出ず誤り。③は対称の2倍を忘れた片側だけの値。④対数の代わりに比 $a/b$ を用いた誤り。なお丸棒(面積$\\propto d^2$)だと結果は $1/(d_1 d_2)$ 型で対数は出ず、本問(平板)とは別問題である。",
       "hasMath": true,
       "figureImage": "taperbar",
       "preFigureImage": "s2TaperBarSetup",
@@ -289,7 +289,8 @@
       "relatedFormulas": [
         "bar-elongation"
       ],
-      "figure": "helpful"
+      "figure": "helpful",
+      "figureHint": "対称な楔形平板(中央幅a→端幅b・厚t一定)、幅が線形→伸びに対数"
     },
     {
       "id": "solid-rigidbar-wire",
