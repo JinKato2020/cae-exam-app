@@ -3,7 +3,7 @@
 元の生成スクリプトはリポジトリに残っていないため figlib.py で作り直す。
  f4LinearInterp : u1=3,u2=9,x=3L/4 → u=7.5mm(誤:u1=2,u2=6,x=L/4,3mm)
  f4InclinedSpring: k=120,θ=60°,k_xy=k sinθcosθ≈52.0(誤:k=100,30°,k_xx=75)
- f5BodyForce    : 2節点棒要素の両端に19.25Nずつ(誤:四隅4節点)
+ f5BodyForce    : 物体力(体積力:重力/遠心力/浮力,dV) と 表面力(圧力,dS) の対比 ※5-12概念化に伴い差替
  f5SeriesSprings: 3ばね・4節点,u4=6→u2=3,u3=4.5(誤:2ばね・3節点)
  num6ElemGauss  : 8点を奥行き2層で表示(誤:手前1面に8点)
 実行すると assets/figures/*.png を上書きする。
@@ -81,28 +81,29 @@ def fig_f4_inclined_spring():
 
 
 def fig_f5_body_force():
+    # 5-12(概念:物体力の取扱い)用。物体力=体積力(重力/遠心力/浮力・体積全体dV)と
+    # 表面力(圧力・表面のみdS)の違いを対比。圧力は表面力=物体力でない(=誤り選択の答え)。
     im, d = new()
-    title(d, "物体力(自重)→ 体積積分で等価節点力へ")
-    # 左:自重が体積全体に作用する棒
-    x0, x1, y0, y1 = 95, 165, 120, 300
-    d.rectangle((x0, y0, x1, y1), outline=BLACK, width=3, fill=FILL1)
-    for cx in (112, 130, 148):
-        for cy in (140, 180, 220, 260):
-            arrow(d, cx, cy, cx, cy + 24, GRAY, 2, 7)
-    ctext(d, (x0 + x1) / 2, 360, "物体力 b(体積全体に作用)", FT, BLACK)
-    # 中央:変換
-    arrow(d, 205, 210, 298, 210, BLUE, 3, 13)
-    ctext(d, 251, 190, "∫N^T b dV", FT, BLUE)
-    # 右:2節点棒要素(両端の等価節点力)
-    bx = 405
-    d.line((bx, 120, bx, 300), fill=BLACK, width=6)
-    for ny in (120, 300):
-        node(d, bx, ny, 7)
-        dashed(d, bx, ny, 450, ny)
-        arrow(d, 450, ny, 450, ny + 42, RED, 4, 14)
-        ctext(d, 460, ny + 21, "19.25 N", FS, RED, "lm")
-    ctext(d, bx, 360, "等価節点力(両端2節点)", FT, BLACK)
-    note(d, "線形2節点要素 → 総重量38.5 N を両端で均等折半(各19.25 N)")
+    title(d, "物体力(体積力) と 表面力(圧力) の違い")
+    # 左:物体力=体積全体に作用
+    lx0, lx1, y0, y1 = 90, 235, 130, 300
+    d.rectangle((lx0, y0, lx1, y1), outline=BLACK, width=3, fill=FILL1)
+    for cx in range(lx0 + 24, lx1 - 10, 36):
+        for cy in range(y0 + 22, y1 - 6, 40):
+            arrow(d, cx, cy, cx, cy + 22, GRAY, 2, 7)
+    ctext(d, (lx0 + lx1) // 2, 108, "物体力(体積力)", FS, BLACK)
+    ctext(d, (lx0 + lx1) // 2, 322, "重力・遠心力・浮力", FT, BLACK)
+    ctext(d, (lx0 + lx1) // 2, 348, "体積全体に作用  ∫N^T b dV", FT, GRAY)
+    # 右:表面力=表面のみに作用(圧力)
+    rx0, rx1 = 425, 570
+    d.rectangle((rx0, y0, rx1, y1), outline=BLACK, width=3, fill=FILL1)
+    for cx in range(rx0 + 18, rx1 - 6, 26):
+        arrow(d, cx, y0 - 26, cx, y0 - 2, BLUE, 2, 8)   # 上面(表面)に垂直な圧力
+    ctext(d, (rx0 + rx1) // 2, 108, "表面力(圧力)", FS, BLUE)
+    ctext(d, (rx0 + rx1) // 2, 322, "圧力は表面だけに作用", FT, BLUE)
+    ctext(d, (rx0 + rx1) // 2, 348, "面のみ  ∫N^T p dS", FT, GRAY)
+    ctext(d, 330, 215, "≠", FL, BLACK)
+    note(d, "物体力=体積全体(dV)。圧力は表面のみ(dS)=表面力→物体力ではない。")
     save(im, "f5BodyForce")
 
 
