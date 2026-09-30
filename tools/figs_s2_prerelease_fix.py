@@ -126,32 +126,9 @@ ctext(d, 530, base+98, "正確(たわみ大, 比→1)", FT, GRAY)
 note(d, "剛い順=三角形>4節点>8節点。比=計算たわみ/理論たわみ(計算=理論×比、0.25→0.80×0.25=0.20mm)。")
 save(im, "elem7ElemBendRank")
 
-# ============================================================ 5-11 f5Pressure2Nodal
-im, d = new()
-title(d, "2節点辺の線形分布圧力 → 等価節点力")
-n1 = (150, 250); n2 = (470, 250)
-# 圧力プロファイル(左 p1=200, 右 p2=400 → 高さ2:1)
-TL = (n1[0], n1[1]-45); TR = (n2[0], n2[1]-90)
-d.polygon([n1, n2, TR, TL], outline=BLUE, width=2, fill=(232, 238, 255))
-nseg = 6
-for i in range(nseg+1):
-    x = n1[0] + (n2[0]-n1[0])*i/nseg
-    topy = TL[1] + (TR[1]-TL[1])*i/nseg
-    arrow(d, x, topy, x, n1[1]-2, BLUE, 2, 8)
-d.line((n1[0], n1[1], n2[0], n2[1]), fill=BLACK, width=5)
-node(d, n1[0], n1[1], 8); node(d, n2[0], n2[1], 8)
-ctext(d, n1[0]-6, n1[1]+20, "節点1", FT, BLACK, "mm")
-ctext(d, n2[0]+6, n2[1]+20, "節点2", FT, BLACK, "mm")
-ctext(d, TL[0]-8, TL[1]-14, "p₁=200 N/mm", FT, BLUE, "mm")
-ctext(d, TR[0]+2, TR[1]-14, "p₂=400 N/mm", FT, BLUE, "mm")
-# 等価節点力（下向き・節点2が長い）
-arrow(d, n1[0], n1[1]+10, n1[0], n1[1]+62, RED, 4, 13)
-arrow(d, n2[0], n2[1]+10, n2[0], n2[1]+75, RED, 4, 13)
-ctext(d, n1[0], n1[1]+80, "f₁=13333 N", FS, RED)
-ctext(d, n2[0], n2[1]+92, "f₂=16667 N", FS, RED)
-ctext(d, 330, 120, "f₁=L/6(2p₁+p₂),  f₂=L/6(p₁+2p₂)", FT, GRAY)
-note(d, "節点2に多く配分(半々でない)。f₁+f₂=13333+16667=30000 N＝台形の合力。")
-save(im, "f5Pressure2Nodal")
+# 5-11 の図(f5Pressure2Nodal/f5PressureSetup)は tools/figs_s2_5_11.py へ移設。
+# 公式問5-11は「均等分布力(圧力)の与え方」の概念問題のため、一様圧力版に作り直した。
+# (旧=線形分布(台形)荷重の等価節点力計算という主眼ずれの図。2026-09-30 差し替え)
 
 # ============================================================ 6-6e num6SOR
 im, d = new()

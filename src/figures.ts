@@ -593,6 +593,7 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   f5NeumannLoad: require('../assets/figures/f5NeumannLoad.png'),
   f5NodeOrder: require('../assets/figures/f5NodeOrder.png'),
   f5Pressure2Nodal: require('../assets/figures/f5Pressure2Nodal.png'),
+  f5PressureSetup: require('../assets/figures/f5PressureSetup.png'),
   f5QuadTriCoord: require('../assets/figures/f5QuadTriCoord.png'),
   f5Reduction: require('../assets/figures/f5Reduction.png'),
   f5ResidualStrain: require('../assets/figures/f5ResidualStrain.png'),
