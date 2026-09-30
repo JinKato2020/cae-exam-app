@@ -194,6 +194,18 @@ def f_stencil():
     dim(d, cx - h - 34, cy, cx - h - 34, cy - h, "h")
     axes(d, 120, 360, 90, 90, "x", "y")
     note(d, "中央=0、右=1・右上=2・上=3・左上=4・左=5・左下=6・下=7・右下=8")
+    save(im, "t1e2StencilSetup")
+    # 回答後: ラプラシアンに使う5点(0,1,3,5,7)を強調し、対角(2,4,6,8)は不使用＋結果
+    for k in (0, 1, 3, 5, 7):
+        gx, gy = pos[k]; x, y = cx + gx * h, cy + gy * h
+        d.ellipse((x - 16, y - 16, x + 16, y + 16), outline=RED, width=3)
+    for k in (2, 4, 6, 8):
+        gx, gy = pos[k]; x, y = cx + gx * h, cy + gy * h
+        d.line((x - 9, y - 9, x + 9, y + 9), fill=GRAY, width=2)
+        d.line((x - 9, y + 9, x + 9, y - 9), fill=GRAY, width=2)
+    d.rectangle((40, 56, 268, 116), outline=BLACK, width=2, fill=(238, 244, 236))
+    ctext(d, 154, 74, "5点(0,1,3,5,7)を使用", FT, BLACK)
+    ctext(d, 154, 96, "対角は不使用 → ∇²≈20", FT, RED)
     save(im, "t1e2Stencil")
 
 

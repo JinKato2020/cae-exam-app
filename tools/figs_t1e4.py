@@ -193,6 +193,36 @@ def f_pde_grid():
 # ============================================================ 4-5 補間関数の対比
 def f_interpolation():
     im, d = new()
+
+    def _sm(pts, k=18):
+        # Catmull-Rom：節点を通る滑らかな補間曲線
+        P = [pts[0]] + list(pts) + [pts[-1]]
+        out = []
+        for i in range(1, len(P) - 2):
+            p0, p1, p2, p3 = P[i - 1], P[i], P[i + 1], P[i + 2]
+            for j in range(k + 1):
+                t = j / k; t2 = t * t; t3 = t2 * t
+                x = 0.5 * (2 * p1[0] + (-p0[0] + p2[0]) * t + (2 * p0[0] - 5 * p1[0] + 4 * p2[0] - p3[0]) * t2 + (-p0[0] + 3 * p1[0] - 3 * p2[0] + p3[0]) * t3)
+                y = 0.5 * (2 * p1[1] + (-p0[1] + p2[1]) * t + (2 * p0[1] - 5 * p1[1] + 4 * p2[1] - p3[1]) * t2 + (-p0[1] + 3 * p1[1] - 3 * p2[1] + p3[1]) * t3)
+                out.append((x, y))
+        return out
+
+    def _bs(pts, k=18):
+        # 一様3次B-spline：制御点を通らない近似曲線（制御多角形の内側）
+        P = [pts[0]] + list(pts) + [pts[-1]]
+        out = []
+        for i in range(1, len(P) - 2):
+            p0, p1, p2, p3 = P[i - 1], P[i], P[i + 1], P[i + 2]
+            for j in range(k + 1):
+                t = j / k; t2 = t * t; t3 = t2 * t
+                b0 = (-t3 + 3 * t2 - 3 * t + 1) / 6.0
+                b1 = (3 * t3 - 6 * t2 + 4) / 6.0
+                b2 = (-3 * t3 + 3 * t2 + 3 * t + 1) / 6.0
+                b3 = t3 / 6.0
+                out.append((b0 * p0[0] + b1 * p1[0] + b2 * p2[0] + b3 * p3[0],
+                            b0 * p0[1] + b1 * p1[1] + b2 * p2[1] + b3 * p3[1]))
+        return out
+
     title(d, "代数的格子生成の補間関数")
     panels = [(40, 62, 336, 236, "ラグランジュ"), (348, 62, 620, 236, "エルミート"),
               (40, 250, 336, 404, "スプライン (B-spline)"), (348, 250, 620, 404, "Vinokur")]
@@ -201,29 +231,26 @@ def f_interpolation():
         ctext(d, (x0 + x1) / 2, y0 + 18, ttl, FS, BLACK)
         cx = (x0 + x1) / 2
         if ttl == "ラグランジュ":
-            pxs = [x0 + 40, x0 + 120, x0 + 200, x0 + 250]
-            pys = [y1 - 40, y1 - 110, y1 - 60, y1 - 100]
-            d.line(list(zip(pxs, pys)), fill=BLUE, width=3, joint="curve")
-            for px, py in zip(pxs, pys):
+            pts = [(x0 + 40, y1 - 40), (x0 + 120, y1 - 110), (x0 + 200, y1 - 60), (x0 + 250, y1 - 100)]
+            d.line(_sm(pts), fill=BLUE, width=3, joint="curve")
+            for px, py in pts:
                 node(d, px, py, 6, BLUE, BLUE)
-            ctext(d, cx, y1 - 16, "指定点を全て通る", FT, GRAY)
+            ctext(d, cx, y1 - 16, "多項式が指定点を全て通る", FT, GRAY)
         elif ttl == "エルミート":
-            pxs = [x0 + 50, x0 + 150, x0 + 220]
-            pys = [y1 - 50, y1 - 100, y1 - 55]
-            d.line(list(zip(pxs, pys)), fill=BLUE, width=3, joint="curve")
-            for px, py in zip(pxs, pys):
+            pts = [(x0 + 50, y1 - 50), (x0 + 150, y1 - 100), (x0 + 220, y1 - 55)]
+            d.line(_sm(pts), fill=BLUE, width=3, joint="curve")
+            for px, py in pts:
                 node(d, px, py, 6, BLUE, BLUE)
                 d.line((px - 22, py + 8, px + 22, py - 8), fill=RED, width=2)  # 勾配(接線)
-            ctext(d, cx, y1 - 16, "位置＋勾配(接線)を指定", FT, GRAY)
+            ctext(d, cx, y1 - 16, "位置＋勾配(接線)を指定・滑らか", FT, GRAY)
         elif ttl.startswith("スプライン"):
-            pxs = [x0 + 30, x0 + 90, x0 + 150, x0 + 210, x0 + 260]
-            pys = [y1 - 30, y1 - 70, y1 - 45, y1 - 80, y1 - 40]
-            for i in range(len(pxs) - 1):
-                col = BLUE if i % 2 == 0 else GREEN
-                d.line([(pxs[i], pys[i]), (pxs[i + 1], pys[i + 1])], fill=col, width=3)
-                node(d, pxs[i], pys[i], 5, "white", BLACK)
-            node(d, pxs[-1], pys[-1], 5, "white", BLACK)
-            ctext(d, cx, y1 - 16, "区分多項式を滑らかに接続", FT, GRAY)
+            ctrl = [(x0 + 30, y1 - 30), (x0 + 90, y1 - 85), (x0 + 150, y1 - 40),
+                    (x0 + 210, y1 - 90), (x0 + 260, y1 - 40)]
+            d.line(ctrl, fill=LGRAY, width=2)                       # 制御多角形(折れ線)
+            for px, py in ctrl:
+                node(d, px, py, 5, "white", GRAY)
+            d.line(_bs(ctrl), fill=BLUE, width=3, joint="curve")   # 滑らかなB-spline曲線
+            ctext(d, cx, y1 - 16, "制御点(折れ線)と曲線は別（通らない）", FT, GRAY)
         else:  # Vinokur
             oy = y1 - 40
             d.line((x0 + 30, oy, x1 - 30, oy), fill=BLACK, width=2)
@@ -597,6 +624,19 @@ def f_jacobian():
         ctext(d, px + dxx, py + dyy, lab, FT, GRAY, "lm" if dxx >= 0 else "rm")
     ctext(d, rx + 90, ry + 22, "物理空間 (x, y)", FS, BLACK)
     note(d, "正方形の計算空間を4節点四角形へ写す設定（ヤコビアンの値・特異範囲は描かない）")
+    save(im, "t1e4JacobianSetup")
+    # 回答後: 計算空間に det J=0 の直線（η=9/8−7/8ξ）と det J<0(不適)領域を描く
+    A = (183, 155); C = (ox + s, oy - s); B = (270, 230)   # 直線は正方形内では A→B
+    d.polygon([A, C, B], fill=(250, 224, 224))              # det J<0 (不適)
+    d.line([A, B], fill=RED, width=3)
+    numnode(d, C[0], C[1], 3, 11, (230, 230, 250), BLUE)    # 塗りで隠れた節点3を再描画
+    ctext(d, 205, 146, "det J=0", FT, RED, "rm")
+    ctext(d, 236, 188, "J<0不適", FT, RED)
+    ctext(d, 130, 300, "det J>0 (適)", FT, GREEN)
+    d.rectangle((350, 58, 638, 108), outline=BLACK, width=2, fill=(238, 244, 236))
+    ctext(d, 494, 83, "det J = 9/2 − (7/2)ξ − 4η", FT, BLACK)
+    d.rectangle((0, 384, 660, 412), fill="white")
+    note(d, "計算空間での det J の符号と不適領域（回答後）")
     save(im, "t1e4Jacobian")
 
 

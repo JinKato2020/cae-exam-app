@@ -53,17 +53,22 @@ def f_nonuniform():
     oy = 230
     arrow(d, 60, oy, 600, oy, BLACK, 2, 11)
     ctext(d, 606, oy, "x", FS, BLACK, "lm")
-    # 点2,3,4 を不等間隔に配置（左が広い h_L、右が狭い h_R）
-    x2, x3, x4 = 150, 360, 480
+    # 点2,3,4 を不等間隔に配置（左 h_L=0.1 が短い・右 h_R=0.2 が長い）
+    x2, x3, x4 = 180, 300, 540
     for x, lab in [(x2, "2"), (x3, "3"), (x4, "4")]:
         d.line((x, oy - 6, x, oy + 6), fill=BLACK, width=2)
         node(d, x, oy, 8, FILL1, BLACK)
         ctext(d, x, oy + 26, lab, FS, BLACK)
-    dim(d, x2, oy - 46, x3, oy - 46, "h_L")
-    dim(d, x3, oy - 46, x4, oy - 46, "h_R")
-    ctext(d, (x2 + x3) / 2, oy - 74, "左隣との間隔", FT, GRAY)
-    ctext(d, (x3 + x4) / 2, oy - 74, "右隣との間隔", FT, GRAY)
-    note(d, "h_L と h_R が異なる（不等間隔）。点3での差分近似を考える")
+    dim(d, x2, oy - 46, x3, oy - 46, "h_L=0.1")
+    dim(d, x3, oy - 46, x4, oy - 46, "h_R=0.2")
+    ctext(d, (x2 + x3) / 2, oy - 74, "左隣(短)", FT, GRAY)
+    ctext(d, (x3 + x4) / 2, oy - 74, "右隣(長)", FT, GRAY)
+    note(d, "h_L<h_R（不等間隔）。点3での差分近似を考える")
+    save(im, "t1e3NonUniformSetup")
+    # 回答後: 3点公式の重み付けと結果・主要誤差
+    d.rectangle((80, 60, 580, 128), outline=BLACK, width=2, fill=(238, 244, 236))
+    ctext(d, 330, 80, "3点公式（各幅で重み付け）→ φ'(3) ≈ 2.83", FT, BLACK)
+    ctext(d, 330, 108, "主要誤差 ~ h_L·h_R·φ'''/6（等間隔にもある＝2次精度）", FT, RED)
     save(im, "t1e3NonUniform")
 
 
@@ -250,14 +255,14 @@ def f_euler1d():
     d.line((x0, oy - 4, x0, oy + 4), fill=BLACK, width=2)
     ctext(d, x0, oy + 20, "x0", FT, BLACK)
     top = oy - 240
-    lines = [(("u", BLUE), 70),      # 傾き u>0（右へ）
-             (("u+a", GREEN), 170),  # u+a（急right）
-             (("u-a", RED), -150)]   # u-a<0（左へ）
+    lines = [(("u=120", BLUE), 70),      # 傾き u>0（右へ）
+             (("u+a=461", GREEN), 170),  # u+a（急right）
+             (("u-a=-221", RED), -150)]  # u-a<0（左へ）
     for (lab, col), dx in lines:
         arrow(d, x0, oy, x0 + dx, top, col, 3, 12)
         ctext(d, x0 + dx + (10 if dx >= 0 else -10), top - 6, lab, FS, col,
               "lm" if dx >= 0 else "rm")
-    ctext(d, 210, 95, "傾き dx/dt = u, u+a, u-a（u-a<0 は左向き）", FT, GRAY, "lm")
+    ctext(d, 110, 66, "傾き dx/dt = u, u+a, u-a（u-a<0 は左向き）", FT, GRAY, "lm")
     note(d, "3本の特性速度で情報が伝わる。u-a<0 なら左へ伝播する波が存在")
     save(im, "t1e3Euler1D")
 
@@ -282,6 +287,7 @@ def f_pressure():
     arrow(d, ox + w / 2, base - ie_h + 6, ox - 40, base - ie_h + 6, RED, 2, 10)
     ctext(d, ox - 50, base - ie_h + 6, "内部エネルギー", FT, RED, "rm")
     flowbox(d, 470, 180, 250, 60, "p = (γ−1) ×\n内部エネルギー（×密度）", (245, 228, 228), FT)
+    ctext(d, 470, 232, "→ 静圧 p ≈ 101600 Pa", FT, RED)
     note(d, "e = 内部エネルギー + 運動エネルギー。圧力は内部エネルギー分から状態方程式で得る")
     save(im, "t1e3Pressure")
 
@@ -303,7 +309,7 @@ def f_charact():
         xx = x0 + 190 * (t ** 1.25)
         pts_p.append((xx, yy))
     plot(d, 0, 0, pts_p, GREEN, 3)
-    ctext(d, pts_p[-1][0] + 10, pts_p[-1][1] - 6, "u+c", FS, GREEN, "lm")
+    ctext(d, pts_p[-1][0] + 10, pts_p[-1][1] - 6, "u+c=390", FS, GREEN, "lm")
     # u-c<0: 左へ向かう特性曲線
     pts_m = []
     for i in range(0, 26):
@@ -312,8 +318,8 @@ def f_charact():
         xx = x0 - 150 * (t ** 1.1)
         pts_m.append((xx, yy))
     plot(d, 0, 0, pts_m, RED, 3)
-    ctext(d, pts_m[-1][0] - 10, pts_m[-1][1] - 6, "u-c", FS, RED, "rm")
-    ctext(d, 330, 95, "傾き dx/dt = u+c, u-c（u-c<0 は左向き）", FT, GRAY)
+    ctext(d, pts_m[-1][0] - 10, pts_m[-1][1] - 6, "u-c=-210", FS, RED, "rm")
+    ctext(d, 110, 66, "傾き dx/dt = u+c, u-c（u-c<0 は左向き）", FT, GRAY, "lm")
     note(d, "2本の特性曲線に沿ってリーマン不変量が伝わる。u-c<0 なら左へ伝播")
     save(im, "t1e3Charact")
 

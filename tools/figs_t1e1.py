@@ -100,7 +100,13 @@ def f_manometer():
     dash(d, bx, by, 560, by, LGRAY, 1, 6, 4)
     dash(d, ax, ay, 108, ay, LGRAY, 1, 6, 4)
     dim(d, 118, ay, 118, by, "H", 0, GRAY)
+    ctext(d, 128, (ay + by) / 2, "H=z_B−z_A>0", FT, GRAY, "lm")
+    ctext(d, rx + 52, (mlL + mlR) / 2, "h=液面差", FT, GRAY, "lm")
     ctext(d, 70, 70, "内径 d", FS, BLACK)
+    save(im, "t1e1ManometerSetup")
+    d.rectangle((350, 58, 612, 108), outline=BLACK, width=2, fill=(238, 244, 236))
+    ctext(d, 481, 74, "位置水頭は相殺する", FT, BLACK)
+    ctext(d, 481, 94, "V ≈ 4.97 m/s", FT, RED)
     save(im, "t1e1Manometer")
 
 
@@ -154,6 +160,10 @@ def f_soundspeed():
     ctext(d, wf + 95, 230, "a", F, RED, "lm")
     ctext(d, wf, ytop - 16, "波面", FT, RED)
     note(d, "圧力パルスが速度 a で右へ伝わる")
+    save(im, "t1e1SoundSpeedSetup")
+    d.rectangle((360, 60, 620, 120), outline=BLACK, width=2, fill=(238, 244, 236))
+    ctext(d, 490, 82, "a² = K_s/ρ （K_s=断熱体積弾性率）", FT, BLACK)
+    ctext(d, 490, 104, "a ≈ 1483 m/s", FT, RED)
     save(im, "t1e1SoundSpeed")
 
 
@@ -265,28 +275,28 @@ def f_walllaw():
     im, d = new()
     title(d, "乱流境界層の壁法則(片対数)")
     ox, oy = 110, 340
-    axes(d, ox, oy, 440, 250, "log y+", "U+")
-    # viscous sublayer: U+=y+  -> on semilog x, y = 10^X, appears as exponential-ish rising steeply at right of low region
-    # draw sublayer segment (low y+) as steep near-straight then log-law shallower straight
-    # sublayer line
-    subl = []
-    for i in range(0, 130):
-        xx = ox + i
-        yy = oy - (i * 1.15)
-        subl.append((xx, yy))
-    plot(d, 0, 0, subl, GREEN, 3)
-    ctext(d, ox + 70, oy - 175, "U+ = y+", FT, GREEN, "lm")
-    ctext(d, ox + 40, oy - 30, "粘性底層", FT, GREEN)
-    # buffer transition (dashed short)
-    dash(d, ox + 129, oy - 148, ox + 190, oy - 168, GRAY, 2, 8, 5)
-    # log-law line (shallower slope)
-    logl = []
-    for i in range(190, 430):
-        xx = ox + i
-        yy = oy - (168 + (i - 190) * 0.30)
-        logl.append((xx, yy))
+    xlen, ylen = 440, 250
+    axes(d, ox, oy, xlen, ylen, "y+", "U+")
+    Lmax, Umax = 3.0, 24.0            # log10(y+)=0..3 → y+=1..1000
+    sx, sy = xlen / Lmax, ylen / Umax
+    px = lambda yp: ox + math.log10(yp) * sx
+    py = lambda U: oy - U * sy
+    # 対数目盛
+    for e in range(0, 4):
+        xx = ox + e * sx
+        d.line((xx, oy, xx, oy + 5), fill=BLACK, width=2)
+        ctext(d, xx, oy + 16, "10^%d" % e, FT, BLACK)
+    # 粘性底層 U+=y+ ：対数軸では下に凸の曲線
+    sub = [(px(yp), py(yp)) for yp in (1, 1.5, 2, 3, 4, 5)]
+    plot(d, 0, 0, sub, GREEN, 3)
+    ctext(d, px(5) + 6, py(5), "U+=y+（底層・曲線）", FT, GREEN, "lm")
+    # バッファ層（破線でつなぐ）
+    dash(d, px(5), py(5), px(30), py((1 / 0.41) * math.log(30) + 5.0), GRAY, 2, 8, 5)
+    ctext(d, px(11), py(8) - 2, "バッファ層", FT, GRAY)
+    # 対数則 U+=(1/κ)ln y+ + B ：対数軸では直線
+    logl = [(px(yp), py((1 / 0.41) * math.log(yp) + 5.0)) for yp in (30, 60, 100, 200, 400, 700, 1000)]
     plot(d, 0, 0, logl, BLUE, 3)
-    ctext(d, ox + 300, oy - 205, "対数則", FT, BLUE, "lm")
+    ctext(d, px(120), py((1 / 0.41) * math.log(120) + 5.0) - 16, "対数則（直線）", FT, BLUE, "lm")
     save(im, "t1e1WallLaw")
 
 
@@ -316,6 +326,12 @@ def f_waterhammer():
     # observation point O just upstream of valve
     node(d, 495, (py0 + py1) / 2, 5, RED, RED)
     ctext(d, 495, py0 - 16, "O", FS, RED)
+    save(im, "t1e1WaterHammerSetup")
+    # 回答後: 弁閉止で圧力波が上流(左)へ伝播＋圧力上昇
+    arrow(d, 495, 305, 300, 305, RED, 3, 13)
+    ctext(d, 397, 320, "圧力波(上流へ伝播)", FT, RED)
+    d.rectangle((300, 120, 545, 166), outline=BLACK, width=2, fill=(238, 244, 236))
+    ctext(d, 422, 143, "Δp = ρ c U1 = 2.8 MPa", FT, RED)
     save(im, "t1e1WaterHammer")
 
 
@@ -446,6 +462,9 @@ def f_criticalnozzle():
     ctext(d, thx + 6, ymid - 60, "スロート", FT, RED, "lm")
     ctext(d, thx + 6, ymid - 40, "p*, M=1", FS, RED, "lm")
     ctext(d, thx + 6, ymid + 10, "(音速に達する)", FT, RED, "lm")
+    save(im, "t1e1CriticalNozzleSetup")
+    d.rectangle((150, ymid + 72, 470, ymid + 118), outline=BLACK, width=2, fill=(238, 244, 236))
+    ctext(d, 310, ymid + 95, "臨界圧力比  p*/p0 ≈ 0.528 （γ=1.4）", FT, RED)
     save(im, "t1e1CriticalNozzle")
 
 
@@ -478,6 +497,10 @@ def f_nozzle():
     ctext(d, 430, ymid - 80, "M>1 (超音速)", FT, BLACK)
     ctext(d, thx, ymid - 45, "M=1", FT, RED)
     ctext(d, 250, ymid + 90, "断面積 A(x)", FT, BLACK)
+    save(im, "t1e1NozzleSetup")
+    d.rectangle((110, 52, 600, 100), outline=BLACK, width=2, fill=(238, 244, 236))
+    ctext(d, 355, 68, "亜音速の加速→断面積 減少 / 超音速の加速→断面積 増加", FT, BLACK)
+    ctext(d, 355, 88, "加速に伴い温度は低下", FT, RED)
     save(im, "t1e1Nozzle")
 
 
@@ -517,35 +540,45 @@ def f_shocktube():
     # flow direction reference
     arrow(d, 250, 320, 330, 320, BLUE, 3, 12)
     ctext(d, 355, 320, "流れ方向 x", FT, BLUE, "lm")
+    save(im, "t1e1ShockTubeSetup")
+    # 回答後: 衝撃波背後で発達する境界層厚さの変化(壁沿い)
+    bl = [(xx, ytop + 3 + 12 * ((shock - xx) / (shock - x0)) ** 0.5) for xx in range(shock, x0, -6)]
+    d.line(bl, fill=BLUE, width=2)
+    ctext(d, 250, ytop + 34, "境界層(衝撃波背後で発達)", FT, BLUE)
     save(im, "t1e1ShockTube")
 
 
 # ---------------------------------------------------------------- 1-15 ExpansionWave
 def f_expansionwave():
     im, d = new()
-    title(d, "膨張波の x-t 線図")
+    title(d, "膨張波の x-t 線図（開放端 x=0）")
     ox, oy = 110, 350
-    axes(d, ox, oy, 440, 280, "x", "t")
-    # right end at x = xR
-    xR = ox + 400
-    dash(d, xR, oy, xR, oy - 280, LGRAY, 1, 6, 5)
-    ctext(d, xR, oy + 16, "右端(開放)", FT, GRAY)
-    # expansion fan from right end (origin of fan at (xR, oy))
-    fan_dirs = [(-0.3, -1), (-0.6, -1), (-0.9, -1), (-1.25, -1), (-1.7, -1)]
-    for i, (dxr, dyr) in enumerate(fan_dirs):
-        ex = xR + dxr * 190
-        ey = oy - 190
-        d.line((xR, oy, ex, ey), fill=GRAY, width=1 if 0 < i < 4 else 2)
-    ctext(d, xR - 120, oy - 120, "膨張波(扇状)", FT, GRAY)
-    # region (4) high pressure (right, before wave) and (3) outflow (left, after)
-    ctext(d, xR - 40, oy - 60, "(4)", F, BLACK)
-    ctext(d, xR - 40, oy - 75, "高圧側", FT, BLACK, "mm")
-    ctext(d, ox + 70, oy - 170, "(3)", F, BLACK)
-    ctext(d, ox + 70, oy - 190, "流出側", FT, BLACK, "mm")
-    # point a inside the fan
-    ax_, ay_ = xR - 120, oy - 150
+    xlen, ylen = 440, 280
+    axes(d, ox, oy, xlen, ylen, "x", "t")
+    x0 = ox + 340                       # 開放端 x=0（原点）。負のx（左）が高圧ガス側。
+    Htop = ylen - 20
+    d.line((x0, oy, x0, oy - Htop), fill=BLACK, width=2)   # x=0 (=t軸)
+    ctext(d, x0, oy + 16, "x=0（開放端）", FT, BLACK)
+    ctext(d, ox + 20, oy + 16, "← 負のx（高圧ガス側）", FT, GRAY, "lm")
+    # 膨張波扇：原点(x=0,t=0)から上・左へ。head=最も左(領域4へ)、tail=t軸寄り(領域3の境界)
+    ends = [-300, -240, -180, -120, -60]
+    for i, dxr in enumerate(ends):
+        w = 2 if i in (0, len(ends) - 1) else 1
+        d.line((x0, oy, x0 + dxr, oy - Htop), fill=GRAY, width=w)
+    ctext(d, x0 - 205, oy - 205, "膨張波(扇状)", FT, GRAY)
+    # (4)高圧側=head の左（未擾乱・静止）／(3)流出側=tail と t軸の間（開放端側）
+    ctext(d, ox + 45, oy - 165, "(4)", F, BLACK)
+    ctext(d, ox + 45, oy - 188, "高圧側(静止)", FT, BLACK, "mm")
+    ctext(d, x0 - 34, oy - 120, "(3)", F, BLACK)
+    ctext(d, x0 - 34, oy - 143, "流出側", FT, BLACK, "mm")
+    ax_, ay_ = x0 - 150, oy - 150
     node(d, ax_, ay_, 5, RED, RED)
-    ctext(d, ax_ - 14, ay_ - 2, "a", F, RED, "rm")
+    ctext(d, ax_ - 10, ay_ + 2, "a", F, RED, "rm")
+    save(im, "t1e1ExpansionWaveSetup")
+    # 回答後：特性線の式（x=0基準）と不変量→流速
+    d.rectangle((ox + 4, 58, ox + 320, 118), outline=BLACK, width=2, fill=(238, 244, 236))
+    ctext(d, ox + 162, 76, "特性線 x_a=(u_a−c_a)t_a （x=0基準）", FT, BLACK)
+    ctext(d, ox + 162, 98, "リーマン不変量の和から u_a を求める", FT, RED)
     save(im, "t1e1ExpansionWave")
 
 
