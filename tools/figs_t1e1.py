@@ -493,11 +493,12 @@ def f_nozzle():
     # flow x direction + A(x) + M positions
     arrow(d, 150, ymid, 520, ymid, BLUE, 3, 14)
     ctext(d, 500, ymid - 18, "x", FS, BLUE)
+    ctext(d, 250, ymid + 90, "断面積 A(x)", FT, BLACK)
+    save(im, "t1e1NozzleSetup")
+    # 回答後のみ: 断面積の増減とマッハ数の対応を表示
     ctext(d, 180, ymid - 70, "M<1 (亜音速)", FT, BLACK)
     ctext(d, 430, ymid - 80, "M>1 (超音速)", FT, BLACK)
     ctext(d, thx, ymid - 45, "M=1", FT, RED)
-    ctext(d, 250, ymid + 90, "断面積 A(x)", FT, BLACK)
-    save(im, "t1e1NozzleSetup")
     d.rectangle((110, 52, 600, 100), outline=BLACK, width=2, fill=(238, 244, 236))
     ctext(d, 355, 68, "亜音速の加速→断面積 減少 / 超音速の加速→断面積 増加", FT, BLACK)
     ctext(d, 355, 88, "加速に伴い温度は低下", FT, RED)
