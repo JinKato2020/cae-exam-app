@@ -4,9 +4,28 @@
 - 回答後PDF = 問題文＋選択肢(正解を強調)＋正解＋解説＋回答後図(figureImage)。
 出力先= アプリ/固体1級/ ・ アプリ/固体2級/。実行前に「古い問題PDF(固体N級_第*.pdf)」だけ削除(公式用語PDFは残す)。
 固体2級はファイル名に級プレフィックスが無いため、meta.grade で級を判別する。
-使い方: python tools/build_solid_beforeafter_pdfs.py
+使い方: python tools/build_solid_beforeafter_pdfs.py            … 全章再生成
+       python tools/build_solid_beforeafter_pdfs.py 1:5,6 2:3  … 指定した級:章だけ再生成(無駄を省く。他章PDFは温存)
+       python tools/build_solid_beforeafter_pdfs.py 5          … 章番号のみ(両級の該当章)
 恒久ツール。App.tsx の前後出し分けロジックに準拠。build_vib_beforeafter_pdfs.py の固体版。"""
-import json, os, base64, html, subprocess, glob
+import json, os, base64, html, subprocess, glob, sys, re
+
+
+def _want(g, ch, path, specs):
+    """引数 specs にマッチする章だけ True。specs 空なら全章 True(従来動作)。
+    対応形式: "1:5,6"(級:章) / JSONパス・ファイル名 / "5"(章番号・両級)。"""
+    if not specs:
+        return True
+    base = os.path.basename(path)
+    for s in specs:
+        if s == base or ((os.sep in s or "/" in s) and os.path.normpath(s) == os.path.normpath(path)):
+            return True
+        m = re.match(r"^([12]):([0-9,]+)$", s)
+        if m and m.group(1) == g and str(ch) in m.group(2).split(","):
+            return True
+        if s.isdigit() and int(s) == ch:
+            return True
+    return False
 
 CAE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 QDIR = os.path.join(CAE, "content", "questions")
@@ -138,19 +157,28 @@ def collect():
 
 def main():
     os.makedirs(TMP, exist_ok=True)
+    specs = sys.argv[1:]
+    if specs:
+        print(f"[対象限定] {specs} に該当する章だけ再生成します")
     plan = collect()
     for g in ("1", "2"):
-        files = plan[g]
+        files = [(fp, data) for (fp, data) in plan[g] if _want(g, data["meta"].get("chapter"), fp, specs)]
+        if not files:
+            continue
         outdir = os.path.join(CAE, "アプリ", f"固体{g}級")
         os.makedirs(outdir, exist_ok=True)
-        # 古い問題PDF(固体N級_第*.pdf)だけ削除。公式用語PDF(固体N級_公式用語_*)は残す。
+        # 古い問題PDF削除。無指定=全章一括掃除 / 指定=該当章のみ(他章は温存)。公式用語PDFは残す。
         removed = 0
-        for f in glob.glob(os.path.join(outdir, f"固体{g}級_第*.pdf")):
-            os.remove(f); removed += 1
+        if not specs:
+            for f in glob.glob(os.path.join(outdir, f"固体{g}級_第*.pdf")):
+                os.remove(f); removed += 1
         print(f"[固体{g}級] 対象{len(files)}章 / 旧問題PDF削除: {removed}件")
         for fp, data in files:
             meta = data["meta"]
             ch = meta.get("chapter")
+            if specs:
+                for f in glob.glob(os.path.join(outdir, f"固体{g}級_第{ch}章_*.pdf")):
+                    os.remove(f)
             cat = meta["category"]
             short = cat.split(" ", 1)[-1].replace(" ", "") if " " in cat else cat
             for after, tag in [(False, "回答前"), (True, "回答後")]:

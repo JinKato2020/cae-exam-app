@@ -3,9 +3,14 @@
 - 回答前PDF = 問題文＋選択肢(正解印なし)＋回答前図(preFigureImage、無ければ figure=='required' の figureImage のみ)。答え・解説は載せない。
 - 回答後PDF = 問題文＋選択肢(正解を強調)＋正解＋解説＋回答後図(figureImage)。
 出力先= アプリ/熱流体1級/ ・ アプリ/熱流体2級/。実行前に「古い問題PDF(熱流体N級_第*.pdf)」だけ削除(公式用語PDFは残す)。
-使い方: python tools/build_thermal_beforeafter_pdfs.py
+使い方:
+  python tools/build_thermal_beforeafter_pdfs.py                 … 全章を再生成(従来動作)
+  python tools/build_thermal_beforeafter_pdfs.py 1:5,6,7,8 2:3   … 指定した級:章だけ再生成(無駄を省く)
+  python tools/build_thermal_beforeafter_pdfs.py thermal1-05-...json  … 変更したJSON名/パスを渡してもよい
+  python tools/build_thermal_beforeafter_pdfs.py 5 6            … 章番号のみ(両級の該当章)
+指定ありのときは、その章の 熱流体N級_第<章>章_*.pdf だけ削除・再生成し、他章のPDFは残す。
 恒久ツール。App.tsx の前後出し分けロジックに準拠(build_vib_beforeafter_pdfs.py と同一構造)。"""
-import json, os, base64, html, subprocess, glob
+import json, os, base64, html, subprocess, glob, sys, re
 
 CAE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 QDIR = os.path.join(CAE, "content", "questions")
@@ -114,25 +119,57 @@ def to_pdf(doc, htmlpath, pdfpath):
     return os.path.exists(pdfpath)
 
 
+def _want(g, ch, path, specs):
+    """引数 specs にマッチする章だけ True。specs 空なら全章 True(従来動作)。
+    対応形式: "1:5,6,7,8"(級:章) / JSONパス・ファイル名 / "5"(章番号・両級)。"""
+    if not specs:
+        return True
+    base = os.path.basename(path)
+    for s in specs:
+        if s == base or (os.sep in s or "/" in s) and os.path.normpath(s) == os.path.normpath(path):
+            return True
+        if s.endswith(".json") and s == base:
+            return True
+        m = re.match(r"^([12]):([0-9,]+)$", s)
+        if m and m.group(1) == g and str(ch) in m.group(2).split(","):
+            return True
+        if s.isdigit() and int(s) == ch:
+            return True
+    return False
+
+
 def main():
     os.makedirs(TMP, exist_ok=True)
+    specs = sys.argv[1:]
+    if specs:
+        print(f"[対象限定] {specs} に該当する章だけ再生成します")
     plans = [("1", sorted(glob.glob(os.path.join(QDIR, "thermal1-*.json")))),
              ("2", sorted(glob.glob(os.path.join(QDIR, "thermal2-*.json"))))]
+    total = 0
     for g, files in plans:
         outdir = os.path.join(CAE, "アプリ", f"熱流体{g}級")
         os.makedirs(outdir, exist_ok=True)
-        # 古い問題PDF(熱流体N級_第*.pdf)だけ削除。公式用語PDF(熱流体N級_公式用語_*)は残す。
+        # 対象ファイル(=変更章)だけに絞る
+        targets = [fp for fp in files if _want(g, json.load(open(fp, encoding="utf-8"))["meta"].get("chapter"), fp, specs)]
+        if not targets:
+            continue
         removed = 0
-        for f in glob.glob(os.path.join(outdir, f"熱流体{g}級_第*.pdf")):
-            os.remove(f); removed += 1
+        if not specs:
+            # 全再生成時のみ全旧問題PDFを掃除。公式用語PDF(熱流体N級_公式用語_*)は残す。
+            for f in glob.glob(os.path.join(outdir, f"熱流体{g}級_第*.pdf")):
+                os.remove(f); removed += 1
         ok_n = fail = 0
         fails = []
-        for fp in files:
+        for fp in targets:
             data = json.load(open(fp, encoding="utf-8"))
             meta = data["meta"]
             ch = meta.get("chapter")
             cat = meta["category"]
             short = cat.split(" ", 1)[-1].replace(" ", "") if " " in cat else cat
+            if specs:
+                # 限定時は該当章の旧PDFだけ削除(他章は温存)
+                for f in glob.glob(os.path.join(outdir, f"熱流体{g}級_第{ch}章_*.pdf")):
+                    os.remove(f); removed += 1
             for after, tag in [(False, "回答前"), (True, "回答後")]:
                 doc = build_html(data, "熱流体", f"{g}級", after)
                 stem = f"熱流体{g}級_第{ch}章_{short}_{tag}"
@@ -142,10 +179,11 @@ def main():
                     ok_n += 1
                 else:
                     fail += 1; fails.append(stem)
-        print(f"[熱流体{g}級] 旧問題PDF削除{removed}件 → 生成 成功{ok_n}/失敗{fail}（{len(files)}章×前後）")
+        total += ok_n
+        print(f"[熱流体{g}級] 旧問題PDF削除{removed}件 → 生成 成功{ok_n}/失敗{fail}（{len(targets)}章×前後）")
         for s in fails:
             print(f"    FAIL: {s}")
-    print("完了")
+    print(f"完了（生成 計{total}本）")
 
 
 if __name__ == "__main__":

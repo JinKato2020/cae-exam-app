@@ -3,9 +3,28 @@
 - 回答前PDF = 問題文＋選択肢(正解印なし)＋回答前図(preFigureImage、無ければ figure=='required' の figureImage のみ)。答え・解説は載せない。
 - 回答後PDF = 問題文＋選択肢(正解を強調)＋正解＋解説＋回答後図(figureImage)。
 出力先= アプリ/振動1級/ ・ アプリ/振動2級/。実行前に「古い問題PDF(振動N級_第*.pdf)」だけ削除(公式用語PDFは残す)。
-使い方: python tools/build_vib_beforeafter_pdfs.py
+使い方: python tools/build_vib_beforeafter_pdfs.py            … 全章再生成
+       python tools/build_vib_beforeafter_pdfs.py 1:5,6 2:3  … 指定した級:章だけ再生成(無駄を省く。他章PDFは温存)
+       python tools/build_vib_beforeafter_pdfs.py 5          … 章番号のみ(両級の該当章)
 恒久ツール。App.tsx の前後出し分けロジックに準拠。"""
-import json, os, base64, html, subprocess, glob
+import json, os, base64, html, subprocess, glob, sys, re
+
+
+def _want(g, ch, path, specs):
+    """引数 specs にマッチする章だけ True。specs 空なら全章 True(従来動作)。
+    対応形式: "1:5,6"(級:章) / JSONパス・ファイル名 / "5"(章番号・両級)。"""
+    if not specs:
+        return True
+    base = os.path.basename(path)
+    for s in specs:
+        if s == base or ((os.sep in s or "/" in s) and os.path.normpath(s) == os.path.normpath(path)):
+            return True
+        m = re.match(r"^([12]):([0-9,]+)$", s)
+        if m and m.group(1) == g and str(ch) in m.group(2).split(","):
+            return True
+        if s.isdigit() and int(s) == ch:
+            return True
+    return False
 
 CAE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 QDIR = os.path.join(CAE, "content", "questions")
@@ -116,20 +135,30 @@ def to_pdf(doc, htmlpath, pdfpath):
 
 def main():
     os.makedirs(TMP, exist_ok=True)
+    specs = sys.argv[1:]
+    if specs:
+        print(f"[対象限定] {specs} に該当する章だけ再生成します")
     plans = [("1", sorted(glob.glob(os.path.join(QDIR, "vib1-*.json")))),
              ("2", sorted(glob.glob(os.path.join(QDIR, "vib2-*.json"))))]
     for g, files in plans:
         outdir = os.path.join(CAE, "アプリ", f"振動{g}級")
         os.makedirs(outdir, exist_ok=True)
-        # 古い問題PDF(振動N級_第*.pdf)だけ削除。公式用語PDF(振動N級_公式用語_*)は残す。
+        targets = [fp for fp in files if _want(g, json.load(open(fp, encoding="utf-8"))["meta"].get("chapter"), fp, specs)]
+        if not targets:
+            continue
+        # 古い問題PDF削除。無指定=全章一括掃除 / 指定=該当章のみ(他章は温存)。公式用語PDFは残す。
         removed = 0
-        for f in glob.glob(os.path.join(outdir, f"振動{g}級_第*.pdf")):
-            os.remove(f); removed += 1
+        if not specs:
+            for f in glob.glob(os.path.join(outdir, f"振動{g}級_第*.pdf")):
+                os.remove(f); removed += 1
         print(f"[振動{g}級] 旧問題PDF削除: {removed}件")
-        for fp in files:
+        for fp in targets:
             data = json.load(open(fp, encoding="utf-8"))
             meta = data["meta"]
             ch = meta.get("chapter")
+            if specs:
+                for f in glob.glob(os.path.join(outdir, f"振動{g}級_第{ch}章_*.pdf")):
+                    os.remove(f)
             cat = meta["category"]
             short = cat.split(" ", 1)[-1].replace(" ", "") if " " in cat else cat
             for after, tag in [(False, "回答前"), (True, "回答後")]:
