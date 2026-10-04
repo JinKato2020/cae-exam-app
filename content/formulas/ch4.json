@@ -103,6 +103,14 @@
       "figureImage": "f4RigidBody"
     },
     {
+      "id": "boundary-dof",
+      "kind": "term",
+      "term": "境界条件と自由度",
+      "formula": "$\\text{自由度}=2\\,n_{\\text{節点}}-n_{\\text{拘束}}\\quad(2\\text{次元})$",
+      "body": "境界条件には2種類あります。荷重を与える面は『力が既知・変位が未知』(力学的／自然境界条件)、拘束した面は『変位が既知・反力が未知』(幾何学的／基本境界条件)で、各自由度でどちらか一方だけが既知になる相補的な関係です。変位境界条件を入れるまで全体剛性 K は剛体運動が残って特異(逆行列なし)で、拘束を与えると解けるようになります。2次元の全自由度は節点数×2から拘束した成分数を引いた数です。",
+      "example": "節点5個の2次元トラスで、ピン支持(x・yの2成分を拘束)が1点、ローラー支持(1成分を拘束)が1点だと拘束は合計3成分。自由度=2×5−3=7 です。"
+    },
+    {
       "id": "area-coordinate",
       "kind": "formula",
       "term": "面積座標・体積座標",
@@ -114,10 +122,10 @@
     {
       "id": "thermal-force",
       "kind": "formula",
-      "term": "熱ひずみと等価節点力",
-      "formula": "$\\varepsilon_0 = \\alpha\\Delta T, \\qquad F = EA\\,\\alpha\\,\\Delta T\\ (完全拘束の棒)$",
-      "body": "温度が上がると材料は膨張します（初期ひずみ $\\varepsilon_0=\\alpha\\Delta T$）。これをFEMでは「等価節点力」という仮想の力に置き換えて扱います。両端を完全に固定した棒では、この力がそのまま熱応力になります。",
-      "example": "E=200 GPa、$A=1\\times10^{-4}\\,\\mathrm{m^2}$、$\\alpha=12\\times10^{-6}\\,\\mathrm{/K}$、ΔT=50 K のとき $F=200\\times10^9\\times1\\times10^{-4}\\times12\\times10^{-6}\\times50=12000\\,\\mathrm{N}=12\\,\\mathrm{kN}$。",
+      "term": "初期ひずみ・初期応力と等価節点力",
+      "formula": "$\\{\\sigma\\}=[D](\\{\\varepsilon\\}-\\{\\varepsilon_0\\})+\\{\\sigma_0\\},\\quad \\{f\\}_{\\varepsilon_0}=\\int [B]^{T}[D]\\{\\varepsilon_0\\}\\,dV,\\quad \\{f\\}_{\\sigma_0}=-\\int [B]^{T}\\{\\sigma_0\\}\\,dV$",
+      "body": "温度変化や製造時のなじみなどで、外力が無くても生じているひずみ・応力を初期ひずみ $\\varepsilon_0$・初期応力 $\\sigma_0$ と呼びます。これを含むフック則は $\\{\\sigma\\}=[D](\\{\\varepsilon\\}-\\{\\varepsilon_0\\})+\\{\\sigma_0\\}$ です。FEMでは $\\varepsilon_0,\\sigma_0$ を右辺の『等価節点力』に移し替えて、ふつうの Ku=f と同じ形で解きます。熱ひずみ $\\varepsilon_0=\\alpha\\Delta T$ はこの代表例です。",
+      "example": "両端固定の棒（E=200 GPa、$\\alpha=12\\times10^{-6}\\,\\mathrm{/K}$、ΔT=50 K）では初期ひずみ $\\varepsilon_0=\\alpha\\Delta T=6\\times10^{-4}$。拘束で打ち消されるので熱応力は $\\sigma=E\\varepsilon_0=120\\,\\mathrm{MPa}$、$A=1\\times10^{-4}\\,\\mathrm{m^2}$ なら等価節点力は $EA\\,\\alpha\\Delta T=12\\,\\mathrm{kN}$ になります。",
       "figureImage": "f4ThermalForce"
     }
   ]
