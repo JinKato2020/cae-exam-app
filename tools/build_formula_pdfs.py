@@ -11,9 +11,12 @@ FDIR = os.path.join(CAE, "content", "formulas")
 FIG = os.path.join(CAE, "assets", "figures")
 TMP = os.path.join(CAE, "tools", "_pdftmp")
 OUTDIR = os.path.join(CAE, "アプリ", "2級")
-EDGE = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
-if not os.path.exists(EDGE):
-    EDGE = r"C:\Program Files\Microsoft\Edge\Application\msedge.exe"
+EDGE = next((p for p in [
+    r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+    r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+    r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+    r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
+] if os.path.exists(p)), r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")  # Chrome優先(Edge headlessがMathJax印刷に失敗する環境への対策)
 
 def esc(s): return html.escape(s or "", quote=False)
 

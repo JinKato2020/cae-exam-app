@@ -31,9 +31,12 @@ CAE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 QDIR = os.path.join(CAE, "content", "questions")
 FIG = os.path.join(CAE, "assets", "figures")
 TMP = os.path.join(CAE, "tools", "_pdftmp")
-EDGE = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
-if not os.path.exists(EDGE):
-    EDGE = r"C:\Program Files\Microsoft\Edge\Application\msedge.exe"
+EDGE = next((p for p in [
+    r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+    r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+    r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+    r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
+] if os.path.exists(p)), r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")  # Chrome優先(Edge headlessがMathJax印刷に失敗する環境への対策)
 
 
 def esc(s):
