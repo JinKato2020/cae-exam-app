@@ -586,7 +586,7 @@
       "topic": "強制変位のない系での軸力による変位(縮約)",
       "type": "mc",
       "difficulty": 3,
-      "question": "節点1-2-3の順に2つの棒要素を直列に接続する。要素1(節点1-2)の $EA/L=600$ N/mm、要素2(節点2-3)の $EA/L=900$ N/mm。節点1を固定し、節点3の先端に軸力 $P=3600$ N を作用させる(節点2には外力なし)。境界条件を代入して縮約した連立方程式を解くと、先端節点3の変位 $u_3$ はいくらか。",
+      "question": "図に示すように、節点1-2-3の順に2つの棒要素を直列に接続し、節点1を固定、節点3の先端に軸力 $P$ を作用させる(節点2には外力なし。各要素の $EA/L$ と軸力 $P$ は図に示す)。境界条件を代入して縮約した連立方程式を解くと、先端節点3の変位 $u_3$ はいくらか。",
       "choices": [
         "6 mm",
         "4 mm",
@@ -599,6 +599,7 @@
       "origin": "original",
       "reviewed": true,
       "figure": "required",
+      "preFigureImage": "f5BarSeries2El",
       "figureImage": "f5BarSeries2El",
       "figureHint": "白地に、左端を固定した2要素の棒(節点1固定・節点2中間・節点3先端)を描き、節点3に右向きの軸力P=3600N、各要素にEA/L=600と900を添える図",
       "officialRef": "問5-20",
@@ -836,7 +837,7 @@
       "topic": "残留応力(初期ひずみ法・符号)",
       "type": "mc",
       "difficulty": 3,
-      "question": "部材Aを一軸応力 $\\sigma=200\\,\\mathrm{MPa}$ で引張った状態で部材Bを接着し、その後に外力を取り除く。残る残留応力を初期ひずみ法で解くため、部材Aを自然形状へ戻す初期ひずみ $\\varepsilon^{I}=(\\varepsilon_x,\\varepsilon_y,\\varepsilon_z)$ を部材Aに与える。$E_A=200\\,\\mathrm{GPa}$、$\\nu_A=0.3$ とするとき、与える初期ひずみとして正しいものはどれか。",
+      "question": "図に示すように、部材Aを一軸応力 $\\sigma$ で引張った状態で部材Bを接着し、その後に外力を取り除く(引張応力 $\\sigma$ と部材Aの材料定数 $E_A,\\nu_A$ は図に示す)。残る残留応力を初期ひずみ法で解くため、部材Aを自然形状へ戻す初期ひずみ $\\varepsilon^{I}=(\\varepsilon_x,\\varepsilon_y,\\varepsilon_z)$ を部材Aに与える。与える初期ひずみとして正しいものはどれか。",
       "choices": [
         "$(+1\\times10^{-3},\\ -3\\times10^{-4},\\ -3\\times10^{-4})$（引張時のひずみと同符号）",
         "$(0,\\ 0,\\ 0)$（初期ひずみは与えない）",
@@ -856,6 +857,7 @@
       "relatedFormulas": [
         "residual-stress"
       ],
+      "preFigureImage": "f5ResidualStrainSetup",
       "figureImage": "f5ResidualStrain",
       "figureHint": "白地660x420で、引張状態で接着し除荷したときの残留応力を、逆符号の初期ひずみを与える初期ひずみ法で解く手順を示す図"
     },

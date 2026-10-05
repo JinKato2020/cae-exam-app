@@ -643,7 +643,7 @@
       "topic": "座標変換とばね剛性",
       "type": "mc",
       "difficulty": 3,
-      "question": "2次元で、水平から $\\theta=60^{\\circ}$ 傾いた方向にばね定数 $k=120\\,\\mathrm{N/mm}$ のばね(棒)要素が1本ある。このばねが全体座標の $x$ 方向と $y$ 方向を結びつける剛性成分(全体剛性マトリックスの $x$-$y$ 成分)$k_{xy}=k\\sin\\theta\\cos\\theta$ はいくらか。",
+      "question": "図に示すように、2次元で水平から傾いた方向にばね定数 $k$ のばね(棒)要素が1本ある($k$ と傾き角 $\\theta$ は図に示す)。このばねが全体座標の $x$ 方向と $y$ 方向を結びつける剛性成分(全体剛性マトリックスの $x$-$y$ 成分)$k_{xy}=k\\sin\\theta\\cos\\theta$ はいくらか。",
       "choices": [
         "$30.0\\,\\mathrm{N/mm}$",
         "$90.0\\,\\mathrm{N/mm}$",
@@ -656,6 +656,7 @@
       "origin": "original",
       "reviewed": true,
       "figure": "helpful",
+      "preFigureImage": "f4InclinedSpringSetup",
       "figureImage": "f4InclinedSpring",
       "figureHint": "60度傾いたばねのx-x・y-y・x-y方向剛性成分をk cos^2θ・k sin^2θ・k sinθcosθで分解する図",
       "officialRef": "問4-23",
@@ -729,7 +730,7 @@
       "topic": "アセンブリ(重ね合わせ)",
       "type": "mc",
       "difficulty": 3,
-      "question": "節点1-2-3-4が一直線に並び、要素A(節点1-2、$k_1=150\\,\\mathrm{N/mm}$)・要素B(節点2-3、$k_2=250\\,\\mathrm{N/mm}$)・要素C(節点3-4、$k_3=100\\,\\mathrm{N/mm}$)の3本のばね要素で連結されている。全体剛性マトリックスを組み立てる(アセンブリ)とき、$(3,3)$ 成分(節点3の対角成分)はいくらか。",
+      "question": "図に示すように、節点1-2-3-4が一直線に並び、3本のばね要素A・B・Cで連結されている(各要素のばね定数は図に示す)。全体剛性マトリックスを組み立てる(アセンブリ)とき、$(3,3)$ 成分(節点3の対角成分)はいくらか。",
       "choices": [
         "$250\\,\\mathrm{N/mm}$",
         "$500\\,\\mathrm{N/mm}$",
@@ -742,6 +743,7 @@
       "origin": "original",
       "reviewed": true,
       "figure": "helpful",
+      "preFigureImage": "femAssemblySetup",
       "figureImage": "femAssembly",
       "figureHint": "節点1-2-3-4を一直線に並べ、節点1-2を要素A(k1)、2-3を要素B(k2)、3-4を要素C(k3)で結ぶ。節点番号1・2・3・4と各要素のばね定数を明示し、節点3を丸で囲んで強調する。",
       "officialRef": "問4-26",

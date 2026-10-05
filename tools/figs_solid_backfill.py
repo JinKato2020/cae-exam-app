@@ -184,7 +184,7 @@ def model8SaddleTransverse():
     # 長手直交・水平の地震(画面上下=直交方向)
     force(d, (x0 + x1) / 2, cy - R - 30, 0, 34, "", RED)
     ctext(d, (x0 + x1) / 2 + 12, cy - R - 40, "長手直交・水平地震", FS, RED, "lm")
-    note(d, "軸に直交する水平地震。長手直交の鉛直面が対称面になり、この面を対称とする1/2化が妥当。")
+    note(d, "荷重も拘束(片側固定・片側スライド)も非対称で、使える対称面が無い→フル(1/1)モデル。")
     save(im, "model8SaddleTransverse")
 
 
@@ -522,7 +522,7 @@ def model8Silo():
     for yy in (ytop + 30, (ytop + ybot) / 2, ybot - 30):
         arrow(d, bx0 - 70, yy, bx0 - 6, yy, RED, 3, 12)
     ctext(d, bx0 - 76, ytop + 30, "風荷重", FS, RED, "rm")
-    note(d, "横風は周方向に非一様な圧力→軸対称にはならず、全周(3次元)シェルで扱う対象。")
+    note(d, "軸対称形状＋非軸対称荷重(横風)→風をフーリエ級数展開し軸対称要素で解くのが最効率。")
     save(im, "model8Silo")
 
 
