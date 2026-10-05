@@ -129,23 +129,32 @@ def bc9AntisymBeamFix():
 # ================= 図3 bc9AntisymCenter =================
 def bc9AntisymCenter():
     im, d = new(); title(d, "モーメント荷重と反対称境界条件(1/2モデル)")
-    # 平面部材:左端固定・他端モーメント。センターライン=縦(y方向)の反対称軸
-    x0, x1, yt, yb = 250, 470, 110, 330
-    d.rectangle((x0, yt, x1, yb), outline=BLACK, width=3, fill=FILL1)
-    # センターライン(反対称軸)= x=x0 (左辺)。仕様: 線上節点 u=0。縦線として描く
-    cl = x0
-    dash(d, cl, yt - 30, cl, yb + 30, RED)
-    ctext(d, cl, yt - 42, "センターライン(反対称軸)", FT, RED)
-    rollers_along(d, cl, yt, cl, yb, n=6, off=13, r=5, sidesign=-1)
-    ctext(d, cl - 60, (yt + yb) / 2, "u=0\n(x拘束)", FS, BLUE, "mm")
-    # 他端(右)にモーメント
-    moment(d, x1 + 34, (yt + yb) / 2, 26, RED, label="M")
-    ctext(d, x1 + 34, (yt + yb) / 2 + 46, "モーメント", FT, RED)
-    # 反対称=上下で応力の向きが逆(矢印)
-    arrow(d, (x0 + x1) / 2, yt - 8, (x0 + x1) / 2 + 40, yt - 8, ORANGE, 3, 11)
-    arrow(d, (x0 + x1) / 2, yb + 8, (x0 + x1) / 2 - 40, yb + 8, ORANGE, 3, 11)
-    ctext(d, (x0 + x1) / 2, yb + 30, "上下で応力が逆向き=反対称", FT, ORANGE)
-    note(d, "反対称軸上の節点は x方向変位 u=0 を課す(対称と違い法線変位は拘束しない)")
+    # 平面部材の上半分のみ。センターライン=横(x方向=中立軸)の反対称軸を下辺に置く
+    x0, x1, yt, yc = 210, 455, 150, 300   # yc=下辺=センターライン(反対称軸)
+    d.rectangle((x0, yt, x1, yc), outline=BLACK, width=3, fill=FILL1)
+    # 左端固定
+    wall(d, x0, yt - 6, yc + 6, side=-1)
+    ctext(d, x0 - 30, (yt + yc) / 2, "固定", FT, GRAY, "rm")
+    # 他端(右)にモーメント M
+    moment(d, x1 + 32, (yt + yc) / 2, 24, RED, label="M")
+    ctext(d, x1 + 32, (yt + yc) / 2 + 44, "モーメント", FT, RED)
+    # 上縁の引張→軸をまたぐと圧縮(反対称荷重)
+    arrow(d, (x0 + x1) / 2 - 10, yt - 10, (x0 + x1) / 2 + 44, yt - 10, ORANGE, 3, 11)
+    ctext(d, (x0 + x1) / 2, yt - 26, "上縁:引張(軸をまたぐと圧縮=反対称)", FT, ORANGE)
+    # 下辺=横センターライン(反対称軸=中立軸)
+    dash(d, x0 - 12, yc, x1 + 12, yc, RED)
+    ctext(d, (x0 + x1) / 2, yc + 60, "横センターライン(反対称軸=中立軸)", FT, RED)
+    # 反対称軸上の節点: 接線方向 u=0(x拘束)・法線方向 v は自由(上下すべり可)
+    for t in (0.25, 0.5, 0.75):
+        nx = x0 + (x1 - x0) * t
+        node(d, nx, yc, 5, fill="white")
+        # 縦ローラー(縦地線+横オフセット円)=水平拘束 u=0・上下自由
+        rollers_along(d, nx, yc - 9, nx, yc + 9, n=2, off=9, r=4, sidesign=1)
+        # v自由=上下両矢印
+        arrow(d, nx + 16, yc - 2, nx + 16, yc - 16, BLUE, 2, 8)
+        arrow(d, nx + 16, yc + 2, nx + 16, yc + 16, BLUE, 2, 8)
+    ctext(d, (x0 + x1) / 2, yc + 38, "各節点 u=0(x拘束=接線)・v自由(法線)", FS, BLUE)
+    note(d, "反対称軸(中立軸)上の節点は接線方向 u=0 を拘束し法線方向 v は自由(対称条件と逆)")
     save(im, "bc9AntisymCenter")
 
 

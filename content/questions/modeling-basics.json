@@ -87,6 +87,7 @@
       "relatedFormulas": [
         "symmetry"
       ],
+      "preFigureImage": "model8SaddleAxialSetup",
       "figureImage": "model8SaddleAxial",
       "figureHint": "白地660x420で、サドル支持の横置き円筒容器(片側固定・片側スライド)に軸(長手)方向地震を与えた側面図。"
     },
@@ -143,6 +144,7 @@
       "relatedFormulas": [
         "symmetry"
       ],
+      "preFigureImage": "model8SaddleTransverseSetup",
       "figureImage": "model8SaddleTransverse",
       "figureHint": "白地660x420で、横置き円筒容器に長手直交・水平方向の地震荷重を与えた上面図。"
     },
@@ -171,6 +173,7 @@
       "relatedFormulas": [
         "symmetry"
       ],
+      "preFigureImage": "model8ArchBridgeSetup",
       "figureImage": "model8ArchBridge",
       "figureHint": "白地660x420で、脚をa-b-c-o-c-b-aと対称配置した連続アーチ高架橋と中央脚oの沈下を示す図。"
     },
@@ -200,6 +203,7 @@
         "element-types",
         "submodeling"
       ],
+      "preFigureImage": "model8NozzleThermalSetup",
       "figureImage": "model8NozzleThermal",
       "figureHint": "白地660x420で、円筒胴に板厚の異なるノズルが交差し、交差部へ低温流体を注入する図。"
     },
@@ -371,6 +375,7 @@
         "mesh-refine",
         "element-types"
       ],
+      "preFigureImage": "model8SkirtVesselSetup",
       "figureImage": "model8SkirtVessel",
       "figureHint": "白地660x420で、スカート支持高圧容器の軸対称半断面と、取付部の応力集中位置を示す図。"
     },
@@ -595,6 +600,7 @@
       "relatedFormulas": [
         "axisymmetric"
       ],
+      "preFigureImage": "model8LNGTankSetup",
       "figureImage": "model8LNGTank",
       "figureHint": "白地660x420で、地下円筒LNGタンク(本体壁・止水壁・ドーム屋根)の軸対称半断面図。"
     },
@@ -623,6 +629,7 @@
       "relatedFormulas": [
         "axisymmetric"
       ],
+      "preFigureImage": "model8DumbbellSetup",
       "figureImage": "model8Dumbbell",
       "figureHint": "白地660x420で、ダンベル形丸棒引張試験片を軸方向に引張る軸対称(回転対称)形状の図。"
     },
@@ -651,6 +658,7 @@
       "relatedFormulas": [
         "plane-stress-strain"
       ],
+      "preFigureImage": "model8PlateHoleSetup",
       "figureImage": "model8PlateHole",
       "figureHint": "白地660x420で、円孔付き薄板の面内一様引張と、孔縁(荷重直交)の応力集中位置を示す図。"
     },
@@ -708,6 +716,7 @@
         "axisymmetric",
         "element-types"
       ],
+      "preFigureImage": "model8BoltCircleSetup",
       "figureImage": "model8BoltCircle",
       "figureHint": "白地660x420で、フランジ周方向に離散配置した取付けボルト(周期/サイクリック対称)を示す平面図。"
     },
@@ -762,6 +771,7 @@
         "beam-truss-formulation",
         "element-types"
       ],
+      "preFigureImage": "model8TowerSetup",
       "figureImage": "model8Tower",
       "figureHint": "白地660x420で、円管部材の鉄塔(脚柱・横材・斜材ブレース)に水平風荷重を与えた図。"
     },
@@ -790,6 +800,7 @@
       "relatedFormulas": [
         "plane-stress-strain"
       ],
+      "preFigureImage": "model8TunnelSetup",
       "figureImage": "model8Tunnel",
       "figureHint": "白地660x420で、断面一様の長いトンネルの横断面と長手方向(平面ひずみ)を示す図。"
     },
@@ -846,6 +857,7 @@
       "relatedFormulas": [
         "element-types"
       ],
+      "preFigureImage": "model8HookSetup",
       "figureImage": "model8Hook",
       "figureHint": "白地660x420で、曲率をもつ太い断面の吊りフック(曲がりはり)に荷重を掛けた図。"
     },
@@ -904,6 +916,7 @@
         "element-types",
         "beam-truss-formulation"
       ],
+      "preFigureImage": "model8ChannelBeamSetup",
       "figureImage": "model8ChannelBeam",
       "figureHint": "白地660x420で、厚肉溝形(開断面)はりの曲げ+ねじり(せん断中心と図心のずれ)を示す断面図。"
     },
@@ -933,6 +946,7 @@
         "nonaxisym-fourier",
         "axisymmetric"
       ],
+      "preFigureImage": "model8SiloSetup",
       "figureImage": "model8Silo",
       "figureHint": "白地660x420で、円錐屋根付き円筒サイロ(地面固定)に横風荷重を与えた図。"
     },
