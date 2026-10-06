@@ -206,21 +206,28 @@ def f_tunnel():
 
 # ---- 8-13 懸荷用フック ----
 def f_hook():
+    # 回答後図 model8Hook と同一の「開いたC字=吊りフック」形状(中立)。
+    # 構造形状・荷重・与件(円形で太い断面)のみ。要素種別/曲がりはり/せん断等の
+    # 答え・ヒントは描かない。
     im, d = new(); title(d, "曲率をもつ太い断面の懸荷用フック")
-    cx, cy, r1, r2 = 300, 210, 50, 95
-    d.arc((cx - r2, cy - r2, cx + r2, cy + r2), 150, 480, fill=BLACK, width=3)
-    d.arc((cx - r1, cy - r1, cx + r1, cy + r1), 150, 480, fill=BLACK, width=3)
-    a0 = math.radians(150)
-    d.line((cx + r1 * math.cos(a0), cy - r1 * math.sin(a0), cx + r2 * math.cos(a0), cy - r2 * math.sin(a0)), fill=BLACK, width=3)
-    # ねじ部(上)
-    d.rectangle((cx - 16, cy - r2 - 46, cx + 16, cy - r2 + 4), outline=BLACK, width=3, fill=FILL1)
-    for yy in range(int(cy - r2 - 42), int(cy - r2), 8):
-        d.line((cx - 16, yy, cx + 16, yy), fill=BLACK, width=1)
-    # 先端荷重
-    a1 = math.radians(480 % 360)
-    tx, ty = cx + (r1 + r2) / 2 * math.cos(a1), cy - (r1 + r2) / 2 * math.sin(a1)
-    arrow(d, tx, ty, tx, ty + 70, RED, 4, 14); ctext(d, tx + 14, ty + 50, "W", FS, RED, "lm")
-    ctext(d, cx, cy + 120, "断面は円形・太い", FT, GRAY)
+    cx, cy = 320, 215
+    Ro, Ri = 100, 52
+    # 本体(開いた太い環=大きく湾曲した太いはり)
+    d.arc((cx - Ro, cy - Ro, cx + Ro, cy + Ro), -30, 290, fill=BLACK, width=4)
+    d.arc((cx - Ri, cy - Ri, cx + Ri, cy + Ri), -30, 290, fill=BLACK, width=4)
+    for a in (-30, 290):
+        ar = math.radians(a)
+        d.line((cx + Ri * math.cos(ar), cy + Ri * math.sin(ar),
+                cx + Ro * math.cos(ar), cy + Ro * math.sin(ar)), fill=BLACK, width=4)
+    # 上部シャンク(天井に取付)
+    d.rectangle((cx - 15, 70, cx + 15, cy - Ro + 6), outline=BLACK, width=3, fill=FILL1)
+    hwall(d, cx - 26, cx + 26, 70, side=-1, n=5)
+    # 断面が太い・円形(与件のみ)
+    dim(d, cx - Ro - 16, cy, cx - Ri - 4, cy, "太い断面", col=GRAY)
+    ctext(d, cx + Ro + 8, cy, "円形断面", FT, GRAY, "lm")
+    # 吊り荷重(内側下部)
+    lx, ly = cx, cy + (Ri + Ro) / 2 + 6
+    force(d, lx, ly, 0, 64, "W", RED)
     note(d, "最大応力を求める。FEMで最も適切な要素は?")
     save(im, "model8HookSetup")
 
