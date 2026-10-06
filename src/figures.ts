@@ -1215,6 +1215,7 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   bc9EqTriLoad: require('../assets/figures/bc9EqTriLoad.png'),
   bc9EqTriLoadSetup: require('../assets/figures/bc9EqTriLoadSetup.png'),
   bc9FrameStability: require('../assets/figures/bc9FrameStability.png'),
+  bc9FrameStabilitySetup: require('../assets/figures/bc9FrameStabilitySetup.png'),
   bc9HolePlateQuarter: require('../assets/figures/bc9HolePlateQuarter.png'),
   bc9HolePlateQuarterSetup: require('../assets/figures/bc9HolePlateQuarterSetup.png'),
   bc9InclinedMPC: require('../assets/figures/bc9InclinedMPC.png'),

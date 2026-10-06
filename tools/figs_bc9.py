@@ -356,6 +356,61 @@ def bc9FrameStability():
     save(im, "bc9FrameStability")
 
 
+# ===== 追加 bc9FrameStabilitySetup(回答前の中立setup図) =====
+def bc9FrameStabilitySetup():
+    """問bc9-26の回答前図。4構造①〜④を『どれが不安定かを示さず』等価に並べる中立setup図。
+    ×印・安定/不安定・剛体モード等の結論は一切描かない(答えバレ禁止)。"""
+    im, d = new(); title(d, "柱とはりからなる4つの構造")
+    w, h = 105, 78
+
+    def column(x, y):  # 床から上へ伸びる柱
+        d.line((x, y, x, y - h), fill=BLACK, width=4)
+
+    def base(x, y, kind):  # 'pin'=ピン(回転)支点 / 'fix'=固定支点
+        if kind == 'pin':
+            small_pin(d, x, y)
+        else:
+            hwall(d, x - 18, x + 18, y, side=1, n=4)
+
+    def joint_pin(x, y):  # ピン接合(○)
+        node(d, x, y, 6)
+
+    # ① 柱2本+上はり、脚は両方ピン○・隅もピン接合(回転拘束となる支持・部材なし)
+    ox, oy = 95, 175
+    column(ox, oy); column(ox + w, oy)
+    d.line((ox, oy - h, ox + w, oy - h), fill=BLACK, width=4)
+    base(ox, oy, 'pin'); base(ox + w, oy, 'pin')
+    joint_pin(ox, oy - h); joint_pin(ox + w, oy - h)
+    ctext(d, ox + w / 2, oy + 36, "①", F, BLACK)
+
+    # ② 柱2本+上はり、脚は両方固定支点
+    ox, oy = 400, 175
+    column(ox, oy); column(ox + w, oy)
+    d.line((ox, oy - h, ox + w, oy - h), fill=BLACK, width=4)
+    base(ox, oy, 'fix'); base(ox + w, oy, 'fix')
+    ctext(d, ox + w / 2, oy + 36, "②", F, BLACK)
+
+    # ③ 1本柱が床に固定、上部に水平材を剛接合(片持ち風)
+    ox, oy = 95, 330
+    column(ox, oy)
+    d.line((ox, oy - h, ox + w, oy - h), fill=BLACK, width=4)
+    base(ox, oy, 'fix')
+    ctext(d, ox + w / 2, oy + 36, "③", F, BLACK)
+
+    # ④ 柱2本+上はり+斜材(ブレース)で三角形を含む構成、脚はピン○・各隅ピン接合
+    ox, oy = 390, 330
+    column(ox, oy); column(ox + w, oy)
+    d.line((ox, oy - h, ox + w, oy - h), fill=BLACK, width=4)
+    d.line((ox, oy, ox + w, oy - h), fill=BLACK, width=4)  # 斜材(ブレース)
+    base(ox, oy, 'pin'); base(ox + w, oy, 'pin')
+    joint_pin(ox, oy - h); joint_pin(ox + w, oy - h)
+    joint_pin(ox, oy); joint_pin(ox + w, oy)
+    ctext(d, ox + w / 2, oy + 36, "④", F, BLACK)
+
+    note(d, "○=ピン接合・回転支点 / それ以外=剛接合・固定支点")
+    save(im, "bc9FrameStabilitySetup")
+
+
 # ================= 図11 bc9HolePlateQuarter =================
 def bc9HolePlateQuarter():
     im, d = new(); title(d, "円孔板1/4モデルの対称境界条件")
@@ -562,11 +617,79 @@ def bc9ThreePointBeam():
     save(im, "bc9ThreePointBeam")
 
 
+# ================= 図19 bc9MpcBeamPlane(回答後:はり-平面結合MPC) =================
+def bc9MpcBeamPlane():
+    """9-32 回答後の説明図。はり節点Bの回転θが、オフセットyを介して
+    平面要素側節点Pのx方向並進 u_P=u_B-yθ に変換される様子(断面は平面を保つ)を示す。
+    回転前(実線)の断面と回転後(破線)の断面を重ね、P→P'の移動を矢印で可視化。"""
+    im, d = new(); title(d, "はり要素と平面要素の結合MPC(回転θを伝える)")
+
+    Bx, By = 250, 355          # はり節点B(はり右端・基準節点)
+    Lsec = 165                 # 断面長(=オフセットy)。上向きにPを置く
+    Px, Py = Bx, By - Lsec     # 平面要素側の節点P(Bからyだけ上)
+
+    # --- はり要素(水平) ---
+    bar(d, 78, By, Bx, By, thick=16, fill=FILL1)
+    ctext(d, 150, By - 30, "はり要素", FT, GRAY)
+
+    # --- 平面要素(2Dメッシュ領域)。Pはその左下隅の節点 ---
+    ex0, ey0, ex1, ey1 = Px, 70, 470, Py
+    d.rectangle((ex0, ey0, ex1, ey1), outline=BLACK, width=3, fill=FILL1)
+    ncol, nrow = 3, 2
+    for c in range(1, ncol):
+        xx = ex0 + (ex1 - ex0) * c / ncol
+        d.line((xx, ey0, xx, ey1), fill=LGRAY, width=1)
+    for r in range(1, nrow):
+        yy = ey0 + (ey1 - ey0) * r / nrow
+        d.line((ex0, yy, ex1, yy), fill=LGRAY, width=1)
+    ctext(d, (ex0 + ex1) / 2 + 20, (ey0 + ey1) / 2, "平面要素", FT, GRAY)
+
+    # --- 回転前の断面(実線・剛体):B→P ---
+    d.line((Bx, By, Px, Py), fill=BLACK, width=4)
+    ctext(d, Bx + 12, (By + Py) / 2 + 30, "剛体断面", FT, GRAY, "lm")
+
+    # --- 回転後の断面(破線):Bまわりに微小回転θ。上端が左へ ---
+    th = math.radians(20)
+    Ppx = Bx - Lsec * math.sin(th)
+    Ppy = By - Lsec * math.cos(th)
+    dash(d, Bx, By, Ppx, Ppy, RED, 2, 10)
+    node(d, Ppx, Ppy, 7, fill="white", col=RED)
+    ctext(d, Ppx - 14, Ppy - 4, "P'", FS, RED, "rm")
+
+    # --- 回転角θ(Bまわりの円弧) ---
+    angle_arc(d, Bx, By, 50, 90, 110, "θ", RED)
+
+    # --- 節点B・P ---
+    node(d, Bx, By, 9, fill="white")
+    node(d, Px, Py, 9, fill="white")
+    ctext(d, Px + 16, Py + 14, "P", FS, BLACK, "lm")
+
+    # --- オフセットy(B–P間)を右側に寸法表示 ---
+    dim(d, Bx + 48, Py, Bx + 48, By, "オフセット y", 0)
+
+    # --- 核心:PがP'へ x方向に -yθ 移動する矢印 ---
+    arrow(d, Px, Py, Ppx, Py, RED, 3, 12)
+    ctext(d, (Px + Ppx) / 2, Py - 15, "-yθ", FT, RED)
+
+    # --- 式ラベル(対象=Pの近く・左上にまとめる) ---
+    ctext(d, 56, 110, "u_P = u_B - yθ  (x方向)", FS, RED, "lm")
+    ctext(d, 56, 140, "v_P = v_B    (y方向)", FS, GREEN, "lm")
+
+    # --- 節点Bの自由度 ---
+    ctext(d, Bx + 30, By + 20, "節点B (u_B, v_B, θ)", FT, BLACK, "lm")
+
+    note(d, "はりの回転θがオフセットyを介して平面節点のx方向並進に変換される(断面は平面を保つ)")
+    save(im, "bc9MpcBeamPlane")
+
+
 if __name__ == "__main__":
+    import sys as _sys
+    if "--one" in _sys.argv:
+        bc9MpcBeamPlane(); _sys.exit(0)
     for fn in [bc9AnnulusSector, bc9AntisymBeamFix, bc9AntisymCenter, bc9AxisymCylBC,
                bc9CrackPlateQuarter, bc9DiscCompress, bc9DiscCyclic, bc9DiscretizeRatios,
                bc9ElementReaction, bc9FrameStability, bc9HolePlateQuarter, bc9InclinedMPC,
                bc9MeshRbmFix, bc9PressureApply, bc9RigidSlideMPC, bc9SelfWeightBeam,
-               bc9ThickCylQuarter, bc9ThreePointBeam]:
+               bc9ThickCylQuarter, bc9ThreePointBeam, bc9FrameStabilitySetup, bc9MpcBeamPlane]:
         fn()
-    print("=== all 18 bc9 figures done ===")
+    print("=== all 19 bc9 figures done ===")

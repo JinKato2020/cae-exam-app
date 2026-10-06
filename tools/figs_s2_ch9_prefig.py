@@ -254,20 +254,67 @@ def f_mpc_beamplane():
     save(im, "bc9MpcBeamPlaneSetup")
 
 
-# ---- 9-33 長い円管の軸方向境界条件 ----
+# ---- 9-33 長い円管の軸方向境界条件(回答前=中立。拘束は一切描かない) ----
 def f_cyl_axial_mpc():
-    im, d = new(); title(d, "長い円管の軸対称モデル(軸方向の境界条件を問う)")
-    ox, oy, w, h = 250, 330, 120, 220
-    d.rectangle((ox, oy - h, ox + w, oy), outline=BLACK, width=3, fill=FILL1)   # r-z断面
-    dash(d, ox - 40, oy - h - 10, ox - 40, oy + 20, GRAY, 2)
-    ctext(d, ox - 40, oy + 36, "軸(対称)", FT, GRAY)
-    arrow(d, ox - 70, oy, ox - 70, oy - 70, BLACK, 2, 10); ctext(d, ox - 70, oy - 86, "z", FT, BLACK)
-    arrow(d, ox - 70, oy, ox - 10, oy, BLACK, 2, 10); ctext(d, ox - 2, oy, "r", FT, BLACK, "lm")
-    roller_support(d, ox + w * 0.3, oy, 14); roller_support(d, ox + w * 0.7, oy, 14)
-    ctext(d, ox + w / 2, oy + 40, "下端: z方向拘束", FT, GRAY)
-    dash(d, ox - 6, oy - h, ox + w + 30, oy - h, GRAY, 2); ctext(d, ox + w + 50, oy - h, "上端", FT, GRAY, "lm")
-    note(d, "下端はz拘束。上端を平面に保つための軸方向境界条件は?")
+    im, d = new(); title(d, "長い厚肉円管の軸対称モデル(両端面の軸方向境界条件を問う)")
+    ax = 150                          # 対称軸(r=0)
+    ix, ox = 250, 338                 # 内面・外面(肉厚帯)
+    ty, by = 125, 330                 # 上端面・下端面(z軸に垂直)
+    dash(d, ax, 100, ax, 360, GRAY, 2); ctext(d, ax, 92, "対称軸(r=0)", FT, GRAY)
+    d.rectangle((ix, ty, ox, by), outline=BLACK, width=3, fill=FILL1)           # r-z肉厚断面
+    # 方向キー(z上・r右)
+    kx, ky = 92, 352
+    arrow(d, kx, ky, kx, ky - 58, BLACK, 2, 10); ctext(d, kx, ky - 74, "z", FS, BLACK)
+    arrow(d, kx, ky, kx + 52, ky, BLACK, 2, 10); ctext(d, kx + 62, ky, "r", FS, BLACK, "lm")
+    # 内面から一様加熱(中空側→肉厚内面へ)
+    for yy in (ty + 45, (ty + by) / 2, by - 45):
+        arrow(d, ix - 42, yy, ix - 4, yy, ORANGE, 3, 10)
+    ctext(d, (ax + ix) / 2, ty + 16, "内面加熱", FT, ORANGE)
+    # z軸に垂直な二つの端面を明示(拘束は描かない)
+    dash(d, ox + 4, ty, ox + 92, ty, GRAY, 2); ctext(d, ox + 98, ty, "上端面(z軸に垂直)", FT, GRAY, "lm")
+    dash(d, ox + 4, by, ox + 92, by, GRAY, 2); ctext(d, ox + 98, by, "下端面(z軸に垂直)", FT, GRAY, "lm")
+    # 肉厚寸法
+    dim(d, ax, by + 22, ix, by + 22, "内半径a", 0)
+    dim(d, ix, by + 22, ox, by + 22, "肉厚", 0)
+    note(d, "両端面(上端面・下端面)に与えるz方向の境界条件は?(拘束は未記入)")
     save(im, "bc9CylAxialMPCSetup")
+
+
+# ---- 9-33 (回答後=答えを示す) 下端面z拘束＋上端面 一様z変位MPC(平面保持) ----
+def f_cyl_axial_mpc_answer():
+    im, d = new(); title(d, "答え:下端面をz拘束＋上端面は一様z変位(MPC)")
+    ax = 150
+    ix, ox = 250, 338
+    ty, by = 150, 330
+    dash(d, ax, 120, ax, 362, GRAY, 2); ctext(d, ax, 112, "対称軸(r=0)", FT, GRAY)
+    d.rectangle((ix, ty, ox, by), outline=BLACK, width=3, fill=FILL1)
+    # 方向キー
+    kx, ky = 92, 356
+    arrow(d, kx, ky, kx, ky - 56, BLACK, 2, 10); ctext(d, kx, ky - 72, "z", FS, BLACK)
+    arrow(d, kx, ky, kx + 52, ky, BLACK, 2, 10); ctext(d, kx + 62, ky, "r", FS, BLACK, "lm")
+    # 内面加熱
+    for yy in (ty + 42, (ty + by) / 2, by - 42):
+        arrow(d, ix - 42, yy, ix - 4, yy, ORANGE, 3, 10)
+    ctext(d, (ax + ix) / 2, ty + 16, "内面加熱", FT, ORANGE)
+    xs = [ix, (ix + ox) / 2, ox]
+    disp = 40
+    # 上端面:MPCで z変位を一様に。平面を保ったまま上へ膨張
+    d.line((ix - 6, ty, ox + 6, ty), fill=BLUE, width=3)                        # 現在の上端面(平面)
+    dash(d, ix - 6, ty - disp, ox + 6, ty - disp, BLUE, 2)                      # 変位後も平面
+    for nx in xs:
+        node(d, nx, ty, 6)
+        arrow(d, nx, ty - 4, nx, ty - disp + 4, BLUE, 3, 10)                    # 等長=一様z膨張
+        node(d, nx, ty - disp, 5, "white", BLUE)
+    ctext(d, (ix + ox) / 2, ty - disp - 15, "上端面:z変位を一様に(MPC)", FT, BLUE)
+    ctext(d, ox + 20, ty + 24, "平面を保ったまま", FT, BLUE, "lm")
+    ctext(d, ox + 20, ty + 44, "軸方向へ膨張", FT, BLUE, "lm")
+    # 下端面:z方向を拘束(剛体軸移動を除く)
+    for nx in xs:
+        node(d, nx, by, 6)
+        roller_support(d, nx, by, 11)
+    ctext(d, (ix + ox) / 2, by + 48, "下端面:z方向を拘束", FS, RED)
+    note(d, "下端面でz剛体移動を止め、上端面は平面を保って自由膨張(一般化平面ひずみ的)")
+    save(im, "bc9CylAxialMPC")
 
 
 # ---- 9-15 内圧円筒の軸対称モデル(課す境界条件を問う) ----
@@ -390,8 +437,8 @@ def main():
     f_inclined_slope(); f_thickcyl_quarter(); f_holeplate_quarter(); f_antisym_center()
     f_disc_cyclic(); f_annulus_sector(); f_antisym_beamfix(); f_disc_compress()
     f_mesh_rbmfix(); f_mpc_midnode(); f_rigidslide_mpc(); f_inclined_mpc()
-    f_mpc_beamplane(); f_cyl_axial_mpc(); f_axisym_cyl()
-    print("done 15 figures")
+    f_mpc_beamplane(); f_cyl_axial_mpc(); f_cyl_axial_mpc_answer(); f_axisym_cyl()
+    print("done figures")
 
 
 if __name__ == "__main__":

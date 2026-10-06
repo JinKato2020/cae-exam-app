@@ -752,7 +752,8 @@
       "relatedFormulas": [
         "rigid-body-mode"
       ],
-      "figure": "helpful"
+      "figure": "helpful",
+      "preFigureImage": "bc9FrameStabilitySetup"
     },
     {
       "id": "bc-9-27",
@@ -934,7 +935,7 @@
       "topic": "熱応力・軸対称・一般化平面ひずみ",
       "type": "mc",
       "difficulty": 3,
-      "question": "長さ方向の拘束が無い長い厚肉円管が内側から一様に加熱される。熱応力を軸対称ソリッド要素で解析するため、長手方向の一部を切り出したモデルを用いる。与える軸($z$)方向の変位境界条件として最も適切なものはどれか。",
+      "question": "長さ方向の拘束が無い長い厚肉円管が内側から一様に加熱される。熱応力を軸対称ソリッド要素で解析するため、長手方向の一部を切り出したモデルを用いる。このモデルには軸($z$)に垂直な二つの端面(図の上端面と下端面)がある。これらの端面に与える $z$ 方向の変位境界条件として最も適切なものはどれか。",
       "choices": [
         "両端面とも $z$ 方向を完全に拘束し、軸方向の伸びを許さないようにする。",
         "いずれの端面にも $z$ 方向の拘束を与えず、軸方向は自由なままにしておく。",
@@ -948,7 +949,7 @@
       "reviewed": true,
       "preFigureImage": "bc9CylAxialMPCSetup",
       "figureImage": "bc9CylAxialMPC",
-      "figureHint": "白地660x420。円管の軸対称断面(r-z)、下端z拘束・上端はz変位一様のMPCで平面保持を示す",
+      "figureHint": "白地660x420。厚肉円管から切り出した軸対称(r-z)モデル。左に対称軸、内面から加熱。軸に垂直な上端面・下端面を明示する中立図(拘束は描かない)",
       "officialRef": "問9-33",
       "role": "primary",
       "relatedFormulas": [
