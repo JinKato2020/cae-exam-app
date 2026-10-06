@@ -123,11 +123,34 @@ def f_deltat():
     save(im, "h3DeltatSetup")
 
 
+# ---- 3-16 二次元熱伝導の断熱境界(x に垂直な面)の条件(与件のみ) ----
+def f_adiabatic():
+    im, d = new()
+    title(d, "二次元熱伝導の断熱境界(x に垂直な面)")
+    # 解析領域
+    ox, w, ty, by = 250, 300, 120, 330
+    d.rectangle((ox, ty, ox + w, by), outline=BLACK, width=3, fill=FILL1)
+    ctext(d, ox + w / 2, (ty + by) / 2, "解析領域", FS, GRAY)
+    # 左面=断熱面(y に平行・x に垂直)。緑太線＋断熱ハッチ(外向き=左)
+    d.line((ox, ty, ox, by), fill=GREEN, width=6)
+    hatch_edge(d, ox, ty, ox, by, (-1, 0))
+    ctext(d, ox, ty - 18, "断熱面(y に平行)", FT, GREEN)
+    # 座標軸(向きの明示: x は水平=面に垂直, y は鉛直=面に平行)
+    axx, axy = 120, 350
+    arrow(d, axx, axy, axx + 64, axy, BLACK, 3, 12)   # x 軸(右向き)
+    ctext(d, axx + 74, axy, "x", FT, BLACK, "lm")
+    arrow(d, axx, axy, axx, axy - 64, BLACK, 3, 12)   # y 軸(上向き)
+    ctext(d, axx, axy - 80, "y", FT, BLACK)
+    note(d, "x に垂直(y に平行)な面が断熱境界。この面上で成り立つことは?(未記入)")
+    save(im, "h3AdiabaticSetup")
+
+
 def main():
     f_dist_shapes()
     f_genheat()
     f_fluxgen()
     f_deltat()
+    f_adiabatic()
     print("done ch3 prefig add")
 
 

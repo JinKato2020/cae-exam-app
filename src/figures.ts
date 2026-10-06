@@ -321,6 +321,7 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   v2eDeriv2_5: require('../assets/figures/v2eDeriv2_5.png'),
   // 第3章 熱伝導の基礎
   h3Adiabatic: require('../assets/figures/h3Adiabatic.png'),
+  h3AdiabaticSetup: require('../assets/figures/h3AdiabaticSetup.png'),
   h3Analogy: require('../assets/figures/h3Analogy.png'),
   h3CylConvSetup: require('../assets/figures/h3CylConvSetup.png'),
   h3Cylconv: require('../assets/figures/h3Cylconv.png'),

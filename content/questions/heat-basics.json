@@ -462,6 +462,7 @@
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
+      "preFigureImage": "h3AdiabaticSetup",
       "figureImage": "h3Adiabatic",
       "figure": "helpful",
       "figureHint": "断熱面はq_x=0すなわち∂T/∂x=0",
