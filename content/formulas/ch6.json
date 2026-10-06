@@ -83,7 +83,7 @@
       "id": "lagrange",
       "kind": "formula",
       "term": "ラグランジュ補間",
-      "formula": "$$\\begin{aligned}P(x)&=\\sum_i y_i N_i(x)\\\\N_i(x)&=\\prod_{j\\ne i}\\dfrac{x-x_j}{x_i-x_j}\\end{aligned}$$",
+      "formula": "$$\\begin{aligned}& P(x) =\\sum_i y_i N_i(x) \\\\ & N_i(x) =\\prod_{j\\ne i}\\dfrac{x-x_j}{x_i-x_j}\\end{aligned}$$",
       "body": "各点の『関数値だけ』を使って、n個の点をすべて通る n−1 次の多項式を作る補間です。n=2 で直線（線形補間）となり、トラス要素の形状関数に対応します。",
       "example": "3点を与えると2次曲線が1本に決まります。基底 $N_i$ は自分の点で1・他点で0になります。"
     },

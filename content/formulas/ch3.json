@@ -79,7 +79,7 @@
       "id": "overall-heat-transfer",
       "kind": "formula",
       "term": "熱通過率 K（固体壁を介した流体間の伝熱）",
-      "formula": "$$\\begin{aligned}q&=K\\,(T_h-T_c)\\\\K&=\\dfrac{1}{\\dfrac1{h_h}+\\dfrac{t}{\\lambda}+\\dfrac1{h_c}}\\end{aligned}$$",
+      "formula": "$$\\begin{aligned}& q =K\\,(T_h-T_c) \\\\ & K =\\dfrac{1}{\\dfrac1{h_h}+\\dfrac{t}{\\lambda}+\\dfrac1{h_c}}\\end{aligned}$$",
       "body": "高温流体→壁→低温流体と熱が通り抜けるときの伝わりやすさが熱通過率 $K$ です。両面の熱伝達（$1/h$）と壁の熱伝導（$t/\\lambda$）が直列で、その和の逆数になります。",
       "example": "壁が薄く $\\lambda$ が大きければ $t/\\lambda$ は小さく、両面の対流抵抗が効きます（公式問3-10）。",
       "figureImage": "h3Uvalue"
@@ -97,7 +97,7 @@
       "id": "thermal-diffusivity",
       "kind": "formula",
       "term": "熱拡散率と非定常熱伝導",
-      "formula": "$$\\begin{aligned}\\alpha&=\\dfrac{\\lambda}{\\rho c}\\\\\\dfrac{\\partial T}{\\partial t}&=\\alpha\\dfrac{\\partial^{2}T}{\\partial x^{2}}\\end{aligned}$$",
+      "formula": "$$\\begin{aligned}& \\alpha =\\dfrac{\\lambda}{\\rho c} \\\\ & \\dfrac{\\partial T}{\\partial t} =\\alpha\\dfrac{\\partial^{2}T}{\\partial x^{2}}\\end{aligned}$$",
       "body": "非定常（時間変化する）熱伝導の伝わる速さを決めるのが熱拡散率 $\\alpha=\\lambda/(\\rho c)$（$\\rho$＝密度、$c$＝比熱）。十分時間が経って温度が変化しなくなった状態（$t\\to\\infty$）が定常で、定常解析はその温度分布を与えます。",
       "example": "定常熱伝導解析が与えるのは $t\\to\\infty$ の温度分布。各時刻の温度分布を知りたいときは非定常解析が必要です（公式問3-3）。",
       "figureImage": "h3Transient"

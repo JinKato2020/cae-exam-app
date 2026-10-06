@@ -2199,27 +2199,14 @@ function splitTopEquations(inner: string): string[] {
   return parts.map((p) => p.trim()).filter((p) => p.length > 0);
 }
 
-// 1つの式を、深さ0の最初の「=」で左辺・右辺に分け aligned 用の "LHS &= RHS" にする。
-// = が無い行（注記など）は左寄せ（"& …"）。左辺は決して = と切り離さない（◯/＝○○○ 防止）。
-function alignAtEq(seg: string): string {
-  let depth = 0;
-  for (let i = 0; i < seg.length; i++) {
-    const c = seg[i];
-    if (c === '\\') {
-      const nx = seg[i + 1];
-      if (nx === '{' || nx === '(' || nx === '[') depth++;
-      else if (nx === '}' || nx === ')' || nx === ']') depth = Math.max(0, depth - 1);
-      i += 1;
-      continue;
-    }
-    if (c === '{' || c === '(' || c === '[') depth++;
-    else if (c === '}' || c === ')' || c === ']') depth = Math.max(0, depth - 1);
-    else if (depth === 0 && c === '=') return `${seg.slice(0, i).trim()} &= ${seg.slice(i + 1).trim()}`;
-  }
+// 1つの式を aligned 用に左詰めにする（先頭 & で左寄せ・= 列では揃えない）。
+// テイラー/マクローリン等の長い式で左辺が右に寄るのを防ぐため、= 揃え（"LHS &= RHS"）はやめ、
+// すべて先頭 & の左寄せ（"& …"）に統一する。
+function alignLeft(seg: string): string {
   return `& ${seg.trim()}`;
 }
 
-// 長い公式を「左辺=右辺」で縦に整列（aligned）。= の直前では決して改行しない。
+// 長い公式を縦に並べて左詰め整列（aligned・先頭&で左寄せ）。= の直前では決して改行しない。
 // ・短い式/単一の式は1行のまま（はみ出しは横スクロールに任せる）。
 // ・既に \begin{...}（aligned・行列など）を含む式は構造を尊重してそのまま返す。
 function wrapLongDisplay(inner: string): string {
@@ -2228,7 +2215,7 @@ function wrapLongDisplay(inner: string): string {
   if (s.includes('\\begin{')) return s; // 既に構造化済み（aligned/行列/cases等）→触らない
   const segs = splitTopEquations(s);
   if (segs.length <= 1) return s; // 単一の式は1行（= で改行しない）
-  return `\\begin{aligned}${segs.map(alignAtEq).join(' \\\\ ')}\\end{aligned}`;
+  return `\\begin{aligned}${segs.map(alignLeft).join(' \\\\ ')}\\end{aligned}`;
 }
 
 function displayMath(s: string): string {

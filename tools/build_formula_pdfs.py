@@ -54,17 +54,7 @@ def _split_equations(inner):
     return [p.strip() for p in parts if p.strip()]
 
 def _align_at_eq(seg):
-    # 深さ0の最初の = で左辺/右辺に分け "LHS &= RHS" に。= が無ければ左寄せ。
-    depth = 0; i = 0; n = len(seg)
-    while i < n:
-        c = seg[i]
-        if c == "\\":
-            depth = _esc_depth(seg, i, depth); i += 2; continue
-        if c in "{([": depth += 1
-        elif c in "})]": depth = max(0, depth - 1)
-        elif depth == 0 and c == "=":
-            return seg[:i].strip() + " &= " + seg[i + 1:].strip()
-        i += 1
+    # 左詰め: 先頭 & で左寄せ（= 列では揃えない=左辺が右に寄るのを防ぐ）。App.tsx alignLeft と同じ。
     return "& " + seg.strip()
 
 def wrap_long(inner):

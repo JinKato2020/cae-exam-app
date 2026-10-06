@@ -48,7 +48,7 @@
       "id": "stress-concentration-check",
       "kind": "formula",
       "term": "応力集中係数による検証(円孔付き平板)",
-      "formula": "$$\\begin{aligned}\\alpha&=\\dfrac{\\sigma_m}{\\sigma_0}\\\\\\sigma_0&=\\dfrac{P}{(2d-2a)t}\\end{aligned}$$",
+      "formula": "$$\\begin{aligned}& \\alpha =\\dfrac{\\sigma_m}{\\sigma_0} \\\\ & \\sigma_0 =\\dfrac{P}{(2d-2a)t}\\end{aligned}$$",
       "body": "応力集中係数αは最大応力σ_mを基準応力σ_0(公称応力)で割ったものです。基準の取り方は2通りあり、遠方基準σ_0'=P/(2dt)では無限板(a≪d)で3.0、最小断面基準では a→d で2.0に近づきます。円孔縁のσ_xは理論上0ですが、外挿しても厳密には0になりません。1/4対称モデルで粗い分割だと外挿値は理論より大きく下がり、線形外挿で正しく予測できるとは言えません。",
       "example": "P=1000N、d=50mm、a=10mm、t=1mm:σ_0=1000/{(100-20)×1}=12.5MPa、α=2.51、最大応力=2.51×12.5=31.4MPa。最小断面9要素では外挿26.3MPa(誤差16%、15%以上)。問11-1。",
       "figureImage": null
