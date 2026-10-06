@@ -459,6 +459,7 @@
       "origin": "original",
       "reviewed": true,
       "figureImage": "bc9SymBeam",
+      "preFigureImage": "bc9SymBeamSetup",
       "figureHint": "白地660x420。単純支持ばりの半分モデル、中央対称面でu・θを拘束・v自由の記号を示す",
       "officialRef": "問9-16",
       "role": "primary",
