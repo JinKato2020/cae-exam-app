@@ -145,6 +145,7 @@
       "officialRef": "問11-3",
       "role": "primary",
       "figure": "helpful",
+      "preFigureImage": "ver11CylExtrapSetup",
       "figureImage": "ver11CylExtrap",
       "figureHint": "白地660x420。内圧円筒の軸対称モデルで、内表面から5mm・15mmの要素中心応力を直線外挿し距離0の内表面応力を推定する図",
       "relatedFormulas": [
@@ -287,6 +288,7 @@
       "officialRef": "問11-4",
       "role": "primary",
       "figure": "helpful",
+      "preFigureImage": "ver11ThinTorsionSetup",
       "figureImage": "ver11ThinTorsion",
       "figureHint": "白地660x420。開断面(C形)はそりを拘束せず低剛性、スポット溶接で閉断面化するとそりが拘束され高剛性となるねじりの対比図。",
       "relatedFormulas": [
@@ -343,6 +345,7 @@
       "officialRef": "問11-5",
       "role": "primary",
       "figure": "helpful",
+      "preFigureImage": "ver11BeamPosSetup",
       "figureImage": "ver11BeamPos",
       "figureHint": "白地660x420。単純支持はりの左端から200mmに集中荷重、たわみ曲線が左右非対称で最大たわみ位置が中央寄りにずれる様子",
       "relatedFormulas": [
@@ -399,6 +402,7 @@
       "officialRef": "問11-6",
       "role": "primary",
       "figure": "helpful",
+      "preFigureImage": "ver11LoadArrangeSetup",
       "figureImage": "ver11LoadArrange",
       "figureHint": "白地660x420。総和が等しい荷重を中央1点集中・等分布・複数点分散で与えた単純支持はりのたわみ比較。中央集中が最大。",
       "relatedFormulas": [
@@ -427,6 +431,7 @@
       "officialRef": "問11-7",
       "role": "primary",
       "figure": "helpful",
+      "preFigureImage": "ver11MomentPeakSetup",
       "figureImage": "ver11MomentPeak",
       "figureHint": "白地660x420。単純支持はり中央集中荷重の曲げモーメント図(荷重点で最大)とσ=M/Zの関係を示す図。",
       "relatedFormulas": [
@@ -455,6 +460,7 @@
       "officialRef": "問11-8",
       "role": "primary",
       "figure": "helpful",
+      "preFigureImage": "ver11RigidFBDSetup",
       "figureImage": "ver11RigidFBD",
       "figureHint": "白地660x420。片持ちはり1+長さaの剛体要素+引張はり2の接合点で、軸力Pの作用線ずれがモーメントP·aを生むフリーボディダイアグラム",
       "relatedFormulas": [
@@ -514,6 +520,7 @@
       "relatedFormulas": [
         "sanity-checks"
       ],
+      "preFigureImage": "ver11RigidHoleStripSetup",
       "figureImage": "ver11RigidHoleStrip",
       "figureHint": "白地660x420で、帯板中央に剛体円孔部を埋め込み荷重方向に一様引張し、中心線(対称線)を示す図。"
     },
@@ -539,6 +546,7 @@
       "officialRef": "問11-10",
       "role": "primary",
       "figure": "helpful",
+      "preFigureImage": "ver11WallTempSetup",
       "figureImage": "ver11WallTemp",
       "figureHint": "白地660x420。円筒断熱壁(内レンガ+外ブロック)の半径方向定常温度分布。レンガ側は緩やか・ブロック側は急な勾配、外表面で温度飛びを示す",
       "relatedFormulas": [
@@ -567,6 +575,7 @@
       "officialRef": "問11-11",
       "role": "primary",
       "figure": "helpful",
+      "preFigureImage": "ver11ReactSumSetup",
       "figureImage": "ver11ReactSum",
       "figureHint": "白地660x420。面内荷重を受け下端拘束した平板で、拘束点反力の合力が外荷重の合力と大きさ等しく逆向きになる釣合い検証図。",
       "relatedFormulas": [
@@ -623,6 +632,7 @@
       "officialRef": "問11-11",
       "role": "branch",
       "figure": "helpful",
+      "preFigureImage": "ver11TriLoadSetup",
       "figureImage": "ver11TriLoad",
       "figureHint": "白地660x420。長さ100mmの辺に一端0・他端6N/mmの三角形分布線荷重、面積=総荷重300Nを示す",
       "relatedFormulas": [

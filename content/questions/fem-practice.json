@@ -570,6 +570,7 @@
       "origin": "original",
       "reviewed": true,
       "figure": "helpful",
+      "preFigureImage": "f5SeriesSpringsSetup",
       "figureImage": "f5SeriesSprings",
       "figureHint": "節点1固定・節点4に強制変位u4=6を与える3連ばね(k1=100,k2=200,k3=200)でu2=3,u3=4.5を示す図",
       "officialRef": "問5-19",

@@ -1004,6 +1004,7 @@
       "relatedFormulas": [
         "interface-stress"
       ],
+      "preFigureImage": "model8InterfaceSetup",
       "figureImage": "model8Interface",
       "figureHint": "白地660x420で、上材A/下材Bの界面上の節点を囲む要素1〜6を上下に配置した概念図。"
     },
@@ -1170,6 +1171,7 @@
       "origin": "original",
       "reviewed": true,
       "figure": "helpful",
+      "preFigureImage": "model8TrussKSetup",
       "figureImage": "model8TrussK",
       "figureHint": "白地660x420で2節点トラス要素を軸方向ばね(軸剛性EA/L)として描き、局所座標の軸(x)方向のみ剛性をもち直交(y)方向の剛性は0であることを示す",
       "officialRef": "問8-22",
@@ -1227,6 +1229,7 @@
       "origin": "original",
       "reviewed": true,
       "figure": "helpful",
+      "preFigureImage": "model8EulerBeamSetup",
       "figureImage": "model8EulerBeam",
       "figureHint": "白地660x420でベルヌーイ・オイラーはりのたわみ曲線と、平面を保ち中立面に垂直な断面がたわみ角θ=dw/dxだけ傾き、軸方向変位u=−z·dw/dxがzに比例することを示す",
       "officialRef": "問8-23",
@@ -1313,6 +1316,7 @@
       "origin": "original",
       "reviewed": true,
       "figure": "helpful",
+      "preFigureImage": "model8ThinPlateSetup",
       "figureImage": "model8ThinPlate",
       "figureHint": "薄板を平面ひずみで解くとεz=0を強制し実際と不一致",
       "officialRef": "問8-25",

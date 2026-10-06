@@ -824,6 +824,7 @@
       "origin": "original",
       "reviewed": true,
       "figure": "helpful",
+      "preFigureImage": "f4AreaCoordSetup",
       "figureImage": "f4AreaCoord",
       "figureHint": "三角形内の点で3つの小三角形の面積比 L1+L2+L3=1",
       "officialRef": "問4-29",

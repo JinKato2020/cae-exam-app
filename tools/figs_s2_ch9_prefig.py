@@ -7,6 +7,7 @@
 import sys, math, os
 sys.path.insert(0, r"c:\Users\jwpsa\Documents\desktop\claude\CAE\tools")
 from figlib import *
+from figs_bc9 import small_pin, small_roller
 
 
 def dash(d, x1, y1, x2, y2, col=GRAY, wd=2, seg=10):
@@ -269,12 +270,128 @@ def f_cyl_axial_mpc():
     save(im, "bc9CylAxialMPCSetup")
 
 
+# ---- 9-15 内圧円筒の軸対称モデル(課す境界条件を問う) ----
+def f_axisym_cyl():
+    im, d = new(); title(d, "内圧を受ける円筒の軸対称モデル(課す境界条件を問う)")
+    # 左:高さ2Lの円筒(実物)。内圧を受ける
+    cx, ct, cb, rw = 130, 110, 330, 42
+    d.ellipse((cx - rw, ct - 14, cx + rw, ct + 14), outline=BLACK, width=3, fill=FILL1)
+    d.line((cx - rw, ct, cx - rw, cb), fill=BLACK, width=3)
+    d.line((cx + rw, ct, cx + rw, cb), fill=BLACK, width=3)
+    d.arc((cx - rw, cb - 14, cx + rw, cb + 14), 0, 180, fill=BLACK, width=3)
+    dash(d, cx, ct - 26, cx, cb + 26, GRAY)           # 回転軸
+    for yy in (cb * 0.0 + ct + 55, (ct + cb) / 2, cb - 55):  # 内圧(内側→外向き)
+        arrow(d, cx, yy, cx - rw + 6, yy, RED, 2, 9)
+        arrow(d, cx, yy, cx + rw - 6, yy, RED, 2, 9)
+    ctext(d, cx, cb + 44, "高さ2Lの円筒・内圧p", FT, BLACK)
+    dim(d, cx - rw - 26, ct, cx - rw - 26, cb, "2L", 0)
+    # 右:取り出す軸対称断面(r-z矩形)。内圧と回転軸のみ。拘束は描かない(=答え)
+    zx = 360
+    d.line((zx, 95, zx, 360), fill=BLACK, width=2); dash(d, zx, 75, zx, 95, BLACK)
+    ctext(d, zx, 84, "z(回転軸)", FT, BLACK)
+    ri, ro, yt, yb = 450, 530, 120, 335
+    d.rectangle((ri, yt, ro, yb), outline=BLACK, width=3, fill=FILL1)
+    for k in range(4):                                 # 内面(左)に内圧p(右向き=外向き)
+        yy = yt + (yb - yt) * (k + 0.5) / 4
+        arrow(d, ri - 32, yy, ri, yy, RED, 3, 11)
+    ctext(d, ri - 54, (yt + yb) / 2, "内圧 p", FT, RED, "rm")
+    dim(d, zx, yb + 18, ri, yb + 18, "内半径", 0)
+    dim(d, ri, yb + 18, ro, yb + 18, "肉厚", 0)
+    dim(d, ro + 24, yt, ro + 24, yb, "2L", 0)
+    ctext(d, zx + 30, 100, "r-z断面を軸対称要素で分割", FT, GRAY, "lm")
+    note(d, "この断面の節点に課す変位境界条件として適切なものは?(拘束は未記入)")
+    save(im, "bc9AxisymCylBCSetup")
+
+
+# ---- 9-8 1要素モデルの節点反力(反力のつり合いを問う) ----
+def f_element_reaction():
+    im, d = new(); title(d, "1要素モデルの節点反力(反力のつり合いを問う)")
+    x0, x1, yt, yb = 250, 430, 130, 320
+    d.rectangle((x0, yt, x1, yb), outline=BLACK, width=3, fill=FILL1)
+    for cx, cy in [(x0, yt), (x1, yt), (x0, yb), (x1, yb)]:
+        node(d, cx, cy, 6)
+    arrow(d, (x0 + x1) / 2 - 30, yt - 16, (x0 + x1) / 2 + 70, yt - 16, RED, 4, 14)  # 上辺に水平力F
+    ctext(d, (x0 + x1) / 2 + 80, yt - 16, "F", FS, RED, "lm")
+    small_pin(d, x0, yb + 2); ctext(d, x0 - 20, yb + 10, "A", FS, BLACK, "rm")
+    small_pin(d, x1, yb + 2); ctext(d, x1 + 20, yb + 10, "B", FS, BLACK, "lm")
+    dim(d, x1 + 44, yt, x1 + 44, yb, "高さ 2l", 0)
+    dim(d, x0, yb + 48, x1, yb + 48, "幅 l", 0)
+    note(d, "上辺に水平力F、下隅A・Bをピン支持。各支点の反力のつり合いは?(反力は未記入)")
+    save(im, "bc9ElementReactionSetup")
+
+
+# ---- 9-9 三角形要素の辺ikの線形分布荷重(等価節点力を問う) ----
+def f_eq_triload():
+    im, d = new(); title(d, "三角形要素の辺ikの線形分布荷重(等価節点力を問う)")
+    ix, iy, kx, ky, jx, jy = 180, 300, 480, 300, 350, 150
+    d.polygon([(ix, iy), (kx, ky), (jx, jy)], outline=BLACK, width=3, fill=FILL1)
+    node(d, ix, iy, 7); ctext(d, ix - 16, iy + 12, "i", FS, BLACK, "rm")
+    node(d, kx, ky, 7); ctext(d, kx + 16, ky + 12, "k", FS, BLACK, "lm")
+    node(d, jx, jy, 7); ctext(d, jx, jy - 18, "j", FS, BLACK)
+    # 辺ik(下辺)に i端0 -> k端P の線形分布荷重(y方向・下向き)。配分値(答え)は描かない
+    n = 9
+    for m in range(n):
+        t = m / (n - 1.0); x = ix + (kx - ix) * t; L = 6 + 52 * t
+        arrow(d, x, iy + 8, x, iy + 8 + L, GREEN, 2, 9)
+    d.line((ix, iy + 14, kx, iy + 66), fill=GREEN, width=2)   # 強度の三角形包絡線
+    ctext(d, ix - 4, iy + 26, "0", FT, GREEN, "rm"); ctext(d, kx + 10, iy + 62, "P", FS, GREEN, "lm")
+    dim(d, ix, iy + 84, kx, iy + 84, "辺ik 長さ a", 0)
+    note(d, "辺ikにi端0→k端Pの線形分布荷重(y方向)。等価な節点力の配分は?(配分値は未記入)")
+    save(im, "bc9EqTriLoadSetup")
+
+
+# ---- 9-11 単純支持ばりの自重の等価節点力(配分を問う) ----
+def f_selfweight_beam():
+    im, d = new(); title(d, "単純支持ばりの自重の等価節点力(配分を問う)")
+    ox, oy, seg, n = 110, 210, 55, 8
+    d.rectangle((ox, oy - 26, ox + seg * n, oy + 26), outline=BLACK, width=3, fill=FILL1)
+    for i in range(n + 1):
+        d.line((ox + i * seg, oy - 26, ox + i * seg, oy + 26), fill=LGRAY, width=1)
+        node(d, ox + i * seg, oy, 5)
+    small_pin(d, ox, oy + 26); small_roller(d, ox + seg * n, oy + 26)
+    for i in range(n):                                   # 自重=一様下向き(等長=答えを示さない)
+        xx = ox + seg * (i + 0.5); arrow(d, xx, oy + 34, xx, oy + 34 + 40, BLUE, 2, 9)
+    ctext(d, ox + seg * n / 2, oy + 34 + 56, "自重 ρg(一様・下向き)", FT, BLUE)
+    ctext(d, ox + seg * n / 2, oy - 46, "長さ方向に8等分(4節点一次要素)", FT, GRAY)
+    ctext(d, ox, oy - 74, "端節点 F_B?", FT, RED); ctext(d, ox + seg, oy - 74, "内部節点 F_A?", FT, RED, "lm")
+    note(d, "端節点F_Bと内部(共有)節点F_Aに配分される自重の等価節点力は?(配分値は未記入)")
+    save(im, "bc9SelfWeightBeamSetup")
+
+
+# ---- 9-12 梁モデル上辺への一様分布荷重の与え方を問う ----
+def f_pressure_apply():
+    im, d = new(); title(d, "梁モデル上辺への一様分布荷重の与え方を問う")
+    ox, oy, cw, ch, nc, nr = 120, 170, 68, 70, 5, 2
+    for c in range(nc):
+        for r in range(nr):
+            x = ox + c * cw; y = oy + r * ch
+            d.rectangle((x, y, x + cw, y + ch), outline=BLACK, width=2, fill=FILL1)
+    W, Hh = nc * cw, nr * ch
+    for i in range(nc + 1):                              # 節点
+        for r in range(nr + 1):
+            node(d, ox + i * cw, oy + r * ch, 4)
+    # 左端固定(縦ハッチ)
+    d.line((ox, oy, ox, oy + Hh), fill=BLACK, width=4)
+    for r in range(nr * 3 + 1):
+        yy = oy + r * (Hh / (nr * 3))
+        d.line((ox, yy, ox - 16, yy + 14), fill=BLACK, width=2)
+    ctext(d, ox - 20, oy + Hh + 18, "左端 固定", FT, BLACK, "lm")
+    for r in range(nr + 1):                              # 右端 一様引張(→)
+        yy = oy + r * ch; arrow(d, ox + W, yy, ox + W + 44, yy, RED, 3, 11)
+    ctext(d, ox + W + 50, oy + Hh / 2, "一様引張", FT, RED, "lm")
+    d.line((ox, oy, ox + W, oy), fill=GREEN, width=5)    # 上辺ハイライト
+    ctext(d, ox + W / 2, oy - 24, "この上辺に一様分布荷重を与えたい", FT, GREEN)
+    note(d, "均等な4節点四辺形要素の梁。上辺への一様分布荷重の妥当な与え方は?(与え方は未記入)")
+    save(im, "bc9PressureApplySetup")
+
+
 def main():
+    f_element_reaction(); f_eq_triload(); f_selfweight_beam(); f_pressure_apply()
     f_inclined_slope(); f_thickcyl_quarter(); f_holeplate_quarter(); f_antisym_center()
     f_disc_cyclic(); f_annulus_sector(); f_antisym_beamfix(); f_disc_compress()
     f_mesh_rbmfix(); f_mpc_midnode(); f_rigidslide_mpc(); f_inclined_mpc()
-    f_mpc_beamplane(); f_cyl_axial_mpc()
-    print("done 14 figures")
+    f_mpc_beamplane(); f_cyl_axial_mpc(); f_axisym_cyl()
+    print("done 15 figures")
 
 
 if __name__ == "__main__":
