@@ -355,28 +355,29 @@
     {
       "id": "fem-4-13",
       "number": "4-13",
-      "title": "熱ひずみの等価節点力",
-      "topic": "初期ひずみの等価節点力",
+      "title": "初期応力・初期ひずみによる等価節点力",
+      "topic": "初期応力・初期ひずみと等価節点力(仮想仕事の原理)",
       "type": "mc",
       "difficulty": 3,
-      "question": "断面積 $A=2\\,\\mathrm{cm}^2$、ヤング率 $E=210\\,\\mathrm{GPa}$、線膨張係数 $\\alpha=11\\times10^{-6}\\,/^{\\circ}\\mathrm{C}$ の1次元棒要素が、温度上昇 $\\Delta T=80\\,{}^{\\circ}\\mathrm{C}$ を受ける。この初期(熱)ひずみに相当する等価節点力の大きさ $f=EA\\,\\alpha\\,\\Delta T$ はいくらか。",
+      "question": "初期応力 $\\{\\sigma_0\\}$ と初期ひずみ $\\{\\varepsilon_0\\}$ を含むフック則 $\\{\\sigma\\}=[D](\\{\\varepsilon\\}-\\{\\varepsilon_0\\})+\\{\\sigma_0\\}$(ここで $\\{\\varepsilon\\}=[B]\\{u\\}$)のもとで、仮想仕事の原理から導かれる初期応力による等価節点力 $\\{f_{\\sigma 0}\\}$ と初期ひずみによる等価節点力 $\\{f_{\\varepsilon 0}\\}$ の組合せとして正しいものはどれか。",
       "choices": [
-        "$3.70\\,\\mathrm{kN}$",
-        "$369.6\\,\\mathrm{kN}$",
-        "$18.5\\,\\mathrm{kN}$",
-        "$37.0\\,\\mathrm{kN}$"
+        "$\\{f_{\\sigma 0}\\}=\\displaystyle\\int_V [B]^{\\mathrm T}\\{\\sigma_0\\}\\,dV,\\ \\ \\{f_{\\varepsilon 0}\\}=\\displaystyle\\int_V [B]^{\\mathrm T}[D]\\{\\varepsilon_0\\}\\,dV$",
+        "$\\{f_{\\sigma 0}\\}=-\\displaystyle\\int_V [B]^{\\mathrm T}\\{\\sigma_0\\}\\,dV,\\ \\ \\{f_{\\varepsilon 0}\\}=\\displaystyle\\int_V [B]^{\\mathrm T}\\{\\varepsilon_0\\}\\,dV$",
+        "$\\{f_{\\sigma 0}\\}=-\\displaystyle\\int_V [B]^{\\mathrm T}\\{\\sigma_0\\}\\,dV,\\ \\ \\{f_{\\varepsilon 0}\\}=\\displaystyle\\int_V [B]^{\\mathrm T}[D]\\{\\varepsilon_0\\}\\,dV$",
+        "$\\{f_{\\sigma 0}\\}=-\\displaystyle\\int_V [B]^{\\mathrm T}[D]\\{\\sigma_0\\}\\,dV,\\ \\ \\{f_{\\varepsilon 0}\\}=\\displaystyle\\int_V [B]^{\\mathrm T}[D]\\{\\varepsilon_0\\}\\,dV$"
       ],
-      "answer": 4,
-      "explanation": "【基礎】温度変化で生じる初期ひずみ $\\varepsilon_0=\\alpha\\Delta T$ は、そのままでは荷重ベクトルに現れません。FEMではこれを『等価節点力』$f=\\int B^{T} D\\,\\varepsilon_0\\,dV$ に変換して右辺へ組み込みます。1次元棒では $f=EA\\,\\alpha\\,\\Delta T$ になります。\n【考え方】まず断面積の単位を $\\mathrm{cm}^2$ から $\\mathrm{mm}^2$ にそろえます(ステップ1: $1\\,\\mathrm{cm}^2=100\\,\\mathrm{mm}^2$ なので $A=200\\,\\mathrm{mm}^2$)。次に $EA$、$EA\\alpha$ の順に計算し、最後に $\\Delta T$ を掛けます(ステップ2)。\n【計算】$A=2\\times100=200\\,\\mathrm{mm}^2$。$EA=210\\times10^{3}\\,\\mathrm{N/mm^2}\\times200\\,\\mathrm{mm^2}=4.2\\times10^{7}\\,\\mathrm{N}$。$EA\\,\\alpha=4.2\\times10^{7}\\times11\\times10^{-6}=462\\,\\mathrm{N/^{\\circ}C}$。$f=462\\times80=36960\\,\\mathrm{N}\\approx37.0\\,\\mathrm{kN}$。\n【ポイント】単位換算($\\mathrm{cm}^2\\to\\mathrm{mm}^2$ は$\\times100$)を最初に済ませてから代入するのが安全です。\n【引っかけ】選択肢3(18.5kN)は $1\\,\\mathrm{cm}^2=100\\,\\mathrm{mm}^2$ の換算を忘れ半分の断面積($A=1\\,\\mathrm{cm}^2$相当)で計算した誤り。選択肢1(3.70kN)は $\\mathrm{cm}^2\\to\\mathrm{mm}^2$ を$\\times10$と誤って換算した誤り。選択肢2(369.6kN)は $\\Delta T=800$ と一桁読み違えた誤りです。",
+      "answer": 3,
+      "explanation": "【基礎】初期応力 $\\{\\sigma_0\\}$・初期ひずみ $\\{\\varepsilon_0\\}$ を含むフック則は $\\{\\sigma\\}=[D](\\{\\varepsilon\\}-\\{\\varepsilon_0\\})+\\{\\sigma_0\\}$。これを仮想仕事の原理 $\\int_V \\{\\delta\\varepsilon\\}^{\\mathrm T}\\{\\sigma\\}\\,dV=(外力仕事)$ に代入し、$\\{\\varepsilon\\}=[B]\\{u\\}$、$\\{\\delta\\varepsilon\\}=[B]\\{\\delta u\\}$ を使うと、全体剛性 $[K]=\\int_V [B]^{\\mathrm T}[D][B]\\,dV$ のほかに初期項が現れ、これらを右辺(等価節点力)へ移項する。\n【初期ひずみ】$\\{f_{\\varepsilon 0}\\}=\\displaystyle\\int_V [B]^{\\mathrm T}[D]\\{\\varepsilon_0\\}\\,dV$。初期ひずみは $[D]$ を介して応力に直してから $[B]^{\\mathrm T}$ で節点力化する(だから $[D]$ が付く・符号は正)。\n【初期応力】$\\{f_{\\sigma 0}\\}=-\\displaystyle\\int_V [B]^{\\mathrm T}\\{\\sigma_0\\}\\,dV$。初期応力はすでに応力なので $[D]$ は付かず、左辺の内力から移すため符号は負。\n【熱ひずみの例】温度上昇 $\\Delta T$ による熱ひずみ $\\{\\varepsilon_0\\}=\\alpha\\Delta T\\,\\{1,1,0\\}^{\\mathrm T}$($\\alpha$=線膨張係数)はこの初期ひずみの代表例。1次元の棒要素なら $f=EA\\,\\alpha\\,\\Delta T$ となる。\n【ポイント】初期ひずみには $[D]$ が付き正符号、初期応力には $[D]$ が付かず負符号。\n【誤答】①初期応力の符号が逆。②初期ひずみに $[D]$ が抜けている(ひずみのままでは節点力にできない)。④初期応力に余計な $[D]$ が掛かっている。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "f4ThermalForce",
-      "figureHint": "両端固定の棒が温度上昇し等価節点力 f=EAαΔT を生む様子",
+      "figureHint": "一様温度上昇を受ける棒要素に初期(熱)ひずみε0=αΔTが生じ、等価節点力f=EAαΔTを右辺へ移す様子(初期ひずみの代表例)",
       "officialRef": "問4-13",
       "role": "primary",
       "relatedFormulas": [
+        "virtual-work",
         "thermal-force"
       ]
     },

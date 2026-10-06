@@ -69,10 +69,10 @@
     {
       "id": "stress-transformation",
       "kind": "formula",
-      "term": "応力の座標変換",
-      "formula": "$$\\begin{aligned}\\sigma_r&=\\sigma_x\\cos^{2}\\theta+\\sigma_y\\sin^{2}\\theta+\\tau_{xy}\\sin2\\theta\\\\\\sigma_s&=\\sigma_x\\sin^{2}\\theta+\\sigma_y\\cos^{2}\\theta-\\tau_{xy}\\sin2\\theta\\\\\\tau_{rs}&=\\tfrac{1}{2}(\\sigma_y-\\sigma_x)\\sin2\\theta+\\tau_{xy}\\cos2\\theta\\end{aligned}$$",
-      "body": "元の $xy$ 座標系の応力成分 $\\sigma_x$（x方向の垂直応力）, $\\sigma_y$（y方向の垂直応力）, $\\tau_{xy}$（せん断応力）を、角度 $\\theta$ だけ回転した $rs$ 座標系の成分 $\\sigma_r,\\sigma_s,\\tau_{rs}$ に変換する公式です。三角関数で元の成分から計算できます。",
-      "example": "$\\theta=30^{\\circ}$ なら $\\cos30^{\\circ}=\\dfrac{\\sqrt3}{2},\\ \\sin30^{\\circ}=\\dfrac12,\\ \\sin60^{\\circ}=\\dfrac{\\sqrt3}{2}$ を代入します（公式問2-6）。",
+      "term": "応力の座標変換(x-y を反時計回りに回した x'-y')",
+      "formula": "$$\\begin{aligned}\\sigma_{x'}&=\\tfrac{\\sigma_x+\\sigma_y}{2}+\\tfrac{\\sigma_x-\\sigma_y}{2}\\cos2\\theta+\\tau_{xy}\\sin2\\theta\\\\\\sigma_{y'}&=\\tfrac{\\sigma_x+\\sigma_y}{2}-\\tfrac{\\sigma_x-\\sigma_y}{2}\\cos2\\theta-\\tau_{xy}\\sin2\\theta\\\\\\tau_{x'y'}&=-\\tfrac{\\sigma_x-\\sigma_y}{2}\\sin2\\theta+\\tau_{xy}\\cos2\\theta\\end{aligned}$$",
+      "body": "同じ場所にかかる同じ力でも、見る向き(座標軸)を変えると「まっすぐ押す力(垂直応力)」と「ずらす力(せん断応力)」への分け方が変わります。もとの $x,y$ 軸を反時計回りに角度 $\\theta$ だけ回した軸を $x',y'$ とすると、新しい成分 $\\sigma_{x'},\\sigma_{y'},\\tau_{x'y'}$ は、もとの $\\sigma_x,\\sigma_y,\\tau_{xy}$ から上の式で計算できます。角度が $2\\theta$ の形で入るのが特徴で、応力は「向きを180°変えると元に戻る」性質があるためです。この式を図にしたのが次のモールの応力円です。",
+      "example": "$\\theta=30^{\\circ}$ なら $\\cos2\\theta=\\cos60^{\\circ}=\\tfrac12,\\ \\sin2\\theta=\\sin60^{\\circ}=\\tfrac{\\sqrt3}{2}$ を代入するだけ(公式問2-6)。",
       "figureImage": "s2PrincipalMohr"
     },
     {
@@ -80,9 +80,27 @@
       "kind": "formula",
       "term": "主応力とモールの応力円",
       "formula": "$\\sigma_{1,2}=\\dfrac{\\sigma_x+\\sigma_y}{2}\\pm\\sqrt{\\left(\\dfrac{\\sigma_x-\\sigma_y}{2}\\right)^{2}+\\tau_{xy}^{2}},\\quad \\tan2\\omega=\\dfrac{2\\tau_{xy}}{\\sigma_x-\\sigma_y}$",
-      "body": "せん断応力が0になる面の垂直応力が主応力です。モール円は中心 $((\\sigma_x+\\sigma_y)/2,\\,0)$、半径 $\\sqrt{((\\sigma_x-\\sigma_y)/2)^{2}+\\tau_{xy}^{2}}$ の円で、応力状態を図で読み取れます。主応力は応力行列の固有値（$\\det([\\sigma]-\\lambda I)=0$ の根）でもあります。",
+      "body": "向き(軸)を回していくと、せん断応力がちょうど0になる特別な向きが見つかります。そのときの垂直応力が、その点で一番大きい値と一番小さい値になり、これを主応力 $\\sigma_1,\\sigma_2$ と呼びます($\\sigma_1\\geq\\sigma_2$)。上の式の $\\pm$ の大きい方が $\\sigma_1$、小さい方が $\\sigma_2$、$\\tan2\\omega$ の式でその向き(主軸)が分かります。これを1つの円で表したのがモールの応力円で、中心 $\\left(\\tfrac{\\sigma_x+\\sigma_y}{2},\\,0\\right)$・半径 $R=\\sqrt{\\left(\\tfrac{\\sigma_x-\\sigma_y}{2}\\right)^{2}+\\tau_{xy}^{2}}$ の円。円の右端・左端が主応力、上端・下端が最大せん断応力に対応します。",
       "example": "丸棒のねじりは純せん断（$\\sigma_x=\\sigma_y=0$）で、モール円の中心は原点・半径 $\\tau_{xy}$、主応力方向は軸から45°（公式問2-16〜2-19）。",
       "figureImage": "s2MohrCompare"
+    },
+    {
+      "id": "max-shear-stress",
+      "kind": "formula",
+      "term": "主せん断応力(最大せん断応力)",
+      "formula": "$\\tau_{\\max}=\\dfrac{\\sigma_1-\\sigma_2}{2}=\\sqrt{\\left(\\dfrac{\\sigma_x-\\sigma_y}{2}\\right)^{2}+\\tau_{xy}^{2}}\\quad(\\text{3次元}:\\ \\tau_{\\max}=\\dfrac{\\sigma_1-\\sigma_3}{2})$",
+      "body": "軸を回していくと、今度は「ずらす力(せん断応力)」が一番大きくなる向きがあります。その大きさが主せん断応力(最大せん断応力)です。平面の問題では、2つの主応力の差の半分、つまりモール円の半径 $R$ に等しく、主応力の向きからちょうど45°回った面に現れます。3次元では、一番大きい主応力 $\\sigma_1$ と一番小さい主応力 $\\sigma_3$ の差の半分 $\\tfrac{\\sigma_1-\\sigma_3}{2}$ が最大せん断応力です。金属が「ずれて」降伏・破壊するときの目安になります。",
+      "example": "丸棒のねじり(純せん断)は $\\sigma_x=\\sigma_y=0$ なので $\\tau_{\\max}=\\tau_{xy}$、主応力は $\\pm\\tau_{xy}$ で軸から45°方向に現れます。",
+      "figureImage": "s2MohrCompare"
+    },
+    {
+      "id": "principal-stress-3d",
+      "kind": "formula",
+      "term": "3次元の主応力(応力の不変量)",
+      "formula": "$\\sigma^{3}-I_1\\sigma^{2}+I_2\\sigma-I_3=0,\\quad I_1=\\sigma_x+\\sigma_y+\\sigma_z$",
+      "body": "3次元では、ある1点の応力は6つの成分 $(\\sigma_x,\\sigma_y,\\sigma_z,\\tau_{xy},\\tau_{yz},\\tau_{zx})$ で表せます。ここでもせん断応力が全部0になる向きが3つあり、そのときの垂直応力が3つの主応力 $\\sigma_1\\geq\\sigma_2\\geq\\sigma_3$ です。これらは応力行列の固有値で、上の3次方程式の3つの解として求まります。係数 $I_1,I_2,I_3$ は軸の取り方を変えても値が変わらないので「応力の不変量」と呼び、$I_1$ は3つの垂直応力の和(=主応力の和)、$I_3$ は行列式です。",
+      "example": "全方向から同じ圧力 $-p$ を受ける状態(静水圧)では $\\sigma_1=\\sigma_2=\\sigma_3=-p$ で、どの向きでもせん断応力は0。",
+      "figureImage": null
     },
     {
       "id": "bar-elongation",
@@ -132,10 +150,28 @@
     {
       "id": "yield-criteria",
       "kind": "term",
-      "term": "降伏条件（3説）と相当応力",
-      "formula": "ミーゼス $\\sigma_M=\\sqrt{\\dfrac{(\\sigma_1-\\sigma_2)^{2}+(\\sigma_2-\\sigma_3)^{2}+(\\sigma_3-\\sigma_1)^{2}}{2}}$",
-      "body": "多軸応力で降伏を判定する代表的な3説：最大主応力説（$\\max|\\sigma_i|=\\sigma_y$、脆性材料向き）、最大せん断応力説＝トレスカ（$\\max|\\sigma_i-\\sigma_j|=\\sigma_y$）、せん断ひずみエネルギー説＝ミーゼス（延性金属に最も広く使う）。ミーゼス相当応力 $\\sigma_M$ を降伏応力 $\\sigma_y$ と比べて判定します。",
-      "example": "静水圧（等方）応力では $\\sigma_M=0$ で降伏しません。$\\sigma_M>\\sigma_y$ なら降伏（公式問2-31〜2-33）。",
+      "term": "降伏条件の3説(どの説で降伏を判定するか)",
+      "formula": "①最大主応力説(脆性)　②トレスカ=最大せん断応力説(延性)　③ミーゼス=せん断ひずみエネルギー説(延性)",
+      "body": "1方向だけの力なら「応力が降伏応力を超えたら降伏」で済みますが、いろいろな向きの力が同時にかかる(多軸)と、どうなったら降伏するかを決める「ものさし」が要ります。代表が次の3説です。①最大主応力説:一番大きい主応力が限界に達したら壊れる→もろい材料(鋳鉄・ガラス)向き。②最大せん断応力説(トレスカ):最大せん断応力が限界で降伏→延性金属、計算が簡単で安全側。③せん断ひずみエネルギー説(ミーゼス):形を変えるエネルギーで降伏→延性金属に最もよく合う。金属の実務ではミーゼスが基本です。次の2枚にそれぞれの式を示します。",
+      "example": "全方向に同じ圧力(静水圧)だけでは、トレスカもミーゼスも降伏しないと判定します(形が変わらないため)。",
+      "figureImage": "s2YieldSurface"
+    },
+    {
+      "id": "tresca",
+      "kind": "formula",
+      "term": "トレスカの降伏条件(最大せん断応力説)",
+      "formula": "$\\sigma_1-\\sigma_3=\\sigma_Y\\quad\\Longleftrightarrow\\quad \\tau_{\\max}=\\dfrac{\\sigma_Y}{2}$",
+      "body": "「材料はずらす力(せん断)が限界を超えると降伏する」と考えるのがトレスカの説です。最大せん断応力 $\\tau_{\\max}=\\tfrac{\\sigma_1-\\sigma_3}{2}$ が、引張試験で降伏したときのせん断応力 $\\sigma_Y/2$ に達したら降伏とします。式にすると「一番大きい主応力 − 一番小さい主応力 = 降伏応力 $\\sigma_Y$」。計算が簡単で、ミーゼスより少し安全側(早めに降伏と判定)になります。",
+      "example": "単軸引張は $\\sigma_1=\\sigma,\\ \\sigma_2=\\sigma_3=0$ なので $\\sigma=\\sigma_Y$ で降伏。純せん断は $\\sigma_1=\\tau,\\ \\sigma_3=-\\tau$ なので $2\\tau=\\sigma_Y$、$\\tau=\\sigma_Y/2$ で降伏。",
+      "figureImage": "s2YieldSurface"
+    },
+    {
+      "id": "von-mises",
+      "kind": "formula",
+      "term": "ミーゼスの降伏条件(せん断ひずみエネルギー説)と相当応力",
+      "formula": "$\\sigma_M=\\sqrt{\\dfrac{(\\sigma_1-\\sigma_2)^{2}+(\\sigma_2-\\sigma_3)^{2}+(\\sigma_3-\\sigma_1)^{2}}{2}}\\ \\leq\\ \\sigma_Y$",
+      "body": "延性のある金属が多軸の力で降伏するかを、最もよく当てる説です。「形を変えるエネルギー(せん断ひずみエネルギー)」が限界に達すると降伏する、という考えから、上の値(ミーゼス相当応力 $\\sigma_M$)を1つの代表値にまとめ、引張の降伏応力 $\\sigma_Y$ と比べます。$\\sigma_M\\geq\\sigma_Y$ で降伏。全方向に同じ圧力(静水圧)では $\\sigma_M=0$ になり、いくら圧力をかけても降伏しない(形が変わらない)ことをうまく表せます。FEMの応力評価で最もよく使われます。",
+      "example": "単軸引張 $\\sigma_1=\\sigma$ では $\\sigma_M=\\sigma$。純せん断 $\\tau$ では $\\sigma_M=\\sqrt3\\,\\tau$ なので $\\tau=\\sigma_Y/\\sqrt3\\approx0.577\\,\\sigma_Y$ で降伏(トレスカの $0.5\\,\\sigma_Y$ より少し大きい)。",
       "figureImage": "s2YieldSurface"
     },
     {
