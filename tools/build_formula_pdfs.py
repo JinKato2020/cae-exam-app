@@ -35,7 +35,8 @@ def _esc_depth(s, i, depth):
     if nx in "})]": return max(0, depth - 1)
     return depth
 
-def _split_quad(inner):
+def _split_equations(inner):
+    # 深さ0の \quad \qquad と「, 」で式ごとに分割（括弧内は分割しない）
     parts = []; depth = 0; last = 0; i = 0; n = len(inner)
     while i < n:
         c = inner[i]
@@ -46,40 +47,36 @@ def _split_quad(inner):
             depth = _esc_depth(inner, i, depth); i += 2; continue
         if c in "{([": depth += 1
         elif c in "})]": depth = max(0, depth - 1)
+        elif depth == 0 and c == "," and (inner[i + 1:i + 2] in (" ", "\\")):
+            parts.append(inner[last:i]); last = i + 1
         i += 1
     parts.append(inner[last:])
     return [p.strip() for p in parts if p.strip()]
 
-def _break_ops(seg):
-    idx = []; depth = 0; i = 0; n = len(seg)
+def _align_at_eq(seg):
+    # 深さ0の最初の = で左辺/右辺に分け "LHS &= RHS" に。= が無ければ左寄せ。
+    depth = 0; i = 0; n = len(seg)
     while i < n:
         c = seg[i]
         if c == "\\":
             depth = _esc_depth(seg, i, depth); i += 2; continue
-        if c in "{([": depth += 1; i += 1; continue
-        if c in "})]": depth = max(0, depth - 1); i += 1; continue
-        if depth == 0:
-            if c == "+" and i > 0: idx.append(i)
-            elif c == "=" and i > 8: idx.append(i)
+        if c in "{([": depth += 1
+        elif c in "})]": depth = max(0, depth - 1)
+        elif depth == 0 and c == "=":
+            return seg[:i].strip() + " &= " + seg[i + 1:].strip()
         i += 1
-    if not idx:
-        return [seg]
-    lines = []; start = 0
-    for p in idx:
-        if p > start: lines.append(seg[start:p])
-        start = p
-    lines.append(seg[start:])
-    return [s.strip() for s in lines if s.strip()]
+    return "& " + seg.strip()
 
 def wrap_long(inner):
-    if len(inner) < 50:
-        return inner
-    lines = []
-    for seg in _split_quad(inner):
-        lines += _break_ops(seg) if len(seg) >= 60 else [seg]
-    if len(lines) <= 1:
-        return inner
-    return r"\begin{gather*}" + r" \\ ".join(lines) + r"\end{gather*}"
+    s = inner.strip()
+    if len(s) < 50:
+        return s
+    if "\\begin{" in s:
+        return s  # 既に aligned/行列など構造化済み→そのまま
+    segs = _split_equations(s)
+    if len(segs) <= 1:
+        return s  # 単一式は1行（= で改行しない）
+    return r"\begin{aligned}" + r" \\ ".join(_align_at_eq(x) for x in segs) + r"\end{aligned}"
 
 def display_math(s):
     x = (s or "").strip()

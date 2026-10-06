@@ -1484,6 +1484,10 @@ function useSwipeNav(onLeft: () => void, onRight: () => void) {
     PanResponder.create({
       onMoveShouldSetPanResponder: (_e, g) =>
         Math.abs(g.dx) > 24 && Math.abs(g.dx) > Math.abs(g.dy) * 1.8,
+      // はっきり横方向のスワイプは、中の ScrollView や数式WebView より先に親が取る
+      // （縦スクロール・タップは邪魔しない＝横成分が十分大きい時だけ捕捉）。
+      onMoveShouldSetPanResponderCapture: (_e, g) =>
+        Math.abs(g.dx) > 44 && Math.abs(g.dx) > Math.abs(g.dy) * 2,
       onPanResponderRelease: (_e, g) => {
         if (g.dx <= -50) cb.current.onLeft();
         else if (g.dx >= 50) cb.current.onRight();
@@ -2162,7 +2166,9 @@ function fmtDate(ts: number): string {
 // ここまでやっても割れない単一の長大式だけ、最後に MathText 側の縮小で収める。
 
 // 括弧/ブレース深さ0の \quad / \qquad で分割。
-function splitTopQuad(inner: string): string[] {
+// 数式を、括弧/ブレース深さ0の \quad \qquad と「, 」で「式ごと」に分割する。
+// 括弧( ( [ { )・エスケープ括弧( \{ \( \[ )の中の区切りは分割しない。
+function splitTopEquations(inner: string): string[] {
   const parts: string[] = [];
   let depth = 0;
   let last = 0;
@@ -2174,60 +2180,55 @@ function splitTopQuad(inner: string): string[] {
         parts.push(inner.slice(last, i));
         i += m[0].length - 1;
         last = i + 1;
-      } else {
-        const nx = inner[i + 1]; // \{ \} \( \) \[ \] は括弧として深さに反映
-        if (nx === '{' || nx === '(' || nx === '[') depth++;
-        else if (nx === '}' || nx === ')' || nx === ']') depth = Math.max(0, depth - 1);
-        i += 1; // 次の1文字を消費（\left \right \, なども1文字読み飛ばし）
+        continue;
       }
+      const nx = inner[i + 1]; // \{ \} \( \) \[ \] は括弧として深さに反映
+      if (nx === '{' || nx === '(' || nx === '[') depth++;
+      else if (nx === '}' || nx === ')' || nx === ']') depth = Math.max(0, depth - 1);
+      i += 1; // 次の1文字を消費（\left \right \, なども読み飛ばし）
       continue;
     }
     if (c === '{' || c === '(' || c === '[') depth++;
     else if (c === '}' || c === ')' || c === ']') depth = Math.max(0, depth - 1);
+    else if (depth === 0 && c === ',' && (inner[i + 1] === ' ' || inner[i + 1] === '\\')) {
+      parts.push(inner.slice(last, i)); // 区切りのカンマは落とす
+      last = i + 1;
+    }
   }
   parts.push(inner.slice(last));
   return parts.map((p) => p.trim()).filter((p) => p.length > 0);
 }
 
-// 1本の式を、括弧/ブレース深さ0の「+」と（先頭以外の）「=」の直前で改行して複数行に。
-// 継続行は演算子始まり（+ や =）になる。分割点が無ければ元の1行を返す。
-function breakAtOps(seg: string): string[] {
-  const idx: number[] = [];
+// 1つの式を、深さ0の最初の「=」で左辺・右辺に分け aligned 用の "LHS &= RHS" にする。
+// = が無い行（注記など）は左寄せ（"& …"）。左辺は決して = と切り離さない（◯/＝○○○ 防止）。
+function alignAtEq(seg: string): string {
   let depth = 0;
   for (let i = 0; i < seg.length; i++) {
     const c = seg[i];
-    if (c === '\\') { // \{ \} \( \) \[ \] は括弧として深さに反映。他は次の1文字を読み飛ばす
+    if (c === '\\') {
       const nx = seg[i + 1];
       if (nx === '{' || nx === '(' || nx === '[') depth++;
       else if (nx === '}' || nx === ')' || nx === ']') depth = Math.max(0, depth - 1);
-      i += 1; continue;
+      i += 1;
+      continue;
     }
-    if (c === '{' || c === '(' || c === '[') { depth++; continue; }
-    if (c === '}' || c === ')' || c === ']') { depth = Math.max(0, depth - 1); continue; }
-    if (depth !== 0) continue;
-    if (c === '+' && i > 0) idx.push(i);
-    else if (c === '=' && i > 8) idx.push(i); // 先頭付近の = (左辺が短い) は割らず「LHS=RHS」を保つ
+    if (c === '{' || c === '(' || c === '[') depth++;
+    else if (c === '}' || c === ')' || c === ']') depth = Math.max(0, depth - 1);
+    else if (depth === 0 && c === '=') return `${seg.slice(0, i).trim()} &= ${seg.slice(i + 1).trim()}`;
   }
-  if (idx.length === 0) return [seg];
-  const lines: string[] = [];
-  let start = 0;
-  for (const p of idx) {
-    if (p > start) lines.push(seg.slice(start, p));
-    start = p;
-  }
-  lines.push(seg.slice(start));
-  return lines.map((s) => s.trim()).filter((s) => s.length > 0);
+  return `& ${seg.trim()}`;
 }
 
+// 長い公式を「左辺=右辺」で縦に整列（aligned）。= の直前では決して改行しない。
+// ・短い式/単一の式は1行のまま（はみ出しは横スクロールに任せる）。
+// ・既に \begin{...}（aligned・行列など）を含む式は構造を尊重してそのまま返す。
 function wrapLongDisplay(inner: string): string {
-  if (inner.length < 50) return inner; // 短い式は現状どおり1行
-  const lines: string[] = [];
-  for (const seg of splitTopQuad(inner)) {
-    if (seg.length >= 60) lines.push(...breakAtOps(seg));
-    else lines.push(seg);
-  }
-  if (lines.length <= 1) return inner; // 割れない→縮小に任せる
-  return `\\begin{gather*}${lines.join(' \\\\ ')}\\end{gather*}`;
+  const s = inner.trim();
+  if (s.length < 50) return s; // 短い式は1行
+  if (s.includes('\\begin{')) return s; // 既に構造化済み（aligned/行列/cases等）→触らない
+  const segs = splitTopEquations(s);
+  if (segs.length <= 1) return s; // 単一の式は1行（= で改行しない）
+  return `\\begin{aligned}${segs.map(alignAtEq).join(' \\\\ ')}\\end{aligned}`;
 }
 
 function displayMath(s: string): string {
