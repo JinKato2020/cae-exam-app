@@ -61,7 +61,7 @@
       "id": "strain-displacement",
       "kind": "formula",
       "term": "ひずみと変位の関係（微小ひずみ）",
-      "formula": "$\\varepsilon_x=\\dfrac{\\partial u}{\\partial x},\\ \\varepsilon_y=\\dfrac{\\partial v}{\\partial y},\\ \\varepsilon_z=\\dfrac{\\partial w}{\\partial z},\\quad \\gamma_{xy}=\\dfrac{\\partial u}{\\partial y}+\\dfrac{\\partial v}{\\partial x}$",
+      "formula": "$$\\begin{aligned}\\varepsilon_x&=\\frac{\\partial u}{\\partial x}, & \\gamma_{xy}&=\\frac{\\partial u}{\\partial y}+\\frac{\\partial v}{\\partial x}\\\\\\varepsilon_y&=\\frac{\\partial v}{\\partial y}, & \\gamma_{yz}&=\\frac{\\partial v}{\\partial z}+\\frac{\\partial w}{\\partial y}\\\\\\varepsilon_z&=\\frac{\\partial w}{\\partial z}, & \\gamma_{zx}&=\\frac{\\partial w}{\\partial x}+\\frac{\\partial u}{\\partial z}\\end{aligned}$$",
       "body": "変位 $u,v,w$ を微分すると各方向の垂直ひずみ、斜め方向の組合せでせん断ひずみが得られます。$\\gamma_{yz}=\\partial v/\\partial z+\\partial w/\\partial y$、$\\gamma_{zx}=\\partial w/\\partial x+\\partial u/\\partial z$ も同様です。",
       "example": "変位が1次式なら各ひずみは定数になります（公式問2-7）。",
       "figureImage": "s2StrainDisp"
@@ -79,7 +79,7 @@
       "id": "principal-stress-mohr",
       "kind": "formula",
       "term": "主応力とモールの応力円",
-      "formula": "$\\sigma_{1,2}=\\dfrac{\\sigma_x+\\sigma_y}{2}\\pm\\sqrt{\\left(\\dfrac{\\sigma_x-\\sigma_y}{2}\\right)^{2}+\\tau_{xy}^{2}},\\quad \\tan2\\omega=\\dfrac{2\\tau_{xy}}{\\sigma_x-\\sigma_y}$",
+      "formula": "$$\\begin{aligned}\\sigma_{1,2}&=\\frac{\\sigma_x+\\sigma_y}{2}\\pm\\sqrt{\\left(\\frac{\\sigma_x-\\sigma_y}{2}\\right)^{2}+\\tau_{xy}^{2}}\\\\\\tan2\\omega&=\\frac{2\\tau_{xy}}{\\sigma_x-\\sigma_y}\\end{aligned}$$",
       "body": "向き(軸)を回していくと、せん断応力がちょうど0になる特別な向きが見つかります。そのときの垂直応力が、その点で一番大きい値と一番小さい値になり、これを主応力 $\\sigma_1,\\sigma_2$ と呼びます($\\sigma_1\\geq\\sigma_2$)。上の式の $\\pm$ の大きい方が $\\sigma_1$、小さい方が $\\sigma_2$、$\\tan2\\omega$ の式でその向き(主軸)が分かります。これを1つの円で表したのがモールの応力円で、中心 $\\left(\\tfrac{\\sigma_x+\\sigma_y}{2},\\,0\\right)$・半径 $R=\\sqrt{\\left(\\tfrac{\\sigma_x-\\sigma_y}{2}\\right)^{2}+\\tau_{xy}^{2}}$ の円。円の右端・左端が主応力、上端・下端が最大せん断応力に対応します。",
       "example": "丸棒のねじりは純せん断（$\\sigma_x=\\sigma_y=0$）で、モール円の中心は原点・半径 $\\tau_{xy}$、主応力方向は軸から45°（公式問2-16〜2-19）。",
       "figureImage": "s2MohrCompare"
@@ -88,7 +88,7 @@
       "id": "max-shear-stress",
       "kind": "formula",
       "term": "主せん断応力(最大せん断応力)",
-      "formula": "$\\tau_{\\max}=\\dfrac{\\sigma_1-\\sigma_2}{2}=\\sqrt{\\left(\\dfrac{\\sigma_x-\\sigma_y}{2}\\right)^{2}+\\tau_{xy}^{2}}\\quad(\\text{3次元}:\\ \\tau_{\\max}=\\dfrac{\\sigma_1-\\sigma_3}{2})$",
+      "formula": "$$\\begin{aligned}\\tau_{\\max}&=\\frac{\\sigma_1-\\sigma_2}{2}=\\sqrt{\\left(\\frac{\\sigma_x-\\sigma_y}{2}\\right)^{2}+\\tau_{xy}^{2}}\\\\\\text{(3次元)}\\quad \\tau_{\\max}&=\\frac{\\sigma_1-\\sigma_3}{2}\\end{aligned}$$",
       "body": "軸を回していくと、今度は「ずらす力(せん断応力)」が一番大きくなる向きがあります。その大きさが主せん断応力(最大せん断応力)です。平面の問題では、2つの主応力の差の半分、つまりモール円の半径 $R$ に等しく、主応力の向きからちょうど45°回った面に現れます。3次元では、一番大きい主応力 $\\sigma_1$ と一番小さい主応力 $\\sigma_3$ の差の半分 $\\tfrac{\\sigma_1-\\sigma_3}{2}$ が最大せん断応力です。金属が「ずれて」降伏・破壊するときの目安になります。",
       "example": "丸棒のねじり(純せん断)は $\\sigma_x=\\sigma_y=0$ なので $\\tau_{\\max}=\\tau_{xy}$、主応力は $\\pm\\tau_{xy}$ で軸から45°方向に現れます。",
       "figureImage": "s2MohrCompare"
@@ -124,7 +124,7 @@
       "id": "torsion-shaft",
       "kind": "formula",
       "term": "丸軸のねじり",
-      "formula": "$T=G I_p\\,\\theta,\\quad \\tau=G\\gamma=G r\\theta,\\quad \\tau_{\\max}=G\\dfrac{D}{2}\\theta=\\dfrac{T\\,(D/2)}{I_p},\\quad I_p=\\dfrac{\\pi}{32}(D^{4}-d^{4})$",
+      "formula": "$$\\begin{aligned}T&=G I_p\\,\\theta, & \\tau&=G\\gamma=G r\\theta\\\\\\tau_{\\max}&=G\\frac{D}{2}\\theta=\\frac{T\\,(D/2)}{I_p}, & I_p&=\\frac{\\pi}{32}(D^{4}-d^{4})\\end{aligned}$$",
       "body": "丸軸にトルク $T$ を加えると比ねじれ角 $\\theta$（単位長さあたりのねじれ角）が生じます。中心から半径 $r$ の点のせん断ひずみは $\\gamma=r\\theta$、フックの法則より $\\tau=G\\gamma=Gr\\theta$ なので、応力は中心で0・外周で最大です。外周 $r=D/2$ で $\\tau_{\\max}=G\\dfrac{D}{2}\\theta$。一方トルクは断面全体の積分から $T=G I_p\\theta$ になるので、$G\\theta=T/I_p$ を代入すると $G,\\theta$ が消えて $\\tau_{\\max}=\\dfrac{T(D/2)}{I_p}$ が得られます（$I_p$＝極断面二次モーメント、中空軸で $I_p=\\tfrac{\\pi}{32}(D^4-d^4)$）。",
       "example": "許容最大トルク $T_{\\max}=\\dfrac{2\\tau_{\\max}I_p}{D}=\\dfrac{\\pi}{16}\\tau_{\\max}\\dfrac{D^4-d^4}{D}$（公式問2-15）。",
       "figureImage": "s2HollowShaft"
@@ -142,7 +142,7 @@
       "id": "thin-cylinder",
       "kind": "formula",
       "term": "薄肉円筒の応力",
-      "formula": "$\\sigma_\\theta=\\dfrac{pd}{2t},\\qquad \\sigma_a=\\dfrac{pd}{4t}=\\dfrac{\\sigma_\\theta}{2}$",
+      "formula": "$$\\begin{aligned}\\sigma_\\theta&=\\frac{pd}{2t}\\\\\\sigma_a&=\\frac{pd}{4t}=\\frac{\\sigma_\\theta}{2}\\end{aligned}$$",
       "body": "内圧 $p$ を受ける薄肉円筒では、円周方向応力 $\\sigma_\\theta$ が軸方向応力 $\\sigma_a$ の2倍になります（$d$＝径、$t$＝板厚）。だから圧力容器は軸に沿った方向に割れやすいです。",
       "example": "ひずみ $\\varepsilon_\\theta=\\sigma_\\theta/E-\\nu\\sigma_a/E$ などから体積変化 $\\Delta V=\\dfrac{5-4\\nu}{2E}\\sigma_\\theta V$（公式問2-30）。",
       "figureImage": "s2ThinCylinder"
@@ -160,7 +160,7 @@
       "id": "tresca",
       "kind": "formula",
       "term": "トレスカの降伏条件(最大せん断応力説)",
-      "formula": "$\\sigma_1-\\sigma_3=\\sigma_Y\\quad\\Longleftrightarrow\\quad \\tau_{\\max}=\\dfrac{\\sigma_Y}{2}$",
+      "formula": "$$\\sigma_1-\\sigma_3=\\sigma_Y\\quad\\Longleftrightarrow\\quad \\tau_{\\max}=\\dfrac{\\sigma_Y}{2}$$",
       "body": "「材料はずらす力(せん断)が限界を超えると降伏する」と考えるのがトレスカの説です。最大せん断応力 $\\tau_{\\max}=\\tfrac{\\sigma_1-\\sigma_3}{2}$ が、引張試験で降伏したときのせん断応力 $\\sigma_Y/2$ に達したら降伏とします。式にすると「一番大きい主応力 − 一番小さい主応力 = 降伏応力 $\\sigma_Y$」。計算が簡単で、ミーゼスより少し安全側(早めに降伏と判定)になります。",
       "example": "単軸引張は $\\sigma_1=\\sigma,\\ \\sigma_2=\\sigma_3=0$ なので $\\sigma=\\sigma_Y$ で降伏。純せん断は $\\sigma_1=\\tau,\\ \\sigma_3=-\\tau$ なので $2\\tau=\\sigma_Y$、$\\tau=\\sigma_Y/2$ で降伏。",
       "figureImage": "s2YieldSurface"
@@ -169,7 +169,7 @@
       "id": "von-mises",
       "kind": "formula",
       "term": "ミーゼスの降伏条件(せん断ひずみエネルギー説)と相当応力",
-      "formula": "$\\sigma_M=\\sqrt{\\dfrac{(\\sigma_1-\\sigma_2)^{2}+(\\sigma_2-\\sigma_3)^{2}+(\\sigma_3-\\sigma_1)^{2}}{2}}\\ \\leq\\ \\sigma_Y$",
+      "formula": "$$\\sigma_M=\\sqrt{\\dfrac{(\\sigma_1-\\sigma_2)^{2}+(\\sigma_2-\\sigma_3)^{2}+(\\sigma_3-\\sigma_1)^{2}}{2}}\\ \\leq\\ \\sigma_Y$$",
       "body": "延性のある金属が多軸の力で降伏するかを、最もよく当てる説です。「形を変えるエネルギー(せん断ひずみエネルギー)」が限界に達すると降伏する、という考えから、上の値(ミーゼス相当応力 $\\sigma_M$)を1つの代表値にまとめ、引張の降伏応力 $\\sigma_Y$ と比べます。$\\sigma_M\\geq\\sigma_Y$ で降伏。全方向に同じ圧力(静水圧)では $\\sigma_M=0$ になり、いくら圧力をかけても降伏しない(形が変わらない)ことをうまく表せます。FEMの応力評価で最もよく使われます。",
       "example": "単軸引張 $\\sigma_1=\\sigma$ では $\\sigma_M=\\sigma$。純せん断 $\\tau$ では $\\sigma_M=\\sqrt3\\,\\tau$ なので $\\tau=\\sigma_Y/\\sqrt3\\approx0.577\\,\\sigma_Y$ で降伏(トレスカの $0.5\\,\\sigma_Y$ より少し大きい)。",
       "figureImage": "s2YieldSurface"
@@ -196,7 +196,7 @@
       "id": "fatigue",
       "kind": "term",
       "term": "疲労（S-N曲線・疲労限度・平均応力）",
-      "formula": "$\\sigma_m=\\dfrac{\\sigma_{\\max}+\\sigma_{\\min}}{2}$（平均応力）, 応力振幅 $\\sigma_a=\\dfrac{\\sigma_{\\max}-\\sigma_{\\min}}{2}$",
+      "formula": "$$\\begin{aligned}\\sigma_m&=\\frac{\\sigma_{\\max}+\\sigma_{\\min}}{2}\\quad\\text{(平均応力)}\\\\\\sigma_a&=\\frac{\\sigma_{\\max}-\\sigma_{\\min}}{2}\\quad\\text{(応力振幅)}\\end{aligned}$$",
       "body": "繰返し荷重では、静的強さよりはるかに低い応力でも破壊します（疲労）。応力振幅と破断繰返し数の関係がS-N曲線、これ以下なら壊れない応力振幅が疲労限度です。同じ応力振幅でも、引張の平均応力が大きいほど寿命が短くなります。",
       "example": "引張強さ≦1400MPaの鉄鋼では、疲労限は引張強さの0.4〜0.6倍程度と推定できます（公式問2-35〜2-38）。",
       "figureImage": "s2GoodmanDiagram"

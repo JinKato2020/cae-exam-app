@@ -61,7 +61,7 @@
       "id": "pressure-nodal",
       "kind": "formula",
       "term": "分布圧力の等価節点力",
-      "formula": "$F_{\\text{総}} = p\\,L\\,t, \\qquad F_{\\text{各節点}} = \\dfrac{F_{\\text{総}}}{2}\\ (1次要素の辺)$",
+      "formula": "$$\\begin{aligned}F_{\\text{総}}&=p\\,L\\,t\\\\F_{\\text{各節点}}&=\\dfrac{F_{\\text{総}}}{2}\\ (1次要素の辺)\\end{aligned}$$",
       "body": "面や辺にかかる分布圧力(表面力)は、そのままでは節点に入れられないので「等価節点力」に直します。圧力は常に要素の辺・面の法線方向に作用します。1次要素の辺に等分布する圧力なら、合計を両端の2節点に半分ずつ配分します(2次要素では配分比が変わります)。等価節点力を右辺ベクトルにして [K]{u}={f} を解きます。",
       "example": "圧力 p=2 MPa、辺の長さ L=0.1 m、厚さ t=0.01 m のとき総力$=2\\times10^6\\times0.1\\times0.01=2000$ N。両端に1000 Nずつ。",
       "figureImage": "f5Pressure2Nodal"
@@ -105,7 +105,7 @@
       "id": "thermal-strain-vector",
       "kind": "formula",
       "term": "熱ひずみベクトルと初期ひずみ法",
-      "formula": "$\\{\\varepsilon_0\\}=\\{\\alpha\\theta,\\ \\alpha\\theta,\\ 0\\}^{T},\\qquad \\{\\sigma\\}=[D](\\{\\varepsilon\\}-\\{\\varepsilon_0\\})$",
+      "formula": "$$\\begin{aligned}\\{\\varepsilon_0\\}&=\\{\\alpha\\theta,\\ \\alpha\\theta,\\ 0\\}^{T}\\\\\\{\\sigma\\}&=[D](\\{\\varepsilon\\}-\\{\\varepsilon_0\\})\\end{aligned}$$",
       "body": "温度変化 $\\theta$(上昇が正)による熱ひずみは各垂直方向に等しく生じ、せん断ひずみは生じません(2次元では $\\{\\alpha\\theta,\\ \\alpha\\theta,\\ 0\\}$)。これを初期ひずみ $\\varepsilon_0$ として扱い、応力は全ひずみから初期ひずみを引いた弾性ひずみで $\\sigma=[D](\\varepsilon-\\varepsilon_0)$ と計算します。等価節点力 $\\int B^{T}[D]\\varepsilon_0\\,dV$ として右辺に組み込みます。熱応力解析は、温度分布を出す熱伝導解析と構造解析の組合せです。",
       "example": "完全拘束($\\varepsilon=0$)で加熱すると $\\sigma=-[D]\\varepsilon_0$ の圧縮応力。線膨張係数 $\\alpha$ の入力が必要。",
       "figureImage": "f5InitStrain"

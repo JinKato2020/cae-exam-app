@@ -42,7 +42,7 @@
       "id": "chain-rule-polar",
       "kind": "formula",
       "term": "合成関数の偏微分（連鎖律）",
-      "formula": "$\\dfrac{\\partial w}{\\partial x}=\\dfrac{\\partial f}{\\partial u}\\dfrac{\\partial u}{\\partial x}+\\dfrac{\\partial f}{\\partial v}\\dfrac{\\partial v}{\\partial x},\\qquad \\dfrac{\\partial w}{\\partial y}=\\dfrac{\\partial f}{\\partial u}\\dfrac{\\partial u}{\\partial y}+\\dfrac{\\partial f}{\\partial v}\\dfrac{\\partial v}{\\partial y}$",
+      "formula": "$$\\begin{aligned}\\dfrac{\\partial w}{\\partial x}&=\\dfrac{\\partial f}{\\partial u}\\dfrac{\\partial u}{\\partial x}+\\dfrac{\\partial f}{\\partial v}\\dfrac{\\partial v}{\\partial x}\\\\\\dfrac{\\partial w}{\\partial y}&=\\dfrac{\\partial f}{\\partial u}\\dfrac{\\partial u}{\\partial y}+\\dfrac{\\partial f}{\\partial v}\\dfrac{\\partial v}{\\partial y}\\end{aligned}$$",
       "body": "変数を経由して微分するときは、経路ごとの微分の積を足し合わせます。極座標 $x=r\\cos\\theta,\\ y=r\\sin\\theta$ では、二乗和をとると交差項が消えて次の関係になります：$(\\partial w/\\partial r)^{2}+(1/r^{2})(\\partial w/\\partial\\theta)^{2}=(\\partial w/\\partial x)^{2}+(\\partial w/\\partial y)^{2}$。",
       "example": "$\\partial w/\\partial r=\\cos\\theta\\,f_x+\\sin\\theta\\,f_y$、$\\partial w/\\partial\\theta=-r\\sin\\theta\\,f_x+r\\cos\\theta\\,f_y$。$\\partial w/\\partial\\theta$ に $r$ が掛かるため、二乗和では $1/r^{2}$ の係数が現れます（公式問1-5の正解）。"
     },
@@ -59,7 +59,7 @@
       "id": "jacobian",
       "kind": "term",
       "term": "ヤコビ行列式（ヤコビアン）",
-      "formula": "$J=\\det\\dfrac{\\partial(x,y)}{\\partial(u,v)}=\\begin{vmatrix}\\partial x/\\partial u & \\partial x/\\partial v\\\\ \\partial y/\\partial u & \\partial y/\\partial v\\end{vmatrix},\\qquad dx\\,dy=|J|\\,du\\,dv$",
+      "formula": "$$\\begin{aligned}J&=\\det\\dfrac{\\partial(x,y)}{\\partial(u,v)}=\\begin{vmatrix}\\partial x/\\partial u & \\partial x/\\partial v\\\\ \\partial y/\\partial u & \\partial y/\\partial v\\end{vmatrix}\\\\dx\\,dy&=|J|\\,du\\,dv\\end{aligned}$$",
       "body": "変数変換したときの面積（体積）の拡大率がヤコビ行列式です。重積分の変数変換や、有限要素法でアイソパラメトリック要素を基準要素へ写すときに使います。",
       "example": "極座標 $x=r\\cos\\theta,\\ y=r\\sin\\theta$ では $J=r$ となり、$dx\\,dy=r\\,dr\\,d\\theta$。"
     },
@@ -75,7 +75,7 @@
       "id": "equilibrium-equation",
       "kind": "formula",
       "term": "応力の釣合い方程式",
-      "formula": "$\\dfrac{\\partial\\sigma_x}{\\partial x}+\\dfrac{\\partial\\tau_{xy}}{\\partial y}+\\dfrac{\\partial\\tau_{zx}}{\\partial z}+X=0,\\qquad \\tau_{xy}=\\tau_{yx}$",
+      "formula": "$$\\begin{aligned}\\dfrac{\\partial\\sigma_x}{\\partial x}+\\dfrac{\\partial\\tau_{xy}}{\\partial y}+\\dfrac{\\partial\\tau_{zx}}{\\partial z}+X&=0\\\\\\tau_{xy}&=\\tau_{yx}\\end{aligned}$$",
       "body": "固体力学の支配方程式です。微小要素に働く力の釣合いから導かれ、物体力 $X,Y,Z$ を含みます。モーメントの釣合いから、せん断応力は対称（$\\tau_{xy}=\\tau_{yx}$）になります。",
       "example": "3方向の釣合い式があり、物体力を無視すると右辺の $X,Y,Z$ が0になります。これを応力-ひずみ関係式・ひずみ-変位関係式と連立し、境界条件のもとで解きます（公式問1-8）。"
     },

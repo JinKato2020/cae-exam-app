@@ -39,7 +39,7 @@
       "id": "theory-compare",
       "kind": "formula",
       "term": "理論解との定量比較と誤差評価",
-      "formula": "$\\text{誤差}[\\%]=\\dfrac{|\\sigma_{\\text{理論}}-\\sigma_{\\text{FEM}}|}{\\sigma_{\\text{理論}}}\\times100$",
+      "formula": "$$\\text{誤差}[\\%]=\\dfrac{|\\sigma_{\\text{理論}}-\\sigma_{\\text{FEM}}|}{\\sigma_{\\text{理論}}}\\times100$$",
       "body": "理論解や公式集の解がある問題では、FEM結果との差を理論解に対する割合(%)で表して精度を評価します。粗い要素分割では最大応力を過小評価しやすく、細かくするほど理論解に近づきます。",
       "example": "理論31.4MPaに対し外挿値26.3MPaなら誤差約16%。分割を増やすと28.9MPa(7.8%)、30.9MPa(1.5%)と改善する(問11-1)。",
       "figureImage": null
@@ -48,7 +48,7 @@
       "id": "stress-concentration-check",
       "kind": "formula",
       "term": "応力集中係数による検証(円孔付き平板)",
-      "formula": "$\\alpha=\\dfrac{\\sigma_m}{\\sigma_0},\\qquad \\sigma_0=\\dfrac{P}{(2d-2a)t}$",
+      "formula": "$$\\begin{aligned}\\alpha&=\\dfrac{\\sigma_m}{\\sigma_0}\\\\\\sigma_0&=\\dfrac{P}{(2d-2a)t}\\end{aligned}$$",
       "body": "応力集中係数αは最大応力σ_mを基準応力σ_0(公称応力)で割ったものです。基準の取り方は2通りあり、遠方基準σ_0'=P/(2dt)では無限板(a≪d)で3.0、最小断面基準では a→d で2.0に近づきます。円孔縁のσ_xは理論上0ですが、外挿しても厳密には0になりません。1/4対称モデルで粗い分割だと外挿値は理論より大きく下がり、線形外挿で正しく予測できるとは言えません。",
       "example": "P=1000N、d=50mm、a=10mm、t=1mm:σ_0=1000/{(100-20)×1}=12.5MPa、α=2.51、最大応力=2.51×12.5=31.4MPa。最小断面9要素では外挿26.3MPa(誤差16%、15%以上)。問11-1。",
       "figureImage": null
@@ -65,7 +65,7 @@
       "id": "extrapolation-check",
       "kind": "formula",
       "term": "要素中心応力の外挿と理論解(厚肉円筒)",
-      "formula": "$\\text{精度}=\\dfrac{\\sigma_{\\text{理論}}-\\sigma_{\\text{外挿}}}{\\sigma_{\\text{理論}}}\\times100$",
+      "formula": "$$\\text{精度}=\\dfrac{\\sigma_{\\text{理論}}-\\sigma_{\\text{外挿}}}{\\sigma_{\\text{理論}}}\\times100$$",
       "body": "要素の応力は要素中心で得られるので、表面の応力は要素中心値を直線外挿して求めます。厚肉円筒の内表面の周方向応力は公式集(6.1)の理論解と比べて精度を評価します。板厚方向の分割数が多いほど精度は上がります。",
       "example": "要素1=42.25、要素2=37.38N/mm²を外挿して内表面44.68N/mm²。理論45.55N/mm²なら(45.55-44.68)/45.55×100≈1.9%(問11-3)。",
       "figureImage": null
