@@ -213,29 +213,30 @@
     {
       "id": "solid1-1-8",
       "number": "1-8",
-      "title": "公称ひずみと対数ひずみの計算",
-      "topic": "対数ひずみ換算",
+      "title": "有限ひずみ(グリーン・ラグランジュとアルマンジ)の計算",
+      "topic": "有限ひずみテンソル",
       "type": "mc",
       "difficulty": 2,
-      "question": "標点間長さ $L_0=200\\,\\mathrm{mm}$ の丸棒を軸方向に一様に引張り、現在の長さが $l=250\\,\\mathrm{mm}$ になった。公称ひずみ $\\varepsilon_n$ と対数(真)ひずみ $\\varepsilon_t$ の値の組合せとして最も近いものはどれか。",
+      "question": "標点間の初期長さ $L=200\\,\\mathrm{mm}$ の丸棒が単軸引張で一様に伸び、現長さ $l=250\\,\\mathrm{mm}$(伸び $u=l-L=50\\,\\mathrm{mm}$)になった。グリーン・ラグランジュひずみ $E=\\dfrac{1}{2}\\left\\{(l/L)^2-1\\right\\}$ とアルマンジひずみ $A=\\dfrac{1}{2}\\left\\{1-(L/l)^2\\right\\}$ の値の組として最も近いものはどれか。",
       "choices": [
-        "$\\varepsilon_n=0.20,\\ \\varepsilon_t=0.182$",
-        "$\\varepsilon_n=0.25,\\ \\varepsilon_t=0.223$",
-        "$\\varepsilon_n=0.25,\\ \\varepsilon_t=0.250$",
-        "$\\varepsilon_n=0.20,\\ \\varepsilon_t=0.223$"
+        "$E=0.250,\\ A=0.200$",
+        "$E=0.281,\\ A=0.180$",
+        "$E=0.281,\\ A=0.281$",
+        "$E=0.180,\\ A=0.281$"
       ],
       "answer": 2,
-      "explanation": "【基礎】公称ひずみは初期長さ基準で $\\varepsilon_n=(l-L_0)/L_0$、対数(真)ひずみは伸びを積み上げた $\\varepsilon_t=\\ln(l/L_0)=\\ln(1+\\varepsilon_n)$。\n【考え方】まず公称ひずみを求め、その $1+\\varepsilon_n$ の自然対数をとる二段階で計算する。\n【計算】$\\varepsilon_n=(l-L_0)/L_0=(250-200)/200=50/200=0.25$、$\\varepsilon_t=\\ln(l/L_0)=\\ln(250/200)=\\ln 1.25\\approx0.223$。\n【ポイント】引張では常に $\\varepsilon_t<\\varepsilon_n$(対数の凹性)。この差は大ひずみで顕著になる。\n【引っかけ】選択肢1・4は分母に現長さ $l$ を使い $50/250=0.20$ とした典型ミス。選択肢3は対数をとらず公称ひずみをそのまま真ひずみにしている。",
+      "explanation": "【基礎】グリーン・ラグランジュひずみは基準(変形前)長さを基準に測る有限ひずみ $E=\\dfrac{1}{2}\\{(l/L)^2-1\\}$、アルマンジひずみは現(変形後)長さを基準に測る有限ひずみ $A=\\dfrac{1}{2}\\{1-(L/l)^2\\}$ である。\n【考え方】伸び比 $l/L=250/200=1.25$ を求め、それぞれの定義式に代入する。\n【計算】$E=\\dfrac{1}{2}\\{1.25^2-1\\}=\\dfrac{1}{2}(1.5625-1)=0.281$、$A=\\dfrac{1}{2}\\{1-0.8^2\\}=\\dfrac{1}{2}(1-0.64)=0.180$。\n【ポイント】有限変形では基準長で測る $E$ の方が大きく $E>A$ となる。微小変形の極限では $E\\approx A\\approx u/L$ に一致する。\n【引っかけ】選択肢①の $0.250,\\ 0.200$ は微小変形近似 $u/L,\\ u/l$ の値で、有限ひずみの定義を使っていない。③は $A$ を $E$ と同じにしたもの、④は $E$ と $A$ を取り違えたもの。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "figure": "helpful",
-      "figureImage": "s1e1TrueNominal",
-      "figureHint": "白地660x420で初期長さL0の丸棒が現長さlへ伸び、公称ひずみと対数ひずみの定義式を並べて示す",
+      "figureImage": "s1e1FiniteStrainEA",
+      "figureHint": "白地660x420で初期長さLの丸棒が現長さlへ単軸引張で伸びる図。グリーン・ラグランジュひずみとアルマンジひずみの定義式を併記する",
       "officialRef": "問1-9",
       "role": "primary",
       "relatedFormulas": [
-        "s1ch1-log-strain"
+        "s1ch1-green-lagrange",
+        "s1ch1-almansi"
       ]
     },
     {

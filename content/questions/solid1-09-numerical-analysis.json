@@ -87,8 +87,8 @@
       "origin": "original",
       "reviewed": true,
       "figure": "helpful",
-      "figureImage": "s1e9IterMatrix",
-      "figureHint": "反復解法の反復行列と、反復ごとに解が真値へ近づく様子",
+      "figureImage": "s1e9CondNumber",
+      "figureHint": "白地660x420で固有値{-80,0.5,4,20}を絶対値の数直線上に示し、|λ|min=0.5と|λ|max=80から条件数cond=|λmax|/|λmin|を定義する図",
       "officialRef": "問9-7",
       "role": "branch",
       "relatedFormulas": [
@@ -286,8 +286,8 @@
       "origin": "original",
       "reviewed": true,
       "figure": "helpful",
-      "figureImage": "s1e9Spectral",
-      "figureHint": "反復行列のスペクトル半径<1なら収束、>1なら発散",
+      "figureImage": "s1e9IllConditioned",
+      "figureHint": "白地660x420で悪条件(条件数大)の概念図。ほぼ平行な2直線の交点が曖昧になる様子で入力の微小変化への敏感さを示す",
       "officialRef": "問9-7",
       "role": "primary",
       "relatedFormulas": [

@@ -315,7 +315,8 @@
       "role": "primary",
       "relatedFormulas": [
         "s1ch7-10"
-      ]
+      ],
+      "preFigureImage": "s1e7HollowCylinderSetup"
     },
     {
       "id": "solid1-7-12",

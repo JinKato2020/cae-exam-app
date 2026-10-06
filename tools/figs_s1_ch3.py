@@ -575,7 +575,7 @@ if __name__ == "__main__":
     euler_column()
     eigen_buckling()
     linear_buckling_ng()
-    _imperfection("s1e3ImperfectionCurve")
+    # s1e3ImperfectionCurve は s1e3Bifurcation(figs_s1_figfix5.py)へ差し替え・生成停止
     elastica()
     log_strain()
     geo_stiffness()
@@ -591,7 +591,7 @@ if __name__ == "__main__":
             "s1e3StretchBar","s1e3StressMeasures","s1e3TrussUniaxial","s1e3TLUL",
             "s1e3RigidRotStress","s1e3TangentStiff","s1e3LoadDispCritical","s1e3BucklingTypes",
             "s1e3ColumnBC","s1e3EulerColumn","s1e3EigenBuckling","s1e3LinearBucklingNG",
-            "s1e3ImperfectionCurve","s1e3Elastica","s1e3LogStrain","s1e3GeoStiffness",
+            "s1e3Elastica","s1e3LogStrain","s1e3GeoStiffness",
             "s1f3PolarDecomp","s1f3FollowerForce","s1f3EulerBuckle","s1f3BuckleTypes","s1f3Imperfection"]
     miss = [k for k in keys if not os.path.exists(os.path.join(OUT, k + ".png"))]
     print("TOTAL", len(keys), "MISSING", miss)
