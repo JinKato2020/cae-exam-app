@@ -5,7 +5,7 @@
     "chapter": 6,
     "source": "完全オリジナル(動的解析)",
     "origin": "original",
-    "count": 23,
+    "count": 21,
     "officialCount": 21
   },
   "questions": [
@@ -487,34 +487,6 @@
       ]
     },
     {
-      "id": "solid1-6-16",
-      "number": "6-16",
-      "title": "2質点系の固有角振動数",
-      "topic": "固有値解析",
-      "type": "mc",
-      "difficulty": 3,
-      "question": "壁とばね $k_1=2000\\,\\mathrm{N/m}$ で質量 $m_1=2.0\\,\\mathrm{kg}$ をつなぎ、さらにばね $k_2=1000\\,\\mathrm{N/m}$ で質量 $m_2=1.0\\,\\mathrm{kg}$ を直列につないだ2質点系がある。固有角振動数は特性方程式 $m_1m_2\\,\\omega^4-\\{m_1k_2+m_2(k_1+k_2)\\}\\,\\omega^2+k_1k_2=0$ を解いて得られる。低次（1次）の固有角振動数 $\\omega_1$ に最も近いものはどれか。",
-      "choices": [
-        "約 $44.7\\,\\mathrm{rad/s}$",
-        "約 $15.8\\,\\mathrm{rad/s}$",
-        "約 $22.4\\,\\mathrm{rad/s}$",
-        "約 $31.6\\,\\mathrm{rad/s}$"
-      ],
-      "answer": 3,
-      "explanation": "【基礎】2質点系は $[M]\\{\\ddot x\\}+[K]\\{x\\}=0$ で表され、$\\det|-\\omega^2[M]+[K]|=0$ から2つの固有角振動数が求まる。展開すると与えられた $\\omega$ の複2次方程式（$\\omega^2$ の2次式）になる。\n【考え方】$\\lambda=\\omega^2$ とおき係数を求めて2次方程式を解き、小さい根の平方根をとる三段階。\n【計算】係数は $A=m_1m_2=2$、$B=-\\{m_1k_2+m_2(k_1+k_2)\\}=-\\{2\\times1000+1\\times(2000+1000)\\}=-5000$、$C=k_1k_2=2000\\times1000=2\\times10^6$。$2\\lambda^2-5000\\lambda+2\\times10^6=0$、両辺を2で割り $\\lambda^2-2500\\lambda+10^6=0$。判別式 $\\sqrt{2500^2-4\\times10^6}=\\sqrt{2.25\\times10^6}=1500$。$\\lambda=\\dfrac{2500\\pm1500}{2}=2000,\\ 500$。低次は $\\lambda_1=500$ なので $\\omega_1=\\sqrt{500}\\approx22.4\\,\\mathrm{rad/s}$（高次は $\\omega_2=\\sqrt{2000}\\approx44.7\\,\\mathrm{rad/s}$）。\n【ポイント】2質点系には低次・高次の2つのモードがある。1次（低次）は小さいほうの $\\omega$。特性方程式は $\\omega^2$ の2次式なので根の公式で解ける。\n【引っかけ】選択肢1（44.7）は高次モード $\\omega_2=\\sqrt{2000}$ で、大きいほうの根を取り違えたもの。選択肢2（15.8）は $\\sqrt{250}$ で、$\\lambda$ を半分にする係数ミス。選択肢4（31.6）は $\\sqrt{1000}$ で、2根の中間値を誤って取った場合に選ぶ。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "required",
-      "figureImage": "s1e6TwoDOF",
-      "figureHint": "白地660x420で壁-k1-m1-k2-m2と直列につないだ2質点2ばね系を描き変位x1,x2を示す",
-      "officialRef": "問6-17",
-      "role": "branch",
-      "relatedFormulas": [
-        "s1ch6-16"
-      ]
-    },
-    {
       "id": "solid1-6-17",
       "number": "6-17",
       "title": "モード重合法の適用",
@@ -595,34 +567,6 @@
       "figureHint": "白地660x420でS_D→ひずみ、S_V→エネルギー、S_A→力の3対1対応を矢印で結んだ対応図",
       "officialRef": "問6-20",
       "role": "primary",
-      "relatedFormulas": [
-        "s1ch6-18"
-      ]
-    },
-    {
-      "id": "solid1-6-19",
-      "number": "6-19",
-      "title": "S_D・S_V・S_Aの関係計算",
-      "topic": "応答スペクトル法",
-      "type": "mc",
-      "difficulty": 2,
-      "question": "応答スペクトルには近似関係 $S_V=\\omega S_D$、$S_A=\\omega^2 S_D$ が成り立つ。固有角振動数 $\\omega=20\\,\\mathrm{rad/s}$ の1自由度系で変位応答スペクトルが $S_D=0.02\\,\\mathrm{m}$ と読み取れたとき、加速度応答スペクトル $S_A$ に最も近いものはどれか。",
-      "choices": [
-        "約 $0.4\\,\\mathrm{m/s^2}$",
-        "約 $5.0\\times10^{-5}\\,\\mathrm{m/s^2}$",
-        "約 $8\\,\\mathrm{m/s^2}$",
-        "約 $16\\,\\mathrm{m/s^2}$"
-      ],
-      "answer": 3,
-      "explanation": "【基礎】応答スペクトルの近似関係は $S_D\\approx\\dfrac{1}{\\omega}S_V\\approx\\dfrac{1}{\\omega^2}S_A$、すなわち $S_V=\\omega S_D$、$S_A=\\omega^2 S_D$。最大応答だけを問題にする場合、積分中の sin と cos を同一視できることから導かれる。ここでの$S_V,S_A$は擬似速度・擬似加速度で、実際の最大速度・最大加速度とは一般に一致しないが、応答スペクトルの近似関係として工学的に広く用いられる。\n【考え方】使う式 $S_A=\\omega^2 S_D$ を選び、$\\omega^2$ を計算してから掛ける二段階。\n【計算】$\\omega^2=20^2=400\\,\\mathrm{s^{-2}}$。$S_A=\\omega^2 S_D=400\\times0.02=8\\,\\mathrm{m/s^2}$。\n【ポイント】変位→加速度は $\\omega$ の2乗を掛ける（微分2回に相当）。速度なら $\\omega$ を1回掛ける。次元でも $[\\mathrm{s^{-2}}]\\times[\\mathrm{m}]=[\\mathrm{m/s^2}]$ と加速度になるので確認できる。\n【引っかけ】選択肢1（0.4）は $\\omega$ を1乗しか掛けず $\\omega S_D$（実は速度応答スペクトル $S_V$）を答えたもの。選択肢2（$5.0\\times10^{-5}$）は $\\omega^2$ を掛けるべきところを割ってしまい $S_D/\\omega^2$ とした誤り。選択肢4（16）は $2\\omega^2 S_D$ と余分に係数2を付けたもの。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e6SdSvSa",
-      "figureHint": "白地660x420でS_D,S_V=omega*S_D,S_A=omega^2*S_Dの関係を3本のバーと掛け算矢印で示す",
-      "officialRef": "問6-20",
-      "role": "branch",
       "relatedFormulas": [
         "s1ch6-18"
       ]

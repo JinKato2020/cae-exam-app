@@ -5,7 +5,7 @@
     "chapter": 3,
     "source": "完全オリジナル(幾何学的非線形)",
     "origin": "original",
-    "count": 20,
+    "count": 15,
     "officialCount": 15
   },
   "questions": [
@@ -96,34 +96,6 @@
       ]
     },
     {
-      "id": "solid1-3-4",
-      "number": "3-4",
-      "title": "変形勾配の極分解",
-      "topic": "変形勾配F・極分解",
-      "type": "mc",
-      "difficulty": 2,
-      "question": "変形勾配テンソル$F$の右極分解$F=RU$($R$:回転テンソル, $U$:右ストレッチテンソル)に関する記述として正しいものはどれか。",
-      "choices": [
-        "$U$は常に反対称テンソルで、剛体回転の情報を含む",
-        "$U\\approx I$のとき$F$は零テンソルに近づき、変形は無視できる",
-        "Green-Lagrangeひずみ$E=\\frac{1}{2}(F^{T}F-I)$は$R$を含むため、剛体回転で値が変化する",
-        "$U\\approx I$のとき$F\\approx R$となり、大変位・大回転でもひずみが微小な問題として扱える"
-      ],
-      "answer": 4,
-      "explanation": "【基礎】極分解$F=RU$では、$R$は直交する剛体回転テンソル、$U$は対称正定値の右ストレッチテンソル(伸びを表す)。ひずみが微小なら$U\\approx I$。\n【考え方】$U\\approx I$のとき$F\\approx R$、すなわち変形はほぼ剛体回転で表され、ひずみは微小だが変位・回転は大きい問題(大変位・大回転・微小ひずみ)として扱える。\n【ポイント】$F^{T}F=U R^{T} R U=U^{2}$なので$E=\\frac{1}{2}(F^{T}F-I)=\\frac{1}{2}(U^{2}-I)$。$R$が消えるためGreen-Lagrangeひずみは剛体回転に不変。\n【引っかけ】①は$U$を対称正定値でなく反対称と誤認(回転を持つのは$R$)。②は$U\\approx I$を$F\\to 0$と取り違える。③は$E$が$R$を含むと誤解しているが、実際は$R$が消えて回転に不変(記述が逆)。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e3PolarDecomp",
-      "figureHint": "白地660x420で正方要素→ストレッチUで伸長→回転Rで傾く2段変形をF=RUとして描く",
-      "officialRef": "問3-2",
-      "role": "branch",
-      "relatedFormulas": [
-        "s1f3-2"
-      ]
-    },
-    {
       "id": "solid1-3-5",
       "number": "3-5",
       "title": "Green-Lagrangeひずみの計算",
@@ -178,64 +150,6 @@
       "relatedFormulas": [
         "s1f3-4",
         "s1f3-5"
-      ]
-    },
-    {
-      "id": "solid1-3-7",
-      "number": "3-7",
-      "title": "一軸トラスの平衡方程式",
-      "topic": "仮想仕事と平衡方程式",
-      "type": "mc",
-      "difficulty": 3,
-      "question": "初期長さ$L$・断面積$A$(不変)・ヤング率$E$の一軸トラスの端に鉛直変位$u$が生じ、荷重$F$と釣り合う。$E_{11}=\\frac{u^{2}}{2L^{2}}$、$S_{11}=E\\,E_{11}$、仮想仕事$\\int_{V}S_{11}\\,\\delta E_{11}\\,dV=F\\,\\delta u$から導かれる平衡方程式はどれか。",
-      "choices": [
-        "$F=\\dfrac{EAu}{L}$",
-        "$F=\\dfrac{EAu^{2}}{2L^{2}}$",
-        "$F=\\dfrac{EAu^{3}}{L^{3}}$",
-        "$F=\\dfrac{EAu^{3}}{2L^{3}}$"
-      ],
-      "answer": 4,
-      "explanation": "【基礎】幾何学的非線形なトラスでは、第2種PK応力とGreen-Lagrangeひずみを用いた仮想仕事の原理から平衡式を導く。応力・ひずみは一様で体積は$AL$。\n【考え方】$S_{11}$と仮想ひずみ$\\delta E_{11}$を$u$で表し、体積積分してから$\\delta u$の任意性を使う。\n【計算】$S_{11}=E\\dfrac{u^{2}}{2L^{2}}$。$\\delta E_{11}=\\dfrac{u}{L^{2}}\\delta u$。$\\int_{V}S_{11}\\delta E_{11}dV=AL\\cdot\\dfrac{Eu^{2}}{2L^{2}}\\cdot\\dfrac{u}{L^{2}}\\delta u=\\dfrac{EAu^{3}}{2L^{3}}\\delta u=F\\delta u$。よって$F=\\dfrac{EAu^{3}}{2L^{3}}$。\n【ポイント】荷重が変位の3乗に比例する典型的な幾何学的非線形挙動。微小変形では現れない$u^{3}$項が本質。\n【引っかけ】①は微小変形の線形式で$u^{3}$の非線形を見落とす。②は$S_{11}$そのものと混同。③は仮想ひずみの係数$\\frac{1}{2}$を落としたもの。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e3TrussUniaxial",
-      "figureHint": "白地660x420で初期長さLの一軸トラス端に鉛直変位uと荷重Fが作用する図",
-      "officialRef": "問3-4",
-      "role": "primary",
-      "relatedFormulas": [
-        "s1f3-3",
-        "s1f3-4"
-      ]
-    },
-    {
-      "id": "solid1-3-8",
-      "number": "3-8",
-      "title": "TL法とUL法の相違",
-      "topic": "TL法・UL法",
-      "type": "mc",
-      "difficulty": 2,
-      "question": "トータルラグランジュ(TL)法とアップデイテッドラグランジュ(UL)法に関する記述として正しいものはどれか。",
-      "choices": [
-        "TL法は現配置(時刻$t$)を、UL法は初期配置(時刻0)を参照配置とする",
-        "TL法は第2種PK応力とGreen-Lagrangeひずみを、UL法はコーシー応力(Truesdell応力速度)と対数ひずみ系を用いる",
-        "同一問題を正しく定式化してもTL法とUL法では内部仕事量が異なり、解も一致しない",
-        "UL法の接線剛性には初期変位マトリックス$K_{L}$が現れるが、TL法には現れない"
-      ],
-      "answer": 2,
-      "explanation": "【基礎】TL法は時刻0(変形前配置)を、UL法は時刻$t$(現配置)を参照配置とする。TLは(第2種PK応力, Green-Lagrangeひずみ)、ULは(コーシー応力/Truesdell応力速度, 対数ひずみ系)の組を用いる。\n【考え方】どちらの参照配置で記述するかの違いであり、参照時刻が異なるだけで計算される内部仕事量は同一。構成式テンソルの成分変換を正しく行えば解は一致する。\n【ポイント】TL法の接線剛性は$K_0+K_L+K_G$、UL法は$K_0+K_G$で初期変位$K_L$が現れないのが差。なお『コーシー応力と対数ひずみ』の対応は主軸が共回転する等の条件下での整理で、一般にはキルヒホッフ応力とストレッチング$D$が厳密な仕事共役対(基準体積当たりは$J\\sigma:D$)になる。\n【引っかけ】①は参照配置がTLとULで逆。③はTLとULが等価で解が一致する事実に反する。④は$K_L$がTL法特有である点を逆に述べている。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e3TLUL",
-      "figureHint": "白地660x420で参照配置を時刻0にとるTL法と時刻tにとるUL法の2配置を並べて描く",
-      "officialRef": "問3-5",
-      "role": "primary",
-      "relatedFormulas": [
-        "s1f3-7",
-        "s1f3-8"
       ]
     },
     {
@@ -382,34 +296,6 @@
       ]
     },
     {
-      "id": "solid1-3-14",
-      "number": "3-14",
-      "title": "オイラー座屈荷重の計算",
-      "topic": "座屈荷重Pcr",
-      "type": "mc",
-      "difficulty": 3,
-      "question": "両端単純支持の柱で曲げ剛性$EI=2.0\\times10^{4}\\ \\mathrm{N\\cdot m^{2}}$、長さ$l=1.0\\ \\mathrm{m}$である。座屈荷重$P_{cr}=\\pi^{2}EI/l^{2}$はおよそいくらか($\\pi^{2}\\approx9.87$)。",
-      "choices": [
-        "約49 kN",
-        "約63 kN",
-        "約789 kN",
-        "約197 kN"
-      ],
-      "answer": 4,
-      "explanation": "【基礎】両端単純支持のオイラー座屈荷重は$P_{cr}=\\pi^{2}EI/l^{2}$。境界条件係数$\\lambda=1$。\n【考え方】$EI$と$l$を代入し、$\\pi^{2}\\approx9.87$を掛ける二段階計算。\n【計算】$P_{cr}=9.87\\times\\dfrac{2.0\\times10^{4}}{1.0^{2}}=1.974\\times10^{5}\\ \\mathrm{N}\\approx197\\ \\mathrm{kN}$。\n【ポイント】境界条件が変われば係数$\\lambda$(片持ち0.25、両端固定4など)を掛ける必要がある。ここは単純支持なので$\\lambda=1$。\n【引っかけ】約49 kNは一端固定・他端自由($\\lambda=0.25$)と誤認したもの。約63 kNは$\\pi$を二乗し忘れ$3.14\\times2\\times10^{4}$としたもの。約789 kNは両端固定($\\lambda=4$)と誤認したもの。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "required",
-      "figureImage": "s1e3EulerColumn",
-      "figureHint": "白地660x420で両端単純支持柱の第1次座屈モード(半波の正弦形)とPcr=π^2EI/l^2を描く",
-      "officialRef": "問3-11",
-      "role": "branch",
-      "relatedFormulas": [
-        "s1f3-11"
-      ]
-    },
-    {
       "id": "solid1-3-15",
       "number": "3-15",
       "title": "線形座屈の固有値問題",
@@ -551,34 +437,6 @@
       "relatedFormulas": [
         "s1f3-5",
         "s1f3-7"
-      ]
-    },
-    {
-      "id": "solid1-3-20",
-      "number": "3-20",
-      "title": "幾何剛性と初期応力マトリックス",
-      "topic": "幾何剛性マトリックス",
-      "type": "mc",
-      "difficulty": 1,
-      "question": "幾何剛性マトリックス(初期応力マトリックス)$[K_{G}]$に関する記述として正しいものはどれか。",
-      "choices": [
-        "$[K_{G}]$は「初期応力マトリックス」とも呼ばれ、膜・ケーブル構造では初期張力の導入で付加される幾何剛性により構造が安定化する",
-        "$[K_{G}]$に寄与する応力は意図的に導入した初期応力に限られ、変形の進行で生じる応力は含まない",
-        "$[K_{G}]$は幾何学的非線形効果を含まない、微小変形理論に対応するマトリックスである",
-        "$[K_{G}]$は初期変位マトリックス$[K_{L}]$と同一物で、UL法では現れない"
-      ],
-      "answer": 1,
-      "explanation": "【基礎】幾何剛性マトリックス$[K_{G}]$は「初期応力マトリックス」とも呼ばれる同一物。曲げ剛性の小さい膜・ケーブル構造では、初期張力(=初期応力)を導入することで付加される幾何剛性により安定化する。\n【考え方】$[K_{G}]$は応力によって付加される剛性を表す。初期張力だけでなく変形の進行で生じる応力も含む。\n【ポイント】幾何剛性=初期応力マトリックスという二通りの呼び名を押さえる。TL法・UL法いずれの接線剛性にも現れる。\n【引っかけ】②は変形進行で発生する応力も$[K_{G}]$に寄与する点を見落とす。③は微小変形理論対応の増分剛性$[K_{0}]$の説明を取り違えたもの。④は$[K_{G}]$(応力起因)と初期変位$[K_{L}]$(変位起因)を混同し、$[K_{G}]$がUL法にも現れる事実に反する。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e3GeoStiffness",
-      "figureHint": "白地660x420で初期張力を導入した膜/ケーブルが幾何剛性で安定化する様子を描く",
-      "officialRef": "問3-8",
-      "role": "branch",
-      "relatedFormulas": [
-        "s1f3-9"
       ]
     }
   ]

@@ -5,7 +5,7 @@
     "chapter": 4,
     "source": "完全オリジナル(境界非線形・接触)",
     "origin": "original",
-    "count": 20,
+    "count": 14,
     "officialCount": 14
   },
   "questions": [
@@ -63,62 +63,6 @@
       "role": "branch",
       "relatedFormulas": [
         "s1f4-1"
-      ]
-    },
-    {
-      "id": "solid1-4-3",
-      "number": "4-3",
-      "title": "相補性条件(KKT)の3式",
-      "topic": "相補性条件・KKT条件",
-      "type": "mc",
-      "difficulty": 2,
-      "question": "接触面のギャップ関数 $g$ と法線方向垂直応力 $\\sigma$(圧縮を負)に課される鉛直接触条件(相補性条件・KKT条件)の組み合わせとして正しいものはどれか。",
-      "choices": [
-        "$g\\le 0$、$\\sigma\\ge 0$、$\\sigma+g=0$",
-        "$g>0$、$\\sigma<0$、$\\sigma\\cdot g=1$",
-        "$g\\ge 0$、$\\sigma\\le 0$、$\\sigma\\cdot g=0$",
-        "$g\\ge 0$、$\\sigma\\ge 0$、$\\sigma+g=0$"
-      ],
-      "answer": 3,
-      "explanation": "【基礎】接触の相補性条件は3つ。(a)$g\\ge 0$(非貫通=食い込まない)、(b)$\\sigma\\le 0$(接触面には圧縮応力のみ、離れれば $\\sigma=0$)、(c)$\\sigma\\cdot g=0$(すきまが開けば応力ゼロ、閉じたときだけ応力が生じる)。\n【考え方】$g>0$ なら離れているので $\\sigma=0$、$g=0$ なら接触して $\\sigma<0$。どちらでも積 $\\sigma\\cdot g=0$ が成り立つ。これが「相補」の意味。\n【ポイント】$\\sigma$(応力)と $g$(距離)は次元が異なるので和 $\\sigma+g$ は物理的に意味をなさない。関係は必ず積 $\\sigma\\cdot g=0$ で表す。\n【引っかけ】選択肢1と4は次元の異なる量を足す $\\sigma+g=0$ の形で誤り(和は不成立)。1・4はさらに $\\sigma\\ge 0$ として圧縮(負)を取り違えている。2は $\\sigma\\cdot g=1$ とし、相補条件(=0)を定数と混同した誤り。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e4KKT",
-      "figureHint": "白地660x420でg軸とσ軸の直交グラフにg≥0,σ≤0,σg=0の相補領域(L字)を描く",
-      "officialRef": "問4-2",
-      "role": "primary",
-      "relatedFormulas": [
-        "s1f4-2"
-      ]
-    },
-    {
-      "id": "solid1-4-4",
-      "number": "4-4",
-      "title": "マスター面・スレーブ面の選択",
-      "topic": "マスター面・スレーブ面",
-      "type": "mc",
-      "difficulty": 2,
-      "question": "マスタースレーブ法で2物体の接触をモデル化するとき、マスター面(接触方向を支配する面)の選び方として適切なものはどれか。",
-      "choices": [
-        "より軟らかく変形しやすい、要素分割の細かい物体をマスター面にする",
-        "2物体を同一の面種とみなし、マスター面とスレーブ面を区別しない",
-        "変形量が大きくなると予想される側を優先してマスター面にする",
-        "より固く変形しにくい、要素分割の粗い物体をマスター面にする"
-      ],
-      "answer": 4,
-      "explanation": "【基礎】マスター面は接触方向(法線)を規定する面。スレーブ面の節点はマスター面に沿って滑る。選択基準は「固い(変形しにくい)側・要素分割が粗い側をマスター面」「軟らかい側・細かい側をスレーブ面」。\n【考え方】接触方向を安定に決めるには、形が変わりにくく面の向きがぶれない側を基準面(マスター)にするのが自然。細かいメッシュ側をスレーブにすると、スレーブ節点が滑らかなマスター面に拘束され精度が保ちやすい。\n【ポイント】固い・粗い→マスター、軟らかい・細かい→スレーブ。この対応を覚える。\n【引っかけ】選択肢1は固い/軟らかい・粗い/細かいをすべて逆にした典型的な取り違え。2は「区別しない」で、マスター面が接触方向を支配するという役割分担を無視した誤り。3は「変形量」という無関係な基準を持ち込んだもの(基準は剛性とメッシュ密度)。",
-      "hasMath": false,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e4MasterSlave",
-      "figureHint": "白地660x420で固く粗メッシュの物体=マスター面、軟らか細メッシュの物体=スレーブ面を上下に並べ滑り方向矢印",
-      "officialRef": "問4-1",
-      "role": "branch",
-      "relatedFormulas": [
-        "s1f4-3"
       ]
     },
     {
@@ -206,63 +150,6 @@
       ]
     },
     {
-      "id": "solid1-4-8",
-      "number": "4-8",
-      "title": "ペナルティ法の変位計算",
-      "topic": "ペナルティ法",
-      "type": "mc",
-      "difficulty": 2,
-      "question": "直列ばねモデル(節点1-2をばね $K_1$、節点3-4をばね $K_2$、節点1固定、節点4に外力 $F$、節点2と3が接触)で接触拘束をペナルティ法($\\Pi_c=\\tfrac{1}{2}\\alpha g^2$、$g=u_2-u_3$)で扱う。$K_1=K_2=100\\,\\mathrm{N/mm}$、$F=200\\,\\mathrm{N}$、ペナルティ係数 $\\alpha=1000\\,\\mathrm{N/mm}$ のとき、節点3の変位 $u_3$ はいくらか。",
-      "choices": [
-        "$2.0\\,\\mathrm{mm}$",
-        "$2.2\\,\\mathrm{mm}$",
-        "$4.2\\,\\mathrm{mm}$",
-        "$0.2\\,\\mathrm{mm}$"
-      ],
-      "answer": 2,
-      "explanation": "【基礎】ペナルティ法の解は $u_2=F/K_1$、$u_3=F/K_1+F/\\alpha$、$u_4=F/K_1+F/K_2+F/\\alpha$。$\\alpha$ が有限なので微小貫通 $g=u_2-u_3=-F/\\alpha$ が残る。\n【考え方】まず接触点の基準変位 $F/K_1$ を求め、次にペナルティばねの微小変位 $F/\\alpha$ を足すのが $u_3$。\n【計算】$F/K_1=200/100=2.0\\,\\mathrm{mm}$、$F/\\alpha=200/1000=0.2\\,\\mathrm{mm}$。よって $u_3=2.0+0.2=2.2\\,\\mathrm{mm}$。\n【ポイント】$\\alpha\\to\\infty$ で $u_3\\to 2.0$(貫通ゼロ=ラグランジュ解)に近づく。有限 $\\alpha$ では必ず貫通深さ $-g=F/\\alpha$ ぶんの貫通が残る(符号付きギャップは $g=-F/\\alpha<0$)。\n【引っかけ】選択肢1(2.0)はペナルティ項 $F/\\alpha$ を落として $u_2$ と混同したもの。3(4.2)は $u_3$ を $u_4=F/K_1+F/K_2+F/\\alpha$ と取り違えた誤り。4(0.2)はペナルティ項 $F/\\alpha$ だけを答えて基準変位 $F/K_1$ を忘れたもの。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e4Penalty",
-      "preFigureImage": "s1e4PenaltySetup",
-      "figureHint": "白地660x420でペナルティばねαが節点2-3間に入り、微小貫通g=−F/αとu3=u2+F/αを図示",
-      "officialRef": "問4-5",
-      "role": "branch",
-      "relatedFormulas": [
-        "s1f4-7"
-      ]
-    },
-    {
-      "id": "solid1-4-9",
-      "number": "4-9",
-      "title": "拡張ラグランジュ法のUzawa更新",
-      "topic": "拡張ラグランジュ法",
-      "type": "mc",
-      "difficulty": 3,
-      "question": "拡張ラグランジュ法で乗数を Uzawa 更新 $\\lambda^{(k+1)}=\\lambda^{(k)}+\\alpha g^{(k)}$ により反復する。第1反復で $\\lambda^{(1)}=0$ とし、そのとき得られたギャップが $g^{(1)}=-0.2\\,\\mathrm{mm}$、ペナルティ係数 $\\alpha=1500\\,\\mathrm{N/mm}$ であった。更新後の乗数 $\\lambda^{(2)}$ はいくらか。",
-      "choices": [
-        "$0\\,\\mathrm{N}$",
-        "$-0.2\\,\\mathrm{N}$",
-        "$-600\\,\\mathrm{N}$",
-        "$-300\\,\\mathrm{N}$"
-      ],
-      "answer": 4,
-      "explanation": "【基礎】拡張ラグランジュ法は $\\Pi_c=\\lambda g+\\tfrac{1}{2}\\alpha g^2$。乗数を Uzawa 更新 $\\lambda^{(k+1)}=\\lambda^{(k)}+\\alpha g^{(k)}$ で反復し、収束すると貫通のないラグランジュ解に一致する。\n【考え方】更新式に第1反復の値を代入するだけ。ただし $\\alpha g$ が力の次元(N)になる点に注意($\\alpha$=N/mm、$g$=mm)。\n【計算】$\\lambda^{(2)}=\\lambda^{(1)}+\\alpha g^{(1)}=0+1500\\times(-0.2)=-300\\,\\mathrm{N}$。更新後の乗数は $-300\\,\\mathrm{N}$(圧縮なので負)。この値がそのまま真の接触力に一致するか次反復で貫通が消えるかは問題の剛性・荷重条件に依存し、一般には数回の反復を経て貫通が許容値以下へ収束する。\n【ポイント】更新量 $\\alpha g$ は必ず力の次元。$\\lambda$ は接触力(圧縮なので負)に収束する。\n【引っかけ】選択肢1(0)は「乗数は変化しない」と更新式を無視したもの。2(−0.2)は $\\alpha$ を掛け忘れて $g$ の値をそのまま乗数にした次元ミス。3(−600)は $\\alpha g$ を2倍(または係数取り違え)にした計算ミス。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e4AugmentedLagrange",
-      "figureHint": "白地660x420でUzawa反復ごとに乗数λが更新され残留貫通gが0へ収束していく折れ線",
-      "officialRef": "問4-5",
-      "role": "branch",
-      "relatedFormulas": [
-        "s1f4-8"
-      ]
-    },
-    {
       "id": "solid1-4-10",
       "number": "4-10",
       "title": "擬似荷重の指数(次元解析)",
@@ -343,35 +230,6 @@
       "officialRef": "問4-8",
       "role": "primary",
       "relatedFormulas": [
-        "s1f4-12"
-      ]
-    },
-    {
-      "id": "solid1-4-13",
-      "number": "4-13",
-      "title": "クーロン摩擦とせん断摩擦の比較計算",
-      "topic": "摩擦モデルの比較",
-      "type": "mc",
-      "difficulty": 2,
-      "question": "摩擦係数 $\\mu=0.2$ の金属加工で、接触圧力が $900\\,\\mathrm{MPa}$、引張降伏応力 $\\sigma_y=700\\,\\mathrm{MPa}$(ミーゼス降伏条件)とする。せん断摩擦モデルで求まる単位面積あたりの摩擦力はおよそいくらか。",
-      "choices": [
-        "$180\\,\\mathrm{MPa}$",
-        "$140\\,\\mathrm{MPa}$",
-        "$81\\,\\mathrm{MPa}$",
-        "$234\\,\\mathrm{MPa}$"
-      ],
-      "answer": 3,
-      "explanation": "【基礎】せん断摩擦は「材料のせん断降伏応力 $\\tau_y=\\sigma_y/\\sqrt{3}$ に摩擦係数を掛けた分布荷重」。クーロン摩擦は「接触圧力に摩擦係数を掛けた力」で別物。\n【考え方】問われているのはせん断摩擦なので、接触圧力ではなく $\\tau_y$ を使う。まず $\\tau_y$ を求めてから $\\mu$ を掛ける。\n【計算】$\\tau_y=700/\\sqrt{3}=700/1.732\\approx 404\\,\\mathrm{MPa}$。せん断摩擦 $=\\mu\\tau_y=0.2\\times 404\\approx 81\\,\\mathrm{MPa}$。(参考: クーロン摩擦なら $0.2\\times 900=180\\,\\mathrm{MPa}$ で、加工が進むと圧力とともに増え続け金属加工では過大になりやすい。)\n【ポイント】せん断摩擦=$\\mu\\cdot\\sigma_y/\\sqrt{3}$。基準は接触圧ではなくせん断降伏応力。\n【引っかけ】選択肢1(180)はせん断摩擦を問われているのにクーロン摩擦($\\mu\\times$接触圧)を計算した取り違え。2(140)は $\\sqrt{3}$ で割り忘れ $\\mu\\sigma_y=0.2\\times 700$ とした誤り。4(234)は割るべき $\\sqrt{3}$ を掛けてしまった($0.2\\times 700\\times\\sqrt{3}$)逆操作。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e4FrictionCompare",
-      "figureHint": "白地660x420で加工進展に対しクーロン摩擦は増加・せん断摩擦は一定となる摩擦力の比較グラフ",
-      "officialRef": "問4-8",
-      "role": "branch",
-      "relatedFormulas": [
-        "s1f4-11",
         "s1f4-12"
       ]
     },
@@ -539,35 +397,6 @@
       "figureHint": "白地660x420で円形接触面と、中央最大・縁ゼロの半楕円圧力分布 pmax=3P/2πa² を断面で描く",
       "officialRef": "問4-14",
       "role": "primary",
-      "relatedFormulas": [
-        "s1f4-17",
-        "s1f4-18"
-      ]
-    },
-    {
-      "id": "solid1-4-20",
-      "number": "4-20",
-      "title": "ヘルツ接触の圧力の荷重依存",
-      "topic": "ヘルツ接触・指数",
-      "type": "mc",
-      "difficulty": 3,
-      "question": "ヘルツ接触では接触半径が $a\\propto P^{1/3}$(押付け力 $P$)で変化し、最大接触圧力は $p_{max}=\\dfrac{3P}{2\\pi a^2}$ で与えられる。押付け力 $P$ を8倍にすると、最大接触圧力 $p_{max}$ はおよそ何倍になるか。",
-      "choices": [
-        "8倍",
-        "4倍",
-        "$1/2$倍",
-        "2倍"
-      ],
-      "answer": 4,
-      "explanation": "【基礎】$p_{max}=\\dfrac{3P}{2\\pi a^2}$ で、接触半径は $a\\propto P^{1/3}$。よって $a^2\\propto P^{2/3}$。\n【考え方】$p_{max}\\propto \\dfrac{P}{a^2}\\propto \\dfrac{P}{P^{2/3}}=P^{1-2/3}=P^{1/3}$。すなわち $p_{max}\\propto P^{1/3}$(荷重の1/3乗でしか増えない)。\n【計算】$P\\to 8P$ のとき $p_{max}\\to 8^{1/3}=2$ 倍。接触半径が広がるぶん、力の増加ほどには圧力が上がらない。\n【ポイント】$p_{max}\\propto P^{1/3}$。分母の $a^2\\propto P^{2/3}$ が効いて指数が $1-2/3=1/3$ になるのが要点。\n【引っかけ】選択肢1(8倍)は接触半径の広がり($a^2\\propto P^{2/3}$)を無視し $p_{max}\\propto P$ と線形に考えた誤り。2(4倍)は指数を $2/3$ と取り違え $8^{2/3}=4$ とした誤り(接触面積の変化率と混同)。3($1/2$)は指数の符号を逆に取り $P^{-1/3}$ とした誤り。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e4HertzExponent",
-      "figureHint": "白地660x420で両対数軸に a∝P^(1/3)、pmax∝P^(1/3) の傾き1/3の直線を描き荷重依存を示す",
-      "officialRef": "問4-14",
-      "role": "branch",
       "relatedFormulas": [
         "s1f4-17",
         "s1f4-18"

@@ -5,7 +5,7 @@
     "chapter": 1,
     "source": "完全オリジナル(非線形解析における応力とひずみ)",
     "origin": "original",
-    "count": 21,
+    "count": 18,
     "officialCount": 18
   },
   "questions": [
@@ -410,63 +410,6 @@
       ]
     },
     {
-      "id": "solid1-1-15",
-      "number": "1-15",
-      "title": "第1種ピオラ・キルヒホッフ応力",
-      "topic": "第1種ピオラ・キルヒホッフ応力",
-      "type": "mc",
-      "difficulty": 2,
-      "question": "第1種ピオラ・キルヒホッフ応力(公称応力テンソル)に関する記述として正しいものはどれか。",
-      "choices": [
-        "変形後配置で定義される対称テンソルで、真応力とも呼ばれる",
-        "剛体回転に対して不変な対称テンソルで、ひずみと同種の量である",
-        "一般に非対称なテンソルであり、1次元では初期断面積で荷重を除した公称応力に対応する",
-        "第2種ピオラ・キルヒホッフ応力と一致する対称テンソルである"
-      ],
-      "answer": 3,
-      "explanation": "【基礎】第1種ピオラ・キルヒホッフ応力は、現配置の面積要素に作用する力を基準配置の面積要素へそのまま平行移動して割り当てた応力である。\n【考え方】力の向きは変えず面積だけ基準配置に置き換えるため、両配置の座標が混在し一般に非対称になる。1次元では初期断面積で荷重を除した公称応力に一致する。\n【ポイント】コーシー応力 $\\mathbf{T}$ とは $\\mathbf{\\Pi}=J\\mathbf{F}^{-1}\\mathbf{T}$ の関係。仕事共役は変形勾配 $\\mathbf{F}$ の速度 $\\dot{\\mathbf{F}}$。\n【引っかけ】選択肢1・2は非対称であるべき第1種PKを対称と誤っている。選択肢4は第1種と第2種PKを混同している(第2種は $\\mathbf{S}=\\mathbf{\\Pi}\\mathbf{F}^{-T}$ で対称)。",
-      "hasMath": false,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e1PK1",
-      "figureHint": "第1PK応力=現配置の力÷基準配置の面積、変形前後の断面で",
-      "officialRef": "問1-12",
-      "role": "primary",
-      "relatedFormulas": [
-        "s1ch1-piola-kirchhoff"
-      ]
-    },
-    {
-      "id": "solid1-1-16",
-      "number": "1-16",
-      "title": "第2種PK応力と共役ひずみ",
-      "topic": "第2種ピオラ・キルヒホッフ応力",
-      "type": "mc",
-      "difficulty": 3,
-      "question": "第2種ピオラ・キルヒホッフ応力 $\\mathbf{S}$ について、コーシー応力 $\\mathbf{T}$ との関係式と、仕事共役となるひずみの組合せとして正しいものはどれか。$J=\\det\\mathbf{F}$。",
-      "choices": [
-        "$\\mathbf{S}=J\\,\\mathbf{F}\\,\\mathbf{T}\\,\\mathbf{F}^{T}$、共役ひずみはアルマンジひずみ",
-        "$\\mathbf{S}=J\\,\\mathbf{F}^{-1}\\mathbf{T}\\,\\mathbf{F}^{-T}$、共役ひずみはグリーン・ラグランジュひずみ",
-        "$\\mathbf{S}=\\mathbf{F}^{-1}\\mathbf{T}\\,\\mathbf{F}$、共役ひずみは対数ひずみ",
-        "$\\mathbf{S}=J\\,\\mathbf{T}$、共役ひずみは微小ひずみ"
-      ],
-      "answer": 2,
-      "explanation": "【基礎】第2種ピオラ・キルヒホッフ応力は、現配置の力を変形勾配で基準配置へ引き戻して定義する。コーシー応力とは $\\mathbf{S}=J\\mathbf{F}^{-1}\\mathbf{T}\\mathbf{F}^{-T}$。\n【考え方】$\\mathbf{S}$ は基準配置量で、観測者(剛体回転)の変化に対して不変(観測不変量)。同じく基準配置量であるグリーン・ラグランジュひずみ $\\mathbf{E}$ と仕事共役になり、応力仕事率は $\\dot{W}=\\mathbf{S}:\\dot{\\mathbf{E}}$ と書ける。\n【ポイント】トータルラグランジュ法(基準配置基準の定式化)では $\\mathbf{S}$ と $\\mathbf{E}$ の対を用いるのが自然。両者とも対称テンソル。\n【引っかけ】選択肢1は前方への押し出し $\\mathbf{F}(\\cdot)\\mathbf{F}^{T}$ で向きが逆。選択肢3は $J$ と転置逆を欠く。選択肢4はキルヒホッフ応力の定義と微小ひずみを混ぜており誤り。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e1PK2",
-      "figureHint": "第2PK応力Sと共役なグリーンひずみE、基準配置での応力",
-      "officialRef": "問1-13",
-      "role": "primary",
-      "relatedFormulas": [
-        "s1ch1-piola-kirchhoff",
-        "s1ch1-work-conjugate"
-      ]
-    },
-    {
       "id": "solid1-1-17",
       "number": "1-17",
       "title": "仕事共役の組合せ",
@@ -492,35 +435,6 @@
       "role": "primary",
       "relatedFormulas": [
         "s1ch1-work-conjugate"
-      ]
-    },
-    {
-      "id": "solid1-1-18",
-      "number": "1-18",
-      "title": "公称と真の応力ひずみ定義",
-      "topic": "公称応力ひずみと真応力ひずみ",
-      "type": "mc",
-      "difficulty": 1,
-      "question": "単軸試験における公称応力・真応力・公称ひずみ・対数(真)ひずみの定義の組合せとして正しいものはどれか。荷重 $P$、初期断面積 $A_0$、現断面積 $a$、初期長さ $L_0$、現長さ $l$ とする。",
-      "choices": [
-        "公称応力 $=P/a$、真応力 $=P/A_0$、公称ひずみ $=(l-L_0)/l$、対数ひずみ $=\\ln(L_0/l)$",
-        "公称応力 $=P/A_0$、真応力 $=P/a$、公称ひずみ $=\\ln(l/L_0)$、対数ひずみ $=(l-L_0)/L_0$",
-        "公称応力 $=P/A_0$、真応力 $=P/a$、公称ひずみ $=(l-L_0)/L_0$、対数ひずみ $=\\ln(l/L_0)$",
-        "公称応力 $=P/A_0$、真応力 $=P/a$、公称ひずみ $=(l-L_0)/L_0$、対数ひずみ $=(l-L_0)/a$"
-      ],
-      "answer": 3,
-      "explanation": "【基礎】公称(工学)量は初期形状基準、真量は現在形状基準で定義する。\n【考え方】公称応力 $=P/A_0$(初期断面積)、真応力 $=P/a$(現断面積)、公称ひずみ $=(l-L_0)/L_0$(初期長さ基準)、対数ひずみ $=\\ln(l/L_0)$(伸びの積み上げ)。\n【ポイント】応力ひずみ線図でも、公称応力ひずみ線図と真応力ひずみ線図は大ひずみ域で明確に分かれ、真応力線図の方が高い値を示す。\n【引っかけ】選択肢1は応力の初期/現断面積が逆、かつ対数ひずみの比が逆(符号反転)。選択肢2は公称ひずみと対数ひずみの式が入れ替わっている。選択肢4は対数ひずみに現断面積 $a$ を持ち込んだ意味不明な式。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e1StressStrain",
-      "figureHint": "白地660x420で公称応力ひずみ線図と真応力ひずみ線図を同一グラフに重ね、弾性から塑性・ひずみ硬化までの差を示す",
-      "officialRef": "問1-16",
-      "role": "primary",
-      "relatedFormulas": [
-        "s1ch1-nominal-true-stress",
-        "s1ch1-log-strain"
       ]
     },
     {

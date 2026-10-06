@@ -5,7 +5,7 @@
     "chapter": 5,
     "source": "完全オリジナル(破壊力学・疲労解析)",
     "origin": "original",
-    "count": 26,
+    "count": 24,
     "officialCount": 24
   },
   "questions": [
@@ -122,35 +122,6 @@
       ]
     },
     {
-      "id": "solid1-5-5",
-      "number": "5-5",
-      "title": "応力拡大係数と限界き裂長さ",
-      "topic": "応力拡大係数の計算",
-      "type": "mc",
-      "difficulty": 2,
-      "question": "幅の広い平板の中央に長さ $2a=10\\,\\mathrm{mm}$ の貫通き裂があり、遠方で $\\sigma=180\\,\\mathrm{MPa}$ の一様引張応力を受ける(形状補正係数 $Y=1.0$、$K_I=Y\\sigma\\sqrt{\\pi a}$)。破壊靭性値を $K_{IC}=36\\,\\mathrm{MPa}\\sqrt{\\mathrm{m}}$ とするとき、現在の $K_I$ と、この応力のまま破壊に至る限界き裂長さ $2a_c$ の組合せに最も近いものはどれか。",
-      "choices": [
-        "$K_I\\approx22.6\\,\\mathrm{MPa}\\sqrt{\\mathrm{m}},\\quad 2a_c\\approx13\\,\\mathrm{mm}$",
-        "$K_I\\approx22.6\\,\\mathrm{MPa}\\sqrt{\\mathrm{m}},\\quad 2a_c\\approx25\\,\\mathrm{mm}$",
-        "$K_I\\approx31.9\\,\\mathrm{MPa}\\sqrt{\\mathrm{m}},\\quad 2a_c\\approx25\\,\\mathrm{mm}$",
-        "$K_I\\approx22.6\\,\\mathrm{MPa}\\sqrt{\\mathrm{m}},\\quad 2a_c\\approx51\\,\\mathrm{mm}$"
-      ],
-      "answer": 2,
-      "explanation": "【基礎】中央き裂の応力拡大係数は $K_I=\\sigma\\sqrt{\\pi a}$($a$ は半き裂長さ)。破壊は $K_I=K_{IC}$ で発生する。\n【考え方】まず現在値を $a=5\\,\\mathrm{mm}=0.005\\,\\mathrm{m}$ で計算し、次に $K_{IC}$ に達する $a_c$ を逆算する。長さ $2a$ と半長 $a$ の取り違えに注意。\n【計算】$K_I=180\\sqrt{\\pi\\times0.005}=180\\times0.1253=22.6\\,\\mathrm{MPa}\\sqrt{\\mathrm{m}}$。限界は $a_c=\\dfrac{1}{\\pi}\\left(\\dfrac{K_{IC}}{\\sigma}\\right)^2=\\dfrac{1}{\\pi}\\left(\\dfrac{36}{180}\\right)^2=\\dfrac{0.04}{\\pi}=0.01273\\,\\mathrm{m}$、よって $2a_c\\approx25.5\\,\\mathrm{mm}$。現在の $2a=10\\,\\mathrm{mm}<25\\,\\mathrm{mm}$ なので破壊しない。\n【ポイント】公式の $a$ は半き裂長さ。答えは全長 $2a_c$ で問われているので最後に2倍する。\n【引っかけ】選択肢1は $a_c$(半長)をそのまま全長と誤答。選択肢3は $\\sqrt{\\pi a}$ に半長でなく全長 $0.01\\,\\mathrm{m}$ を代入($K=31.9$)。選択肢4は $2a_c$ をさらに2倍にした誤り。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "required",
-      "figureImage": "s1e5Kformula",
-      "figureHint": "白地660x420で幅広平板の中央貫通き裂(全長2a)と遠方一様引張σ、K=σ√(πa)の寸法関係を示す",
-      "officialRef": "問5-2",
-      "role": "branch",
-      "relatedFormulas": [
-        "s1ch5-3",
-        "s1ch5-4"
-      ]
-    },
-    {
       "id": "solid1-5-21",
       "number": "5-21",
       "title": "モードI・IIの応力対称性",
@@ -259,34 +230,6 @@
       "figureHint": "白地660x420でG=(KI^2+KII^2)/E' + (1+ν)KIII^2/E と、平面応力E'=E・平面ひずみE'=E/(1-ν^2)の対比を示す",
       "officialRef": "問5-8",
       "role": "primary",
-      "relatedFormulas": [
-        "s1ch5-9"
-      ]
-    },
-    {
-      "id": "solid1-5-9",
-      "number": "5-9",
-      "title": "平面ひずみのエネルギー解放率",
-      "topic": "エネルギー解放率の計算",
-      "type": "mc",
-      "difficulty": 2,
-      "question": "モードIのき裂で $K_I=30\\,\\mathrm{MPa}\\sqrt{\\mathrm{m}}$、縦弾性係数 $E=210\\,\\mathrm{GPa}$、ポアソン比 $\\nu=0.3$ とする。平面ひずみ状態でのエネルギー解放率 $G$ に最も近いものはどれか($G=K_I^2/E'$、平面ひずみ $E'=E/(1-\\nu^2)$)。",
-      "choices": [
-        "$G\\approx4.3\\,\\mathrm{kJ/m^2}$",
-        "$G\\approx3.9\\,\\mathrm{kJ/m^2}$",
-        "$G\\approx3.0\\,\\mathrm{kJ/m^2}$",
-        "$G\\approx4.7\\,\\mathrm{kJ/m^2}$"
-      ],
-      "answer": 2,
-      "explanation": "【基礎】モードIでは $G=K_I^2/E'$。平面ひずみでは $E'=E/(1-\\nu^2)$、平面応力では $E'=E$。\n【考え方】先に平面ひずみの $E'$ を求め、次に $G$ を計算する。単位は $K_I^2$ が $\\mathrm{(MPa\\sqrt m)^2}=10^{12}\\,\\mathrm{Pa^2\\,m}$、$E'$ が $\\mathrm{Pa}$ なので $G$ は $\\mathrm{Pa\\cdot m}=\\mathrm{J/m^2}$ になる。\n【計算】$E'=\\dfrac{210}{1-0.3^2}=\\dfrac{210}{0.91}=230.8\\,\\mathrm{GPa}$。$G=\\dfrac{(30)^2\\times10^{12}}{230.8\\times10^{9}}=\\dfrac{900}{230.8}\\times10^{3}=3.90\\times10^{3}\\,\\mathrm{J/m^2}\\approx3.9\\,\\mathrm{kJ/m^2}$。\n【ポイント】平面ひずみは拘束が強く $E'$ が大きくなる分、同じ $K_I$ でも $G$ は平面応力より小さくなる(平面応力なら $900/210\\times10^3\\approx4.3\\,\\mathrm{kJ/m^2}$)。\n【引っかけ】選択肢1は $E'=E$(平面応力)で計算した値。選択肢3は $E'=E/(1-\\nu)=300\\,\\mathrm{GPa}$ と $(1-\\nu^2)$ を $(1-\\nu)$ に誤った値。選択肢4は $E'=E(1-\\nu^2)=191\\,\\mathrm{GPa}$ と割るべきを掛けた誤り。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e5Gcompute",
-      "figureHint": "白地660x420でモードIき裂とG=KI^2/E'、平面ひずみE'=E/(1-ν^2)の代入過程を示す",
-      "officialRef": "問5-8",
-      "role": "branch",
       "relatedFormulas": [
         "s1ch5-9"
       ]
