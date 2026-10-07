@@ -34,7 +34,7 @@
       "id": "taylor-maclaurin",
       "kind": "formula",
       "term": "テイラー展開・マクローリン展開（多変数）",
-      "formula": "$$\\begin{aligned}& f(x,y)= f(0,0)+\\tfrac{1}{1!}\\left(f_x\\,x+f_y\\,y\\right)+\\tfrac{1}{2!}\\left(f_{xx}\\,x^{2}+2f_{xy}\\,xy+f_{yy}\\,y^{2}\\right) \\\\ & \\quad +\\tfrac{1}{3!}\\left(f_{xxx}\\,x^{3}+3f_{xxy}\\,x^{2}y+3f_{xyy}\\,xy^{2}+f_{yyy}\\,y^{3}\\right)+\\cdots\\end{aligned}$$",
+      "formula": "$$\\begin{aligned}& f(x,y)= f(0,0) \\\\ & +\\tfrac{1}{1!}\\left(f_x\\,x+f_y\\,y\\right) \\\\ & +\\tfrac{1}{2!}\\left(f_{xx}\\,x^{2}+2f_{xy}\\,xy+f_{yy}\\,y^{2}\\right) \\\\ & +\\tfrac{1}{3!}\\left(f_{xxx}\\,x^{3}+3f_{xxy}\\,x^{2}y+3f_{xyy}\\,xy^{2}+f_{yyy}\\,y^{3}\\right)+\\cdots\\end{aligned}$$",
       "body": "1変数のマクローリン展開 $f(x)=f(0)+\\dfrac{f'(0)}{1!}x+\\dfrac{f''(0)}{2!}x^{2}+\\dfrac{f'''(0)}{3!}x^{3}+\\cdots$ を多変数へ広げたものです（上式の偏微分はすべて原点 $(0,0)$ で評価）。一般形は $f(a+h,b+k)=\\sum_{n}\\dfrac{1}{n!}\\left(h\\dfrac{\\partial}{\\partial x}+k\\dfrac{\\partial}{\\partial y}\\right)^{n}f(a,b)$ で、基準点が原点 $(a,b)=(0,0)$ の場合がマクローリン展開です。各 $n$ 次の項は二項展開になり、係数はパスカルの三角形（$n=2$ で 1,2,1／$n=3$ で 1,3,3,1）。「一次まで」の近似なら $n=1$ の項で止めます。",
       "example": "【手順1】各偏微分係数を $(1,1)$ で求める：$f(1,1)=0$、$f_x=2x-2y$ なので $f_x(1,1)=0$、$f_y=-2x+2y$ なので $f_y(1,1)=0$、$f_{xx}=2$、$f_{xy}=-2$、$f_{yy}=2$。【手順2】1次の項は $f_x,f_y$ が0なので消え、2次の項だけ残る：$f=\\dfrac{1}{2!}\\left[f_{xx}(x-1)^2+2f_{xy}(x-1)(y-1)+f_{yy}(y-1)^2\\right]=\\dfrac12\\left[2(x-1)^2-4(x-1)(y-1)+2(y-1)^2\\right]$。【手順3】$\\dfrac12$ を掛けて $f=(x-1)^2-2(x-1)(y-1)+(y-1)^2$。【検算】もとの式は $f=(x-y)^2$ で、$x-y=(x-1)-(y-1)$ だから $f=\\{(x-1)-(y-1)\\}^2$ を展開しても同じ式になる（元が2次式なのでテイラー展開は厳密に一致）。"
     },
@@ -42,7 +42,7 @@
       "id": "chain-rule-polar",
       "kind": "formula",
       "term": "合成関数の偏微分（連鎖律）",
-      "formula": "$$\\begin{aligned}& \\dfrac{\\partial w}{\\partial x} =\\dfrac{\\partial f}{\\partial u}\\dfrac{\\partial u}{\\partial x}+\\dfrac{\\partial f}{\\partial v}\\dfrac{\\partial v}{\\partial x} \\\\ & \\dfrac{\\partial w}{\\partial y} =\\dfrac{\\partial f}{\\partial u}\\dfrac{\\partial u}{\\partial y}+\\dfrac{\\partial f}{\\partial v}\\dfrac{\\partial v}{\\partial y}\\end{aligned}$$",
+      "formula": "$$\\begin{aligned}& \\partial w/\\partial x =(\\partial f/\\partial u)(\\partial u/\\partial x)+(\\partial f/\\partial v)(\\partial v/\\partial x) \\\\ & \\partial w/\\partial y =(\\partial f/\\partial u)(\\partial u/\\partial y)+(\\partial f/\\partial v)(\\partial v/\\partial y)\\end{aligned}$$",
       "body": "変数を経由して微分するときは、経路ごとの微分の積を足し合わせます。極座標 $x=r\\cos\\theta,\\ y=r\\sin\\theta$ では、二乗和をとると交差項が消えて次の関係になります：$(\\partial w/\\partial r)^{2}+(1/r^{2})(\\partial w/\\partial\\theta)^{2}=(\\partial w/\\partial x)^{2}+(\\partial w/\\partial y)^{2}$。",
       "example": "$\\partial w/\\partial r=\\cos\\theta\\,f_x+\\sin\\theta\\,f_y$、$\\partial w/\\partial\\theta=-r\\sin\\theta\\,f_x+r\\cos\\theta\\,f_y$。$\\partial w/\\partial\\theta$ に $r$ が掛かるため、二乗和では $1/r^{2}$ の係数が現れます（公式問1-5の正解）。"
     },

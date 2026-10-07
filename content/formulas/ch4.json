@@ -61,7 +61,7 @@
       "id": "strain-displacement",
       "kind": "formula",
       "term": "ひずみ-変位関係(2次元)",
-      "formula": "$$\\begin{aligned}& \\varepsilon_x =\\dfrac{\\partial u}{\\partial x} \\\\ & \\varepsilon_y =\\dfrac{\\partial v}{\\partial y} \\\\ & \\gamma_{xy} =\\dfrac{\\partial v}{\\partial x}+\\dfrac{\\partial u}{\\partial y}\\end{aligned}$$",
+      "formula": "$$\\begin{aligned}& \\varepsilon_x =\\partial u/\\partial x \\\\ & \\varepsilon_y =\\partial v/\\partial y \\\\ & \\gamma_{xy} =\\partial v/\\partial x+\\partial u/\\partial y\\end{aligned}$$",
       "body": "ひずみは変位を座標で微分して得られます。垂直ひずみは同じ向きの変位を同じ向きに微分し、工学せん断ひずみ γxy は2つの勾配の『和』(テンソルせん断ひずみの2倍)になります。引き算ではありません。この微分操作を行列の形にまとめたものが B マトリックスで、{ε}=[B]{d} と表されます。",
       "example": "3節点三角形(CST)要素では変位が1次式なので、その微分であるひずみは要素内で一定(定ひずみ要素)になります。",
       "figureImage": "f4CstConstant"

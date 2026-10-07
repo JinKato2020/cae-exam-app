@@ -2226,8 +2226,13 @@ function displayMath(s: string): string {
   else if (x.startsWith('$') && x.endsWith('$') && x.length > 2 && x.slice(1, -1).indexOf('$') === -1)
     inner = x.slice(1, -1);
   // $ を全く含まない素の数式テキスト
-  else if (x.indexOf('$') === -1 && x.length > 0) inner = x;
-  else return x; // $ を途中に含む複合テキストは触らない
+  else if (x.indexOf('$') === -1 && x.length > 0) {
+    // 日本語（CJK）を含み LaTeX コマンド（\xxx）が無い＝「用語の言葉による定義」。
+    // これを $$…$$ の中央寄せ大判数式にすると、縦長で不自然になり日本語の字間も崩れる。
+    // そのまま素のテキストとして返し、RichText に普通の文章として描画させる。
+    if (/[぀-ヿ一-龯]/.test(x) && !/\\[a-zA-Z]/.test(x)) return x;
+    inner = x;
+  } else return x; // $ を途中に含む複合テキストは触らない
   return `$$${wrapLongDisplay(inner)}$$`;
 }
 
