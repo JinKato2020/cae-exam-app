@@ -173,7 +173,169 @@ def s2TwoBarsThermal():
     save(im, "s2TwoBarsThermal")
 
 
+def s2OverhangBeam():
+    im, d = new(); title(d, "突出しはりの支点反力(A・C支持、C右へ張出し)")
+    y = 196; A = 96; sc = 108
+    x10 = A + sc; C = A + 2*sc; xR = A + 3*sc
+    d.rectangle((A, y-7, xR, y+7), outline=BLACK, width=3, fill=FILL1)
+    pin_support(d, A, y+7, 20); roller_support(d, C, y+7, 20)
+    ctext(d, A, y-28, "A(x=0)", FT, BLACK); ctext(d, C, y-28, "C(x=4)", FT, BLACK)
+    force(d, x10, y-6, 0, 58, "10kN", RED); force(d, xR, y-6, 0, 58, "6kN", RED)
+    dim(d, A, y+84, x10, y+84, "2m"); dim(d, C, y+84, xR, y+84, "2m")
+    dim(d, x10, y+112, C, y+112, "2m")
+    note(d, "ΣM_A=0: R_C·4 = 10·2 + 6·6 = 56 → R_C=14kN, R_A=2kN")
+    save(im, "s2OverhangBeam")
+
+
+def s2CantReactions():
+    im, d = new(); title(d, "片持ちはりの固定端反力と固定モーメント")
+    y = 206; x0 = 134; x1 = 498
+    d.rectangle((x0, y-7, x1, y+7), outline=BLACK, width=3, fill=FILL1)
+    wall(d, x1+2, y-46, y+46, side=1); ctext(d, x1+28, y-40, "D固定", FT, GRAY, "lm")
+    d.line((x0, y-62, x1-6, y-62), fill=ORANGE, width=2)
+    for x in range(x0, x1-4, 42): arrow(d, x, y-62, x, y-12, ORANGE, 2, 9)
+    ctext(d, (x0+x1)//2, y-78, "w = 2 kN/m", FT, ORANGE)
+    force(d, x0, y, 0, 70, "P=5kN", RED)
+    arrow(d, x1-8, y+74, x1-8, y+12, BLUE, 3, 13); ctext(d, x1-2, y+58, "R_D", FT, BLUE, "lm")
+    _curved_arrow(d, x1-8, y, 36, 205, 100, GREEN, 3); ctext(d, x1-48, y+24, "M_D", FT, GREEN, "rm")
+    note(d, "R_D=P+wL=9kN, M_D=PL+wL²/2=10+4=14 kN·m")
+    save(im, "s2CantReactions")
+
+
+def s2SectionZ():
+    im, d = new(); title(d, "同一断面積で断面係数Zを最大にする形(曲げ軸まわり)")
+    cy = 198; xs = [112, 252, 392, 532]
+    _dash(d, 64, cy, 584, cy, GRAY)
+    r = 42; d.ellipse((xs[0]-r, cy-r, xs[0]+r, cy+r), outline=BLACK, width=3, fill=FILL1)
+    s = 74; d.rectangle((xs[1]-s//2, cy-s//2, xs[1]+s//2, cy+s//2), outline=BLACK, width=3, fill=FILL1)
+    ww, hh = 100, 46; d.rectangle((xs[2]-ww//2, cy-hh//2, xs[2]+ww//2, cy+hh//2), outline=BLACK, width=3, fill=FILL1)
+    X = xs[3]; fw, ft, wh, we = 74, 13, 56, 16     # I形
+    d.rectangle((X-fw//2, cy-wh//2-ft, X+fw//2, cy-wh//2), outline=BLACK, width=3, fill=FILL1)
+    d.rectangle((X-we//2, cy-wh//2, X+we//2, cy+wh//2), outline=BLACK, width=3, fill=FILL1)
+    d.rectangle((X-fw//2, cy+wh//2, X+fw//2, cy+wh//2+ft), outline=BLACK, width=3, fill=FILL1)
+    labs = [("円 Z小", BLACK), ("正方形 Z小", BLACK), ("横長 Z最小", BLACK), ("I形 Z最大", RED)]
+    for xc, (t_, c_) in zip(xs, labs): ctext(d, xc, cy+70, t_, FT, c_)
+    note(d, "材料を中立軸から遠くへ配置するほど断面二次モーメントI・断面係数Zが大 → I形が有利")
+    save(im, "s2SectionZ")
+
+
+def s2RigidPlate2Bars():
+    im, d = new(); title(d, "剛体板を2本の弾性棒で吊る(並列＝伸び等しい)")
+    hwall(d, 168, 482, 100, side=1)
+    b1x, b2x, topy, platey = 252, 402, 102, 250
+    d.rectangle((b1x-13, topy, b1x+13, platey), outline=BLACK, width=3, fill=FILL1)
+    d.rectangle((b2x-6, topy, b2x+6, platey), outline=BLACK, width=3, fill=FILL2)
+    d.rectangle((208, platey, 446, platey+20), outline=BLACK, width=3, fill=FILL3)
+    ctext(d, b1x-28, 165, "棒1", FT, BLACK, "rm"); ctext(d, b1x-28, 220, "A₁(太)", FT, GRAY, "rm")
+    ctext(d, b2x+24, 165, "棒2", FT, BLACK, "lm"); ctext(d, b2x+24, 220, "A₂(細)", FT, GRAY, "lm")
+    _dash(d, 208, platey+40, 446, platey+40, GRAY)
+    force(d, 327, platey+22, 0, 56, "P", RED)
+    note(d, "板は水平のまま下降 → 両棒の伸びは等しい。 力は剛性比 k₁:k₂ で配分される")
+    save(im, "s2RigidPlate2Bars")
+
+
+def s2RigidBarWire():
+    im, d = new(); title(d, "剛体棒をワイヤで支持：先端変位は伸びの b/a 倍")
+    Ax, Ay = 112, 196; sc = 428
+    wx = Ax + int(0.5*sc); Rx = Ax + sc            # a=0.5m, b=1.0m
+    d.rectangle((Ax, Ay-7, Rx, Ay+7), outline=BLACK, width=3, fill=FILL1)
+    pin_support(d, Ax, Ay+7, 20)
+    hwall(d, wx-34, wx+34, 96, side=1)
+    d.line((wx, 100, wx, Ay-7), fill=BLACK, width=3); ctext(d, wx+10, 140, "ワイヤ", FT, GRAY, "lm")
+    _dash(d, Ax, Ay, Rx, Ay+34, GRAY)             # 回転後(誇張)
+    force(d, Rx, Ay-4, 0, 52, "P", RED)
+    ctext(d, Ax-4, Ay-18, "A", FS, BLACK, "rm")
+    dim(d, Ax, Ay+70, wx, Ay+70, "a = 0.5m")
+    dim(d, Ax, Ay+100, Rx, Ay+100, "b = 1.0m")
+    note(d, "A点まわりに回転 → 先端変位 = (ワイヤ伸びδw)·(b/a)。 てこで拡大される")
+    save(im, "s2RigidBarWire")
+
+
+def s2PlateHoles():
+    im, d = new(); title(d, "2つの円孔をもつ平板の引張(正味断面で評価)")
+    px0, px1, py0, py1 = 158, 498, 150, 278; cxh = (px0+px1)//2; cyh = (py0+py1)//2
+    d.rectangle((px0, py0, px1, py1), outline=BLACK, width=3, fill=FILL1)
+    rh = 18
+    for yy in (cyh-22, cyh+22):
+        d.ellipse((cxh-rh, yy-rh, cxh+rh, yy+rh), outline=BLACK, width=3, fill="white")
+    _dash(d, cxh, py0-6, cxh, py1+6, GREEN)
+    ctext(d, cxh+54, cyh, "d=20 ×2", FT, GRAY, "lm")
+    force(d, px0-6, cyh, -56, 0, "P", RED); force(d, px1+6, cyh, 56, 0, "P", RED)
+    dim(d, px0, py1+28, px1, py1+28, "W = 100mm")
+    note(d, "正味幅 W−2d=60mm、A_net=600mm²。 P=σ_allow·A_net/Kt=24kN")
+    save(im, "s2PlateHoles")
+
+
+def _curved_arrow(d, cx, cy, R, a0, a1, col=BLUE, w=4):
+    """中心(cx,cy)・半径Rの円弧(a0→a1度, 反時計正・右=0)を描き終端に矢じり。"""
+    n = max(2, int(abs(a1 - a0) / 6))
+    pts = []
+    for i in range(n + 1):
+        a = math.radians(a0 + (a1 - a0) * i / n)
+        pts.append((cx + R*math.cos(a), cy - R*math.sin(a)))
+    d.line(pts, fill=col, width=w, joint="curve")
+    ae = math.radians(a1); ex, ey = pts[-1]
+    tx, ty = -math.sin(ae), -math.cos(ae)          # 接線(a増加方向, 画像座標)
+    if a1 < a0: tx, ty = -tx, -ty
+    for s in (0.5, -0.5):
+        hx = ex - 14*(math.cos(s)*tx - math.sin(s)*ty)
+        hy = ey - 14*(math.sin(s)*tx + math.cos(s)*ty)
+        d.line((ex, ey, hx, hy), fill=col, width=w)
+
+
+def s2HollowShaft():
+    im, d = new(); title(d, "中空丸軸のねじり：最大せん断は外表面")
+    cx, cy, Ro, Ri = 244, 214, 108, 54
+    d.ellipse((cx-Ro, cy-Ro, cx+Ro, cy+Ro), outline=NAVY, width=3, fill=NAVYL)
+    d.ellipse((cx-Ri, cy-Ri, cx+Ri, cy+Ri), outline=NAVY, width=3, fill="white")
+    for a in (50, 140, 230, 320):                  # 外周に接線方向の赤いせん断矢印
+        ar = math.radians(a); px, py = cx+Ro*math.cos(ar), cy-Ro*math.sin(ar)
+        tx, ty = math.sin(ar), math.cos(ar)
+        arrow(d, px-tx*18, py-ty*18, px+tx*18, py+ty*18, RED, 2, 9)
+    _curved_arrow(d, cx, cy, Ro+34, 60, -60, BLUE, 4)   # トルク T
+    ctext(d, cx+Ro+52, cy, "T", F, BLUE, "lm")
+    dim(d, cx-Ro, cy+Ro+42, cx+Ro, cy+Ro+42, "do = 40")
+    dim(d, cx-Ri, cy, cx+Ri, cy, "di = 20")
+    note(d, "Zp=π(do⁴−di⁴)/(16·do)。 最大せん断は外表面。 Tmax=τa·Zp ≈ 707 N·m")
+    save(im, "s2HollowShaft")
+
+
+def s2ThinCylinder():
+    im, d = new(); title(d, "内圧を受ける薄肉円筒(両端閉じ)")
+    cy, R, X0, X1, ew = 196, 74, 170, 466, 22
+    d.line((X0, cy-R, X1, cy-R), fill=BLACK, width=3)
+    d.line((X0, cy+R, X1, cy+R), fill=BLACK, width=3)
+    d.ellipse((X1-ew, cy-R, X1+ew, cy+R), outline=BLACK, width=3, fill=FILL1)
+    d.ellipse((X0-ew, cy-R, X0+ew, cy+R), outline=BLACK, width=3, fill=NAVYL)
+    mx = 300
+    for dx, dy in [(0, -1), (0.9, 0.5), (-0.9, 0.5)]:   # 内圧(放射状)
+        arrow(d, mx, cy, mx+int(dx*(ew-4)), cy+int(dy*(R-12)), RED, 3, 11)
+    ctext(d, mx, cy+R+16, "内圧 p = 2 MPa", FT, RED)
+    dim(d, X0, cy-R-28, X1, cy-R-28, "L = 2 m")
+    arrow(d, X0+ew+8, cy, X0+ew+8, cy-R+4, GREEN, 2, 10); ctext(d, X0+ew+14, cy-R//2, "r=0.5m", FT, GREEN, "lm")
+    ctext(d, X1+ew+8, cy-R+6, "t=5mm", FT, GRAY, "lm")
+    note(d, "E=200GPa, ν=0.3。 円周応力σθ=pd/2t は軸応力σa=pd/4t の2倍。 内容積変化ΔVを問う")
+    save(im, "s2ThinCylinder")
+
+
+def s2ConjugateShear():
+    im, d = new(); title(d, "共役せん断応力：モーメントがつり合う配置")
+    L = 150; cx, cy = 300, 214
+    x0, y0, x1, y1 = cx-L//2, cy-L//2, cx+L//2, cy+L//2
+    d.rectangle((x0, y0, x1, y1), outline=NAVY, width=3, fill=NAVYL)
+    arrow(d, x0+16, y0-12, x1-16, y0-12, RED, 3, 11)     # 上辺 →(τyx)
+    arrow(d, x1-16, y1+12, x0+16, y1+12, RED, 3, 11)     # 下辺 ←
+    arrow(d, x1+12, y1-16, x1+12, y0+16, RED, 3, 11)     # 右辺 ↑(τxy)
+    arrow(d, x0-12, y0+16, x0-12, y1-16, RED, 3, 11)     # 左辺 ↓
+    ctext(d, cx, y0-26, "τyx", FS, RED); ctext(d, x1+30, cy, "τxy", FS, RED, "lm")
+    note(d, "τxy と τyx は大きさが等しい(τxy=τyx)。偶力が相殺する向き(同一循環だと回転してしまう)")
+    save(im, "s2ConjugateShear")
+
+
 if __name__ == "__main__":
     s2PrincipalMohr(); s2YieldSurface(); stresstransform(); s2MisesJudge()
     s2Truss2Bar(); s2CantileverUDL(); s2TwoBarsThermal()
+    s2HollowShaft(); s2ThinCylinder(); s2ConjugateShear()
+    s2OverhangBeam(); s2CantReactions(); s2SectionZ()
+    s2RigidPlate2Bars(); s2RigidBarWire(); s2PlateHoles()
     print("done s2 core figures")
