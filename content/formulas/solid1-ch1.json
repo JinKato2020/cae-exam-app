@@ -5,15 +5,6 @@
   "intro": "変形が大きい問題(有限変形)では、ひずみも応力も「どの配置(変形前か変形後か)を基準に測るか」で値も名前も変わります。この章では、変形の基本量である変形勾配テンソル$\\mathbf{F}$を出発点に、各種ひずみ(グリーン・ラグランジュ、アルマンジ、対数)と各種応力(コーシー、キルヒホッフ、第1・第2ピオラ・キルヒホッフ)を、剛体回転への不変性・仕事共役・客観応力速度まで、なぜそう定義するのかを噛み砕いて整理します。",
   "items": [
     {
-      "id": "s1ch1-deformation-gradient",
-      "kind": "formula",
-      "term": "変形勾配テンソル",
-      "formula": "\\mathbf{dx}=\\mathbf{F}\\,\\mathbf{dX},\\qquad F_{ij}=\\dfrac{\\partial x_i}{\\partial X_j}",
-      "body": "有限変形をすべて記述する出発点です。変形前(基準配置)の物質点の位置を$\\mathbf{X}$、変形後(現配置)を$\\mathbf{x}$とすると、物質点まわりの微小ベクトル$\\mathbf{dX}$が変形後に$\\mathbf{dx}$へどう写るかを表す線形変換が変形勾配テンソル$\\mathbf{F}$です。成分は現在座標を基準座標で微分した$\\partial x_i/\\partial X_j$。変位$\\mathbf{u}=\\mathbf{x}-\\mathbf{X}$を使えば$\\mathbf{F}=\\mathbf{I}+\\partial\\mathbf{u}/\\partial\\mathbf{X}$とも書けます。伸び・縮み・せん断・回転をひとまとめに含む量で、一般に対称ではありません。",
-      "example": "せん断変形$x_1=X_1+0.5X_2,\\ x_2=X_2$では$\\mathbf{F}=\\begin{bmatrix}1&0.5\\\\0&1\\end{bmatrix}$。変形が無ければ$\\mathbf{F}=\\mathbf{I}$(単位テンソル)になります。",
-      "figureImage": "s1f1DefGrad"
-    },
-    {
       "id": "s1ch1-finite-vs-infinitesimal",
       "kind": "term",
       "term": "微小変形理論と有限変形理論(幾何学的非線形)",
@@ -21,6 +12,15 @@
       "body": "変形理論は大きく2つに分かれます。微小変形理論は「変形はごく小さい」と仮定し、力の釣り合いを近似的に変形前の形で考えます。線形弾性解析や固有値解析はこれに基づきます。有限変形理論はその仮定を置かず、力の釣り合いを変形後の形で考えます。すると、たとえ材料が線形弾性でも、ひずみが変位に対して非線形になり、釣り合い式(コーシーの運動法則)も非線形になります。この、材料ではなく形の変化そのものから生まれる非線形性を幾何学的非線形性と呼びます。回転を含まない単なる並進の剛体移動は変位が大きくても微小ひずみ問題として扱える場合があり、非線形性の直接原因ではない点に注意します。",
       "example": "薄い板を大きくたわませる、ゴムを大きく引き伸ばす、細長い柱が座屈する、といった「形が大きく変わる」問題が有限変形理論の対象です。",
       "figureImage": "s1f1SmallLarge"
+    },
+    {
+      "id": "s1ch1-deformation-gradient",
+      "kind": "formula",
+      "term": "変形勾配テンソル",
+      "formula": "\\mathbf{dx}=\\mathbf{F}\\,\\mathbf{dX},\\qquad F_{ij}=\\dfrac{\\partial x_i}{\\partial X_j}",
+      "body": "有限変形をすべて記述する出発点です。変形前(基準配置)の物質点の位置を$\\mathbf{X}$、変形後(現配置)を$\\mathbf{x}$とすると、物質点まわりの微小ベクトル$\\mathbf{dX}$が変形後に$\\mathbf{dx}$へどう写るかを表す線形変換が変形勾配テンソル$\\mathbf{F}$です。成分は現在座標を基準座標で微分した$\\partial x_i/\\partial X_j$。変位$\\mathbf{u}=\\mathbf{x}-\\mathbf{X}$を使えば$\\mathbf{F}=\\mathbf{I}+\\partial\\mathbf{u}/\\partial\\mathbf{X}$とも書けます。伸び・縮み・せん断・回転をひとまとめに含む量で、一般に対称ではありません。",
+      "example": "せん断変形$x_1=X_1+0.5X_2,\\ x_2=X_2$では$\\mathbf{F}=\\begin{bmatrix}1&0.5\\\\0&1\\end{bmatrix}$。変形が無ければ$\\mathbf{F}=\\mathbf{I}$(単位テンソル)になります。",
+      "figureImage": "s1f1DefGrad"
     },
     {
       "id": "s1ch1-cauchy-green",
