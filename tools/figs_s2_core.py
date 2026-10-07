@@ -376,6 +376,220 @@ def s2ConjugateShear():
     save(im, "s2ConjugateShear")
 
 
+def _dbl_arrow(d, x1, y, x2, col=RED, w=3, head=11):
+    """水平の両矢印(x1↔x2, 同じy)。"""
+    arrow(d, (x1+x2)//2, y, x1, y, col, w, head)
+    arrow(d, (x1+x2)//2, y, x2, y, col, w, head)
+
+
+def s2HalfHeatedBar():
+    im, d = new(); title(d, "左半分だけ昇温した両端固定棒の熱応力")
+    bx0, bx1, cy, hh = 162, 500, 212, 28
+    mid = (bx0 + bx1) // 2
+    # 左半分=昇温(淡ネイビー＋斜線)/右半分=常温
+    d.rectangle((bx0, cy-hh, mid, cy+hh), outline=NAVY, width=3, fill=NAVYL)
+    d.rectangle((mid, cy-hh, bx1, cy+hh), outline=BLACK, width=3, fill=FILL1)
+    for x in range(bx0+10, mid-4, 18):
+        _dash(d, x, cy+hh-4, x+26, cy-hh+4, NAVY, 1, 7, 5)
+    wall(d, bx0, cy-hh-14, cy+hh+14, side=-1)
+    wall(d, bx1, cy-hh-14, cy+hh+14, side=1)
+    ctext(d, (bx0+mid)//2, cy-hh-22, "左半分 ΔT=100K", FT, RED)
+    ctext(d, (mid+bx1)//2, cy-hh-22, "右半分 常温", FT, GRAY)
+    _dbl_arrow(d, mid-48, cy+hh+34, mid+48, RED, 3, 11)
+    ctext(d, mid, cy+hh+56, "全長で軸力一定(圧縮)", FT, RED)
+    note(d, "σT = E·α·ΔT/2 = 120 MPa。 弾性変形を全長で分担するので係数1/2")
+    save(im, "s2HalfHeatedBar")
+
+
+def s2ThermalContrast():
+    im, d = new(); title(d, "熱応力は拘束されて初めて生じる")
+    # 上段=片端自由(昇温)→応力なし
+    y1, h = 128, 24; ax0, ax1 = 150, 392
+    d.rectangle((ax0, y1-h, ax1, y1+h), outline=BLACK, width=3, fill=FILL1)
+    wall(d, ax0, y1-h-12, y1+h+12, side=-1)
+    _dash(d, ax1, y1-h, ax1+40, y1-h, GRAY, 1); _dash(d, ax1, y1+h, ax1+40, y1+h, GRAY, 1)
+    _dash(d, ax1+40, y1-h, ax1+40, y1+h, GRAY, 1)
+    arrow(d, ax1+6, y1, ax1+52, y1, GREEN, 3, 11)
+    ctext(d, ax1+60, y1, "自由に伸びる→応力なし", FT, GREEN, "lm")
+    ctext(d, (ax0+ax1)//2, y1-h-20, "片端自由(昇温)", FT, GRAY)
+    # 下段=両端固定(昇温)→圧縮
+    y2 = 300; bx0, bx1 = 196, 452
+    d.rectangle((bx0, y2-h, bx1, y2+h), outline=NAVY, width=3, fill=NAVYL)
+    wall(d, bx0, y2-h-12, y2+h+12, side=-1); wall(d, bx1, y2-h-12, y2+h+12, side=1)
+    _dbl_arrow(d, (bx0+bx1)//2-44, y2, (bx0+bx1)//2+44, RED, 3, 11)
+    ctext(d, (bx0+bx1)//2, y2-h-20, "両端固定(昇温)→圧縮の熱応力", FT, RED)
+    note(d, "一様温度変化でも自由なら応力ゼロ。 拘束(または膨張量の不整合)が必要")
+    save(im, "s2ThermalContrast")
+
+
+def s2CantMoment():
+    im, d = new(); title(d, "先端に集中モーメントのみ：F=0・M=M0 一定")
+    bx0, bx1, by = 150, 520, 132
+    d.rectangle((bx0, by-5, bx1, by+5), outline=BLACK, width=3, fill=FILL1)
+    wall(d, bx1, by-40, by+40, side=1); ctext(d, bx1+30, by-34, "固定端", FT, GRAY, "lm")
+    _curved_arrow(d, bx0, by, 24, 70, -250, NAVY, 4)
+    ctext(d, bx0-44, by, "M0", F, NAVY, "rm")
+    # せん断力図 F=0
+    sy = 236; sx0, sx1 = 180, 520
+    arrow(d, sx0, sy+22, sx0, sy-26, BLACK, 2, 9); ctext(d, sx0-10, sy-30, "F", FT, BLACK, "mm")
+    arrow(d, sx0, sy+22, sx0+30, sy+22, BLACK, 2, 9)
+    d.line((sx0, sy, sx1, sy), fill=GREEN, width=4)
+    ctext(d, (sx0+sx1)//2, sy-16, "せん断力 F = 0(全長)", FT, GREEN)
+    # 曲げモーメント図 M=M0一定
+    my = 300
+    d.rectangle((sx0, my-6, sx1, my+30), outline=NAVY, width=3, fill=NAVYL)
+    ctext(d, (sx0+sx1)//2, my-20, "曲げ M = M0(一定)", FT, NAVY)
+    note(d, "先端モーメントだけでは せん断力は全長ゼロ・曲げは全長で M0 一定")
+    save(im, "s2CantMoment")
+
+
+def s2IsectionInertia():
+    im, d = new(); title(d, "I形断面：フランジが A·d² で支配的")
+    cx, cy = 286, 218
+    fw, ft, wh, we = 150, 30, 118, 34     # フランジ幅/厚・ウェブ高/幅
+    d.rectangle((cx-fw//2, cy-wh//2-ft, cx+fw//2, cy-wh//2), outline=NAVY, width=3, fill=NAVYL)
+    d.rectangle((cx-we//2, cy-wh//2, cx+we//2, cy+wh//2), outline=NAVY, width=3, fill=NAVYL)
+    d.rectangle((cx-fw//2, cy+wh//2, cx+fw//2, cy+wh//2+ft), outline=NAVY, width=3, fill=NAVYL)
+    _dash(d, cx-fw//2-30, cy, cx+fw//2+86, cy, GRAY, 1)      # 図心軸
+    ctext(d, cx+fw//2+92, cy, "図心軸", FT, GRAY, "lm")
+    # 図心軸→上フランジ中心の距離 d
+    fcy = cy - wh//2 - ft//2
+    arrow(d, cx+fw//2+28, cy, cx+fw//2+28, fcy, RED, 2, 10)
+    ctext(d, cx+fw//2+40, (cy+fcy)//2, "d", FS, RED, "lm")
+    ctext(d, cx-we//2-16, cy+24, "ウェブ", FT, GRAY, "rm")
+    note(d, "I = ΣI_G + Σ A·d²。 フランジは d が大 → A·d² が支配的")
+    save(im, "s2IsectionInertia")
+
+
+def s2BeamDeflEI():
+    im, d = new(); title(d, "単純支持はりのたわみと曲げ剛性 EI")
+    y = 196; x0 = 120; x1 = 540; cx = (x0 + x1) // 2
+    d.line((x0, y, x1, y), fill=LGRAY, width=2)
+    pin_support(d, x0, y, 20); roller_support(d, x1, y, 20)
+    # たわみ曲線(放物線状に下げる)
+    sag = 70; pts = []
+    for i in range(0, 61):
+        t = i / 60.0; xx = x0 + t*(x1-x0)
+        yy = y + sag * (4*t*(1-t))
+        pts.append((xx, yy))
+    d.line(pts, fill=NAVY, width=4, joint="curve")
+    force(d, cx, y-84, 0, 70, "P", RED)
+    d.line((cx, y, cx, y+sag), fill=GRAY, width=1)
+    ctext(d, cx+16, y+sag-18, "δ", FS, GREEN, "lm")
+    ctext(d, cx, y+sag+30, "中央たわみ δ ∝ 1/(EI)", FS, NAVY)
+    note(d, "EI=曲げ剛性=縦弾性係数E×断面二次モーメントI。 EIが大きいほど δ は小さい")
+    save(im, "s2BeamDeflEI")
+
+
+def s2FBD():
+    im, d = new(); title(d, "両端支持はりの自由体図：反力の本数は支持で決まる")
+    y = 196; x0 = 126; x1 = 520; cx = (x0 + x1) // 2
+    d.rectangle((x0, y-6, x1, y+6), outline=BLACK, width=3, fill=FILL1)
+    pin_support(d, x0, y+6, 20); roller_support(d, x1, y+6, 20)
+    ctext(d, x0, y-30, "ピン(2反力)", FT, GRAY); ctext(d, x1, y-30, "ローラー(1反力)", FT, GRAY)
+    arrow(d, cx, y-70, cx, y-14, NAVY, 3, 12); ctext(d, cx+14, y-54, "荷重", FS, NAVY, "lm")
+    # 反力
+    arrow(d, x0, y+78, x0, y+22, RED, 3, 12); ctext(d, x0-12, y+58, "R_A", FT, RED, "rm")
+    arrow(d, x1, y+78, x1, y+22, RED, 3, 12); ctext(d, x1+12, y+58, "R_C", FT, RED, "lm")
+    arrow(d, x0-6, y+6, x0-46, y+6, GRAY, 2, 9); ctext(d, x0-52, y+6, "H_A=0", FT, GRAY, "rm")
+    note(d, "ピン=水平+鉛直、ローラー=鉛直のみ。 鉛直荷重だけなら水平反力=0")
+    save(im, "s2FBD")
+
+
+def s2OffsetYield():
+    im, d = new(); title(d, "0.2%耐力：オフセット法の作図")
+    ox, oy, AX, AY = 118, 352, 446, 276
+    def PX(f): return ox + f*AX
+    def PY(f): return oy - f*AY
+    arrow(d, ox, oy, ox+AX+18, oy, BLACK, 2, 11); ctext(d, ox+AX+24, oy, "ひずみ", FS, BLACK, "lm")
+    arrow(d, ox, oy, ox, oy-AY-16, BLACK, 2, 11); ctext(d, ox-8, oy-AY-24, "応力 σ", FS, BLACK, "mm")
+    # 応力ひずみ曲線(弾性直線→降伏)
+    cfr = [(0,0),(0.30,0.57),(0.40,0.64),(0.55,0.70),(0.72,0.735),(0.92,0.75)]
+    d.line([(PX(a),PY(b)) for a,b in cfr], fill=NAVY, width=4, joint="curve")
+    # 弾性直線の延長(薄い灰破線)
+    _dash(d, PX(0.30), PY(0.57), PX(0.44), PY(0.57*0.44/0.30), GRAY, 1)
+    # オフセット線(赤破線, ε=0.002 から弾性と平行)
+    ix, iy = 0.38, 0.626
+    _dash(d, PX(0.05), oy, PX(ix+0.03), PY((ix+0.03-0.05)*1.9), RED, 2)
+    node(d, PX(ix), PY(iy), 6, fill=BLACK)
+    ctext(d, PX(ix)+14, PY(iy)-20, "0.2%耐力", FT, RED, "lm")
+    node(d, PX(0.05), oy, 4, fill=BLACK)
+    ctext(d, PX(0.05), oy+18, "0.2%(0.002)", FT, RED)
+    note(d, "ε=0.002 から弾性直線に平行な線を引き、曲線と交わる点の応力")
+    save(im, "s2OffsetYield")
+
+
+def s2PureShear():
+    im, d = new(); title(d, "純せん断：法線応力ゼロ・接線力のみ")
+    L = 150; cx, cy = 300, 214
+    x0, y0, x1, y1 = cx-L//2, cy-L//2, cx+L//2, cy+L//2
+    d.rectangle((x0, y0, x1, y1), outline=NAVY, width=3, fill=NAVYL)
+    arrow(d, x0+16, y0-12, x1-16, y0-12, RED, 3, 11)     # 上 →
+    arrow(d, x1-16, y1+12, x0+16, y1+12, RED, 3, 11)     # 下 ←
+    arrow(d, x1+12, y1-16, x1+12, y0+16, RED, 3, 11)     # 右 ↑
+    arrow(d, x0-12, y0+16, x0-12, y1-16, RED, 3, 11)     # 左 ↓
+    ctext(d, cx, cy, "σ = 0", FS, GRAY)
+    note(d, "面に垂直な力を与えず接線力(τ)のみ。 薄肉管の純ねじりで実現する状態")
+    save(im, "s2PureShear")
+
+
+def s2Octahedral():
+    im, d = new(); title(d, "主応力空間と八面体面")
+    O = (306, 236)
+    V1 = (O[0]-150, O[1]+92)   # σ1 左下
+    V2 = (O[0]+158, O[1]+88)   # σ2 右下
+    V3 = (O[0]-6, O[1]-136)    # σ3 上
+    for V in (V1, V2, V3):
+        d.line((O[0], O[1], V[0], V[1]), fill=BLACK, width=2)
+    d.line([V1, V2, V3, V1], fill=NAVY, width=3, joint="curve")   # 八面体面
+    _dash(d, O[0]-56, O[1]+104, O[0]+56, O[1]-104, GRAY, 2)       # 静水圧軸(Oを通る)
+    node(d, O[0], O[1], 3, fill=BLACK)
+    ctext(d, V1[0]-8, V1[1]+16, "σ1", FS, BLACK, "rm")
+    ctext(d, V2[0]+10, V2[1]+10, "σ2", FS, BLACK, "lm")
+    ctext(d, V3[0], V3[1]-18, "σ3", FS, BLACK)
+    ctext(d, 150, 118, "八面体面", FT, NAVY)
+    ctext(d, 150, 138, "(方向余弦が等しい面)", FT, NAVY)
+    d.line((176, 150, V1[0]+42, V1[1]-70), fill=LGRAY, width=1)
+    ctext(d, O[0]+70, O[1]-108, "静水圧軸", FT, GRAY, "lm")
+    ctext(d, O[0]+70, O[1]-90, "σ1=σ2=σ3", FT, GRAY, "lm")
+    note(d, "主せん断面 = 主応力方向から 45° の面")
+    save(im, "s2Octahedral")
+
+
+def s2Mohr3DShear():
+    im, d = new(); title(d, "純せん断の主応力：+40, 0, −40 MPa(和=0)")
+    ox, oy = 236, 232; s = 2.3           # px/MPa
+    R = int(40*s); cx = ox
+    arrow(d, ox-R-30, oy, ox+R+40, oy, BLACK, 2, 11); ctext(d, ox+R+46, oy, "σ (MPa)", FS, BLACK, "lm")
+    arrow(d, ox, oy+R+20, ox, oy-R-40, BLACK, 2, 11); ctext(d, ox-12, oy-R-48, "τ", FS, BLACK, "mm")
+    d.ellipse((cx-R, oy-R, cx+R, oy+R), outline=NAVY, width=3)
+    node(d, cx+R, oy, 5, fill=RED, col=RED); ctext(d, cx+R, oy+22, "σ1=+40", FT, RED)
+    node(d, cx, oy, 5, fill=BLACK); ctext(d, cx, oy+22, "σ2=0", FT, BLACK)
+    node(d, cx-R, oy, 5, fill=GREEN, col=GREEN); ctext(d, cx-R, oy+22, "σ3=−40", FT, GREEN)
+    node(d, cx, oy-R, 5, fill=GRAY, col=GRAY); ctext(d, cx, oy-R-16, "τmax=40", FT, GRAY)
+    note(d, "xy面内は純せん断で ±τ、z方向は0。 σ1+σ2+σ3=0(第1不変量)")
+    save(im, "s2Mohr3DShear")
+
+
+def s2BrittleDuctile():
+    im, d = new(); title(d, "脆性材料と延性材料の破壊条件")
+    cx, cy, sc = 262, 220, 104
+    arrow(d, cx-150, cy, cx+152, cy, BLACK, 2, 11); ctext(d, cx+158, cy, "σ1", FS, BLACK, "lm")
+    arrow(d, cx, cy+150, cx, cy-150, BLACK, 2, 11); ctext(d, cx+14, cy-150, "σ2", FS, BLACK, "mm")
+    def P(a, b): return (cx + a*sc, cy - b*sc)
+    sq = [P(1,1), P(-1,1), P(-1,-1), P(1,-1), P(1,1)]     # 脆性=正方形
+    for i in range(4): _dash(d, sq[i][0], sq[i][1], sq[i+1][0], sq[i+1][1], RED, 2)
+    d.line(_mises_pts(cx, cy, sc), fill=NAVY, width=4, joint="curve")   # 延性=ミーゼス楕円
+    lx = 442
+    _dash(d, lx, 150, lx+34, 150, RED, 2); ctext(d, lx+42, 150, "脆性=最大主応力説", FT, RED, "lm")
+    ctext(d, lx+42, 170, "(正方形の境界)", FT, GRAY, "lm")
+    d.line((lx, 212, lx+34, 212), fill=NAVY, width=4); ctext(d, lx+42, 212, "延性=ミーゼス", FT, NAVY, "lm")
+    ctext(d, lx+42, 232, "(せん断ひずみ", FT, GRAY, "lm")
+    ctext(d, lx+42, 250, " エネルギー説)", FT, GRAY, "lm")
+    note(d, "脆性は最大主応力で、延性はせん断ひずみエネルギーで破壊を判定")
+    save(im, "s2BrittleDuctile")
+
+
 if __name__ == "__main__":
     s2PrincipalMohr(); s2YieldSurface(); stresstransform(); s2MisesJudge()
     s2Truss2Bar(); s2CantileverUDL(); s2TwoBarsThermal()
@@ -383,4 +597,8 @@ if __name__ == "__main__":
     s2OverhangBeam(); s2CantReactions(); s2SectionZ()
     s2RigidPlate2Bars(); s2RigidBarWire(); s2PlateHoles()
     s2PoissonBar(); s2ShearModulus(); s2StrainDisp()
+    s2HalfHeatedBar(); s2ThermalContrast(); s2CantMoment()
+    s2IsectionInertia(); s2BeamDeflEI(); s2FBD()
+    s2OffsetYield(); s2PureShear(); s2Octahedral()
+    s2Mohr3DShear(); s2BrittleDuctile()
     print("done s2 core figures")
