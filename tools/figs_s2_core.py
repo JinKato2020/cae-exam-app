@@ -266,6 +266,50 @@ def s2PlateHoles():
     save(im, "s2PlateHoles")
 
 
+def s2PoissonBar():
+    im, d = new(); title(d, "ポアソン比 ν の比較(0.5に近いほど非圧縮)")
+    base = 326; x0 = 96; bw = 66; gap = 140; H = 220; maxv = 0.5
+    d.line((66, base, 600, base), fill=BLACK, width=2)
+    data = [("ゴム", 0.50, True), ("鋼", 0.30, False), ("コンクリート", 0.15, False), ("コルク", 0.02, False)]
+    for i, (name, v, hl) in enumerate(data):
+        x = x0 + i*gap; h = int(v/maxv*H)
+        fill = (223, 242, 228) if hl else NAVYL
+        oc = GREEN if hl else NAVY
+        d.rectangle((x, base-h, x+bw, base), outline=oc, width=3, fill=fill)
+        ctext(d, x+bw//2, base-h-16, f"ν≈{v:.2f}", FT, oc)
+        ctext(d, x+bw//2, base+18, name, FT, BLACK)
+    note(d, "体積変化 ΔV/V ≈ (1−2ν)ε。 ν→0.5 で体積ほぼ不変＝非圧縮(ゴム)")
+    save(im, "s2PoissonBar")
+
+
+def s2ShearModulus():
+    im, d = new(); title(d, "せん断弾性係数 G：せん断応力とせん断ひずみ")
+    x0, y0, s, sh = 214, 150, 150, 56
+    d.rectangle((x0, y0, x0+s, y0+s), outline=LGRAY, width=2)          # 変形前(淡)
+    d.polygon([(x0, y0+s), (x0+s, y0+s), (x0+s+sh, y0), (x0+sh, y0)], outline=NAVY, width=3, fill=NAVYL)
+    arrow(d, x0+sh+8, y0-14, x0+s+sh-8, y0-14, RED, 3, 11)
+    ctext(d, x0+s//2+sh//2, y0-32, "せん断応力 τ", FS, RED)
+    arrow(d, x0+s-8, y0+s+14, x0+8, y0+s+14, RED, 3, 11)
+    ctext(d, x0+16, y0+s-42, "γ", FS, GREEN)
+    note(d, "G=τ/γ(せん断変形への抵抗)。 等方材では G=E/2(1+ν) で決まる従属量")
+    save(im, "s2ShearModulus")
+
+
+def s2StrainDisp():
+    im, d = new(); title(d, "微小要素のひずみと変位")
+    x0, y0, s = 206, 158, 138; ex, ey, sh = 30, 24, 20
+    d.rectangle((x0, y0, x0+s, y0+s), outline=BLACK, width=3, fill=FILL1)
+    dc = [(x0, y0), (x0+s+ex, y0), (x0+s+ex+sh, y0+s+ey), (x0+sh, y0+s+ey)]
+    for i in range(4): _dash(d, dc[i][0], dc[i][1], dc[(i+1)%4][0], dc[(i+1)%4][1], RED)
+    arrow(d, x0+s, y0, x0+s+ex, y0, BLUE, 2, 9)
+    ctext(d, x0+s//2+8, y0-16, "εx (水平の伸び)", FT, RED)
+    ctext(d, x0+s+ex+28, y0+s//2+6, "εy (垂直の伸び)", FT, RED, "lm")
+    ctext(d, x0+24, y0+s//2, "γxy", FT, GREEN, "lm")
+    arrow(d, x0, y0+s, x0+sh, y0+s+ey, BLUE, 2, 9); ctext(d, x0+sh+4, y0+s+ey+2, "v", FT, BLUE, "lm")
+    note(d, "実線=変形前 / 破線=変形後。 εx,εy=伸び, γxy=せん断角")
+    save(im, "s2StrainDisp")
+
+
 def _curved_arrow(d, cx, cy, R, a0, a1, col=BLUE, w=4):
     """中心(cx,cy)・半径Rの円弧(a0→a1度, 反時計正・右=0)を描き終端に矢じり。"""
     n = max(2, int(abs(a1 - a0) / 6))
@@ -338,4 +382,5 @@ if __name__ == "__main__":
     s2HollowShaft(); s2ThinCylinder(); s2ConjugateShear()
     s2OverhangBeam(); s2CantReactions(); s2SectionZ()
     s2RigidPlate2Bars(); s2RigidBarWire(); s2PlateHoles()
+    s2PoissonBar(); s2ShearModulus(); s2StrainDisp()
     print("done s2 core figures")
