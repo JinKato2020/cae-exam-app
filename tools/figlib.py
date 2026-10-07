@@ -8,10 +8,14 @@
 from PIL import Image, ImageDraw, ImageFont
 import math, os
 
-OUT = r"c:\Users\jwpsa\Documents\desktop\claude\CAE\assets\figures"
+OUT = os.environ.get("FIGLIB_OUT", r"c:\Users\jwpsa\Documents\desktop\claude\CAE\assets\figures")
+# スーパーサンプリング倍率(描画はSS倍の大画で行い、保存時に縮小してアンチエイリアス)。
+SS = int(os.environ.get("FIGLIB_SS", "3"))
 W, H = 660, 420
 BLACK=(0,0,0); GRAY=(120,120,120); LGRAY=(205,205,205)
-RED=(200,40,40); BLUE=(40,80,190); GREEN=(30,150,60); ORANGE=(210,130,20)
+# ネイビー基調に統一(従来の原色青 (40,80,190) を廃止)。BLUE=主役ネイビー、NAVYL=淡い塗り用。
+RED=(200,45,45); BLUE=(31,58,101); NAVY=(31,58,101); NAVYL=(225,231,242)
+GREEN=(26,140,70); ORANGE=(206,128,20)
 FILL1=(245,245,245); FILL2=(232,232,232); FILL3=(220,220,220)
 
 def font(sz):
@@ -22,11 +26,46 @@ def font(sz):
     return ImageFont.load_default()
 FL=font(27); F=font(23); FS=font(19); FT=font(16)
 
+class SDraw:
+    """ImageDraw を包み、全座標・線幅・フォントを SS 倍して大画に描く透過プロキシ。
+    生成元コードは1倍座標のまま変更不要。save() で縮小してアンチエイリアスを得る。"""
+    def __init__(self, draw): self._d = draw
+    def _p(self, xy):
+        if xy is None: return xy
+        xy = list(xy)
+        if xy and isinstance(xy[0], (int, float)):
+            return [v*SS for v in xy]
+        return [(p[0]*SS, p[1]*SS) for p in xy]
+    def line(self, xy, fill=None, width=1, joint=None):
+        self._d.line(self._p(xy), fill=fill, width=max(1,int(round(width*SS))), joint=joint)
+    def rectangle(self, xy, fill=None, outline=None, width=1):
+        self._d.rectangle(self._p(xy), fill=fill, outline=outline, width=max(1,int(round(width*SS))))
+    def rounded_rectangle(self, xy, radius=0, fill=None, outline=None, width=1):
+        self._d.rounded_rectangle(self._p(xy), radius=radius*SS, fill=fill, outline=outline, width=max(1,int(round(width*SS))))
+    def ellipse(self, xy, fill=None, outline=None, width=1):
+        self._d.ellipse(self._p(xy), fill=fill, outline=outline, width=max(1,int(round(width*SS))))
+    def polygon(self, xy, fill=None, outline=None, width=1):
+        self._d.polygon(self._p(xy), fill=fill, outline=outline, width=max(1,int(round(width*SS))))
+    def arc(self, xy, start, end, fill=None, width=1):
+        self._d.arc(self._p(xy), start, end, fill=fill, width=max(1,int(round(width*SS))))
+    def pieslice(self, xy, start, end, fill=None, outline=None, width=1):
+        self._d.pieslice(self._p(xy), start, end, fill=fill, outline=outline, width=max(1,int(round(width*SS))))
+    def point(self, xy, fill=None):
+        self._d.point(self._p(xy), fill=fill)
+    def text(self, xy, text, font=None, fill=None, anchor=None, **kw):
+        f = font
+        if font is not None and hasattr(font, "font_variant"):
+            try: f = font.font_variant(size=max(1, int(round(font.size*SS))))
+            except Exception: f = font
+        self._d.text((xy[0]*SS, xy[1]*SS), text, font=f, fill=fill, anchor=anchor, **kw)
+
 def new():
-    im=Image.new("RGB",(W,H),"white"); return im, ImageDraw.Draw(im)
+    im=Image.new("RGB",(W*SS, H*SS),"white"); return im, SDraw(ImageDraw.Draw(im))
 
 def save(im,name):
     os.makedirs(OUT,exist_ok=True)
+    if im.size != (W, H):
+        im = im.resize((W, H), Image.LANCZOS)
     p=os.path.join(OUT,name+".png"); im.save(p); print("saved",name); return p
 
 def title(d,s):

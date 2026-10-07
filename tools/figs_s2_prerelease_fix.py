@@ -26,12 +26,12 @@ vals = [["k₁", "−k₁", "0", "0"],
         ["−k₁", "k₁+k₂", "−k₂", "0"],
         ["0", "−k₂", "k₂+k₃", "−k₃"],
         ["0", "0", "−k₃", "k₃"]]
-cell = 60; mx = (W - 4*cell)//2; my = 150
+cell = 52; mx = (W - 4*cell)//2; my = 142
 matrix_grid(d, mx, my, vals, cell=cell, highlight=(2, 2), fnt=FT)
 # 強調セルへ引き出し
 cx = mx + 2*cell + cell//2; cy = my + 2*cell + cell//2
-ctext(d, cx, my + 4*cell + 16, "K₃₃ = k₂+k₃ = 250+100 = 350 N/mm", FS, RED)
-note(d, "節点3につながるのは要素B・Cの2本だけ。要素A(1-2)は節点3に無関係で足さない。")
+ctext(d, cx, my + 4*cell + 18, "K₃₃ = k₂+k₃ = 250+100 = 350 N/mm", FS, RED)
+note(d, "節点3につながるのは要素B・Cの2本だけ。要素A(1-2)は節点3に無関係で足さない。", 404)
 save(im, "femAssembly")
 
 # ============================================================ 4-28 femTrussDof
