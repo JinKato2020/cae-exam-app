@@ -1111,6 +1111,7 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   v2e8RoadUndulationPre: require('../assets/figures/v2e8RoadUndulationPre.png'),
   v2e8RoughRoad: require('../assets/figures/v2e8RoughRoad.png'),
   v2e8SeismicTower: require('../assets/figures/v2e8SeismicTower.png'),
+  v2e8SeismicTowerPre: require('../assets/figures/v2e8SeismicTowerPre.png'),
   v2e8SimpleSupportBeam: require('../assets/figures/v2e8SimpleSupportBeam.png'),
   v2e8SymPlaneLpart: require('../assets/figures/v2e8SymPlaneLpart.png'),
   v2e8TireStiffVar: require('../assets/figures/v2e8TireStiffVar.png'),

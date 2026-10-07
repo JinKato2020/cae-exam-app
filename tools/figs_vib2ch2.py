@@ -122,7 +122,6 @@ def translation_1d(name):  # 2-4 required
 def spring_mass_force(name):  # 2-5 required
     im, d = new()
     title(d, "ばね（ばね定数 k）の他端に力 f")
-    hwall(d, 90, 590, 300, side=1, n=15)
     block(d, 170, 265, 84, 60, "m")
     spring(d, 212, 265, 430, 265, coils=6, amp=15)
     ctext(d, 320, 232, "k", FS)
