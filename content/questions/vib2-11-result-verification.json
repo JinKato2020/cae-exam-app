@@ -57,7 +57,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2eDeriv11_2",
-      "figureHint": "一定加速度オフセットを2階積分すると変位が放物線状に増大する概念グラフ"
+      "figureHint": "一定加速度オフセットを2階積分すると変位が放物線状に増大する概念グラフ",
+      "preFigureImage": "v2eDeriv11_2Pre"
     },
     {
       "id": "vib2-11-3",
@@ -182,7 +183,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e11ResonHigh",
-      "figureHint": "剛性・質量のずれ方向と共振振動数の高低を対応させた対比表"
+      "figureHint": "剛性・質量のずれ方向と共振振動数の高低を対応させた対比表",
+      "preFigureImage": "v2e11ResonHighPre"
     },
     {
       "id": "vib2-11-8",
@@ -432,7 +434,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e11RubberDep",
-      "figureHint": "ゴムの振幅依存・周波数依存特性を示す概念グラフ"
+      "figureHint": "ゴムの振幅依存・周波数依存特性を示す概念グラフ",
+      "preFigureImage": "v2e11RubberDepPre"
     },
     {
       "id": "vib2-11-18",

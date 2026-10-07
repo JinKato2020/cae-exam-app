@@ -57,7 +57,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e10StrainEnergy",
-      "figureHint": "白地660x420。ある曲げモードの構造に色濃淡でひずみエネルギー密度分布を重ね、高密度部(補強すべき部位)を明示する(回答後・答えの根拠を示す)"
+      "figureHint": "白地660x420。ある曲げモードの構造に色濃淡でひずみエネルギー密度分布を重ね、高密度部(補強すべき部位)を明示する(回答後・答えの根拠を示す)",
+      "preFigureImage": "v2e10StrainEnergyPre"
     },
     {
       "id": "vib2-10-3",
@@ -107,7 +108,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e10ChassisFrame",
-      "figureHint": "白地660x420。シャシフレームのねじりモード形状に色濃淡でひずみエネルギー密度分布を重ね、集中する結合部・部材(補強優先部位)を示す(回答後・答えの根拠)"
+      "figureHint": "白地660x420。シャシフレームのねじりモード形状に色濃淡でひずみエネルギー密度分布を重ね、集中する結合部・部材(補強優先部位)を示す(回答後・答えの根拠)",
+      "preFigureImage": "v2e10ChassisFramePre"
     },
     {
       "id": "vib2-10-5",
@@ -157,7 +159,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e10FreqFormula",
-      "figureHint": "白地660x420。f=(1/2π)√(k/m)の式を中央に置き、k増加↑でf上昇・m増加↑でf低下を示す2本の傾向矢印グラフ(回答後・答えの根拠)"
+      "figureHint": "白地660x420。f=(1/2π)√(k/m)の式を中央に置き、k増加↑でf上昇・m増加↑でf低下を示す2本の傾向矢印グラフ(回答後・答えの根拠)",
+      "preFigureImage": "v2e10FreqFormulaPre"
     },
     {
       "id": "vib2-10-7",
@@ -182,7 +185,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2eDeriv10_7",
-      "figureHint": "白地660x420。横軸に剛性倍率k2/k1、縦軸に固有振動数比f2/f1をとり、f=√k の平方根曲線を描いた計算用グラフ。読み取り目盛のみ(回答前・中立)"
+      "figureHint": "白地660x420。横軸に剛性倍率k2/k1、縦軸に固有振動数比f2/f1をとり、f=√k の平方根曲線を描いた計算用グラフ。読み取り目盛のみ(回答前・中立)",
+      "preFigureImage": "v2eDeriv10_7Pre"
     },
     {
       "id": "vib2-10-8",
@@ -232,7 +236,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e10ModelCheck",
-      "figureHint": "白地660x420。妥当性チェック項目(剛体モード数・力の総和・単位/桁・境界条件)を並べたチェックリスト枠の中立図(回答前・答えを示唆しない)"
+      "figureHint": "白地660x420。妥当性チェック項目(剛体モード数・力の総和・単位/桁・境界条件)を並べたチェックリスト枠の中立図(回答前・答えを示唆しない)",
+      "preFigureImage": "v2e10ModelCheckPre"
     },
     {
       "id": "vib2-10-10",
@@ -357,7 +362,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e10Weighting",
-      "figureHint": "白地660x420。横軸周波数(対数)・縦軸重み(dB)にA特性(中音域を持ち上げ低音を落とす)とC特性(ほぼ平坦)の2曲線を描いた比較グラフ(回答前・中立)"
+      "figureHint": "白地660x420。横軸周波数(対数)・縦軸重み(dB)にA特性(中音域を持ち上げ低音を落とす)とC特性(ほぼ平坦)の2曲線を描いた比較グラフ(回答前・中立)",
+      "preFigureImage": "v2e10WeightingPre"
     },
     {
       "id": "vib2-10-15",
@@ -408,7 +414,8 @@
       "role": "primary",
       "figure": "required",
       "figureImage": "v2e10ModeAnim",
-      "figureHint": "白地660x420。モードアニメの構成要素(節点数・フレーム数・表面/内部・色深度)を並べた模式図で、各項目とデータ量の関係枠のみ示す中立図(回答前)"
+      "figureHint": "白地660x420。モードアニメの構成要素(節点数・フレーム数・表面/内部・色深度)を並べた模式図で、各項目とデータ量の関係枠のみ示す中立図(回答前)",
+      "preFigureImage": "v2e10ModeAnimPre"
     },
     {
       "id": "vib2-10-17",
@@ -433,7 +440,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e10TorsionMode",
-      "figureHint": "白地660x420。車体のねじりモード形状(前後で逆位相にねじれる様子)を描き、閉断面化・クロスメンバ・制振器の付与位置(有効な対策)を示す(回答後・答えの根拠)"
+      "figureHint": "白地660x420。車体のねじりモード形状(前後で逆位相にねじれる様子)を描き、閉断面化・クロスメンバ・制振器の付与位置(有効な対策)を示す(回答後・答えの根拠)",
+      "preFigureImage": "v2e10TorsionModePre"
     },
     {
       "id": "vib2-10-18",
@@ -484,7 +492,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e10RigidModes",
-      "figureHint": "白地660x420。自由な3D物体に対し、並進3方向(x,y,z)と回転3軸まわりの計6つの剛体モードを矢印で並べた説明図(回答後・答えの根拠)"
+      "figureHint": "白地660x420。自由な3D物体に対し、並進3方向(x,y,z)と回転3軸まわりの計6つの剛体モードを矢印で並べた説明図(回答後・答えの根拠)",
+      "preFigureImage": "v2e10RigidModesPre"
     }
   ]
 }

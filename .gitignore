@@ -61,3 +61,7 @@ src/config/*
 # Python cache
 __pycache__/
 *.pyc
+
+# 振動2級 図のレンダ作業用(コミット不要)
+図/振動2級/_png/
+図/振動2級/_chromeprof/

@@ -282,7 +282,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e5WeightedResidual",
-      "figureHint": "残差R(x)の曲線に重み関数w(x)を掛けて積分=0にするイメージ。ガラーキン/選点法/最小二乗の重みの違いを小さく併記(正解は示さない)"
+      "figureHint": "残差R(x)の曲線に重み関数w(x)を掛けて積分=0にするイメージ。ガラーキン/選点法/最小二乗の重みの違いを小さく併記(正解は示さない)",
+      "preFigureImage": "v2e5WeightedResidualPre"
     },
     {
       "id": "vib2-5-12",
@@ -482,7 +483,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e5BarConsistentMass",
-      "figureHint": "2節点棒要素。線密度μ・全長l・座標x、形状関数L1=1-x/l とL2=x/l のグラフを添える。整合質量行列の計算結果は書かない"
+      "figureHint": "2節点棒要素。線密度μ・全長l・座標x、形状関数L1=1-x/l とL2=x/l のグラフを添える。整合質量行列の計算結果は書かない",
+      "preFigureImage": "v2e5BarConsistentMassPre"
     }
   ]
 }

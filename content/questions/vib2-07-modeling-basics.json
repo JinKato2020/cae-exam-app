@@ -32,7 +32,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e7RayleighDampingCurve",
-      "figureHint": "横軸=振動数、縦軸=減衰比。質量比例項(低周波側で大きい下降曲線)と剛性比例項(高周波側で大きい上昇直線)、その和がU字状になる様子を描く。行列式そのものは書かない(回答後に見せる根拠図)"
+      "figureHint": "横軸=振動数、縦軸=減衰比。質量比例項(低周波側で大きい下降曲線)と剛性比例項(高周波側で大きい上昇直線)、その和がU字状になる様子を描く。行列式そのものは書かない(回答後に見せる根拠図)",
+      "preFigureImage": "v2e7RayleighDampingCurvePre"
     },
     {
       "id": "vib2-7-2",
@@ -107,7 +108,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e7ProportionalDampingOrtho",
-      "figureHint": "比例減衰では減衰行列がモード座標で対角化される(モードの直交性)ことを、非対角成分がゼロの対角行列イメージで示す。理論根拠の強弱は文字で書かない(回答後の根拠図)"
+      "figureHint": "比例減衰では減衰行列がモード座標で対角化される(モードの直交性)ことを、非対角成分がゼロの対角行列イメージで示す。理論根拠の強弱は文字で書かない(回答後の根拠図)",
+      "preFigureImage": "v2e7ProportionalDampingOrthoPre"
     },
     {
       "id": "vib2-7-5",

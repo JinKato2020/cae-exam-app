@@ -358,7 +358,8 @@
       "role": "primary",
       "figure": "required",
       "figureImage": "v2e8RandomPSD",
-      "figureHint": "入力PSDのグラフ→応答PSDのグラフ→そこからRMS(実効値)を得る流れを矢印でつないだ模式。周波数軸を共通に描く。どの語句が正解かは書かない(回答前に見せてよい)"
+      "figureHint": "入力PSDのグラフ→応答PSDのグラフ→そこからRMS(実効値)を得る流れを矢印でつないだ模式。周波数軸を共通に描く。どの語句が正解かは書かない(回答前に見せてよい)",
+      "preFigureImage": "v2e8RandomPSDPre"
     },
     {
       "id": "vib2-8-15",
@@ -383,7 +384,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e8FatigueSine",
-      "figureHint": "入力PSDのグラフに、入力振幅の大きいピークと固有振動数位置を両方マークした図。この2種の周波数を選ぶことが答えを示唆するため回答後に見せる根拠図"
+      "figureHint": "入力PSDのグラフに、入力振幅の大きいピークと固有振動数位置を両方マークした図。この2種の周波数を選ぶことが答えを示唆するため回答後に見せる根拠図",
+      "preFigureImage": "v2e8FatigueSinePre"
     },
     {
       "id": "vib2-8-16",
@@ -508,7 +510,8 @@
       "role": "primary",
       "figure": "required",
       "figureImage": "v2e8RoadUndulation",
-      "figureHint": "うねる路面(波長λ)の上を走る車両の側面図。前後輪の接地点にホイールベースLを示し、前輪と後輪が波の異なる位相にある様子を描く。周波数・位相差の式や答えは書かない(回答前に見せてよい)"
+      "figureHint": "うねる路面(波長λ)の上を走る車両の側面図。前後輪の接地点にホイールベースLを示し、前輪と後輪が波の異なる位相にある様子を描く。周波数・位相差の式や答えは書かない(回答前に見せてよい)",
+      "preFigureImage": "v2e8RoadUndulationPre"
     },
     {
       "id": "vib2-8-21",

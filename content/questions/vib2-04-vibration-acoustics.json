@@ -232,7 +232,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e49",
-      "figureHint": "不減衰(青ωn)と減衰(赤ωd)の波形重ね描き。減衰側は周期が長く減衰する様子"
+      "figureHint": "不減衰(青ωn)と減衰(赤ωd)の波形重ね描き。減衰側は周期が長く減衰する様子",
+      "preFigureImage": "v2e49Pre"
     },
     {
       "id": "vib2-4-10",
@@ -282,7 +283,8 @@
       "role": "primary",
       "figure": "required",
       "figureImage": "v2e411",
-      "figureHint": "応答振幅の共振ピークが加振50Hzと重なる周波数応答曲線(共振の懸念を示す設定図)"
+      "figureHint": "応答振幅の共振ピークが加振50Hzと重なる周波数応答曲線(共振の懸念を示す設定図)",
+      "preFigureImage": "v2e411Pre"
     },
     {
       "id": "vib2-4-12",
@@ -482,7 +484,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e419",
-      "figureHint": "不足減衰(赤・振動的)と過減衰(青・単調減衰)の応答波形の対比。境界=臨界減衰"
+      "figureHint": "不足減衰(赤・振動的)と過減衰(青・単調減衰)の応答波形の対比。境界=臨界減衰",
+      "preFigureImage": "v2e419Pre"
     },
     {
       "id": "vib2-4-20",
@@ -507,7 +510,8 @@
       "role": "primary",
       "figure": "required",
       "figureImage": "v2e420",
-      "figureHint": "計測された不減衰自由振動波形x(t)。0.4sの間にちょうど8周期(与えられたデータ)"
+      "figureHint": "計測された不減衰自由振動波形x(t)。0.4sの間にちょうど8周期(与えられたデータ)",
+      "preFigureImage": "v2e420Pre"
     },
     {
       "id": "vib2-4-21",
@@ -582,7 +586,8 @@
       "role": "primary",
       "figure": "required",
       "figureImage": "v2e423",
-      "figureHint": "時間軸上の矩形パルスf(t)=1(|t|<=T),0(それ以外)の波形図(与えられた関数)"
+      "figureHint": "時間軸上の矩形パルスf(t)=1(|t|<=T),0(それ以外)の波形図(与えられた関数)",
+      "preFigureImage": "v2e423Pre"
     },
     {
       "id": "vib2-4-24",
@@ -732,7 +737,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e429",
-      "figureHint": "N自由度系→モード変換→独立な1自由度モード振動子(ξ1,ξ2,ξ3)への分解概念図"
+      "figureHint": "N自由度系→モード変換→独立な1自由度モード振動子(ξ1,ξ2,ξ3)への分解概念図",
+      "preFigureImage": "v2e429Pre"
     },
     {
       "id": "vib2-4-30",
@@ -782,7 +788,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e431",
-      "figureHint": "第1次{1,1}同相と第2次{1,-1}逆相の固有モード形状を矢印で示す2枚組(答えを示唆)"
+      "figureHint": "第1次{1,1}同相と第2次{1,-1}逆相の固有モード形状を矢印で示す2枚組(答えを示唆)",
+      "preFigureImage": "v2e431Pre"
     },
     {
       "id": "vib2-4-32",
@@ -807,7 +814,8 @@
       "role": "primary",
       "figure": "required",
       "figureImage": "v2e432",
-      "figureHint": "2自由度系で第1次モード{1,1}=両質点が等しく動く配置図(m*,k*計算対象)"
+      "figureHint": "2自由度系で第1次モード{1,1}=両質点が等しく動く配置図(m*,k*計算対象)",
+      "preFigureImage": "v2e432Pre"
     },
     {
       "id": "vib2-4-33",
@@ -832,7 +840,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e433",
-      "figureHint": "モード{a,a}の3正規化(最大成分1・ノルム1・質量正規化)の定義を並べた対比図"
+      "figureHint": "モード{a,a}の3正規化(最大成分1・ノルム1・質量正規化)の定義を並べた対比図",
+      "preFigureImage": "v2e433Pre"
     },
     {
       "id": "vib2-4-34",
@@ -907,7 +916,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e436",
-      "figureHint": "棒の縦振動で境界条件(端拘束)がモード形を、初期条件が振幅位相を決めることを示す図"
+      "figureHint": "棒の縦振動で境界条件(端拘束)がモード形を、初期条件が振幅位相を決めることを示す図",
+      "preFigureImage": "v2e436Pre"
     },
     {
       "id": "vib2-4-37",
@@ -932,7 +942,8 @@
       "role": "primary",
       "figure": "required",
       "figureImage": "v2e437",
-      "figureHint": "進行する正弦波と波長lambda・伝播速度c=340m/sを示す波形図(f=850Hz)"
+      "figureHint": "進行する正弦波と波長lambda・伝播速度c=340m/sを示す波形図(f=850Hz)",
+      "preFigureImage": "v2e437Pre"
     },
     {
       "id": "vib2-4-38",
@@ -957,7 +968,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e438",
-      "figureHint": "空間波形と波長lambda、波数k=2π/lambdaの定義(単位長さの波数×2π)を示す図"
+      "figureHint": "空間波形と波長lambda、波数k=2π/lambdaの定義(単位長さの波数×2π)を示す図",
+      "preFigureImage": "v2e438Pre"
     },
     {
       "id": "vib2-4-39",
@@ -1057,7 +1069,8 @@
       "role": "primary",
       "figure": "required",
       "figureImage": "v2e442",
-      "figureHint": "62dBと68dBの2台の発電機の音圧レベルを棒グラフで示す(音圧比を問う設定)"
+      "figureHint": "62dBと68dBの2台の発電機の音圧レベルを棒グラフで示す(音圧比を問う設定)",
+      "preFigureImage": "v2e442Pre"
     },
     {
       "id": "vib2-4-43",
@@ -1082,7 +1095,8 @@
       "role": "primary",
       "figure": "required",
       "figureImage": "v2e443",
-      "figureHint": "元の音圧pと振幅3倍の音圧3pの波形対比(dB上昇量を問う設定)"
+      "figureHint": "元の音圧pと振幅3倍の音圧3pの波形対比(dB上昇量を問う設定)",
+      "preFigureImage": "v2e443Pre"
     },
     {
       "id": "vib2-4-44",

@@ -58,7 +58,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e9DirectVsIterative",
-      "figureHint": "直接法と反復法を計算量・精度・収束条件の観点で並べた対比表。どちらが厳密でどちらが近似かが分かるため回答後に見せる根拠図"
+      "figureHint": "直接法と反復法を計算量・精度・収束条件の観点で並べた対比表。どちらが厳密でどちらが近似かが分かるため回答後に見せる根拠図",
+      "preFigureImage": "v2e9DirectVsIterativePre"
     },
     {
       "id": "vib2-9-3",
@@ -159,7 +160,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e9IntegrationRules",
-      "figureHint": "同じ曲線に対する長方形近似と台形近似の面積の違いを並べて示す対比図。近似誤差の差が答えを示唆するため回答後に見せる"
+      "figureHint": "同じ曲線に対する長方形近似と台形近似の面積の違いを並べて示す対比図。近似誤差の差が答えを示唆するため回答後に見せる",
+      "preFigureImage": "v2e9IntegrationRulesPre"
     },
     {
       "id": "vib2-9-7",
@@ -184,7 +186,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e9EigenMethodMap",
-      "figureHint": "固有値解析法の一群と連立1次方程式解法の一群を左右に分けた分類図。ガウス・ザイデル法がどちら側かが答えを示すため回答後に見せる"
+      "figureHint": "固有値解析法の一群と連立1次方程式解法の一群を左右に分けた分類図。ガウス・ザイデル法がどちら側かが答えを示すため回答後に見せる",
+      "preFigureImage": "v2e9EigenMethodMapPre"
     },
     {
       "id": "vib2-9-8",
@@ -209,7 +212,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e9PowerIteration",
-      "figureHint": "初期ベクトルに行列を繰り返し掛け正規化して最大固有ベクトル方向へ収束する様子の反復模式図。手法名を特定させるため回答後に見せる"
+      "figureHint": "初期ベクトルに行列を繰り返し掛け正規化して最大固有ベクトル方向へ収束する様子の反復模式図。手法名を特定させるため回答後に見せる",
+      "preFigureImage": "v2e9PowerIterationPre"
     },
     {
       "id": "vib2-9-9",
@@ -234,7 +238,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e9SimilarityTransform",
-      "figureHint": "相似変換P^-1AVを繰り返して行列を対角形へ収束させる流れの模式図。相似変換法に属する手法が答えなので回答後に見せる"
+      "figureHint": "相似変換P^-1AVを繰り返して行列を対角形へ収束させる流れの模式図。相似変換法に属する手法が答えなので回答後に見せる",
+      "preFigureImage": "v2e9SimilarityTransformPre"
     },
     {
       "id": "vib2-9-10",
@@ -259,7 +264,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e9SubspaceLanczos",
-      "figureHint": "大規模行列から必要な個数の固有値だけを縮約して同時抽出する概念図。該当手法が答えなので回答後に見せる"
+      "figureHint": "大規模行列から必要な個数の固有値だけを縮約して同時抽出する概念図。該当手法が答えなので回答後に見せる",
+      "preFigureImage": "v2e9SubspaceLanczosPre"
     },
     {
       "id": "vib2-9-11",
@@ -284,7 +290,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e9StateSpace",
-      "figureHint": "2次固有値問題を状態ベクトルで次数2倍の一般化固有値問題[A]z=λ[B]zに変換するブロック行列の構成図。空欄の中身が答えなので回答後に見せる"
+      "figureHint": "2次固有値問題を状態ベクトルで次数2倍の一般化固有値問題[A]z=λ[B]zに変換するブロック行列の構成図。空欄の中身が答えなので回答後に見せる",
+      "preFigureImage": "v2e9StateSpacePre"
     },
     {
       "id": "vib2-9-12",
@@ -309,7 +316,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e9ComplexPlaneEig",
-      "figureHint": "複素平面上の固有値配置図。左半面=安定、実部と虚部の比が減衰に対応することを示す。安定性・減衰が評価可能かが答えを示すため回答後に見せる"
+      "figureHint": "複素平面上の固有値配置図。左半面=安定、実部と虚部の比が減衰に対応することを示す。安定性・減衰が評価可能かが答えを示すため回答後に見せる",
+      "preFigureImage": "v2e9ComplexPlaneEigPre"
     },
     {
       "id": "vib2-9-13",
@@ -359,7 +367,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e9WilsonTheta",
-      "figureHint": "時間刻み幅を大きくとると高次モードが数値減衰で抑制される様子(応答振幅の減衰)を示す模式グラフ。特徴が答えに直結するため回答後に見せる"
+      "figureHint": "時間刻み幅を大きくとると高次モードが数値減衰で抑制される様子(応答振幅の減衰)を示す模式グラフ。特徴が答えに直結するため回答後に見せる",
+      "preFigureImage": "v2e9WilsonThetaPre"
     },
     {
       "id": "vib2-9-15",
@@ -384,7 +393,8 @@
       "role": "primary",
       "figure": "required",
       "figureImage": "v2e9ExplicitSolver",
-      "figureHint": "現在ステップの状態量と入力から次ステップを収束計算なしで逐次求める陽解法の時間進行フロー図。安定性についての結論や優劣は書かない(回答前に見せてよい)"
+      "figureHint": "現在ステップの状態量と入力から次ステップを収束計算なしで逐次求める陽解法の時間進行フロー図。安定性についての結論や優劣は書かない(回答前に見せてよい)",
+      "preFigureImage": "v2e9ExplicitSolverPre"
     },
     {
       "id": "vib2-9-16",
@@ -435,7 +445,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e9ComplianceCurve",
-      "figureHint": "コンプライアンス-周波数曲線に対象帯域ωa〜ωbと、その外側の低次モード領域・高次モード領域を示す模式グラフ。剰余項の帰属が答えに関わるため回答後に見せる"
+      "figureHint": "コンプライアンス-周波数曲線に対象帯域ωa〜ωbと、その外側の低次モード領域・高次モード領域を示す模式グラフ。剰余項の帰属が答えに関わるため回答後に見せる",
+      "preFigureImage": "v2e9ComplianceCurvePre"
     },
     {
       "id": "vib2-9-18",
@@ -460,7 +471,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e9RayleighDamping",
-      "figureHint": "レイリー減衰C=αM+βKの構成と、非減衰系モードで質量・剛性・減衰が同時に対角化される様子の模式図。直交性成立が答えに関わるため回答後に見せる"
+      "figureHint": "レイリー減衰C=αM+βKの構成と、非減衰系モードで質量・剛性・減衰が同時に対角化される様子の模式図。直交性成立が答えに関わるため回答後に見せる",
+      "preFigureImage": "v2e9RayleighDampingPre"
     },
     {
       "id": "vib2-9-19",
@@ -485,7 +497,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e9FFTSpectrum",
-      "figureHint": "時間波形をFFTで周波数スペクトルに変換する模式図に、エリアジングとリーケージの誤差要因を注記。誤差の有無が答えに関わるため回答後に見せる"
+      "figureHint": "時間波形をFFTで周波数スペクトルに変換する模式図に、エリアジングとリーケージの誤差要因を注記。誤差の有無が答えに関わるため回答後に見せる",
+      "preFigureImage": "v2e9FFTSpectrumPre"
     }
   ]
 }

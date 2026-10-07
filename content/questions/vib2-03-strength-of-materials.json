@@ -132,7 +132,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e3StressStrainTerms",
-      "figureHint": "白地660x420。断面に働く内力を面積で割る応力の定義図と、弾性域(直線)・塑性域(残留変形)を分けた応力ひずみ線図の模式を並べた用語整理図。各記述の正誤は書かない。"
+      "figureHint": "白地660x420。断面に働く内力を面積で割る応力の定義図と、弾性域(直線)・塑性域(残留変形)を分けた応力ひずみ線図の模式を並べた用語整理図。各記述の正誤は書かない。",
+      "preFigureImage": "v2e3StressStrainTermsPre"
     },
     {
       "id": "vib2-3-6",
@@ -336,7 +337,8 @@
       "role": "primary",
       "figure": "required",
       "figureImage": "v2e3BeamDeflection",
-      "figureHint": "白地660x420。曲げ変形したはりのたわみ曲線y(x)と座標x、曲げモーメントM、曲げ剛性EIをラベルした模式図。微分方程式や答えは書かない。"
+      "figureHint": "白地660x420。曲げ変形したはりのたわみ曲線y(x)と座標x、曲げモーメントM、曲げ剛性EIをラベルした模式図。微分方程式や答えは書かない。",
+      "preFigureImage": "v2e3BeamDeflectionPre"
     },
     {
       "id": "vib2-3-14",

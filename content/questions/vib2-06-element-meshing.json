@@ -32,7 +32,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e6BeamShapeOrder",
-      "figureHint": "2節点はり要素。左に軸方向の伸び(直線的な補間)、右に曲げによるたわみ(なめらかな曲線＋各節点に回転角θ)を描く。次数の数値や正解は書かない"
+      "figureHint": "2節点はり要素。左に軸方向の伸び(直線的な補間)、右に曲げによるたわみ(なめらかな曲線＋各節点に回転角θ)を描く。次数の数値や正解は書かない",
+      "preFigureImage": "v2e6BeamShapeOrderPre"
     },
     {
       "id": "vib2-6-2",
@@ -132,7 +133,8 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e6MeshConvergence",
-      "figureHint": "横軸=メッシュの細かさ、縦軸=変形量。FEM解が厳密解の水平線へ下側から漸近する収束曲線。非圧縮材で体積ロッキングの注記。回答後に見せる根拠図"
+      "figureHint": "横軸=メッシュの細かさ、縦軸=変形量。FEM解が厳密解の水平線へ下側から漸近する収束曲線。非圧縮材で体積ロッキングの注記。回答後に見せる根拠図",
+      "preFigureImage": "v2e6MeshConvergencePre"
     },
     {
       "id": "vib2-6-6",
