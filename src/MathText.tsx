@@ -40,6 +40,11 @@ function buildHtml(
      font-family:-apple-system,'Hiragino Kaku Gothic ProN','Noto Sans JP',Roboto,sans-serif;
      white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;padding:2px 0;overflow:visible;}
   .katex{font-size:1.05em;}
+  /* #c の折り返し指定(日本語本文用)が数式にも継承され、数式が途中で改行されて
+     中央にバラけて見える(＝「右詰め・縦長」の崩れ)のを防ぐ。数式は折り返さず、
+     はみ出す分は .katex-display の横スクロール(scroll時)／縮小(非scroll時)で処理する。 */
+  .katex, .katex *{overflow-wrap:normal !important;word-break:keep-all !important;white-space:nowrap;}
+  .katex-display>.katex{white-space:nowrap !important;}
   ${displayCss}
 </style></head><body>
 <div id="c"></div>

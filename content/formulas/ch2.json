@@ -61,7 +61,7 @@
       "id": "strain-displacement",
       "kind": "formula",
       "term": "ひずみと変位の関係（微小ひずみ）",
-      "formula": "$$\\begin{aligned}& \\varepsilon_x =\\partial u/\\partial x, \\quad \\gamma_{xy} =\\partial u/\\partial y+\\partial v/\\partial x \\\\ & \\varepsilon_y =\\partial v/\\partial y, \\quad \\gamma_{yz} =\\partial v/\\partial z+\\partial w/\\partial y \\\\ & \\varepsilon_z =\\partial w/\\partial z, \\quad \\gamma_{zx} =\\partial w/\\partial x+\\partial u/\\partial z\\end{aligned}$$",
+      "formula": "$$\\begin{aligned}& \\varepsilon_x =\\partial u/\\partial x \\\\ & \\varepsilon_y =\\partial v/\\partial y \\\\ & \\varepsilon_z =\\partial w/\\partial z \\\\ & \\gamma_{xy} =\\partial u/\\partial y+\\partial v/\\partial x \\\\ & \\gamma_{yz} =\\partial v/\\partial z+\\partial w/\\partial y \\\\ & \\gamma_{zx} =\\partial w/\\partial x+\\partial u/\\partial z\\end{aligned}$$",
       "body": "変位 $u,v,w$ を微分すると各方向の垂直ひずみ、斜め方向の組合せでせん断ひずみが得られます。$\\gamma_{yz}=\\partial v/\\partial z+\\partial w/\\partial y$、$\\gamma_{zx}=\\partial w/\\partial x+\\partial u/\\partial z$ も同様です。",
       "example": "変位が1次式なら各ひずみは定数になります（公式問2-7）。",
       "figureImage": "s2StrainDisp"
