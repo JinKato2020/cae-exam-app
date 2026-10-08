@@ -663,11 +663,11 @@
       "choices": [
         "LANは通信事業者の回線を用い、世界規模の広域を結ぶネットワークである",
         "LANは同じ建物内など近接した区域で構築されるネットワークである",
-        "WANは1台のPC内部で部品どうしを結ぶ近距離ネットワークである",
+        "WANは一つの事業所や建物の内部だけに機器を結ぶ構内限定のネットワークである",
         "LANとWANは同義で、規模による区別はない"
       ],
       "answer": 2,
-      "explanation": "【基礎】LAN=Local Area Network(構内網)、WAN=Wide Area Network(広域網)。\n【考え方】「Local=近接」「Wide=広域」の語義から区別する。\n【ポイント】社内・建物内はLAN、地理的に離れた拠点間はWAN。\n【引っかけ】①はWANの説明をLANと取り違えたもの。③はWANの規模を誤認。④両者は規模で明確に区別される。",
+      "explanation": "【基礎】LAN=Local Area Network(構内網)、WAN=Wide Area Network(広域網)。\n【考え方】「Local=近接」「Wide=広域」の語義から区別する。\n【ポイント】社内・建物内はLAN、地理的に離れた拠点間はWAN。\n【引っかけ】①はWANの説明をLANと取り違えたもの。③はLANの説明(構内限定)をWANと取り違えたもの。④両者は規模で明確に区別される。",
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
