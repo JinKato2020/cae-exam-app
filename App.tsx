@@ -63,6 +63,7 @@ import {
   type DailyMap,
   type DailyDigest,
 } from './src/progress';
+import { loadBookmarks, toggleBookmark, isBookmarked, bookmarkIdsFrom, type BookmarkMap } from './src/bookmarks';
 import { maybeAskForReview } from './src/review';
 import Paywall, { type PayTarget } from './src/pro/Paywall';
 import { TERMS_URL, PRIVACY_URL, SUPPORT_MAILTO_URL } from './src/config/revenuecat';
@@ -205,6 +206,8 @@ function AppInner(props: { contentVersion: number }) {
 
   const [tab, setTab] = useState<Tab>('home');
   const [progress, setProgress] = useState<ProgressMap>({});
+  // ブックマーク（栞）。後で見返したい問題にユーザーが付ける。ホームの「ブックマークを復習」で使う。
+  const [bookmarks, setBookmarks] = useState<BookmarkMap>({});
   // 日別ログ（連続日数・今日の学習量・直近の活動グラフ用）
   const [daily, setDaily] = useState<DailyMap>({});
 
@@ -284,6 +287,7 @@ function AppInner(props: { contentVersion: number }) {
       }
     });
     loadDaily().then(setDaily);
+    loadBookmarks().then(setBookmarks);
   }, []);
 
   // Proの初期化・同期。まず端末保存値を読み（オフラインでも即反映）、次にストアと同期して最新化。
@@ -314,6 +318,21 @@ function AppInner(props: { contentVersion: number }) {
     const ids = new Set(fieldGradeChapters(field, grade).flatMap((c) => c.data.questions.map((q) => q.id)));
     return wrongQuestions.filter((q) => ids.has(q.id));
   }, [wrongQuestions, field, grade, props.contentVersion]);
+
+  // ブックマーク（栞）を付けた問題。登録が新しい順。ホームの「ブックマークを復習」は
+  // 要復習と同様、いま選んでいる分野×級のぶんだけに絞る（分野の取り違え防止）。
+  const bookmarkQuestions = useMemo(
+    () => questionsByIds(bookmarkIdsFrom(bookmarks)),
+    [bookmarks, props.contentVersion]
+  );
+  const courseBookmarkQuestions = useMemo(() => {
+    const ids = new Set(fieldGradeChapters(field, grade).flatMap((c) => c.data.questions.map((q) => q.id)));
+    return bookmarkQuestions.filter((q) => ids.has(q.id));
+  }, [bookmarkQuestions, field, grade, props.contentVersion]);
+  // 栞のトグル（付ける/外す）。保存してからReact状態を更新。
+  async function onToggleBookmark(id: string) {
+    setBookmarks(await toggleBookmark(bookmarks, id));
+  }
 
   // 出題を開始（章 or 復習）。startIndex から表示。
   function openProblems(list: Question[], title: string, startIndex = 0) {
@@ -384,7 +403,13 @@ function AppInner(props: { contentVersion: number }) {
     const ni = i + dir;
     if (ni >= 0 && ni < TAB_ORDER.length) { setFormulaFrom(null); setTab(TAB_ORDER[ni]); }
   }
-  const tabPan = useSwipeNav(() => swipeTab(1), () => swipeTab(-1));
+  // 問題画面・公式/用語の個別画面では、内側の前後スワイプを優先するためタブ切替スワイプを無効化する
+  // （外側がキャプチャ段階で横取りすると内側のスワイプが一切効かなくなるため）。
+  const tabPan = useSwipeNav(
+    () => swipeTab(1),
+    () => swipeTab(-1),
+    !(tab === 'study' && studyView === 'problem') && !(tab === 'formula' && formulaView === 'item')
+  );
 
   return (
     <View style={[styles.container, { backgroundColor: t.bg }]}>
@@ -400,7 +425,8 @@ function AppInner(props: { contentVersion: number }) {
             field={field}
             onChooseFieldGrade={chooseFieldGrade}
             wrongCount={courseWrongQuestions.length}
-            onReview={() => openProblems(courseWrongQuestions, '間違い復習')}
+            bookmarkCount={courseBookmarkQuestions.length}
+            onReview={() => openProblems(courseBookmarkQuestions, 'ブックマーク復習')}
             onGoStudy={() => {
               setStudyView('chapters');
               setTab('study');
@@ -428,6 +454,8 @@ function AppInner(props: { contentVersion: number }) {
             qIndex={qIndex}
             answers={answers}
             progress={progress}
+            bookmarks={bookmarks}
+            onToggleBookmark={onToggleBookmark}
             onPickChapter={(c) => {
               setChapter(c);
               setStudyView('tiles');
@@ -813,6 +841,7 @@ function HomeTab(props: {
   field: FieldId;
   onChooseFieldGrade: (f: FieldId, g: GradeId) => void;
   wrongCount: number;
+  bookmarkCount: number;
   onReview: () => void;
   onGoStudy: () => void;
   onGoFormula: () => void;
@@ -914,7 +943,7 @@ function HomeTab(props: {
       </ImageBackground>
 
       <View style={home.body}>
-        {/* 章別の到達度と成長（ヒーロー直下・レーダー3期比較＋週サマリ＋弱点克服） */}
+        {/* 章別の到達度と成長（ヒーロー直下・レーダー3期比較＋週サマリ＋ブックマーク復習） */}
         <View style={home.secH}>
           <Text style={home.secTitle}>章別の到達度と成長</Text>
           <Text style={home.secSub}>{subjectLabel} · 全{stats.length}章</Text>
@@ -939,8 +968,8 @@ function HomeTab(props: {
               <View style={home.wtile}><Text style={home.wtileV}>{weekN}</Text><Text style={home.wtileL}>今週の問題</Text></View>
               <View style={home.wtile}><Text style={[home.wtileV, { color: wdColor }]}>{wdText}</Text><Text style={home.wtileL}>今週正答率</Text></View>
             </View>
-            <Pressable style={[home.cta, { marginTop: 14 }]} onPress={props.onReview} disabled={props.wrongCount === 0}>
-              <Text style={home.ctaTxt}>⚡ 弱点を克服{props.wrongCount > 0 ? `（要復習 ${props.wrongCount}問）` : '（なし）'}</Text>
+            <Pressable style={[home.cta, { marginTop: 14 }]} onPress={props.onReview} disabled={props.bookmarkCount === 0}>
+              <Text style={home.ctaTxt}>🔖 ブックマークを復習{props.bookmarkCount > 0 ? `（${props.bookmarkCount}問）` : '（なし）'}</Text>
             </Pressable>
           </View>
         </View>
@@ -1296,6 +1325,8 @@ function StudyTab(props: {
   qIndex: number;
   answers: Record<string, number>;
   progress: ProgressMap;
+  bookmarks: BookmarkMap;
+  onToggleBookmark: (id: string) => void;
   onPickChapter: (c: ChapterEntry) => void;
   onPickTile: (i: number) => void;
   onSelectAnswer: (q: Question, n: number) => void;
@@ -1408,6 +1439,8 @@ function StudyTab(props: {
         index={props.qIndex}
         total={props.activeList.length}
         selected={props.answers[q.id] ?? null}
+        bookmarked={isBookmarked(props.bookmarks, q.id)}
+        onToggleBookmark={() => props.onToggleBookmark(q.id)}
         onSelect={(n) => props.onSelectAnswer(q, n)}
         onPrev={() => props.setQIndex(Math.max(props.qIndex - 1, 0))}
         onNext={() => props.setQIndex(Math.min(props.qIndex + 1, props.activeList.length - 1))}
@@ -1477,17 +1510,19 @@ function relatedFormulaItems(q: Question): FormulaItem[] {
 }
 
 // 横スワイプで前後移動。縦スクロールは邪魔しない（横成分が縦より十分大きい時だけ発火）。
-function useSwipeNav(onLeft: () => void, onRight: () => void) {
-  const cb = useRef({ onLeft, onRight });
-  cb.current = { onLeft, onRight };
+function useSwipeNav(onLeft: () => void, onRight: () => void, enabled = true) {
+  // enabled を ref に入れて常に最新を読む。無効化中は responder を一切取らない＝
+  // 内側（問題/用語画面）のスワイプを外側のタブ切替スワイプが横取りしないようにする。
+  const cb = useRef({ onLeft, onRight, enabled });
+  cb.current = { onLeft, onRight, enabled };
   const pan = useRef(
     PanResponder.create({
       onMoveShouldSetPanResponder: (_e, g) =>
-        Math.abs(g.dx) > 24 && Math.abs(g.dx) > Math.abs(g.dy) * 1.8,
+        cb.current.enabled && Math.abs(g.dx) > 24 && Math.abs(g.dx) > Math.abs(g.dy) * 1.8,
       // はっきり横方向のスワイプは、中の ScrollView や数式WebView より先に親が取る
       // （縦スクロール・タップは邪魔しない＝横成分が十分大きい時だけ捕捉）。
       onMoveShouldSetPanResponderCapture: (_e, g) =>
-        Math.abs(g.dx) > 44 && Math.abs(g.dx) > Math.abs(g.dy) * 2,
+        cb.current.enabled && Math.abs(g.dx) > 44 && Math.abs(g.dx) > Math.abs(g.dy) * 2,
       onPanResponderRelease: (_e, g) => {
         if (g.dx <= -50) cb.current.onLeft();
         else if (g.dx >= 50) cb.current.onRight();
@@ -1505,6 +1540,8 @@ function ProblemScreen(props: {
   index: number;
   total: number;
   selected: number | null;
+  bookmarked: boolean;
+  onToggleBookmark: () => void;
   onSelect: (n: number) => void;
   onPrev: () => void;
   onNext: () => void;
@@ -1536,6 +1573,15 @@ function ProblemScreen(props: {
         <Text style={[styles.qSetLabel, { color: t.sub }]} numberOfLines={1}>
           {props.title}
         </Text>
+        {/* 栞（ブックマーク）。付けるとホームの「ブックマークを復習」に入る。 */}
+        <Pressable
+          onPress={props.onToggleBookmark}
+          hitSlop={8}
+          accessibilityLabel={props.bookmarked ? 'ブックマークを外す' : 'ブックマークに追加'}
+          style={[styles.qChev, { backgroundColor: props.bookmarked ? t.amber : t.card }]}
+        >
+          <Text style={[styles.qChevTxt, { color: props.bookmarked ? '#fff' : t.sub, opacity: props.bookmarked ? 1 : 0.5 }]}>🔖</Text>
+        </Pressable>
         <View style={[styles.qCounter, { backgroundColor: t.primary + '18' }]}>
           <Text style={[styles.qCounterTxt, { color: t.primary }]}>
             {props.index + 1} / {props.total}
