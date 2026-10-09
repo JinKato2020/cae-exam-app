@@ -2,168 +2,142 @@
   "grade": "1級",
   "chapter": 1,
   "title": "第1章 非線形解析における応力とひずみ",
-  "intro": "変形が大きい問題(有限変形)では、ひずみも応力も「どの配置(変形前か変形後か)を基準に測るか」で値も名前も変わります。この章では、変形の基本量である変形勾配テンソル$\\mathbf{F}$を出発点に、各種ひずみ(グリーン・ラグランジュ、アルマンジ、対数)と各種応力(コーシー、キルヒホッフ、第1・第2ピオラ・キルヒホッフ)を、剛体回転への不変性・仕事共役・客観応力速度まで、なぜそう定義するのかを噛み砕いて整理します。",
+  "intro": "物を大きく変形させる問題では、ひずみ(伸び具合)も応力(力の込み具合)も、「変形する前の形」と「変形した後の形」のどちらを物差しにして測るかで、値も名前も変わります。この章では、変形のすべてを担う変形勾配テンソル$\\mathbf{F}$を出発点に、いろいろなひずみ(グリーン・ラグランジュ、アルマンジ、対数)といろいろな応力(コーシー、キルヒホッフ、第1・第2ピオラ・キルヒホッフ)を整理します。あわせて、物体をただ回しただけでは値が変わってほしくない『回転不変性・客観性』という大事な性質と、解析での使い分け(TL法とUL法)まで、工学系高校生でも因果で追えるようにかみ砕きます。",
   "items": [
     {
-      "id": "s1ch1-finite-vs-infinitesimal",
+      "id": "s1ch1-1",
       "kind": "term",
+      "figureImage": "s1f1SmallLarge",
       "term": "微小変形理論と有限変形理論(幾何学的非線形)",
       "formula": "",
-      "body": "変形理論は大きく2つに分かれます。微小変形理論は「変形はごく小さい」と仮定し、力の釣り合いを近似的に変形前の形で考えます。線形弾性解析や固有値解析はこれに基づきます。有限変形理論はその仮定を置かず、力の釣り合いを変形後の形で考えます。すると、たとえ材料が線形弾性でも、ひずみが変位に対して非線形になり、釣り合い式(コーシーの運動法則)も非線形になります。この、材料ではなく形の変化そのものから生まれる非線形性を幾何学的非線形性と呼びます。回転を含まない単なる並進の剛体移動は変位が大きくても微小ひずみ問題として扱える場合があり、非線形性の直接原因ではない点に注意します。",
-      "example": "薄い板を大きくたわませる、ゴムを大きく引き伸ばす、細長い柱が座屈する、といった「形が大きく変わる」問題が有限変形理論の対象です。",
-      "figureImage": "s1f1SmallLarge"
+      "body": "変形を扱う理論は大きく2つに分かれます。微小変形理論は「変形はごくわずか」と割り切り、力のつり合いを変形前の形のまま考えます(ふつうの線形弾性解析や固有値解析がこれ)。有限変形理論はその割り切りをやめ、力のつり合いを変形後の形で考えます。すると、たとえ材料そのものはまっすぐな線形弾性でも、ひずみが変位に対して曲がった関係(非線形)になり、つり合いの式も非線形になります。この、材料のせいではなく「形が大きく変わること自体」から生まれる非線形性を幾何学的非線形性と呼びます。注意したいのは、回転を含まずにただ平行移動するだけなら、変位がいくら大きくても微小ひずみの問題として扱えること。つまり「変位が大きい=非線形」ではなく、形や向きが大きく変わることが原因なのです。",
+      "example": "薄い板を大きくたわませる、ゴムを引き伸ばす、細長い柱が座屈して曲がる――こうした「形が大きく変わる」問題が有限変形理論の出番です。"
     },
     {
-      "id": "s1ch1-deformation-gradient",
+      "id": "s1ch1-2",
       "kind": "formula",
+      "figureImage": "s1f1DefGrad",
       "term": "変形勾配テンソル",
-      "formula": "\\mathbf{dx}=\\mathbf{F}\\,\\mathbf{dX},\\qquad F_{ij}=\\dfrac{\\partial x_i}{\\partial X_j}",
-      "body": "有限変形をすべて記述する出発点です。変形前(基準配置)の物質点の位置を$\\mathbf{X}$、変形後(現配置)を$\\mathbf{x}$とすると、物質点まわりの微小ベクトル$\\mathbf{dX}$が変形後に$\\mathbf{dx}$へどう写るかを表す線形変換が変形勾配テンソル$\\mathbf{F}$です。成分は現在座標を基準座標で微分した$\\partial x_i/\\partial X_j$。変位$\\mathbf{u}=\\mathbf{x}-\\mathbf{X}$を使えば$\\mathbf{F}=\\mathbf{I}+\\partial\\mathbf{u}/\\partial\\mathbf{X}$とも書けます。伸び・縮み・せん断・回転をひとまとめに含む量で、一般に対称ではありません。",
-      "example": "せん断変形$x_1=X_1+0.5X_2,\\ x_2=X_2$では$\\mathbf{F}=\\begin{bmatrix}1&0.5\\\\0&1\\end{bmatrix}$。変形が無ければ$\\mathbf{F}=\\mathbf{I}$(単位テンソル)になります。",
-      "figureImage": "s1f1DefGrad"
+      "formula": "$\\mathbf{dx}=\\mathbf{F}\\,\\mathbf{dX},\\qquad F_{ij}=\\dfrac{\\partial x_i}{\\partial X_j}$",
+      "body": "有限変形のすべてを記述する出発点です。変形前のある点の位置を$\\mathbf{X}$、変形後を$\\mathbf{x}$とし、その点のまわりの小さな矢印$\\mathbf{dX}$が変形後に$\\mathbf{dx}$へどう化けるかを表すのが変形勾配テンソル$\\mathbf{F}$で、$\\mathbf{dx}=\\mathbf{F}\\,\\mathbf{dX}$と書きます。成分は変形後の座標を変形前の座標で微分した$\\partial x_i/\\partial X_j$。変位$\\mathbf{u}=\\mathbf{x}-\\mathbf{X}$を使えば$\\mathbf{F}=\\mathbf{I}+\\partial\\mathbf{u}/\\partial\\mathbf{X}$とも表せます。この$\\mathbf{F}$一つに、伸び・縮み・ずれ(せん断)・回転がぜんぶ混ざって入っているのがポイントで、一般には左右対称な行列(対称テンソル)にはなりません。だからこの後、$\\mathbf{F}$から「回転」と「純粋な伸び縮み」を切り分ける作業が必要になります。",
+      "example": "せん断変形$x_1=X_1+0.5X_2,\\ x_2=X_2$なら$\\mathbf{F}=\\begin{bmatrix}1&0.5\\\\0&1\\end{bmatrix}$。まったく変形しなければ$\\mathbf{F}=\\mathbf{I}$(単位テンソル)です。"
     },
     {
-      "id": "s1ch1-cauchy-green",
+      "id": "s1ch1-3",
       "kind": "formula",
-      "term": "右・左コーシー・グリーン変形テンソル",
-      "formula": "\\mathbf{C}=\\mathbf{F}^{T}\\mathbf{F}=\\mathbf{U}^{2},\\qquad \\mathbf{B}=\\mathbf{F}\\mathbf{F}^{T}=\\mathbf{V}^{2}",
-      "body": "変形勾配$\\mathbf{F}$から回転を取り除き、純粋な「伸び縮み」だけを取り出した量です。右コーシー・グリーン変形テンソル$\\mathbf{C}=\\mathbf{F}^{T}\\mathbf{F}$は基準配置で測った伸びの2乗、左コーシー・グリーン変形テンソル$\\mathbf{B}=\\mathbf{F}\\mathbf{F}^{T}$は現配置で測った伸びの2乗に相当し、どちらも対称テンソルです。後述の右ストレッチ$\\mathbf{U}$、左ストレッチ$\\mathbf{V}$を用いると$\\mathbf{C}=\\mathbf{U}^2,\\ \\mathbf{B}=\\mathbf{V}^2$と表せます。線素の長さ変化$(dl)^2-(dl_0)^2=\\mathbf{dX}\\cdot(\\mathbf{C}-\\mathbf{I})\\cdot\\mathbf{dX}$を通じてひずみに直結します。",
-      "example": "剛体回転だけ($\\mathbf{F}=\\mathbf{R}$、$\\mathbf{R}$は直交)なら$\\mathbf{C}=\\mathbf{R}^{T}\\mathbf{R}=\\mathbf{I}$。伸びが無いので長さは変わらない、と正しく判定できます。",
-      "figureImage": "s1f1CauchyGreen"
+      "figureImage": "s1f1Polar",
+      "term": "極分解とコーシー・グリーン変形テンソル",
+      "formula": "$\\mathbf{F}=\\mathbf{R}\\mathbf{U}=\\mathbf{V}\\mathbf{R},\\qquad \\mathbf{C}=\\mathbf{F}^{T}\\mathbf{F}=\\mathbf{U}^{2}$",
+      "body": "変形勾配$\\mathbf{F}$には回転と伸び縮みが混ざっているので、これを「回転$\\mathbf{R}$」と「純粋な伸び縮み(ストレッチ)$\\mathbf{U}$または$\\mathbf{V}$」の掛け算にきれいに分けます。これを極分解といい、$\\mathbf{F}=\\mathbf{R}\\mathbf{U}$(先に伸ばしてから回す)$=\\mathbf{V}\\mathbf{R}$(先に回してから伸ばす)と一通りに決まります。$\\mathbf{R}$は向きを変えるだけの回転(直交テンソル)、$\\mathbf{U},\\mathbf{V}$は伸び縮みを表す対称テンソルです。回転を打ち消して伸び具合だけを取り出した量が右・左コーシー・グリーン変形テンソルで、$\\mathbf{C}=\\mathbf{F}^{T}\\mathbf{F}=\\mathbf{U}^2$(変形前が基準)、$\\mathbf{B}=\\mathbf{F}\\mathbf{F}^{T}=\\mathbf{V}^2$(変形後が基準)。たとえば回転だけ($\\mathbf{F}=\\mathbf{R}$)なら$\\mathbf{C}=\\mathbf{R}^{T}\\mathbf{R}=\\mathbf{I}$となって「伸びゼロ」と正しく判定できます。回転と伸びを分けられるおかげで、ひずみが回転に振り回されないかを見分けられます。",
+      "example": "正方形を$X_1$方向に2倍伸ばしてから角度$\\theta$回すと$\\mathbf{U}=\\begin{bmatrix}2&0\\\\0&1\\end{bmatrix}$、$\\mathbf{R}$は回転行列で$\\mathbf{F}=\\mathbf{R}\\mathbf{U}$。左ストレッチは$\\mathbf{V}=\\mathbf{R}\\mathbf{U}\\mathbf{R}^{T}$で求まります。"
     },
     {
-      "id": "s1ch1-polar-decomposition",
+      "id": "s1ch1-4",
       "kind": "formula",
-      "term": "極分解(回転とストレッチ)",
-      "formula": "\\mathbf{F}=\\mathbf{R}\\mathbf{U}=\\mathbf{V}\\mathbf{R}",
-      "body": "変形勾配$\\mathbf{F}$は必ず「回転$\\mathbf{R}$」と「伸び縮み(ストレッチ)$\\mathbf{U}$または$\\mathbf{V}$」の積に一意に分解できます。これを極分解といいます。$\\mathbf{R}$は直交テンソル(剛体回転)、$\\mathbf{U}$は右ストレッチテンソル、$\\mathbf{V}$は左ストレッチテンソルで、$\\mathbf{U},\\mathbf{V}$は対称です。右極分解$\\mathbf{F}=\\mathbf{R}\\mathbf{U}$は「基準配置でまず伸ばしてから回転する」、左極分解$\\mathbf{F}=\\mathbf{V}\\mathbf{R}$は「先に回転してから現配置で伸ばす」という順序の違いを表します。この分解のおかげで、ひずみが回転成分$\\mathbf{R}$の影響を受けるかどうかを見分けられます。",
-      "example": "正方形を$X_1$方向に2倍伸ばしてから角度$\\theta$回転させると、$\\mathbf{R}=\\begin{bmatrix}\\cos\\theta&-\\sin\\theta\\\\\\sin\\theta&\\cos\\theta\\end{bmatrix}$、$\\mathbf{U}=\\begin{bmatrix}2&0\\\\0&1\\end{bmatrix}$で$\\mathbf{F}=\\mathbf{R}\\mathbf{U}$。左ストレッチは$\\mathbf{V}=\\mathbf{R}\\mathbf{U}\\mathbf{R}^{T}$で求まります。",
-      "figureImage": "s1f1Polar"
-    },
-    {
-      "id": "s1ch1-green-lagrange",
-      "kind": "formula",
+      "figureImage": "s1f1GreenLag",
       "term": "グリーン・ラグランジュひずみ",
-      "formula": "\\mathbf{E}=\\tfrac12(\\mathbf{F}^{T}\\mathbf{F}-\\mathbf{I})=\\tfrac12(\\mathbf{C}-\\mathbf{I})",
-      "body": "変形前配置(基準配置)を基準にして測る、有限変形の代表的なひずみです。線素の長さ変化$(dl)^2-(dl_0)^2=2\\,\\mathbf{dX}\\cdot\\mathbf{E}\\cdot\\mathbf{dX}$を素直に与えるように定義されており、$\\mathbf{E}=\\tfrac12(\\mathbf{C}-\\mathbf{I})$と書けます。対称テンソルで、成分は$E_{ij}=\\tfrac12(\\partial u_i/\\partial X_j+\\partial u_j/\\partial X_i+\\partial u_k/\\partial X_i\\,\\partial u_k/\\partial X_j)$。最後の2次の積の項が微小ひずみとの違いで、これが幾何学的非線形性を担います。純粋な剛体回転($\\mathbf{F}=\\mathbf{R}$)では$\\mathbf{E}=\\mathbf{0}$となり、回転だけでひずみが出ない望ましい性質をもちます。",
-      "example": "単軸で初期長$L$が現長$l$になったとき$\\mathbf{F}=l/L$で、$E=\\tfrac12\\{(l/L)^2-1\\}$。$l/L$が1に近い(微小変形)ときは$E\\approx (l-L)/L$となり、いつもの工学ひずみに一致します。",
-      "figureImage": "s1f1GreenLag"
+      "formula": "$\\mathbf{E}=\\tfrac12(\\mathbf{F}^{T}\\mathbf{F}-\\mathbf{I})=\\tfrac12(\\mathbf{C}-\\mathbf{I})$",
+      "body": "変形前の形(基準配置)を物差しにして測る、有限変形の代表的なひずみです。小さな線の長さが変形でどれだけ変わったかを素直に表すように$(dl)^2-(dl_0)^2=2\\,\\mathbf{dX}\\cdot\\mathbf{E}\\cdot\\mathbf{dX}$と定義され、$\\mathbf{E}=\\tfrac12(\\mathbf{C}-\\mathbf{I})$と書けます。成分には$\\tfrac12(\\partial u_i/\\partial X_j+\\partial u_j/\\partial X_i+\\partial u_k/\\partial X_i\\,\\partial u_k/\\partial X_j)$のように、ふつうの微小ひずみにはない「2つの傾きの掛け算の項」が付きます。この2次の項こそが幾何学的非線形性の正体です。うれしい性質は、ただ回転しただけ($\\mathbf{F}=\\mathbf{R}$)ならきちんと$\\mathbf{E}=\\mathbf{0}$になること。向きを変えただけで「伸びた」と誤解しないので、大回転を含む解析で安心して使えます。",
+      "example": "初期長$L$が現長$l$になると$\\mathbf{F}=l/L$で$E=\\tfrac12\\{(l/L)^2-1\\}$。$l/L$が1に近い小変形では$E\\approx(l-L)/L$となり、いつもの工学ひずみに一致します。"
     },
     {
-      "id": "s1ch1-almansi",
+      "id": "s1ch1-5",
       "kind": "formula",
+      "figureImage": "s1f1Almansi",
       "term": "アルマンジ(オイラー)ひずみ",
-      "formula": "\\mathbf{A}=\\tfrac12(\\mathbf{I}-(\\mathbf{F}\\mathbf{F}^{T})^{-1})=\\tfrac12(\\mathbf{I}-\\mathbf{B}^{-1})",
-      "body": "グリーン・ラグランジュひずみが変形前を基準にするのに対し、アルマンジひずみは変形後配置(現配置)を基準に測る有限変形ひずみです。同じ長さ変化を$(dl)^2-(dl_0)^2=2\\,\\mathbf{dx}\\cdot\\mathbf{A}\\cdot\\mathbf{dx}$と現配置の$\\mathbf{dx}$で表す定義になっており、左コーシー・グリーン$\\mathbf{B}$の逆を用います。対称テンソルで、剛体回転だけなら$\\mathbf{A}=\\mathbf{0}$です。成分は現在座標$x$での微分$A_{ij}=\\tfrac12(\\partial u_i/\\partial x_j+\\partial u_j/\\partial x_i-\\partial u_k/\\partial x_i\\,\\partial u_k/\\partial x_j)$。微小変形では2次項が消え、$\\mathbf{E}$とも微小ひずみテンソルとも一致します。",
-      "example": "単軸では$A=\\tfrac12\\{1-(L/l)^2\\}$。微小変形では$A\\approx (l-L)/l=u/l$(現長基準)、グリーン・ラグランジュは$E\\approx u/L$(初期長基準)と、基準の取り方だけが違います。",
-      "figureImage": "s1f1Almansi"
+      "formula": "$\\mathbf{A}=\\tfrac12(\\mathbf{I}-(\\mathbf{F}\\mathbf{F}^{T})^{-1})=\\tfrac12(\\mathbf{I}-\\mathbf{B}^{-1})$",
+      "body": "グリーン・ラグランジュひずみが「変形前の形」を物差しにするのに対し、アルマンジひずみは「変形後の形(現配置)」を物差しにして測る有限変形ひずみです。同じ長さの変化を変形後の矢印$\\mathbf{dx}$で$(dl)^2-(dl_0)^2=2\\,\\mathbf{dx}\\cdot\\mathbf{A}\\cdot\\mathbf{dx}$と表すよう定義され、左コーシー・グリーン$\\mathbf{B}$の逆を使って$\\mathbf{A}=\\tfrac12(\\mathbf{I}-\\mathbf{B}^{-1})$と書けます。対称テンソルで、回転だけなら$\\mathbf{A}=\\mathbf{0}$。成分は今の座標$x$での微分で表します。中身は$\\mathbf{E}$と同じ現象を別の物差しで測っただけなので、変形が小さいときは$\\mathbf{E}$ともふつうの微小ひずみとも一致します。物差しを変形前にとるか変形後にとるか、それだけの違いと覚えると整理できます。",
+      "example": "単軸では$A=\\tfrac12\\{1-(L/l)^2\\}$。小変形では$A\\approx(l-L)/l=u/l$(現長が基準)で、$E\\approx u/L$(初期長が基準)とは分母の取り方だけが違います。"
     },
     {
-      "id": "s1ch1-strain-rigid-rotation",
-      "kind": "term",
-      "term": "ひずみの剛体回転不変性(EとAの違い)",
-      "formula": "",
-      "body": "有限変形では「ひずみが剛体回転で変わらないか」が重要です。変形後にさらに$\\mathbf{Q}$だけ全体を回転させると$\\mathbf{F}'=\\mathbf{Q}\\mathbf{F}$になります。このときグリーン・ラグランジュひずみは$\\mathbf{E}'=\\tfrac12(\\mathbf{F}'^{T}\\mathbf{F}'-\\mathbf{I})=\\tfrac12(\\mathbf{F}^{T}\\mathbf{Q}^{T}\\mathbf{Q}\\mathbf{F}-\\mathbf{I})=\\mathbf{E}$となり、回転の影響を全く受けません(観測不変量)。一方アルマンジひずみは$\\mathbf{A}'=\\mathbf{Q}\\mathbf{A}\\mathbf{Q}^{T}$となり、成分が回転で回ってしまいます(客観テンソル)。物体の材料は回すだけでは伸びないので、構成則(応力とひずみの関係)を立てるときは、基準配置量には$\\mathbf{E}$、現配置量には$\\mathbf{A}$のように、回転の扱いをそろえた組合せを使う必要があります。",
-      "example": "物体を持ち上げて向きを変えただけでは、内部の伸びは変わりません。この当たり前を数式で保証するのが$\\mathbf{E}$の回転不変性です。",
-      "figureImage": "s1f1RigidRot"
-    },
-    {
-      "id": "s1ch1-log-strain",
+      "id": "s1ch1-6",
       "kind": "formula",
+      "figureImage": "s1f1StrainCompare",
       "term": "対数(真)ひずみ",
-      "formula": "\\ln\\mathbf{U}=\\textstyle\\sum_i(\\ln\\lambda_i)\\,\\hat{\\mathbf{e}}_i\\otimes\\hat{\\mathbf{e}}_i,\\qquad \\varepsilon_t=\\ln\\dfrac{l}{L}=\\ln(1+\\varepsilon_n)",
-      "body": "汎用解析コードで多用される、大変形に自然なひずみです。ストレッチの主値(主伸び)$\\lambda_i$の対数を各主軸方向にとったもので、$\\ln\\mathbf{U}$(基準配置基準)や$\\ln\\mathbf{V}$(現配置基準、これが真ひずみ)と書きます。単軸では$\\varepsilon_t=\\ln(l/L)$。増分がそのまま足し合わせられる、体積一定変形を扱いやすい、といった利点があります。公称(工学)ひずみ$\\varepsilon_n=(l-L)/L$とは$\\varepsilon_t=\\ln(1+\\varepsilon_n)$で換算でき、ひずみが小さいうちは$\\varepsilon_t\\approx\\varepsilon_n$とほぼ同じですが、大きくなるほど差が開きます。",
-      "example": "長さを2倍に伸ばすと公称ひずみは$1.0$(100%)ですが、対数ひずみは$\\ln 2\\approx0.69$。半分に縮めると対数ひずみは$\\ln 0.5\\approx-0.69$と、伸びと縮みが符号だけ違う対称な値になります。",
-      "figureImage": "s1f1StrainCompare"
+      "formula": "$\\varepsilon_t=\\ln\\dfrac{l}{L}=\\ln(1+\\varepsilon_n)$",
+      "body": "汎用の解析ソフトでよく使われる、大変形に素直なひずみです。伸び率(ストレッチの主値)$\\lambda_i$の対数を各方向にとったもので、単軸なら$\\varepsilon_t=\\ln(l/L)$と書きます。何がうれしいかというと、少しずつ変形を足していったとき、その増分をそのまま足し算できること、そして体積が変わらない変形を扱いやすいことです。公称(工学)ひずみ$\\varepsilon_n=(l-L)/L$とは$\\varepsilon_t=\\ln(1+\\varepsilon_n)$で換算でき、ひずみが小さいうちは$\\varepsilon_t\\approx\\varepsilon_n$とほぼ同じですが、大きくなるほど差が開きます。飴を少しずつ引き伸ばすとき、残っている長さを基準に伸びを足していくイメージで、大きく延ばすほど公称ひずみとのズレが目立ってきます。",
+      "example": "長さを2倍に伸ばすと公称ひずみは$1.0$(100%)ですが対数ひずみは$\\ln2\\approx0.69$。半分に縮めると$\\ln0.5\\approx-0.69$と、伸びと縮みが符号だけ違う対称な値になります。"
     },
     {
-      "id": "s1ch1-nominal-true-stress",
+      "id": "s1ch1-7",
       "kind": "formula",
+      "figureImage": "s1f1StressCompare",
       "term": "公称応力と真応力(単軸)",
-      "formula": "\\sigma_n=\\dfrac{P}{A_0},\\qquad \\sigma_t=\\dfrac{P}{a},\\qquad \\sigma_t=\\sigma_n(1+\\varepsilon_n)",
-      "body": "同じ引張荷重$P$でも、どの断面積で割るかで応力の呼び名が変わります。公称応力(工学応力)$\\sigma_n=P/A_0$は変形前の断面積$A_0$で割った値、真応力$\\sigma_t=P/a$は変形して細くなった現在の断面積$a$で割った値です。引張では断面が縮む($a<A_0$)ので、真応力は公称応力より大きくなります。体積が変わらない(非圧縮)と仮定すると$A_0 L=a\\,l$から$a=A_0/(1+\\varepsilon_n)$となり、換算式$\\sigma_t=\\sigma_n(1+\\varepsilon_n)$が得られます。材料の本当の抵抗を表すのは真応力なので、大変形の材料試験データは真応力・対数ひずみで整理します。",
-      "example": "公称ひずみ$\\varepsilon_n=0.5$(50%伸び)で公称応力が$200\\,\\mathrm{MPa}$なら、非圧縮なら真応力は$200\\times(1+0.5)=300\\,\\mathrm{MPa}$になります。",
-      "figureImage": "s1f1StressCompare"
+      "formula": "$\\sigma_n=\\dfrac{P}{A_0},\\qquad \\sigma_t=\\dfrac{P}{a},\\qquad \\sigma_t=\\sigma_n(1+\\varepsilon_n)$",
+      "body": "同じ引張荷重$P$でも、どの断面積で割るかで応力の呼び名が変わります。公称応力(工学応力)$\\sigma_n=P/A_0$は変形前の断面積$A_0$で割った値、真応力$\\sigma_t=P/a$は引っぱられて細くなった今の断面積$a$で割った値です。引張では断面が縮む($a<A_0$)ので、真応力のほうが公称応力より大きく出ます。体積が変わらない(非圧縮)と仮定すれば$A_0L=a\\,l$から$a=A_0/(1+\\varepsilon_n)$となり、換算式$\\sigma_t=\\sigma_n(1+\\varepsilon_n)$が得られます。材料が本当に感じている力を表すのは真応力なので、大変形の材料データは真応力と対数ひずみの組で整理するのが基本です。飴を引き伸ばすと細くなった所に力が集中するのと同じ理屈です。",
+      "example": "公称ひずみ$\\varepsilon_n=0.5$(50%伸び)で公称応力が$200\\,\\mathrm{MPa}$なら、非圧縮では真応力は$200\\times(1+0.5)=300\\,\\mathrm{MPa}$になります。"
     },
     {
-      "id": "s1ch1-cauchy-stress",
+      "id": "s1ch1-8",
       "kind": "formula",
+      "figureImage": "s1f1Cauchy",
       "term": "コーシー応力テンソルと応力ベクトル(コーシーの公式)",
-      "formula": "\\mathbf{t}(\\mathbf{n})=\\mathbf{T}^{T}\\mathbf{n},\\qquad t_i=T_{ji}n_j",
-      "body": "変形後の物体を仮想的に切ったとき、その切断面(単位法線$\\mathbf{n}$)の単位面積あたりに働く力が応力ベクトル$\\mathbf{t}(\\mathbf{n})=d\\mathbf{f}/ds$です。面の向き$\\mathbf{n}$が変われば$\\mathbf{t}$も変わりますが、その対応が線形であることをコーシーが示しました。これがコーシーの公式$\\mathbf{t}=\\mathbf{T}^{T}\\mathbf{n}$で、比例係数にあたる$\\mathbf{T}$がコーシー応力テンソル(真応力テンソル)です。現配置で定義され、対称テンソル($\\mathbf{T}=\\mathbf{T}^{T}$、コーシーの第2運動法則より)なので実質$\\mathbf{t}=\\mathbf{T}\\mathbf{n}$と書いても同じです。座標軸に垂直な面での成分がそのまま垂直応力・せん断応力になります。",
-      "example": "$\\mathbf{T}=\\begin{bmatrix}1.0&0.5&0\\\\0.5&2.0&0\\\\0&0&1.0\\end{bmatrix}$、面法線$\\mathbf{n}=(0,-1,0)$なら$\\mathbf{t}=(-0.5,\\,-2.0,\\,0.0)$。法線方向の$-2.0$が垂直応力、$-0.5$がせん断応力です。",
-      "figureImage": "s1f1Cauchy"
+      "formula": "$\\mathbf{t}(\\mathbf{n})=\\mathbf{T}^{T}\\mathbf{n},\\qquad t_i=T_{ji}n_j$",
+      "body": "変形後の物体を頭の中でスパッと切ったとき、その切り口(向きを単位法線$\\mathbf{n}$で表す)の単位面積あたりに働く力が応力ベクトル$\\mathbf{t}(\\mathbf{n})$です。切る向き$\\mathbf{n}$を変えれば$\\mathbf{t}$も変わりますが、その対応がきれいな比例(線形)になることをコーシーが示しました。これがコーシーの公式$\\mathbf{t}=\\mathbf{T}^{T}\\mathbf{n}$で、比例の係数にあたる$\\mathbf{T}$がコーシー応力テンソル(真応力テンソル)です。変形後の形で定義され、左右対称な対称テンソル($\\mathbf{T}=\\mathbf{T}^{T}$)なので$\\mathbf{t}=\\mathbf{T}\\mathbf{n}$と書いても同じです。座標軸に垂直な面での成分が、そのまま私たちのよく知る垂直応力・せん断応力になります。どの向きの切り口の力も、この一つのテンソルから計算できるわけです。",
+      "example": "$\\mathbf{T}=\\begin{bmatrix}1.0&0.5&0\\\\0.5&2.0&0\\\\0&0&1.0\\end{bmatrix}$で面法線$\\mathbf{n}=(0,-1,0)$なら$\\mathbf{t}=(-0.5,-2.0,0)$。$-2.0$が垂直応力、$-0.5$がせん断応力です。"
     },
     {
-      "id": "s1ch1-jacobian",
+      "id": "s1ch1-9",
       "kind": "formula",
+      "figureImage": "s1f1Jacobian",
       "term": "ヤコビアンと体積変化",
-      "formula": "J=\\det\\mathbf{F},\\qquad dv=J\\,dV,\\qquad \\rho_0=J\\rho",
-      "body": "変形勾配$\\mathbf{F}$の行列式$J=\\det\\mathbf{F}$は、微小体積が変形でどれだけ膨らむ・縮むかを表す体積変化率です。基準配置の微小体積$dV$は現配置で$dv=J\\,dV$になります。質量は保存するので密度は$\\rho_0=J\\rho$(基準密度$\\rho_0$)。体積が変わらない非圧縮変形では$J=1$になり、ゴムや金属の塑性大変形の解析で重要な条件になります。$J$は各種応力を互いに換算する式にも必ず現れる基本量です。",
-      "example": "各方向に一様に2倍(等方膨張)なら$\\mathbf{F}=2\\mathbf{I}$で$J=2^3=8$、体積は8倍。非圧縮の単軸引張で長さ2倍なら断面積は半分になり$J=2\\times\\tfrac12=1$を保ちます。",
-      "figureImage": "s1f1Jacobian"
+      "formula": "$J=\\det\\mathbf{F},\\qquad dv=J\\,dV,\\qquad \\rho_0=J\\rho$",
+      "body": "変形勾配$\\mathbf{F}$の行列式$J=\\det\\mathbf{F}$は、小さな体積が変形でどれだけ膨らむ・縮むかを表す「体積の倍率」です。変形前の小体積$dV$は変形後に$dv=J\\,dV$になります。中身(質量)は変わらないので、密度は$\\rho_0=J\\rho$の関係になります。体積が変わらない非圧縮変形では$J=1$。ゴムや、金属が大きく塑性変形するときはこの$J=1$が重要な条件になります。しかも$J$は、この後に出てくるいろいろな応力どうしを換算する式に必ず顔を出す、縁の下の力持ちの基本量です。風船を均等にふくらませると体積が何倍になるかを表す数、と考えると直感的です。",
+      "example": "各方向に一様に2倍(等方膨張)なら$\\mathbf{F}=2\\mathbf{I}$で$J=2^3=8$、体積は8倍。非圧縮の単軸引張で長さ2倍なら断面積が半分になり$J=2\\times\\tfrac12=1$を保ちます。"
     },
     {
-      "id": "s1ch1-kirchhoff-stress",
+      "id": "s1ch1-10",
       "kind": "formula",
-      "term": "キルヒホッフ応力",
-      "formula": "\\boldsymbol{\\tau}=J\\mathbf{T}=(\\det\\mathbf{F})\\,\\mathbf{T}",
-      "body": "コーシー応力$\\mathbf{T}$に体積変化率$J$を掛けただけの応力で、キルヒホッフ応力$\\boldsymbol{\\tau}=J\\mathbf{T}$と定義します。コーシー応力と同じく対称テンソルです。現配置で定義したコーシー応力を、基準配置の単位体積あたりに引き直した量にあたり、大ひずみ弾塑性の構成則や仕事率の計算で扱いが楽になるため用いられます。非圧縮($J=1$)ではコーシー応力と一致します。",
-      "example": "$J=1.2$(1.2倍に膨張)でコーシー応力が$100\\,\\mathrm{MPa}$なら、キルヒホッフ応力は$120\\,\\mathrm{MPa}$。体積が変わらない解析では$\\boldsymbol{\\tau}=\\mathbf{T}$とみなせます。",
-      "figureImage": "s1f1Kirchhoff"
+      "figureImage": "s1f1Piola",
+      "term": "キルヒホッフ応力と第1・第2ピオラ・キルヒホッフ応力",
+      "formula": "$\\boldsymbol{\\tau}=J\\mathbf{T},\\qquad \\boldsymbol{\\Pi}=J\\mathbf{F}^{-1}\\mathbf{T},\\qquad \\mathbf{S}=J\\mathbf{F}^{-1}\\mathbf{T}\\mathbf{F}^{-T}$",
+      "body": "コーシー応力$\\mathbf{T}$は「変形後の面」で定義されるため、変形前の形のまま計算を組む解析では使いにくく、応力を変形前の面に引き戻した仲間を用意します。キルヒホッフ応力$\\boldsymbol{\\tau}=J\\mathbf{T}$は$\\mathbf{T}$に体積倍率$J$を掛けただけの対称テンソルで、計算を楽にするために使います。第1種ピオラ・キルヒホッフ応力$\\boldsymbol{\\Pi}$は、力を向きそのままに変形前の面へ載せ替えた応力で、単軸では変形前断面積で割った公称応力に一致しますが対称ではありません。第2種ピオラ・キルヒホッフ応力$\\mathbf{S}$は、力自体も$\\mathbf{F}^{-1}$で変形前へ引き戻した応力で、対称かつ「ただ回しても値が変わらない」優れた性質をもちます。コーシー応力へは$\\mathbf{T}=\\tfrac1J\\mathbf{F}\\mathbf{S}\\mathbf{F}^{T}$で戻せます。",
+      "example": "回転$\\mathbf{Q}$を加えても$\\mathbf{S}$は値が変わりません。だから大変形の構成則は、同じく回転に強いグリーン・ラグランジュひずみ$\\mathbf{E}$と$\\mathbf{S}$の組で書くと扱いやすいのです。"
     },
     {
-      "id": "s1ch1-piola-kirchhoff",
+      "id": "s1ch1-11",
       "kind": "formula",
-      "term": "第1・第2ピオラ・キルヒホッフ応力",
-      "formula": "\\boldsymbol{\\Pi}=J\\mathbf{F}^{-1}\\mathbf{T},\\qquad \\mathbf{S}=J\\mathbf{F}^{-1}\\mathbf{T}\\mathbf{F}^{-T}",
-      "body": "コーシー応力は変形後の面で定義されるため、変形前の形で組む解析(トータルラグランジュ法)では使いにくく、そこで基準配置の面に引き戻した応力を使います。第1種ピオラ・キルヒホッフ応力$\\boldsymbol{\\Pi}$は、現配置の力を「向きを変えず」そのまま基準配置の面に載せた応力で、単軸では変形前断面積で割った公称応力に一致しますが、対称テンソルではありません。第2種ピオラ・キルヒホッフ応力$\\mathbf{S}$は、力自体も$\\mathbf{F}^{-1}$で基準配置へ引き戻した応力で、対称テンソルであり、しかも剛体回転で変わらない(観測不変量)という優れた性質をもちます。コーシー応力へは$\\mathbf{T}=\\tfrac1J\\mathbf{F}\\mathbf{S}\\mathbf{F}^{T}$で戻せます。",
-      "example": "剛体回転$\\mathbf{Q}$を加えても$\\mathbf{S}^{*}=\\mathbf{S}$のまま(グリーン・ラグランジュひずみ$\\mathbf{E}$と同じ性質)。だから大変形の構成則は$\\mathbf{S}$と$\\mathbf{E}$の組で書くと回転の心配が要りません。",
-      "figureImage": "s1f1Piola"
-    },
-    {
-      "id": "s1ch1-work-conjugate",
-      "kind": "formula",
+      "figureImage": "s1f1Conjugate",
       "term": "仕事共役",
-      "formula": "\\dot{W}=J\\,\\mathbf{T}\\!:\\!\\mathbf{D}=\\boldsymbol{\\tau}\\!:\\!\\mathbf{D}=\\boldsymbol{\\Pi}^{T}\\!:\\!\\dot{\\mathbf{F}}=\\mathbf{S}\\!:\\!\\dot{\\mathbf{E}}",
-      "body": "応力とひずみは、掛け合わせると単位体積あたりの仕事率(エネルギーの増える速さ)になる「正しい相方」どうしで組む必要があります。この関係を仕事共役といいます。基準配置の単位体積で見た仕事率$\\dot{W}$は、上式のようにどの応力・ひずみ対で計算しても同じ値になります。代表的な共役対は、第2ピオラ・キルヒホッフ応力$\\mathbf{S}$とグリーン・ラグランジュひずみ$\\mathbf{E}$(ともに基準配置・回転不変)、キルヒホッフ応力$\\boldsymbol{\\tau}$とストレッチングテンソル$\\mathbf{D}$、第1ピオラ・キルヒホッフ応力$\\boldsymbol{\\Pi}$と変形勾配$\\mathbf{F}$です。共役でない組合せを使うとエネルギーの帳尻が合わず、非線形解析が正しく収束しません。",
-      "example": "仮想仕事の原理を立てるとき、変形前配置基準なら$\\int \\mathbf{S}\\!:\\!\\delta\\mathbf{E}\\,dV$、現配置基準なら$\\int \\mathbf{T}\\!:\\!\\delta\\boldsymbol{\\varepsilon}\\,dv$のように、必ず共役対を内積にして内部仕事を書きます。",
-      "figureImage": "s1f1Conjugate"
+      "formula": "$\\dot{W}=\\boldsymbol{\\tau}\\!:\\!\\mathbf{D}=\\boldsymbol{\\Pi}^{T}\\!:\\!\\dot{\\mathbf{F}}=\\mathbf{S}\\!:\\!\\dot{\\mathbf{E}}$",
+      "body": "応力とひずみは、掛け合わせると「単位体積あたりに仕事が増える速さ(エネルギーの増え方)」になる“正しい相方どうし”で組む必要があります。この相性を仕事共役といいます。変形前の単位体積で見た仕事率$\\dot{W}$は、どの正しい組で計算しても同じ値になります。代表的な相方は、第2ピオラ・キルヒホッフ応力$\\mathbf{S}$とグリーン・ラグランジュひずみ$\\mathbf{E}$(どちらも変形前が基準で回転に強い)、キルヒホッフ応力$\\boldsymbol{\\tau}$とストレッチングテンソル$\\mathbf{D}$、第1ピオラ・キルヒホッフ応力$\\boldsymbol{\\Pi}$と変形勾配$\\mathbf{F}$です。相性の悪い組を混ぜて使うとエネルギーの帳尻が合わず、非線形解析がうまく収束しません。だから仮想仕事の式を立てるときは、必ず共役な組を内積にして内部の仕事を書きます。",
+      "example": "変形前が基準なら$\\int\\mathbf{S}\\!:\\!\\delta\\mathbf{E}\\,dV$、変形後が基準なら$\\int\\mathbf{T}\\!:\\!\\delta\\boldsymbol{\\varepsilon}\\,dv$のように、いつもペアの相方どうしで内部仕事を書きます。"
     },
     {
-      "id": "s1ch1-velocity-gradient",
+      "id": "s1ch1-12",
       "kind": "formula",
+      "figureImage": "s1f1VelGrad",
       "term": "速度勾配・ストレッチングテンソル・スピンテンソル",
-      "formula": "\\mathbf{L}=\\dot{\\mathbf{F}}\\mathbf{F}^{-1},\\quad \\mathbf{D}=\\tfrac12(\\mathbf{L}+\\mathbf{L}^{T}),\\quad \\mathbf{W}=\\tfrac12(\\mathbf{L}-\\mathbf{L}^{T})",
-      "body": "大変形を時間を追って解くときは、変形そのものより「変形の速さ」で考えると便利です。速度$\\mathbf{v}$を現在座標で微分した$L_{ij}=\\partial v_i/\\partial x_j$が速度勾配テンソルで、$\\mathbf{L}=\\dot{\\mathbf{F}}\\mathbf{F}^{-1}$とも書けます。これを対称部と反対称部に分けると、対称部がストレッチングテンソル(変形速度テンソル)$\\mathbf{D}$で「伸び縮み・せん断の速さ」、反対称部がスピンテンソル(回転速度テンソル)$\\mathbf{W}$で「その場の回転の速さ」を表します。$\\mathbf{D}$は客観テンソル(観測者を回しても素直に回る)で、構成則の中心になります。グリーン・ラグランジュひずみ速度とは$\\dot{\\mathbf{E}}=\\mathbf{F}^{T}\\mathbf{D}\\mathbf{F}$で結ばれます。",
-      "example": "純せん断的な流れ$v_1=\\dot{\\gamma}\\,x_2,\\ v_2=0$では$\\mathbf{L}=\\begin{bmatrix}0&\\dot{\\gamma}\\\\0&0\\end{bmatrix}$。$\\mathbf{D}$はせん断の速さ、$\\mathbf{W}$は同時に起きている回転の速さを取り出します。",
-      "figureImage": "s1f1VelGrad"
+      "formula": "$\\mathbf{L}=\\dot{\\mathbf{F}}\\mathbf{F}^{-1},\\quad \\mathbf{D}=\\tfrac12(\\mathbf{L}+\\mathbf{L}^{T}),\\quad \\mathbf{W}=\\tfrac12(\\mathbf{L}-\\mathbf{L}^{T})$",
+      "body": "大変形を時間を追って解くときは、変形そのものより「変形の速さ」で考えると便利です。速度$\\mathbf{v}$を今の座標で微分した$L_{ij}=\\partial v_i/\\partial x_j$が速度勾配テンソルで、$\\mathbf{L}=\\dot{\\mathbf{F}}\\mathbf{F}^{-1}$とも書けます。これを対称な部分と反対称な部分に分けると、対称部がストレッチングテンソル(変形速度テンソル)$\\mathbf{D}$で「伸び縮み・ずれの速さ」、反対称部がスピンテンソル$\\mathbf{W}$で「その場でクルッと回る速さ」を表します。$\\mathbf{D}$は観測者を回しても素直に振る舞う客観テンソルなので、大ひずみの構成則の主役になります。グリーン・ラグランジュひずみの変化の速さとは$\\dot{\\mathbf{E}}=\\mathbf{F}^{T}\\mathbf{D}\\mathbf{F}$で結ばれます。川の流れで、水のかたまりが伸び縮みする速さ($\\mathbf{D}$)と、くるくる回る速さ($\\mathbf{W}$)を分けて見るイメージです。",
+      "example": "せん断的な流れ$v_1=\\dot{\\gamma}x_2,\\ v_2=0$では$\\mathbf{L}=\\begin{bmatrix}0&\\dot{\\gamma}\\\\0&0\\end{bmatrix}$。$\\mathbf{D}$がずれの速さ、$\\mathbf{W}$が同時に起きている回転の速さを取り出します。"
     },
     {
-      "id": "s1ch1-objective-stress-rate",
+      "id": "s1ch1-13",
       "kind": "formula",
+      "figureImage": "s1f1ObjRate",
       "term": "客観(共回転)応力速度",
-      "formula": "\\hat{\\mathbf{T}}_{(J)}=\\dot{\\mathbf{T}}-\\mathbf{W}\\mathbf{T}+\\mathbf{T}\\mathbf{W}+(\\mathrm{tr}\\,\\mathbf{D})\\mathbf{T}",
-      "body": "大変形の構成則は「応力の増える速さ」と「ひずみの増える速さ」を結びますが、応力の単純な時間微分$\\dot{\\mathbf{T}}$は、物体を回すだけでも値が変わってしまい客観性がありません。そこで、その場の回転$\\mathbf{W}$の分を差し引いた客観応力速度(共回転応力速度)を使います。回転に乗って観測するヤウマン速度$\\hat{\\mathbf{T}}_{(J)}$や、トゥルーズデル速度$\\dot{\\mathbf{S}}=\\dot{\\mathbf{T}}-\\mathbf{L}\\mathbf{T}-\\mathbf{T}\\mathbf{L}^{T}+(\\mathrm{tr}\\,\\mathbf{D})\\mathbf{T}$が代表で、両者は$\\dot{\\mathbf{S}}=\\hat{\\mathbf{T}}_{(J)}-\\mathbf{D}\\mathbf{T}-\\mathbf{T}\\mathbf{D}$の関係にあります。大ひずみの材料非線形解析では、こうした客観速度とストレッチングテンソル$\\mathbf{D}$の間に構成関係を定義します。",
-      "example": "剛体回転だけしている物体の応力は、大きさは変わらず向きだけが回ります。単純な$\\dot{\\mathbf{T}}$はこの回転を「応力が変化した」と誤って拾いますが、客観速度は正しくゼロ(実質変化なし)と評価します。",
-      "figureImage": "s1f1ObjRate"
+      "formula": "$\\hat{\\mathbf{T}}_{(J)}=\\dot{\\mathbf{T}}-\\mathbf{W}\\mathbf{T}+\\mathbf{T}\\mathbf{W}+(\\mathrm{tr}\\,\\mathbf{D})\\mathbf{T}$",
+      "body": "大変形の構成則は「応力が増える速さ」と「ひずみが増える速さ」を結びますが、応力をそのまま時間で微分した$\\dot{\\mathbf{T}}$は、物体をただ回すだけでも値が変わってしまい“客観性”がありません。回転につられて成分が変化しただけなのに「応力が変わった」と誤解してしまうのです。そこで、その場の回転$\\mathbf{W}$の分を差し引いた客観応力速度(共回転応力速度)を使います。回転に乗っかって見るヤウマン速度$\\hat{\\mathbf{T}}_{(J)}$や、トゥルーズデル速度$\\dot{\\mathbf{S}}=\\dot{\\mathbf{T}}-\\mathbf{L}\\mathbf{T}-\\mathbf{T}\\mathbf{L}^{T}+(\\mathrm{tr}\\,\\mathbf{D})\\mathbf{T}$が代表で、両者は$\\dot{\\mathbf{S}}=\\hat{\\mathbf{T}}_{(J)}-\\mathbf{D}\\mathbf{T}-\\mathbf{T}\\mathbf{D}$の関係にあります。大ひずみの材料非線形解析では、こうした客観速度とストレッチングテンソル$\\mathbf{D}$の間に構成関係を定義します。",
+      "example": "ただ回転しているだけの物体の応力は、大きさは同じで向きだけが回ります。単純な$\\dot{\\mathbf{T}}$はこれを「変化した」と拾ってしまいますが、客観速度は正しく「実質ゼロ」と評価します。"
     },
     {
-      "id": "s1ch1-objectivity",
+      "id": "s1ch1-14",
       "kind": "term",
-      "term": "客観性(観測不変量と客観テンソル)",
-      "formula": "\\mathbf{T}^{*}=\\mathbf{Q}\\mathbf{T}\\mathbf{Q}^{T}",
-      "body": "有限変形の構成則(応力とひずみの関係)を正しく立てるには、量が『見る人(観測者)の向きに振り回されない』という性質=客観性を押さえる必要があります。観測者を$\\mathbf{Q}$だけ回して見たとき、客観性のあるテンソルは$\\mathbf{T}^{*}=\\mathbf{Q}\\mathbf{T}\\mathbf{Q}^{T}$と素直に回ります。有限変形の量は2つのグループに分かれます。(1)客観テンソル(現配置で定義され、観測者とともに回る): コーシー応力$\\mathbf{T}$、左ストレッチ$\\mathbf{V}$、左コーシー・グリーン変形テンソル$\\mathbf{B}$、アルマンジひずみ$\\mathbf{A}$、ストレッチングテンソル$\\mathbf{D}$。(2)観測不変量(基準配置で定義され、観測者を回しても値が変わらない): 第2ピオラ・キルヒホッフ応力$\\mathbf{S}$、右ストレッチ$\\mathbf{U}$、右コーシー・グリーン変形テンソル$\\mathbf{C}$、グリーン・ラグランジュひずみ$\\mathbf{E}$。構成則は、客観量どうし($\\mathbf{T}$と$\\mathbf{D}$など)、または観測不変量どうし($\\mathbf{S}$と$\\mathbf{E}$)のように、仲間をそろえて組む必要があります。コーシー応力の単純な時間微分は客観性を失うため、代わりに客観応力速度(ヤウマン速度など)を使うのも同じ理由です。",
-      "example": "物体を持ち上げて向きだけ変えると、コーシー応力$\\mathbf{T}$の成分は$\\mathbf{Q}\\mathbf{T}\\mathbf{Q}^{T}$と回りますが、第2ピオラ・キルヒホッフ応力$\\mathbf{S}$とグリーン・ラグランジュひずみ$\\mathbf{E}$は値がまったく変わりません。だから大回転を伴う解析はTL法($\\mathbf{S}$と$\\mathbf{E}$の組)が扱いやすいのです。"
+      "figureImage": "s1f1RigidRot",
+      "term": "客観性と剛体回転不変性(EとA、SとTの違い)",
+      "formula": "$\\mathbf{T}^{*}=\\mathbf{Q}\\mathbf{T}\\mathbf{Q}^{T}$",
+      "body": "有限変形の構成則を正しく立てるカギが「量が“見る人(観測者)の向き”に振り回されないか」という客観性です。観測者を$\\mathbf{Q}$だけ回して見たとき、客観性のあるテンソルは$\\mathbf{T}^{*}=\\mathbf{Q}\\mathbf{T}\\mathbf{Q}^{T}$と素直に回るだけです。有限変形の量は2グループに分かれます。(1)客観テンソルは変形後で定義され観測者と一緒に回る仲間で、コーシー応力$\\mathbf{T}$・アルマンジひずみ$\\mathbf{A}$・左ストレッチ$\\mathbf{V}$・ストレッチング$\\mathbf{D}$。(2)観測不変量は変形前で定義され回しても値が変わらない仲間で、第2ピオラ・キルヒホッフ応力$\\mathbf{S}$・グリーン・ラグランジュひずみ$\\mathbf{E}$・右ストレッチ$\\mathbf{U}$。だから$\\mathbf{E}$は回転しても変わらず、$\\mathbf{A}$は回ると成分が回ります。構成則は$\\mathbf{S}$と$\\mathbf{E}$、または$\\mathbf{T}$と$\\mathbf{D}$のように仲間どうしをそろえて組むのが鉄則です。",
+      "example": "向きを変えるだけで$\\mathbf{T}$の成分は$\\mathbf{Q}\\mathbf{T}\\mathbf{Q}^{T}$と回りますが、$\\mathbf{S}$と$\\mathbf{E}$は値がまったく変わりません。だから大回転を伴う解析はTL法($\\mathbf{S}$と$\\mathbf{E}$の組)が扱いやすいのです。"
     },
     {
-      "id": "s1ch1-material-geometric-tl-ul",
+      "id": "s1ch1-15",
       "kind": "term",
+      "figureImage": "s1f1TLUL",
       "term": "材料非線形・幾何学的非線形とTL/UL記述",
       "formula": "",
-      "body": "非線形解析の非線形には大きく2種類あります。材料非線形は、応力とひずみの関係そのものが曲がる(弾塑性・超弾性など材料の性質による)非線形。幾何学的非線形は、材料は線形でも変形や回転が大きいために釣り合いやひずみが非線形になる(形の変化による)非線形です。両者は独立で、片方だけ・両方同時のいずれもあり得ます。さらに、有限変形問題を数値的に解くときは基準の取り方で2つの定式化があります。トータルラグランジュ(TL)法は常に変形前配置を基準にし、第2ピオラ・キルヒホッフ応力$\\mathbf{S}$とグリーン・ラグランジュひずみ$\\mathbf{E}$で組みます。アップデイテッド・ラグランジュ(UL)法は直前の(あるいは現在の)配置を基準に取り直しながら進め、コーシー応力$\\mathbf{T}$とアルマンジひずみの線形成分などで組みます。どちらでも同じ解に到達しますが、問題に応じて扱いやすい方を選びます。",
-      "example": "ゴム部品を大きく変形させる解析は幾何学的にも材料的にも非線形。細長い柱の座屈後挙動は、材料は線形弾性でも幾何学的非線形として扱います。",
-      "figureImage": "s1f1TLUL"
+      "body": "非線形解析の「非線形」には大きく2種類あります。材料非線形は、応力とひずみの関係そのものが曲がる非線形(弾塑性やゴムの超弾性など、材料の性質が原因)。幾何学的非線形は、材料はまっすぐでも変形や回転が大きいためにつり合いやひずみが曲がる非線形(形の変化が原因)。この2つは独立で、片方だけ・両方同時のどちらもあり得ます。さらに有限変形を数値で解くときは、基準の取り方で2つの進め方があります。トータルラグランジュ(TL)法はいつも変形前の形を基準にし、第2ピオラ・キルヒホッフ応力$\\mathbf{S}$とグリーン・ラグランジュひずみ$\\mathbf{E}$の組で書きます。アップデイテッド・ラグランジュ(UL)法は直前(または今)の形に基準を取り直しながら進め、コーシー応力$\\mathbf{T}$などで組みます。どちらも同じ答えに行き着くので、問題に応じて扱いやすい方を選びます。",
+      "example": "ゴム部品を大きく変形させる解析は材料的にも幾何学的にも非線形。細長い柱が座屈したあとの動きは、材料は線形弾性でも幾何学的非線形として扱います。"
     }
   ]
 }
