@@ -5,12 +5,14 @@
 # アプリ設定画面のビルド番号表示(src/buildInfo.ts)も、この番号でビルド時に埋め込まれる。
 #
 # 使い方(例):
-#   pwsh tools/build_cae.ps1                       # Android・内部テストへ提出(既定)
-#   pwsh tools/build_cae.ps1 -Platforms both -ForceIos   # iOS+Android
+#   pwsh tools/build_cae.ps1                       # 【既定=both】iOS+Android 両方(iOSはTestFlight/Androidは内部テスト)
+#   pwsh tools/build_cae.ps1 -Platforms android    # 片方だけは明示指示があるときだけ(ユーザー厳命・feedback-build-both-os-always)
 #   pwsh tools/build_cae.ps1 -AndroidTrack production -SubmitAndroid draft
 # ------------------------------------------------------------------
+# 【厳守】ビルドは必ず両OS(both)。片方だけ(iOS skipped含む)で終わらせない。
+#   2026-10-09 既定を android→both に修正(Build1368をandroid単独で上げてiOSがTestFlightに出ず=重大違反)。
 param(
-  [ValidateSet('android', 'ios', 'both')][string]$Platforms = 'android',
+  [ValidateSet('android', 'ios', 'both')][string]$Platforms = 'both',
   [ValidateSet('completed', 'draft', 'none')][string]$SubmitAndroid = 'completed',
   [ValidateSet('internal', 'alpha', 'beta', 'production')][string]$AndroidTrack = 'internal',
   [switch]$ForceIos
