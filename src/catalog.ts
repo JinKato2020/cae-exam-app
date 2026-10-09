@@ -62,15 +62,6 @@ function deriveFormulaIdMap(): Record<string, string> {
   return m;
 }
 
-// ホーム「用語問題／計算・数値問題」の専用セット（章とは別建て・分野×級ごと）。
-// content/quiz/<kind>-<分野>-<級数字>.json（例 content/quiz/term-solid-2.json）を getContent で解決＝OTAで差し替え可。
-// カタログの章に属さない＝isLocked で無料タスター扱い（proState.ts）。呼出しの都度読むので OTA 反映も即時。
-export function quizList(kind: 'term' | 'calc', fieldId: string, gradeId: string): Question[] {
-  const g = gradeId === 'g1' ? '1' : '2';
-  const doc = getContent<{ questions?: Question[] }>(`content/quiz/${kind}-${fieldId}-${g}.json`);
-  return doc?.questions ?? [];
-}
-
 // ホーム「試験前の準備」カード＝合格・足切りルール（分野×級ごと・OTAで差し替え可）。
 // content/exam/passrule-<分野>-<級数字>.json を getContent で解決。無ければ null（呼出し側で同梱既定へフォールバック）。
 export type ExamRuleDoc = { title?: string; rules: string[]; plain: string; note?: string; sourceLabel?: string; sourceUrl?: string };

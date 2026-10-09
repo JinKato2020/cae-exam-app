@@ -29,7 +29,7 @@ import type { Question, Chapter } from './src/types';
 import { FIGURE_ASPECT } from './src/figures';
 import { figureSource, hasFigure } from './src/data/figureStore';
 import { RichText } from './src/MathText';
-import { CATALOG, questionsByIds, QUESTION_FORMULA_ID, quizList, examRule, type ChapterEntry } from './src/catalog';
+import { CATALOG, questionsByIds, QUESTION_FORMULA_ID, examRule, type ChapterEntry } from './src/catalog';
 import { formulaDoc, type FormulaItem } from './src/formulas';
 import { initContent } from './src/data/initContent';
 import { BUILD_NUMBER } from './src/buildInfo';
@@ -177,7 +177,12 @@ function courseOf(fieldId: FieldId, gradeId: GradeId): Course | null {
 type Tab = 'home' | 'study' | 'formula' | 'settings';
 type ThemePref = 'system' | 'light' | 'dark';
 type StudyView = 'chapters' | 'tiles' | 'problem';
-type FormulaView = 'chapters' | 'titles' | 'item';
+type FormulaView = 'list' | 'item';
+
+// 公式・用語のブックマークID。問題(q.id)と衝突しないよう接頭辞を付ける。章IDは formulaId で一意。
+const formulaFavId = (chapterId: string, itemId: string) => `fml:${chapterId}:${itemId}`;
+// 1項目＝解説カード1枚。章見出し付きの縦一括リスト／お気に入り復習で共有する行データ。
+type FormulaRow = { favId: string; chapterId: string; chapterTitle: string; item: FormulaItem };
 
 export default function App() {
   // 起動時に一度だけコンテンツOTAを初期化（端末キャッシュの差し替えを反映→カタログ再構築）。
@@ -268,9 +273,11 @@ function AppInner(props: { contentVersion: number }) {
   const [answers, setAnswers] = useState<Record<string, number>>({});
 
   // 公式・用語タブ（課程 → 章 → タイトル一覧 → 個別解説）
-  const [formulaView, setFormulaView] = useState<FormulaView>('chapters');
+  const [formulaView, setFormulaView] = useState<FormulaView>('list');
   const [formulaChapterId, setFormulaChapterId] = useState<string | null>(null);
   const [formulaItemId, setFormulaItemId] = useState<string | null>(null);
+  const [formulaKind, setFormulaKind] = useState<'term' | 'formula'>('term'); // 公式・用語タブの上部トグル
+  const [formulaFav, setFormulaFav] = useState(false); // お気に入り(苦手)だけ表示する復習モード
   // 問題画面から公式へ飛んだか（true の時、公式カードに「問題に戻る」を出す）
   const [formulaFrom, setFormulaFrom] = useState<null | 'study'>(null);
   useEffect(() => {
@@ -329,6 +336,22 @@ function AppInner(props: { contentVersion: number }) {
     const ids = new Set(fieldGradeChapters(field, grade).flatMap((c) => c.data.questions.map((q) => q.id)));
     return bookmarkQuestions.filter((q) => ids.has(q.id));
   }, [bookmarkQuestions, field, grade, props.contentVersion]);
+
+  // いま選んでいる分野×級の公式・用語を、章の順に全部ならべた行データ（タブと復習で共有）。
+  const courseFormulaRows = useMemo<FormulaRow[]>(() => {
+    const out: FormulaRow[] = [];
+    for (const c of course?.chapters ?? []) {
+      const fid = c.formulaId ?? c.id;
+      const doc = formulaDoc(fid);
+      if (!doc) continue;
+      for (const it of doc.items) out.push({ favId: formulaFavId(fid, it.id), chapterId: fid, chapterTitle: c.title, item: it });
+    }
+    return out;
+  }, [course, props.contentVersion]);
+  const courseFormulaFavCount = useMemo(
+    () => courseFormulaRows.filter((r) => isBookmarked(bookmarks, r.favId)).length,
+    [courseFormulaRows, bookmarks]
+  );
   // 栞のトグル（付ける/外す）。保存してからReact状態を更新。
   async function onToggleBookmark(id: string) {
     setBookmarks(await toggleBookmark(bookmarks, id));
@@ -358,26 +381,20 @@ function AppInner(props: { contentVersion: number }) {
     if (c) openProblems(c.data.questions, c.title);
   }
 
-  // ホームの「用語問題／計算・数値問題」カード → まずタイトル一覧（tiles）を出し、
-  // タイルを選ぶと個別問題へ。章と同じ導線なので、問題→一覧→ホームと戻れる。
-  // 章に属さない専用セットなので合成の ChapterEntry（id='__quiz__'）に包んで tiles に流用する。
-  function openQuiz(kind: 'term' | 'calc', label: string) {
-    const list = quizList(kind, field, grade);
-    if (list.length === 0) {
-      // 未配信ならフォールバック（用語→公式・用語タブ／計算→問題タブの章目次）。
-      if (kind === 'term') { setFormulaFrom(null); setFormulaView('chapters'); setTab('formula'); }
-      else { setStudyView('chapters'); setTab('study'); }
-      return;
-    }
-    const synthetic: ChapterEntry = {
-      id: '__quiz__',
-      title: label,
-      data: { meta: { grade: '', category: label, chapter: 0, count: list.length }, questions: list } as Chapter,
-      ready: true,
-    };
-    setChapter(synthetic);
-    setStudyView('tiles');
-    setTab('study');
+  // ホームの「用語解説／公式解説」カード → 公式・用語タブのリストを種類指定で開く。
+  function openFormulaList(kind: 'term' | 'formula') {
+    setFormulaFrom(null);
+    setFormulaKind(kind);
+    setFormulaFav(false);
+    setFormulaView('list');
+    setTab('formula');
+  }
+  // ホームの「お気に入りの公式・用語を復習」→ ブックマークした用語・公式(両方)だけを一覧。
+  function openFormulaFavorites() {
+    setFormulaFrom(null);
+    setFormulaFav(true);
+    setFormulaView('list');
+    setTab('formula');
   }
 
   async function onSelectAnswer(q: Question, choiceNum: number) {
@@ -427,17 +444,14 @@ function AppInner(props: { contentVersion: number }) {
             wrongCount={courseWrongQuestions.length}
             bookmarkCount={courseBookmarkQuestions.length}
             onReview={() => openProblems(courseBookmarkQuestions, 'ブックマーク復習')}
+            formulaFavCount={courseFormulaFavCount}
+            onReviewFormula={openFormulaFavorites}
             onGoStudy={() => {
               setStudyView('chapters');
               setTab('study');
             }}
-            onGoFormula={() => {
-              setFormulaFrom(null);
-              setFormulaView('chapters');
-              setTab('formula');
-            }}
-            onGoTermQuiz={() => openQuiz('term', '用語問題')}
-            onGoCalcQuiz={() => openQuiz('calc', '計算・数値問題')}
+            onGoTermList={() => openFormulaList('term')}
+            onGoFormulaList={() => openFormulaList('formula')}
             onSolveUnattempted={solveUnattempted}
             onOpenChapter={openChapterById}
           />
@@ -466,7 +480,6 @@ function AppInner(props: { contentVersion: number }) {
             onSelectAnswer={onSelectAnswer}
             setQIndex={setQIndex}
             goBack={(v) => setStudyView(v)}
-            onExitHome={() => setTab('home')}
             proState={proSt}
             onOpenPaywall={openPaywall}
             onOpenFormula={(formulaId, itemId) => {
@@ -485,17 +498,21 @@ function AppInner(props: { contentVersion: number }) {
             t={t}
             view={formulaView}
             course={formulaCourse}
+            rows={courseFormulaRows}
+            kind={formulaKind}
+            fav={formulaFav}
+            onSetKind={(k) => { setFormulaKind(k); setFormulaFav(false); }}
+            onSetFav={setFormulaFav}
             chapterId={formulaChapterId}
             itemId={formulaItemId}
-            onOpenChapter={(id) => {
-              setFormulaChapterId(id);
-              setFormulaView('titles');
-            }}
-            onOpenItem={(itemId) => {
+            bookmarks={bookmarks}
+            onToggleBookmark={onToggleBookmark}
+            onOpenItem={(chapterId, itemId) => {
+              setFormulaChapterId(chapterId);
               setFormulaItemId(itemId);
               setFormulaView('item');
             }}
-            onBack={(v) => setFormulaView(v)}
+            onBack={() => setFormulaView('list')}
             fromStudy={formulaFrom === 'study'}
             onBackToStudy={() => {
               setFormulaFrom(null);
@@ -843,10 +860,11 @@ function HomeTab(props: {
   wrongCount: number;
   bookmarkCount: number;
   onReview: () => void;
+  formulaFavCount: number;
+  onReviewFormula: () => void;
   onGoStudy: () => void;
-  onGoFormula: () => void;
-  onGoTermQuiz: () => void;
-  onGoCalcQuiz: () => void;
+  onGoTermList: () => void;
+  onGoFormulaList: () => void;
   onSolveUnattempted: (gradeId: GradeId, fieldId: FieldId) => void;
   onOpenChapter: (gradeId: GradeId, chapterId: string, fieldId: FieldId) => void;
 }) {
@@ -971,6 +989,9 @@ function HomeTab(props: {
             <Pressable style={[home.cta, { marginTop: 14 }]} onPress={props.onReview} disabled={props.bookmarkCount === 0}>
               <Text style={home.ctaTxt}>🔖 ブックマークを復習{props.bookmarkCount > 0 ? `（${props.bookmarkCount}問）` : '（なし）'}</Text>
             </Pressable>
+            <Pressable style={[home.cta, { marginTop: 8 }]} onPress={props.onReviewFormula} disabled={props.formulaFavCount === 0}>
+              <Text style={home.ctaTxt}>⭐ お気に入りの公式・用語を復習{props.formulaFavCount > 0 ? `（${props.formulaFavCount}件）` : '（なし）'}</Text>
+            </Pressable>
           </View>
         </View>
 
@@ -990,26 +1011,26 @@ function HomeTab(props: {
           </Pressable>
         </View>
 
-        {/* 用語問題 / 計算・数値問題 */}
+        {/* 用語解説 / 公式解説（タップで公式・用語タブのリストへ） */}
         <View style={home.duo}>
-          <Pressable style={home.imgCard} onPress={props.onGoTermQuiz}>
+          <Pressable style={home.imgCard} onPress={props.onGoTermList}>
             <ImageBackground source={HOME_IMG.formula} style={StyleSheet.absoluteFill} imageStyle={home.cardImg}>
               <Veil id="veilFormula" stops={[{ o: 0, op: 0.02 }, { o: 0.5, op: 0.42 }, { o: 1, op: 0.92 }]} />
             </ImageBackground>
             <View style={home.tag}><Text style={home.tagTxt}>用語</Text></View>
             <View style={home.imgCardIn}>
-              <Text style={home.cardH4}>用語問題</Text>
-              <Text style={home.cardP}>公式・専門用語を一問一答で</Text>
+              <Text style={home.cardH4}>用語解説</Text>
+              <Text style={home.cardP}>重要用語をまとめ読み・お気に入り登録</Text>
             </View>
           </Pressable>
-          <Pressable style={home.imgCard} onPress={props.onGoCalcQuiz}>
+          <Pressable style={home.imgCard} onPress={props.onGoFormulaList}>
             <ImageBackground source={HOME_IMG.frame} style={StyleSheet.absoluteFill} imageStyle={home.cardImg}>
               <Veil id="veilFrame" stops={[{ o: 0, op: 0.05 }, { o: 0.45, op: 0.5 }, { o: 1, op: 0.94 }]} />
             </ImageBackground>
-            <View style={home.tag}><Text style={home.tagTxt}>演習</Text></View>
+            <View style={home.tag}><Text style={home.tagTxt}>公式</Text></View>
             <View style={home.imgCardIn}>
-              <Text style={home.cardH4}>計算・数値問題</Text>
-              <Text style={home.cardP}>手を動かして得点源に</Text>
+              <Text style={home.cardH4}>公式解説</Text>
+              <Text style={home.cardP}>重要公式をまとめ読み・お気に入り登録</Text>
             </View>
           </Pressable>
         </View>
@@ -1332,7 +1353,6 @@ function StudyTab(props: {
   onSelectAnswer: (q: Question, n: number) => void;
   setQIndex: (i: number) => void;
   goBack: (v: StudyView) => void;
-  onExitHome: () => void;
   proState: ProState;
   onOpenPaywall: (target: PayTarget | null) => void;
   onOpenFormula: (formulaId: string, itemId: string) => void;
@@ -1379,15 +1399,9 @@ function StudyTab(props: {
   // タイル一覧
   if (props.view === 'tiles' && props.chapter) {
     const qs = props.chapter.data.questions;
-    // ホームの用語/計算カードから来た専用セットは「__quiz__」。戻る先は章目次でなくホーム。
-    const isQuiz = props.chapter.id === '__quiz__';
     return (
       <ScrollView contentContainerStyle={styles.content}>
-        <BackLink
-          t={t}
-          label={isQuiz ? 'ホームへ' : '章の目次へ'}
-          onPress={() => (isQuiz ? props.onExitHome() : props.goBack('chapters'))}
-        />
+        <BackLink t={t} label="章の目次へ" onPress={() => props.goBack('chapters')} />
         <Text style={[styles.title, { color: t.text }]}>{props.chapter.title}</Text>
         <Text style={[styles.subtitle, { color: t.sub }]}>
           問題を選ぶ（緑=正解／赤=不正解／灰=未挑戦）
@@ -1777,130 +1791,154 @@ function ProblemScreen(props: {
 }
 
 // ================= 公式・用語タブ =================
+// 章を選ばせず、選んだ種類（用語／公式）を章見出しで区切って縦に一括表示。
+// 各項目に🔖（お気に入り＝苦手）を付けられ、お気に入りだけの復習表示にもできる。
 function FormulaTab(props: {
   t: Theme;
   view: FormulaView;
   course: Course | null;
+  rows: FormulaRow[]; // 現コースの全用語・公式（章順）
+  kind: 'term' | 'formula';
+  fav: boolean;
+  onSetKind: (k: 'term' | 'formula') => void;
+  onSetFav: (b: boolean) => void;
   chapterId: string | null;
   itemId: string | null;
-  onOpenChapter: (id: string) => void;
-  onOpenItem: (itemId: string) => void;
-  onBack: (v: FormulaView) => void;
+  bookmarks: BookmarkMap;
+  onToggleBookmark: (favId: string) => void;
+  onOpenItem: (chapterId: string, itemId: string) => void;
+  onBack: () => void;
   fromStudy?: boolean;
   onBackToStudy?: () => void;
 }) {
   const { t } = props;
 
-  // 個別解説（タイトルをタップ、または問題からのリンクで飛んでくる画面）
+  // いま表示する行：お気に入りモード=ブックマーク済（用語＋公式）、通常=選択中の種類。
+  const visible = props.fav
+    ? props.rows.filter((r) => isBookmarked(props.bookmarks, r.favId))
+    : props.rows.filter((r) => r.item.kind === props.kind);
+
+  // 個別解説画面（リストのタップ、または問題からのリンクで飛んでくる）
   if (props.view === 'item' && props.chapterId && props.itemId) {
     return (
       <FormulaItemScreen
         t={t}
+        siblings={visible}
         chapterId={props.chapterId}
         itemId={props.itemId}
+        bookmarks={props.bookmarks}
+        onToggleBookmark={props.onToggleBookmark}
         fromStudy={props.fromStudy}
         onBackToStudy={props.onBackToStudy}
         onOpenItem={props.onOpenItem}
-        onBackToList={() => props.onBack('titles')}
+        onBackToList={props.onBack}
       />
     );
   }
 
-  // タイトル一覧（目次）
-  if (props.view === 'titles' && props.chapterId) {
-    const doc = formulaDoc(props.chapterId);
+  // コースに公式・用語データが無い場合のフォールバック。
+  if (!props.course || props.rows.length === 0) {
     return (
       <ScrollView contentContainerStyle={styles.content}>
-        <BackLink t={t} label="章の一覧へ" onPress={() => props.onBack('chapters')} />
-        {doc ? (
-          <>
-            <Text style={[styles.title, { color: t.text }]}>{doc.title}</Text>
-            <Text style={[styles.subtitle, { color: t.sub }]}>
-              タイトルを選ぶと、その解説に移ります（全 {doc.items.length} 項目）
-            </Text>
-            {doc.items.map((it) => (
-              <Pressable
-                key={it.id}
-                onPress={() => props.onOpenItem(it.id)}
-                style={[styles.row, { backgroundColor: t.card, borderColor: t.border }]}
-              >
-                <View style={styles.titleRow}>
-                  <View
-                    style={[
-                      styles.badge,
-                      { backgroundColor: it.kind === 'formula' ? t.primary : t.reviewBtn, marginRight: 10 },
-                    ]}
-                  >
-                    <Text style={styles.badgeText}>{it.kind === 'formula' ? '公式' : '用語'}</Text>
-                  </View>
-                  <Text style={[styles.rowLabel, { color: t.text, flex: 1 }]}>{it.term}</Text>
-                  <Text style={[styles.chevron, { color: t.sub }]}>›</Text>
-                </View>
-              </Pressable>
-            ))}
-          </>
-        ) : (
-          <Text style={[styles.bodyText, { color: t.sub }]}>この章は準備中です。</Text>
-        )}
+        <Text style={[styles.title, { color: t.text }]}>公式・用語</Text>
+        <Text style={[styles.subtitle, { color: t.sub }]}>この分野・級は準備中です。</Text>
       </ScrollView>
     );
   }
 
-  // 章の一覧（コース＝分野×級はホームの選択に追従。タブ側での課程選択は廃止）
-  if (props.view === 'chapters' && props.course) {
-    return (
-      <ScrollView contentContainerStyle={styles.content}>
-        <Text style={[styles.title, { color: t.text }]}>{props.course.name}</Text>
-        <Text style={[styles.subtitle, { color: t.sub }]}>章を選ぶと、公式・用語のタイトル一覧が出ます</Text>
-        {props.course.chapters.map((c) => {
-          const fid = c.formulaId ?? c.id;
-          const doc = formulaDoc(fid);
-          const ready = !!doc && c.ready !== false;
-          return (
-            <Pressable
-              key={c.id}
-              onPress={ready ? () => props.onOpenChapter(fid) : undefined}
-              style={[styles.row, { backgroundColor: t.card, borderColor: t.border, opacity: ready ? 1 : 0.5 }]}
-            >
-              <Text style={[styles.rowLabel, { color: t.text }]}>{c.title}</Text>
-              <Text style={[styles.rowSub, { color: ready ? t.sub : t.wrong }]}>
-                {ready ? `${doc!.items.length} 項目` : '準備中'}
-              </Text>
-            </Pressable>
-          );
-        })}
-      </ScrollView>
-    );
+  // 章見出しで区切るため、連続する同一章の行をブロックにまとめる。
+  const blocks: { chapterId: string; chapterTitle: string; rows: FormulaRow[] }[] = [];
+  for (const r of visible) {
+    const last = blocks[blocks.length - 1];
+    if (last && last.chapterId === r.chapterId) last.rows.push(r);
+    else blocks.push({ chapterId: r.chapterId, chapterTitle: r.chapterTitle, rows: [r] });
   }
 
-  // 選択中の分野×級がまだ準備中（章なし）の場合のフォールバック。
+  const segActive = (on: boolean, bg: string) => ({ backgroundColor: on ? bg : t.card });
   return (
     <ScrollView contentContainerStyle={styles.content}>
       <Text style={[styles.title, { color: t.text }]}>公式・用語</Text>
-      <Text style={[styles.subtitle, { color: t.sub }]}>この分野・級は準備中です。</Text>
+      {/* 種類トグル（用語／公式）＋お気に入りフィルタ */}
+      <View style={styles.segRow}>
+        <Pressable onPress={() => props.onSetKind('term')} style={[styles.segBtn, { borderColor: t.border }, segActive(!props.fav && props.kind === 'term', t.primary)]}>
+          <Text style={[styles.segTxt, { color: !props.fav && props.kind === 'term' ? '#fff' : t.sub }]}>用語</Text>
+        </Pressable>
+        <Pressable onPress={() => props.onSetKind('formula')} style={[styles.segBtn, { borderColor: t.border }, segActive(!props.fav && props.kind === 'formula', t.primary)]}>
+          <Text style={[styles.segTxt, { color: !props.fav && props.kind === 'formula' ? '#fff' : t.sub }]}>公式</Text>
+        </Pressable>
+        <Pressable onPress={() => props.onSetFav(!props.fav)} style={[styles.segBtn, { borderColor: t.border }, segActive(props.fav, t.amber)]}>
+          <Text style={[styles.segTxt, { color: props.fav ? '#fff' : t.sub }]}>⭐ お気に入り</Text>
+        </Pressable>
+      </View>
+      <Text style={[styles.subtitle, { color: t.sub }]}>
+        {props.fav ? 'お気に入り登録した用語・公式だけを表示中' : `タップで解説へ。🔖で苦手登録（全 ${visible.length} 項目）`}
+      </Text>
+      {visible.length === 0 ? (
+        <Text style={[styles.bodyText, { color: t.sub }]}>
+          {props.fav ? 'お気に入りがまだありません。各項目の🔖で登録できます。' : 'この種類の項目はまだありません。'}
+        </Text>
+      ) : (
+        blocks.map((b) => (
+          <View key={b.chapterId}>
+            <Text style={[styles.formulaChapterHead, { color: t.sub, borderColor: t.border }]}>{b.chapterTitle}</Text>
+            {b.rows.map((r) => {
+              const marked = isBookmarked(props.bookmarks, r.favId);
+              return (
+                <View key={r.favId} style={[styles.row, styles.formulaRow, { backgroundColor: t.card, borderColor: t.border }]}>
+                  <Pressable style={[styles.titleRow, { flex: 1 }]} onPress={() => props.onOpenItem(r.chapterId, r.item.id)}>
+                    <View style={[styles.badge, { backgroundColor: r.item.kind === 'formula' ? t.primary : t.reviewBtn, marginRight: 10 }]}>
+                      <Text style={styles.badgeText}>{r.item.kind === 'formula' ? '公式' : '用語'}</Text>
+                    </View>
+                    <Text style={[styles.rowLabel, { color: t.text, flex: 1 }]}>{r.item.term}</Text>
+                  </Pressable>
+                  <Pressable
+                    onPress={() => props.onToggleBookmark(r.favId)}
+                    hitSlop={8}
+                    accessibilityLabel={marked ? 'お気に入りを外す' : 'お気に入りに追加'}
+                    style={[styles.formulaFavBtn, { backgroundColor: marked ? t.amber : 'transparent' }]}
+                  >
+                    <Text style={{ color: marked ? '#fff' : t.sub, opacity: marked ? 1 : 0.5, fontSize: 16 }}>🔖</Text>
+                  </Pressable>
+                </View>
+              );
+            })}
+          </View>
+        ))
+      )}
     </ScrollView>
   );
 }
 
-// 公式・用語の個別ページ。隣の項目へボタン/スワイプで移動。問題から来た時は「問題に戻る」を出す。
+// 公式・用語の個別ページ。いま見ているリスト(siblings)で前後移動。🔖でお気に入り(苦手)登録。
 function FormulaItemScreen(props: {
   t: Theme;
+  siblings: FormulaRow[];
   chapterId: string;
   itemId: string;
+  bookmarks: BookmarkMap;
+  onToggleBookmark: (favId: string) => void;
   fromStudy?: boolean;
   onBackToStudy?: () => void;
-  onOpenItem: (itemId: string) => void;
+  onOpenItem: (chapterId: string, itemId: string) => void;
   onBackToList: () => void;
 }) {
   const { t } = props;
   const doc = formulaDoc(props.chapterId);
-  const items = doc?.items ?? [];
-  const idx = items.findIndex((x) => x.id === props.itemId);
-  const item = idx >= 0 ? items[idx] : undefined;
-  const prev = idx > 0 ? items[idx - 1] : null;
-  const next = idx >= 0 && idx < items.length - 1 ? items[idx + 1] : null;
-  const goPrev = () => { if (prev) props.onOpenItem(prev.id); };
-  const goNext = () => { if (next) props.onOpenItem(next.id); };
+  const item = doc?.items.find((x) => x.id === props.itemId);
+  const favId = formulaFavId(props.chapterId, props.itemId);
+  const marked = isBookmarked(props.bookmarks, favId);
+  // 前後移動は「いま見ているリスト」をたどる。問題から直接来た等でリストに無い時は、
+  // その章の中だけでたどる（フォールバック）。
+  let seq = props.siblings;
+  let idx = seq.findIndex((r) => r.chapterId === props.chapterId && r.item.id === props.itemId);
+  if (idx < 0) {
+    seq = (doc?.items ?? []).map((it) => ({ favId: formulaFavId(props.chapterId, it.id), chapterId: props.chapterId, chapterTitle: doc?.title ?? '', item: it }));
+    idx = seq.findIndex((r) => r.item.id === props.itemId);
+  }
+  const prev = idx > 0 ? seq[idx - 1] : null;
+  const next = idx >= 0 && idx < seq.length - 1 ? seq[idx + 1] : null;
+  const goPrev = () => { if (prev) props.onOpenItem(prev.chapterId, prev.item.id); };
+  const goNext = () => { if (next) props.onOpenItem(next.chapterId, next.item.id); };
   const pan = useSwipeNav(goNext, goPrev); // 左スワイプ=次 / 右スワイプ=前
 
   return (
@@ -1909,31 +1947,39 @@ function FormulaItemScreen(props: {
         {props.fromStudy && props.onBackToStudy ? (
           <BackLink t={t} label="問題に戻る" onPress={props.onBackToStudy} />
         ) : (
-          <BackLink t={t} label="公式・用語の一覧へ" onPress={props.onBackToList} />
+          <BackLink t={t} label="一覧へ戻る" onPress={props.onBackToList} />
         )}
         {item ? (
           <>
+            {/* お気に入り(苦手)トグル */}
+            <Pressable
+              onPress={() => props.onToggleBookmark(favId)}
+              style={[styles.formulaFavBar, { borderColor: t.border, backgroundColor: marked ? t.amber : t.card }]}
+            >
+              <Text style={{ color: marked ? '#fff' : t.sub, fontWeight: '700' }}>
+                {marked ? '🔖 お気に入り登録済み（タップで解除）' : '🔖 お気に入り（苦手）に登録'}
+              </Text>
+            </Pressable>
             <FormulaCard t={t} item={item} />
-            {/* 隣の用語へ（スワイプでも移動可） */}
+            {/* 隣の項目へ（スワイプでも移動可） */}
             <View style={styles.qNav}>
               <Pressable
                 onPress={goPrev}
                 disabled={!prev}
                 style={[styles.qNavPrev, { borderColor: t.border, opacity: prev ? 1 : 0.4 }]}
               >
-                <Text style={[styles.qNavPrevTxt, { color: t.sub }]}>‹ 前の用語</Text>
+                <Text style={[styles.qNavPrevTxt, { color: t.sub }]}>‹ 前へ</Text>
               </Pressable>
               <Pressable
                 onPress={goNext}
                 disabled={!next}
                 style={[styles.qNavNext, { backgroundColor: t.primary, opacity: next ? 1 : 0.4 }]}
               >
-                <Text style={styles.qNavNextTxt}>次の用語 ›</Text>
+                <Text style={styles.qNavNextTxt}>次へ ›</Text>
               </Pressable>
             </View>
-            {/* 問題から来た時は、一覧へも行けるよう下に補助リンク */}
             {props.fromStudy ? (
-              <BackLink t={t} label="公式・用語の一覧へ" onPress={props.onBackToList} />
+              <BackLink t={t} label="一覧へ戻る" onPress={props.onBackToList} />
             ) : null}
           </>
         ) : (
@@ -2376,6 +2422,14 @@ const styles = StyleSheet.create({
   rowSub: { fontSize: 13, marginTop: 4 },
   titleRow: { flexDirection: 'row', alignItems: 'center' },
   chevron: { fontSize: 22, marginLeft: 8, fontWeight: '400' },
+  // 公式・用語タブ：種類トグル／章見出し／お気に入り🔖
+  segRow: { flexDirection: 'row', gap: 8, marginTop: 4, marginBottom: 10 },
+  segBtn: { borderWidth: 1, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 7 },
+  segTxt: { fontSize: 14, fontWeight: '700' },
+  formulaChapterHead: { fontSize: 13, fontWeight: '700', marginTop: 14, marginBottom: 6, paddingBottom: 4, borderBottomWidth: 1 },
+  formulaRow: { flexDirection: 'row', alignItems: 'center', padding: 12 },
+  formulaFavBtn: { marginLeft: 8, width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
+  formulaFavBar: { borderWidth: 1, borderRadius: 10, paddingVertical: 10, paddingHorizontal: 14, marginBottom: 12, alignItems: 'center' },
 
   // 全体サマリ
   summaryRow: { flexDirection: 'row', justifyContent: 'space-between' },
