@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import {
   Alert,
   Image,
@@ -29,6 +29,7 @@ import type { Question, Chapter } from './src/types';
 import { FIGURE_ASPECT } from './src/figures';
 import { figureSource, hasFigure } from './src/data/figureStore';
 import { RichText } from './src/MathText';
+import { ProblemCalculator } from './src/Calculator';
 import { CATALOG, questionsByIds, QUESTION_FORMULA_ID, examRule, type ChapterEntry } from './src/catalog';
 import { formulaDoc, type FormulaItem } from './src/formulas';
 import { initContent } from './src/data/initContent';
@@ -987,7 +988,7 @@ function HomeTab(props: {
               <View style={home.wtile}><Text style={[home.wtileV, { color: wdColor }]}>{wdText}</Text><Text style={home.wtileL}>今週正答率</Text></View>
             </View>
             <Pressable style={[home.cta, { marginTop: 14 }]} onPress={props.onReview} disabled={props.bookmarkCount === 0}>
-              <Text style={home.ctaTxt}>🔖 ブックマークを復習{props.bookmarkCount > 0 ? `（${props.bookmarkCount}問）` : '（なし）'}</Text>
+              <Text style={home.ctaTxt}>⭐ ブックマークを復習{props.bookmarkCount > 0 ? `（${props.bookmarkCount}問）` : '（なし）'}</Text>
             </Pressable>
             <Pressable style={[home.cta, { marginTop: 8 }]} onPress={props.onReviewFormula} disabled={props.formulaFavCount === 0}>
               <Text style={home.ctaTxt}>⭐ お気に入りの公式・用語を復習{props.formulaFavCount > 0 ? `（${props.formulaFavCount}件）` : '（なし）'}</Text>
@@ -1594,7 +1595,7 @@ function ProblemScreen(props: {
           accessibilityLabel={props.bookmarked ? 'ブックマークを外す' : 'ブックマークに追加'}
           style={[styles.qChev, { backgroundColor: props.bookmarked ? t.amber : t.card }]}
         >
-          <Text style={[styles.qChevTxt, { color: props.bookmarked ? '#fff' : t.sub, opacity: props.bookmarked ? 1 : 0.5 }]}>🔖</Text>
+          <Text style={[styles.qChevTxt, { color: props.bookmarked ? '#fff' : t.sub, opacity: props.bookmarked ? 1 : 0.5 }]}>⭐</Text>
         </Pressable>
         <View style={[styles.qCounter, { backgroundColor: t.primary + '18' }]}>
           <Text style={[styles.qCounterTxt, { color: t.primary }]}>
@@ -1786,13 +1787,17 @@ function ProblemScreen(props: {
         </Text>
       ) : null}
     </ScrollView>
+      {/* 問題を解きながら使う小さな関数電卓（右下に常駐・押すと開く） */}
+      <ProblemCalculator
+        c={{ bg: t.bg, card: t.card, text: t.text, sub: t.sub, primary: t.primary, border: t.border, onPrimary: t.onPrimary, amber: t.amber }}
+      />
     </View>
   );
 }
 
 // ================= 公式・用語タブ =================
 // 章を選ばせず、選んだ種類（用語／公式）を章見出しで区切って縦に一括表示。
-// 各項目に🔖（お気に入り＝苦手）を付けられ、お気に入りだけの復習表示にもできる。
+// 各項目に⭐（お気に入り＝苦手）を付けられ、お気に入りだけの復習表示にもできる。
 function FormulaTab(props: {
   t: Theme;
   view: FormulaView;
@@ -1871,35 +1876,36 @@ function FormulaTab(props: {
         </Pressable>
       </View>
       <Text style={[styles.subtitle, { color: t.sub }]}>
-        {props.fav ? 'お気に入り登録した用語・公式だけを表示中' : `タップで解説へ。🔖で苦手登録（全 ${visible.length} 項目）`}
+        {props.fav ? 'お気に入り登録した用語・公式だけを表示中' : `章ごとに解説を縦に並べて常時表示。⭐で苦手登録（全 ${visible.length} 項目）`}
       </Text>
       {visible.length === 0 ? (
         <Text style={[styles.bodyText, { color: t.sub }]}>
-          {props.fav ? 'お気に入りがまだありません。各項目の🔖で登録できます。' : 'この種類の項目はまだありません。'}
+          {props.fav ? 'お気に入りがまだありません。各項目の⭐で登録できます。' : 'この種類の項目はまだありません。'}
         </Text>
       ) : (
         blocks.map((b) => (
           <View key={b.chapterId}>
             <Text style={[styles.formulaChapterHead, { color: t.sub, borderColor: t.border }]}>{b.chapterTitle}</Text>
+            {/* 畳まず、各項目の解説内容をそのまま縦に並べて常時表示（開く手間を省く）。
+                ⭐はカード右上に小さく置き、苦手登録に使う。 */}
             {b.rows.map((r) => {
               const marked = isBookmarked(props.bookmarks, r.favId);
               return (
-                <View key={r.favId} style={[styles.row, styles.formulaRow, { backgroundColor: t.card, borderColor: t.border }]}>
-                  <Pressable style={[styles.titleRow, { flex: 1 }]} onPress={() => props.onOpenItem(r.chapterId, r.item.id)}>
-                    <View style={[styles.badge, { backgroundColor: r.item.kind === 'formula' ? t.primary : t.reviewBtn, marginRight: 10 }]}>
-                      <Text style={styles.badgeText}>{r.item.kind === 'formula' ? '公式' : '用語'}</Text>
-                    </View>
-                    <Text style={[styles.rowLabel, { color: t.text, flex: 1 }]}>{r.item.term}</Text>
-                  </Pressable>
-                  <Pressable
-                    onPress={() => props.onToggleBookmark(r.favId)}
-                    hitSlop={8}
-                    accessibilityLabel={marked ? 'お気に入りを外す' : 'お気に入りに追加'}
-                    style={[styles.formulaFavBtn, { backgroundColor: marked ? t.amber : 'transparent' }]}
-                  >
-                    <Text style={{ color: marked ? '#fff' : t.sub, opacity: marked ? 1 : 0.5, fontSize: 16 }}>🔖</Text>
-                  </Pressable>
-                </View>
+                <FormulaCard
+                  key={r.favId}
+                  t={t}
+                  item={r.item}
+                  right={
+                    <Pressable
+                      onPress={() => props.onToggleBookmark(r.favId)}
+                      hitSlop={8}
+                      accessibilityLabel={marked ? 'お気に入りを外す' : 'お気に入りに追加'}
+                      style={[styles.formulaFavBtn, { marginLeft: 8, backgroundColor: marked ? t.amber : 'transparent' }]}
+                    >
+                      <Text style={{ color: marked ? '#fff' : t.sub, opacity: marked ? 1 : 0.5, fontSize: 16 }}>⭐</Text>
+                    </Pressable>
+                  }
+                />
               );
             })}
           </View>
@@ -1909,7 +1915,7 @@ function FormulaTab(props: {
   );
 }
 
-// 公式・用語の個別ページ。いま見ているリスト(siblings)で前後移動。🔖でお気に入り(苦手)登録。
+// 公式・用語の個別ページ。いま見ているリスト(siblings)で前後移動。⭐でお気に入り(苦手)登録。
 function FormulaItemScreen(props: {
   t: Theme;
   siblings: FormulaRow[];
@@ -1957,7 +1963,7 @@ function FormulaItemScreen(props: {
               style={[styles.formulaFavBar, { borderColor: t.border, backgroundColor: marked ? t.amber : t.card }]}
             >
               <Text style={{ color: marked ? '#fff' : t.sub, fontWeight: '700' }}>
-                {marked ? '🔖 お気に入り登録済み（タップで解除）' : '🔖 お気に入り（苦手）に登録'}
+                {marked ? '⭐ お気に入り登録済み（タップで解除）' : '⭐ お気に入り（苦手）に登録'}
               </Text>
             </Pressable>
             <FormulaCard t={t} item={item} />
@@ -1990,7 +1996,7 @@ function FormulaItemScreen(props: {
   );
 }
 
-function FormulaCard(props: { t: Theme; item: FormulaItem }) {
+function FormulaCard(props: { t: Theme; item: FormulaItem; right?: ReactNode }) {
   const { t, item } = props;
   const badge = item.kind === 'formula' ? '公式' : '用語';
   const badgeColor = item.kind === 'formula' ? t.primary : t.reviewBtn;
@@ -2001,6 +2007,7 @@ function FormulaCard(props: { t: Theme; item: FormulaItem }) {
           <Text style={styles.badgeText}>{badge}</Text>
         </View>
         <Text style={[styles.formulaTerm, { color: t.text }]}>{item.term}</Text>
+        {props.right ?? null}
       </View>
       {item.formula ? (
         <View style={[styles.formulaBox, { backgroundColor: t.bg, borderColor: t.border }]}>
@@ -2422,7 +2429,7 @@ const styles = StyleSheet.create({
   rowSub: { fontSize: 13, marginTop: 4 },
   titleRow: { flexDirection: 'row', alignItems: 'center' },
   chevron: { fontSize: 22, marginLeft: 8, fontWeight: '400' },
-  // 公式・用語タブ：種類トグル／章見出し／お気に入り🔖
+  // 公式・用語タブ：種類トグル／章見出し／お気に入り⭐
   segRow: { flexDirection: 'row', gap: 8, marginTop: 4, marginBottom: 10 },
   segBtn: { borderWidth: 1, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 7 },
   segTxt: { fontSize: 14, fontWeight: '700' },
