@@ -277,6 +277,8 @@ function AppInner(props: { contentVersion: number }) {
   const [formulaView, setFormulaView] = useState<FormulaView>('list');
   const [formulaChapterId, setFormulaChapterId] = useState<string | null>(null);
   const [formulaItemId, setFormulaItemId] = useState<string | null>(null);
+  // リスト画面で開いている章（null＝章メニュー）。章ごとに分けて常時展開表示するための選択。
+  const [formulaListChapterId, setFormulaListChapterId] = useState<string | null>(null);
   const [formulaKind, setFormulaKind] = useState<'term' | 'formula'>('term'); // 公式・用語タブの上部トグル
   const [formulaFav, setFormulaFav] = useState(false); // お気に入り(苦手)だけ表示する復習モード
   // 問題画面から公式へ飛んだか（true の時、公式カードに「問題に戻る」を出す）
@@ -387,6 +389,7 @@ function AppInner(props: { contentVersion: number }) {
     setFormulaFrom(null);
     setFormulaKind(kind);
     setFormulaFav(false);
+    setFormulaListChapterId(null); // まず章メニューから始める
     setFormulaView('list');
     setTab('formula');
   }
@@ -506,10 +509,13 @@ function AppInner(props: { contentVersion: number }) {
             onSetFav={setFormulaFav}
             chapterId={formulaChapterId}
             itemId={formulaItemId}
+            listChapterId={formulaListChapterId}
+            onSelectListChapter={setFormulaListChapterId}
             bookmarks={bookmarks}
             onToggleBookmark={onToggleBookmark}
             onOpenItem={(chapterId, itemId) => {
               setFormulaChapterId(chapterId);
+              setFormulaListChapterId(chapterId); // 一覧へ戻った時その章を開いておく
               setFormulaItemId(itemId);
               setFormulaView('item');
             }}
@@ -1809,6 +1815,8 @@ function FormulaTab(props: {
   onSetFav: (b: boolean) => void;
   chapterId: string | null;
   itemId: string | null;
+  listChapterId: string | null; // リストで開いている章（null＝章メニュー）
+  onSelectListChapter: (id: string | null) => void;
   bookmarks: BookmarkMap;
   onToggleBookmark: (favId: string) => void;
   onOpenItem: (chapterId: string, itemId: string) => void;
@@ -1858,6 +1866,30 @@ function FormulaTab(props: {
     if (last && last.chapterId === r.chapterId) last.rows.push(r);
     else blocks.push({ chapterId: r.chapterId, chapterTitle: r.chapterTitle, rows: [r] });
   }
+  // いま開いている章（通常モードのみ）。null＝章メニュー。
+  const openBlock = !props.fav && props.listChapterId ? blocks.find((b) => b.chapterId === props.listChapterId) ?? null : null;
+
+  // 1項目＝常時展開カード（右肩に⭐）。章内／お気に入りで共用。
+  const renderCard = (r: FormulaRow) => {
+    const marked = isBookmarked(props.bookmarks, r.favId);
+    return (
+      <FormulaCard
+        key={r.favId}
+        t={t}
+        item={r.item}
+        right={
+          <Pressable
+            onPress={() => props.onToggleBookmark(r.favId)}
+            hitSlop={8}
+            accessibilityLabel={marked ? 'お気に入りを外す' : 'お気に入りに追加'}
+            style={[styles.formulaFavBtn, { marginLeft: 8, backgroundColor: marked ? t.amber : 'transparent' }]}
+          >
+            <Text style={{ color: marked ? '#fff' : t.sub, opacity: marked ? 1 : 0.5, fontSize: 16 }}>⭐</Text>
+          </Pressable>
+        }
+      />
+    );
+  };
 
   const segActive = (on: boolean, bg: string) => ({ backgroundColor: on ? bg : t.card });
   return (
@@ -1875,41 +1907,53 @@ function FormulaTab(props: {
           <Text style={[styles.segTxt, { color: props.fav ? '#fff' : t.sub }]}>⭐ お気に入り</Text>
         </Pressable>
       </View>
-      <Text style={[styles.subtitle, { color: t.sub }]}>
-        {props.fav ? 'お気に入り登録した用語・公式だけを表示中' : `章ごとに解説を縦に並べて常時表示。⭐で苦手登録（全 ${visible.length} 項目）`}
-      </Text>
-      {visible.length === 0 ? (
-        <Text style={[styles.bodyText, { color: t.sub }]}>
-          {props.fav ? 'お気に入りがまだありません。各項目の⭐で登録できます。' : 'この種類の項目はまだありません。'}
-        </Text>
+
+      {props.fav ? (
+        /* お気に入り：章をまたいで登録済みだけを章見出し付きで一覧 */
+        <>
+          <Text style={[styles.subtitle, { color: t.sub }]}>お気に入り登録した用語・公式だけを表示中</Text>
+          {visible.length === 0 ? (
+            <Text style={[styles.bodyText, { color: t.sub }]}>お気に入りがまだありません。各項目の⭐で登録できます。</Text>
+          ) : (
+            blocks.map((b) => (
+              <View key={b.chapterId}>
+                <Text style={[styles.formulaChapterHead, { color: t.sub, borderColor: t.border }]}>{b.chapterTitle}</Text>
+                {b.rows.map(renderCard)}
+              </View>
+            ))
+          )}
+        </>
+      ) : !openBlock ? (
+        /* 章メニュー：章ごとに分けて選ばせる（全章の縦一括をやめて軽く・見やすく） */
+        <>
+          <Text style={[styles.subtitle, { color: t.sub }]}>
+            章を選んでください（{props.kind === 'term' ? '用語' : '公式'}）
+          </Text>
+          {blocks.length === 0 ? (
+            <Text style={[styles.bodyText, { color: t.sub }]}>この種類の項目はまだありません。</Text>
+          ) : (
+            blocks.map((b) => (
+              <Pressable
+                key={b.chapterId}
+                onPress={() => props.onSelectListChapter(b.chapterId)}
+                style={[styles.row, { backgroundColor: t.card, borderColor: t.border }]}
+              >
+                <Text style={[styles.rowLabel, { color: t.text }]}>{b.chapterTitle}</Text>
+                <Text style={[styles.rowSub, { color: t.sub }]}>{b.rows.length} 項目</Text>
+              </Pressable>
+            ))
+          )}
+        </>
       ) : (
-        blocks.map((b) => (
-          <View key={b.chapterId}>
-            <Text style={[styles.formulaChapterHead, { color: t.sub, borderColor: t.border }]}>{b.chapterTitle}</Text>
-            {/* 畳まず、各項目の解説内容をそのまま縦に並べて常時表示（開く手間を省く）。
-                ⭐はカード右上に小さく置き、苦手登録に使う。 */}
-            {b.rows.map((r) => {
-              const marked = isBookmarked(props.bookmarks, r.favId);
-              return (
-                <FormulaCard
-                  key={r.favId}
-                  t={t}
-                  item={r.item}
-                  right={
-                    <Pressable
-                      onPress={() => props.onToggleBookmark(r.favId)}
-                      hitSlop={8}
-                      accessibilityLabel={marked ? 'お気に入りを外す' : 'お気に入りに追加'}
-                      style={[styles.formulaFavBtn, { marginLeft: 8, backgroundColor: marked ? t.amber : 'transparent' }]}
-                    >
-                      <Text style={{ color: marked ? '#fff' : t.sub, opacity: marked ? 1 : 0.5, fontSize: 16 }}>⭐</Text>
-                    </Pressable>
-                  }
-                />
-              );
-            })}
-          </View>
-        ))
+        /* 選択中の章：解説を畳まず縦に並べて常時表示 */
+        <>
+          <BackLink t={t} label="章一覧へ戻る" onPress={() => props.onSelectListChapter(null)} />
+          <Text style={[styles.formulaChapterHead, { color: t.sub, borderColor: t.border }]}>{openBlock.chapterTitle}</Text>
+          <Text style={[styles.subtitle, { color: t.sub }]}>
+            解説を縦に並べて常時表示。⭐で苦手登録（全 {openBlock.rows.length} 項目）
+          </Text>
+          {openBlock.rows.map(renderCard)}
+        </>
       )}
     </ScrollView>
   );
