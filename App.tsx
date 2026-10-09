@@ -999,6 +999,10 @@ function HomeTab(props: {
             <Pressable style={[home.cta, { marginTop: 8 }]} onPress={props.onReviewFormula} disabled={props.formulaFavCount === 0}>
               <Text style={home.ctaTxt}>⭐ お気に入りの公式・用語を復習{props.formulaFavCount > 0 ? `（${props.formulaFavCount}件）` : '（なし）'}</Text>
             </Pressable>
+            {/* 復習を促すさりげない一言（控えめに） */}
+            <Text style={{ color: t.sub, fontSize: 11, lineHeight: 16, marginTop: 6, textAlign: 'center', opacity: 0.85 }}>
+              苦手な問題や公式・用語をブックマークで登録して、隙間時間に復習すると記憶が定着します。
+            </Text>
           </View>
         </View>
 
