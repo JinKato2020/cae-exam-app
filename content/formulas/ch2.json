@@ -70,7 +70,7 @@
       "id": "stress-transformation",
       "kind": "formula",
       "term": "応力の座標変換(x-y を反時計回りに回した x'-y')",
-      "formula": "$$\\begin{aligned}& \\sigma_{x'} =\\tfrac{\\sigma_x+\\sigma_y}{2}+\\tfrac{\\sigma_x-\\sigma_y}{2}\\cos2\\theta+\\tau_{xy}\\sin2\\theta \\\\ & \\sigma_{y'} =\\tfrac{\\sigma_x+\\sigma_y}{2}-\\tfrac{\\sigma_x-\\sigma_y}{2}\\cos2\\theta-\\tau_{xy}\\sin2\\theta \\\\ & \\tau_{x'y'} =-\\tfrac{\\sigma_x-\\sigma_y}{2}\\sin2\\theta+\\tau_{xy}\\cos2\\theta\\end{aligned}$$",
+      "formula": "$$\\begin{aligned}& \\sigma_{x'} =\\sigma_x\\cos^2\\theta+\\sigma_y\\sin^2\\theta+\\tau_{xy}\\sin2\\theta \\\\ & \\sigma_{y'} =\\sigma_x\\sin^2\\theta+\\sigma_y\\cos^2\\theta-\\tau_{xy}\\sin2\\theta \\\\ & \\tau_{x'y'} =\\tfrac{1}{2}(\\sigma_y-\\sigma_x)\\sin2\\theta+\\tau_{xy}\\cos2\\theta\\end{aligned}$$",
       "body": "同じ場所にかかる同じ力でも、見る向き(座標軸)を変えると「まっすぐ押す力(垂直応力)」と「ずらす力(せん断応力)」への分け方が変わります。もとの $x,y$ 軸を反時計回りに角度 $\\theta$ だけ回した軸を $x',y'$ とすると、新しい成分 $\\sigma_{x'},\\sigma_{y'},\\tau_{x'y'}$ は、もとの $\\sigma_x,\\sigma_y,\\tau_{xy}$ から上の式で計算できます。角度が $2\\theta$ の形で入るのが特徴で、応力は「向きを180°変えると元に戻る」性質があるためです。この式を図にしたのが次のモールの応力円です。",
       "example": "$\\theta=30^{\\circ}$ なら $\\cos2\\theta=\\cos60^{\\circ}=\\tfrac12,\\ \\sin2\\theta=\\sin60^{\\circ}=\\tfrac{\\sqrt3}{2}$ を代入するだけ(公式問2-6)。",
       "figureImage": "s2PrincipalMohr"
