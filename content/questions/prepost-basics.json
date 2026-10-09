@@ -24,7 +24,7 @@
         "まず本番結果として報告する"
       ],
       "answer": 2,
-      "explanation": "モデルの条件と版を確認してから実行する。起動・終了の操作だけを問う旧問を、解析の再現性を扱う問題へ改めた。",
+      "explanation": "モデルの条件と版を確認してから実行する。入力データ・単位系・材料・境界条件・使用した版の記録が、解析の再現性に必要である。",
       "officialRef": "問10-1",
       "role": "primary",
       "figure": "helpful",
@@ -296,7 +296,7 @@
         "止端の最大応力が収束するまで細分化する"
       ],
       "answer": 3,
-      "explanation": "評価距離だけから要素寸法は決まらない。評価法、要素次数、応力の抽出方法を合わせて定義する。根拠のない「3 mmが正解」を削除した。",
+      "explanation": "評価距離だけから要素寸法は決まらない。評価法、要素次数、応力の抽出方法を合わせて定義する。",
       "hasMath": false,
       "figure": "helpful",
       "figureImage": "pp10WeldToe",
@@ -332,7 +332,8 @@
       "figureImage": "pp10Elem3DNodes",
       "figureHint": "白地660x420で四面体一次4節点・立方体一次8節点・六面体二次20節点の節点数比較",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "preFigureImage": null
     },
     {
       "id": "pp-10-13",
@@ -435,7 +436,7 @@
         "数値積分の次数"
       ],
       "answer": 4,
-      "explanation": "積分次数は要素定式化・解析設定の事項で、不要な確認事項ではない。旧問の「チェック不要」を「形状指標ではない」に改めた。",
+      "explanation": "積分次数は要素定式化・解析設定の事項で、不要な確認事項ではない。",
       "hasMath": false,
       "officialRef": "問10-16",
       "role": "primary",
@@ -713,7 +714,8 @@
       "figureImage": "pp10BezierJoin",
       "figureHint": "白地660x420で2つのベジエ曲面の接続部で接線連続が保証されずキンクが生じる様子",
       "origin": "original",
-      "reviewed": true
+      "reviewed": true,
+      "preFigureImage": null
     },
     {
       "id": "pp-10-27",
@@ -746,7 +748,7 @@
     {
       "id": "pp-10-28",
       "number": "10-28",
-      "title": "ヒーリング",
+      "title": "CAD形状の修復",
       "topic": "データ品質",
       "type": "mc",
       "difficulty": 1,
@@ -786,7 +788,7 @@
         "配置拘束と幾何トポロジーは区別して扱う"
       ],
       "answer": 3,
-      "explanation": "幾何カーネル・許容値・履歴表現が異なるため、完全な変換は保証されない。配置拘束が頂点・稜線・面そのもので構成されるという旧説明を修正。",
+      "explanation": "幾何カーネル・許容値・履歴表現が異なるため、完全な変換は保証されない。部品間の配置拘束と、形状を表す頂点・稜線・面の位相構造を区別する。",
       "hasMath": false,
       "officialRef": "問10-29",
       "role": "primary",
@@ -890,7 +892,7 @@
       "topic": "応力評価",
       "type": "mc",
       "difficulty": 3,
-      "question": "初期ひずみなしの微小ひずみ線形弾性要素で、応力計算と表示の説明はどれか。",
+      "question": "初期応力・初期ひずみなしの微小ひずみ線形弾性要素で、応力計算と表示の説明はどれか。",
       "choices": [
         "Q4では応力は必ず一定",
         "変位そのものが応力",
@@ -1012,7 +1014,7 @@
         "ねじれ角"
       ],
       "answer": 1,
-      "explanation": "wは固定端で0、先端でPL³/(3EI)となる。単なる「自由端ほど大きい色」だけでは量は一意に判別できないため、式と定義を条件にした。",
+      "explanation": "wは固定端で0、先端でPL³/(3EI)となる。与えられた式の次元は長さであり、定義された変位成分と固定端の境界条件に整合する。",
       "hasMath": false,
       "figure": "helpful",
       "figureImage": "pp10CantileverContour",
@@ -1045,7 +1047,7 @@
       "hasMath": false,
       "figure": "helpful",
       "figureImage": "pp10StressVector",
-      "preFigureImage": "pp10StressVectorSetup",
+      "preFigureImage": null,
       "figureHint": "白地660x420で2軸引張を受ける六面体自由表面の応力ベクトル図、面内に最大主応力と中間主応力の矢印を示す",
       "officialRef": "問10-38",
       "role": "primary",
@@ -1110,7 +1112,8 @@
       "reviewed": true,
       "relatedFormulas": [
         "visualization"
-      ]
+      ],
+      "preFigureImage": null
     },
     {
       "id": "pp-10-41",
@@ -1127,7 +1130,7 @@
         "値は非負で、色の対応は凡例と設定による"
       ],
       "answer": 4,
-      "explanation": "色だけで符号や荷重方向は分からない。値・単位・表示量・範囲・平均化の有無を読む。図は既知値0,10,20,30 MPaの説明図へ再作図し、同心円の不正確な円孔結果図は削除した。",
+      "explanation": "色だけで符号や荷重方向は分からない。値・単位・表示量・範囲・平均化の有無を読む。付属の回答後図は既知値0,10,20,30 MPaを使った説明図である。",
       "hasMath": false,
       "figure": "helpful",
       "figureImage": "pp10FilledContour",
@@ -1138,7 +1141,8 @@
       "reviewed": true,
       "relatedFormulas": [
         "visualization"
-      ]
+      ],
+      "preFigureImage": null
     }
   ]
 }

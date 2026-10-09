@@ -16,7 +16,8 @@ CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 FIG = os.path.join(CAE, "assets", "figures")
 PACK = os.path.join(CAE, "図", "固体2級", "再チェック修正パック")
 AD = os.path.join(PACK, "適用データ")
-QMAP = {5:"fem-practice",6:"numerical-basics",7:"element-tech",8:"modeling-basics"}
+QMAP = {5:"fem-practice",6:"numerical-basics",7:"element-tech",8:"modeling-basics",
+        9:"boundary-conditions",10:"prepost-basics",11:"verification-basics",12:"computer-basics",13:"ethics"}
 
 ch = int(sys.argv[1]); WRITE = "--write" in sys.argv
 jpath = os.path.join(CAE, "content", "questions", QMAP[ch] + ".json")

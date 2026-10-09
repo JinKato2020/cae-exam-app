@@ -177,7 +177,7 @@
       "officialRef": "問11-6",
       "role": "primary",
       "figure": "helpful",
-      "preFigureImage": "ver11LoadArrangeSetup",
+      "preFigureImage": null,
       "figureImage": "ver11LoadArrange",
       "figureHint": "白地660x420。総和が等しい荷重を中央1点集中・等分布・複数点分散で与えた単純支持はりのたわみ比較。中央集中が最大。",
       "relatedFormulas": [
@@ -191,7 +191,7 @@
       "topic": "応力最大位置の定性評価",
       "type": "mc",
       "difficulty": 2,
-      "question": "11-5と同じ、L=1000 mm、a=200 mmの単純支持ばりで、局所荷重導入の応力集中を除くはり理論の曲げ応力最大位置はどれか。断面は一様。",
+      "question": "一様断面のEuler–Bernoulli単純支持ばりを考える。支点間距離L=1000 mm、左支点からa=200 mmの位置に下向き集中力Pを作用させる。xは左支点からの距離とする。局所荷重導入の応力集中を除く、はり理論の曲げ応力最大位置はどれか。",
       "choices": [
         "最大たわみ点x≈434 mm",
         "荷重点x=200 mm",
@@ -199,14 +199,14 @@
         "全断面で同じ"
       ],
       "answer": 2,
-      "explanation": "曲げ応力はσx=My/I。一定断面では|M|が最大の荷重点で最大になる。たわみ最大点は異なる。旧中央荷重では両点が一致して選択肢が重複するため、非中央条件へ改めた。",
+      "explanation": "曲げ応力はσx=My/I。一様断面では|M|が最大となる荷重点x=200 mmで曲げ応力の絶対値が最大になる。最大たわみ点x≈434 mmとは異なる。",
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問11-7",
       "role": "primary",
       "figure": "helpful",
-      "preFigureImage": "ver11MomentPeakSetup",
+      "preFigureImage": null,
       "figureImage": "ver11MomentPeak",
       "figureHint": "白地660x420。単純支持はり中央集中荷重の曲げモーメント図(荷重点で最大)とσ=M/Zの関係を示す図。",
       "relatedFormulas": [
@@ -257,7 +257,7 @@
         "挿入物内は一定、接着界面で変位は連続"
       ],
       "answer": 4,
-      "explanation": "回転ゼロの剛体は並進だけなので内部の荷重方向変位は一定。一般の剛体は回転をもてるため、全変位が常に一定とはいえない。空洞の円孔には内部変位を定義しないので「剛体の円孔」を「剛体挿入物」へ修正した。",
+      "explanation": "回転ゼロの剛体は並進だけなので内部の荷重方向変位は一定。一般の剛体は回転をもてるため、全変位が常に一定とはいえない。空洞の円孔には材料内の変位を定義しない。",
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
@@ -267,7 +267,7 @@
       "relatedFormulas": [
         "sanity-checks"
       ],
-      "preFigureImage": "ver11RigidHoleStripSetup",
+      "preFigureImage": null,
       "figureImage": "ver11RigidHoleStrip",
       "figureHint": "白地660x420で、帯板中央に剛体円孔部を埋め込み荷重方向に一様引張し、中心線(対称線)を示す図。"
     },
@@ -278,7 +278,7 @@
       "topic": "定常温度分布の定性評価",
       "type": "mc",
       "difficulty": 3,
-      "question": "内側材料1と外側材料2が完全接着する二層円筒壁を考える。軸方向一定、定常、発熱なしで外向き熱流量Q>0。界面の同じ半径rでλ1=10、λ2=1 W/(m·K)。界面両側の温度勾配の絶対値の比 |T′2|/|T′1| はどれか。",
+      "question": "内側材料1と外側材料2が完全接着する、界面熱抵抗・界面発熱のない二層円筒壁を考える。軸方向一定、定常、発熱なしで外向き熱流量Q>0。界面の同じ半径rでλ1=10、λ2=1 W/(m·K)。界面両側の温度勾配の絶対値の比 |T′2|/|T′1| はどれか。",
       "choices": [
         "1/10",
         "10",
@@ -286,14 +286,14 @@
         "半径だけで決まりλは無関係"
       ],
       "answer": 2,
-      "explanation": "Q=−2πrLλ dT/drより、同じrでは勾配比はλ1/λ2=10。各層のTはln rの関数で、平板の直線分布ではない。温度は完全接着界面で連続。表面の流体との温度差はQ/(h·2πrL)で、hだけでなく表面積にも依存する。",
+      "explanation": "Q=−2πrLλ dT/drより、同じrでは勾配比はλ1/λ2=10。各層のTはln rの関数で、平板の直線分布ではない。界面熱抵抗がないので温度は界面で連続。表面の流体との温度差はQ/(h·2πrL)で、hだけでなく表面積にも依存する。",
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問11-10",
       "role": "primary",
       "figure": "helpful",
-      "preFigureImage": "ver11WallTempSetup",
+      "preFigureImage": null,
       "figureImage": "ver11WallTemp",
       "figureHint": "白地660x420。円筒断熱壁(内レンガ+外ブロック)の半径方向定常温度分布。レンガ側は緩やか・ブロック側は急な勾配、外表面で温度飛びを示す",
       "relatedFormulas": [
@@ -411,7 +411,8 @@
       "figureHint": "白地660x420。荷重制御の線形弾性で応力σ=F/AはEに依存せず、ひずみ・変位のみEに反比例することを示す図。",
       "relatedFormulas": [
         "vv"
-      ]
+      ],
+      "preFigureImage": null
     },
     {
       "id": "ver-11-15",
@@ -420,7 +421,7 @@
       "topic": "単位系不整合の影響",
       "type": "mc",
       "difficulty": 3,
-      "question": "11-14と同じ前提の力制御解析で、mm-N系の正しいE=200000 MPaを、GPaの数値200のまま入力した。応力・変位の数値を正しい単位に復元する関係はどれか。",
+      "question": "単一の等方材料による微小変位線形弾性静解析を考える。ポアソン比は一定、変位境界はゼロ変位のみ、力荷重は一定とし、熱・初期応力・初期ひずみはない。mm-N系の正しいE=200000 MPaを、GPaの数値200のまま入力した。応力・変位の数値を正しい単位に復元する関係はどれか。",
       "choices": [
         "応力は同じ、誤計算の変位を1000で割る",
         "応力も変位も1000倍する",
@@ -456,7 +457,7 @@
         "C=入力省略、D=バグ不存在の証明"
       ],
       "answer": 2,
-      "explanation": "コード検証は数理モデルの実装が正しいかを調べる。妥当性確認は実験・観測との比較などを通じ、目的に対するモデルの適切さを評価する。付属図は教材用整理図であり、ASME原図の転載・完全再現ではない。",
+      "explanation": "コード検証は数理モデルの実装が正しいかを調べる。妥当性確認は実験・観測との比較などを通じ、目的に対するモデルの適切さを評価する。",
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
@@ -464,7 +465,7 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "ver11VVProc",
-      "preFigureImage": "ver11VVProcSetup",
+      "preFigureImage": null,
       "figureHint": "白地660x420。ASME V&V手順図。現実現象→概念モデルから左に数理モデル(A)→計算モデル(B)、右に物理モデル(D)、A→B間にコード検証(C)の空欄を配置した縦フロー",
       "relatedFormulas": [
         "vv",

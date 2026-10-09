@@ -40,11 +40,11 @@
     {
       "id": "bc-9-2",
       "number": "9-2",
-      "title": "測定変位と反力",
+      "title": "測定値からの荷重推定",
       "topic": "強制変位・反力",
       "type": "mc",
       "difficulty": 2,
-      "question": "支持・材料・他の荷重は既知で、1点の荷重方向変位だけを測定した。その点の荷重を推定する方法はどれか。",
+      "question": "微小変形の線形弾性静解析を考える。支持・材料・他の荷重は既知で、解は一意とする。未知荷重は、拘束されていない1自由度に作用する力だけである。その自由度の荷重方向変位を測定した。この未知荷重を推定する方法はどれか。",
       "choices": [
         "解析できない",
         "測定値を強制変位として与え、その自由度の反力を求める",
@@ -100,7 +100,7 @@
       "topic": "斜面拘束・局所座標変換",
       "type": "mc",
       "difficulty": 2,
-      "question": "斜面に沿う座標をt、法線方向をnとする。摩擦のない滑りを許す拘束はどれか。",
+      "question": "剛な斜面との接触を保ち、離間せず、摩擦のない滑りを許す。斜面に沿う座標をt、法線方向をnとする。適切な拘束はどれか。",
       "choices": [
         "ut=0、unは自由",
         "全体座標のuy=0だけ",
@@ -205,7 +205,8 @@
       "relatedFormulas": [
         "equivalent-nodal"
       ],
-      "figure": "helpful"
+      "figure": "helpful",
+      "preFigureImage": "bc9EqRowSetup"
     },
     {
       "id": "bc-9-8",
@@ -308,7 +309,7 @@
         "160 N"
       ],
       "answer": 2,
-      "explanation": "総重量8000×1×0.1×0.08×10=640 N。1要素80 Nを4隅へ20 Nずつ配分し、内部の共有節点は2要素分で40 N。中立軸上の節点を想定した図は削除した。",
+      "explanation": "総重量8000×1×0.1×0.08×10=640 N。1要素80 Nを4隅へ20 Nずつ配分し、内部の共有節点は2要素分で40 N。",
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
@@ -366,7 +367,7 @@
         "160 N"
       ],
       "answer": 3,
-      "explanation": "二次辺の各隅は1/6で40 N。共有点には2辺分の80 Nが加わる。曲線の圧力では法線方向とヤコビアンが変わるため、単純な1:4:1を一般化できない。旧円弧条件を直線条件へ置き換えた。",
+      "explanation": "二次辺の各隅は1/6で40 N。共有点には2辺分の80 Nが加わる。曲線の圧力では法線方向とヤコビアンが変わるため、単純な1:4:1を一般化できない。",
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
@@ -416,7 +417,7 @@
       "topic": "軸対称・対称境界条件",
       "type": "mc",
       "difficulty": 2,
-      "question": "形状・材料・荷重がz=0に対称な内圧円筒の上半分をr-z軸対称要素で解析する。切断した下端z=0の条件はどれか。",
+      "question": "形状・材料・荷重・支持がz=0に鏡映対称な内圧円筒の上半分をr-z軸対称要素で線形解析する。解は一意とする。切断した下端z=0の条件はどれか。",
       "choices": [
         "uz=0、ur自由",
         "ur=0、uz自由",
@@ -500,7 +501,7 @@
     {
       "id": "bc-9-18",
       "number": "9-18",
-      "title": "中央き裂の1/4モデル",
+      "title": "切断境界からのモデル判別",
       "topic": "対称境界条件・き裂",
       "type": "mc",
       "difficulty": 3,
@@ -512,7 +513,7 @@
         "水平引張の中央き裂板1/4"
       ],
       "answer": 3,
-      "explanation": "下辺の自由区間はき裂面、拘束区間は未き裂部の対称面である。左辺の対称性により中央き裂が復元される。どの区間が自由かを明示した。",
+      "explanation": "下辺の自由区間はき裂面、拘束区間は未き裂部の対称面である。左辺の対称性により中央き裂が復元される。",
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
@@ -523,12 +524,13 @@
       "relatedFormulas": [
         "sym-antisym"
       ],
-      "figure": "required"
+      "figure": "helpful",
+      "preFigureImage": null
     },
     {
       "id": "bc-9-19",
       "number": "9-19",
-      "title": "周期条件と剛体回転",
+      "title": "周期セクターの解の一意性",
       "topic": "対称・周期対称・剛体モード",
       "type": "mc",
       "difficulty": 3,
@@ -754,7 +756,7 @@
         "rigid-body-mode"
       ],
       "figure": "helpful",
-      "preFigureImage": "bc9FrameStabilitySetup"
+      "preFigureImage": null
     },
     {
       "id": "bc-9-27",
@@ -915,7 +917,7 @@
         "u=uB−yθz、v=vB"
       ],
       "answer": 4,
-      "explanation": "δu=θ×rより(−yθz,0)。x-y面の回転軸はzであり、旧稿のx軸表記を修正した。",
+      "explanation": "δu=θ×rより(−yθz,0)。x-y面の回転軸はzである。",
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
@@ -948,7 +950,7 @@
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
-      "preFigureImage": "bc9CylAxialMPCSetup",
+      "preFigureImage": null,
       "figureImage": "bc9CylAxialMPC",
       "figureHint": "白地660x420。厚肉円管から切り出した軸対称(r-z)モデル。左に対称軸、内面から加熱。軸に垂直な上端面・下端面を明示する中立図(拘束は描かない)",
       "officialRef": "問9-33",
