@@ -96,8 +96,8 @@
     {
       "id": "principal-stress-3d",
       "kind": "formula",
-      "term": "3次元の主応力(応力の不変量)",
-      "formula": "$\\sigma^{3}-I_1\\sigma^{2}+I_2\\sigma-I_3=0,\\quad I_1=\\sigma_x+\\sigma_y+\\sigma_z$",
+      "term": "3次元の主応力(特性方程式・応力の不変量)",
+      "formula": "$$\\begin{aligned}&\\begin{vmatrix}\\sigma_x-\\sigma & \\tau_{xy} & \\tau_{zx}\\\\ \\tau_{xy} & \\sigma_y-\\sigma & \\tau_{yz}\\\\ \\tau_{zx} & \\tau_{yz} & \\sigma_z-\\sigma\\end{vmatrix}=0 \\\\ &\\quad\\Longleftrightarrow\\ \\sigma^3-I_1\\sigma^2+I_2\\sigma-I_3=0 \\\\ &I_1=\\sigma_x+\\sigma_y+\\sigma_z \\\\ &I_2=\\sigma_x\\sigma_y+\\sigma_y\\sigma_z+\\sigma_z\\sigma_x-\\tau_{xy}^2-\\tau_{yz}^2-\\tau_{zx}^2 \\\\ &I_3=\\sigma_x\\sigma_y\\sigma_z-\\sigma_x\\tau_{yz}^2-\\sigma_y\\tau_{zx}^2-\\sigma_z\\tau_{xy}^2+2\\tau_{xy}\\tau_{yz}\\tau_{zx}\\end{aligned}$$",
       "body": "3次元では、ある1点の応力は6つの成分 $(\\sigma_x,\\sigma_y,\\sigma_z,\\tau_{xy},\\tau_{yz},\\tau_{zx})$ で表せます。ここでもせん断応力が全部0になる向きが3つあり、そのときの垂直応力が3つの主応力 $\\sigma_1\\geq\\sigma_2\\geq\\sigma_3$ です。これらは応力行列の固有値で、上の3次方程式の3つの解として求まります。係数 $I_1,I_2,I_3$ は軸の取り方を変えても値が変わらないので「応力の不変量」と呼び、$I_1$ は3つの垂直応力の和(=主応力の和)、$I_3$ は行列式です。",
       "example": "全方向から同じ圧力 $-p$ を受ける状態(静水圧)では $\\sigma_1=\\sigma_2=\\sigma_3=-p$ で、どの向きでもせん断応力は0。",
       "figureImage": null
