@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="fig2-16" viewBox="0 0 640 360">
+<rect width="640" height="360" fill="white" />
+<path d="M85 125 H327 A14 43 0 0 1 327 211 H85 Z" stroke="#1F3A65" stroke-width="2.5" fill="#E1E7F2" stroke-linejoin="round" />
+<ellipse cx="85" cy="168" rx="14" ry="43" fill="#E1E7F2" stroke="#1F3A65" stroke-width="2.5" />
+<path d="M41.159 211.841 A62 62 0 0 1 111.202 111.809" stroke="#C82D2D" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M111.202 111.809 L101.202 111.846 L104.803 104.125 Z" stroke="#C82D2D" stroke-width="0" fill="#C82D2D" stroke-linejoin="round" />
+<path d="M371.841 211.841 A62 62 0 0 0 301.798 111.809" stroke="#C82D2D" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M301.798 111.809 L308.197 104.125 L311.798 111.846 Z" stroke="#C82D2D" stroke-width="0" fill="#C82D2D" stroke-linejoin="round" />
+<circle cx="238.000" cy="143.000" r="4" fill="#1F3A65" stroke="none" stroke-width="0" />
+<path d="M242.000 140.000 L455.000 83.000" stroke="#888" stroke-width="1.2" fill="none" stroke-linejoin="round" />
+<rect x="448" y="105" width="110" height="110" fill="#E1E7F2" stroke="#1F3A65" stroke-width="2.5" />
+<path d="M576.000 193.000 L576.000 127.000" stroke="#C82D2D" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M576.000 127.000 L580.259 136.048 L571.741 136.048 Z" stroke="#C82D2D" stroke-width="0" fill="#C82D2D" stroke-linejoin="round" />
+<path d="M430.000 127.000 L430.000 193.000" stroke="#C82D2D" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M430.000 193.000 L425.741 183.952 L434.259 183.952 Z" stroke="#C82D2D" stroke-width="0" fill="#C82D2D" stroke-linejoin="round" />
+<path d="M470.000 87.000 L536.000 87.000" stroke="#C82D2D" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M536.000 87.000 L526.952 91.259 L526.952 82.741 Z" stroke="#C82D2D" stroke-width="0" fill="#C82D2D" stroke-linejoin="round" />
+<path d="M536.000 233.000 L470.000 233.000" stroke="#C82D2D" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M470.000 233.000 L479.048 228.741 L479.048 237.259 Z" stroke="#C82D2D" stroke-width="0" fill="#C82D2D" stroke-linejoin="round" />
+<path d="M85.000 265.000 L331.000 265.000" stroke="#888" stroke-width="1.2" fill="none" stroke-linejoin="round" />
+<path d="M331.000 265.000 L321.952 269.259 L321.952 260.741 Z" stroke="#888" stroke-width="0" fill="#888" stroke-linejoin="round" />
+<text x="196" y="296" fill="#888" font-family="Noto Sans CJK JP,sans-serif" font-size="18" text-anchor="middle" id="text_21">軸方向</text>
+<text x="500" y="268" fill="#1F3A65" font-family="Noto Sans CJK JP,sans-serif" font-size="18" text-anchor="middle" id="text_22">微小要素</text>
+<text x="602" y="166" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="20" text-anchor="middle" font-style="italic" id="text_23">τ</text>
+<!-- Claude回答後 注記 -->
+<path d="M503 160 L543 200" stroke="#C82D2D" stroke-width="2.5" fill="none" />
+<path d="M543 200 L538.8 190.1 L533.1 195.8 Z" fill="#C82D2D" />
+<path d="M503 160 L463 120" stroke="#C82D2D" stroke-width="2.5" fill="none" />
+<path d="M463 120 L467.3 129.9 L473 124.2 Z" fill="#C82D2D" />
+<path d="M543 120 L510 153" stroke="#C82D2D" stroke-width="2.5" fill="none" />
+<path d="M510 153 L519.9 148.8 L514.2 143.1 Z" fill="#C82D2D" />
+<path d="M463 200 L496 167" stroke="#C82D2D" stroke-width="2.5" fill="none" />
+<path d="M496 167 L486.1 171.3 L491.8 177 Z" fill="#C82D2D" />
+<text x="503" y="98" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="16" text-anchor="middle">σ₂ = −τ (圧縮)</text>
+<text x="503" y="240" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="16" text-anchor="middle">σ₁ = +τ (引張)</text>
+<path d="M150 175 L185 140" stroke="#C82D2D" stroke-width="2.5" fill="none" />
+<path d="M185 140 L180.7 149.9 L175 144.2 Z" fill="#C82D2D" />
+<path d="M235 175 L270 140" stroke="#C82D2D" stroke-width="2.5" fill="none" />
+<path d="M270 140 L265.7 149.9 L260 144.2 Z" fill="#C82D2D" />
+<text x="205" y="250" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="14" text-anchor="middle">±45°(主応力=らせん方向)</text>
+</svg>

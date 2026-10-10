@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="fig2-28" viewBox="0 0 680 340">
+<rect width="680" height="340" fill="white" />
+<rect x="100" y="166" width="475" height="13" fill="#E1E7F2" stroke="#1F3A65" stroke-width="2.5" />
+<path d="M100.000 179.000 L80.000 208.000 L120.000 208.000 Z" stroke="#1F3A65" stroke-width="2.5" fill="#E1E7F2" stroke-linejoin="round" />
+<path d="M69.000 213.000 L131.000 213.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M575.000 179.000 L555.000 208.000 L595.000 208.000 Z" stroke="#1F3A65" stroke-width="2.5" fill="#E1E7F2" stroke-linejoin="round" />
+<circle cx="564.000" cy="213.000" r="5" fill="white" stroke="#1F3A65" stroke-width="2.5" />
+<circle cx="586.000" cy="213.000" r="5" fill="white" stroke="#1F3A65" stroke-width="2.5" />
+<path d="M544.000 221.000 L606.000 221.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M220.000 84.000 L220.000 163.000" stroke="#C82D2D" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M220.000 163.000 L215.741 153.952 L224.259 153.952 Z" stroke="#C82D2D" stroke-width="0" fill="#C82D2D" stroke-linejoin="round" />
+<path d="M350.000 84.000 L350.000 163.000" stroke="#C82D2D" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M350.000 163.000 L345.741 153.952 L354.259 153.952 Z" stroke="#C82D2D" stroke-width="0" fill="#C82D2D" stroke-linejoin="round" />
+<path d="M460.000 84.000 L460.000 163.000" stroke="#C82D2D" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M460.000 163.000 L455.741 153.952 L464.259 153.952 Z" stroke="#C82D2D" stroke-width="0" fill="#C82D2D" stroke-linejoin="round" />
+<text x="139" y="296" fill="#1F3A65" font-family="Noto Sans CJK JP,sans-serif" font-size="19" text-anchor="middle" id="text_15">ピン支持</text>
+<text x="548" y="296" fill="#1F3A65" font-family="Noto Sans CJK JP,sans-serif" font-size="19" text-anchor="middle" id="text_16">ローラー支持</text>
+<!-- Claude回答後 注記 -->
+<path d="M100 262 L100 216" stroke="#C82D2D" stroke-width="2.5" fill="none" />
+<path d="M100 216 L95.74 225 L104.26 225 Z" fill="#C82D2D" />
+<text x="116" y="250" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="16" text-anchor="start">R_Ay</text>
+<path d="M52 150 L96 150" stroke="#C82D2D" stroke-width="2.5" fill="none" />
+<path d="M96 150 L87 145.74 L87 154.26 Z" fill="#C82D2D" />
+<text x="74" y="140" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="15" text-anchor="middle">R_Ax = 0</text>
+<path d="M575 270 L575 226" stroke="#C82D2D" stroke-width="2.5" fill="none" />
+<path d="M575 226 L570.74 235 L579.26 235 Z" fill="#C82D2D" />
+<text x="594" y="256" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="16" text-anchor="start">R_By</text>
+<text x="340" y="326" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="17" text-anchor="middle">鉛直荷重のみなら水平反力 R_Ax は 0</text>
+</svg>

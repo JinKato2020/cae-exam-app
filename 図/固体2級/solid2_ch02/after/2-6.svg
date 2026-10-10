@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="fig2-6" viewBox="0 0 520 440">
+<rect width="520" height="440" fill="white" />
+<rect x="175" y="165" width="150" height="150" fill="#E1E7F2" stroke="#1F3A65" stroke-width="2.5" />
+<path d="M175.000 240.000 L120.000 240.000" stroke="#C82D2D" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M120.000 240.000 L129.048 235.741 L129.048 244.259 Z" stroke="#C82D2D" stroke-width="0" fill="#C82D2D" stroke-linejoin="round" />
+<path d="M325.000 240.000 L380.000 240.000" stroke="#C82D2D" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M380.000 240.000 L370.952 244.259 L370.952 235.741 Z" stroke="#C82D2D" stroke-width="0" fill="#C82D2D" stroke-linejoin="round" />
+<path d="M250.000 165.000 L250.000 110.000" stroke="#C82D2D" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M250.000 110.000 L254.259 119.048 L245.741 119.048 Z" stroke="#C82D2D" stroke-width="0" fill="#C82D2D" stroke-linejoin="round" />
+<path d="M250.000 315.000 L250.000 370.000" stroke="#C82D2D" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M250.000 370.000 L245.741 360.952 L254.259 360.952 Z" stroke="#C82D2D" stroke-width="0" fill="#C82D2D" stroke-linejoin="round" />
+<path d="M343.000 285.000 L343.000 195.000" stroke="#C82D2D" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M343.000 195.000 L347.259 204.048 L338.741 204.048 Z" stroke="#C82D2D" stroke-width="0" fill="#C82D2D" stroke-linejoin="round" />
+<path d="M157.000 195.000 L157.000 285.000" stroke="#C82D2D" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M157.000 285.000 L152.741 275.952 L161.259 275.952 Z" stroke="#C82D2D" stroke-width="0" fill="#C82D2D" stroke-linejoin="round" />
+<path d="M205.000 147.000 L295.000 147.000" stroke="#C82D2D" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M295.000 147.000 L285.952 151.259 L285.952 142.741 Z" stroke="#C82D2D" stroke-width="0" fill="#C82D2D" stroke-linejoin="round" />
+<path d="M295.000 333.000 L205.000 333.000" stroke="#C82D2D" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M205.000 333.000 L214.048 328.741 L214.048 337.259 Z" stroke="#C82D2D" stroke-width="0" fill="#C82D2D" stroke-linejoin="round" />
+<path d="M250.000 240.000 L433.000 240.000" stroke="#888" stroke-width="1.2" fill="none" stroke-linejoin="round" stroke-dasharray="5 4" />
+<path d="M433.000 240.000 L423.952 244.259 L423.952 235.741 Z" stroke="#888" stroke-width="0" fill="#888" stroke-linejoin="round" />
+<path d="M250.000 240.000 L405.000 85.000" stroke="#888" stroke-width="1.2" fill="none" stroke-linejoin="round" stroke-dasharray="5 4" />
+<path d="M405.000 85.000 L401.614 94.409 L395.591 88.386 Z" stroke="#888" stroke-width="0" fill="#888" stroke-linejoin="round" />
+<path d="M307.000 240.000 A57 57 0 0 0 290.305 199.695" stroke="#888" stroke-width="1.2" fill="none" stroke-linejoin="round" />
+<text x="316" y="210" fill="#888" font-family="Noto Sans CJK JP,sans-serif" font-size="18" text-anchor="middle" id="text_24">45°</text>
+<text x="448" y="247" fill="#888" font-family="Noto Sans CJK JP,sans-serif" font-size="20" text-anchor="middle" font-style="italic" id="text_25">x</text>
+<text x="420" y="75" fill="#888" font-family="Noto Sans CJK JP,sans-serif" font-size="20" text-anchor="middle" font-style="italic" id="text_26">x′</text>
+<text x="78" y="233" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="19" text-anchor="middle" font-style="italic" id="text_27">σx</text>
+<text x="265" y="78" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="19" text-anchor="middle" font-style="italic" id="text_28">σy</text>
+<text x="389" y="298" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="19" text-anchor="middle" font-style="italic" id="text_29">τxy</text>
+
+<!-- Claude回答後 注記 -->
+<path d="M300 190 L352 138" stroke="#C82D2D" stroke-width="2.5" fill="none"/>
+<path d="M352 138 L342.4 141.6 L348.4 147.6 Z" fill="#C82D2D"/>
+<text x="362" y="128" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="18" text-anchor="middle" font-style="italic">σx′</text>
+<text x="260" y="398" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="13" text-anchor="middle">σx=60, σy=20, τxy=30 (MPa),  2θ=90°</text>
+<text x="260" y="418" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="13" text-anchor="middle">σx′=(σx+σy)/2+((σx−σy)/2)cos2θ+τxy·sin2θ=40+0+30</text>
+<text x="260" y="436" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="15" text-anchor="middle">→ σx′ = 70 MPa</text>
+</svg>

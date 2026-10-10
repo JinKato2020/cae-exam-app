@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="fig3-14" viewBox="0 0 660 420">
+<rect width="660" height="420" fill="white" />
+<rect x="266" y="85" width="127" height="184" fill="#E1E7F2" stroke="#1F3A65" stroke-width="2.5" />
+<text x="146" y="86" fill="#1F3A65" font-family="Noto Sans CJK JP,sans-serif" font-size="20" text-anchor="middle" id="text_3">h₁（大）</text>
+<text x="522" y="86" fill="#1F3A65" font-family="Noto Sans CJK JP,sans-serif" font-size="20" text-anchor="middle" id="text_4">h₂（小）</text>
+<path d="M100.000 163.000 L560.000 163.000" stroke="#C82D2D" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M560.000 163.000 L550.952 167.259 L550.952 158.741 Z" stroke="#C82D2D" stroke-width="0" fill="#C82D2D" stroke-linejoin="round" />
+<text x="333" y="142" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="22" text-anchor="middle" font-style="italic" id="text_7">q</text>
+<path d="M120.000 313.000 L256.000 313.000" stroke="#888" stroke-width="1.2" fill="none" stroke-linejoin="round" stroke-dasharray="5 4" />
+<path d="M256.000 313.000 L246.952 317.259 L246.952 308.741 Z" stroke="#888" stroke-width="0" fill="#888" stroke-linejoin="round" />
+<path d="M120.000 313.000 L129.048 308.741 L129.048 317.259 Z" stroke="#888" stroke-width="0" fill="#888" stroke-linejoin="round" />
+<text x="188.0" y="301" fill="#888" font-family="Noto Sans CJK JP,sans-serif" font-size="18" text-anchor="middle" font-style="italic" id="text_11" />
+<path d="M405.000 313.000 L542.000 313.000" stroke="#888" stroke-width="1.2" fill="none" stroke-linejoin="round" stroke-dasharray="5 4" />
+<path d="M542.000 313.000 L532.952 317.259 L532.952 308.741 Z" stroke="#888" stroke-width="0" fill="#888" stroke-linejoin="round" />
+<path d="M405.000 313.000 L414.048 308.741 L414.048 317.259 Z" stroke="#888" stroke-width="0" fill="#888" stroke-linejoin="round" />
+<text x="473.5" y="301" fill="#888" font-family="Noto Sans CJK JP,sans-serif" font-size="18" text-anchor="middle" font-style="italic" id="text_15" />
+<text x="188" y="351" fill="#888" font-family="Noto Sans CJK JP,sans-serif" font-size="17" text-anchor="middle" id="text_16">流体と表面の</text>
+<text x="188" y="376" fill="#888" font-family="Noto Sans CJK JP,sans-serif" font-size="17" text-anchor="middle" id="text_17">温度差</text>
+<text x="474" y="351" fill="#888" font-family="Noto Sans CJK JP,sans-serif" font-size="17" text-anchor="middle" id="text_18">流体と表面の</text>
+<text x="474" y="376" fill="#888" font-family="Noto Sans CJK JP,sans-serif" font-size="17" text-anchor="middle" id="text_19">温度差</text>
+
+<path d="M188 250 L188 290" stroke="#C82D2D" stroke-width="3" fill="none"/><path d="M188 250 L184 259 L192 259 Z" fill="#C82D2D"/><path d="M188 290 L184 281 L192 281 Z" fill="#C82D2D"/><text x="212" y="274" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="15" text-anchor="start">ΔT小</text><path d="M474 200 L474 290" stroke="#C82D2D" stroke-width="3" fill="none"/><path d="M474 200 L470 209 L478 209 Z" fill="#C82D2D"/><path d="M474 290 L470 281 L478 281 Z" fill="#C82D2D"/><text x="498" y="246" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="15" text-anchor="start">ΔT大</text><text x="330" y="406" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="15" text-anchor="middle">ΔT = q / h（h小ほどΔT大）</text>
+</svg>

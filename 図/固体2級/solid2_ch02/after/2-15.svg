@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="fig2-15" viewBox="0 0 560 360">
+<rect width="560" height="360" fill="white" />
+<path d="M132 123 L295 76 A65 65 0 0 1 295 206 L132 253 Z" stroke="#1F3A65" stroke-width="2.5" fill="#E1E7F2" stroke-linejoin="round" />
+<circle cx="132.000" cy="188.000" r="65" fill="#E1E7F2" stroke="#1F3A65" stroke-width="2.5" />
+<circle cx="132.000" cy="188.000" r="32.5" fill="white" stroke="#1F3A65" stroke-width="2.5" />
+<path d="M40.000 123.000 L40.000 253.000" stroke="#888" stroke-width="1.2" fill="none" stroke-linejoin="round" stroke-dasharray="5 4" />
+<path d="M40.000 253.000 L35.741 243.952 L44.259 243.952 Z" stroke="#888" stroke-width="0" fill="#888" stroke-linejoin="round" />
+<path d="M40.000 123.000 L44.259 132.048 L35.741 132.048 Z" stroke="#888" stroke-width="0" fill="#888" stroke-linejoin="round" />
+<text x="55" y="194.0" fill="#888" font-family="Noto Sans CJK JP,sans-serif" font-size="18" text-anchor="start" font-style="italic" id="text_8" />
+<text x="135" y="63" fill="#888" font-family="Noto Sans CJK JP,sans-serif" font-size="18" text-anchor="middle" id="text_9">do = 40mm</text>
+<path d="M99.500 188.000 L164.500 188.000" stroke="#888" stroke-width="1.2" fill="none" stroke-linejoin="round" stroke-dasharray="5 4" />
+<path d="M164.500 188.000 L155.452 192.259 L155.452 183.741 Z" stroke="#888" stroke-width="0" fill="#888" stroke-linejoin="round" />
+<path d="M99.500 188.000 L108.548 183.741 L108.548 192.259 Z" stroke="#888" stroke-width="0" fill="#888" stroke-linejoin="round" />
+<text x="132.0" y="176" fill="#888" font-family="Noto Sans CJK JP,sans-serif" font-size="18" text-anchor="middle" font-style="italic" id="text_13" />
+<text x="163" y="299" fill="#888" font-family="Noto Sans CJK JP,sans-serif" font-size="18" text-anchor="middle" id="text_14">di = 20mm</text>
+<path d="M150.000 271.000 L150.000 211.000" stroke="#888" stroke-width="1.2" fill="none" stroke-linejoin="round" />
+<path d="M317.000 58.896 A85 85 0 0 1 355.104 201.104" stroke="#C82D2D" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M355.104 201.104 L358.490 191.695 L364.513 197.718 Z" stroke="#C82D2D" stroke-width="0" fill="#C82D2D" stroke-linejoin="round" />
+<text x="397" y="125" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="23" text-anchor="middle" font-style="italic" id="text_18">T</text>
+<text x="395" y="286" fill="#1F3A65" font-family="Noto Sans CJK JP,sans-serif" font-size="20" text-anchor="middle" font-style="italic" id="text_19">τa = 60MPa</text>
+<!-- Claude回答後 注記 -->
+<path d="M112 118 L150 118" stroke="#C82D2D" stroke-width="2.5" fill="none" />
+<path d="M150 118 L141 114 L141 122 Z" fill="#C82D2D" />
+<path d="M200 170 L200 210" stroke="#C82D2D" stroke-width="2.5" fill="none" />
+<path d="M200 210 L196 201 L204 201 Z" fill="#C82D2D" />
+<text x="205" y="150" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="15" text-anchor="start">外表面でτ最大</text>
+<text x="280" y="325" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="15" text-anchor="middle">Zp = π(do⁴−di⁴)/(16·do) ≈ 1.18×10⁴ mm³</text>
+<text x="280" y="348" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="15" text-anchor="middle">Tmax = τa·Zp ≈ 707 N·m</text>
+</svg>

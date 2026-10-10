@@ -1,0 +1,1229 @@
+{
+  "policy": "第4〜13章は付属の新図のみ。before/after別にnullは旧図撤去・図なし。",
+  "questions": [
+    {
+      "id": "9-1",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-2",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-3",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-4",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-5",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-6",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-7",
+      "oldFiguresAllowed": false,
+      "before": "図/第9章/before/9-7.svg",
+      "beforeAction": "replace",
+      "after": "図/第9章/after/9-7.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-8",
+      "oldFiguresAllowed": false,
+      "before": "図/第9章/before/9-8.svg",
+      "beforeAction": "replace",
+      "after": "図/第9章/after/9-8.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-9",
+      "oldFiguresAllowed": false,
+      "before": "図/第9章/before/9-9.svg",
+      "beforeAction": "replace",
+      "after": "図/第9章/after/9-9.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-10",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-11",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-12",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-13",
+      "oldFiguresAllowed": false,
+      "before": "図/第9章/before/9-13.svg",
+      "beforeAction": "replace",
+      "after": "図/第9章/after/9-13.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-14",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-15",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-16",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-17",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-18",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": "図/第9章/after/9-18.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-19",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-20",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-21",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-22",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-23",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-24",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-25",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-26",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": "図/第9章/after/9-26.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-27",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-28",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-29",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-30",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-31",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-32",
+      "oldFiguresAllowed": false,
+      "before": "図/第9章/before/9-32.svg",
+      "beforeAction": "replace",
+      "after": "図/第9章/after/9-32.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "9-33",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": "図/第9章/after/9-33.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-1",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-2",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-3",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-4",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-5",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-6",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-7",
+      "oldFiguresAllowed": false,
+      "before": "図/第10章/before/10-7.svg",
+      "beforeAction": "replace",
+      "after": "図/第10章/after/10-7.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-8",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-9",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-10",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-11",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-12",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": "図/第10章/after/10-12.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-13",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-14",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-15",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-16",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-17",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-18",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-19",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-20",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-21",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-22",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-23",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-24",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-25",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-26",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": "図/第10章/after/10-26.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-27",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-28",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-29",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-30",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-31",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-32",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-33",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-34",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-35",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-36",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-37",
+      "oldFiguresAllowed": false,
+      "before": "図/第10章/before/10-37.svg",
+      "beforeAction": "replace",
+      "after": "図/第10章/after/10-37.svg",
+      "afterAction": "replace",
+      "svgChange": "before_header_and_title"
+    },
+    {
+      "id": "10-38",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": "図/第10章/after/10-38.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-39",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-40",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": "図/第10章/after/10-40.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "10-41",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": "図/第10章/after/10-41.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "11-1",
+      "oldFiguresAllowed": false,
+      "before": "図/第11章/before/11-1.svg",
+      "beforeAction": "replace",
+      "after": "図/第11章/after/11-1.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "11-2",
+      "oldFiguresAllowed": false,
+      "before": "図/第11章/before/11-2.svg",
+      "beforeAction": "replace",
+      "after": "図/第11章/after/11-2.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "11-3",
+      "oldFiguresAllowed": false,
+      "before": "図/第11章/before/11-3.svg",
+      "beforeAction": "replace",
+      "after": "図/第11章/after/11-3.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "11-4",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "11-5",
+      "oldFiguresAllowed": false,
+      "before": "図/第11章/before/11-5.svg",
+      "beforeAction": "replace",
+      "after": "図/第11章/after/11-5.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "11-6",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": "図/第11章/after/11-6.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "11-7",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": "図/第11章/after/11-7.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "11-8",
+      "oldFiguresAllowed": false,
+      "before": "図/第11章/before/11-8.svg",
+      "beforeAction": "replace",
+      "after": "図/第11章/after/11-8.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "11-9",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": "図/第11章/after/11-9.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "11-10",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": "図/第11章/after/11-10.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "11-11",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "11-12",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "11-13",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "11-14",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": "図/第11章/after/11-14.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "11-15",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "11-16",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": "図/第11章/after/11-16.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "11-17",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-1",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-2",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-3",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": "図/第12章/after/12-3.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-4",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": "図/第12章/after/12-4.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-5",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-6",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-7",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": "図/第12章/after/12-7.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-8",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-9",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-10",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-11",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-12",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-13",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-14",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-15",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-16",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-17",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-18",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-19",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-20",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-21",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-22",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-23",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-24",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-25",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-26",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-27",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-28",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-29",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-30",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": "図/第12章/after/12-30.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-31",
+      "oldFiguresAllowed": false,
+      "before": "図/第12章/before/12-31.svg",
+      "beforeAction": "replace",
+      "after": "図/第12章/after/12-31.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-32",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "12-33",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "13-1",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "13-2",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "13-3",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": "図/第13章/after/13-3.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "13-4",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "13-5",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "13-6",
+      "oldFiguresAllowed": false,
+      "before": "図/第13章/before/13-6.svg",
+      "beforeAction": "replace",
+      "after": "図/第13章/after/13-6.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "13-7",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": "図/第13章/after/13-7.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "13-8",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": "図/第13章/after/13-8.svg",
+      "afterAction": "replace",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "13-9",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "13-10",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "13-11",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    },
+    {
+      "id": "13-12",
+      "oldFiguresAllowed": false,
+      "before": null,
+      "beforeAction": "remove_old_and_show_none",
+      "after": null,
+      "afterAction": "remove_old_and_show_none",
+      "svgChange": "none_existing_verified"
+    }
+  ]
+}

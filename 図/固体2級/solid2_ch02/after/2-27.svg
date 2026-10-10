@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="fig2-27" viewBox="0 0 560 420">
+<rect width="560" height="420" fill="white" />
+<path d="M40.000 110.000 L462.000 110.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M49.000 110.000 L62.000 95.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M73.000 110.000 L86.000 95.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M97.000 110.000 L110.000 95.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M121.000 110.000 L134.000 95.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M145.000 110.000 L158.000 95.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M169.000 110.000 L182.000 95.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M193.000 110.000 L206.000 95.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M217.000 110.000 L230.000 95.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M241.000 110.000 L254.000 95.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M265.000 110.000 L278.000 95.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M289.000 110.000 L302.000 95.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M313.000 110.000 L326.000 95.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M337.000 110.000 L350.000 95.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M361.000 110.000 L374.000 95.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M385.000 110.000 L398.000 95.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M409.000 110.000 L422.000 95.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M433.000 110.000 L446.000 95.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M70.000 110.000 L330.000 260.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M416.600 110.000 L330.000 260.000" stroke="#1F3A65" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<circle cx="330.000" cy="260.000" r="5" fill="#1F3A65" stroke="none" stroke-width="0" />
+<path d="M228.000 260.000 L420.000 260.000" stroke="#888" stroke-width="1.2" fill="none" stroke-linejoin="round" stroke-dasharray="5 4" />
+<path d="M266.000 260.000 A64 64 0 0 1 274.574 228.000" stroke="#888" stroke-width="1.2" fill="none" stroke-linejoin="round" />
+<path d="M394.000 260.000 A64 64 0 0 0 362.000 204.574" stroke="#888" stroke-width="1.2" fill="none" stroke-linejoin="round" />
+<text x="264" y="240" fill="#888" font-family="Noto Sans CJK JP,sans-serif" font-size="18" text-anchor="middle" id="text_26">30°</text>
+<text x="392" y="232" fill="#888" font-family="Noto Sans CJK JP,sans-serif" font-size="18" text-anchor="middle" id="text_27">60°</text>
+<text x="180" y="155" fill="#1F3A65" font-family="Noto Sans CJK JP,sans-serif" font-size="19" text-anchor="middle" id="text_28">部材1</text>
+<text x="398" y="176" fill="#1F3A65" font-family="Noto Sans CJK JP,sans-serif" font-size="19" text-anchor="middle" id="text_29">部材2</text>
+<path d="M330.000 267.000 L330.000 358.000" stroke="#C82D2D" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+<path d="M330.000 358.000 L325.741 348.952 L334.259 348.952 Z" stroke="#C82D2D" stroke-width="0" fill="#C82D2D" stroke-linejoin="round" />
+<text x="350" y="340" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="22" text-anchor="middle" font-style="italic" id="text_32">W</text>
+<text x="351" y="280" fill="#1F3A65" font-family="Noto Sans CJK JP,sans-serif" font-size="21" text-anchor="middle" font-style="italic" id="text_33">C</text>
+<!-- Claude回答後 注記 -->
+<path d="M330 260 L268 224" stroke="#C82D2D" stroke-width="2.5" fill="none" />
+<path d="M268 224 L275 233.8 L280 225.2 Z" fill="#C82D2D" />
+<path d="M330 260 L366 198" stroke="#C82D2D" stroke-width="2.5" fill="none" />
+<path d="M366 198 L364.8 210 L356.2 205 Z" fill="#C82D2D" />
+<text x="248" y="216" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="18" text-anchor="middle" font-style="italic">S₁</text>
+<text x="384" y="190" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="18" text-anchor="middle" font-style="italic">S₂</text>
+<text x="280" y="20" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="14" text-anchor="middle">節点C（両部材を引張と仮定）</text>
+<text x="280" y="42" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="14" text-anchor="middle">ΣFx: S₁cos30° = S₂cos60° → S₂ = √3·S₁</text>
+<text x="280" y="64" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="14" text-anchor="middle">ΣFy: S₁sin30° + S₂sin60° = W</text>
+<text x="280" y="86" fill="#C82D2D" font-family="Noto Sans CJK JP,sans-serif" font-size="14" text-anchor="middle">→ S₁ = W/2 ,  S₂ = (√3/2)W（共に引張）</text>
+</svg>

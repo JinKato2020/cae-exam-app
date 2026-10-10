@@ -1,0 +1,542 @@
+[
+  {
+    "id": "12-1",
+    "newOrderOldOptionNumbers": [
+      3,
+      2,
+      1,
+      4
+    ],
+    "oldCorrectAnswer": 1,
+    "newCorrectAnswer": 3,
+    "correctOptionText": "演算の正確な実数値を表現可能な近い値へ置き換えることによる誤差"
+  },
+  {
+    "id": "12-2",
+    "newOrderOldOptionNumbers": [
+      2,
+      4,
+      1,
+      3
+    ],
+    "oldCorrectAnswer": 2,
+    "newCorrectAnswer": 1,
+    "correctOptionText": "同じ数学的な式でも評価順序や算法で誤差が変わり得る"
+  },
+  {
+    "id": "12-3",
+    "newOrderOldOptionNumbers": [
+      3,
+      2,
+      1,
+      4
+    ],
+    "oldCorrectAnswer": 3,
+    "newCorrectAnswer": 1,
+    "correctOptionText": "−1"
+  },
+  {
+    "id": "12-4",
+    "newOrderOldOptionNumbers": [
+      2,
+      1,
+      4,
+      3
+    ],
+    "oldCorrectAnswer": 4,
+    "newCorrectAnswer": 3,
+    "correctOptionText": "3.000"
+  },
+  {
+    "id": "12-5",
+    "newOrderOldOptionNumbers": [
+      4,
+      1,
+      2,
+      3
+    ],
+    "oldCorrectAnswer": 1,
+    "newCorrectAnswer": 2,
+    "correctOptionText": "ほぼ等しい同符号の2数の減算"
+  },
+  {
+    "id": "12-6",
+    "newOrderOldOptionNumbers": [
+      4,
+      1,
+      2,
+      3
+    ],
+    "oldCorrectAnswer": 2,
+    "newCorrectAnswer": 3,
+    "correctOptionText": "内容を保って改行をLFに変換する"
+  },
+  {
+    "id": "12-7",
+    "newOrderOldOptionNumbers": [
+      4,
+      1,
+      2,
+      3
+    ],
+    "oldCorrectAnswer": 3,
+    "newCorrectAnswer": 4,
+    "correctOptionText": "プロセスの仮想アドレスを物理記憶へ対応付け、保護や必要に応じたページ退避を行う仕組み"
+  },
+  {
+    "id": "12-8",
+    "newOrderOldOptionNumbers": [
+      4,
+      2,
+      1,
+      3
+    ],
+    "oldCorrectAnswer": 4,
+    "newCorrectAnswer": 1,
+    "correctOptionText": "キャッシュは浮動小数点乗算だけを行う専用回路"
+  },
+  {
+    "id": "12-9",
+    "newOrderOldOptionNumbers": [
+      4,
+      1,
+      3,
+      2
+    ],
+    "oldCorrectAnswer": 1,
+    "newCorrectAnswer": 2,
+    "correctOptionText": "同じ浮動小数点形式でも計算精度が必ず2倍になる"
+  },
+  {
+    "id": "12-10",
+    "newOrderOldOptionNumbers": [
+      3,
+      1,
+      2,
+      4
+    ],
+    "oldCorrectAnswer": 2,
+    "newCorrectAnswer": 3,
+    "correctOptionText": "DMA機構がCPUの逐次コピーを減らしてデータを転送する"
+  },
+  {
+    "id": "12-11",
+    "newOrderOldOptionNumbers": [
+      3,
+      2,
+      1,
+      4
+    ],
+    "oldCorrectAnswer": 3,
+    "newCorrectAnswer": 1,
+    "correctOptionText": "CD-ROM／CD-R／CD-RW"
+  },
+  {
+    "id": "12-12",
+    "newOrderOldOptionNumbers": [
+      2,
+      4,
+      3,
+      1
+    ],
+    "oldCorrectAnswer": 4,
+    "newCorrectAnswer": 2,
+    "correctOptionText": "128 MB"
+  },
+  {
+    "id": "12-13",
+    "newOrderOldOptionNumbers": [
+      3,
+      4,
+      2,
+      1
+    ],
+    "oldCorrectAnswer": 1,
+    "newCorrectAnswer": 4,
+    "correctOptionText": "キャッシュ"
+  },
+  {
+    "id": "12-14",
+    "newOrderOldOptionNumbers": [
+      2,
+      3,
+      4,
+      1
+    ],
+    "oldCorrectAnswer": 2,
+    "newCorrectAnswer": 1,
+    "correctOptionText": "プロセス・メモリ・入出力などの資源を管理する"
+  },
+  {
+    "id": "12-15",
+    "newOrderOldOptionNumbers": [
+      1,
+      2,
+      4,
+      3
+    ],
+    "oldCorrectAnswer": 3,
+    "newCorrectAnswer": 4,
+    "correctOptionText": "Linuxカーネルはオープンソースで、各種ソフトと組み合わせたディストリビューションで利用される"
+  },
+  {
+    "id": "12-16",
+    "newOrderOldOptionNumbers": [
+      3,
+      4,
+      1,
+      2
+    ],
+    "oldCorrectAnswer": 4,
+    "newCorrectAnswer": 2,
+    "correctOptionText": "ライセンスが認める範囲と条件を確認して利用・改変・再配布する"
+  },
+  {
+    "id": "12-17",
+    "newOrderOldOptionNumbers": [
+      2,
+      1,
+      4,
+      3
+    ],
+    "oldCorrectAnswer": 1,
+    "newCorrectAnswer": 2,
+    "correctOptionText": "対応環境を確認し、バックアップと検証・復旧手段を用意して導入する"
+  },
+  {
+    "id": "12-18",
+    "newOrderOldOptionNumbers": [
+      4,
+      1,
+      2,
+      3
+    ],
+    "oldCorrectAnswer": 2,
+    "newCorrectAnswer": 3,
+    "correctOptionText": "普及率だけで選び、対応や連携を確認しない"
+  },
+  {
+    "id": "12-19",
+    "newOrderOldOptionNumbers": [
+      3,
+      1,
+      2,
+      4
+    ],
+    "oldCorrectAnswer": 3,
+    "newCorrectAnswer": 1,
+    "correctOptionText": "実行方式には事前変換・実行時変換・中間コードなどがあり、速度は実装や処理に依存する"
+  },
+  {
+    "id": "12-20",
+    "newOrderOldOptionNumbers": [
+      4,
+      1,
+      2,
+      3
+    ],
+    "oldCorrectAnswer": 4,
+    "newCorrectAnswer": 1,
+    "correctOptionText": "別のCPU・OSでは互換層や再ビルド等が必要な場合がある"
+  },
+  {
+    "id": "12-21",
+    "newOrderOldOptionNumbers": [
+      4,
+      3,
+      1,
+      2
+    ],
+    "oldCorrectAnswer": 1,
+    "newCorrectAnswer": 3,
+    "correctOptionText": "科学技術計算に広く使われ、数値計算のライブラリ資産がある"
+  },
+  {
+    "id": "12-22",
+    "newOrderOldOptionNumbers": [
+      2,
+      3,
+      4,
+      1
+    ],
+    "oldCorrectAnswer": 2,
+    "newCorrectAnswer": 1,
+    "correctOptionText": "算法やデータを機械命令より抽象的に記述できる"
+  },
+  {
+    "id": "12-23",
+    "newOrderOldOptionNumbers": [
+      1,
+      2,
+      4,
+      3
+    ],
+    "oldCorrectAnswer": 3,
+    "newCorrectAnswer": 4,
+    "correctOptionText": "アセンブリ言語"
+  },
+  {
+    "id": "12-24",
+    "newOrderOldOptionNumbers": [
+      4,
+      3,
+      1,
+      2
+    ],
+    "oldCorrectAnswer": 4,
+    "newCorrectAnswer": 1,
+    "correctOptionText": "導入台数と同時使用ライセンス数は必ず一致する"
+  },
+  {
+    "id": "12-25",
+    "newOrderOldOptionNumbers": [
+      2,
+      3,
+      1,
+      4
+    ],
+    "oldCorrectAnswer": 1,
+    "newCorrectAnswer": 3,
+    "correctOptionText": "サーバから完全に切り離した3台で同時に使う"
+  },
+  {
+    "id": "12-26",
+    "newOrderOldOptionNumbers": [
+      3,
+      4,
+      1,
+      2
+    ],
+    "oldCorrectAnswer": 2,
+    "newCorrectAnswer": 4,
+    "correctOptionText": "LANは建物や拠点内など比較的限定された区域のネットワーク"
+  },
+  {
+    "id": "12-27",
+    "newOrderOldOptionNumbers": [
+      4,
+      1,
+      2,
+      3
+    ],
+    "oldCorrectAnswer": 3,
+    "newCorrectAnswer": 4,
+    "correctOptionText": "承認方式で暗号化と本人確認・アクセス制限を行い、宛先と送付範囲を確認する"
+  },
+  {
+    "id": "12-28",
+    "newOrderOldOptionNumbers": [
+      2,
+      1,
+      4,
+      3
+    ],
+    "oldCorrectAnswer": 4,
+    "newCorrectAnswer": 3,
+    "correctOptionText": "NFS"
+  },
+  {
+    "id": "12-29",
+    "newOrderOldOptionNumbers": [
+      4,
+      1,
+      3,
+      2
+    ],
+    "oldCorrectAnswer": 1,
+    "newCorrectAnswer": 2,
+    "correctOptionText": "FTP"
+  },
+  {
+    "id": "12-30",
+    "newOrderOldOptionNumbers": [
+      3,
+      1,
+      4,
+      2
+    ],
+    "oldCorrectAnswer": 2,
+    "newCorrectAnswer": 4,
+    "correctOptionText": "MPIはプロセス間通信、OpenMPは主に共有メモリ並列を扱い、併用もできる"
+  },
+  {
+    "id": "12-31",
+    "newOrderOldOptionNumbers": [
+      2,
+      3,
+      1,
+      4
+    ],
+    "oldCorrectAnswer": 3,
+    "newCorrectAnswer": 2,
+    "correctOptionText": "62.5%"
+  },
+  {
+    "id": "12-32",
+    "newOrderOldOptionNumbers": [
+      1,
+      4,
+      3,
+      2
+    ],
+    "oldCorrectAnswer": 4,
+    "newCorrectAnswer": 2,
+    "correctOptionText": "既存の実装から構造・仕様等を理解し、修正や再開発に役立てる"
+  },
+  {
+    "id": "12-33",
+    "newOrderOldOptionNumbers": [
+      2,
+      4,
+      3,
+      1
+    ],
+    "oldCorrectAnswer": 1,
+    "newCorrectAnswer": 4,
+    "correctOptionText": "守る情報資産と基本方針・責任を明示し、規程・手順の拠り所にする"
+  },
+  {
+    "id": "13-1",
+    "newOrderOldOptionNumbers": [
+      2,
+      1,
+      4,
+      3
+    ],
+    "oldCorrectAnswer": 1,
+    "newCorrectAnswer": 2,
+    "correctOptionText": "法令の遵守に加え、安全・誠実さ・専門的責任も検討する"
+  },
+  {
+    "id": "13-2",
+    "newOrderOldOptionNumbers": [
+      4,
+      3,
+      2,
+      1
+    ],
+    "oldCorrectAnswer": 2,
+    "newCorrectAnswer": 3,
+    "correctOptionText": "根拠のない変更と隠蔽には応じず、実際の条件の結果と改善・追加検討案を示す"
+  },
+  {
+    "id": "13-3",
+    "newOrderOldOptionNumbers": [
+      3,
+      2,
+      4,
+      1
+    ],
+    "oldCorrectAnswer": 3,
+    "newCorrectAnswer": 1,
+    "correctOptionText": "指定条件を超えるので、許可や適切なライセンスを得て利用する"
+  },
+  {
+    "id": "13-4",
+    "newOrderOldOptionNumbers": [
+      2,
+      1,
+      4,
+      3
+    ],
+    "oldCorrectAnswer": 4,
+    "newCorrectAnswer": 3,
+    "correctOptionText": "権利・契約の範囲を確認し、会社利用の許可または適切なライセンスを取得する"
+  },
+  {
+    "id": "13-5",
+    "newOrderOldOptionNumbers": [
+      3,
+      2,
+      4,
+      1
+    ],
+    "oldCorrectAnswer": 1,
+    "newCorrectAnswer": 4,
+    "correctOptionText": "許された範囲でバックアップを作り、安全に保管する"
+  },
+  {
+    "id": "13-6",
+    "newOrderOldOptionNumbers": [
+      4,
+      1,
+      2,
+      3
+    ],
+    "oldCorrectAnswer": 2,
+    "newCorrectAnswer": 3,
+    "correctOptionText": "自社の権限ある管理者とX部の窓口へ相談し、許された範囲で重複・利益相反を調整する"
+  },
+  {
+    "id": "13-7",
+    "newOrderOldOptionNumbers": [
+      4,
+      2,
+      1,
+      3
+    ],
+    "oldCorrectAnswer": 3,
+    "newCorrectAnswer": 4,
+    "correctOptionText": "契約条件に沿って請求し、工数の説明を求められたら事実を伝える"
+  },
+  {
+    "id": "13-8",
+    "newOrderOldOptionNumbers": [
+      4,
+      2,
+      3,
+      1
+    ],
+    "oldCorrectAnswer": 4,
+    "newCorrectAnswer": 1,
+    "correctOptionText": "速やかに誤りと影響を通知し、利用を止める必要性を伝え、再計算・検証した訂正版を報告する"
+  },
+  {
+    "id": "13-9",
+    "newOrderOldOptionNumbers": [
+      3,
+      1,
+      2,
+      4
+    ],
+    "oldCorrectAnswer": 1,
+    "newCorrectAnswer": 2,
+    "correctOptionText": "許可なく秘密基準を用いず、必要なら利用権限と評価・提案の追加範囲を正式に相談する"
+  },
+  {
+    "id": "13-10",
+    "newOrderOldOptionNumbers": [
+      2,
+      4,
+      3,
+      1
+    ],
+    "oldCorrectAnswer": 2,
+    "newCorrectAnswer": 1,
+    "correctOptionText": "役割・契約・実態を確認し、未達の原因と今後の対応を関係者と協議する"
+  },
+  {
+    "id": "13-11",
+    "newOrderOldOptionNumbers": [
+      2,
+      1,
+      4,
+      3
+    ],
+    "oldCorrectAnswer": 3,
+    "newCorrectAnswer": 4,
+    "correctOptionText": "Eと評価方法を正し、結果・安全率・影響を再検証し、経緯と訂正成果物を報告する"
+  },
+  {
+    "id": "13-12",
+    "newOrderOldOptionNumbers": [
+      3,
+      4,
+      1,
+      2
+    ],
+    "oldCorrectAnswer": 4,
+    "newCorrectAnswer": 2,
+    "correctOptionText": "権限ある窓口へ提供を依頼し、版・用途・利用範囲を確認し、納期影響も早めに共有する"
+  }
+]

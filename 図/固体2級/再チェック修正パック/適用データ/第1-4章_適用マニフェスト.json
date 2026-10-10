@@ -1,0 +1,90 @@
+{
+  "scope": "第1〜4章のみ。第5〜13章は未確認。",
+  "correctAnswerIndexBase": 1,
+  "textPatches": {
+    "chapter01": [
+      "1-1",
+      "1-2",
+      "1-3",
+      "1-4",
+      "1-5",
+      "1-6",
+      "1-7",
+      "1-8",
+      "1-9",
+      "1-10",
+      "1-11",
+      "1-12"
+    ],
+    "chapter02": [
+      "2-2",
+      "2-21",
+      "2-22",
+      "2-32",
+      "2-34",
+      "2-38",
+      "2-40",
+      "2-43"
+    ],
+    "chapter03": [
+      "3-1",
+      "3-2",
+      "3-3",
+      "3-4",
+      "3-5",
+      "3-6",
+      "3-7",
+      "3-8",
+      "3-9",
+      "3-10",
+      "3-11",
+      "3-12",
+      "3-13",
+      "3-14",
+      "3-15",
+      "3-16",
+      "3-17"
+    ]
+  },
+  "figureReplacements": [
+    {
+      "problemId": "1-10",
+      "stage": "before",
+      "path": "chapter01/before/1-10.svg"
+    },
+    {
+      "problemId": "2-29",
+      "stage": "after",
+      "path": "chapter02/after/2-29.svg"
+    },
+    {
+      "problemId": "2-31",
+      "stage": "after",
+      "path": "chapter02/after/2-31.svg"
+    },
+    {
+      "problemId": "2-32",
+      "stage": "after",
+      "path": "chapter02/after/2-32.svg"
+    },
+    {
+      "problemId": "3-3",
+      "stage": "after",
+      "path": "chapter03/after/3-3.svg"
+    },
+    {
+      "problemId": "3-6",
+      "stage": "after",
+      "path": "chapter03/after/3-6.svg"
+    },
+    {
+      "problemId": "3-8",
+      "stage": "after",
+      "path": "chapter03/after/3-8.svg"
+    }
+  ],
+  "globalRules": [
+    "回答前に正解・解説・答えを示す見出し補足を表示しない。",
+    "管理一覧を問題の解説へ取り込まない。"
+  ]
+}
