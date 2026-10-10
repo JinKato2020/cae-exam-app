@@ -11,7 +11,10 @@ import bundledManifest from '../../content/_manifest.json';
 const APP_ID = 'cae';
 const BASE = `https://content.safa-lang.com/${APP_ID}/`;
 
-const DIR = FileSystem.cacheDirectory + `${APP_ID}-content/`;
+// 保存先は documentDirectory(恒久領域)。cacheDirectory はOSが空き容量不足で勝手に削除するため、
+// 一度DLした図が消えて毎回再DL＝表示が遅くなる原因になる。恒久領域なら一度DLすれば次回以降も即表示。
+const DIR = FileSystem.documentDirectory + `${APP_ID}-content/`;
+const OLD_DIR = FileSystem.cacheDirectory + `${APP_ID}-content/`; // 旧保存先。初回のみ引っ越して再DLを避ける。
 const SHA_PATH = DIR + '_shas.json';
 const BUNDLE_TAG_PATH = DIR + '_bundle.tag';
 
@@ -39,7 +42,14 @@ async function readJson<T>(uri: string, fallback: T): Promise<T> {
 
 async function ensureDir(): Promise<void> {
   const info = await FileSystem.getInfoAsync(DIR);
-  if (!info.exists) await FileSystem.makeDirectoryAsync(DIR, { intermediates: true });
+  if (info.exists) return;
+  // 旧保存先(cacheDirectory)に既存キャッシュがあれば恒久領域へ引っ越し＝更新後の全再DLを避ける。
+  try {
+    const old = await FileSystem.getInfoAsync(OLD_DIR);
+    if (old.exists) { await FileSystem.moveAsync({ from: OLD_DIR, to: DIR }); return; }
+  } catch { /* 引っ越し失敗時は新規作成にフォールバック */ }
+  const again = await FileSystem.getInfoAsync(DIR);
+  if (!again.exists) await FileSystem.makeDirectoryAsync(DIR, { intermediates: true });
 }
 
 /** リモートmanifestと「今持っているsha」を比べ、変わった/新規のOTA対象キーだけ返す。 */
@@ -104,12 +114,20 @@ export async function syncContent(): Promise<{ updated: number }> {
     const have = await effectiveShas(cachedShas);
     const need = diffKeys(remote, have);
     let updated = 0;
-    for (const key of need) {
-      const local = DIR + enc(key);
-      // 実ファイルも、中身が変わると値が変わる指紋(sha)を ?v= に付けて古いキャッシュを避ける。
-      const url = BASE + key + '?v=' + remote.files[key].sha256;
-      const res = await FileSystem.downloadAsync(url, local).catch(() => null);
-      if (res && res.status === 200) { cachedShas[key] = remote.files[key].sha256; updated++; }
+    // 初回や大量更新でも速いよう、直列ではなく少数ずつ並列でDLする(端末・回線に優しい並列数)。
+    const CONCURRENCY = 6;
+    for (let i = 0; i < need.length; i += CONCURRENCY) {
+      const batch = need.slice(i, i + CONCURRENCY);
+      const oks = await Promise.all(batch.map(async (key) => {
+        const local = DIR + enc(key);
+        // 実ファイルも、中身が変わると値が変わる指紋(sha)を ?v= に付けて古いキャッシュを避ける。
+        const url = BASE + key + '?v=' + remote.files[key].sha256;
+        const res = await FileSystem.downloadAsync(url, local).catch(() => null);
+        return res && res.status === 200 ? key : null;
+      }));
+      for (const key of oks) {
+        if (key) { cachedShas[key] = remote.files[key].sha256; updated++; }
+      }
     }
     await FileSystem.writeAsStringAsync(SHA_PATH, JSON.stringify(cachedShas)).catch(() => {});
     await FileSystem.writeAsStringAsync(BUNDLE_TAG_PATH, bundleTag()).catch(() => {});
