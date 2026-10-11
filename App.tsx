@@ -417,19 +417,24 @@ function AppInner(props: { contentVersion: number }) {
   // ボトムナビのタブをスワイプでも切替（左=次のタブ / 右=前のタブ）。ただし問題画面・
   // 公式/用語の個別画面では前後移動が優先（内側のスワイプが担当するのでタブは切り替えない）。
   const TAB_ORDER: Tab[] = ['home', 'study', 'formula', 'settings'];
+  // 公式・用語タブで「ある章のリストを開いている」状態。ここでは左右スワイプを
+  // タブ切替ではなく隣の章への移動に使うので、外側のタブ切替スワイプを無効化する。
+  const formulaChapterListOpen =
+    tab === 'formula' && formulaView === 'list' && !formulaFav && formulaListChapterId !== null;
   function swipeTab(dir: 1 | -1) {
     if (tab === 'study' && studyView === 'problem') return;
     if (tab === 'formula' && formulaView === 'item') return;
+    if (formulaChapterListOpen) return;
     const i = TAB_ORDER.indexOf(tab);
     const ni = i + dir;
     if (ni >= 0 && ni < TAB_ORDER.length) { setFormulaFrom(null); setTab(TAB_ORDER[ni]); }
   }
-  // 問題画面・公式/用語の個別画面では、内側の前後スワイプを優先するためタブ切替スワイプを無効化する
-  // （外側がキャプチャ段階で横取りすると内側のスワイプが一切効かなくなるため）。
+  // 問題画面・公式/用語の個別画面・公式の章リスト表示では、内側の前後スワイプを優先するため
+  // タブ切替スワイプを無効化する（外側がキャプチャ段階で横取りすると内側が一切効かなくなるため）。
   const tabPan = useSwipeNav(
     () => swipeTab(1),
     () => swipeTab(-1),
-    !(tab === 'study' && studyView === 'problem') && !(tab === 'formula' && formulaView === 'item')
+    !(tab === 'study' && studyView === 'problem') && !(tab === 'formula' && formulaView === 'item') && !formulaChapterListOpen
   );
 
   return (
@@ -1835,6 +1840,26 @@ function FormulaTab(props: {
     ? props.rows.filter((r) => isBookmarked(props.bookmarks, r.favId))
     : props.rows.filter((r) => r.item.kind === props.kind);
 
+  // 章見出しで区切るため、連続する同一章の行をブロックにまとめる。
+  const blocks: { chapterId: string; chapterTitle: string; rows: FormulaRow[] }[] = [];
+  for (const r of visible) {
+    const last = blocks[blocks.length - 1];
+    if (last && last.chapterId === r.chapterId) last.rows.push(r);
+    else blocks.push({ chapterId: r.chapterId, chapterTitle: r.chapterTitle, rows: [r] });
+  }
+  // いま開いている章（通常モードのみ）。null＝章メニュー。
+  const openBlock = !props.fav && props.listChapterId ? blocks.find((b) => b.chapterId === props.listChapterId) ?? null : null;
+  // 章リスト表示中は左右スワイプで隣の章へ移動（左=次 / 右=前）。両端ではそれ以上動かない。
+  // フック規則のため早期 return より前で必ず呼ぶ（enabled で章リスト表示中だけ有効化）。
+  const openIdx = openBlock ? blocks.findIndex((b) => b.chapterId === openBlock.chapterId) : -1;
+  const prevChapterId = openIdx > 0 ? blocks[openIdx - 1].chapterId : null;
+  const nextChapterId = openIdx >= 0 && openIdx < blocks.length - 1 ? blocks[openIdx + 1].chapterId : null;
+  const listPan = useSwipeNav(
+    () => { if (nextChapterId) props.onSelectListChapter(nextChapterId); },
+    () => { if (prevChapterId) props.onSelectListChapter(prevChapterId); },
+    !!openBlock
+  );
+
   // 個別解説画面（リストのタップ、または問題からのリンクで飛んでくる）
   if (props.view === 'item' && props.chapterId && props.itemId) {
     return (
@@ -1862,16 +1887,6 @@ function FormulaTab(props: {
       </ScrollView>
     );
   }
-
-  // 章見出しで区切るため、連続する同一章の行をブロックにまとめる。
-  const blocks: { chapterId: string; chapterTitle: string; rows: FormulaRow[] }[] = [];
-  for (const r of visible) {
-    const last = blocks[blocks.length - 1];
-    if (last && last.chapterId === r.chapterId) last.rows.push(r);
-    else blocks.push({ chapterId: r.chapterId, chapterTitle: r.chapterTitle, rows: [r] });
-  }
-  // いま開いている章（通常モードのみ）。null＝章メニュー。
-  const openBlock = !props.fav && props.listChapterId ? blocks.find((b) => b.chapterId === props.listChapterId) ?? null : null;
 
   // 1項目＝常時展開カード（右肩に⭐）。章内／お気に入りで共用。
   const renderCard = (r: FormulaRow) => {
@@ -1949,15 +1964,15 @@ function FormulaTab(props: {
           )}
         </>
       ) : (
-        /* 選択中の章：解説を畳まず縦に並べて常時表示 */
-        <>
+        /* 選択中の章：解説を畳まず縦に並べて常時表示（左右スワイプで隣の章へ移動） */
+        <View {...listPan}>
           <BackLink t={t} label="章一覧へ戻る" onPress={() => props.onSelectListChapter(null)} />
           <Text style={[styles.formulaChapterHead, { color: t.sub, borderColor: t.border }]}>{openBlock.chapterTitle}</Text>
           <Text style={[styles.subtitle, { color: t.sub }]}>
-            解説を縦に並べて常時表示。⭐で苦手登録（全 {openBlock.rows.length} 項目）
+            解説を縦に並べて常時表示。⭐で苦手登録（全 {openBlock.rows.length} 項目）・スワイプで隣の章へ（左=次 / 右=前）
           </Text>
           {openBlock.rows.map(renderCard)}
-        </>
+        </View>
       )}
     </ScrollView>
   );
