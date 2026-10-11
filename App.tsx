@@ -65,9 +65,9 @@ import {
   type DailyDigest,
 } from './src/progress';
 import { loadBookmarks, toggleBookmark, isBookmarked, bookmarkIdsFrom, type BookmarkMap } from './src/bookmarks';
-import { maybeAskForReview } from './src/review';
+import { maybeAskForReview, maybeAskForReviewEvent } from './src/review';
 import Paywall, { type PayTarget } from './src/pro/Paywall';
-import { TERMS_URL, PRIVACY_URL, SUPPORT_MAILTO_URL } from './src/config/revenuecat';
+import { TERMS_URL, PRIVACY_URL, SUPPORT_MAILTO_URL, reviewUrl } from './src/config/revenuecat';
 import {
   loadProState,
   saveOwned,
@@ -401,6 +401,10 @@ function AppInner(props: { contentVersion: number }) {
     setTab('formula');
   }
 
+  // 連続正解のカウンタ（＝“良い瞬間”検知用。継続「日数」の digest.streak とは別物）。
+  const correctStreakRef = useRef(0);
+  const CORRECT_STREAK_FOR_REVIEW = 5; // 何問連続正解でレビュー依頼の契機とするか
+
   async function onSelectAnswer(q: Question, choiceNum: number) {
     if (answers[q.id] != null) return; // 既に回答済みなら無視
     setAnswers((a) => ({ ...a, [q.id]: choiceNum }));
@@ -409,9 +413,22 @@ function AppInner(props: { contentVersion: number }) {
     setProgress(next);
     // 「今日 何問解いて 何問正解したか」を日単位で記録（継続日数・活動グラフの素）。
     setDaily(await recordDaily(daily, correct));
-    // 問題を解いた直後（＝良い体験の直後）に、累計が節目に達していればレビュー依頼。
-    // 実際に出すか・回数は OS が判断し、条件未達なら静かに何もしない（src/review.ts）。
-    void maybeAskForReview(Object.keys(next).length);
+
+    // --- レビュー依頼（“良い体験の直後”にOS標準ダイアログを控えめに。実際に出すか・回数はOSが判断。
+    //     複数の契機があるが src/review.ts 側の90日ガードで実際に出るのは最大1つ。優先度順に1つだけ試す）。---
+    correctStreakRef.current = correct ? correctStreakRef.current + 1 : 0;
+    // いま解いている一式（章/復習セット）を今の解答で全問終えたか。
+    const setDone = activeList.length > 0 && activeList.every((x) => x.id === q.id || answers[x.id] != null);
+    if (setDone) {
+      // ① 章（一式）を解き終えた瞬間。
+      void maybeAskForReviewEvent('done:' + activeTitle);
+    } else if (correct && correctStreakRef.current >= CORRECT_STREAK_FOR_REVIEW) {
+      // ② 正解が続いた瞬間（連続5問正解）。
+      void maybeAskForReviewEvent('streak');
+    } else {
+      // ③ 累計の節目（20/80/200問）。
+      void maybeAskForReview(Object.keys(next).length);
+    }
   }
 
   // ボトムナビのタブをスワイプでも切替（左=次のタブ / 右=前のタブ）。ただし問題画面・
@@ -2175,6 +2192,27 @@ function SettingsTab(props: {
           計算力学技術者（CAE）試験の対策アプリです。収録している問題・解説・図はすべてオリジナルで作成しています。学習の記録は端末内に保存されます。
         </Text>
       </View>
+
+      {/* アプリを評価：ストアのレビュー作成ページ（星＋コメント可）を開く。OS標準の自動ポップアップ
+          とは別物で、こちら＝ボタンはストアに飛ばす方式のみ（requestReview紐付けはApple違反）。
+          reviewUrl() が null（iOSでApp Store ID未設定 等）のときは非表示。 */}
+      {reviewUrl() ? (
+        <>
+          <Text style={[styles.sectionHead, { color: t.text }]}>アプリを評価</Text>
+          <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
+            <Pressable
+              onPress={() => { const u = reviewUrl(); if (u) Linking.openURL(u); }}
+              style={{ paddingVertical: 10 }}
+              hitSlop={8}
+            >
+              <Text style={[styles.bodyText, { color: t.primary }]}>⭐ アプリを評価する（レビューを書く）</Text>
+            </Pressable>
+            <Text style={[styles.bodyText, { color: t.sub, fontSize: 12 }]}>
+              ストアのレビューページが開きます。星とコメントで応援いただけると開発の励みになります。
+            </Text>
+          </View>
+        </>
+      ) : null}
 
       {/* 審査必須：利用規約・プライバシーポリシーへの導線（購入画面だけでなく設定からも常に到達可能に）。 */}
       <Text style={[styles.sectionHead, { color: t.text }]}>規約</Text>

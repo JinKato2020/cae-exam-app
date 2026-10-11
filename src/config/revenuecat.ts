@@ -29,6 +29,24 @@ export const SUPPORT_SUBJECT = '【CAE】お問い合わせ';
 export const SUPPORT_MAILTO_URL =
   `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(SUPPORT_SUBJECT)}`;
 
+// ▼▼ 設定画面の「アプリを評価する」ボタン用。ストアのレビュー作成ページ（星＋コメントが書ける）を開く。
+//   ※ OS標準の自動ポップアップ(expo-store-review)とは別物。ボタンはこちら＝ストアに飛ばす方式のみ使う
+//     （ボタンに requestReview を紐付けるのは Apple ガイドライン違反）。
+// APP_STORE_ID = App Store の数値ID（App Store URL ".../id0000000000" の数字）。
+//   未設定('')のうちは iOS のレビューボタンは表示しない（Android は下記パッケージで動く）。
+export const APP_STORE_ID = '6811044269';
+export const ANDROID_PACKAGE = 'com.safa.nepali.jp';
+/** ストアのレビュー作成ページURL（星＋コメントを書ける）。開けない環境では null。 */
+export function reviewUrl(): string | null {
+  if (Platform.OS === 'ios') {
+    return APP_STORE_ID ? `itms-apps://itunes.apple.com/app/id${APP_STORE_ID}?action=write-review` : null;
+  }
+  if (Platform.OS === 'android') {
+    return `market://details?id=${ANDROID_PACKAGE}`;
+  }
+  return null;
+}
+
 /** 今のプラットフォームの公開SDKキー。未設定なら ''(=課金を起動しない)。 */
 export function revenueCatApiKey(): string {
   return (Platform.OS === 'ios' ? IOS_KEY : ANDROID_KEY).trim();
