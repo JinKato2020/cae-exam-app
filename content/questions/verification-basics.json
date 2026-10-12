@@ -236,8 +236,8 @@
       "role": "primary",
       "figure": "helpful",
       "preFigureImage": "ver11RigidFBDSetup",
-      "figureImage": "ver11RigidFBD",
-      "figureHint": "白地660x420。片持ちはり1+長さaの剛体要素+引張はり2の接合点で、軸力Pの作用線ずれがモーメントP·aを生むフリーボディダイアグラム",
+      "figureImage": "ver11RigidDiagrams",
+      "figureHint": "白地660x420。上=Bへ伝わる等価系(軸力P＋モーメントP・a)、中=軸力図N=P(全長一定・引張)、下=曲げモーメント図M=P・a(全長一定)。軸力も曲げも一定であることを示す",
       "relatedFormulas": [
         "sanity-checks"
       ]

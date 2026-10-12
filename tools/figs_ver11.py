@@ -176,6 +176,48 @@ def rigid_fbd():
 
 
 # ============================================================
+# ver11RigidDiagrams : Bへ伝わる内力の等価系 + 軸力図 + 曲げモーメント図(回答後)
+# ============================================================
+def rigid_diagrams():
+    im, d = new(); title(d, "はりに伝わる内力 — 軸力図と曲げモーメント図")
+    x0, xB = 130, 500                 # 固定端(左) ～ 接合点B(右)
+
+    # --- 上段: Bへ伝わる等価系(原因=赤, 等価=青) ---
+    by = 92
+    wall(d, x0, by - 32, by + 32, side=-1, n=6)
+    bar(d, x0, by, xB, by, thick=20, fill=FILL1)
+    node(d, xB, by, 5)
+    ctext(d, xB - 16, by + 15, "B", FT, BLACK, "mm")
+    # 剛体腕(下へ長さa)と元の右向きP(原因)
+    ap = 40
+    bar(d, xB, by, xB, by + ap, thick=11, fill=FILL3)
+    node(d, xB, by + ap, 4)
+    force(d, xB, by + ap, 52, 0, "P", RED)
+    dim(d, xB - 34, by, xB - 34, by + ap, "a", col=GRAY)
+    # Bでの等価系: 軸力P(青) + モーメントP・a(青)
+    force(d, xB, by, 48, 0, "P", BLUE)
+    moment_arc(d, xB, by, 28, 20, 165, BLUE, 3)
+    ctext(d, xB - 74, by - 30, "M = P・a", FS, BLUE, "mm")
+
+    # --- 共通: 内力図の横軸ヘルパ ---
+    def diagram(bl, h, fillc, outc, labelc, panel, value):
+        ctext(d, x0, bl - h - 20, panel, FT, GRAY, "lm")
+        arrow(d, x0, bl, x0, bl - h - 12, GRAY, 2, 10)   # 値軸
+        d.line((x0, bl, xB + 14, bl), fill=BLACK, width=2)  # はり基線
+        arrow(d, x0, bl, xB + 20, bl, GRAY, 2, 10)        # 位置軸(はり長手)
+        d.rectangle((x0, bl - h, xB, bl), fill=fillc, outline=outc, width=3)
+        ctext(d, (x0 + xB) / 2, bl - h / 2, value, FS, labelc, "mm")
+
+    # --- 中段: 軸力図 N = +P(全長一定・引張) ---
+    diagram(222, 42, NAVYL, NAVY, NAVY, "軸力図  N(x)", "N = +P(一定・引張)")
+    # --- 下段: 曲げモーメント図 M = P・a(全長一定) ---
+    diagram(340, 50, (250, 244, 232), ORANGE, ORANGE, "曲げモーメント図  M(x)", "M = P・a(一定)")
+
+    note(d, "右向きPははり軸に沿う→軸力N=P(一定)／作用線がaずれる→曲げM=P・a(一定)。")
+    save(im, "ver11RigidDiagrams")
+
+
+# ============================================================
 # ver11WallTemp : 断熱円筒壁の半径方向温度分布(界面で温度の飛び)
 # ============================================================
 def wall_temp():
@@ -245,9 +287,10 @@ if __name__ == "__main__":
     cyl_extrap()
     beam_pos()
     rigid_fbd()
+    rigid_diagrams()
     wall_temp()
     vv_proc()
     keys = ["ver11HoleQtr", "ver11CylExtrap", "ver11BeamPos",
-            "ver11RigidFBD", "ver11WallTemp", "ver11VVProc"]
+            "ver11RigidFBD", "ver11RigidDiagrams", "ver11WallTemp", "ver11VVProc"]
     miss = [k for k in keys if not os.path.exists(os.path.join(OUT, k + ".png"))]
     print("TOTAL", len(keys), "MISSING", miss)
