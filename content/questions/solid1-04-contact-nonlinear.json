@@ -67,7 +67,7 @@
     },
     {
       "id": "solid1-4-5",
-      "number": "4-5",
+      "number": "4-3",
       "title": "リジッドサーフェスと接触要素",
       "topic": "接触要素・リジッドサーフェス",
       "type": "mc",
@@ -95,7 +95,7 @@
     },
     {
       "id": "solid1-4-6",
-      "number": "4-6",
+      "number": "4-4",
       "title": "点接触と面接触の精度",
       "topic": "点接触・面接触",
       "type": "mc",
@@ -123,7 +123,7 @@
     },
     {
       "id": "solid1-4-7",
-      "number": "4-7",
+      "number": "4-5",
       "title": "ラグランジュ未定乗数法の長短",
       "topic": "ラグランジュ未定乗数法",
       "type": "mc",
@@ -151,7 +151,7 @@
     },
     {
       "id": "solid1-4-10",
-      "number": "4-10",
+      "number": "4-6",
       "title": "擬似荷重の指数(次元解析)",
       "topic": "擬似荷重・次元解析",
       "type": "mc",
@@ -178,92 +178,8 @@
       ]
     },
     {
-      "id": "solid1-4-11",
-      "number": "4-11",
-      "title": "クーロン摩擦の式と平滑化",
-      "topic": "クーロン摩擦・平滑化",
-      "type": "mc",
-      "difficulty": 2,
-      "question": "動摩擦だけを表すクーロン則を考える。$N>0$ を法線圧縮力の大きさ、$\\mu>0$ を動摩擦係数、$\\mathbf v\\ne\\mathbf0$ を相対滑り速度、$\\alpha>0$ を速度と同じ単位の平滑化尺度とする。摩擦力の基本式と平滑化式の組合せとして正しいものはどれか。",
-      "choices": [
-        "$\\mathbf t=-\\mu N\\mathbf v/|\\mathbf v|^2$、$\\mathbf t_\\alpha=-\\mu N\\tanh(|\\mathbf v|/\\alpha)\\mathbf v/|\\mathbf v|$。",
-        "$\\mathbf t=-\\mu N\\mathbf v/|\\mathbf v|$、$\\mathbf t_\\alpha=-\\mu N\\alpha|\\mathbf v|\\mathbf v/|\\mathbf v|$。",
-        "$\\mathbf t=-\\mu N\\mathbf v/|\\mathbf v|$、$\\mathbf t_\\alpha=-\\mu N\\tanh(|\\mathbf v|/\\alpha)\\mathbf v/|\\mathbf v|$。",
-        "$\\mathbf t=-\\mu N|\\mathbf v|\\mathbf v$、$\\mathbf t_\\alpha=-\\mu N\\tanh(\\alpha/|\\mathbf v|)\\mathbf v/|\\mathbf v|$。"
-      ],
-      "answer": 3,
-      "explanation": "【動摩擦】摩擦力の大きさはμN、向きは相対滑りに逆向きです。$\\mathbf v/|\\mathbf v|$ は速度の大きさを除いて向きだけを表す単位ベクトルなので、基本式は $-\\mu N\\mathbf v/|\\mathbf v|$ になります。\n【平滑化】速度0近傍の不連続を緩めるため、大きさに $\\tanh(|\\mathbf v|/\\alpha)$ を掛けます。$|\\mathbf v|\\gg\\alpha$ で1に近づき、通常の動摩擦に近似します。速度0では極限により摩擦力を0と定義できます。小速度では $\\tanh z\\simeq z$ なので $\\mathbf t_\\alpha\\simeq-(\\mu N/\\alpha)\\mathbf v$ です。\n【静止摩擦との違い】本式は平滑化した動摩擦モデルです。滑り速度0であっても有限の静止摩擦力を伝える厳密な固着条件を、そのまま表すものではありません。固着・滑りの接触モデルでは、別の状態判定や接線弾性滑りを用います。\n【単位】tとNを力として用いる本問ではNの単位はNです。面積当たりの摩擦力なら法線力Nを圧力pに置き換えます。αの単位は速度で、tanhの中は無次元です。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e4CoulombSmooth",
-      "figureHint": "白地660x420で摩擦力-相対速度のステップ関数(不連続)とtanh平滑化した連続曲線を重ねる",
-      "officialRef": "問4-9",
-      "role": "primary",
-      "relatedFormulas": [
-        "s1f4-11"
-      ]
-    },
-    {
-      "id": "solid1-4-12",
-      "number": "4-12",
-      "title": "せん断降伏応力の計算",
-      "topic": "せん断摩擦・τy",
-      "type": "mc",
-      "difficulty": 2,
-      "question": "せん断摩擦モデルでは材料のせん断降伏応力 $\\tau_y$ を基準にする。ミーゼス降伏条件では $\\tau_y=\\sigma_y/\\sqrt{3}$($\\sigma_y$=引張降伏応力)である。$\\sigma_y=600\\,\\mathrm{MPa}$ のとき $\\tau_y$ はおよそいくらか。",
-      "choices": [
-        "$300\\,\\mathrm{MPa}$",
-        "$200\\,\\mathrm{MPa}$",
-        "$1039\\,\\mathrm{MPa}$",
-        "$346\\,\\mathrm{MPa}$"
-      ],
-      "answer": 4,
-      "explanation": "【基礎】ミーゼス(von Mises)降伏条件では、純粋せん断の降伏応力は引張降伏応力の $1/\\sqrt{3}$ 倍、すなわち $\\tau_y=\\sigma_y/\\sqrt{3}$。\n【考え方】$\\sqrt{3}\\approx 1.732$ で割ればよい。せん断摩擦モデルではこの $\\tau_y$ に摩擦係数を掛けて分布荷重(単位面積あたり摩擦力)とする。\n【計算】$\\tau_y=600/\\sqrt{3}=600/1.732\\approx 346\\,\\mathrm{MPa}$。\n【ポイント】$1/\\sqrt{3}\\approx 0.577$ を掛ける(=$\\times 0.577$)。$1/2$ や $1/3$ ではない。\n【引っかけ】選択肢1(300)は $\\sqrt{3}$ の代わりに2で割った誤り($\\sigma_y/2$)。2(200)は3で割った誤り($\\sigma_y/3$)。3(1039)は割るべきところを $\\sqrt{3}$ で掛けてしまった逆操作($\\sigma_y\\times\\sqrt{3}$)。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e4ShearYield",
-      "figureHint": "白地660x420でミーゼス降伏条件からτy=σy/√3の関係(引張とせん断の降伏応力比)を示す",
-      "officialRef": "問4-8",
-      "role": "primary",
-      "relatedFormulas": [
-        "s1f4-12"
-      ]
-    },
-    {
-      "id": "solid1-4-14",
-      "number": "4-14",
-      "title": "固着・滑りと数値安定化",
-      "topic": "固着・滑り・人工剛性",
-      "type": "mc",
-      "difficulty": 2,
-      "question": "相対接線変位 $s$ に対する固着・滑りを、弾性的な接線滑りとクーロン限界を用いて正則化する。数値計算を安定させるための一般的な扱いとして最も適切なものはどれか。",
-      "choices": [
-        "固着時に有限の接線ペナルティ剛性を用い、摩擦限界に達したら滑り状態へ移す。必要に応じて限界近傍も滑らかに扱う。",
-        "固着時の接線剛性を0にし、静止していても接線力を一切伝えない。",
-        "滑り状態の接線剛性を無限大にし、どれだけ滑っても固着状態と同じにする。",
-        "摩擦力を常に相対滑りと同じ向きにし、摩擦が系へエネルギーを供給するようにする。"
-      ],
-      "answer": 1,
-      "explanation": "【固着の正則化】理想的な固着は接線方向の相対変位を厳密に止めます。接線ペナルティ法では、微小な弾性的接線滑り $s_e$ を許し、摩擦力を $t=-k_t s_e$ として計算します。$k_t$ は有限の人工的な接線剛性です。\n【滑り判定】試行接線力の大きさが $\\mu N$ を超えない間は固着側とし、限界を超えると滑り側へ戻します。これは常に速度0で摩擦力0とする動摩擦の平滑化とは異なり、静止していても接線力を保持できるモデルです。\n【符号】1次元の単調滑りで、作用する摩擦力を正の滑りに対して負と定義すると、力–滑り図の傾きは固着近傍で負です。正の勾配を描く場合は、抵抗力の大きさなど別の量を縦軸にしたことを明示しなければなりません。\n【数値上の選択】大きすぎる $k_t$ は条件数や収束を悪化させ、小さすぎる値は人工的な滑りを大きくします。許容滑りと収束性の両方を確認して選びます。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e4StickSlip",
-      "figureHint": "白地660x420で摩擦力-相対滑りのステップ関数と、固着付近に有限剛性を入れて平滑遷移させた曲線を対比",
-      "officialRef": "問4-10",
-      "role": "primary",
-      "relatedFormulas": [
-        "s1f4-13"
-      ]
-    },
-    {
       "id": "solid1-4-15",
-      "number": "4-15",
+      "number": "4-7",
       "title": "チャタリングの抑止",
       "topic": "チャタリング・収束性",
       "type": "mc",
@@ -290,8 +206,92 @@
       ]
     },
     {
+      "id": "solid1-4-12",
+      "number": "4-8",
+      "title": "せん断降伏応力の計算",
+      "topic": "せん断摩擦・τy",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "せん断摩擦モデルでは材料のせん断降伏応力 $\\tau_y$ を基準にする。ミーゼス降伏条件では $\\tau_y=\\sigma_y/\\sqrt{3}$($\\sigma_y$=引張降伏応力)である。$\\sigma_y=600\\,\\mathrm{MPa}$ のとき $\\tau_y$ はおよそいくらか。",
+      "choices": [
+        "$300\\,\\mathrm{MPa}$",
+        "$200\\,\\mathrm{MPa}$",
+        "$1039\\,\\mathrm{MPa}$",
+        "$346\\,\\mathrm{MPa}$"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】ミーゼス(von Mises)降伏条件では、純粋せん断の降伏応力は引張降伏応力の $1/\\sqrt{3}$ 倍、すなわち $\\tau_y=\\sigma_y/\\sqrt{3}$。\n【考え方】$\\sqrt{3}\\approx 1.732$ で割ればよい。せん断摩擦モデルではこの $\\tau_y$ に摩擦係数を掛けて分布荷重(単位面積あたり摩擦力)とする。\n【計算】$\\tau_y=600/\\sqrt{3}=600/1.732\\approx 346\\,\\mathrm{MPa}$。\n【ポイント】$1/\\sqrt{3}\\approx 0.577$ を掛ける(=$\\times 0.577$)。$1/2$ や $1/3$ ではない。\n【引っかけ】選択肢1(300)は $\\sqrt{3}$ の代わりに2で割った誤り($\\sigma_y/2$)。2(200)は3で割った誤り($\\sigma_y/3$)。3(1039)は割るべきところを $\\sqrt{3}$ で掛けてしまった逆操作($\\sigma_y\\times\\sqrt{3}$)。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "figure": "helpful",
+      "figureImage": "s1e4ShearYield",
+      "figureHint": "白地660x420でミーゼス降伏条件からτy=σy/√3の関係(引張とせん断の降伏応力比)を示す",
+      "officialRef": "問4-8",
+      "role": "primary",
+      "relatedFormulas": [
+        "s1f4-12"
+      ]
+    },
+    {
+      "id": "solid1-4-11",
+      "number": "4-9",
+      "title": "クーロン摩擦の式と平滑化",
+      "topic": "クーロン摩擦・平滑化",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "動摩擦だけを表すクーロン則を考える。$N>0$ を法線圧縮力の大きさ、$\\mu>0$ を動摩擦係数、$\\mathbf v\\ne\\mathbf0$ を相対滑り速度、$\\alpha>0$ を速度と同じ単位の平滑化尺度とする。摩擦力の基本式と平滑化式の組合せとして正しいものはどれか。",
+      "choices": [
+        "$\\mathbf t=-\\mu N\\mathbf v/|\\mathbf v|^2$、$\\mathbf t_\\alpha=-\\mu N\\tanh(|\\mathbf v|/\\alpha)\\mathbf v/|\\mathbf v|$。",
+        "$\\mathbf t=-\\mu N\\mathbf v/|\\mathbf v|$、$\\mathbf t_\\alpha=-\\mu N\\alpha|\\mathbf v|\\mathbf v/|\\mathbf v|$。",
+        "$\\mathbf t=-\\mu N\\mathbf v/|\\mathbf v|$、$\\mathbf t_\\alpha=-\\mu N\\tanh(|\\mathbf v|/\\alpha)\\mathbf v/|\\mathbf v|$。",
+        "$\\mathbf t=-\\mu N|\\mathbf v|\\mathbf v$、$\\mathbf t_\\alpha=-\\mu N\\tanh(\\alpha/|\\mathbf v|)\\mathbf v/|\\mathbf v|$。"
+      ],
+      "answer": 3,
+      "explanation": "【動摩擦】摩擦力の大きさはμN、向きは相対滑りに逆向きです。$\\mathbf v/|\\mathbf v|$ は速度の大きさを除いて向きだけを表す単位ベクトルなので、基本式は $-\\mu N\\mathbf v/|\\mathbf v|$ になります。\n【平滑化】速度0近傍の不連続を緩めるため、大きさに $\\tanh(|\\mathbf v|/\\alpha)$ を掛けます。$|\\mathbf v|\\gg\\alpha$ で1に近づき、通常の動摩擦に近似します。速度0では極限により摩擦力を0と定義できます。小速度では $\\tanh z\\simeq z$ なので $\\mathbf t_\\alpha\\simeq-(\\mu N/\\alpha)\\mathbf v$ です。\n【静止摩擦との違い】本式は平滑化した動摩擦モデルです。滑り速度0であっても有限の静止摩擦力を伝える厳密な固着条件を、そのまま表すものではありません。固着・滑りの接触モデルでは、別の状態判定や接線弾性滑りを用います。\n【単位】tとNを力として用いる本問ではNの単位はNです。面積当たりの摩擦力なら法線力Nを圧力pに置き換えます。αの単位は速度で、tanhの中は無次元です。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "figure": "helpful",
+      "figureImage": "s1e4CoulombSmooth",
+      "figureHint": "白地660x420で摩擦力-相対速度のステップ関数(不連続)とtanh平滑化した連続曲線を重ねる",
+      "officialRef": "問4-9",
+      "role": "primary",
+      "relatedFormulas": [
+        "s1f4-11"
+      ]
+    },
+    {
+      "id": "solid1-4-14",
+      "number": "4-10",
+      "title": "固着・滑りと数値安定化",
+      "topic": "固着・滑り・人工剛性",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "相対接線変位 $s$ に対する固着・滑りを、弾性的な接線滑りとクーロン限界を用いて正則化する。数値計算を安定させるための一般的な扱いとして最も適切なものはどれか。",
+      "choices": [
+        "固着時に有限の接線ペナルティ剛性を用い、摩擦限界に達したら滑り状態へ移す。必要に応じて限界近傍も滑らかに扱う。",
+        "固着時の接線剛性を0にし、静止していても接線力を一切伝えない。",
+        "滑り状態の接線剛性を無限大にし、どれだけ滑っても固着状態と同じにする。",
+        "摩擦力を常に相対滑りと同じ向きにし、摩擦が系へエネルギーを供給するようにする。"
+      ],
+      "answer": 1,
+      "explanation": "【固着の正則化】理想的な固着は接線方向の相対変位を厳密に止めます。接線ペナルティ法では、微小な弾性的接線滑り $s_e$ を許し、摩擦力を $t=-k_t s_e$ として計算します。$k_t$ は有限の人工的な接線剛性です。\n【滑り判定】試行接線力の大きさが $\\mu N$ を超えない間は固着側とし、限界を超えると滑り側へ戻します。これは常に速度0で摩擦力0とする動摩擦の平滑化とは異なり、静止していても接線力を保持できるモデルです。\n【符号】1次元の単調滑りで、作用する摩擦力を正の滑りに対して負と定義すると、力–滑り図の傾きは固着近傍で負です。正の勾配を描く場合は、抵抗力の大きさなど別の量を縦軸にしたことを明示しなければなりません。\n【数値上の選択】大きすぎる $k_t$ は条件数や収束を悪化させ、小さすぎる値は人工的な滑りを大きくします。許容滑りと収束性の両方を確認して選びます。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "figure": "helpful",
+      "figureImage": "s1e4StickSlip",
+      "figureHint": "白地660x420で摩擦力-相対滑りのステップ関数と、固着付近に有限剛性を入れて平滑遷移させた曲線を対比",
+      "officialRef": "問4-10",
+      "role": "primary",
+      "relatedFormulas": [
+        "s1f4-13"
+      ]
+    },
+    {
       "id": "solid1-4-16",
-      "number": "4-16",
+      "number": "4-11",
       "title": "荷重経路依存性と荷重増分",
       "topic": "精度・荷重経路依存性",
       "type": "mc",
@@ -319,7 +319,7 @@
     },
     {
       "id": "solid1-4-17",
-      "number": "4-17",
+      "number": "4-12",
       "title": "摩擦発熱と熱-応力連成",
       "topic": "摩擦発熱・熱応力連成",
       "type": "mc",
@@ -347,7 +347,7 @@
     },
     {
       "id": "solid1-4-18",
-      "number": "4-18",
+      "number": "4-13",
       "title": "接触探索の計算コスト",
       "topic": "接触探索・計算量",
       "type": "mc",
@@ -375,7 +375,7 @@
     },
     {
       "id": "solid1-4-19",
-      "number": "4-19",
+      "number": "4-14",
       "title": "ヘルツ接触の圧力分布",
       "topic": "ヘルツ接触・圧力分布",
       "type": "mc",

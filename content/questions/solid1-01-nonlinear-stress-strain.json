@@ -39,8 +39,36 @@
       ]
     },
     {
-      "id": "solid1-1-2",
+      "id": "solid1-1-21",
       "number": "1-2",
+      "title": "有限変形で釣合いが非線形になる要因",
+      "topic": "幾何学的非線形性の要因",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "通常の構造の有限変形解析で、釣合い方程式を変位に関して非線形にする幾何学的要因として、直接の要因とはいえないものはどれか。",
+      "choices": [
+        "変形によって断面や形状、力の作用位置が変わることを釣合いへ反映すること。",
+        "物体が回転も変形もせず、全体として同じ量だけ並進し、その量だけが代表寸法より大きいこと。",
+        "有限ひずみの式に変位勾配の2次の項が含まれること。",
+        "部材の大きな回転に伴う内力や荷重の作用方向の変化を釣合いへ反映すること。"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】幾何学的非線形性は、材料則が非線形かどうかとは別に、形状・回転・ひずみの評価が変形に依存することから生じます。細長い部材の大回転では、ひずみが小さくても力の方向や作用位置が大きく変わる場合があります。\n【並進の確認】変位場が $\\mathbf u(\\mathbf X)=\\mathbf c$ という一定ベクトルなら、$\\partial\\mathbf u/\\partial\\mathbf X=\\mathbf0$ なので $\\mathbf F=\\mathbf I$、ひずみは0です。並進量が大きいという事実だけでは、内部のひずみや幾何剛性は生じません。よって2が直接の要因とはいえません。\n【回転の確認】純粋な剛体回転も、それ自体でひずみを生むわけではありません。ただし、支持や荷重のある構造で部材の方向が変わると、内力の投影や荷重の作用位置を更新する必要があり、釣合い式が非線形になります。4はこの意味です。\n【条件】接触や位置依存の外力がある場合は、並進によって接触状態や外力が変わることがあります。それは「並進量だけが大きい」こととは別の要因です。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "figure": "helpful",
+      "figureImage": "s1e1NonlinCause",
+      "figureHint": "白地660x420で剛体並進(大変位でもひずみ0=非線形の直接原因でない)と、剛体回転成分・断面変化(=非線形の要因)を対比した図",
+      "officialRef": "問1-2",
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch1-finite-vs-infinitesimal"
+      ]
+    },
+    {
+      "id": "solid1-1-2",
+      "number": "1-3",
       "title": "変形勾配テンソルの定義",
       "topic": "変形勾配テンソル",
       "type": "mc",
@@ -68,7 +96,7 @@
     },
     {
       "id": "solid1-1-3",
-      "number": "1-3",
+      "number": "1-4",
       "title": "グリーン・ラグランジュひずみの式",
       "topic": "グリーン・ラグランジュひずみ",
       "type": "mc",
@@ -97,7 +125,7 @@
     },
     {
       "id": "solid1-1-4",
-      "number": "1-4",
+      "number": "1-5",
       "title": "アルマンジひずみの式",
       "topic": "アルマンジひずみ",
       "type": "mc",
@@ -126,7 +154,7 @@
     },
     {
       "id": "solid1-1-5",
-      "number": "1-5",
+      "number": "1-6",
       "title": "剛体回転とひずみの不変性",
       "topic": "ひずみの回転不変性",
       "type": "mc",
@@ -155,7 +183,7 @@
     },
     {
       "id": "solid1-1-6",
-      "number": "1-6",
+      "number": "1-7",
       "title": "非対称なテンソルの識別",
       "topic": "テンソルの対称性",
       "type": "mc",
@@ -183,93 +211,8 @@
       ]
     },
     {
-      "id": "solid1-1-7",
-      "number": "1-7",
-      "title": "極分解の意味",
-      "topic": "極分解",
-      "type": "mc",
-      "difficulty": 2,
-      "question": "変形勾配の極分解 $\\mathbf F=\\mathbf R\\mathbf U=\\mathbf V\\mathbf R$ に関する記述として正しいものはどれか。$\\det\\mathbf F>0$ とし、$\\mathbf R$ は回転テンソル、$\\mathbf U,\\mathbf V$ は対称正定値テンソルとする。",
-      "choices": [
-        "右極分解の $\\mathbf R$ が伸びを、$\\mathbf U$ が回転を表す。",
-        "右極分解は現配置で伸ばしてから回転し、左極分解は回転してから基準配置で伸ばす表現である。",
-        "右極分解は基準配置で伸ばしてから回転し、左極分解は回転してから現配置で伸ばす表現である。",
-        "$\\mathbf U$ は左ストレッチ、$\\mathbf V$ は右ストレッチで、$\\mathbf V=\\mathbf R^T\\mathbf U\\mathbf R$ である。"
-      ],
-      "answer": 3,
-      "explanation": "【基礎】$\\mathbf U$ は基準配置で表した右ストレッチ、$\\mathbf V$ は現配置で表した左ストレッチです。行列積は右側から作用するため、$\\mathbf R\\mathbf U$ は伸び→回転、$\\mathbf V\\mathbf R$ は回転→伸びと読みます。\n【関係式】$\\mathbf U^2=\\mathbf F^T\\mathbf F$、$\\mathbf V^2=\\mathbf F\\mathbf F^T$、$\\mathbf V=\\mathbf R\\mathbf U\\mathbf R^T$ です。同じ主伸長比を、異なる配置で表しています。\n【回転との関係】追加の剛体回転で $\\mathbf F'=\\mathbf Q\\mathbf F$ とすると、$\\mathbf U'=\\mathbf U$、$\\mathbf R'=\\mathbf Q\\mathbf R$、$\\mathbf V'=\\mathbf Q\\mathbf V\\mathbf Q^T$ となります。「UもVもRに依存しない」と一括して説明するのは不正確です。伸びの主値は変わりませんが、現配置量Vの方向・成分は回ります。\n【誤答】1は役割が逆、2は配置が逆、4は左右の名称と変換式が逆です。極分解は伸びと回転の分離であり、物体が実際にその順に変形したという履歴を意味するものではありません。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e1PolarDecomp",
-      "figureHint": "白地660x420で右極分解F=RU(伸長→回転)と左極分解F=VR(回転→伸長)を単位正方形の変形で対比する",
-      "officialRef": "問1-10",
-      "role": "primary",
-      "relatedFormulas": [
-        "s1ch1-polar-decomposition"
-      ]
-    },
-    {
-      "id": "solid1-1-8",
-      "number": "1-8",
-      "title": "有限ひずみ(グリーン・ラグランジュとアルマンジ)の計算",
-      "topic": "有限ひずみテンソル",
-      "type": "mc",
-      "difficulty": 2,
-      "question": "標点間の初期長さ $L=200\\,\\mathrm{mm}$ の丸棒が単軸引張で一様に伸び、現長さ $l=250\\,\\mathrm{mm}$(伸び $u=l-L=50\\,\\mathrm{mm}$)になった。グリーン・ラグランジュひずみ $E=\\dfrac{1}{2}\\left\\{(l/L)^2-1\\right\\}$ とアルマンジひずみ $A=\\dfrac{1}{2}\\left\\{1-(L/l)^2\\right\\}$ の値の組として最も近いものはどれか。",
-      "choices": [
-        "$E=0.250,\\ A=0.200$",
-        "$E=0.281,\\ A=0.180$",
-        "$E=0.281,\\ A=0.281$",
-        "$E=0.180,\\ A=0.281$"
-      ],
-      "answer": 2,
-      "explanation": "【基礎】グリーン・ラグランジュひずみは基準(変形前)長さを基準に測る有限ひずみ $E=\\dfrac{1}{2}\\{(l/L)^2-1\\}$、アルマンジひずみは現(変形後)長さを基準に測る有限ひずみ $A=\\dfrac{1}{2}\\{1-(L/l)^2\\}$ である。\n【考え方】伸び比 $l/L=250/200=1.25$ を求め、それぞれの定義式に代入する。\n【計算】$E=\\dfrac{1}{2}\\{1.25^2-1\\}=\\dfrac{1}{2}(1.5625-1)=0.281$、$A=\\dfrac{1}{2}\\{1-0.8^2\\}=\\dfrac{1}{2}(1-0.64)=0.180$。\n【ポイント】有限変形では基準長で測る $E$ の方が大きく $E>A$ となる。微小変形の極限では $E\\approx A\\approx u/L$ に一致する。\n【引っかけ】選択肢①の $0.250,\\ 0.200$ は微小変形近似 $u/L,\\ u/l$ の値で、有限ひずみの定義を使っていない。③は $A$ を $E$ と同じにしたもの、④は $E$ と $A$ を取り違えたもの。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e1FiniteStrainEA",
-      "figureHint": "白地660x420で初期長さLの丸棒が現長さlへ単軸引張で伸びる図。グリーン・ラグランジュひずみとアルマンジひずみの定義式を併記する",
-      "officialRef": "問1-9",
-      "role": "primary",
-      "relatedFormulas": [
-        "s1ch1-green-lagrange",
-        "s1ch1-almansi"
-      ]
-    },
-    {
-      "id": "solid1-1-9",
-      "number": "1-9",
-      "title": "公称応力から真応力への換算",
-      "topic": "真応力換算",
-      "type": "mc",
-      "difficulty": 2,
-      "question": "初期断面積 $A_0=100\\,\\mathrm{mm^2}$ の試験片に一定荷重 $P=30\\,\\mathrm{kN}$ を加え、公称ひずみ $\\varepsilon_n=0.20$ まで一様に伸ばした。材料を体積一定(非圧縮)と仮定するとき、公称応力 $\\sigma_n$ と真応力 $\\sigma_t$ の組合せとして正しいものはどれか。",
-      "choices": [
-        "$\\sigma_n=300\\,\\mathrm{MPa},\\ \\sigma_t=300\\,\\mathrm{MPa}$",
-        "$\\sigma_n=250\\,\\mathrm{MPa},\\ \\sigma_t=300\\,\\mathrm{MPa}$",
-        "$\\sigma_n=300\\,\\mathrm{MPa},\\ \\sigma_t=250\\,\\mathrm{MPa}$",
-        "$\\sigma_n=300\\,\\mathrm{MPa},\\ \\sigma_t=360\\,\\mathrm{MPa}$"
-      ],
-      "answer": 4,
-      "explanation": "【基礎】公称応力は初期断面積基準 $\\sigma_n=P/A_0$、真応力は現断面積基準 $\\sigma_t=P/a$。非圧縮なら体積一定より $A_0 L_0=a\\,l$、すなわち $a=A_0/(1+\\varepsilon_n)$。\n【考え方】断面積の縮小分だけ真応力が公称応力より大きくなる。$\\sigma_t=P/a=(P/A_0)(1+\\varepsilon_n)=\\sigma_n(1+\\varepsilon_n)$ を使う。\n【計算】$\\sigma_n=P/A_0=30000/100=300\\,\\mathrm{MPa}$、$a=A_0/(1+\\varepsilon_n)=100/1.2\\approx83.3\\,\\mathrm{mm^2}$、$\\sigma_t=P/a=30000/83.3\\approx360\\,\\mathrm{MPa}=\\sigma_n(1+\\varepsilon_n)=300\\times1.2$。\n【ポイント】引張では $\\sigma_t>\\sigma_n$。$(1+\\varepsilon_n)$ 倍の掛け忘れが最頻の誤り。\n【引っかけ】選択肢3は $(1+\\varepsilon_n)$ で割ってしまい $300/1.2=250$ とした逆向きミス。選択肢2は公称応力の初期断面積を取り違えている。選択肢1は断面変化を無視して真応力=公称応力とした。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e1StressConv",
-      "figureHint": "断面積A0→aへ縮小、公称σn=P/A0と真σt=P/a、σt=σn(1+εn)",
-      "officialRef": "問1-16",
-      "role": "branch",
-      "relatedFormulas": [
-        "s1ch1-nominal-true-stress"
-      ]
-    },
-    {
       "id": "solid1-1-10",
-      "number": "1-10",
+      "number": "1-8",
       "title": "変形勾配からのひずみ計算",
       "topic": "グリーン・ラグランジュひずみ",
       "type": "mc",
@@ -298,36 +241,65 @@
       ]
     },
     {
-      "id": "solid1-1-11",
-      "number": "1-11",
-      "title": "ヤコビアンと体積変化",
-      "topic": "体積変化率",
+      "id": "solid1-1-8",
+      "number": "1-9",
+      "title": "有限ひずみ(グリーン・ラグランジュとアルマンジ)の計算",
+      "topic": "有限ひずみテンソル",
       "type": "mc",
       "difficulty": 2,
-      "question": "ある材料を $X_1$ 方向に伸長比 $\\lambda_1=1.44$ で一軸伸長した。材料は非圧縮で、横方向の伸長比は $\\lambda_2=\\lambda_3=1/\\sqrt{\\lambda_1}$ になる。ヤコビアン $J=\\det\\mathbf{F}$ で表される体積比として正しいものはどれか。",
+      "question": "標点間の初期長さ $L=200\\,\\mathrm{mm}$ の丸棒が単軸引張で一様に伸び、現長さ $l=250\\,\\mathrm{mm}$(伸び $u=l-L=50\\,\\mathrm{mm}$)になった。グリーン・ラグランジュひずみ $E=\\dfrac{1}{2}\\left\\{(l/L)^2-1\\right\\}$ とアルマンジひずみ $A=\\dfrac{1}{2}\\left\\{1-(L/l)^2\\right\\}$ の値の組として最も近いものはどれか。",
       "choices": [
-        "$J\\approx1.44$（体積は約44%増加する）",
-        "$J\\approx0.69$（体積は約31%減少する）",
-        "$J\\approx1.00$（体積はほとんど変化しない）",
-        "$J\\approx1.20$（体積は約20%増加する）"
+        "$E=0.250,\\ A=0.200$",
+        "$E=0.281,\\ A=0.180$",
+        "$E=0.281,\\ A=0.281$",
+        "$E=0.180,\\ A=0.281$"
       ],
-      "answer": 3,
-      "explanation": "【基礎】ヤコビアン $J=\\det\\mathbf{F}$ は微小体積比 $dv/dV$ を表す。主軸方向のみの伸長なら $J=\\lambda_1\\lambda_2\\lambda_3$。\n【考え方】まず横方向伸長比を求め、3方向の伸長比の積をとる。\n【計算】$\\lambda_2=\\lambda_3=1/\\sqrt{1.44}=1/1.2\\approx0.833$、$J=\\lambda_1\\lambda_2\\lambda_3=1.44\\times0.833\\times0.833\\approx1.44\\times0.694\\approx1.00$。\n【ポイント】非圧縮材料は定義上 $J=1$。横方向の縮み $1/\\sqrt{\\lambda_1}$ がちょうど軸方向の伸びを相殺する。ゴムなど非圧縮解析ではこの拘束を課す。\n【引っかけ】選択肢1は軸方向伸長のみを見て横方向の縮みを無視した値。選択肢2は横方向の積 $\\lambda_2\\lambda_3\\approx0.69$ を体積比と誤認。選択肢4は伸長比の平均のような誤処理。",
+      "answer": 2,
+      "explanation": "【基礎】グリーン・ラグランジュひずみは基準(変形前)長さを基準に測る有限ひずみ $E=\\dfrac{1}{2}\\{(l/L)^2-1\\}$、アルマンジひずみは現(変形後)長さを基準に測る有限ひずみ $A=\\dfrac{1}{2}\\{1-(L/l)^2\\}$ である。\n【考え方】伸び比 $l/L=250/200=1.25$ を求め、それぞれの定義式に代入する。\n【計算】$E=\\dfrac{1}{2}\\{1.25^2-1\\}=\\dfrac{1}{2}(1.5625-1)=0.281$、$A=\\dfrac{1}{2}\\{1-0.8^2\\}=\\dfrac{1}{2}(1-0.64)=0.180$。\n【ポイント】有限変形では基準長で測る $E$ の方が大きく $E>A$ となる。微小変形の極限では $E\\approx A\\approx u/L$ に一致する。\n【引っかけ】選択肢①の $0.250,\\ 0.200$ は微小変形近似 $u/L,\\ u/l$ の値で、有限ひずみの定義を使っていない。③は $A$ を $E$ と同じにしたもの、④は $E$ と $A$ を取り違えたもの。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "figure": "helpful",
-      "figureImage": "s1e1Jacobian",
-      "figureHint": "単位立方体が変形し体積 dv=J dV、J=detF の体積比を図示",
-      "officialRef": "問1-13",
-      "role": "branch",
+      "figureImage": "s1e1FiniteStrainEA",
+      "figureHint": "白地660x420で初期長さLの丸棒が現長さlへ単軸引張で伸びる図。グリーン・ラグランジュひずみとアルマンジひずみの定義式を併記する",
+      "officialRef": "問1-9",
+      "role": "primary",
       "relatedFormulas": [
-        "s1ch1-jacobian"
+        "s1ch1-green-lagrange",
+        "s1ch1-almansi"
+      ]
+    },
+    {
+      "id": "solid1-1-7",
+      "number": "1-10",
+      "title": "極分解の意味",
+      "topic": "極分解",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "変形勾配の極分解 $\\mathbf F=\\mathbf R\\mathbf U=\\mathbf V\\mathbf R$ に関する記述として正しいものはどれか。$\\det\\mathbf F>0$ とし、$\\mathbf R$ は回転テンソル、$\\mathbf U,\\mathbf V$ は対称正定値テンソルとする。",
+      "choices": [
+        "右極分解の $\\mathbf R$ が伸びを、$\\mathbf U$ が回転を表す。",
+        "右極分解は現配置で伸ばしてから回転し、左極分解は回転してから基準配置で伸ばす表現である。",
+        "右極分解は基準配置で伸ばしてから回転し、左極分解は回転してから現配置で伸ばす表現である。",
+        "$\\mathbf U$ は左ストレッチ、$\\mathbf V$ は右ストレッチで、$\\mathbf V=\\mathbf R^T\\mathbf U\\mathbf R$ である。"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】$\\mathbf U$ は基準配置で表した右ストレッチ、$\\mathbf V$ は現配置で表した左ストレッチです。行列積は右側から作用するため、$\\mathbf R\\mathbf U$ は伸び→回転、$\\mathbf V\\mathbf R$ は回転→伸びと読みます。\n【関係式】$\\mathbf U^2=\\mathbf F^T\\mathbf F$、$\\mathbf V^2=\\mathbf F\\mathbf F^T$、$\\mathbf V=\\mathbf R\\mathbf U\\mathbf R^T$ です。同じ主伸長比を、異なる配置で表しています。\n【回転との関係】追加の剛体回転で $\\mathbf F'=\\mathbf Q\\mathbf F$ とすると、$\\mathbf U'=\\mathbf U$、$\\mathbf R'=\\mathbf Q\\mathbf R$、$\\mathbf V'=\\mathbf Q\\mathbf V\\mathbf Q^T$ となります。「UもVもRに依存しない」と一括して説明するのは不正確です。伸びの主値は変わりませんが、現配置量Vの方向・成分は回ります。\n【誤答】1は役割が逆、2は配置が逆、4は左右の名称と変換式が逆です。極分解は伸びと回転の分離であり、物体が実際にその順に変形したという履歴を意味するものではありません。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "figure": "helpful",
+      "figureImage": "s1e1PolarDecomp",
+      "figureHint": "白地660x420で右極分解F=RU(伸長→回転)と左極分解F=VR(回転→伸長)を単位正方形の変形で対比する",
+      "officialRef": "問1-10",
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch1-polar-decomposition"
       ]
     },
     {
       "id": "solid1-1-12",
-      "number": "1-12",
+      "number": "1-11",
       "title": "応力ベクトルの計算",
       "topic": "コーシー応力と応力ベクトル",
       "type": "mc",
@@ -354,36 +326,8 @@
       ]
     },
     {
-      "id": "solid1-1-13",
-      "number": "1-13",
-      "title": "コーシー応力の性質",
-      "topic": "コーシー応力",
-      "type": "mc",
-      "difficulty": 1,
-      "question": "偶応力・体積偶力を含まない通常の連続体のコーシー応力 $\\boldsymbol\\sigma$ に関する記述として正しいものはどれか。",
-      "choices": [
-        "変形前配置の面積に対する力として定義される応力である。",
-        "追加の剛体回転に対して成分が不変であり、一般に非対称である。",
-        "第1種ピオラ・キルヒホッフ応力と常に一致し、公称応力とも呼ばれる。",
-        "変形後配置の面積に対する力として定義され、角運動量の釣合いにより対称になる。"
-      ],
-      "answer": 4,
-      "explanation": "【定義】コーシー応力は現配置、すなわち今の物体の面積に基づく応力です。単位法線 $\\mathbf n$ の面に作用する力を現面積で割った応力ベクトルは $\\mathbf t=\\boldsymbol\\sigma\\mathbf n$ です。単軸引張の「真応力」はこの応力に対応します。\n【対称性】通常の連続体では角運動量の釣合いから $\\sigma_{ij}=\\sigma_{ji}$ になります。例えば正の $x$ 面に正の $y$ 向きせん断を描くなら、正の $y$ 面にも正の $x$ 向きせん断を描きます。逆側の面では各矢印が反転し、互いのモーメントが打ち消し合います。元図のように隣り合う正の面のせん断を一方だけ逆向きにすると、この対称性を表せません。\n【配置の違い】第1種PK応力は $\\mathbf P=J\\boldsymbol\\sigma\\mathbf F^{-T}$、第2種PK応力は $\\mathbf S=J\\mathbf F^{-1}\\boldsymbol\\sigma\\mathbf F^{-T}$ です。単純に同じ面積で割った応力同士ではありません。\n【回転】空間成分は $\\boldsymbol\\sigma'=\\mathbf Q\\boldsymbol\\sigma\\mathbf Q^T$ と変換されます。成分が不変であることと客観性を混同しないようにします。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e1CauchyComp",
-      "figureHint": "コーシー応力テンソルの成分:立方体各面の垂直/せん断応力",
-      "officialRef": "問1-14",
-      "role": "primary",
-      "relatedFormulas": [
-        "s1ch1-cauchy-stress"
-      ]
-    },
-    {
       "id": "solid1-1-14",
-      "number": "1-14",
+      "number": "1-12",
       "title": "キルヒホッフ応力の定義",
       "topic": "キルヒホッフ応力",
       "type": "mc",
@@ -410,8 +354,64 @@
       ]
     },
     {
+      "id": "solid1-1-11",
+      "number": "1-13",
+      "title": "ヤコビアンと体積変化",
+      "topic": "体積変化率",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "ある材料を $X_1$ 方向に伸長比 $\\lambda_1=1.44$ で一軸伸長した。材料は非圧縮で、横方向の伸長比は $\\lambda_2=\\lambda_3=1/\\sqrt{\\lambda_1}$ になる。ヤコビアン $J=\\det\\mathbf{F}$ で表される体積比として正しいものはどれか。",
+      "choices": [
+        "$J\\approx1.44$（体積は約44%増加する）",
+        "$J\\approx0.69$（体積は約31%減少する）",
+        "$J\\approx1.00$（体積はほとんど変化しない）",
+        "$J\\approx1.20$（体積は約20%増加する）"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】ヤコビアン $J=\\det\\mathbf{F}$ は微小体積比 $dv/dV$ を表す。主軸方向のみの伸長なら $J=\\lambda_1\\lambda_2\\lambda_3$。\n【考え方】まず横方向伸長比を求め、3方向の伸長比の積をとる。\n【計算】$\\lambda_2=\\lambda_3=1/\\sqrt{1.44}=1/1.2\\approx0.833$、$J=\\lambda_1\\lambda_2\\lambda_3=1.44\\times0.833\\times0.833\\approx1.44\\times0.694\\approx1.00$。\n【ポイント】非圧縮材料は定義上 $J=1$。横方向の縮み $1/\\sqrt{\\lambda_1}$ がちょうど軸方向の伸びを相殺する。ゴムなど非圧縮解析ではこの拘束を課す。\n【引っかけ】選択肢1は軸方向伸長のみを見て横方向の縮みを無視した値。選択肢2は横方向の積 $\\lambda_2\\lambda_3\\approx0.69$ を体積比と誤認。選択肢4は伸長比の平均のような誤処理。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "figure": "helpful",
+      "figureImage": "s1e1Jacobian",
+      "figureHint": "単位立方体が変形し体積 dv=J dV、J=detF の体積比を図示",
+      "officialRef": "問1-13",
+      "role": "branch",
+      "relatedFormulas": [
+        "s1ch1-jacobian"
+      ]
+    },
+    {
+      "id": "solid1-1-13",
+      "number": "1-14",
+      "title": "コーシー応力の性質",
+      "topic": "コーシー応力",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "偶応力・体積偶力を含まない通常の連続体のコーシー応力 $\\boldsymbol\\sigma$ に関する記述として正しいものはどれか。",
+      "choices": [
+        "変形前配置の面積に対する力として定義される応力である。",
+        "追加の剛体回転に対して成分が不変であり、一般に非対称である。",
+        "第1種ピオラ・キルヒホッフ応力と常に一致し、公称応力とも呼ばれる。",
+        "変形後配置の面積に対する力として定義され、角運動量の釣合いにより対称になる。"
+      ],
+      "answer": 4,
+      "explanation": "【定義】コーシー応力は現配置、すなわち今の物体の面積に基づく応力です。単位法線 $\\mathbf n$ の面に作用する力を現面積で割った応力ベクトルは $\\mathbf t=\\boldsymbol\\sigma\\mathbf n$ です。単軸引張の「真応力」はこの応力に対応します。\n【対称性】通常の連続体では角運動量の釣合いから $\\sigma_{ij}=\\sigma_{ji}$ になります。例えば正の $x$ 面に正の $y$ 向きせん断を描くなら、正の $y$ 面にも正の $x$ 向きせん断を描きます。逆側の面では各矢印が反転し、互いのモーメントが打ち消し合います。元図のように隣り合う正の面のせん断を一方だけ逆向きにすると、この対称性を表せません。\n【配置の違い】第1種PK応力は $\\mathbf P=J\\boldsymbol\\sigma\\mathbf F^{-T}$、第2種PK応力は $\\mathbf S=J\\mathbf F^{-1}\\boldsymbol\\sigma\\mathbf F^{-T}$ です。単純に同じ面積で割った応力同士ではありません。\n【回転】空間成分は $\\boldsymbol\\sigma'=\\mathbf Q\\boldsymbol\\sigma\\mathbf Q^T$ と変換されます。成分が不変であることと客観性を混同しないようにします。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "figure": "helpful",
+      "figureImage": "s1e1CauchyComp",
+      "figureHint": "コーシー応力テンソルの成分:立方体各面の垂直/せん断応力",
+      "officialRef": "問1-14",
+      "role": "primary",
+      "relatedFormulas": [
+        "s1ch1-cauchy-stress"
+      ]
+    },
+    {
       "id": "solid1-1-17",
-      "number": "1-17",
+      "number": "1-15",
       "title": "仕事共役の組合せ",
       "topic": "仕事共役",
       "type": "mc",
@@ -438,8 +438,36 @@
       ]
     },
     {
+      "id": "solid1-1-9",
+      "number": "1-16",
+      "title": "公称応力から真応力への換算",
+      "topic": "真応力換算",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "初期断面積 $A_0=100\\,\\mathrm{mm^2}$ の試験片に一定荷重 $P=30\\,\\mathrm{kN}$ を加え、公称ひずみ $\\varepsilon_n=0.20$ まで一様に伸ばした。材料を体積一定(非圧縮)と仮定するとき、公称応力 $\\sigma_n$ と真応力 $\\sigma_t$ の組合せとして正しいものはどれか。",
+      "choices": [
+        "$\\sigma_n=300\\,\\mathrm{MPa},\\ \\sigma_t=300\\,\\mathrm{MPa}$",
+        "$\\sigma_n=250\\,\\mathrm{MPa},\\ \\sigma_t=300\\,\\mathrm{MPa}$",
+        "$\\sigma_n=300\\,\\mathrm{MPa},\\ \\sigma_t=250\\,\\mathrm{MPa}$",
+        "$\\sigma_n=300\\,\\mathrm{MPa},\\ \\sigma_t=360\\,\\mathrm{MPa}$"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】公称応力は初期断面積基準 $\\sigma_n=P/A_0$、真応力は現断面積基準 $\\sigma_t=P/a$。非圧縮なら体積一定より $A_0 L_0=a\\,l$、すなわち $a=A_0/(1+\\varepsilon_n)$。\n【考え方】断面積の縮小分だけ真応力が公称応力より大きくなる。$\\sigma_t=P/a=(P/A_0)(1+\\varepsilon_n)=\\sigma_n(1+\\varepsilon_n)$ を使う。\n【計算】$\\sigma_n=P/A_0=30000/100=300\\,\\mathrm{MPa}$、$a=A_0/(1+\\varepsilon_n)=100/1.2\\approx83.3\\,\\mathrm{mm^2}$、$\\sigma_t=P/a=30000/83.3\\approx360\\,\\mathrm{MPa}=\\sigma_n(1+\\varepsilon_n)=300\\times1.2$。\n【ポイント】引張では $\\sigma_t>\\sigma_n$。$(1+\\varepsilon_n)$ 倍の掛け忘れが最頻の誤り。\n【引っかけ】選択肢3は $(1+\\varepsilon_n)$ で割ってしまい $300/1.2=250$ とした逆向きミス。選択肢2は公称応力の初期断面積を取り違えている。選択肢1は断面変化を無視して真応力=公称応力とした。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "figure": "helpful",
+      "figureImage": "s1e1StressConv",
+      "figureHint": "断面積A0→aへ縮小、公称σn=P/A0と真σt=P/a、σt=σn(1+εn)",
+      "officialRef": "問1-16",
+      "role": "branch",
+      "relatedFormulas": [
+        "s1ch1-nominal-true-stress"
+      ]
+    },
+    {
       "id": "solid1-1-19",
-      "number": "1-19",
+      "number": "1-17",
       "title": "速度勾配の分解計算",
       "topic": "速度勾配テンソル",
       "type": "mc",
@@ -467,7 +495,7 @@
     },
     {
       "id": "solid1-1-20",
-      "number": "1-20",
+      "number": "1-18",
       "title": "客観応力速度と非線形の区別",
       "topic": "客観応力速度・非線形の分類",
       "type": "mc",
@@ -492,34 +520,6 @@
       "relatedFormulas": [
         "s1ch1-objective-stress-rate",
         "s1ch1-material-geometric-tl-ul"
-      ]
-    },
-    {
-      "id": "solid1-1-21",
-      "number": "1-21",
-      "title": "有限変形で釣合いが非線形になる要因",
-      "topic": "幾何学的非線形性の要因",
-      "type": "mc",
-      "difficulty": 3,
-      "question": "通常の構造の有限変形解析で、釣合い方程式を変位に関して非線形にする幾何学的要因として、直接の要因とはいえないものはどれか。",
-      "choices": [
-        "変形によって断面や形状、力の作用位置が変わることを釣合いへ反映すること。",
-        "物体が回転も変形もせず、全体として同じ量だけ並進し、その量だけが代表寸法より大きいこと。",
-        "有限ひずみの式に変位勾配の2次の項が含まれること。",
-        "部材の大きな回転に伴う内力や荷重の作用方向の変化を釣合いへ反映すること。"
-      ],
-      "answer": 2,
-      "explanation": "【基礎】幾何学的非線形性は、材料則が非線形かどうかとは別に、形状・回転・ひずみの評価が変形に依存することから生じます。細長い部材の大回転では、ひずみが小さくても力の方向や作用位置が大きく変わる場合があります。\n【並進の確認】変位場が $\\mathbf u(\\mathbf X)=\\mathbf c$ という一定ベクトルなら、$\\partial\\mathbf u/\\partial\\mathbf X=\\mathbf0$ なので $\\mathbf F=\\mathbf I$、ひずみは0です。並進量が大きいという事実だけでは、内部のひずみや幾何剛性は生じません。よって2が直接の要因とはいえません。\n【回転の確認】純粋な剛体回転も、それ自体でひずみを生むわけではありません。ただし、支持や荷重のある構造で部材の方向が変わると、内力の投影や荷重の作用位置を更新する必要があり、釣合い式が非線形になります。4はこの意味です。\n【条件】接触や位置依存の外力がある場合は、並進によって接触状態や外力が変わることがあります。それは「並進量だけが大きい」こととは別の要因です。",
-      "hasMath": true,
-      "origin": "original",
-      "reviewed": true,
-      "figure": "helpful",
-      "figureImage": "s1e1NonlinCause",
-      "figureHint": "白地660x420で剛体並進(大変位でもひずみ0=非線形の直接原因でない)と、剛体回転成分・断面変化(=非線形の要因)を対比した図",
-      "officialRef": "問1-2",
-      "role": "primary",
-      "relatedFormulas": [
-        "s1ch1-finite-vs-infinitesimal"
       ]
     }
   ]
