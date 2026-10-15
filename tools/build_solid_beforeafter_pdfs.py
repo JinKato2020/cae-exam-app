@@ -8,7 +8,7 @@
        python tools/build_solid_beforeafter_pdfs.py 1:5,6 2:3  … 指定した級:章だけ再生成(無駄を省く。他章PDFは温存)
        python tools/build_solid_beforeafter_pdfs.py 5          … 章番号のみ(両級の該当章)
 恒久ツール。App.tsx の前後出し分けロジックに準拠。build_vib_beforeafter_pdfs.py の固体版。"""
-import json, os, base64, html, subprocess, glob, sys, re
+import json, os, base64, html, subprocess, glob, sys, re, shutil
 from check_quality import require_editorial_review
 
 
@@ -102,6 +102,8 @@ def build_html(data, subject_full, grade, after):
     cat = meta["category"]
     mode = "回答後（正解・解説つき）" if after else "回答前（答えを伏せた出題面）"
     cards = "".join(card(q, after) for q in data["questions"])
+    strict = data["meta"].get("presentationStyle") == "cae-standard-v1"
+    presentation = ("body{width:186mm;margin:0}.fig img{width:155mm;max-width:100%}.exp{font-size:11pt;line-height:1.7}.page-card{break-before:page;break-after:page;margin:0}.page-card:first-child{break-before:auto}" if strict else "")
     return f"""<!doctype html><html lang="ja"><head><meta charset="utf-8">
 <title>{esc(cat)}</title>
 <style>
@@ -119,10 +121,11 @@ ol.choices{{margin:6px 0;padding-left:20px;}} ol.choices li.ok{{font-weight:700;
 .exp{{background:#f7f7f4;border-left:3px solid #2456c9;padding:6px 10px;border-radius:4px;font-size:10pt;}}
 .eline{{margin:3px 0;}}
 mjx-container{{overflow-x:auto;}}
+{presentation}
 </style>
 <script>window.MathJax={{tex:{{inlineMath:[['$','$']]}},svg:{{fontCache:'global'}}}};</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
-</head><body>
+</head><body data-strict-style="{int(strict)}" data-after="{int(after)}">
 <h1>{esc(cat)}</h1>
 <div class="sub">CAE計算力学技術者 {subject_full}{grade}・オリジナル問題 ／ {mode}</div>
 {cards}
@@ -130,12 +133,42 @@ mjx-container{{overflow-x:auto;}}
 
 
 def to_pdf(doc, htmlpath, pdfpath):
-    open(htmlpath, "w", encoding="utf-8").write(doc)
-    url = "file:///" + htmlpath.replace("\\", "/")
-    cmd = [EDGE, "--headless=new", "--disable-gpu", "--no-sandbox",
-           f"--print-to-pdf={pdfpath}", "--print-to-pdf-no-header",
-           "--virtual-time-budget=25000", "--run-all-compositor-stages-before-draw", url]
-    subprocess.run(cmd, capture_output=True, timeout=120)
+    """Print only after math typesetting and visible-content checks succeed."""
+    from pathlib import Path
+    Path(htmlpath).write_text(doc, encoding="utf-8")
+    bundled = Path.home()/".cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe"
+    node = str(bundled) if bundled.exists() else shutil.which("node")
+    if not node:
+        raise RuntimeError("数式検証付きPDF出力にはNode.jsが必要です")
+    script = r'''
+const fs=require('fs'),path=require('path'),{pathToFileURL}=require('url');
+let pw;try{pw=require('playwright')}catch(e){pw=require(path.resolve(path.dirname(process.execPath),'../node_modules/playwright'))}
+(async()=>{
+ const [source,destination,chrome]=process.argv.slice(1);
+ const browser=await pw.chromium.launch({headless:true,executablePath:chrome,args:['--no-sandbox']});
+ try {
+  const p=await browser.newPage(),jsErrors=[];p.on('pageerror',e=>jsErrors.push(e.message));
+  await p.goto(pathToFileURL(source).href,{waitUntil:'networkidle',timeout:60000});
+  await p.waitForFunction(()=>window.MathJax?.startup?.promise,{timeout:30000});
+  await p.evaluate(async()=>{await MathJax.startup.promise;await document.fonts.ready});
+  const facts=await p.evaluate(()=>{
+   const raw=[],walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
+   while(n=walker.nextNode())if(!n.parentElement.closest('mjx-container,script,style')&&(/[\^$]|\\(?:frac|mathbf|partial|sqrt|begin)\b/.test(n.textContent)))raw.push(n.textContent.slice(0,80));
+   const cards=[...document.querySelectorAll('.card')],strict=document.body.dataset.strictStyle==='1',after=document.body.dataset.after==='1';
+   if(strict&&after){document.querySelector('h1')?.remove();document.querySelector('.sub')?.remove();
+    for(const c of cards){c.classList.add('page-card');if(c.getBoundingClientRect().height>990){const exp=c.querySelector('.exp');if(!exp)throw Error('question overflow');const sheet=document.createElement('div');sheet.className='card page-card';const h=document.createElement('div');h.className='chead';h.textContent=c.querySelector('.num').textContent+' 解説';sheet.append(h,exp);c.after(sheet)}}}
+   return {mathErrors:document.querySelectorAll('mjx-merror').length,raw,broken:[...document.images].filter(i=>!i.complete||!i.naturalWidth).length,tooTall:[...document.querySelectorAll('.page-card')].filter(c=>c.getBoundingClientRect().height>990).length,overflow:[...document.querySelectorAll('mjx-container')].filter(e=>e.getBoundingClientRect().width>e.closest('.card').getBoundingClientRect().width-24).length};
+  });
+  if(jsErrors.length||facts.mathErrors||facts.raw.length||facts.broken||facts.tooTall||facts.overflow)throw Error(JSON.stringify({facts,jsErrors}));
+  // Do not overwrite a valid existing PDF until all rendering checks pass.
+  const bytes=await p.pdf({format:'A4',preferCSSPageSize:true,printBackground:true});fs.writeFileSync(destination,bytes);
+ }finally{await browser.close()}
+})().catch(e=>{console.error(e.message);process.exitCode=1});
+'''
+    result = subprocess.run([node, "-e", script, os.path.abspath(htmlpath), os.path.abspath(pdfpath), EDGE],
+                            capture_output=True, text=True, encoding="utf-8", timeout=120)
+    if result.returncode:
+        raise RuntimeError("PDF表示検証で停止: " + result.stderr.strip()[:1200])
     return os.path.exists(pdfpath)
 
 
