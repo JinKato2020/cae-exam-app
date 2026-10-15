@@ -13,6 +13,8 @@
 #
 # 使い方: python tools/content_manifest.py   （リポジトリ直下で実行）
 
+from check_quality import require_editorial_review
+
 import hashlib
 import json
 import os
@@ -62,6 +64,10 @@ def collect(root: str):
 
 def main():
     root = os.getcwd()
+    # Stop before producing any distributable data if a changed question lacks review.
+    from pathlib import Path
+    for question_path in sorted((Path(root) / "content" / "questions").glob("*.json")):
+        require_editorial_review(json.loads(question_path.read_bytes()))
     files = collect(root)
     manifest = {
         "appId": APP_ID,

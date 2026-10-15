@@ -9,6 +9,7 @@
        python tools/build_solid_beforeafter_pdfs.py 5          … 章番号のみ(両級の該当章)
 恒久ツール。App.tsx の前後出し分けロジックに準拠。build_vib_beforeafter_pdfs.py の固体版。"""
 import json, os, base64, html, subprocess, glob, sys, re
+from check_quality import require_editorial_review
 
 
 def _want(g, ch, path, specs):
@@ -96,6 +97,7 @@ def card(q, after):
 
 
 def build_html(data, subject_full, grade, after):
+    require_editorial_review(data)
     meta = data["meta"]
     cat = meta["category"]
     mode = "回答後（正解・解説つき）" if after else "回答前（答えを伏せた出題面）"
@@ -164,6 +166,11 @@ def main():
     if specs:
         print(f"[対象限定] {specs} に該当する章だけ再生成します")
     plan = collect()
+    # Validate all selected chapters before touching existing PDFs.
+    for g, entries in plan.items():
+        for fp, data in entries:
+            if _want(g, data["meta"].get("chapter"), fp, specs):
+                require_editorial_review(data)
     for g in ("1", "2"):
         files = [(fp, data) for (fp, data) in plan[g] if _want(g, data["meta"].get("chapter"), fp, specs)]
         if not files:

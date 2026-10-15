@@ -22,7 +22,8 @@ check_quality.py  —  作問の「難易度・品質」を機械チェックす
     PASS = しきい値内
   🔎/ℹ️ 行は「参考・要目視」で判定には影響しない（断定語の誤答＝正当な引っかけのこともある）。
 """
-import sys, os, json, glob, re, unicodedata
+import sys, os, json, glob, re, unicodedata, hashlib
+from pathlib import Path
 
 # ---- しきい値（甘くしない。緩める時は理由をコミットに残す） ----
 D1_MAX_SHARE      = 0.35   # 難易度1（易しい）割合の上限
@@ -53,11 +54,60 @@ def calc_body(q):
 def is_calc(q):
     return "【計算】" in q.get("explanation", "")
 
+def editorial_digest(q):
+    """Bind the semantic review to the complete current question, excluding review flags."""
+    body = {k: v for k, v in q.items() if k not in ("editorialReview", "reviewed")}
+    return hashlib.sha256(json.dumps(body, ensure_ascii=False, sort_keys=True,
+                                    separators=(",", ":")).encode("utf-8")).hexdigest()
+
+
+def editorial_errors(data):
+    """Semantic judgement is manual; missing/stale judgement is a blocking error.
+
+    Unchanged legacy material is grandfathered once, never automatically certified.
+    Do not regenerate the baseline after an edit: review the changed question instead.
+    """
+    if data.get("meta", {}).get("grade") != "固体力学 2級":
+        return []
+    baseline_path = Path(__file__).with_name("solid2_editorial_baseline.json")
+    baseline = json.loads(baseline_path.read_text(encoding="utf-8"))["legacy"]
+    legacy = {key: value for chapter in baseline.values() for key, value in chapter.items()}
+    errors = []
+    for q in data.get("questions", []):
+        num = q.get("number", "?")
+        review = q.get("editorialReview")
+        signature = editorial_digest(q)
+        if review is None and legacy.get(q.get("id")) == signature:
+            continue
+        if not isinstance(review, dict):
+            errors.append(f"{num}: 公式論点・誤答肢の内容確認が未記録")
+            continue
+        for key in ("officialPoint", "alignment"):
+            if not isinstance(review.get(key), str) or not review[key].strip():
+                errors.append(f"{num}: {key} の内容確認が未記録")
+        expected = {str(i) for i in range(1, 5) if i != q.get("answer")}
+        reasons = review.get("distractorMisconceptions")
+        if (not isinstance(reasons, dict) or set(reasons) != expected
+                or any(not isinstance(v, str) or not v.strip() for v in reasons.values())):
+            errors.append(f"{num}: 各誤答肢が表す同一論点内の誤解が未記録")
+        if not q.get("officialRef"):
+            errors.append(f"{num}: officialRef が未記録")
+        if review.get("sha256") != signature:
+            errors.append(f"{num}: 内容変更後の公式論点・誤答肢の再確認が必要")
+    return errors
+
+
+def require_editorial_review(data):
+    errors = editorial_errors(data)
+    if errors:
+        raise ValueError("教材の内容確認ゲート: " + "; ".join(errors))
+
+
 def check_file(path, all_titles):
     d = json.load(open(path, encoding="utf-8"))
     qs = d.get("questions", [])
     n = len(qs)
-    hard, warn, info, review = [], [], [], []
+    hard, warn, info, review = editorial_errors(d), [], [], []
 
     # --- 構造(FAIL) ---
     if d.get("meta", {}).get("count") != n:
@@ -137,6 +187,8 @@ def check_file(path, all_titles):
         hard.append(f"preFigureImage(回答前図)があるのに figureImage(回答後図)が無い問 {len(pre_bad)}: {pre_bad}"
                     f"（前後2図は回答前=preFigureImage/回答後=figureImage の対で使う）")
 
+    # 固体2級の現行方針: 不要な図は省く（旧全問必須ルールを適用しない）。
+    solid2 = d.get("meta", {}).get("grade") == "固体力学 2級"
     # --- 図の必須化＋「回答前/回答後」タグ整合(FAIL・恒久ルール／ユーザー厳命2026-09-18) ---
     #   厳命: 初学者のため【全問に例外なく図を付ける】。かつ各図は回答前/回答後を明示する。
     #   仕組み: App.tsx は figure=='required' の時だけ図を回答前から表示し、'helpful' は回答後(解説と一緒)。
@@ -150,6 +202,7 @@ def check_file(path, all_titles):
     #     技術題材ではこのフラグは使わない＝抜け穴にしない。
     no_or_bad_fig = [q.get("number") for q in qs
                      if not q.get("figureExempt")
+                     and (not solid2 or q.get("figureImage") or q.get("figure") in ("required", "helpful"))
                      and (q.get("figure") not in ("required", "helpful") or not q.get("figureImage"))]
     bad_exempt = [q.get("number") for q in qs
                   if q.get("figureExempt") and not str(q.get("figureExemptReason","")).strip()]
@@ -158,8 +211,7 @@ def check_file(path, all_titles):
     if no_or_bad_fig:
         hard.append(
             f"図なし/不完全な問 {len(no_or_bad_fig)}/{n}: {no_or_bad_fig}"
-            f"（全問に図必須。figureImage(図キー)＋前後タグ required=回答前 / helpful=回答後 を必ず付ける。"
-            f"none・未設定・図キー欠落・不正タグは禁止）")
+            f"（図を付ける問はキーと前後タグをそろえる。固体2級は不要図の省略可。他級は従来基準）")
 
     # --- 回答前(required)の図に答えが写り込む事故ガード(FAIL) ---
     #   過去事故: 答えを図に描いて回答前(required)に出しネタバレ。required図は問題理解用で
@@ -249,7 +301,8 @@ def main():
         try:
             v, n, ans, hard, warn, info, review = check_file(path, all_titles)
         except Exception as e:
-            print(f"[SKIP] {os.path.basename(path)}: 読めない({e})"); continue
+            worst = "FAIL"
+            print(f"[FAIL] {os.path.basename(path)}: 検査できない({e})"); continue
         if order[v] > order[worst]: worst = v
         mark = {"PASS":"✅","WARN":"⚠️","FAIL":"❌"}[v]
         print(f"{mark} {v}  {os.path.basename(path)}  ({n}問, 答え①②③④={'/'.join(map(str,ans))})")
