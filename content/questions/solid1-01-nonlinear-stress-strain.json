@@ -24,7 +24,7 @@
         "幾何学的非線形性とは、材料の応力-ひずみ関係が非線形であることを指す"
       ],
       "answer": 3,
-      "explanation": "【基礎】変形理論は微小変形理論と有限変形理論に大別される。微小変形理論は変形が小さいと仮定し、力の釣合いを近似的に変形前(基準)配置で評価する(線形弾性解析や固有値解析の基礎)。\n【考え方】有限変形理論は変形後(現)配置で釣合いを考えるため、たとえ材料が線形弾性でもひずみが変位に非線形に依存し、コーシーの第1運動法則(釣合い式)も非線形になる。この幾何由来の非線形を幾何学的非線形性と呼ぶ。\n【ポイント】材料の応力-ひずみ関係そのものの非線形は『材料非線形』であり、幾何学的非線形とは別の要因。両者は解析上区別して扱う。\n【引っかけ】選択肢1は微小変形と有限変形の説明が入れ替わっている。選択肢2は有限変形でひずみが非線形になる本質を否定している。選択肢4は材料非線形を幾何学的非線形と取り違えている。",
+      "explanation": "【基礎】変形理論は微小変形理論と有限変形理論に大別されます。微小変形理論は変形が小さいと仮定し、力の釣合いを近似的に変形前(基準)配置で評価します(線形弾性解析や固有値解析の基礎です)。\n【考え方】有限変形理論は変形後(現)配置で釣合いを考えるため、たとえ材料が線形弾性でもひずみが変位に非線形に依存し、コーシーの第1運動法則(釣合い式)も非線形になります。この幾何由来の非線形を幾何学的非線形性と呼び、これを述べた選択肢3が正解です。\n【ポイント】材料の応力-ひずみ関係そのものの非線形は材料非線形であり、幾何学的非線形とは別の要因で、解析上は区別して扱います。\n【引っかけ】選択肢1は微小変形と有限変形の説明が入れ替わっており、選択肢2は有限変形でひずみが非線形になる本質を否定しており、選択肢4は材料非線形を幾何学的非線形と取り違えています。",
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
@@ -53,7 +53,7 @@
         "部材の大きな回転に伴う内力や荷重の作用方向の変化を釣合いへ反映すること。"
       ],
       "answer": 2,
-      "explanation": "【基礎】幾何学的非線形性は、材料則が非線形かどうかとは別に、形状・回転・ひずみの評価が変形に依存することから生じます。細長い部材の大回転では、ひずみが小さくても力の方向や作用位置が大きく変わる場合があります。\n【並進の確認】変位場が $\\mathbf u(\\mathbf X)=\\mathbf c$ という一定ベクトルなら、$\\partial\\mathbf u/\\partial\\mathbf X=\\mathbf0$ なので $\\mathbf F=\\mathbf I$、ひずみは0です。並進量が大きいという事実だけでは、内部のひずみや幾何剛性は生じません。よって2が直接の要因とはいえません。\n【回転の確認】純粋な剛体回転も、それ自体でひずみを生むわけではありません。ただし、支持や荷重のある構造で部材の方向が変わると、内力の投影や荷重の作用位置を更新する必要があり、釣合い式が非線形になります。4はこの意味です。\n【条件】接触や位置依存の外力がある場合は、並進によって接触状態や外力が変わることがあります。それは「並進量だけが大きい」こととは別の要因です。",
+      "explanation": "【基礎】幾何学的非線形性は、材料則が非線形かどうかとは別に、変形後の形状・回転・ひずみ評価が変位に依存することから生じます。\n【考え方】釣合いを変形後配置で考えると、断面や力の作用位置の変化(選択肢1)、有限ひずみの変位勾配2次項(選択肢3)、大回転に伴う内力や荷重方向の変化(選択肢4)はいずれも変位に非線形な寄与を与えますが、回転も変形もない単なる剛体並進は変位勾配が0で$\\mathbf F=\\mathbf I$となりひずみを生まないため直接の要因とはいえず、正解は2です。\n【ポイント】並進量がいくら大きくても、変位場が一定ベクトルなら$\\partial\\mathbf u/\\partial\\mathbf X=\\mathbf0$でひずみも幾何剛性も生じません。大きい変位と非線形の要因は別物です。\n【引っかけ】選択肢1は変形後の形状や作用位置を釣合いに反映するので直接要因、選択肢3は有限ひずみの2次項$\\tfrac12(\\partial u_k/\\partial X_i)(\\partial u_k/\\partial X_j)$が非線形を生むので直接要因、選択肢4は大回転で内力や荷重の作用方向が変わるので直接要因です。ひずみを伴わない選択肢2だけが要因になりません。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -81,7 +81,7 @@
         "速度勾配テンソル、成分は $F_{ij}=\\partial v_i/\\partial x_j$"
       ],
       "answer": 1,
-      "explanation": "【基礎】連続体は物質点の連続集合とみなされ、その配置を扱う。基準配置での物質点位置を $\\mathbf{X}$、時刻 $t$ での位置を $\\mathbf{x}=\\mathbf{x}(\\mathbf{X},t)$ とする。\n【考え方】微小ベクトルどうしの線形変換 $d\\mathbf{x}=\\mathbf{F}\\,d\\mathbf{X}$ を与えるのが変形勾配テンソルで、その成分は現配置座標を基準配置座標で微分した $F_{ij}=\\partial x_i/\\partial X_j$。変位 $\\mathbf{u}=\\mathbf{x}-\\mathbf{X}$ を用いれば $F_{ij}=\\delta_{ij}+\\partial u_i/\\partial X_j$ とも書ける。\n【ポイント】$\\mathbf{F}$ は変形と剛体回転の両方を含み、一般に非対称。ここから各種ひずみ・応力が定義される出発点となる。\n【引っかけ】選択肢2は $\\mathbf{F}$ そのものではなく変位勾配 $\\partial u_i/\\partial X_j$。選択肢3は微分の分母分子が逆で、これは $\\mathbf{F}^{-1}$ の成分。選択肢4は速度勾配テンソル $\\mathbf{L}$ の成分。",
+      "explanation": "【基礎】連続体は物質点の連続集合とみなし、その配置を扱います。基準配置での物質点位置を$\\mathbf X$、時刻$t$での位置を$\\mathbf x=\\mathbf x(\\mathbf X,t)$とします。\n【考え方】微小ベクトルどうしの線形変換$d\\mathbf x=\\mathbf F\\,d\\mathbf X$を与えるのが変形勾配テンソルで、成分は現配置座標を基準配置座標で微分した$F_{ij}=\\partial x_i/\\partial X_j$です。変位$\\mathbf u=\\mathbf x-\\mathbf X$を用いれば$F_{ij}=\\delta_{ij}+\\partial u_i/\\partial X_j$とも書け、これを述べた選択肢1が正解です。\n【ポイント】$\\mathbf F$は変形と剛体回転の両方を含み一般に非対称で、ここから各種ひずみ・応力が定義される出発点になります。\n【引っかけ】選択肢2は$\\mathbf F$そのものではなく変位勾配$\\partial u_i/\\partial X_j$、選択肢3は微分の分母分子が逆で$\\mathbf F^{-1}$の成分、選択肢4は速度勾配テンソル$\\mathbf L$の成分です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -109,7 +109,7 @@
         "$\\mathbf{E}=\\tfrac{1}{2}\\left(\\mathbf{F}\\mathbf{F}^{T}-\\mathbf{I}\\right)$"
       ],
       "answer": 2,
-      "explanation": "【基礎】線素長さの2乗変化は $(dl)^2-(dl_0)^2=d\\mathbf{X}\\cdot(\\mathbf{F}^{T}\\mathbf{F}-\\mathbf{I})\\,d\\mathbf{X}=d\\mathbf{X}\\cdot(\\mathbf{C}-\\mathbf{I})\\,d\\mathbf{X}$ と書ける。\n【考え方】この長さ変化を基準配置基準のひずみとして定義したものがグリーン・ラグランジュひずみ $\\mathbf{E}=\\tfrac12(\\mathbf{C}-\\mathbf{I})=\\tfrac12(\\mathbf{F}^{T}\\mathbf{F}-\\mathbf{I})$。$\\tfrac12$ 係数は長さの2乗差からひずみに直すために必要。\n【ポイント】純粋な剛体回転 $\\mathbf{F}=\\mathbf{R}$ では $\\mathbf{F}^{T}\\mathbf{F}=\\mathbf{R}^{T}\\mathbf{R}=\\mathbf{I}$ となり $\\mathbf{E}=0$。$\\mathbf{E}$ は対称テンソル。\n【引っかけ】選択肢1は $\\tfrac12$ の係数欠落。選択肢3は符号が逆。選択肢4は $\\mathbf{F}^{T}\\mathbf{F}$ と $\\mathbf{F}\\mathbf{F}^{T}$ の取り違えで、これはアルマンジ側で使う左コーシー・グリーンテンソル。",
+      "explanation": "【基礎】線素長さの2乗変化は$(dl)^2-(dl_0)^2=d\\mathbf X\\cdot(\\mathbf F^T\\mathbf F-\\mathbf I)\\,d\\mathbf X=d\\mathbf X\\cdot(\\mathbf C-\\mathbf I)\\,d\\mathbf X$と書けます。\n【考え方】この長さ変化を基準配置基準のひずみとして定義したものがグリーン・ラグランジュひずみ$\\mathbf E=\\tfrac12(\\mathbf C-\\mathbf I)=\\tfrac12(\\mathbf F^T\\mathbf F-\\mathbf I)$で、これを述べた選択肢2が正解です。$\\tfrac12$係数は長さの2乗差からひずみに直すために必要です。\n【ポイント】純粋な剛体回転$\\mathbf F=\\mathbf R$では$\\mathbf F^T\\mathbf F=\\mathbf R^T\\mathbf R=\\mathbf I$となり$\\mathbf E=\\mathbf0$で、$\\mathbf E$は対称テンソルです。\n【引っかけ】選択肢1は$\\tfrac12$の係数が欠落、選択肢3は符号が逆、選択肢4は$\\mathbf F^T\\mathbf F$と$\\mathbf F\\mathbf F^T$の取り違えで、これはアルマンジ側で使う左コーシー・グリーンテンソルです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -138,7 +138,7 @@
         "$\\mathbf A=\\frac12(\\mathbf I-\\mathbf B^{-1})$"
       ],
       "answer": 4,
-      "explanation": "【基礎】アルマンジひずみは、変形後の線素 $d\\mathbf x$ を用いて、長さの2乗の変化を表す有限ひずみです。グリーン・ラグランジュひずみが基準配置の $d\\mathbf X$ を使うのに対し、現配置で記述します。\n【導出】$d\\mathbf X=\\mathbf F^{-1}d\\mathbf x$ から、$dl^2-dL^2=d\\mathbf x^T(\\mathbf I-\\mathbf F^{-T}\\mathbf F^{-1})d\\mathbf x$。$\\mathbf F^{-T}\\mathbf F^{-1}=\\mathbf B^{-1}$ なので、$\\mathbf A=\\tfrac12(\\mathbf I-\\mathbf B^{-1})$ です。\n【回転の意味】変形のない純粋な剛体回転では $\\mathbf F=\\mathbf R$、$\\mathbf B=\\mathbf I$ なので $\\mathbf A=\\mathbf0$。既に変形した物体にさらに回転 $\\mathbf Q$ を加えると、固定された空間座標での成分は $\\mathbf A'=\\mathbf Q\\mathbf A\\mathbf Q^T$ と変換されます。これは回転で新たなひずみが生じるという意味ではありません。主ひずみの値は変わらず、その方向が物体とともに回ることを表します。\n【誤答】1はグリーン・ラグランジュひずみ、2・3は逆行列を用いていません。",
+      "explanation": "【基礎】アルマンジひずみは変形後の線素$d\\mathbf x$を基準に長さの2乗変化を測る有限ひずみで、基準配置の$d\\mathbf X$で測るグリーン・ラグランジュひずみと対をなします。\n【考え方】$d\\mathbf X=\\mathbf F^{-1}d\\mathbf x$を長さ変化$dl^2-dL^2=d\\mathbf x\\cdot(\\mathbf I-\\mathbf F^{-T}\\mathbf F^{-1})d\\mathbf x$へ代入し、$\\mathbf F^{-T}\\mathbf F^{-1}=(\\mathbf F\\mathbf F^T)^{-1}=\\mathbf B^{-1}$を使うと$\\mathbf A=\\tfrac12(\\mathbf I-\\mathbf B^{-1})$となるので、正解は4です。\n【ポイント】純粋な剛体回転では$\\mathbf F=\\mathbf R$、$\\mathbf B=\\mathbf I$なので$\\mathbf A=\\mathbf0$です。左コーシー・グリーン$\\mathbf B$の逆行列を使う点が、グリーン・ラグランジュひずみとの形の違いです。\n【引っかけ】選択肢1は$\\tfrac12(\\mathbf F^T\\mathbf F-\\mathbf I)$でグリーン・ラグランジュひずみそのもの、選択肢2は$\\tfrac12(\\mathbf B-\\mathbf I)$、選択肢3は$\\tfrac12(\\mathbf I-\\mathbf B)$で、いずれも逆行列$\\mathbf B^{-1}$になっておらず現配置基準の長さ変化を正しく表せません。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -167,7 +167,7 @@
         "$\\mathbf{E},\\ \\mathbf{A}$ とも $\\mathbf{Q}(\\cdot)\\mathbf{Q}^{T}$ の形で変化する"
       ],
       "answer": 1,
-      "explanation": "【基礎】$\\mathbf{E}=\\tfrac12(\\mathbf{F}^{T}\\mathbf{F}-\\mathbf{I})$、$\\mathbf{A}=\\tfrac12(\\mathbf{I}-(\\mathbf{F}\\mathbf{F}^{T})^{-1})$。$\\mathbf{Q}$ は直交テンソルで $\\mathbf{Q}^{T}\\mathbf{Q}=\\mathbf{I}$。\n【考え方】$\\mathbf{E}'=\\tfrac12(\\mathbf{F}'^{T}\\mathbf{F}'-\\mathbf{I})=\\tfrac12(\\mathbf{F}^{T}\\mathbf{Q}^{T}\\mathbf{Q}\\mathbf{F}-\\mathbf{I})=\\tfrac12(\\mathbf{F}^{T}\\mathbf{F}-\\mathbf{I})=\\mathbf{E}$ で不変。一方 $\\mathbf{F}'\\mathbf{F}'^{T}=\\mathbf{Q}\\mathbf{F}\\mathbf{F}^{T}\\mathbf{Q}^{T}$ より $\\mathbf{A}'=\\mathbf{Q}\\mathbf{A}\\mathbf{Q}^{T}$ と回転する。\n【ポイント】$\\mathbf{E}$(基準配置量)は観測者変化に対する不変量、$\\mathbf{A}$(現配置量)は客観性のある量として $\\mathbf{Q}(\\cdot)\\mathbf{Q}^{T}$ で変換される。この差が構成則で応力とひずみを対にする根拠になる。\n【引っかけ】選択肢2は $\\mathbf{E}$ と $\\mathbf{A}$ の役割が逆。選択肢3・4は片方だけ不変という本質を無視している。$\\mathbf{Q}^{T}\\mathbf{Q}=\\mathbf{I}$ を左右どちらに掛けるかで結果が分かれる点を丁寧に追うこと。",
+      "explanation": "【基礎】$\\mathbf E=\\tfrac12(\\mathbf F^T\\mathbf F-\\mathbf I)$、$\\mathbf A=\\tfrac12(\\mathbf I-(\\mathbf F\\mathbf F^T)^{-1})$で、$\\mathbf Q$は直交テンソル$\\mathbf Q^T\\mathbf Q=\\mathbf I$です。\n【考え方】$\\mathbf E'=\\tfrac12(\\mathbf F'^T\\mathbf F'-\\mathbf I)=\\tfrac12(\\mathbf F^T\\mathbf Q^T\\mathbf Q\\mathbf F-\\mathbf I)=\\mathbf E$で不変、一方$\\mathbf F'\\mathbf F'^T=\\mathbf Q\\mathbf F\\mathbf F^T\\mathbf Q^T$より$\\mathbf A'=\\mathbf Q\\mathbf A\\mathbf Q^T$と回転するので、これを述べた選択肢1が正解です。\n【ポイント】$\\mathbf E$(基準配置量)は観測者変化に対する不変量、$\\mathbf A$(現配置量)は客観性のある量として$\\mathbf Q(\\cdot)\\mathbf Q^T$で変換され、この差が構成則で応力とひずみを対にする根拠になります。\n【引っかけ】選択肢2は$\\mathbf E$と$\\mathbf A$の役割が逆、選択肢3と4は片方だけ不変という本質を無視しており、$\\mathbf Q^T\\mathbf Q=\\mathbf I$を左右どちらに掛けるかで結果が分かれる点に注意します。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -196,7 +196,7 @@
         "アルマンジひずみ $\\mathbf{A}$"
       ],
       "answer": 2,
-      "explanation": "【基礎】対称テンソルとは $\\mathbf{X}=\\mathbf{X}^{T}$ を満たすもの。\n【考え方】$\\mathbf{C}=\\mathbf{F}^{T}\\mathbf{F}$ は $(\\mathbf{F}^{T}\\mathbf{F})^{T}=\\mathbf{F}^{T}\\mathbf{F}$ で対称。$\\mathbf{E},\\ \\mathbf{A}$ も定義から対称。一方、変形勾配 $\\mathbf{F}$ は変形(伸び)と剛体回転 $\\mathbf{R}$ を同時に含むため一般に非対称。\n【ポイント】極分解 $\\mathbf{F}=\\mathbf{R}\\mathbf{U}$ の $\\mathbf{R}$(回転)成分が非対称性の源。応力側では第1種ピオラ・キルヒホッフ応力が同様に非対称になる。\n【引っかけ】$\\mathbf{C}=\\mathbf{F}^{T}\\mathbf{F}$ のように $\\mathbf{F}$ を対称化する積は対称になるが、$\\mathbf{F}$ 自体は対称ではない、という点の取り違えに注意。",
+      "explanation": "【基礎】対称テンソルとは$\\mathbf X=\\mathbf X^T$を満たすものです。\n【考え方】$\\mathbf C=\\mathbf F^T\\mathbf F$は$(\\mathbf F^T\\mathbf F)^T=\\mathbf F^T\\mathbf F$で対称、$\\mathbf E$と$\\mathbf A$も定義から対称ですが、変形勾配$\\mathbf F$は伸びと剛体回転$\\mathbf R$を同時に含むため一般に非対称で、これを選んだ選択肢2が正解です。\n【ポイント】極分解$\\mathbf F=\\mathbf R\\mathbf U$の$\\mathbf R$(回転)成分が非対称性の源で、応力側では第1種ピオラ・キルヒホッフ応力が同様に非対称になります。\n【引っかけ】選択肢1の$\\mathbf C=\\mathbf F^T\\mathbf F$は$\\mathbf F$を対称化する積なので対称、選択肢3のグリーン・ラグランジュひずみと選択肢4のアルマンジひずみも定義から対称で、いずれも非対称にはなりません。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -225,7 +225,7 @@
         "$E_{11}=0.22,\\ E_{12}=0.12$"
       ],
       "answer": 1,
-      "explanation": "【基礎】$\\mathbf{E}=\\tfrac12(\\mathbf{C}-\\mathbf{I})$、$\\mathbf{C}=\\mathbf{F}^{T}\\mathbf{F}$。全成分に一様に $\\tfrac12$ が掛かる。\n【考え方】まず $\\mathbf{C}=\\mathbf{F}^{T}\\mathbf{F}$ を成分計算し、単位テンソルを引いてから半分にする。\n【計算】$C_{11}=F_{11}^2+F_{21}^2=1.2^2+0=1.44$、$C_{12}=F_{11}F_{12}+F_{21}F_{22}=1.2\\times0.1+0=0.12$、よって $E_{11}=\\tfrac12(1.44-1)=0.22$、$E_{12}=\\tfrac12(0.12-0)=0.06$。\n【ポイント】非対角成分にも同じ $\\tfrac12$ が掛かる。微小ひずみ近似 $E_{11}\\approx F_{11}-1=0.20$ とは値が異なる。\n【引っかけ】選択肢2は $\\tfrac12$ を掛け忘れた $\\mathbf{C}-\\mathbf{I}$ の値。選択肢3は微小ひずみ(線形化)近似で非線形項を落とした値。選択肢4は対角のみ半分にし、非対角の $\\tfrac12$ を忘れている。",
+      "explanation": "【基礎】$\\mathbf E=\\tfrac12(\\mathbf C-\\mathbf I)$、$\\mathbf C=\\mathbf F^T\\mathbf F$で、全成分に一様に$\\tfrac12$が掛かります。\n【考え方】$\\mathbf C=\\mathbf F^T\\mathbf F$を成分計算し単位テンソルを引いて半分にすると、$C_{11}=F_{11}^2+F_{21}^2=1.2^2=1.44$、$C_{12}=F_{11}F_{12}+F_{21}F_{22}=1.2\\times0.1=0.12$より$E_{11}=\\tfrac12(1.44-1)=0.22$、$E_{12}=\\tfrac12(0.12)=0.06$となり、正解は選択肢1です。\n【ポイント】非対角成分にも同じ$\\tfrac12$が掛かり、微小ひずみ近似$E_{11}\\approx F_{11}-1=0.20$とは値が異なります。\n【引っかけ】選択肢2は$\\tfrac12$を掛け忘れた$\\mathbf C-\\mathbf I$の値、選択肢3は微小ひずみ(線形化)近似で非線形項を落とした値、選択肢4は対角のみ半分にし非対角の$\\tfrac12$を忘れた値です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -255,7 +255,7 @@
         "$E=0.180,\\ A=0.281$"
       ],
       "answer": 2,
-      "explanation": "【基礎】グリーン・ラグランジュひずみは基準(変形前)長さを基準に測る有限ひずみ $E=\\dfrac{1}{2}\\{(l/L)^2-1\\}$、アルマンジひずみは現(変形後)長さを基準に測る有限ひずみ $A=\\dfrac{1}{2}\\{1-(L/l)^2\\}$ である。\n【考え方】伸び比 $l/L=250/200=1.25$ を求め、それぞれの定義式に代入する。\n【計算】$E=\\dfrac{1}{2}\\{1.25^2-1\\}=\\dfrac{1}{2}(1.5625-1)=0.281$、$A=\\dfrac{1}{2}\\{1-0.8^2\\}=\\dfrac{1}{2}(1-0.64)=0.180$。\n【ポイント】有限変形では基準長で測る $E$ の方が大きく $E>A$ となる。微小変形の極限では $E\\approx A\\approx u/L$ に一致する。\n【引っかけ】選択肢①の $0.250,\\ 0.200$ は微小変形近似 $u/L,\\ u/l$ の値で、有限ひずみの定義を使っていない。③は $A$ を $E$ と同じにしたもの、④は $E$ と $A$ を取り違えたもの。",
+      "explanation": "【基礎】グリーン・ラグランジュひずみは基準(変形前)長さで測る有限ひずみ$E=\\tfrac12\\{(l/L)^2-1\\}$、アルマンジひずみは現(変形後)長さで測る有限ひずみ$A=\\tfrac12\\{1-(L/l)^2\\}$です。\n【考え方】伸び比$l/L=250/200=1.25$を定義式へ代入すると$E=\\tfrac12(1.5625-1)=0.281$、$A=\\tfrac12(1-0.64)=0.180$となり、正解は②です。\n【ポイント】有限変形では基準長で測る$E$の方が大きく$E>A$となり、微小変形の極限では$E\\approx A\\approx u/L$に一致します。\n【引っかけ】選択肢①の$0.250,\\ 0.200$は微小変形近似$u/L,\\ u/l$の値で有限ひずみの定義を使っておらず、③は$A$を$E$と同じにしたもの、④は$E$と$A$を取り違えたものです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -284,7 +284,7 @@
         "$\\mathbf U$ は左ストレッチ、$\\mathbf V$ は右ストレッチで、$\\mathbf V=\\mathbf R^T\\mathbf U\\mathbf R$ である。"
       ],
       "answer": 3,
-      "explanation": "【基礎】$\\mathbf U$ は基準配置で表した右ストレッチ、$\\mathbf V$ は現配置で表した左ストレッチです。行列積は右側から作用するため、$\\mathbf R\\mathbf U$ は伸び→回転、$\\mathbf V\\mathbf R$ は回転→伸びと読みます。\n【関係式】$\\mathbf U^2=\\mathbf F^T\\mathbf F$、$\\mathbf V^2=\\mathbf F\\mathbf F^T$、$\\mathbf V=\\mathbf R\\mathbf U\\mathbf R^T$ です。同じ主伸長比を、異なる配置で表しています。\n【回転との関係】追加の剛体回転で $\\mathbf F'=\\mathbf Q\\mathbf F$ とすると、$\\mathbf U'=\\mathbf U$、$\\mathbf R'=\\mathbf Q\\mathbf R$、$\\mathbf V'=\\mathbf Q\\mathbf V\\mathbf Q^T$ となります。「UもVもRに依存しない」と一括して説明するのは不正確です。伸びの主値は変わりませんが、現配置量Vの方向・成分は回ります。\n【誤答】1は役割が逆、2は配置が逆、4は左右の名称と変換式が逆です。極分解は伸びと回転の分離であり、物体が実際にその順に変形したという履歴を意味するものではありません。",
+      "explanation": "【基礎】極分解$\\mathbf F=\\mathbf R\\mathbf U=\\mathbf V\\mathbf R$は変形勾配を回転$\\mathbf R$と伸びに分ける表現で、$\\mathbf U$は基準配置で測る右ストレッチ、$\\mathbf V$は現配置で測る左ストレッチです。\n【考え方】行列は右側から順に作用するので、$\\mathbf R\\mathbf U$は基準配置で伸ばしてから回転、$\\mathbf V\\mathbf R$は回転してから現配置で伸ばすと読みます。これを正しく述べた選択肢3が正解です。\n【ポイント】$\\mathbf U^2=\\mathbf F^T\\mathbf F$、$\\mathbf V^2=\\mathbf F\\mathbf F^T$、$\\mathbf V=\\mathbf R\\mathbf U\\mathbf R^T$で、同じ主伸長比を異なる配置で表します。分解は伸びと回転の数学的分離であり、実際の変形履歴を意味しません。\n【引っかけ】選択肢1は$\\mathbf R$と$\\mathbf U$の役割(回転と伸び)が逆、選択肢2は右極分解と左極分解の配置が逆、選択肢4は左右ストレッチの名称と変換式が$\\mathbf V=\\mathbf R^T\\mathbf U\\mathbf R$と取り違えられています(正しくは$\\mathbf V=\\mathbf R\\mathbf U\\mathbf R^T$)。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -312,7 +312,7 @@
         "$\\mathbf{t}=(0,120,0),\\ \\sigma=120$"
       ],
       "answer": 2,
-      "explanation": "【基礎】応力ベクトルは $t_i=T_{ij}n_j$。垂直応力はその面の法線方向成分 $\\sigma=\\mathbf{t}\\cdot\\mathbf{n}$、せん断応力は残りの成分。\n【考え方】$\\mathbf{n}=(0,1,0)$ なので $t_i=T_{i2}$ を拾えばよい。\n【計算】$t_1=T_{12}=30$、$t_2=T_{22}=120$、$t_3=T_{32}=0$ より $\\mathbf{t}=(30,120,0)$。垂直応力 $\\sigma=\\mathbf{t}\\cdot\\mathbf{n}=120\\,\\mathrm{MPa}$、せん断応力 $\\tau=\\sqrt{30^2+0^2}=30\\,\\mathrm{MPa}$。\n【ポイント】$\\mathbf{T}$ は対称なので $\\mathbf{T}\\mathbf{n}$ と $\\mathbf{T}^{T}\\mathbf{n}$ は一致する。この面には垂直 120・せん断 30 が同時に働く。\n【引っかけ】選択肢1は垂直応力にせん断成分 30 を取り違えている。選択肢3は $T_{i1}$ 列(法線が $x_1$ の場合)を誤って拾っている。選択肢4はせん断成分 $t_1=30$ を落として垂直成分だけ残した。",
+      "explanation": "【基礎】応力ベクトルは$t_i=T_{ij}n_j$、垂直応力はその面の法線方向成分$\\sigma=\\mathbf t\\cdot\\mathbf n$、せん断応力は残りの成分です。\n【考え方】$\\mathbf n=(0,1,0)$なので$t_i=T_{i2}$を拾い、$t_1=T_{12}=30$、$t_2=T_{22}=120$、$t_3=T_{32}=0$で$\\mathbf t=(30,120,0)$、垂直応力$\\sigma=\\mathbf t\\cdot\\mathbf n=120$ MPa(せん断は$30$ MPa)となるので、正解は選択肢2です。\n【ポイント】$\\mathbf T$は対称なので$\\mathbf T\\mathbf n$と$\\mathbf T^T\\mathbf n$は一致し、この面には垂直$120$とせん断$30$が同時に働きます。\n【引っかけ】選択肢1は垂直応力にせん断成分$30$を取り違え、選択肢3は$T_{i1}$列(法線が$x_1$の場合)を誤って拾い、選択肢4はせん断成分$t_1=30$を落として垂直成分だけを残しています。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -340,7 +340,7 @@
         "$\\hat{\\mathbf{T}}=\\mathbf{F}\\,\\mathbf{T}\\,\\mathbf{F}^{T}$"
       ],
       "answer": 1,
-      "explanation": "【基礎】キルヒホッフ応力は現配置の応力を体積変化率で重み付けした $\\hat{\\mathbf{T}}=J\\mathbf{T}$ と定義される対称テンソル。\n【考え方】非圧縮 $J=1$ ではコーシー応力と一致する。$J$ を掛けることで基準配置の単位体積あたりの仕事率を扱いやすくなる(仕事共役の議論で便利)。\n【ポイント】$\\hat{\\mathbf{T}}=J\\mathbf{T}$ は単なるスカラー倍なので対称性はコーシー応力と同じく保たれる。\n【引っかけ】選択肢2は割り算で逆。選択肢3は第1種ピオラ・キルヒホッフ寄りの変換形。選択肢4は $\\mathbf{F}\\mathbf{T}\\mathbf{F}^{T}$ の形で、これは別の写像であってキルヒホッフ応力の定義ではない。",
+      "explanation": "【基礎】キルヒホッフ応力は現配置の応力を体積変化率で重み付けした$\\hat{\\mathbf T}=J\\mathbf T$と定義される対称テンソルです。\n【考え方】これを正しく表す選択肢1が正解で、非圧縮$J=1$ではコーシー応力と一致し、$J$を掛けることで基準配置の単位体積あたりの仕事率を扱いやすくなります(仕事共役の議論で便利です)。\n【ポイント】$\\hat{\\mathbf T}=J\\mathbf T$は単なるスカラー倍なので、対称性はコーシー応力と同じく保たれます。\n【引っかけ】選択肢2は割り算で逆、選択肢3は第1種ピオラ・キルヒホッフ寄りの変換形、選択肢4は$\\mathbf F\\mathbf T\\mathbf F^T$の形で別の写像でありキルヒホッフ応力の定義ではありません。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -368,7 +368,7 @@
         "$J\\approx1.20$（体積は約20%増加する）"
       ],
       "answer": 3,
-      "explanation": "【基礎】ヤコビアン $J=\\det\\mathbf{F}$ は微小体積比 $dv/dV$ を表す。主軸方向のみの伸長なら $J=\\lambda_1\\lambda_2\\lambda_3$。\n【考え方】まず横方向伸長比を求め、3方向の伸長比の積をとる。\n【計算】$\\lambda_2=\\lambda_3=1/\\sqrt{1.44}=1/1.2\\approx0.833$、$J=\\lambda_1\\lambda_2\\lambda_3=1.44\\times0.833\\times0.833\\approx1.44\\times0.694\\approx1.00$。\n【ポイント】非圧縮材料は定義上 $J=1$。横方向の縮み $1/\\sqrt{\\lambda_1}$ がちょうど軸方向の伸びを相殺する。ゴムなど非圧縮解析ではこの拘束を課す。\n【引っかけ】選択肢1は軸方向伸長のみを見て横方向の縮みを無視した値。選択肢2は横方向の積 $\\lambda_2\\lambda_3\\approx0.69$ を体積比と誤認。選択肢4は伸長比の平均のような誤処理。",
+      "explanation": "【基礎】ヤコビアン$J=\\det\\mathbf F$は微小体積比$dv/dV$を表し、主軸方向のみの伸長なら$J=\\lambda_1\\lambda_2\\lambda_3$です。\n【考え方】横方向伸長比$\\lambda_2=\\lambda_3=1/\\sqrt{1.44}=1/1.2\\approx0.833$を求め3方向の積をとると、$J=1.44\\times0.833\\times0.833\\approx1.00$となるので、正解は選択肢3です。\n【ポイント】非圧縮材料は定義上$J=1$で、横方向の縮み$1/\\sqrt{\\lambda_1}$がちょうど軸方向の伸びを相殺し、ゴムなど非圧縮解析ではこの拘束を課します。\n【引っかけ】選択肢1は軸方向伸長のみを見て横方向の縮みを無視した値、選択肢2は横方向の積$\\lambda_2\\lambda_3\\approx0.69$を体積比と誤認した値、選択肢4は伸長比の平均のような誤処理です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -396,7 +396,7 @@
         "変形後配置の面積に対する力として定義され、角運動量の釣合いにより対称になる。"
       ],
       "answer": 4,
-      "explanation": "【定義】コーシー応力は現配置、すなわち今の物体の面積に基づく応力です。単位法線 $\\mathbf n$ の面に作用する力を現面積で割った応力ベクトルは $\\mathbf t=\\boldsymbol\\sigma\\mathbf n$ です。単軸引張の「真応力」はこの応力に対応します。\n【対称性】通常の連続体では角運動量の釣合いから $\\sigma_{ij}=\\sigma_{ji}$ になります。例えば正の $x$ 面に正の $y$ 向きせん断を描くなら、正の $y$ 面にも正の $x$ 向きせん断を描きます。逆側の面では各矢印が反転し、互いのモーメントが打ち消し合います。元図のように隣り合う正の面のせん断を一方だけ逆向きにすると、この対称性を表せません。\n【配置の違い】第1種PK応力は $\\mathbf P=J\\boldsymbol\\sigma\\mathbf F^{-T}$、第2種PK応力は $\\mathbf S=J\\mathbf F^{-1}\\boldsymbol\\sigma\\mathbf F^{-T}$ です。単純に同じ面積で割った応力同士ではありません。\n【回転】空間成分は $\\boldsymbol\\sigma'=\\mathbf Q\\boldsymbol\\sigma\\mathbf Q^T$ と変換されます。成分が不変であることと客観性を混同しないようにします。",
+      "explanation": "【基礎】コーシー応力は現配置(今の物体)の面積に基づく応力で、単位法線$\\mathbf n$の面の応力ベクトルは$\\mathbf t=\\boldsymbol\\sigma\\mathbf n$、単軸引張の真応力に対応します。\n【考え方】変形後配置の面積で定義され、偶応力のない通常の連続体では角運動量(モーメント)の釣合いから$\\sigma_{ij}=\\sigma_{ji}$と対称になります。これを述べた選択肢4が正解です。\n【ポイント】第1種ピオラ・キルヒホッフ応力$\\mathbf P=J\\boldsymbol\\sigma\\mathbf F^{-T}$は基準配置面積基準の公称応力で非対称、第2種$\\mathbf S=J\\mathbf F^{-1}\\boldsymbol\\sigma\\mathbf F^{-T}$は対称です。コーシー応力はこれらと一般には一致しません。\n【引っかけ】選択肢1は変形前配置の面積基準としており第1種PK応力の説明、選択肢2はコーシー応力を回転不変かつ非対称としていますが実際は回転で$\\boldsymbol\\sigma'=\\mathbf Q\\boldsymbol\\sigma\\mathbf Q^T$と変わり対称、選択肢3は第1種PK応力と常に一致するとしていますが一般には一致しません。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -424,7 +424,7 @@
         "第2種ピオラ・キルヒホッフ応力 $\\mathbf{S}$ とストレッチングテンソル $\\mathbf{D}$"
       ],
       "answer": 4,
-      "explanation": "【基礎】基準配置の単位体積あたりの応力仕事率は $\\dot{W}=J\\,\\mathbf{T}:\\mathbf{D}=\\hat{\\mathbf{T}}:\\mathbf{D}=\\mathbf{S}:\\dot{\\mathbf{E}}$ と、いくつかの応力・ひずみ速度の対で等しく表せる。\n【考え方】現配置量どうし($\\hat{\\mathbf{T}}$ または $J\\mathbf{T}$ とストレッチング $\\mathbf{D}$)、基準配置量どうし($\\mathbf{S}$ とグリーン・ラグランジュひずみ速度 $\\dot{\\mathbf{E}}$)が正しい対。$\\mathbf{S}$ は基準配置量なので現配置量である $\\mathbf{D}$ とは対にならない。\n【ポイント】$\\mathbf{S}$ と対になるのは $\\dot{\\mathbf{E}}$、$\\mathbf{D}$ と対になるのは $\\hat{\\mathbf{T}}$(または $J\\mathbf{T}$)。配置の基準を揃えるのが共役の条件。\n【引っかけ】選択肢1・2・3はいずれも正しい共役対。選択肢4は基準配置の応力 $\\mathbf{S}$ と現配置のひずみ速度 $\\mathbf{D}$ を混ぜており、これが誤った組合せ=答え。",
+      "explanation": "【基礎】基準配置の単位体積あたりの応力仕事率は$\\dot W=J\\,\\mathbf T:\\mathbf D=\\hat{\\mathbf T}:\\mathbf D=\\mathbf S:\\dot{\\mathbf E}$と、いくつかの応力・ひずみ速度の対で等しく表せます。\n【考え方】現配置量どうし($\\hat{\\mathbf T}$または$J\\mathbf T$とストレッチング$\\mathbf D$)、基準配置量どうし($\\mathbf S$とグリーン・ラグランジュひずみ速度$\\dot{\\mathbf E}$)が正しい対で、$\\mathbf S$は基準配置量なので現配置量$\\mathbf D$とは対にならず、誤った組合せを選ぶ本問の正解は選択肢4です。\n【ポイント】$\\mathbf S$と対になるのは$\\dot{\\mathbf E}$、$\\mathbf D$と対になるのは$\\hat{\\mathbf T}$(または$J\\mathbf T$)で、配置の基準を揃えるのが共役の条件です。\n【引っかけ】選択肢1と2と3はいずれも正しい共役対で、選択肢4は基準配置の応力$\\mathbf S$と現配置のひずみ速度$\\mathbf D$を混ぜており、これが誤った組合せ=答えです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -452,7 +452,7 @@
         "$\\sigma_n=300\\,\\mathrm{MPa},\\ \\sigma_t=360\\,\\mathrm{MPa}$"
       ],
       "answer": 4,
-      "explanation": "【基礎】公称応力は初期断面積基準 $\\sigma_n=P/A_0$、真応力は現断面積基準 $\\sigma_t=P/a$。非圧縮なら体積一定より $A_0 L_0=a\\,l$、すなわち $a=A_0/(1+\\varepsilon_n)$。\n【考え方】断面積の縮小分だけ真応力が公称応力より大きくなる。$\\sigma_t=P/a=(P/A_0)(1+\\varepsilon_n)=\\sigma_n(1+\\varepsilon_n)$ を使う。\n【計算】$\\sigma_n=P/A_0=30000/100=300\\,\\mathrm{MPa}$、$a=A_0/(1+\\varepsilon_n)=100/1.2\\approx83.3\\,\\mathrm{mm^2}$、$\\sigma_t=P/a=30000/83.3\\approx360\\,\\mathrm{MPa}=\\sigma_n(1+\\varepsilon_n)=300\\times1.2$。\n【ポイント】引張では $\\sigma_t>\\sigma_n$。$(1+\\varepsilon_n)$ 倍の掛け忘れが最頻の誤り。\n【引っかけ】選択肢3は $(1+\\varepsilon_n)$ で割ってしまい $300/1.2=250$ とした逆向きミス。選択肢2は公称応力の初期断面積を取り違えている。選択肢1は断面変化を無視して真応力=公称応力とした。",
+      "explanation": "【基礎】公称応力は初期断面積基準$\\sigma_n=P/A_0$、真応力は現断面積基準$\\sigma_t=P/a$で、非圧縮なら体積一定$A_0L_0=a\\,l$より$a=A_0/(1+\\varepsilon_n)$です。\n【考え方】断面積の縮小分だけ真応力が大きくなり$\\sigma_t=\\sigma_n(1+\\varepsilon_n)$なので、$\\sigma_n=30000/100=300$ MPa、$\\sigma_t=300\\times1.2=360$ MPaとなり、正解は選択肢4です。\n【ポイント】引張では$\\sigma_t>\\sigma_n$で、$(1+\\varepsilon_n)$倍の掛け忘れが最頻の誤りです。\n【引っかけ】選択肢3は$(1+\\varepsilon_n)$で割って$300/1.2=250$とした逆向きのミス、選択肢2は公称応力の初期断面積を取り違えた値、選択肢1は断面変化を無視して真応力=公称応力とした値です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -480,7 +480,7 @@
         "$D_{12}=0.06,\\ W_{12}=0.06$"
       ],
       "answer": 1,
-      "explanation": "【基礎】速度勾配は対称成分と反対称成分に一意に分解される。$D_{ij}=\\tfrac12(L_{ij}+L_{ji})$(ストレッチング)、$W_{ij}=\\tfrac12(L_{ij}-L_{ji})$(スピン)。\n【考え方】$L_{12}=0.06$、$L_{21}=0.00$ を対称化・反対称化の式に代入する。\n【計算】$D_{12}=\\tfrac12(L_{12}+L_{21})=\\tfrac12(0.06+0)=0.03$、$W_{12}=\\tfrac12(L_{12}-L_{21})=\\tfrac12(0.06-0)=0.03$。\n【ポイント】$D_{12}=D_{21}$(対称)だが $W_{12}=-W_{21}$(反対称)。両成分の $x_1x_2$ 成分がたまたま等しくなるのは $L_{21}=0$ だから。\n【引っかけ】選択肢2・4は $\\tfrac12$ を掛け忘れて $L_{12}=0.06$ をそのまま使っている。選択肢3は $W_{12}$ の符号を取り違えており(スピンは反対称だが $W_{12}$ 自体は正)、$W_{21}=-0.03$ と混同した結果。",
+      "explanation": "【基礎】速度勾配は対称成分$D_{ij}=\\tfrac12(L_{ij}+L_{ji})$(ストレッチング)と反対称成分$W_{ij}=\\tfrac12(L_{ij}-L_{ji})$(スピン)に一意に分解されます。\n【考え方】$L_{12}=0.06$、$L_{21}=0$を代入すると$D_{12}=\\tfrac12(0.06+0)=0.03$、$W_{12}=\\tfrac12(0.06-0)=0.03$となるので、正解は選択肢1です。\n【ポイント】$D_{12}=D_{21}$(対称)ですが$W_{12}=-W_{21}$(反対称)で、両成分の$x_1x_2$成分がたまたま等しくなるのは$L_{21}=0$だからです。\n【引っかけ】選択肢2と4は$\\tfrac12$を掛け忘れて$L_{12}=0.06$をそのまま使った値、選択肢3は$W_{12}$の符号を取り違え$W_{21}=-0.03$と混同した値です($W_{12}$自体は正)。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -508,7 +508,7 @@
         "大ひずみの率型(hypoelastic)構成則では、客観性のある応力速度(例:ヤウマン速度)を用いて定義する必要があり、これは剛体回転に対する客観性を保つためである"
       ],
       "answer": 4,
-      "explanation": "【基礎】応力の時間微分 $\\dot{\\mathbf{T}}$ そのものは剛体回転で値が変わるため、大ひずみ解析の構成則には使えない。ヤウマン速度やトゥルーズデル速度など、剛体回転に対して客観性をもつ応力速度を用いる。\n【考え方】材料非線形(応力-ひずみ関係の非線形)と幾何学的非線形(大変形・大回転由来の非線形)は起源が異なり、解析上は区別して扱う。トータルラグランジュ法は基準(変形前)配置、アップデイテッドラグランジュ法は現配置を基準に定式化する。\n【ポイント】客観性のある応力にはストレッチングテンソルなど客観性のあるひずみ速度を対にする、という一貫性が必要。\n【引っかけ】選択肢1は2種類の非線形を混同。選択肢2は非客観な応力速度をそのまま使うとしており誤り。選択肢3はトータル/アップデイテッドラグランジュ法の基準配置が逆。\n【補足】客観応力速度が必要になるのは率型(hypoelastic)の構成則の場合で、超弾性のようにひずみエネルギー関数から直接応力を定める構成則は応力速度を用いずに客観性を満たせる。本問は大ひずみ弾塑性などの率型構成則を念頭に、選択肢4を最も適切とする。",
+      "explanation": "【基礎】応力の時間微分$\\dot{\\mathbf T}$そのものは剛体回転で値が変わるため大ひずみ解析の構成則には使えず、ヤウマン速度やトゥルーズデル速度など剛体回転に対して客観性をもつ応力速度を用います。\n【考え方】率型(hypoelastic)構成則では客観性のある応力速度を使って剛体回転に対する客観性を保つ必要があり、これを述べた選択肢4が正解です(超弾性のようにひずみエネルギー関数から応力を定める構成則は応力速度を用いずに客観性を満たせます)。\n【ポイント】材料非線形(応力-ひずみ関係の非線形)と幾何学的非線形(大変形・大回転由来)は起源が異なり区別して扱い、客観性のある応力には客観性のあるひずみ速度を対にします。\n【引っかけ】選択肢1は2種類の非線形を混同、選択肢2は非客観な応力速度をそのまま使うとしており誤り、選択肢3はトータル(基準配置)とアップデイテッドラグランジュ法(現配置)の基準配置が逆です。",
       "hasMath": false,
       "origin": "original",
       "reviewed": true,
