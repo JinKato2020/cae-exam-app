@@ -9,6 +9,16 @@ import type { ImageSourcePropType } from 'react-native';
 
 
 export const FIGURES: Record<string, ImageSourcePropType> = {
+  t1e2LimiterBefore: require('../assets/figures/t1e2LimiterBefore.png'),
+  t1e6PumpImpellerSetup: require('../assets/figures/t1e6PumpImpellerSetup.png'),
+  t1e6SumpPumpSetup: require('../assets/figures/t1e6SumpPumpSetup.png'),
+  t1e7SpeedupCurveSetup: require('../assets/figures/t1e7SpeedupCurveSetup.png'),
+  t1e8AdvectionSchemesSetup: require('../assets/figures/t1e8AdvectionSchemesSetup.png'),
+  t1e8AirfoilCLalphaSetup: require('../assets/figures/t1e8AirfoilCLalphaSetup.png'),
+  t1e8DragScatterSetup: require('../assets/figures/t1e8DragScatterSetup.png'),
+  t1e8GridConvergenceSetup: require('../assets/figures/t1e8GridConvergenceSetup.png'),
+  t1e8HelmholtzSetup: require('../assets/figures/t1e8HelmholtzSetup.png'),
+  t1e8LESLogLawSetup: require('../assets/figures/t1e8LESLogLawSetup.png'),
   t2e9GridConvergenceBefore: require('../assets/figures/t2e9GridConvergenceBefore.png'),
   t2e9CfReChartBefore: require('../assets/figures/t2e9CfReChartBefore.png'),
   t2e8StreamlinePickBefore: require('../assets/figures/t2e8StreamlinePickBefore.png'),
