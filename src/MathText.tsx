@@ -36,7 +36,7 @@ function buildHtml(
   html,body{margin:0;padding:0;background:transparent;}
   /* 子要素(表示数式など)の上下marginが body に相殺で抜けて高さが縮む→縦に切れる、を防ぐ */
   body{display:flow-root;}
-  #c{color:${color};font-size:${fontSize}px;line-height:1.75;font-weight:${bold ? '600' : '400'};
+  #c{visibility:hidden;color:${color};font-size:${fontSize}px;line-height:1.75;font-weight:${bold ? '600' : '400'};
      font-family:-apple-system,'Hiragino Kaku Gothic ProN','Noto Sans JP',Roboto,sans-serif;
      white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;padding:2px 0;overflow:visible;}
   .katex{font-size:1.05em;}
@@ -89,9 +89,15 @@ ${scroll ? '<div id="fade"></div>' : ''}
     try {
       renderMathInElement(document.getElementById('c'), {
         delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],
-        throwOnError:false
+        throwOnError:true
       });
-    } catch(e) {}
+      document.getElementById('c').style.visibility = 'visible';
+    } catch(e) {
+      // Never expose TeX input when the renderer/CDN is unavailable or rejects a formula.
+      var c = document.getElementById('c');
+      c.textContent = '数式を表示できません。再読み込みしてください。';
+      c.style.visibility = 'visible';
+    }
     post();
     // KaTeXフォントはCDNから遅延読込。読み込み完了・複数タイミングで高さ等を取り直す
     [120,300,600,1200].forEach(function(ms){ setTimeout(post, ms); });
