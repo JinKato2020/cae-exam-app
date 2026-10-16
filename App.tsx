@@ -39,7 +39,6 @@ import {
   chapterStats,
   fieldStats,
   loadProgress,
-  overallStat,
   recordAnswer,
   resetProgress,
   resetDaily,
@@ -146,6 +145,42 @@ function fieldGradeChapters(fieldId: string, gradeId: string): ChapterEntry[] {
   const f = CATALOG.find((x) => x.id === fieldId);
   return f?.grades.find((g) => g.id === gradeId)?.chapters ?? [];
 }
+
+// ── 熱流体1級だけのサブ分野（単相流/混相流/燃焼流）──────────────────
+// 熱流体1級は全24章が 単相流=1〜8章 / 混相流=9〜16章 / 燃焼流=17〜24章 と連番で分かれる。
+// ホームでこのサブ分野を選ぶと、レーダー・要復習・ブックマーク・問題・公式を「その流れの章だけ」に絞る。
+// 課金は thermal-1 の1本のまま（表示フィルタのみ）。他の分野×級には付けない。
+type ThermalSub = 'single' | 'multi' | 'combustion';
+const THERMAL1_SUBFIELDS: { id: ThermalSub; label: string; lo: number; hi: number }[] = [
+  { id: 'single', label: '単相流', lo: 1, hi: 8 },
+  { id: 'multi', label: '混相流', lo: 9, hi: 16 },
+  { id: 'combustion', label: '燃焼流', lo: 17, hi: 24 },
+];
+function hasSubfields(fieldId: FieldId, gradeId: GradeId): boolean {
+  return fieldId === 'thermal' && gradeId === 'g1';
+}
+function chapterNumOf(id: string): number {
+  const m = /(\d+)/.exec(id);
+  return m ? parseInt(m[1], 10) : 0;
+}
+function subfieldLabel(sub: ThermalSub): string {
+  return THERMAL1_SUBFIELDS.find((s) => s.id === sub)?.label ?? '単相流';
+}
+// 選択中サブ分野に属する章idの集合。サブ分野を持たない分野×級は null（＝全章そのまま）。
+function subChapterIdSet(fieldId: FieldId, gradeId: GradeId, sub: ThermalSub): Set<string> | null {
+  if (!hasSubfields(fieldId, gradeId)) return null;
+  const def = THERMAL1_SUBFIELDS.find((s) => s.id === sub) ?? THERMAL1_SUBFIELDS[0];
+  const ids = fieldGradeChapters(fieldId, gradeId)
+    .filter((c) => { const n = chapterNumOf(c.id); return n >= def.lo && n <= def.hi; })
+    .map((c) => c.id);
+  return new Set(ids);
+}
+
+// ホーム「全体の相関図」カードで使う、相関図PNGの図キー（OTA/同梱で解決。未登録ならプレースホルダ表示）。
+// 例：固体1級の全章＝map_solid_1_all、第1章＝map_solid_1_ch01。ChatGPTで作図したPNGをこのキーで登録する。
+function gradeDigit(g: GradeId): string { return g === 'g1' ? '1' : '2'; }
+function overallMapKey(f: FieldId, g: GradeId): string { return `map_${f}_${gradeDigit(g)}_all`; }
+function chapterMapKey(f: FieldId, g: GradeId, chapterId: string): string { return `map_${f}_${gradeDigit(g)}_${chapterId}`; }
 type Course = { id: string; name: string; chapters: ChapterEntry[]; ready: boolean };
 // 1級は完成した章だけ出す（他章は準備中）。章側の ready フラグで出し分ける。
 // 問題 → その問題が属する買い切り(分野×級)。ロック中にタップされたら、その級のPaywallを開くため。
@@ -204,6 +239,7 @@ export default function App() {
 const THEME_KEY = 'cae.theme'; // 'system' | 'light' | 'dark'
 const HOME_GRADE_KEY = 'cae.homeGrade'; // ホームで前回開いた級 'g1' | 'g2'
 const HOME_FIELD_KEY = 'cae.homeField'; // ホームで前回開いた分野 'solid' | 'thermal' | 'vibration'
+const HOME_THSUB_KEY = 'cae.homeThermalSub'; // 熱流体1級で前回開いたサブ分野 'single'|'multi'|'combustion'
 
 function AppInner(props: { contentVersion: number }) {
   // FEMネイビー世界観をアプリ全体で統一（ホームと同じ暗色＋シアンのアクセント。ライト/ダークは廃止）。
@@ -259,8 +295,28 @@ function AppInner(props: { contentVersion: number }) {
     setField(f); AsyncStorage.setItem(HOME_FIELD_KEY, f).catch(() => {});
     setGrade(g); AsyncStorage.setItem(HOME_GRADE_KEY, g).catch(() => {});
   }
+  // 熱流体1級のサブ分野（単相流/混相流/燃焼流）。前回値を復元（初回は単相流）。
+  const [subfield, setSubfield] = useState<ThermalSub>('single');
+  useEffect(() => {
+    AsyncStorage.getItem(HOME_THSUB_KEY)
+      .then((v) => { if (v === 'single' || v === 'multi' || v === 'combustion') setSubfield(v); })
+      .catch(() => {});
+  }, []);
+  function chooseSubfield(s: ThermalSub) {
+    setSubfield(s); AsyncStorage.setItem(HOME_THSUB_KEY, s).catch(() => {});
+  }
+  // 選択中サブ分野の章idセット（サブ分野が無ければ null＝全章）。ホームの絞り込みの要。
+  const subChapterIds = useMemo(
+    () => subChapterIdSet(field, grade, subfield),
+    [field, grade, subfield, props.contentVersion]
+  );
   // 選択中の分野×級に対応するコース。問題タブ・公式タブはこれをそのまま表示する。
-  const course = useMemo(() => courseOf(field, grade), [field, grade, props.contentVersion]);
+  // 熱流体1級はサブ分野の章だけに絞る（他の分野×級は全章）。
+  const course = useMemo(() => {
+    const c = courseOf(field, grade);
+    if (!c || !subChapterIds) return c;
+    return { ...c, chapters: c.chapters.filter((ch) => subChapterIds.has(ch.id)) };
+  }, [field, grade, subfield, props.contentVersion]);
   const formulaCourse = course; // 公式・用語も同じ分野×級に追従
 
   // 問題タブのサブ画面状態（コース選択画面は廃止＝章の目次から始まる）
@@ -325,9 +381,10 @@ function AppInner(props: { contentVersion: number }) {
   const wrongQuestions = useMemo(() => questionsByIds(wrongIds), [wrongIds]);
   // 要復習（間違い）はホームで選んだ分野×級に限定する。固体1級の弱点を熱流体1級のホームに出さない＝混同防止。
   const courseWrongQuestions = useMemo(() => {
-    const ids = new Set(fieldGradeChapters(field, grade).flatMap((c) => c.data.questions.map((q) => q.id)));
+    const chs = fieldGradeChapters(field, grade).filter((c) => !subChapterIds || subChapterIds.has(c.id));
+    const ids = new Set(chs.flatMap((c) => c.data.questions.map((q) => q.id)));
     return wrongQuestions.filter((q) => ids.has(q.id));
-  }, [wrongQuestions, field, grade, props.contentVersion]);
+  }, [wrongQuestions, field, grade, subfield, props.contentVersion]);
 
   // ブックマーク（栞）を付けた問題。登録が新しい順。ホームの「ブックマークを復習」は
   // 要復習と同様、いま選んでいる分野×級のぶんだけに絞る（分野の取り違え防止）。
@@ -336,9 +393,10 @@ function AppInner(props: { contentVersion: number }) {
     [bookmarks, props.contentVersion]
   );
   const courseBookmarkQuestions = useMemo(() => {
-    const ids = new Set(fieldGradeChapters(field, grade).flatMap((c) => c.data.questions.map((q) => q.id)));
+    const chs = fieldGradeChapters(field, grade).filter((c) => !subChapterIds || subChapterIds.has(c.id));
+    const ids = new Set(chs.flatMap((c) => c.data.questions.map((q) => q.id)));
     return bookmarkQuestions.filter((q) => ids.has(q.id));
-  }, [bookmarkQuestions, field, grade, props.contentVersion]);
+  }, [bookmarkQuestions, field, grade, subfield, props.contentVersion]);
 
   // いま選んでいる分野×級の公式・用語を、章の順に全部ならべた行データ（タブと復習で共有）。
   const courseFormulaRows = useMemo<FormulaRow[]>(() => {
@@ -373,7 +431,10 @@ function AppInner(props: { contentVersion: number }) {
 
   // 今日のミッション：未挑戦（まだ一度も解いていない）問題を集めて出題（踏破率アップ）。
   function solveUnattempted(gradeId: GradeId, fieldId: FieldId = 'solid') {
-    const all = fieldGradeChapters(fieldId, gradeId).flatMap((c) => c.data.questions);
+    const allow = subChapterIdSet(fieldId, gradeId, subfield);
+    const all = fieldGradeChapters(fieldId, gradeId)
+      .filter((c) => !allow || allow.has(c.id))
+      .flatMap((c) => c.data.questions);
     const un = all.filter((q) => !progress[q.id]);
     openProblems(un.length ? un : all, '今日のミッション');
   }
@@ -480,6 +541,11 @@ function AppInner(props: { contentVersion: number }) {
             onGoFormulaList={() => openFormulaList('formula')}
             onSolveUnattempted={solveUnattempted}
             onOpenChapter={openChapterById}
+            subfield={subfield}
+            subfields={hasSubfields(field, grade) ? THERMAL1_SUBFIELDS.map((s) => ({ id: s.id, label: s.label })) : null}
+            subLabel={hasSubfields(field, grade) ? subfieldLabel(subfield) : null}
+            subChapterIds={subChapterIds}
+            onChooseSubfield={chooseSubfield}
           />
         )}
 
@@ -809,6 +875,17 @@ const home = StyleSheet.create({
   body: { paddingHorizontal: 16, paddingTop: 8, gap: 14 },
   card: { backgroundColor: HOME.surface, borderWidth: 1, borderColor: HOME.border, borderRadius: 20, padding: 16 },
   cardGlow: { borderColor: HOME.borderStrong },
+  mapAll: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor: HOME.surface, borderWidth: 1, borderColor: HOME.cyan, borderRadius: 12, paddingVertical: 13, paddingHorizontal: 14, marginTop: 4 },
+  mapAllH: { color: HOME.text, fontWeight: '800', fontSize: 15 },
+  mapChev: { color: HOME.cyan, fontWeight: '900', fontSize: 18 },
+  mapListH: { color: HOME.muted, fontWeight: '800', fontSize: 12, marginTop: 14, marginBottom: 2 },
+  mapRow: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 9, borderBottomWidth: 1, borderBottomColor: HOME.border },
+  mapRowMain: { flex: 1, paddingVertical: 2 },
+  mapRowT: { color: HOME.text, fontSize: 14, fontWeight: '600' },
+  mapTermBtn: { paddingVertical: 6, paddingHorizontal: 10, borderRadius: 8, borderWidth: 1, borderColor: HOME.border, backgroundColor: HOME.surface },
+  mapTermTxt: { color: HOME.cyan, fontSize: 12, fontWeight: '700' },
+  mapImg: { width: '100%', aspectRatio: 1.5, borderRadius: 10, backgroundColor: '#fff', marginVertical: 8 },
+  mapPlaceholder: { color: HOME.muted, fontSize: 13, lineHeight: 20, textAlign: 'center', paddingVertical: 28 },
   missionTop: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   missionIco: { width: 44, height: 44, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(59,230,242,0.12)', borderWidth: 1, borderColor: HOME.borderStrong },
   missionH3: { color: HOME.text, fontSize: 17, fontWeight: '900' },
@@ -858,6 +935,8 @@ const home = StyleSheet.create({
   modalWrap: { flex: 1, backgroundColor: 'rgba(3,6,12,0.62)', justifyContent: 'flex-end' },
   sheet: { backgroundColor: HOME.bg2, borderTopLeftRadius: 20, borderTopRightRadius: 20, borderTopWidth: 1, borderColor: HOME.borderStrong, padding: 18, gap: 8 },
   sheetH: { color: HOME.text, fontWeight: '900', fontSize: 16, textAlign: 'center', marginBottom: 4 },
+  sheetSubH: { color: HOME.muted, fontWeight: '800', fontSize: 13, textAlign: 'center', marginBottom: 2 },
+  sheetDivider: { height: 1, backgroundColor: HOME.border, marginVertical: 8 },
   sheetSec: { color: HOME.muted, fontSize: 11, marginTop: 6 },
   opt: { backgroundColor: HOME.surface, borderWidth: 1, borderColor: HOME.border, borderRadius: 12, paddingVertical: 13, paddingHorizontal: 14 },
   optOn: { borderColor: HOME.cyan, backgroundColor: 'rgba(59,230,242,0.12)' },
@@ -896,6 +975,11 @@ function HomeTab(props: {
   onGoFormulaList: () => void;
   onSolveUnattempted: (gradeId: GradeId, fieldId: FieldId) => void;
   onOpenChapter: (gradeId: GradeId, chapterId: string, fieldId: FieldId) => void;
+  subfield: ThermalSub;
+  subfields: { id: ThermalSub; label: string }[] | null;
+  subLabel: string | null;
+  subChapterIds: Set<string> | null;
+  onChooseSubfield: (s: ThermalSub) => void;
 }) {
   const { t } = props;
   // 継続日数・今日の学習量・直近の活動（級に依らず端末全体の学習ログから）。
@@ -903,8 +987,17 @@ function HomeTab(props: {
   // 分野×級はアプリ共通の選択（AppInner保持）をそのまま使う。問題/公式タブと必ず一致させるため。
   const grade = props.grade;
   const field = props.field;
-  const overall = useMemo(() => overallStat(props.progress, grade, field), [props.progress, grade, field]);
-  const stats = useMemo(() => chapterStats(props.progress, grade, field), [props.progress, grade, field]);
+  const stats = useMemo(() => {
+    const all = chapterStats(props.progress, grade, field);
+    return props.subChapterIds ? all.filter((s) => props.subChapterIds!.has(s.id)) : all;
+  }, [props.progress, grade, field, props.subChapterIds]);
+  // 全体集計は「絞り込んだ章」から出す（学習範囲 x/y問・踏破率・正答率をサブ分野に一致させる）。
+  const overall = useMemo(() => {
+    const totalQuestions = stats.reduce((n, s) => n + s.total, 0);
+    const attempted = stats.reduce((n, s) => n + s.attempted, 0);
+    const correct = stats.reduce((n, s) => n + s.correct, 0);
+    return { totalQuestions, attempted, correct, accuracy: attempted > 0 ? correct / attempted : 0 };
+  }, [stats]);
   const fields = useMemo(() => fieldStats(props.progress, grade, field), [props.progress, grade, field]);
   // レーダーの「1週前比の成長」。端末に貯めた分野スナップショットと今を比べる。
   const [snaps, setSnaps] = useState<FieldSnapStore>([]);
@@ -925,18 +1018,25 @@ function HomeTab(props: {
   useEffect(() => { loadChapterSnaps().then(setChapSnaps); }, [props.progress]);
   const [showGrade, setShowGrade] = useState(false);
   const [showExamRule, setShowExamRule] = useState(false); // 試験前の準備カード→合格・足切りルールの詳細モーダル
+  // 「全体の相関図」カードの図ビューア（全章マップ／各章マップをモーダルで拡大表示）。
+  const [mapView, setMapView] = useState<{ title: string; key: string } | null>(null);
+  function openMap(chapterId: string, title: string) {
+    const key = chapterId === 'all' ? overallMapKey(field, grade) : chapterMapKey(field, grade, chapterId);
+    setMapView({ title, key });
+  }
   const insets = useSafeAreaInsets(); // Android のボトムナビ等でシート最下部の選択肢が隠れないよう下余白に足す
   // 分野と級を1タップでまとめて確定（固体1級/固体2級/熱流体1級…の6ボタン用）。
   // 従来は分野と級を別々に押す必要があり「両方変えたい」時に片方だけ確定してしまっていた。
   function chooseFieldGrade(f: FieldId, g: GradeId) {
     props.onChooseFieldGrade(f, g); // アプリ共通の選択を更新（保存も親側）。問題/公式タブも自動追従。
-    setShowGrade(false);
+    // 熱流体1級はサブ分野（単相/混相/燃焼）を続けて選んでもらうため、シートを閉じない。
+    if (!hasSubfields(f, g)) setShowGrade(false);
   }
 
   // サブ部品へ渡すダーク派生テーマ
   const ht = { ...t, bg: HOME.bg0, card: HOME.surface, text: HOME.text, sub: HOME.muted,
     border: HOME.border, primary: HOME.cyan, correct: HOME.good, wrong: HOME.bad, amber: HOME.warn } as Theme;
-  const subjectLabel = `${disciplineLabel(field)} ${grade === 'g1' ? '1級' : '2級'}`;
+  const subjectLabel = `${disciplineLabel(field)} ${grade === 'g1' ? '1級' : '2級'}${props.subLabel ? ' ・' + props.subLabel : ''}`;
   // 試験前の準備カードの合格・足切りルール（分野×級ごと・OTAで差し替え可）。
   // OTA/同梱の content/exam/passrule-*.json を優先し、万一無ければ同梱既定（EXAM_PASS_RULES）へフォールバック。
   const examRuleDoc = examRule(field, grade) ?? {
@@ -950,8 +1050,6 @@ function HomeTab(props: {
   const daysLeft = examDaysLeft(examDate);
   const coverPct = overall.totalQuestions > 0 ? Math.round((overall.attempted / overall.totalQuestions) * 100) : 0;
   const today = digest.last30[digest.last30.length - 1] ?? { key: '', n: 0, c: 0 };
-  const goalDone = Math.min(today.n, DAILY_GOAL);
-  const goalPct = Math.round((goalDone / DAILY_GOAL) * 100);
   const weekN = digest.last30.slice(-7).reduce((a, d) => a + d.n, 0);
   const wd = digest.weekDelta;
   const wdColor = wd > 0 ? HOME.good : wd < 0 ? HOME.bad : HOME.muted;
@@ -1028,20 +1126,27 @@ function HomeTab(props: {
           </View>
         </View>
 
-        {/* 今日のミッション（未挑戦から DAILY_GOAL 問） */}
+        {/* 全体の相関図（この級の全体像：全章マップ＋各章マップ。各章から公式用語へリンク） */}
         <View style={[home.card, home.cardGlow]}>
-          <View style={home.missionTop}>
-            <View style={home.missionIco}><Text style={{ fontSize: 20 }}>📐</Text></View>
-            <View style={{ flex: 1 }}>
-              <Text style={home.missionH3}>今日のミッション</Text>
-              <Text style={home.missionP}>未挑戦から{DAILY_GOAL}問 · あと{Math.max(0, DAILY_GOAL - goalDone)}問（踏破率アップ）</Text>
-            </View>
-            <Text style={home.missionCount}>{goalDone}/{DAILY_GOAL}</Text>
+          <View style={home.secH}>
+            <Text style={home.secTitle}>全体の相関図</Text>
+            <Text style={home.secSub}>{subjectLabel} · 問題のつながりを俯瞰</Text>
           </View>
-          <View style={home.mini}><View style={[home.miniFill, { width: `${goalPct}%` as DimensionValue }]} /></View>
-          <Pressable style={home.cta} onPress={() => props.onSolveUnattempted(grade, field)}>
-            <Text style={home.ctaTxt}>▶ 未挑戦を解く</Text>
+          <Pressable style={home.mapAll} onPress={() => openMap('all', '全章の相関図')}>
+            <Text style={home.mapAllH}>🗺 全章の相関図</Text>
+            <Text style={home.mapChev}>›</Text>
           </Pressable>
+          <Text style={home.mapListH}>各章の相関図</Text>
+          {stats.map((c) => (
+            <View key={c.id} style={home.mapRow}>
+              <Pressable style={home.mapRowMain} onPress={() => openMap(c.id, c.title)}>
+                <Text style={home.mapRowT} numberOfLines={1}>{c.title}</Text>
+              </Pressable>
+              <Pressable style={home.mapTermBtn} onPress={props.onGoTermList}>
+                <Text style={home.mapTermTxt}>公式用語 ›</Text>
+              </Pressable>
+            </View>
+          ))}
         </View>
 
         {/* 用語解説 / 公式解説（タップで公式・用語タブのリストへ） */}
@@ -1152,6 +1257,40 @@ function HomeTab(props: {
               );
             })
           )}
+          {/* 熱流体1級だけ：単相流/混相流/燃焼流のサブ分野を選ぶ2段目プルダウン */}
+          {props.subfields && (
+            <>
+              <View style={home.sheetDivider} />
+              <Text style={home.sheetSubH}>熱流体1級の分野を選ぶ</Text>
+              {props.subfields.map((s) => {
+                const on = props.subfield === s.id;
+                return (
+                  <Pressable
+                    key={s.id}
+                    style={[home.opt, on && home.optOn]}
+                    onPress={() => { props.onChooseSubfield(s.id); setShowGrade(false); }}
+                  >
+                    <Text style={home.optTxt}>{s.label}</Text>
+                  </Pressable>
+                );
+              })}
+            </>
+          )}
+        </Pressable>
+      </Pressable>
+    </Modal>
+
+    {/* 全体の相関図ビューア（全章/各章の相関図を拡大表示。画像未登録なら準備中プレースホルダ） */}
+    <Modal visible={!!mapView} transparent animationType="fade" onRequestClose={() => setMapView(null)}>
+      <Pressable style={home.modalWrap} onPress={() => setMapView(null)}>
+        <Pressable style={home.sheet} onPress={() => {}}>
+          <Text style={home.sheetH}>{mapView?.title ?? ''}</Text>
+          {mapView && hasFigure(mapView.key) ? (
+            <Image source={figureSource(mapView.key)} style={home.mapImg} resizeMode="contain" />
+          ) : (
+            <Text style={home.mapPlaceholder}>相関図は準備中です。{'\n'}ChatGPTで作図したPNGを登録すると、ここに表示されます。</Text>
+          )}
+          <Pressable onPress={() => setMapView(null)} style={home.clearBtn}><Text style={home.clearTxt}>閉じる</Text></Pressable>
         </Pressable>
       </Pressable>
     </Modal>
@@ -2354,86 +2493,17 @@ function fmtDate(ts: number): string {
   return `${d.getMonth() + 1}/${d.getDate()}`;
 }
 
-// 公式は「ディスプレイ数式」（中央・大きめ）で表示したいので、
-// インライン $...$ をブロック $$...$$ に変換する（問題文と同じKaTeX経路）。
-// 公式・用語タブの「主役の数式」を必ず $$…$$（大きい中央表示）に統一する。
-//
-// 長い公式は横に収まらないと右が切れる。ただ縮小すると 34% 等になって読めないので、
-// できる限り「改行して縦に積む」ことで各行を短くし、原寸に近い大きさで読ませる：
-//   ① 独立した複数式を区切る トップレベルの \quad / \qquad で分割
-//   ② それでも長い行は トップレベルの + と（先頭以外の）= でさらに改行
-// いずれも括弧・ブレースの深さ0だけが対象で、\left(…\right) や {…} の中は分割しない。
-// ここまでやっても割れない単一の長大式だけ、最後に MathText 側の縮小で収める。
-
-// 括弧/ブレース深さ0の \quad / \qquad で分割。
-// 数式を、括弧/ブレース深さ0の \quad \qquad と「, 」で「式ごと」に分割する。
-// 括弧( ( [ { )・エスケープ括弧( \{ \( \[ )の中の区切りは分割しない。
-function splitTopEquations(inner: string): string[] {
-  const parts: string[] = [];
-  let depth = 0;
-  let last = 0;
-  for (let i = 0; i < inner.length; i++) {
-    const c = inner[i];
-    if (c === '\\') {
-      const m = /^\\q?quad(?![a-zA-Z])/.exec(inner.slice(i));
-      if (depth === 0 && m) {
-        parts.push(inner.slice(last, i));
-        i += m[0].length - 1;
-        last = i + 1;
-        continue;
-      }
-      const nx = inner[i + 1]; // \{ \} \( \) \[ \] は括弧として深さに反映
-      if (nx === '{' || nx === '(' || nx === '[') depth++;
-      else if (nx === '}' || nx === ')' || nx === ']') depth = Math.max(0, depth - 1);
-      i += 1; // 次の1文字を消費（\left \right \, なども読み飛ばし）
-      continue;
-    }
-    if (c === '{' || c === '(' || c === '[') depth++;
-    else if (c === '}' || c === ')' || c === ']') depth = Math.max(0, depth - 1);
-    else if (depth === 0 && c === ',' && (inner[i + 1] === ' ' || inner[i + 1] === '\\')) {
-      parts.push(inner.slice(last, i)); // 区切りのカンマは落とす
-      last = i + 1;
-    }
-  }
-  parts.push(inner.slice(last));
-  return parts.map((p) => p.trim()).filter((p) => p.length > 0);
-}
-
-// 1つの式を aligned 用に左詰めにする（先頭 & で左寄せ・= 列では揃えない）。
-// テイラー/マクローリン等の長い式で左辺が右に寄るのを防ぐため、= 揃え（"LHS &= RHS"）はやめ、
-// すべて先頭 & の左寄せ（"& …"）に統一する。
-function alignLeft(seg: string): string {
-  return `& ${seg.trim()}`;
-}
-
-// 長い公式を縦に並べて左詰め整列（aligned・先頭&で左寄せ）。= の直前では決して改行しない。
-// ・短い式/単一の式は1行のまま（はみ出しは横スクロールに任せる）。
-// ・既に \begin{...}（aligned・行列など）を含む式は構造を尊重してそのまま返す。
-function wrapLongDisplay(inner: string): string {
-  const s = inner.trim();
-  if (s.length < 50) return s; // 短い式は1行
-  if (s.includes('\\begin{')) return s; // 既に構造化済み（aligned/行列/cases等）→触らない
-  const segs = splitTopEquations(s);
-  if (segs.length <= 1) return s; // 単一の式は1行（= で改行しない）
-  return `\\begin{aligned}${segs.map(alignLeft).join(' \\\\ ')}\\end{aligned}`;
-}
-
+// 公式欄では1つの数式を自動分割しない。画面を超える式はMathTextで横スクロールする。
+// 独立した式は原稿の改行で分ける。導出の改行は原則として等号の直前で指定する。
 function displayMath(s: string): string {
   const x = s.trim();
-  let inner: string;
-  if (x.startsWith('$$') && x.endsWith('$$') && x.length > 4) inner = x.slice(2, -2);
-  // 全体が単一の $…$（途中に区切りの $ を含まない）
-  else if (x.startsWith('$') && x.endsWith('$') && x.length > 2 && x.slice(1, -1).indexOf('$') === -1)
-    inner = x.slice(1, -1);
-  // $ を全く含まない素の数式テキスト
-  else if (x.indexOf('$') === -1 && x.length > 0) {
-    // 日本語（CJK）を含み LaTeX コマンド（\xxx）が無い＝「用語の言葉による定義」。
-    // これを $$…$$ の中央寄せ大判数式にすると、縦長で不自然になり日本語の字間も崩れる。
-    // そのまま素のテキストとして返し、RichText に普通の文章として描画させる。
-    if (/[぀-ヿ一-龯]/.test(x) && !/\\[a-zA-Z]/.test(x)) return x;
-    inner = x;
-  } else return x; // $ を途中に含む複合テキストは触らない
-  return `$$${wrapLongDisplay(inner)}$$`;
+  if (!x) return x;
+  if (x.startsWith('$$') && x.endsWith('$$') && x.length > 4) return x;
+  if (x.startsWith('$') && x.endsWith('$') && x.slice(1, -1).indexOf('$') === -1)
+    return `$$${x.slice(1, -1)}$$`;
+  if (x.includes('$')) return x; // 文章と数式の混在もMathTextが式単位でスクロールする
+  if (/[぀-ヿ一-龯]/.test(x) && !/\\[a-zA-Z]/.test(x)) return x;
+  return `$$${x}$$`;
 }
 
 // ================= テーマ =================

@@ -23,7 +23,10 @@ function buildHtml(
 ) {
   const payload = JSON.stringify(text); // 本文はJSで textContent に入れる（HTML注入を避け、\ や $ をそのまま保持）
   const displayCss = scroll
-    ? `.katex-display{margin:.35em 0;overflow-x:auto;overflow-y:visible;text-align:left;-webkit-overflow-scrolling:touch;}
+    ? `.katex-display{margin:.35em 0;overflow-x:auto;overflow-y:hidden;text-align:left;-webkit-overflow-scrolling:touch;}
+       .math-scroll{display:block;max-width:100%;box-sizing:border-box;overflow-x:auto;overflow-y:hidden;padding:6px 0;white-space:nowrap;-webkit-overflow-scrolling:touch;}
+       .math-scroll>.katex,.katex-display>.katex{display:inline-block;min-width:max-content;text-align:left;}
+       html,body{max-width:100%;overflow-x:hidden;}
        #fade{position:fixed;top:0;right:0;bottom:0;width:22px;background:linear-gradient(90deg,transparent,${bg});display:none;pointer-events:none;}`
     : `.katex-display{margin:.35em 0;overflow:visible;}`;
   return `<!DOCTYPE html><html><head>
@@ -36,7 +39,7 @@ function buildHtml(
   html,body{margin:0;padding:0;background:transparent;}
   /* 子要素(表示数式など)の上下marginが body に相殺で抜けて高さが縮む→縦に切れる、を防ぐ */
   body{display:flow-root;}
-  #c{color:${color};font-size:${fontSize}px;line-height:1.75;font-weight:${bold ? '600' : '400'};
+  #c{visibility:hidden;color:${color};font-size:${fontSize}px;line-height:1.75;font-weight:${bold ? '600' : '400'};
      font-family:-apple-system,'Hiragino Kaku Gothic ProN','Noto Sans JP',Roboto,sans-serif;
      white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;padding:2px 0;overflow:visible;}
   .katex{font-size:1.05em;}
@@ -68,11 +71,23 @@ ${scroll ? '<div id="fade"></div>' : ''}
       }
     }
   }
+  // 混在テキストのインライン数式も、式全体を1つのスクロール領域にする。
+  // KaTeXは等号・加号ごとにbaseを分けるため、nowrapだけでなく外側の箱が必要。
+  function prepareMathScroll(){
+    if (!SCROLL) return;
+    var roots=document.querySelectorAll('#c .katex');
+    for(var i=0;i<roots.length;i++){
+      var k=roots[i], parent=k.parentElement;
+      if(!parent || parent.classList.contains('katex-display') || parent.classList.contains('math-scroll')) continue;
+      var row=document.createElement('span'); row.className='math-scroll';
+      parent.insertBefore(row,k); row.appendChild(k);
+    }
+  }
   // 横スクロールできる（はみ出している）ときだけ右端フェードを出す。
   function updateFade(){
     if (!SCROLL) return;
     var f=document.getElementById('fade'); if(!f) return;
-    var over=false, ds=document.querySelectorAll('.katex-display');
+    var over=false, ds=document.querySelectorAll('.katex-display,.math-scroll');
     for (var i=0;i<ds.length;i++){ if (ds[i].scrollWidth > ds[i].clientWidth + 1){ over=true; break; } }
     f.style.display = over ? 'block' : 'none';
   }
@@ -89,14 +104,22 @@ ${scroll ? '<div id="fade"></div>' : ''}
     try {
       renderMathInElement(document.getElementById('c'), {
         delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],
-        throwOnError:false
+        throwOnError:true
       });
-    } catch(e) {}
+      prepareMathScroll();
+      document.getElementById('c').style.visibility = 'visible';
+    } catch(e) {
+      // Never expose TeX input when the renderer/CDN is unavailable or rejects a formula.
+      var c = document.getElementById('c');
+      c.textContent = '数式を表示できません。再読み込みしてください。';
+      c.style.visibility = 'visible';
+    }
     post();
     // KaTeXフォントはCDNから遅延読込。読み込み完了・複数タイミングで高さ等を取り直す
     [120,300,600,1200].forEach(function(ms){ setTimeout(post, ms); });
     if (document.fonts && document.fonts.ready) { document.fonts.ready.then(post).catch(function(){}); }
   }
+  window.addEventListener('resize', post);
   if (document.readyState === 'complete') run(); else window.addEventListener('load', run);
 </script></body></html>`;
 }
