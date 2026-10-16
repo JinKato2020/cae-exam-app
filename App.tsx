@@ -247,6 +247,7 @@ function AppInner(props: { contentVersion: number }) {
   const insets = useSafeAreaInsets();
 
   const [tab, setTab] = useState<Tab>('home');
+  const [mapViewerOpen, setMapViewerOpen] = useState(false); // 相関図ビューア(全画面モーダル)表示中はタブ横スワイプを無効化
   const [progress, setProgress] = useState<ProgressMap>({});
   // ブックマーク（栞）。後で見返したい問題にユーザーが付ける。ホームの「ブックマークを復習」で使う。
   const [bookmarks, setBookmarks] = useState<BookmarkMap>({});
@@ -519,7 +520,7 @@ function AppInner(props: { contentVersion: number }) {
   const tabPan = useSwipeNav(
     () => swipeTab(1),
     () => swipeTab(-1),
-    !(tab === 'study' && studyView === 'problem') && !(tab === 'formula' && formulaView === 'item') && !formulaChapterListOpen
+    !(tab === 'study' && studyView === 'problem') && !(tab === 'formula' && formulaView === 'item') && !formulaChapterListOpen && !mapViewerOpen
   );
 
   return (
@@ -549,6 +550,7 @@ function AppInner(props: { contentVersion: number }) {
             onSolveUnattempted={solveUnattempted}
             onOpenChapter={openChapterById}
             onOpenQuestion={openQuestionById}
+            onMapViewerChange={setMapViewerOpen}
             subfield={subfield}
             subfields={hasSubfields(field, grade) ? THERMAL1_SUBFIELDS.map((s) => ({ id: s.id, label: s.label })) : null}
             subLabel={hasSubfields(field, grade) ? subfieldLabel(subfield) : null}
@@ -1000,6 +1002,7 @@ function HomeTab(props: {
   onSolveUnattempted: (gradeId: GradeId, fieldId: FieldId) => void;
   onOpenChapter: (gradeId: GradeId, chapterId: string, fieldId: FieldId) => void;
   onOpenQuestion: (gradeId: GradeId, chapterId: string, questionId: string, fieldId: FieldId) => void;
+  onMapViewerChange?: (open: boolean) => void; // 相関図ビューア(モーダル)の開閉を親へ通知→表示中はタブ横スワイプを無効化
   subfield: ThermalSub;
   subfields: { id: ThermalSub; label: string }[] | null;
   subLabel: string | null;
@@ -1057,6 +1060,11 @@ function HomeTab(props: {
     const c = fieldGradeChapters(field, grade).find((x) => x.id === mapView.chapterId);
     return c ? c.data.questions : [];
   }, [mapView, field, grade]);
+  // 相関図ビューアの開閉を親へ通知（表示中は親のタブ横スワイプを無効化し、拡大・パン中の誤タブ移動を防ぐ）。
+  useEffect(() => {
+    props.onMapViewerChange?.(!!mapView);
+  }, [mapView]);
+  useEffect(() => () => props.onMapViewerChange?.(false), []); // アンマウント時は必ず解除
   const insets = useSafeAreaInsets(); // Android のボトムナビ等でシート最下部の選択肢が隠れないよう下余白に足す
   // 分野と級を1タップでまとめて確定（固体1級/固体2級/熱流体1級…の6ボタン用）。
   // 従来は分野と級を別々に押す必要があり「両方変えたい」時に片方だけ確定してしまっていた。
