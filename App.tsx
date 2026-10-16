@@ -444,6 +444,13 @@ function AppInner(props: { contentVersion: number }) {
     const c = fieldGradeChapters(fieldId, gradeId).find((x) => x.id === chapterId);
     if (c) openProblems(c.data.questions, c.title);
   }
+  // 相関図の拡大表示で各問題をタップ → その問題へジャンプ（章の問題一式を開き、該当問題から表示）。
+  function openQuestionById(gradeId: GradeId, chapterId: string, questionId: string, fieldId: FieldId = 'solid') {
+    const c = fieldGradeChapters(fieldId, gradeId).find((x) => x.id === chapterId);
+    if (!c) return;
+    const idx = c.data.questions.findIndex((q) => q.id === questionId);
+    openProblems(c.data.questions, c.title, idx < 0 ? 0 : idx);
+  }
 
   // ホームの「用語解説／公式解説」カード → 公式・用語タブのリストを種類指定で開く。
   function openFormulaList(kind: 'term' | 'formula') {
@@ -541,6 +548,7 @@ function AppInner(props: { contentVersion: number }) {
             onGoFormulaList={() => openFormulaList('formula')}
             onSolveUnattempted={solveUnattempted}
             onOpenChapter={openChapterById}
+            onOpenQuestion={openQuestionById}
             subfield={subfield}
             subfields={hasSubfields(field, grade) ? THERMAL1_SUBFIELDS.map((s) => ({ id: s.id, label: s.label })) : null}
             subLabel={hasSubfields(field, grade) ? subfieldLabel(subfield) : null}
@@ -881,11 +889,27 @@ const home = StyleSheet.create({
   mapListH: { color: HOME.muted, fontWeight: '800', fontSize: 12, marginTop: 14, marginBottom: 2 },
   mapRow: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 9, borderBottomWidth: 1, borderBottomColor: HOME.border },
   mapRowMain: { flex: 1, paddingVertical: 2 },
-  mapRowT: { color: HOME.text, fontSize: 14, fontWeight: '600' },
+  mapRowT: { flex: 1, color: HOME.text, fontSize: 14, fontWeight: '600' },
   mapTermBtn: { paddingVertical: 6, paddingHorizontal: 10, borderRadius: 8, borderWidth: 1, borderColor: HOME.border, backgroundColor: HOME.surface },
   mapTermTxt: { color: HOME.cyan, fontSize: 12, fontWeight: '700' },
   mapImg: { width: '100%', aspectRatio: 1.5, borderRadius: 10, backgroundColor: '#fff', marginVertical: 8 },
   mapPlaceholder: { color: HOME.muted, fontSize: 13, lineHeight: 20, textAlign: 'center', paddingVertical: 28 },
+  // 相関図の全画面ビューア（縦長スクロール＋右上×）
+  mapFull: { flex: 1, backgroundColor: HOME.bg0 },
+  mapBar: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: HOME.border },
+  mapBarTitle: { flex: 1, color: HOME.text, fontSize: 16, fontWeight: '800' },
+  mapClose: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: HOME.surface, borderWidth: 1, borderColor: HOME.borderStrong, marginLeft: 12 },
+  mapCloseTxt: { color: HOME.text, fontSize: 24, lineHeight: 26, fontWeight: '700' },
+  mapScroll: { padding: 12 },
+  mapFullImg: { width: '100%', backgroundColor: '#fff', borderRadius: 8 },
+  mapPlaceWrap: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 },
+  // 拡大中の「この章の問題」タップ一覧（→その問題へジャンプ）
+  mapQWrap: { marginTop: 16, gap: 6 },
+  mapQHead: { color: HOME.muted, fontSize: 12, fontWeight: '800', marginBottom: 2 },
+  mapQRow: { flexDirection: 'row', alignItems: 'center', backgroundColor: HOME.surface, borderWidth: 1, borderColor: HOME.border, borderRadius: 10, paddingVertical: 11, paddingHorizontal: 12, gap: 10 },
+  mapQNum: { color: HOME.cyan, fontWeight: '800', fontSize: 13, minWidth: 46 },
+  mapQT: { flex: 1, color: HOME.text, fontSize: 13, lineHeight: 18 },
+  mapQChev: { color: HOME.muted, fontSize: 18, fontWeight: '700' },
   missionTop: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   missionIco: { width: 44, height: 44, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(59,230,242,0.12)', borderWidth: 1, borderColor: HOME.borderStrong },
   missionH3: { color: HOME.text, fontSize: 17, fontWeight: '900' },
@@ -975,6 +999,7 @@ function HomeTab(props: {
   onGoFormulaList: () => void;
   onSolveUnattempted: (gradeId: GradeId, fieldId: FieldId) => void;
   onOpenChapter: (gradeId: GradeId, chapterId: string, fieldId: FieldId) => void;
+  onOpenQuestion: (gradeId: GradeId, chapterId: string, questionId: string, fieldId: FieldId) => void;
   subfield: ThermalSub;
   subfields: { id: ThermalSub; label: string }[] | null;
   subLabel: string | null;
@@ -1019,11 +1044,19 @@ function HomeTab(props: {
   const [showGrade, setShowGrade] = useState(false);
   const [showExamRule, setShowExamRule] = useState(false); // 試験前の準備カード→合格・足切りルールの詳細モーダル
   // 「全体の相関図」カードの図ビューア（全章マップ／各章マップをモーダルで拡大表示）。
-  const [mapView, setMapView] = useState<{ title: string; key: string } | null>(null);
+  const [mapView, setMapView] = useState<{ title: string; key: string; chapterId: string } | null>(null);
+  const [mapAspect, setMapAspect] = useState<number | null>(null); // 相関図の縦横比（onLoadで取得→全幅・縦長表示に使う）
   function openMap(chapterId: string, title: string) {
     const key = chapterId === 'all' ? overallMapKey(field, grade) : chapterMapKey(field, grade, chapterId);
-    setMapView({ title, key });
+    setMapAspect(null);
+    setMapView({ title, key, chapterId });
   }
+  // 拡大中の相関図に並べる「その章の問題一覧」（タップでその問題へジャンプ）。全章マップ('all')では出さない。
+  const mapQuestions = useMemo(() => {
+    if (!mapView || mapView.chapterId === 'all') return [] as Question[];
+    const c = fieldGradeChapters(field, grade).find((x) => x.id === mapView.chapterId);
+    return c ? c.data.questions : [];
+  }, [mapView, field, grade]);
   const insets = useSafeAreaInsets(); // Android のボトムナビ等でシート最下部の選択肢が隠れないよう下余白に足す
   // 分野と級を1タップでまとめて確定（固体1級/固体2級/熱流体1級…の6ボタン用）。
   // 従来は分野と級を別々に押す必要があり「両方変えたい」時に片方だけ確定してしまっていた。
@@ -1126,7 +1159,7 @@ function HomeTab(props: {
           </View>
         </View>
 
-        {/* 全体の相関図（この級の全体像：全章マップ＋各章マップ。各章から公式用語へリンク） */}
+        {/* 全体の相関図（この級の全体像：全章マップ＋各章マップ。拡大表示で各問題をタップ→その問題へジャンプ） */}
         <View style={[home.card, home.cardGlow]}>
           <View style={home.secH}>
             <Text style={home.secTitle}>全体の相関図</Text>
@@ -1138,14 +1171,10 @@ function HomeTab(props: {
           </Pressable>
           <Text style={home.mapListH}>各章の相関図</Text>
           {stats.map((c) => (
-            <View key={c.id} style={home.mapRow}>
-              <Pressable style={home.mapRowMain} onPress={() => openMap(c.id, c.title)}>
-                <Text style={home.mapRowT} numberOfLines={1}>{c.title}</Text>
-              </Pressable>
-              <Pressable style={home.mapTermBtn} onPress={props.onGoTermList}>
-                <Text style={home.mapTermTxt}>公式用語 ›</Text>
-              </Pressable>
-            </View>
+            <Pressable key={c.id} style={home.mapRow} onPress={() => openMap(c.id, c.title)}>
+              <Text style={home.mapRowT} numberOfLines={1}>{c.title}</Text>
+              <Text style={home.mapChev}>›</Text>
+            </Pressable>
           ))}
         </View>
 
@@ -1280,19 +1309,60 @@ function HomeTab(props: {
       </Pressable>
     </Modal>
 
-    {/* 全体の相関図ビューア（全章/各章の相関図を拡大表示。画像未登録なら準備中プレースホルダ） */}
-    <Modal visible={!!mapView} transparent animationType="fade" onRequestClose={() => setMapView(null)}>
-      <Pressable style={home.modalWrap} onPress={() => setMapView(null)}>
-        <Pressable style={home.sheet} onPress={() => {}}>
-          <Text style={home.sheetH}>{mapView?.title ?? ''}</Text>
-          {mapView && hasFigure(mapView.key) ? (
-            <Image source={figureSource(mapView.key)} style={home.mapImg} resizeMode="contain" />
-          ) : (
+    {/* 全体の相関図ビューア（全画面・縦長スクロール＋ピンチ拡大。右上×で閉じる。未登録なら準備中） */}
+    <Modal visible={!!mapView} animationType="slide" onRequestClose={() => setMapView(null)}>
+      <View style={[home.mapFull, { paddingTop: insets.top }]}>
+        <View style={home.mapBar}>
+          <Text style={home.mapBarTitle} numberOfLines={1}>{mapView?.title ?? ''}</Text>
+          <Pressable onPress={() => setMapView(null)} hitSlop={14} style={home.mapClose} accessibilityLabel="閉じる">
+            <Text style={home.mapCloseTxt}>×</Text>
+          </Pressable>
+        </View>
+        {mapView && hasFigure(mapView.key) ? (
+          <ScrollView
+            style={{ flex: 1 }}
+            contentContainerStyle={[home.mapScroll, { paddingBottom: insets.bottom + 24 }]}
+            maximumZoomScale={4}
+            minimumZoomScale={1}
+            bouncesZoom
+            showsVerticalScrollIndicator
+          >
+            <Image
+              source={figureSource(mapView.key)}
+              onLoad={(e) => {
+                const s: any = e.nativeEvent?.source;
+                if (s?.width && s?.height) setMapAspect(s.width / s.height);
+              }}
+              style={[home.mapFullImg, { aspectRatio: mapAspect ?? 0.7 }]}
+              resizeMode="contain"
+            />
+            {mapQuestions.length > 0 && (
+              <View style={home.mapQWrap}>
+                <Text style={home.mapQHead}>この章の問題（タップでその問題へ）</Text>
+                {mapQuestions.map((q) => (
+                  <Pressable
+                    key={q.id}
+                    style={home.mapQRow}
+                    onPress={() => {
+                      const cid = mapView?.chapterId;
+                      setMapView(null);
+                      if (cid) props.onOpenQuestion(grade, cid, q.id, field);
+                    }}
+                  >
+                    <Text style={home.mapQNum}>{q.number}</Text>
+                    <Text style={home.mapQT} numberOfLines={2}>{q.title ?? q.question}</Text>
+                    <Text style={home.mapQChev}>›</Text>
+                  </Pressable>
+                ))}
+              </View>
+            )}
+          </ScrollView>
+        ) : (
+          <View style={home.mapPlaceWrap}>
             <Text style={home.mapPlaceholder}>相関図は準備中です。{'\n'}ChatGPTで作図したPNGを登録すると、ここに表示されます。</Text>
-          )}
-          <Pressable onPress={() => setMapView(null)} style={home.clearBtn}><Text style={home.clearTxt}>閉じる</Text></Pressable>
-        </Pressable>
-      </Pressable>
+          </View>
+        )}
+      </View>
     </Modal>
 
     {/* 合格・足切りルール詳細（いま選んでいる分野×級に連動）。数値は公式案内の原文どおり＋要公式確認。 */}
