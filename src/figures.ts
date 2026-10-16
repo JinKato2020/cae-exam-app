@@ -4,6 +4,10 @@
 import type { ImageSourcePropType } from 'react-native';
 
 export const FIGURES: Record<string, ImageSourcePropType> = {
+  t2e9GridConvergenceBefore: require('../assets/figures/t2e9GridConvergenceBefore.png'),
+  t2e9CfReChartBefore: require('../assets/figures/t2e9CfReChartBefore.png'),
+  t2e8StreamlinePickBefore: require('../assets/figures/t2e8StreamlinePickBefore.png'),
+  t2e8ResultNamesBefore: require('../assets/figures/t2e8ResultNamesBefore.png'),
   // 第1章 数学の基礎
   math2ndStencil: require('../assets/figures/math2ndStencil.png'),
   mathBcTypes: require('../assets/figures/mathBcTypes.png'),
