@@ -69,7 +69,8 @@ def editorial_errors(data):
     """
     meta = data.get("meta", {})
     target = (meta.get("grade") == "固体力学 2級"
-              or (meta.get("grade") == "固体力学 1級" and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)))
+              or (meta.get("grade") == "固体力学 1級" and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11))
+              or (meta.get("grade") == "熱流体力学 2級" and meta.get("chapter") in (1, 2, 3, 4, 5, 6)))
     if not target:
         return []
     baseline_path = Path(__file__).with_name("solid2_editorial_baseline.json")
@@ -118,9 +119,10 @@ def presentation_errors(data):
         errors.append("指定図式の確認が未適用: presentationStyle")
     root = Path(__file__).resolve().parent.parent
     grade = "1級" if "1級" in meta.get("grade", "") else "2級"
-    directory = root / "図" / ("固体" + grade) / ("第%02d章" % meta["chapter"])
+    thermal = meta.get("grade") == "熱流体力学 2級"
+    directory = root / "図" / (("熱流体" if thermal else "固体") + grade) / ("第%02d章" % meta["chapter"])
     records = list(data.get("questions", []))
-    term_path = root / "content" / "formulas" / (("solid1-" if grade == "1級" else "") + "ch%d.json" % meta["chapter"])
+    term_path = root / "content" / "formulas" / (("thermal2-" if thermal else "solid1-" if grade == "1級" else "") + "ch%d.json" % meta["chapter"])
     if term_path.exists():
         records += json.loads(term_path.read_bytes()).get("items", [])
     keys = set()
