@@ -314,6 +314,28 @@ jobs:
         env:
           EXPO_NO_TELEMETRY: '1'
         run: npx expo prebuild --platform android --clean
+      - name: Install Android NDK (retry・一過性のzip破損対策)
+        # gradle がビルド時にNDKを自動DLすると、ランナー側の一過性の破損で
+        # 「java.util.zip.ZipException: Archive is not a ZIP archive」→ InstallFailedException に当たることがある。
+        # ここで sdkmanager により事前に最大3回リトライ付きでNDKを入れておき、gradle の自動DLを避ける。
+        run: |
+          set +e
+          NDK_VER=$(grep -rhoE 'ndkVersion[^0-9]*[0-9]+(\.[0-9]+)+' android 2>/dev/null | grep -oE '[0-9]+(\.[0-9]+)+' | head -1)
+          [ -z "$NDK_VER" ] && NDK_VER=27.1.12297006
+          echo "::notice::Target NDK=$NDK_VER"
+          SDKMANAGER="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager"
+          [ -x "$SDKMANAGER" ] || SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          ok=0
+          for i in 1 2 3; do
+            echo "NDK install attempt $i: ndk;$NDK_VER"
+            yes | "$SDKMANAGER" --install "ndk;$NDK_VER" && ok=1 && break
+            echo "::warning::NDK install attempt $i failed (corrupt download?). cleaning & retrying..."
+            rm -rf "$ANDROID_SDK_ROOT/ndk/$NDK_VER" 2>/dev/null
+            sleep 15
+          done
+          [ "$ok" = 1 ] || { echo "::error::NDK $NDK_VER install failed after 3 attempts"; exit 1; }
+          echo "ANDROID_NDK_HOME=$ANDROID_SDK_ROOT/ndk/$NDK_VER" >> $GITHUB_ENV
+          echo "ANDROID_NDK_ROOT=$ANDROID_SDK_ROOT/ndk/$NDK_VER" >> $GITHUB_ENV
       - name: Set versionCode = build number
         run: sed -i "s/versionCode .*/versionCode $BUILD_NUMBER/" android/app/build.gradle
       - name: Gradleチューニング(JVMメモリ増+ABI限定)
