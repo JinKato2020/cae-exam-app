@@ -2799,6 +2799,14 @@ s1e2CreepHardeningSetup: require('../assets/figures/s1e2CreepHardeningSetup.png'
   solid2Ch4TermRayleighRitz: require('../assets/figures/solid2Ch4TermRayleighRitz.png'),
   solid2Ch4TermShapeRoles: require('../assets/figures/solid2Ch4TermShapeRoles.png'),
   solid2Ch4TermWeightedResidual: require('../assets/figures/solid2Ch4TermWeightedResidual.png'),
+  s1e10CantHingeSetup: require('../assets/figures/s1e10CantHingeSetup.png'),
+  s1e10WorkflowSetup: require('../assets/figures/s1e10WorkflowSetup.png'),
+  s1e6ResonanceSetup: require('../assets/figures/s1e6ResonanceSetup.png'),
+  s1e6SDOFSetup: require('../assets/figures/s1e6SDOFSetup.png'),
+  s1e7MultiReflectSetup: require('../assets/figures/s1e7MultiReflectSetup.png'),
+  s1e8HourglassChoices: require('../assets/figures/s1e8HourglassChoices.png'),
+  s1e9LoadDispSetup: require('../assets/figures/s1e9LoadDispSetup.png'),
+  s1e9MethodIDSetup: require('../assets/figures/s1e9MethodIDSetup.png'),
 };
 
 // 図の縦横比（全図とも 660x420 で生成）
