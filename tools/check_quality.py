@@ -70,7 +70,7 @@ def editorial_errors(data):
     meta = data.get("meta", {})
     target = (meta.get("grade") == "固体力学 2級"
               or (meta.get("grade") == "固体力学 1級" and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11))
-              or (meta.get("grade") == "熱流体力学 2級" and meta.get("chapter") in (1, 2, 3, 4, 5, 6)))
+              or (meta.get("grade") == "熱流体力学 2級" and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)))
     if not target:
         return []
     baseline_path = Path(__file__).with_name("solid2_editorial_baseline.json")

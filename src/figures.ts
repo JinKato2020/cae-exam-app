@@ -9,6 +9,10 @@ import type { ImageSourcePropType } from 'react-native';
 
 
 export const FIGURES: Record<string, ImageSourcePropType> = {
+  t2e9GridConvergenceBefore: require('../assets/figures/t2e9GridConvergenceBefore.png'),
+  t2e9CfReChartBefore: require('../assets/figures/t2e9CfReChartBefore.png'),
+  t2e8StreamlinePickBefore: require('../assets/figures/t2e8StreamlinePickBefore.png'),
+  t2e8ResultNamesBefore: require('../assets/figures/t2e8ResultNamesBefore.png'),
   t2e3IsothermPVBefore: require('../assets/figures/t2e3IsothermPVBefore.png'),
   t2e3CycleWorkBefore: require('../assets/figures/t2e3CycleWorkBefore.png'),
   t2e3ConductionBefore: require('../assets/figures/t2e3ConductionBefore.png'),
