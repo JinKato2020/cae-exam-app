@@ -2,7 +2,7 @@
 // 方針（ユーザー確定 2026-09-16）:
 //   ・買い切りは「分野×級」ごと（例：固体力学2級／固体力学1級を別々に購入）。買った級だけ解除。
 //   ・各章の先頭5問は無料。6問目以降は「正解・解説・図」がロック（問題文と選択肢は見える）。
-//   ・公式・用語ページは全問無料（このファイルはゲートしない）。
+//   ・相関図・公式用語は「全章マップ＋先頭3章」まで無料。4章目以降は級の買い切りでロック解除（2026-10-17 ユーザー確定）。
 //   ・非消耗（一度購入で永久）。iOSのみ。
 // 通信が切れても権利が剥がれないよう、購入状態は端末に保存した値を信じる（正本はストアのレシート）。
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -11,6 +11,9 @@ import { CATALOG } from '../catalog';
 
 /** 各章、無料で全部見られる先頭の問題数。 */
 export const FREE_PER_CHAPTER = 5;
+
+/** 相関図・公式用語で、無課金でも見られる先頭の章数（全章マップは別途常に無料）。 */
+export const FREE_CHAPTERS = 3;
 
 /** 1つの買い切り単位（分野×級）。key は RevenueCat の Entitlement / Package 識別子と一致させる。 */
 export interface EntInfo {
@@ -61,18 +64,34 @@ function buildFreeQuestionIds(): Set<string> {
   }
   return s;
 }
+// 相関図・公式用語の「無料章」を field|grade|chapterId で集める（先頭 FREE_CHAPTERS 章）。
+// 相関図はカタログの章id、公式用語は formulaId を使うので、両方のキーを入れておく（分野により両者が異なり得る）。
+function buildFreeChapterKeys(): Set<string> {
+  const s = new Set<string>();
+  for (const f of CATALOG) {
+    for (const g of f.grades) {
+      g.chapters.slice(0, FREE_CHAPTERS).forEach((c) => {
+        s.add(`${f.id}|${g.id}|${c.id}`);
+        if (c.formulaId) s.add(`${f.id}|${g.id}|${c.formulaId}`);
+      });
+    }
+  }
+  return s;
+}
 
 // live binding。OTAでカタログが更新されたら initContent→rebuildProState() で作り直す
 // （新しい分野・級を棚から追加しても課金対象・無料集合が正しく追従する）。
 export let ENTITLEMENTS: EntInfo[] = buildEntitlements();
 let ENT_OF_QID: Map<string, string> = buildEntOfQid();
 export let FREE_QUESTION_IDS: Set<string> = buildFreeQuestionIds();
+let FREE_CHAPTER_KEYS: Set<string> = buildFreeChapterKeys();
 
 /** OTAの差し替え（カタログ再構築）後に Pro 関連の派生を作り直す。 */
 export function rebuildProState(): void {
   ENTITLEMENTS = buildEntitlements();
   ENT_OF_QID = buildEntOfQid();
   FREE_QUESTION_IDS = buildFreeQuestionIds();
+  FREE_CHAPTER_KEYS = buildFreeChapterKeys();
 }
 
 /** key から表示情報を引く。 */
@@ -162,4 +181,18 @@ export function isLocked(q: Question, s: ProState): boolean {
   const key = ENT_OF_QID.get(q.id);
   if (!key) return false; // どの級にも属さない(想定外)は無料扱いで安全側
   return !s.owned.includes(key);
+}
+
+/** 相関図・公式用語で、その章が無課金でも見られるか（先頭 FREE_CHAPTERS 章＝無料）。
+ *  chapterId は相関図＝カタログの章id / 公式用語＝formulaId のどちらでも判定できる。 */
+export function isFreeChapter(fieldId: string, gradeId: string, chapterId: string): boolean {
+  return FREE_CHAPTER_KEYS.has(`${fieldId}|${gradeId}|${chapterId}`);
+}
+
+/** 相関図・公式用語で、その章が今ロック中か（先頭3章＝無料／以降は級を買っていなければロック）。
+ *  全章マップ(chapterId='all')は呼び出し側で常に無料として扱う。 */
+export function isChapterLocked(s: ProState, fieldId: string, gradeId: string, chapterId: string): boolean {
+  if (s.devPro) return false;
+  if (isFreeChapter(fieldId, gradeId, chapterId)) return false;
+  return !s.owned.includes(entKey(fieldId, gradeId));
 }

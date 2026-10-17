@@ -73,6 +73,7 @@ import {
   saveDevPro,
   hasAnyPurchase,
   isLocked,
+  isChapterLocked,
   entOfQuestion,
   entKey,
   entInfoByKey,
@@ -551,6 +552,8 @@ function AppInner(props: { contentVersion: number }) {
             onOpenChapter={openChapterById}
             onOpenQuestion={openQuestionById}
             onMapViewerChange={setMapViewerOpen}
+            proState={proSt}
+            onOpenPaywall={openPaywall}
             subfield={subfield}
             subfields={hasSubfields(field, grade) ? THERMAL1_SUBFIELDS.map((s) => ({ id: s.id, label: s.label })) : null}
             subLabel={hasSubfields(field, grade) ? subfieldLabel(subfield) : null}
@@ -601,6 +604,10 @@ function AppInner(props: { contentVersion: number }) {
             view={formulaView}
             course={formulaCourse}
             rows={courseFormulaRows}
+            proState={proSt}
+            field={field}
+            grade={grade}
+            onOpenPaywall={openPaywall}
             kind={formulaKind}
             fav={formulaFav}
             onSetKind={(k) => { setFormulaKind(k); setFormulaFav(false); }}
@@ -1003,6 +1010,8 @@ function HomeTab(props: {
   onOpenChapter: (gradeId: GradeId, chapterId: string, fieldId: FieldId) => void;
   onOpenQuestion: (gradeId: GradeId, chapterId: string, questionId: string, fieldId: FieldId) => void;
   onMapViewerChange?: (open: boolean) => void; // 相関図ビューア(モーダル)の開閉を親へ通知→表示中はタブ横スワイプを無効化
+  proState: ProState; // 相関図の章ロック判定（無課金は全章マップ＋先頭3章のみ）
+  onOpenPaywall: (target: PayTarget | null) => void;
   subfield: ThermalSub;
   subfields: { id: ThermalSub; label: string }[] | null;
   subLabel: string | null;
@@ -1178,12 +1187,23 @@ function HomeTab(props: {
             <Text style={home.mapChev}>›</Text>
           </Pressable>
           <Text style={home.mapListH}>各章の相関図</Text>
-          {stats.map((c) => (
-            <Pressable key={c.id} style={home.mapRow} onPress={() => openMap(c.id, c.title)}>
-              <Text style={home.mapRowT} numberOfLines={1}>{c.title}</Text>
-              <Text style={home.mapChev}>›</Text>
-            </Pressable>
-          ))}
+          {stats.map((c) => {
+            const locked = isChapterLocked(props.proState, field, grade, c.id);
+            return (
+              <Pressable
+                key={c.id}
+                style={home.mapRow}
+                onPress={() =>
+                  locked
+                    ? props.onOpenPaywall({ key: entKey(field, grade), title: entInfoByKey(entKey(field, grade))?.title ?? '' })
+                    : openMap(c.id, c.title)
+                }
+              >
+                <Text style={[home.mapRowT, locked && { opacity: 0.5 }]} numberOfLines={1}>{c.title}</Text>
+                <Text style={home.mapChev}>{locked ? '🔒' : '›'}</Text>
+              </Pressable>
+            );
+          })}
         </View>
 
         {/* 用語解説 / 公式解説（タップで公式・用語タブのリストへ） */}
@@ -1974,7 +1994,7 @@ function ProblemScreen(props: {
           <Text style={styles.lockEmoji}>🔒</Text>
           <Text style={[styles.lockTitle, { color: t.text }]}>この問題の正解・解説・図は買い切りで解除</Text>
           <Text style={[styles.lockSub, { color: t.sub }]}>
-            各章の最初の{FREE_PER_CHAPTER}問は無料です。{FREE_PER_CHAPTER + 1}問目以降の答え合わせ・解説・図は、この級の買い切りで見られます（公式・用語は無料）。
+            各章の最初の{FREE_PER_CHAPTER}問は無料です。{FREE_PER_CHAPTER + 1}問目以降の答え合わせ・解説・図は、この級の買い切りで見られます（相関図・用語・公式は先頭3章まで無料）。
           </Text>
           <View style={[styles.lockBtn, { backgroundColor: t.primary }]}>
             <Text style={styles.lockBtnTxt}>この級を解除する</Text>
@@ -2052,6 +2072,10 @@ function FormulaTab(props: {
   view: FormulaView;
   course: Course | null;
   rows: FormulaRow[]; // 現コースの全用語・公式（章順）
+  proState: ProState; // 章ロック判定（無課金は先頭3章のみ）
+  field: FieldId;
+  grade: GradeId;
+  onOpenPaywall: (target: PayTarget | null) => void;
   kind: 'term' | 'formula';
   fav: boolean;
   onSetKind: (k: 'term' | 'formula') => void;
@@ -2068,6 +2092,20 @@ function FormulaTab(props: {
   onBackToStudy?: () => void;
 }) {
   const { t } = props;
+  // 無課金ロック：相関図と同じく、用語・公式も先頭3章は無料、4章目以降は級の買い切りで解除。
+  const chapterLocked = (cid: string) => isChapterLocked(props.proState, props.field, props.grade, cid);
+  const lockTarget = { key: entKey(props.field, props.grade), title: entInfoByKey(entKey(props.field, props.grade))?.title ?? '' };
+  const renderLockPanel = (title: string, onBack: () => void) => (
+    <ScrollView contentContainerStyle={styles.content}>
+      <BackLink t={t} label="章一覧へ戻る" onPress={onBack} />
+      <Text style={[styles.formulaChapterHead, { color: t.sub, borderColor: t.border }]}>{title}</Text>
+      <View style={[styles.row, { backgroundColor: t.card, borderColor: t.border, flexDirection: 'column', alignItems: 'flex-start', gap: 10 }]}>
+        <Text style={[styles.rowLabel, { color: t.text }]}>🔒 この章はロック中です</Text>
+        <Text style={[styles.rowSub, { color: t.sub }]}>用語・公式は最初の3章まで無料です。4章目以降は、この級の買い切りで見られます。</Text>
+        <Button t={t} kind="primary" label="この級を解除する" onPress={() => props.onOpenPaywall(lockTarget)} />
+      </View>
+    </ScrollView>
+  );
 
   // いま表示する行：お気に入りモード=ブックマーク済（用語＋公式）、通常=選択中の種類。
   const visible = props.fav
@@ -2096,6 +2134,11 @@ function FormulaTab(props: {
 
   // 個別解説画面（リストのタップ、または問題からのリンクで飛んでくる）
   if (props.view === 'item' && props.chapterId && props.itemId) {
+    // 4章目以降の個別解説は無課金ではロック（問題→公式リンクや隣章スワイプで入ってきた場合も止める）。
+    if (chapterLocked(props.chapterId)) {
+      const backToList = props.fromStudy && props.onBackToStudy ? props.onBackToStudy : props.onBack;
+      return renderLockPanel(formulaDoc(props.chapterId)?.title ?? '', backToList);
+    }
     return (
       <FormulaItemScreen
         t={t}
@@ -2171,7 +2214,14 @@ function FormulaTab(props: {
             blocks.map((b) => (
               <View key={b.chapterId}>
                 <Text style={[styles.formulaChapterHead, { color: t.sub, borderColor: t.border }]}>{b.chapterTitle}</Text>
-                {b.rows.map(renderCard)}
+                {chapterLocked(b.chapterId) ? (
+                  <Pressable onPress={() => props.onOpenPaywall(lockTarget)} style={[styles.row, { backgroundColor: t.card, borderColor: t.border }]}>
+                    <Text style={[styles.rowLabel, { color: t.text, opacity: 0.6 }]}>🔒 この章はロック中</Text>
+                    <Text style={[styles.rowSub, { color: t.sub }]}>買い切りで解除</Text>
+                  </Pressable>
+                ) : (
+                  b.rows.map(renderCard)
+                )}
               </View>
             ))
           )}
@@ -2185,18 +2235,24 @@ function FormulaTab(props: {
           {blocks.length === 0 ? (
             <Text style={[styles.bodyText, { color: t.sub }]}>この種類の項目はまだありません。</Text>
           ) : (
-            blocks.map((b) => (
-              <Pressable
-                key={b.chapterId}
-                onPress={() => props.onSelectListChapter(b.chapterId)}
-                style={[styles.row, { backgroundColor: t.card, borderColor: t.border }]}
-              >
-                <Text style={[styles.rowLabel, { color: t.text }]}>{b.chapterTitle}</Text>
-                <Text style={[styles.rowSub, { color: t.sub }]}>{b.rows.length} 項目</Text>
-              </Pressable>
-            ))
+            blocks.map((b) => {
+              const lk = chapterLocked(b.chapterId);
+              return (
+                <Pressable
+                  key={b.chapterId}
+                  onPress={() => (lk ? props.onOpenPaywall(lockTarget) : props.onSelectListChapter(b.chapterId))}
+                  style={[styles.row, { backgroundColor: t.card, borderColor: t.border }]}
+                >
+                  <Text style={[styles.rowLabel, { color: t.text, opacity: lk ? 0.5 : 1 }]}>{b.chapterTitle}</Text>
+                  <Text style={[styles.rowSub, { color: t.sub }]}>{lk ? '🔒 買い切りで解除' : `${b.rows.length} 項目`}</Text>
+                </Pressable>
+              );
+            })
           )}
         </>
+      ) : chapterLocked(openBlock.chapterId) ? (
+        /* 4章目以降は無課金ロック（隣章スワイプで入ってきた場合もここで止まる） */
+        renderLockPanel(openBlock.chapterTitle, () => props.onSelectListChapter(null))
       ) : (
         /* 選択中の章：解説を畳まず縦に並べて常時表示（左右スワイプで隣の章へ移動） */
         <View {...listPan}>
