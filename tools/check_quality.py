@@ -68,7 +68,8 @@ def editorial_errors(data):
     Do not regenerate the baseline after an edit: review the changed question instead.
     """
     meta = data.get("meta", {})
-    target = ((meta.get("grade") == "振動 2級" and meta.get("chapter") in tuple(range(1, 14)))
+    target = ((meta.get("grade") == "振動 1級" and meta.get("chapter") in tuple(range(1,10)))
+              or (meta.get("grade") == "振動 2級" and meta.get("chapter") in tuple(range(1, 14)))
               or meta.get("grade") == "固体力学 2級"
               or (meta.get("grade") == "固体力学 1級" and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11))
               or (meta.get("grade") == "熱流体力学 2級" and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)))
@@ -124,7 +125,7 @@ def presentation_errors(data):
     vibration = "振動" in meta.get("grade", "")
     directory = root / "図" / (("振動" if vibration else "熱流体" if thermal else "固体") + grade) / ("第%02d章" % meta["chapter"])
     records = list(data.get("questions", []))
-    term_path = root / "content" / "formulas" / (("vib2-" if vibration else "thermal2-" if thermal else "solid1-" if grade == "1級" else "") + "ch%d.json" % meta["chapter"])
+    term_path = root / "content" / "formulas" / (("vib" + grade[0] + "-" if vibration else "thermal2-" if thermal else "solid1-" if grade == "1級" else "") + "ch%d.json" % meta["chapter"])
     if term_path.exists():
         records += json.loads(term_path.read_bytes()).get("items", [])
     keys = set()

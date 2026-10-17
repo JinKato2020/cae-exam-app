@@ -14,6 +14,7 @@ class SVG:
             raise ValueError("図中へ数式コードを直接描かず、上付き・下付き・分数を組版してください")
         supers = dict(zip('⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺ᵀ', '0123456789−+T'))
         subs = dict(zip('₀₁₂₃₄₅₆₇₈₉', '0123456789'))
+        subs.update({'ₙ':'n', 'ₐ':'a', 'ᵣ':'r', 'ᵢ':'i', 'ⱼ':'j', 'ₛ':'s', 'ₚ':'p', 'ₓ':'x', 'ᵧ':'y', 'ₗ':'l', 'ₜ':'t'})
         runs=[]
         for c in label:
             if c in supers:runs.append((supers[c],size*.68,y-size*.43))
