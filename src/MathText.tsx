@@ -163,6 +163,9 @@ export function MathText(props: {
     const sig = props.onScrollActiveChange;
     return (
       <View
+        // 指を置いた瞬間（移動が起きる前）に同期で親スワイプを止める。キャプチャ段階で必ず呼ばれるので
+        // 最初の横移動判定に確実に間に合う。responder は取らない（WebView 自身の横スクロールに渡す）。
+        onStartShouldSetResponderCapture={() => { sig(true); return false; }}
         onTouchStart={() => sig(true)}
         onTouchEnd={() => sig(false)}
         onTouchCancel={() => sig(false)}
