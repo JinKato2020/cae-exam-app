@@ -130,7 +130,7 @@ const EXAM_RULE_SOURCE = {
   label: '出典：日本機械学会 2025年度 計算力学技術者（CAE技術者）1・2級 認定試験のご案内',
   url: 'https://www.jsme.or.jp/cee/uploads/sites/3/2025/06/25cmnintei12.pdf',
 };
-// その分野×級が使えるか（カタログに章が1つでもあるか）。振動のように未整備なら false＝選べるが準備中表示。
+// その分野×級が使えるか（カタログに章が1つでもあるか）。未整備なら false＝選べるが準備中表示。
 function disciplineReady(fieldId: FieldId, gradeId: GradeId): boolean {
   const f = CATALOG.find((x) => x.id === fieldId);
   const g = f?.grades.find((gg) => gg.id === gradeId);
@@ -192,7 +192,7 @@ function payTargetOf(q: Question): PayTarget | null {
 
 // 分野順は固体→熱流体→振動。各分野は1級を上に。
 // 熱流体は2級を全章リリース済み。1級は中身をこれから作るので枠だけ用意（章0＝開くと「全 0 章」、
-// カタログに章を足せば自動で並ぶ）。振動はまだ無いので ready:false＝「準備中」表示。
+// カタログに章を足せば自動で並ぶ）。振動も公開済み（固体・熱流体と同じく級分割）。
 // コースの静的メタ（名前・準備中フラグ）。章はカタログから毎回引く＝OTAの差し替えを受けられる
 // （固定配列にすると起動時のカタログで凍結され、OTA更新が反映されないため）。
 const COURSE_META: Record<string, { name: string; ready: boolean }> = {
@@ -200,12 +200,13 @@ const COURSE_META: Record<string, { name: string; ready: boolean }> = {
   'solid-2': { name: '固体力学 2級', ready: true },
   'thermal-1': { name: '熱流体力学 1級', ready: true },
   'thermal-2': { name: '熱流体力学 2級', ready: true },
-  vibration: { name: '振動', ready: false },
+  'vibration-1': { name: '振動 1級', ready: true },
+  'vibration-2': { name: '振動 2級', ready: true },
 };
 
 // 分野×級 → コース（問題/公式タブが表示する対象）。ホームの選択に問題/公式タブを追従させる要。
 function courseOf(fieldId: FieldId, gradeId: GradeId): Course | null {
-  const id = fieldId === 'vibration' ? 'vibration' : `${fieldId}-${gradeId === 'g1' ? '1' : '2'}`;
+  const id = `${fieldId}-${gradeId === 'g1' ? '1' : '2'}`;
   const meta = COURSE_META[id];
   if (!meta) return null;
   return { id, name: meta.name, chapters: fieldGradeChapters(fieldId, gradeId), ready: meta.ready };
@@ -249,6 +250,7 @@ function AppInner(props: { contentVersion: number }) {
 
   const [tab, setTab] = useState<Tab>('home');
   const [mapViewerOpen, setMapViewerOpen] = useState(false); // 相関図ビューア(全画面モーダル)表示中はタブ横スワイプを無効化
+  const [formulaScrollLock, setFormulaScrollLock] = useState(false); // 公式欄の横スクロール中はタブ横スワイプを無効化
   const [progress, setProgress] = useState<ProgressMap>({});
   // ブックマーク（栞）。後で見返したい問題にユーザーが付ける。ホームの「ブックマークを復習」で使う。
   const [bookmarks, setBookmarks] = useState<BookmarkMap>({});
@@ -521,7 +523,7 @@ function AppInner(props: { contentVersion: number }) {
   const tabPan = useSwipeNav(
     () => swipeTab(1),
     () => swipeTab(-1),
-    !(tab === 'study' && studyView === 'problem') && !(tab === 'formula' && formulaView === 'item') && !formulaChapterListOpen && !mapViewerOpen
+    !(tab === 'study' && studyView === 'problem') && !(tab === 'formula' && formulaView === 'item') && !formulaChapterListOpen && !mapViewerOpen && !formulaScrollLock
   );
 
   return (
@@ -612,6 +614,7 @@ function AppInner(props: { contentVersion: number }) {
             fav={formulaFav}
             onSetKind={(k) => { setFormulaKind(k); setFormulaFav(false); }}
             onSetFav={setFormulaFav}
+            onFormulaScrollActive={setFormulaScrollLock}
             chapterId={formulaChapterId}
             itemId={formulaItemId}
             listChapterId={formulaListChapterId}
@@ -2090,6 +2093,8 @@ function FormulaTab(props: {
   onBack: () => void;
   fromStudy?: boolean;
   onBackToStudy?: () => void;
+  // 公式カードの横スクロール領域に触れている間だけ、親のタブ横スワイプを止めるための通知。
+  onFormulaScrollActive?: (active: boolean) => void;
 }) {
   const { t } = props;
   // 無課金ロック：相関図と同じく、用語・公式も先頭3章は無料、4章目以降は級の買い切りで解除。
@@ -2173,6 +2178,7 @@ function FormulaTab(props: {
         key={r.favId}
         t={t}
         item={r.item}
+        onScrollActive={props.onFormulaScrollActive}
         right={
           <Pressable
             onPress={() => props.onToggleBookmark(r.favId)}
@@ -2298,7 +2304,9 @@ function FormulaItemScreen(props: {
   const next = idx >= 0 && idx < seq.length - 1 ? seq[idx + 1] : null;
   const goPrev = () => { if (prev) props.onOpenItem(prev.chapterId, prev.item.id); };
   const goNext = () => { if (next) props.onOpenItem(next.chapterId, next.item.id); };
-  const pan = useSwipeNav(goNext, goPrev); // 左スワイプ=次 / 右スワイプ=前
+  // 公式欄の横スクロール中は前後移動スワイプを止める（横スクロールが前後切替に化けるのを防ぐ）。
+  const [mathScrollLock, setMathScrollLock] = useState(false);
+  const pan = useSwipeNav(goNext, goPrev, !mathScrollLock); // 左スワイプ=次 / 右スワイプ=前
 
   return (
     <View style={{ flex: 1 }} {...pan}>
@@ -2319,7 +2327,7 @@ function FormulaItemScreen(props: {
                 {marked ? '⭐ お気に入り登録済み（タップで解除）' : '⭐ お気に入り（苦手）に登録'}
               </Text>
             </Pressable>
-            <FormulaCard t={t} item={item} />
+            <FormulaCard t={t} item={item} onScrollActive={setMathScrollLock} />
             {/* 隣の項目へ（スワイプでも移動可） */}
             <View style={styles.qNav}>
               <Pressable
@@ -2349,7 +2357,7 @@ function FormulaItemScreen(props: {
   );
 }
 
-function FormulaCard(props: { t: Theme; item: FormulaItem; right?: ReactNode }) {
+function FormulaCard(props: { t: Theme; item: FormulaItem; right?: ReactNode; onScrollActive?: (active: boolean) => void }) {
   const { t, item } = props;
   const badge = item.kind === 'formula' ? '公式' : '用語';
   const badgeColor = item.kind === 'formula' ? t.primary : t.reviewBtn;
@@ -2365,7 +2373,7 @@ function FormulaCard(props: { t: Theme; item: FormulaItem; right?: ReactNode }) 
       {item.formula ? (
         <View style={[styles.formulaBox, { backgroundColor: t.bg, borderColor: t.border }]}>
           {/* 公式は縮小せず文字サイズを揃える。長い式ではみ出す分は横スクロール（右端フェードで誘導） */}
-          <RichText text={displayMath(item.formula)} color={t.text} fontSize={22} bold scroll bg={t.bg} />
+          <RichText text={displayMath(item.formula)} color={t.text} fontSize={22} bold scroll bg={t.bg} onScrollActiveChange={props.onScrollActive} />
         </View>
       ) : null}
       <RichText text={item.body} color={t.text} fontSize={14} />

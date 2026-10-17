@@ -131,11 +131,13 @@ export function MathText(props: {
   bold?: boolean;
   scroll?: boolean; // true=横スクロール可（縮小しない）。公式カードで使用
   bg?: string; // 右端フェードの色＝ボックス背景色
+  // scroll時、この領域に指が触れている間だけ親の横スワイプ（タブ切替・前後移動）を止めるための通知。
+  onScrollActiveChange?: (active: boolean) => void;
 }) {
   const fontSize = props.fontSize ?? 16;
   const scroll = props.scroll ?? false;
   const [height, setHeight] = useState(Math.round(fontSize * 1.75));
-  return (
+  const webview = (
     <WebView
       originWhitelist={['*']}
       source={{ html: buildHtml(props.text, props.color, fontSize, props.bold ?? false, scroll, props.bg ?? '#ffffff') }}
@@ -155,6 +157,21 @@ export function MathText(props: {
       pointerEvents={scroll ? 'auto' : 'none'}
     />
   );
+  // scroll時は、この領域に指が触れている間だけ親の横スワイプを無効化する（公式欄を横スクロール
+  // したつもりがタブ切替・前後移動に化けるのを防ぐ）。触れ始めにON→離すと復帰。
+  if (scroll && props.onScrollActiveChange) {
+    const sig = props.onScrollActiveChange;
+    return (
+      <View
+        onTouchStart={() => sig(true)}
+        onTouchEnd={() => sig(false)}
+        onTouchCancel={() => sig(false)}
+      >
+        {webview}
+      </View>
+    );
+  }
+  return webview;
 }
 
 // $ を含まなければ軽い <Text>、含めば MathText を使う共通コンポーネント。
@@ -166,6 +183,7 @@ export function RichText(props: {
   style?: StyleProp<TextStyle>;
   scroll?: boolean;
   bg?: string;
+  onScrollActiveChange?: (active: boolean) => void;
 }) {
   const hasMath = props.text.includes('$');
   if (!hasMath) {
@@ -190,6 +208,7 @@ export function RichText(props: {
         bold={props.bold}
         scroll={props.scroll}
         bg={props.bg}
+        onScrollActiveChange={props.onScrollActiveChange}
       />
     </View>
   );
