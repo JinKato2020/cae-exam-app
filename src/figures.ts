@@ -209,6 +209,11 @@ s1e2CreepHardeningSetup: require('../assets/figures/s1e2CreepHardeningSetup.png'
 
   v1e1WeightedResidual: require('../assets/figures/v1e1WeightedResidual.png'),
 
+  v2e8TireUnbalanceCurvePre: require('../assets/figures/v2e8TireUnbalanceCurvePre.png'),
+  v2e8PSDderivativesPre: require('../assets/figures/v2e8PSDderivativesPre.png'),
+  v2e3CantileverBMDPre: require('../assets/figures/v2e3CantileverBMDPre.png'),
+  v2e3MildSteelSSCurvePre: require('../assets/figures/v2e3MildSteelSSCurvePre.png'),
+  v2e11FRFPhasePre: require('../assets/figures/v2e11FRFPhasePre.png'),
   v2e1ComplexPlane: require('../assets/figures/v2e1ComplexPlane.png'),
 
   v2e1CoordRotation: require('../assets/figures/v2e1CoordRotation.png'),
