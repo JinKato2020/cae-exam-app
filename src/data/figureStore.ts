@@ -2,6 +2,7 @@
 // ※ src/figures.ts は tools/gen_figures_ts.py の自動生成物なので触らない。解決はこの別モジュールで行う。
 import type { ImageSourcePropType } from 'react-native';
 import { FIGURES } from '../figures';
+import { MAP_FIGURES } from '../mapFigures';
 
 let uris: Record<string, string> = {};
 
@@ -14,12 +15,13 @@ export function setFigureUris(m: Record<string, string> | null | undefined): voi
 export function figureSource(key: string | undefined | null): ImageSourcePropType | undefined {
   if (!key) return undefined;
   if (Object.prototype.hasOwnProperty.call(uris, key)) return { uri: uris[key] };
-  return FIGURES[key];
+  return FIGURES[key] ?? MAP_FIGURES[key];
 }
 
 /** その図が表示可能か（OTA版か同梱のどちらかにあるか）。 */
 export function hasFigure(key: string | undefined | null): boolean {
   if (!key) return false;
   return Object.prototype.hasOwnProperty.call(uris, key)
-    || Object.prototype.hasOwnProperty.call(FIGURES, key);
+    || Object.prototype.hasOwnProperty.call(FIGURES, key)
+    || Object.prototype.hasOwnProperty.call(MAP_FIGURES, key);
 }
