@@ -19,7 +19,8 @@ function buildHtml(
   fontSize: number,
   bold: boolean,
   scroll: boolean,
-  bg: string
+  bg: string,
+  bodyBg: string
 ) {
   const payload = JSON.stringify(text); // 本文はJSで textContent に入れる（HTML注入を避け、\ や $ をそのまま保持）
   const displayCss = scroll
@@ -36,7 +37,7 @@ function buildHtml(
 <script src="${CDN}/katex.min.js"></script>
 <script src="${CDN}/contrib/auto-render.min.js"></script>
 <style>
-  html,body{margin:0;padding:0;background:transparent;}
+  html,body{margin:0;padding:0;background:${bodyBg};}
   /* 子要素(表示数式など)の上下marginが body に相殺で抜けて高さが縮む→縦に切れる、を防ぐ */
   body{display:flow-root;}
   #c{visibility:hidden;color:${color};font-size:${fontSize}px;line-height:1.75;font-weight:${bold ? '600' : '400'};
@@ -137,11 +138,15 @@ export function MathText(props: {
   const fontSize = props.fontSize ?? 16;
   const scroll = props.scroll ?? false;
   const [height, setHeight] = useState(Math.round(fontSize * 1.75));
+  // Android は WebView の「透過」が端末により黒く潰れ、数式が真っ黒で読めなくなることがある。
+  // 透過に頼らず、置かれる場所と同じ色でベタ塗りする（bg＝カード等の背景色）。
+  // iOS は従来どおり透過のまま（挙動を変えない）＝背景は transparent。
+  const bodyBg = Platform.OS === 'android' ? (props.bg ?? '#ffffff') : 'transparent';
   const webview = (
     <WebView
       originWhitelist={['*']}
-      source={{ html: buildHtml(props.text, props.color, fontSize, props.bold ?? false, scroll, props.bg ?? '#ffffff') }}
-      style={{ height, backgroundColor: 'transparent', width: '100%' }}
+      source={{ html: buildHtml(props.text, props.color, fontSize, props.bold ?? false, scroll, props.bg ?? '#ffffff', bodyBg) }}
+      style={{ height, backgroundColor: bodyBg, width: '100%' }}
       // scroll のときは横スクロールを受け付ける。縦は中身ぴったりの高さなので動かない。
       scrollEnabled={scroll}
       showsVerticalScrollIndicator={false}
@@ -150,9 +155,8 @@ export function MathText(props: {
         const h = Number(e.nativeEvent.data);
         if (h && Math.abs(h - height) > 1) setHeight(h);
       }}
-      // Android で背景を透過させるための指定
-      androidLayerType="software"
-      opaque={Platform.OS !== 'android'}
+      // 透過に頼らずベタ塗り（Android の黒潰れ対策）。iOS も不透明（従来と同じ）。
+      opaque
       // 通常はタップを親（選択肢の Pressable など）に通す。scroll のときは自分でスクロールを受ける。
       pointerEvents={scroll ? 'auto' : 'none'}
     />

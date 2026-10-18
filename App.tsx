@@ -32,6 +32,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Question, Chapter } from './src/types';
 import { FIGURE_ASPECT } from './src/figures';
 import { figureSource, hasFigure } from './src/data/figureStore';
+import { getMapDataUri } from './src/mapData';
 import { RichText } from './src/MathText';
 import { ProblemCalculator } from './src/Calculator';
 import { CATALOG, questionsByIds, QUESTION_FORMULA_ID, examRule, type ChapterEntry } from './src/catalog';
@@ -1121,9 +1122,17 @@ function HomeTab(props: {
     (async () => {
       try {
         const src = figureSource(key) as any;
-        let uri: string | null = null;
-        if (src && typeof src === 'object' && src.uri) uri = src.uri as string; // OTA版 file://
-        else if (src != null) uri = Image.resolveAssetSource(src)?.uri ?? null; // 同梱(require)版
+        // OTA版(file://)があれば最新を読む。無ければ同梱はビルド時に焼いた base64 を使う
+        // （リリースAndroidで同梱PNGのURIがfetch不可→ぼやけフォールバック、になるのを根本回避）。
+        if (src && typeof src === 'object' && src.uri) {
+          const b = await FileSystem.readAsStringAsync(src.uri as string, { encoding: FileSystem.EncodingType.Base64 });
+          if (alive) setMapDataUri('data:image/png;base64,' + b);
+          return;
+        }
+        const baked = getMapDataUri(key);
+        if (baked) { if (alive) setMapDataUri(baked); return; }
+        // 最後の保険：従来の実行時読み出し（焼き込みに無いキー用）。
+        const uri: string | null = src != null ? (Image.resolveAssetSource(src)?.uri ?? null) : null;
         if (!uri) throw new Error('no uri');
         let b64: string;
         if (uri.startsWith('file://') || uri.startsWith('/') || uri.startsWith('content://')) {
@@ -1430,7 +1439,6 @@ function HomeTab(props: {
                 <WebView
                   style={{ flex: 1, backgroundColor: '#fff' }}
                   originWhitelist={['*']}
-                  scalesPageToFit
                   showsVerticalScrollIndicator
                   overScrollMode="never"
                   source={{ html: `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=8, user-scalable=yes"><style>html,body{margin:0;padding:0;background:#fff;}img{display:block;width:100%;height:auto;}</style></head><body><img src="${mapDataUri}"></body></html>` }}
@@ -2029,7 +2037,7 @@ function ProblemScreen(props: {
 
       {/* 問題文（主役・余白広め） */}
       <View style={styles.qQuestion}>
-        <RichText text={q.question} color={t.text} fontSize={18} bold />
+        <RichText text={q.question} color={t.text} fontSize={18} bold bg={t.bg} />
       </View>
 
       {/* 図：回答前と回答後で出し分ける（前後2図に対応）。
@@ -2069,7 +2077,7 @@ function ProblemScreen(props: {
                 <Text style={[styles.qOptIdxTxt, { color: isAns ? '#ffffff' : t.sub }]}>{num}</Text>
               </View>
               <View style={styles.qOptTxt}>
-                <RichText text={choice} color={c.text} fontSize={15} />
+                <RichText text={choice} color={c.text} fontSize={15} bg={c.bg} />
               </View>
               {isAns ? <Text style={[styles.qOptTick, { color: t.correct }]}>✓</Text> : null}
             </Pressable>
@@ -2095,7 +2103,7 @@ function ProblemScreen(props: {
                     <Text style={[styles.qSecLabelTxt, { color: accent }]}>{sec.label}</Text>
                   </View>
                 ) : null}
-                <RichText text={sec.body} color={t.text} fontSize={14} />
+                <RichText text={sec.body} color={t.text} fontSize={14} bg={t.card} />
               </View>
             );
           })}
@@ -2490,11 +2498,11 @@ function FormulaCard(props: { t: Theme; item: FormulaItem; right?: ReactNode; on
           <RichText text={displayMath(item.formula)} color={t.text} fontSize={22} bold scroll bg={t.bg} onScrollActiveChange={props.onScrollActive} />
         </View>
       ) : null}
-      <RichText text={item.body} color={t.text} fontSize={14} />
+      <RichText text={item.body} color={t.text} fontSize={14} bg={t.card} />
       {item.example ? (
         <View style={[styles.exampleBox, { borderColor: t.border }]}>
           <Text style={[styles.exampleLabel, { color: t.primary }]}>数値例</Text>
-          <RichText text={item.example} color={t.text} fontSize={14} />
+          <RichText text={item.example} color={t.text} fontSize={14} bg={t.card} />
         </View>
       ) : null}
       {item.figureImage && hasFigure(item.figureImage) ? <AutoFigure t={t} source={figureSource(item.figureImage)} /> : null}

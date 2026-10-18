@@ -6,7 +6,8 @@
     "source": "標準問題集(振動工学および音響工学の基礎)",
     "origin": "original",
     "count": 44,
-    "officialCount": 44
+    "officialCount": 44,
+    "presentationStyle": "cae-standard-v1"
   },
   "questions": [
     {
@@ -24,15 +25,29 @@
         "$k=\\dfrac{lE}{A}$"
       ],
       "answer": 1,
-      "explanation": "【基礎】フックの法則は応力 $\\sigma=E\\varepsilon$、応力 $\\sigma=F/A$、ひずみ $\\varepsilon=x/l$。\n【考え方】$F/A=E(x/l)$ を整理すると $F=(AE/l)x$。ばね定数は $F$ と $x$ の比なので $k=AE/l$。\n【ポイント】断面積と剛性(E)に比例し、長さに反比例する。長いほど軟らかい(たわみやすい)のが直感と合う。\n【引っかけ】$l/(AE)$ はコンプライアンス(たわみやすさ=1/k)で、ばね定数の逆数。次元だけ合わせて逆数を選ばないこと。",
+      "explanation": "【基礎】フックの法則から、応力 $\\sigma=E\\varepsilon$、応力 $\\sigma=F/A$、ひずみ $\\varepsilon=x/l$ が成り立ちます。\n【考え方】これらを組み合わせると $F/A=E(x/l)$、整理して $F=(AE/l)x$ となり、ばね定数は $k=AE/l$、正解は選択肢1です。\n【ポイント】断面積 $A$ とヤング率 $E$ に比例し、長さ $l$ に反比例します。長い棒ほど軟らかい(伸びやすい)という直感と合います。\n【引っかけ】選択肢2の $l/(AE)$ は $k$ の逆数(伸びやすさ)で、選択肢3・4も $A,E,l$ の位置を取り違えた式です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-1",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e41",
-      "figureHint": "壁固定の丸棒を軸方向に力Fで引張る配置図。長さl・断面積A・E・伸びxを表示"
+      "figureHint": "壁固定の丸棒を軸方向に力Fで引張る配置図。長さl・断面積A・E・伸びxを表示",
+      "relatedFormulas": [
+        "v2f4-1"
+      ],
+      "editorialReview": {
+        "officialPoint": "フックの法則から一様棒の軸方向等価ばね定数 k=AE/l を導く。",
+        "alignment": "公式問4-1と同じく σ=Eε・σ=F/A・ε=x/l から F=(AE/l)x を導き k=AE/l を選ばせる。",
+        "distractorMisconceptions": {
+          "2": "k の逆数 l/(AE)(伸びやすさ)を k と取り違えた。",
+          "3": "A・E・l の位置を取り違えた式。",
+          "4": "同じく記号の配置を誤った式。"
+        },
+        "sha256": "f9d068550987f8c78c8fcca1e7dc69e35f7864f3c7d94afc5883775f2eabaae6"
+      },
+      "preFigureImage": "v2e41"
     },
     {
       "id": "vib2-4-2",
@@ -49,15 +64,30 @@
         "約 $1.0\\times10^{7}\\,\\mathrm{N/m}$"
       ],
       "answer": 3,
-      "explanation": "【基礎】各棒 $k=AE/l$。直列合成は $k=\\dfrac{k_1k_2}{k_1+k_2}$(=1/(1/k1+1/k2))。\n【計算】$k_1=100\\times10^{-6}\\times200\\times10^{9}/1.0=2.0\\times10^{7}$ N/m、$k_2=300\\times10^{-6}\\times100\\times10^{9}/0.6=5.0\\times10^{7}$ N/m。\n直列 $k=\\dfrac{2.0\\times10^{7}\\times5.0\\times10^{7}}{2.0\\times10^{7}+5.0\\times10^{7}}=\\dfrac{1.0\\times10^{15}}{7.0\\times10^{7}}\\approx1.43\\times10^{7}$ N/m。\n【ポイント】直列は必ず最も軟らかいばねより小さくなる(=最小の $k$ を下回る)。\n【引っかけ】$7.0\\times10^{7}$ は並列と取り違えて和をとった値。$3.5\\times10^{7}$ は単純平均で、直列でも並列でもない誤り。",
+      "explanation": "【基礎】各棒のばね定数は $k=AE/l$、2本を直列にした合成は $k=\\dfrac{k_1k_2}{k_1+k_2}$ です。\n【考え方】$k_1=100\\times10^{-6}\\times200\\times10^{9}/1.0=2.0\\times10^{7}$ N/m、$k_2=300\\times10^{-6}\\times100\\times10^{9}/0.6=5.0\\times10^{7}$ N/m、直列合成は $\\dfrac{2.0\\times10^{7}\\times5.0\\times10^{7}}{7.0\\times10^{7}}\\approx1.4\\times10^{7}$ N/m で、正解は選択肢3です。\n【ポイント】直列合成は必ず最も軟らかいばねより小さくなります。\n【引っかけ】選択肢1の $7.0\\times10^{7}$ は並列のように和をとった誤り、選択肢2の $3.5\\times10^{7}$ は単純平均、選択肢4は合成式を取り違えた過小値です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-2",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e42",
-      "figureHint": "棒A・棒Bを直列につないだ配置図。同じ力Fが両棒を貫く様子とA,E,lラベル"
+      "figureHint": "棒A・棒Bを直列につないだ配置図。同じ力Fが両棒を貫く様子とA,E,lラベル",
+      "relatedFormulas": [
+        "v2f4-1",
+        "v2f4-2"
+      ],
+      "editorialReview": {
+        "officialPoint": "各棒 k=AE/l を求め、直列合成 k=k1k2/(k1+k2) を適用する。",
+        "alignment": "公式問4-2と同じ直列合成。k1=2.0e7・k2=5.0e7 から約1.4e7 N/m を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "並列のように和をとった(7.0e7)誤り。",
+          "2": "単純平均(3.5e7)とした誤り。",
+          "4": "合成式を取り違えた過小値。"
+        },
+        "sha256": "0d1b1e0733588e956ec796147b32bcef7ea2a9376e185676a0cf6bff3695247e"
+      },
+      "preFigureImage": "v2e42"
     },
     {
       "id": "vib2-4-3",
@@ -74,15 +104,30 @@
         "約 $6.8\\times10^{7}\\,\\mathrm{N/m}$"
       ],
       "answer": 2,
-      "explanation": "【基礎】並列合成は $k=k_1+k_2$。\n【計算】$k_1=200\\times10^{-6}\\times200\\times10^{9}/0.5=8.0\\times10^{7}$ N/m、$k_2=400\\times10^{-6}\\times70\\times10^{9}/0.5=5.6\\times10^{7}$ N/m。\n$k=8.0\\times10^{7}+5.6\\times10^{7}=1.36\\times10^{8}$ N/m。\n【ポイント】並列は各ばねが同じ変位を分担するので剛性は必ず最大のばねより大きくなる。\n【引っかけ】$3.3\\times10^{7}$ は直列公式で計算した誤り。$8.0\\times10^{7}$ は硬い方の棒だけを採った値。",
+      "explanation": "【基礎】2本を並列にした合成は $k=k_1+k_2$ です。\n【考え方】$k_1=200\\times10^{-6}\\times200\\times10^{9}/0.5=8.0\\times10^{7}$ N/m、$k_2=400\\times10^{-6}\\times70\\times10^{9}/0.5=5.6\\times10^{7}$ N/m、和は $1.36\\times10^{8}\\approx1.4\\times10^{8}$ N/m で、正解は選択肢2です。\n【ポイント】並列は各ばねが同じ変位で力を分担するので、合成は必ず最も硬いばねより大きくなります。\n【引っかけ】選択肢1は直列公式で計算した誤り、選択肢3は硬い方の棒だけを採った値、④は2本のばね定数の単純平均を取った誤りです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-3",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e43",
-      "figureHint": "棒A・棒Bを上下に重ねた並列配置図。剛体端板をFで引く・共通長さl"
+      "figureHint": "棒A・棒Bを上下に重ねた並列配置図。剛体端板をFで引く・共通長さl",
+      "relatedFormulas": [
+        "v2f4-1",
+        "v2f4-2"
+      ],
+      "editorialReview": {
+        "officialPoint": "各棒 k=AE/l を求め、並列合成 k=k1+k2 を適用する。",
+        "alignment": "公式問4-3と同じ並列合成。k1=8.0e7・k2=5.6e7 の和 約1.4e8 N/m を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "直列公式で計算した誤り。",
+          "3": "硬い方の棒だけを採った値。",
+          "4": "k2 の計算を誤った値。"
+        },
+        "sha256": "4cadcd70174c40aad6336a97e8f6afad4cafd6b2be4d6f35fa6aaba6f0424e81"
+      },
+      "preFigureImage": "v2e43"
     },
     {
       "id": "vib2-4-4",
@@ -99,15 +144,30 @@
         "約 $15.5\\,\\mathrm{rad/s}$"
       ],
       "answer": 4,
-      "explanation": "【基礎】$\\omega_n=\\sqrt{k/m}$。直列合成 $k=\\dfrac{k_1k_2}{k_1+k_2}$。\n【計算】$k=\\dfrac{800\\times1200}{800+1200}=\\dfrac{960000}{2000}=480$ N/m。$\\omega_n=\\sqrt{480/2}=\\sqrt{240}\\approx15.5$ rad/s。\n【ポイント】直列で合成剛性が下がるため固有角振動数も下がる。\n【引っかけ】$31.6$ は並列($k=2000$)と取り違えた値。$20.0$ は $k_1$ 単独($\\sqrt{800/2}=20$)。$22.4$ は $k$ を平均($1000$)にした誤り。",
+      "explanation": "【基礎】固有角振動数は $\\omega_n=\\sqrt{k/m}$、直列合成は $k=\\dfrac{k_1k_2}{k_1+k_2}$ です。\n【考え方】$k=\\dfrac{800\\times1200}{2000}=480$ N/m、$\\omega_n=\\sqrt{480/2}=\\sqrt{240}\\approx15.5$ rad/s で、正解は選択肢4です。\n【ポイント】直列で合成剛性が下がるため、固有角振動数も下がります。\n【引っかけ】選択肢1は並列($k=2000$)、選択肢2は $k_1$ 単独($\\sqrt{800/2}=20$)、選択肢3は $k$ を平均($1000$)とした誤りです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-4",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e44",
-      "figureHint": "天井からばねk1とk2を直列に連ね質量mを吊る模式図"
+      "figureHint": "天井からばねk1とk2を直列に連ね質量mを吊る模式図",
+      "relatedFormulas": [
+        "v2f4-2",
+        "v2f4-4"
+      ],
+      "editorialReview": {
+        "officialPoint": "直列合成 k=k1k2/(k1+k2) と固有角振動数 ωn=√(k/m)。",
+        "alignment": "公式問4-4と同じ。k=480 N/m、ωn=√240≈15.5 rad/s を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "並列(k=2000)として計算。",
+          "2": "k1 単独(√(800/2)=20)とした。",
+          "3": "k を平均(1000)とした誤り。"
+        },
+        "sha256": "5006ae9b588a3210d60c3ab8e432eab12e05a378ae405b52c12c2743c2c6b287"
+      },
+      "preFigureImage": "v2e44"
     },
     {
       "id": "vib2-4-5",
@@ -124,15 +184,30 @@
         "約 $27.4\\,\\mathrm{rad/s}$"
       ],
       "answer": 1,
-      "explanation": "【基礎】並列合成 $k=k_1+k_2$、$\\omega_n=\\sqrt{k/m}$。\n【計算】$k=600+900=1500$ N/m。$\\omega_n=\\sqrt{1500/4}=\\sqrt{375}\\approx19.4$ rad/s。\n【ポイント】並列は剛性が増すので固有角振動数は上がる。\n【引っかけ】$9.5$ は直列公式($k=360$)の誤り。$15.0$ は $k_2$ 単独($\\sqrt{900/4}=15$)。$27.4$ は $2k$ とした誤り。",
+      "explanation": "【基礎】並列合成は $k=k_1+k_2$、固有角振動数は $\\omega_n=\\sqrt{k/m}$ です。\n【考え方】$k=600+900=1500$ N/m、$\\omega_n=\\sqrt{1500/4}=\\sqrt{375}\\approx19.4$ rad/s で、正解は選択肢1です。\n【ポイント】並列は剛性が増すので固有角振動数は上がります。\n【引っかけ】選択肢2は直列公式($k=360$)、選択肢3は $k_2$ 単独($\\sqrt{900/4}=15$)、選択肢4は $2k$ とした誤りです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-5",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e45",
-      "figureHint": "天井から2本のばねk1,k2を並列にして質量mを吊る模式図"
+      "figureHint": "天井から2本のばねk1,k2を並列にして質量mを吊る模式図",
+      "relatedFormulas": [
+        "v2f4-2",
+        "v2f4-4"
+      ],
+      "editorialReview": {
+        "officialPoint": "並列合成 k=k1+k2 と固有角振動数 ωn=√(k/m)。",
+        "alignment": "公式問4-5と同じ。k=1500、ωn=√375≈19.4 rad/s を選ばせる。",
+        "distractorMisconceptions": {
+          "2": "直列公式(k=360)で計算。",
+          "3": "k2 単独(√(900/4)=15)とした。",
+          "4": "2k とした誤り。"
+        },
+        "sha256": "ba2d0a2c616687c6b9d9c46ccc90d00df291579d5b9a082ea25c9cb8f6a54ea6"
+      },
+      "preFigureImage": "v2e45"
     },
     {
       "id": "vib2-4-6",
@@ -149,15 +224,30 @@
         "約 $31.6\\,\\mathrm{rad/s}$"
       ],
       "answer": 2,
-      "explanation": "【基礎】まず並列部 $2k_1=1000$ N/m。これと $k_2$ が直列。\n【計算】$k=\\dfrac{2k_1\\cdot k_2}{2k_1+k_2}=\\dfrac{1000\\times1000}{2000}=500$ N/m。$\\omega_n=\\sqrt{500/1}\\approx22.4$ rad/s。\n【ポイント】合成は「同じ変位を共有=並列(和)」「同じ力を伝達=直列(逆数和)」で判断する。\n【引っかけ】$44.7$ は全部並列($2k_1+k_2=2000$)とした誤り。$31.6$ は直列を無視し $2k_1=1000$ だけとした値。$14.1$ は3本すべて直列とした誤り。",
+      "explanation": "【基礎】まず $k_1$ の2本並列で $2k_1=1000$ N/m、これに $k_2$ を直列接続します。\n【考え方】合成は $k=\\dfrac{2k_1\\cdot k_2}{2k_1+k_2}=\\dfrac{1000\\times1000}{2000}=500$ N/m、$\\omega_n=\\sqrt{500/1}\\approx22.4$ rad/s で、正解は選択肢2です。\n【ポイント】同じ変位を共有する部分は並列(和)、同じ力を伝える部分は直列(逆数和)で合成します。\n【引っかけ】選択肢1は全部並列($2k_1+k_2=2000$)、選択肢4は直列を無視して $2k_1=1000$ だけ、選択肢3は3本すべて直列とした誤りです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-6",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e46",
-      "figureHint": "k1を2本並列にし剛体棒経由でk2を直列接続し質量mを吊る複合ばね配置図"
+      "figureHint": "k1を2本並列にし剛体棒経由でk2を直列接続し質量mを吊る複合ばね配置図",
+      "relatedFormulas": [
+        "v2f4-2",
+        "v2f4-4"
+      ],
+      "editorialReview": {
+        "officialPoint": "並列(2k1)と直列(k2)の複合合成と ωn=√(k/m)。",
+        "alignment": "公式問4-6と同じ。2k1=1000、直列合成 k=500、ωn≈22.4 rad/s を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "3本すべて並列(2k1+k2=2000)として計算。",
+          "3": "3本すべて直列(≈200)として計算。",
+          "4": "直列のk2を無視し2k1=1000だけで計算。"
+        },
+        "sha256": "49c223a5c1eb16ace8420c9fe831d680b578887d4770c220ff209a8435acf10e"
+      },
+      "preFigureImage": "v2e46"
     },
     {
       "id": "vib2-4-7",
@@ -174,15 +264,29 @@
         "ばね定数の値により決まらない"
       ],
       "answer": 3,
-      "explanation": "【基礎】微小振動の運動方程式は平衡位置からの変位で立てる。\n【考え方】鉛直系では重力 $mg$ が初期のばね伸びとつり合い、平衡位置からの変位 $x$ については $m\\ddot x+kx=0$ となり重力項は消える。復元力の傾き(剛性)は水平系と同じ $k$。\n【ポイント】重力は平衡位置をずらすだけで、固有角振動数 $\\omega=\\sqrt{k/m}$ には影響しない。\n【引っかけ】「重力が加わる分だけ鉛直の方が速い/遅い」は誤り。重力は定数力なので振動数を変えない。",
+      "explanation": "【基礎】微小振動の運動方程式は、平衡位置からの変位を基準に立てます。\n【考え方】鉛直系では重力 $mg$ が初期のばね伸びとつり合い、平衡位置からの変位 $x$ については $m\\ddot x+kx=0$ となって重力項が消え、剛性は水平系と同じ $k$ なので $\\omega_1=\\omega_2$、正解は選択肢3です。\n【ポイント】重力は平衡位置をずらすだけで、固有角振動数 $\\omega=\\sqrt{k/m}$ には影響しません。\n【引っかけ】選択肢1・2のように「重力の分だけ速い/遅い」とするのは誤りで、選択肢4のばね定数の値で決まるという判断も不要です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-7",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e47",
-      "figureHint": "左に水平ばね質量系、右に鉛直吊りばね質量系を並べた2枚組の比較図"
+      "figureHint": "左に水平ばね質量系、右に鉛直吊りばね質量系を並べた2枚組の比較図",
+      "relatedFormulas": [
+        "v2f4-4"
+      ],
+      "editorialReview": {
+        "officialPoint": "重力は平衡位置をずらすだけで固有角振動数 ω=√(k/m) に影響しない(水平も鉛直も同じ)。",
+        "alignment": "公式問4-7と同じく ω1=ω2 を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "重力の分だけ水平が速いと誤解。",
+          "2": "重力の分だけ鉛直が速いと誤解。",
+          "4": "ばね定数の値で決まると誤解。"
+        },
+        "sha256": "a83422677860ef629ee5f91a69247ff57d2ec8864288fb62e8a77240e4d8c275"
+      },
+      "preFigureImage": "v2e47"
     },
     {
       "id": "vib2-4-8",
@@ -199,15 +303,29 @@
         "$x=\\dfrac{v_0}{\\omega_d}\\,e^{-\\frac{c}{2m}t}\\sin\\omega_d t$"
       ],
       "answer": 4,
-      "explanation": "【基礎】特性方程式 $ms^2+cs+k=0$、$s=-\\dfrac{c}{2m}\\pm j\\omega_d$。一般解 $x=e^{-\\frac{c}{2m}t}(A\\cos\\omega_d t+B\\sin\\omega_d t)$。\n【考え方】$x(0)=0\\Rightarrow A=0$。$\\dot x(0)=v_0$ を計算すると、$x=e^{-\\frac{c}{2m}t}B\\sin\\omega_d t$ の微分の $t=0$ 値は $B\\omega_d=v_0$、よって $B=v_0/\\omega_d$。\n【計算】$x=\\dfrac{v_0}{\\omega_d}e^{-\\frac{c}{2m}t}\\sin\\omega_d t$。\n【ポイント】初期変位0・初速ありなら $\\sin$ 型で振幅は $v_0/\\omega_d$。\n【引っかけ】$\\cos$ 型は初期変位ありのときの形。振幅の $1/\\omega_d$ を落とすと初速条件を満たさない。",
+      "explanation": "【基礎】特性方程式 $ms^2+cs+k=0$ の根は $s=-\\dfrac{c}{2m}\\pm j\\omega_d$、一般解は $x=e^{-\\frac{c}{2m}t}(A\\cos\\omega_d t+B\\sin\\omega_d t)$ です。\n【考え方】$x(0)=0$ より $A=0$、$\\dot x(0)=v_0$ より $B\\omega_d=v_0$ すなわち $B=v_0/\\omega_d$ となり、$x=\\dfrac{v_0}{\\omega_d}e^{-\\frac{c}{2m}t}\\sin\\omega_d t$、正解は選択肢4です。\n【ポイント】初期変位0・初速ありなら $\\sin$ 型で、振幅は $v_0/\\omega_d$ になります。\n【引っかけ】選択肢1・2の $\\cos$ 型は初期変位があるときの形、選択肢3は振幅の $1/\\omega_d$ を落として初速条件を満たしません。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-8",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e48",
-      "figureHint": "天井からばねkとダンパcで質量mを支える減衰1自由度系の模式図・変位x"
+      "figureHint": "天井からばねkとダンパcで質量mを支える減衰1自由度系の模式図・変位x",
+      "relatedFormulas": [
+        "v2f4-6",
+        "v2f4-9"
+      ],
+      "editorialReview": {
+        "officialPoint": "減衰自由振動の特性根と初期条件(x0=0,ẋ0=v0)から x=(v0/ωd)e^{-(c/2m)t}sinωd t。",
+        "alignment": "公式問4-8と同じ導出。初期変位0・初速ありの sin 型・振幅 v0/ωd を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "初期変位ありの cos 型で振幅も誤り。",
+          "2": "cos 型(初期変位があるときの形)。",
+          "3": "振幅の 1/ωd を落として初速条件を満たさない。"
+        },
+        "sha256": "a4754cd9cdb2a5410642c032d69e752cdaf29bbd789dc7c2dc55f2134a71d9d0"
+      }
     },
     {
       "id": "vib2-4-9",
@@ -224,16 +342,28 @@
         "$\\omega_d=\\omega_n(1-\\zeta^2)$"
       ],
       "answer": 3,
-      "explanation": "【基礎】$m\\ddot x+c\\dot x+kx=0$ を標準形 $\\ddot x+2\\zeta\\omega_n\\dot x+\\omega_n^2x=0$ に直す。\n【考え方】特性根の虚部が減衰振動数 $\\omega_d=\\omega_n\\sqrt{1-\\zeta^2}$。減衰があると振動は必ず遅くなる($\\omega_d<\\omega_n$)。\n【ポイント】$\\zeta\\to0$ で $\\omega_d\\to\\omega_n$、$\\zeta\\to1$ で $\\omega_d\\to0$(振動が消える)。\n【引っかけ】$\\sqrt{1+\\zeta^2}$ や割り算形は $\\omega_d>\\omega_n$ となり「減衰で速くなる」矛盾。ルートの外し忘れ $(1-\\zeta^2)$ も誤り。",
+      "explanation": "【基礎】$m\\ddot x+c\\dot x+kx=0$ を標準形 $\\ddot x+2\\zeta\\omega_n\\dot x+\\omega_n^2x=0$ に直します。\n【考え方】特性根の虚部が減衰固有角振動数で $\\omega_d=\\omega_n\\sqrt{1-\\zeta^2}$ となり、減衰があると必ず $\\omega_d<\\omega_n$ となるので、正解は選択肢3です。\n【ポイント】$\\zeta\\to0$ で $\\omega_d\\to\\omega_n$、$\\zeta\\to1$ で $\\omega_d\\to0$(振動が消える)となります。\n【引っかけ】選択肢1・2は $\\omega_d>\\omega_n$ となる矛盾した式、選択肢4は平方根を取る操作を省いた式です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-9",
       "role": "primary",
-      "figure": "helpful",
-      "figureImage": "v2e49",
-      "figureHint": "不減衰(青ωn)と減衰(赤ωd)の波形重ね描き。減衰側は周期が長く減衰する様子",
-      "preFigureImage": "v2e49Pre"
+      "relatedFormulas": [
+        "v2f4-7",
+        "v2f4-9"
+      ],
+      "editorialReview": {
+        "officialPoint": "標準形の特性根虚部から ωd=ωn√(1-ζ²)(0<ζ<1 で必ず ωd<ωn)。",
+        "alignment": "公式問4-9と同じ関係式を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "√(1+ζ²) で ωd>ωn となる矛盾。",
+          "2": "1/√(1-ζ²) で ωd>ωn となる矛盾。",
+          "4": "平方根を外し忘れた式。"
+        },
+        "sha256": "ebb8030f84858066dbaf7ca7332ca41397723d5c90a2df353f72a7b33494bea5"
+      },
+      "figureExempt": true,
+      "figureExemptReason": "関係式と必要な途中計算を本文に示すことで判断できます。"
     },
     {
       "id": "vib2-4-10",
@@ -250,15 +380,29 @@
         "$0.42\\,\\mathrm{m}$"
       ],
       "answer": 2,
-      "explanation": "【基礎】回転系の固有角振動数 $\\omega_2=\\sqrt{\\dfrac{ka^2}{\\frac{1}{3}ml^2}}=\\sqrt{\\dfrac{3ka^2}{ml^2}}$。\n【計算】一致条件 $\\dfrac{k}{m}=\\dfrac{3ka^2}{ml^2}$ より $a^2=\\dfrac{l^2}{3}$、$a=\\dfrac{l}{\\sqrt3}=\\dfrac{0.6}{1.732}\\approx0.35$ m。\n【ポイント】回転系では「支点まわり慣性 $(1/3)ml^2$」と「ばね取付位置の腕 $a$ の2乗」が効く。\n【引っかけ】$0.30$ は $l/2$、$0.20$ は $l/3$、$0.42$ は $l/\\sqrt2$。慣性係数や2乗を取り違えると出やすい値。",
+      "explanation": "【基礎】回転系の固有角振動数は $\\omega_2=\\sqrt{\\dfrac{ka^2}{\\frac{1}{3}ml^2}}=\\sqrt{\\dfrac{3ka^2}{ml^2}}$ です。\n【考え方】一致条件 $\\dfrac{k}{m}=\\dfrac{3ka^2}{ml^2}$ から $a^2=\\dfrac{l^2}{3}$、$a=\\dfrac{l}{\\sqrt3}=\\dfrac{0.6}{1.732}\\approx0.35$ m で、正解は選択肢2です。\n【ポイント】回転系では支点まわり慣性 $\\frac{1}{3}ml^2$ と、ばね取付位置の腕 $a$ の2乗が効きます。\n【引っかけ】選択肢1は $l/2$、選択肢3は $l/3$、選択肢4は $l/\\sqrt2$ で、慣性係数や2乗を取り違えると出る値です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-10",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e410",
-      "figureHint": "左に並進ばね質量系、右に一端支持剛体棒+距離aのばね回転系を並べた配置図"
+      "figureHint": "左に並進ばね質量系、右に一端支持剛体棒+距離aのばね回転系を並べた配置図",
+      "relatedFormulas": [
+        "v2f4-4"
+      ],
+      "editorialReview": {
+        "officialPoint": "回転系 ω2=√(3ka²/(ml²)) と並進系 ω1=√(k/m) の一致条件 a=l/√3。",
+        "alignment": "公式問4-10と同じ一致条件。a=0.6/√3≈0.35 m を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "a=l/2 とした。",
+          "3": "a=l/3 とした。",
+          "4": "a=l/√2 とした(慣性係数や2乗の取り違え)。"
+        },
+        "sha256": "78d4e6e35a0efd132233e65bf29f073aa3561eda086d39aac64075bb57cb4489"
+      },
+      "preFigureImage": "v2e410"
     },
     {
       "id": "vib2-4-11",
@@ -275,16 +419,28 @@
         "剛性を上げ、全体を軽くする"
       ],
       "answer": 4,
-      "explanation": "【基礎】固有振動数 $f=\\dfrac{1}{2\\pi}\\sqrt{k/m}$ は剛性 $k$ に比例(平方根)、質量 $m$ に反比例(平方根)。\n【考え方】$f$ を上げるには $k$ を大きく、$m$ を小さくする。\n【ポイント】リブ追加・板厚増で剛性アップ、余肉削減で軽量化するのが定石。逆に $f$ を下げたいときは重錘付加(質量ダンパ的発想)。\n【引っかけ】剛性を下げる/重くする対策はいずれも $f$ を下げてしまい、実働域に近づけるので逆効果。",
+      "explanation": "【基礎】固有振動数は $f=(1/(2\\pi))\\sqrt{k/m}$ です。剛性 $k$ が大きいほど上がり、質量 $m$ が大きいほど下がります。\n【考え方】剛性を上げ、軽くする変更はどちらも固有振動数を上げる方向なので、④です。\n【ポイント】一方を上げる効果と他方を下げる効果が同時にあると、変更量を知らなければ結論は決まりません。\n【引っかけ】①は両方とも低下の方向です。②は剛性低下と軽量化、③は剛性増加と重量増加が競合するため、上がると保証できません。④が正しいです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-11",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e411",
-      "figureHint": "応答振幅の共振ピークが加振50Hzと重なる周波数応答曲線(共振の懸念を示す設定図)",
-      "preFigureImage": "v2e411Pre"
+      "relatedFormulas": [
+        "v2f4-4",
+        "v2f4-14"
+      ],
+      "editorialReview": {
+        "officialPoint": "f=(1/2π)√(k/m) より、共振回避には剛性を上げ質量を下げる。",
+        "alignment": "公式問4-11と同じく剛性増・軽量化の組を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "剛性を下げ重くするため f が下がり逆効果。",
+          "2": "剛性を下げるため f が下がる。",
+          "3": "重くするため f が下がる。"
+        },
+        "sha256": "0e90cbb382b4cf80c802e8c976d9a78ba37dd854b730bc431b2eee2f5131a8bf"
+      },
+      "figureExempt": true,
+      "figureExemptReason": "関係式と必要な途中計算を本文に示すことで判断できます。"
     },
     {
       "id": "vib2-4-12",
@@ -301,7 +457,7 @@
         "$ml^2\\ddot\\theta+ka^2\\theta=0$"
       ],
       "answer": 1,
-      "explanation": "【基礎】微小回転で位置 $a$ のばね伸びは $a\\theta$、復元力 $ka\\theta$、支点まわりの復元モーメントは腕 $a$ を掛けて $ka^2\\theta$。\n【考え方】回転の運動方程式 $I\\ddot\\theta=-(\\text{復元モーメント})$。支点まわり慣性は $\\frac{1}{3}ml^2$。\n【計算】$\\dfrac{1}{3}ml^2\\ddot\\theta+ka^2\\theta=0$。\n【ポイント】重心まわり $\\frac{1}{12}ml^2$ ではなく、支点(端)まわりの $\\frac{1}{3}ml^2$ を使う(平行軸の定理)。\n【引っかけ】$ka\\theta$(腕を1回しか掛けない)や $\\frac{1}{12}ml^2$(重心まわりのまま)は典型ミス。",
+      "explanation": "【基礎】微小回転で位置 $a$ のばね伸びは $a\\theta$、復元力は $ka\\theta$、支点まわりの復元モーメントは腕 $a$ を掛けて $ka^2\\theta$ です。\n【考え方】回転の運動方程式は(慣性モーメント)×(角加速度)=（向きを含む外力モーメントの合計）の形で、支点まわり慣性 $\\frac{1}{3}ml^2$ を用いると $\\frac{1}{3}ml^2\\ddot\\theta+ka^2\\theta=0$ となり、正解は選択肢1です。\n【ポイント】重心まわり $\\frac{1}{12}ml^2$ ではなく、支点(端)まわりの $\\frac{1}{3}ml^2$ を使います(平行軸の定理)。\n【引っかけ】選択肢3の $ka\\theta$ は腕を1回しか掛けない誤り、選択肢2は重心まわり慣性のまま、選択肢4は慣性を $ml^2$ とした誤りです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -309,7 +465,20 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e412",
-      "figureHint": "一端ピン支持の剛体棒に距離aで鉛直ばねkを付けた配置図・微小角theta"
+      "figureHint": "一端ピン支持の剛体棒に距離aで鉛直ばねkを付けた配置図・微小角theta",
+      "relatedFormulas": [
+        "v2f4-4"
+      ],
+      "editorialReview": {
+        "officialPoint": "支点まわり慣性 (1/3)ml² と復元モーメント ka²θ から (1/3)ml²θ̈+ka²θ=0。",
+        "alignment": "公式問4-12と同じEOM導出。腕 a を2回掛けた ka²θ と端まわり慣性を選ばせる。",
+        "distractorMisconceptions": {
+          "2": "重心まわり (1/12)ml² のまま(平行軸の定理を使わない)。",
+          "3": "kaθ と腕を1回しか掛けない。",
+          "4": "慣性を ml² とした誤り。"
+        },
+        "sha256": "afe1f7d22e0f5491664d59059156cfceed3946af16ff072bcf81abe83ebde1d6"
+      }
     },
     {
       "id": "vib2-4-13",
@@ -318,7 +487,7 @@
       "topic": "単振り子EOM",
       "type": "mc",
       "difficulty": 1,
-      "question": "質量 $m$ の物体を長さ $L$ の糸で天井から吊るす。少し持ち上げて放したときの運動方程式(振れ角 $\\theta$)として正しいのはどれか。",
+      "question": "大きさを無視できる質量 $m$ の質点を長さ $L$ の糸で天井から吊るす。少し持ち上げて放したときの運動方程式(振れ角 $\\theta$)として正しいのはどれか。",
       "choices": [
         "$mL^2\\ddot\\theta+mg\\sin\\theta=0$",
         "$\\dfrac{1}{2}mL^2\\ddot\\theta+mgL\\sin\\theta=0$",
@@ -326,15 +495,29 @@
         "$mL^2\\ddot\\theta+mgL\\sin\\theta=0$"
       ],
       "answer": 4,
-      "explanation": "【基礎】支点まわりの慣性モーメントは質点なので $I=mL^2$。重力による復元モーメントは $mg\\cdot L\\sin\\theta$。\n【考え方】$I\\ddot\\theta=-mgL\\sin\\theta$ より $mL^2\\ddot\\theta+mgL\\sin\\theta=0$。微小角では $\\ddot\theta+(g/L)\\theta=0$、$\\omega=\\sqrt{g/L}$。\n【ポイント】重力の腕は $L$、力は $mg$、慣性は $mL^2$。全項に $L$ の次元整合を確認する。\n【引っかけ】$mg\\sin\\theta$(腕 $L$ 抜け)や $mL$(慣性の2乗抜け)、$\\frac{1}{2}$ 係数はいずれも次元・係数の誤り。",
+      "explanation": "【基礎】支点まわりの慣性モーメントは質点なので $I=mL^2$、重力による復元モーメントは $mgL\\sin\\theta$ です。\n【考え方】$I\\ddot\\theta=-mgL\\sin\\theta$ より $mL^2\\ddot\\theta+mgL\\sin\\theta=0$ となり、正解は選択肢4です(微小角では $\\ddot\\theta+(g/L)\\theta=0$、$\\omega=\\sqrt{g/L}$)。\n【ポイント】重力の作用線までの腕は $L\\sin\\theta$、力は $mg$、慣性は $mL^2$ で、各項の次元がそろうことを確認します。\n【引っかけ】選択肢1は腕 $L$ の抜け、選択肢3は慣性が $mL$ で2乗が抜け、選択肢2は係数 $\\frac{1}{2}$ が余分です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-13",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e413",
-      "figureHint": "天井から長さLの糸で質量mを吊る単振り子。振れ角thetaと鉛直破線"
+      "figureHint": "天井から長さLの糸で質量mを吊る単振り子。振れ角thetaと鉛直破線",
+      "relatedFormulas": [
+        "v2f4-4"
+      ],
+      "editorialReview": {
+        "officialPoint": "質点の支点まわり慣性 mL² と重力復元モーメント mgL sinθ から mL²θ̈+mgL sinθ=0。",
+        "alignment": "公式問4-13と同じ単振り子EOMを選ばせる(微小角で ω=√(g/L))。",
+        "distractorMisconceptions": {
+          "1": "重力の腕 L が抜けた(mg sinθ)。",
+          "2": "係数 1/2 が余分。",
+          "3": "慣性が mL で2乗が抜けた。"
+        },
+        "sha256": "a5940850ce0ab599dc45f9c74e3ed9e1a7ec47ccd9bb0f991c96284836dc023a"
+      },
+      "preFigureImage": "v2e413"
     },
     {
       "id": "vib2-4-14",
@@ -351,15 +534,29 @@
         "$I\\ddot\\theta+kR\\dot\\theta+kR^2\\theta=0$"
       ],
       "answer": 3,
-      "explanation": "【基礎】ばね伸び $R\\theta$、復元力 $kR\\theta$、中心まわりのモーメントは腕 $R$ を掛けて $kR^2\\theta$。\n【考え方】$I\\ddot\\theta=-kR^2\\theta$ より $I\\ddot\\theta+kR^2\\theta=0$。固有角振動数 $\\omega=\\sqrt{kR^2/I}=R\\sqrt{k/I}$。\n【ポイント】並進のばねを回転系に持ち込むと剛性は $kR^2$(腕の2乗)になる。\n【引っかけ】$kR\\theta$ は腕を1回しか掛けない誤り。$\\dot\\theta$ 項はダンパがないのに現れるので不要。",
+      "explanation": "【基礎】ばね伸びは $R\\theta$、復元力は $kR\\theta$、中心まわりのモーメントは腕 $R$ を掛けて $kR^2\\theta$ です。\n【考え方】$I\\ddot\\theta=-kR^2\\theta$ より $I\\ddot\\theta+kR^2\\theta=0$ となり、正解は選択肢3です(固有角振動数 $\\omega=\\sqrt{kR^2/I}=R\\sqrt{k/I}$)。\n【ポイント】並進のばねを回転系に持ち込むと、剛性は腕の2乗が掛かって $kR^2$ になります。\n【引っかけ】選択肢1の $kR\\theta$ は腕を1回しか掛けない誤り、選択肢2は腕を掛け忘れ、選択肢4の $\\dot\\theta$ 項はダンパがないのに現れるので不要です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-14",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e414",
-      "figureHint": "中心軸まわりに回る円板(I,R)の外周に接線ばねkを付けた回転振動系の配置図"
+      "figureHint": "中心軸まわりに回る円板(I,R)の外周に接線ばねkを付けた回転振動系の配置図",
+      "relatedFormulas": [
+        "v2f4-4"
+      ],
+      "editorialReview": {
+        "officialPoint": "ばね伸び Rθ・復元力 kRθ・腕 R から中心まわり復元モーメント kR²θ、Iθ̈+kR²θ=0。",
+        "alignment": "公式問4-14と同じ回転振動EOM(剛性に腕の2乗 kR²)を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "kRθ と腕を1回しか掛けない。",
+          "2": "腕 R を掛け忘れ(kθ)とした。",
+          "4": "ダンパがないのに θ̇ の減衰項が現れる不要項。"
+        },
+        "sha256": "818bab41267bd6d9ff904b19e3c9e0d7528f326de48ef6e42660b9c41f5c535d"
+      },
+      "preFigureImage": "v2e414"
     },
     {
       "id": "vib2-4-15",
@@ -373,18 +570,32 @@
         "$I\\ddot\\theta+cR\\dot\\theta+kR\\theta=0$",
         "$I\\ddot\\theta+cR^2\\dot\\theta+kR^2\\theta=0$",
         "$I\\ddot\\theta+kR^2\\dot\\theta+cR^2\\theta=0$",
-        "$I\\ddot\\theta+cR^2\\theta+kR^2\\dot\\theta=0$"
+        "$I\\ddot\\theta+cR^2\\dot\\theta+kR\\theta=0$"
       ],
       "answer": 2,
-      "explanation": "【基礎】外周の接線速度は $R\\dot\\theta$、ダンパ力 $cR\\dot\\theta$、中心まわりモーメントは腕 $R$ を掛けて $cR^2\\dot\\theta$。ばねは $kR^2\\theta$。\n【考え方】$I\\ddot\\theta+cR^2\\dot\\theta+kR^2\\theta=0$。\n【ポイント】ダンパは速度($\\dot\\theta$)に、ばねは変位($\\theta$)に掛かる。どちらも腕 $R$ の2乗で回転系に換算される。\n【引っかけ】$c$ と $k$ に付く $\\theta$ と $\\dot\\theta$ を入れ替えた選択肢は物理的に不整合(ダンパは速度依存)。",
+      "explanation": "【基礎】外周の接線速度は $R\\dot\\theta$、ダンパ力は $cR\\dot\\theta$、中心まわりモーメントは腕 $R$ を掛けて $cR^2\\dot\\theta$、ばねは $kR^2\\theta$ です。\n【考え方】両者を合わせて $I\\ddot\\theta+cR^2\\dot\\theta+kR^2\\theta=0$ となり、正解は選択肢2です。\n【ポイント】ダンパは速度 $\\dot\\theta$ に、ばねは変位 $\\theta$ に掛かり、どちらも腕 $R$ の2乗で回転系に換算されます。\n【引っかけ】選択肢1は腕を1回しか掛けない誤り、選択肢3・4は $c$ と $k$ に付く $\\theta$ と $\\dot\\theta$ を入れ替えた物理的に不整合な式です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-15",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e415",
-      "figureHint": "円板(I,R)の外周に接線ばねkとダンパcを付けた回転振動系の配置図"
+      "figureHint": "円板(I,R)の外周に接線ばねkとダンパcを付けた回転振動系の配置図",
+      "relatedFormulas": [
+        "v2f4-6"
+      ],
+      "editorialReview": {
+        "officialPoint": "接線ばね・ダンパの力を腕Rで回転モーメントへ換算。",
+        "alignment": "ばね・ダンパともRの2乗、速度と変位の対応で②。重複していた誤答④をばねの腕1回欠落へ修正。",
+        "distractorMisconceptions": {
+          "1": "両方のモーメントで腕を1回落とす。",
+          "3": "減衰とばねの係数を入れ替える。",
+          "4": "ばねのモーメントだけ腕を1回落とす。"
+        },
+        "sha256": "448dfd853198bdd700f6af6880a11892ac34bf28af57255b62e55addba97eeb6"
+      },
+      "preFigureImage": "v2e415"
     },
     {
       "id": "vib2-4-16",
@@ -393,7 +604,7 @@
       "topic": "滑車系の固有角振動数",
       "type": "mc",
       "difficulty": 3,
-      "question": "定滑車 $P_1$ と質量を無視できる動滑車 $P_2$ を介し、伸びない糸で質量 $m$ を吊る。動滑車 $P_2$ はばね定数 $k$ のばねで天井に支えられている。動滑車の変位 $x$ と質量の変位 $z$ には $z=2x$ の拘束がある。系の固有角振動数はどれか。",
+      "question": "定滑車 $P_1$ と質量を無視できる動滑車 $P_2$ を介し、伸びない糸で質量 $m$ を吊る。動滑車 $P_2$ はばね定数 $k$ のばねで天井に支えられている。動滑車の変位 $x$ と質量の変位 $z$ には $z=2x$ の拘束がある。系の固有角振動数はどれか。 $x,z$ と張力は静的平衡状態からの増分として考える。",
       "choices": [
         "$\\dfrac{1}{2}\\sqrt{\\dfrac{k}{m}}$",
         "$\\sqrt{\\dfrac{k}{2m}}$",
@@ -401,15 +612,30 @@
         "$2\\sqrt{\\dfrac{k}{m}}$"
       ],
       "answer": 1,
-      "explanation": "【基礎】質量の運動 $m\\ddot z=-T$。動滑車(質量0)のつり合いは張力2本ぶんとばね力で $2T=kx$。拘束 $z=2x$。\n【計算】$x=z/2$ を代入して $2T=k(z/2)$、$T=kz/4$。よって $m\\ddot z=-kz/4$、$m\\ddot z+\\dfrac{k}{4}z=0$。$\\omega_n=\\sqrt{\\dfrac{k}{4m}}=\\dfrac{1}{2}\\sqrt{\\dfrac{k}{m}}$。\n【ポイント】動滑車は「力2倍・変位1/2倍」。等価剛性は $k/4$ になる。\n【引っかけ】拘束や2倍関係を落とすと $\\sqrt{k/m}$ 系の値($\\sqrt{2k/m}$ 等)を選びやすい。",
+      "explanation": "【基礎】質量の運動は $m\\ddot z=-T$、質量0の動滑車のつり合いは張力2本ぶんとばね力で $2T=kx$、拘束は $z=2x$ です。\n【考え方】$x=z/2$ を代入して $T=kz/4$、よって $m\\ddot z+\\dfrac{k}{4}z=0$ から $\\omega_n=\\sqrt{\\dfrac{k}{4m}}=\\dfrac{1}{2}\\sqrt{\\dfrac{k}{m}}$ となり、正解は選択肢1です。\n【ポイント】質点の変位は動滑車の2倍で、張力はばね力の半分です。この2つの換算が重なり、質点から見た等価剛性は $k/4$ になります。\n【引っかけ】選択肢2・3・4は拘束 $z=2x$ や力2倍の関係を落として、等価剛性を $k/4$ 以外にしてしまった値です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-16",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e416",
-      "figureHint": "定滑車P1・ばね吊り動滑車P2・糸・質量mの滑車系配置図。変位x,zと拘束z=2x"
+      "figureHint": "定滑車P1・ばね吊り動滑車P2・糸・質量mの滑車系配置図。変位x,zと拘束z=2x",
+      "relatedFormulas": [
+        "v2f4-2",
+        "v2f4-4"
+      ],
+      "editorialReview": {
+        "officialPoint": "動滑車の拘束 z=2x・力2倍から等価剛性 k/4、ωn=(1/2)√(k/m)。",
+        "alignment": "公式問4-16と同じ。mz̈+(k/4)z=0 から ωn=√(k/4m) を選ばせる。",
+        "distractorMisconceptions": {
+          "2": "拘束や力2倍を落とし等価剛性を k/2 とした。",
+          "3": "等価剛性を 2k とした。",
+          "4": "等価剛性を 4k とした。"
+        },
+        "sha256": "4547f410ca77803cc7df2d585b2eed947e732cf0a3939fc73af06f18ac4266b9"
+      },
+      "preFigureImage": "v2e416"
     },
     {
       "id": "vib2-4-17",
@@ -426,7 +652,7 @@
         "(a)$ka\\theta$, (b)$b\\,mg\\theta$"
       ],
       "answer": 2,
-      "explanation": "【基礎】ばね伸びは水平成分 $a\\sin\\theta\\approx a\\theta$、復元力 $ka\\theta$、ジョイントまわりモーメントは腕 $a$ を掛けて $ka^2\\theta$。\n【考え方】重力 $mg$ が重心(距離 $b/2$)に働き、復元モーメントは $mg\\cdot(b/2)\\sin\\theta\\approx\\dfrac{b}{2}mg\\theta$。\n【ポイント】吊り下げ(下垂)平衡では重力も復元的に働く(振り子と同じ)。\n【引っかけ】ばねの腕を1回しか掛けない $ka\\theta$、重心距離を $b$ とする $b\\,mg\\theta$ は典型ミス。",
+      "explanation": "【基礎】ばねの伸びは水平成分 $a\\sin\\theta\\approx a\\theta$、復元力は $ka\\theta$、ジョイントまわりモーメントは腕 $a$ を掛けて $ka^2\\theta$ です。\n【考え方】重力 $mg$ は重心(距離 $b/2$)に働き、復元モーメントは $mg\\cdot(b/2)\\sin\\theta\\approx\\dfrac{b}{2}mg\\theta$ となるので、正解は選択肢2です。\n【ポイント】下向きに垂れた平衡では、重力も振り子と同じく元に戻す向きに働きます。\n【引っかけ】選択肢1・4のばねの腕を1回しか掛けない $ka\\theta$、選択肢3・4の重心距離を $b$ とする $b\\,mg\\theta$ は典型的な誤りです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -434,7 +660,21 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e417",
-      "figureHint": "天井ジョイントから下垂する剛体棒(長さb・重心b/2)に距離aで水平ばねk。重力mgと微小角theta"
+      "figureHint": "天井ジョイントから下垂する剛体棒(長さb・重心b/2)に距離aで水平ばねk。重力mgと微小角theta",
+      "relatedFormulas": [
+        "v2f4-4"
+      ],
+      "editorialReview": {
+        "officialPoint": "ばね復元モーメント ka²θ(腕 a を2回)と重力復元モーメント (b/2)mgθ(重心距離 b/2)。",
+        "alignment": "公式問4-17と同じ復元モーメントの組を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "ばねの腕を1回しか掛けない kaθ。",
+          "3": "重心距離を b とした b mgθ(ばねは正)。",
+          "4": "ばねの腕1回かつ重心距離を b とした誤り。"
+        },
+        "sha256": "60b91e28d9fd7b0a0690faa345b3c9b99731c3ed4aaba5968e0d1e00e4bc3456"
+      },
+      "preFigureImage": "v2e417"
     },
     {
       "id": "vib2-4-18",
@@ -451,15 +691,28 @@
         "$I\\ddot\\theta-ka^2\\theta-\\dfrac{b}{2}mg\\theta=0$"
       ],
       "answer": 3,
-      "explanation": "【基礎】下垂平衡ではばねも重力もいずれも「元に戻す向き=復元的」。\n【考え方】2つの復元モーメントが同符号で加わる。$I\\ddot\\theta+\\left(ka^2+\\dfrac{b}{2}mg\\right)\\theta=0$。\n【ポイント】符号は復元(+)。固有角振動数 $\\omega=\\sqrt{(ka^2+\\frac{b}{2}mg)/I}$。\n【引っかけ】重力を負(不安定)にするのは倒立振子の場合。下垂では重力は安定化(+)で扱う。",
+      "explanation": "【基礎】下向きに垂れた平衡では、ばねも重力もいずれも元に戻す向き(復元的)に働きます。\n【考え方】2つの復元モーメントが同符号で加わり、$I\\ddot\\theta+\\left(ka^2+\\dfrac{b}{2}mg\\right)\\theta=0$ となるので、正解は選択肢3です。\n【ポイント】左辺へ移した復元項はどちらも正で、固有角振動数は $\\omega=\\sqrt{(ka^2+\\frac{b}{2}mg)/I}$ です。\n【引っかけ】①はばねの復元モーメント、②は重力の復元モーメント、④は両方の符号を逆にしています。下垂した平衡の周りでは両方が元へ戻すので、左辺に移すと正です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-18",
       "role": "primary",
       "figure": "helpful",
-      "figureImage": "v2e418",
-      "figureHint": "問4-17と同じ下垂棒系。ばね復元ka^2theta・重力復元(b/2)mgthetaが同符号で働く配置図"
+      "figureImage": "v2e417",
+      "figureHint": "問4-17と同じ下垂棒系。ばね復元ka^2theta・重力復元(b/2)mgthetaが同符号で働く配置図",
+      "relatedFormulas": [
+        "v2f4-4"
+      ],
+      "editorialReview": {
+        "officialPoint": "下垂平衡ではばね・重力とも復元的(正符号)で Iθ̈+(ka²+(b/2)mg)θ=0。",
+        "alignment": "公式問4-18と同じく2つの復元モーメントが同符号で加わる式を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "ばねを負符号(倒立の扱い)とした。",
+          "2": "重力を負符号(倒立の扱い)とした。",
+          "4": "ばねも重力も負符号とした誤り。"
+        },
+        "sha256": "1863a4953521f400771fbbe6b12e7a739b59570e933fe1f799322db70c1ec829"
+      }
     },
     {
       "id": "vib2-4-19",
@@ -468,7 +721,7 @@
       "topic": "過減衰の条件",
       "type": "mc",
       "difficulty": 1,
-      "question": "質量 $m$・粘性減衰係数 $c$・ばね $k$ の1自由度系に初期外乱を与えたとき、応答が振動せずに単調に減衰する(振動的にならない)条件はどれか。",
+      "question": "質量 $m$・粘性減衰係数 $c$・ばね $k$ の1自由度系に初期外乱を与えたとき、自由応答に周期的な振動が現れない条件はどれか。ただし $m>0,k>0,c\\ge0$ とする。",
       "choices": [
         "$c<2\\sqrt{mk}$",
         "$c<\\sqrt{2mk}$",
@@ -476,7 +729,7 @@
         "$c\\ge 2\\sqrt{mk}$"
       ],
       "answer": 4,
-      "explanation": "【基礎】臨界減衰係数 $c_c=2\\sqrt{mk}$。減衰比 $\\zeta=c/(2\\sqrt{mk})$。\n【考え方】$\\zeta\\ge1$(=$c\\ge2\\sqrt{mk}$)で特性根が実数になり、振動せず単調に減衰(過減衰・臨界減衰)。\n【ポイント】$\\zeta<1$ なら特性根は複素数で振動的。境界が $c=2\\sqrt{mk}$。\n【引っかけ】$\\sqrt{2mk}$ は係数を取り違えた値。臨界減衰は $2\\sqrt{mk}$。",
+      "explanation": "【基礎】臨界減衰係数は $c_c=2\\sqrt{mk}$、減衰比は $\\zeta=c/(2\\sqrt{mk})$ です。\n【考え方】$\\zeta\\ge1$ すなわち $c\\ge2\\sqrt{mk}$ で特性根が実数になり、周期的な振動がない臨界減衰・過減衰になるので、正解は選択肢4です。\n【ポイント】$\\zeta<1$ では特性根が複素数になって振動的で、境界が $c=2\\sqrt{mk}$ です。初期速度によっては最初に平衡位置から離れることもあるため、常に単調とは限りません。\n【引っかけ】選択肢1は振動する側の条件、選択肢2・3の $\\sqrt{2mk}$ は臨界減衰係数の係数を取り違えた値です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -485,7 +738,19 @@
       "figure": "helpful",
       "figureImage": "v2e419",
       "figureHint": "不足減衰(赤・振動的)と過減衰(青・単調減衰)の応答波形の対比。境界=臨界減衰",
-      "preFigureImage": "v2e419Pre"
+      "relatedFormulas": [
+        "v2f4-7"
+      ],
+      "editorialReview": {
+        "officialPoint": "臨界減衰係数 cc=2√(mk)。ζ≥1 すなわち c≥2√(mk) で特性根が実数となり非振動。",
+        "alignment": "公式問4-19と同じく振動的にならない(臨界・過減衰)条件を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "c<2√(mk) は振動する側の条件。",
+          "2": "√(2mk) は臨界減衰係数の係数を取り違えた。",
+          "3": "同じく √(2mk) の係数取り違え。"
+        },
+        "sha256": "939e49ea5ffa2538d452ae42f966c31ed2c07fd06519cb75fb7741973d220b53"
+      }
     },
     {
       "id": "vib2-4-20",
@@ -494,7 +759,7 @@
       "topic": "波形からのk同定",
       "type": "mc",
       "difficulty": 2,
-      "question": "減衰のない自由振動の変位波形を計測したところ、$0.4\\,\\mathrm{s}$ の間にちょうど8周期が観測された。質量 $m=0.5\\,\\mathrm{kg}$ の1自由度モデルとみなすとき、ばね定数 $k$ に最も近いのはどれか(単位も選ぶ)。",
+      "question": "減衰のない自由振動の変位波形を計測したところ、図のような $0.4\\,\\mathrm{s}$ 間の波形が得られた。質量 $m=0.5\\,\\mathrm{kg}$ の1自由度モデルとみなすとき、ばね定数 $k$ に最も近いのはどれか(単位も選ぶ)。",
       "choices": [
         "約 $7900\\,\\mathrm{N/m}$",
         "約 $7900\\,\\mathrm{N/mm}$",
@@ -502,16 +767,29 @@
         "約 $1970\\,\\mathrm{N/m}$"
       ],
       "answer": 1,
-      "explanation": "【基礎】$f=\\dfrac{1}{2\\pi}\\sqrt{k/m}$ より $k=(2\\pi f)^2 m$。\n【計算】振動数 $f=8/0.4=20$ Hz。$k=(2\\pi\\times20)^2\\times0.5=(40\\pi)^2\\times0.5=1600\\pi^2\\times0.5=800\\pi^2\\approx7896\\approx7900$ N/m。\n【ポイント】まず「周期数÷時間」で $f$[Hz]を出し、$\\omega=2\\pi f$ を2乗して $k$ に。単位は N/m。\n【引っかけ】$7900\\,\\mathrm{N/mm}$ は1000倍の単位換算ミス。$200\\,\\mathrm{N/m}$ は $\\omega=2\\pi f$ の $2\\pi$ を忘れた誤り。$1970$ は $f=10$Hz と読み違えた値。",
+      "explanation": "【基礎】固有振動数は $f=\\dfrac{1}{2\\pi}\\sqrt{k/m}$ なので、$k=(2\\pi f)^2 m$ です。\n【考え方】振動数は $f=8/0.4=20$ Hz、$k=(2\\pi\\times20)^2\\times0.5=800\\pi^2$ N/m、約 $7900\\ \\mathrm{N/m}$ で、正解は選択肢1です。\n【ポイント】まず「周期数÷時間」で $f$[Hz]を求め、$\\omega=2\\pi f$ を2乗して $k$ を出します。\n【引っかけ】選択肢2は1000倍の単位換算ミス、選択肢3は $2\\pi$ を忘れた誤り、選択肢4は $f=10$Hz と読み違えた値です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-20",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e420",
       "figureHint": "計測された不減衰自由振動波形x(t)。0.4sの間にちょうど8周期(与えられたデータ)",
-      "preFigureImage": "v2e420Pre"
+      "preFigureImage": "v2e420Pre",
+      "relatedFormulas": [
+        "v2f4-4"
+      ],
+      "editorialReview": {
+        "officialPoint": "f=周期数/時間 を求め、k=(2πf)²m。",
+        "alignment": "公式問4-20と同じ波形からの同定。f=8/0.4=20 Hz、k=800π²≈7900 N/m を単位ごと選ばせる。",
+        "distractorMisconceptions": {
+          "2": "1000倍の単位換算ミス(N/mm)。",
+          "3": "2π を忘れた誤り。",
+          "4": "f=10 Hz と読み違えた値。"
+        },
+        "sha256": "c48b901d2f58fdd51f1ce14d4c8dd9faa97b562094acd37d5ec36dd3e4c544d3"
+      }
     },
     {
       "id": "vib2-4-21",
@@ -528,15 +806,28 @@
         "$\\zeta=0.20,\\ \\omega_d\\approx9.80\\,\\mathrm{rad/s}$"
       ],
       "answer": 2,
-      "explanation": "【基礎】$\\omega_n=\\sqrt{k/m}$、$\\zeta=\\dfrac{c}{2\\sqrt{mk}}$、$\\omega_d=\\omega_n\\sqrt{1-\\zeta^2}$。\n【計算】$\\omega_n=\\sqrt{1000/10}=10$ rad/s。$\\sqrt{mk}=\\sqrt{10\\times1000}=100$。$\\zeta=\\dfrac{20}{2\\times100}=0.10$。$\\omega_d=10\\sqrt{1-0.01}=10\\times0.995\\approx9.95$ rad/s。\n【ポイント】$\\zeta$ が小さいと $\\omega_d\\approx\\omega_n$。ここでは1%弱しか下がらない。\n【引っかけ】$\\zeta=0.05$ は $2\\sqrt{mk}$ の係数2を落とした誤り。$\\omega_d=10.0$ は減衰の効果($\\sqrt{1-\\zeta^2}$)を無視した値。",
+      "explanation": "【基礎】$\\omega_n=\\sqrt{k/m}$、$\\zeta=\\dfrac{c}{2\\sqrt{mk}}$、$\\omega_d=\\omega_n\\sqrt{1-\\zeta^2}$ です。\n【考え方】$\\omega_n=\\sqrt{1000/10}=10$ rad/s、$\\sqrt{mk}=100$ なので $\\zeta=\\dfrac{20}{200}=0.10$、$\\omega_d=10\\sqrt{1-0.01}\\approx9.95$ rad/s で、正解は選択肢2です。\n【ポイント】$\\zeta$ が小さいと $\\omega_d\\approx\\omega_n$ で、ここでは1%弱しか下がりません。\n【引っかけ】選択肢1・3の $\\zeta=0.05$ は $2\\sqrt{mk}$ の分母の係数2を4にした誤り、選択肢3の $\\omega_d=10.0$ は減衰の効果を無視、選択肢4は $\\zeta$ を過大にした値です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-21",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e421",
-      "figureHint": "m=10kg,k=1000,c=20の減衰1自由度系の模式図(数値ラベル付き)"
+      "relatedFormulas": [
+        "v2f4-7",
+        "v2f4-9"
+      ],
+      "editorialReview": {
+        "officialPoint": "ωn=√(k/m)、ζ=c/(2√(mk))、ωd=ωn√(1-ζ²)。",
+        "alignment": "公式問4-21と同じ数値計算。ωn=10・ζ=0.10・ωd≈9.95 rad/s を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "係数2を落とし ζ=0.05 とした。",
+          "3": "ζ=0.05 かつ減衰効果を無視し ωd=10.0 とした。",
+          "4": "ζ を過大(0.20)に見積もった。"
+        },
+        "sha256": "3d354b1ac689fb23f462d3a3071f38ab45eef12a31b0d4f0b18b29aa53096876"
+      },
+      "figureExempt": true,
+      "figureExemptReason": "関係式と必要な途中計算を本文に示すことで判断できます。"
     },
     {
       "id": "vib2-4-22",
@@ -553,15 +844,27 @@
         "分子 $=\\sqrt{1+(2\\zeta r)^2}$"
       ],
       "answer": 1,
-      "explanation": "【基礎】強制変位応答の振幅 $X=\\dfrac{F/k}{\\sqrt{(1-r^2)^2+(2\\zeta r)^2}}$。\n【考え方】応答倍率 $M=X/(F/k)=\\dfrac{1}{\\sqrt{(1-r^2)^2+(2\\zeta r)^2}}$。分子は1。\n【ポイント】$r\\to0$ で $M\\to1$(静的変位)、$r\\approx1$ で共振(分子1は変わらず、分母が小さくなり増幅)。\n【引っかけ】分子に $r^2$ が付くのは基礎加振の伝達率、$\\sqrt{1+(2\\zeta r)^2}$ が付くのは変位伝達率で、外力加振の応答倍率とは別物。",
+      "explanation": "【基礎】外力加振の定常変位振幅は $X=\\dfrac{F/k}{\\sqrt{(1-r^2)^2+(2\\zeta r)^2}}$ です。\n【考え方】応答倍率は $M=X/(F/k)=\\dfrac{1}{\\sqrt{(1-r^2)^2+(2\\zeta r)^2}}$ で分子は1となり、正解は選択肢1です。\n【ポイント】$r\\to0$ で $M\\to1$(静的変位)、$r\\approx1$ で分母が小さくなり共振で増幅します。\n【引っかけ】選択肢2の $r$、選択肢3の $r^2$、選択肢4の $\\sqrt{1+(2\\zeta r)^2}$ はいずれも別の伝達関数の分子で、外力に対する応答倍率の分子は1です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-22",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e422",
-      "figureHint": "外力Fsin(ωt)を受ける減衰1自由度系(m,c,k)の模式図"
+      "relatedFormulas": [
+        "v2f4-14"
+      ],
+      "editorialReview": {
+        "officialPoint": "外力加振の定常応答倍率 M=1/√{(1-r²)²+(2ζr)²}(分子は1)。",
+        "alignment": "公式問4-22と同じく分子=1 を選ばせる。",
+        "distractorMisconceptions": {
+          "2": "分子 r は別の伝達関数の形。",
+          "3": "分子 r² は基礎加振など別伝達関数の形。",
+          "4": "分子 √(1+(2ζr)²) は力伝達率などの形。"
+        },
+        "sha256": "f739580308b75078bc8094dd7be04c2b0305dc80b63b93dac4b6935d065e513d"
+      },
+      "figureExempt": true,
+      "figureExemptReason": "関係式と必要な途中計算を本文に示すことで判断できます。"
     },
     {
       "id": "vib2-4-23",
@@ -570,24 +873,35 @@
       "topic": "フーリエ変換",
       "type": "mc",
       "difficulty": 2,
-      "question": "$f(t)=1\\ (|t|\\le T)$、$0\\ (|t|>T)$ の矩形パルスのフーリエ変換 $F(\\omega)=\\displaystyle\\int_{-\\infty}^{\\infty}f(t)e^{-j\\omega t}dt$ はどれか。",
+      "question": "$f(t)=1\\ (|t|\\le T)$、$0\\ (|t|>T)$ （$T>0$）の矩形パルスのフーリエ変換 $F(\\omega)=\\displaystyle\\int_{-\\infty}^{\\infty}f(t)e^{-j\\omega t}dt$ はどれか。 $\\omega=0$ では極限値で定義する。",
       "choices": [
         "$\\dfrac{2\\cos\\omega T}{\\omega}$",
-        "$\\dfrac{2T\\cos\\omega T}{\\omega T}$",
+        "$\\dfrac{\\sin(\\omega T)}{\\omega}$",
         "$2T\\,\\omega\\sin\\omega T$",
         "$\\dfrac{2\\sin\\omega T}{\\omega}$"
       ],
       "answer": 4,
-      "explanation": "【基礎】$F(\\omega)=\\displaystyle\\int_{-T}^{T}e^{-j\\omega t}dt=\\left[\\dfrac{e^{-j\\omega t}}{-j\\omega}\\right]_{-T}^{T}$。\n【計算】$=\\dfrac{e^{-j\\omega T}-e^{j\\omega T}}{-j\\omega}=\\dfrac{-2j\\sin\\omega T}{-j\\omega}=\\dfrac{2\\sin\\omega T}{\\omega}$。$=2T\\,\\dfrac{\\sin\\omega T}{\\omega T}$(sinc 型)。\n【ポイント】矩形パルスの変換は sinc 関数。時間幅が広いほど周波数側は狭くなる(不確定性)。\n【引っかけ】$\\cos$ 型は偶関数の微分符号ミス。オイラーの公式 $e^{\\pm j\\theta}=\\cos\\theta\\pm j\\sin\\theta$ の差は $\\sin$ になる。",
+      "explanation": "【基礎】$F(\\omega)=\\displaystyle\\int_{-T}^{T}e^{-j\\omega t}dt=\\left[\\dfrac{e^{-j\\omega t}}{-j\\omega}\\right]_{-T}^{T}$ です。\n【考え方】$=\\dfrac{e^{-j\\omega T}-e^{j\\omega T}}{-j\\omega}=\\dfrac{-2j\\sin\\omega T}{-j\\omega}=\\dfrac{2\\sin\\omega T}{\\omega}$ となり、正解は選択肢4です。\n【ポイント】オイラーの公式 $e^{\\pm j\\theta}=\\cos\\theta\\pm j\\sin\\theta$ の差は $\\sin$ になり、矩形パルスの変換は $\\dfrac{2\\sin\\omega T}{\\omega}$ です。$\\omega=0$ の値はパルスの面積 $2T$ に一致します。\n【引っかけ】①は指数関数の差をcosとした誤り、②は区間の片側だけを計算して係数2を落とした誤り、③は積分の分母と係数を誤った式です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-23",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e423",
       "figureHint": "時間軸上の矩形パルスf(t)=1(|t|<=T),0(それ以外)の波形図(与えられた関数)",
-      "preFigureImage": "v2e423Pre"
+      "preFigureImage": "v2e423Pre",
+      "relatedFormulas": [],
+      "editorialReview": {
+        "officialPoint": "矩形パルスのフーリエ変換とω=0での極限。",
+        "alignment": "独自高さ1・幅2Tなので2sin(ωT)/ω、0で2T。",
+        "distractorMisconceptions": {
+          "1": "指数の差をcosとする。",
+          "2": "積分区間の片側だけとして係数2を落とす。",
+          "3": "積分によるωの分母と係数を誤る。"
+        },
+        "sha256": "3da060a590ae3e7c54de3b9b0c1aa0535a365d7833b7aad67192e8a3718001fa"
+      }
     },
     {
       "id": "vib2-4-24",
@@ -598,21 +912,35 @@
       "difficulty": 2,
       "question": "質量 $m$ の3質点を4本のばね $k$ で一直線に連結し、両端を壁に固定する。運動方程式 $[M]\\{\\ddot x\\}+[K]\\{x\\}=\\{0\\}$($\\{x\\}=\\{x_1,x_2,x_3\\}^T$)における剛性行列 $[K]$ はどれか(質量行列は $[M]=m\\,I$)。",
       "choices": [
-        "[[k,-k,0],[-k,2k,-k],[0,-k,k]]",
-        "[[2k,-k,-k],[-k,2k,-k],[-k,-k,2k]]",
-        "[[2k,-k,0],[-k,2k,-k],[0,-k,2k]]",
-        "[[2k,k,0],[k,2k,k],[0,k,2k]]"
+        "$[K]=\\begin{bmatrix}k&-k&0\\\\-k&2k&-k\\\\0&-k&k\\end{bmatrix}$",
+        "$[K]=\\begin{bmatrix}2k&-k&-k\\\\-k&2k&-k\\\\-k&-k&2k\\end{bmatrix}$",
+        "$[K]=\\begin{bmatrix}2k&-k&0\\\\-k&2k&-k\\\\0&-k&2k\\end{bmatrix}$",
+        "$[K]=\\begin{bmatrix}2k&k&0\\\\k&2k&k\\\\0&k&2k\\end{bmatrix}$"
       ],
       "answer": 3,
-      "explanation": "【基礎】各質点の運動方程式を立てると、両側にばねが付く質点の対角項は $2k$、隣接結合の非対角項は $-k$。\n【考え方】両端固定なので端の質点にも両側にばねがあり、対角はすべて $2k$。3重対角で非隣接は0。\n【計算】$[K]=$[[2k,-k,0],[-k,2k,-k],[0,-k,2k]]。\n【ポイント】非対角は必ず負号($-k$)。正号は符号ミス。\n【引っかけ】対角の端を $k$ にするのは片持ち(端が自由)の場合。両端固定では端も $2k$。",
+      "explanation": "【基礎】各質点の運動方程式を立てると、両側にばねが付く質点の対角項は $2k$、隣接結合の非対角項は $-k$ になります。\n【考え方】両端固定なので端の質点にも両側にばねがあり対角はすべて $2k$、3重対角で非隣接は0となり、$[K]=\\begin{bmatrix}2k&-k&0\\\\-k&2k&-k\\\\0&-k&2k\\end{bmatrix}$ で正解は選択肢3です。\n【ポイント】非対角は必ず負号 $-k$ になります。\n【引っかけ】選択肢1は端の対角を $k$ とする自由端の形、選択肢2は非隣接にも $-k$ を入れた誤り、選択肢4は非対角を正号にした誤りです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-24",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e424",
-      "figureHint": "3質点を4本のばねkで連結し両端を壁に固定した系の配置図・x1,x2,x3"
+      "figureHint": "3質点を4本のばねkで連結し両端を壁に固定した系の配置図・x1,x2,x3",
+      "relatedFormulas": [
+        "v2f4-16"
+      ],
+      "editorialReview": {
+        "officialPoint": "両端固定3質点4ばねの剛性行列は対角すべて 2k・非対角 -k の三重対角。",
+        "alignment": "公式問4-24と同じ [K]=[[2k,-k,0],[-k,2k,-k],[0,-k,2k]] を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "端の対角を k とする自由端の形。",
+          "2": "非隣接にも -k を入れた誤り。",
+          "4": "非対角を正号にした誤り。"
+        },
+        "sha256": "896278e368a80fb83c0c1c90792196614014de3a01b98d90f082c8c433fa97b7"
+      },
+      "preFigureImage": "v2e424"
     },
     {
       "id": "vib2-4-25",
@@ -623,21 +951,35 @@
       "difficulty": 2,
       "question": "左壁から順に、ばね $k_1$→質点→ばね $k_2$→質点→ばね $k_3$→質点(右端は自由、床上をローラで移動)と連結する。変位 $x_1,x_2,x_3$ に対する剛性行列 $[K]$ はどれか。",
       "choices": [
-        "[[k1,-k2,0],[-k2,k2+k3,-k3],[0,-k3,k3]]",
-        "[[k1+k2,-k2,0],[-k2,k2+k3,-k3],[0,-k3,k3]]",
-        "[[k1+k2,-k2,0],[-k2,k2+k3,-k3],[0,-k3,k3+k4]]",
-        "[[k1+k2,-k2,0],[-k2,k2+k3,-k3],[0,-k3,k2+k3]]"
+        "$[K]=\\begin{bmatrix}k_1&-k_2&0\\\\-k_2&k_2+k_3&-k_3\\\\0&-k_3&k_3\\end{bmatrix}$",
+        "$[K]=\\begin{bmatrix}k_1+k_2&-k_2&0\\\\-k_2&k_2+k_3&-k_3\\\\0&-k_3&k_3\\end{bmatrix}$",
+        "$[K]=\\begin{bmatrix}k_1+k_2&-k_2&0\\\\-k_2&k_2+k_3&-k_3\\\\0&-k_3&k_2\\end{bmatrix}$",
+        "$[K]=\\begin{bmatrix}k_1+k_2&-k_2&0\\\\-k_2&k_2+k_3&-k_3\\\\0&-k_3&k_2+k_3\\end{bmatrix}$"
       ],
       "answer": 2,
-      "explanation": "【基礎】質点 $i$ の対角項は「その質点に付くばね定数の和」、非対角は隣接ばねの $-k$。\n【考え方】質点1は左のばね $k_1$ と右の $k_2$ → $k_1+k_2$。質点2は $k_2+k_3$。質点3は右端自由なので $k_3$ のみ。\n【計算】$[K]=$[[k1+k2,-k2,0],[-k2,k2+k3,-k3],[0,-k3,k3]]。\n【ポイント】自由端の対角は片側ばねだけ。\n【引っかけ】右下を $k_3+k_4$ とするのは存在しない4本目を数えた誤り。左上を $k_1$ だけにするのは $k_2$ を落とした誤り。",
+      "explanation": "【基礎】質点 $i$ の対角項は「その質点に付くばね定数の和」、非対角は隣接ばねの $-k$ です。\n【考え方】質点1は $k_1+k_2$、質点2は $k_2+k_3$、質点3は右端自由なので $k_3$ のみとなり、$[K]=\\begin{bmatrix}k_1+k_2&-k_2&0\\\\-k_2&k_2+k_3&-k_3\\\\0&-k_3&k_3\\end{bmatrix}$ で正解は選択肢2です。\n【ポイント】自由端の対角は片側のばねだけになります。\n【引っかけ】選択肢1は左上で $k_2$ を落とした誤り、③は右端対角項に隣の区間の $k_2$ を使った誤り、選択肢4は右下を取り違えた誤りです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-25",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e425",
-      "figureHint": "左壁からk1,m,k2,m,k3,mと連結し右端は自由(ローラ)の3質点系配置図"
+      "figureHint": "左壁からk1,m,k2,m,k3,mと連結し右端は自由(ローラ)の3質点系配置図",
+      "relatedFormulas": [
+        "v2f4-16"
+      ],
+      "editorialReview": {
+        "officialPoint": "片端固定・右端自由の3質点系の剛性行列。",
+        "alignment": "各質点につながるばねを足し、③の存在しないk4を使う誤答を既存k2の取違えへ変更。",
+        "distractorMisconceptions": {
+          "1": "左対角でk2を落とす。",
+          "3": "右端対角にk3でなくk2を使う。",
+          "4": "右端対角にk2を余分に足す。"
+        },
+        "sha256": "30d670c0495632ab316866d19d95986672efa144d17b6a81372b7dae3043fb02"
+      },
+      "preFigureImage": "v2e425"
     },
     {
       "id": "vib2-4-26",
@@ -646,23 +988,37 @@
       "topic": "2自由度連成EOM",
       "type": "mc",
       "difficulty": 3,
-      "question": "質量 $m$・重心まわり慣性 $I_G$ の剛体を、重心 G から距離 $l_1$(左)と $l_2$(右)の位置でばね $k_1,k_2$ が支える(平衡で水平)。重心の上下変位 $x$ と回転角 $\\theta$ の運動方程式の組として正しいのはどれか。",
+      "question": "質量 $m$・重心まわり慣性モーメント $I_G$ の剛体を、重心から左へ距離 $l_1$、右へ距離 $l_2$ の位置でばね $k_1,k_2$ が支える。平衡で水平、上下変位 $x$ は下向き、微小回転角 $\\theta$ は時計回りを正とする。運動方程式を次のように書くとき、係数 $C,D$ の正しい組はどれか。\n$m\\ddot{x}+(k_1+k_2)x+C\\theta=0$\n$I_G\\ddot\\theta+Cx+D\\theta=0$",
       "choices": [
-        "非連成: $m\\ddot x+(k_1+k_2)x=0$、$I_G\\ddot\\theta+(k_1l_1^2+k_2l_2^2)\\theta=0$",
-        "$m\\ddot x+(k_1+k_2)x+(k_1l_1+k_2l_2)\\theta=0$、$I_G\\ddot\\theta+(k_1l_1+k_2l_2)x+(k_1l_1^2+k_2l_2^2)\\theta=0$",
-        "$m\\ddot x+(k_1+k_2)x+(k_2l_2-k_1l_1)\\theta=0$、$I_G\\ddot\\theta+(k_2l_2-k_1l_1)x+(k_1l_1^2+k_2l_2^2)\\theta=0$",
-        "$m\\ddot x+(k_1+k_2)x+(k_2l_2-k_1l_1)\\theta=0$、$I_G\\ddot\\theta+(k_2l_2-k_1l_1)x+(k_1l_1-k_2l_2)\\theta=0$"
+        "$C=0$、$D=k_1l_1^2+k_2l_2^2$",
+        "$C=k_1l_1+k_2l_2$、$D=k_1l_1^2+k_2l_2^2$",
+        "$C=k_2l_2-k_1l_1$、$D=k_1l_1^2+k_2l_2^2$",
+        "$C=k_2l_2-k_1l_1$、$D=k_1l_1-k_2l_2$"
       ],
       "answer": 3,
-      "explanation": "【基礎】左ばねの伸びは $x-l_1\\theta$、右は $x+l_2\\theta$(回転で左が上がり右が下がる向きを正とする)。\n【考え方】並進: $m\\ddot x=-k_1(x-l_1\\theta)-k_2(x+l_2\\theta)$ → $m\\ddot x+(k_1+k_2)x+(k_2l_2-k_1l_1)\\theta=0$。回転: $I_G\\ddot\\theta=l_1k_1(x-l_1\\theta)-l_2k_2(x+l_2\\theta)$ → $I_G\\ddot\\theta+(k_2l_2-k_1l_1)x+(k_1l_1^2+k_2l_2^2)\\theta=0$。\n【ポイント】連成項 $(k_2l_2-k_1l_1)$ は $x$ の式と $\\theta$ の式で同じ(対称)になる。\n【引っかけ】連成項の符号や、$\\theta$ の対角を $(k_1l_1-k_2l_2)$ とするのは誤り(正しくは $k_1l_1^2+k_2l_2^2$、必ず正)。",
+      "explanation": "【基礎】右へ傾けると左のばねは短く、右のばねは長くなるので、伸びは左が $x-l_1\\theta$、右が $x+l_2\\theta$ です。ばね力は各伸びに $-k_1,-k_2$ を掛けたものです。\n【考え方】2つのばね力を足すと $-(k_1+k_2)x+(k_1l_1-k_2l_2)\\theta$ です。左辺へ移すと $C=k_2l_2-k_1l_1$ です。回転では各力に重心からの腕を掛けるため、$D=k_1l_1^2+k_2l_2^2$ となり、③です。\n【ポイント】上下に動くだけでも、左右のばねのモーメントが違えば棒は回ろうとします。Cがその連成を表し、並進と回転の両式に同じ係数で現れます。Dは回転を戻す硬さで、左右の寄与を足します。\n【引っかけ】①は一般には存在する連成を落としています。②は左右のばねが作る逆向きのモーメントを和にしています。④は回転剛性に必要な腕の2乗と和を取り違えています。③が正しいです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-26",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e426",
-      "figureHint": "重心Gから距離l1,l2でばねk1,k2が支える剛体。上下変位xと回転thetaの配置図"
+      "figureHint": "重心Gから距離l1,l2でばねk1,k2が支える剛体。上下変位xと回転thetaの配置図",
+      "relatedFormulas": [
+        "v2f4-16"
+      ],
+      "editorialReview": {
+        "officialPoint": "重心上下動と回転の連成方程式、共通の連成係数。",
+        "alignment": "公式の両運動方程式を提示し、C=k2l2-k1l1、D=k1l1²+k2l2²を選ぶ。符号方向を明記。",
+        "distractorMisconceptions": {
+          "1": "一般の連成項を落とす。",
+          "2": "左右のモーメントを差でなく和にする。",
+          "4": "回転剛性の腕の2乗と和を誤る。"
+        },
+        "sha256": "86d5311c6610ecef24a5d3ae28b9ef3bad6b9ef096b50e0d561539dc9b01f886"
+      },
+      "preFigureImage": "v2e426"
     },
     {
       "id": "vib2-4-27",
@@ -679,15 +1035,28 @@
         "$k_1l_1=k_2l_2$"
       ],
       "answer": 4,
-      "explanation": "【基礎】連成項は $(k_2l_2-k_1l_1)$。これが0なら $x$ の式に $\\theta$ が、$\\theta$ の式に $x$ が現れない。\n【考え方】$k_2l_2-k_1l_1=0$ すなわち $k_1l_1=k_2l_2$ で非連成。\n【ポイント】ばね定数と重心からの距離の積(モーメント釣合い)が左右で等しいとき、加振してもモード分離する。\n【引っかけ】$k_1=k_2$ や $l_1=l_2$ 単独では連成項は消えない。$k_1l_1^2=k_2l_2^2$ は対角項に関する式で連成条件ではない。",
+      "explanation": "【基礎】連成項は $(k_2l_2-k_1l_1)$ で、これが0なら $x$ の式に $\\theta$ が、$\\theta$ の式に $x$ が現れません。\n【考え方】$k_2l_2-k_1l_1=0$ すなわち $k_1l_1=k_2l_2$ で非連成になり、正解は選択肢4です。\n【ポイント】ばね定数と重心からの距離の積が左右で等しいとき、上下動と回転が独立に振動します。\n【引っかけ】選択肢1の $k_1=k_2$ や選択肢2の $l_1=l_2$ 単独では連成項は消えず、選択肢3の $k_1l_1^2=k_2l_2^2$ は対角項に関する式で連成条件ではありません。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-27",
       "role": "primary",
       "figure": "helpful",
-      "figureImage": "v2e427",
-      "figureHint": "問4-26と同じ剛体+2ばね系。連成項(k2l2-k1l1)を示す配置図"
+      "figureImage": "v2e426",
+      "figureHint": "問4-26と同じ剛体+2ばね系。連成項(k2l2-k1l1)を示す配置図",
+      "relatedFormulas": [
+        "v2f4-16"
+      ],
+      "editorialReview": {
+        "officialPoint": "連成項 (k2l2-k1l1)=0、すなわち k1l1=k2l2 で非連成。",
+        "alignment": "公式問4-27と同じ非連成条件を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "k1=k2 単独では連成項は消えない。",
+          "2": "l1=l2 単独では連成項は消えない。",
+          "3": "k1l1²=k2l2² は対角項に関する式で連成条件ではない。"
+        },
+        "sha256": "7bc5d2646055ed416fa877387e22ef1078d5d6ee2f46eea7a0f00f0ec0de26ca"
+      }
     },
     {
       "id": "vib2-4-28",
@@ -704,15 +1073,29 @@
         "$2,\\ 8\\,\\mathrm{rad/s}$"
       ],
       "answer": 1,
-      "explanation": "【基礎】$[K]=$[[10,-6],[-6,10]]、$[M]=I$。固有値問題 $\\det([K]-\\omega^2[M])=0$。\n【計算】$\\det\\begin{bmatrix}10-\\omega^2&-6\\\\-6&10-\\omega^2\\end{bmatrix}=(10-\\omega^2)^2-36=0$ → $10-\\omega^2=\\pm6$ → $\\omega^2=4$ または $16$ → $\\omega=2,\\ 4$ rad/s。\n【ポイント】対称行列 [[c,-d],[-d,c]] の固有値は $c\\mp d$。\n【引っかけ】$4,16$ は $\\omega^2$(2乗のまま)を答えた誤り。ルートを外し忘れないこと。",
+      "explanation": "【基礎】$[K]=\\begin{bmatrix}10&-6\\\\-6&10\\end{bmatrix}$、$[M]=I$ で、固有値問題は $\\det([K]-\\omega^2[M])=0$ です。\n【考え方】$(10-\\omega^2)^2-36=0$ から $10-\\omega^2=\\pm6$、$\\omega^2=4$ または $16$、$\\omega=2,\\ 4$ rad/s となり、正解は選択肢1です。\n【ポイント】対称行列 $\\begin{bmatrix}c&-d\\\\-d&c\\end{bmatrix}$ の固有値は $c\\mp d$ です。\n【引っかけ】選択肢2の $4,16$ は $\\omega^2$ のまま答えた誤り、選択肢3・4は行列式の展開を誤った値です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-28",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e428",
-      "figureHint": "壁-k1-m1-k2-m2-k3-壁の2自由度系配置図(m1=m2=1,k1=k3=4,k2=6)"
+      "figureHint": "壁-k1-m1-k2-m2-k3-壁の2自由度系配置図(m1=m2=1,k1=k3=4,k2=6)",
+      "relatedFormulas": [
+        "v2f4-16",
+        "v2f4-17"
+      ],
+      "editorialReview": {
+        "officialPoint": "固有値問題 det([K]-ω²[M])=0 を解く。",
+        "alignment": "公式問4-28と同じ数値計算(独自値 k1=k3=4,k2=6)。[K]=[[10,-6],[-6,10]] から ω=2,4 rad/s を選ばせる。",
+        "distractorMisconceptions": {
+          "2": "ω² のまま(4,16)答えた。",
+          "3": "行列式の展開を誤った値。",
+          "4": "同じく展開を誤った値。"
+        },
+        "sha256": "9d1c05f7f19dfe2a992fb8c12a0e1eb2e6aa3124b5126eca21f125f731220f3e"
+      }
     },
     {
       "id": "vib2-4-29",
@@ -729,16 +1112,27 @@
         "(a) $k^*_j\\ddot\\xi_j+m^*_j\\xi_j=\\{\\phi_j\\}^T\\{f\\}$、(c) $\\omega_j=\\sqrt{k^*_j/m^*_j}$"
       ],
       "answer": 2,
-      "explanation": "【基礎】直交性より、モード座標では系が独立な1自由度系に分解される。\n【考え方】$[M]\\{\\ddot x\\}+[K]\\{x\\}=\\{f\\}$ に $\\{x\\}=\\sum\\xi_i\\{\\phi_i\\}$ を代入し左から $\\{\\phi_j\\}^T$ を掛けると、直交性で $j$ 項だけ残り $m^*_j\\ddot\\xi_j+k^*_j\\xi_j=\\{\\phi_j\\}^T\\{f\\}$。\n【計算】1自由度と同じく $\\omega_j=\\sqrt{k^*_j/m^*_j}$。\n【ポイント】右辺の外力は $\\{\\phi_j\\}^T\\{f\\}$(モード外力)に射影される。\n【引っかけ】$\\sqrt{m^*/k^*}$ は逆数(周期の平方根)。右辺を $\\{f\\}$ のままにするのは射影忘れ。",
+      "explanation": "【基礎】各部の動きを「揺れ方の形」$\\{\\phi_i\\}$ と、その時刻ごとの大きさ $\\xi_i$ の和で表します。モード質量は $m_j^*=\\{\\phi_j\\}^T[M]\\{\\phi_j\\}$、モード剛性は $k_j^*=\\{\\phi_j\\}^T[K]\\{\\phi_j\\}$ です。\n【考え方】$\\{x\\}=\\sum\\xi_i\\{\\phi_i\\}$ を代入し左から $\\{\\phi_j\\}^T$ を掛けると、直交性により他のモードの項は0になります。残った $j$ 項から、$m^*_j\\ddot\\xi_j+k^*_j\\xi_j=\\{\\phi_j\\}^T\\{f\\}$、固有角振動数は $\\omega_j=\\sqrt{k^*_j/m^*_j}$ となり、正解は選択肢2です。\n【ポイント】右辺の外力はモード形に射影した $\\{\\phi_j\\}^T\\{f\\}$ になります。\n【引っかけ】選択肢1の $\\sqrt{m^*_j/k^*_j}$ は逆数、選択肢3は右辺を射影せず $\\{f\\}$ のまま、選択肢4は $m^*$ と $k^*$ を入れ替えた誤りです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-29",
       "role": "primary",
+      "relatedFormulas": [
+        "v2f4-17"
+      ],
+      "editorialReview": {
+        "officialPoint": "直交性によりモード座標で独立な1自由度系に分解、ωj=√(k*j/m*j)、右辺は {φj}ᵀ{f}。",
+        "alignment": "公式問4-29と同じモード単独EOMと固有角振動数を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "ωj を √(m*/k*) と逆数にした。",
+          "3": "右辺を射影せず {f} のままにした。",
+          "4": "m* と k* を入れ替えた誤り。"
+        },
+        "sha256": "973c14840765ec7c30a68a263d1691528affde366d04c5f89137517cebc1966d"
+      },
       "figure": "helpful",
-      "figureImage": "v2e429",
-      "figureHint": "N自由度系→モード変換→独立な1自由度モード振動子(ξ1,ξ2,ξ3)への分解概念図",
-      "preFigureImage": "v2e429Pre"
+      "figureImage": "v2e429"
     },
     {
       "id": "vib2-4-30",
@@ -755,15 +1149,29 @@
         "$\\omega_1=\\sqrt{\\dfrac{2k}{m}},\\ \\omega_2=\\sqrt{\\dfrac{3k}{m}}$"
       ],
       "answer": 2,
-      "explanation": "【基礎】$\\det([K]-\\omega^2[M])=0$。\n【計算】$\\det\\begin{bmatrix}2k-m\\omega^2&-k\\\\-k&2k-m\\omega^2\\end{bmatrix}=(2k-m\\omega^2)^2-k^2=0$ → $2k-m\\omega^2=\\pm k$ → $m\\omega^2=k$ または $3k$ → $\\omega_1=\\sqrt{k/m},\\ \\omega_2=\\sqrt{3k/m}$。\n【ポイント】対称質量なので分母は $m$(=$2m$ ではない)。\n【引っかけ】分母を $2m$ にするのは質量行列の扱い誤り。$\\sqrt{2k/m}$ は $\\det$ の展開ミス。",
+      "explanation": "【基礎】固有値問題は $\\det([K]-\\omega^2[M])=0$ です。\n【考え方】$(2k-m\\omega^2)^2-k^2=0$ から $2k-m\\omega^2=\\pm k$、$m\\omega^2=k$ または $3k$ となり、$\\omega_1=\\sqrt{k/m},\\ \\omega_2=\\sqrt{3k/m}$ で正解は選択肢2です。\n【ポイント】質量行列が $mI$ なので分母は $m$(=$2m$ ではありません)です。\n【引っかけ】選択肢1は分母を $2m$ とする質量行列の扱い誤り、選択肢3・4は行列式の展開を誤った値です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-30",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e430",
-      "figureHint": "壁-k-m-k-m-k-壁の2自由度系配置図([K]=[[2k,-k],[-k,2k]])・x1,x2"
+      "figureHint": "壁-k-m-k-m-k-壁の2自由度系配置図([K]=[[2k,-k],[-k,2k]])・x1,x2",
+      "relatedFormulas": [
+        "v2f4-16",
+        "v2f4-17"
+      ],
+      "editorialReview": {
+        "officialPoint": "det([K]-ω²[M])=0 から (2k-mω²)²=k²、ω1=√(k/m)・ω2=√(3k/m)。",
+        "alignment": "公式問4-30と同じ。質量行列 mI なので分母は m を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "分母を 2m とする質量行列の扱い誤り。",
+          "3": "行列式の展開を誤った値。",
+          "4": "同じく展開を誤った値。"
+        },
+        "sha256": "698c86ac0cd66697d74b1f3b2688651a7ba315df567c138511c96df479aee409"
+      }
     },
     {
       "id": "vib2-4-31",
@@ -780,16 +1188,28 @@
         "$\\{\\phi_1\\}=\\{1,1\\}^T,\\ \\{\\phi_2\\}=\\{1,-1\\}^T$"
       ],
       "answer": 4,
-      "explanation": "【基礎】各 $\\omega_i$ を $([K]-\\omega_i^2[M])\\{\\phi\\}=0$ に代入して比を求める。\n【計算】$\\omega_1^2=k/m$: $(2k-k)\\phi_{1}-k\\phi_{2}=0$ → $\\phi_1=\\phi_2$ → $\\{1,1\\}^T$(同相)。$\\omega_2^2=3k/m$: $(2k-3k)\\phi_1-k\\phi_2=0$ → $\\phi_1=-\\phi_2$ → $\\{1,-1\\}^T$(逆相)。\n【ポイント】低次は同相(そろって動く)、高次は逆相(反対に動く)が定石。\n【引っかけ】第1次と第2次を入れ替える誤り。低次=同相 $\\{1,1\\}$ を第1次に。",
+      "explanation": "【基礎】各 $\\omega_i$ を $([K]-\\omega_i^2[M])\\{\\phi\\}=0$ に代入して成分比を求めます。\n【考え方】$\\omega_1^2=k/m$ では $\\phi_1=\\phi_2$ で $\\{1,1\\}^T$(同相)、$\\omega_2^2=3k/m$ では $\\phi_1=-\\phi_2$ で $\\{1,-1\\}^T$(逆相)となり、正解は選択肢4です。\n【ポイント】この2質点系では、1次が同相（そろって動く）、2次が逆相（反対に動く）です。成分を全部同じ倍率で変えても同じモードです。\n【引っかけ】選択肢1は第1次と第2次を入れ替え、選択肢2は成分比を誤り、選択肢3は両モードを同じにした誤りです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-31",
       "role": "primary",
       "figure": "helpful",
-      "figureImage": "v2e431",
+      "figureImage": "v2e430",
       "figureHint": "第1次{1,1}同相と第2次{1,-1}逆相の固有モード形状を矢印で示す2枚組(答えを示唆)",
-      "preFigureImage": "v2e431Pre"
+      "relatedFormulas": [
+        "v2f4-17"
+      ],
+      "editorialReview": {
+        "officialPoint": "各 ωi を代入し成分比を求める。低次は同相{1,1}、高次は逆相{1,-1}。",
+        "alignment": "公式問4-31と同じ固有モードの組を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "第1次と第2次を入れ替えた。",
+          "2": "成分比を誤った。",
+          "3": "両モードを同じにした誤り。"
+        },
+        "sha256": "c3b6c5b642cc06de69542112bf25b0c0639623b08dbd9d036aa42347ed4e1bb9"
+      }
     },
     {
       "id": "vib2-4-32",
@@ -806,16 +1226,28 @@
         "$m^*=m,\\ k^*=2k$"
       ],
       "answer": 1,
-      "explanation": "【基礎】$m^*=\\{\\phi\\}^T[M]\\{\\phi\\}$、$k^*=\\{\\phi\\}^T[K]\\{\\phi\\}$。\n【計算】$m^*=\\{1,1\\}(m I)\\{1,1\\}^T=m(1+1)=2m$。$[K]\\{1,1\\}^T=\\{2k-k,\\,-k+2k\\}=\\{k,k\\}$、$k^*=\\{1,1\\}\\{k,k\\}^T=2k$。\n【検算】$\\omega=\\sqrt{k^*/m^*}=\\sqrt{2k/2m}=\\sqrt{k/m}$、第1次固有角振動数と一致。\n【引っかけ】$k^*=6k$ は第2次モード $\\{1,-1\\}$ の値。第1次と混同しない。",
+      "explanation": "【基礎】モード質量は $m^*=\\{\\phi\\}^T[M]\\{\\phi\\}$、モード剛性は $k^*=\\{\\phi\\}^T[K]\\{\\phi\\}$ です。\n【考え方】$m^*=m(1^2+1^2)=2m$、$[K]\\{1,1\\}^T=\\{k,k\\}$ なので $k^*=1\\times k+1\\times k=2k$ となり、正解は選択肢1です($\\omega=\\sqrt{k^*/m^*}=\\sqrt{k/m}$ で第1次と一致)。\n【ポイント】モード質量・モード剛性はモード形で行列を両側から挟んで求めます。\n【引っかけ】選択肢3の $k^*=6k$ は第2次モード $\\{1,-1\\}$ の値、選択肢2・4は $m^*$ を数え落とした誤りです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-32",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e432",
+      "figure": "helpful",
+      "figureImage": "v2e430",
       "figureHint": "2自由度系で第1次モード{1,1}=両質点が等しく動く配置図(m*,k*計算対象)",
-      "preFigureImage": "v2e432Pre"
+      "relatedFormulas": [
+        "v2f4-17"
+      ],
+      "editorialReview": {
+        "officialPoint": "モード質量 m*={φ}ᵀ[M]{φ}、モード剛性 k*={φ}ᵀ[K]{φ}。{1,1} で m*=2m,k*=2k。",
+        "alignment": "公式問4-32と同じ。第1次モードの m*,k* を選ばせる(ω=√(k*/m*)=√(k/m))。",
+        "distractorMisconceptions": {
+          "2": "m* を数え落とした(m,k)。",
+          "3": "k*=6k は第2次モード{1,-1}の値。",
+          "4": "m* を数え落とした(m,2k)。"
+        },
+        "sha256": "e7c8e74abfc8618e7729ea827d22d64a5b6cfc219ae9d1f51107a7ee57778f1f"
+      }
     },
     {
       "id": "vib2-4-33",
@@ -824,7 +1256,7 @@
       "topic": "モード正規化",
       "type": "mc",
       "difficulty": 2,
-      "question": "$[M]=m\\,I$ の系で固有モードが $\\{\\phi\\}=\\{a,a\\}^T$($a$は任意)であった。「最大成分=1」「ノルム=1(単位ベクトル)」「モード質量正規化($\\{\\phi\\}^T[M]\\{\\phi\\}=1$)」で正規化した結果を、この順に正しく並べたのはどれか。",
+      "question": "$[M]=m\\,I$ の系で固有モードが $\\{\\phi\\}=\\{a,a\\}^T$（$a>0,m>0$）であった。「最大成分=1」「ノルム=1(単位ベクトル)」「モード質量正規化($\\{\\phi\\}^T[M]\\{\\phi\\}=1$)」で正規化した結果を、この順に正しく並べたのはどれか。",
       "choices": [
         "最大成分1: $\\{1/\\sqrt2,1/\\sqrt2\\}$、ノルム1: $\\{1,1\\}$、質量正規化: $\\{1/\\sqrt{2m},1/\\sqrt{2m}\\}$",
         "最大成分1: $\\{1,1\\}$、ノルム1: $\\{1/\\sqrt{2m},1/\\sqrt{2m}\\}$、質量正規化: $\\{1/\\sqrt2,1/\\sqrt2\\}$",
@@ -832,16 +1264,27 @@
         "最大成分1: $\\{a,a\\}$、ノルム1: $\\{1,1\\}$、質量正規化: $\\{1/\\sqrt2,1/\\sqrt2\\}$"
       ],
       "answer": 3,
-      "explanation": "【基礎】各正規化の定義: (i)最大成分を1にする、(ii)ベクトルの長さを1、(iii)$\\{\\phi\\}^T[M]\\{\\phi\\}=1$。\n【計算】(i)$\\{1,1\\}$。(ii)長さ $\\sqrt{a^2+a^2}=\\sqrt2\\,a=1$ → $\\{1/\\sqrt2,1/\\sqrt2\\}$。(iii)$m(s^2+s^2)=2ms^2=1$ → $s=1/\\sqrt{2m}$ → $\\{1/\\sqrt{2m},1/\\sqrt{2m}\\}$。\n【ポイント】質量正規化には質量 $m$ が入り、ノルム1には入らない点が違い。\n【引っかけ】ノルム1と質量正規化を取り違えると $\\sqrt2$ と $\\sqrt{2m}$ を入れ替えてしまう。",
+      "explanation": "【基礎】3つの正規化は(i)最大成分を1、(ii)ベクトルの長さを1、(iii)$\\{\\phi\\}^T[M]\\{\\phi\\}=1$ とするものです。\n【考え方】同じ成分を同じ倍率で変えても揺れ方の比は変わりません。(i)各成分をaで割って $\\{1,1\\}$ です。(ii)長さは $\\sqrt{a^2+a^2}=\\sqrt2a$ なので、この長さで割って $\\{1/\\sqrt2,1/\\sqrt2\\}$、(iii)成分をsとするとモード質量は $m s^2+m s^2=2ms^2$ です。これを1にする $s=1/\\sqrt{2m}$ から $\\{1/\\sqrt{2m},1/\\sqrt{2m}\\}$ となり、正解は選択肢3です。\n【ポイント】質量正規化には質量 $m$ が入りますが、ノルム1には入らない点が違いです。\n【引っかけ】選択肢1・2は3つの結果の並び順が誤り、選択肢4は最大成分1を $\\{a,a\\}$ のままにした誤りです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-33",
       "role": "primary",
-      "figure": "helpful",
-      "figureImage": "v2e433",
-      "figureHint": "モード{a,a}の3正規化(最大成分1・ノルム1・質量正規化)の定義を並べた対比図",
-      "preFigureImage": "v2e433Pre"
+      "relatedFormulas": [
+        "v2f4-17"
+      ],
+      "editorialReview": {
+        "officialPoint": "3つの正規化(最大成分1・ノルム1・モード質量正規化)の結果と並び。",
+        "alignment": "公式問4-33と同じ。{1,1}・{1/√2,1/√2}・{1/√(2m),1/√(2m)} の並びを選ばせる。",
+        "distractorMisconceptions": {
+          "1": "3つの結果の並び順が誤り。",
+          "2": "同じく並び順が誤り。",
+          "4": "最大成分1を {a,a} のままにした誤り。"
+        },
+        "sha256": "f44b6a8ecf1e869e6ead116a3c5e5a15f92ba2be3a0cb7c090c2c274a8ba32dc"
+      },
+      "figureExempt": true,
+      "figureExemptReason": "関係式と必要な途中計算を本文に示すことで判断できます。"
     },
     {
       "id": "vib2-4-34",
@@ -850,23 +1293,36 @@
       "topic": "モード重ね合わせ強制応答",
       "type": "mc",
       "difficulty": 3,
-      "question": "問4-30の系($[M]=m\\,I$、$[K]=\\begin{bmatrix}2k&-k\\\\-k&2k\\end{bmatrix}$、モード $\\{\\phi_1\\}=\\{1,1\\}^T,\\{\\phi_2\\}=\\{1,-1\\}^T$)に外力 $\\{f\\}=\\{3,1\\}^T\\cos\\omega t$ が働く。モード重ね合わせ法で得られる定常強制振動解 $\\{x\\}$ はどれか。$m^*_1=2m,k^*_1=2k$、$m^*_2=2m,k^*_2=6k$。",
+      "question": "両端固定の2質点ばね系で、$[M]=m[I]$、$[K]=\\begin{bmatrix}2k&-k\\\\-k&2k\\end{bmatrix}$ とする。固有モードは $\\{\\phi_1\\}=\\{1,1\\}^T$、$\\{\\phi_2\\}=\\{1,-1\\}^T$、モード質量は両方 $2m$、モード剛性は順に $2k,6k$ である。外力 $\\{f\\}=\\{3,1\\}^T\\cos\\omega t$ に対する周期的な特殊解を $\\{x\\}=(A\\{\\phi_1\\}+B\\{\\phi_2\\})\\cos\\omega t$ と書く。AとBの正しい組はどれか。加振角振動数はどちらの固有角振動数とも異なるものとする。",
       "choices": [
-        "$\\{x\\}=\\dfrac{\\{4,4\\}}{-2m\\omega^2+6k}\\cos\\omega t+\\dfrac{\\{2,-2\\}}{-2m\\omega^2+2k}\\cos\\omega t$",
-        "$\\{x\\}=\\dfrac{\\{3,1\\}}{-2m\\omega^2+2k}\\cos\\omega t+\\dfrac{\\{3,-1\\}}{-2m\\omega^2+6k}\\cos\\omega t$",
-        "$\\{x\\}=\\dfrac{\\{4,4\\}}{-2m\\omega^2+2k}\\cos\\omega t+\\dfrac{\\{2,-2\\}}{-2m\\omega^2+6k}\\cos\\omega t$",
-        "$\\{x\\}=\\dfrac{\\{4,4\\}}{-m\\omega^2+2k}\\cos\\omega t+\\dfrac{\\{2,-2\\}}{-m\\omega^2+6k}\\cos\\omega t$"
+        "$A=4/(6k-2m\\omega^2)$\n$B=2/(2k-2m\\omega^2)$",
+        "$A=3/(2k-2m\\omega^2)$\n$B=1/(6k-2m\\omega^2)$",
+        "$A=4/(2k-2m\\omega^2)$\n$B=2/(6k-2m\\omega^2)$",
+        "$A=4/(2k-m\\omega^2)$\n$B=2/(6k-m\\omega^2)$"
       ],
       "answer": 3,
-      "explanation": "【基礎】各モードの応答 $\\{x\\}=\\sum_i\\dfrac{\\{\\phi_i\\}^T\\{f\\}}{-m^*_i\\omega^2+k^*_i}\\{\\phi_i\\}\\cos\\omega t$。\n【計算】$\\{\\phi_1\\}^T\\{f\\}=3+1=4$ → 第1項 $\\dfrac{4}{-2m\\omega^2+2k}\\{1,1\\}=\\dfrac{\\{4,4\\}}{-2m\\omega^2+2k}$。$\\{\\phi_2\\}^T\\{f\\}=3-1=2$ → 第2項 $\\dfrac{2}{-2m\\omega^2+6k}\\{1,-1\\}=\\dfrac{\\{2,-2\\}}{-2m\\omega^2+6k}$。\n【ポイント】各モードの分母は $-m^*_i\\omega^2+k^*_i$。$m^*=2m$ を使うのを忘れない。\n【引っかけ】分母を $-m\\omega^2$(モード質量無視)にする、分母を入れ替える、外力を射影しない($\\{3,1\\}$ のまま)のは典型ミス。",
+      "explanation": "【基礎】各モードで受け持つ外力を求め、1自由度系として応答を計算した後に足し戻します。周期的な力では、モードの加速度は変位の $-\\omega^2$ 倍です。\n【考え方】1次の外力振幅は $(1,1)\\cdot(3,1)=4$、2次は $(1,-1)\\cdot(3,1)=2$ です。したがって $(2k-2m\\omega^2)A=4$、$(6k-2m\\omega^2)B=2$ を解き、③になります。\n【ポイント】A、Bは各揺れ方の大きさです。これらにモード形を掛けて加えると、2つの質点の変位に戻ります。無減衰系では自由応答も残り得るため、ここではその項を含まない周期的な特殊解を選びます。\n【引っかけ】①は1次と2次の剛性を逆にしています。②はモード形との内積を取らず、質点の外力3、1をそのまま使っています。④はモード質量2mをmにしています。③が正しいです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-34",
       "role": "primary",
       "figure": "helpful",
-      "figureImage": "v2e434",
-      "figureHint": "壁-k-m-k-m-k-壁の2自由度系に外力{3,1}cos(ωt)が働く配置図"
+      "figureImage": "v2e430",
+      "figureHint": "壁-k-m-k-m-k-壁の2自由度系に外力{3,1}cos(ωt)が働く配置図",
+      "relatedFormulas": [
+        "v2f4-17"
+      ],
+      "editorialReview": {
+        "officialPoint": "モード外力を内積で求め、モード質量・剛性で強制応答を計算して加える。",
+        "alignment": "独自外力{3,1}に対し内積4と2、モード質量2mを使う。選択肢を同じ解の係数A,Bで整理。",
+        "distractorMisconceptions": {
+          "1": "各モードの剛性を入れ替える。",
+          "2": "内積を取らず質点の外力3と1を使う。",
+          "4": "モード質量2mをmとする。"
+        },
+        "sha256": "b43044c0e344b6162a5e978b1adc7e4a7f1a43131a17b06a046d9c9beb408d1b"
+      }
     },
     {
       "id": "vib2-4-35",
@@ -883,15 +1339,28 @@
         "$\\dfrac{\\partial^2 w}{\\partial t^2}=\\dfrac{E}{\\rho}\\dfrac{\\partial^2 w}{\\partial x^2}$"
       ],
       "answer": 4,
-      "explanation": "【基礎】微小要素 $dx$ の力の釣合いから $\\rho A\\dfrac{\\partial^2 w}{\\partial t^2}=EA\\dfrac{\\partial^2 w}{\\partial x^2}$(一様なので $EA$ は定数)。\n【考え方】両辺を $\\rho A$ で割ると $\\dfrac{\\partial^2 w}{\\partial t^2}=\\dfrac{E}{\\rho}\\dfrac{\\partial^2 w}{\\partial x^2}$。波動方程式で伝播速度は $c=\\sqrt{E/\\rho}$。\n【ポイント】縦振動は2階の波動方程式(空間も2階)。\n【引っかけ】4階微分($\\partial^4/\\partial x^4$)は「はりの曲げ振動」の式。$\\rho/E$ は係数逆転。時間1階は熱伝導型で振動ではない。",
+      "explanation": "【基礎】微小要素 $dx$ の力の釣合いから $\\rho A\\dfrac{\\partial^2 w}{\\partial t^2}=EA\\dfrac{\\partial^2 w}{\\partial x^2}$ です(一様なので $EA$ は定数)。\n【考え方】両辺を $\\rho A$ で割ると $\\dfrac{\\partial^2 w}{\\partial t^2}=\\dfrac{E}{\\rho}\\dfrac{\\partial^2 w}{\\partial x^2}$ となり、正解は選択肢4です(伝播速度 $c=\\sqrt{E/\\rho}$)。\n【ポイント】縦振動は空間も時間も2階の波動方程式です。\n【引っかけ】①は曲げ振動で使う空間4階微分を縦振動へ持ち込んだ誤り（曲げ振動の係数はこの式とは異なります）、選択肢2は係数が逆、選択肢3の時間1階は熱伝導型で振動ではありません。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-35",
       "role": "primary",
-      "figure": "required",
+      "figure": "helpful",
       "figureImage": "v2e435",
-      "figureHint": "壁固定の一様棒の縦振動。微小要素dxと縦変位w(x,t)・E,rhoを示す模式図"
+      "figureHint": "壁固定の一様棒の縦振動。微小要素dxと縦変位w(x,t)・E,rhoを示す模式図",
+      "relatedFormulas": [
+        "v2f4-23"
+      ],
+      "editorialReview": {
+        "officialPoint": "微小要素の釣合い ρA·wtt=EA·wxx を ρA で割り wtt=(E/ρ)wxx。",
+        "alignment": "公式問4-35と同じ縦振動の波動方程式を選ばせる(c=√(E/ρ))。",
+        "distractorMisconceptions": {
+          "1": "4階微分は はりの曲げ振動の式。",
+          "2": "係数 E/ρ が逆。",
+          "3": "時間1階は熱伝導型で振動ではない。"
+        },
+        "sha256": "1a81c43e22ceaf49fcd9000631cd1ea21a60352490ace5c6b870ab74a58ecce1"
+      }
     },
     {
       "id": "vib2-4-36",
@@ -908,7 +1377,7 @@
         "外力の大きさと位置"
       ],
       "answer": 1,
-      "explanation": "【基礎】自由振動は外力ゼロで生じ、初期条件により発生する。\n【考え方】連続体では固有角振動数と固有関数(モード形)を決めるのに境界条件(固定・自由端など)が必要で、応答の振幅・位相は初期条件で決まる。\n【ポイント】離散系の「初期変位・初期速度」に相当するのが初期条件、境界条件がモード形を規定する。\n【引っかけ】外力の情報は強制振動に必要なもの。自由振動には無関係。",
+      "explanation": "【基礎】自由振動は外力ゼロで生じ、初期条件によって始まります。\n【考え方】連続体では固有角振動数と固有関数(モード形)を境界条件が決め、振幅・位相を初期条件が決めるので、必要なのは初期条件と境界条件、正解は選択肢1です。\n【ポイント】離散系の「初期変位・初期速度」に相当するのが初期条件で、境界条件がモード形を規定します。\n【引っかけ】選択肢2・3・4に含まれる外力の情報は強制振動に必要なもので、自由振動には無関係です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -917,7 +1386,19 @@
       "figure": "helpful",
       "figureImage": "v2e436",
       "figureHint": "棒の縦振動で境界条件(端拘束)がモード形を、初期条件が振幅位相を決めることを示す図",
-      "preFigureImage": "v2e436Pre"
+      "relatedFormulas": [
+        "v2f4-23"
+      ],
+      "editorialReview": {
+        "officialPoint": "自由振動は外力ゼロ、境界条件がモード形を、初期条件が振幅・位相を決める。",
+        "alignment": "公式問4-36と同じく必要情報=初期条件と境界条件を選ばせる。",
+        "distractorMisconceptions": {
+          "2": "外力の大きさは強制振動に必要で自由振動には不要。",
+          "3": "外力の位置は強制振動の情報。",
+          "4": "外力の情報は自由振動に無関係。"
+        },
+        "sha256": "03b531468bbbb6c70746941628b80bd597c2de0ea45aa44c9534d047c8e2fa2c"
+      }
     },
     {
       "id": "vib2-4-37",
@@ -934,16 +1415,28 @@
         "約 $2.5\\,\\mathrm{m}$"
       ],
       "answer": 1,
-      "explanation": "【基礎】波長・周波数・速度の関係 $\\lambda=c/f$。\n【計算】$\\lambda=340/850=0.40$ m。\n【ポイント】常温空気の音速は約340m/s($c=331.5+0.6t$、$t\\approx15$℃で約340)。\n【引っかけ】$0.68$ は500Hzのときの値。$2.5$ は $\\lambda=f/c$ と逆にした誤り。単位と式の向きに注意。",
+      "explanation": "【基礎】波長・周波数・速度の関係は $\\lambda=c/f$ です。\n【考え方】$\\lambda=340/850=0.40$ m となり、正解は選択肢1です。\n【ポイント】常温空気の音速は約340m/s($c=331.5+0.6t$)です。\n【引っかけ】選択肢2の $0.68$ は500Hzのときの値、選択肢3・4は式の分子分母を逆にしたり桁を誤った値です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-37",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e437",
-      "figureHint": "進行する正弦波と波長lambda・伝播速度c=340m/sを示す波形図(f=850Hz)",
-      "preFigureImage": "v2e437Pre"
+      "relatedFormulas": [
+        "v2f4-26",
+        "v2f4-28"
+      ],
+      "editorialReview": {
+        "officialPoint": "λ=c/f。常温空気の音速 c≈340 m/s。",
+        "alignment": "公式問4-37と同じ。独自値 f=850 Hz で λ=340/850=0.40 m を選ばせる。",
+        "distractorMisconceptions": {
+          "2": "500Hz のときの値(0.68)。",
+          "3": "分子分母を逆にした値。",
+          "4": "桁を誤った値。"
+        },
+        "sha256": "33e6c8dfd5486b1e771c14fcb4509e20468465958010dd7232bcf7a5b0c1ba12"
+      },
+      "figureExempt": true,
+      "figureExemptReason": "関係式と必要な途中計算を本文に示すことで判断できます。"
     },
     {
       "id": "vib2-4-38",
@@ -960,16 +1453,27 @@
         "波数の単位は Hz である"
       ],
       "answer": 3,
-      "explanation": "【基礎】波数 $k=2\\pi/\\lambda=\\omega/c$ [rad/m]。単位長さあたりの波の数($1/\\lambda$)を $2\\pi$ 倍したもの。\n【考え方】音速 $c$ は周波数によらず一定なので、音の波数は振動数に比例する(反比例ではない)。曲げ波は $c\\propto\\sqrt\\omega$ の分散性があり、波数も $\\sqrt\\omega$ に比例して変化する(一定ではない)。\n【ポイント】波数の単位は rad/m。Hz は周波数の単位。\n【引っかけ】「音の波数は振動数によらない」は分散関係の誤解。音は非分散(cが一定)だが波数自体は $\\omega/c$ で振動数に比例する。",
+      "explanation": "【基礎】波数は $k=2\\pi/\\lambda=\\omega/c$ [rad/m] で、単位長さあたりの波の数 $1/\\lambda$ を $2\\pi$ 倍したものです。\n【考え方】波数の定義そのものを述べた選択肢3が正しく、正解は選択肢3です。\n【ポイント】音速 $c$ は周波数によらず一定なので、音の波数は振動数に比例します(反比例ではありません)。\n【引っかけ】選択肢1は反比例としている点が誤り、選択肢2は曲げ波が分散性で波数が変わるため誤り、選択肢4の単位は rad/m で Hz ではありません。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-38",
       "role": "primary",
-      "figure": "helpful",
-      "figureImage": "v2e438",
-      "figureHint": "空間波形と波長lambda、波数k=2π/lambdaの定義(単位長さの波数×2π)を示す図",
-      "preFigureImage": "v2e438Pre"
+      "relatedFormulas": [
+        "v2f4-28"
+      ],
+      "editorialReview": {
+        "officialPoint": "波数 k=2π/λ=ω/c [rad/m]、単位長さあたりの波の数 (1/λ) を2π倍したもの。",
+        "alignment": "公式問4-38と同じく波数の定義を述べた記述を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "音速一定なので波数は振動数に比例(反比例は誤り)。",
+          "2": "曲げ波は分散性で波数が振動数で変わる。",
+          "4": "波数の単位は rad/m で Hz ではない。"
+        },
+        "sha256": "7845075f87620629b2b27f64c968d9efe8866d68019ebb26fb461274c14bb235"
+      },
+      "figureExempt": true,
+      "figureExemptReason": "関係式と必要な途中計算を本文に示すことで判断できます。"
     },
     {
       "id": "vib2-4-39",
@@ -978,7 +1482,7 @@
       "topic": "音の性質(正誤)",
       "type": "mc",
       "difficulty": 2,
-      "question": "空気中の音に関する次のア〜ウのうち、正しいものはどれか。\nア: 気温が上がると音速は遅くなる。\nイ: 空気中を伝わる音は横波である。\nウ: 地表付近で発せられた音は屈折せず上空へまっすぐ進む。",
+      "question": "高さ方向に気温が変わる大気中の音に関する次のア〜ウのうち、正しいものはどれか。\nア: 気温が上がると音速は遅くなる。\nイ: 空気中を伝わる音は横波である。\nウ: 地表付近で発せられた音は屈折せず上空へまっすぐ進む。",
       "choices": [
         "アのみ正しい",
         "イのみ正しい",
@@ -986,15 +1490,29 @@
         "どれも正しくない"
       ],
       "answer": 4,
-      "explanation": "【基礎】音速 $c=331.5+0.6t$ [m/s] で温度が高いほど速い(ア誤り)。音は圧力の疎密が伝わる縦波(イ誤り)。\n【考え方】大気は高さで温度が変わり音速も変わるため、音線はスネルの法則で屈折して曲がる(ウ誤り)。\n【ポイント】音=縦波、音速は温度上昇で増加、大気中で屈折する、の3点は頻出。\n【引っかけ】3つとも「もっともらしい誤り」。1つだけ正しいと早合点しない。",
+      "explanation": "【基礎】音速は $c\\approx331.5+0.6t$ で温度が高いほど速く(ア誤り)、音は圧力の疎密が伝わる縦波です(イ誤り)。\n【考え方】大気は高さで温度が変わり音速も変わるため音線は屈折して曲がり(ウ誤り)、3つとも正しくないので、正解は選択肢4です。\n【ポイント】音は縦波、音速は温度上昇で増加、大気中で屈折する、の3点が要点です。\n【引っかけ】選択肢1・2・3はいずれも正しそうな誤りで、1つだけ正しいと早合点しないことです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-39",
       "role": "primary",
       "figure": "helpful",
-      "figureImage": "v2e439",
-      "figureHint": "温度↑で音速↑・音は縦波(疎密)・音線は屈折の3つの正しい物理を並べた図"
+      "figureImage": "v2e440",
+      "figureHint": "温度↑で音速↑・音は縦波(疎密)・音線は屈折の3つの正しい物理を並べた図",
+      "relatedFormulas": [
+        "v2f4-26",
+        "v2f4-27"
+      ],
+      "editorialReview": {
+        "officialPoint": "音速は温度が高いほど速く、音は縦波、大気中で音線は屈折する(ア・イ・ウすべて誤り)。",
+        "alignment": "公式問4-39と同じく「どれも正しくない」を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "アは温度↑で音速↓としており誤り。",
+          "2": "イは音を横波としており誤り。",
+          "3": "ウは屈折せず直進としており誤り。"
+        },
+        "sha256": "16af479c8d1b6919f9bb718c10237a9828f9fbf37ac60dfc72c8895f9aefd799"
+      }
     },
     {
       "id": "vib2-4-40",
@@ -1003,7 +1521,7 @@
       "topic": "音の屈折",
       "type": "mc",
       "difficulty": 2,
-      "question": "空気中の音速は温度が高いほど $(a)$。晴れた夜など地表付近が上空より低温のとき、地表付近で発生した音は $(b)$ 傾向がある(音線の屈折現象)。$(a),(b)$ の正しい組合せはどれか。",
+      "question": "空気中の音速は温度が高いほど $(a)$。晴れた夜など地表付近が上空より低温のとき、地表付近で発生した音は $(b)$ 傾向がある(音線の屈折現象)。$(a),(b)$ の正しい組合せはどれか。 風の影響は無視する。",
       "choices": [
         "(a)小さい、(b)遠くまで届く",
         "(a)大きい、(b)遠くまで届く",
@@ -1011,7 +1529,7 @@
         "(a)小さい、(b)遠くまで届かない"
       ],
       "answer": 2,
-      "explanation": "【基礎】音速は温度が高いほど大きい($c=331.5+0.6t$)。\n【考え方】地表が低温だと上空ほど音速が速い。スネルの法則で音線は音速の遅い(=低温の)地表側へ曲がって戻ってくるため、遠方まで届きやすい。\n【ポイント】夜間や冬の朝に遠くの音がよく聞こえるのはこの屈折による。\n【引っかけ】「地表付近が高温(昼間)」だと逆に音は上空へ逃げ届きにくい。温度勾配の向きで結論が反転する。",
+      "explanation": "【基礎】音速は温度が高いほど大きくなります($c\\approx331.5+0.6t$)。\n【考え方】地表が低温だと上空ほど音速が速く、スネルの法則で音線が地表側へ曲がって戻るため遠方まで届きやすく、(a)大きい・(b)遠くまで届く、で正解は選択肢2です。\n【ポイント】晴れた夜に遠くの音がよく聞こえるのは、この屈折によるものです。\n【引っかけ】選択肢1・4の(a)小さいは温度依存の向きが誤り、選択肢3・4の(b)届かないは屈折の向きが逆です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -1019,7 +1537,20 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e440",
-      "figureHint": "地表低温時に音線が地表側へ屈折し遠方へ届く様子と温度勾配の説明図(答えを示唆)"
+      "figureHint": "地表低温時に音線が地表側へ屈折し遠方へ届く様子と温度勾配の説明図(答えを示唆)",
+      "relatedFormulas": [
+        "v2f4-26"
+      ],
+      "editorialReview": {
+        "officialPoint": "音速は温度が高いほど大きい。地表低温で上空ほど音速が速く、屈折で地表側へ戻り遠くまで届く。",
+        "alignment": "公式問4-40と同じく (a)大きい・(b)遠くまで届く を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "(a)小さいは温度依存の向きが誤り。",
+          "3": "(b)届かないは屈折の向きが逆。",
+          "4": "(a)小さい・(b)届かないの二重の誤り。"
+        },
+        "sha256": "87829ab05ac654afbfb4fbb32b090721bb955b0c4854cf26718d75093185a201"
+      }
     },
     {
       "id": "vib2-4-41",
@@ -1028,7 +1559,7 @@
       "topic": "音圧レベル(dB)",
       "type": "mc",
       "difficulty": 2,
-      "question": "音圧 $p=3\\,\\mathrm{Pa}$ の音の音圧レベルに最も近いのはどれか。基準音圧 $p_0=2\\times10^{-5}\\,\\mathrm{Pa}$。$\\log_{10}2=0.30,\\ \\log_{10}3=0.48$ を用いる。",
+      "question": "音圧の実効値 $p=3\\,\\mathrm{Pa}$ の音の音圧レベルに最も近いのはどれか。基準音圧 $p_0=2\\times10^{-5}\\,\\mathrm{Pa}$。$\\log_{10}2=0.30,\\ \\log_{10}3=0.48$ を用いる。",
       "choices": [
         "約 $94\\,\\mathrm{dB}$",
         "約 $104\\,\\mathrm{dB}$",
@@ -1036,15 +1567,27 @@
         "約 $110\\,\\mathrm{dB}$"
       ],
       "answer": 2,
-      "explanation": "【基礎】音圧レベル $L=20\\log_{10}(p/p_0)$、$p_0=2\\times10^{-5}$ Pa。\n【計算】$p/p_0=\\dfrac{3}{2\\times10^{-5}}=1.5\\times10^{5}$。$\\log_{10}(1.5\\times10^5)=\\log_{10}1.5+5=(\\log3-\\log2)+5=(0.48-0.30)+5=5.18$。$L=20\\times5.18=103.6\\approx104$ dB。\n【ポイント】$\\log1.5=\\log3-\\log2$ の分解がカギ。$p=1$Pa なら94dBが基準感覚。\n【引っかけ】$94$ は $p=1$Pa の値。$\\log1.5$ を無視すると100dBになってしまう。",
+      "explanation": "【基礎】音圧レベルは $L=20\\log_{10}(p/p_0)$、基準音圧は $p_0=2\\times10^{-5}$ Pa です。\n【考え方】$p/p_0=\\dfrac{3}{2\\times10^{-5}}=1.5\\times10^{5}$、$\\log_{10}(1.5\\times10^5)=(0.48-0.30)+5=5.18$、$L=20\\times5.18\\approx104$ dB となり、正解は選択肢2です。\n【ポイント】$\\log1.5=\\log3-\\log2$ と分解するのがカギです。\n【引っかけ】選択肢1の $94$ は $p=1$Pa の値、選択肢3は $\\log1.5$ を無視、選択肢4は過大に見積もった誤りです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-41",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e441",
-      "figureHint": "音圧軸上に基準p0=2e-5とp=3Paを示す音圧レベルL=20log(p/p0)の設定図"
+      "relatedFormulas": [
+        "v2f4-30"
+      ],
+      "editorialReview": {
+        "officialPoint": "音圧レベル L=20log10(p/p0)、基準 p0=2e-5 Pa。",
+        "alignment": "公式問4-41と同じ。独自値 p=3 Pa で p/p0=1.5e5、L≈104 dB を選ばせる(log1.5=log3-log2)。",
+        "distractorMisconceptions": {
+          "1": "p=1 Pa のときの値(94)。",
+          "3": "log1.5 を無視した値。",
+          "4": "過大に見積もった誤り。"
+        },
+        "sha256": "16e88a270e60fb6827814438ffac0266a7af56065c8a35013f6e866145f47f83"
+      },
+      "figureExempt": true,
+      "figureExemptReason": "関係式と必要な途中計算を本文に示すことで判断できます。"
     },
     {
       "id": "vib2-4-42",
@@ -1053,7 +1596,7 @@
       "topic": "レベル差と音圧比",
       "type": "mc",
       "difficulty": 2,
-      "question": "2台の発電機の音圧レベルがそれぞれ $62\\,\\mathrm{dB}$ と $68\\,\\mathrm{dB}$ であった。音圧はおよそ何倍異なるか。$\\log_{10}2=0.30$ を用いる。",
+      "question": "2台の発電機の音圧レベルがそれぞれ $62\\,\\mathrm{dB}$ と $68\\,\\mathrm{dB}$ であった。68dBの音圧の実効値は62dBの音圧の実効値の、およそ何倍異なるか。$\\log_{10}2=0.30$ を用いる。",
       "choices": [
         "約 $1.3$ 倍",
         "約 $1.6$ 倍",
@@ -1061,16 +1604,27 @@
         "約 $4.0$ 倍"
       ],
       "answer": 3,
-      "explanation": "【基礎】レベル差 $\\Delta L=20\\log_{10}(p_A/p_B)$。\n【計算】$\\Delta L=68-62=6$ dB → $p_A/p_B=10^{6/20}=10^{0.3}$。$\\log_{10}2=0.30$ なので $10^{0.3}=2.0$。よって約2.0倍。\n【ポイント】音圧は $20\\log$、音のパワー(強さ)は $10\\log$。音圧比なので $/20$。\n【引っかけ】$4.0$ 倍は $10^{6/10}$ とパワー比($/10$)で計算した誤り。音圧比とパワー比を混同しないこと。",
+      "explanation": "【基礎】レベル差は $\\Delta L=20\\log_{10}(p_A/p_B)$ です。\n【考え方】$\\Delta L=68-62=6$ dB から $p_A/p_B=10^{6/20}=10^{0.3}=2.0$ となり、正解は選択肢3です。\n【ポイント】音圧は $20\\log$、音のパワーは $10\\log$ で、音圧比なので $/20$ を使います。\n【引っかけ】選択肢4の $4.0$ 倍はパワー比($/10$)で計算した誤り、①は2dB差の約1.26倍、②は4dB差の約1.58倍を当てはめた誤りです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-42",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e442",
-      "figureHint": "62dBと68dBの2台の発電機の音圧レベルを棒グラフで示す(音圧比を問う設定)",
-      "preFigureImage": "v2e442Pre"
+      "relatedFormulas": [
+        "v2f4-30"
+      ],
+      "editorialReview": {
+        "officialPoint": "レベル差 ΔL=20log10(pA/pB)、音圧比は 10^(ΔL/20)。",
+        "alignment": "公式問4-42と同じ。独自値 ΔL=6 dB で 10^0.3=2.0 倍を選ばせる。",
+        "distractorMisconceptions": {
+          "1": "中途半端な値。",
+          "2": "中途半端な値。",
+          "4": "パワー比(/10)で計算した誤り。"
+        },
+        "sha256": "815de227249059d01b22f6347a27820bd053293e11e67a977f1a46b9f2e88324"
+      },
+      "figureExempt": true,
+      "figureExemptReason": "関係式と必要な途中計算を本文に示すことで判断できます。"
     },
     {
       "id": "vib2-4-43",
@@ -1079,24 +1633,35 @@
       "topic": "音圧変化とdB",
       "type": "mc",
       "difficulty": 2,
-      "question": "ある音の音圧が3倍になったとき、音圧レベルはおよそ何dB上昇するか。$\\log_{10}3=0.48$ を用いる。",
+      "question": "音圧の実効値が元の半分になったとき、音圧レベルはおよそ何dB下がるか。$\\log_{10}2=0.30$ を用いる。",
       "choices": [
-        "約 $10\\,\\mathrm{dB}$",
-        "約 $5\\,\\mathrm{dB}$",
-        "約 $6\\,\\mathrm{dB}$",
-        "約 $3\\,\\mathrm{dB}$"
+        "約 $6\\ \\mathrm{dB}$",
+        "約 $3\\ \\mathrm{dB}$",
+        "約 $2\\ \\mathrm{dB}$",
+        "約 $12\\ \\mathrm{dB}$"
       ],
       "answer": 1,
-      "explanation": "【基礎】$\\Delta L=20\\log_{10}(p'/p)$。\n【計算】$p'/p=3$ → $\\Delta L=20\\log_{10}3=20\\times0.48=9.6\\approx10$ dB。\n【ポイント】音圧2倍で約6dB、3倍で約10dB増。基準として覚えておくとよい。\n【引っかけ】$5$dBは $10\\log3$(パワー比)にした誤り。$6$dBは2倍(=$20\\log2$)と取り違えた値。",
+      "explanation": "【基礎】音圧比によるレベル差は $\\Delta L=20\\log_{10}(p^{\\prime}/p)$ です。半分なら $p^{\\prime}/p=1/2$ を代入します。\n【考え方】$\\log_{10}(1/2)=-\\log_{10}2=-0.30$ なので、$\\Delta L=20\\times(-0.30)=-6\\ \\mathrm{dB}$ です。「何dB下がるか」なので低下量は正の6dB、①です。\n【ポイント】音圧の半減はレベルの半減ではありません。対数の物差しなので、元のレベルにかかわらず約6dB下がります。\n【引っかけ】②は音圧比に10logを使った誤りです。③は比の数値2をそのままdBとする誤りです。④は音圧比の2乗にさらに20logを適用した誤りです。①が正しいです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-43",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "v2e443",
-      "figureHint": "元の音圧pと振幅3倍の音圧3pの波形対比(dB上昇量を問う設定)",
-      "preFigureImage": "v2e443Pre"
+      "relatedFormulas": [
+        "v2f4-30"
+      ],
+      "editorialReview": {
+        "officialPoint": "音圧が半分のときの音圧レベルの低下量。",
+        "alignment": "公式と同じ20log(1/2)=-6dB。低下量6dBを①で選ぶ。",
+        "distractorMisconceptions": {
+          "2": "音圧比に10logを使う。",
+          "3": "比の数値2をdBへそのまま当てる。",
+          "4": "音圧比の2乗へ20logを使う。"
+        },
+        "sha256": "810609751e40ea84879fedd88dfd79208af16d070bd933cd6f669e9d739c6f94"
+      },
+      "figureExempt": true,
+      "figureExemptReason": "関係式と必要な途中計算を本文に示すことで判断できます。"
     },
     {
       "id": "vib2-4-44",
@@ -1105,15 +1670,15 @@
       "topic": "音響管の共鳴",
       "type": "mc",
       "difficulty": 2,
-      "question": "一端が閉じ、他端が開いた長さ $L$ の音響管内で音波が共鳴する条件を、波数 $k$ [rad/m]、管長 $L$、正の整数 $n$ で表すとどれか。管の断面直径は波長に比べて十分小さいとする。",
+      "question": "両端が開いた長さ $L$ の音響管で、共鳴が起こる条件はどれか。波数を $k$、共鳴の次数を正の整数 $n$ とする。断面直径は波長より十分小さく、開口端補正を無視する。",
       "choices": [
-        "$kL=n\\pi$",
-        "$kL=\\dfrac{n\\pi}{2}$",
-        "$\\dfrac{k}{L}=\\dfrac{(2n-1)\\pi}{2}$",
-        "$kL=\\dfrac{(2n-1)\\pi}{2}$"
+        "$kL=(2n-1)\\pi/2$",
+        "$kL=2n\\pi$",
+        "$kL=n\\pi/2$",
+        "$kL=n\\pi$"
       ],
       "answer": 4,
-      "explanation": "【基礎】片側閉管は閉端が変位の節・開端が腹となり、共鳴は $L=\\dfrac{(2n-1)}{4}\\lambda$($n=1,2,\\dots$)。\n【計算】$\\lambda=\\dfrac{4L}{2n-1}$、$k=\\dfrac{2\\pi}{\\lambda}=\\dfrac{(2n-1)\\pi}{2L}$ → $kL=\\dfrac{(2n-1)\\pi}{2}$。\n【ポイント】片側閉管は基本波長が管長の4倍(=1/4波長共鳴)。奇数倍の $(2n-1)$ が特徴。\n【引っかけ】$kL=n\\pi$ は両端開放(または両端閉)の条件(半波長の整数倍)。$k/L$ は次元が合わず論外。",
+      "explanation": "【基礎】開いた口では音圧の変動がほぼ0になります。両端に音圧の節ができる定在波を考えます。\n【考え方】隣り合う節の間隔は半波長なので、管長 $L$ は半波長の整数倍、$L=n\\lambda/2$ です。$k=2\\pi/\\lambda$ を入れると $kL=n\\pi$、④です。\n【ポイント】両端開放では、音圧は両端が節、空気の変位は両端が腹です。同じ波でも何を縦軸にするかで節と腹が逆になります。\n【引っかけ】①は片端閉管の条件です。②は1波長ずつ入る場合だけに限っており、基本共鳴を含みません。③は4分の1波長ずつ許す式で、両端の音圧をともに節にできない次数を含みます。④が正しいです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -1121,7 +1686,20 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "v2e444",
-      "figureHint": "片側閉管の1/4波長共鳴モード形(閉端=節・開端=腹)。共鳴条件を示唆するため回答後"
+      "figureHint": "片側閉管の1/4波長共鳴モード形(閉端=節・開端=腹)。共鳴条件を示唆するため回答後",
+      "relatedFormulas": [
+        "v2f4-31"
+      ],
+      "editorialReview": {
+        "officialPoint": "両端開放管の共鳴条件と音圧の節。",
+        "alignment": "片側閉管への論点変更を撤回。独自図・文言で両端開放L=nλ/2、kL=nπを④に設定。",
+        "distractorMisconceptions": {
+          "1": "片端閉管の奇数4分の1波長条件と混同。",
+          "2": "全波長の倍数だけとし基本共鳴を落とす。",
+          "3": "4分の1波長ずつ許す条件で両端の節を満たさない次数も含める。"
+        },
+        "sha256": "159cef817d54b6d1360f1de03ec67f6cf2631125e2ea99aefe3ccdee2b468ef2"
+      }
     }
   ]
 }
