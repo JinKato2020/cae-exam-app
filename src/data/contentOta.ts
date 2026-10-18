@@ -100,19 +100,40 @@ export async function loadCache(): Promise<CacheLoad> {
   } catch { return empty; }
 }
 
-/** 裏で最新を取り込む：棚のmanifestと差分を取り、変わったファイルだけDLしてキャッシュ保存。 */
+/** 1ファイルを最大3回までDL試行。一過性の失敗・回線断でキャッシュが欠けたままになるのを防ぐ。 */
+async function downloadWithRetry(url: string, local: string, tries = 3): Promise<boolean> {
+  for (let i = 0; i < tries; i++) {
+    const res = await FileSystem.downloadAsync(url, local).catch(() => null);
+    if (res && res.status === 200) return true;
+    if (i < tries - 1) await new Promise((r) => setTimeout(r, 400 * (i + 1)));
+  }
+  return false;
+}
+
+/** 裏で最新を取り込む：棚のmanifestと差分を取り、変わったファイルだけDLしてキャッシュ保存。
+ *  ★途中で中断(アプリ終了・回線断)されても進捗を失わないよう、タグを先に書き・進捗はバッチ毎に保存する。
+ *    こうすると次回起動は「残りだけ」DLして続きから完了できる(全やり直しを防ぐ)。
+ *    相関図(map_*)は同梱フォールバックが無くOTA完了に依存するため、この再開可能化が表示の要になる。 */
 export async function syncContent(): Promise<{ updated: number }> {
   try {
     await ensureDir();
     // 目次(_manifest.json)は毎回「今の最新」を掴む必要がある。端末やCDNの古いキャッシュを掴むと
     // 「変化なし」と誤判定し、1回目の起動で何もDLしない＝2回起動が必要になる（実機で実害）。
-    // そこで毎回ユニークなURL(?t=時刻)＋no-store で必ず最新の目次を取る。
-    const remoteText = await fetchTextTimeout(BASE + `_manifest.json?t=${Date.now()}`, 8000);
+    // そこで毎回ユニークなURL(?t=時刻)＋no-store で必ず最新の目次を取る。回線が遅い端末も拾えるよう余裕を持つ。
+    const remoteText = await fetchTextTimeout(BASE + `_manifest.json?t=${Date.now()}`, 15000);
     if (!remoteText) return { updated: 0 };
     const remote = JSON.parse(remoteText) as ManifestLike;
     const cachedShas = await readJson<Record<string, string>>(SHA_PATH, {});
     const have = await effectiveShas(cachedShas);
     const need = diffKeys(remote, have);
+    if (need.length === 0) {
+      // 既に最新。タグだけ確実に残し、部分DL済みキャッシュを次回loadCacheが信用できるようにする。
+      await FileSystem.writeAsStringAsync(BUNDLE_TAG_PATH, bundleTag()).catch(() => {});
+      return { updated: 0 };
+    }
+    // ★DL開始前にタグを書く＝この起動で落とした分を、次回のloadCache/effectiveShasが
+    //   「この土台(ビルド)のキャッシュ」として採用でき、中断しても続きから再開できる。
+    await FileSystem.writeAsStringAsync(BUNDLE_TAG_PATH, bundleTag()).catch(() => {});
     let updated = 0;
     // 初回や大量更新でも速いよう、直列ではなく少数ずつ並列でDLする(端末・回線に優しい並列数)。
     const CONCURRENCY = 6;
@@ -122,12 +143,14 @@ export async function syncContent(): Promise<{ updated: number }> {
         const local = DIR + enc(key);
         // 実ファイルも、中身が変わると値が変わる指紋(sha)を ?v= に付けて古いキャッシュを避ける。
         const url = BASE + key + '?v=' + remote.files[key].sha256;
-        const res = await FileSystem.downloadAsync(url, local).catch(() => null);
-        return res && res.status === 200 ? key : null;
+        return (await downloadWithRetry(url, local)) ? key : null;
       }));
+      let changed = false;
       for (const key of oks) {
-        if (key) { cachedShas[key] = remote.files[key].sha256; updated++; }
+        if (key) { cachedShas[key] = remote.files[key].sha256; updated++; changed = true; }
       }
+      // ★バッチ毎に進捗を永続化＝アプリが閉じられても次回は残りだけDL(全やり直しを防ぐ)。
+      if (changed) await FileSystem.writeAsStringAsync(SHA_PATH, JSON.stringify(cachedShas)).catch(() => {});
     }
     await FileSystem.writeAsStringAsync(SHA_PATH, JSON.stringify(cachedShas)).catch(() => {});
     await FileSystem.writeAsStringAsync(BUNDLE_TAG_PATH, bundleTag()).catch(() => {});
