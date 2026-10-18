@@ -13,6 +13,7 @@ import {
   Text,
   TextInput,
   useColorScheme,
+  useWindowDimensions,
   View,
   type DimensionValue,
 } from 'react-native';
@@ -917,6 +918,12 @@ const home = StyleSheet.create({
   mapCloseTxt: { color: HOME.text, fontSize: 24, lineHeight: 26, fontWeight: '700' },
   mapScroll: { padding: 12 },
   mapFullImg: { width: '100%', backgroundColor: '#fff', borderRadius: 8 },
+  mapZoomBar: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingBottom: 10 },
+  mapZoomBtn: { width: 40, height: 36, borderRadius: 8, borderWidth: 1, borderColor: HOME.border, alignItems: 'center', justifyContent: 'center', backgroundColor: HOME.surface },
+  mapZoomBtnTxt: { fontSize: 20, lineHeight: 22, fontWeight: '700', color: HOME.text },
+  mapZoomLbl: { fontSize: 13, color: HOME.muted, minWidth: 54, textAlign: 'center' },
+  mapZoomReset: { marginLeft: 'auto', paddingHorizontal: 14, height: 36, borderRadius: 8, borderWidth: 1, borderColor: HOME.border, alignItems: 'center', justifyContent: 'center', backgroundColor: HOME.surface },
+  mapZoomResetTxt: { fontSize: 13, fontWeight: '700', color: HOME.text },
   mapPlaceWrap: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 },
   // 拡大中の「この章の問題」タップ一覧（→その問題へジャンプ）
   mapQWrap: { marginTop: 16, gap: 6 },
@@ -1063,10 +1070,13 @@ function HomeTab(props: {
   const [showExamRule, setShowExamRule] = useState(false); // 試験前の準備カード→合格・足切りルールの詳細モーダル
   // 「全体の相関図」カードの図ビューア（全章マップ／各章マップをモーダルで拡大表示）。
   const [mapView, setMapView] = useState<{ title: string; key: string; chapterId: string } | null>(null);
-  const [mapAspect, setMapAspect] = useState<number | null>(null); // 相関図の縦横比（onLoadで取得→全幅・縦長表示に使う）
+  const [mapAspect, setMapAspect] = useState<number | null>(null); // 相関図の縦横比（onLoadで取得→全幅表示に使う）
+  const [mapZoom, setMapZoom] = useState(1); // 相関図の拡大倍率（iOS/Android共通・＋/−/リセットで操作）
+  const { width: winMapW } = useWindowDimensions(); // 画面幅（相関図を必ず幅フィットさせる基準）
   function openMap(chapterId: string, title: string) {
     const key = chapterId === 'all' ? overallMapKey(field, grade) : chapterMapKey(field, grade, chapterId);
     setMapAspect(null);
+    setMapZoom(1);
     setMapView({ title, key, chapterId });
   }
   // 拡大中の相関図に並べる「その章の問題一覧」（タップでその問題へジャンプ）。全章マップ('all')では出さない。
@@ -1356,20 +1366,39 @@ function HomeTab(props: {
           <ScrollView
             style={{ flex: 1 }}
             contentContainerStyle={[home.mapScroll, { paddingBottom: insets.bottom + 24 }]}
-            maximumZoomScale={4}
-            minimumZoomScale={1}
-            bouncesZoom
             showsVerticalScrollIndicator
           >
-            <Image
-              source={figureSource(mapView.key)}
-              onLoad={(e) => {
-                const s: any = e.nativeEvent?.source;
-                if (s?.width && s?.height) setMapAspect(s.width / s.height);
-              }}
-              style={[home.mapFullImg, { aspectRatio: mapAspect ?? 0.7 }]}
-              resizeMode="contain"
-            />
+            {/* ズーム操作（iOS/Android共通・コアRNのみ）。既定で画面幅にフィット＝全体表示。
+                ＋/−で拡大し、拡大時は内側の横スクロールで左右にパンできる。 */}
+            <View style={home.mapZoomBar}>
+              <Pressable onPress={() => setMapZoom((z) => Math.max(1, Math.round((z - 0.5) * 10) / 10))} hitSlop={8} style={home.mapZoomBtn}>
+                <Text style={home.mapZoomBtnTxt}>−</Text>
+              </Pressable>
+              <Text style={home.mapZoomLbl}>{Math.round(mapZoom * 100)}%</Text>
+              <Pressable onPress={() => setMapZoom((z) => Math.min(4, Math.round((z + 0.5) * 10) / 10))} hitSlop={8} style={home.mapZoomBtn}>
+                <Text style={home.mapZoomBtnTxt}>＋</Text>
+              </Pressable>
+              <Pressable onPress={() => setMapZoom(1)} hitSlop={8} style={home.mapZoomReset}>
+                <Text style={home.mapZoomResetTxt}>リセット</Text>
+              </Pressable>
+            </View>
+            <ScrollView
+              horizontal
+              bounces={false}
+              scrollEnabled={mapZoom > 1}
+              showsHorizontalScrollIndicator={mapZoom > 1}
+              style={{ height: ((winMapW - 24) * mapZoom) / (mapAspect ?? 0.7) }}
+            >
+              <Image
+                source={figureSource(mapView.key)}
+                onLoad={(e) => {
+                  const s: any = e.nativeEvent?.source;
+                  if (s?.width && s?.height) setMapAspect(s.width / s.height);
+                }}
+                style={{ width: (winMapW - 24) * mapZoom, height: ((winMapW - 24) * mapZoom) / (mapAspect ?? 0.7), backgroundColor: '#fff', borderRadius: 8 }}
+                resizeMode="contain"
+              />
+            </ScrollView>
             {mapQuestions.length > 0 && (
               <View style={home.mapQWrap}>
                 <Text style={home.mapQHead}>この章の問題（タップでその問題へ）</Text>
