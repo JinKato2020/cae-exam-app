@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import {
+  ActivityIndicator,
   Alert,
   Image,
   ImageBackground,
   Linking,
   Modal,
   PanResponder,
+  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -13,10 +15,11 @@ import {
   Text,
   TextInput,
   useColorScheme,
-  useWindowDimensions,
   View,
   type DimensionValue,
 } from 'react-native';
+import { WebView } from 'react-native-webview';
+import * as FileSystem from 'expo-file-system/legacy';
 import { StatusBar } from 'expo-status-bar';
 import appConfig from './app.json';
 import {
@@ -918,12 +921,6 @@ const home = StyleSheet.create({
   mapCloseTxt: { color: HOME.text, fontSize: 24, lineHeight: 26, fontWeight: '700' },
   mapScroll: { padding: 12 },
   mapFullImg: { width: '100%', backgroundColor: '#fff', borderRadius: 8 },
-  mapZoomBar: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingBottom: 10 },
-  mapZoomBtn: { width: 40, height: 36, borderRadius: 8, borderWidth: 1, borderColor: HOME.border, alignItems: 'center', justifyContent: 'center', backgroundColor: HOME.surface },
-  mapZoomBtnTxt: { fontSize: 20, lineHeight: 22, fontWeight: '700', color: HOME.text },
-  mapZoomLbl: { fontSize: 13, color: HOME.muted, minWidth: 54, textAlign: 'center' },
-  mapZoomReset: { marginLeft: 'auto', paddingHorizontal: 14, height: 36, borderRadius: 8, borderWidth: 1, borderColor: HOME.border, alignItems: 'center', justifyContent: 'center', backgroundColor: HOME.surface },
-  mapZoomResetTxt: { fontSize: 13, fontWeight: '700', color: HOME.text },
   mapPlaceWrap: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 },
   // 拡大中の「この章の問題」タップ一覧（→その問題へジャンプ）
   mapQWrap: { marginTop: 16, gap: 6 },
@@ -1070,13 +1067,14 @@ function HomeTab(props: {
   const [showExamRule, setShowExamRule] = useState(false); // 試験前の準備カード→合格・足切りルールの詳細モーダル
   // 「全体の相関図」カードの図ビューア（全章マップ／各章マップをモーダルで拡大表示）。
   const [mapView, setMapView] = useState<{ title: string; key: string; chapterId: string } | null>(null);
-  const [mapAspect, setMapAspect] = useState<number | null>(null); // 相関図の縦横比（onLoadで取得→全幅表示に使う）
-  const [mapZoom, setMapZoom] = useState(1); // 相関図の拡大倍率（iOS/Android共通・＋/−/リセットで操作）
-  const { width: winMapW } = useWindowDimensions(); // 画面幅（相関図を必ず幅フィットさせる基準）
+  const [mapAspect, setMapAspect] = useState<number | null>(null); // 相関図の縦横比（iOS: onLoadで取得→全幅表示＋ピンチ拡大）
+  // Android はコアRNのScrollViewにピンチ拡大が無いため、相関図をWebViewへ data URI で渡し、
+  // ブラウザ標準のピンチ／ダブルタップ拡大（くっきり再描画）で表示する。iOS は従来どおりScrollViewのズーム。
+  const [mapDataUri, setMapDataUri] = useState<string | null>(null); // Android用：相関図PNGの base64 data URI
+  const [mapDataErr, setMapDataErr] = useState(false); // data URI化に失敗→素のImage表示へフォールバック
   function openMap(chapterId: string, title: string) {
     const key = chapterId === 'all' ? overallMapKey(field, grade) : chapterMapKey(field, grade, chapterId);
     setMapAspect(null);
-    setMapZoom(1);
     setMapView({ title, key, chapterId });
   }
   // 拡大中の相関図に並べる「その章の問題一覧」（タップでその問題へジャンプ）。全章マップ('all')では出さない。
@@ -1085,11 +1083,73 @@ function HomeTab(props: {
     const c = fieldGradeChapters(field, grade).find((x) => x.id === mapView.chapterId);
     return c ? c.data.questions : [];
   }, [mapView, field, grade]);
+  const mapQList =
+    mapQuestions.length > 0 ? (
+      <View style={home.mapQWrap}>
+        <Text style={home.mapQHead}>この章の問題（タップでその問題へ）</Text>
+        {mapQuestions.map((q) => (
+          <Pressable
+            key={q.id}
+            style={home.mapQRow}
+            onPress={() => {
+              const cid = mapView?.chapterId;
+              setMapView(null);
+              if (cid) props.onOpenQuestion(grade, cid, q.id, field);
+            }}
+          >
+            <Text style={home.mapQNum}>{q.number}</Text>
+            <Text style={home.mapQT} numberOfLines={2}>{q.title ?? q.question}</Text>
+            <Text style={home.mapQChev}>›</Text>
+          </Pressable>
+        ))}
+      </View>
+    ) : null;
   // 相関図ビューアの開閉を親へ通知（表示中は親のタブ横スワイプを無効化し、拡大・パン中の誤タブ移動を防ぐ）。
   useEffect(() => {
     props.onMapViewerChange?.(!!mapView);
   }, [mapView]);
   useEffect(() => () => props.onMapViewerChange?.(false), []); // アンマウント時は必ず解除
+  // Android：相関図を開いたらPNGを読み出して base64 data URI にし、WebView（ピンチ拡大・高精細）で表示する。
+  // OTA版は file:// をそのまま読み、同梱(require)版は resolveAssetSource のURIを読む。失敗時は素のImageへ。
+  useEffect(() => {
+    if (Platform.OS !== 'android') return;
+    let alive = true;
+    setMapDataUri(null);
+    setMapDataErr(false);
+    const key = mapView?.key;
+    if (!key || !hasFigure(key)) return;
+    (async () => {
+      try {
+        const src = figureSource(key) as any;
+        let uri: string | null = null;
+        if (src && typeof src === 'object' && src.uri) uri = src.uri as string; // OTA版 file://
+        else if (src != null) uri = Image.resolveAssetSource(src)?.uri ?? null; // 同梱(require)版
+        if (!uri) throw new Error('no uri');
+        let b64: string;
+        if (uri.startsWith('file://') || uri.startsWith('/') || uri.startsWith('content://')) {
+          b64 = await FileSystem.readAsStringAsync(uri, { encoding: FileSystem.EncodingType.Base64 });
+        } else {
+          const resp = await fetch(uri);
+          const blob = await resp.blob();
+          b64 = await new Promise<string>((resolve, reject) => {
+            const fr = new FileReader();
+            fr.onerror = () => reject(fr.error);
+            fr.onloadend = () => {
+              const r = String(fr.result || '');
+              resolve(r.includes(',') ? r.split(',')[1] : r);
+            };
+            fr.readAsDataURL(blob);
+          });
+        }
+        if (alive) setMapDataUri('data:image/png;base64,' + b64);
+      } catch {
+        if (alive) setMapDataErr(true);
+      }
+    })();
+    return () => {
+      alive = false;
+    };
+  }, [mapView]);
   const insets = useSafeAreaInsets(); // Android のボトムナビ等でシート最下部の選択肢が隠れないよう下余白に足す
   // 分野と級を1タップでまとめて確定（固体1級/固体2級/熱流体1級…の6ボタン用）。
   // 従来は分野と級を別々に押す必要があり「両方変えたい」時に片方だけ確定してしまっていた。
@@ -1363,31 +1423,60 @@ function HomeTab(props: {
           </Pressable>
         </View>
         {mapView && hasFigure(mapView.key) ? (
-          <ScrollView
-            style={{ flex: 1 }}
-            contentContainerStyle={[home.mapScroll, { paddingBottom: insets.bottom + 24 }]}
-            showsVerticalScrollIndicator
-          >
-            {/* ズーム操作（iOS/Android共通・コアRNのみ）。既定で画面幅にフィット＝全体表示。
-                ＋/−で拡大し、拡大時は内側の横スクロールで左右にパンできる。 */}
-            <View style={home.mapZoomBar}>
-              <Pressable onPress={() => setMapZoom((z) => Math.max(1, Math.round((z - 0.5) * 10) / 10))} hitSlop={8} style={home.mapZoomBtn}>
-                <Text style={home.mapZoomBtnTxt}>−</Text>
-              </Pressable>
-              <Text style={home.mapZoomLbl}>{Math.round(mapZoom * 100)}%</Text>
-              <Pressable onPress={() => setMapZoom((z) => Math.min(4, Math.round((z + 0.5) * 10) / 10))} hitSlop={8} style={home.mapZoomBtn}>
-                <Text style={home.mapZoomBtnTxt}>＋</Text>
-              </Pressable>
-              <Pressable onPress={() => setMapZoom(1)} hitSlop={8} style={home.mapZoomReset}>
-                <Text style={home.mapZoomResetTxt}>リセット</Text>
-              </Pressable>
-            </View>
+          Platform.OS === 'android' ? (
+            // Android：WebViewでピンチ／ダブルタップ拡大（くっきり再描画）。下に章の問題リスト（高さ上限つき）。
+            mapDataUri ? (
+              <>
+                <WebView
+                  style={{ flex: 1, backgroundColor: '#fff' }}
+                  originWhitelist={['*']}
+                  scalesPageToFit
+                  showsVerticalScrollIndicator
+                  overScrollMode="never"
+                  source={{ html: `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=8, user-scalable=yes"><style>html,body{margin:0;padding:0;background:#fff;}img{display:block;width:100%;height:auto;}</style></head><body><img src="${mapDataUri}"></body></html>` }}
+                />
+                {mapQList && (
+                  <ScrollView
+                    style={{ maxHeight: 220, borderTopWidth: 1, borderTopColor: HOME.border }}
+                    contentContainerStyle={{ padding: 12, paddingBottom: insets.bottom + 12 }}
+                  >
+                    {mapQList}
+                  </ScrollView>
+                )}
+              </>
+            ) : mapDataErr ? (
+              // 読み出し失敗時は素のImage（拡大は効かないが表示は必ず出す）。
+              <ScrollView
+                style={{ flex: 1 }}
+                contentContainerStyle={[home.mapScroll, { paddingBottom: insets.bottom + 24 }]}
+                showsVerticalScrollIndicator
+              >
+                <Image
+                  source={figureSource(mapView.key)}
+                  onLoad={(e) => {
+                    const s: any = e.nativeEvent?.source;
+                    if (s?.width && s?.height) setMapAspect(s.width / s.height);
+                  }}
+                  style={[home.mapFullImg, { aspectRatio: mapAspect ?? 0.7 }]}
+                  resizeMode="contain"
+                />
+                {mapQList}
+              </ScrollView>
+            ) : (
+              <View style={home.mapPlaceWrap}>
+                <ActivityIndicator color={HOME.cyan} />
+                <Text style={[home.mapPlaceholder, { marginTop: 10 }]}>相関図を読み込んでいます…</Text>
+              </View>
+            )
+          ) : (
+            // iOS：従来どおりScrollViewのピンチ拡大（なめらか）。全幅フィット＋縦スクロール。
             <ScrollView
-              horizontal
-              bounces={false}
-              scrollEnabled={mapZoom > 1}
-              showsHorizontalScrollIndicator={mapZoom > 1}
-              style={{ height: ((winMapW - 24) * mapZoom) / (mapAspect ?? 0.7) }}
+              style={{ flex: 1 }}
+              contentContainerStyle={[home.mapScroll, { paddingBottom: insets.bottom + 24 }]}
+              maximumZoomScale={4}
+              minimumZoomScale={1}
+              bouncesZoom
+              showsVerticalScrollIndicator
             >
               <Image
                 source={figureSource(mapView.key)}
@@ -1395,31 +1484,12 @@ function HomeTab(props: {
                   const s: any = e.nativeEvent?.source;
                   if (s?.width && s?.height) setMapAspect(s.width / s.height);
                 }}
-                style={{ width: (winMapW - 24) * mapZoom, height: ((winMapW - 24) * mapZoom) / (mapAspect ?? 0.7), backgroundColor: '#fff', borderRadius: 8 }}
+                style={[home.mapFullImg, { aspectRatio: mapAspect ?? 0.7 }]}
                 resizeMode="contain"
               />
+              {mapQList}
             </ScrollView>
-            {mapQuestions.length > 0 && (
-              <View style={home.mapQWrap}>
-                <Text style={home.mapQHead}>この章の問題（タップでその問題へ）</Text>
-                {mapQuestions.map((q) => (
-                  <Pressable
-                    key={q.id}
-                    style={home.mapQRow}
-                    onPress={() => {
-                      const cid = mapView?.chapterId;
-                      setMapView(null);
-                      if (cid) props.onOpenQuestion(grade, cid, q.id, field);
-                    }}
-                  >
-                    <Text style={home.mapQNum}>{q.number}</Text>
-                    <Text style={home.mapQT} numberOfLines={2}>{q.title ?? q.question}</Text>
-                    <Text style={home.mapQChev}>›</Text>
-                  </Pressable>
-                ))}
-              </View>
-            )}
-          </ScrollView>
+          )
         ) : (
           <View style={home.mapPlaceWrap}>
             <Text style={home.mapPlaceholder}>相関図は準備中です。{'\n'}ChatGPTで作図したPNGを登録すると、ここに表示されます。</Text>
