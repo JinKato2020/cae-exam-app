@@ -215,7 +215,7 @@
         "$\\mathbf{E},\\ \\mathbf{A}$ とも $\\mathbf{Q}(\\cdot)\\mathbf{Q}^{T}$ の形で変化する"
       ],
       "answer": 1,
-      "explanation": "【基礎】材料を伸ばした後、形を変えず向きだけ変えます。元の材料方向で測るEはそのままですが、今の空間方向で成分を表すAは向きに合わせて成分が変わります。伸びが追加されたという意味ではありません。\n【考え方】Qは長さを変えない回転なので $\\mathbf Q^T\\mathbf Q=\\mathbf I$ です。$\\mathbf E^{\\prime}=[\\mathbf F^T\\mathbf Q^T\\mathbf Q\\mathbf F-\\mathbf I]/2=\\mathbf E$ です。一方 $\\mathbf B^{\\prime}=\\mathbf Q\\mathbf B\\mathbf Q^T$ なので $\\mathbf A^{\\prime}=\\mathbf Q\\mathbf A\\mathbf Q^T$ となり、正解は1です。\n【ポイント】例えば横方向へ伸ばした長方形を90°回すと、空間の縦方向が伸びた向きになります。Aの対角成分は入れ替わりますが、元の横方向という材料の目印で測るEは変わりません。回転だけを加えることと、最初から回転だけで変形がないことを区別します。\n【引っかけ】肢1は両方の基準に合います。肢2はEとAの基準が逆です。肢3はAの成分も不変としています。肢4は材料の元の方向で測るEまで空間方向と一緒に回しています。",
+      "explanation": "【基礎】材料を伸ばした後、形を変えず向きだけ変える「剛体回転」を加えます。変形勾配 $\\mathbf F$ は伸びと回転の両方を含み、$\\mathbf F=\\mathbf R\\mathbf U=\\mathbf V\\mathbf R$ と分けられます。$\\mathbf R$ は回転、$\\mathbf U$ は元の材料方向で表す右ストレッチ、$\\mathbf V$ は現在の空間方向で表す左ストレッチです。追加の回転を $\\mathbf Q$ とすると $\\mathbf F'=\\mathbf Q\\mathbf F$ です。回転は長さを変えないため $\\mathbf Q^T\\mathbf Q=\\mathbf I$、$\\mathbf R^T\\mathbf R=\\mathbf I$ となります。$\\mathbf I$ は掛けても相手を変えない単位行列、上付きの $T$ は行と列を入れ替える転置、$-1$ は変換を元に戻す逆行列を表します。\n【考え方】①グリーン・ラグランジュひずみは $\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ です。積の転置は順番が逆になるので $(\\mathbf Q\\mathbf R\\mathbf U)^T=\\mathbf U^T\\mathbf R^T\\mathbf Q^T$ です。代入すると $\\mathbf E'=(\\mathbf U^T\\mathbf R^T\\mathbf Q^T\\mathbf Q\\mathbf R\\mathbf U-\\mathbf I)/2$。中央の $\\mathbf Q^T\\mathbf Q=\\mathbf I$ を使うと $\\mathbf E'=(\\mathbf U^T\\mathbf R^T\\mathbf R\\mathbf U-\\mathbf I)/2$、続いて $\\mathbf R^T\\mathbf R=\\mathbf I$ を使うと $\\mathbf E'=(\\mathbf U^T\\mathbf U-\\mathbf I)/2$ です。$\\mathbf U$ は対称、つまり $\\mathbf U^T=\\mathbf U$ なので $\\mathbf E'=(\\mathbf U^2-\\mathbf I)/2=\\mathbf E$ となり、追加の回転は消えます。②アルマンジひずみは $\\mathbf A=(\\mathbf I-\\mathbf B^{-1})/2$、$\\mathbf B=\\mathbf F\\mathbf F^T=\\mathbf V^2$ です。回転後は $\\mathbf B'=\\mathbf Q\\mathbf V^2\\mathbf Q^T$。積の逆行列も順番が逆になるので $(\\mathbf B')^{-1}=(\\mathbf Q^T)^{-1}(\\mathbf V^2)^{-1}\\mathbf Q^{-1}$ です。回転では $\\mathbf Q^{-1}=\\mathbf Q^T$、$(\\mathbf Q^T)^{-1}=\\mathbf Q$、また $(\\mathbf V^2)^{-1}=\\mathbf V^{-2}$ なので $(\\mathbf B')^{-1}=\\mathbf Q\\mathbf V^{-2}\\mathbf Q^T$ となります。したがって $\\mathbf A'=(\\mathbf I-\\mathbf Q\\mathbf V^{-2}\\mathbf Q^T)/2$。$\\mathbf I=\\mathbf Q\\mathbf I\\mathbf Q^T$ と書けば $\\mathbf A'=\\mathbf Q(\\mathbf I-\\mathbf V^{-2})\\mathbf Q^T/2=\\mathbf Q\\mathbf A\\mathbf Q^T$ となり、正解は1です。\n【ポイント】例えば横方向へ伸ばした長方形を90°回すと、空間の縦方向が伸びた向きになります。元の材料につけた目印を基準に測る $\\mathbf E$ は変わりません。一方、固定した空間の縦横で成分を表す $\\mathbf A$ では、縦横の対角成分が入れ替わります。これは伸びが追加されたのではなく、伸びた方向の見え方が変わったという意味です。$\\mathbf A'=\\mathbf Q\\mathbf A\\mathbf Q^T$ でも主ひずみは変わりません。計算では、転置・逆行列の「積の順番を逆にする」操作と、回転行列同士が単位行列になる操作を一つずつ追いましょう。\n【引っかけ】肢1は材料基準の $\\mathbf E$ が不変、空間基準の $\\mathbf A$ が回転に応じて成分変換されるため正しいです。肢2は両者の基準を逆にしています。肢3は $\\mathbf A$ の成分も常に不変としています。肢4は元の材料方向で測る $\\mathbf E$ まで空間方向と一緒に回しています。「成分が変わる」と「材料がさらに変形する」は別です。また、すでに伸びた物体へ回転を加える本問と、初めから回転だけで伸びがない場合を混同しないでください。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -237,7 +237,7 @@
           "3": "Aも成分不変とする",
           "4": "Eも空間軸と回す"
         },
-        "sha256": "77620cc066787e49152a8d9e8ba3ed55ec9bd83a5ee3d794c3195d66f5a9afc8"
+        "sha256": "16efe8fd10e7f44ef036a52145dac01d4d27dd9b443a795e5d28dbad139fec13"
       }
     },
     {

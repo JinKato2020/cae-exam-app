@@ -44,8 +44,9 @@
           "3": "弾性ひずみを初期降伏時の値に固定",
           "4": "全ひずみを塑性分と同一視"
         },
-        "sha256": "94cce3a139f669d40edeb71550b195ea78089b737c30b1c170fc9580ca4d19f0"
-      }
+        "sha256": "f6a5883aba4aeecb081ad355cad77e84f9638318d4d76c32aee20ed357eddc24"
+      },
+      "preFigureImage": "s1e2BilinearPre"
     },
     {
       "id": "solid1-02-02",
@@ -80,8 +81,9 @@
           "2": "最大せん断応力説との混同",
           "4": "内部摩擦説との混同"
         },
-        "sha256": "17a1e36afb25a918119ca4970fd2ee8c32d4a36e4fca07ae459c0da4613b0e9a"
-      }
+        "sha256": "80b221e3226e99130f260a68c6f0e586a1b349ac02125be3c5c0bc95857376e7"
+      },
+      "preFigureImage": "s1e2MisesSetup"
     },
     {
       "id": "solid1-02-03",
@@ -269,8 +271,9 @@
           "2": "ゼロ応力の塑性ひずみを再降伏位置と誤認",
           "4": "等方硬化後も強度を初期値に戻す"
         },
-        "sha256": "00a0ced8d20276aac74c2914ebdc8acd79af69fe5f85c23894374c5f88a06616"
-      }
+        "sha256": "9bbfeb0c648ca79c6ab709981a2e8258a25f0d6932adf63217d321eb4c17ef2d"
+      },
+      "preFigureImage": "s1e2IsoHysteresisPre"
     },
     {
       "id": "solid1-02-07",
@@ -345,8 +348,9 @@
           "2": "背応力を無視して−Yとする",
           "3": "弾性除荷と塑性硬化の傾きを混同"
         },
-        "sha256": "d468189622e8589df745364a015fea9bd3de696ff953ab01a38af2dbc61f98c1"
-      }
+        "sha256": "2cf9f6afe7ce3984126ad810e68566dbd0fa03174dbc39fc0c31b0ca0a49d157"
+      },
+      "preFigureImage": "s1e2KinematicHystPre"
     },
     {
       "id": "solid1-02-08",

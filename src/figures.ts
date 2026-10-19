@@ -9,6 +9,10 @@ import type { ImageSourcePropType } from 'react-native';
 
 
 export const FIGURES: Record<string, ImageSourcePropType> = {
+  s1e2KinematicHystPre: require('../assets/figures/s1e2KinematicHystPre.png'),
+  s1e2IsoHysteresisPre: require('../assets/figures/s1e2IsoHysteresisPre.png'),
+  s1e2MisesSetup: require('../assets/figures/s1e2MisesSetup.png'),
+  s1e2BilinearPre: require('../assets/figures/s1e2BilinearPre.png'),
   v1e1CartPendulumPre: require("../assets/figures/v1e1CartPendulumPre.png"),
   v1e2TwoDofSpringsPre: require("../assets/figures/v1e2TwoDofSpringsPre.png"),
   v1e2YajirobeeModePre: require("../assets/figures/v1e2YajirobeeModePre.png"),
