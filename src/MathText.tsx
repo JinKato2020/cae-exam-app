@@ -71,6 +71,38 @@ ${scroll ? '<div id="fade"></div>' : ''}
         d.style.height = Math.ceil(k.getBoundingClientRect().height) + 'px';
       }
     }
+    fitInline();
+  }
+  // 選択肢などの長いインライン数式($...$)が箱幅からはみ出す(＝枠に収まらない)のを、
+  // 表示数式($$)と同じく左上基点で縮小して収める。短い数式は対象外で見た目は変わらない。
+  function fitInline(){
+    if (SCROLL) return;
+    var c = document.getElementById('c');
+    var avail = c.clientWidth;
+    if (!avail) return;
+    var list = c.querySelectorAll('.katex');
+    for (var i=0;i<list.length;i++){
+      var k = list[i], p = k.parentElement;
+      if (!p || p.classList.contains('katex-display')) continue; // 表示数式は上で処理済み
+      var box;
+      if (p.classList.contains('fitbox')) {
+        box = p; // 再実行時(フォント遅延読込後など)は既存の箱を測り直す
+      } else {
+        k.style.transform=''; k.style.transformOrigin='';
+        if (k.getBoundingClientRect().width <= avail + 1) continue; // はみ出す式だけ対象
+        box = document.createElement('span');
+        box.className='fitbox'; box.style.display='block'; box.style.overflow='hidden';
+        p.insertBefore(box, k); box.appendChild(k);
+      }
+      k.style.display='inline-block';
+      k.style.transform=''; k.style.transformOrigin=''; box.style.height='';
+      var need = k.getBoundingClientRect().width;
+      if (need > avail + 1){
+        k.style.transformOrigin='left top';
+        k.style.transform='scale('+(avail/need)+')';
+        box.style.height = Math.ceil(k.getBoundingClientRect().height) + 'px';
+      }
+    }
   }
   // 混在テキストのインライン数式も、式全体を1つのスクロール領域にする。
   // KaTeXは等号・加号ごとにbaseを分けるため、nowrapだけでなく外側の箱が必要。
