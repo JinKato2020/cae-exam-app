@@ -1343,3 +1343,7 @@ Build1436（v1.2.6・both・内部テスト・run 39141132428）＝build-ios・b
 全問題の内容確認・標準図ゲートを確認し、図登録は既存生成処理をこの作業コピーに限定して再生成。参照1806キーにPNG欠落なし。OTA差分はJSON22件・PNG147枚＝169件、削除なし。PDFは依頼外のため更新しない。統合commit 8fc09fcaa29cb2a16161cab764215fb906e2d31aをmainとcodex/release-all-20261019へPush済み。本番OTA run39216768826（https://github.com/JinKato2020/cae-exam-app/actions/runs/39216768826）はsuccess。公開マニフェスト全3490件が正本と一致し、変更169ファイルをダウンロードしてSHA256一致を確認済み。
 
 v1.2.7・Build1441（run39216775435、https://github.com/JinKato2020/cae-exam-app/actions/runs/39216775435）はbuild-ios・build-androidともsuccess。iOSはTestFlight提出、Androidはinternal/completed配信まで成功。ストア本番公開は行っていない。実機操作・Apple側の処理完了表示は未確認。作業フォルダも最新mainへfast-forward済みで、保存ブランチの全変更と最新本体修正を統合した状態。今回の一時作業コピーと照合用データは成功確認後に削除し、正本・PDFは維持する。
+
+## 固体1級3-8の接線剛性をグラフ化：2026-10-19-S1-C38-GRAPH
+
+利用者の指定により、名称だけの模式図を、3-7モデルAと同じ1自由度の棒の荷重–変位曲線と剛性寄与の棒グラフへ更新。現在点u=1mm・F=112.5Nの接線剛性172.5N/mmと、初期の傾き60を区別。k0=60、kL=75、kG=37.5、kA=135、kT=172.5を同じ材料則から計算し、荷重の中心差分でも接線を検算。多自由度では対応を行列でまとめること、Gは硬さではなく変位こう配への換算であることを解説。問題文・選択肢・正解①を維持。共有図を使う用語s1ch3-8の数値例も整合。図の標準ゲートと、実MathTextの340px表示で数式エラー・幅超過・過度な縮小なしを確認。正本はsolid1-03-geometric-nonlinear.json、solid1-ch3.json、図/固体1級/第03章/3-8回答後.svgおよび登録PNG。今回PDF・OTA・本体ビルドは未実施。
