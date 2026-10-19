@@ -1,0 +1,176 @@
+<title>振動2級 第10章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>振動2級 第10章「ポスト処理の基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A エネルギー分布に基づく振動対策／B 応答抽出・固有値/応答解析の検証／C 音・騒音・周波数分析 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>ポスト処理の基礎 ― 各問の要点とキー公式</h2>
+    <p class="lead">解析結果を読み解き、どこを補強するか・どう評価するかを判断する後処理を整理。全19問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜エネルギー分布に基づく振動対策（剛性・質量）</div>
+    <div class="track-desc">固有振動数は系の剛性と質量の比で決まる（f∝√(k/m)）ため、対象モードでひずみエネルギー密度が大きい部位は剛性変更が、運動エネルギー密度が大きい部位は質量変更が効く。この指標から補強・軽量化する部位を選び、共振を運転域の外へ動かす流れを扱う。変位最大の点と、ひずみが集中する剛性寄与の大きい点は別物である点に注意する。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>剛性補強の部位（ひずみエネルギー）</h3>
+        <ul class="q-list">
+          <li><span class="q">10-2</span><span class="txt"><b>固有振動数を上げるにはひずみエネルギー密度大の部位を補強</b><span class="f">ひずみエネルギー密度／f=(1/2π)√(k/m)</span></span></li>
+          <li><span class="q">10-4</span><span class="txt"><b>補強部位はひずみエネルギー密度分布で決める</b><span class="f">ひずみエネルギー密度コンター</span></span></li>
+          <li><span class="q">10-8</span><span class="txt"><b>寄与モードを特定し剛性を上げて共振点を上へ</b><span class="f">寄与モード特定→剛性増</span></span></li>
+          <li><span class="q">10-17</span><span class="txt"><b>低周波の全体ねじりに効く部位の剛性低下は逆効果</b><span class="f">閉断面化・クロスメンバで剛性増</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>対策の方向判断</h3>
+        <ul class="q-list">
+          <li><span class="q">10-3</span><span class="txt"><b>加振より低い固有振動数を支持部剛性低下でさらに下げる</b><span class="f">f∝√k・支持剛性を下げる</span></span></li>
+          <li><span class="q">10-10</span><span class="txt"><b>質量付加は固有振動数を下げるので上げる目的に反する</b><span class="f">f∝√(k/m)・質量増＝低下</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>エネルギー指標と計算</h3>
+        <ul class="q-list">
+          <li><span class="q">10-6</span><span class="txt"><b>運動E大は軽量化、ひずみE大は補強</b><span class="f">運動E→質量／ひずみE→剛性</span></span></li>
+          <li><span class="q">10-7</span><span class="txt"><b>固有振動数1.2倍には剛性を1.2²倍</b><span class="f">f∝√k・k比=1.2²=1.44倍</span></span></li>
+          <li><span class="q">10-12</span><span class="txt"><b>等高線で剛性・質量の変更部位を選ぶ</b><span class="f">ひずみE=剛性／運動E=質量</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜応答抽出・固有値/応答解析の検証</div>
+    <div class="track-desc">時刻歴や周波数応答から必要な量を正しく取り出し、モデルの妥当性を確かめる。地点ごと・全時刻での最大応答の抽出、周波数応答線図からの共振点の読み取り、固有値解析と周波数応答解析の役割分担を押さえる。採用モード数と出力する節点データ量は別物であること、自由物体の剛体モードとモード変位の相対性も扱う。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>応答・FRFの読み取り</h3>
+        <ul class="q-list">
+          <li><span class="q">10-1</span><span class="txt"><b>最大変位は各地点・全時刻で個別に抽出</b><span class="f">各地点・全時刻の絶対値最大</span></span></li>
+          <li><span class="q">10-5</span><span class="txt"><b>腹を加振し応答方向の共振ピークを読む</b><span class="f">中央加振・前後応答・共振ピーク</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>固有値／応答解析と検証</h3>
+        <ul class="q-list">
+          <li><span class="q">10-9</span><span class="txt"><b>固有振動数の検証は別荷重の最大応力では代替できない</b><span class="f">固有振動数検証≠最大応力収束</span></span></li>
+          <li><span class="q">10-11</span><span class="txt"><b>モード形状で判別→正弦波で床加速度の周波数応答</b><span class="f">モード形状→正弦波→周波数応答解析</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>モード・データ量</h3>
+        <ul class="q-list">
+          <li><span class="q">10-16</span><span class="txt"><b>採用モード数を減らしても節点変位データ量は減らない</b><span class="f">採用モード数≠出力節点データ量</span></span></li>
+          <li><span class="q">10-19</span><span class="txt"><b>自由物体は剛体モード6個、モード変位は相対値</b><span class="f">剛体モード6個（並進3・回転3）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜音・騒音・周波数分析</div>
+    <div class="track-desc">振動・音の大きさを対数で表すデシベルの定義と基準値、聴感に合わせた周波数重み、周波数帯域の分析を扱う。パワー比は10倍（ベル→デシベル）、振幅・音圧比は20倍になる違いを区別し、オクターブバンドの帯域端が中心周波数の2のべき乗で決まることを押さえる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>デシベルの定義・基準</h3>
+        <ul class="q-list">
+          <li><span class="q">10-13</span><span class="txt"><b>感覚量は刺激量の対数、パワー比の常用対数×10がdB</b><span class="f">ベル=log₁₀(P/P₀)・dB=10倍</span></span></li>
+          <li><span class="q">10-15</span><span class="txt"><b>音圧レベルは係数20、基準音圧2×10⁻⁵Pa</b><span class="f">L=20·log₁₀(p/p₀)・p₀=2×10⁻⁵Pa</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>周波数重み特性</h3>
+        <ul class="q-list">
+          <li><span class="q">10-14</span><span class="txt"><b>A特性＝聴感補正で一般騒音、C特性＝ほぼ平坦で低周波・衝撃</b><span class="f">A特性=聴感／C特性=平坦</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>オクターブ分析</h3>
+        <ul class="q-list">
+          <li><span class="q">10-18</span><span class="txt"><b>1/3オクターブの帯域端は中心×2^(±1/6)</b><span class="f">f_c×2^(±1/6)≈713〜898Hz</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）エネルギー分布に基づく振動対策・B（藍）応答抽出・固有値/応答解析の検証・C（赤）音・騒音・周波数分析。全19問（A9・B6・C4）。</p>
+  </section>
+</div>

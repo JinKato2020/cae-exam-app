@@ -1,0 +1,187 @@
+<title>振動1級 第3章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>振動1級 第3章「有限要素のテクノロジー」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A モデル化の道具／B 要素の定式化／C 要素技術と精度 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>有限要素のテクノロジー ― 各問の要点とキー公式</h2>
+    <p class="lead">質量・減衰・材料のモデル化から、形状関数による要素の作り方、精度を左右する要素技術まで整理。全30問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜モデル化の道具（質量・剛体要素、減衰・材料モデル、幾何剛性）</div>
+    <div class="track-desc">まず解析を組み立てる道具をそろえる。剛い部分は質量要素・剛体要素で軽く表し、減衰は粘性・レイリー・構造減衰などでモデル化する。材料は等価線形化・粘弾性・複合材の混合則やポアソン比で扱い、張力による幾何剛性で横剛性の変化も表す。これらの道具立てが、B の要素の定式化で実際の行列になる。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>質量・剛体要素</h3>
+        <ul class="q-list">
+          <li><span class="q">3-1</span><span class="txt"><b>形を持たず節点に質量・慣性を集中させる要素</b><span class="f">集中質量 m, I</span></span></li>
+          <li><span class="q">3-2</span><span class="txt"><b>剛い部品の弾性を省きメッシュを削減</b><span class="f">1次モード評価で有効</span></span></li>
+          <li><span class="q">3-3</span><span class="txt"><b>剛体要素は節点間の相対変位を許さない</b><span class="f">無限に硬い結合</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>減衰のモデル化</h3>
+        <ul class="q-list">
+          <li><span class="q">3-4</span><span class="txt"><b>粘性・クーロン摩擦・構造減衰の分類</b><span class="f">粘性 f=cv</span></span></li>
+          <li><span class="q">3-5</span><span class="txt"><b>レイリー減衰の減衰比は質量比例＋剛性比例の和</b><span class="f">ζ=α/(2ω_n)+βω_n/2</span></span></li>
+          <li><span class="q">3-6</span><span class="txt"><b>材料ヒステリシスは複素剛性で表し周波数に鈍感</b><span class="f">複素剛性・構造減衰</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>材料モデルと複合材</h3>
+        <ul class="q-list">
+          <li><span class="q">3-7</span><span class="txt"><b>弾塑性を等価剛性・減衰に置換して線形近似</b><span class="f">等価線形化</span></span></li>
+          <li><span class="q">3-8</span><span class="txt"><b>ばね＋ダッシュポットで粘弾性を表す</b><span class="f">弾性=変位比例, 粘性=速度比例</span></span></li>
+          <li><span class="q">3-11</span><span class="txt"><b>等ひずみの並列混合則で軸方向等価ヤング率</b><span class="f">E=(E_fA_f+E_mA_m)/(A_f+A_m)</span></span></li>
+          <li><span class="q">3-12</span><span class="txt"><b>一軸引張の体積変化率はポアソン比で決まる</b><span class="f">ΔV/V=ε(1−2ν)</span></span></li>
+          <li><span class="q">3-13</span><span class="txt"><b>積層のz方向は直列ばね、柔層が支配</b><span class="f">1/E_z=V_s/E_s+V_A/E_A</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>幾何剛性と過渡応答</h3>
+        <ul class="q-list">
+          <li><span class="q">3-9</span><span class="txt"><b>張力で横剛性が増す幾何剛性を解析に組込む</b><span class="f">幾何剛性 [K_G]</span></span></li>
+          <li><span class="q">3-10</span><span class="txt"><b>引張軸力で曲げ固有振動数が上がる</b><span class="f">ω=ω_n√(1+PL²/(π²EI))</span></span></li>
+          <li><span class="q">3-14</span><span class="txt"><b>効かない部分を割り切り精度と効率を両立</b><span class="f">過渡応答の簡略化</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜要素の定式化（形状関数・質量/剛性行列・はり理論）</div>
+    <div class="track-desc">要素を実際の行列として作る方法を扱う。節点変位を形状関数で補間し、その積の積分から整合質量行列を、ひずみ–変位行列と材料行列から剛性行列を組み立てる。はり要素はせん断変形と回転慣性を無視するオイラーはりと、それらを考慮するチモシェンコはりで式が変わる。A の道具を、この定式化が具体的な行列へ落とし込む。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>形状関数と行列の組立</h3>
+        <ul class="q-list">
+          <li><span class="q">3-15</span><span class="txt"><b>1次形状関数は自分の節点で1・相手で0の線形</b><span class="f">N₁(x₁)=1, N₁(x₂)=0</span></span></li>
+          <li><span class="q">3-16</span><span class="txt"><b>形状関数値は要素長で正規化、和は1</b><span class="f">N₁+N₂=1</span></span></li>
+          <li><span class="q">3-17</span><span class="txt"><b>運動エネルギーから整合質量行列</b><span class="f">[M]=∫μ{N}{N}ᵀdx</span></span></li>
+          <li><span class="q">3-20</span><span class="txt"><b>ひずみ–変位行列と材料行列で剛性行列</b><span class="f">[K]=∫[B]ᵀ[D][B]dV</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>はり要素の理論</h3>
+        <ul class="q-list">
+          <li><span class="q">3-18</span><span class="txt"><b>オイラーはりは固め、チモシェンコはりはせん断考慮</b><span class="f">せん断変形・回転慣性</span></span></li>
+          <li><span class="q">3-19</span><span class="txt"><b>オイラーはりは慣性過小、試験と食い違い</b><span class="f">回転慣性・せん断の欠落</span></span></li>
+          <li><span class="q">3-21</span><span class="txt"><b>チモシェンコはりは並進＋回転を1つの質量行列に</b><span class="f">T=½∫ρAẇ²dx+½∫ρIθ̇²dx</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜要素技術と精度（連続性・アイソパラメトリック・精度向上）</div>
+    <div class="track-desc">解の質を左右する要素技術を整理する。薄板曲げは2階微分を含むためたわみ角まで連続な適合要素が要り、曲線境界はアイソパラメトリック要素とヤコビ行列で扱う。精度向上にはメッシュ細分のh法と次数増加のp法があり、変位型要素ではロッキングへの対策が要る。板曲げ理論や音響FEMもここで押さえる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>連続性と適合性</h3>
+        <ul class="q-list">
+          <li><span class="q">3-22</span><span class="txt"><b>薄板曲げは2階微分、たわみ角まで連続が必要</b><span class="f">C¹連続</span></span></li>
+          <li><span class="q">3-23</span><span class="txt"><b>適合要素は要素間でたわみ・たわみ角が連続</b><span class="f">w・w′の連続</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>アイソパラメトリック要素</h3>
+        <ul class="q-list">
+          <li><span class="q">3-24</span><span class="txt"><b>連鎖律で正規化座標と物理座標を結ぶヤコビ行列</b><span class="f">{∂N/∂ξ}=[J]{∂N/∂x}</span></span></li>
+          <li><span class="q">3-25</span><span class="txt"><b>補間と座標表現に同じ形状関数を使う</b><span class="f">8節点四辺形・等径数</span></span></li>
+          <li><span class="q">3-26</span><span class="txt"><b>高次要素は曲線境界を少ない形状誤差で表す</b><span class="f">2次辺で曲線近似</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>精度向上と要素の注意</h3>
+        <ul class="q-list">
+          <li><span class="q">3-27</span><span class="txt"><b>メッシュ細分のh法、次数増加のp法</b><span class="f">h法 / p法</span></span></li>
+          <li><span class="q">3-28</span><span class="txt"><b>ロッキングは剛性過大、低減積分などで回避</b><span class="f">低減積分・非適合要素</span></span></li>
+          <li><span class="q">3-29</span><span class="txt"><b>キルヒホッフは薄板、ミンドリンは厚板対応</b><span class="f">面外せん断の有無</span></span></li>
+          <li><span class="q">3-30</span><span class="txt"><b>音響管1次元FEM、逆位相が非零モード</b><span class="f">{p}={1,−1}ᵀ</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）モデル化の道具・B（藍）要素の定式化・C（赤）要素技術と精度。全30問（A14・B7・C9）。</p>
+  </section>
+</div>

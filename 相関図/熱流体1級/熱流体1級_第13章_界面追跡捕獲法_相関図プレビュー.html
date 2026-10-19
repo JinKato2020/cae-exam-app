@@ -1,0 +1,176 @@
+<title>熱流体1級 第13章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級 第13章「界面追跡・捕獲法」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 手法の分類と位置づけ／B 界面の数学的表現と界面力／C 数値解法・計算条件 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>界面追跡・捕獲法 ― 各問の要点とキー公式</h2>
+    <p class="lead">変形する気液界面を平均化せず解像して直接解く。全19問を A／B／C に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜手法の分類と位置づけ</div>
+    <div class="track-desc">変形する界面を格子上で解く手法は、固定格子に界面を表す関数を移流させる界面捕獲法（VOF・レベルセット）と、固定格子上に界面要素を置いて追う界面追跡法（Front Tracking）に大別されます。いずれも界面を平均化せず解像するため混相流の直接解法と呼ばれ、格子を界面に合わせて動かすALE法とは発想が異なります。界面の厚さの扱いや、無からの気泡核生成のような多重スケール現象の難しさが各手法の特徴を決めます。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>手法の大別</h3>
+        <ul class="q-list">
+          <li><span class="q">13-1</span><span class="txt"><b>捕獲法・追跡法はどちらも固定格子が基本</b>格子再生成は移動格子の考え　<span class="f">界面捕獲法／界面追跡法（Front Tracking）</span></span></li>
+          <li><span class="q">13-2</span><span class="txt"><b>VOFとレベルセットは扱う変数が違う</b>固定格子で変数を移流　<span class="f">VOF=体積率F／Level Set=符号付き距離φ</span></span></li>
+          <li><span class="q">13-12</span><span class="txt"><b>直接解法と呼ばれる理由</b>瞬時局所式を平均化せず解く　<span class="f">界面の跳躍条件を課す</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>移動格子法</h3>
+        <ul class="q-list">
+          <li><span class="q">13-3</span><span class="txt"><b>ALE法は格子移動速度を流体と独立に定める</b>純ラグランジュとオイラーの中間　<span class="f">ALE（界面形状を保ち格子の極端変形を防ぐ）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>特徴と適用限界</h3>
+        <ul class="q-list">
+          <li><span class="q">13-5</span><span class="txt"><b>界面厚さと予測できる現象</b>Front Trackingは物性を数セルで平滑化　<span class="f">境界適合=厚さ零／合体は依然困難</span></span></li>
+          <li><span class="q">13-7</span><span class="txt"><b>最も困難な対象</b>無からの気泡核生成は連続体法で困難　<span class="f">多重スケール（分子スケール）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜界面の数学的表現と界面力</div>
+    <div class="track-desc">界面を陽に扱うには、界面の位置・向き・曲率を数式で表す必要があります。相関数の勾配は界面上のデルタ関数として法線を与え、レベルセット関数の移流方程式と、その勾配の発散で平均曲率が求まります。距離関数の性質を保つ再初期化、VOFの高さ関数による曲率評価、拡散界面のCahn-Hilliard方程式、体積率から界面を復元する再構成法、界面をはさむ量のつり合いを与える跳躍条件が、この表現の道具立てです。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>相関数と界面幾何</h3>
+        <ul class="q-list">
+          <li><span class="q">13-9</span><span class="txt"><b>相関数の勾配は界面上のデルタ</b>法線と逆向き　<span class="f">∇Xk = −δ nk</span></span></li>
+          <li><span class="q">13-10</span><span class="txt"><b>界面追跡方程式と平均曲率</b><span class="f">∂φ/∂t + u·∇φ = 0, κ = −∇·(∇φ/|∇φ|)</span></span></li>
+          <li><span class="q">13-11</span><span class="txt"><b>平滑化ヘビサイドの微分=平滑化デルタ</b><span class="f">δε = dHε/dφ, δε(0) = 1/ε</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>曲率評価・再初期化</h3>
+        <ul class="q-list">
+          <li><span class="q">13-14</span><span class="txt"><b>VOF高さ関数で界面曲率を評価</b>|ny|&gt;|nx|ならHyをxで微分　<span class="f">|κ| = |H″|/[1+(H′)²]³ᐟ²</span></span></li>
+          <li><span class="q">13-15</span><span class="txt"><b>符号付き距離|∇φ|=1を回復する再初期化</b><span class="f">∂φ/∂τ = sign(φ₀)[1 − |∇φ|]</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>拡散界面・再構成・跳躍条件</h3>
+        <ul class="q-list">
+          <li><span class="q">13-17</span><span class="txt"><b>Cahn-Hilliard方程式の各項</b>第1項バルク・第2項界面、保存型　<span class="f">∂φ/∂t = M(∇²f′(φ) − ξ∇⁴φ)</span></span></li>
+          <li><span class="q">13-18</span><span class="txt"><b>界面再構成法でないもの</b>CSFは表面張力モデル　<span class="f">再構成=SLIC/PLIC/MARS、CSFは別系統</span></span></li>
+          <li><span class="q">13-19</span><span class="txt"><b>跳躍条件に本質的に無関係な因子</b>重力は体積力　<span class="f">関与=表面張力・相変化・粘性応力</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜数値解法・計算条件</div>
+    <div class="track-desc">界面を鋭く保ちつつ安定に時間を進めるには、格子・スキーム・時間刻みの条件を押さえる必要があります。気泡の上昇速度を正しく解くには等価直径あたり十分なセル数が要り、高次差分だけでは各相の体積は保存しません。移流方程式はFTCSでは不安定で、TVD・CIP・ラグランジュ的手法を用います。表面張力（毛管波）を陽解法で扱うときは、波が1ステップで1セルを越えない時間刻みの上限で安定性が決まります。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>格子解像・体積保存</h3>
+        <ul class="q-list">
+          <li><span class="q">13-4</span><span class="txt"><b>単一気泡の上昇速度に要する格子幅</b>等価直径あたり約20セル　<span class="f">Δx ≤ d/20</span></span></li>
+          <li><span class="q">13-6</span><span class="txt"><b>高次差分だけでは各相体積は保存しない</b><span class="f">ソレノイダル条件・クーラン数・数値拡散</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>移流スキーム</h3>
+        <ul class="q-list">
+          <li><span class="q">13-8</span><span class="txt"><b>界面移流方程式の数値解法</b>FTCSは不安定で不適切　<span class="f">∂φ/∂t + u ∂φ/∂x = 0（TVD・CIP・ラグランジュ）</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>時間刻み・安定条件</h3>
+        <ul class="q-list">
+          <li><span class="q">13-13</span><span class="txt"><b>液滴減衰振動の時間刻みの見積り</b>表面張力項のクーラン数から　<span class="f">Δt = √(4ρRΔx²C/σ)</span></span></li>
+          <li><span class="q">13-16</span><span class="txt"><b>CSFの表面張力（毛管波）の安定条件</b>波が1ステップで1セルを越えない　<span class="f">Δt &lt; C(ρ/σ)¹ᐟ²(Δx)³ᐟ²</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）手法の分類・B（藍）界面の数学的表現・C（赤）数値解法・計算条件。全19問（A6・B8・C5）。</p>
+  </section>
+</div>

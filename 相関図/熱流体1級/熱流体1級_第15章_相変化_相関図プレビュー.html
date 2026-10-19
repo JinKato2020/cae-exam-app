@@ -1,0 +1,184 @@
+<title>熱流体1級 第15章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A沸騰の基礎／B 流動沸騰・凝縮／C キャビテーション の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級 第15章「相変化」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 沸騰と気液相変化の基礎／B 管内流動沸騰・ドライアウト・凝縮／C キャビテーションと気泡 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>相変化 ― 各問の要点とキー公式</h2>
+    <p class="lead">気液の相変化（沸騰・凝縮・キャビテーション）の仕組みと計算を整理。全22問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜沸騰と気液相変化の基礎</div>
+    <div class="track-desc">まず純物質の気液相変化（飽和蒸気圧は温度のみの関数、蒸発潜熱は気液の比エンタルピー差）と、沸騰（温度が飽和温度を超える）・キャビテーション（圧力が飽和蒸気圧を下回る）の違いを押さえる。プール沸騰曲線では核沸騰から膜沸騰へ領域が移り、CHFを超えると熱伝達率が下がって壁温が急上昇する。気泡の発生はラプラス則による核の過剰圧で決まり、ここがBの流動沸騰・Cのキャビテーション気泡へつながる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>相変化と潜熱の基礎</h3>
+        <ul class="q-list">
+          <li><span class="q">15-1</span><span class="txt"><b>気液相変化と蒸発潜熱</b>臨界点で潜熱ゼロ　<span class="f">潜熱＝気液の比エンタルピー差／飽和蒸気圧＝温度のみの関数</span></span></li>
+          <li><span class="q">15-2</span><span class="txt"><b>沸騰とキャビテーションの区別</b><span class="f">沸騰＝温度>飽和温度／キャビ＝圧力<飽和蒸気圧（液体は負圧＝張力も可）</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>プール沸騰と沸騰危機</h3>
+        <ul class="q-list">
+          <li><span class="q">15-3</span><span class="txt"><b>プール沸騰曲線の領域の順序</b><span class="f">液体単相→核沸騰→遷移沸騰→膜沸騰</span></span></li>
+          <li><span class="q">15-4</span><span class="txt"><b>DNBで熱伝達率低下→壁温急上昇</b>増加量90 K　<span class="f">ΔT=q″/h（hが1/10でΔT10倍）</span></span></li>
+          <li><span class="q">15-5</span><span class="txt"><b>サブクール沸騰の性質</b>バーンアウトは飽和沸騰でも起こる　<span class="f">サブクール度＝バルク温度<沸点</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>気泡核と沸騰開始</h3>
+        <ul class="q-list">
+          <li><span class="q">15-6</span><span class="txt"><b>気泡核内外の圧力差（ラプラス則）</b>μmの核で約10⁵ Pa　<span class="f">Δp=2σ/R</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜管内流動沸騰・ドライアウト・凝縮</div>
+    <div class="track-desc">加熱される管内では、上向きに蒸発が進むと流動様式が気泡流から環状噴霧流・噴霧流へ変わり、環状噴霧流の液膜が尽きるドライアウトで壁面が乾いて沸騰危機になる。CHFの移行はドライアウト型とDNB型に分かれ、出口クオリティは熱収支から計算できる。沸騰流れの数値計算は様式ごとの実験ベース相関式で扱い、凝縮側は液膜の厚さと熱伝導で局所熱流束が決まる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>流動様式</h3>
+        <ul class="q-list">
+          <li><span class="q">15-7</span><span class="txt"><b>鉛直加熱管内の流動様式の変化</b>上向きにクオリティ・ボイド率増　<span class="f">気泡流→スラグ流→チャーン流→環状噴霧流→噴霧流</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>ドライアウトとCHF</h3>
+        <ul class="q-list">
+          <li><span class="q">15-8</span><span class="txt"><b>強制流動沸騰のドライアウト</b>液滴の付着・離脱に左右　<span class="f">ドライアウト＝環状噴霧流の液膜消失</span></span></li>
+          <li><span class="q">15-9</span><span class="txt"><b>管内CHFの移行機構</b>高流量でDNB型　<span class="f">ドライアウト型／DNB型（壁温上昇はDNB型が急）</span></span></li>
+          <li><span class="q">15-10</span><span class="txt"><b>均一加熱円管の出口クオリティ</b>x≈0.10　<span class="f">x=(1/h_V)(4qL/GD−h_IN)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>沸騰計算と凝縮</h3>
+        <ul class="q-list">
+          <li><span class="q">15-11</span><span class="txt"><b>沸騰流れ計算と熱伝達相関式</b>様式ごとに相関式　<span class="f">相関式＝実験ベース（要実験データ）</span></span></li>
+          <li><span class="q">15-12</span><span class="txt"><b>膜状凝縮の局所熱流束（フーリエ則）</b>q≈1.4×10⁵ W/m²　<span class="f">q_x=λ(T_S−T_W)/δ</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜キャビテーションと気泡（発生・成長・崩壊・計算）</div>
+    <div class="track-desc">キャビテーションは圧力低下による液→蒸気の相変化で、溶存ガスの析出（脱ガス・エアレーション）とは区別する。発生のしやすさはキャビテーション数で測り、気泡核は臨界サイズを超えると膨張して初生する。慣性支配では圧力差が成長速度を決め、崩壊時は収縮が速く、圧力上昇が壊食・温度上昇が発光を生む。崩壊や数値計算では液体の圧縮性・均質媒体モデルの限界に注意する。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>発生・初生と形態</h3>
+        <ul class="q-list">
+          <li><span class="q">15-13</span><span class="txt"><b>相変化モデルの要否</b><span class="f">キャビ＝要考慮／炭酸の泡（脱ガス）＝不要</span></span></li>
+          <li><span class="q">15-14</span><span class="txt"><b>気泡核の初生</b>溶存ガスの効果は油≠水　<span class="f">臨界サイズより大→膨張して初生</span></span></li>
+          <li><span class="q">15-16</span><span class="txt"><b>バブル（トラベリング）キャビ</b><span class="f">球形気泡群が主流に乗って移動</span></span></li>
+          <li><span class="q">15-17</span><span class="txt"><b>エアレーション＝溶存空気の析出</b><span class="f">空気分離圧≠飽和蒸気圧</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>キャビ数と気泡成長</h3>
+        <ul class="q-list">
+          <li><span class="q">15-15</span><span class="txt"><b>キャビテーション数</b>σ≈1.0　<span class="f">σ=(p−p_v)/(½ρU²)</span></span></li>
+          <li><span class="q">15-18</span><span class="txt"><b>慣性支配の気泡成長速度</b>dR/dt≈2.0 m/s　<span class="f">(dR/dt)²=(2/3)(p_sv−p_L)/ρ_L</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>崩壊と壊食</h3>
+        <ul class="q-list">
+          <li><span class="q">15-19</span><span class="txt"><b>キャビ気泡の崩壊は収縮が速い</b><span class="f">圧力上昇＝壊食／温度上昇＝発光</span></span></li>
+          <li><span class="q">15-20</span><span class="txt"><b>崩壊解析と液体の圧縮性</b><span class="f">気泡壁が液体の音速へ・凝縮・Fujikawa-Akamatsu式</span></span></li>
+          <li><span class="q">15-21</span><span class="txt"><b>ステップ加圧へのR-P解</b><span class="f">行き過ぎ収縮＋減衰リバウンド→D₂へ収束</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>数値計算</h3>
+        <ul class="q-list">
+          <li><span class="q">15-22</span><span class="txt"><b>均質媒体モデルの数値計算</b><span class="f">格子より大きい気液界面は鋭く再現困難</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）沸騰の基礎・B（藍）流動沸騰・凝縮・C（赤）キャビテーション。全22問（A6・B6・C10）。</p>
+  </section>
+</div>

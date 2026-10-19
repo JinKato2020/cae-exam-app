@@ -1,0 +1,167 @@
+<title>熱流体1級 第23章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A粒子・液滴の運動と微粒化／B 液滴の蒸発と燃焼／C 固体(石炭)燃料の燃焼 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級 第23章「混相燃焼」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 粒子・液滴の運動と微粒化／B 液滴の蒸発と燃焼／C 固体（石炭）燃料の燃焼 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>混相燃焼 ― 各問の要点とキー公式</h2>
+    <p class="lead">燃料を粒子・液滴・粉として扱う混相燃焼を、運動と微粒化 → 蒸発と燃焼 → 固体燃料 の順で整理。全15問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜粒子・液滴の運動と微粒化</div>
+    <div class="track-desc">混相燃焼はまず分散相（粒子・液滴）が気流中でどう運動し、どこまで細かく砕けるかを押さえる。抗力係数とストークス数で粒子の追従性を、ウェーバー数で液滴の分裂を判定し、微粒化すると個数と表面積がどう増えるかを比例則でつかむ。液柱分裂モデルや気液連成の数値解法、代表径（ザウター径）は、Bの蒸発・燃焼を扱うための入口になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>粒子の運動・分散</h3>
+        <ul class="q-list">
+          <li><span class="q">23-1</span><span class="txt"><b>球形粒子の抗力とストークス則</b>スリップ速度基準　<span class="f">Cᴅ=24/Reₚ（Reₚ≪1）, Reₚ=ρ|V−Vₚ|dₚ/μ</span></span></li>
+          <li><span class="q">23-2</span><span class="txt"><b>ストークス数と選択的移動</b>偏析はSt≈1で最大　<span class="f">St=τₚ/τ_f（τₚ=ρₚdₚ²/18μ）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>液滴の衝突・微粒化</h3>
+        <ul class="q-list">
+          <li><span class="q">23-3</span><span class="txt"><b>液滴衝突の帰結</b><span class="f">衝突なし／合体／分離 の3形態</span></span></li>
+          <li><span class="q">23-4</span><span class="txt"><b>ウェーバー数で分裂判定</b><span class="f">We=ρ_g(u_g−u_l)²d/σ, P_D/P_S=We/8≥1</span></span></li>
+          <li><span class="q">23-5</span><span class="txt"><b>微粒化の個数・表面積</b>体積保存　<span class="f">個数∝α³・表面積総和∝α</span></span></li>
+          <li><span class="q">23-6</span><span class="txt"><b>液柱分裂モデル</b><span class="f">parcel・blob初期径=ノズル径・WAVE=表面不安定波</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>数値計算と代表粒径</h3>
+        <ul class="q-list">
+          <li><span class="q">23-7</span><span class="txt"><b>噴霧流の数値計算法</b>双方向連成　<span class="f">気相=オイラー／液滴=ラグランジュ・PSI-Cellで生成項</span></span></li>
+          <li><span class="q">23-8</span><span class="txt"><b>ザウター平均粒径</b>蒸発・燃焼に使う代表径　<span class="f">D₃₂=ΣnᵢDᵢ³/ΣnᵢDᵢ²</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜液滴の蒸発と燃焼</div>
+    <div class="track-desc">細かくなった液滴は蒸発して気化し、燃料蒸気となって燃える。沸騰条件（飽和蒸気圧＝雰囲気圧）と蒸発潜熱の圧力依存、微小液滴の蒸気圧上昇（ケルビン効果）が蒸発の物理を決める。単一液滴ではD²則に沿って加熱→蒸発→燃焼と進み、ダムケラー数で消炎を判断する。液滴が密集すると群燃焼数で燃焼形態が変わり、Aの粒径・分散がここに効いてくる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>蒸発の物理</h3>
+        <ul class="q-list">
+          <li><span class="q">23-9</span><span class="txt"><b>沸騰と蒸発潜熱の圧力依存</b><span class="f">沸騰=飽和蒸気圧=雰囲気圧・潜熱は低圧ほど大</span></span></li>
+          <li><span class="q">23-10</span><span class="txt"><b>ケルビンの式</b>小径ほど蒸気圧大　<span class="f">ln(P/P_s)=4σM/(ρRTD)∝1/D</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>単一液滴の燃焼</h3>
+        <ul class="q-list">
+          <li><span class="q">23-11</span><span class="txt"><b>単一油粒燃焼の3期間</b>D²則　<span class="f">加熱→蒸発（t₁着火）→燃焼（t₂燃えつき）</span></span></li>
+          <li><span class="q">23-12</span><span class="txt"><b>消炎とダムケラー数</b>直径減→滞留時間減　<span class="f">Da=τ_flow/τ_chem（Da≪1で消炎）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>液滴群の燃焼</h3>
+        <ul class="q-list">
+          <li><span class="q">23-13</span><span class="txt"><b>群燃焼数と燃焼形態</b>G小→個別/G大→外殻　<span class="f">G=総蒸発率/ガス交換率</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜固体（石炭）燃料の燃焼</div>
+    <div class="track-desc">液滴に対して、石炭は固体の分散相として燃える。工業分析で水分・揮発分・固定炭素・灰分の割合を調べ、燃料比（固定炭素／揮発分）で燃えやすさを見積もる。微粉炭の反応は、加熱による揮発分の放出・燃焼が先に速く進み、残った多孔質チャーの固体燃焼が後から長く続く2段階からなる。Bの液滴燃焼と対比しながら固体燃料の反応過程をつかむトラック。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>石炭の性状</h3>
+        <ul class="q-list">
+          <li><span class="q">23-14</span><span class="txt"><b>工業分析と燃料比</b>燃料比大→燃えにくい→未燃焼率増　<span class="f">燃料比=固定炭素/揮発分</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>微粉炭の反応</h3>
+        <ul class="q-list">
+          <li><span class="q">23-15</span><span class="txt"><b>微粉炭の反応過程</b>揮発分が先・チャーが後　<span class="f">揮発分放出＋チャー（固定炭素）固体燃焼</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）運動・微粒化・B（藍）蒸発・燃焼・C（赤）固体燃料。全15問（A8・B5・C2）。</p>
+  </section>
+</div>

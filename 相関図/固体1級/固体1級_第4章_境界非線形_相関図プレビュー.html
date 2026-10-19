@@ -1,0 +1,171 @@
+<title>固体1級 第4章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A接触を定義／B拘束して解く／C摩擦・連成 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>固体1級 第4章「境界非線形（接触）」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 接触を定義する／B 拘束して解く／C 摩擦・熱連成・接触応力 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>境界非線形（接触） ― 各問の要点とキー公式</h2>
+    <p class="lead">面同士は食い込まず・離れられ・押す力だけ伝える。全14問を「接触をどう定義し → どう拘束して解き → 摩擦や連成をどう扱うか」で整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜接触を定義する（条件・モデル・面）</div>
+    <div class="track-desc">接触は、貫通せず・引張らず・離れたら力を伝えないという相補条件で表す。これをバネやペナルティ、ラグランジュ法でモデル化し、面接触では接触方向を支配するマスター面と拘束されるスレーブ面を決める。剛体サーフェスや、点接触・面接触の違いと離散化誤差を押さえることが、B の拘束の課し方の前提になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>接触の条件とモデル化</h3>
+        <ul class="q-list">
+          <li><span class="q">4-1</span><span class="txt"><b>接触のモデル化と接触面の選び方</b><span class="f">バネ・ペナルティ／マスター・スレーブ</span></span></li>
+          <li><span class="q">4-2</span><span class="txt"><b>すきま・圧縮応力・相補条件</b>離れたら力0<span class="f">g≥0, σ≤0, σg=0</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>接触面と離散化</h3>
+        <ul class="q-list">
+          <li><span class="q">4-3</span><span class="txt"><b>リジッドサーフェスと接触要素</b>剛体をマスター面に<span class="f">剛体サーフェス・固定方向要素</span></span></li>
+          <li><span class="q">4-4</span><span class="txt"><b>点接触と面接触の精度</b>節点整合と誤差<span class="f">節点対節点／節点対面（投影）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>探索（接触相手を見つける）</h3>
+        <ul class="q-list">
+          <li><span class="q">4-13</span><span class="txt"><b>接触探索の計算コスト</b>総当たりと木探索<span class="f">O(n²) ／ O(n log n)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜拘束して解く（拘束法・数値安定）</div>
+    <div class="track-desc">接触条件を剛性方程式へ課す方法は、乗数を増やすラグランジュ法 λg、少し貫通を許すペナルティ法 αg²/2、両者を合わせて貫通を減らす拡張ラグランジュ法がある。陽的な衝突解析では貫入量から擬似荷重を作り、接触・解離を繰り返すチャタリングは構造減衰などで抑える。これらの数値の工夫が、C の摩擦や連成の安定計算にもつながる。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>拘束法（三つの方法）</h3>
+        <ul class="q-list">
+          <li><span class="q">4-5</span><span class="txt"><b>三つの接触拘束法とばねの方程式</b>変分と行列<span class="f">λg ／ αg²/2 ／ 拡張ラグランジュ</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>擬似荷重（陽的衝突）</h3>
+        <ul class="q-list">
+          <li><span class="q">4-6</span><span class="txt"><b>擬似荷重の指数（次元解析）</b>体積ひずみ→応力→力<span class="f">f=KA²L/V（指数1,2,−1,1）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>収束性の確保</h3>
+        <ul class="q-list">
+          <li><span class="q">4-7</span><span class="txt"><b>チャタリングの抑止</b>高周波振動を減衰<span class="f">適切な構造減衰</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜摩擦・熱連成・接触応力</div>
+    <div class="track-desc">接線方向では、接触圧力に比例するクーロン摩擦と、せん断降伏応力で頭打ちになるせん断摩擦を使い分ける。固着と滑りの急な切替えは人工接線剛性で緩和し、摩擦ありは荷重経路に依存するため増分で履歴を追う。摩擦発熱は熱–応力連成の発熱項として渡し、押し付け部の接触応力はヘルツ理論で評価する。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>摩擦モデルと数値化</h3>
+        <ul class="q-list">
+          <li><span class="q">4-8</span><span class="txt"><b>クーロン摩擦とせん断摩擦の計算</b>圧力比例と降伏頭打ち<span class="f">τy=σy/√3</span></span></li>
+          <li><span class="q">4-9</span><span class="txt"><b>クーロン摩擦の式と平滑化</b>向きだけの単位ベクトル<span class="f">t=−μN v/|v|, tanh(|v|/α)</span></span></li>
+          <li><span class="q">4-10</span><span class="txt"><b>固着・滑りと数値安定化</b>急変を緩和<span class="f">有限の人工接線剛性 k_t</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>経路依存・熱連成</h3>
+        <ul class="q-list">
+          <li><span class="q">4-11</span><span class="txt"><b>荷重経路依存性と荷重増分</b>摩擦ありは履歴を追う<span class="f">摩擦あり＝荷重経路依存</span></span></li>
+          <li><span class="q">4-12</span><span class="txt"><b>摩擦発熱と熱–応力連成</b>発熱項として渡す<span class="f">ητΔs（J/m²）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>接触応力（ヘルツ）</h3>
+        <ul class="q-list">
+          <li><span class="q">4-14</span><span class="txt"><b>ヘルツ接触の形状・面積と球半径</b>円・中心で最大<span class="f">a∝R^(1/3), 面積∝R^(2/3)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）接触を定義・B（藍）拘束して解く・C（赤）摩擦・熱連成・接触応力。全14問（A5・B3・C6）。</p>
+  </section>
+</div>

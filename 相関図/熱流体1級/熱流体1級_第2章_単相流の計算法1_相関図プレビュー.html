@@ -1,0 +1,171 @@
+<title>熱流体1級 第2章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A離散化・差分／B 非圧縮・圧力速度連成／C 圧縮性スキーム・格子レス・物性 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級 第2章「単相流の計算法1」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 離散化と差分スキーム／B 非圧縮・低マッハ数の圧力速度連成／C 圧縮性スキーム・格子レス法・物性 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>単相流の計算法1 ― 各問の要点とキー公式</h2>
+    <p class="lead">流れの方程式を数値的に解くための離散化・スキーム・連成解法を整理。全14問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜離散化と差分スキーム</div>
+    <div class="track-desc">連続な流れの式を有限個の未知数に置き換える離散化の枠組み（差分法・体積法・要素法）を押さえ、拡散項（粘性項）は中心差分、対流項は風上差分で表す。風上化は安定だが数値粘性を生むので、MUSCLの再構築やminmodリミッターで高次精度と無振動を両立させる。ここで決めた空間スキームが、BとCの具体的な解法の土台になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>離散化の枠組み</h3>
+        <ul class="q-list">
+          <li><span class="q">2-2</span><span class="txt"><b>FDM差分・FVM検査体積・FEM弱形式</b><span class="f">FDMは構造格子向き</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>空間差分（拡散・対流）</h3>
+        <ul class="q-list">
+          <li><span class="q">2-8</span><span class="txt"><b>粘性項を2次精度中心差分（運動量の平均化）</b><span class="f">(∇²u)₀=(Σ隣4点−4u₀)/h²</span></span></li>
+          <li><span class="q">2-3</span><span class="txt"><b>対流項に風上差分→数値粘性（Taylor展開で評価）</b><span class="f">QUICK=2次 / K-K=3次</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>高次精度・リミッター</h3>
+        <ul class="q-list">
+          <li><span class="q">2-13</span><span class="txt"><b>セル平均から分布を再構築し空間高次精度</b><span class="f">MUSCL 境界値の再構築</span></span></li>
+          <li><span class="q">2-12</span><span class="txt"><b>TVDの流束制限関数（最も散逸的）</b><span class="f">minmod B=max(0,min(r,1))</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜非圧縮・低マッハ数の圧力速度連成</div>
+    <div class="track-desc">非圧縮流れでは連続の式に時間微分がなく圧力を直接進められないため、圧力ポアソン方程式（運動方程式の発散）を別に解いて速度を補正する（MAC・SIMPLE）。大きな温度変化を伴う低マッハ数では、熱力学的圧力から温度・密度を更新してから流れを解く。音速と対流速度の比が大きくstiffになる場合は前処理法で収束を改善する。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>非圧縮の判定</h3>
+        <ul class="q-list">
+          <li><span class="q">2-1</span><span class="txt"><b>温度差小かつM≤0.3なら非圧縮扱い</b><span class="f">M=V/a≤0.3</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>圧力・速度連成</h3>
+        <ul class="q-list">
+          <li><span class="q">2-6</span><span class="txt"><b>圧力ポアソン＝運動方程式の発散</b><span class="f">∇²p から圧力（MAC・SIMPLE）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>低マッハ数の扱い</h3>
+        <ul class="q-list">
+          <li><span class="q">2-7</span><span class="txt"><b>熱力学圧力→温度→密度→運動圧→速度</b><span class="f">ρ=p_th/RT で更新</span></span></li>
+          <li><span class="q">2-10</span><span class="txt"><b>音速/対流速度の比が大でstiff→前処理</b><span class="f">前処理行列で波速をそろえる</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜圧縮性スキーム・格子レス法・物性</div>
+    <div class="track-desc">圧縮性流れでは非粘性流束を対流項と圧力項に分けて扱う（AUSM）。界面に合わせた格子生成が難しい自由表面・混相流などでは、渦要素や粒子を直接追う格子レス法（渦法・粒子法）が有効になる。これらの計算には気体の粘性の温度依存（サザーランドの式）や、反応時間と通過時間の比による反応流の分類といった物性・現象のモデルが必要になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>圧縮性流束スキーム</h3>
+        <ul class="q-list">
+          <li><span class="q">2-9</span><span class="txt"><b>非粘性流束を対流項と圧力項に分離</b><span class="f">AUSM：対流＋圧力</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>格子レス法</h3>
+        <ul class="q-list">
+          <li><span class="q">2-4</span><span class="txt"><b>渦要素をラグランジュ的に追跡・格子不要</b><span class="f">渦法 ビオ・サバール則</span></span></li>
+          <li><span class="q">2-5</span><span class="txt"><b>離散粒子・カーネルで平滑化・混相/自由表面</b><span class="f">SPH ガウス関数カーネル</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>物性・反応</h3>
+        <ul class="q-list">
+          <li><span class="q">2-11</span><span class="txt"><b>気体粘性の温度依存</b><span class="f">μ/μ₀=(T/T₀)^{3/2}(T₀+C)/(T+C)</span></span></li>
+          <li><span class="q">2-14</span><span class="txt"><b>反応時間と通過時間の比で分類</b><span class="f">平衡 t_f≫t_c / 凍結 t_f≪t_c</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）離散化・差分・B（藍）非圧縮・圧力速度連成・C（赤）圧縮性・格子レス・物性。全14問（A5・B4・C5）。</p>
+  </section>
+</div>

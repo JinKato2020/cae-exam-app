@@ -1,0 +1,171 @@
+<title>熱流体1級 第18章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A反応速度・化学平衡／B 熱力学量／C 輸送物性・ふく射・表面反応 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級 第18章「燃焼の基礎2」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 反応速度と化学平衡／B 熱力学量（反応熱・自由エネルギー・エクセルギー）／C 輸送物性・ふく射・表面反応 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>燃焼の基礎2 ― 各問の要点とキー公式</h2>
+    <p class="lead">反応速度と化学平衡、反応熱・自由エネルギー・エクセルギーといった熱力学量、そして分子輸送物性・ふく射・表面反応までを整理。全14問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜反応速度と化学平衡</div>
+    <div class="track-desc">反応がどれだけ速く進むかはアレニウス式で温度に強く依存し、その障壁の高さが活性化エネルギーである。正逆の速度定数が釣り合うと化学平衡になり、濃度基準の平衡定数は両者の比で表せる。さらに反応前後でモル数が変わるかどうか（Δν）が、平衡が全圧にどう応答するかを決める。B の熱力学量（自由エネルギー）とも結びつく速度・平衡のトラック。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>活性化エネルギー・反応速度</h3>
+        <ul class="q-list">
+          <li><span class="q">18-1</span><span class="txt"><b>正反応の活性化エネルギー＝反応物基準の障壁高さ</b><span class="f">Eₐ=E遷移−E反応物=350−120=230 kJ/mol</span></span></li>
+          <li><span class="q">18-3</span><span class="txt"><b>2温度のk比から活性化エネルギー</b><span class="f">ln(k₂/k₁)=−(E/R⁰)(1/T₂−1/T₁)→E≈153 kJ/mol</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>平衡定数</h3>
+        <ul class="q-list">
+          <li><span class="q">18-4</span><span class="txt"><b>濃度基準平衡定数＝正逆速度定数の比</b><span class="f">Kc=k_f/k_b</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>圧力と平衡の移動</h3>
+        <ul class="q-list">
+          <li><span class="q">18-2</span><span class="txt"><b>Δν=0なら平衡は全圧に非依存</b><span class="f">CO+H₂O⇌CO₂+H₂（Δν=0）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜熱力学量（反応熱・自由エネルギー・エクセルギー）</div>
+    <div class="track-desc">燃焼で出入りする熱と仕事を熱力学量でとらえる。反応熱は標準生成エンタルピーの差（ヘスの法則）で求まり、安定な単体を基準に0とおく約束が自由エネルギーにも共通する。エントロピーは状態量で断熱系では減らず、等温・定圧で取り出せる最大仕事（エクセルギー）はギブス自由エネルギーの減少に等しい。A の平衡と自由エネルギーでつながるトラック。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>反応熱</h3>
+        <ul class="q-list">
+          <li><span class="q">18-5</span><span class="txt"><b>ヘスの法則で反応熱（生成物−反応物）</b><span class="f">ΔH=Σ生成−Σ反応=−803 kJ/mol</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>自由エネルギー・エントロピー</h3>
+        <ul class="q-list">
+          <li><span class="q">18-6</span><span class="txt"><b>安定な単体はΔGf°=0・化合物は≠0</b><span class="f">水 H₂O のみ ΔGf°≠0</span></span></li>
+          <li><span class="q">18-7</span><span class="txt"><b>断熱系でエントロピーは減少しない（状態量）</b><span class="f">ΔS≥0（可逆で=, 不可逆で>）</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>エクセルギー</h3>
+        <ul class="q-list">
+          <li><span class="q">18-8</span><span class="txt"><b>等温・定圧のエクセルギー＝ギブス自由エネルギー減少</b><span class="f">E=ΔH−TΔS=800−30=770 kJ/mol</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜輸送物性・ふく射・表面反応</div>
+    <div class="track-desc">燃焼場での熱・物質の移動を担う物性と機構をまとめる。拡散係数は密度に反比例して圧力が上がると小さくなり、気体の粘性は液体と逆に温度上昇で増える。高温火炎ではふく射が効き、黒体ふく射能は温度の4乗で急増し、ガス層中の単色光は指数的に減衰する。さらに触媒表面での反応・吸着では活性点の量論も保存される。A・B を支える移動・界面現象のトラック。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>分子輸送物性</h3>
+        <ul class="q-list">
+          <li><span class="q">18-9</span><span class="txt"><b>拡散係数は圧力に反比例（D∝1/ρ）</b><span class="f">D∝√T/ρ∝1/p</span></span></li>
+          <li><span class="q">18-10</span><span class="txt"><b>気体粘性は温度上昇で増大（液体と逆）</b><span class="f">μ∝√T（低圧で圧力に非依存）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>熱ふく射</h3>
+        <ul class="q-list">
+          <li><span class="q">18-11</span><span class="txt"><b>黒体ふく射能は温度の4乗（温度2倍→16倍）</b><span class="f">E_b=σT⁴, (2000/1000)⁴=16</span></span></li>
+          <li><span class="q">18-12</span><span class="txt"><b>ガス層で入射単色光は指数的に減衰（選択吸収）</b><span class="f">I_λ(x)=I_λ(0)e^(−κ_λx)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>表面反応・吸着</h3>
+        <ul class="q-list">
+          <li><span class="q">18-13</span><span class="txt"><b>表面反応は活性点sも両辺で保存</b><span class="f">CO(s)+O(s)⇌CO₂(s)+s</span></span></li>
+          <li><span class="q">18-14</span><span class="txt"><b>化学吸着は物理吸着より強い（誤りを選ぶ）</b><span class="f">物理吸着=弱い(van der Waals)/化学吸着=強い</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）反応速度・化学平衡・B（藍）熱力学量・C（赤）輸送物性・ふく射・表面反応。全14問（A4・B4・C6）。</p>
+  </section>
+</div>

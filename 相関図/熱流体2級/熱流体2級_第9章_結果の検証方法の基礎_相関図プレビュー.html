@@ -1,0 +1,170 @@
+<title>熱流体2級 第9章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A保存則・基本物理／B現象の物理／C数値の質 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体2級 第9章「結果の検証方法の基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 保存則・基本物理で見る／B 現象の物理が合うか／C 数値の質を確かめる の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>結果の検証方法の基礎 ― 各問の要点とキー公式</h2>
+    <p class="lead">計算結果が正しいかを確かめる。保存則・基本物理で辻褄を見る → 現象の物理が再現できているか → 格子・収束など数値の質、と整理。全18問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜保存則・基本物理で妥当性を見る</div>
+    <div class="track-desc">まず質量・運動量・エネルギーの保存という土台で、結果の辻褄を確かめる。非圧縮なら体積流量と質量流量が保存され、不透過壁を流線が横切ったり速度の発散が0でなければ質量保存が破れている疑いがある。損失のない流れではベルヌーイで速度と圧力の関係を検算できる。ここで異常が出れば、トラックCの格子・境界の問題を調べる入口になる。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>質量が保存されるか</h3>
+        <ul class="q-list">
+          <li><span class="q">9-3</span><span class="txt"><b>体積流量と質量流量</b>非圧縮・漏れなし　<span class="f">Qₘ=ρAU 一定・Qᵥ も一定</span></span></li>
+          <li><span class="q">9-4</span><span class="txt"><b>壁に吸い込まれる流線</b>不透過壁を横切る　<span class="f">uₙ=0 のはず・連続の式を精査</span></span></li>
+          <li><span class="q">9-18</span><span class="txt"><b>速度発散が0でない</b>無次元で 10² は過大　<span class="f">∇·u=0（目標は0）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>圧力と速度の関係</h3>
+        <ul class="q-list">
+          <li><span class="q">9-1</span><span class="txt"><b>非圧縮ディフューザの検証</b>広がって減速→昇圧　<span class="f">U₂=U₁A₁/A₂・p₂−p₁=ρ(U₁²−U₂²)/2</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜現象の物理が合うか（圧縮性・乱流・対流）</div>
+    <div class="track-desc">計算が狙った物理現象を再現できているかを、傾向で確かめる。超音速の末広ノズルは非圧縮と逆に加速・降圧、乱流モデルではせん断の大きい所で乱れが増え、境界層の厚さには拡散の比が効く。浮力によるプルームの上昇、はく離後の再循環渦やカルマン渦の周期性など、流れ方向の挙動が物理的に妥当かを図や分布から判断する。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>乱流モデルの中身</h3>
+        <ul class="q-list">
+          <li><span class="q">9-7</span><span class="txt"><b>k-εの乱流エネルギー分布</b>せん断層で生産大　<span class="f">Pₖ=ν_t(dU/dy)²</span></span></li>
+          <li><span class="q">9-11</span><span class="txt"><b>速度・温度境界層の厚さ比較</b>簡略近似　<span class="f">δ/δₜ≈Prₜ → δₜ≈1.11δ</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>圧縮性流れ</h3>
+        <ul class="q-list">
+          <li><span class="q">9-2</span><span class="txt"><b>超音速の流線拡大</b>面積増で加速・降圧　<span class="f">dA/A=(M²−1)dU/U（M&gt;1）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>はく離・渦・対流</h3>
+        <ul class="q-list">
+          <li><span class="q">9-10</span><span class="txt"><b>高温源プルームの検証</b>浮力で上昇し周囲を引込む　<span class="f">浮力上昇＋エントレインメント</span></span></li>
+          <li><span class="q">9-13</span><span class="txt"><b>バックステップ後方の流線</b>壁を横切らない　<span class="f">閉じた再循環渦（はく離域）</span></span></li>
+          <li><span class="q">9-16</span><span class="txt"><b>円柱後流（Re=200）</b>時間的に周期変化　<span class="f">層流はく離＋カルマン渦</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜数値の質を確かめる（格子・収束・境界・V&amp;V）</div>
+    <div class="track-desc">結果の精度を数値計算の側から点検する。壁ぎわの格子配置（y⁺）や格子点ごとの振動の有無、格子を細かくしたときの収束で、空間分解能が足りているかを見る。残差と反復に伴う変化で収束を、数値散逸の強さで衝撃波のなまりを確かめ、流出境界の逆流は計算領域の取り方を疑う。実験や基準データとの比較（妥当性確認＝Validation）も含め、検証と妥当性確認を区別して進める。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>格子依存性・分解能</h3>
+        <ul class="q-list">
+          <li><span class="q">9-8</span><span class="txt"><b>低Re型モデルの壁座標</b>粘性底層まで解く　<span class="f">y⁺≈1 以下（候補は0.5）</span></span></li>
+          <li><span class="q">9-9</span><span class="txt"><b>格子点ごとの数値振動</b>滑らかなはずが上下動　<span class="f">空間分解能不足（格子細分で確認）</span></span></li>
+          <li><span class="q">9-12</span><span class="txt"><b>格子依存性と必要格子数</b>最細を基準に相対差　<span class="f">|Cd−Cd₄₈₀|/Cd₄₈₀≤5% → 240</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>収束と数値散逸</h3>
+        <ul class="q-list">
+          <li><span class="q">9-5</span><span class="txt"><b>衝撃波反射の収束判定</b>残差下がらず位置が動く　<span class="f">収束不十分（オイラーに粘性なし）</span></span></li>
+          <li><span class="q">9-17</span><span class="txt"><b>遷音速翼で衝撃波が出ない</b>圧力上昇がなまる　<span class="f">人工粘性が強すぎる可能性</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>基準比較・計算領域・V&amp;V</h3>
+        <ul class="q-list">
+          <li><span class="q">9-6</span><span class="txt"><b>平板の平均Cf推定</b>線図から読む　<span class="f">Re_L=U∞L/ν=10⁷ → Cf≈3×10⁻³</span></span></li>
+          <li><span class="q">9-14</span><span class="txt"><b>流出境界での逆流</b>出口が再循環域を横切る　<span class="f">計算領域を下流へ延ばす</span></span></li>
+          <li><span class="q">9-15</span><span class="txt"><b>妥当性検証で不適切な方法</b>モデル完全一致は必須でない　<span class="f">検証（格子・収束）と妥当性確認（実験比較）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）保存則・基本物理・B（藍）現象の物理・C（赤）数値の質。全18問（A4・B6・C8）。</p>
+  </section>
+</div>

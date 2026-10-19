@@ -1,0 +1,166 @@
+<title>振動2級 第5章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>振動2級 第5章「有限要素法の基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 離散化の考え方と手法分類／B 形状関数・要素の表現能力／C 剛性・質量行列の組立と実装 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>有限要素法の基礎 ― 各問の要点とキー公式</h2>
+    <p class="lead">連続体を有限自由度へ離散化し、形状関数で補間して剛性・質量行列を組み立てるまでを整理。全19問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜離散化の考え方と手法分類</div>
+    <div class="track-desc">無限自由度の連続体を有限個の節点で代表させる離散化の考え方を押さえる。偏微分方程式を重み付き積分形にして節点変位で近似すると、時間についての運動方程式へ変わる。この流れを土台に、FEM・BEM・FDMといった手法の違いと係数行列の性質（疎・密）へ広げる。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>離散化と定式化</h3>
+        <ul class="q-list">
+          <li><span class="q">5-1</span><span class="txt"><b>空間離散化（ガラーキン・リッツ・差分）と時間積分を区別</b><span class="f">Newmark β法＝時間積分</span></span></li>
+          <li><span class="q">5-4</span><span class="txt"><b>重み付き積分形にし節点変位で近似、時間の常微分方程式を得る</b><span class="f">[M]{ẅ}+[K]{w}={F(t)}</span></span></li>
+          <li><span class="q">5-6</span><span class="txt"><b>変位法は変位が未知量、ひずみ–変位と応力–ひずみで剛性方程式</b><span class="f">[K]{u}={F}</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>手法の分類と係数行列</h3>
+        <ul class="q-list">
+          <li><span class="q">5-7</span><span class="txt"><b>BEMは境界のみ離散化し無限領域に向く、FEMは領域全体で疎行列</b><span class="f">BEM＝境界離散化</span></span></li>
+          <li><span class="q">5-8</span><span class="txt"><b>FEMは局所結合で疎行列、BEMは境界全体の相互作用で密行列</b><span class="f">FEM疎／BEM密</span></span></li>
+          <li><span class="q">5-10</span><span class="txt"><b>代表点が節点、要素内は形状関数で節点値から補間</b><span class="f">{u}=Σ[Nᵏ]{uᵏ}</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜形状関数・要素の表現能力</div>
+    <div class="track-desc">要素内の変位を節点変位から補間する形状関数の役割と性質を整理する。自節点で1・他節点で0というデルタ性と、総和が1になる性質が補間の土台になる。これを足場に、はり要素の自由度、四辺形要素が表せる変形、エネルギー法や重みつき残差法までを見渡す。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>形状関数と要素</h3>
+        <ul class="q-list">
+          <li><span class="q">5-2</span><span class="txt"><b>要素内の変位を節点変位から補間、要素の種類・次数で異なる</b><span class="f">[N]（変位の内挿）</span></span></li>
+          <li><span class="q">5-3</span><span class="txt"><b>各節点でたわみ＋回転角＝2自由度、2節点で4自由度</b><span class="f">4自由度・[K] 4×4</span></span></li>
+          <li><span class="q">5-12</span><span class="txt"><b>自節点で1・他節点で0のデルタ性、要素内で総和は1</b><span class="f">ΣNᵢ=1</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>変形表現・エネルギー・残差法</h3>
+        <ul class="q-list">
+          <li><span class="q">5-9</span><span class="txt"><b>並進・回転・伸び・せん断・曲げ状を表すが純曲げは厳密再現不可</b><span class="f">u=a₁+a₂x+a₃y+a₄xy</span></span></li>
+          <li><span class="q">5-5</span><span class="txt"><b>ばね弾性エネルギー−一定外力の仕事、停留で釣合い</b><span class="f">Π=½ku²−fu</span></span></li>
+          <li><span class="q">5-11</span><span class="txt"><b>残差に重みを掛け積分、重み＝基底関数がガラーキン法</b><span class="f">∫wR dΩ=0</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜剛性・質量行列の組立と実装</div>
+    <div class="track-desc">要素行列から全体行列を組み立て、拘束処理や単位系まで含めて実際に解ける形にする手順を扱う。要素剛性を節点位置へ足し込み、固定節点の行・列を縮約する。質量行列は整合・集中の2種があり、形状関数の積分か節点配分かで性質が変わる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>剛性行列と単位</h3>
+        <ul class="q-list">
+          <li><span class="q">5-13</span><span class="txt"><b>微小変形なら[K]は静的・動的で同一、動的は[M][C]が加わる</b><span class="f">[M]{ü}+[C]{u̇}+[K]{u}={F(t)}</span></span></li>
+          <li><span class="q">5-14</span><span class="txt"><b>mm・kg・s整合系では力10⁻³N、ヤング率は10⁻³N/mm²</b><span class="f">E：10⁻³ N/mm²</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>全体剛性の組立と拘束</h3>
+        <ul class="q-list">
+          <li><span class="q">5-15</span><span class="txt"><b>要素剛性を節点位置に足し込む、中央節点は両ばねの和</b><span class="f">(2,2)=k₁+k₂=500</span></span></li>
+          <li><span class="q">5-16</span><span class="txt"><b>固定節点の行・列を除外（縮約）、残る自由節点の部分行列</b><span class="f">[[500,−200],[−200,200]]</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>質量行列</h3>
+        <ul class="q-list">
+          <li><span class="q">5-17</span><span class="txt"><b>整合は形状関数の積分で非対角あり、集中は節点配分で対角</b><span class="f">整合：非対角／集中：対角</span></span></li>
+          <li><span class="q">5-18</span><span class="txt"><b>三角形の整合は1次形状関数の積を面積分、集中は節点配分</b><span class="f">Mᵢⱼ=∫ρtNᵢNⱼ dA</span></span></li>
+          <li><span class="q">5-19</span><span class="txt"><b>対角 μl/3・非対角 μl/6、μ=3・l=0.6で0.6と0.3</b><span class="f">[M]=(μl/6)[2,1;1,2]</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）離散化の考え方と手法分類・B（藍）形状関数・要素の表現能力・C（赤）剛性・質量行列の組立と実装。全19問（A 6・B 6・C 7）。</p>
+  </section>
+</div>

@@ -115,6 +115,8 @@ def versioned_out(outdir, stem, ext=".pdf"):
     """作成/修正のたびに版を残す。初版=<stem><ext>、以降の保存は<stem>_r1,_r2…と自動採番。
     既存ファイルは上書きしない=履歴を保全。最新版=最大の r 番号(初版のみなら無印)。"""
     base = os.path.join(outdir, stem + ext)
+    if os.path.basename(os.path.normpath(outdir)) in ("熱流体1級", "熱流体2級"):
+        return base  # 公式用語PDFは規定名へ上書きし、版番号を付けない
     if not os.path.exists(base):
         return base
     n = 0

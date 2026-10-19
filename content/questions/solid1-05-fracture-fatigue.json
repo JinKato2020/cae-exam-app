@@ -147,7 +147,7 @@
       "reviewed": true,
       "figure": "helpful",
       "figureImage": "s1e5ThreeModes",
-      "figureHint": "規定体裁の独自図。三変形モードの方向と重ね合わせ",
+      "figureHint": "き裂を入れた立体の独自図で、Iは開口、IIは進展x方向、IIIは前縁z方向の相対変位を比較。共通のxyz軸を各図へ表示。",
       "officialRef": "問5-4",
       "role": "primary",
       "relatedFormulas": [
@@ -155,13 +155,13 @@
       ],
       "editorialReview": {
         "officialPoint": "三変形モードの方向と重ね合わせ",
-        "alignment": "保存済み公式抽出テキストの同番号の問題・解説を照合。独自の文言・図・数値で同じポイントを確認。",
+        "alignment": "公式抽出テキストの図解論点に合わせ独自構成で更新。き裂を入れた立体の独自図で、Iは開口、IIは進展x方向、IIIは前縁z方向の相対変位を比較。共通のxyz軸を各図へ表示。",
         "distractorMisconceptions": {
           "1": "IとIIの変位方向を交換",
           "2": "複数モードの重ね合わせを否定",
           "3": "IIとIIIの変位方向を交換"
         },
-        "sha256": "507357af6d0aa74c6b6ab856c3634223426443efaf4834d47c37bd6622708b93"
+        "sha256": "7f5b85d12b54e73782aada5c54b5bb57a51c1607986d8764dae50ce84d1ad493"
       }
     },
     {

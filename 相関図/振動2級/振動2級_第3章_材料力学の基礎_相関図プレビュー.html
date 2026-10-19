@@ -1,0 +1,164 @@
+<title>振動2級 第3章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>振動2級 第3章「材料力学の基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 応力とひずみ・弾性定数／B 断面と部材の変形／C はりの曲げと境界条件 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>材料力学の基礎 ― 各問の要点とキー公式</h2>
+    <p class="lead">ひずみ・応力の定義と弾性定数の関係から、断面を持つ部材の変形、そしてはりの曲げとたわみ・境界条件までを整理。全17問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜応力とひずみ・弾性定数（縦ひずみ・せん断ひずみ・フックの法則・弾性定数）</div>
+    <div class="track-desc">材料力学の土台として、伸びを元の長さで割る縦ひずみや直角の変化を表すせん断ひずみの定義を押さえ、変位の勾配としてひずみを捉える。応力は単位面積あたりの内力で、弾性域ではフックの法則が成り立つ。一般化フックの法則で多軸の応力とひずみを結び、等方弾性体では縦弾性係数・横弾性係数・ポアソン比が G=E/{2(1+ν)} で関係づき独立な定数は2つになる。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>ひずみの定義</h3>
+        <ul class="q-list">
+          <li><span class="q">3-1</span><span class="txt"><b>縦ひずみは伸びを元の長さで割る無次元量</b><span class="f">ε=(L₁−L₀)/L₀</span></span></li>
+          <li><span class="q">3-3</span><span class="txt"><b>工学的せん断ひずみは直角の変化（交差項の和）</b><span class="f">γxy=∂v/∂x+∂u/∂y</span></span></li>
+          <li><span class="q">3-4</span><span class="txt"><b>縦ひずみは局所的に変位の勾配</b><span class="f">ε=du/dx</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>ポアソン比と弾性定数</h3>
+        <ul class="q-list">
+          <li><span class="q">3-2</span><span class="txt"><b>ポアソン比は横ひずみと縦ひずみの比、引張で径は縮む</b><span class="f">ν=−ε′/ε</span></span></li>
+          <li><span class="q">3-7</span><span class="txt"><b>等方弾性体の3定数は2つが独立</b><span class="f">G=E/{2(1+ν)}</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>応力ひずみ関係</h3>
+        <ul class="q-list">
+          <li><span class="q">3-5</span><span class="txt"><b>応力=内力/面積、比例は弾性域、塑性は残留変形</b><span class="f">弾性/塑性の区別</span></span></li>
+          <li><span class="q">3-6</span><span class="txt"><b>平面応力の垂直ひずみ（σz=0）</b><span class="f">εx=(1/E)(σx−νσy)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜断面と部材の変形（応力ひずみ線図・せん断・軸変形・断面二次モーメント）</div>
+    <div class="track-desc">実材料の挙動として軟鋼の応力ひずみ線図から降伏点や引張強さを読み取り、せん断応力 τ=Q/A・せん断ひずみ γ=τ/G を単位換算に注意して計算する。軸力を受ける棒は各区間の伸び δ=NL/AE を重ね合わせて端部変位を求め、はりの曲げ抵抗を表す断面二次モーメントは中空円断面で外径分から内径分を引く。これらが C のはりの曲げ解析の前提になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>応力ひずみ線図とせん断</h3>
+        <ul class="q-list">
+          <li><span class="q">3-8</span><span class="txt"><b>軟鋼の線図で降伏点と引張強さを識別</b><span class="f">降伏点・引張強さ</span></span></li>
+          <li><span class="q">3-9</span><span class="txt"><b>平均せん断応力（単位換算に注意）</b><span class="f">τ=Q/A</span></span></li>
+          <li><span class="q">3-10</span><span class="txt"><b>せん断ひずみはせん断応力を横弾性係数で割る</b><span class="f">γ=τ/G</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>軸方向変形と断面</h3>
+        <ul class="q-list">
+          <li><span class="q">3-11</span><span class="txt"><b>各区間の伸びを重ね合わせ、端荷重は両区間に効く</b><span class="f">δ=(P₁+2P₂)L/AE</span></span></li>
+          <li><span class="q">3-12</span><span class="txt"><b>中空円断面は外径分から内径分を引く</b><span class="f">I=(π/64)(D⁴−d⁴)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜はりの曲げと境界条件（たわみ基礎式・支点反力・曲げモーメント図・境界条件）</div>
+    <div class="track-desc">はりの曲げでは、たわみの2階微分が曲げモーメントに比例するという基礎式を出発点に、静定はりの支点反力をつり合いから求め、曲げモーメント図（BMD）で内力分布を把握する。固定端・自由端・単純支持端といった端部では、たわみ・たわみ角・曲げモーメント・せん断力のどれが0になるかという境界条件が決まり、これがはりの振動モードを解く際の拘束条件になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>たわみと反力・BMD</h3>
+        <ul class="q-list">
+          <li><span class="q">3-13</span><span class="txt"><b>微小たわみのはり基礎式</b><span class="f">d²y/dx²=−M/(EI)</span></span></li>
+          <li><span class="q">3-14</span><span class="txt"><b>静定はりの支点反力はつり合いから</b><span class="f">Ra=P(L−a)/L, Rb=Pa/L</span></span></li>
+          <li><span class="q">3-15</span><span class="txt"><b>片持ちはりは固定端で−Pa、荷重点へ直線0</b><span class="f">固定端−Pa→x&gt;aで0</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>境界条件</h3>
+        <ul class="q-list">
+          <li><span class="q">3-16</span><span class="txt"><b>自由端は曲げモーメントもせん断力も0</b><span class="f">y″=0, y‴=0</span></span></li>
+          <li><span class="q">3-17</span><span class="txt"><b>単純支持端はたわみ0・曲げモーメント0（回転自由）</b><span class="f">y=0, y″=0</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）応力とひずみ・弾性定数・B（藍）断面と部材の変形・C（赤）はりの曲げと境界条件。全17問（A7・B5・C5）。</p>
+  </section>
+</div>

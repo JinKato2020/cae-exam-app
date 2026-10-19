@@ -1,0 +1,207 @@
+<title>固体2級 第12章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A数と誤差／B計算機のしくみ／C開発と運用 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>固体2級 第12章「コンピュータの基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー用語を、A 数と誤差／B 計算機のしくみ／C 開発と運用 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>コンピュータの基礎 ― 各問の要点とキー用語</h2>
+    <p class="lead">CAEを動かす計算機そのものの基礎。全33問を A／B／C ＋ 横串（ネットワーク・並列・安全）に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜数と誤差（計算の正しさの土台）</div>
+    <div class="track-desc">コンピュータは数を有限の桁でしか表せないため、丸め・情報落ち・桁落ちといった誤差が生じ、計算の順序や数値型でも結果が変わります。整数除算の切り捨てなど「見た目の式」と実際の計算規則の違いを知ることが、後の解析結果を読み解く土台になります。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>丸めと計算順序</h3>
+        <ul class="q-list">
+          <li><span class="q">12-1</span><span class="txt"><b>丸め誤差の意味</b><span class="f">真値を表現可能な近い値に置換</span></span></li>
+          <li><span class="q">12-2</span><span class="txt"><b>評価順序で誤差が変わる</b><span class="f">(a+b)+c≠a+(b+c)（有限桁）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>整数・情報落ち・桁落ち</h3>
+        <ul class="q-list">
+          <li><span class="q">12-3</span><span class="txt"><b>整数式の評価</b><span class="f">整数除算は切り捨て（1÷2=0）</span></span></li>
+          <li><span class="q">12-4</span><span class="txt"><b>大＋小で下位桁が消える</b><span class="f">情報落ち（有効数字4桁）</span></span></li>
+          <li><span class="q">12-5</span><span class="txt"><b>近い2数の減算で精度低下</b><span class="f">桁落ち（上位桁が相殺）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜計算機のしくみ（プロセッサ・記憶・OS）</div>
+    <div class="track-desc">計算を実行するハードウェアと、それを束ねるOSの基礎です。演算器と記憶（キャッシュ・主記憶・補助記憶）の役割分担、仮想記憶やビット幅、必要メモリ量の見積もりを押さえ、OSの役割・種類・更新や環境選定まで理解します。大きな解析ではメモリ不足やページ退避が速度を大きく左右します。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>プロセッサ・高速化</h3>
+        <ul class="q-list">
+          <li><span class="q">12-8</span><span class="txt"><b>演算器とキャッシュの区別</b><span class="f">FPU/DSP/GPGPUは演算・キャッシュは記憶</span></span></li>
+          <li><span class="q">12-9</span><span class="txt"><b>64ビット化と精度</b><span class="f">主にアドレス空間（精度は別・binary32/64）</span></span></li>
+          <li><span class="q">12-10</span><span class="txt"><b>DMAの役割</b><span class="f">CPUの逐次コピーを減らす転送</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>記憶とメモリ量</h3>
+        <ul class="q-list">
+          <li><span class="q">12-7</span><span class="txt"><b>仮想記憶</b><span class="f">仮想→物理の対応・保護・ページ退避</span></span></li>
+          <li><span class="q">12-13</span><span class="txt"><b>記憶階層のキャッシュ</b><span class="f">高速・小容量（局所性を活用）</span></span></li>
+          <li><span class="q">12-11</span><span class="txt"><b>光ディスクの区別</b><span class="f">CD-ROM/CD-R/CD-RW</span></span></li>
+          <li><span class="q">12-12</span><span class="txt"><b>密行列の必要メモリ</b><span class="f">4000²×8 byte=128 MB</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>OS（役割・種類・運用）</h3>
+        <ul class="q-list">
+          <li><span class="q">12-14</span><span class="txt"><b>OSの役割</b><span class="f">プロセス・メモリ・入出力の資源管理</span></span></li>
+          <li><span class="q">12-15</span><span class="txt"><b>LinuxとOS</b><span class="f">カーネル＋ディストリビューション</span></span></li>
+          <li><span class="q">12-16</span><span class="txt"><b>オープンソースの利用条件</b><span class="f">ライセンスの範囲・条件を確認</span></span></li>
+          <li><span class="q">12-17</span><span class="txt"><b>OS更新の手順</b><span class="f">互換確認・バックアップ・検証環境</span></span></li>
+          <li><span class="q">12-18</span><span class="txt"><b>CAE環境の選定</b><span class="f">対応OS・メモリ・連携を確認</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜開発と運用（言語・処理方式・ライセンス）</div>
+    <div class="track-desc">解析ソフトを作り・動かし・正しく使うための知識です。高水準／低水準の言語の違いと科学技術計算での言語、ソースを機械語へ変換する処理方式や実行形式の互換性、ソフトを合法に使うためのライセンス管理を扱います。文字コードや改行の違いも、ソースが通らない原因として実務で効いてきます。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>プログラミング言語</h3>
+        <ul class="q-list">
+          <li><span class="q">12-21</span><span class="txt"><b>科学技術計算の言語</b><span class="f">Fortran（数値計算のライブラリ資産）</span></span></li>
+          <li><span class="q">12-22</span><span class="txt"><b>高水準言語の特徴</b><span class="f">機械命令より抽象的に記述</span></span></li>
+          <li><span class="q">12-23</span><span class="txt"><b>低水準言語</b><span class="f">アセンブリ＝機械寄り</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>処理方式・互換性</h3>
+        <ul class="q-list">
+          <li><span class="q">12-19</span><span class="txt"><b>コンパイルと実行</b><span class="f">事前変換・JIT・中間コード</span></span></li>
+          <li><span class="q">12-20</span><span class="txt"><b>実行形式の互換性</b><span class="f">CPU/OS依存（ABI・再ビルド）</span></span></li>
+          <li><span class="q">12-6</span><span class="txt"><b>改行コードの不一致</b><span class="f">CR=0D/LF=0A（内容保って変換）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>ライセンス管理</h3>
+        <ul class="q-list">
+          <li><span class="q">12-24</span><span class="txt"><b>フローティング管理</b><span class="f">同時使用数をサーバが管理（導入数≠同時数）</span></span></li>
+          <li><span class="q">12-25</span><span class="txt"><b>オフライン使用の条件</b><span class="f">サーバ接続必須（台数以外の条件）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 横串 -->
+    <div class="grayband">
+      <b class="gh">横串：つなぐ・守る・速める（ネットワーク・並列・安全）</b>
+      <div class="grid3">
+        <div class="box">
+          <h3>ネットワーク・データ転送</h3>
+          <ul class="q-list">
+            <li><span class="q">12-26</span><span class="txt"><b>LANとWAN</b><span class="f">拠点内／広域</span></span></li>
+            <li><span class="q">12-28</span><span class="txt"><b>ファイル共有</b><span class="f">NFS（遠隔FSとして利用）</span></span></li>
+            <li><span class="q">12-29</span><span class="txt"><b>ファイル転送</b><span class="f">FTP</span></span></li>
+            <li><span class="q">12-27</span><span class="txt"><b>機密データの送付</b><span class="f">暗号化・本人確認・アクセス制限</span></span></li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>並列計算</h3>
+          <ul class="q-list">
+            <li><span class="q">12-30</span><span class="txt"><b>並列のモデル</b><span class="f">MPI=分散／OpenMP=共有メモリ</span></span></li>
+            <li><span class="q">12-31</span><span class="txt"><b>並列効率</b><span class="f">η=T1/(nTn)=62.5%</span></span></li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>ソフト工学・情報セキュリティ</h3>
+          <ul class="q-list">
+            <li><span class="q">12-32</span><span class="txt"><b>リバースエンジニアリング</b><span class="f">実装から構造・仕様を理解</span></span></li>
+            <li><span class="q">12-33</span><span class="txt"><b>情報セキュリティ方針</b><span class="f">基本方針→対策基準→実施手順</span></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）数と誤差・B（藍）計算機のしくみ・C（赤）開発と運用＋横串（灰）ネットワーク・並列・安全。全33問（A5・B12・C8・横串8）。</p>
+  </section>
+</div>

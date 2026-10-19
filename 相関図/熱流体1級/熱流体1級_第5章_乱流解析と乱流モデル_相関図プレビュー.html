@@ -1,0 +1,184 @@
+<title>熱流体1級 第5章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級 第5章「乱流解析と乱流モデル」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A RANS渦粘性モデルとその限界／B 壁面の扱い／C スケール解像法 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>乱流解析と乱流モデル ― 各問の要点とキー公式</h2>
+    <p class="lead">乱れをモデルで平均化するか、渦を格子で解像するか。全14問を A／B／C ＋ 横串（温度場・空力音）に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜RANS渦粘性モデルとその限界</div>
+    <div class="track-desc">レイノルズ応力を平均速度勾配の1次で表す渦粘性（ブシネスク）型が RANS の基本で、k-ε の経験定数は基準流れごとに決める。ただし等方的な渦粘性では方向別の乱れの差を表せず、系回転や非円形管の第二種二次流れでは精度が落ちる。この限界が非線形モデル・応力方程式モデルへの動機になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>渦粘性モデルの考え方</h3>
+        <ul class="q-list">
+          <li><span class="q">5-1</span><span class="txt"><b>応力を平均速度勾配の1次で表す</b>方向差を表せず等方的　<span class="f">2k/3·δij−νt(∂Ui/∂xj+∂Uj/∂xi)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>モデル定数の決め方</h3>
+        <ul class="q-list">
+          <li><span class="q">5-2</span><span class="txt"><b>基準流れごとに定数を定める</b>一様減衰でCε2・せん断相関でCμ　<span class="f">Cμ≈0.09, Cε2≈1.92</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>等方モデルの限界</h3>
+        <ul class="q-list">
+          <li><span class="q">5-5</span><span class="txt"><b>系回転の方向別応答を表せない</b><span class="f">非線形/応力方程式モデル</span></span></li>
+          <li><span class="q">5-14</span><span class="txt"><b>第二種二次流れ=断面内の乱れの非等方性</b><span class="f">非線形渦粘性/応力モデル</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜壁面の扱い（漸近挙動・モデル関数・粗さ）</div>
+    <div class="track-desc">壁のごく近くでは乱れが距離 y のべき乗で変わり、標準の渦粘性式が与える次数は必要な次数とずれる。低Re型モデルは減衰関数 fμ でこのずれを補正し、粗面では対数則の積分定数で壁条件を近似する。A の RANS を壁まで適用するための橋渡しに当たる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>壁近傍の漸近挙動</h3>
+        <ul class="q-list">
+          <li><span class="q">5-3</span><span class="txt"><b>k∝y²・ε∝y⁰で標準式νt∝y⁴</b>必要はy³　<span class="f">壁面漸近挙動 νt=Cμk²/ε</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>低Re型モデル関数</h3>
+        <ul class="q-list">
+          <li><span class="q">5-4</span><span class="txt"><b>fμ∝1/yで標準y⁴を必要なy³へ</b><span class="f">νt=Cμ·fμ·k²/ε（Rt, y⁺）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>粗面の壁関数</h3>
+        <ul class="q-list">
+          <li><span class="q">5-13</span><span class="txt"><b>κは保ち積分定数Cを小さく</b>分布が下へ移動　<span class="f">u/uτ=(1/κ)ln(uτy/ν)+C</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜スケール解像法（DNS・LES・ハイブリッド）</div>
+    <div class="track-desc">乱れをモデルで平均せず、渦そのものを格子・時間で解く方法群。DNS は最小渦まで直接計算し負荷が Re に強く依存する。LES は大きな渦を解像し小スケールを SGS モデルで補い、DES など RANS/LES ハイブリッドは壁近傍を RANS に任せて格子を削減する。A・B の RANS とは解像する乱れの範囲が異なる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>DES・ハイブリッド</h3>
+        <ul class="q-list">
+          <li><span class="q">5-6</span><span class="txt"><b>壁近傍RANS+はく離域LESで格子削減</b><span class="f">DES（ハイブリッド）</span></span></li>
+          <li><span class="q">5-7</span><span class="txt"><b>接続の理論的根拠は未確立</b>DESはその一種　<span class="f">LES/RANS接続・切替え</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>LES</h3>
+        <ul class="q-list">
+          <li><span class="q">5-8</span><span class="txt"><b>支配的な渦を格子で解像しSGSを補う</b>ダイナミック型　<span class="f">τij=−2νSGS·Sij</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>DNS</h3>
+        <ul class="q-list">
+          <li><span class="q">5-9</span><span class="txt"><b>最小渦まで直接計算</b>点数Re⁹ᐟ⁴×刻み　<span class="f">総計算 ∝ Re³</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 横串 -->
+    <div class="grayband">
+      <b class="gh">横串：温度場・空力音（モデルを熱や音へ広げる／A・Cと組み合わせて使う）</b>
+      <div class="grid3">
+        <ul class="q-list">
+          <li><span class="q">5-10</span><span class="txt"><b>直接計算=流れと音を同時・負担大／分離計算=一方向</b><span class="f">空力音・音響アナロジー</span></span></li>
+        </ul>
+        <ul class="q-list">
+          <li><span class="q">5-11</span><span class="txt"><b>熱流束一定なら∂kθ/∂y=0</b>散逸は拡散と釣合い　<span class="f">kθ-εθ・壁面境界条件</span></span></li>
+        </ul>
+        <ul class="q-list">
+          <li><span class="q">5-12</span><span class="txt"><b>乱流熱流束を速度相関と結ぶ</b>一定係数で壁面次数は不一致　<span class="f">GGDH モデル</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）RANSと限界・B（藍）壁面の扱い・C（赤）スケール解像法＋横串（灰）温度場・空力音。全14問（A4・B3・C4・横串3）。</p>
+  </section>
+</div>

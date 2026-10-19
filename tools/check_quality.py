@@ -67,7 +67,14 @@ def editorial_errors(data):
     Unchanged legacy material is grandfathered once, never automatically certified.
     Do not regenerate the baseline after an edit: review the changed question instead.
     """
-    if data.get("meta", {}).get("grade") != "固体力学 2級":
+    meta = data.get("meta", {})
+    target = ((meta.get("grade") == "振動 1級" and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8, 9))
+              or (meta.get("grade") == "振動 2級" and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13))
+              or meta.get("grade") == "固体力学 2級"
+              or (meta.get("grade") == "固体力学 1級" and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11))
+              or (meta.get("grade") == "熱流体力学 1級" and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8))
+              or (meta.get("grade") == "熱流体力学 2級" and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)))
+    if not target:
         return []
     baseline_path = Path(__file__).with_name("solid2_editorial_baseline.json")
     baseline = json.loads(baseline_path.read_text(encoding="utf-8"))["legacy"]
@@ -97,8 +104,92 @@ def editorial_errors(data):
     return errors
 
 
+
+def presentation_errors(data):
+    """Block unapproved vector/PNG pairs and unrendered math, without new ledgers.
+
+    The active chapter opts in; solid1 chapter1 is mandatory. Visual clarity remains
+    a manual judgement. Standard-library checks also run in the OTA job.
+    """
+    import xml.etree.ElementTree as ET
+    import struct
+    meta = data.get("meta", {})
+    mandatory = meta.get("grade") == "固体力学 1級" and meta.get("chapter") == 1
+    if not mandatory and not meta.get("presentationStyle"):
+        return []
+    errors = []
+    if meta.get("presentationStyle") != "cae-standard-v1":
+        errors.append("指定図式の確認が未適用: presentationStyle")
+    root = Path(__file__).resolve().parent.parent
+    grade = "1級" if "1級" in meta.get("grade", "") else "2級"
+    thermal = "熱流体" in meta.get("grade", "")
+    vibration = "振動" in meta.get("grade", "")
+    directory = root / "図" / (("振動" if vibration else "熱流体" if thermal else "固体") + grade) / ("第%02d章" % meta["chapter"])
+    records = list(data.get("questions", []))
+    term_path = root / "content" / "formulas" / (("vib" + grade[0] + "-" if vibration else "thermal" + grade[0] + "-" if thermal else "solid1-" if grade == "1級" else "") + "ch%d.json" % meta["chapter"])
+    if term_path.exists():
+        records += json.loads(term_path.read_bytes()).get("items", [])
+    keys = set()
+    def visible(v):
+        if isinstance(v, str):
+            plain = re.sub(r"\$[^$]*\$", "", v)
+            if "^" in plain or re.search(r"\\(?:frac|mathbf|partial|sqrt|begin)\b", plain):
+                errors.append("未組版の数式記号が本文に露出しています")
+            if v.count("$") % 2:
+                errors.append("数式の区切りが閉じていません")
+        elif isinstance(v, list):
+            for x in v: visible(x)
+    for record in records:
+        for key, value in record.items():
+            if key in ("question", "choices", "explanation", "formula", "body", "example", "term", "title"):
+                visible(value)
+            if key in ("figureImage", "preFigureImage") and value:
+                keys.add(value)
+    assets = {}
+    for source in directory.glob("*.svg"):
+        try:
+            svg = ET.fromstring(source.read_bytes())
+            key = svg.get("data-asset-key")
+            if key in keys:
+                if key in assets: errors.append(key + ": 図原本の登録が重複")
+                assets[key] = (source, svg)
+        except ET.ParseError:
+            errors.append(source.name + ": SVGが不正")
+    colors = {"#1F3A65", "#C82D2D", "#888888", "#E1E7F2", "#FFFFFF", "none"}
+    for key in sorted(keys):
+        if key not in assets:
+            errors.append(key + ": 指定体裁のSVG原本が未確認")
+            continue
+        source, svg = assets[key]
+        if svg.get("data-style") != "cae-standard-v1" or svg.get("data-font") != "Meiryo" or svg.get("viewBox") != "0 0 660 420":
+            errors.append(key + ": 図の体裁・フォント・寸法が指定外")
+        for e in svg.iter():
+            tag = e.tag.rsplit("}", 1)[-1]
+            if tag in ("text", "image", "foreignObject", "script", "style"):
+                errors.append(key + ": 未パス化文字・ラスター等の指定外要素")
+            for attr, val in e.attrib.items():
+                if attr in ("fill", "stroke") and val not in colors:
+                    errors.append(key + ": 指定外の色 " + val)
+                if attr.endswith("href") or attr == "style" or ("opacity" in attr and val != "1"):
+                    errors.append(key + ": 外部参照・透過・個別CSSを使用")
+                if attr == "aria-label" and ("^" in val or "_" in val or re.search(r"\b[A-Z]dot\b|\\[a-zA-Z]", val)):
+                    errors.append(key + ": 図中の数式コードが未組版")
+        rect = next((e for e in svg if e.tag.endswith("}rect")), None)
+        if rect is None or any(rect.get(k) != v for k, v in {"width":"660","height":"420","fill":"#FFFFFF"}.items()):
+            errors.append(key + ": 白い不透明背景がありません")
+        asset = root / "assets" / "figures" / (key + ".png")
+        if not asset.exists():
+            errors.append(key + ": PNGがありません")
+            continue
+        png = asset.read_bytes()
+        if png[:8] != b"\x89PNG\r\n\x1a\n" or struct.unpack(">II", png[16:24]) != (1320, 840):
+            errors.append(key + ": PNG寸法が指定外")
+        if svg.get("data-png-sha256") != hashlib.sha256(png).hexdigest():
+            errors.append(key + ": PNGが確認済みSVGの出力と不一致（図の差替えを拒否）")
+    return list(dict.fromkeys(errors))
+
 def require_editorial_review(data):
-    errors = editorial_errors(data)
+    errors = editorial_errors(data) + presentation_errors(data)
     if errors:
         raise ValueError("教材の内容確認ゲート: " + "; ".join(errors))
 
@@ -107,7 +198,7 @@ def check_file(path, all_titles):
     d = json.load(open(path, encoding="utf-8"))
     qs = d.get("questions", [])
     n = len(qs)
-    hard, warn, info, review = editorial_errors(d), [], [], []
+    hard, warn, info, review = editorial_errors(d) + presentation_errors(d), [], [], []
 
     # --- 構造(FAIL) ---
     if d.get("meta", {}).get("count") != n:
@@ -139,6 +230,18 @@ def check_file(path, all_titles):
         if isinstance(a, int) and 1 <= a <= 4: ans[a-1] += 1
     if n and (max(ans) - min(ans)) > n * ANS_MAX_DEV_SHARE:
         warn.append(f"答え分布が偏り: ①②③④={'/'.join(map(str,ans))}")
+
+    # --- 公式問題に無い要点の付け足し疑い(WARN・2026-10-16-R16) ---
+    #   受験生の負担になる脱線・発展・別論点の付け足しを機械で“気づかせる”signal。
+    #   最終判断は人/AIが公式問題と照合して行う(R10と同じ思想・FAILにはしない)。
+    OFF_SCOPE = ("参考までに", "ちなみに", "余談", "発展として", "発展的",
+                 "応用として", "さらに発展", "本題から外れ", "試験には出",
+                 "より進んだ", "より高度", "余力があれば")
+    off = [q.get("number") for q in qs
+           if any(m in (q.get("explanation", "") or "") for m in OFF_SCOPE)]
+    if off:
+        warn.append(f"公式問題に無い要点の付け足し疑い(脱線・発展) {len(off)}問: {off}"
+                    f"（R16: 原問が問う点だけに絞り、最小労力で合格できる範囲にする）")
 
     # --- “長さで当たる”/断定語/単純計算 ---
     len_tell, simple_calc = [], []

@@ -1,0 +1,171 @@
+<title>熱流体1級 第19章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A反応機構・速度論／B 連鎖反応・エネルギー論／C 燃焼生成物・火炎温度 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級 第19章「燃焼反応」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 反応機構とその速度論モデル／B 連鎖反応とエネルギー論／C 燃焼による生成物と火炎温度 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>燃焼反応 ― 各問の要点とキー公式</h2>
+    <p class="lead">詳細・総括の反応機構とその速度論モデル、連鎖反応と反応熱・爆発限界、そして火炎温度・NOx・すすといった生成物までを整理。全14問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜反応機構とその速度論モデル</div>
+    <div class="track-desc">燃焼は多数の素反応からなる詳細機構で記述されるが、計算負荷が大きいため総括反応へ簡略化する。素反応の速度はアレニウス式で表し、二分子・三分子で頻度係数の単位が異なる。三体再結合では圧力依存（fall-off）と第三体効率が効き、感度解析でどの反応が燃焼速度を支配するかを見極める。B・C の現象を支える速度論の枠組みのトラック。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>機構の全体像</h3>
+        <ul class="q-list">
+          <li><span class="q">19-1</span><span class="txt"><b>素反応数はメタン系＞水素系（誤りを選ぶ）</b><span class="f">詳細機構＝多数の素反応（H₂数十・CH₄数百）</span></span></li>
+          <li><span class="q">19-3</span><span class="txt"><b>総括反応の反応次数は量論係数と一致しない（誤りを選ぶ）</b><span class="f">ω=k[CH₄]^α[O₂]^β（非整数・負もあり）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>圧力依存・第三体</h3>
+        <ul class="q-list">
+          <li><span class="q">19-6</span><span class="txt"><b>fall-off：低圧で傾き1・高圧でk∞に飽和</b><span class="f">k=k∞·Pr/(1+Pr), Pr=k₀[M]/k∞</span></span></li>
+          <li><span class="q">19-7</span><span class="txt"><b>第三体効率は化学種ごとに異なる（誤りを選ぶ）</b><span class="f">[M]=Σεᵢ[Xᵢ]（H₂O・CO₂大, Ar小）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>速度式の扱い</h3>
+        <ul class="q-list">
+          <li><span class="q">19-8</span><span class="txt"><b>頻度係数の単位換算（二分子cm³・三分子cm⁶）</b><span class="f">A_I ×10⁻⁶, A_II ×10⁻¹²（cm→m）</span></span></li>
+          <li><span class="q">19-9</span><span class="txt"><b>感度が大＝燃焼速度への寄与大（反応速度の大小とは別・誤りを選ぶ）</b><span class="f">Sᵢ=(kᵢ/Sᵤ)(∂Sᵤ/∂kᵢ)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜連鎖反応とエネルギー論</div>
+    <div class="track-desc">水素酸化は起鎖・分枝・再結合という役割をもつ素反応の連鎖で進み、分枝と三体停止の競合が爆発限界（第2限界）を決める。反応の進む向きはポテンシャルエネルギーの高低で発熱か吸熱かが分かれ、反応熱は標準生成エンタルピーの差から求める。A の素反応を、連鎖の構造と放出エネルギーの観点で見るトラック。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>連鎖反応</h3>
+        <ul class="q-list">
+          <li><span class="q">19-2</span><span class="txt"><b>水素酸化の起鎖→分枝→三体再結合→失活</b><span class="f">分枝 H+O₂⇌OH+O / 競合 H+O₂+M⇌HO₂+M</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>爆発限界</h3>
+        <ul class="q-list">
+          <li><span class="q">19-14</span><span class="txt"><b>爆発半島・第1/第2/第3限界, 第2限界＝分枝と三体停止の競合</b><span class="f">H+O₂⇌OH+O と H+O₂+M⇌HO₂+M</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>発熱・吸熱と反応熱</h3>
+        <ul class="q-list">
+          <li><span class="q">19-4</span><span class="txt"><b>生成物が反応物より低い曲線が発熱</b><span class="f">発熱＝生成物レベル<反応物レベル</span></span></li>
+          <li><span class="q">19-5</span><span class="txt"><b>低位発熱量は生成水を気相で扱う</b><span class="f">ΔH=Σ生成−Σ反応=−803（高位=−891）kJ/mol</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜燃焼による生成物と火炎温度</div>
+    <div class="track-desc">燃焼の結果として現れる温度と有害・固体生成物を扱う。断熱火炎温度は発熱量と比熱で決まり、不飽和度の高い燃料ほど高くなる。NOxはサーマル・プロンプト・フューエルの経路で生じ、最高火炎温度を下げることが低減の要になる。すすは燃料過濃の拡散燃焼側で前駆体から成長する。A・B の反応が実際の燃焼で何を生むかをまとめるトラック。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>断熱火炎温度</h3>
+        <ul class="q-list">
+          <li><span class="q">19-12</span><span class="txt"><b>不飽和度が高いほど断熱火炎温度が高い</b><span class="f">最高＝アセチレンC₂H₂, T_f≈T_ini+q/C_m</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>NOx（生成と低減）</h3>
+        <ul class="q-list">
+          <li><span class="q">19-10</span><span class="txt"><b>サーマル=空気N₂/火炎背後, プロンプト=火炎帯, フューエル=燃料N</b><span class="f">サーマルNO＝ゼルドビッチ機構</span></span></li>
+          <li><span class="q">19-11</span><span class="txt"><b>希薄予混合は当量比を下げて火炎温度低減（誤りを選ぶ）</b><span class="f">サーマルNO低減＝最高火炎温度↓</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>すす</h3>
+        <ul class="q-list">
+          <li><span class="q">19-13</span><span class="txt"><b>前駆体C₂H₂/PAH, 核生成→凝集→表面成長→酸化, 拡散燃焼で生成</b><span class="f">すす＝燃料過濃・拡散火炎側</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）反応機構・速度論・B（藍）連鎖反応・エネルギー論・C（赤）燃焼生成物・火炎温度。全14問（A6・B4・C4）。</p>
+  </section>
+</div>

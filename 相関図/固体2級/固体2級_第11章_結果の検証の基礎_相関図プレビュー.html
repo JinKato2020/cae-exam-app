@@ -1,0 +1,181 @@
+<title>固体2級 第11章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A理論比較／B変形・力／C単位・入力 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>固体2級 第11章「結果の検証の基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 理論・公式と比べる／B 変形・力のつじつまを見る／C 単位と入力を確かめる の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>結果の検証の基礎 ― 各問の要点とキー公式</h2>
+    <p class="lead">FEMの答えを鵜呑みにせず「信じてよいか」を確かめる章。全17問を A／B／C ＋ 横串（V&amp;Vの枠組み）に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜理論・公式と比べる（数値で突き合わせる）</div>
+    <div class="track-desc">まず、同じ位置・同じ量について手計算できる理論値や公式解を用意し、FEM値と相対誤差で突き合わせます。要素内の値から境界の値を外挿してから比べることもあります。一致すれば安心材料、大きくずれれば入力や分割を疑う入口になり、トラックB・Cの確認につながります。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>理論最大応力と比較</h3>
+        <ul class="q-list">
+          <li><span class="q">11-1</span><span class="txt"><b>円孔板の応力集中をFEMと照合</b><span class="f">相対誤差=|FEM−理論|/理論・σ=α·σn</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>変位・たわみを公式で検証</h3>
+        <ul class="q-list">
+          <li><span class="q">11-2</span><span class="txt"><b>周辺固定円板のFEM変位の桁を検証</b><span class="f">ωmax=pR⁴/(64D), D=Et³/[12(1−ν²)]</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>外挿・前提差で確かめる</h3>
+        <ul class="q-list">
+          <li><span class="q">11-3</span><span class="txt"><b>2点から内表面応力へ直線外挿</b><span class="f">傾き=Δσ/Δs, 相対誤差で比較</span></span></li>
+          <li><span class="q">11-4</span><span class="txt"><b>薄肉ねじりをはり理論と比較</b>スポット溶接　<span class="f">閉断面のせん断流れ・そり/端部条件</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜変形・力のつじつまを見る（物理的に妥当か）</div>
+    <div class="track-desc">数値だけでなく、変形の形・分布・力のつり合いが物理的にもっともらしいかを確かめます。単純支持ばりのたわみ形、荷重配置による大小、温度分布の連続性といった定性的な形をイメージし、反力の合計や接合部に渡る力（自由体図）も確認します。形がおかしければ拘束や荷重の入力ミスを見つけられます。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>はりの変形の形</h3>
+        <ul class="q-list">
+          <li><span class="q">11-5</span><span class="txt"><b>左寄り荷重の最大たわみ位置</b><span class="f">非対称・荷重点より右/中央より左</span></span></li>
+          <li><span class="q">11-6</span><span class="txt"><b>同じ総荷重の配置で比較</b><span class="f">最大たわみ∝集中度（24:19:15）</span></span></li>
+          <li><span class="q">11-7</span><span class="txt"><b>曲げ応力が最大になる位置</b><span class="f">|σ|=|M|/Z, Mmax=荷重点（≠たわみ最大）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>変位・温度の分布</h3>
+        <ul class="q-list">
+          <li><span class="q">11-9</span><span class="txt"><b>剛体挿入物の荷重方向変位</b>回転ゼロ　<span class="f">剛体内は一定・界面で連続</span></span></li>
+          <li><span class="q">11-10</span><span class="txt"><b>二層円筒壁の温度分布を選ぶ</b><span class="f">界面で連続・傾き∝1/λ・差∝1/(hA)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>力の伝達・つり合い</h3>
+        <ul class="q-list">
+          <li><span class="q">11-8</span><span class="txt"><b>剛体腕で結んだ二本のはり</b>自由体図　<span class="f">偏心→軸力P＋モーメントPa</span></span></li>
+          <li><span class="q">11-11</span><span class="txt"><b>反力で全体を検証</b><span class="f">ΣF=0, ΣM=0（全外力を含める）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜単位と入力を確かめる（桁・単位系・材料値）</div>
+    <div class="track-desc">計算が正しくても、単位系の取り違えや材料値の入力ミスがあると答えは誤ります。長さ・力・応力の単位を一貫させ、重量単位（kgf・tf）との換算を区別します。線形・力制御では、ヤング率を間違えても応力は変わらず変位だけがEに反比例する、という関係を使えば誤入力を見抜き、元の値へ戻せます。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>力・応力の単位</h3>
+        <ul class="q-list">
+          <li><span class="q">11-12</span><span class="txt"><b>mm・MPa入力に整合する応力単位</b><span class="f">1 MPa=1 N/mm²（力はN）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>質量密度の単位</h3>
+        <ul class="q-list">
+          <li><span class="q">11-13</span><span class="txt"><b>m・N・s系の質量密度</b><span class="f">kg/m³（重量密度γ=ρg はN/m³）</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>入力ミスの影響と復元</h3>
+        <ul class="q-list">
+          <li><span class="q">11-14</span><span class="txt"><b>Eを3倍にした影響</b>力制御　<span class="f">K=EK₀, σ不変・u∝1/E</span></span></li>
+          <li><span class="q">11-15</span><span class="txt"><b>GPaとMPaの取り違え</b><span class="f">変位1000倍・応力不変→1000で割り戻す</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 横串 -->
+    <div class="grayband">
+      <b class="gh">横串：V&amp;Vの枠組み（検証と妥当性確認の考え方）</b>
+      <ul class="q-list">
+        <li><span class="q">11-16</span><span class="txt"><b>数理・計算・物理モデルとV&amp;Vの名称</b><span class="f">数理A→計算B（コード検証C）／物理D（妥当性確認）</span></span></li>
+        <li><span class="q">11-17</span><span class="txt"><b>検証と妥当性確認の違い</b><span class="f">検証=式を正しく解く／妥当性確認=現実と合うか</span></span></li>
+      </ul>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）理論比較・B（藍）変形と力・C（赤）単位と入力＋横串（灰）V&amp;V。全17問（A4・B7・C4・横串2）。</p>
+  </section>
+</div>

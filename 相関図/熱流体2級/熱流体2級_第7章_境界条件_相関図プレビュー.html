@@ -1,0 +1,164 @@
+<title>熱流体2級 第7章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A種類・入口出口／B壁の条件／C乱流の壁 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体2級 第7章「境界条件」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 境界の種類と入口・出口／B 壁・面の境界条件／C 乱流の壁と境界層 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>境界条件 ― 各問の要点とキー公式</h2>
+    <p class="lead">計算領域の「縁」で何を与えるかを決める。値を与えるか勾配を与えるか（分類）→ 入口・出口 → 壁や自由表面 → 乱流の壁の扱い、と整理。全12問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜境界の種類と入口・出口</div>
+    <div class="track-desc">まず「境界で値そのものを決めるディリクレ条件」か「境界に垂直な勾配を決めるノイマン条件」かという分類を押さえる。この見方が全ての境界設定の土台になり、入口では未知量の値を与え、出口では流れが自然に出ていくよう勾配0などの流出条件を置く。超音速か亜音速かで必要な条件の数が変わる点（トラックCの境界層外縁とも関係）もここで扱う。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>値か勾配か（分類）</h3>
+        <ul class="q-list">
+          <li><span class="q">7-1</span><span class="txt"><b>流入境界の条件の種類</b>速度も温度も値を直接指定　<span class="f">ディリクレ＝値／ノイマン＝勾配</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>流出・開放境界の置き方</h3>
+        <ul class="q-list">
+          <li><span class="q">7-2</span><span class="txt"><b>温度の流出境界の設定場所</b>発達した下流に置く　<span class="f">∂T/∂x≈0（ノイマン）</span></span></li>
+          <li><span class="q">7-11</span><span class="txt"><b>超音速流の流入・流出</b>情報は上流→下流のみ　<span class="f">入口5変数固定・出口は自由流出</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜壁・面の境界条件（固体壁・自由表面・移動壁）</div>
+    <div class="track-desc">領域を囲む面には、面の性質に応じた条件を与える。静止固体壁は速度に滑りなし（壁速度と同じ＝0）、温度は壁温一定や断熱・熱流束一定、圧力は壁垂直方向の運動方程式のつり合いから決める。空気の摩擦を無視した自由表面は面を横切らない滑り条件、走る車の地面は相対速度で動く移動壁、と「どの面か」で与え方が変わる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>固体壁（速度・圧力）</h3>
+        <ul class="q-list">
+          <li><span class="q">7-3</span><span class="txt"><b>加熱円管の壁面条件</b>静止壁＋壁温指定　<span class="f">滑りなし U=0・T=Tw</span></span></li>
+          <li><span class="q">7-4</span><span class="txt"><b>圧力の壁面条件</b>速度0でも勾配0とは限らない　<span class="f">壁垂直の運動方程式のつり合い</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>熱的な壁（断熱・熱流束）</h3>
+        <ul class="q-list">
+          <li><span class="q">7-5</span><span class="txt"><b>閉空間の各壁の温度条件</b>断熱壁と熱流入・流出壁　<span class="f">断熱 ∂T/∂y=0・qx=q（共通x軸）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>自由表面・移動壁</h3>
+        <ul class="q-list">
+          <li><span class="q">7-8</span><span class="txt"><b>水路上面（自由表面）</b>面を横切らず沿って流れる　<span class="f">滑り V=0・∂U/∂y=∂W/∂y=0</span></span></li>
+          <li><span class="q">7-12</span><span class="txt"><b>走行車まわりの地面</b>車基準では地面が動く　<span class="f">移動壁＝逆向き 25 m/s</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜乱流の壁と境界層（壁関数・近傍解像・外縁）</div>
+    <div class="track-desc">乱流では壁ぎわの急な変化をどう扱うかで条件が変わる。高レイノルズ数型は壁から離れた第一格子点に対数則・乱れ量を与える壁関数を使い、低レイノルズ数型は壁まで格子を詰めて速度0・k=0などの厳密条件を置く。速度と温度には経験定数を伴う対数則があり、境界層計算では外縁で主流速度と圧力勾配をつなぐ。トラックAの入口・出口条件と合わせて乱流場を閉じる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>壁関数（高Re型）</h3>
+        <ul class="q-list">
+          <li><span class="q">7-6</span><span class="txt"><b>高Re型の壁関数</b>第一格子点に与える　<span class="f">対数則・k=u_τ²/√Cμ・ε=u_τ³/(κy₀)</span></span></li>
+          <li><span class="q">7-9</span><span class="txt"><b>速度・温度の壁関数と定数</b>外部流の代表値　<span class="f">κ=0.41, C=5.0・温度も対数則</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>壁まで解く（低Re型）</h3>
+        <ul class="q-list">
+          <li><span class="q">7-7</span><span class="txt"><b>低Re型の壁面条件</b>壁で速度も乱れも消える　<span class="f">U=V=0・k=0・ε=ν∂²k/∂y²</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>境界層の外縁</h3>
+        <ul class="q-list">
+          <li><span class="q">7-10</span><span class="txt"><b>境界層外縁の速度と圧力勾配</b>主流に接続　<span class="f">U=Uₑ・−(1/ρ)dP/dx=Uₑ dUₑ/dx</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）種類・入口出口・B（藍）壁の条件・C（赤）乱流の壁。全12問（A3・B5・C4）。</p>
+  </section>
+</div>

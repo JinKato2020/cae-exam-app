@@ -1,0 +1,173 @@
+<title>熱流体2級 第6章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A基礎量／B RANSモデル／C スケール解像と判断 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体2級 第6章「乱流モデル」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 乱流を表す基礎量とモデル式／B RANS乱流モデル／C スケール解像モデルと適用判断 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>乱流モデル ― 各問の要点とキー公式</h2>
+    <p class="lead">乱れの効果をどう表し、どのモデルをいつ選ぶか。全16問を A（基礎量）／B（RANSモデル）／C（解像と判断）に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜乱流を表す基礎量とモデル式</div>
+    <div class="track-desc">乱れの効果を扱うための共通の量を押さえる。速度を平均と変動に分けたレイノルズ応力、その対角和の半分である乱流エネルギーk、混合の強さを表す渦粘性νtが出発点。kの増減は生成・散逸・拡散の収支で記述し、熱は乱流プラントル数で運動量輸送と結ぶ。等方的な渦粘性近似の限界（垂直応力の非等方性を出せない）も、ここで理解してBへつなぐ。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>渦粘性とレイノルズ応力</h3>
+        <ul class="q-list">
+          <li><span class="q">6-1</span><span class="txt"><b>渦粘性係数を単位から決める</b><span class="f">νt ∝ k²/ε（Cμk²/ε）</span></span></li>
+          <li><span class="q">6-2</span><span class="txt"><b>レイノルズ応力テンソルの成分</b>対称　<span class="f">対角和=2k</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>kの輸送方程式</h3>
+        <ul class="q-list">
+          <li><span class="q">6-6</span><span class="txt"><b>生成・散逸・拡散項の区別</b><span class="f">D1=分子拡散／D2=乱流拡散</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>熱輸送と非等方性</h3>
+        <ul class="q-list">
+          <li><span class="q">6-5</span><span class="txt"><b>渦粘性・熱の渦拡散・乱流プラントル数</b><span class="f">Prt=νt/αt（単位 m²/s）</span></span></li>
+          <li><span class="q">6-7</span><span class="txt"><b>等方モデルは垂直応力の非等方性を出せない</b><span class="f">3成分とも 2k/3</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜RANS乱流モデル（平均場を解く）</div>
+    <div class="track-desc">平均量を解き、乱れの効果をモデルで補うRANSの中身を整理する。標準k-εは実験整合から決めた定数を使うが、壁ごく近くの粘性底層はそのままでは再現できず、壁関数や低Re型で補う。方向差が重要な流れには応力モデル（RSM）が向くが式が増える。混合長・SA・SSTなど追加する輸送方程式の本数でモデルを見分け、高プラントル数の伝熱では壁近傍の解像が鍵になる。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>標準k-εモデル</h3>
+        <ul class="q-list">
+          <li><span class="q">6-8</span><span class="txt"><b>標準k-εの定数の組</b><span class="f">Cμ=0.09, σk=1.0, σε=1.3, 1.44, 1.92</span></span></li>
+          <li><span class="q">6-9</span><span class="txt"><b>標準型は粘性底層を再現できない</b><span class="f">壁関数／低Re型で補う</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>応力モデル・方程式数</h3>
+        <ul class="q-list">
+          <li><span class="q">6-4</span><span class="txt"><b>k-εとRSMの比較</b>RSMは非等方性に強いが高コスト　<span class="f">線形渦粘性 vs 応力方程式</span></span></li>
+          <li><span class="q">6-10</span><span class="txt"><b>各モデルの輸送方程式の本数</b><span class="f">SST=k・ω の2方程式</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>乱流伝熱への適用</h3>
+        <ul class="q-list">
+          <li><span class="q">6-11</span><span class="txt"><b>高Prは温度層が薄く壁を解像</b><span class="f">低Re型・νt ∝ y³</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜スケール解像モデルと適用判断</div>
+    <div class="track-desc">どのスケールまで直接解くかで計算負荷が大きく変わる（RANS＜LES＜DNS）。LESは大きな渦を解像し小さな渦をSGSモデルで補うが、スマゴリンスキー定数は普遍値でなく、数値粘性を抑えた高精度な離散化が要る。最後に、流れの状態（平均場か瞬時変動か、円柱まわりのRe、臨界付近の遷移域か）を見て、RANS・層流定常・直接計算のどれが妥当かを判断する。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>DNS・LES・RANSのすみ分け</h3>
+        <ul class="q-list">
+          <li><span class="q">6-3</span><span class="txt"><b>計算負荷の順</b>RANS&lt;LES&lt;DNS　<span class="f">DNS総点数 ∝ Re の9/4乗</span></span></li>
+          <li><span class="q">6-13</span><span class="txt"><b>RANSが妥当な対象</b>平均場向け　<span class="f">ア・イ可／ウ（瞬時渦）不可</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>LESのモデルと離散化</h3>
+        <ul class="q-list">
+          <li><span class="q">6-12</span><span class="txt"><b>スマゴリンスキーモデル</b>Csは普遍定数でない・壁面減衰は必要　<span class="f">νSGS=(Cs fs Δ)²|S|</span></span></li>
+          <li><span class="q">6-15</span><span class="txt"><b>LESの離散化</b>数値粘性を小さく・時間も2次以上　<span class="f">保存性重視の離散化</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>流れの状態で手法を選ぶ</h3>
+        <ul class="q-list">
+          <li><span class="q">6-14</span><span class="txt"><b>円柱まわりのRe依存</b>Re1=定常層流／100=カルマン渦／10⁴=乱流　<span class="f">層流定常はアのみ</span></span></li>
+          <li><span class="q">6-16</span><span class="txt"><b>臨界付近の管内流（遷移域）</b>Re2400・臨界2300　<span class="f">非定常の直接計算で変動を解像</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）基礎量・B（藍）RANSモデル・C（赤）解像と判断。全16問（A5・B5・C6）。</p>
+  </section>
+</div>

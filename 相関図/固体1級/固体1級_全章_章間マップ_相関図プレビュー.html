@@ -1,0 +1,100 @@
+<title>固体1級 全章マップ 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 固体1級 全11章の章間マップ(1枚)。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9; --surface: #ffffff; --ink: #1F3A65; --ink-soft: #35507f;
+    --fill: #E1E7F2; --accent: #C82D2D; --muted: #6b7280; --line: #c7d0e2; --num: #1F3A65;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: "Meiryo","Hiragino Kaku Gothic ProN", system-ui, sans-serif; line-height: 1.5; margin: 0; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left,0px)); padding-right: max(16px, env(safe-area-inset-right,0px)); padding-block: 24px 48px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 4px; }
+  .band-label { font-size: .86rem; color: #fff; background: var(--ink-soft); font-weight: 800; letter-spacing: .03em; margin: 20px 0 6px; padding: 5px 13px; border-radius: 7px; display:inline-block; }
+  .band-label.core { background: var(--accent); }
+  .band-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 0 2px 10px; }
+  .band-desc .lk { color: var(--accent); font-weight: 700; }
+  .down { text-align:center; color: var(--accent); font-size: 1rem; font-weight:700; margin: 10px 0 2px; }
+  .row { display: grid; gap: 10px; }
+  .r3 { grid-template-columns: repeat(3, 1fr); }
+  .r2 { grid-template-columns: repeat(2, 1fr); max-width: 640px; margin: 0 auto; }
+  .r1 { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.hot { border-color: var(--accent); border-width: 2px; }
+  .box h3 { margin: 0 0 4px; font-size: .9rem; color: var(--ink); display:flex; gap:7px; align-items:baseline; }
+  .box.hot h3 { color: var(--accent); }
+  .box p { margin: 0; font-size: .76rem; color: var(--ink-soft); }
+  .ch { color:#fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size:.7rem; font-weight:700; white-space:nowrap; }
+  .box.hot .ch { background: var(--accent); }
+  .finish { background: var(--fill); border: 2px solid var(--accent); border-radius: 10px; padding: 11px 14px; }
+  .finish h3 { margin:0 0 3px; font-size:.9rem; color: var(--accent); display:flex; gap:7px; align-items:baseline; }
+  .finish p { margin:0; font-size:.78rem; color: var(--ink-soft); }
+  .legend { margin-top: 16px; color: var(--muted); font-size: .78rem; line-height: 1.6; }
+  @media (max-width: 680px){ .r3 { grid-template-columns: 1fr 1fr; } .r2, .r1 { grid-template-columns: 1fr; } }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>固体1級「全章の相関図」（章間マップ・プレビュー）</h1>
+    <p>各章がどの役割を持ち、どこへつながるか（章どうしの関係）を1枚で示します。</p>
+  </header>
+
+  <section class="fig">
+    <h2>固体1級：非線形有限要素法（CAE）の地図</h2>
+    <p class="lead">全11章は「土台 → 非線形の3タイプ → 解く技術 → 現象別の解析 → 検証」という一本の流れでつながっています。</p>
+
+    <div class="band-label">① 土台（非線形の応力とひずみ）</div>
+    <div class="band-desc">非線形解析の共通言語を定義する段。大きく変形・回転する物体の応力とひずみ（変形勾配F、各種ひずみ、各種応力、応力速度の客観性）を、線形解析の微小ひずみ・微小回転と区別して扱います。ここでの定義が、第2〜4章の非線形すべての前提になります。<span class="lk">→ 非線形が「どこから来るか」（材料・形状・接触）で3タイプに分かれます。</span></div>
+    <div class="row r1">
+      <div class="box"><h3><span class="ch">1</span>非線形の応力とひずみ</h3><p>変形勾配・各種ひずみ/応力・客観性</p></div>
+    </div>
+    <div class="down">↓ 非線形の原因で3タイプに分かれる ↓</div>
+
+    <div class="band-label core">② 非線形の3タイプ（なぜ線形で解けないか）</div>
+    <div class="band-desc">非線形の原因は大きく3つ。第2章は材料そのものの非線形（弾塑性・クリープ・粘弾性）、第3章は大変形・座屈など形状の非線形、第4章は接触・剥離など境界の非線形です。いずれも荷重と変形が比例しないため、荷重を小刻みに増やす「増分」と、つり合うまで繰り返す「反復（ニュートン法）」で解きます。<span class="lk">→ その反復計算を安定して回すのが、次の「解く技術」。</span></div>
+    <div class="row r3">
+      <div class="box hot"><h3><span class="ch">2</span>材料非線形</h3><p>弾塑性・クリープ・粘弾性</p></div>
+      <div class="box hot"><h3><span class="ch">3</span>幾何学的非線形</h3><p>大変形・座屈・安定</p></div>
+      <div class="box hot"><h3><span class="ch">4</span>境界非線形</h3><p>接触・剥離・摩擦</p></div>
+    </div>
+
+    <div class="band-label">③ それを解く技術（要素・数値解法・動的）</div>
+    <div class="band-desc">非線形の連立方程式を破綻なく解く裏側の技術。第8章は要素の定式化（ロッキング回避・低減積分・偽変形の抑制）、第9章はニュートン反復・収束判定・条件数・弧長法などの数値解法、第6章は時間方向の積分（陽解法・陰解法・固有値・安定性）。<span class="lk">→ これらを使って、現象ごとの具体的な解析へ進みます。</span></div>
+    <div class="row r3">
+      <div class="box"><h3><span class="ch">8</span>要素テクノロジー</h3><p>ロッキング回避・低減積分</p></div>
+      <div class="box"><h3><span class="ch">9</span>数値解析法</h3><p>ニュートン反復・収束・条件数</p></div>
+      <div class="box"><h3><span class="ch">6</span>動的解析</h3><p>時間積分・固有値・安定性</p></div>
+    </div>
+
+    <div class="band-label">④ 現象別の解析（壊れ・熱・各種モデル）</div>
+    <div class="band-desc">実務で問う現象ごとの解析。第5章はき裂・疲労（J積分・応力拡大係数・寿命評価）、第7章は伝熱（非定常・ふく射・熱応力）、第11章は連成解析・複合材・粘弾性など各種モデリング技術です。土台と技術を使い、それぞれの物理を扱います。<span class="lk">→ 最後に、その結果が信頼できるかを確かめます。</span></div>
+    <div class="row r3">
+      <div class="box"><h3><span class="ch">5</span>破壊力学・疲労</h3><p>J積分・応力拡大係数・寿命</p></div>
+      <div class="box"><h3><span class="ch">7</span>伝熱解析</h3><p>非定常・ふく射・熱応力</p></div>
+      <div class="box"><h3><span class="ch">11</span>各種モデリング技術</h3><p>連成・複合材・粘弾性</p></div>
+    </div>
+    <div class="down">↓ 最後に確かめる ↓</div>
+
+    <div class="band-label core">⑤ 仕上げ（信頼性）</div>
+    <div class="band-desc">得た結果を“信頼できるもの”にする工程。第10章は誤差・収束・モデルの妥当性（V&amp;V）、極限解析や統計的なばらつきの評価で「結果は信じてよいか」を確かめます。どれだけ高度に解いても、検証がなければ現場では使えません。</div>
+    <div class="row r1">
+      <div class="finish"><h3><span class="ch">10</span>解析の検証</h3><p>誤差・収束・妥当性（V&amp;V）</p></div>
+    </div>
+
+    <p class="legend">青い枠＝各章／赤い枠＝非線形FEMの背骨（非線形の3タイプと、最後の検証）。全体の流れは <b>土台(1) → 非線形の3タイプ(2・3・4) → 解く技術(8・9・6) → 現象別の解析(5・7・11) → 検証(10)</b>。矢印と「→」は“理解のつながり”で、学習する順番そのものではありません。</p>
+  </section>
+</div>

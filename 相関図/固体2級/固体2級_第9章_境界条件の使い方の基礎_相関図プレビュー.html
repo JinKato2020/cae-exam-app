@@ -1,0 +1,203 @@
+<title>固体2級 第9章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A拘束／B荷重／C対称 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>固体2級 第9章「境界条件の使い方の基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 拘束（支持・自由度・剛体運動）／B 荷重（等価節点力）／C 対称・反対称 ＋ 横串（MPC）にサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>境界条件の使い方の基礎 ― 各問の要点とキー公式</h2>
+    <p class="lead">モデルに「どこを拘束し・どんな荷重を与えるか」を物理的に正しく与える。全33問を A／B／C ＋ 横串（MPC）に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜拘束を与える（支持・自由度・剛体運動）</div>
+    <div class="track-desc">まず節点がどんな自由度（並進・回転）を持つかを押さえ、固定端・すべり支持・傾斜支持といった変位の境界条件を与える。拘束が足りないとモデル全体が動く剛体運動が残り、剛性方程式が一意に解けない。そこで剛体モードの数を数え、必要最小限の拘束でそれを止める。ここで整えた拘束が、トラックBの荷重とあわせて解析の入力になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>支持と自由度</h3>
+        <ul class="q-list">
+          <li><span class="q">9-1</span><span class="txt"><b>固定端の節点条件</b>並進のみ・回転自由度なし　<span class="f">ux=uy=uz=0</span></span></li>
+          <li><span class="q">9-3</span><span class="txt"><b>平面要素の支持</b>断面の回転は変位差で表す　<span class="f">節点は並進のみ</span></span></li>
+          <li><span class="q">9-2</span><span class="txt"><b>1点の荷重を変位から推定</b><span class="f">変位を与え反力を読む</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>斜め方向の拘束</h3>
+        <ul class="q-list">
+          <li><span class="q">9-4</span><span class="txt"><b>傾斜面を摩擦なしで滑る</b><span class="f">法線 v′=0・接線 u′自由</span></span></li>
+          <li><span class="q">9-31</span><span class="txt"><b>傾いた直線に沿う変位</b>反時計30°　<span class="f">v/u=tanθ</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>剛体運動を止める</h3>
+        <ul class="q-list">
+          <li><span class="q">9-5</span><span class="txt"><b>水平剛体並進が残る支持</b><span class="f">一意解に1点でux固定が要る</span></span></li>
+          <li><span class="q">9-23</span><span class="txt"><b>自由弾性体の剛体モード数</b>三次元　<span class="f">6（並進3＋回転3）</span></span></li>
+          <li><span class="q">9-24</span><span class="txt"><b>剛体モードの性質</b><span class="f">ひずみ・ひずみエネルギー=0</span></span></li>
+          <li><span class="q">9-25</span><span class="txt"><b>剛体運動だけを除く（2次元）</b><span class="f">並進2＋回転1=3を止める</span></span></li>
+          <li><span class="q">9-26</span><span class="txt"><b>不安定となる枠組み</b>ピンの組合せ　<span class="f">剛接合=角度保持/ピン=回転自由</span></span></li>
+          <li><span class="q">9-27</span><span class="txt"><b>残った水平並進の除去</b><span class="f">最小限に1点だけux固定</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜荷重を与える（力の境界条件 → 等価節点力）</div>
+    <div class="track-desc">外から加わる力を、節点の集中力へ正しく置き換える段。自重などの物体力や、辺・面に広がる分布荷重は、形状関数を重みにして「元の荷重と同じ仕事」になるよう各節点へ配分する（等価節点力）。一様荷重でも節点ごとの取り分は均等とは限らない。支点では外力とのモーメント釣合いから反力が決まる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>物体力・自重</h3>
+        <ul class="q-list">
+          <li><span class="q">9-6</span><span class="txt"><b>物体力の節点化</b>自重・遠心力　<span class="f">形状関数で整合荷重／配分質量</span></span></li>
+          <li><span class="q">9-11</span><span class="txt"><b>自重をQ4で配分</b>共有節点は加算　<span class="f">W=ρVg・4隅へ等分</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>辺・面の分布荷重</h3>
+        <ul class="q-list">
+          <li><span class="q">9-7</span><span class="txt"><b>一次辺の一様荷重</b>共有節点は隣接辺を加算　<span class="f">合力を両端へ1/2ずつ</span></span></li>
+          <li><span class="q">9-9</span><span class="txt"><b>三角形(線形増加)の分布荷重</b><span class="f">図心 2L/3・右節点が多く受ける</span></span></li>
+          <li><span class="q">9-12</span><span class="txt"><b>一様な法線表面力の入力</b><span class="f">辺で積分して節点力へ</span></span></li>
+          <li><span class="q">9-13</span><span class="txt"><b>二次辺の一様荷重</b>隅・中間節点　<span class="f">1/6, 2/3, 1/6</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>等価節点力の意味・反力</h3>
+        <ul class="q-list">
+          <li><span class="q">9-10</span><span class="txt"><b>等価節点力とは</b>均等配分ではない　<span class="f">Nᵢを重みに仕事等価</span></span></li>
+          <li><span class="q">9-8</span><span class="txt"><b>上辺水平荷重のピン支持反力</b><span class="f">支点回り ΣM=0 →鉛直反力</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜対称・反対称でモデルを縮小する</div>
+    <div class="track-desc">形・材料・荷重に対称性があるとき、モデルを半分や1/4に縮小して計算量を減らす段。鏡映対称の面では面を横切る変位を止め、面に沿う変位は許す。荷重が反対称なら拘束は入れ替わる（面に沿う並進を止め、法線並進は自由）。縮小しても全体が動かないか（剛体運動が残らないか）を別途確認する。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>対称面の条件</h3>
+        <ul class="q-list">
+          <li><span class="q">9-14</span><span class="txt"><b>円孔板の鏡映対称</b><span class="f">法線方向=0・面に沿う自由</span></span></li>
+          <li><span class="q">9-15</span><span class="txt"><b>軸対称円筒のz=0対称面</b><span class="f">uz=0</span></span></li>
+          <li><span class="q">9-16</span><span class="txt"><b>単純支持ばりの対称中央</b><span class="f">面横切る並進固定・軸回り回転固定</span></span></li>
+          <li><span class="q">9-22</span><span class="txt"><b>対向圧縮の1/4モデル</b><span class="f">対称面に法線固定・荷重は残る分</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>反対称・き裂</h3>
+        <ul class="q-list">
+          <li><span class="q">9-17</span><span class="txt"><b>純曲げの反対称面</b><span class="f">面に沿う並進固定・法線並進自由</span></span></li>
+          <li><span class="q">9-18</span><span class="txt"><b>き裂面と対称面の区別</b><span class="f">自由面=き裂/ uy=0=未き裂</span></span></li>
+          <li><span class="q">9-21</span><span class="txt"><b>反対称荷重のはり中央</b><span class="f">uy=0・θz自由</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>対称でも要注意</h3>
+        <ul class="q-list">
+          <li><span class="q">9-19</span><span class="txt"><b>対称でも剛体運動は別確認</b>法線だけ固定　<span class="f">全体の拘束を確認</span></span></li>
+          <li><span class="q">9-20</span><span class="txt"><b>傾いた対称境界</b>扇形　<span class="f">法線方向固定(傾斜/MPC)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 横串 -->
+    <div class="grayband">
+      <b class="gh">横串：MPC（離れた自由度どうしを式で結ぶ）― 不整合メッシュ・剛体接触・はり接続・平面保持</b>
+      <div class="grid3">
+        <ul class="q-list">
+          <li><span class="q">9-28</span><span class="txt"><b>従属自由度の消去</b>循環なしの連鎖　<span class="f">u₂=(u₁+u₃)/2（従属/独立）</span></span></li>
+          <li><span class="q">9-29</span><span class="txt"><b>不整合メッシュの接続</b><span class="f">中点＝両端の平均で連続</span></span></li>
+        </ul>
+        <ul class="q-list">
+          <li><span class="q">9-30</span><span class="txt"><b>剛体圧板への接触</b>回転せず鉛直移動　<span class="f">全接触点が同じ鉛直移動</span></span></li>
+          <li><span class="q">9-32</span><span class="txt"><b>はりと平面要素の接続</b><span class="f">回転を上下の変位差へ置換</span></span></li>
+        </ul>
+        <ul class="q-list">
+          <li><span class="q">9-33</span><span class="txt"><b>円管端の平面保持</b>温度分布・軸力0　<span class="f">断面内で軸変位を共通化</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）拘束・剛体・B（藍）荷重・C（赤）対称＋横串（灰）MPC。全33問（A拘束・剛体11・B荷重8・C対称9・横串MPC5）。</p>
+  </section>
+</div>

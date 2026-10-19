@@ -1,0 +1,96 @@
+<title>熱流体2級 全章マップ 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 熱流体2級 全11章の章間マップ(1枚)。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9; --surface: #ffffff; --ink: #1F3A65; --ink-soft: #35507f;
+    --fill: #E1E7F2; --accent: #C82D2D; --muted: #6b7280; --line: #c7d0e2; --num: #1F3A65;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: "Meiryo","Hiragino Kaku Gothic ProN", system-ui, sans-serif; line-height: 1.5; margin: 0; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left,0px)); padding-right: max(16px, env(safe-area-inset-right,0px)); padding-block: 24px 48px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 4px; }
+  .band-label { font-size: .86rem; color: #fff; background: var(--ink-soft); font-weight: 800; letter-spacing: .03em; margin: 20px 0 6px; padding: 5px 13px; border-radius: 7px; display:inline-block; }
+  .band-label.core { background: var(--accent); }
+  .band-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 0 2px 10px; }
+  .band-desc .lk { color: var(--accent); font-weight: 700; }
+  .down { text-align:center; color: var(--accent); font-size: 1rem; font-weight:700; margin: 10px 0 2px; }
+  .row { display: grid; gap: 10px; }
+  .r4 { grid-template-columns: repeat(4, 1fr); }
+  .r3 { grid-template-columns: repeat(3, 1fr); }
+  .r2 { grid-template-columns: repeat(2, 1fr); max-width: 640px; margin: 0 auto; }
+  .r1 { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.hot { border-color: var(--accent); border-width: 2px; }
+  .box h3 { margin: 0 0 4px; font-size: .9rem; color: var(--ink); display:flex; gap:7px; align-items:baseline; }
+  .box.hot h3 { color: var(--accent); }
+  .box p { margin: 0; font-size: .76rem; color: var(--ink-soft); }
+  .ch { color:#fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size:.7rem; font-weight:700; white-space:nowrap; }
+  .box.hot .ch { background: var(--accent); }
+  .finish { background: var(--fill); border: 2px solid var(--accent); border-radius: 10px; padding: 11px 14px; }
+  .finish h3 { margin:0 0 3px; font-size:.9rem; color: var(--accent); display:flex; gap:7px; align-items:baseline; }
+  .finish p { margin:0; font-size:.78rem; color: var(--ink-soft); }
+  .legend { margin-top: 16px; color: var(--muted); font-size: .78rem; line-height: 1.6; }
+  @media (max-width: 680px){ .r4, .r3 { grid-template-columns: 1fr 1fr; } .r2, .r1 { grid-template-columns: 1fr; } }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体2級「全章の相関図」（章間マップ・プレビュー）</h1>
+    <p>各章がどの役割を持ち、どこへつながるか（章どうしの関係）を1枚で示します。</p>
+  </header>
+
+  <section class="fig">
+    <h2>熱流体2級：数値流体解析（CFD）の地図</h2>
+    <p class="lead">全11章は「土台 → 解く仕組み（離散化・格子・乱流） → 使い方（条件と後処理） → 仕上げ（検証と倫理）」という一本の流れでつながっています。</p>
+
+    <div class="band-label">① 土台（数学・流れと熱の物理・計算機）</div>
+    <div class="band-desc">CFDを支える共通言語の段。第1章の数学（微分・積分・行列・固有値・フーリエ）で式を扱う力をつけ、第2章の流体力学（連続・運動量・ベルヌーイ・レイノルズ数）と第3章の熱力学・伝熱（第一法則・状態量・伝導/対流/ふく射）で「何の法則を解くのか」を押さえます。第10章の計算機（数値表現・並列・OS/言語）は、それを計算機で動かす土台です。<span class="lk">→ この支配方程式を、計算機で解ける形にするのが次の「解く仕組み」。</span></div>
+    <div class="row r4">
+      <div class="box"><h3><span class="ch">1</span>数学の基礎</h3><p>微分積分・行列・固有値・フーリエ</p></div>
+      <div class="box"><h3><span class="ch">2</span>流体力学の基礎</h3><p>連続・運動量・ベルヌーイ・Re</p></div>
+      <div class="box"><h3><span class="ch">3</span>熱力学・伝熱の基礎</h3><p>第一法則・状態量・伝熱3形態</p></div>
+      <div class="box"><h3><span class="ch">10</span>コンピュータの基礎</h3><p>数値表現・並列・OS/言語</p></div>
+    </div>
+    <div class="down">↓ 支配方程式を計算機で解ける形へ ↓</div>
+
+    <div class="band-label core">② 解く仕組み（離散化・格子・乱流）</div>
+    <div class="band-desc">連続した支配方程式を、格子の上の有限個の数値へ置き換えて解く中心部。第4章の数値計算法で微分を差分・離散化し、安定に時間を進める方法（CFL条件・陽解法/陰解法）を学びます。その計算の舞台となる格子を第5章（構造/非構造・格子品質・境界層格子）で作り、乱れた流れは第6章の乱流モデル（RANS・LES・DNS・壁関数）で扱います。<span class="lk">→ 仕組みが決まったら、どんな問題を解くかを「条件」で与え、結果を取り出します。</span></div>
+    <div class="row r3">
+      <div class="box hot"><h3><span class="ch">4</span>数値計算法</h3><p>離散化・差分・安定性・CFL</p></div>
+      <div class="box hot"><h3><span class="ch">5</span>格子生成法</h3><p>構造/非構造・格子品質・境界層</p></div>
+      <div class="box hot"><h3><span class="ch">6</span>乱流モデル</h3><p>RANS・LES・DNS・壁関数</p></div>
+    </div>
+
+    <div class="band-label">③ 使い方（条件設定と後処理）</div>
+    <div class="band-desc">解きたい具体的な問題を計算に落とし込む段。第7章の境界条件で、流入・流出・壁・対称・温度/熱流束など「周囲から何が入ってくるか」を正しく与えます。計算が終わったら第8章のポスト処理で、平均・流量・積分量・可視化として必要な量を取り出します。<span class="lk">→ 取り出した結果が本当に信頼できるかを、最後に確かめます。</span></div>
+    <div class="row r2">
+      <div class="box"><h3><span class="ch">7</span>境界条件</h3><p>流入出・壁・対称・温度/熱流束</p></div>
+      <div class="box"><h3><span class="ch">8</span>ポスト処理の基礎</h3><p>平均・流量・積分量・可視化</p></div>
+    </div>
+    <div class="down">↓ 最後に確かめる・責任を持つ ↓</div>
+
+    <div class="band-label core">④ 仕上げ（信頼性と倫理）</div>
+    <div class="band-desc">結果を“信頼して使えるもの”にする工程。第9章の検証方法（格子収束・検証と妥当性V&amp;V・残差）で「計算は正しく解けているか・現実と合うか」を確かめます。第11章の技術者倫理（契約・守秘・公衆の安全・通報）は、その結果を社会で扱ううえでの責任です。どれだけ高度に解いても、検証と倫理がなければ現場では使えません。</div>
+    <div class="row r2">
+      <div class="finish"><h3><span class="ch">9</span>結果の検証方法の基礎</h3><p>格子収束・V&amp;V・残差</p></div>
+      <div class="finish"><h3><span class="ch">11</span>計算力学技術者倫理</h3><p>契約・守秘・公衆の安全</p></div>
+    </div>
+
+    <p class="legend">青い枠＝各章／赤い枠＝CFDの背骨（解く仕組みと、最後の検証・倫理）。全体の流れは <b>土台(1・2・3・10) → 解く仕組み(4・5・6) → 使い方(7・8) → 仕上げ(9・11)</b>。矢印と「→」は“理解のつながり”で、学習する順番そのものではありません。</p>
+  </section>
+</div>

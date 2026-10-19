@@ -1,0 +1,167 @@
+<title>固体2級 第6章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A直接法／B反復法・分類／C数値積分 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>固体2級 第6章「数値計算法の基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 連立方程式を解く（直接法）／B 反復法と分類／C 数値積分 ＋ 横串（補間）に整理。</p>
+  </header>
+
+  <section class="fig">
+    <h2>数値計算法の基礎 ― 各問の要点とキー公式</h2>
+    <p class="lead">有限要素法の方程式を「正しく・効率よく解く」裏側の技術。全15問を A／B／C ＋ 横串（補間）に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜連立方程式を解く（直接法）</div>
+    <div class="track-desc">有限要素法で作られる大きな連立方程式 Au=b を、消去と代入で解く方法。剛性行列は0が多い疎行列なので、バンド法・スカイライン法は非零成分が対角の近くに集まるよう節点番号を付けて計算量を減らす。ガウスの消去法は前進消去で下三角を0にし後退代入で解き、三角分解 A=LU は一度分けておけば複数の荷重ケースを少ない手間で解ける。この効率の工夫がBの反復法との比較につながる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>疎行列と番号付け</h3>
+        <ul class="q-list">
+          <li><span class="q">6-1</span><span class="txt"><b>疎行列を扱う直接解法</b><span class="f">バンド・スカイライン・疎行列用</span></span></li>
+          <li><span class="q">6-2</span><span class="txt"><b>節点番号とバンド幅</b><span class="f">番号を近付けると帯が狭い</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>ガウスの消去法</h3>
+        <ul class="q-list">
+          <li><span class="q">6-3</span><span class="txt"><b>前進消去＋後退代入</b><span class="f">下三角を0 → 下の式から戻す</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>三角分解（LU）</h3>
+        <ul class="q-list">
+          <li><span class="q">6-4</span><span class="txt"><b>三角分解と荷重ケース</b><span class="f">A=LU（1回分けて使い回す）</span></span></li>
+          <li><span class="q">6-5</span><span class="txt"><b>LU分解の計算</b>L対角=1　<span class="f">Uの第1行＝元の行列と同じ</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜反復法と解法の分類</div>
+    <div class="track-desc">直接法のほかに、近似解を繰り返し更新して残差 r=b−Ax を小さくしていく反復法がある。疎で大きな問題では、行列とベクトルの積が中心なので記憶量・計算量を抑えやすい。解法は「消去・分解で解く直接法」と「繰り返し更新する反復法」に分かれ、行列が疎か密かという分類とは別の軸であることを区別する。</div>
+    <div class="box">
+      <h3>反復法の費用と、直接法／反復法の分類</h3>
+      <ul class="q-list">
+        <li><span class="q">6-6</span><span class="txt"><b>反復法の費用</b>疎で大規模に有利　<span class="f">残差 r=b−A x を小さくする</span></span></li>
+        <li><span class="q">6-7</span><span class="txt"><b>直接法と反復法の分類</b><span class="f">反復＝GS・ICCG・GMRES／直接＝スカイライン・マルチフロンタル</span></span></li>
+      </ul>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜数値積分（要素剛性を積分で作る）</div>
+    <div class="track-desc">要素剛性行列は、要素内の寄与を積分して求める。解析的に積分しにくくても、いくつかの積分点での値に重みを掛けて足せば近似できる。ガウス・ルジャンドル積分は内部の点を使い、n点で2n−1次までの多項式を厳密に積分できる。閉型ニュートン・コーツは両端を含む点を使い、シェルの板厚方向など両表面の値が要る場合に向く。積分点数は要素の形や次数に合わせて選ぶ。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>積分点の配置と精度</h3>
+        <ul class="q-list">
+          <li><span class="q">6-8</span><span class="txt"><b>点の配置の違い</b><span class="f">ガウス=内部点／閉型N-C=両端含む</span></span></li>
+          <li><span class="q">6-11</span><span class="txt"><b>ガウス積分の精度と用途</b><span class="f">n点で2n−1次まで厳密</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>要素剛性・板厚の積分</h3>
+        <ul class="q-list">
+          <li><span class="q">6-9</span><span class="txt"><b>要素剛性の数値積分</b><span class="f">積分点の値の重み付き和</span></span></li>
+          <li><span class="q">6-10</span><span class="txt"><b>板厚積分（シンプソン型）</b>両表面を点に　<span class="f">M=∫σ z dz</span></span></li>
+          <li><span class="q">6-13</span><span class="txt"><b>要素別の積分点数</b><span class="f">要素・次数に合わせて選ぶ</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>二点ガウスの計算</h3>
+        <ul class="q-list">
+          <li><span class="q">6-12</span><span class="txt"><b>二点ガウス積分の計算</b>区間変換して代入　<span class="f">I≈(b−a)/2·Σwᵢf → 6/7</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 横串 -->
+    <div class="grayband">
+      <b class="gh">横串：補間（点の値から関数を作る）</b>
+      <ul class="q-list">
+        <li><span class="q">6-14</span><span class="txt"><b>値と傾きの補間</b>ラグランジュとエルミートの違い　<span class="f">n点の値→高々n−1次／値＋傾き=2n条件</span></span></li>
+        <li><span class="q">6-15</span><span class="txt"><b>三点補間</b>二次ラグランジュで x=1　<span class="f">y=N₁y₁+N₂y₂+N₃y₃ → 2</span></span></li>
+      </ul>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）直接法・B（藍）反復法と分類・C（赤）数値積分＋横串（灰）補間。全15問（A5・B2・C6・横串2）。</p>
+  </section>
+</div>

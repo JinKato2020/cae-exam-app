@@ -1,0 +1,179 @@
+<title>固体1級 第10章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー用語を A検証／B品質／C妥当性 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>固体1級 第10章「解析の検証」相関図（プレビュー）</h1>
+    <p>各問の要点を、A 非線形解析を検証する／B 解析の品質マネジメント／C 検証と妥当性確認（V&amp;V） の3トラックに整理して配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>解析の検証 ― 各問の要点とキー用語</h2>
+    <p class="lead">非線形解析の結果を「信じてよいか」確かめる。理論解・実験との照合、品質マネジメント、検証と妥当性確認の全22問を整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜非線形解析を検証する（理論解・実験と照合）</div>
+    <div class="track-desc">いきなり複雑な非線形問題を解かず、単純な問題で機能を確認し、線形モデルを確かめてから非線形へ進みます。極限解析の崩壊荷重、座屈モード、クリープの応力再分布、溶接残留応力、繰返しの硬化則などを、理論の仮定とFEMの離散化誤差を分けて照合します。実験にもばらつきがあるので、個々の値と平均のばらつきを区別して評価します。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>検証の進め方</h3>
+        <ul class="q-list">
+          <li><span class="q">10-1</span><span class="txt"><b>非線形解析の望ましい手順</b><span class="f">機能確認→線形→非線形→感度</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>極限解析・崩壊荷重</h3>
+        <ul class="q-list">
+          <li><span class="q">10-2</span><span class="txt"><b>円板の極限解析と比較の条件</b><span class="f">弾完全塑性FEM・微小変形</span></span></li>
+          <li><span class="q">10-3</span><span class="txt"><b>極限解析のメッシュ精度</b><span class="f">縦横比・pc=7.488MPa</span></span></li>
+          <li><span class="q">10-4</span><span class="txt"><b>パンチング問題の極限荷重</b><span class="f">領域・増分細分・上界性</span></span></li>
+          <li><span class="q">10-5</span><span class="txt"><b>片持ちはりの崩壊荷重</b>中央積分点　<span class="f">P=10Mp/(9L)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>座屈・クリープ・溶接・硬化</h3>
+        <ul class="q-list">
+          <li><span class="q">10-6</span><span class="txt"><b>座屈モードと対称条件</b>反対称モード除外　<span class="f">k=(mb/a+a/mb)²</span></span></li>
+          <li><span class="q">10-7</span><span class="txt"><b>定常クリープ則と応力再分布</b><span class="f">ε̇=kσⁿ・再分布後を照合</span></span></li>
+          <li><span class="q">10-8</span><span class="txt"><b>溶接残留応力の解析手順</b><span class="f">非定常温度→熱弾塑性（片方向）</span></span></li>
+          <li><span class="q">10-9</span><span class="txt"><b>繰返し荷重と硬化則</b>バウシンガー　<span class="f">移動＋等方＝複合硬化</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>実験比較と統計</h3>
+        <ul class="q-list">
+          <li><span class="q">10-10</span><span class="txt"><b>実験との比較の注意点</b><span class="f">実験のばらつき＋条件差</span></span></li>
+          <li><span class="q">10-11</span><span class="txt"><b>測定値と平均のばらつき</b><span class="f">個々 sx・平均 sx/√n</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜解析の品質マネジメント（ISO9001・プロセス・記録）</div>
+    <div class="track-desc">品質は、高機能なソフトウェアや高速な計算機だけでは支えられません。ソフトウェアの検証・適切なプロセス・力量ある要員を柱に、PDCAで手順を改善します。契約内容の確認から実行計画書・解析計画書、そして結果をたどれるトレーサビリティの記録まで、工程と記録を標準化して品質を保ちます。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>品質の柱・PDCA・力量</h3>
+        <ul class="q-list">
+          <li><span class="q">10-12</span><span class="txt"><b>工学シミュレーションのPDCA</b><span class="f">計画・実施・確認・改善</span></span></li>
+          <li><span class="q">10-13</span><span class="txt"><b>品質マネジメントの3要素</b><span class="f">ソフト検証・プロセス・力量要員</span></span></li>
+          <li><span class="q">10-15</span><span class="txt"><b>解析要員の力量</b><span class="f">知識・技能を実問題へ適用</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>業務プロセス・計画書</h3>
+        <ul class="q-list">
+          <li><span class="q">10-16</span><span class="txt"><b>標準実施手順</b><span class="f">契約確認→解析計画書→妥当性確認</span></span></li>
+          <li><span class="q">10-17</span><span class="txt"><b>契約内容の確認</b><span class="f">納期・金額・業務範囲・瑕疵担保</span></span></li>
+          <li><span class="q">10-18</span><span class="txt"><b>実行計画書と解析計画書</b><span class="f">解析計画に検証・妥当性確認法も</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>委託・記録・検証時期</h3>
+        <ul class="q-list">
+          <li><span class="q">10-14</span><span class="txt"><b>アウトソーシングと品質保証</b><span class="f">社内に準じる品質活動を要求</span></span></li>
+          <li><span class="q">10-21</span><span class="txt"><b>トレーサビリティ</b><span class="f">履歴を追う記録の作成・保持</span></span></li>
+          <li><span class="q">10-22</span><span class="txt"><b>購入ソフトの検証時期</b><span class="f">購入・ハード/OS/ソフト更新時</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜検証と妥当性確認（V&amp;V ― 結果は信じてよいか）</div>
+    <div class="track-desc">検証（Verification）は計画した解析を論理的・数値的に正しく実施したか、妥当性確認（Validation）は意図する工学用途に使えるかを問う、異なる二つの確認です。収束しただけでは用途に合う保証にならず、工学式・理論解・実験・妥当性確認済みの類似解との独立した比較で確かめます。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>検証と妥当性確認の区別</h3>
+        <ul class="q-list">
+          <li><span class="q">10-19</span><span class="txt"><b>検証(V)と妥当性確認(V)</b><span class="f">検証＝入力と結果の正しさ／妥当性＝用途</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>妥当性確認の方法</h3>
+        <ul class="q-list">
+          <li><span class="q">10-20</span><span class="txt"><b>妥当性確認の方法</b>収束確認は検証　<span class="f">工学式・実験・確認済み類似解と比較</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー用語/公式</span>／A（青）非線形解析の検証・B（藍）品質マネジメント・C（赤）検証と妥当性確認。全22問（A11・B9・C2）。</p>
+  </section>
+</div>

@@ -1,0 +1,156 @@
+<title>熱流体1級 第8章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級 第8章「結果と評価」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 実験で測って比べる／B モデル・スキームの妥当性／C 誤差と検証 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>結果と評価 ― 各問の要点とキー公式</h2>
+    <p class="lead">CFDの結果が信頼できるかを「測る・比べる・妥当性を調べる」。全14問を A（計測と比較）／B（モデル・スキーム評価）／C（誤差と検証）に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜実験で測って比べる（計測法と比較の作法）</div>
+    <div class="track-desc">検証には信頼できる実験データが要る。測りたいものに合う計測器を選び（面全体はPIV、局所の乱れは熱線、測定孔は応答周波数に注意）、CFDと比べるときは断面・座標・統計量をそろえる。瞬時どうしは一致しないので時間平均と集団平均を対応させる。ここで得た基準が、トラックB・Cのモデル評価と誤差判定の土台になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>計測器の選定</h3>
+        <ul class="q-list">
+          <li><span class="q">8-1</span><span class="txt"><b>圧力測定孔の応答周波数</b>忠実計測は十分低い周波数で　<span class="f">f≪f₀=(c/2π)√(πd²/4LV)</span></span></li>
+          <li><span class="q">8-2</span><span class="txt"><b>流速測定法の選定</b>大域=面／局所乱れ=点　<span class="f">PIV・熱線流速計</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>実験とCFDの比較</h3>
+        <ul class="q-list">
+          <li><span class="q">8-8</span><span class="txt"><b>遠心ポンプのPIV×CFD比較</b>断面・座標・統計量をそろえる　<span class="f">座標変換・時間平均・ストローハル数</span></span></li>
+          <li><span class="q">8-6</span><span class="txt"><b>LES結果と他データの比較</b>瞬時どうしは比べない　<span class="f">時間平均＝集団平均（エルゴード性）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜モデル・スキームの妥当性を評価する</div>
+    <div class="track-desc">得られた流れ場が、選んだ乱流モデルと離散化スキームの限界をどう映すかを読み解く。等方渦粘性の標準k-εは、はく離・旋回・よどみ点で誤りやすく、非等方性を扱うモデルが要る場面がある。対流項の離散化では、数値拡散で角がなまり分散で振動が出て、1次風上は2次流れを弱める。格子解像度の不足も平均場をずらす。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>乱流モデルの限界（はく離・旋回）</h3>
+        <ul class="q-list">
+          <li><span class="q">8-5</span><span class="txt"><b>薄翼のk-ε失速予測</b>失速角が過大・低下が緩慢　<span class="f">渦粘性で前縁はく離が遅れる</span></span></li>
+          <li><span class="q">8-7</span><span class="txt"><b>サイクロンの旋回速度分布</b>全域強制渦と誤予測　<span class="f">ランキン渦・乱れの非等方性</span></span></li>
+          <li><span class="q">8-11</span><span class="txt"><b>建物まわり k-ε vs ASM</b>前面よどみで生成過大→上面はく離消失　<span class="f">渦粘性近似の限界・ASMで改善</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>対流スキームと格子解像</h3>
+        <ul class="q-list">
+          <li><span class="q">8-4</span><span class="txt"><b>移流スキームと波形の対応</b>鋭い/なまる/振動　<span class="f">CIP・1次風上・Lax-Wendroff（拡散と分散）</span></span></li>
+          <li><span class="q">8-9</span><span class="txt"><b>曲がり管の第1種2次流れ</b>1次風上の数値粘性で弱い　<span class="f">数値粘性→QUICK等の高次へ</span></span></li>
+          <li><span class="q">8-12</span><span class="txt"><b>平行平板LESのU⁺ずれ</b>流れ・スパン格子不足でu_τ過小　<span class="f">U⁺=U/u_τ・y⁺≈1</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜誤差と検証（Verification &amp; Validation）</div>
+    <div class="track-desc">数値解の誤差を離散化・収束・モデリングに分け、格子を細かくして収束を確認する（Verification）一方、実験と比べて現象への妥当性を確かめる（Validation）。格子収束の先が実験値に一致するとは限らず、最も近い格子を選ぶのは誤り。絶対値にずれがあっても共通バイアスが相殺される相対比較は形状最適化に有効で、代表的な検証例題で適用範囲と精度を把握する。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>検証と妥当性確認</h3>
+        <ul class="q-list">
+          <li><span class="q">8-3</span><span class="txt"><b>格子細分化と実験比較の誤り</b>収束先≠実験値　<span class="f">格子収束とモデル誤差を分ける</span></span></li>
+          <li><span class="q">8-13</span><span class="txt"><b>3つの誤差の対応</b>離散化・収束・モデリング　<span class="f">離散化(1)(ウ)/収束(3)(イ)/モデリング(2)(ア)</span></span></li>
+          <li><span class="q">8-14</span><span class="txt"><b>プログラム検証の例題</b>解析解／再付着／空気力　<span class="f">ポアズイユ・バックステップ・円柱角柱</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>相対評価の活用</h3>
+        <ul class="q-list">
+          <li><span class="q">8-10</span><span class="txt"><b>自動車模型の抗力予測精度</b>極端形状を除けば実験と相関　<span class="f">共通バイアス誤差は相対比較で相殺</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）計測と比較・B（藍）モデル・スキーム評価・C（赤）誤差と検証。全14問（A4・B6・C4）。</p>
+  </section>
+</div>

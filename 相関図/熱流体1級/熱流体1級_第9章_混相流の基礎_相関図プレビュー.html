@@ -1,0 +1,176 @@
+<title>熱流体1級 第9章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A特徴づけ量と流動様式／B 界面・相互作用／C 圧力損失・音速 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級 第9章「混相流の基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 二相流を特徴づける量と流動様式／B 界面・相互作用と流動特性／C 圧力損失・混相流中の音速 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>混相流の基礎 ― 各問の要点とキー公式</h2>
+    <p class="lead">気液二相流を無次元数・流束・ボイド率で捉え、界面の相互作用から圧力損失・音速・ノズル/沸騰流れまで整理。全19問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜二相流を特徴づける量と流動様式</div>
+    <div class="track-desc">混相流はまず各相の割合と速度を表す量で記述する。気泡に働く4力の比を無次元数にまとめ（Re・We・Fr・Eo）、次元解析で独立な支配群の数を押さえる。さらに見かけ速度（体積流束）・クオリティ・ボイド率という基本量と、上昇流で現れる流動様式のうつり変わりが、B の界面現象や C の圧力損失・音速を扱う土台になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>無次元数と相似</h3>
+        <ul class="q-list">
+          <li><span class="q">9-1</span><span class="txt"><b>4つの力の比＝無次元数の対応づけ</b><span class="f">Re=ρLVd/μL, We=ρLV²d/σ, Eo=Δρgd²/σ</span></span></li>
+          <li><span class="q">9-2</span><span class="txt"><b>π定理で独立な支配群の数</b><span class="f">量6−次元3=3群、V を除くと2群</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>流動様式</h3>
+        <ul class="q-list">
+          <li><span class="q">9-3</span><span class="txt"><b>上昇でボイド率増→様式が変化</b><span class="f">気泡流→スラグ流→環状噴霧流</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>流束・クオリティ・ボイド率</h3>
+        <ul class="q-list">
+          <li><span class="q">9-5</span><span class="txt"><b>見かけ速度＝全断面積で割る</b><span class="f">jk=Qk/A（実速度=jk/αk）</span></span></li>
+          <li><span class="q">9-6</span><span class="txt"><b>クオリティ＝気相の質量流束割合</b><span class="f">x=ρ1α1v1/(ρ1α1v1+ρ2α2v2)</span></span></li>
+          <li><span class="q">9-7</span><span class="txt"><b>x・密度比・スリップからボイド率</b><span class="f">α=x/{x+(1−x)(ρG/ρL)S}</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜界面・相互作用と流動特性</div>
+    <div class="track-desc">各相は界面を介して運動量をやり取りする。環状流の界面せん断は気相密度と相対速度の二乗で決まり、気泡の上昇速度は抗力と浮力の釣合いで定まってボイド率を左右する。ボイド率は界面摩擦・位置圧力降下・相速度と結びつき、分散系では粒径分布（ザウター径）や見かけ粘性に効く。A で定義した量を、現実の相互作用へつなぐトラック。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>界面せん断・気泡上昇</h3>
+        <ul class="q-list">
+          <li><span class="q">9-4</span><span class="txt"><b>界面せん断は相対速度²に比例</b><span class="f">τi=½Cf ρG(uG−uL)²</span></span></li>
+          <li><span class="q">9-8</span><span class="txt"><b>気泡径増→気相速度増→ボイド率減</b><span class="f">α=Gx/(uGρG), CD∝1/d</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>ボイド率と流動特性</h3>
+        <ul class="q-list">
+          <li><span class="q">9-9</span><span class="txt"><b>ボイド率と界面摩擦・圧力降下・速度</b><span class="f">JG=αVG, Cf=0.005(1+300δ/D)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>粒径分布・見かけ粘性</h3>
+        <ul class="q-list">
+          <li><span class="q">9-10</span><span class="txt"><b>平均径＝1次、ザウター径＝3次/2次</b><span class="f">D32=∫D³f dD / ∫D²f dD</span></span></li>
+          <li><span class="q">9-13</span><span class="txt"><b>希薄気泡で見かけ分子粘性が増加</b><span class="f">μeff=μ(1+kα)（アインシュタイン型）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜圧力損失・混相流中の音速</div>
+    <div class="track-desc">配管設計で要る摩擦圧力損失は、均質流の単相形や二相増倍係数（Chisholm 式）で評価する。混相流の音速は剛性でなく圧縮率が体積割合で足し合わされる（Wood の式）ため各相よりはるかに小さくなり、閉塞や沸騰流れの判断につながる。A・B の量を使って、圧力・音速・ノズル/沸騰の実問題を解くトラック。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>圧力損失</h3>
+        <ul class="q-list">
+          <li><span class="q">9-11</span><span class="txt"><b>均質流の摩擦圧力勾配</b><span class="f">−dP/dz=λTP(1/D)(G²/2ρH)</span></span></li>
+          <li><span class="q">9-12</span><span class="txt"><b>二相増倍係数で液相のみ値を補正</b><span class="f">ΦL²=1+20/X+1/X², X=√(ΔPLO/ΔPGO)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>混相流中の音速</h3>
+        <ul class="q-list">
+          <li><span class="q">9-14</span><span class="txt"><b>状態方程式を微分して音速</b><span class="f">CS²=γ{RT/(1−ρb)²−2aρ}</span></span></li>
+          <li><span class="q">9-15</span><span class="txt"><b>圧縮率が体積割合で加算（Wood）</b><span class="f">1/(ρCS²)=(1−α)/(ρLCsL²)+α/(ρGCsG²)</span></span></li>
+          <li><span class="q">9-16</span><span class="txt"><b>分散性・ボイド率依存・断熱＞等温</b><span class="f">a=√{P/(α(1−α)ρL)}（等温平衡）</span></span></li>
+          <li><span class="q">9-17</span><span class="txt"><b>α=0.5付近で音速が極小</b><span class="f">a=√{P/(α(1−α)ρL)}≈20 m/s</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>ノズル流れ・沸騰</h3>
+        <ul class="q-list">
+          <li><span class="q">9-18</span><span class="txt"><b>気泡膨張が液を加速→スロート流速増</b><span class="f">均質モデル・スロートで二相音速→閉塞</span></span></li>
+          <li><span class="q">9-19</span><span class="txt"><b>加熱項とサブクール項の差</b><span class="f">xe=(1/ΔhV)(4qL/GD−cplΔTSUB)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）特徴づけ量と流動様式・B（藍）界面・相互作用・C（赤）圧力損失・音速。全19問（A6・B5・C8）。</p>
+  </section>
+</div>

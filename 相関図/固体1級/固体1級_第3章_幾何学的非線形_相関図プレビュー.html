@@ -1,0 +1,172 @@
+<title>固体1級 第3章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A考え方／B接線剛性／C座屈 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>固体1級 第3章「幾何学的非線形」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 考え方（いつ・なぜ）／B 接線剛性で解く／C 座屈・不安定 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>幾何学的非線形 ― 各問の要点とキー公式</h2>
+    <p class="lead">変形後の形・向き・初期応力が力の伝わり方を変える。全15問を「いつ必要か → どう解くか → 不安定をどう見るか」で整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜考え方（いつ・なぜ幾何学的非線形か）</div>
+    <div class="track-desc">まず、軸伸びだけの線形計算でよいか、幾何剛性や大回転を考えるべきかを見分ける。参照する形を変形前に固定する TL 法と、更新する UL 法は、構成式を正しく変換すれば同じ解を表す。応力・ひずみの測度（第2種 PK 応力 S とグリーンひずみ E など）を正しく組にしないと別の材料になってしまう点が、B の定式化の前提になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>非線形の要否・近似の範囲</h3>
+        <ul class="q-list">
+          <li><span class="q">3-1</span><span class="txt"><b>幾何学的非線形性の要否判別</b>鉛直ワイヤの軸力<span class="f">軸応力σ=P/A（幾何剛性不要）</span></span></li>
+          <li><span class="q">3-2</span><span class="txt"><b>大変位・大回転・微小ひずみ</b>薄い定規のしなり<span class="f">F=RU, U≈I</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>従動力と参照配置（TL／UL）</h3>
+        <ul class="q-list">
+          <li><span class="q">3-3</span><span class="txt"><b>従動力と荷重剛性マトリックス</b>変形に追従する外力<span class="f">従動力：荷重剛性は非対称</span></span></li>
+          <li><span class="q">3-5</span><span class="txt"><b>TL法とUL法の等価性</b>構成式を配置変換<span class="f">TL＝UL（同じ釣合い解）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>応力・ひずみ測度と材料則</h3>
+        <ul class="q-list">
+          <li><span class="q">3-6</span><span class="txt"><b>剛体回転と主応力方向</b>S は材料方向で測る<span class="f">S の主方向は基準 X₁</span></span></li>
+          <li><span class="q">3-7</span><span class="txt"><b>異なる材料則を置いたときの荷重</b>別材料になる<span class="f">S=EE₁₁ と T=E ln λ</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜接線剛性で解く（仮想仕事・幾何剛性）</div>
+    <div class="track-desc">釣合いは仮想仕事 ∫S δE dV=F δu から導き、水平トラスのように初期張力がない構造はたわむほど硬くなる非線形の軸力を持つ。これを増分・反復で解くための接線剛性は、材料の硬さ（基本・初期変位）と、今の応力が生む幾何剛性 KG を足したもの。接線剛性の固有値が 0 や負になる状態が、C の座屈・不安定の入口になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>仮想仕事と釣合い式</h3>
+        <ul class="q-list">
+          <li><span class="q">3-4</span><span class="txt"><b>一軸トラスの仮想仕事から釣合い式</b>たわむほど硬い<span class="f">F=EAu³/(2L³)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>接線剛性の構成</h3>
+        <ul class="q-list">
+          <li><span class="q">3-8</span><span class="txt"><b>TL法接線剛性の構成</b>材料＋幾何剛性<span class="f">K_T=K₀+K_L+K_G</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>接線剛性の性質</h3>
+        <ul class="q-list">
+          <li><span class="q">3-9</span><span class="txt"><b>接線剛性の正定値性</b>0・負の固有値<span class="f">固有値0で正定値性を失う</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜座屈・不安定を見極める</div>
+    <div class="track-desc">座屈は材料が降伏しなくても、形と力の釣合いが不安定になって起こる。真直柱の分岐座屈と浅いアーチの飛移り座屈を区別し、端部条件で有効座屈長が変わることを押さえる。線形座屈は固有値問題 (K₀+λKG)φ=0 で臨界荷重 λP を求める近似で、座屈前に形が大きく変わる構造（浅いアーチ等）には使えない点に注意する。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>座屈の分類と境界条件</h3>
+        <ul class="q-list">
+          <li><span class="q">3-10</span><span class="txt"><b>座屈現象の分類</b>柱＝分岐／アーチ＝飛移り<span class="f">分岐座屈・飛移り座屈</span></span></li>
+          <li><span class="q">3-11</span><span class="txt"><b>境界条件と座屈荷重の大小</b>有効座屈長 Le<span class="f">Pcr=π²EI/Le²</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>線形座屈の固有値と適用限界</h3>
+        <ul class="q-list">
+          <li><span class="q">3-14</span><span class="txt"><b>線形座屈の固有値問題</b>倍率が臨界<span class="f">K₀φ=−λKGφ, Pcr=λP</span></span></li>
+          <li><span class="q">3-12</span><span class="txt"><b>幾何学的非線形と座屈解析の適用条件</b>臨界点で特異<span class="f">線形座屈の適用限界</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>分岐の概念と不適切な例</h3>
+        <ul class="q-list">
+          <li><span class="q">3-13</span><span class="txt"><b>分岐座屈で適切でない記述</b>分岐後も荷重増加あり<span class="f">分岐点 ≠ 最大荷重点</span></span></li>
+          <li><span class="q">3-15</span><span class="txt"><b>線形座屈解析が不適切な例</b>座屈前に大きく曲がる<span class="f">浅いアーチ＝座屈前が非線形</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）考え方・B（藍）接線剛性で解く・C（赤）座屈・不安定。全15問（A6・B3・C6）。</p>
+  </section>
+</div>

@@ -1,0 +1,192 @@
+<title>固体2級 第3章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A基本法則／B温度分布／C熱通過 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>固体2級 第3章「熱伝導の基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 基本法則／B 温度分布を求める／C 熱通過と対流 ＋ 横串（境界条件）に整理。</p>
+  </header>
+
+  <section class="fig">
+    <h2>熱伝導の基礎 ― 各問の要点とキー公式</h2>
+    <p class="lead">固体内を熱がどう伝わり、温度分布がどう決まるかを調べる。全17問を A／B／C ＋ 横串（境界条件）に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜熱伝導の基本法則（しくみを押さえる）</div>
+    <div class="track-desc">まず熱の伝わり方の基本を押さえる。フーリエ則は、温度勾配に比例して高温側から低温側へ熱が流れる関係で、熱流束 q＝−λ∇T。構造解析の「変位→ひずみ→応力→外力」と同じ役割の量が熱側にもある（温度→勾配→熱流束→発熱）。定常状態は時間が経っても温度が変わらない状態で、物体内部の λ と表面の h の違いも区別する。これがB・Cの温度分布計算の入口になる。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>フーリエ則</h3>
+        <ul class="q-list">
+          <li><span class="q">3-1</span><span class="txt"><b>勾配2倍で熱流束2倍</b>比例関係　<span class="f">q=−λ∇T</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>構造解析との対応</h3>
+        <ul class="q-list">
+          <li><span class="q">3-2</span><span class="txt"><b>役割が同じ量の対応</b>変位⇔温度　<span class="f">温度/勾配/熱流束/発熱</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>定常状態</h3>
+        <ul class="q-list">
+          <li><span class="q">3-3</span><span class="txt"><b>定常熱伝導で得る温度分布</b><span class="f">時間変化なしの落ち着いた分布</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>λ と h の違い</h3>
+        <ul class="q-list">
+          <li><span class="q">3-13</span><span class="txt"><b>熱伝導率と熱伝達率</b><span class="f">λ=内部／h=表面と流体の間</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜温度分布を求める（平板・円筒・発熱）</div>
+    <div class="track-desc">固体内部の温度が位置によってどう変わるかを求める。発熱のない定常では、どの断面も同じ熱流量を通すので、平板は直線・円筒は面積が増える分だけ対数曲線になる。界面では温度が連続し、勾配は 1/λ に比例して層ごとに変わる。内部発熱があると熱流束が位置とともに増え、温度分布は曲線になる。求めた分布や熱流束は、報告値の検算にも使う。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>平板と円筒の分布</h3>
+        <ul class="q-list">
+          <li><span class="q">3-4</span><span class="txt"><b>平板は直線・円筒は曲線</b>同じ熱流量　<span class="f">面積↑で熱流束↓</span></span></li>
+          <li><span class="q">3-5</span><span class="txt"><b>界面で変わる傾き</b>温度は連続　<span class="f">勾配∝1/λ（3λ層は緩・λ層は急）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>内部発熱のある壁</h3>
+        <ul class="q-list">
+          <li><span class="q">3-7</span><span class="txt"><b>内部発熱のある平板</b>両面同温　<span class="f">λT″+H=0 → 放物線</span></span></li>
+          <li><span class="q">3-8</span><span class="txt"><b>流入＋発熱の温度曲線</b><span class="f">q(x)=q₀+Hx</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>円筒の検算</h3>
+        <ul class="q-list">
+          <li><span class="q">3-9</span><span class="txt"><b>解析報告の熱流束を検算</b>内半径a・外半径b　<span class="f">q_b=λ(T₁−T₂)/[b ln(b/a)]</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜熱通過と対流（流体＋壁をまとめて評価）</div>
+    <div class="track-desc">流体・壁・流体を熱が通り抜ける全体を、一つの係数でまとめて評価する。熱通過率 K は両側流体の温度差と熱流束を q＝K(T_h−T_c) で結び、1/K は各区間の熱抵抗（対流・伝導）の足し算。分母 1/K が小さい案ほど熱がよく通る。対流では温度差 ΔT＝q/h で、h が大きい側ほど温度差が小さい。円筒では面積 2πrL が内外で違うため、同じ熱流量でも内外の温度差が変わる。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>熱通過率 K</h3>
+        <ul class="q-list">
+          <li><span class="q">3-10</span><span class="txt"><b>熱通過率Kを組み立てる</b>対流＋伝導＋対流　<span class="f">1/K=1/h_h+t/λ+1/h_c</span></span></li>
+          <li><span class="q">3-11</span><span class="txt"><b>改善案をKで比べる</b><span class="f">分母1/Kが最小の案が有利</span></span></li>
+          <li><span class="q">3-12</span><span class="txt"><b>二層壁と二つの流体</b><span class="f">1/K=1/h₁+d₁/λ₁+d₂/λ₂+1/h₂</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>対流の温度差</h3>
+        <ul class="q-list">
+          <li><span class="q">3-14</span><span class="txt"><b>流体から流体までの分布</b>h₁=4h₂　<span class="f">ΔT=q/h（h大→差小）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>円筒の内外対流</h3>
+        <ul class="q-list">
+          <li><span class="q">3-15</span><span class="txt"><b>内外の温度差を比較</b>b=1.5a　<span class="f">Q=hAΔT（A=2πrL）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 横串 -->
+    <div class="grayband">
+      <b class="gh">横串：境界条件の与え方（どこにどの条件を置くか）</b>
+      <div class="grid3">
+        <ul class="q-list">
+          <li><span class="q">3-6</span><span class="txt"><b>境界ごとに等温線を点検</b>断熱＝横切る熱0　<span class="f">q·n=0</span></span></li>
+        </ul>
+        <ul class="q-list">
+          <li><span class="q">3-16</span><span class="txt"><b>対称面の熱境界</b>半分モデル　<span class="f">対称面は断熱</span></span></li>
+        </ul>
+        <ul class="q-list">
+          <li><span class="q">3-17</span><span class="txt"><b>配管の熱境界条件</b>流体接触面　<span class="f">熱伝達境界 q=h(T−T_f)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）基本法則・B（藍）温度分布・C（赤）熱通過＋横串（灰）境界条件。全17問（A4・B5・C5・横串3）。</p>
+  </section>
+</div>

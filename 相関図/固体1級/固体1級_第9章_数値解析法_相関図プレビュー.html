@@ -1,0 +1,163 @@
+<title>固体1級 第9章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>固体1級 第9章「数値解析法」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 固有値問題を解く／B 連立一次方程式を解く／C 非線形方程式を解く の3トラック＋横串に整理して配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>数値解析法 ― 各問の要点とキー公式</h2>
+    <p class="lead">有限要素法の内部で行う行列計算（固有値・連立方程式・非線形反復）を解く技術。全14問を A／B／C ＋ 横串（並列計算）に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜固有値問題を解く（固有振動・座屈）</div>
+    <div class="track-desc">固有振動や座屈の解析では、大規模な行列から必要な固有値・固有ベクトルを求める。自由度が非常に大きい場合は、少数の試行ベクトルをまとめて反復するサブスペース法が疎行列の性質も活かせて有利。収束の速さは固有値の比で決まり、小さい問題へは三重対角化（ランチョス法・ハウスホルダー法）やヤコビ法などの相似変換を使う。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>解法の選択と特徴</h3>
+        <ul class="q-list">
+          <li><span class="q">9-1</span><span class="txt"><b>大規模固有値問題に適した解法</b><span class="f">サブスペース法（低次を同時）</span></span></li>
+          <li><span class="q">9-3</span><span class="txt"><b>サブスペース法の特徴</b><span class="f">小行列 C=XᵀAX を解く・疎性を利用</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>収束率・三重対角化</h3>
+        <ul class="q-list">
+          <li><span class="q">9-2</span><span class="txt"><b>反復固有値解法の収束性</b><span class="f">逆べき乗|λ₁/λ₂|・サブスペース|λ₁/λ_{p+1}|</span></span></li>
+          <li><span class="q">9-4</span><span class="txt"><b>三重対角化と相似変換系の解法</b><span class="f">ランチョス法・ハウスホルダー法</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜連立一次方程式を解く（反復・前処理・条件数）</div>
+    <div class="track-desc">剛性方程式[K]{u}={f}を解く反復法の良し悪しは、係数行列の条件数（固有値の絶対値の最大／最小）で左右される。悪条件ほど誤差が増幅されやすいので、前処理で係数行列を単位行列に近づけて収束を速める。共役こう配（CG）法は係数行列が対称かつ正定（任意の非零vでvᵀKv>0）のときに使え、剛体運動が残らないよう拘束を与える。</div>
+    <div class="box">
+      <h3>反復法・前処理・条件数</h3>
+      <ul class="q-list">
+        <li><span class="q">9-5</span><span class="txt"><b>反復法の前処理</b><span class="f">M⁻¹A≈I・不完全LU・対角スケーリング</span></span></li>
+        <li><span class="q">9-6</span><span class="txt"><b>共役こう配法の適用条件</b>対称かつ正定　<span class="f">vᵀKv&gt;0</span></span></li>
+        <li><span class="q">9-7</span><span class="txt"><b>条件数の定義と悪条件</b><span class="f">cond₂=‖K‖‖K⁻¹‖=|λ|max/|λ|min</span></span></li>
+      </ul>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜非線形方程式を解く（反復・残差・経路追跡）</div>
+    <div class="track-desc">非線形解析では、力と変位の関係が曲線になるため反復でつり合いへ近づける。ニュートン・ラフソン法は毎回接線剛性を更新し、修正ニュートン法は剛性を固定、準ニュートン法は履歴から逆剛性を近似する。自由成分の残差力φ=P−fを0へ近づけ、最大残差／最大反力などで収束を判定する。極大点や折り返しのあるつり合い経路は、荷重制御・変位制御・弧長法を使い分けて連続的に追う。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>ニュートン系の反復</h3>
+        <ul class="q-list">
+          <li><span class="q">9-8</span><span class="txt"><b>ニュートン法と修正・準ニュートン法</b><span class="f">接線更新／固定・準=BFGS逆剛性近似</span></span></li>
+          <li><span class="q">9-9</span><span class="txt"><b>反復パターンによる判別</b><span class="f">接線=N／履歴近似=準N／固定=修正N</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>残差・収束判定</h3>
+        <ul class="q-list">
+          <li><span class="q">9-10</span><span class="txt"><b>残差力とは</b>自由成分でつり合い　<span class="f">φ=P−f→0</span></span></li>
+          <li><span class="q">9-11</span><span class="txt"><b>非線形解析の収束判定</b><span class="f">最大残差力／最大反力・極小反力は例外</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>経路追跡・増分刻み</h3>
+        <ul class="q-list">
+          <li><span class="q">9-12</span><span class="txt"><b>荷重制御・変位制御・弧長法</b><span class="f">折り返す経路は弧長増分法</span></span></li>
+          <li><span class="q">9-14</span><span class="txt"><b>増分幅と時間積分の安定条件</b><span class="f">中心差分Δt≤T_min/π・平均加速度は無条件安定</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 横串 -->
+    <div class="grayband">
+      <b class="gh">横串：並列計算（大規模問題を分けて解く）</b>
+      <div class="grid3">
+        <ul class="q-list">
+          <li><span class="q">9-13</span><span class="txt"><b>領域分割法とサブストラクチャ法</b>内部自由度を静的縮約　<span class="f">粒度=計算量／通信量</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）固有値・B（藍）連立方程式・C（赤）非線形反復＋横串（灰）並列計算。全14問（A4・B3・C6・横串1）。</p>
+  </section>
+</div>

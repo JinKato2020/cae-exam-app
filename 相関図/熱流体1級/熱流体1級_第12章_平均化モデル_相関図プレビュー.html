@@ -1,0 +1,170 @@
+<title>熱流体1級 第12章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級 第12章「平均化モデル」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 界面と相間のやりとり／B 平均化モデルの種類とドリフトフラックス／C 多流体モデルの実際と数値計算 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>平均化モデル ― 各問の要点とキー公式</h2>
+    <p class="lead">気液二相を混ざり合った連続体として平均化して解く。全13問を A／B／C に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜界面と相間のやりとりを表す量</div>
+    <div class="track-desc">気液二相を平均化して扱うには、まず相どうしが接する界面の量と、そこを通じたやりとりを式で与える必要があります。球形気泡群では単位体積あたりの界面積（界面積濃度）が気泡径とボイド率で決まり、これに抗力係数と相対速度を掛けて相間の運動量交換（抗力）が表せます。各相を別々に解く二流体モデルでは、こうした相間の交換を『閉じ式』として与えてはじめて方程式系が閉じ、トラックB・Cの各モデルの土台になります。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>界面積濃度</h3>
+        <ul class="q-list">
+          <li><span class="q">12-1</span><span class="txt"><b>球形気泡群の単位体積あたり界面積</b>SI単位に換算して代入　<span class="f">a = 6α/d（m⁻¹、α:ボイド率, d:気泡径）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>相間抗力</h3>
+        <ul class="q-list">
+          <li><span class="q">12-2</span><span class="txt"><b>気泡群に働く単位体積あたりの抗力</b>相対速度の二乗に比例　<span class="f">MD = (3α/4d)·CD·ρL|VR|²</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>二流体の相間相互作用</h3>
+        <ul class="q-list">
+          <li><span class="q">12-8</span><span class="txt"><b>各相の保存式を結ぶ相間項をモデル化</b>速度差は運動量収支の結果　<span class="f">相間項=抗力・揚力・界面熱伝達（閉じ式）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜平均化モデルの種類とドリフトフラックス</div>
+    <div class="track-desc">平均化モデルは相間の速度差をどう扱うかで性格が分かれます。気液を同一速度の一流体とみなす均質流モデル、相ごとに速度場を解く多流体モデルがあり、その中間的な一次元モデルがドリフトフラックスモデルです。気相速度を分布定数による項とドリフト速度項の和で表し、流動様式（気泡流→スラグ流→環状流→噴霧流）に応じてドリフト速度の相関を与えます。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>モデルの種類</h3>
+        <ul class="q-list">
+          <li><span class="q">12-3</span><span class="txt"><b>均質流モデルと多流体モデルの本質的な違い</b><span class="f">均質流=同一速度／多流体=相ごと速度場</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>流動様式線図</h3>
+        <ul class="q-list">
+          <li><span class="q">12-4</span><span class="txt"><b>鉛直管でボイド率が増える向きの順序</b><span class="f">気泡流→スラグ流→環状流→噴霧流</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>ドリフトフラックスモデル</h3>
+        <ul class="q-list">
+          <li><span class="q">12-5</span><span class="txt"><b>断面平均気相速度を2項の和で表す</b><span class="f">vg = C₀ j + vgj（C₀:分布定数）</span></span></li>
+          <li><span class="q">12-6</span><span class="txt"><b>ドリフト速度と分布定数の性質</b>中央集中ほどC₀大　<span class="f">vgj = vg − j（全体積流束に対する相対速度）</span></span></li>
+          <li><span class="q">12-7</span><span class="txt"><b>スラグ流はテイラー気泡の終端速度で近似</b><span class="f">vgj = 0.35√(gD(ρL−ρG)/ρL)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜多流体モデルの実際と数値計算</div>
+    <div class="track-desc">実機の沸騰流や噴霧流を多流体モデルで計算するには、各流動様式に応じた壁面摩擦・熱伝達・抗力・相変化の相関式を用意し、環状噴霧流では液膜・蒸気・液滴の相間エネルギー輸送を扱います。多次元計算では計算セルを流れのスケールで決め、格子依存性を把握することが重要です。とくに気液の圧力を等しいとおく一圧力二流体モデルは、相対速度があると双曲性を失って数値的に不安定化しやすく、風上差分や仮想質量力などの安定化策が要ります。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>一次元多流体モデル</h3>
+        <ul class="q-list">
+          <li><span class="q">12-9</span><span class="txt"><b>個々のテイラー気泡の追跡は必ずしも不要</b>平均量が合えば十分　<span class="f">壁面摩擦・熱伝達・抗力・相変化の相関式</span></span></li>
+          <li><span class="q">12-10</span><span class="txt"><b>環状噴霧流の相間エネルギー輸送</b>液膜–蒸気間が主で無視不可　<span class="f">界面積濃度6α/dと潜熱輸送</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>多次元・格子依存</h3>
+        <ul class="q-list">
+          <li><span class="q">12-11</span><span class="txt"><b>多次元二流体モデルのセルの決め方</b>液滴径でなく流れのスケール　<span class="f">格子依存性の把握</span></span></li>
+          <li><span class="q">12-12</span><span class="txt"><b>格子を細かくしすぎると悪化し得る</b>代表径はザウター平均径　<span class="f">一圧力二流体・格子依存</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>数値安定性</h3>
+        <ul class="q-list">
+          <li><span class="q">12-13</span><span class="txt"><b>相対速度で双曲性を失い不適切化</b>安定化策で回避　<span class="f">楕円型的／風上差分・仮想質量力・相間圧力差</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）界面と相間・B（藍）モデルの種類とドリフトフラックス・C（赤）多流体モデルの実際と数値計算。全13問（A3・B5・C5）。</p>
+  </section>
+</div>

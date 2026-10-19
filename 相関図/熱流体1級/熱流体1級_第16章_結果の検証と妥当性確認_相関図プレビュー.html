@@ -1,0 +1,157 @@
+<title>熱流体1級 第16章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A検証の考え方／B 数値誤差・格子収束／C 妥当性確認 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級 第16章「結果の検証と妥当性確認」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A V&amp;Vの考え方と検証ベンチマーク／B 数値誤差・格子収束・計算の健全性／C 妥当性確認とモデルの読み解き の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>結果の検証と妥当性確認 ― 各問の要点とキー観点</h2>
+    <p class="lead">計算結果が信頼できるかを「方程式を正しく解けているか（検証）」と「現象を再現できているか（妥当性確認）」で確かめる。全10問を A／B／C に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜V&amp;Vの考え方と検証ベンチマーク</div>
+    <div class="track-desc">まずVerification（方程式を正しく解いているか＝数学）とValidation（正しい方程式を解いているか＝物理）の役割を取り違えないことが出発点になる。検証では解析解が分かる問題をベンチマークに選ぶとよく、静止気泡のラプラス圧のように解が表面張力の関数となる問題は表面張力モデルの検証に向く。ここで得た検証の考え方が、Bの数値誤差評価とCの妥当性確認の土台になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>V&amp;Vの役割</h3>
+        <ul class="q-list">
+          <li><span class="q">16-1</span><span class="txt"><b>VerificationとValidationの区別</b><span class="f">方程式を正しく解く（数学）／正しい方程式を解く（物理）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>検証ベンチマーク</h3>
+        <ul class="q-list">
+          <li><span class="q">16-2</span><span class="txt"><b>静止気泡のラプラス圧で表面張力検証</b>理論値144 Pa　<span class="f">Δp=2σ/R（単一界面）／シャボン膜は4σ/R</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜数値誤差・格子収束・計算の健全性</div>
+    <div class="track-desc">数値解の健全性は、界面捕獲のクーラン数で時間刻みの上限を押さえ、体積保存や振動の減衰から数値誤差を読み取ることで確かめる。Level Setの再初期化は体積を失いやすく、半径のわずかな誤差は3乗されて体積誤差に拡大する。自由振動の急減衰は数値粘性が主因で、格子収束指数GCIで離散化誤差を定量化し、周期境界条件は体積変化と両立する設定にする。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>界面捕獲と時間刻み</h3>
+        <ul class="q-list">
+          <li><span class="q">16-3</span><span class="txt"><b>界面捕獲の時間刻み上限</b>Δt≤6.0×10⁻⁴ s　<span class="f">C=uΔt/Δx≤0.3</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>保存誤差と数値粘性</h3>
+        <ul class="q-list">
+          <li><span class="q">16-4</span><span class="txt"><b>Level Setの体積保存誤差</b>半径1.05倍→体積約16%増　<span class="f">体積比=(R/R₀)³</span></span></li>
+          <li><span class="q">16-5</span><span class="txt"><b>自由振動の急減衰の要因</b>GCL破れは直接主因でない　<span class="f">数値粘性（格子密度・差分精度・過大粘度）が主因</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>格子収束と周期条件</h3>
+        <ul class="q-list">
+          <li><span class="q">16-9</span><span class="txt"><b>格子収束指数による離散化誤差</b>GCI≈1.25%　<span class="f">GCI=F_s|ε|/(r^p−1)</span></span></li>
+          <li><span class="q">16-10</span><span class="txt"><b>周期条件と体積変化の両立</b><span class="f">ある平均圧力下の発達状態＋平均まわりの周期的変動</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜妥当性確認とモデルの読み解き（Validation）</div>
+    <div class="track-desc">妥当性確認では、計算結果を実在の現象・実験と比べて物理的に妥当かを考察する。弁まわりの流量頭打ちはキャビティが有効断面積を狭める物理で説明でき、相変化モデルの搭載自体は妥当性の証拠にはならない。平均化モデルでは流動様式ごとに伝熱相関式を切り替えて壁温分布を再現する。比較は流量や形状・速度ベクトルの傾向なら容易だが、ボイド率の絶対値を定量的に一致させるのは最も難しい。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>結果・モデルの妥当性</h3>
+        <ul class="q-list">
+          <li><span class="q">16-6</span><span class="txt"><b>流量頭打ちの物理的妥当性</b>相変化モデル搭載は証拠にならない　<span class="f">キャビで有効断面積減少→流量頭打ち</span></span></li>
+          <li><span class="q">16-7</span><span class="txt"><b>流動様式別の伝熱相関式切替</b>遷移後にスラグ流の相関式は不適　<span class="f">保存則モデルは共通・伝熱相関式を様式で切替</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>妥当性確認の手法</h3>
+        <ul class="q-list">
+          <li><span class="q">16-8</span><span class="txt"><b>最も困難な検証方法</b>傾向・形状の定性比較は容易　<span class="f">ボイド率の絶対値の定量一致が最も困難</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）検証の考え方・B（藍）数値誤差・格子収束・C（赤）妥当性確認。全10問（A2・B5・C3）。</p>
+  </section>
+</div>

@@ -1,0 +1,170 @@
+<title>熱流体2級 第4章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A枠組み／B空間離散化／C時間・解法 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体2級 第4章「数値計算法」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 式を分類し離散化の型を選ぶ／B 空間を離散化する／C 時間を進め連立を解く の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>数値計算法 ― 各問の要点とキー公式</h2>
+    <p class="lead">支配方程式を計算できる形にするまでの流れ。全13問を A（枠組み）／B（空間離散化）／C（時間・解法）に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜式を分類し、離散化の型を選ぶ</div>
+    <div class="track-desc">まず偏微分方程式の型（双曲・放物・楕円）を判別式で見分け、どんな物理現象かを押さえる。次に、連続した分布を有限個の未知量へ置き換える離散化手法（有限差分・有限体積・有限要素など）を選ぶ。ここで入る打ち切り・丸めなどの誤差の理解は、BやCで作る離散式の精度と安定性を読むための土台になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>PDEの型</h3>
+        <ul class="q-list">
+          <li><span class="q">4-1</span><span class="txt"><b>2階PDEを判別式で分類</b><span class="f">D=B²−4AC&lt;0→楕円（定常場）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>誤差の分類</h3>
+        <ul class="q-list">
+          <li><span class="q">4-2</span><span class="txt"><b>数値誤差の4つの原因</b><span class="f">打ち切り・丸め・位相・エイリアジング</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>離散化手法</h3>
+        <ul class="q-list">
+          <li><span class="q">4-4</span><span class="txt"><b>検査体積で保存則を満たす</b>界面フラックス　<span class="f">有限体積法</span></span></li>
+          <li><span class="q">4-10</span><span class="txt"><b>FEMの説明の誤り</b>メモリは要素数だけでは決まらない　<span class="f">変分原理・ガラーキン法</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜空間を離散化する（差分・スキーム・補間）</div>
+    <div class="track-desc">微分を格子点の値の組み合わせで近似する。二階微分は隣接点の傾きの変化から中心差分で、対流項は流れの来る側を重く見る風上系で表す。どの点をどの係数で結ぶかがスキームの違いで、精度の次数や数値粘性（余分なぼかし）に直結する。点の間の値を求める補間も、同じく空間離散化の基本道具。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>差分ステンシル</h3>
+        <ul class="q-list">
+          <li><span class="q">4-3</span><span class="txt"><b>ラプラス式の2次精度中心差分</b>等間隔　<span class="f">φP=(φE+φW+φN+φS)/4</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>対流項とスキームの性質</h3>
+        <ul class="q-list">
+          <li><span class="q">4-5</span><span class="txt"><b>対流項スキームの識別</b>点と係数で見分ける　<span class="f">1次風上/2次中心/QUICK/2次風上</span></span></li>
+          <li><span class="q">4-13</span><span class="txt"><b>数値粘性・精度・ガリレイ不変性</b>座標系で数値拡散は変わる　<span class="f">1次風上の拡散 ≈|u|h/2</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>補間</h3>
+        <ul class="q-list">
+          <li><span class="q">4-8</span><span class="txt"><b>区分多項式と全点1本の多項式</b>端で振動　<span class="f">スプライン/ラグランジュ・ルンゲ現象</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜時間を進め、連立を解く（時間発展・安定性・反復・連成）</div>
+    <div class="track-desc">時間発展では右辺をどの時刻で評価するかで陽解法・陰解法が分かれ、クランク・ニコルソンのように未知量を含むと連立が必要になる。移流を安定に進めるにはクーラン数が効く。離散化で生じた大きな連立方程式はSORなどの反復解法で解き、非圧縮流れでは圧力と速度をSIMPLE法で連成させて連続式を満たす。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>時間発展</h3>
+        <ul class="q-list">
+          <li><span class="q">4-6</span><span class="txt"><b>右辺をどの時刻で評価するか</b><span class="f">オイラー陽=Lⁿ／C-N／アダムス</span></span></li>
+          <li><span class="q">4-12</span><span class="txt"><b>陰解法は次時刻の未知量を含む</b><span class="f">クランク・ニコルソン（現在と未来の平均）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>安定性</h3>
+        <ul class="q-list">
+          <li><span class="q">4-11</span><span class="txt"><b>クーラン数の定義</b>陽解法で安定条件　<span class="f">C=uΔt/Δx（0≤C≤1）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>反復解法・連成</h3>
+        <ul class="q-list">
+          <li><span class="q">4-9</span><span class="txt"><b>SOR（逐次過緩和法）</b>点反復　<span class="f">更新 a+ω(b−a)</span></span></li>
+          <li><span class="q">4-7</span><span class="txt"><b>圧力補正で連続式を満たす</b>半陰的反復　<span class="f">SIMPLE法</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）枠組み・B（藍）空間離散化・C（赤）時間・解法。全13問（A4・B4・C5）。</p>
+  </section>
+</div>

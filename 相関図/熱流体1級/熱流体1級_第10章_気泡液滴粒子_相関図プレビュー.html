@@ -1,0 +1,179 @@
+<title>熱流体1級 第10章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A抗力と追従／B 粒子に働く諸力／C 形状・界面・分散系 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級 第10章「気泡・液滴・粒子」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 抗力と流れへの追従性／B 粒子に働く諸力／C 気泡・液滴の形状・界面・分散系 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>気泡・液滴・粒子 ― 各問の要点とキー公式</h2>
+    <p class="lead">分散要素1個に働く抗力・諸力から、流れへの追従性、気泡液滴の形状・界面現象、分散系の性質まで整理。全22問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜抗力と流れへの追従性</div>
+    <div class="track-desc">分散要素の運動は、まず抗力係数のレイノルズ数依存（ストークス則とその適用条件）から出発する。応答の速さはストークス数で測り、小さいほど流れによく追従する。振動流では一次遅れ系としてゲインと位相遅れが決まり、円柱まわりや壁面沈着では代表時間のとり方で追従・捕集が決まる。B の諸力や C の形状効果を考える前提となるトラック。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>抗力係数とストークス則</h3>
+        <ul class="q-list">
+          <li><span class="q">10-1</span><span class="txt"><b>ストークス域 CD=24/Re、抗力∝V</b><span class="f">FD=CD(πd²/4)(ρV²/2)</span></span></li>
+          <li><span class="q">10-2</span><span class="txt"><b>慣性無視・連続体で有効</b><span class="f">Re≲1 かつ Kn≪1</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>ストークス数・追従性</h3>
+        <ul class="q-list">
+          <li><span class="q">10-3</span><span class="txt"><b>St が小さいほど追従が良い</b><span class="f">St=τp/τc</span></span></li>
+          <li><span class="q">10-7</span><span class="txt"><b>代表時間 D/U で追従を判断</b><span class="f">τp/(D/U)≪1</span></span></li>
+          <li><span class="q">10-11</span><span class="txt"><b>二次流れが茶葉を中心へ運ぶ</b><span class="f">境界層で圧力勾配＞遠心力</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>非定常応答・壁面沈着</h3>
+        <ul class="q-list">
+          <li><span class="q">10-6</span><span class="txt"><b>一次遅れのゲインと位相遅れ</b><span class="f">|G|=1/√(1+(ωτp)²), 位相=tan⁻¹(ωτp)</span></span></li>
+          <li><span class="q">10-8</span><span class="txt"><b>U字曲線：小=ブラウン、大=慣性</b><span class="f">τp⁺=τp uτ²/ν、極小 τp⁺~10⁻²</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜粒子に働く諸力</div>
+    <div class="track-desc">抗力以外にも、壁の近さ・速度勾配・非定常運動・流体の共加速がそれぞれ別の力を生む。壁近傍では抗力が増し、一様せん断ではサフマン揚力、加速運動では履歴力（Basset 力）と付加（仮想）質量力が効く。各力が何に依存し、どの向きに働くかを押さえ、最後にそれらの大きさをオーダーで比較する。A の抗力に付け加わる力をまとめるトラック。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>壁面効果・揚力</h3>
+        <ul class="q-list">
+          <li><span class="q">10-5</span><span class="txt"><b>壁近傍で垂直・平行とも抗力増</b><span class="f">壁効果（L/d&lt;5 で顕著）</span></span></li>
+          <li><span class="q">10-9</span><span class="txt"><b>速度勾配起因、適用外で過大評価</b><span class="f">サフマン揚力（低Re・一様せん断）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>履歴力・付加質量</h3>
+        <ul class="q-list">
+          <li><span class="q">10-10</span><span class="txt"><b>非定常起因、流体粘性依存・密度非依存</b><span class="f">Basset 力・Yang-Leal 力</span></span></li>
+          <li><span class="q">10-14</span><span class="txt"><b>付加質量係数はテンソル、流体密度∝</b><span class="f">球0.5/円柱1、加速を妨げる向き</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>力のオーダー</h3>
+        <ul class="q-list">
+          <li><span class="q">10-21</span><span class="txt"><b>液相物性で4力のオーダー</b><span class="f">慣性ρLV²d²・粘性μLVd・表面張力σd・浮力Δρgd³</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜気泡・液滴の形状・界面・分散系</div>
+    <div class="track-desc">気泡や液滴は界面をもつため、径や物性で形を変え、終端速度やエネルギ散逸が決まる。無次元数（モルトン数・エトベス数）で形状が整理され、表面張力は内圧・液滴径・微粒化を支配する。多数が分散すると実効粘度が上がり、音場では放射圧で移動する。界面と集団としての性質を扱う、本章の応用トラック。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>終端速度・形状</h3>
+        <ul class="q-list">
+          <li><span class="q">10-4</span><span class="txt"><b>釣合いから We/Eo を決める</b><span class="f">We/Eo=4/(3CD)</span></span></li>
+          <li><span class="q">10-12</span><span class="txt"><b>径増で 球→回転楕円→冠球</b><span class="f">モルトン数・エトベス数（Graceの線図）</span></span></li>
+          <li><span class="q">10-13</span><span class="txt"><b>散逸率＝浮力の仕事率</b><span class="f">Ėd=ρgUV</span></span></li>
+          <li><span class="q">10-18</span><span class="txt"><b>気泡Reは2無次元数で整理</b><span class="f">Mo=gμL⁴Δρ/(ρL²σ³), Eo=gd²Δρ/σ</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>界面・表面張力</h3>
+        <ul class="q-list">
+          <li><span class="q">10-17</span><span class="txt"><b>p・ωは各相で調和、速度は界面連続</b><span class="f">∇²p=0, ∇²ω=0（粘度差で渦度不連続）</span></span></li>
+          <li><span class="q">10-19</span><span class="txt"><b>二界面で内圧上昇</b><span class="f">pi−po=4σ/r</span></span></li>
+          <li><span class="q">10-22</span><span class="txt"><b>ω＞ωB で腹→節、腹で体積振動大</b><span class="f">primary Bjerknes 力・rectified diffusion</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>液滴径・分散系の粘度</h3>
+        <ul class="q-list">
+          <li><span class="q">10-15</span><span class="txt"><b>d∝σ、界面積濃度 S=6α/d</b><span class="f">Wec=ρ(uG−uL)²d/σ 一定</span></span></li>
+          <li><span class="q">10-16</span><span class="txt"><b>希薄サスペンションの実効粘度</b><span class="f">μeff=μ0(1+5α/2)（剛体球 f=5/2）</span></span></li>
+          <li><span class="q">10-20</span><span class="txt"><b>液滴径は気体密度・相対速度・σで決まる</b><span class="f">D=We σ/(ρU²)（液体密度に非依存）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）抗力と追従・B（藍）粒子に働く諸力・C（赤）形状・界面・分散系。全22問（A7・B5・C10）。</p>
+  </section>
+</div>

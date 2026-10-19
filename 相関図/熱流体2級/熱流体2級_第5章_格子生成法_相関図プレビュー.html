@@ -1,0 +1,172 @@
+<title>熱流体2級 第5章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A種類／B構造格子を作る／C質・適応・入力 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体2級 第5章「格子生成法」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 格子の種類と構成要素／B 構造格子を作る／C 質を高め解に合わせ、形を入力する の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>格子生成法 ― 各問の要点とキー公式</h2>
+    <p class="lead">計算領域を小さなセルに分けるまでの流れ。全15問を A（種類）／B（構造格子の作り方）／C（質・適応・入力）に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜格子の種類と構成要素</div>
+    <div class="track-desc">まず格子の大きな分類を押さえる。構造格子は規則的な添字で隣を参照でき、非構造格子は接続情報を別に持つ代わり複雑形状に強い。座標軸に沿う直交（デカルト）格子や、必要な場所だけ細かくする8分木、領域を埋めるセル形状（四面体・六面体・プリズム）が部品になる。ここで選ぶ種類が、Bの作り方やCの品質設計の前提になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>構造と非構造</h3>
+        <ul class="q-list">
+          <li><span class="q">5-1</span><span class="txt"><b>データ構造の違い</b>規則的添字／接続情報を別管理　<span class="f">名前だけで境界層適性は決まらない</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>直交格子と局所細分化</h3>
+        <ul class="q-list">
+          <li><span class="q">5-2</span><span class="txt"><b>デカルト格子の特徴</b>座標変換が不要　<span class="f">メトリック計算の負担が少ない</span></span></li>
+          <li><span class="q">5-6</span><span class="txt"><b>8分木の細分化と粗化</b>親を8分割／子群を戻す　<span class="f">一辺は1段階で1/2</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>三次元セルの形状</h3>
+        <ul class="q-list">
+          <li><span class="q">5-15</span><span class="txt"><b>壁近くはプリズム層で境界層を捉える</b><span class="f">四面体・六面体・プリズムの併用</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜構造格子を作る（生成法・変換・複合）</div>
+    <div class="track-desc">物体に沿う規則的な構造格子を作る方法をそろえる。辺→面→空間と内挿する代数的方法と、座標を未知量として解く偏微分方程式法（楕円・放物・双曲）がある。できた曲がった格子は、座標変換（ヤコビアン）で扱いやすい計算空間の長方形へ対応づける。O/C/H型のトポロジーや、重合・接合・マルチブロックの複合で複雑形状にも広げる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>生成法の分類</h3>
+        <ul class="q-list">
+          <li><span class="q">5-3</span><span class="txt"><b>構造格子の生成法を識別</b><span class="f">マルチブロック法</span></span></li>
+          <li><span class="q">5-9</span><span class="txt"><b>生成法の種類と特徴</b>PDE法に楕円・双曲・放物　<span class="f">代数的方法／偏微分方程式法</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>代数的方法・PDE法</h3>
+        <ul class="q-list">
+          <li><span class="q">5-12</span><span class="txt"><b>辺→面→空間の順に内挿</b><span class="f">tan・tanh・transfinite内挿</span></span></li>
+          <li><span class="q">5-13</span><span class="txt"><b>双曲型による生成</b>壁から外へ解き進め直交性に優れる　<span class="f">外部境界は制御しにくい</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>変換・トポロジー・複合</h3>
+        <ul class="q-list">
+          <li><span class="q">5-8</span><span class="txt"><b>物理空間→計算空間（長方形）へ変換</b><span class="f">ヤコビアンJ＝面積・体積と向き</span></span></li>
+          <li><span class="q">5-10</span><span class="txt"><b>巻いた格子線を長方形へ対応</b><span class="f">O型・C型・H型トポロジー</span></span></li>
+          <li><span class="q">5-7</span><span class="txt"><b>重合格子法</b>内挿係数を更新すれば移動問題にも　<span class="f">オーバーセット格子</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜質を高め、解に合わせ、形を入力する</div>
+    <div class="track-desc">同じセル数でも配置の良し悪しで精度が変わる。壁近くは細かく外へ滑らかに広げ、歪みを抑えるのが品質の基本で、変化の大きい場所へ点を集中させる。解の様子を見てr/h/p法で解像度を配り直す解適合も使う。出発点となる物体形状は、STEP・IGES・STLなどのCADデータで取り込む。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>格子品質・境界層</h3>
+        <ul class="q-list">
+          <li><span class="q">5-4</span><span class="txt"><b>境界層を捉える格子設計</b>Reが大で層流境界層は薄い　<span class="f">δ/L ∝ 1/√Re</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>点の集中・解適合</h3>
+        <ul class="q-list">
+          <li><span class="q">5-11</span><span class="txt"><b>変化の大きい所へ点を集める</b><span class="f">出口・剪断層に集中</span></span></li>
+          <li><span class="q">5-5</span><span class="txt"><b>解適合格子のr/h/p法</b>点移動／分割／次数　<span class="f">構造格子はr法が扱いやすい</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>幾何形状の入力</h3>
+        <ul class="q-list">
+          <li><span class="q">5-14</span><span class="txt"><b>CAD形状形式でないものを選ぶ</b><span class="f">STEP・IGES・STL／ASCIIは符号方式</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）種類・B（藍）構造格子の作り方・C（赤）質・適応・入力。全15問（A4・B7・C4）。</p>
+  </section>
+</div>

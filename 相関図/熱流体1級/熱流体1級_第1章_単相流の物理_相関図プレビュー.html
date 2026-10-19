@@ -1,0 +1,172 @@
+<title>熱流体1級 第1章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A法則・相似則／B 粘性・境界層・不安定／C 圧縮性・波動 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級 第1章「単相流の物理」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 流れを支配する法則と相似則／B 粘性・境界層・機械の不安定／C 圧縮性流れと波動 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>単相流の物理 ― 各問の要点とキー公式</h2>
+    <p class="lead">単相の流れに現れる物理現象を、基礎式・相似則から粘性・圧縮性・波動まで整理。全15問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜流れを支配する法則と相似則</div>
+    <div class="track-desc">まず流れを記述する基礎式（ベルヌーイの式と損失、渦度輸送式）を押さえる。これだけでは解けない複雑な現象は、次元解析（バッキンガムのπ定理）で無次元数へまとめ、相似則として整理する。ここで得た無次元数レイノルズ数・プランドル数などが、Bの境界層・対流や乱流モデルの出発点になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>保存則とベルヌーイ</h3>
+        <ul class="q-list">
+          <li><span class="q">1-1</span><span class="txt"><b>損失付きベルヌーイでマノメータ読みから平均流速</b><span class="f">V=√(2d·El/(λL)), El=(ρ′−ρ)gh/ρ</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>渦度と流れ関数</h3>
+        <ul class="q-list">
+          <li><span class="q">1-2</span><span class="txt"><b>渦度輸送式＝時間変化＋運搬＝粘性拡散</b><span class="f">ζt+ψyζx−ψxζy=(μ/ρ)∇²ζ</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>次元解析・無次元数</h3>
+        <ul class="q-list">
+          <li><span class="q">1-3</span><span class="txt"><b>πの定理で液中の音速の形を決める</b><span class="f">a=√(K/ρ)</span></span></li>
+          <li><span class="q">1-4</span><span class="txt"><b>7量−4単位＝3つの無次元数</b><span class="f">Nu=f(Re,Pr)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜粘性・境界層・機械の不安定</div>
+    <div class="track-desc">粘性がはたらく壁近傍では境界層が発達し、壁法則（粘性底層・対数則）で速度分布が決まる。逆圧力勾配では壁面速度勾配が0になりはく離が起こる。密度差による浮力で駆動される自然対流もここに含む。さらに翼列やポンプ系では旋回失速・サージングといった不安定が生じ、導電性流体では電磁場との連成（MHD）が加わる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>乱流境界層とはく離</h3>
+        <ul class="q-list">
+          <li><span class="q">1-7</span><span class="txt"><b>粘性底層と対数則・壁面せん断応力</b><span class="f">U⁺=y⁺, U⁺=(1/0.41)ln y⁺+5.0</span></span></li>
+          <li><span class="q">1-10</span><span class="txt"><b>逆圧力勾配で壁面速度勾配0→はく離</b><span class="f">∂u/∂y|_{y=0}=0</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>自然対流</h3>
+        <ul class="q-list">
+          <li><span class="q">1-11</span><span class="txt"><b>浮力駆動・温度差小でブシネ近似</b><span class="f">支配数 Gr＝浮力/粘性力</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>機械の不安定・電磁場</h3>
+        <ul class="q-list">
+          <li><span class="q">1-5</span><span class="txt"><b>失速域が負圧面側へ伝播→疲労破壊</b><span class="f">旋回失速 伝播 約0.3〜0.7×回転</span></span></li>
+          <li><span class="q">1-6</span><span class="txt"><b>系全体の圧力・流量が自励振動</b><span class="f">サージング β=dh/dQ&gt;0で成長</span></span></li>
+          <li><span class="q">1-9</span><span class="txt"><b>導電性流体が受ける体積力（MHD）</b><span class="f">F_L=j×B</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜圧縮性流れと波動</div>
+    <div class="track-desc">速い流れや急な弁操作では密度変化（圧縮性）が効き、情報は音速で波として伝わる。瞬時閉止では水撃の圧力波、ノズルでは断面積変化と音速の大小で加速・減速が決まる。超音速では衝撃波・膨張波が現れ、特性曲線法やリーマン不変量で状態を追う。Aの音速・マッハ数が、これらの波動現象の基礎になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>非定常の圧力波</h3>
+        <ul class="q-list">
+          <li><span class="q">1-8</span><span class="txt"><b>瞬時閉止の圧力上昇・波は音速で伝播</b><span class="f">ΔP=ρcU₁, c=1400 m/s</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>圧縮性ノズル流れ</h3>
+        <ul class="q-list">
+          <li><span class="q">1-12</span><span class="txt"><b>M=1の臨界状態での圧力比</b><span class="f">p*/p₀=(2/(γ+1))^{γ/(γ−1)}</span></span></li>
+          <li><span class="q">1-13</span><span class="txt"><b>加速の断面積条件と温度低下</b><span class="f">du/u=1/(M²−1)·dA/A</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>衝撃波・膨張波</h3>
+        <ul class="q-list">
+          <li><span class="q">1-14</span><span class="txt"><b>壁境界層で速度非一様・平均速度低下</b><span class="f">境界層厚さは衝撃波面で0</span></span></li>
+          <li><span class="q">1-15</span><span class="txt"><b>単純波でPが一様・特性線x=(u−c)t</b><span class="f">P=u+2c/(γ−1)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）法則・相似則・B（藍）粘性・境界層・不安定・C（赤）圧縮性・波動。全15問（A4・B6・C5）。</p>
+  </section>
+</div>

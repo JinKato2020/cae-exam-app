@@ -1,0 +1,220 @@
+<title>熱流体2級 第10章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体2級 第10章「コンピューターの基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー用語を、A 数値計算の土台／B 解析の工程／C 環境（ネットワーク・OS・導入）／D 書く・速くする の4トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>コンピューターの基礎 ― 各問の要点とキー用語</h2>
+    <p class="lead">CAEを動かす計算機の仕組みを、誤差・工程・環境・プログラムの4本で整理。全32問を A／B／C／D に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜数値計算の土台（誤差・データ型・演算）</div>
+    <div class="track-desc">コンピュータは有限の桁で数を表すため、丸め・桁落ち・情報落ちといった誤差がつきまといます。まず誤差の種類を区別し、整数型と実数型で割り算や代入の結果がどう変わるかを押さえ、倍精度（binary64）の範囲やCSVのようなデータ形式まで確認します。ここで身につく「数の扱い方」が、以降の解析結果の信頼性を支えます。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>誤差の種類</h3>
+        <ul class="q-list">
+          <li><span class="q">10-1</span><span class="txt"><b>保持桁を超えた下位を四捨五入</b><span class="f">丸め誤差（≠打切り・桁落ち・情報落ち）</span></span></li>
+          <li><span class="q">10-3</span><span class="txt"><b>実数の加減算でも精度は減る</b><span class="f">桁落ち・情報落ち／倍精度でも誤差は0でない</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>整数・実数の演算</h3>
+        <ul class="q-list">
+          <li><span class="q">10-2</span><span class="txt"><b>整数除算は商のみ・代入は0方向へ切捨て</b><span class="f">3/2=1 → 1−2.0 → d=−1</span></span></li>
+          <li><span class="q">10-4</span><span class="txt"><b>括弧→乗除→加減、整数の1/2=0</b><span class="f">1+(0−1)×2+0=−1</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>浮動小数点・データ形式</h3>
+        <ul class="q-list">
+          <li><span class="q">10-19</span><span class="txt"><b>64ビット倍精度は範囲も刻みも有限</b><span class="f">最大≈1.8×10³⁰⁸・∞は特殊値（全実数は不可）</span></span></li>
+          <li><span class="q">10-20</span><span class="txt"><b>値をカンマ区切り・表計算で列に並ぶ</b><span class="f">CSV（≠IGES・DXF・GIF）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜CAE解析の工程（プリ → ソルバ → ポスト）</div>
+    <div class="track-desc">CAEは、入力を準備するプリ処理、計算するソルバ、結果を調べるポスト処理の3段階で進みます。プリ処理の出力をソルバが読み、ソルバの結果をポスト処理で評価する、という役割の順序が土台です。CFDの作業手順や共用PCの操作手順も、この「準備→実行→後始末」という流れの具体例として押さえます。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>3工程の役割と順序</h3>
+        <ul class="q-list">
+          <li><span class="q">10-5</span><span class="txt"><b>形状・メッシュ・物性・境界条件を用意</b><span class="f">プリ処理（≠ソルバ・ポスト）</span></span></li>
+          <li><span class="q">10-8</span><span class="txt"><b>3工程の実行順序</b><span class="f">プリ → ソルバ → ポスト</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>CFDの作業手順</h3>
+        <ul class="q-list">
+          <li><span class="q">10-6</span><span class="txt"><b>1回の解析の基本順序</b><span class="f">形状入力→要素分割→実行→評価</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>共用PCの操作</h3>
+        <ul class="q-list">
+          <li><span class="q">10-7</span><span class="txt"><b>起動→ログイン→解析→終了</b><span class="f">…→ログアウト→電源断（順序は不可逆）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜つなぐ・動かす環境（ネットワーク・OS・導入）</div>
+    <div class="track-desc">解析は単体のPCでは完結せず、ネットワークでデータを転送・共有し、OSが資源を管理する環境の上で動きます。LAN・FTP・NFSといった範囲と仕組みの違い、機密データの安全な受け渡しや改行コードの移植性、OSとライセンスの条件を押さえます。CAE導入時のPC・OS選びやライセンス管理も、この「環境を整える」視点でつながります。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>ネットワークの範囲・転送</h3>
+        <ul class="q-list">
+          <li><span class="q">10-9</span><span class="txt"><b>限られた区域内のネットワーク</b><span class="f">LAN＝Local Area Network</span></span></li>
+          <li><span class="q">10-13</span><span class="txt"><b>遠隔地とのファイル転送の規約</b><span class="f">FTP（送受信の両用）</span></span></li>
+          <li><span class="q">10-11</span><span class="txt"><b>他機のファイルを自分のように使う</b><span class="f">NFS（≠転送のFTP）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>安全な受け渡し・移植</h3>
+        <ul class="q-list">
+          <li><span class="q">10-10</span><span class="txt"><b>平文通信は禁止・管理配送は承認</b><span class="f">記録媒体の物理配送</span></span></li>
+          <li><span class="q">10-12</span><span class="txt"><b>行末CR＋LFをLF想定の処理系が拒否</b><span class="f">CR+LF ↔ LF（改行コード）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>OSの役割とLinux</h3>
+        <ul class="q-list">
+          <li><span class="q">10-26</span><span class="txt"><b>資源管理＋ユーザーと機器の仲介</b><span class="f">OS（≠業務アプリ・ライブラリ）</span></span></li>
+          <li><span class="q">10-23</span><span class="txt"><b>カーネルがGPLで公開・PCでも動く</b><span class="f">GPL（無償≠条件なし）</span></span></li>
+          <li><span class="q">10-27</span><span class="txt"><b>公開ソースのUNIX系・PCで動作</b><span class="f">オープンソースUNIX系</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>導入とライセンス管理</h3>
+        <ul class="q-list">
+          <li><span class="q">10-24</span><span class="txt"><b>業務ソフトの対応を確認してから導入</b><span class="f">互換性の事前確認</span></span></li>
+          <li><span class="q">10-25</span><span class="txt"><b>要件・連携・計算資源で選ぶ</b><span class="f">普及率だけで最良にはならない</span></span></li>
+          <li><span class="q">10-28</span><span class="txt"><b>同時利用数を貸出・返却で管理</b><span class="f">同時利用数≠インストール台数</span></span></li>
+          <li><span class="q">10-29</span><span class="txt"><b>共有枠を借りる・常時接続が必要</b><span class="f">独立3台の同時使用は不可</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックD -->
+    <div class="track-h a">D｜書く・速くする（言語・処理方式・ハード・並列・記憶）</div>
+    <div class="track-desc">計算を記述するプログラミング言語（FORTRANなど）と、その翻訳方式（コンパイラ／インタプリタ）、値渡しやポインタの振る舞いを押さえます。さらに大規模解析を支える高速化・並列計算（マルチコア・パイプライン・キャッシュ・MPI）、主記憶と仮想記憶、RAIDによるデータ保全まで、計算を速く確実に回す仕組みを束ねます。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>プログラミング言語</h3>
+        <ul class="q-list">
+          <li><span class="q">10-14</span><span class="txt"><b>FORTRANは数値計算ライブラリ豊富</b><span class="f">COBOL=事務／Perl=テキスト</span></span></li>
+          <li><span class="q">10-17</span><span class="txt"><b>初期の高級言語・科学技術計算向け</b><span class="f">FORTRAN（数式に近い記述）</span></span></li>
+          <li><span class="q">10-16</span><span class="txt"><b>アセンブラは機械語に近い低水準</b><span class="f">C++・Java・Perl＝高水準</span></span></li>
+          <li><span class="q">10-15</span><span class="txt"><b>ネイティブ機械語はCPU・OSに依存</b><span class="f">実行ファイルの移植性は限定</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>処理方式・C言語</h3>
+        <ul class="q-list">
+          <li><span class="q">10-18</span><span class="txt"><b>事前翻訳は逐次解釈の負担が小さく速い</b><span class="f">速さは実装・内容にも依存</span></span></li>
+          <li><span class="q">10-31</span><span class="txt"><b>値渡し・ポインタの指す先は書換わる</b><span class="f">出力 5 3（qのコピーは戻らない）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>高速化・並列</h3>
+        <ul class="q-list">
+          <li><span class="q">10-21</span><span class="txt"><b>CPUを速める技術</b><span class="f">マルチコア・パイプライン・キャッシュ（DMAは転送）</span></span></li>
+          <li><span class="q">10-22</span><span class="txt"><b>プロセス間でメッセージ交換・ssh起動可</b><span class="f">MPI（CPU/GPU専用ではない）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>記憶・データ保全</h3>
+        <ul class="q-list">
+          <li><span class="q">10-30</span><span class="txt"><b>外部記憶→主記憶→CPUで処理</b><span class="f">仮想記憶の多用で低速化（物理増設ではない）</span></span></li>
+          <li><span class="q">10-32</span><span class="txt"><b>RAID0は冗長コピーなし→1台故障で全損</b><span class="f">RAID1＝ミラー／別媒体バックアップ</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー用語</span>／A（青）数値計算の土台・B（藍）解析の工程・C（赤）環境・D（青）書く・速くする。全32問（A6・B4・C12・D10）。</p>
+  </section>
+</div>

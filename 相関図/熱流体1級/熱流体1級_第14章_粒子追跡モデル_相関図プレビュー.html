@@ -1,0 +1,174 @@
+<title>熱流体1級 第14章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級 第14章「粒子追跡モデル」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 手法の枠組みと連成／B 粒子運動の計算／C 粒子間・壁面衝突 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>粒子追跡モデル ― 各問の要点とキー公式</h2>
+    <p class="lead">分散相を計算粒子として追い、運動・連成・衝突を解く。全17問を A／B／C に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜手法の枠組みと連成</div>
+    <div class="track-desc">分散相（気泡・液滴・固体粒子）を1個ずつ計算粒子として追うオイラー・ラグランジュ法は、粒径のばらつきや空間的な偏りに強い一方、総数が膨大だと負荷が増え、統計量を扱う多流体モデルとの使い分けが要ります。粒子から流体への反作用の強さに応じて、片方向・双方向・粒子衝突まで含む連成を選び、反力をセルの体積力に足すPSI-Cell法などで二方向連成を実現します。連続体を粒子で離散化するSPH・MPSと、実在粒子を追うDEMの区別もこの枠組みの土台です。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>手法の使い分け</h3>
+        <ul class="q-list">
+          <li><span class="q">14-1</span><span class="txt"><b>分散相の性質で粒子追跡と多流体を選ぶ</b>偏り大なら粒子追跡　<span class="f">オイラー・ラグランジュ法／多流体モデル</span></span></li>
+          <li><span class="q">14-16</span><span class="txt"><b>気泡追跡法の利点でないもの</b>質点近似ゆえ相関式依存は逃れられない　<span class="f">Euler-Lagrange（気泡=質点）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>連成の段階</h3>
+        <ul class="q-list">
+          <li><span class="q">14-4</span><span class="txt"><b>片方向近似が許される条件</b>希薄で流れへの反作用が無視できる　<span class="f">one-way／two-way／four-way</span></span></li>
+          <li><span class="q">14-5</span><span class="txt"><b>PSI-Cell法が使える条件</b>粒子&lt;格子・後流がセル内　<span class="f">Particle-Source-in-Cell（反力を体積力に）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>粒子法の分類</h3>
+        <ul class="q-list">
+          <li><span class="q">14-6</span><span class="txt"><b>SPH・MPS・DEMの違い</b>計算上の粒子が何を表すか　<span class="f">SPH/MPS=連続体の離散化、DEM=実在粒子</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜粒子運動の計算</div>
+    <div class="track-desc">個々の粒子の運動は、抗力による緩和を核とする運動方程式を時間積分して求めます。緩和時間は粒子半径の2乗に比例し、小さい粒子ほど陽解法の時間刻み制約が厳しく、緩和時間よりずっと大きな刻みで解くスティフな場合は陰解法が安定です。格子上の流体速度は粒子位置へ補間して与え、ストークス沈降の終端速度や、随伴流を介した気泡どうしの相互作用、回転場での慣性・密度比による軌跡の偏りがこの運動計算の典型例です。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>運動方程式と時間積分</h3>
+        <ul class="q-list">
+          <li><span class="q">14-2</span><span class="txt"><b>粒子緩和時間と陽解法の安定条件</b>小粒子ほど刻みが厳しい　<span class="f">τp ∝ a²、Δt &lt; τp</span></span></li>
+          <li><span class="q">14-3</span><span class="txt"><b>スティフな緩和方程式の時間積分</b>Δt≫τなら陰解法が安定　<span class="f">dv/dt = (u−v)/τ（陰解法）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>速度補間・終端速度</h3>
+        <ul class="q-list">
+          <li><span class="q">14-7</span><span class="txt"><b>粒子位置の流体速度を格子値から補間</b><span class="f">スプライン補間（滑らかで比較的低次でも正確）</span></span></li>
+          <li><span class="q">14-13</span><span class="txt"><b>沈降球のストークス終端速度</b>半径²と密度差に比例　<span class="f">U = 2a²(ρp−ρ)g/9μ</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>気泡・粒子の軌跡</h3>
+        <ul class="q-list">
+          <li><span class="q">14-14</span><span class="txt"><b>直列2気泡は互いに上昇流を誘起</b>助け合って速くなる　<span class="f">W₁ &gt; W かつ W₂ &gt; W</span></span></li>
+          <li><span class="q">14-17</span><span class="txt"><b>回転場の粒子軌跡</b>重い粒子は中心外・軽い粒子は中心へ　<span class="f">St = Ωa²(2ρp+ρf)/9μ、β = ρp/ρf</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜粒子間・壁面衝突</div>
+    <div class="track-desc">粒子が濃くなると、粒子どうしや壁との衝突が運動を支配します。緩和時間と衝突間隔の比（衝突ストークス数）で衝突の効き具合を判断し、全粒子対のN²の判定をブロック分割で近傍だけに絞ってNへ軽くします。壁面衝突では法線成分を反発係数、接線成分を摩擦で扱い、接線力積は摩擦律速と接線速度律速の小さいほうで決まります。DEMでは接触部のバネとダンパーで運動量交換とエネルギー散逸を表し、接触力モデルの種類が必要な時間刻みを左右します。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>粒子間衝突と判定</h3>
+        <ul class="q-list">
+          <li><span class="q">14-10</span><span class="txt"><b>衝突ストークス数で衝突の効きを判断</b>比が1より大なら無視不可　<span class="f">St = τp/τcoll</span></span></li>
+          <li><span class="q">14-12</span><span class="txt"><b>ブロック分割で衝突判定を高速化</b>近傍ブロックだけ探索　<span class="f">N² → N（ブロック&gt;相対速度max×Δt+粒子径）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>壁面衝突</h3>
+        <ul class="q-list">
+          <li><span class="q">14-8</span><span class="txt"><b>衝突前後の運動量・角運動量</b>法線運動量はeで変化（e=1でも反転）　<span class="f">反発係数e・摩擦・角運動量</span></span></li>
+          <li><span class="q">14-9</span><span class="txt"><b>壁面衝突の接線力積</b>摩擦律速と接線速度律速の小さいほう　<span class="f">Jt = min[μf(1+e)mvn, (2/7)mvt]</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>接触力モデル（DEM）</h3>
+        <ul class="q-list">
+          <li><span class="q">14-11</span><span class="txt"><b>接触力モデルと衝突時間</b>Hertzは衝突速度で衝突時間が変わる　<span class="f">線形バネ=速度非依存／Hertz=速度依存</span></span></li>
+          <li><span class="q">14-15</span><span class="txt"><b>バネとダンパーが表すもの</b>接触の運動量交換とエネルギー散逸　<span class="f">ソフトスフィアDEM</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）手法の枠組みと連成・B（藍）粒子運動の計算・C（赤）粒子間・壁面衝突。全17問（A5・B6・C6）。</p>
+  </section>
+</div>

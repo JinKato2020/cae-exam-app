@@ -1,0 +1,173 @@
+<title>振動2級 第8章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>振動2級 第8章「境界条件および荷重条件」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 等価節点荷重と境界拘束／B 加振入力と起振周波数／C 支持・結合要素と振動評価 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>境界条件および荷重条件 ― 各問の要点とキー公式</h2>
+    <p class="lead">荷重をどう節点へ与え、拘束と加振をどう設定し、応答をどう評価するかを整理。全21問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜等価節点荷重と境界拘束</div>
+    <div class="track-desc">分布圧力を合力に直して節点へ配分する等価節点荷重と、支持・対称・接地といった境界拘束の与え方を押さえる。四辺形は4節点へ均等、三角形では共有節点で分担が加算される。単純支持は変位のみ拘束、対称面は面直並進と面内2軸回転を拘束、埋め込み部は接地位置で並進を止める。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>等価節点荷重と単純支持</h3>
+        <ul class="q-list">
+          <li><span class="q">8-1</span><span class="txt"><b>一様圧力の合力pAを4節点へ均等配分</b><span class="f">F=pA/4＝p（A=4m²）</span></span></li>
+          <li><span class="q">8-2</span><span class="txt"><b>合力を3節点へ配分、共有節点は加算されFa&lt;Fb</b><span class="f">Fa=0.375p &lt; Fb=0.75p</span></span></li>
+          <li><span class="q">8-3</span><span class="txt"><b>単純支持は変位0・回転自由、横変位のみ拘束</b><span class="f">w₁=w_{n+1}=0</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>対称・接地の境界条件</h3>
+        <ul class="q-list">
+          <li><span class="q">8-4</span><span class="txt"><b>XZ対称面は面直Y並進とθX・θZ回転を拘束</b><span class="f">Y, θX, θZ を拘束</span></span></li>
+          <li><span class="q">8-5</span><span class="txt"><b>x垂直対称面は面直Tx並進と面内Ry・Rz回転を拘束</b><span class="f">Tx, Ry, Rz を拘束</span></span></li>
+          <li><span class="q">8-6</span><span class="txt"><b>接地位置まで切り出し、境界の並進を拘束</b><span class="f">接地位置＋並進拘束</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜加振入力と起振周波数</div>
+    <div class="track-desc">加速度や路面うねりをどう入力し、走行・回転がどんな周波数で加振するかを扱う。加速度加振は大質量に力F＝Maを与え、路面うねりは強制変位で入れる。走行の加振周波数はf＝V/λ、回転はf＝rpm/60で決まり、アンバランスによる遠心力は回転数の2乗に比例する。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>加振入力の与え方</h3>
+        <ul class="q-list">
+          <li><span class="q">8-7</span><span class="txt"><b>大質量に力Fを入力、F=Maで目標加速度のM倍</b><span class="f">F=Ma（M倍）</span></span></li>
+          <li><span class="q">8-20</span><span class="txt"><b>f=V/λ、強制変位入力、前後輪の位相差2πL/λ</b><span class="f">f=V/λ、位相差2πL/λ</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>走行・回転の起振周波数</h3>
+        <ul class="q-list">
+          <li><span class="q">8-8</span><span class="txt"><b>f=V/λ、V=20m/s・λ=0.2〜4mで5〜100Hz</b><span class="f">f=V/λ＝5〜100Hz</span></span></li>
+          <li><span class="q">8-11</span><span class="txt"><b>回転周波数f=V/(2πR)≈6.3Hz、変動n箇所でn倍</b><span class="f">f=V/(2πR)、n倍</span></span></li>
+          <li><span class="q">8-16</span><span class="txt"><b>f=rpm/60、900〜4800rpmで15〜80Hz</b><span class="f">f=rpm/60＝15〜80Hz</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>アンバランス加振力</h3>
+        <ul class="q-list">
+          <li><span class="q">8-19</span><span class="txt"><b>加振力は車速の2乗に比例する2次曲線</b><span class="f">F∝V²</span></span></li>
+          <li><span class="q">8-21</span><span class="txt"><b>遠心力はアンバランス量の1乗・回転数の2乗に比例</b><span class="f">F=mrω²</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜支持・結合要素と振動評価</div>
+    <div class="track-desc">ゴムシールや軸受などの支持・結合要素の表し方と、耐震・ランダム振動・疲労の評価手法を扱う。ゴムは弾性＋減衰、剛性差があれば硬い側は簡略化できる。耐震は基礎加振の動的応答、ランダム振動は入力PSDから応答PSD・RMSを求め、疲労は大入力と共振の両方の周波数を調べる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>支持・結合要素</h3>
+        <ul class="q-list">
+          <li><span class="q">8-9</span><span class="txt"><b>ゴムシールは弾性＋減衰＝ばね要素と減衰要素</b><span class="f">ばね＋減衰</span></span></li>
+          <li><span class="q">8-10</span><span class="txt"><b>剛性が高ければ変形せずFE化不要、剛性差小なら必要</b><span class="f">剛性の相対関係で判断</span></span></li>
+          <li><span class="q">8-17</span><span class="txt"><b>K=F/x、mmをmに直して3.0×10⁸N/m</b><span class="f">K=F/x=3.0×10⁸N/m</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>境界条件と耐震</h3>
+        <ul class="q-list">
+          <li><span class="q">8-12</span><span class="txt"><b>取付部Aは並進拘束、刃先Bは上下方向のみ拘束</b><span class="f">A並進／B上下のみ</span></span></li>
+          <li><span class="q">8-13</span><span class="txt"><b>基礎に地震加速度を入力する動的応答解析</b><span class="f">基礎加振＋動的応答</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>ランダム振動・疲労・PSD</h3>
+        <ul class="q-list">
+          <li><span class="q">8-14</span><span class="txt"><b>入力PSD→応答PSD→RMS値を推定</b><span class="f">x_RMS=√∫Sₓ(f)df</span></span></li>
+          <li><span class="q">8-15</span><span class="txt"><b>入力の大きい成分と固有振動数付近の両方を検討</b><span class="f">大入力＋共振</span></span></li>
+          <li><span class="q">8-18</span><span class="txt"><b>微分で振幅ω倍、高域で加速度&gt;速度&gt;変位</b><span class="f">Sᵥ=ω²Sₓ、Sₐ=ω⁴Sₓ</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）等価節点荷重と境界拘束・B（藍）加振入力と起振周波数・C（赤）支持・結合要素と振動評価。全21問（A 6・B 7・C 8）。</p>
+  </section>
+</div>
