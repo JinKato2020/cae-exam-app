@@ -4,6 +4,7 @@
 import type { ImageSourcePropType } from 'react-native';
 
 export const FIGURES: Record<string, ImageSourcePropType> = {
+  s1e2BeamCollapsePre: require('../assets/figures/s1e2BeamCollapsePre.png'),
   s1e2KinematicHystPre: require('../assets/figures/s1e2KinematicHystPre.png'),
   s1e2BilinearPre: require('../assets/figures/s1e2BilinearPre.png'),
   s1e2IsoHysteresisPre: require('../assets/figures/s1e2IsoHysteresisPre.png'),
