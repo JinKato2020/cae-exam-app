@@ -1,0 +1,176 @@
+<title>熱流体1級 第21章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A拡散火炎の構造と火炎面／B 実際の火炎の形と観察／C 保存スカラー・混合分率による定式化 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級 第21章「層流拡散火炎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 拡散火炎の構造と火炎面／B 実際の火炎の形と観察／C 保存スカラー・混合分率による定式化 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>層流拡散火炎 ― 各問の要点とキー公式</h2>
+    <p class="lead">燃料と酸化剤が拡散で出会って燃える拡散火炎を、火炎面の構造から噴流・ブンゼンなど実際の火炎、保存スカラー・混合分率による定式化まで整理。全14問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜拡散火炎の構造と火炎面</div>
+    <div class="track-desc">拡散火炎は反応が薄い火炎面に集中し、燃料と酸化剤が両側から拡散してきて量論比で釣り合う場所に火炎面が立つ。ダムケラー数で反応と流れの速さを比べ、対向流ではよどみ点より空気側に火炎面ができ、火炎面直近の質量分率勾配は量論係数と分子量の比で結ばれる。詳細反応で解くと最高温度が速度勾配に対して S 字応答を示す。ここで決まる火炎面の描像が、B の実際の火炎や C の混合分率による定式化の出発点になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>反応・火炎面の位置</h3>
+        <ul class="q-list">
+          <li><span class="q">21-1</span><span class="txt"><b>第1ダムケラー数</b>流れ時間/反応時間　<span class="f">DaI=τf/τc=5.0</span></span></li>
+          <li><span class="q">21-2</span><span class="txt"><b>対向流火炎の火炎面位置</b>よどみ点より空気側　<span class="f">拡散フラックスが量論比で釣合い</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>火炎面の勾配釣合い</h3>
+        <ul class="q-list">
+          <li><span class="q">21-3</span><span class="txt"><b>火炎面の拡散勾配比</b>燃料と酸化剤は逆向き　<span class="f">(∇YF)/(∇YO)=−νF WF/(νO WO)=−0.25</span></span></li>
+          <li><span class="q">21-5</span><span class="txt"><b>同軸流火炎の断面分布</b>F・O は火炎面で分離　<span class="f">T・P は火炎面でピーク、F,O≈0</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>S字応答</h3>
+        <ul class="q-list">
+          <li><span class="q">21-4</span><span class="txt"><b>S字応答曲線の解釈</b>中間枝=不安定　<span class="f">折返しA=消炎/B=着火、弧長法で追跡</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜実際の火炎の形と観察</div>
+    <div class="track-desc">身近なバーナーや噴流に現れる拡散火炎の姿を扱う。ノズルから噴く拡散火炎の長さは層流域では燃料流速に比例し、乱流遷移で一旦短く、乱流域でほぼ一定になる。黄橙色に強く光る輝炎はすす微粒子の熱放射で、青白い炎のラジカル発光とは別。浮き上がり火炎の基部は外=希薄/内=過濃/後=拡散の三又構造をもち、ブンゼン火炎は内炎=過濃予混合、外炎=拡散という二層になる。A の火炎面像が、こうした現実の火炎のどこに現れるかを結びつけるトラック。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>火炎長さ</h3>
+        <ul class="q-list">
+          <li><span class="q">21-6</span><span class="txt"><b>火炎長さと燃料流速</b>層流は流速に比例　<span class="f">乱流遷移で短縮→乱流域で一定</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>輝炎</h3>
+        <ul class="q-list">
+          <li><span class="q">21-7</span><span class="txt"><b>輝炎の発光機構</b>黄橙色に光る　<span class="f">すす微粒子の連続スペクトル熱放射</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>浮き上がり火炎</h3>
+        <ul class="q-list">
+          <li><span class="q">21-8</span><span class="txt"><b>浮き上がり火炎の構造</b>三又（トリプルフレーム）　<span class="f">外=希薄/内=過濃/後=拡散</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>ブンゼン火炎</h3>
+        <ul class="q-list">
+          <li><span class="q">21-9</span><span class="txt"><b>内炎と外炎</b>一次空気＜量論　<span class="f">内炎=過濃予混合/外炎=拡散</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜保存スカラー・混合分率による定式化</div>
+    <div class="track-desc">拡散火炎を数式で扱うため、反応で生成・消滅しない量（保存スカラー）を手がかりにする。不活性な N₂ の質量分率や、燃料と酸化剤を組み合わせて源項を打ち消した結合関数 β は保存スカラーになり、量論混合気で β=0 を横切る。これを規格化した混合分率 Z と量論混合分率 Zst を使えば、Burke–Schumann 近似で温度を Z だけの関数として表せ、伸張の効果はスカラー散逸率を含む定常フレームレット方程式に現れる。A・B の火炎像を、Z 空間の計算へ落とし込むトラック。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>保存スカラー・結合関数</h3>
+        <ul class="q-list">
+          <li><span class="q">21-10</span><span class="txt"><b>保存スカラーの選択</b>源項を持たない量　<span class="f">N₂ の質量分率（不活性）</span></span></li>
+          <li><span class="q">21-11</span><span class="txt"><b>結合関数と量論混合気</b>量論で β=0　<span class="f">β=YO2−νYF, ν=νO2 WO2/(νF WF)=4</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>混合分率と温度</h3>
+        <ul class="q-list">
+          <li><span class="q">21-12</span><span class="txt"><b>メタンの量論混合分率</b>空気の N₂ も含める　<span class="f">Zst=16/290.56≈0.055</span></span></li>
+          <li><span class="q">21-13</span><span class="txt"><b>混合分率と火炎温度</b>火炎面 Z=Zst で最高　<span class="f">T=TO+Q YF Zst/Cp=2300 K</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>フレームレット</h3>
+        <ul class="q-list">
+          <li><span class="q">21-14</span><span class="txt"><b>定常フレームレット方程式</b>χ=スカラー散逸率　<span class="f">(ρχ/2)d²φi/dZ²+ωi=0, χ=2D(dZ/dx)²</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）構造と火炎面・B（藍）実際の火炎・C（赤）保存スカラー・混合分率。全14問（A5・B4・C5）。</p>
+  </section>
+</div>

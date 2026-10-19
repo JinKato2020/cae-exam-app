@@ -1,0 +1,209 @@
+<title>振動1級 第6章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>振動1級 第6章「音響連成系の解析基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 音波の基礎式・1次元管の連成／B 有限要素法と音響エネルギー・吸音評価／C 構造-音響連成解析の実務 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>音響連成系の解析基礎 ― 各問の要点とキー公式</h2>
+    <p class="lead">音波の基礎式から有限要素法、構造と空気の連成解析まで。全37問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜音波の基礎式・1次元管の連成系</div>
+    <div class="track-desc">音圧と粒子速度を結ぶ連続の式と運動方程式から波動方程式を導き、速度ポテンシャルやヘルムホルツ方程式で解く土台を押さえる。端で音圧を与えれば基本(ディリクレ)、粒子速度を与えれば自然(ノイマン)境界条件になる。これらを使い、剛壁や振動板で閉じた1次元管と振動体の連成系を立式する。</div>
+    <div class="grid4">
+      <div class="box lead">
+        <h3>音波の基礎式・波動方程式</h3>
+        <ul class="q-list">
+          <li><span class="q">6-1</span><span class="txt"><b>平面波は音圧pと粒子速度vの2量。連続の式と運動方程式で記述</b><span class="f">連続の式＋運動方程式(体積弾性率K・密度ρ)</span></span></li>
+          <li><span class="q">6-2</span><span class="txt"><b>2式をまとめると波動方程式。音速はc＝√(K/ρ)</b><span class="f">∂²v/∂x²＝(1/c²)∂²v/∂t², c＝400 m/s</span></span></li>
+          <li><span class="q">6-3</span><span class="txt"><b>速度ポテンシャルφでv＝−∂φ/∂x、音圧はp＝ρ∂φ/∂t</b><span class="f">v＝−∂φ/∂x, p＝ρ∂φ/∂t</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>ヘルムホルツ方程式と境界条件</h3>
+        <ul class="q-list">
+          <li><span class="q">6-4</span><span class="txt"><b>時間分離でヘルムホルツ方程式。波数k＝ω/c</b><span class="f">d²Φ/dx²+(ω/c)²Φ＝0, k≈3.14 rad/m</span></span></li>
+          <li><span class="q">6-5</span><span class="txt"><b>音圧を指定＝未知関数の値を与える基本(ディリクレ)境界条件</b><span class="f">基本(ディリクレ)境界条件</span></span></li>
+          <li><span class="q">6-6</span><span class="txt"><b>粒子速度を指定＝未知関数の微分を与える自然(ノイマン)境界条件</b><span class="f">自然(ノイマン)境界条件 dΦ/dx指定</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>管の連成系と固有振動数</h3>
+        <ul class="q-list">
+          <li><span class="q">6-7</span><span class="txt"><b>両端剛体壁は粒子速度0、振動体位置では速度が連続</b><span class="f">両端 v＝0／振動体位置で速度連続</span></span></li>
+          <li><span class="q">6-8</span><span class="txt"><b>ばね支持振動体は左右音圧の力差とばね復元力で運動</b><span class="f">mₛẅ＝(p₁−p₂)S−kₛw</span></span></li>
+          <li><span class="q">6-23</span><span class="txt"><b>両端閉口(剛壁)管の1次固有振動数</b><span class="f">f₁＝c/2l＝340/6.8＝50 Hz</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>調和振動板・ばね支持系</h3>
+        <ul class="q-list">
+          <li><span class="q">6-9</span><span class="txt"><b>管内は速度ポテンシャルの波動方程式、音圧p・粒子速度vで記述</b><span class="f">波動方程式／p＝ρ∂φ/∂t, v＝−∂φ/∂x</span></span></li>
+          <li><span class="q">6-10</span><span class="txt"><b>左端は振動板速度を与え、右端は空気と振動体の速度が連続</b><span class="f">左端 v＝v₀cosωt／右端で速度連続</span></span></li>
+          <li><span class="q">6-11</span><span class="txt"><b>右端振動体は右端音圧の力とばね復元力で運動</b><span class="f">mₛẅ＝p(l)S−kₛw</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜有限要素法と音響エネルギー・吸音評価</div>
+    <div class="track-desc">音響問題を有限要素法で解く手順と、音のエネルギー量や吸音の評価を扱う。領域を要素に分け形状関数で内挿し、重み付き残差を部分積分で弱形式にして連立方程式を組む。吸音率・音響インテンシティ・インピーダンス密度で性能を評価し、吸音材や透過音は専用のモデルと波長基準のメッシュで表す。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>FEMの離散化</h3>
+        <ul class="q-list">
+          <li><span class="q">6-12</span><span class="txt"><b>領域を要素に分割、両端が節点、要素内は内挿</b><span class="f">要素／節点／内挿</span></span></li>
+          <li><span class="q">6-13</span><span class="txt"><b>ハット型の形状関数Nᵢで節点値から内挿</b><span class="f">Φ(x)≈ΣΦᵢNᵢ(x)</span></span></li>
+          <li><span class="q">6-16</span><span class="txt"><b>N＝10で節点11、両端既知なら内部の未知数は9</b><span class="f">未知数＝11−2＝9</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>残差・弱形式</h3>
+        <ul class="q-list">
+          <li><span class="q">6-14</span><span class="txt"><b>端節点は基本境界条件で与え、内部は重み付き残差で解く</b><span class="f">∫(d²Φ/dx²+k²Φ)W dx＝0</span></span></li>
+          <li><span class="q">6-15</span><span class="txt"><b>形状関数の2階微分は不連続。部分積分で弱形式化して回避</b><span class="f">部分積分→弱形式(1階微分の積)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>音響エネルギー・吸音量</h3>
+        <ul class="q-list">
+          <li><span class="q">6-17</span><span class="txt"><b>吸音率は非反射音のエネルギー比、インピーダンス密度は(音圧/粒子速度)と媒質ρcの比</b><span class="f">吸音率＝エネルギー比／z＝(p/v)/(ρc)</span></span></li>
+          <li><span class="q">6-18</span><span class="txt"><b>音響インテンシティ＝p×vの時間平均(ベクトル)、面積分で音響パワー</b><span class="f">I＝⟨p·v⟩, W＝∮I·n dS</span></span></li>
+          <li><span class="q">6-19</span><span class="txt"><b>複素音響インテンシティの実部がアクティブ成分</b><span class="f">(1/2)Re(pu*)＝4.0×10⁻³ W/m²</span></span></li>
+          <li><span class="q">6-33</span><span class="txt"><b>吸音インピーダンス密度は実部が音響抵抗、虚部がリアクタンス</b><span class="f">z＝(p/v)/(ρc)：実部=抵抗・虚部=リアクタンス</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>吸音材・透過のモデル化</h3>
+        <ul class="q-list">
+          <li><span class="q">6-20</span><span class="txt"><b>吸音層は伝達マトリクスで左右を結び、右端剛壁(v₂＝0)で入口インピーダンス</b><span class="f">Sv₂＝0 → Z₁＝(zₐ/S)coth(γₐlₐ)</span></span></li>
+          <li><span class="q">6-34</span><span class="txt"><b>骨格非振動のEquivalent fluid、骨格連成のBiot。繊維材は前者、発泡材は後者が高精度</b><span class="f">Equivalent fluid／Biotモデル</span></span></li>
+          <li><span class="q">6-35</span><span class="txt"><b>構造と音波で波長の小さい方(ガラス曲げ波)でメッシュ、波長の1/8</b><span class="f">λ＝140/500＝0.28 m, 1/8＝35 mm</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜構造-音響連成解析の実務</div>
+    <div class="track-desc">実構造と内外の空気を連成させて固体伝播音や透過音を解く実務を扱う。構造側・音響側で各々固有値解析してモード重合し、相反性を使って加振点と評価点を入れ替える。要素分割やモード採用の上限は波長から決め、自由音場は無反射境界、不拘束モードや音響剛体モードの扱いにも注意する。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>結合系とモード法・相反性</h3>
+        <ul class="q-list">
+          <li><span class="q">6-21</span><span class="txt"><b>弾性板で仕切る音場-弾性体結合系。各空間はヘルムホルツ、板外力は両面音圧差</b><span class="f">∇²P+k²P＝0／板外力＝(P_S1−P_S2)</span></span></li>
+          <li><span class="q">6-22</span><span class="txt"><b>構造・音響で各々固有値解析しモード重合。相反性で加振点と評価点が入替可</b><span class="f">相反性：構造加振→評価点音圧 ＝ 逆</span></span></li>
+          <li><span class="q">6-36</span><span class="txt"><b>相反定理でキャビン内外を分離。内側評価点に単位体積速度源を置いた壁面音圧を利用</b><span class="f">相反定理で内外分離</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>要素分割・モード上限</h3>
+        <ul class="q-list">
+          <li><span class="q">6-24</span><span class="txt"><b>連成は双方の固有値解析とモード重合、要素分割・モード数に注意</b><span class="f">連成はモード重合法で解く</span></span></li>
+          <li><span class="q">6-25</span><span class="txt"><b>要素分割は波長の1/6〜1/8を目安</b><span class="f">λ＝c/f＝0.68 m, 1/8＝85 mm</span></span></li>
+          <li><span class="q">6-26</span><span class="txt"><b>音響モードは構造の最小波長に対応する振動数まで採用</b><span class="f">f＝c/λ＝340/0.34＝1000 Hz</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>不拘束・剛体モード・FEM式</h3>
+        <ul class="q-list">
+          <li><span class="q">6-28</span><span class="txt"><b>集中加振は加振点モード、音響不拘束モードは腹間隔最小を基準、連成面は補間で伝達</b><span class="f">不拘束モード変換の留意点</span></span></li>
+          <li><span class="q">6-29</span><span class="txt"><b>剛壁内空気の音響剛体モードは一様圧力、個数は1個</b><span class="f">音響剛体モード＝一様圧力・1個</span></span></li>
+          <li><span class="q">6-30</span><span class="txt"><b>3次元連成FEMは非対称。減衰・連成Aを無視し各々固有値解析、質量・剛性は対称に</b><span class="f">{xₐ}＝音圧／A無視で対称固有値解析</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>自由音場・固体伝播音・車輪</h3>
+        <ul class="q-list">
+          <li><span class="q">6-27</span><span class="txt"><b>自由音場は反射が戻らない。外周に無反射境界を設けFEMモデル化</b><span class="f">自由音場→無反射境界</span></span></li>
+          <li><span class="q">6-31</span><span class="txt"><b>固体伝播騒音は構造加振と音響加振の2解析で加速度応答分布を調べる</b><span class="f">構造加振・音響加振の加速度応答分布</span></span></li>
+          <li><span class="q">6-32</span><span class="txt"><b>自由音場FEMは外向き放射が反射せず戻らない無反射(放射)境界で表す</b><span class="f">無反射(放射)境界</span></span></li>
+          <li><span class="q">6-37</span><span class="txt"><b>車輪ウェブ境界は弾性体、音響パワーは音圧×粒子速度、スラブ軌道は反射を考慮</b><span class="f">境界=弾性体／パワー＝p×v／反射考慮</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）音波の基礎式・1次元管・B（藍）有限要素法と音響エネルギー・吸音評価・C（赤）構造-音響連成解析の実務。全37問（A12・B12・C13）。</p>
+  </section>
+</div>

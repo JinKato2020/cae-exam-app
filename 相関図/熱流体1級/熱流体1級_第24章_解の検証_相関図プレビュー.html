@@ -1,0 +1,172 @@
+<title>熱流体1級 第24章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A乱流燃焼モデルと保炎の検証／B 火炎構造・燃焼形態の読み解き／C ふく射とNO予測の妥当性 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級 第24章「解の検証」相関図（プレビュー）</h1>
+    <p>各問の要点とキー観点を、A 乱流燃焼モデルと保炎の検証／B 火炎構造・燃焼形態の読み解き／C ふく射とNO予測の妥当性 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>解の検証 ― 各問の要点とキー観点</h2>
+    <p class="lead">燃焼流の数値解が実験を再現できるかを、モデル仮定・火炎構造・ふく射/NO予測の観点で確かめる。全10問を A／B／C に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜乱流燃焼モデルと保炎の検証</div>
+    <div class="track-desc">まず用いる燃焼モデルの前提と経験定数の意味を取り違えないことが検証の出発点になる。渦消散モデルは乱流混合律速を仮定し、経験定数は条件ごとに較正すべき量であって普遍定数ではない。旋回数で中心再循環流（保炎）の有無を見積もり、RANSが与えるのはアンサンブル平均場で個々の渦によるしわはならされる、という平均操作の理解がBの火炎構造の読み解きへつながる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>燃焼モデルの仮定・定数</h3>
+        <ul class="q-list">
+          <li><span class="q">24-1</span><span class="txt"><b>渦消散モデルの較正と適用範囲</b>A・Bは普遍定数でない　<span class="f">R_F=A(ρε/k)min[Y_F, Y_O/s_O, BY_P/s_P]</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>旋回流と保炎</h3>
+        <ul class="q-list">
+          <li><span class="q">24-2</span><span class="txt"><b>旋回数と中心再循環流</b>S≳0.6で再循環→保炎　<span class="f">S=G_θ/(R·G_x)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>RANS平均の読み解き</h3>
+        <ul class="q-list">
+          <li><span class="q">24-3</span><span class="txt"><b>RANS平均と火炎面のしわ</b>瞬時のしわはLES/DNS　<span class="f">RANS=アンサンブル平均→滑らかな平均火炎面</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜火炎構造・燃焼形態の読み解き</div>
+    <div class="track-desc">計算結果が物理的に妥当かは、火炎のどこがどんな燃焼形態かを見分けて判断する。浮き上がり火炎の基部には予混合火炎ができ、拡散燃焼専用モデル単独では再現できない（モデル適用範囲の検証）。噴霧の当量比が高いと群燃焼で拡散火炎領域が増えてすすが出やすく、フレームインデックスの符号で予混合／拡散火炎片を判別する。噴霧では燃料が蒸発で気相へ供給されるため混合分率が保存量でない点も読み解きの要になる。</div>
+    <div class="grid4">
+      <div class="box lead">
+        <h3>火炎形態とモデル適用</h3>
+        <ul class="q-list">
+          <li><span class="q">24-4</span><span class="txt"><b>浮き上がり火炎とモデル併用</b>基部は予混合火炎　<span class="f">定常フレームレット単独不可→部分予混合対応モデル</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>当量比とすす</h3>
+        <ul class="q-list">
+          <li><span class="q">24-5</span><span class="txt"><b>噴霧火炎の当量比とすす生成</b>高当量比→群燃焼　<span class="f">拡散火炎領域（燃料過濃）ですす増</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>燃焼形態の判別</h3>
+        <ul class="q-list">
+          <li><span class="q">24-6</span><span class="txt"><b>フレームインデックス</b>FI&gt;0予混合/FI&lt;0拡散　<span class="f">FI=∇Y_F·∇Y_{O₂}</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>混合分率の扱い</h3>
+        <ul class="q-list">
+          <li><span class="q">24-7</span><span class="txt"><b>噴霧火炎での混合分率の非保存</b>蒸発が供給源　<span class="f">気相混合分率は保存量でない（蒸発で増加しうる）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜ふく射とNO予測の妥当性</div>
+    <div class="track-desc">温度や微量化学種（NO）の予測精度は、ふく射伝熱と反応の時間スケールを正しく扱えているかで決まる。ふく射は火炎（高温）から低温周囲への正味の放熱で火炎温度を下げ、局所消炎につながりうる。熱的NOは生成反応が遅く温度に指数関数的に依存するため、定常フレームレット法では過大評価となり非定常フレームレット法が要る。わずかな温度低下でもNO生成速度が大きく変わる、という感度の理解が妥当性確認の核心になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>ふく射と火炎温度</h3>
+        <ul class="q-list">
+          <li><span class="q">24-8</span><span class="txt"><b>ふく射考慮による温度低下と失火</b>高温→低温周囲への放熱　<span class="f">火炎温度低下→下流で局所消炎（失火）</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>遅い反応とNO予測</h3>
+        <ul class="q-list">
+          <li><span class="q">24-9</span><span class="txt"><b>定常フレームレット法とNO予測の限界</b>NO反応は遅い　<span class="f">定常は過大評価→非定常フレームレット法で対策</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>NOの温度依存</h3>
+        <ul class="q-list">
+          <li><span class="q">24-10</span><span class="txt"><b>ふく射伝熱と熱的NO</b>温度低下でNO急減　<span class="f">熱的NO生成速度∝exp(−T_a/T)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）モデル・保炎の検証・B（藍）火炎構造・形態・C（赤）ふく射・NO予測。全10問（A3・B4・C3）。</p>
+  </section>
+</div>

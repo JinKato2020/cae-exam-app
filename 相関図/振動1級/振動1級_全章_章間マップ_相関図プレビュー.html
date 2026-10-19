@@ -1,0 +1,91 @@
+<title>振動1級 全章マップ 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 振動1級 全9章の章間マップ(1枚)。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9; --surface: #ffffff; --ink: #1F3A65; --ink-soft: #35507f;
+    --fill: #E1E7F2; --accent: #C82D2D; --muted: #6b7280; --line: #c7d0e2; --num: #1F3A65;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: "Meiryo","Hiragino Kaku Gothic ProN", system-ui, sans-serif; line-height: 1.5; margin: 0; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left,0px)); padding-right: max(16px, env(safe-area-inset-right,0px)); padding-block: 24px 48px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 4px; }
+  .band-label { font-size: .86rem; color: #fff; background: var(--ink-soft); font-weight: 800; letter-spacing: .03em; margin: 20px 0 6px; padding: 5px 13px; border-radius: 7px; display:inline-block; }
+  .band-label.core { background: var(--accent); }
+  .band-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 0 2px 10px; }
+  .band-desc .lk { color: var(--accent); font-weight: 700; }
+  .down { text-align:center; color: var(--accent); font-size: 1rem; font-weight:700; margin: 10px 0 2px; }
+  .row { display: grid; gap: 10px; margin-bottom: 10px; }
+  .r4 { grid-template-columns: repeat(4, 1fr); }
+  .r3 { grid-template-columns: repeat(3, 1fr); }
+  .r2 { grid-template-columns: repeat(2, 1fr); }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.hot { border-color: var(--accent); border-width: 2px; }
+  .box h3 { margin: 0 0 4px; font-size: .9rem; color: var(--ink); display:flex; gap:7px; align-items:baseline; }
+  .box.hot h3 { color: var(--accent); }
+  .box p { margin: 0; font-size: .76rem; color: var(--ink-soft); }
+  .ch { color:#fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size:.7rem; font-weight:700; white-space:nowrap; }
+  .box.hot .ch { background: var(--accent); }
+  .legend { margin-top: 16px; color: var(--muted); font-size: .78rem; line-height: 1.6; }
+  @media (max-width: 680px){ .r4, .r3 { grid-template-columns: 1fr 1fr; } .r2 { grid-template-columns: 1fr; } }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>振動1級「全章の相関図」（章間マップ・プレビュー）</h1>
+    <p>各章がどの役割を持ち、どこへつながるか（章どうしの関係）を1枚で示します。</p>
+  </header>
+
+  <section class="fig">
+    <h2>振動1級：振動解析の全体地図 ― 理論から連成・検証まで</h2>
+    <p class="lead">全9章は「力学・振動の理論（土台）→ 有限要素と数値計算（解く技術）→ 連成・複合系のモデリング（到達点）→ 結果の検証と考察（仕上げ）」の流れで、後の段ほど前の段を土台にしています。</p>
+
+    <div class="band-label">① 力学と振動の理論（第1〜2章）― すべての土台</div>
+    <div class="band-desc">まず振動を記述する力学の枠組み（ラグランジュ・ハミルトンの解析力学、仮想仕事・変分）を押さえ、1自由度・多自由度系の固有振動数・モード・強制応答・減衰という振動工学の基礎を固めます。<span class="lk">ここで得たモード・固有値の考え方が、以降の有限要素・数値計算・連成解析すべての共通土台になります。</span></div>
+    <div class="row r2">
+      <div class="box"><h3><span class="ch">1</span>解析力学</h3><p>ラグランジュ/ハミルトン・仮想仕事・変分原理</p></div>
+      <div class="box"><h3><span class="ch">2</span>振動工学</h3><p>1/多自由度・固有振動数・モード・強制応答・減衰</p></div>
+    </div>
+    <div class="down">↓ 連続体を離散化して解く技術へ ↓</div>
+
+    <div class="band-label">② 有限要素と数値計算（第3・8章）― 解く技術</div>
+    <div class="band-desc">連続体を有限要素に離散化して質量行列・剛性行列を組み、要素の性質を押さえます。そのうえで大規模な固有値問題や時間応答をどう解くか（固有値解法・時間積分・モデル縮約）を学びます。<span class="lk">①の理論を実際のモデルで解く手段であり、③の連成・複合系を扱うための前提になります。</span></div>
+    <div class="row r2">
+      <div class="box"><h3><span class="ch">3</span>有限要素のテクノロジー</h3><p>質量/剛性行列・要素の性質・固有値問題</p></div>
+      <div class="box"><h3><span class="ch">8</span>振動の数値計算技術</h3><p>固有値解法・時間積分・モデル縮約</p></div>
+    </div>
+    <div class="down">↓ 現実の結合・連成を表現するモデリングへ ↓</div>
+
+    <div class="band-label core">③ 連成・複合系のモデリング（第4〜7章）― 到達点</div>
+    <div class="band-desc">実機では複数の構造が結合部・境界でつながり（第4章）、部分構造を合成して大規模系を効率よく解きます（第5章）。さらに音場と連成する振動（第6章）、流体と連成する振動（第7章・付加質量・スロッシング）を扱います。<span class="lk">①の理論と②の数値技術を土台に、現実の結合・連成現象を表現する振動1級の中核です。</span></div>
+    <div class="row r4">
+      <div class="box hot"><h3><span class="ch">4</span>結合・境界部のモデリング</h3><p>剛体結合・MPC・境界・接合部</p></div>
+      <div class="box hot"><h3><span class="ch">5</span>構造複合系の解析</h3><p>部分構造・モード合成・縮約</p></div>
+      <div class="box hot"><h3><span class="ch">6</span>音響連成系の解析基礎</h3><p>構造–音場連成・音響モード</p></div>
+      <div class="box hot"><h3><span class="ch">7</span>流体連成系の解析基礎</h3><p>流体連成・付加質量・スロッシング</p></div>
+    </div>
+    <div class="down">↓ 解いた結果を検証・考察して仕上げ ↓</div>
+
+    <div class="band-label">④ 結果の検証と考察（第9章）― 仕上げ</div>
+    <div class="band-desc">解いた結果が妥当かを、実験との相関（MAC・モード相関）や検証（V&amp;V）で確かめ、物理的に考察します。<span class="lk">①〜③すべての解析の信頼性を支える仕上げの段です。</span></div>
+    <div class="row r2">
+      <div class="box"><h3><span class="ch">9</span>結果の検証と考察</h3><p>V&amp;V・MAC・モード相関・結果の考察</p></div>
+    </div>
+
+    <p class="legend">青い枠＝各章／赤い枠＝連成・複合系のモデリング（振動1級の到達点）。全体は <b>理論(1・2) → 有限要素と数値計算(3・8) → 連成・複合系(4〜7) → 検証(9)</b> の流れで、後の段ほど前の段のモード・離散化・数値技術の考え方を土台にします。矢印と「→」は“理解のつながり”で、学習する順番そのものではありません。</p>
+  </section>
+</div>

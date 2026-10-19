@@ -1,0 +1,165 @@
+<title>熱流体1級 第11章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A水面波と不安定／B 界面・自由表面の条件／C 表面張力・濡れ・界面の熱 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級 第11章「波と界面」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 水面波と界面不安定／B 界面・自由表面の境界条件／C 表面張力・濡れ・界面の熱 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>波と界面 ― 各問の要点とキー公式</h2>
+    <p class="lead">水面波の分散関係と界面の不安定から、界面・自由表面で課す境界条件、表面張力・濡れ・界面を介する熱まで整理。全13問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜水面波と界面不安定</div>
+    <div class="track-desc">界面に生じる波は、まず分散関係で位相速度が決まる（長波は水深、短波は波長で決まる）。密度差や速度差がある界面ではレイリー・テイラー不安定やケルビン・ヘルムホルツ不安定が成長し、表面張力や粘性が短波長を抑える。数値計算で現れる波は物理と数値の原因を切り分ける必要があり、近接2波の重ね合わせでは群速度が包絡線の速さを与える。界面現象を波動として捉えるトラック。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>水面波の位相速度</h3>
+        <ul class="q-list">
+          <li><span class="q">11-1</span><span class="txt"><b>長波は水深依存、短波は波長依存</b><span class="f">c=√{(g/k)tanh(kh)}（長波 c=√(gh)）</span></span></li>
+          <li><span class="q">11-2</span><span class="txt"><b>深水波の位相速度を計算</b><span class="f">c=√(g/k), k=2π/λ</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>界面不安定</h3>
+        <ul class="q-list">
+          <li><span class="q">11-3</span><span class="txt"><b>密度差が駆動・表面張力が安定化</b><span class="f">不安定条件 (ρU−ρL)g&gt;σk²（長波長側）</span></span></li>
+          <li><span class="q">11-4</span><span class="txt"><b>非粘性は短波長ほど速い→粘性で有限波長最速</b><span class="f">KH不安定・速度差 2U</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>数値計算と波群</h3>
+        <ul class="q-list">
+          <li><span class="q">11-5</span><span class="txt"><b>数値拡散は擾乱を抑制（波を発達させない）</b><span class="f">物理：KH/乱流、数値：不安定/拡散</span></span></li>
+          <li><span class="q">11-6</span><span class="txt"><b>包絡線は最大2A、群速度で進む</b><span class="f">cg=Δω/Δk（位相速度 ω/k）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜界面・自由表面の境界条件</div>
+    <div class="track-desc">数値計算や解析では界面でどの量を連続とするかが要になる。気液界面の跳躍条件からは法線質量流束の釣合いが導かれ、相変化や表面張力の有無で応力の連続性が変わる。自由表面では表面に乗った粒子が離れない条件（運動学的境界条件）が物質微分ゼロで表される。A の波動を支える、界面に課す条件を整理するトラック。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>界面の跳躍条件</h3>
+        <ul class="q-list">
+          <li><span class="q">11-7</span><span class="txt"><b>法線質量流束の釣合い・応力連続の条件</b><span class="f">ṁG+ṁL=0, ṁk=ρk(Vk−Vint)·nk</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>自由表面の運動学的条件</h3>
+        <ul class="q-list">
+          <li><span class="q">11-8</span><span class="txt"><b>表面に乗った粒子は離れない（DS/Dt=0）</b><span class="f">∂h/∂t+u∂h/∂x+v∂h/∂y=w</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜表面張力・濡れ・界面の熱</div>
+    <div class="track-desc">界面に表面張力の分布があると、低い側から高い側へ向かう力（マランゴニ効果）が生じ、上昇気泡の表面やワインの涙を説明する。固体上の液滴はヤングの式で接触角が決まり、移動する接触線では前進角・後退角の差（ヒステリシス）が現れる。さらに界面を介する熱伝導は直列抵抗として調和平均で評価する。界面の力学と熱を扱う、本章の応用トラック。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>マランゴニ効果</h3>
+        <ul class="q-list">
+          <li><span class="q">11-9</span><span class="txt"><b>活性剤が下部に濃→上部σ大・ノースリップ化</b><span class="f">マランゴニ力 ∇sσ</span></span></li>
+          <li><span class="q">11-10</span><span class="txt"><b>上部でアルコール蒸発→σ大、低→高へ引上げ</b><span class="f">マランゴニ効果（σ小→σ大）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>濡れと接触角</h3>
+        <ul class="q-list">
+          <li><span class="q">11-11</span><span class="txt"><b>ヤングの式から平衡接触角</b><span class="f">cosθY=(σSG−σSL)/σ=0.5→60°</span></span></li>
+          <li><span class="q">11-12</span><span class="txt"><b>滑落中は後退角＜基準＜前進角</b><span class="f">θb&lt;θ&lt;θf（接触角ヒステリシス）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>界面の熱伝導</h3>
+        <ul class="q-list">
+          <li><span class="q">11-13</span><span class="txt"><b>直列は調和平均（算術平均でない）</b><span class="f">2/K=1/K1+1/K2 → K=2K1K2/(K1+K2)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）水面波と不安定・B（藍）界面・自由表面の条件・C（赤）表面張力・濡れ・界面の熱。全13問（A6・B2・C5）。</p>
+  </section>
+</div>

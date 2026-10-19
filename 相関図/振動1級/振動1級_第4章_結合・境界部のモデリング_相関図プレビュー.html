@@ -1,0 +1,189 @@
+<title>振動1級 第4章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>振動1級 第4章「結合・境界部のモデリング」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 結合要素と等価化／B 基礎励振の等価力とモード分解／C 走行入力・連成・モデル化範囲 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>結合・境界部のモデリング ― 各問の要点とキー公式</h2>
+    <p class="lead">部材をどうつなぎ、基礎や走行の入力をどう与えるか。全22問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜結合要素と等価化（部材をつなぐ）</div>
+    <div class="track-desc">異なるメッシュの部材やボルト・ヒンジなどの結合部を、どんな要素で表すかを扱う。多点拘束(MPC)や節点共有で変位を結び、ばね質量や圧縮荷重の効果は等価質量・負の剛性として取り込む。要素分割の仕方や励振・接触の与え方も、B・Cで扱う入力の土台になる。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>異メッシュ結合・固着</h3>
+        <ul class="q-list">
+          <li><span class="q">4-1</span><span class="txt"><b>異メッシュ結合は多点拘束(MPC)。仕事が保存し力は変位係数の転置</b><span class="f">多点拘束／力＝(変位係数)ᵀ×Fₐ</span></span></li>
+          <li><span class="q">4-9</span><span class="txt"><b>ボルト締結は接触面の節点共有。固着範囲は共有節点の個数で調整</b><span class="f">節点共有・共有数で固着範囲</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>ばね質量・座屈の等価化</h3>
+        <ul class="q-list">
+          <li><span class="q">4-2</span><span class="txt"><b>分布質量ばねの等価質量は本体にばね質量の1/3を加える(レイリー法)</b><span class="f">m+mₛ/3＝6.0+1.2/3＝6.4 kg</span></span></li>
+          <li><span class="q">4-3</span><span class="txt"><b>圧縮荷重は倒れモードに負の剛性。固有値が実数で発散(不安定)</b><span class="f">Iλ²＝Fl → λ＝±√(Fl/I)＝±200 s⁻¹</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>要素分割・励振</h3>
+        <ul class="q-list">
+          <li><span class="q">4-7</span><span class="txt"><b>全節点が固定辺上の三角形要素は有効自由度を持たず精度低下</b><span class="f">全固定要素を避ける分割</span></span></li>
+          <li><span class="q">4-8</span><span class="txt"><b>離れた2節点に逆向き等大の力＝偶力でモーメント励振</b><span class="f">合力0・偶力→モーメント励振</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>結合部の要素選択・接触</h3>
+        <ul class="q-list">
+          <li><span class="q">4-14</span><span class="txt"><b>面接触でモーメントを伝えるヒンジ・ロックは板＋はり(回転可)、細ゴムはばね</b><span class="f">板＋はり要素／ばね要素</span></span></li>
+          <li><span class="q">4-15</span><span class="txt"><b>接触解析は数値パラメータに敏感。自動減衰は収束に有効だが評価時は注意</b><span class="f">マスター・スレーブ／ペナルティ法</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜基礎励振の等価力とモード分解（入力の与え方）</div>
+    <div class="track-desc">地震や基礎の揺れなど、変位・加速度の入力を等価な外力に置き換えて解く方法を扱う。入力点を0に拘束して等価力を与え、変位入力では絶対変位、加速度入力では相対変位が得られる。得た相対変位をモード分解すると、各モードの効きやすさを表す刺激係数が現れる。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>変位・加速度入力の等価力置換</h3>
+        <ul class="q-list">
+          <li><span class="q">4-4</span><span class="txt"><b>加速度入力は相対変位y＝x₂−x₁で記述。右辺は慣性力</b><span class="f">m ÿ+k y＝−m ẍ₁</span></span></li>
+          <li><span class="q">4-5</span><span class="txt"><b>入力点を0拘束し等価外力へ。変位入力→絶対、加速度入力→相対変位</b><span class="f">0拘束＋等価外力(k₁x₁₀／−mᵢa₁₀)</span></span></li>
+          <li><span class="q">4-6</span><span class="txt"><b>片持ちはりの基礎励振も0拘束＋等価力。加速度→相対、変位→絶対</b><span class="f">加速度=相対変位・変位=絶対変位</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>加速度加振の実装</h3>
+        <ul class="q-list">
+          <li><span class="q">4-10</span><span class="txt"><b>大質量法。大きな仮想質量を剛体結合し力加振で加速度を近似</b><span class="f">ẍ≈F/M_big, F＝M_big·a</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>地震応答のモード分解</h3>
+        <ul class="q-list">
+          <li><span class="q">4-11</span><span class="txt"><b>モード分離した右辺係数βᵢが刺激係数</b><span class="f">βᵢ＝{φᵢ}ᵀ[M]{I}(刺激係数)</span></span></li>
+          <li><span class="q">4-12</span><span class="txt"><b>刺激係数はモードと入力方向の質量重み内積。符号で正負</b><span class="f">βᵢは正にも負にもなる</span></span></li>
+          <li><span class="q">4-13</span><span class="txt"><b>相対変位は節点1〜nの並進yᵢ・回転θᵢの2n次元、影響ベクトルは並進1・回転0</b><span class="f">{I}＝{1 0 1 0 … 1 0}ᵀ</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜走行入力・連成不安定・モデル化範囲</div>
+    <div class="track-desc">走行する車両や鉄道のように、複数の接地点へ時間差で入る入力や、摩擦による連成不安定、広い構造のどこまでをモデル化するかを扱う。後続の車輪・軸は距離を走った分だけ遅れて同じ入力を受け、摩擦連成は非対称剛性を生んで複素固有値で安定性を判断する。剛性差の大きい部材はカット断面を拘束して追加モデル化を最小化する。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>走行入力の時間遅れ</h3>
+        <ul class="q-list">
+          <li><span class="q">4-16</span><span class="txt"><b>後続軸は距離走行後に同じ変位。km/hとmは3.6換算</b><span class="f">τ＝3.6L/v＝3.0×3.6/72＝0.15 s</span></span></li>
+          <li><span class="q">4-17</span><span class="txt"><b>後輪は前輪入力を時間遅れ・位相も遅れた入力</b><span class="f">τ＝L/V, 位相遅れ ω(L/V)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>摩擦連成の不安定</h3>
+        <ul class="q-list">
+          <li><span class="q">4-18</span><span class="txt"><b>上下変位が左右摩擦力を生む連成→非対称剛性。複素固有値の実部で安定性</b><span class="f">Fy＝μKc·Δw(上下)／非対称→複素固有値</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>車両の境界条件・入力</h3>
+        <ul class="q-list">
+          <li><span class="q">4-19</span><span class="txt"><b>路面凹凸は接地節点を0拘束し、タイヤ剛性×凹凸変位の力を車軸へ</b><span class="f">接地0拘束＋車軸へ(タイヤ剛性×凹凸)</span></span></li>
+          <li><span class="q">4-20</span><span class="txt"><b>アイドル振動はタイヤ・サス・D/Sも含め接地面拘束。トルク変動はモーメントでエンジンへ</b><span class="f">接地面拘束＋モーメントをエンジン</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>モデル化範囲（カット拘束）</h3>
+        <ul class="q-list">
+          <li><span class="q">4-21</span><span class="txt"><b>剛性不足の部材A・結合部Eは弾性体で残し、剛性の高いB・C・Dはカット断面を拘束</b><span class="f">柔部材=弾性体／剛部材=カット拘束</span></span></li>
+          <li><span class="q">4-22</span><span class="txt"><b>剛性不足の骨格E〜Gは弾性体で残し、剛性の高い骨格A〜Dのカット断面を拘束</b><span class="f">柔骨格=弾性体／剛骨格=カット拘束</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）結合要素と等価化・B（藍）基礎励振の等価力とモード分解・C（赤）走行入力・連成・モデル化範囲。全22問（A8・B7・C7）。</p>
+  </section>
+</div>

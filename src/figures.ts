@@ -4,6 +4,10 @@
 import type { ImageSourcePropType } from 'react-native';
 
 export const FIGURES: Record<string, ImageSourcePropType> = {
+  s1e2KinematicHystPre: require('../assets/figures/s1e2KinematicHystPre.png'),
+  s1e2BilinearPre: require('../assets/figures/s1e2BilinearPre.png'),
+  s1e2IsoHysteresisPre: require('../assets/figures/s1e2IsoHysteresisPre.png'),
+  s1e2MisesSetup: require('../assets/figures/s1e2MisesSetup.png'),
   t2e9GridConvergenceBefore: require('../assets/figures/t2e9GridConvergenceBefore.png'),
   t2e9CfReChartBefore: require('../assets/figures/t2e9CfReChartBefore.png'),
   t2e8StreamlinePickBefore: require('../assets/figures/t2e8StreamlinePickBefore.png'),

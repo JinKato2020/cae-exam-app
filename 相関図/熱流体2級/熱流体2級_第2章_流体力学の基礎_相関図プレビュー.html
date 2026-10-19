@@ -1,0 +1,184 @@
+<title>熱流体2級 第2章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体2級 第2章「流体力学の基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 支配方程式と相似／B 圧力と流れを解く／C 渦・境界層・可視化 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>流体力学の基礎 ― 各問の要点とキー公式</h2>
+    <p class="lead">流れを支配する方程式と、圧力・速度・力を求める基本則、粘性がつくる渦と境界層。全22問を A／B／C に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜支配方程式と相似（立式・無次元化・次元解析）</div>
+    <div class="track-desc">流れの計算は、保存則から導く輸送方程式と、応力・熱流束を与える構成方程式を立てることから始まる。これらを代表量で割って無次元化すると、慣性と粘性の比レイノルズ数や慣性と重力の比フルード数が現れ、模型と実物を結ぶ相似則になる。次元解析は量の形を素早く見積もる道具で、連続体近似が崩れる希薄気体ではクヌッセン数が目安になる。ここで整えた方程式が、Bの具体計算とCの粘性現象を支える。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>基礎方程式と項の性質</h3>
+        <ul class="q-list">
+          <li><span class="q">2-1</span><span class="txt"><b>保存則→輸送式／性質→構成式</b><span class="f">輸送方程式・構成方程式</span></span></li>
+          <li><span class="q">2-15</span><span class="txt"><b>NS方程式の非線形の源</b>完全流体はオイラー式　<span class="f">対流項 (u·∇)u</span></span></li>
+          <li><span class="q">2-21</span><span class="txt"><b>高Reでも粘性項を無視不可</b>境界層で2階微分大　<span class="f">(1/Re)∇²v</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>無次元化と相似</h3>
+        <ul class="q-list">
+          <li><span class="q">2-2</span><span class="txt"><b>慣性で割って無次元数が出る</b><span class="f">Re=ρVL/μ, Fr=V²/(Lg)</span></span></li>
+          <li><span class="q">2-11</span><span class="txt"><b>模型は Re 一致で力学的相似</b>同じ水なら　<span class="f">UₘLₘ=UₚLₚ</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>次元解析</h3>
+        <ul class="q-list">
+          <li><span class="q">2-3</span><span class="txt"><b>散逸率を ν・η のべきで</b>次元で指数を連立　<span class="f">ε∼ν³η⁻⁴</span></span></li>
+          <li><span class="q">2-8</span><span class="txt"><b>回転円板の摩擦トルク</b>r⁴を積分　<span class="f">T∝ρω²R⁵</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>連続体の限界</h3>
+        <ul class="q-list">
+          <li><span class="q">2-20</span><span class="txt"><b>希薄気体ではNSが破綻</b>解法はボルツマン方程式　<span class="f">K=λ/L（クヌッセン数）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜圧力と流れを解く（静力学・ベルヌーイ・連続・運動量）</div>
+    <div class="track-desc">具体的に圧力・速度・力を求めるトラック。加速する容器の水面は見かけの力に垂直に傾く（相対的静止）。損失のない流れでは連続の式 Q=uA で速度をつなぎ、ベルヌーイの式で圧力と結ぶことで、マノメータ・ピトー管・ベンチュリー管の読みが計算できる。流れの向きを変える力は運動量の定理で求め、先細ノズルでは出口が音速に達してチョークする。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>静止・相対的静止</h3>
+        <ul class="q-list">
+          <li><span class="q">2-4</span><span class="txt"><b>加速するタンクの水面の傾き</b>合力に垂直　<span class="f">tan|β|=a cosθ/(g+a sinθ)</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>ベルヌーイ・連続</h3>
+        <ul class="q-list">
+          <li><span class="q">2-6</span><span class="txt"><b>絞り部で速く・静圧低く・液柱低い</b><span class="f">p+½ρV²=一定</span></span></li>
+          <li><span class="q">2-12</span><span class="txt"><b>ピトー管の全圧−静圧＝動圧</b><span class="f">p_B−p_C=½ρU²</span></span></li>
+          <li><span class="q">2-13</span><span class="txt"><b>内径半分で流速4倍</b>断面積は径の2乗　<span class="f">Q=uA 一定</span></span></li>
+          <li><span class="q">2-14</span><span class="txt"><b>ベンチュリーの圧力差→流速</b><span class="f">U=√(2Δp/ρ·Ab²/(Aa²−Ab²))</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>運動量・圧縮性</h3>
+        <ul class="q-list">
+          <li><span class="q">2-7</span><span class="txt"><b>移動板への噴流の力</b>相対速度が2回効く　<span class="f">F=ρA(V−U)²(1−cosα)</span></span></li>
+          <li><span class="q">2-9</span><span class="txt"><b>先細ノズルのチョーク</b>出口でM=1・上流は亜音速　<span class="f">臨界圧力比</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜渦・境界層・流れの様子（粘性効果と可視化）</div>
+    <div class="track-desc">粘性がつくる流れの構造を見るトラック。中心が剛体回転・外側が渦なしのランキン渦、相対速度を基準に分ける揚力と抗力。壁近くには粘性底層と対数層からなる乱流境界層ができ、管内流れはレイノルズ数で層流・乱流が、マッハ数で圧縮性が決まる。入口の助走区間を過ぎると放物線状に発達する。最後に、流線・流跡線・流脈線の違いで流れの様子を読み解く。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>渦と流体力</h3>
+        <ul class="q-list">
+          <li><span class="q">2-5</span><span class="txt"><b>ランキン渦の速度分布</b>r=aで最大　<span class="f">内 v∝r／外 v∝1/r</span></span></li>
+          <li><span class="q">2-10</span><span class="txt"><b>抗力・揚力は相対速度で分ける</b><span class="f">抗力∥(V−U)・揚力⊥(V−U)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>境界層・乱流・遷移</h3>
+        <ul class="q-list">
+          <li><span class="q">2-16</span><span class="txt"><b>壁乱流は粘性底層＋対数層</b><span class="f">u_τ=√(τ_w/ρ), y⁺=u_τ y/ν</span></span></li>
+          <li><span class="q">2-17</span><span class="txt"><b>圧縮性はMa・層流乱流はRe</b><span class="f">Ma≲0.3 非圧縮／Re≲2300 層流</span></span></li>
+          <li><span class="q">2-19</span><span class="txt"><b>助走区間の先で発達</b>摩擦で圧力は減少　<span class="f">ハーゲン・ポアズイユ流れ</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>流れの可視化</h3>
+        <ul class="q-list">
+          <li><span class="q">2-18</span><span class="txt"><b>非定常流の流脈線</b>切替後は全粒子が動く　<span class="f">放出時刻ごとの“今”の位置</span></span></li>
+          <li><span class="q">2-22</span><span class="txt"><b>流線・流跡線・流脈線の定義</b>定常流で一致　<span class="f">瞬間接線／1粒子の軌跡／放出列</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）支配方程式と相似・B（藍）圧力と流れを解く・C（赤）渦・境界層・可視化。全22問（A8・B7・C7）。</p>
+  </section>
+</div>

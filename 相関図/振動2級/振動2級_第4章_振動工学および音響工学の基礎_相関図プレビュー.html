@@ -1,0 +1,221 @@
+<title>振動2級 第4章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>振動2級 第4章「振動工学および音響工学の基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 1自由度系（ばね合成・固有振動数・減衰・強制振動）／B 多自由度系とモード解析／C 連続体振動と音響工学 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>振動工学および音響工学の基礎 ― 各問の要点とキー公式</h2>
+    <p class="lead">1自由度系のばね合成・固有振動数・減衰・強制振動から、多自由度系のモード解析、そして連続体の振動と音響工学までを整理。全44問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜1自由度系（ばね合成・固有振動数・減衰・回転振動・強制振動）</div>
+    <div class="track-desc">振動の基本単位である1自由度系を押さえる。棒の等価ばね定数 k=AE/l から直列・並列・複合のばね合成を求め、固有角振動数 ωn=√(k/m) を計算する（重力は平衡位置をずらすだけで固有振動数に影響しない）。減衰が入ると減衰固有角振動数 ωd=ωn√(1−ζ²) や過減衰条件が決まり、剛体棒・振り子・円板の回転振動は支点まわりの慣性と復元モーメントで運動方程式を立てる。強制振動では応答倍率で共振の大きさを評価する。</div>
+    <div class="grid4">
+      <div class="box lead">
+        <h3>等価ばね定数と合成</h3>
+        <ul class="q-list">
+          <li><span class="q">4-1</span><span class="txt"><b>一様棒の軸方向等価ばね定数</b><span class="f">k=AE/l</span></span></li>
+          <li><span class="q">4-2</span><span class="txt"><b>2本の棒を直列に合成</b><span class="f">k=k₁k₂/(k₁+k₂)</span></span></li>
+          <li><span class="q">4-3</span><span class="txt"><b>2本の棒を並列に合成</b><span class="f">k=k₁+k₂</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>固有角振動数</h3>
+        <ul class="q-list">
+          <li><span class="q">4-4</span><span class="txt"><b>直列ばねで吊る系の固有角振動数</b><span class="f">k=k₁k₂/(k₁+k₂), ωn=√(k/m)</span></span></li>
+          <li><span class="q">4-5</span><span class="txt"><b>並列ばねで吊る系の固有角振動数</b><span class="f">k=k₁+k₂, ωn=√(k/m)</span></span></li>
+          <li><span class="q">4-6</span><span class="txt"><b>並列＋直列の複合ばね系</b><span class="f">複合合成→ωn=√(k/m)</span></span></li>
+          <li><span class="q">4-7</span><span class="txt"><b>重力は平衡位置をずらすだけで固有振動数不変</b><span class="f">ω水平=ω鉛直</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>減衰自由振動</h3>
+        <ul class="q-list">
+          <li><span class="q">4-8</span><span class="txt"><b>初期変位0・初速ありの減衰自由振動応答</b><span class="f">x=(v₀/ωd)e^(−(c/2m)t)sinωd t</span></span></li>
+          <li><span class="q">4-9</span><span class="txt"><b>減衰固有角振動数は不減衰より必ず小</b><span class="f">ωd=ωn√(1−ζ²)</span></span></li>
+          <li><span class="q">4-19</span><span class="txt"><b>振動的にならない（臨界・過減衰）条件</b><span class="f">c≥2√(mk)（ζ≥1）</span></span></li>
+          <li><span class="q">4-20</span><span class="txt"><b>自由振動波形からばね定数を同定</b><span class="f">f=周期数/時間, k=(2πf)²m</span></span></li>
+          <li><span class="q">4-21</span><span class="txt"><b>減衰比と減衰固有角振動数の数値計算</b><span class="f">ζ=c/(2√(mk)), ωd=ωn√(1−ζ²)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>回転振動系のEOM</h3>
+        <ul class="q-list">
+          <li><span class="q">4-12</span><span class="txt"><b>剛体棒＋ばねの回転運動方程式</b><span class="f">(1/3)ml²θ̈+ka²θ=0</span></span></li>
+          <li><span class="q">4-13</span><span class="txt"><b>単振り子の運動方程式</b><span class="f">mL²θ̈+mgL sinθ=0</span></span></li>
+          <li><span class="q">4-14</span><span class="txt"><b>円板＋ばねの回転振動（腕の2乗で剛性）</b><span class="f">Iθ̈+kR²θ=0</span></span></li>
+          <li><span class="q">4-15</span><span class="txt"><b>円板＋ばね＋ダンパの回転振動</b><span class="f">Iθ̈+cR²θ̇+kR²θ=0</span></span></li>
+          <li><span class="q">4-16</span><span class="txt"><b>動滑車の拘束で等価剛性k/4</b><span class="f">ωn=(1/2)√(k/m)</span></span></li>
+          <li><span class="q">4-17</span><span class="txt"><b>天井ジョイント棒の復元モーメント</b><span class="f">ka²θ+(b/2)mgθ</span></span></li>
+          <li><span class="q">4-18</span><span class="txt"><b>ばね・重力とも復元的で同符号のEOM</b><span class="f">Iθ̈+(ka²+(b/2)mg)θ=0</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>一致条件・設計・強制振動</h3>
+        <ul class="q-list">
+          <li><span class="q">4-10</span><span class="txt"><b>回転系と並進系の固有振動数一致条件</b><span class="f">a=l/√3</span></span></li>
+          <li><span class="q">4-11</span><span class="txt"><b>共振回避は剛性を上げ質量を下げる</b><span class="f">f=(1/2π)√(k/m)</span></span></li>
+          <li><span class="q">4-22</span><span class="txt"><b>外力加振の定常応答倍率（分子は1）</b><span class="f">M=1/√((1−r²)²+(2ζr)²)</span></span></li>
+          <li><span class="q">4-23</span><span class="txt"><b>矩形パルスのフーリエ変換とω=0の極限</b><span class="f">2sin(ωT)/ω（ω→0で2T）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜多自由度系とモード解析（剛性行列・連成・固有値と固有モード・モード重ね合わせ）</div>
+    <div class="track-desc">質量・剛性行列で表した多自由度系を扱う。各質点につながるばねから剛性行列を組み立て、重心の上下動と回転が連成する条件（連成項=0で非連成）を調べる。固有値問題 det([K]−ω²[M])=0 から固有振動数と固有モード（低次は同相・高次は逆相）を求め、固有ベクトルの直交性を使ってモード座標へ変換すると独立な1自由度系に分解でき、モード重ね合わせで強制応答を表せる。A の1自由度の結果が各モードに生きる。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>剛性行列</h3>
+        <ul class="q-list">
+          <li><span class="q">4-24</span><span class="txt"><b>両端固定3質点系は三重対角の剛性行列</b><span class="f">[K]=[2k,−k,0;−k,2k,−k;0,−k,2k]</span></span></li>
+          <li><span class="q">4-25</span><span class="txt"><b>片端固定・右端自由の3質点系の剛性行列</b><span class="f">各質点につながるばねを足す</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>2自由度の連成</h3>
+        <ul class="q-list">
+          <li><span class="q">4-26</span><span class="txt"><b>上下動と回転の連成EOM（共通の連成係数）</b><span class="f">C=k₂l₂−k₁l₁</span></span></li>
+          <li><span class="q">4-27</span><span class="txt"><b>連成項が0で非連成になる条件</b><span class="f">k₁l₁=k₂l₂</span></span></li>
+          <li><span class="q">4-28</span><span class="txt"><b>2自由度系の固有角振動数（数値）</b><span class="f">det([K]−ω²[M])=0</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>固有値・固有モード</h3>
+        <ul class="q-list">
+          <li><span class="q">4-30</span><span class="txt"><b>2自由度系の第1・第2固有角振動数</b><span class="f">ω₁=√(k/m), ω₂=√(3k/m)</span></span></li>
+          <li><span class="q">4-31</span><span class="txt"><b>低次は同相、高次は逆相の固有モード</b><span class="f">{1,1}／{1,−1}</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>モード解析</h3>
+        <ul class="q-list">
+          <li><span class="q">4-29</span><span class="txt"><b>直交性で独立な1自由度系に分解</b><span class="f">ωj=√(k*j/m*j), 右辺{φj}ᵀ{f}</span></span></li>
+          <li><span class="q">4-32</span><span class="txt"><b>モード質量・モード剛性（{1,1}でm*=2m,k*=2k）</b><span class="f">m*={φ}ᵀ[M]{φ}, k*={φ}ᵀ[K]{φ}</span></span></li>
+          <li><span class="q">4-33</span><span class="txt"><b>固有モードの各種正規化</b><span class="f">最大成分1／ノルム1／モード質量</span></span></li>
+          <li><span class="q">4-34</span><span class="txt"><b>モード重ね合わせによる強制振動解</b><span class="f">モード外力{φ}ᵀ{f}で応答</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜連続体振動と音響工学（波動方程式・音の波長と波数・音の性質・音圧レベル）</div>
+    <div class="track-desc">質点系から連続体へ広げ、棒の縦振動の波動方程式 wtt=(E/ρ)wxx と波の速さ c=√(E/ρ) を押さえる（自由振動解には境界条件と初期条件が要る）。音響では波長 λ=c/f・波数 k=2π/λ の関係と、音は縦波で温度が高いほど速く大気中で屈折するといった性質を学ぶ。音の大きさは音圧レベル L=20log₁₀(p/p₀) で表し、レベル差と音圧比の換算や音響管の共鳴条件まで扱う。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>連続体の振動</h3>
+        <ul class="q-list">
+          <li><span class="q">4-35</span><span class="txt"><b>棒の縦振動の波動方程式</b><span class="f">wtt=(E/ρ)wxx, c=√(E/ρ)</span></span></li>
+          <li><span class="q">4-36</span><span class="txt"><b>自由振動解に必要な情報</b><span class="f">初期条件＋境界条件</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>音の波長と波数</h3>
+        <ul class="q-list">
+          <li><span class="q">4-37</span><span class="txt"><b>音の波長の計算</b><span class="f">λ=c/f（c≈340 m/s）</span></span></li>
+          <li><span class="q">4-38</span><span class="txt"><b>波数の定義</b><span class="f">k=2π/λ=ω/c</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>音の性質</h3>
+        <ul class="q-list">
+          <li><span class="q">4-39</span><span class="txt"><b>音は縦波・温度で音速変化・屈折する</b><span class="f">主張はどれも正しくない</span></span></li>
+          <li><span class="q">4-40</span><span class="txt"><b>音速は高温ほど速く屈折で遠くへ届く</b><span class="f">音速は温度とともに増</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>音圧レベル・音響管</h3>
+        <ul class="q-list">
+          <li><span class="q">4-41</span><span class="txt"><b>音圧レベルの計算</b><span class="f">L=20log₁₀(p/p₀), p₀=2×10⁻⁵Pa</span></span></li>
+          <li><span class="q">4-42</span><span class="txt"><b>レベル差から音圧比</b><span class="f">音圧比=10^(ΔL/20)</span></span></li>
+          <li><span class="q">4-43</span><span class="txt"><b>音圧が半分でレベルは6dB低下</b><span class="f">20log(1/2)=−6 dB</span></span></li>
+          <li><span class="q">4-44</span><span class="txt"><b>両端開放管の共鳴条件と音圧の節</b><span class="f">L=nλ/2, kL=nπ</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）1自由度系・B（藍）多自由度系とモード解析・C（赤）連続体振動と音響工学。全44問（A23・B11・C10）。</p>
+  </section>
+</div>

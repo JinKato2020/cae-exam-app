@@ -1,0 +1,209 @@
+<title>振動1級 第8章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>振動1級 第8章「振動の数値計算技術」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 基本の数値解法（方程式・固有値・時間積分）／B 自由度縮小法／C 部分構造合成法 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>振動の数値計算技術 ― 各問の要点とキー公式</h2>
+    <p class="lead">大規模振動解析を解く数値手法を、基礎の解法から自由度縮小・部分構造合成へと積み上げて整理。全37問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜基本の数値解法（方程式・固有値・時間積分）</div>
+    <div class="track-desc">すべての振動解析の土台となる数値手法をまとめる。連立一次方程式の直接法・反復法、固有値を求める反復・変換法、運動方程式を進める時間積分、要素積分のガウス求積、設計に効く感度やスティフ系の扱いを押さえる。ここで得た解法が、B の縮小法・C の合成法の内部でも使われる。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>連立一次方程式</h3>
+        <ul class="q-list">
+          <li><span class="q">8-1</span><span class="txt"><b>直接法と反復法の特徴</b><span class="f">[K]{u}={f}</span></span></li>
+          <li><span class="q">8-2</span><span class="txt"><b>コレスキー分解の解法手順</b><span class="f">[K]=[L][L]ᵀ・前進→後退代入</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>固有値解法</h3>
+        <ul class="q-list">
+          <li><span class="q">8-4</span><span class="txt"><b>ランチョス法の三重対角化</b><span class="f">[A]{v₁}=α₁{v₁}+β₁{v₂}</span></span></li>
+          <li><span class="q">8-5</span><span class="txt"><b>ヤコビ法の相似変換で対角化</b><span class="f">[Aₖ₊₁]=[Rₖ]ᵀ[Aₖ][Rₖ]</span></span></li>
+          <li><span class="q">8-6</span><span class="txt"><b>全固有値／一部を求める分類</b><span class="f">鳴き解析は全固有値を要する</span></span></li>
+          <li><span class="q">8-10</span><span class="txt"><b>べき乗法で最大固有値へ収束</b><span class="f">{φ⁽ⁱ⁺¹⁾}=[A]{φ⁽ⁱ⁾}・レイリー商</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>時間積分・時刻歴応答</h3>
+        <ul class="q-list">
+          <li><span class="q">8-3</span><span class="txt"><b>Newmark-β法の加速度仮定</b><span class="f">β=1/6線形・β=1/4平均加速度</span></span></li>
+          <li><span class="q">8-7</span><span class="txt"><b>時刻歴応答の直接法とモード法</b><span class="f">全自由度積分／モード座標</span></span></li>
+          <li><span class="q">8-8</span><span class="txt"><b>無減衰系の初期条件と応答成分</b><span class="f">固有振動数成分の重ね合わせ</span></span></li>
+          <li><span class="q">8-9</span><span class="txt"><b>陽解法・陰解法と数値不安定性</b><span class="f">陽解法は時間刻みに制限</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>求積・感度・スティフ系</h3>
+        <ul class="q-list">
+          <li><span class="q">8-11</span><span class="txt"><b>ガウス求積の積分点数</b><span class="f">n点で2n−1次を厳密・3次はn=2</span></span></li>
+          <li><span class="q">8-12</span><span class="txt"><b>固有値の感度式</b><span class="f">∂λr/∂pk={φr}ᵀ(∂K−λr∂M){φr}</span></span></li>
+          <li><span class="q">8-13</span><span class="txt"><b>固有モードの感度係数</b><span class="f">αrks={φs}ᵀ(∂K−λr∂M){φr}/(λr−λs)</span></span></li>
+          <li><span class="q">8-14</span><span class="txt"><b>スティフな系の定義</b><span class="f">固有値（時定数）の大小差が大</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜自由度縮小法（Guyan・動縮小・Craig-Bampton）</div>
+    <div class="track-desc">大規模モデルの自由度を主自由度へ減らす手法をまとめる。慣性を無視するGuyan静縮小、周波数を含む動縮小、固定界面モードを足すCraig-Bampton法の考え方と変換行列を押さえ、片持ちはりで何が表現できるかを確かめる。縮小したモデルは C の部分構造合成でそのまま再結合される。</div>
+    <div class="grid4">
+      <div class="box lead">
+        <h3>縮小法の考え方・誤り</h3>
+        <ul class="q-list">
+          <li><span class="q">8-15</span><span class="txt"><b>Guyan静縮小法の記述の誤り</b><span class="f">慣性を無視し静的関係で消去</span></span></li>
+          <li><span class="q">8-16</span><span class="txt"><b>Craig-Bampton法の記述の誤り</b><span class="f">拘束モード＋固定界面モード</span></span></li>
+          <li><span class="q">8-17</span><span class="txt"><b>拘束モード法の座標変換概念</b><span class="f">静的変形＋固定界面の固有モード</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>変換行列</h3>
+        <ul class="q-list">
+          <li><span class="q">8-18</span><span class="txt"><b>Guyan静縮小の変換行列</b><span class="f">[T]=[I; −Kdd⁻¹Kda]</span></span></li>
+          <li><span class="q">8-19</span><span class="txt"><b>動縮小法の変換行列</b><span class="f">(Kdd−ω²Mdd)⁻¹でω²を含む</span></span></li>
+          <li><span class="q">8-20</span><span class="txt"><b>Craig-Bampton法の変換行列</b><span class="f">[T]=[[I,0],[−Kdd⁻¹Kda, Φ]]</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>片持ちはりへの適用</h3>
+        <ul class="q-list">
+          <li><span class="q">8-21</span><span class="txt"><b>静たわみモードと拘束の定義</b><span class="f">単位変位・単位回転の静たわみ Tu,Tθ</span></span></li>
+          <li><span class="q">8-22</span><span class="txt"><b>Guyan縮小で表せるモード</b><span class="f">静たわみの重ね合わせのみ表現</span></span></li>
+          <li><span class="q">8-23</span><span class="txt"><b>Craig-Bampton法で表せるモード</b><span class="f">静たわみ＋固定界面モード ξ₁ を追加</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>拘束モード法の実務</h3>
+        <ul class="q-list">
+          <li><span class="q">8-36</span><span class="txt"><b>ボンネット縮小の自由度計算</b><span class="f">2万×6＝120000→5×6+100=130</span></span></li>
+          <li><span class="q">8-37</span><span class="txt"><b>拘束すべき点の選び方</b><span class="f">ボデーとの結合5節点を拘束</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜部分構造合成法（モード合成・伝達関数合成）</div>
+    <div class="track-desc">複数の部分構造を結合して全系を解く合成法をまとめる。拘束／不拘束／混合型のモード合成法と、結合部内力の扱いで分かれる伝達関数合成法を扱い、結合剛性・設計変更時の再構築・数値誤差による偽の応答に注意する。水中構造物では付加質量が連成項として現れる。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>分類・特性・適用</h3>
+        <ul class="q-list">
+          <li><span class="q">8-24</span><span class="txt"><b>モード合成法の分類</b><span class="f">拘束／不拘束／混合型・残留柔性補正</span></span></li>
+          <li><span class="q">8-25</span><span class="txt"><b>モード合成法の特性の誤り</b><span class="f">分系ごとに縮小して再結合</span></span></li>
+          <li><span class="q">8-26</span><span class="txt"><b>モード合成法の適用限界</b><span class="f">高次モード打切りの影響</span></span></li>
+          <li><span class="q">8-30</span><span class="txt"><b>合成法の適用の選び方</b><span class="f">剛結合／柔結合で手法を選ぶ</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>不拘束モード法</h3>
+        <ul class="q-list">
+          <li><span class="q">8-27</span><span class="txt"><b>モード座標での右辺ベクトル</b><span class="f">{F}=[Φ]ᵀ{f}</span></span></li>
+          <li><span class="q">8-28</span><span class="txt"><b>結合剛性の非対角ブロック</b><span class="f">(b)=[Φk⁽¹⁾]ᵀ[ΔK][Φk⁽²⁾]</span></span></li>
+          <li><span class="q">8-29</span><span class="txt"><b>設計変更時のモード再構築</b><span class="f">変更した分系のみ再構築</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>伝達関数合成法</h3>
+        <ul class="q-list">
+          <li><span class="q">8-31</span><span class="txt"><b>伝達関数合成法の分類</b><span class="f">結合部内力の扱いで2分類</span></span></li>
+          <li><span class="q">8-32</span><span class="txt"><b>剛結合での応答</b><span class="f">X₂=X₃, F₂+F₃=0 で連立</span></span></li>
+          <li><span class="q">8-33</span><span class="txt"><b>数値誤差の拡大への対策</b><span class="f">コンプライアンス和の逆行列誤差対策</span></span></li>
+          <li><span class="q">8-34</span><span class="txt"><b>数値誤差による偽の応答</b><span class="f">本来ない固有振動数の偽ピーク</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>水中構造物への適用</h3>
+        <ul class="q-list">
+          <li><span class="q">8-35</span><span class="txt"><b>付加質量を各節点に設定</b><span class="f">付加質量が質量行列の連成項に</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）基本の数値解法・B（藍）自由度縮小法・C（赤）部分構造合成法。全37問（A14・B11・C12）。</p>
+  </section>
+</div>

@@ -1,0 +1,175 @@
+<title>振動2級 第1章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>振動2級 第1章「計算力学のための数学の基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 行列と線形代数の基礎／B 固有値問題と対角化／C 複素数と微分方程式 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>計算力学のための数学の基礎 ― 各問の要点とキー公式</h2>
+    <p class="lead">行列・行列式・連立方程式の土台から、振動解析の核となる固有値問題、そして複素数表現と微分方程式までを整理。全18問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜行列と線形代数の基礎（転置・行列式・階数・逆行列・座標変換）</div>
+    <div class="track-desc">まず行列の転置・行列式といった基本演算を押さえ、連立1次方程式が解けるかを階数（ランク）で判定し、正方でない行列には一般化逆行列を使う流れをつかむ。ベクトルの1次独立・直交や座標回転の変換行列も、後のモード解析や有限要素法の定式化で繰り返し使う土台になる。ここで固めた行列操作が、B の固有値問題の計算にそのまま効いてくる。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>行列演算と行列式</h3>
+        <ul class="q-list">
+          <li><span class="q">1-1</span><span class="txt"><b>積の転置は各因子を転置し掛ける順序が逆転</b><span class="f">([A][B])ᵀ=[B]ᵀ[A]ᵀ</span></span></li>
+          <li><span class="q">1-2</span><span class="txt"><b>2×2行列式は対角の積から逆対角の積を引く</b><span class="f">det=ad−bc</span></span></li>
+          <li><span class="q">1-3</span><span class="txt"><b>余因子展開の符号は位置で決まり第2行は−,+,−</b><span class="f">符号(−1)^(i+j)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>連立方程式と逆行列</h3>
+        <ul class="q-list">
+          <li><span class="q">1-5</span><span class="txt"><b>階数が次数未満なら解なしか任意定数を含む解</b><span class="f">任意定数=変数数−階数</span></span></li>
+          <li><span class="q">1-7</span><span class="txt"><b>優決定(m&gt;n)の擬似逆行列は最小自乗解</b><span class="f">[A]⁺=([A]ᵀ[A])⁻¹[A]ᵀ</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>ベクトルと座標変換</h3>
+        <ul class="q-list">
+          <li><span class="q">1-4</span><span class="txt"><b>1次従属は平行、直交は内積0</b><span class="f">{a}ᵀ{b}=0</span></span></li>
+          <li><span class="q">1-6</span><span class="txt"><b>座標系を時計回りに回す回転変換行列</b><span class="f">[R]=[cosθ,−sinθ;sinθ,cosθ]</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜固有値問題と対角化（固有値・固有ベクトル・直交性・対角化）</div>
+    <div class="track-desc">振動解析の中心となる固有値問題 [A]{x}=λ{x} を扱う。固有値は特性方程式で一意に決まるが固有ベクトルは大きさが不定で、比だけが定まる点を押さえる。実対称行列では固有値が実数で固有ベクトルが互いに直交し、これを列に並べた行列で対角化すると連成した方程式を独立な1変数式へ分解できる。この性質が多自由度振動のモード解析を支える。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>固有値問題の定義と一意性</h3>
+        <ul class="q-list">
+          <li><span class="q">1-9</span><span class="txt"><b>[A]{x}=λ{x}を解く問題と各量の呼称</b><span class="f">固有値問題/固有ベクトル/固有値</span></span></li>
+          <li><span class="q">1-10</span><span class="txt"><b>固有値は一意、固有ベクトルは定数倍だけ不定</b><span class="f">比のみ定まる</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>対称行列と直交性</h3>
+        <ul class="q-list">
+          <li><span class="q">1-11</span><span class="txt"><b>相異なる固有値の固有ベクトルは互いに直交</b><span class="f">{φi}ᵀ{φj}=0, {φi}ᵀ[A]{φj}=0</span></span></li>
+          <li><span class="q">1-12</span><span class="txt"><b>実対称は固有値実数・重根でも直交にとれる</b><span class="f">非対称は複素固有値もあり得る</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>対角化</h3>
+        <ul class="q-list">
+          <li><span class="q">1-13</span><span class="txt"><b>固有ベクトルを列に並べ正方行列を対角化</b><span class="f">[P]⁻¹[A][P]=diag(λ)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜複素数と微分方程式（複素数表現・線形微分方程式・状態方程式）</div>
+    <div class="track-desc">振動を表す数学の道具として、オイラーの公式で正弦波を複素数1つにまとめる表現を扱う。定数係数の2階線形微分方程式は特性方程式の根の種類（相異なる実根・重根）で一般解の形が決まり、外力のある非同次方程式は同次解＋特殊解で構成する。2階の運動方程式は状態ベクトルで1階化すると数値積分しやすく、その解の重ね合わせの性質も確認する。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>複素数表現</h3>
+        <ul class="q-list">
+          <li><span class="q">1-8</span><span class="txt"><b>複素振幅の実部が正弦波、大きさと偏角が振幅・位相</b><span class="f">X=√(A²+B²), θ=tan⁻¹(B/A)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>線形微分方程式の解</h3>
+        <ul class="q-list">
+          <li><span class="q">1-14</span><span class="txt"><b>相異なる実根なら独立な指数関数の線形結合</b><span class="f">x=C₁e^(λ₁t)+C₂e^(λ₂t)</span></span></li>
+          <li><span class="q">1-15</span><span class="txt"><b>(C₁+C₂t)e^(λt)となるのは重根のとき</b><span class="f">判別式 b²−4ac=0</span></span></li>
+          <li><span class="q">1-16</span><span class="txt"><b>非同次解は同次方程式の一般解＋特殊解</b><span class="f">x=(同次解)+(特殊解)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>状態方程式</h3>
+        <ul class="q-list">
+          <li><span class="q">1-17</span><span class="txt"><b>2階運動方程式を状態ベクトルで1階化</b><span class="f">[A]=[0,1;−k/m,−c/m]</span></span></li>
+          <li><span class="q">1-18</span><span class="txt"><b>−{x₂}も同次解ゆえ特殊解±同次解はともに解</b><span class="f">{x₁}±{x₂}が解</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）行列と線形代数・B（藍）固有値問題と対角化・C（赤）複素数と微分方程式。全18問（A7・B5・C6）。</p>
+  </section>
+</div>

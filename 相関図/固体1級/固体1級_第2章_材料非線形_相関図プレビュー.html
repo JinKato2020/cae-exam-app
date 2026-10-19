@@ -1,0 +1,196 @@
+<title>固体1級 第2章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A降伏と硬化／B流れと解析／C時間と大変形 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>固体1級 第2章「材料非線形」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 降伏と硬化（塑性の入口と記憶）／B 流れと塑性解析（どう進み・解き・崩れるか）／C 時間と大変形（熱・クリープ・粘弾性・超弾性）の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>材料非線形 ― 各問の要点とキー公式</h2>
+    <p class="lead">材料が線形弾性からはずれる「弾塑性・時間依存・大変形」のふるまいを、全29問を A／B／C に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜降伏と硬化（いつ塑性が始まり、どう記憶するか）</div>
+    <div class="track-desc">材料が元に戻る弾性から、戻らない塑性へ移る境目を押さえる段。まず弾塑性線図で全ひずみを弾性分と塑性分に分け、次にミーゼス・トレスカ・モール・クーロンなど「いつ降伏するか」を決める降伏条件を比べる。さらに塑性変形を重ねると降伏面がどう変わるか（等方硬化＝拡大、移動硬化＝背応力による中心移動）を整理する。ここで決まる降伏面と硬化則が、トラックBの流れ則・解析の前提になる。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>弾塑性の応力ひずみ</h3>
+        <ul class="q-list">
+          <li><span class="q">2-1</span><span class="txt"><b>2直線近似の塑性ひずみ</b>全ひずみ＝弾性＋塑性　<span class="f">εᵖ=ε−σ/E</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>降伏条件（ミーゼス系）</h3>
+        <ul class="q-list">
+          <li><span class="q">2-2</span><span class="txt"><b>ミーゼス条件の意味</b><span class="f">せん断ひずみエネルギー説</span></span></li>
+          <li><span class="q">2-3</span><span class="txt"><b>ミーゼスのせん断降伏応力</b>純せん断を主応力に　<span class="f">τ=Y/√3</span></span></li>
+          <li><span class="q">2-4</span><span class="txt"><b>平面応力の降伏曲線</b><span class="f">ミーゼス楕円・トレスカ六角形・最大主応力正方形</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>摩擦性・静水圧依存</h3>
+        <ul class="q-list">
+          <li><span class="q">2-5</span><span class="txt"><b>モール・クーロン条件</b>土・砂の限界線　<span class="f">|τ|=c+σₙtanφ</span></span></li>
+          <li><span class="q">2-6</span><span class="txt"><b>静水圧を考慮する条件</b><span class="f">MC・DPは依存／ミーゼス・トレスカは非依存</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>硬化則（降伏面の変化）</h3>
+        <ul class="q-list">
+          <li><span class="q">2-7</span><span class="txt"><b>等方硬化の再降伏</b>両側へ同じ大きさで拡大　<span class="f">範囲 ±σ(硬化後)</span></span></li>
+          <li><span class="q">2-8</span><span class="txt"><b>移動硬化・バウシンガー効果</b>大きさ一定で中心移動　<span class="f">σ=α−Y</span></span></li>
+          <li><span class="q">2-9</span><span class="txt"><b>線形移動硬化の反転負荷</b>除荷は傾きE・幅2Y　<span class="f">|σ−α|=Y</span></span></li>
+          <li><span class="q">2-10</span><span class="txt"><b>降伏関数と背応力</b>aᵢⱼ＝中心移動　<span class="f">f=(3/2)(s−a)(s−a)−σy²</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜流れと塑性解析（どう進み・どう解き・どこで崩れるか）</div>
+    <div class="track-desc">降伏したあと塑性変形が「どの向きに・どれだけ進むか」を決める流れ則と、それを使った解析を扱う段。関連流れ則では塑性ひずみ増分が降伏面の外向き法線方向を向き、相当応力・相当塑性ひずみで多軸状態を1つの尺度にまとめる。進む量は経路に依存するため積分で追う。さらに弾性を無視する剛塑性解析と上界定理、繰返しでのシェイクダウン、断面全体が降伏する塑性崩壊まで、塑性を「解く・評価する」側面をまとめる。</div>
+    <div class="grid4">
+      <div class="box lead">
+        <h3>流れ則・法線則</h3>
+        <ul class="q-list">
+          <li><span class="q">2-11</span><span class="txt"><b>3荷重経路の軸ひずみ比較</b>経路依存性　<span class="f">dεᵖ=σdσ̄/(Hσ̄)・A&lt;B&lt;C</span></span></li>
+          <li><span class="q">2-12</span><span class="txt"><b>流れ則と関連流れ則</b>関連＝降伏関数を塑性ポテンシャルに　<span class="f">g=F</span></span></li>
+          <li><span class="q">2-13</span><span class="txt"><b>法線則と負荷・除荷判定</b>塑性増分は外向き法線　<span class="f">負荷で (∂F/∂σ)dσ&gt;0</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>相当応力・相当ひずみ</h3>
+        <ul class="q-list">
+          <li><span class="q">2-14</span><span class="txt"><b>相当応力・相当塑性ひずみ速度の定義</b>偏差応力で　<span class="f">σ̄=√(3/2 s·s)・ε̄̇ᵖ=√(2/3 ε̇ᵖ·ε̇ᵖ)</span></span></li>
+          <li><span class="q">2-15</span><span class="txt"><b>平面応力3状態の相当応力比較</b><span class="f">せん断成分は2回数える</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>剛塑性解析・上界定理</h3>
+        <ul class="q-list">
+          <li><span class="q">2-16</span><span class="txt"><b>弾塑性と剛塑性解析の比較</b>剛塑性は弾性を無視　<span class="f">加工・崩壊解析向き</span></span></li>
+          <li><span class="q">2-17</span><span class="txt"><b>剛塑性FEMの上界定理</b>許容速度場で上界　<span class="f">散逸仕事率を最小化</span></span></li>
+          <li><span class="q">2-18</span><span class="txt"><b>上界原理の汎関数</b><span class="f">内部塑性散逸−物体力−表面力／体積一定</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>繰返し・塑性崩壊</h3>
+        <ul class="q-list">
+          <li><span class="q">2-19</span><span class="txt"><b>繰返し荷重とシェイクダウン</b>残留変形→弾性応答　<span class="f">メラン(静力学)・コイター(運動学)</span></span></li>
+          <li><span class="q">2-20</span><span class="txt"><b>はりの塑性崩壊と残留応力</b>全塑性で崩壊　<span class="f">崩壊倍率 Mp/My・除荷で残留応力</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜時間と大変形（熱・クリープ・粘弾性・超弾性）</div>
+    <div class="track-desc">時間や温度、大きな伸びがかかわる非線形を扱う段。温度変化は熱ひずみを生み、拘束されると熱応力となるので、節点温度をみかけの荷重へ換算して熱弾塑性で解く。クリープは一定応力でも時間とともに変形が進む現象で、時間硬化則・ひずみ硬化則やノルトン則で表す。粘弾性はばねとダッシュポットの組合せ、超弾性はゴムの大変形をひずみエネルギー密度の微分で表す。いずれも「弾性＝瞬間・時間によらない」という前提を外した材料モデルである。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>熱弾塑性（温度 → 応力）</h3>
+        <ul class="q-list">
+          <li><span class="q">2-21</span><span class="txt"><b>熱応力による降伏温度</b>拘束で熱応力　<span class="f">σ=EαΔT=σy</span></span></li>
+          <li><span class="q">2-22</span><span class="txt"><b>熱弾塑性構成式の温度項</b>みかけの節点荷重へ　<span class="f">σ̇=[Dᵉᵖ]ε̇−Ṫ{Θ}</span></span></li>
+          <li><span class="q">2-23</span><span class="txt"><b>節点温度から熱応力</b>熱ひずみを初期ひずみに　<span class="f">{F}=∫Bᵀ D εᵗʰ dV</span></span></li>
+          <li><span class="q">2-24</span><span class="txt"><b>非定常熱と熱弾塑性の交互解析</b>積分点へ温度増分　<span class="f">形状関数固定なら増分補間と可換</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>クリープ・粘弾性（時間依存）</h3>
+        <ul class="q-list">
+          <li><span class="q">2-25</span><span class="txt"><b>クリープ解析（誤りを選ぶ）</b>3段階の速度　<span class="f">ノルトン則で非定常追跡</span></span></li>
+          <li><span class="q">2-26</span><span class="txt"><b>時間硬化則とひずみ硬化則</b>時間基準／ひずみ基準　<span class="f">εᶜ=Aσ√t</span></span></li>
+          <li><span class="q">2-27</span><span class="txt"><b>粘弾性モデル</b>並列＝フォークト／直列＝マックスウェル　<span class="f">クリープ・応力緩和</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>超弾性（大変形）</h3>
+        <ul class="q-list">
+          <li><span class="q">2-28</span><span class="txt"><b>ゴムの大変形と超弾性モデル</b>非線形弾性　<span class="f">Neo-Hooke等・実験範囲に注意</span></span></li>
+          <li><span class="q">2-29</span><span class="txt"><b>超弾性体の構成式</b>エネルギーを微分して応力　<span class="f">S=∂W/∂E</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）降伏と硬化・B（藍）流れと塑性解析・C（赤）時間と大変形。全29問（A10・B10・C9）。矢印や並びは“理解のつながり”で、学習する順番そのものではありません。</p>
+  </section>
+</div>

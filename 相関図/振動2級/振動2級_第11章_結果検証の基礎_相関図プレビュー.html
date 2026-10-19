@@ -1,0 +1,180 @@
+<title>振動2級 第11章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>振動2級 第11章「結果検証の基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 計算と実測の不一致・モデル妥当性／B 加振・計測装置と実験モード解析／C 伝達関数・FRF・信号処理 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>結果検証の基礎 ― 各問の要点とキー公式</h2>
+    <p class="lead">解析結果を実機計測と照合し、不一致の要因を探り妥当性を検証する手順を整理。全23問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜計算と実測の不一致・モデル妥当性</div>
+    <div class="track-desc">計算と実測が合わないとき、どこに原因があるかを切り分ける。固有振動数は質量・剛性・境界条件で決まり外力や荷重には依らないという原則を軸に、差のずれる方向（実物が硬い／軽い）、質量・材料・結合部・単位系といったデータ確認項目、応答分布を支配する慣性力と拘束の関係を扱う。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>不一致の要因方向</h3>
+        <ul class="q-list">
+          <li><span class="q">11-6</span><span class="txt"><b>固有振動数は加振位置では変わらず質量・剛性・境界で決まる</b><span class="f">固有振動数＝質量・剛性・境界で決まる</span></span></li>
+          <li><span class="q">11-7</span><span class="txt"><b>実測＞計算は実物が硬い／軽い方向（未モデル化剛性）</b><span class="f">実測>計算＝実物が硬い/軽い</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>データ・条件の確認</h3>
+        <ul class="q-list">
+          <li><span class="q">11-4</span><span class="txt"><b>加速度計は取付け方法、ゴムは温度条件を確認</b><span class="f">加速度計=取付け方法／ゴム=温度</span></span></li>
+          <li><span class="q">11-12</span><span class="txt"><b>節点座標・要素結合と、重量密度→質量密度の換算を確認</b><span class="f">節点=座標／要素=結合・ρ=γ/g</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>応答分布・対称性</h3>
+        <ul class="q-list">
+          <li><span class="q">11-1</span><span class="txt"><b>付属物が近いほど慣性力大、拘束点から遠いほど変形大</b><span class="f">慣性力=質量×加速度／拘束点から遠いほど大</span></span></li>
+          <li><span class="q">11-9</span><span class="txt"><b>固有値解析は荷重に依らず、モードの非対称は質量・剛性・境界が原因</b><span class="f">固有値解析は荷重に依らない</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜加振・計測装置と実験モード解析</div>
+    <div class="track-desc">実験でモデルを検証するための装置と計測法をまとめる。動電型加振器とインパクトハンマの特徴とチップ・窓関数の選び方、センサの配置・取付け・質量影響のモデル化、自由支持は節で支持し腹を加振する原則、相反定理を使った効率的な多点計測を扱う。モード形を判別できる最小限の点数で計測する工夫も重要になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>加振装置・ハンマ・窓</h3>
+        <ul class="q-list">
+          <li><span class="q">11-3</span><span class="txt"><b>動電型は加振力安定だがロッドの付加影響に注意</b><span class="f">動電型=安定/ロッド影響・ハンマ=運動量</span></span></li>
+          <li><span class="q">11-15</span><span class="txt"><b>面外剛性が低いと局所変形大でダブルハンマリング</b><span class="f">局所変形大→位置を厳密一致</span></span></li>
+          <li><span class="q">11-16</span><span class="txt"><b>低周波=軟/高周波=硬チップ、加振力=フォース窓/応答=指数窓</b><span class="f">質量大・軟/硬チップ・フォース窓/指数窓</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>計測センサ・配置・取付け</h3>
+        <ul class="q-list">
+          <li><span class="q">11-5</span><span class="txt"><b>モード形が分かる最小点を面へ分散し腹を加振</b><span class="f">面に分散・腹を加振</span></span></li>
+          <li><span class="q">11-11</span><span class="txt"><b>運転中の回転軸は非接触変位計、連続加振は加振器</b><span class="f">非接触変位計・加振器でスイープ</span></span></li>
+          <li><span class="q">11-20</span><span class="txt"><b>ひずみは電気抵抗変化から、応力はフックの法則で換算</b><span class="f">ひずみゲージ=電気抵抗・σ=Eε</span></span></li>
+          <li><span class="q">11-22</span><span class="txt"><b>傾きはローカル座標系、センサ質量は集中質量要素</b><span class="f">ローカル座標系・集中質量要素</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>実験モード解析・自由支持・相反</h3>
+        <ul class="q-list">
+          <li><span class="q">11-8</span><span class="txt"><b>解析と同姿勢で実験、位置と方向を記録、固有振動数を比較</b><span class="f">伸ばした状態・位置と方向・固有振動数</span></span></li>
+          <li><span class="q">11-17</span><span class="txt"><b>ゴムは予荷重・温度の静的条件と振幅・周波数依存を再現</b><span class="f">予荷重・温度／振幅・周波数依存</span></span></li>
+          <li><span class="q">11-21</span><span class="txt"><b>自由支持は節で支持し腹を加振、剛体モードを十分低く</b><span class="f">支持=節／加振=腹・剛体モード低く</span></span></li>
+          <li><span class="q">11-23</span><span class="txt"><b>相反定理でセンサを固定し加振点を移動すると効率的</b><span class="f">相反定理・センサ固定/加振点移動</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜伝達関数・FRF・信号処理</div>
+    <div class="track-desc">外力と応答の関係を表す伝達関数（FRF）と、その計測品質・読み取りを扱う。入力の積分で生じるドリフトと相対変位での評価、共振付近の位相変化、マスライン／ばねラインによる質量・剛性の検証、コヒーレンスと相反性による信頼性確認、FFTの周波数分解能を押さえる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>信号処理・積分</h3>
+        <ul class="q-list">
+          <li><span class="q">11-2</span><span class="txt"><b>加速度オフセットの2回積分は放物線ドリフト、相対変位で評価</b><span class="f">2回積分→放物線・相対変位</span></span></li>
+          <li><span class="q">11-18</span><span class="txt"><b>FFTの周波数分解能はΔf=fs/N</b><span class="f">Δf=fs/N=1024/2048=0.5Hz</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>FRF・伝達関数の読み取り</h3>
+        <ul class="q-list">
+          <li><span class="q">11-10</span><span class="txt"><b>同符号1モードの変位/力は0°→−90°→−180°</b><span class="f">位相0°→−90°（共振）→−180°</span></span></li>
+          <li><span class="q">11-19</span><span class="txt"><b>加速度/力＝アクセレランス、マス/ばねラインで質量/剛性を検証</b><span class="f">マスライン=質量／ばねライン=剛性</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>信頼性・相反性</h3>
+        <ul class="q-list">
+          <li><span class="q">11-13</span><span class="txt"><b>衝撃後は自由振動、外力/応答比が伝達関数、品質はコヒーレンス</b><span class="f">自由振動・伝達関数・コヒーレンス</span></span></li>
+          <li><span class="q">11-14</span><span class="txt"><b>軟らかい支持、コヒーレンスが1に近いほど信頼、相反性を確認</b><span class="f">コヒーレンス→1・相反性</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）計算と実測の不一致・モデル妥当性・B（藍）加振・計測装置と実験モード解析・C（赤）伝達関数・FRF・信号処理。全23問（A6・B11・C6）。</p>
+  </section>
+</div>

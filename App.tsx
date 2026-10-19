@@ -250,7 +250,9 @@ function AppInner(props: { contentVersion: number }) {
 
   const [tab, setTab] = useState<Tab>('home');
   const [mapViewerOpen, setMapViewerOpen] = useState(false); // 相関図ビューア(全画面モーダル)表示中はタブ横スワイプを無効化
-  const [formulaScrollLock, setFormulaScrollLock] = useState(false); // 公式欄の横スクロール中はタブ横スワイプを無効化
+  // 公式欄の横スクロール中はタブ横スワイプを無効化。state だと setState の反映が非同期で、
+  // 最初の横移動判定（キャプチャ）に間に合わず取りこぼす→ ref に入れて指を置いた瞬間に同期反映する。
+  const formulaScrollLockRef = useRef(false);
   const [progress, setProgress] = useState<ProgressMap>({});
   // ブックマーク（栞）。後で見返したい問題にユーザーが付ける。ホームの「ブックマークを復習」で使う。
   const [bookmarks, setBookmarks] = useState<BookmarkMap>({});
@@ -523,7 +525,8 @@ function AppInner(props: { contentVersion: number }) {
   const tabPan = useSwipeNav(
     () => swipeTab(1),
     () => swipeTab(-1),
-    !(tab === 'study' && studyView === 'problem') && !(tab === 'formula' && formulaView === 'item') && !formulaChapterListOpen && !mapViewerOpen && !formulaScrollLock
+    !(tab === 'study' && studyView === 'problem') && !(tab === 'formula' && formulaView === 'item') && !formulaChapterListOpen && !mapViewerOpen,
+    formulaScrollLockRef // 公式カードの横スクロール中（指が触れている間）はこの ref=true でタブ横スワイプを止める
   );
 
   return (
@@ -614,7 +617,7 @@ function AppInner(props: { contentVersion: number }) {
             fav={formulaFav}
             onSetKind={(k) => { setFormulaKind(k); setFormulaFav(false); }}
             onSetFav={setFormulaFav}
-            onFormulaScrollActive={setFormulaScrollLock}
+            onFormulaScrollActive={(a) => { formulaScrollLockRef.current = a; }}
             chapterId={formulaChapterId}
             itemId={formulaItemId}
             listChapterId={formulaListChapterId}
@@ -1797,19 +1800,30 @@ function relatedFormulaItems(q: Question): FormulaItem[] {
 }
 
 // 横スワイプで前後移動。縦スクロールは邪魔しない（横成分が縦より十分大きい時だけ発火）。
-function useSwipeNav(onLeft: () => void, onRight: () => void, enabled = true) {
+function useSwipeNav(
+  onLeft: () => void,
+  onRight: () => void,
+  enabled = true,
+  lockRef?: { current: boolean }
+) {
   // enabled を ref に入れて常に最新を読む。無効化中は responder を一切取らない＝
   // 内側（問題/用語画面）のスワイプを外側のタブ切替スワイプが横取りしないようにする。
-  const cb = useRef({ onLeft, onRight, enabled });
-  cb.current = { onLeft, onRight, enabled };
+  // lockRef=true の間も捕捉しない（公式カードの横スクロール中など）。
+  const cb = useRef({ onLeft, onRight, enabled, lockRef });
+  cb.current = { onLeft, onRight, enabled, lockRef };
+  const locked = () => !!(cb.current.lockRef && cb.current.lockRef.current);
   const pan = useRef(
     PanResponder.create({
+      // 指を置いた瞬間（キャプチャ段階・親→子の順で必ず最初に呼ばれる）にロックを解除する。
+      // 公式カードに触れた時だけ、この後に呼ばれるカード側がロックを再び true にする＝
+      // カード外のスワイプでロックが残らず、取りこぼしても自己回復する。responder は取らない。
+      onStartShouldSetPanResponderCapture: () => { if (cb.current.lockRef) cb.current.lockRef.current = false; return false; },
       onMoveShouldSetPanResponder: (_e, g) =>
-        cb.current.enabled && Math.abs(g.dx) > 24 && Math.abs(g.dx) > Math.abs(g.dy) * 1.8,
+        cb.current.enabled && !locked() && Math.abs(g.dx) > 24 && Math.abs(g.dx) > Math.abs(g.dy) * 1.8,
       // はっきり横方向のスワイプは、中の ScrollView や数式WebView より先に親が取る
       // （縦スクロール・タップは邪魔しない＝横成分が十分大きい時だけ捕捉）。
       onMoveShouldSetPanResponderCapture: (_e, g) =>
-        cb.current.enabled && Math.abs(g.dx) > 44 && Math.abs(g.dx) > Math.abs(g.dy) * 2,
+        cb.current.enabled && !locked() && Math.abs(g.dx) > 44 && Math.abs(g.dx) > Math.abs(g.dy) * 2,
       onPanResponderRelease: (_e, g) => {
         if (g.dx <= -50) cb.current.onLeft();
         else if (g.dx >= 50) cb.current.onRight();
@@ -2305,8 +2319,9 @@ function FormulaItemScreen(props: {
   const goPrev = () => { if (prev) props.onOpenItem(prev.chapterId, prev.item.id); };
   const goNext = () => { if (next) props.onOpenItem(next.chapterId, next.item.id); };
   // 公式欄の横スクロール中は前後移動スワイプを止める（横スクロールが前後切替に化けるのを防ぐ）。
-  const [mathScrollLock, setMathScrollLock] = useState(false);
-  const pan = useSwipeNav(goNext, goPrev, !mathScrollLock); // 左スワイプ=次 / 右スワイプ=前
+  // state だと反映が非同期で最初の横移動に間に合わないため ref で同期的に止める。
+  const mathScrollLockRef = useRef(false);
+  const pan = useSwipeNav(goNext, goPrev, true, mathScrollLockRef); // 左スワイプ=次 / 右スワイプ=前
 
   return (
     <View style={{ flex: 1 }} {...pan}>
@@ -2327,7 +2342,7 @@ function FormulaItemScreen(props: {
                 {marked ? '⭐ お気に入り登録済み（タップで解除）' : '⭐ お気に入り（苦手）に登録'}
               </Text>
             </Pressable>
-            <FormulaCard t={t} item={item} onScrollActive={setMathScrollLock} />
+            <FormulaCard t={t} item={item} onScrollActive={(a) => { mathScrollLockRef.current = a; }} />
             {/* 隣の項目へ（スワイプでも移動可） */}
             <View style={styles.qNav}>
               <Pressable

@@ -1,0 +1,172 @@
+<title>熱流体1級 第17章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A組成・量論／B 拡散・輸送物性／C 支配方程式・乱流平均 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級 第17章「燃焼の基礎1」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 混合気の組成を表す量／B 拡散・輸送物性と無次元数／C 燃焼流の支配方程式と乱流平均 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>燃焼の基礎1 ― 各問の要点とキー公式</h2>
+    <p class="lead">燃料と空気の組成の表し方から、拡散を支配する輸送物性・無次元数、そして燃焼流を解くための支配方程式と乱流平均までを整理。全15問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜混合気の組成を表す量（量論・組成）</div>
+    <div class="track-desc">燃焼を扱う出発点は「燃料と空気がどんな割合で混ざっているか」を数値で表すこと。完全燃焼に必要な空気量から理論空燃比を決め、実際の供給量とのずれを当量比で表す。さらに同じ組成をモル分率と質量分率のどちらで見るかを変換できるようにする。ここで定めた組成量が、B の拡散や C の状態方程式・反応の入口になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>理論空燃比</h3>
+        <ul class="q-list">
+          <li><span class="q">17-1</span><span class="txt"><b>メタン完全燃焼の理論空燃比（窒素も空気に含める）</b><span class="f">CH₄+2O₂→CO₂+2H₂O, 空燃比=288/16≈18</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>当量比</h3>
+        <ul class="q-list">
+          <li><span class="q">17-2</span><span class="txt"><b>供給酸素から当量比を判定（燃料過濃φ>1）</b><span class="f">φ=(燃料/酸素)実/量論=0.25/0.20=1.25</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>組成の表し方</h3>
+        <ul class="q-list">
+          <li><span class="q">17-3</span><span class="txt"><b>モル分率から質量分率へ変換（重い成分はY>X）</b><span class="f">Yₖ=XₖWₖ/W̄, W̄=ΣXₖWₖ</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜拡散・輸送物性と無次元数</div>
+    <div class="track-desc">燃焼では熱・物質・運動量がどれだけ速く広がるかが火炎の構造を決める。熱拡散率・物質拡散係数・動粘性係数はいずれも「単位時間に拡散が広がる面積」で同じ m²/s の次元をもち、その比としてルイス数・プラントル数・シュミット数という無次元数が意味をもつ。温度勾配が物質拡散を生むソレ効果も含め、A の組成を現実の拡散現象へつなぐトラック。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>輸送物性係数の単位</h3>
+        <ul class="q-list">
+          <li><span class="q">17-4</span><span class="txt"><b>3つの輸送物性係数の単位（拡散は面積/時間）</b><span class="f">α・D・ν いずれも m²/s</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>無次元数の定義と関係</h3>
+        <ul class="q-list">
+          <li><span class="q">17-5</span><span class="txt"><b>ルイス数＝熱拡散/物質拡散の比</b><span class="f">Le=α/D=λ/(ρCₚD)</span></span></li>
+          <li><span class="q">17-6</span><span class="txt"><b>Pr・ScからLeを求める（νを消去）</b><span class="f">Le=Sc/Pr=0.90/0.70≈1.29</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>拡散現象</h3>
+        <ul class="q-list">
+          <li><span class="q">17-7</span><span class="txt"><b>温度勾配が駆動する成分拡散</b><span class="f">ソレ効果（熱拡散）, デュフォ効果と相反</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜燃焼流の支配方程式と乱流平均</div>
+    <div class="track-desc">燃焼流を数値的に解くには、質量・運動量・エネルギー・化学種の保存式と、圧力・密度・温度を結ぶ状態方程式を立てる。密度が大きく変わるため連続の式は保存形で書き、低マッハ数でも温度・密度変化は大きい点に注意する。乱流燃焼では密度加重（ファーブル）平均で平均化し、変動の相関から乱流拡散項が現れる。A・B の量を使って燃焼流を記述するトラック。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>保存式・連続式・状態方程式</h3>
+        <ul class="q-list">
+          <li><span class="q">17-8</span><span class="txt"><b>N化学種3次元の独立な保存式の総数</b><span class="f">1+3+1+(N−1)=N+4</span></span></li>
+          <li><span class="q">17-13</span><span class="txt"><b>圧縮性流体の質量保存（保存形）</b><span class="f">∂ρ/∂t+∇·(ρu)=0</span></span></li>
+          <li><span class="q">17-14</span><span class="txt"><b>多成分理想気体の状態方程式（分子量で割る）</b><span class="f">p=ρR⁰T·Σ(Yᵢ/Wᵢ)=ρR⁰T/W̄</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>乱流平均（ファーブル平均）</h3>
+        <ul class="q-list">
+          <li><span class="q">17-10</span><span class="txt"><b>密度加重変動の密度加重平均はゼロ</b><span class="f">f̃″=0（レイノルズは f̄′=0）</span></span></li>
+          <li><span class="q">17-11</span><span class="txt"><b>ファーブル変動のレイノルズ平均は一般に≠0</b><span class="f">f̄″=f̄−f̃≠0</span></span></li>
+          <li><span class="q">17-12</span><span class="txt"><b>乱流拡散項＝速度・スカラー変動の相関</b><span class="f">−ρ̄·φ″u″（乱流フラックス・未閉じ）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>反応進行変数・低マッハ数</h3>
+        <ul class="q-list">
+          <li><span class="q">17-9</span><span class="txt"><b>温度で定義する反応進行変数（未燃0・既燃1）</b><span class="f">c=(T−Tᵤ)/(T_b−Tᵤ)</span></span></li>
+          <li><span class="q">17-15</span><span class="txt"><b>低マッハ数でも密度・温度変化は大きい（誤りを選ぶ）</b><span class="f">圧力変動 O(M²), ρ∝p/T</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）組成・量論・B（藍）拡散・輸送物性・C（赤）支配方程式・乱流平均。全15問（A3・B4・C8）。</p>
+  </section>
+</div>

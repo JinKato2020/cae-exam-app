@@ -1,0 +1,183 @@
+<title>振動1級 第5章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>振動1級 第5章「構造複合系の解析」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 回転軸系のジャイロ効果・振れ回り／B 減衰と縮約・結合のモデル化／C 幾何剛性と部材・パネルのモデル化 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>構造複合系の解析 ― 各問の要点とキー公式</h2>
+    <p class="lead">回転軸系のジャイロ効果、減衰や結合のモデル化、張力・圧力による幾何剛性を整理。全21問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜回転軸系のジャイロ効果・振れ回り・危険速度</div>
+    <div class="track-desc">回転する軸と円板の系では、たわみ振動と傾き振動が現れ、回転が速いほどジャイロ効果が効いてくる。ジャイロ項は角運動量の変化に由来し、前向き・後向きの2つの固有振動数を生んで危険速度をずらす。これらはBの減衰・縮約やCの幾何剛性と合わせ、回転機械の複合系解析の中心になる。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>危険速度・振れ回り(たわみ振動)</h3>
+        <ul class="q-list">
+          <li><span class="q">5-2</span><span class="txt"><b>危険速度の2倍で回すと振れ回り半径は偏心eに近づく(自動調心)</b><span class="f">X＝e(ω/ωₙ)²/(1−(ω/ωₙ)²), |X|＝0.40 mm</span></span></li>
+          <li><span class="q">5-3</span><span class="txt"><b>中央回転体のたわみ振動の固有角振動数</b><span class="f">ωₙ＝√(k/m)＝√(4.0×10⁵/2.5)＝400 rad/s</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>たわみ・傾き連成と回転座標</h3>
+        <ul class="q-list">
+          <li><span class="q">5-4</span><span class="txt"><b>たわみx,yは独立、傾きθは連成し固有振動数は2個</b><span class="f">傾き振動→固有振動数2個</span></span></li>
+          <li><span class="q">5-9</span><span class="txt"><b>回転座標系では第1項がコリオリ力、第2項が遠心力。コリオリは仕事をしない</b><span class="f">+2mω(速度)＝コリオリ／mω²X＝遠心力</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>ジャイロ効果の性質</h3>
+        <ul class="q-list">
+          <li><span class="q">5-5</span><span class="txt"><b>ジャイロ項が連成を生み、前向き・後向きの2つの固有振動数を与える</b><span class="f">ジャイロ項 Ipω(傾き角速度)</span></span></li>
+          <li><span class="q">5-6</span><span class="txt"><b>ジャイロ項は回転角速度と極慣性モーメントに比例</b><span class="f">ジャイロ項 ∝ Ipω</span></span></li>
+          <li><span class="q">5-7</span><span class="txt"><b>角運動量の変化に由来。Ip増で前向きふれまわり固有振動数・危険速度は上昇</b><span class="f">Ip↑ → 前向きふれまわり振動数↑</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>FEM定式化のジャイロ行列</h3>
+        <ul class="q-list">
+          <li><span class="q">5-8</span><span class="txt"><b>回転軸系FEMにジャイロ行列[G]が現れ、[G]は反対称行列</b><span class="f">[M]{ẍ}+[G]{ẋ}+[K]{x}＝F, [G]反対称</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜減衰と縮約・結合のモデル化</div>
+    <div class="track-desc">大規模な複合系を扱うための自由度縮約と、減衰・結合剛性の与え方を扱う。重要な節点をマスターに選ぶ静縮小で規模を落とし、回転軸では内部減衰と外部減衰を区別する。連結系のモード減衰比はひずみエネルギー比で重み付けし、制振材は損失係数から、焼き嵌め部は結合剛性で表す。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>自由度縮約・要素</h3>
+        <ul class="q-list">
+          <li><span class="q">5-1</span><span class="txt"><b>Guyanの静縮小。変形が大きく慣性の効く重要節点をマスターに選ぶ</b><span class="f">Guyan静縮小・マスター節点</span></span></li>
+          <li><span class="q">5-12</span><span class="txt"><b>軸振動解析はジャイロ等を考慮、当初は伝達マトリクス法、要素ははり要素</b><span class="f">伝達マトリクス法／はり要素</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>内部減衰と外部減衰</h3>
+        <ul class="q-list">
+          <li><span class="q">5-10</span><span class="txt"><b>内部減衰は危険速度を超えると振れ回りを不安定化させうる</b><span class="f">内部減衰→高速域で不安定化</span></span></li>
+          <li><span class="q">5-11</span><span class="txt"><b>内部＝回転系自体の減衰、外部＝静止物体との減衰。定義と作用を区別</b><span class="f">内部減衰／外部減衰の区別</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>モード減衰比・結合剛性</h3>
+        <ul class="q-list">
+          <li><span class="q">5-13</span><span class="txt"><b>連結系のモード減衰比はひずみエネルギー比で重み付け</b><span class="f">ζ＝0.02×0.75+0.06×0.25＝0.03</span></span></li>
+          <li><span class="q">5-15</span><span class="txt"><b>制振材のモード減衰比は損失係数×ひずみエネルギー比の半分</b><span class="f">ζ＝η(比)/2＝0.10×0.40/2＝0.02</span></span></li>
+          <li><span class="q">5-14</span><span class="txt"><b>焼き嵌め・圧入の結合部は結合剛性で表し実測に合わせる</b><span class="f">焼き嵌め・圧入の結合剛性</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜幾何剛性と部材・パネルのモデル化</div>
+    <div class="track-desc">張力や内圧がかかる構造では、荷重そのものが剛性に加わる幾何剛性を考える必要がある。ケーブル・吊り橋・タイヤは張力や圧力から幾何剛性を求めて固有値解析する。中空・開放断面のはりはそりやワーピングを取り込み、薄板パネルはシェル要素でビードや曲面まで反映する。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>幾何剛性(張力・圧力)</h3>
+        <ul class="q-list">
+          <li><span class="q">5-16</span><span class="txt"><b>張力を受ける弦の横振動は幾何剛性で表す。基本固有振動数</b><span class="f">f₁＝(1/2L)√(T/ρ)＝100 Hz</span></span></li>
+          <li><span class="q">5-17</span><span class="txt"><b>吊り橋魚骨モデルは自重の張力から幾何剛性を求めて固有値解析</b><span class="f">死荷重→幾何剛性→固有値解析</span></span></li>
+          <li><span class="q">5-20</span><span class="txt"><b>充填空気の内圧でタイヤ表面に張力が生じ面外の幾何剛性が増す</b><span class="f">内圧→面内張力→面外幾何剛性↑</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>中空・開放断面のはり</h3>
+        <ul class="q-list">
+          <li><span class="q">5-18</span><span class="txt"><b>2軸非対称の中空断面はそり等を考慮。はり理論かシェル要素で扱う</b><span class="f">シェル要素／そり考慮のはり理論</span></span></li>
+          <li><span class="q">5-19</span><span class="txt"><b>開放断面はワーピング(そり)変形。端部のそり拘束で剛性増、はり要素では表しにくい</b><span class="f">ワーピング拘束→ねじり剛性↑</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>パネルのシェル要素</h3>
+        <ul class="q-list">
+          <li><span class="q">5-21</span><span class="txt"><b>薄板パネルはシェル要素。小ビードや曲面は剛性に効くのでモデルに織り込む</b><span class="f">シェル要素／ビード・曲面を反映</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）回転軸系のジャイロ効果・振れ回り・B（藍）減衰と縮約・結合・C（赤）幾何剛性と部材・パネル。全21問（A8・B7・C6）。</p>
+  </section>
+</div>

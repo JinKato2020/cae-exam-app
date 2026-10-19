@@ -1,0 +1,159 @@
+<title>固体2級 第13章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー観点を A誠実さと報告／B情報と権利／C契約と立場 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー観点の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー観点・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>固体2級 第13章「計算力学技術者倫理」相関図（プレビュー）</h1>
+    <p>各問の要点とキー観点を、A 誠実さと報告／B 情報と権利を守る／C 契約と立場の誠実さ の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>計算力学技術者倫理 ― 各問の要点とキー観点</h2>
+    <p class="lead">計算結果を信頼できるものにする最後の工程。技術者としての責任・判断を、全12問を A／B／C の3トラックに整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜誠実さと報告（事実を曲げない）</div>
+    <div class="track-desc">技術者倫理の根っこは、法令を守ることに加えて、公衆の安全・誠実さ・専門家としての責任まで考える姿勢です。根拠のない数値の操作や隠蔽をせず、たとえ契約範囲外でも既知の誤りや影響は速やかに伝え、再計算・再評価して訂正します。「事実をそのまま報告する」ことがすべての判断の土台になります。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>判断の基盤</h3>
+        <ul class="q-list">
+          <li><span class="q">13-1</span><span class="txt"><b>倫理と法の関係</b><span class="f">法令遵守＋安全・誠実さ・専門的責任</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>事実を曲げず報告する</h3>
+        <ul class="q-list">
+          <li><span class="q">13-2</span><span class="txt"><b>根拠のない材料係数の変更</b><span class="f">事実の歪曲・隠蔽の禁止</span></span></li>
+          <li><span class="q">13-8</span><span class="txt"><b>追加計算の誤りの通知</b>契約外でも　<span class="f">誠実報告（誤りと影響を速やかに）</span></span></li>
+          <li><span class="q">13-11</span><span class="txt"><b>複数の誤りの訂正</b>E・評価方法　<span class="f">再計算・再検証して報告</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜情報と権利を守る（守秘・著作権・ライセンス）</div>
+    <div class="track-desc">仕事で扱うソフトやデータには、使ってよい範囲を定める使用許諾契約・著作権・守秘義務があります。「お金を払った」「同じ会社だ」「記憶している」だけでは利用や開示の権限は生まれません。対象・用途・台数・公開範囲を契約で確認し、機密は正規のルートで入手し、暗号化やアクセス制限で安全に管理します。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>ソフトの使用許諾・著作権</h3>
+        <ul class="q-list">
+          <li><span class="q">13-3</span><span class="txt"><b>指定外PCでの利用</b><span class="f">使用許諾契約（指定台数・移設条件）</span></span></li>
+          <li><span class="q">13-4</span><span class="txt"><b>購入と複製権限は別</b><span class="f">著作権・複製権の範囲を確認</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>情報管理・守秘義務</h3>
+        <ul class="q-list">
+          <li><span class="q">13-5</span><span class="txt"><b>適切な情報管理</b><span class="f">許された範囲・暗号化・アクセス制限</span></span></li>
+          <li><span class="q">13-6</span><span class="txt"><b>同一社内の別部署からの依頼</b><span class="f">守秘義務・必要最小限・利益相反調整</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>機密の正規入手・越権回避</h3>
+        <ul class="q-list">
+          <li><span class="q">13-9</span><span class="txt"><b>過去に知った評価基準</b><span class="f">社外秘・無断利用や越権の回避</span></span></li>
+          <li><span class="q">13-12</span><span class="txt"><b>機密データの正式な入手</b><span class="f">権限ある窓口・版/用途/利用範囲</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜契約と立場の誠実さ（受発注・派遣）</div>
+    <div class="track-desc">契約の種類や自分の立場を正しく理解して、誠実に振る舞う段です。固定額契約で費用が下がっても勝手な返金や虚偽記載はせず、条件どおり請求し説明を求められたら事実を伝えます。労働者派遣と請負の違いを踏まえ、未達時は決めつけず、役割・契約・実態を確認して関係者と協議します。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>契約・受発注の誠実さ</h3>
+        <ul class="q-list">
+          <li><span class="q">13-7</span><span class="txt"><b>固定額契約と効率化</b><span class="f">精算条項の有無・虚偽記載の禁止</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>派遣の役割と責任</h3>
+        <ul class="q-list">
+          <li><span class="q">13-10</span><span class="txt"><b>派遣の役割と未達</b><span class="f">労働者派遣と請負の区別・指揮命令</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー観点/用語</span>／A（青）誠実さと報告・B（藍）情報と権利・C（赤）契約と立場。倫理の事例判断が中心のため公式ではなく観点を示す。全12問（A4・B6・C2）。</p>
+  </section>
+</div>

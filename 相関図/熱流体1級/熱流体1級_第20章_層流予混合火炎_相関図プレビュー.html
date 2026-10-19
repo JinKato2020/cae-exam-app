@@ -1,0 +1,170 @@
+<title>熱流体1級 第20章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A火炎の構造と保存則／B 層流燃焼速度とその依存性／C 保炎・限界・伸張と不安定 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級 第20章「層流予混合火炎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 火炎の構造と保存則／B 層流燃焼速度とその依存性／C 保炎・限界・伸張と不安定 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>層流予混合火炎 ― 各問の要点とキー公式</h2>
+    <p class="lead">あらかじめ混ざった燃料と空気を燃やす層流予混合火炎を、火炎構造・保存則から層流燃焼速度 Su の測定・依存性、保炎と伸張・不安定まで整理。全13問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜火炎の構造と保存則</div>
+    <div class="track-desc">まず火炎そのものの中身を押さえる。未燃側から予熱帯（反応帯からの熱伝導で暖まり、発熱反応はほぼ無いがラジカルは存在）と反応帯（発熱が集中）が並び、温度は Tu から Tb へ S 字に上がる。火炎面の前後は質量・運動量・エネルギー保存で結ばれ、Rayleigh 線から燃焼後の圧力変化、膨張で既燃ガスが押し出される速度が導ける。ここで決まる密度・温度の関係が、B の燃焼速度 Su を支える土台になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>火炎帯の構造</h3>
+        <ul class="q-list">
+          <li><span class="q">20-1</span><span class="txt"><b>予熱帯と反応帯からなる火炎帯</b>予熱帯=発熱反応ほぼ無・ラジカル存在　<span class="f">熱は反応帯→予熱帯、Tu→Tb の S 字昇温</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>保存則・圧力変化</h3>
+        <ul class="q-list">
+          <li><span class="q">20-3</span><span class="txt"><b>火炎面前後の圧力はわずかに低下</b>燃焼後ρ低下　<span class="f">(p₂−p₁)/(1/ρ₂−1/ρ₁)=−ṁ²（Rayleigh線）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>膨張・既燃ガス速度</h3>
+        <ul class="q-list">
+          <li><span class="q">20-4</span><span class="txt"><b>静止気体中の既燃ガス速度</b>火炎と逆向きに押し出される　<span class="f">S=Su(Tb/Tu−1)=2.40 m/s</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜層流燃焼速度 Su とその依存性</div>
+    <div class="track-desc">層流燃焼速度 Su は予混合火炎を特徴づける基本量で、未燃ガスに対して火炎面が進む速さである。シャボン玉法で測り、熱理論では熱拡散率と火炎帯厚さの比で見積もれる。Su は火炎温度に強く効くため、当量比（やや過濃側で最大）・圧力（高圧で低下）・希釈剤（モル熱容量が大きいほど温度を下げて Su を下げる）で変化する。A の密度・温度関係を使い、Su の大きさを左右する要因を体系化するトラック。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>測定・熱理論</h3>
+        <ul class="q-list">
+          <li><span class="q">20-5</span><span class="txt"><b>シャボン玉法による Su</b>半径比の3乗で密度比　<span class="f">Su=(ru/rb)³Sb</span></span></li>
+          <li><span class="q">20-7</span><span class="txt"><b>熱理論による Su の見積り</b>δ一定なら Su∝a₀　<span class="f">Su≈a₀/δ, a₀=λ/(ρu cp)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>組成依存（当量比・希釈）</h3>
+        <ul class="q-list">
+          <li><span class="q">20-6</span><span class="txt"><b>Su 最大の当量比</b>熱解離でやや過濃側　<span class="f">φ≈1.05〜1.1 で最大</span></span></li>
+          <li><span class="q">20-9</span><span class="txt"><b>希釈ガスと Su</b>同濃度ならアルゴン＞水蒸気　<span class="f">モル熱容量大→火炎温度低→Su低</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>圧力依存</h3>
+        <ul class="q-list">
+          <li><span class="q">20-8</span><span class="txt"><b>圧力と Su</b>メタン・空気は高圧ほど遅い　<span class="f">Su∝pⁿ, n&lt;0（負の圧力指数）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜保炎・限界・火炎伸張と不安定</div>
+    <div class="track-desc">実機で火炎を安定に保てるか、どこで消えるかを扱う。噴出流速が Su を下回ると逆火、口径が小さいと壁の熱吸収で消炎し、その分かれ目がバーナー設計に効く。火炎が伝播できる濃度には可燃限界があり、水素はメタンより範囲が広い。せん断流ではカルロビッツ数で伸張度を測り、ルイス数が1より大きいほど伸張で消炎しやすい。希薄側で Le&lt;1 になると拡散熱的不安定で火炎面がセル状に乱れる。B の Su を現実の保炎・限界・不安定へつなぐトラック。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>保炎・逆火・限界</h3>
+        <ul class="q-list">
+          <li><span class="q">20-2</span><span class="txt"><b>バーナー口径と逆火・消炎</b>流速低下で火炎が戻る/消える　<span class="f">大口径=逆火・小口径=消炎</span></span></li>
+          <li><span class="q">20-10</span><span class="txt"><b>可燃限界（可燃範囲）</b>上限界=濃・下限界=薄　<span class="f">水素＞メタン、境界条件依存</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>火炎伸張</h3>
+        <ul class="q-list">
+          <li><span class="q">20-11</span><span class="txt"><b>カルロビッツ数（火炎伸張度）</b>せん断の引き伸ばし　<span class="f">K=(∂Uu/∂y)(δ/Uu)=0.4</span></span></li>
+          <li><span class="q">20-12</span><span class="txt"><b>ルイス数と対向流火炎の消炎</b>Le＞1 ほど伸張で消炎　<span class="f">Le=λ/(ρD cp)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>火炎不安定</h3>
+        <ul class="q-list">
+          <li><span class="q">20-13</span><span class="txt"><b>セル状火炎と拡散熱的不安定</b>希薄メタンは Le&lt;1　<span class="f">Le&lt;1→拡散熱的不安定→セル状</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）構造と保存則・B（藍）層流燃焼速度・C（赤）保炎・限界・不安定。全13問（A3・B5・C5）。</p>
+  </section>
+</div>

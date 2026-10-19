@@ -1,0 +1,166 @@
+<title>振動2級 第7章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>振動2級 第7章「モデリングの基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 減衰のモデル化／B 構造物の要素選択／C 付属品・結合部・メッシュ方針 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>モデリングの基礎 ― 各問の要点とキー公式</h2>
+    <p class="lead">減衰をどう表し、部材・付属品・結合部をどの要素で表すかを整理。全19問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜減衰のモデル化</div>
+    <div class="track-desc">減衰は発生機構が複雑でエネルギー原理から厳密に導きにくいため、質量行列と剛性行列の線形和で近似する比例（レイリー）減衰を用いる。粘性減衰は減衰比、ヒステリシス減衰は損失係数で表し、固有振動数付近で両者はη＝2ζで結ばれる。理論根拠は希薄でもモードの直交性が成り立つため実用性が高い。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>減衰の表現と分類</h3>
+        <ul class="q-list">
+          <li><span class="q">7-1</span><span class="txt"><b>減衰行列を質量・剛性の重み付き線形和で近似</b><span class="f">[C]=α[M]+β[K]</span></span></li>
+          <li><span class="q">7-2</span><span class="txt"><b>振動数依存＝粘性減衰、振動数非依存で振幅依存＝ヒステリシス</b><span class="f">（a）粘性（b）ヒステリシス</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>減衰パラメータと比例減衰</h3>
+        <ul class="q-list">
+          <li><span class="q">7-3</span><span class="txt"><b>粘性＝減衰比ζ、ヒステリシス＝損失係数η、近傍でη=2ζ（比例）</b><span class="f">η=2ζ</span></span></li>
+          <li><span class="q">7-4</span><span class="txt"><b>理論根拠は希薄だが実現象をよく表し、モードの直交性が成立</b><span class="f">モード直交性が成立</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜構造物の要素選択</div>
+    <div class="track-desc">容器・車両骨格・軸系などの本体を、変形の種類に合わせてどの要素で表すかを扱う。非対称な形状や荷重では軸対称モデルが使えず、シェルで全体モデルを作る。箱型は板、鋼板部はシェル、油圧シリンダはロッド、軸系ははりというように、必要な剛性と変形を再現できる要素を選ぶ。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>容器・車両骨格</h3>
+        <ul class="q-list">
+          <li><span class="q">7-5</span><span class="txt"><b>非対称付属物はシェルで全体モデル、小付属物は集中質量</b><span class="f">シェル・全体・集中質量</span></span></li>
+          <li><span class="q">7-6</span><span class="txt"><b>非対称位置の変位評価に軸対称モデルは使えない（不適切）</b><span class="f">軸対称＝不適</span></span></li>
+          <li><span class="q">7-7</span><span class="txt"><b>箱型は板要素、結合部は質量、せん断伝達ははり要素</b><span class="f">板・質量・はり</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>支持系・軸系</h3>
+        <ul class="q-list">
+          <li><span class="q">7-8</span><span class="txt"><b>剛体は質量＋慣性モーメント、ゴムマウントは剛性＋減衰</b><span class="f">質量+慣性／剛性+減衰</span></span></li>
+          <li><span class="q">7-11</span><span class="txt"><b>鋼板部はシェル、油圧シリンダは作動油の軸剛性でロッド要素</b><span class="f">シェル／ロッド</span></span></li>
+          <li><span class="q">7-13</span><span class="txt"><b>はり剛性は材料特性・断面特性・要素長さで決まる</b><span class="f">剛性∝材料・断面・長さ</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜付属品・結合部・メッシュ方針</div>
+    <div class="track-desc">剛性寄与の小さい付属品や、溶接・ボルト・ヒンジなどの結合部をどう簡略化するかを扱う。慣性だけ効く付属品は集中質量、結合部は共有節点やばね・剛体要素で表し、回転自由度は二重節点で作る。制振材のオフセットや音場の波長分割、低次モードを狙う一定メッシュといった分割方針もここに含める。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>付属品のモデル化</h3>
+        <ul class="q-list">
+          <li><span class="q">7-9</span><span class="txt"><b>薄い鋼板・ガラスは板要素、剛性寄与小のワイパは質量要素</b><span class="f">板／質量</span></span></li>
+          <li><span class="q">7-10</span><span class="txt"><b>剛体は質量＋慣性モーメント、ゴムクッションは弾性＋減衰</b><span class="f">質量+慣性／弾性+減衰</span></span></li>
+          <li><span class="q">7-12</span><span class="txt"><b>内部機器は集中質量、剛体要素で各実重心位置に配置</b><span class="f">集中質量＋剛体要素</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>車体・結合部</h3>
+        <ul class="q-list">
+          <li><span class="q">7-14</span><span class="txt"><b>側板・リブは板要素、リブは等価密度、付加質量は密度追加</b><span class="f">板・等価密度・質量要素</span></span></li>
+          <li><span class="q">7-15</span><span class="txt"><b>三角形の頂点集中は剛性過大で回避、接合部はばねで柔らかさ</b><span class="f">三角形集中回避／ばね結合</span></span></li>
+          <li><span class="q">7-16</span><span class="txt"><b>共有節点かソリッド＋多点拘束、ボルトは接触範囲で剛性変化</b><span class="f">共有節点／ソリッド＋MPC</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>制振材・ヒンジ・メッシュ</h3>
+        <ul class="q-list">
+          <li><span class="q">7-17</span><span class="txt"><b>鋼板と制振材の板厚とオフセット、音場は波長の1/6未満</b><span class="f">オフセット／λ/6</span></span></li>
+          <li><span class="q">7-18</span><span class="txt"><b>ブラケット板・ピンはり・結合剛体・回転は二重節点</b><span class="f">板・はり・剛体・二重節点</span></span></li>
+          <li><span class="q">7-19</span><span class="txt"><b>細分化で節点数・計算時間増、一定メッシュで振動モード予測</b><span class="f">節点数・計算時間・一定メッシュ</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）減衰のモデル化・B（藍）構造物の要素選択・C（赤）付属品・結合部・メッシュ方針。全19問（A 4・B 6・C 9）。</p>
+  </section>
+</div>

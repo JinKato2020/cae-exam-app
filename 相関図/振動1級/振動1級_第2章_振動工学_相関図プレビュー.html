@@ -1,0 +1,212 @@
+<title>振動1級 第2章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>振動1級 第2章「振動工学」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 1自由度系の振動／B 多自由度系とモード解析／C 非線形・自励・係数励振 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>振動工学 ― 各問の要点とキー公式</h2>
+    <p class="lead">1自由度の基礎から、多自由度のモード解析、そして非線形・自励・係数励振の特殊な振動まで整理。全45問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜1自由度系の振動（固有振動数・減衰・共振・加振）</div>
+    <div class="track-desc">振動の基本単位である1自由度系を押さえる。復元力と慣性から固有角振動数を求め、減衰が加わると共振ピークの高さ（Q値）や臨界減衰が決まる。基礎（支持部）が揺れる加振系では変位伝達率で揺れの伝わりを評価し、振動計の変位計・加速度計の使い分けにつながる。ここで得た1自由度の結果が、B の各モードにそのまま使える。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>固有振動数とモデル化</h3>
+        <ul class="q-list">
+          <li><span class="q">2-1</span><span class="txt"><b>やじろべえの復元モーメントと慣性モーメントから固有角振動数</b><span class="f">ω=√(2mga/I), I=2m(a²+b²)</span></span></li>
+          <li><span class="q">2-2</span><span class="txt"><b>U字管液柱は高低差2xが復元力を生む</b><span class="f">ρAL·ẍ+2ρAg·x=0</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>減衰と共振</h3>
+        <ul class="q-list">
+          <li><span class="q">2-3</span><span class="txt"><b>応答倍率を最大にする振動数比とピーク値</b><span class="f">r=√(1−2ζ²), M_d,max=1/(2ζ√(1−ζ²))</span></span></li>
+          <li><span class="q">2-4</span><span class="txt"><b>Q値を50以下にする減衰比の条件</b><span class="f">Q≈1/(2ζ)≤50 → ζ≥0.01</span></span></li>
+          <li><span class="q">2-5</span><span class="txt"><b>臨界減衰係数と減衰固有角振動数</b><span class="f">c_c=2√(mk), ω_d=ω_n√(1−ζ²)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>加振と振動計測</h3>
+        <ul class="q-list">
+          <li><span class="q">2-6</span><span class="txt"><b>ω≫ω_nで変位計、ω≪ω_nで加速度計</b><span class="f">Z/A=ω²/(ω_n²−ω²)</span></span></li>
+          <li><span class="q">2-25</span><span class="txt"><b>基礎加振の変位伝達率を数値評価</b><span class="f">X/Y=√(k²+c²ω²)/√((k−mω²)²+c²ω²)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜多自由度系とモード解析（固有値問題・モード重ね合わせ・減衰モデル）</div>
+    <div class="track-desc">質量・剛性行列で表した多自由度系を固有値問題として解き、固有振動数とモードを得る。モード座標へ変換すると各式が非連成化され、1自由度の重ね合わせで応答を表せる。実構造の減衰は比例減衰・一般粘性・構造減衰とモデルが分かれ、動吸振器は2自由度の応用で主系の振動を抑える。A の1自由度の知識が各モードに生きる。</div>
+    <div class="grid4">
+      <div class="box lead">
+        <h3>固有値問題と行列の性質</h3>
+        <ul class="q-list">
+          <li><span class="q">2-8</span><span class="txt"><b>モード質量・剛性はモードで行列を挟むスカラー</b><span class="f">m̄_r={φ_r}ᵀ[M]{φ_r}</span></span></li>
+          <li><span class="q">2-9</span><span class="txt"><b>張弦2自由度の2次固有振動数</b><span class="f">ω₂=√(6k/2m)=√(3T₀/(ml))</span></span></li>
+          <li><span class="q">2-10</span><span class="txt"><b>[M][K]は対称・正定値、λは純虚数</b><span class="f">λ=±jω</span></span></li>
+          <li><span class="q">2-11</span><span class="txt"><b>非拘束系は同位相モードで剛体モードω=0</b><span class="f">{φ₁}={1,1}ᵀ, ω₁=0</span></span></li>
+          <li><span class="q">2-13</span><span class="txt"><b>レイリー商＝モード剛性/モード質量の平方根</b><span class="f">ω_r=√(k̄_r/m̄_r)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>モード座標と重ね合わせ</h3>
+        <ul class="q-list">
+          <li><span class="q">2-12</span><span class="txt"><b>質量正規化してもω_rの関係は不変</b><span class="f">m̄_r=1</span></span></li>
+          <li><span class="q">2-14</span><span class="txt"><b>物理変位はモードの重ね合わせ</b><span class="f">{x}=[Φ]{η}</span></span></li>
+          <li><span class="q">2-15</span><span class="txt"><b>無減衰の周波数応答は−ω²で代入</b><span class="f">{X}=([K]−ω²[M])⁻¹{F}</span></span></li>
+          <li><span class="q">2-16</span><span class="txt"><b>各モードの寄与を足して応答</b><span class="f">{X}=Σ {φ_r}{φ_r}ᵀ{F}/(k̄_r−ω²m̄_r)</span></span></li>
+          <li><span class="q">2-17</span><span class="txt"><b>自由構造は[K]半正定値、剛体＋弾性モードで表す</b><span class="f">剛体6＋弾性モード</span></span></li>
+          <li><span class="q">2-18</span><span class="txt"><b>共振はβ_r=1、剰余項で範囲外モードを補正</b><span class="f">β_r=ω/ω_r</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>減衰のモデル化</h3>
+        <ul class="q-list">
+          <li><span class="q">2-19</span><span class="txt"><b>比例減衰のモード減衰比</b><span class="f">ζ_r=α/(2ω_r)+βω_r/2</span></span></li>
+          <li><span class="q">2-20</span><span class="txt"><b>比例減衰は各モードが1自由度と同形</b><span class="f">λ_r=−ζ_rω_r±jω_r√(1−ζ_r²)</span></span></li>
+          <li><span class="q">2-21</span><span class="txt"><b>一般粘性減衰は複素モード・2N固有値問題</b><span class="f">2N×2N固有値問題</span></span></li>
+          <li><span class="q">2-22</span><span class="txt"><b>変位と速度を並べ状態方程式へ</b><span class="f">{y}={x,ẋ}ᵀ</span></span></li>
+          <li><span class="q">2-23</span><span class="txt"><b>粘性はjω[C]、構造減衰はη[K]で表れる</b><span class="f">粘性 jω[C] / 構造 η[K]</span></span></li>
+          <li><span class="q">2-24</span><span class="txt"><b>構造減衰は剛性が(1+jη)倍</b><span class="f">(1+jη)k̄_r</span></span></li>
+          <li><span class="q">2-26</span><span class="txt"><b>ヒステリシスループ面積＝1周期の散逸、周波数に鈍感</b><span class="f">ΔW=∮σ dε</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>動吸振器（応用）</h3>
+        <ul class="q-list">
+          <li><span class="q">2-7</span><span class="txt"><b>付加系で主系振幅を厳密に零にする</b><span class="f">k_a−m_aω²=0</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜非線形振動・自励振動・係数励振</div>
+    <div class="track-desc">重ね合わせが成り立たない非線形振動を扱う。デュフィング系では振動数が振幅に依存し、応答曲線が傾いて多価領域や副共振（高調波・分数調波）が現れる。外力なしで振動が成長する自励振動は負減衰やフラッタ・びびりとして生じ、係数（ばね定数相当）が周期変化する係数励振（パラメトリック振動）も不安定を招く。いずれも線形の枠を超える現象として整理する。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>非線形振動とデュフィング系</h3>
+        <ul class="q-list">
+          <li><span class="q">2-27</span><span class="txt"><b>線形は加法性・同次性＝重ね合わせ、満たさぬものが非線形</b><span class="f">L(x₁+x₂)=L(x₁)+L(x₂)</span></span></li>
+          <li><span class="q">2-28</span><span class="txt"><b>硬化ばねの近似固有角振動数は振幅依存</b><span class="f">ω=√(k/m+3βx₀²/(4m))</span></span></li>
+          <li><span class="q">2-29</span><span class="txt"><b>硬化ばねは振幅が大きいほど振動数が上がる</b><span class="f">ω≈ω₀+(3/(8ω₀))εa₀²</span></span></li>
+          <li><span class="q">2-30</span><span class="txt"><b>応答曲線が高周波側に傾き多価領域が生じる</b><span class="f">背骨曲線・跳躍現象</span></span></li>
+          <li><span class="q">2-32</span><span class="txt"><b>単振子は軟化ばね、振幅増で振動数低下</b><span class="f">sinθ=θ−θ³/6+…</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>副共振・高調波</h3>
+        <ul class="q-list">
+          <li><span class="q">2-31</span><span class="txt"><b>βx³で高調波nωや分数調波ω/nが発生</b><span class="f">ω≈nω_nで大振幅</span></span></li>
+          <li><span class="q">2-33</span><span class="txt"><b>外力振動数以外の成分が大振幅になる例</b><span class="f">高調波nω・分数調波ω/n</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>自励振動</h3>
+        <ul class="q-list">
+          <li><span class="q">2-34</span><span class="txt"><b>自由・強制・自励の区別</b><span class="f">自由=固有振動数・外力なし</span></span></li>
+          <li><span class="q">2-35</span><span class="txt"><b>特性根の実部が正で発生、機構は自由度で異なる</b><span class="f">Re(λ)&gt;0</span></span></li>
+          <li><span class="q">2-36</span><span class="txt"><b>外部加振なしに自ら振動を成長・持続</b><span class="f">自己エネルギー供給</span></span></li>
+          <li><span class="q">2-37</span><span class="txt"><b>送電線ギャロッピングは負性抵抗で成長</b><span class="f">−c₁ẋ+c₂ẋ³</span></span></li>
+          <li><span class="q">2-38</span><span class="txt"><b>ファンデルポール系はリミットサイクルへ収束</b><span class="f">ẍ−μ(1−x²)ẋ+x=0</span></span></li>
+          <li><span class="q">2-39</span><span class="txt"><b>乾性摩擦は摩擦勾配が負で自励</b><span class="f">P′(v)&lt;0</span></span></li>
+          <li><span class="q">2-40</span><span class="txt"><b>チョーク鳴きは剛性行列の非対称で自励</b><span class="f">非対称[K]</span></span></li>
+          <li><span class="q">2-41</span><span class="txt"><b>再生びびりは時間遅れτのフィードバック</b><span class="f">x(t)−x(t−τ)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>係数励振（パラメトリック）</h3>
+        <ul class="q-list">
+          <li><span class="q">2-42</span><span class="txt"><b>支点上下動で係数が周期変化、減衰で小さくなるのは振幅</b><span class="f">ml²θ̈+ml(g−aω²sinωt)θ=0</span></span></li>
+          <li><span class="q">2-43</span><span class="txt"><b>別方向の力が運動方程式の係数を周期変化させる</b><span class="f">係数が周期的に変動</span></span></li>
+          <li><span class="q">2-44</span><span class="txt"><b>非対称断面回転軸は剛性に2ω周期項</b><span class="f">Δk·cos2ωt, Δk·sin2ωt</span></span></li>
+          <li><span class="q">2-45</span><span class="txt"><b>張力変動弦はマシュー方程式型</b><span class="f">ẍ+ω₀²(1+εcosωt)x=0</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）1自由度系・B（藍）多自由度とモード解析・C（赤）非線形・自励・係数励振。全45問（A7・B19・C19）。</p>
+  </section>
+</div>

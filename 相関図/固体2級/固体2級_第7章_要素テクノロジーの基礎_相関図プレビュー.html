@@ -1,0 +1,189 @@
+<title>固体2級 第7章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A要素内の解／B種類・形状／C次数と分割 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>固体2級 第7章「要素テクノロジーの基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 要素内の解／B 要素の種類・形状／C 次数と分割 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>要素テクノロジーの基礎 ― 各問の要点とキー公式</h2>
+    <p class="lead">要素の「中身」で解の精度が決まる。全17問を A／B／C ＋ 横串（曲げを題材にした比較）に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜要素の中の解のつながり（連続性・場の次数）</div>
+    <div class="track-desc">有限要素法は、要素の中を決まった形の式（形状関数）で補間して解きます。変位は要素の境でつながっても、その微分であるひずみ・応力は要素ごとに別々で、一般に段差ができます。まず「何が連続で、要素内ではどんな分布になるか」を、三角形一次要素（CST）の一定ひずみや二次要素の補間で押さえます。ここでの表現力の限界が、どの要素を選びどう分割するか（B・C）の出発点になります。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>変位と応力の連続性</h3>
+        <ul class="q-list">
+          <li><span class="q">7-1</span><span class="txt"><b>変位は連続・ひずみ/応力は不連続</b>微分は要素ごと　<span class="f">ε=∂u/∂x（辺で段差）</span></span></li>
+          <li><span class="q">7-2</span><span class="txt"><b>温度は連続・熱流束は点で不一致</b><span class="f">q=−λ∇T（傾きが要素ごと）</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>定ひずみ三角形（CST）</h3>
+        <ul class="q-list">
+          <li><span class="q">7-3</span><span class="txt"><b>一次変位→ひずみ・応力は要素内一定</b><span class="f">u=a₁+a₂x+a₃y → ε=定数</span></span></li>
+          <li><span class="q">7-4</span><span class="txt"><b>節点変位から係数→εxを取り出す</b><span class="f">εx=a₁=(uB−uA)/5=0.005</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>二次要素の場</h3>
+        <ul class="q-list">
+          <li><span class="q">7-7</span><span class="txt"><b>三角形二次要素の辺上温度</b>両端と中点で決まる　<span class="f">節点範囲外も出る（37.5℃）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜要素の種類と形状を選ぶ（構造/連続体・はり・形）</div>
+    <div class="track-desc">解きたい物理に合わせて要素の種類を選びます。断面や板厚を理論でまとめた構造要素（トラス・はり・シェル）と、変位場を直接補間する連続体要素（平面・ソリッド）があり、はりなら各節点にたわみと傾きを置きます。曲線の境界は、中間節点を円弧上に置いて二次曲線で近似します。種類が決まれば、次数を上げるか分割を細かくするかで精度と費用を調整します（C）。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>構造要素と連続体要素</h3>
+        <ul class="q-list">
+          <li><span class="q">7-9</span><span class="txt"><b>要素の分類</b>構造＝断面特性／連続体＝変位補間　<span class="f">トラス・はり・シェル／平面・ソリッド</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>はり要素の自由度</h3>
+        <ul class="q-list">
+          <li><span class="q">7-10</span><span class="txt"><b>節点未知量＝たわみとたわみ角</b>傾きも共有（C¹連続）　<span class="f">w, θ=dw/dx</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>形の表現（要素の形・曲線境界）</h3>
+        <ul class="q-list">
+          <li><span class="q">7-12</span><span class="txt"><b>四面体・六面体の特徴</b><span class="f">四面体=自動分割／六面体=高精度</span></span></li>
+          <li><span class="q">7-8</span><span class="txt"><b>Q8の円弧近似</b>中間節点を円弧上へ　<span class="f">二次曲線で近似（アイソパラ）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜次数・分割と精度（計算費用とのつり合い）</div>
+    <div class="track-desc">同じ形状でも、次数を上げる（高次化）か分割を細かくするかで精度が変わり、同時に節点・自由度や計算の手間も増えます。「同じ要素数」か「同じ節点数」かで比較の意味が変わり、要素名だけで優劣は決まりません。はり理論など既知の答えと比べて確かめますが、その理論の仮定（せん断を含むか等）まで確認します。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>同じ規模で次数を比べる</h3>
+        <ul class="q-list">
+          <li><span class="q">7-5</span><span class="txt"><b>同じ要素数で一次vs二次</b><span class="f">表現力↑・自由度/演算↑</span></span></li>
+          <li><span class="q">7-6</span><span class="txt"><b>同じ節点数で比べる</b>高次は要素数減　<span class="f">時間はおおむね同程度</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>次数・形状と現象の対応</h3>
+        <ul class="q-list">
+          <li><span class="q">7-11</span><span class="txt"><b>精度は次数・形状・現象の組合せ</b><span class="f">名称だけで優劣は決まらない</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>既知の理論値で確かめる</h3>
+        <ul class="q-list">
+          <li><span class="q">7-15</span><span class="txt"><b>はり理論との比較（せん断たわみ）</b><span class="f">I=bh³/12, δb=WL³/3EI</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 横串 -->
+    <div class="grayband">
+      <b class="gh">横串：曲げを題材に、要素・分割の違いを見る（A・Cの考えを一つの題材で確かめる）</b>
+      <div class="grid4">
+        <ul class="q-list">
+          <li><span class="q">7-13</span><span class="txt"><b>CST片持ばりの分割</b>一定応力　<span class="f">長手・高さ両方向を分割</span></span></li>
+        </ul>
+        <ul class="q-list">
+          <li><span class="q">7-14</span><span class="txt"><b>Q4とQ8の曲げ応力</b>二次変位が有利　<span class="f">u=−κxy, v=κx²/2</span></span></li>
+        </ul>
+        <ul class="q-list">
+          <li><span class="q">7-16</span><span class="txt"><b>各要素の曲げ表現の順位</b><span class="f">B→D→A→C（たわみ比）</span></span></li>
+        </ul>
+        <ul class="q-list">
+          <li><span class="q">7-17</span><span class="txt"><b>同形要素の剛性と分割方向</b><span class="f">剛性は平行移動で不変</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）要素内の解・B（藍）種類と形状・C（赤）次数と分割＋横串（灰）曲げを題材にした比較。全17問（A5・B4・C4・横串4）。</p>
+  </section>
+</div>

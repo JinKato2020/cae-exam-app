@@ -7,7 +7,7 @@
       "id": "regularity-linear-system",
       "kind": "term",
       "term": "連立一次方程式と正則性",
-      "formula": "$A\\mathbf{x}=\\mathbf{b}$　（$A$ が正則 ⇔ $\\det A\\neq 0$ ⇔ 逆行列 $A^{-1}$ をもつ）",
+      "formula": "$A\\mathbf{x}=\\mathbf{b}$\n正則であるための条件：\n$\\det A\\neq 0$",
       "body": "「正則」とは逆行列をもつこと（＝行列式が0でない）です。$A$ が正則なら、どんな $\\mathbf{b}$ に対しても解がちょうど1つに決まります。正則でない（$\\det A=0$）ときは、解なし（不能）か、無数にある（不定）かのどちらかになります。",
       "example": "2式 $x+3y=b_1,\\ 2x+6y=b_2$ は係数行列 $\\begin{bmatrix}1&3\\\\2&6\\end{bmatrix}$ が $\\det=0$（2直線は平行）。(i) $b_2=2b_1$ なら2直線は完全に重なり、解は無数（不定）。(ii) $b_2\\neq2b_1$ なら平行で交わらず解なし（不能）。正則（$\\det\\neq0$）なら2直線は1点で交わり解はただ1つ。",
       "figureImage": "mathLinSolve"
@@ -59,7 +59,7 @@
       "id": "jacobian",
       "kind": "term",
       "term": "ヤコビ行列式（ヤコビアン）",
-      "formula": "$$\\begin{aligned}& J=\\det\\dfrac{\\partial(x,y)}{\\partial(u,v)}=\\begin{vmatrix}\\partial x/\\partial u & \\partial x/\\partial v\\\\ \\partial y/\\partial u & \\partial y/\\partial v\\end{vmatrix}\\\\dx\\,dy&=|J|\\,du\\,dv\\end{aligned}$$",
+      "formula": "$J=\\det\\begin{bmatrix}\\partial x/\\partial u & \\partial x/\\partial v\\\\ \\partial y/\\partial u & \\partial y/\\partial v\\end{bmatrix}$\n$dx\\,dy=|J|\\,du\\,dv$",
       "body": "変数変換したときの面積（体積）の拡大率がヤコビ行列式です。重積分の変数変換や、有限要素法でアイソパラメトリック要素を基準要素へ写すときに使います。",
       "example": "極座標 $x=r\\cos\\theta,\\ y=r\\sin\\theta$ では $J=r$ となり、$dx\\,dy=r\\,dr\\,d\\theta$。"
     },
@@ -91,7 +91,7 @@
       "id": "finite-difference-1st",
       "kind": "formula",
       "term": "1階微分の差分近似（前進・後退・中央）",
-      "formula": "前進・後退 $\\dfrac{f(x+h)-f(x)}{h},\\ \\dfrac{f(x)-f(x-h)}{h}$（1次精度）　／　中央 $\\dfrac{f(x+h)-f(x-h)}{2h}$（2次精度）",
+      "formula": "前進（1次精度） $f'(x)\\approx\\dfrac{f(x+h)-f(x)}{h}$\n後退（1次精度） $f'(x)\\approx\\dfrac{f(x)-f(x-h)}{h}$\n中央（2次精度） $f'(x)\\approx\\dfrac{f(x+h)-f(x-h)}{2h}$",
       "body": "テイラー展開から導きます。前進差分・後退差分は誤差が $O(h)$ の1次精度、中央差分は誤差が $O(h^{2})$ の2次精度で、刻み幅 $h$ を半分にすると誤差が約1/4になり精度が良いです。",
       "example": "中央差分は $f(x+h)$ と $f(x-h)$ の差を使うため、テイラー展開の1次の誤差項が打ち消し合って2次精度になります（公式問1-10の正解）。"
     },
@@ -108,7 +108,7 @@
       "id": "fem-convergence",
       "kind": "formula",
       "term": "有限要素解の収束次数",
-      "formula": "$\\|u_h-u\\|\\le C\\,H^{k}$　（k次収束）",
+      "formula": "$\\|u_h-u\\|\\le C\\,H^{k}$\n（k次収束）",
       "body": "要素サイズ $H$ を小さくすると数値解 $u_h$ が厳密解 $u$ に近づきます。$k$ 次ラグランジュ要素では、解の1階微分（応力・ひずみ）は $k$ 次、解そのもの（変位）は $(k+1)$ 次で収束します。$H$ を固定したままでは誤差に下限ができます。",
       "example": "アスペクト比＝外接円の径÷内接円の径。誤差の大きい所だけ要素を細分するのが h法、節点を再配置するのが r法です（公式問1-12の正解）。"
     }

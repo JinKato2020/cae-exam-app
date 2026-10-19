@@ -1,0 +1,105 @@
+<title>熱流体1級 全章マップ 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 熱流体1級 全24章の章間マップ(1枚)。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9; --surface: #ffffff; --ink: #1F3A65; --ink-soft: #35507f;
+    --fill: #E1E7F2; --accent: #C82D2D; --muted: #6b7280; --line: #c7d0e2; --num: #1F3A65;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: "Meiryo","Hiragino Kaku Gothic ProN", system-ui, sans-serif; line-height: 1.5; margin: 0; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left,0px)); padding-right: max(16px, env(safe-area-inset-right,0px)); padding-block: 24px 48px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 4px; }
+  .band-label { font-size: .86rem; color: #fff; background: var(--ink-soft); font-weight: 800; letter-spacing: .03em; margin: 20px 0 6px; padding: 5px 13px; border-radius: 7px; display:inline-block; }
+  .band-label.core { background: var(--accent); }
+  .band-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 0 2px 10px; }
+  .band-desc .lk { color: var(--accent); font-weight: 700; }
+  .down { text-align:center; color: var(--accent); font-size: 1rem; font-weight:700; margin: 10px 0 2px; }
+  .row { display: grid; gap: 10px; margin-bottom: 10px; }
+  .r4 { grid-template-columns: repeat(4, 1fr); }
+  .r3 { grid-template-columns: repeat(3, 1fr); }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.hot { border-color: var(--accent); border-width: 2px; }
+  .box h3 { margin: 0 0 4px; font-size: .9rem; color: var(--ink); display:flex; gap:7px; align-items:baseline; }
+  .box.hot h3 { color: var(--accent); }
+  .box p { margin: 0; font-size: .76rem; color: var(--ink-soft); }
+  .ch { color:#fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size:.7rem; font-weight:700; white-space:nowrap; }
+  .box.hot .ch { background: var(--accent); }
+  .legend { margin-top: 16px; color: var(--muted); font-size: .78rem; line-height: 1.6; }
+  @media (max-width: 680px){ .r4, .r3 { grid-template-columns: 1fr 1fr; } }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級「全章の相関図」（章間マップ・プレビュー）</h1>
+    <p>各章がどの役割を持ち、どこへつながるか（章どうしの関係）を1枚で示します。</p>
+  </header>
+
+  <section class="fig">
+    <h2>熱流体1級：数値熱流体解析（CFD）の全体地図 ― 3つの流れ</h2>
+    <p class="lead">全24章は「単相流（1種類の流体）→ 混相流（気液・粒子が混ざる流れ）→ 燃焼流（化学反応を伴う流れ）」の3つの流れに分かれ、後の流れほど前の流れの考え方を土台にしています。</p>
+
+    <div class="band-label">① 単相流（第1〜8章）― 1種類の流体のCFDの土台</div>
+    <div class="band-desc">まず1種類の流体を正確に解く力をつける段。流れの物理（圧縮性・渦度）から、離散化・差分・特性による計算法、計算の舞台となる格子、乱れを扱う乱流モデルまでを学び、設計応用・高速化/ポスト処理・結果評価で仕上げます。<span class="lk">ここで身につく離散化・格子・乱流・検証の考え方が、混相流・燃焼流すべての共通土台になります。</span></div>
+    <div class="row r4">
+      <div class="box"><h3><span class="ch">1</span>単相流の物理</h3><p>圧縮性・渦度・音速・ノズル</p></div>
+      <div class="box"><h3><span class="ch">2</span>単相流の計算法1</h3><p>離散化・風上・渦法/粒子法</p></div>
+      <div class="box"><h3><span class="ch">3</span>単相流の計算法2</h3><p>差分精度・陽/陰・特性</p></div>
+      <div class="box"><h3><span class="ch">4</span>格子の取り扱い</h3><p>接合/重合・写像・ヤコビアン</p></div>
+    </div>
+    <div class="row r4">
+      <div class="box"><h3><span class="ch">5</span>乱流解析と乱流モデル</h3><p>RANS/LES/DNS・壁関数</p></div>
+      <div class="box"><h3><span class="ch">6</span>設計応用</h3><p>最適化・後処理・ヘリシティ</p></div>
+      <div class="box"><h3><span class="ch">7</span>高速化とポスト処理</h3><p>並列・補間・可視化</p></div>
+      <div class="box"><h3><span class="ch">8</span>結果と評価</h3><p>検証・移流スキーム・測定</p></div>
+    </div>
+    <div class="down">↓ 相が混ざる・界面がある流れへ ↓</div>
+
+    <div class="band-label">② 混相流（第9〜16章）― 気液・粒子が混ざる流れ</div>
+    <div class="band-desc">1種類の流体に、気泡・液滴・粒子や界面が加わる段。無次元数・流動様式・音速で混相流を捉え、粒子に働く力や波・界面の条件を押さえたうえで、平均化モデル・界面追跡/捕獲法・粒子追跡モデルで解き方を選び、相変化（沸騰・凝縮）まで扱います。<span class="lk">単相流の離散化・格子・乱流を土台に「界面と相間のやりとり」を足した段で、相変化は燃焼流の下地にもなります。</span></div>
+    <div class="row r4">
+      <div class="box"><h3><span class="ch">9</span>混相流の基礎</h3><p>無次元数・流動様式・音速</p></div>
+      <div class="box"><h3><span class="ch">10</span>気泡液滴粒子</h3><p>抗力・諸力・分散系</p></div>
+      <div class="box"><h3><span class="ch">11</span>波と界面</h3><p>分散関係・不安定・表面張力</p></div>
+      <div class="box"><h3><span class="ch">12</span>平均化モデル</h3><p>ドリフトフラックス・二流体</p></div>
+    </div>
+    <div class="row r4">
+      <div class="box"><h3><span class="ch">13</span>界面追跡捕獲法</h3><p>VOF/レベルセット・界面力</p></div>
+      <div class="box"><h3><span class="ch">14</span>粒子追跡モデル</h3><p>連成・粒子運動・衝突</p></div>
+      <div class="box"><h3><span class="ch">15</span>相変化</h3><p>沸騰・凝縮・キャビテーション</p></div>
+      <div class="box"><h3><span class="ch">16</span>結果の検証と妥当性確認</h3><p>V&amp;V・格子収束</p></div>
+    </div>
+    <div class="down">↓ 化学反応・発熱を伴う流れへ ↓</div>
+
+    <div class="band-label core">③ 燃焼流（第17〜24章）― 化学反応を伴う流れ</div>
+    <div class="band-desc">流れに化学反応と発熱が加わる最上段。燃焼の基礎（組成・量論・反応速度・平衡・熱力学量）と反応機構・火炎温度を押さえ、層流予混合火炎・層流拡散火炎で火炎構造を学び、乱流火炎で乱流と反応の相互作用をモデル化します。噴霧など混相を伴う混相燃焼、そして解の検証（ふく射・NO予測）で仕上げます。<span class="lk">単相流の乱流・離散化と混相流の噴霧・蒸発を土台に、化学反応を重ねた熱流体解析の到達点です。</span></div>
+    <div class="row r4">
+      <div class="box hot"><h3><span class="ch">17</span>燃焼の基礎1</h3><p>組成・量論・無次元数</p></div>
+      <div class="box hot"><h3><span class="ch">18</span>燃焼の基礎2</h3><p>反応速度・平衡・熱力学量</p></div>
+      <div class="box hot"><h3><span class="ch">19</span>燃焼反応</h3><p>反応機構・連鎖・火炎温度</p></div>
+      <div class="box hot"><h3><span class="ch">20</span>層流予混合火炎</h3><p>火炎構造・層流燃焼速度</p></div>
+    </div>
+    <div class="row r4">
+      <div class="box hot"><h3><span class="ch">21</span>層流拡散火炎</h3><p>火炎面・混合分率</p></div>
+      <div class="box hot"><h3><span class="ch">22</span>乱流火炎</h3><p>予混合/非予混合モデル・PDF</p></div>
+      <div class="box hot"><h3><span class="ch">23</span>混相燃焼</h3><p>噴霧・液滴蒸発・固体燃焼</p></div>
+      <div class="box hot"><h3><span class="ch">24</span>解の検証</h3><p>モデル検証・ふく射・NO予測</p></div>
+    </div>
+
+    <p class="legend">青い枠＝各章／赤い枠＝燃焼流（反応を伴う到達点）。全体は <b>単相流(1〜8) → 混相流(9〜16) → 燃焼流(17〜24)</b> の3つの流れで、後の流れほど前の流れの離散化・格子・乱流・界面の考え方を土台にします。矢印と「→」は“理解のつながり”で、学習する順番そのものではありません。</p>
+  </section>
+</div>

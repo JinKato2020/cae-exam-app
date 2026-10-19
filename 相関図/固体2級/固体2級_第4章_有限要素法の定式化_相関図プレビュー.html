@@ -1,0 +1,191 @@
+<title>固体2級 第4章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A式の土台／B仮想仕事／C組立て の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>固体2級 第4章「有限要素法の定式化」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 式を作る土台／B 仮想仕事と弱形式／C 要素を組み立てて解く の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>有限要素法の定式化 ― 各問の要点とキー公式</h2>
+    <p class="lead">連続体を有限個の節点自由度へ置き換え、原理に基づく連立方程式 Kd=f を作る。全29問を A／B／C に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜式を作る土台（離散化・エネルギー原理）</div>
+    <div class="track-desc">まず有限要素法が「複雑な形状を有限個の未知量へ置き換えて近似的に解く」考え方と、その連立方程式を根拠づけるエネルギー原理を押さえる。ひずみエネルギー・補ひずみエネルギー・最小ポテンシャルエネルギーが、どの変位が真の平衡かを決める。ここで整えた原理が、トラックBの仮想仕事・弱形式へ直接つながる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>離散化の考え方</h3>
+        <ul class="q-list">
+          <li><span class="q">4-1</span><span class="txt"><b>有限要素法の目的</b>複雑形状を有限自由度で近似　<span class="f">節点変位を解く Kd=f</span></span></li>
+          <li><span class="q">4-2</span><span class="txt"><b>離散化法と反復解法の区別</b><span class="f">ガウス・ザイデルは解法（離散化でない）</span></span></li>
+          <li><span class="q">4-3</span><span class="txt"><b>重み付き残差法とガラーキン法</b><span class="f">∫w·R dV=0（w=N がガラーキン）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>エネルギーの蓄え方</h3>
+        <ul class="q-list">
+          <li><span class="q">4-4</span><span class="txt"><b>段付き棒のひずみエネルギー比較</b>力一定と伸び一定で逆転　<span class="f">U=P²/2k, U=kδ²/2</span></span></li>
+          <li><span class="q">4-5</span><span class="txt"><b>二次元のひずみエネルギー密度</b><span class="f">U₀=½(σxεx+σyεy+τxyγxy)</span></span></li>
+          <li><span class="q">4-6</span><span class="txt"><b>ひずみ／補ひずみエネルギー</b>線形は等・非線形は不等　<span class="f">U₀=∫σdε, U₀*=∫εdσ</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>エネルギー原理と解法</h3>
+        <ul class="q-list">
+          <li><span class="q">4-7</span><span class="txt"><b>全ポテンシャルエネルギー最小</b>許容変位の中で　<span class="f">Π=U−W（最小で平衡）</span></span></li>
+          <li><span class="q">4-8</span><span class="txt"><b>変位法と応力法の対応</b><span class="f">変位法=仮想仕事／応力法=補仮想仕事</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜仮想仕事と弱形式（釣合いを積分の式へ）</div>
+    <div class="track-desc">各点の力の釣合い（強形式）を、許容仮想変位を掛けて積分した弱形式へ書き換える。この「内部仮想仕事＝外部仮想仕事」がFEMの連立方程式の出発点になり、体積力や指定表面力が外部仕事の各項として現れる。熱膨張などの初期ひずみ・初期応力も、右辺の等価節点力としてこの枠組みに組み込む。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>仮想仕事の原理</h3>
+        <ul class="q-list">
+          <li><span class="q">4-9</span><span class="txt"><b>節点の仮想仕事で軸力算定</b>角度分解　<span class="f">N_CB=10√3≈17.3 kN</span></span></li>
+          <li><span class="q">4-10</span><span class="txt"><b>仮想仕事の原理</b>許容仮想変位すべてで　<span class="f">内部仮想仕事＝外部仮想仕事</span></span></li>
+          <li><span class="q">4-12</span><span class="txt"><b>外部仮想仕事（表面力）</b>指定表面で積分　<span class="f">∫Γt t·δu dS</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>強形式から弱形式へ</h3>
+        <ul class="q-list">
+          <li><span class="q">4-11</span><span class="txt"><b>平衡の弱形式</b>平衡＋表面力条件を積分形に　<span class="f">強形式→弱形式</span></span></li>
+          <li><span class="q">4-14</span><span class="txt"><b>弱形式の導出</b>残差×仮想変位→部分積分　<span class="f">内部仕事＋表面項</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>初期ひずみ・初期応力</h3>
+        <ul class="q-list">
+          <li><span class="q">4-13</span><span class="txt"><b>初期項を等価節点力へ移す</b><span class="f">fε=∫BᵀDε₀, fσ=−∫Bᵀσ₀</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜要素を組み立てて解く（補間・行列・全体方程式）</div>
+    <div class="track-desc">節点変位から要素内の変位・ひずみ・応力を求める形状関数と B・D 行列を用意し、要素剛性を全体へ重ね合わせ、境界条件を入れて連立方程式を解く。形状関数 N は補間、B は微分でひずみへ、D は材料則で応力へと役割が分かれる。A・Bで作った原理を、実際に計算できる行列の形へ落とし込む段階。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>形状関数と補間</h3>
+        <ul class="q-list">
+          <li><span class="q">4-15</span><span class="txt"><b>節点補間の性質</b>自節点で1・和1で平行移動再現　<span class="f">Ni(xj)=δij, ΣNi=1</span></span></li>
+          <li><span class="q">4-16</span><span class="txt"><b>一次要素の直線補間</b>x=3L/4　<span class="f">u=7.5 mm（N1=¼,N2=¾）</span></span></li>
+          <li><span class="q">4-17</span><span class="txt"><b>微小ひずみ（ひずみ–変位）</b><span class="f">γxy=u,y+v,x（和）</span></span></li>
+          <li><span class="q">4-18</span><span class="txt"><b>三節点三角形CST</b>変位は一次・ひずみ応力一定　<span class="f">一定ひずみ三角形</span></span></li>
+          <li><span class="q">4-29</span><span class="txt"><b>面積座標・体積座標</b>部分／全体の比　<span class="f">単位なしの割合</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>B・D行列の役割</h3>
+        <ul class="q-list">
+          <li><span class="q">4-19</span><span class="txt"><b>各行列の役割</b>N補間・B微分・D応力　<span class="f">ε=Bd</span></span></li>
+          <li><span class="q">4-20</span><span class="txt"><b>B行列の成分と自由度の順序</b>各ひずみ式から一行ずつ　<span class="f">行[N,x 0][0 N,y][N,y N,x]</span></span></li>
+          <li><span class="q">4-21</span><span class="txt"><b>平面応力・平面ひずみのD</b>独立定数はE,ν　<span class="f">平面応力σz=0／平面ひずみεz=0</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>要素剛性と組立て</h3>
+        <ul class="q-list">
+          <li><span class="q">4-22</span><span class="txt"><b>直列ばねの剛性方程式</b>自分に+k・相手に−k　<span class="f">Kd=f の組立て</span></span></li>
+          <li><span class="q">4-23</span><span class="txt"><b>斜めばねを含む系</b>二回の投影　<span class="f">水平剛性 k cos²θ</span></span></li>
+          <li><span class="q">4-24</span><span class="txt"><b>剛性行列の対称性・対角</b><span class="f">Kij=Kji（対角>0）</span></span></li>
+          <li><span class="q">4-25</span><span class="txt"><b>行和と剛体移動</b>全節点同量移動で力0　<span class="f">行和=0</span></span></li>
+          <li><span class="q">4-26</span><span class="txt"><b>共有節点での重ね合わせ</b>変位は共通・力は加算　<span class="f">アセンブリ</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>境界条件・自由度</h3>
+        <ul class="q-list">
+          <li><span class="q">4-27</span><span class="txt"><b>変位境界と荷重の相補</b>指定変位の反力は釣合いで決まる　<span class="f">力学的／幾何学的境界</span></span></li>
+          <li><span class="q">4-28</span><span class="txt"><b>未知自由度の数</b>2Dトラス節点=並進2・回転なし　<span class="f">自由度−拘束</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）式を作る土台・B（藍）仮想仕事と弱形式・C（赤）要素を組み立てて解く。全29問（A8・B6・C15）。</p>
+  </section>
+</div>

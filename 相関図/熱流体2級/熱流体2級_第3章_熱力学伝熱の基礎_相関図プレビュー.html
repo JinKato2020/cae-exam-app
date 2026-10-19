@@ -1,0 +1,176 @@
+<title>熱流体2級 第3章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体2級 第3章「熱力学伝熱の基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 熱力学の基礎／B 伝熱の基本／C 対流の発展 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>熱力学・伝熱学の基礎 ― 各問の要点とキー公式</h2>
+    <p class="lead">エネルギーと状態変化を扱う熱力学から、熱が運ばれる伝導・対流へ。全19問を A／B／C に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜熱力学の基礎（エネルギーと状態変化）</div>
+    <div class="track-desc">熱と仕事をエネルギーとして扱い、量の保存（第1法則）と変化の向き（第2法則）を押さえる。理想気体では状態方程式が圧力・密度・温度を結び、等温・可逆断熱などの状態変化やエンタルピーが計算の基礎になる。断熱の状態式からは音速が導かれ、サイクルの仕事と熱効率は p–V 線図の面積として読める。ここで得た熱物性と状態変化が、Bの伝熱計算の入口になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>法則と状態量</h3>
+        <ul class="q-list">
+          <li><span class="q">3-1</span><span class="txt"><b>熱の仕事当量で単位換算</b>熱も仕事もエネルギー　<span class="f">1 kcal=4.2 kJ</span></span></li>
+          <li><span class="q">3-3</span><span class="txt"><b>第1法則＝エネルギー保存</b>加熱＝仕事＋内部エネルギー増　<span class="f">Q=W+ΔU</span></span></li>
+          <li><span class="q">3-4</span><span class="txt"><b>第2法則＝変化の向き</b>生成量は負にできない　<span class="f">ΔS=Q/T+S_gen（≥0）</span></span></li>
+          <li><span class="q">3-5</span><span class="txt"><b>エンタルピーの定義</b>内部エネルギー＋押し出し仕事　<span class="f">H=U+pV</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>理想気体と状態変化</h3>
+        <ul class="q-list">
+          <li><span class="q">3-2</span><span class="txt"><b>状態方程式（密度形）</b>絶対圧力・絶対温度　<span class="f">p=ρRT</span></span></li>
+          <li><span class="q">3-7</span><span class="txt"><b>可逆断熱変化の状態式</b>比エントロピー一定　<span class="f">p/ρ^γ=一定</span></span></li>
+          <li><span class="q">3-9</span><span class="txt"><b>等温変化の p–V 線図</b>反比例の右下がり曲線　<span class="f">pV=一定（p=C/V）</span></span></li>
+          <li><span class="q">3-8</span><span class="txt"><b>理想気体中の音速</b>断熱式を密度で微分　<span class="f">a=√(γRT)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>サイクルと仕事</h3>
+        <ul class="q-list">
+          <li><span class="q">3-6</span><span class="txt"><b>熱機関の熱効率</b>仕事／受熱　<span class="f">η=W/Q₁=1−Q₂/Q₁</span></span></li>
+          <li><span class="q">3-10</span><span class="txt"><b>サイクルの正味仕事＝囲む面積</b>時計回りで正　<span class="f">W=∮p dV</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜伝熱の基本（熱伝導・熱伝達）</div>
+    <div class="track-desc">熱が運ばれる二つの基本経路を扱う。物質内部をフーリエの法則で伝わる熱伝導では、定常・一定物性なら温度は直線分布になり、熱伝導率の大小が材料で大きく変わる。流体と壁の間の熱伝達はニュートンの冷却則で表し、その伝わりやすさは粘性と熱拡散の比プラントル数に左右される—Prの大小が速度境界層と温度境界層の厚さの関係を決める。これらがCの対流の発展へつながる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>熱伝導（物質内部）</h3>
+        <ul class="q-list">
+          <li><span class="q">3-11</span><span class="txt"><b>平板の定常熱伝導は直線分布</b>熱流束一定　<span class="f">q=−λ dT/dx</span></span></li>
+          <li><span class="q">3-12</span><span class="txt"><b>熱伝導率の大小</b>水銀はガラスより高い　<span class="f">銀＞アルミ＞水銀＞ガラス＞空気</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>熱伝達（流体と壁の間）</h3>
+        <ul class="q-list">
+          <li><span class="q">3-15</span><span class="txt"><b>ニュートンの冷却則</b>壁→流体の向き　<span class="f">q=h(T_w−T)</span></span></li>
+          <li><span class="q">3-16</span><span class="txt"><b>温度境界層と速度境界層</b>Pr>1で温度層が薄い　<span class="f">δ_t/δ は Pr で決まる</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>無次元数（プラントル数）</h3>
+        <ul class="q-list">
+          <li><span class="q">3-13</span><span class="txt"><b>動粘度と熱拡散率の比</b>ともに m²/s　<span class="f">Pr=ν/a</span></span></li>
+          <li><span class="q">3-14</span><span class="txt"><b>液体金属は著しく低Pr</b>熱拡散が速い　<span class="f">水銀 Pr≈0.025</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜対流の発展（自然対流・複合対流・乱流）</div>
+    <div class="track-desc">温度差そのものが流れを生む自然対流や、押し流す強制対流と共存する複合対流、乱れた流れの熱伝達を扱う発展トラック。ブシネ近似で浮力項を立て、レイノルズ数とレイリー数で対流の型を見分け、乱流ではヌッセルト数の相関式で熱伝達率の変化を予測する。Bのプラントル数・熱伝達率の考え方を、実際の流れ場へ広げる段階。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>浮力による流れ</h3>
+        <ul class="q-list">
+          <li><span class="q">3-17</span><span class="txt"><b>自然対流のブシネ近似</b>上向き浮力加速度　<span class="f">gβ(T−T₀)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>強制＋自然の共存</h3>
+        <ul class="q-list">
+          <li><span class="q">3-18</span><span class="txt"><b>水平管内の複合対流</b>Reだけで浮力を省けない　<span class="f">Re・Ra で分類</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>乱流熱伝達</h3>
+        <ul class="q-list">
+          <li><span class="q">3-19</span><span class="txt"><b>円管乱流のヌッセルト数</b>Re増でNu増　<span class="f">Nu=0.023 Re⁰·⁸ Prⁿ</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）熱力学の基礎・B（藍）伝熱の基本・C（赤）対流の発展。全19問（A10・B6・C3）。</p>
+  </section>
+</div>

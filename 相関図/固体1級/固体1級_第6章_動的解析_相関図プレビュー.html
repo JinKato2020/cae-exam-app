@@ -1,0 +1,183 @@
+<title>固体1級 第6章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>固体1級 第6章「動的解析」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 運動方程式と行列をつくる／B 時間を進めて解く／C 振動特性で評価する の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>動的解析 ― 各問の要点とキー公式</h2>
+    <p class="lead">時間変動する荷重に対する構造の応答を解く。全21問を A（行列づくり）／B（時間積分）／C（振動特性）に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜運動方程式と行列をつくる（質量・減衰・剛性・波）</div>
+    <div class="track-desc">動的解析の出発点は、慣性力・減衰力・弾性力が外力につり合う運動方程式である。要素ごとに質量マトリックス（形状関数の積分でつくる整合質量、または対角の集中質量）と減衰マトリックスを組み立て、剛性と合わせて全体系をつくる。材料の剛性と密度は弾性波の速さ（縦波のP波・横波のS波）も決め、これがトラックBの安定な時間刻みを左右する。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>運動方程式</h3>
+        <ul class="q-list">
+          <li><span class="q">6-1</span><span class="txt"><b>運動方程式の正しい形</b>慣性・減衰・弾性の対応　<span class="f">[M]ü+[C]u̇+[K]u=f</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>弾性波</h3>
+        <ul class="q-list">
+          <li><span class="q">6-2</span><span class="txt"><b>縦弾性波の速度と剛性・密度</b><span class="f">v∝√(E/ρ)</span></span></li>
+          <li><span class="q">6-3</span><span class="txt"><b>P波とS波の相違</b>速度以外　<span class="f">P=縦波(圧縮)／S=横波(せん断)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>質量・減衰マトリックス</h3>
+        <ul class="q-list">
+          <li><span class="q">6-4</span><span class="txt"><b>棒要素の整合質量</b>形状関数の積分　<span class="f">(ρAL/6)[[2,1],[1,2]]</span></span></li>
+          <li><span class="q">6-5</span><span class="txt"><b>質量マトリックスの演算量</b><span class="f">剛性より軽い・積分点数に比例</span></span></li>
+          <li><span class="q">6-6</span><span class="txt"><b>レイリー減衰の性質</b><span class="f">[C]=α[M]+β[K]</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜時間を進めて解く（直接時間積分・安定性）</div>
+    <div class="track-desc">運動方程式を時間方向へ少しずつ進める。中心差分などの陽解法は全体連立を解かず自由度ごとに更新できて1ステップが軽いが、クーラン条件による小さな刻みが必要（条件付き安定）。ニューマーク法などの陰解法は次時刻のつり合いを連立して解き、大きな刻みも使える。硬い系では数値減衰やマススケーリング・領域別刻みの工夫を使い、低減積分の偽モード（アワーグラス）とエネルギー収支も監視する。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>時間積分の種類</h3>
+        <ul class="q-list">
+          <li><span class="q">6-9</span><span class="txt"><b>中心差分法は二段法</b><span class="f">[M]u_{n+1}=Δt²(f_n−[K]u_n)+[M](2u_n−u_{n-1})</span></span></li>
+          <li><span class="q">6-10</span><span class="txt"><b>ニューマークβ法の性質</b><span class="f">β=1/4平均加速度(無条件)／β=1/6線形加速度</span></span></li>
+          <li><span class="q">6-12</span><span class="txt"><b>陽解法と陰解法</b><span class="f">集中質量=陽／ニューマーク=陰</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>安定性・数値減衰</h3>
+        <ul class="q-list">
+          <li><span class="q">6-13</span><span class="txt"><b>クーラン条件の安定Δt</b><span class="f">Δt&lt;ℓ/v（≈9.8×10⁻⁷s）</span></span></li>
+          <li><span class="q">6-11</span><span class="txt"><b>硬い系・数値減衰とHHT法</b><span class="f">γ&gt;1/2で減衰・HHTは次時刻慣性+(1+α)重み</span></span></li>
+          <li><span class="q">6-14</span><span class="txt"><b>自動時間増分と応力波速度</b><span class="f">v≈√(E_t/ρ)・接線剛性増で見直し</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>時間刻みの工夫・準静的</h3>
+        <ul class="q-list">
+          <li><span class="q">6-15</span><span class="txt"><b>領域ごとに変える時間刻み</b><span class="f">マルチタイムステップ（サブサイクリング）</span></span></li>
+          <li><span class="q">6-16</span><span class="txt"><b>動的緩和法とマススケーリング</b><span class="f">密度増で安定刻み拡大・慣性項</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>低減積分・エネルギー収支</h3>
+        <ul class="q-list">
+          <li><span class="q">6-7</span><span class="txt"><b>アワーグラス制御と抗力</b>1点積分の偽モード　<span class="f">抗力で抑制・人工Eを監視</span></span></li>
+          <li><span class="q">6-8</span><span class="txt"><b>衝突解析のエネルギー収支</b><span class="f">運動E→内部E・収支誤差を確認</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜振動特性で評価する（固有値・モード・スペクトル）</div>
+    <div class="track-desc">時刻歴を追う代わりに、構造そのものの振動特性で応答を評価する道筋。固有値解析で固有振動数と固有モードを求め、モード重合法で少数の卓越モードの重ね合わせとして応答を近似する。地震などの外乱には、1自由度系の最大応答をまとめた応答スペクトルとSRSS合成を用い、調和外力には共振曲線（減衰比で山の高さが変わる）で振幅倍率を読む。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>固有値・モード</h3>
+        <ul class="q-list">
+          <li><span class="q">6-17</span><span class="txt"><b>1質点・2質点系の固有振動</b><span class="f">ω=√(k/m)・det([K]−ω²[M])=0</span></span></li>
+          <li><span class="q">6-18</span><span class="txt"><b>モード重合法の適用</b><span class="f">u=Φq・古典減衰で対角化</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>応答スペクトル</h3>
+        <ul class="q-list">
+          <li><span class="q">6-19</span><span class="txt"><b>モード重合・応答スペクトルの用語</b><span class="f">変位応答スペクトル・SRSS合成</span></span></li>
+          <li><span class="q">6-20</span><span class="txt"><b>応答スペクトルの換算と意味</b><span class="f">S_V=ω_n S_D, S_A=ω_n² S_D, mS_A=復元力</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>共振</h3>
+        <ul class="q-list">
+          <li><span class="q">6-21</span><span class="txt"><b>共振曲線と減衰比の対応</b><span class="f">r=1でM=1/(2ζ)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）行列づくり・B（藍）時間積分・C（赤）振動特性。全21問（A6・B10・C5）。</p>
+  </section>
+</div>

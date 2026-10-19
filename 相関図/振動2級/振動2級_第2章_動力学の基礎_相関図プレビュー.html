@@ -1,0 +1,175 @@
+<title>振動2級 第2章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>振動2級 第2章「動力学の基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A ニュートンの運動法則と運動方程式／B 保存則（運動量・エネルギー・角運動量）／C 剛体の慣性モーメントと運動 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>動力学の基礎 ― 各問の要点とキー公式</h2>
+    <p class="lead">運動の基本法則 ma=f から、運動量・エネルギー・角運動量の保存則、そして剛体の慣性モーメントと平面運動までを整理。全23問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜ニュートンの運動法則と運動方程式（3法則・ma=f・慣性系・初期条件）</div>
+    <div class="track-desc">動力学の出発点であるニュートンの3法則を押さえ、加速度は力に比例し質量に反比例する運動方程式 ma=f を使えるようにする。無質量ばねは力をそのまま伝えるなど力の伝わり方を理解し、2階微分方程式ゆえ運動を一意に決めるには初期位置と初期速度が要ることを確認する。さらに ma=f がそのまま成り立つのは慣性系で、加速する座標系では慣性力を加えればよいことも学ぶ。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>運動法則と運動方程式</h3>
+        <ul class="q-list">
+          <li><span class="q">2-1</span><span class="txt"><b>慣性・ma=f・作用反作用の3法則を区別</b><span class="f">加速度は力と同じ向き</span></span></li>
+          <li><span class="q">2-2</span><span class="txt"><b>慣性法則は等速直線も含み運動量変化率は外力に比例</b><span class="f">d(mv)/dt=f</span></span></li>
+          <li><span class="q">2-3</span><span class="txt"><b>加速度は力に比例し質量に反比例</b><span class="f">a=f/m</span></span></li>
+          <li><span class="q">2-4</span><span class="txt"><b>並進運動の運動方程式は質量×加速度=力</b><span class="f">ma=f</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>力の伝達と初期条件</h3>
+        <ul class="q-list">
+          <li><span class="q">2-5</span><span class="txt"><b>無質量ばねは力をそのまま伝え加速度はf/m</b><span class="f">a=f/m（kは無関係）</span></span></li>
+          <li><span class="q">2-8</span><span class="txt"><b>2階微分方程式は初期位置・初期速度で一意</b><span class="f">初期条件2個</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>慣性系と慣性力</h3>
+        <ul class="q-list">
+          <li><span class="q">2-6</span><span class="txt"><b>ma=fが成り立つのは静止系・等速並進系</b><span class="f">慣性系（加速・回転は非慣性系）</span></span></li>
+          <li><span class="q">2-7</span><span class="txt"><b>非慣性系も慣性力を加えれば運動方程式で記述</b><span class="f">実力＋慣性力(−ma₀)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜保存則（運動量・力学的エネルギー・角運動量）</div>
+    <div class="track-desc">運動方程式を時間積分すると運動量変化＝力積、外力がなければ運動量の総和が保存されることを押さえる。内力の摩擦は運動量を変えず、散逸するのは力学的エネルギーである点を区別し、保存則の成立条件（外力なし／保存力のみ）を整理する。中心力では中心まわりのモーメントが0で角運動量が保存され、円運動の運動量・角運動量の計算へつながる。運動量と角運動量・エネルギーは同じ運動方程式から導けるが別概念である。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>運動量・力積と保存</h3>
+        <ul class="q-list">
+          <li><span class="q">2-9</span><span class="txt"><b>運動量変化＝力積、外力なしで運動量総和保存</b><span class="f">Δ(mv)=∫f dt</span></span></li>
+          <li><span class="q">2-10</span><span class="txt"><b>運動量・エネルギー保存は同源だが別概念</b><span class="f">ともに運動方程式から導出</span></span></li>
+          <li><span class="q">2-11</span><span class="txt"><b>摩擦なし床では内力摩擦でも運動量保存</b><span class="f">m₁v₀=(m₁+m₂)v</span></span></li>
+          <li><span class="q">2-12</span><span class="txt"><b>運動量=外力なし、エネルギー=保存力のみで保存</b><span class="f">条件の軸が異なる</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>摩擦と中心力</h3>
+        <ul class="q-list">
+          <li><span class="q">2-13</span><span class="txt"><b>静止摩擦力は上限以下で変化する</b><span class="f">0≤Fs≤μsN</span></span></li>
+          <li><span class="q">2-14</span><span class="txt"><b>中心力はモーメント0で角運動量保存・運動量は非保存</b><span class="f">dL/dt=r×f=0</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>角運動量と円運動</h3>
+        <ul class="q-list">
+          <li><span class="q">2-15</span><span class="txt"><b>運動量の微分＝外力、角運動量の微分＝トルク</b><span class="f">dL/dt=T, d(½mv²)/dv=mv</span></span></li>
+          <li><span class="q">2-16</span><span class="txt"><b>円運動の運動量と角運動量</b><span class="f">p=mlω, L=ml²ω</span></span></li>
+          <li><span class="q">2-17</span><span class="txt"><b>糸を半分にたぐると角運動量保存で角速度4倍</b><span class="f">ml²ω一定→ω′=4ω</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜剛体の慣性モーメントと運動（慣性モーメント・平行軸の定理・平面運動）</div>
+    <div class="track-desc">剛体では、質量分布だけで決まる重心と、回転軸のとり方で変わる慣性モーメントを区別する。合成体は各部分の慣性モーメントを同じ軸まわりで足し、重心軸から離れた軸は平行軸の定理 I=I_G+Mh² で求める。平面運動の自由度は3で、重心を基準にとると並進と回転が非連成になる利点があり、斜面を転がる球は回転へもエネルギーを配るため滑る箱より加速度が小さい。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>重心と慣性モーメント</h3>
+        <ul class="q-list">
+          <li><span class="q">2-18</span><span class="txt"><b>重心は軸に依らず慣性モーメントは軸で変わる</b><span class="f">I=∫r²dm</span></span></li>
+          <li><span class="q">2-19</span><span class="txt"><b>合成体は棒と両端質点の慣性モーメントの和</b><span class="f">(1/12)(2m)L²+2·m(L/2)²=(2/3)mL²</span></span></li>
+          <li><span class="q">2-20</span><span class="txt"><b>棒の端軸は平行軸の定理で中心軸＋移動項</b><span class="f">I_O=(1/12)ml²+m(l/2)²=(1/3)ml²</span></span></li>
+          <li><span class="q">2-21</span><span class="txt"><b>平行軸の定理の式（追加項は距離の2乗）</b><span class="f">I=I_G+Mh²</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>剛体の平面運動</h3>
+        <ul class="q-list">
+          <li><span class="q">2-22</span><span class="txt"><b>平面運動の自由度は3、重心基準で並進と回転が非連成</b><span class="f">自由度3（並進2＋回転1）</span></span></li>
+          <li><span class="q">2-23</span><span class="txt"><b>転がる球は回転へも配分し滑る箱より加速度小</b><span class="f">a₂=g sinθ/(1+I/mR²)&lt;a₁</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）運動法則と運動方程式・B（藍）保存則・C（赤）剛体の慣性モーメントと運動。全23問（A8・B9・C6）。</p>
+  </section>
+</div>

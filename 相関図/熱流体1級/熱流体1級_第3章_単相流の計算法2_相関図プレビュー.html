@@ -1,0 +1,169 @@
+<title>熱流体1級 第3章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A誤差・空間離散化／B 時間積分・圧力速度・連成／C 圧縮性の特性と流束 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級 第3章「単相流の計算法2」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 誤差と空間離散化／B 時間積分・圧力速度・連成／C 圧縮性流れの特性と流束 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>単相流の計算法2 ― 各問の要点とキー公式</h2>
+    <p class="lead">離散化の誤差・時間積分・反復解法から圧縮性流れの特性理論まで、より進んだ計算法を整理。全12問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜誤差と空間離散化</div>
+    <div class="track-desc">数値解には丸め・打ち切り・エイリアジングなどの誤差が入り、真値との差である誤差と評価量である不確かさは区別する。空間微分は不等間隔格子でも3点公式で近似でき、比率一定で細かくすれば2次精度になる。高精度が要る壁乱流などでは、直交関数系を使う重み付き残差法（スペクトル法）を用いる。これらが、Bの時間積分やCの圧縮性解法の精度を支える。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>誤差と不確かさ</h3>
+        <ul class="q-list">
+          <li><span class="q">3-1</span><span class="txt"><b>丸め・打ち切り・エイリアジングの区別</b><span class="f">不確かさ ≠ 真値との差</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>空間差分</h3>
+        <ul class="q-list">
+          <li><span class="q">3-2</span><span class="txt"><b>不等間隔3点公式・比率一定で2次精度</b><span class="f">誤差 ∝ h_L h_R</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>スペクトル法</h3>
+        <ul class="q-list">
+          <li><span class="q">3-3</span><span class="txt"><b>重み付き残差法・直交関数系で離散化</b><span class="f">フーリエ＋チェビシェフ</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜時間積分・圧力速度・連成</div>
+    <div class="track-desc">時間方向は、既知値だけで進める陽解法（AB2）と未知値も使う陰解法（CN）を使い分ける。非圧縮では修正速度ポテンシャルで速度と圧力を同時に緩和し（GSMAC）、圧力と速度を半格子ずらすスタッガード格子で圧力の交互振動を避ける。移流はCIP法で値と勾配を保存し、流体と構造の界面では速度一致と力のつり合いを課す（流体構造連成）。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>時間積分</h3>
+        <ul class="q-list">
+          <li><span class="q">3-4</span><span class="txt"><b>陽解法AB2・陰解法CNの式と分類</b><span class="f">AB2 A=(3Hⁿ−Hⁿ⁻¹)/2</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>圧力・速度の反復</h3>
+        <ul class="q-list">
+          <li><span class="q">3-5</span><span class="txt"><b>修正速度ポテンシャルで速度・圧力を緩和</b><span class="f">GSMAC p←p+φ̃/Δt</span></span></li>
+          <li><span class="q">3-8</span><span class="txt"><b>面速度の発散と圧力ラプラシアン</b><span class="f">L_Δp/ρ=Du/δt+DF</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>移流・連成</h3>
+        <ul class="q-list">
+          <li><span class="q">3-6</span><span class="txt"><b>値と空間1階微分を変数に→3次補間</b><span class="f">CIP 物理量＋微分の移流</span></span></li>
+          <li><span class="q">3-7</span><span class="txt"><b>界面で速度一致・力のつり合い（弱/強連成）</b><span class="f">運動学条件＋動力学条件</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜圧縮性流れの特性と流束</div>
+    <div class="track-desc">圧縮性オイラー方程式は双曲型で、流束ヤコビ行列の固有値 u, u−a, u+a が情報の伝わる特性速度になる。近似リーマン解法では、流束差と状態差を結ぶ平均行列（RoeのProperty U）を使って波に分解する。保存変数からは静圧を復元し、ヤコビ行列の成分を求める。Aの空間離散化・Bの時間積分と組み合わせて、衝撃波を含む流れを安定に解く。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>近似リーマン解法</h3>
+        <ul class="q-list">
+          <li><span class="q">3-9</span><span class="txt"><b>平均行列が満たすべき条件（単純な算術平均では不可）</b><span class="f">ΔF=A(Q_R,Q_L)ΔQ</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>双曲型と特性速度</h3>
+        <ul class="q-list">
+          <li><span class="q">3-10</span><span class="txt"><b>双曲型・固有値＝特性速度</b><span class="f">u, u−a, u+a</span></span></li>
+          <li><span class="q">3-12</span><span class="txt"><b>流束・ヤコビから固有値を求める</b><span class="f">λ=u±c</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>保存変数と流束</h3>
+        <ul class="q-list">
+          <li><span class="q">3-11</span><span class="txt"><b>保存変数から静圧を復元・対角成分</b><span class="f">p=(γ−1)(e−ρu²/2)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）誤差・空間離散化・B（藍）時間積分・圧力速度・連成・C（赤）圧縮性の特性と流束。全12問（A3・B5・C4）。</p>
+  </section>
+</div>

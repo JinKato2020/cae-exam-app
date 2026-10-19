@@ -1,0 +1,169 @@
+<title>熱流体2級 第11章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体2級 第11章「計算力学技術者倫理」相関図（プレビュー）</h1>
+    <p>各問の要点とキー観点を、A 守秘と公正／B 契約・著作権・許諾／C 安全・是正・意思決定 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>計算力学技術者倫理 ― 各問の要点とキー観点</h2>
+    <p class="lead">技術者が守るべき判断の原則を、秘密情報・契約・安全の3本で整理。全12問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜守秘と公正（秘密情報・利益相反・中立性）</div>
+    <div class="track-desc">業務で知った秘密情報は、契約と情報管理の規程に従って扱い、同じ会社の別部署でも無断では使い回しません。社外秘データは正規の窓口を通して提供元の了解を得て入手し、報告は委託範囲にとどめて中立を保ちます。利益相反の場面では所属組織の損得だけで判断せず、結果の改ざんを避け、技術者自身の倫理感を最重要の拠りどころにします。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>守秘義務と情報共有</h3>
+        <ul class="q-list">
+          <li><span class="q">11-1</span><span class="txt"><b>同一社内でも無断流用せず別委託・共有は発注元に確認</b><span class="f">守秘義務／利益相反</span></span></li>
+          <li><span class="q">11-9</span><span class="txt"><b>社外秘は契約窓口経由で提供元の了解を得て入手</b><span class="f">正規窓口／守秘義務</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>中立性・客観報告</h3>
+        <ul class="q-list">
+          <li><span class="q">11-4</span><span class="txt"><b>委託範囲は解析報告・合否判定は依頼元に委ねる</b><span class="f">中立性／社外秘の扱い</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>利益相反・改ざん禁止</h3>
+        <ul class="q-list">
+          <li><span class="q">11-10</span><span class="txt"><b>組織利益優先×・結果の改ざん×・倫理感が最重要○</b><span class="f">利益相反／データ改ざん禁止</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜契約・著作権・使用許諾（誠実な履行）</div>
+    <div class="track-desc">固定額契約の対価は、実際にかかった費用ではなく合意した成果物に対して決まるので、効率化できても工数を偽らず、変更は双方の合意で行います。ソフトウェアは購入しても自由に複製・移設できるわけではなく、使用許諾で定められた台数・場所・利用者の範囲を守ります。機密情報の送信や接続管理も、社内規程の安全対策に従うことが前提です。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>契約の誠実な履行</h3>
+        <ul class="q-list">
+          <li><span class="q">11-2</span><span class="txt"><b>固定額契約を尊重・工数を偽らず余力を相談</b><span class="f">誠実／契約遵守</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>著作権・使用許諾</h3>
+        <ul class="q-list">
+          <li><span class="q">11-6</span><span class="txt"><b>会社PCへの複製は許諾外→許可かライセンス確保</b><span class="f">著作権／使用許諾</span></span></li>
+          <li><span class="q">11-8</span><span class="txt"><b>バックアップは可でも使用は登録PCに限定</b><span class="f">使用許諾／使用PCの指定</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>情報セキュリティ</h3>
+        <ul class="q-list">
+          <li><span class="q">11-7</span><span class="txt"><b>許諾内のバックアップ可・暗号化送信・不要時は切断</b><span class="f">情報セキュリティ／複製の範囲</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜安全・是正・意思決定（公衆の安全を守る）</div>
+    <div class="track-desc">誤りに気づいたら、参考資料であっても速やかに報告し原因を説明して再計算を提出します。派遣などで指示命令と責任が分かれる場面では、関係者で原因を分析して再発防止につなげます。迷ったときは報道・黄金律・第三者の視点で評価し、指示への適合だけを基準にしません。重大な設計ミスは責任者に任せきりにせず、別の適任者への相談や通報まで段階的に是正します。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>誤りの報告と訂正</h3>
+        <ul class="q-list">
+          <li><span class="q">11-3</span><span class="txt"><b>参考資料でも即報告し原因説明・再計算を提出</b><span class="f">誤りの即時報告と訂正</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>責任と指示系統</h3>
+        <ul class="q-list">
+          <li><span class="q">11-5</span><span class="txt"><b>派遣先A・派遣元B・本人で原因分析と再発防止</b><span class="f">派遣の指示命令と責任</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>意思決定・組織内是正</h3>
+        <ul class="q-list">
+          <li><span class="q">11-11</span><span class="txt"><b>報道・黄金律・第三者視点で評価／指示だけは×</b><span class="f">黄金律テスト／意思決定基準</span></span></li>
+          <li><span class="q">11-12</span><span class="txt"><b>責任者に任せきりにせず別の適任者へ相談・是正</b><span class="f">内部告発／組織内是正</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー観点</span>／A（青）守秘と公正・B（藍）契約と許諾・C（赤）安全・是正・意思決定。全12問（A4・B4・C4）。</p>
+  </section>
+</div>

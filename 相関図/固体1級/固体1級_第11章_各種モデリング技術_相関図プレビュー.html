@@ -1,0 +1,182 @@
+<title>固体1級 第11章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A連成／B材料構成則／C異方性 の3トラック＋横串(地盤)にサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>固体1級 第11章「各種モデリング技術」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 連成問題／B 材料構成則（ゴム・損傷）／C 異方性・積層材料 の3トラック＋横串（地盤・コンクリート）に整理して配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>各種モデリング技術 ― 各問の要点とキー公式</h2>
+    <p class="lead">連成問題、ゴム・粘弾性、損傷・破壊、異方性・積層、地盤・コンクリートという各種材料・現象の“モデル化”を扱う。全24問を A／B／C ＋ 横串に整理（問番号は公式のサブ節つき形式）。</p>
+
+    <!-- トラックA：連成 (1)系 -->
+    <div class="track-h a">A｜連成問題（マルチフィジックス）のモデル化</div>
+    <div class="track-desc">二つ以上の物理系が影響し合う問題を、どこで連成するかで分類します。接する境界で力や動きを渡すのがクラスI（流体構造）、同じ領域で支配方程式を介して結ばれるのがクラスII（圧電・金属押出し）です。解き方は、全場を連立して一度に解く一体型（強連成）と、予測値を使って別々に解く互い違い法（弱連成）に分かれ、反復で収束させれば一体型の解に一致します。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>連成の分類と判別</h3>
+        <ul class="q-list">
+          <li><span class="q">11(1)-1</span><span class="txt"><b>連成問題の分類</b><span class="f">クラスI＝境界／クラスII＝領域重複</span></span></li>
+          <li><span class="q">11(1)-2</span><span class="txt"><b>静的線形熱応力の連成性</b><span class="f">温度→応力の片方向連成</span></span></li>
+          <li><span class="q">11(1)-3</span><span class="txt"><b>クラスIIの判別</b><span class="f">押出し・磁気・圧電＝領域重複</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>連成の解法（一体・分離）</h3>
+        <ul class="q-list">
+          <li><span class="q">11(1)-4</span><span class="txt"><b>連成問題の解法分類</b>後退オイラー　<span class="f">一体型＝強／互い違い＝弱連成</span></span></li>
+          <li><span class="q">11(1)-5</span><span class="txt"><b>逐次互い違い法</b><span class="f">Y予測→X最新→Y最新（逆順も可）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB：材料構成則 (2)+(3)系 -->
+    <div class="track-h b">B｜材料構成則のモデル化（ゴム・粘弾性／損傷・破壊）</div>
+    <div class="track-desc">ゴムは理想の超弾性と違い、履歴による軟化（マリンス）や振幅依存（ペイン）、動的な貯蔵・損失弾性率をもちます。温度時間換算でマスターカーブを作り、緩和はプローニー級数で表します。破壊側では、損傷の程度を変数で平均化する連続体損傷力学や、ボイドのガルソンモデル、き裂先端の非線形域を扱う結合力モデル（CZM）が並びます。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>ゴム・粘弾性</h3>
+        <ul class="q-list">
+          <li><span class="q">11(2)-1</span><span class="txt"><b>ゴムのヒステリシス</b><span class="f">マリンス効果（履歴軟化）</span></span></li>
+          <li><span class="q">11(2)-2</span><span class="txt"><b>動的粘弾性</b>δ=30°　<span class="f">E′=(σ0/ε0)cosδ・E″=sinδ</span></span></li>
+          <li><span class="q">11(2)-3</span><span class="txt"><b>ペイン効果</b>大振幅　<span class="f">貯蔵弾性率が低下</span></span></li>
+          <li><span class="q">11(2)-4</span><span class="txt"><b>温度時間換算</b><span class="f">低温左・高温右／マスターカーブ</span></span></li>
+          <li><span class="q">11(2)-5</span><span class="txt"><b>一般化マクスウェル</b><span class="f">E(t)=E∞+ΣEi e^(−t/τi)（Prony）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>損傷・破壊</h3>
+        <ul class="q-list">
+          <li><span class="q">11(3)-1</span><span class="txt"><b>連続体損傷力学</b><span class="f">損傷変数Dで平均化</span></span></li>
+          <li><span class="q">11(3)-2</span><span class="txt"><b>有効応力</b>A=100・D=0.2　<span class="f">σ̃=σ/(1−D)=250MPa</span></span></li>
+          <li><span class="q">11(3)-3</span><span class="txt"><b>ガルソン／GTNモデル</b><span class="f">ボイド体積率を含む降伏関数</span></span></li>
+          <li><span class="q">11(3)-4</span><span class="txt"><b>結合力モデル(CZM)</b><span class="f">トラクション−分離則</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC：異方性・積層 (4)系 -->
+    <div class="track-h c">C｜異方性・積層材料のモデル化</div>
+    <div class="track-desc">弾性テンソルは三つの対称性から6×6行列へ縮約され、独立成分は異方性21・直交異方性9・等方性2と減ります。材料主軸が座標とずれると垂直応力とせん断が連成するため、主軸の向きの入力や座標変換、対称性の確認が要ります。積層板はABD剛性（面内A・連成B・曲げD）で表し、対称積層ではB=0。せん断変形を考える板理論（FSDT/HSDT）や、変位制御・荷重制御での比較量の違いも押さえます。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>弾性テンソルと独立定数</h3>
+        <ul class="q-list">
+          <li><span class="q">11(4)-1</span><span class="txt"><b>4階弾性テンソルの対称性</b><span class="f">Dijkl=Djikl=Dijlk=Dklij／最大21</span></span></li>
+          <li><span class="q">11(4)-2</span><span class="txt"><b>直交異方性の独立定数</b><span class="f">9個（E3・G3・ν3）</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>材料主軸・座標変換・熱膨張</h3>
+        <ul class="q-list">
+          <li><span class="q">11(4)-3</span><span class="txt"><b>材料主軸の入力と対称条件</b>30°傾き　<span class="f">主軸と向きを入力・対称性確認</span></span></li>
+          <li><span class="q">11(4)-4</span><span class="txt"><b>座標変換と連成</b><span class="f">Q̄16,Q̄26≠0で垂直−せん断連成</span></span></li>
+          <li><span class="q">11(4)-6</span><span class="txt"><b>線膨張係数のテンソル性</b>対称2階　<span class="f">主軸で対角・方向で異なる</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>積層板・板理論・比較評価</h3>
+        <ul class="q-list">
+          <li><span class="q">11(4)-7</span><span class="txt"><b>積層板のABD剛性</b><span class="f">A面内・B連成・D曲げ／対称でB=0</span></span></li>
+          <li><span class="q">11(4)-8</span><span class="txt"><b>せん断変形板理論</b><span class="f">u,vをz多項式・FSDTは一定せん断</span></span></li>
+          <li><span class="q">11(4)-5</span><span class="txt"><b>強制変位／分布荷重の比較量</b><span class="f">変位制御→反力・荷重制御→変位</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 横串：地盤・コンクリート (5)系 -->
+    <div class="grayband">
+      <b class="gh">横串：地盤・コンクリートのモデル化（ひび割れ・体積変化など材料固有の非線形）</b>
+      <div class="grid3">
+        <ul class="q-list">
+          <li><span class="q">11(5)-1</span><span class="txt"><b>コンクリートのモデル化</b><span class="f">分散／離散クラック・損傷＋塑性・人工減衰の影響</span></span></li>
+        </ul>
+        <ul class="q-list">
+          <li><span class="q">11(5)-2</span><span class="txt"><b>地盤のダイレイタンシー</b><span class="f">せん断で塑性体積変化・カムクレイ</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）連成・B（藍）材料構成則・C（赤）異方性積層＋横串（灰）地盤コンクリート。全24問（A5・B9・C8・横串2）。</p>
+  </section>
+</div>

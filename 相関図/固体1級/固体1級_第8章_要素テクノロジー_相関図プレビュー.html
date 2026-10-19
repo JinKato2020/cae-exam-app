@@ -1,0 +1,176 @@
+<title>固体1級 第8章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A理論／B定式化／C積分 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>固体1級 第8章「要素テクノロジー」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A はり・板・シェルの理論／B 要素の定式化と適合性／C 数値積分とロッキング対策 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>要素テクノロジー ― 各問の要点とキー公式</h2>
+    <p class="lead">構造要素（はり・板・シェル）の理論と、有限要素の定式化・数値積分・ロッキング対策を押さえる。全19問を A／B／C に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜はり・板・シェルの理論（構造要素のモデル化）</div>
+    <div class="track-desc">まず断面の性質とはり理論の仮定を押さえます。横せん断を無視するベルヌーイ・オイラーと、これを考えるチモシェンコの違いは、そのまま板のキルヒホッフとミンドリンに対応します。薄肉開断面のせん断中心やねじり、シェルの面法線まわり回転（ドリリング）や軸対称のフーリエ成分など、要素ごとの構造理論が、トラックB・Cの定式化・数値積分の土台になります。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>はり理論</h3>
+        <ul class="q-list">
+          <li><span class="q">8-1</span><span class="txt"><b>はり理論と断面二次極モーメント</b>横せん断の有無　<span class="f">Ip=Ix+Iy</span></span></li>
+          <li><span class="q">8-4</span><span class="txt"><b>はり理論と板理論の対応</b><span class="f">B・オイラー⇔キルヒホッフ／チモシェンコ⇔ミンドリン</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>せん断中心・ねじり</h3>
+        <ul class="q-list">
+          <li><span class="q">8-2</span><span class="txt"><b>薄肉開断面とせん断中心</b>横力でねじれない点　<span class="f">せん断中心S・ねじり Pe</span></span></li>
+          <li><span class="q">8-3</span><span class="txt"><b>サンブナンねじりと曲げねじり</b>そり拘束　<span class="f">T=Jθ′（ねじり率）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>シェル・軸対称</h3>
+        <ul class="q-list">
+          <li><span class="q">8-5</span><span class="txt"><b>シェルのドリリング自由度</b>法線回転　<span class="f">θz剛性の欠落・特異性</span></span></li>
+          <li><span class="q">8-7</span><span class="txt"><b>軸対称シェルのフーリエ展開</b><span class="f">u_r=a_n cos(nθ)／0次・1次・2次</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜要素の定式化と適合性（作り方と妥当性）</div>
+    <div class="track-desc">要素は、節点変位を未知数とし、仮想仕事のつり合い（または最小ポテンシャルエネルギー原理）から剛性方程式 Ku=f を作ります。隣り合う要素は境界で必要な連続性（薄板の曲げではたわみと傾きの C¹連続）を満たす適合要素が基本で、非適合要素はパッチテストで収束を確かめます。非圧縮を扱うときは変位と圧力を別々の未知量にする混合法を使い、近似関数の組合せと積分点を吟味します。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>変位法・変分原理</h3>
+        <ul class="q-list">
+          <li><span class="q">8-6</span><span class="txt"><b>変位法と変分原理</b>節点変位が未知数　<span class="f">仮想仕事δuᵀ(Ku−f)=0・最小ポテンシャル</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>適合性・パッチテスト</h3>
+        <ul class="q-list">
+          <li><span class="q">8-10</span><span class="txt"><b>適合要素と非適合要素</b>境界の連続性　<span class="f">薄板曲げは C¹連続</span></span></li>
+          <li><span class="q">8-11</span><span class="txt"><b>パッチテストの目的</b>収束の必要条件　<span class="f">定ひずみ u=ax→ε=a</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>混合法（非圧縮）</h3>
+        <ul class="q-list">
+          <li><span class="q">8-16</span><span class="txt"><b>変位と圧力の近似関数</b>同次補間は不可　<span class="f">変位と圧力を別未知量・安定性</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜数値積分とロッキング対策（積分点の置き方）</div>
+    <div class="track-desc">要素の剛性は、内部の積分点で評価して足し合わせます。点の置き方（完全積分・低減積分・選択的低減積分）が精度を左右し、減らし過ぎると抵抗が消えるアワーグラス、硬過ぎると計算上だけ硬くなるロッキングが生じます。せん断ロッキング・体積ロッキングの原因と対策、そして偽のゼロエネルギーモードの数え方までを押さえます。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>数値積分点</h3>
+        <ul class="q-list">
+          <li><span class="q">8-8</span><span class="txt"><b>厚さ方向の数値積分</b>両端を含む等間隔点　<span class="f">閉型ニュートン・コーツ公式群</span></span></li>
+          <li><span class="q">8-12</span><span class="txt"><b>六面体の完全積分と低減積分</b><span class="f">8節点 2×2×2／1／20節点 3×3×3／2×2×2</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>ロッキングと対策</h3>
+        <ul class="q-list">
+          <li><span class="q">8-13</span><span class="txt"><b>せん断ロッキング</b>偽のせん断ひずみ　<span class="f">剛性過大・たわみ過小</span></span></li>
+          <li><span class="q">8-14</span><span class="txt"><b>体積ロッキング</b>ν→0.5　<span class="f">K=E/[3(1−2ν)]</span></span></li>
+          <li><span class="q">8-9</span><span class="txt"><b>縮退シェルと低減積分</b>せん断項を低減　<span class="f">次数低減積分</span></span></li>
+          <li><span class="q">8-15</span><span class="txt"><b>選択的低減積分</b>平面ひずみ非圧縮　<span class="f">偏差4点・体積1点</span></span></li>
+          <li><span class="q">8-17</span><span class="txt"><b>低減積分の効果と副作用</b><span class="f">緩和するが剛性不足・アワーグラス注意</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>アワーグラス（偽のゼロエネルギー）</h3>
+        <ul class="q-list">
+          <li><span class="q">8-18</span><span class="txt"><b>アワーグラスモード</b>中央で検知できない変形　<span class="f">偽変形の図を選ぶ</span></span></li>
+          <li><span class="q">8-19</span><span class="txt"><b>アワーグラスモードの数</b>4節点中央1点　<span class="f">8−3=5、5−3=2個</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）構造理論・B（藍）定式化と適合性・C（赤）数値積分とロッキング。全19問（A6・B4・C9）。</p>
+  </section>
+</div>

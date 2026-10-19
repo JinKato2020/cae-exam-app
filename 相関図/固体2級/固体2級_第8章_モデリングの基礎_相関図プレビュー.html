@@ -1,0 +1,200 @@
+<title>固体2級 第8章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A小さくする／B次元・要素を選ぶ／Cモデルの中身の式 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>固体2級 第8章「モデリングの基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A モデルを小さくする／B 次元・要素を選ぶ／C モデルの中身の式 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>モデリングの基礎 ― 各問の要点とキー公式</h2>
+    <p class="lead">現実の部品を、どう「モデル」にのせるか。全27問を A／B／C ＋ 横串（結果の読み方）に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜モデルを小さく・効率よくする（対称性・領域）</div>
+    <div class="track-desc">大きな構造でも、形・材料・荷重・支持が対称なら、対称面で半分や一部だけを解けます。鏡に映して同じにならない荷重や支持があると縮約できず、全体モデルが要ります。着目部だけ詳しく知りたいときは、全体解析の変位を境界に与えて局所を切り出します（サブモデル）。残す領域が決まれば、それをどの次元・要素で表すかへ進みます（B）。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>解析の役割</h3>
+        <ul class="q-list">
+          <li><span class="q">8-1</span><span class="txt"><b>設計判断を支える</b><span class="f">概念→詳細→原因調査</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>対称性で縮約する</h3>
+        <ul class="q-list">
+          <li><span class="q">8-2</span><span class="txt"><b>横置き容器・長手荷重</b><span class="f">y=0で半モデル</span></span></li>
+          <li><span class="q">8-3</span><span class="txt"><b>横置き容器・横荷重</b>荷重が鏡映で逆向き　<span class="f">全体モデル</span></span></li>
+          <li><span class="q">8-4</span><span class="txt"><b>中央脚の沈下（対称橋）</b><span class="f">対称面oから実端aまで半橋</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>着目部だけ詳しく（サブモデル）</h3>
+        <ul class="q-list">
+          <li><span class="q">8-5</span><span class="txt"><b>ノズル交差部の局所熱応力</b><span class="f">全体解を境界に与える局所ソリッド</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜どの理想化・要素で表すか（次元と要素種類）</div>
+    <div class="track-desc">三次元の部品を、対称性を使って二次元や軸対称に落とすと計算が軽くなります。薄板で面内だけなら平面応力、長い一様断面なら平面ひずみ、回転体なら軸対称で r-z 断面を解きます。局所の立体的な応力集中や曲げねじり・接触にはソリッド、細長い骨組は構造要素（はり・トラス）を選びます。要素が決まると、その中身は材料行列と要素剛性の式で定義されます（C）。</div>
+    <div class="grid4">
+      <div class="box lead">
+        <h3>軸対称で解く</h3>
+        <ul class="q-list">
+          <li><span class="q">8-6</span><span class="txt"><b>スカート取付け部</b><span class="f">軸対称ソリッド＋局所細分</span></span></li>
+          <li><span class="q">8-7</span><span class="txt"><b>厚肉円筒タンク</b><span class="f">r-z断面・σr,σz,τrz,σθ</span></span></li>
+          <li><span class="q">8-8</span><span class="txt"><b>ダンベル丸棒</b>段差の局所　<span class="f">σ=F/Aでは不足</span></span></li>
+          <li><span class="q">8-15</span><span class="txt"><b>横風のサイロ</b>形は軸対称・荷重は非軸対称　<span class="f">非軸対称荷重対応要素（フーリエ）</span></span></li>
+          <li><span class="q">8-27</span><span class="txt"><b>軸対称モデルの条件・利点</b><span class="f">εθ=ur/r（周方向も残る）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>平面応力・平面ひずみ</h3>
+        <ul class="q-list">
+          <li><span class="q">8-9</span><span class="txt"><b>有孔薄板の面内応力</b><span class="f">平面応力：σz≈0・εz≠0</span></span></li>
+          <li><span class="q">8-12</span><span class="txt"><b>長いトンネル横断面</b><span class="f">平面ひずみ：εz=0・σz残る</span></span></li>
+          <li><span class="q">8-24</span><span class="txt"><b>二次元近似の区別</b><span class="f">0にする量が違う（σz/εz/周方向）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>三次元ソリッドで表す</h3>
+        <ul class="q-list">
+          <li><span class="q">8-10</span><span class="txt"><b>離散ボルト近傍</b>周方向で違う　<span class="f">根元・接触の局所ソリッド</span></span></li>
+          <li><span class="q">8-13</span><span class="txt"><b>太い吊りフック</b>曲率大　<span class="f">立体の曲がりはり→ソリッド</span></span></li>
+          <li><span class="q">8-14</span><span class="txt"><b>溝形断面の反り</b>曲げ＋ねじり　<span class="f">反りの局所ひずみ→ソリッド</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>構造要素（はり・トラス）</h3>
+        <ul class="q-list">
+          <li><span class="q">8-11</span><span class="txt"><b>鉄塔の部材選択</b><span class="f">柱・横材=はり／斜材=トラス（軸力のみ）</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜モデルの中身の式（材料行列・要素の定式化）</div>
+    <div class="track-desc">要素の中身は、ひずみを応力に換える材料行列 D と、変位から節点力を出す剛性行列で決まります。二次元では平面応力と平面ひずみで D が異なり、面外を 0 にする量を取り違えると答えがずれます。トラスは軸方向だけ、はりは断面の回転を含む変位でひずみを表します。こうして解いた応力を、界面や出力で正しく読み取る段へ（横串）。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>材料行列 D</h3>
+        <ul class="q-list">
+          <li><span class="q">8-18</span><span class="txt"><b>三次元の材料行列（6×6）</b><span class="f">a=ν/(1−ν), b=(1−2ν)/2(1−ν)</span></span></li>
+          <li><span class="q">8-19</span><span class="txt"><b>平面ひずみの D</b><span class="f">分母(1+ν)(1−2ν)</span></span></li>
+          <li><span class="q">8-20</span><span class="txt"><b>平面応力の係数 C</b><span class="f">C=E/(1−ν²)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>平面ひずみ/応力の落とし穴</h3>
+        <ul class="q-list">
+          <li><span class="q">8-21</span><span class="txt"><b>二軸引張の面内ひずみ比</b><span class="f">σz=ν(σx+σy)→εx/εy=3/7</span></span></li>
+          <li><span class="q">8-25</span><span class="txt"><b>薄板を平面ひずみで誤用</b><span class="f">εxが1−ν²倍に小さく</span></span></li>
+          <li><span class="q">8-26</span><span class="txt"><b>面外拘束のσz</b><span class="f">σz=νE/((1+ν)(1−2ν))(εx+εy)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>要素の定式化（トラス・はり）</h3>
+        <ul class="q-list">
+          <li><span class="q">8-22</span><span class="txt"><b>トラスの局所剛性</b>横方向剛性0　<span class="f">k=(EA/L)M, δ=u₂−u₁</span></span></li>
+          <li><span class="q">8-23</span><span class="txt"><b>はりの変位場</b>断面が平面を保つ　<span class="f">u=−z·w′(x)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 横串 -->
+    <div class="grayband">
+      <b class="gh">横串：結果の読み方（界面応力・平均化の落とし穴）</b>
+      <div class="grid4">
+        <ul class="q-list">
+          <li><span class="q">8-16</span><span class="txt"><b>異材界面の応力評価</b>平均−1.00 MPa　<span class="f">主応力の値だけでせん断は決まらない</span></span></li>
+        </ul>
+        <ul class="q-list">
+          <li><span class="q">8-17</span><span class="txt"><b>要素別出力と節点平均</b><span class="f">連続成分と跳び得る成分を分ける</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）小さくする・B（藍）次元・要素を選ぶ・C（赤）中身の式＋横串（灰）結果の読み方。全27問（A5・B12・C8・横串2）。</p>
+  </section>
+</div>

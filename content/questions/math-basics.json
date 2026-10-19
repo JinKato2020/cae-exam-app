@@ -170,7 +170,17 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "mathGaussGreen",
-      "figureHint": "回答後専用。領域と外向き法線を示し、重み付き境界項から勾配の領域項を引く。"
+      "figureHint": "回答後専用。水の流路を上から見た模式図、内部の小分割と外周、局所の流れu・法線n・外向き成分を区別。重みの変化による補正を示す。",
+      "editorialReview": {
+        "officialPoint": "ベクトル解析・部分積分",
+        "alignment": "公式抽出と該当問の微分・部分積分の論点を照合。問題・選択肢・正解・本文は維持し、図の対応だけ更新。",
+        "distractorMisconceptions": {
+          "1": "部分積分の領域項の符号逆転",
+          "2": "勾配の成分順の混同",
+          "4": "法線成分と発散の混同"
+        },
+        "sha256": "dde75efac242327ad5350fbeedac8e01ca334cb8e8ae0e4aa4a41005c5bdb7eb"
+      }
     },
     {
       "id": "math-1-7",
@@ -274,7 +284,17 @@
         "taylor"
       ],
       "figureImage": "mathDiffCompare",
-      "figureHint": "回答後専用。前進・後退・中央差分の二点間の距離と一般の精度を比較する。"
+      "figureHint": "回答後専用。同じ曲線上の前進B・後退C・中央Aの二点、割線と評価点の接線、刻みと精度を標準図で比較。",
+      "editorialReview": {
+        "officialPoint": "数値微分の精度",
+        "alignment": "公式抽出と該当問の微分・部分積分の論点を照合。問題・選択肢・正解・本文は維持し、図の対応だけ更新。",
+        "distractorMisconceptions": {
+          "2": "前進と後退の入替え",
+          "3": "一次・二次精度の逆転",
+          "4": "使用する二点の混同"
+        },
+        "sha256": "f9114bf761bc0ef30def6de42525a06fa916a169b52e0b4b67b6cad8b7187ef1"
+      }
     },
     {
       "id": "math-1-11",
@@ -299,11 +319,21 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "math2ndStencil",
-      "figureHint": "回答後専用。三点の重み1,−2,1、評価点x、刻みhと分母h²を示す。",
+      "figureHint": "回答後専用。1-10と同じ曲線上で左右区間の傾きを比較し、傾きの変化として二階微分を示す。",
       "relatedFormulas": [
         "finite-difference",
         "taylor"
-      ]
+      ],
+      "editorialReview": {
+        "officialPoint": "数値微分(2階中心差分)",
+        "alignment": "公式抽出と該当問の微分・部分積分の論点を照合。問題・選択肢・正解・本文は維持し、図の対応だけ更新。",
+        "distractorMisconceptions": {
+          "1": "一階微分との混同",
+          "2": "中央重みを−1にする",
+          "3": "評価点をx+hに移す"
+        },
+        "sha256": "f727090b5d3bd6d20d82af082237181d1b5e0b2a97f9e63fd85593b983c5ec70"
+      }
     },
     {
       "id": "math-1-12",

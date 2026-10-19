@@ -1,0 +1,174 @@
+<title>振動1級 第1章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>振動1級 第1章「解析力学」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 解析力学の原理／B 連続体振動とエネルギー法／C 重みつき残差法と有限要素法 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>解析力学 ― 各問の要点とキー公式</h2>
+    <p class="lead">力のつり合いから変分原理、連続体のエネルギー法、そして有限要素法の数学的土台までを整理。全22問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜解析力学の原理（ダランベール・仮想仕事・ラグランジュ・ハミルトン）</div>
+    <div class="track-desc">まず動力学を静力学のつり合いへ読み替えるダランベールの原理と、仕事をしない拘束力を消す仮想仕事の考え方を押さえる。これを一般化座標とラグランジュの運動方程式へ発展させ、最後に作用積分を停留させるハミルトンの原理・変分法へまとめる。この変分原理が、B の連続体のエネルギー法の出発点になる。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>原理とつり合い</h3>
+        <ul class="q-list">
+          <li><span class="q">1-1</span><span class="txt"><b>慣性力−maを加え動力学を静的つり合いへ</b><span class="f">ΣF−ma=0（ダランベール）</span></span></li>
+          <li><span class="q">1-2</span><span class="txt"><b>なめらかな拘束力は仮想変位と直交し仕事零</b><span class="f">S·δr=0（仮想仕事）</span></span></li>
+          <li><span class="q">1-3</span><span class="txt"><b>保存力は勾配の逆、つり合いは停留</b><span class="f">F=−∇U, δU=0</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>一般化座標とラグランジュ</h3>
+        <ul class="q-list">
+          <li><span class="q">1-4</span><span class="txt"><b>自由度＝独立変数の最小個数、座標の選び方が一般化座標</b><span class="f">d/dt(∂L/∂q̇)−∂L/∂q=0</span></span></li>
+          <li><span class="q">1-5</span><span class="txt"><b>単振子の固有角振動数は長さだけで決まる</b><span class="f">ω=√(g/l)</span></span></li>
+          <li><span class="q">1-6</span><span class="txt"><b>台車＋振り子の運動エネルギーは連成の交差項を含む</b><span class="f">v²=ẋ²+2lẋθ̇cosθ+l²θ̇²</span></span></li>
+          <li><span class="q">1-7</span><span class="txt"><b>自由度の数だけ式が立ち、交差項で連成</b><span class="f">2自由度→2本・連成</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>変分原理</h3>
+        <ul class="q-list">
+          <li><span class="q">1-8</span><span class="txt"><b>実際の運動は作用積分を停留させる経路</b><span class="f">δ∫L dt=0, L=T−U</span></span></li>
+          <li><span class="q">1-21</span><span class="txt"><b>変分法のオイラー方程式がラグランジュ方程式に対応</b><span class="f">∂f/∂y−d/dx(∂f/∂y′)=0</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜連続体振動とエネルギー法（運動方程式・境界条件・レイリー/リッツ法）</div>
+    <div class="track-desc">ハミルトンの原理を連続体へ適用し、部分積分から運動方程式と2種類の境界条件（変位型と勾配型）を取り出す。厳密に解けない形は、仮定した形状関数で近似するレイリー法・レイリー・リッツ法で等価質量・剛性を作り固有角振動数を見積もる。形状関数は幾何学的境界条件を満たすよう選ぶ必要があり、その選び方が精度を左右する。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>運動方程式と境界条件</h3>
+        <ul class="q-list">
+          <li><span class="q">1-9</span><span class="txt"><b>棒の縦振動＝慣性項を含む式と2種の境界条件</b><span class="f">ρAÿ−EAy″=0, y=0 または EAy′=0</span></span></li>
+          <li><span class="q">1-22</span><span class="txt"><b>丸棒ねじり：固定端θ=0・自由端は勾配零</b><span class="f">θ(0)=0, GJ·∂θ/∂x|_l=0</span></span></li>
+          <li><span class="q">1-10</span><span class="txt"><b>形状関数は幾何学的条件を満たし力学的条件は近似的</b><span class="f">幾何学的＝必須, 力学的＝自然</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>レイリー法・レイリー・リッツ法</h3>
+        <ul class="q-list">
+          <li><span class="q">1-11</span><span class="txt"><b>1関数近似の等価質量・剛性から固有角振動数（上界）</b><span class="f">ω=√(k*/m*)</span></span></li>
+          <li><span class="q">1-12</span><span class="txt"><b>質量行列成分は形状関数の積の積分</b><span class="f">M₁₁=∫ρAφ₁²dx=ρAl/3</span></span></li>
+          <li><span class="q">1-13</span><span class="txt"><b>集中外力はデルタ関数の選別性で作用点の値に集約</b><span class="f">一般化外力 f(t){φ(x_f)}</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>形状関数の選択</h3>
+        <ul class="q-list">
+          <li><span class="q">1-14</span><span class="txt"><b>固定端φ(0)=0、ばね端は固定でないφ(l)≠0</b><span class="f">φ=x/l</span></span></li>
+          <li><span class="q">1-15</span><span class="txt"><b>片持ちはり固定端はたわみ・たわみ角とも零</b><span class="f">φ(0)=0, φ′(0)=0</span></span></li>
+          <li><span class="q">1-16</span><span class="txt"><b>端ばねのポテンシャルが等価剛性に+k</b><span class="f">ω=√((EA/l+k)/m*)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜重みつき残差法と有限要素法</div>
+    <div class="track-desc">変分原理を使わず運動方程式の残差に重み関数を掛けて積分する重みつき残差法を扱う。重みを仮想変位とみなせばハミルトンの原理と等価になり、重み＝基底関数とするガラーキン法が有限要素法の基礎になる。局所的な形状関数を使うため係数行列は疎に、自己随伴問題では対称になり、少ない記憶で効率よく解ける。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>重みつき残差法</h3>
+        <ul class="q-list">
+          <li><span class="q">1-17</span><span class="txt"><b>重みを仮想変位とみなし端でw=0ならハミルトンの原理と等価</b><span class="f">w=δy</span></span></li>
+          <li><span class="q">1-19</span><span class="txt"><b>重み＝基底がガラーキン、局所基底で係数行列は疎</b><span class="f">ガラーキン/選点法・疎行列</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>ガラーキン有限要素法</h3>
+        <ul class="q-list">
+          <li><span class="q">1-18</span><span class="txt"><b>重み＝形状関数だから自己随伴問題で対称</b><span class="f">重み=基底→対称行列</span></span></li>
+          <li><span class="q">1-20</span><span class="txt"><b>局所形状関数＋ガラーキンで疎かつ対称</b><span class="f">疎＋対称</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）解析力学の原理・B（藍）連続体振動とエネルギー法・C（赤）重みつき残差法と有限要素法。全22問（A9・B9・C4）。</p>
+  </section>
+</div>

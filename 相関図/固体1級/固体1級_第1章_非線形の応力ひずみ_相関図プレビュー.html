@@ -1,0 +1,175 @@
+<title>固体1級 第1章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A運動学／B回転と速度／C応力 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>固体1級 第1章「非線形解析における応力とひずみ」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 変形を測る（運動学）／B 回転と速度を分ける／C 応力を表す の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>非線形解析における応力とひずみ ― 各問の要点とキー公式</h2>
+    <p class="lead">大変形では「変形をどう測り」「回転をどう分け」「応力をどう表すか」が核。全18問を A／B／C に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜変形を測る（運動学：変形勾配とひずみ）</div>
+    <div class="track-desc">まず小変形と大変形で何が変わるのかを押さえ、変形後の小さな矢印 dx を dx=F dX で結ぶ変形勾配 F を定義する。F から長さの変化を取り出したのがグリーン・ラグランジュひずみ E やアルマンジひずみ A で、基準を変形前に置くか変形後に置くかで式が変わる。ここで定義したひずみの測り方は、B の回転の分離と C の応力の組合せの土台になる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>変形理論と非線形の要因</h3>
+        <ul class="q-list">
+          <li><span class="q">1-1</span><span class="txt"><b>微小変形と有限変形の違い</b>材料非線形とは別<span class="f">幾何学的非線形性</span></span></li>
+          <li><span class="q">1-2</span><span class="txt"><b>釣合いが非線形になる要因</b>剛体並進は要因でない<span class="f">∂u/∂X=0 なら F=I</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>変形勾配とひずみテンソル</h3>
+        <ul class="q-list">
+          <li><span class="q">1-3</span><span class="txt"><b>変形勾配テンソルの定義</b><span class="f">Fᵢⱼ=∂xᵢ/∂Xⱼ</span></span></li>
+          <li><span class="q">1-4</span><span class="txt"><b>グリーン・ラグランジュひずみ</b>変形前が基準<span class="f">E=½(FᵀF−I)</span></span></li>
+          <li><span class="q">1-5</span><span class="txt"><b>アルマンジひずみ</b>変形後が基準<span class="f">A=½(I−B⁻¹)</span></span></li>
+          <li><span class="q">1-7</span><span class="txt"><b>非対称なテンソルの識別</b>C・E・Aは対称<span class="f">F は一般に非対称</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>ひずみの計算と線形化</h3>
+        <ul class="q-list">
+          <li><span class="q">1-8</span><span class="txt"><b>せん断後に回転しても E 不変</b><span class="f">F₂ᵀF₂=F₁ᵀF₁</span></span></li>
+          <li><span class="q">1-9</span><span class="txt"><b>有限ひずみと線形化の比較</b>伸び25%の例<span class="f">E=½(λ²−1), A=½(1−λ⁻²)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜回転と速度を分ける（極分解・客観性）</div>
+    <div class="track-desc">大きく動く物体では、形を変える伸び縮みと、ただ向きを変える回転を分けて考える必要がある。変形勾配を F=RU=VR と極分解し、回転 Q を加えても元の材料方向で測る量は変わらないこと（客観性）を確かめる。時間変化を見るときも、速度勾配 L を伸び縮みの D と回転の W に分け、応力速度にも回転分の補正を入れる。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>極分解とストレッチ</h3>
+        <ul class="q-list">
+          <li><span class="q">1-6</span><span class="txt"><b>剛体回転とひずみの不変性</b>E不変／A=QAQᵀ<span class="f">QᵀQ=I</span></span></li>
+          <li><span class="q">1-10</span><span class="txt"><b>回転後の左ストレッチの計算</b>斜めに非対角成分<span class="f">F=RU=VR, V=RURᵀ</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>速度勾配の分解</h3>
+        <ul class="q-list">
+          <li><span class="q">1-17</span><span class="txt"><b>速度勾配をD・Wへ分解</b>伸び縮みと回転<span class="f">L=D+W, D=½(L+Lᵀ)</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>客観応力速度</h3>
+        <ul class="q-list">
+          <li><span class="q">1-18</span><span class="txt"><b>二つの客観応力速度の関係</b>回転補正を含む<span class="f">Ṡ=T̂₍ᴶ₎−DT−TD</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜応力を表す（応力測度と仕事共役）</div>
+    <div class="track-desc">応力は、今の面を基準にするコーシー応力 T か、変形前の面に換算する第2種 PK 応力 S かで表し方が変わる。面の向き n を決めれば応力ベクトル t=Tn が取り出せ、各応力測度は T=(1/J)FSFᵀ で結ばれる。仮想仕事では S と E のように基準をそろえた組（仕事共役）を使い、実測では公称応力・真応力・対数ひずみを区別する。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>応力ベクトルと対称性</h3>
+        <ul class="q-list">
+          <li><span class="q">1-11</span><span class="txt"><b>応力ベクトルと垂直応力の計算</b><span class="f">t=Tn, σ=t·n</span></span></li>
+          <li><span class="q">1-12</span><span class="txt"><b>応力テンソルの対称性</b>第1種PKは非対称<span class="f">Π=JF⁻¹T</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>応力の変換と回転</h3>
+        <ul class="q-list">
+          <li><span class="q">1-13</span><span class="txt"><b>コーシー応力と第2種PK応力の変換</b><span class="f">T=(1/J)FSFᵀ</span></span></li>
+          <li><span class="q">1-14</span><span class="txt"><b>剛体回転で変わる応力・変わらない応力</b>S・E不変／T・A回る<span class="f">T′=QTQᵀ</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>仕事共役・真応力</h3>
+        <ul class="q-list">
+          <li><span class="q">1-15</span><span class="txt"><b>仮想仕事で組にする応力とひずみ</b>基準をそろえる<span class="f">S:δE（仕事共役）</span></span></li>
+          <li><span class="q">1-16</span><span class="txt"><b>公称・真の応力とひずみ</b>今の断面で割る<span class="f">σt=P/a, ε=ln(l/L)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）変形を測る・B（藍）回転と速度・C（赤）応力を表す。全18問（A8・B4・C6）。</p>
+  </section>
+</div>

@@ -1,0 +1,177 @@
+<title>熱流体1級 第22章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A火炎形態と乱流燃焼速度／B 予混合乱流燃焼モデル／C 非予混合モデル・PDF・応用解析 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>熱流体1級 第22章「乱流火炎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 火炎形態と乱流燃焼速度／B 予混合乱流燃焼モデル／C 非予混合モデル・PDF・応用解析 の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>乱流火炎 ― 各問の要点とキー公式</h2>
+    <p class="lead">乱れの中で燃える火炎を、火炎形態の分類と乱流燃焼速度から、予混合・非予混合のモデル化、PDF・散逸率、噴流・定容容器の応用解析まで整理。全15問を A／B／C に配置。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜火炎形態と乱流燃焼速度</div>
+    <div class="track-desc">乱流火炎はまず「乱れが火炎をどれだけ乱すか」で分類する。予混合火炎は乱流強度と層流燃焼速度の比 u'/SL、積分長と火炎厚さの比 l/lF の2つで形態（しわ状・コルゲート・薄い反応帯・分断反応帯）が決まり、カルロビッツ数 Ka が内部構造まで乱されるかの指標になる。乱れで火炎面積が増えると乱流燃焼速度 ST は SL より大きくなるが、u' を上げすぎると局所消炎で頭打ちになる。この分類が B・C のモデル選択の前提になる。</div>
+    <div class="grid4">
+      <div class="box lead">
+        <h3>火炎形態の分類</h3>
+        <ul class="q-list">
+          <li><span class="q">22-1</span><span class="txt"><b>乱流予混合火炎の形態</b>弱乱流で面が緩やか変形　<span class="f">u'/SL と l/lF で分類（Borghi）</span></span></li>
+          <li><span class="q">22-3</span><span class="txt"><b>カルロビッツ数と火炎形態</b>1&lt;Ka&lt;100 で薄い反応帯　<span class="f">Ka=(u'/SL)³ᐟ²(l/lF)⁻¹ᐟ²=9</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>乱流拡散火炎の特徴</h3>
+        <ul class="q-list">
+          <li><span class="q">22-2</span><span class="txt"><b>面積増大で消費率増</b>局所構造が保たれる条件　<span class="f">伝播速度は通常定義できない</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>乱流燃焼速度</h3>
+        <ul class="q-list">
+          <li><span class="q">22-4</span><span class="txt"><b>乱流燃焼速度の推算</b>面積増大分を加算　<span class="f">ST/SL=1+a(u'/SL)ᵇ, ST=4.5 m/s</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜予混合乱流燃焼モデル</div>
+    <div class="track-desc">予混合乱流火炎を数値計算で閉じる代表的な枠組みを扱う。火炎面密度 Σ の輸送方程式では、伸張による生成（KeΣ）と火炎面どうしの消滅（SLΣ²）を組み合わせて反応率を表す。BML モデルは薄い層流火炎片を仮定し、反応進行変数のPDFを未燃・既燃の2本のデルタ関数で近似する。厚み付き火炎は δ を大きくして解像しやすくし、G方程式は火炎面をレベルセットの等値面で追って、平均化時に ST で閉じる。A の形態分類を、予混合火炎の実際のモデル式へつなぐトラック。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>火炎面密度</h3>
+        <ul class="q-list">
+          <li><span class="q">22-5</span><span class="txt"><b>火炎面密度 Σ の輸送方程式</b>生成=伸張/消滅=燃焼　<span class="f">SΣ=αKeΣ−βSLΣ²</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>BMLモデル</h3>
+        <ul class="q-list">
+          <li><span class="q">22-6</span><span class="txt"><b>BMLの確率密度関数</b>二状態（flamelet）近似　<span class="f">p(c)=αδ(c)+βδ(1−c), α+β=1</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>厚み付き火炎</h3>
+        <ul class="q-list">
+          <li><span class="q">22-7</span><span class="txt"><b>厚み付き火炎とダムケラー数</b>δ大→化学時間長　<span class="f">Da=(l/δ)(SL/u'), 4.0→0.8</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>G方程式</h3>
+        <ul class="q-list">
+          <li><span class="q">22-8</span><span class="txt"><b>G方程式による火炎面表現</b>面積増大で ST&gt;SL　<span class="f">⟨SL|∇G|⟩=ST|∇⟨G⟩|</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜非予混合モデル・PDF・応用解析</div>
+    <div class="track-desc">非予混合（拡散）乱流火炎と、統計量による閉包、実機形状での解析を扱う。渦消散モデルは燃焼を乱流混合律速とみなし、混合速度 ε/k と少ない方の濃度で反応率を決める。フレームレット手法は混合分率 Z とスカラー散逸率 χ で状態量をデータベース参照し、χ は変動勾配の二乗平均で表す。温度や混合分率のPDFから平均量を求め、噴流拡散火炎や定容容器内の火炎伝播へ適用する。A・B で築いた見方を、非予混合と現実問題の解析へ広げるトラック。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>非予混合モデル</h3>
+        <ul class="q-list">
+          <li><span class="q">22-9</span><span class="txt"><b>渦消散モデルの燃料消費率</b>混合律速・少ない方で決まる　<span class="f">RF=A(ρε/k)min[YF,YO/sO]=10</span></span></li>
+          <li><span class="q">22-10</span><span class="txt"><b>非予混合火炎のフレームレット</b>データベースは対向流拡散火炎で作成　<span class="f">Z・χ から状態量を参照</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>PDF・散逸率</h3>
+        <ul class="q-list">
+          <li><span class="q">22-11</span><span class="txt"><b>RANSのスカラー散逸率</b>変動勾配の二乗平均　<span class="f">χ∝D‾(∂φ'/∂xi)²</span></span></li>
+          <li><span class="q">22-12</span><span class="txt"><b>確率密度関数と平均温度</b>確率で重み付けした期待値　<span class="f">Θ=Σθi Pi=1160 K</span></span></li>
+          <li><span class="q">22-13</span><span class="txt"><b>混合層の P(Z) の概形</b>燃料側点は間欠的　<span class="f">Z=1 近傍に鋭いピーク</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>応用解析</h3>
+        <ul class="q-list">
+          <li><span class="q">22-14</span><span class="txt"><b>噴流拡散火炎の高温領域</b>RANS＋EDM は葉状　<span class="f">火炎帯=平均の燃料・酸素が出会う領域</span></span></li>
+          <li><span class="q">22-15</span><span class="txt"><b>定容容器内の火炎伝播</b>球面→平面・壁側が遅れる　<span class="f">コヒーレントフレームモデル</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）形態と乱流燃焼速度・B（藍）予混合モデル・C（赤）非予混合・PDF・応用。全15問（A4・B4・C7）。</p>
+  </section>
+</div>

@@ -1,0 +1,101 @@
+<title>振動2級 全章マップ 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 振動2級 全13章の章間マップ(1枚)。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9; --surface: #ffffff; --ink: #1F3A65; --ink-soft: #35507f;
+    --fill: #E1E7F2; --accent: #C82D2D; --muted: #6b7280; --line: #c7d0e2; --num: #1F3A65;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: "Meiryo","Hiragino Kaku Gothic ProN", system-ui, sans-serif; line-height: 1.5; margin: 0; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left,0px)); padding-right: max(16px, env(safe-area-inset-right,0px)); padding-block: 24px 48px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 4px; }
+  .band-label { font-size: .86rem; color: #fff; background: var(--ink-soft); font-weight: 800; letter-spacing: .03em; margin: 20px 0 6px; padding: 5px 13px; border-radius: 7px; display:inline-block; }
+  .band-label.core { background: var(--accent); }
+  .band-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 0 2px 10px; }
+  .band-desc .lk { color: var(--accent); font-weight: 700; }
+  .down { text-align:center; color: var(--accent); font-size: 1rem; font-weight:700; margin: 10px 0 2px; }
+  .row { display: grid; gap: 10px; margin-bottom: 10px; }
+  .r4 { grid-template-columns: repeat(4, 1fr); }
+  .r3 { grid-template-columns: repeat(3, 1fr); }
+  .r2 { grid-template-columns: repeat(2, 1fr); }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.hot { border-color: var(--accent); border-width: 2px; }
+  .box h3 { margin: 0 0 4px; font-size: .9rem; color: var(--ink); display:flex; gap:7px; align-items:baseline; }
+  .box.hot h3 { color: var(--accent); }
+  .box p { margin: 0; font-size: .76rem; color: var(--ink-soft); }
+  .ch { color:#fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size:.7rem; font-weight:700; white-space:nowrap; }
+  .box.hot .ch { background: var(--accent); }
+  .legend { margin-top: 16px; color: var(--muted); font-size: .78rem; line-height: 1.6; }
+  @media (max-width: 680px){ .r4, .r3 { grid-template-columns: 1fr 1fr; } .r2 { grid-template-columns: 1fr; } }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>振動2級「全章の相関図」（章間マップ・プレビュー）</h1>
+    <p>各章がどの役割を持ち、どこへつながるか（章どうしの関係）を1枚で示します。</p>
+  </header>
+
+  <section class="fig">
+    <h2>振動2級：振動解析を学ぶ全体地図 ― 基礎から検証・運用まで</h2>
+    <p class="lead">全13章は「数理と力学（土台）→ 振動・音響の理論（対象）→ 有限要素法とモデリング（解く技術）→ 条件設定と数値計算（解を得る）→ 検証と運用（仕上げ）」の流れで、後の段ほど前の段を土台にしています。</p>
+
+    <div class="band-label">① 基礎の数理と力学（第1〜3章）― すべての土台</div>
+    <div class="band-desc">まず計算力学を支える数学（行列・固有値・微積分・数値近似）を押さえ、物体の運動を扱う動力学、応力・ひずみ・はりの変形を扱う材料力学で、振動解析に必要な力学の基礎を固めます。<span class="lk">ここで得た固有値・運動方程式・応力ひずみの考え方が、以降の振動理論・有限要素法・数値計算すべての共通土台になります。</span></div>
+    <div class="row r3">
+      <div class="box"><h3><span class="ch">1</span>計算力学のための数学の基礎</h3><p>行列・固有値・微積分・数値近似</p></div>
+      <div class="box"><h3><span class="ch">2</span>動力学の基礎</h3><p>運動の法則・運動量・エネルギー・剛体</p></div>
+      <div class="box"><h3><span class="ch">3</span>材料力学の基礎</h3><p>応力・ひずみ・はりの変形・断面</p></div>
+    </div>
+    <div class="down">↓ 解析する対象（振動・音響の物理）へ ↓</div>
+
+    <div class="band-label">② 振動・音響の理論（第4章）― 解析する対象</div>
+    <div class="band-desc">固有振動数とモード、強制振動と共振、減衰、そして音の伝わり方（音響）という、この分野が解析する対象そのものの物理を学びます。<span class="lk">①の数学・力学でこの現象を式に表し、③以降でこれを計算機で解く流れになります。</span></div>
+    <div class="row r2">
+      <div class="box"><h3><span class="ch">4</span>振動工学および音響工学の基礎</h3><p>固有振動数・モード・共振・減衰・音響</p></div>
+    </div>
+    <div class="down">↓ 連続体を離散化して解く技術へ ↓</div>
+
+    <div class="band-label core">③ 有限要素法とモデリング（第5〜7章）― 解く技術（中核）</div>
+    <div class="band-desc">連続体を有限要素に分けて質量・剛性行列を組む有限要素法の基礎（第5章）、目的に合う要素の選び方とメッシュの切り方（第6章）、対象を適切な解析モデルへ落とすモデリング（第7章）を学びます。<span class="lk">②の振動現象を計算機で解くための中核技術で、ここの良し悪しが結果の精度を決めます。</span></div>
+    <div class="row r3">
+      <div class="box hot"><h3><span class="ch">5</span>有限要素法の基礎</h3><p>離散化・質量/剛性行列・形状関数</p></div>
+      <div class="box hot"><h3><span class="ch">6</span>要素の選択・メッシング</h3><p>要素の種類・メッシュ品質・精度</p></div>
+      <div class="box hot"><h3><span class="ch">7</span>モデリングの基礎</h3><p>解析モデル化・対称性・簡略化・接合</p></div>
+    </div>
+    <div class="down">↓ 条件を与えて数値計算で解く ↓</div>
+
+    <div class="band-label">④ 条件設定と数値計算（第8〜9章）― 解を得る</div>
+    <div class="band-desc">モデルに拘束や荷重などの境界条件を与え（第8章）、固有値解法や時間積分といった数値計算で実際に解を求めます（第9章）。<span class="lk">③で作ったモデルに条件を与えて解を得る段で、①の数学がここで直接働きます。</span></div>
+    <div class="row r2">
+      <div class="box"><h3><span class="ch">8</span>境界条件および荷重条件</h3><p>拘束・荷重・自由度・対称条件</p></div>
+      <div class="box"><h3><span class="ch">9</span>数値計算法の基礎</h3><p>固有値解法・時間積分・連立方程式</p></div>
+    </div>
+    <div class="down">↓ 結果を読み・検証し・正しく運用する ↓</div>
+
+    <div class="band-label">⑤ 結果の検証と運用（第10〜13章）― 仕上げ</div>
+    <div class="band-desc">得られた結果を図示・整理して読み取り（第10章）、妥当かどうかを検証し（第11章）、計算機の仕組みを理解して正しく使い（第12章）、技術者倫理を守って運用します（第13章）。<span class="lk">①〜④すべての解析を、信頼できる成果に仕上げる段です。</span></div>
+    <div class="row r4">
+      <div class="box"><h3><span class="ch">10</span>ポスト処理の基礎</h3><p>結果の可視化・モード表示・dB/単位</p></div>
+      <div class="box"><h3><span class="ch">11</span>結果検証の基礎</h3><p>検証・V&amp;V・分解能・妥当性</p></div>
+      <div class="box"><h3><span class="ch">12</span>コンピューターの基礎</h3><p>数値表現・整数/浮動小数・メモリ</p></div>
+      <div class="box"><h3><span class="ch">13</span>計算力学技術者倫理</h3><p>守秘義務・契約・利益相反・責任</p></div>
+    </div>
+
+    <p class="legend">青い枠＝各章／赤い枠＝有限要素法とモデリング（振動2級の中核技術）。全体は <b>数理と力学(1〜3) → 振動・音響の理論(4) → 有限要素法とモデリング(5〜7) → 条件設定と数値計算(8・9) → 検証と運用(10〜13)</b> の流れで、後の段ほど前の段の固有値・離散化・数値技術の考え方を土台にします。矢印と「→」は“理解のつながり”で、学習する順番そのものではありません。</p>
+  </section>
+</div>

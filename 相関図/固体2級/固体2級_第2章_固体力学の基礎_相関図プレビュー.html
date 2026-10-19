@@ -1,0 +1,221 @@
+<title>固体2級 第2章 相関図プレビュー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
+  :root {
+    --bg: #f5f6f9;
+    --surface: #ffffff;
+    --ink: #1F3A65;        /* 主線・見出し */
+    --ink-soft: #35507f;   /* 補助見出し */
+    --fill: #E1E7F2;       /* ボックス面 */
+    --accent: #C82D2D;     /* 強調 */
+    --muted: #6b7280;      /* 補助・凡例 */
+    --line: #c7d0e2;
+    --num: #1F3A65;
+    --form: #0b7285;       /* キー公式の色 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+      --form: #5fd0e0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
+    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
+    --form: #5fd0e0; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    line-height: 1.5; margin: 0;
+  }
+  .wrap {
+    max-width: 1060px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  header.page { margin-bottom: 8px; }
+  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
+  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
+  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
+  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
+  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
+  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
+             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
+  .track-h.a { background: var(--ink); }
+  .track-h.b { background: var(--ink-soft); }
+  .track-h.c { background: var(--accent); }
+  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
+  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
+  .box.lead { border-color: var(--accent); }
+  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
+            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
+  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
+  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
+  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
+  .box.lead .q { background: var(--accent); }
+  li .txt { min-width: 0; }
+  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
+  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
+  .grayband {
+    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
+    padding: 12px 14px; margin-top: 18px;
+  }
+  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
+  .grayband ul.q-list { gap: 7px; }
+  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
+  @media (max-width: 760px) {
+    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 460px) {
+    .grid4, .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="page">
+    <h1>固体2級 第2章「固体力学の基礎」相関図（プレビュー）</h1>
+    <p>各問の要点とキー公式を、A 応力を調べる／B 部材を解く／C 強度で評価する の3トラックにサブ分けして配置。</p>
+  </header>
+
+  <section class="fig">
+    <h2>固体力学の基礎 ― 各問の要点とキー公式</h2>
+    <p class="lead">力を受けた材料・部材の「応力・変形・強さ」を調べる。全44問を A／B／C ＋ 横串（温度・動的）に整理。</p>
+
+    <!-- トラックA -->
+    <div class="track-h a">A｜応力を調べる（測る・変換する）</div>
+    <div class="track-desc">まず材料そのものの性質（弾性定数・ポアソン比・応力ひずみ線図）を押さえ、1点にかかる応力とひずみを測る。面の向きを変えると垂直応力とせん断応力の見え方が変わるので、座標変換やモール円で主応力・主軸に整理する。ここで求めた応力・主応力が、トラックCの降伏・疲労評価の入口になる。</div>
+    <div class="grid4">
+      <div class="box">
+        <h3>弾性と材料物性</h3>
+        <ul class="q-list">
+          <li><span class="q">2-1</span><span class="txt"><b>等方材の弾性定数の関係</b>独立は2つ　<span class="f">G=E/2(1+ν)</span></span></li>
+          <li><span class="q">2-2</span><span class="txt"><b>縦ひずみと横ひずみの比</b><span class="f">ν=−ε横/ε縦</span></span></li>
+          <li><span class="q">2-3</span><span class="txt"><b>ほぼ非圧縮の材料</b>ゴム等　<span class="f">ν≈0.5（体積ほぼ一定）</span></span></li>
+          <li><span class="q">2-4</span><span class="txt"><b>公称応力ひずみ線図の読み方</b><span class="f">σ=P/A₀, ε=ΔL/L₀</span></span></li>
+          <li><span class="q">2-5</span><span class="txt"><b>降伏点が不明瞭な金属の降伏</b><span class="f">0.2%耐力（オフセット法）</span></span></li>
+          <li><span class="q">2-8</span><span class="txt"><b>軸荷重での応力と伸び</b><span class="f">σ=P/A=Eε</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>ひずみの定義</h3>
+        <ul class="q-list">
+          <li><span class="q">2-7</span><span class="txt"><b>変位の分布からひずみを取り出す</b>剛体移動は除く　<span class="f">ε=∂u/∂x</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>せん断・ねじりの状態</h3>
+        <ul class="q-list">
+          <li><span class="q">2-13</span><span class="txt"><b>せん断応力の共役性</b>モーメント釣合い　<span class="f">τxy=τyx</span></span></li>
+          <li><span class="q">2-14</span><span class="txt"><b>純せん断の与え方</b>剛体移動だけ拘束　<span class="f">σx=σy=0, τ一定</span></span></li>
+          <li><span class="q">2-16</span><span class="txt"><b>純せん断を主応力で見る</b><span class="f">σ1,2=±τ（主軸45°）</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>座標変換・主応力</h3>
+        <ul class="q-list">
+          <li><span class="q">2-6</span><span class="txt"><b>面の向きを変えて応力を見直す</b>座標変換　<span class="f">σ・τが変わる</span></span></li>
+          <li><span class="q">2-17</span><span class="txt"><b>応力状態を1つの円で表す</b>モール円　<span class="f">R=√((Δσ/2)²+τ²)</span></span></li>
+          <li><span class="q">2-18</span><span class="txt"><b>平面応力の主応力・主軸</b><span class="f">円の両端（τ=0）</span></span></li>
+          <li><span class="q">2-19</span><span class="txt"><b>三次元の主応力（大小順）</b><span class="f">σ1≥σ2≥σ3</span></span></li>
+          <li><span class="q">2-33</span><span class="txt"><b>面の向き（法線）から応力面へ</b><span class="f">法線(a,b,c)・主軸</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックB -->
+    <div class="track-h b">B｜部材を解く（釣合い → 内力 → 変形・断面）</div>
+    <div class="track-desc">部材全体では、まず支点反力を釣合い（ΣF=0・ΣM=0）や節点法で求め、自由体図から断面の内力（曲げモーメントM・ねじりトルクT）を取り出す。内力が決まれば、曲率 w″=M/EI からたわみ、断面係数 Z から最大応力…と変形・断面の強さが計算できる。剛体板や不静定では「変位が共通」という条件が釣合いを補う。</div>
+    <div class="grid3">
+      <div class="box">
+        <h3>釣合い・反力・自由体図</h3>
+        <ul class="q-list">
+          <li><span class="q">2-11</span><span class="txt"><b>剛体棒をワイヤで吊る</b><span class="f">Aまわり ΣM=0 →張力</span></span></li>
+          <li><span class="q">2-12</span><span class="txt"><b>剛体板を2本の棒で支持</b>板は水平　<span class="f">δ共通・荷重分担</span></span></li>
+          <li><span class="q">2-20</span><span class="txt"><b>静定ばりの支点反力</b>浮上り止め　<span class="f">ΣF=0, ΣM=0</span></span></li>
+          <li><span class="q">2-27</span><span class="txt"><b>2部材で節点を吊る</b>節点法　<span class="f">水平・鉛直の釣合い</span></span></li>
+          <li><span class="q">2-28</span><span class="txt"><b>ピン＋ローラーばりの自由体図</b><span class="f">反力の向き</span></span></li>
+          <li><span class="q">2-29</span><span class="txt"><b>片持ちの固定端反力</b><span class="f">鉛直反力＋固定モーメント</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>内力（曲げM・ねじりT）</h3>
+        <ul class="q-list">
+          <li><span class="q">2-15</span><span class="txt"><b>中空丸軸の許容トルク</b>外縁が最大　<span class="f">τ=Tr/Ip</span></span></li>
+          <li><span class="q">2-21</span><span class="txt"><b>集中荷重のはりの最大曲げM</b><span class="f">Mは区間ごと一次式</span></span></li>
+          <li><span class="q">2-22</span><span class="txt"><b>等分布荷重の断面の曲げM</b><span class="f">合力を区間中央に置く</span></span></li>
+          <li><span class="q">2-23</span><span class="txt"><b>内力（曲げM）から曲率へ</b><span class="f">w″=M/EI</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>変形・断面</h3>
+        <ul class="q-list">
+          <li><span class="q">2-9</span><span class="txt"><b>直列2材の不静定</b>両端固定　<span class="f">k=EA/L・δ共通</span></span></li>
+          <li><span class="q">2-10</span><span class="txt"><b>幅が変わる平板の伸び</b><span class="f">δ=∫P/(EA(x))dx</span></span></li>
+          <li><span class="q">2-24</span><span class="txt"><b>中央たわみの比較</b><span class="f">∝1/(EI), I=bh³/12</span></span></li>
+          <li><span class="q">2-25</span><span class="txt"><b>曲げに強い断面の選び方</b><span class="f">σmax=M/Z（Z=断面係数）</span></span></li>
+          <li><span class="q">2-26</span><span class="txt"><b>I形断面の断面二次モーメント</b><span class="f">複合断面のI</span></span></li>
+          <li><span class="q">2-30</span><span class="txt"><b>内圧を受ける薄肉円筒</b><span class="f">σθ=pr/t, σz=pr/2t</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- トラックC -->
+    <div class="track-h c">C｜強度で評価する（降伏・疲労・試験）</div>
+    <div class="track-desc">A・Bで求めた応力が材料の限界に達するかを判定する。延性金属は形を変える成分（偏差応力）に着目するミーゼスの降伏条件、脆性材料は最大主応力で見る。繰返し荷重では応力振幅 σa と平均応力 σm、切欠きの応力集中 Kt から疲労寿命を評価する。衝撃・硬さ・引張などの材料試験は、これらの判定に必要な材料値を得る操作。</div>
+    <div class="grid3">
+      <div class="box lead">
+        <h3>降伏（延性）</h3>
+        <ul class="q-list">
+          <li><span class="q">2-31</span><span class="txt"><b>ミーゼスの降伏条件</b><span class="f">偏差応力（形を変える成分）で評価</span></span></li>
+          <li><span class="q">2-32</span><span class="txt"><b>2状態の降伏しやすさ比較</b><span class="f">相当応力（静水圧は不変）</span></span></li>
+          <li><span class="q">2-34</span><span class="txt"><b>脆性と延性の使い分け</b><span class="f">脆性=最大主応力/延性=ミーゼス</span></span></li>
+        </ul>
+      </div>
+      <div class="box lead">
+        <h3>疲労</h3>
+        <ul class="q-list">
+          <li><span class="q">2-35</span><span class="txt"><b>繰返し応力の表し方</b><span class="f">σa=(σmax−σmin)/2, σm=平均</span></span></li>
+          <li><span class="q">2-36</span><span class="txt"><b>平均応力と寿命</b><span class="f">同振幅なら平均大=不利</span></span></li>
+          <li><span class="q">2-37</span><span class="txt"><b>データが無い段階の疲労限</b><span class="f">引張強さから相関で推定</span></span></li>
+          <li><span class="q">2-38</span><span class="txt"><b>切欠き（応力集中）の疲労</b><span class="f">Kt・公称応力σn</span></span></li>
+          <li><span class="q">2-39</span><span class="txt"><b>孔のある帯板で支配する断面</b><span class="f">正味断面×Kt</span></span></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>材料・試験</h3>
+        <ul class="q-list">
+          <li><span class="q">2-43</span><span class="txt"><b>試験の操作と目的の対応</b><span class="f">衝撃・硬さ・引張の区別</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 横串 -->
+    <div class="grayband">
+      <b class="gh">横串：温度・動的（外から入る荷重／A・Bどちらにも効く）</b>
+      <div class="grid4">
+        <ul class="q-list">
+          <li><span class="q">2-40</span><span class="txt"><b>自由な熱膨張（拘束なし）</b><span class="f">熱応力0（拘束があって生じる）</span></span></li>
+        </ul>
+        <ul class="q-list">
+          <li><span class="q">2-41</span><span class="txt"><b>両端固定棒の熱応力</b><span class="f">弾性ひずみ＋熱ひずみ=0</span></span></li>
+        </ul>
+        <ul class="q-list">
+          <li><span class="q">2-42</span><span class="txt"><b>剛体板＋3棒の熱</b><span class="f">δ共通で平均化</span></span></li>
+        </ul>
+        <ul class="q-list">
+          <li><span class="q">2-44</span><span class="txt"><b>棒を伝わる縦波の速さ</b><span class="f">c=√(E/ρ)</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）応力・B（藍）部材・C（赤）評価＋横串（灰）温度・動的。全44問（A15・B16・C9・横串4）。</p>
+  </section>
+</div>
