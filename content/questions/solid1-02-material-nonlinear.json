@@ -196,8 +196,9 @@
           "3": "Trescaの最大せん断条件との混同",
           "4": "摩擦の垂直応力依存を欠落"
         },
-        "sha256": "f12e2a95872c7e420ec3903e4c2cb00a004cd5c5b8a3afbf2e2a6d93aa67b650"
-      }
+        "sha256": "f22cbbc6565459757fe0c731a5fbec44cb30622c8d77a5e7c969d06dc85e2998"
+      },
+      "preFigureImage": "s1e2MohrCoulombPre"
     },
     {
       "id": "solid1-02-05",

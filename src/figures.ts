@@ -1835,6 +1835,21 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   v2f4LongWave: require('../assets/figures/v2f4LongWave.png'),
   v2f4MagFactor: require('../assets/figures/v2f4MagFactor.png'),
   v2f4SPL: require('../assets/figures/v2f4SPL.png'),
+  s1e10CreepRedistPre: require('../assets/figures/s1e10CreepRedistPre.png'),
+  s1e11DynViscoEllipsePre: require('../assets/figures/s1e11DynViscoEllipsePre.png'),
+  s1e11LoadVsDispPre: require('../assets/figures/s1e11LoadVsDispPre.png'),
+  s1e11MasterPre: require('../assets/figures/s1e11MasterPre.png'),
+  s1e11MullinsPre: require('../assets/figures/s1e11MullinsPre.png'),
+  s1e11PaynePre: require('../assets/figures/s1e11PaynePre.png'),
+  s1e11SequentialPre: require('../assets/figures/s1e11SequentialPre.png'),
+  s1e2MohrCoulombPre: require('../assets/figures/s1e2MohrCoulombPre.png'),
+  s1e5BarsoumPre: require('../assets/figures/s1e5BarsoumPre.png'),
+  s1e5MixedJPre: require('../assets/figures/s1e5MixedJPre.png'),
+  s1e5TensionBendingPre: require('../assets/figures/s1e5TensionBendingPre.png'),
+  s1e5ThreeModesPre: require('../assets/figures/s1e5ThreeModesPre.png'),
+  s1e7LambdaTdepPre: require('../assets/figures/s1e7LambdaTdepPre.png'),
+  s1e7SteadyLimitPre: require('../assets/figures/s1e7SteadyLimitPre.png'),
+  s1e8ShearCenterPre: require('../assets/figures/s1e8ShearCenterPre.png'),
 };
 
 // 図の縦横比（全図とも 660x420 で生成）

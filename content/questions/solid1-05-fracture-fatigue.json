@@ -161,8 +161,9 @@
           "2": "複数モードの重ね合わせを否定",
           "3": "IIとIIIの変位方向を交換"
         },
-        "sha256": "7f5b85d12b54e73782aada5c54b5bb57a51c1607986d8764dae50ce84d1ad493"
-      }
+        "sha256": "c4cb5d60e4885c8529950d9df93c227a1e89609fd8290b1893e1b7c6be218a3e"
+      },
+      "preFigureImage": "s1e5ThreeModesPre"
     },
     {
       "id": "solid1-5-21",
@@ -237,8 +238,9 @@
           "2": "膜と曲げの係数と曲げの符号を誤る",
           "4": "膜と曲げの大きさを交換"
         },
-        "sha256": "854f46f1991f1a2c65634dcdc9fd13250012f2cb8a768249c776e18aaf378b39"
-      }
+        "sha256": "e0cfdf5fabb1f3262af80dcf0241277911642dd82318b0b71e02b8518ebd8e40"
+      },
+      "preFigureImage": "s1e5TensionBendingPre"
     },
     {
       "id": "solid1-5-6",
@@ -467,8 +469,9 @@
           "2": "縮退先端要素を使用不可とする",
           "4": "通常の中点配置でも同じ特異主項を表すと誤認"
         },
-        "sha256": "f2230211b633cbef583e20b782948ab6d6cc1f83f14081fd2eb45526820a7015"
-      }
+        "sha256": "8a8afbae3ef8c50359e2fb758c0e0cbe140bad5d3e2d6314e2105c720b16bf23"
+      },
+      "preFigureImage": "s1e5BarsoumPre"
     },
     {
       "id": "solid1-5-22",
@@ -620,8 +623,9 @@
           "3": "JをモードIだけに限定",
           "4": "混合モードだけで経路独立性が失われると誤認"
         },
-        "sha256": "c560d93bb42f544b5115ef2b7c92c2391a8310a54bfde68794a488bd84b09700"
-      }
+        "sha256": "062f2b9f98199c7dcba4ecd0e627db88b40c3b249243f46eebf7276c91bf090a"
+      },
+      "preFigureImage": "s1e5MixedJPre"
     },
     {
       "id": "solid1-5-15",

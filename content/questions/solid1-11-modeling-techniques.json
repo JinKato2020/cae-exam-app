@@ -193,8 +193,9 @@
           "2": "一体型と逐次を混同",
           "4": "後の場を予測値で確定"
         },
-        "sha256": "14ce55196c9ed31de58751ed33a6c0244545c021307bda2c4aad0af509c83e2f"
-      }
+        "sha256": "94bc93ae340fc26be3909cdabbf1dcb9d0afca741820940c476437a8b42f2b7f"
+      },
+      "preFigureImage": "s1e11SequentialPre"
     },
     {
       "id": "solid1-11-05",
@@ -230,8 +231,9 @@
           "3": "経験済み範囲の軟化を硬化に逆転",
           "4": "マリンスとペインの混同"
         },
-        "sha256": "1029cfeebe5a79e8e2992b1747376e6ddbb75e8827ba495461ee67df2385aac1"
-      }
+        "sha256": "682bff116007bee235ae31ea75a8c836172aeebfbd16e5d530abe2006aac56ef"
+      },
+      "preFigureImage": "s1e11MullinsPre"
     },
     {
       "id": "solid1-11-06",
@@ -267,8 +269,9 @@
           "2": "位相差を無視",
           "4": "sinとcosを二乗"
         },
-        "sha256": "41481f208a4b3c11c1cf1583775004d15db4a35e8962335f9c760a259fd19e63"
-      }
+        "sha256": "4d1e6dbbc3ced37218108557616dd95b4881207447eacac21464866ff567ec3b"
+      },
+      "preFigureImage": "s1e11DynViscoEllipsePre"
     },
     {
       "id": "solid1-11-07",
@@ -304,8 +307,9 @@
           "3": "振幅依存を無視",
           "4": "エントロピーと混同し損失0と断定"
         },
-        "sha256": "2f9fd0b51d732a6b7ccc0deb21ff2dd2aff24b84cb697a8a77c0df9e1a058d6a"
-      }
+        "sha256": "105db5ecce84ac2a8a9713043c29ee19941fa4bf7da8165fb73c5f9e6c84289e"
+      },
+      "preFigureImage": "s1e11PaynePre"
     },
     {
       "id": "solid1-11-08",
@@ -341,8 +345,9 @@
           "2": "振幅依存のペインと混同",
           "3": "全材料へ適用を一般化"
         },
-        "sha256": "bcfe4a456c61497d4616001d4812f4b7c4a1eb4c3e072870e59a8287cf1c46a1"
-      }
+        "sha256": "78638058a552a7aa583b341d4b41b63b32fa870504a9540bbaeba964578ef51a"
+      },
+      "preFigureImage": "s1e11MasterPre"
     },
     {
       "id": "solid1-11-09",
@@ -707,8 +712,9 @@
           "2": "同荷重なら同ひずみと誤解",
           "3": "応答量を最大主応力だけに限定"
         },
-        "sha256": "cc05b2cf4e171c71445995dd1a5a19fcc485cc86aafdd6d836fe79438a8c8f8a"
-      }
+        "sha256": "9678b78f72802bd49edd987ccbe9b59670e5f7238c67ac8017eeca2b3f2e4d47"
+      },
+      "preFigureImage": "s1e11LoadVsDispPre"
     },
     {
       "id": "solid1-11-16",

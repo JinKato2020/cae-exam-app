@@ -81,8 +81,9 @@
           "3": "最大応力位置と合力モーメントの混同",
           "4": "根拠のない中点での相殺"
         },
-        "sha256": "2d8415f5542f651aa66a5e4fbe621517ed1dac6af65d2a6b589b936797cea81b"
-      }
+        "sha256": "597f6096b99bc818a0d119b483c556a2bc1bfd8d9fb033f1263733660e061c79"
+      },
+      "preFigureImage": "s1e8ShearCenterPre"
     },
     {
       "id": "solid1-8-3",

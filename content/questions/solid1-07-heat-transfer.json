@@ -87,8 +87,9 @@
           "2": "遅い加熱では準定常になる正しい説明",
           "4": "断熱でも過渡応力があり長時間後は消える正しい説明"
         },
-        "sha256": "bcd0acb940e86e0058639c3efbc0bd5c677b97cf27e230b74545e8ef40e5ac93"
-      }
+        "sha256": "7cb3ed95fe865eecb490f351ea61fbdcfd91362a0353f130a6710b2683c9b7bd"
+      },
+      "preFigureImage": "s1e7SteadyLimitPre"
     },
     {
       "id": "solid1-7-12",
@@ -239,8 +240,9 @@
           "3": "温度依存しても直線とする",
           "4": "高温側の傾きの大小を逆にする"
         },
-        "sha256": "ddfd8070ec9945569d7cce618e783923a887f64f1e500c9010072f13bd77b7b5"
-      }
+        "sha256": "a130a79893dd781803ea1af603c87f437917b81744e7488642948dba9c6a8646"
+      },
+      "preFigureImage": "s1e7LambdaTdepPre"
     },
     {
       "id": "solid1-7-1",

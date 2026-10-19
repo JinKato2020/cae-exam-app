@@ -268,8 +268,9 @@
           "3": "初期弾性と定常解を混同",
           "4": "内圧一定なら局所応力一定と誤解"
         },
-        "sha256": "1632a797ffa487f3aa3acd07461923d2aa47b967cb9bacd1c71839429afed312"
-      }
+        "sha256": "59ef7701128c04ed70b7acb05dd2e99b792a8d0d3b718cbd424197d68adc00b7"
+      },
+      "preFigureImage": "s1e10CreepRedistPre"
     },
     {
       "id": "solid1-10-8",
