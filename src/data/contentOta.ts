@@ -83,11 +83,15 @@ export async function loadCache(): Promise<CacheLoad> {
     // ビルド(土台)が更新されていたら古いキャッシュは使わない（土台優先）。直後に syncContent が取り直す。
     const storedTag = await FileSystem.readAsStringAsync(BUNDLE_TAG_PATH).catch(() => '');
     if (storedTag !== bundleTag()) return empty;
+    const cachedShas = await readJson<Record<string, string>>(SHA_PATH, {});
+    const bundled = ((bundledManifest as ManifestLike).files) ?? {};
     const names = await FileSystem.readDirectoryAsync(DIR);
     const out: CacheLoad = { content: {}, figures: {} };
     for (const name of names) {
       if (name === '_shas.json' || name === '_bundle.tag') continue;
       const key = decodeURIComponent(name);
+      // 同梱と同じ版は同梱を使う。追跡されていない旧ファイルも復活させない。
+      if (!cachedShas[key] || cachedShas[key] === bundled[key]?.sha256) continue;
       if (key.startsWith('figures/')) {
         out.figures[figureName(key)] = DIR + name; // DIR は file:// 始まり＝そのまま Image の uri に使える
       } else if (key.startsWith('content/')) {
@@ -123,7 +127,15 @@ export async function syncContent(): Promise<{ updated: number }> {
     const remoteText = await fetchTextTimeout(BASE + `_manifest.json?t=${Date.now()}`, 15000);
     if (!remoteText) return { updated: 0 };
     const remote = JSON.parse(remoteText) as ManifestLike;
-    const cachedShas = await readJson<Record<string, string>>(SHA_PATH, {});
+    const storedTag = await FileSystem.readAsStringAsync(BUNDLE_TAG_PATH).catch(() => '');
+    const cachedShas = storedTag === bundleTag()
+      ? await readJson<Record<string, string>>(SHA_PATH, {})
+      : {};
+    // 土台更新時は旧キャッシュの追跡もリセットしてから新タグを保存する。
+    // ファイルだけ残っていてもloadCacheは採用せず、同梱の新教材を維持する。
+    if (storedTag !== bundleTag()) {
+      await FileSystem.writeAsStringAsync(SHA_PATH, JSON.stringify(cachedShas));
+    }
     const have = await effectiveShas(cachedShas);
     const need = diffKeys(remote, have);
     if (need.length === 0) {

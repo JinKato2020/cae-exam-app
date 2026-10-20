@@ -1827,7 +1827,9 @@ function StudyTab(props: {
 
   // 1問表示（前後ナビ）
   if (props.view === 'problem' && props.activeList.length > 0) {
-    const q = props.activeList[props.qIndex];
+    const snapshot = props.activeList[props.qIndex];
+    // 起動後の教材更新でも、出題開始時に保持した古い問題を表示し続けない。
+    const q = questionsByIds([snapshot.id])[0] ?? snapshot;
     return (
       <ProblemScreen
         t={t}
@@ -2184,12 +2186,6 @@ function ProblemScreen(props: {
         </Pressable>
       </View>
 
-      {/* 非公認の注記（毎問の長文はやめ、下に小さく） */}
-      {q.officialRef ? (
-        <Text style={[styles.qDisclaimer, { color: t.sub }]}>
-          本アプリは非公認の独自補助教材です。番号は対応学習用の参照です。
-        </Text>
-      ) : null}
     </ScrollView>
       {/* 問題を解きながら使う小さな関数電卓（右下に常駐・押すと開く） */}
       <ProblemCalculator
@@ -2603,7 +2599,7 @@ function SettingsTab(props: {
       <Text style={[styles.sectionHead, { color: t.text }]}>このアプリについて</Text>
       <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
         <Text style={[styles.bodyText, { color: t.sub }]}>
-          計算力学技術者（CAE）試験の対策アプリです。収録している問題・解説・図はすべてオリジナルで作成しています。学習の記録は端末内に保存されます。
+          計算力学技術者（CAE）試験の対策アプリです。本アプリは非公認の独自補助教材です。番号は対応学習用の参照です。収録している問題・解説・図はすべてオリジナルで作成しています。学習の記録は端末内に保存されます。
         </Text>
       </View>
 
@@ -2999,7 +2995,6 @@ const styles = StyleSheet.create({
   qNavPrevTxt: { fontSize: 14, fontWeight: '700' },
   qNavNext: { flex: 1, alignItems: 'center', paddingVertical: 14, borderRadius: 14 },
   qNavNextTxt: { color: '#ffffff', fontSize: 14, fontWeight: '800' },
-  qDisclaimer: { fontSize: 10, textAlign: 'center', lineHeight: 15, marginTop: 16 },
 
   // 公式カード
   formulaHead: { flexDirection: 'row', alignItems: 'center', marginBottom: 10 },
