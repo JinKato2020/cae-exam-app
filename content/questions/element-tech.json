@@ -91,7 +91,18 @@
       "officialRef": "問7-3",
       "relatedFormulas": [
         "cst"
-      ]
+      ],
+      "preFigureImage": "s2Before7_3",
+      "editorialReview": {
+        "officialPoint": "CSTの場",
+        "alignment": "公式の該当図を参照し、物体形状・比較候補・境界条件と本文の整合を確認。図は標準体裁で独自作図。",
+        "distractorMisconceptions": {
+          "1": "ひずみは二次分布。",
+          "2": "同一要素の応力が節点位置だけで変わる。",
+          "3": "一要素で一般の曲げ勾配を厳密再現。"
+        },
+        "sha256": "6b0aa027ddf69b57f7d189690722dab3762805414f1486d16292e74211a6181a"
+      }
     },
     {
       "id": "elem-7-4",
@@ -237,7 +248,7 @@
       "origin": "original",
       "reviewed": true,
       "figure": "helpful",
-      "preFigureImage": null,
+      "preFigureImage": "s2Before7_8",
       "figureImage": "elem7CurvedIso",
       "figureHint": "8節点四辺形の中間節点を円弧上に配置して曲線境界を近似する図と、直線中点に置いて円弧からずれる図を対比する",
       "role": "primary",
@@ -245,7 +256,17 @@
       "relatedFormulas": [
         "eight-node-arc",
         "isoparametric"
-      ]
+      ],
+      "editorialReview": {
+        "officialPoint": "円弧の二次近似",
+        "alignment": "公式の該当図を参照し、物体形状・比較候補・境界条件と本文の整合を確認。図は標準体裁で独自作図。",
+        "distractorMisconceptions": {
+          "1": "中間節点を弦の中点に置けば厳密な円弧になる。",
+          "2": "Q8の辺は必ず直線。",
+          "4": "isoでは座標一次・変位二次を必ず使う。"
+        },
+        "sha256": "5f5f742236d62e633cb255da99c2664eeda54302ee4ee8b980c50ccbff4e62c0"
+      }
     },
     {
       "id": "elem-7-9",

@@ -120,7 +120,18 @@
         "cylinder-conduction"
       ],
       "figureImage": "solid2Ch3Review04After",
-      "figureHint": "回答後専用。温度分布の形を日本語・規定色で説明。"
+      "figureHint": "回答後専用。温度分布の形を日本語・規定色で説明。",
+      "preFigureImage": "s2Before3_4",
+      "editorialReview": {
+        "officialPoint": "平板と円筒の定常温度分布",
+        "alignment": "公式の該当図を参照し、物体形状・比較候補・境界条件と本文の整合を確認。図は標準体裁で独自作図。",
+        "distractorMisconceptions": {
+          "1": "平板・円筒ともに、高温側から低温側へ直線的に下がる。",
+          "3": "平板は高温側付近で急に下がって、低温側へ進むほど緩やかになり、円筒は直線的に下がる。",
+          "4": "平板は直線的に下がり、円筒は内面付近で緩やかに下がって、外面へ進むほど下がり方が急になる。"
+        },
+        "sha256": "dff6a2e8caa0a40c8a3a5f60816af28279916b15e920a8454e24639b72277ee1"
+      }
     },
     {
       "id": "heat-3-5",
@@ -358,7 +369,18 @@
       ],
       "figure": "helpful",
       "figureImage": "solid2Ch3Review12After",
-      "figureHint": "回答後専用。複合熱伝達を日本語・規定色で説明。"
+      "figureHint": "回答後専用。複合熱伝達を日本語・規定色で説明。",
+      "preFigureImage": "s2Before3_12",
+      "editorialReview": {
+        "officialPoint": "二層壁と二つの流体",
+        "alignment": "公式の該当図を参照し、物体形状・比較候補・境界条件と本文の整合を確認。図は標準体裁で独自作図。",
+        "distractorMisconceptions": {
+          "1": "約 $311\\,\\mathrm{W/m^2}$、$20\\,\\mathrm{^\\circ C}$。",
+          "3": "$400\\,\\mathrm{W/m^2}$、$100\\,\\mathrm{^\\circ C}$。",
+          "4": "$560\\,\\mathrm{W/m^2}$、$132\\,\\mathrm{^\\circ C}$。"
+        },
+        "sha256": "6afe5c3a41b5aaa20c41ddc803f65afceebaa22da792850ad44959894fc24376"
+      }
     },
     {
       "id": "heat-3-13",
@@ -446,7 +468,18 @@
         "heat-transfer-rate-resistance"
       ],
       "figureImage": "solid2Ch3Review15After",
-      "figureHint": "回答後専用。円筒の複合熱伝達を日本語・規定色で説明。"
+      "figureHint": "回答後専用。円筒の複合熱伝達を日本語・規定色で説明。",
+      "preFigureImage": "s2Before3_15",
+      "editorialReview": {
+        "officialPoint": "円筒壁の内外対流を比較する",
+        "alignment": "公式の該当図を参照し、物体形状・比較候補・境界条件と本文の整合を確認。図は標準体裁で独自作図。",
+        "distractorMisconceptions": {
+          "2": "$\\Delta T_2/\\Delta T_1=1/4$、壁内は外へ進むほど勾配絶対値が大きくなる。",
+          "3": "$\\Delta T_2/\\Delta T_1=6$、壁内は半径の一次関数。",
+          "4": "$\\Delta T_2/\\Delta T_1=1$、壁内は全て同じ温度。"
+        },
+        "sha256": "af6d5269eb0e77eaf40ade58aac189cf038f5203257bb6312489fcfa3d613e31"
+      }
     },
     {
       "id": "heat-3-16",
@@ -474,7 +507,18 @@
         "heat-boundary-conditions"
       ],
       "figureImage": "solid2Ch3Review16After",
-      "figureHint": "回答後専用。断熱境界の表現を日本語・規定色で説明。"
+      "figureHint": "回答後専用。断熱境界の表現を日本語・規定色で説明。",
+      "preFigureImage": "s2Before3_16",
+      "editorialReview": {
+        "officialPoint": "対称面の熱境界を決める",
+        "alignment": "公式の該当図を参照し、物体形状・比較候補・境界条件と本文の整合を確認。図は標準体裁で独自作図。",
+        "distractorMisconceptions": {
+          "1": "温度を $T=0$ へ固定し、法線方向の温度変化をなくす。",
+          "3": "接線方向を $q_x=0$ とし、法線方向の $q_y$ は0に固定しない。",
+          "4": "元の上辺の流入流束を切断線にも与え、半分モデルの発熱を補う。"
+        },
+        "sha256": "81c1e5743b294318273f7b9ea5853edd8bf3a1c0d654c9c0417d92e3069d8ab5"
+      }
     },
     {
       "id": "heat-3-17",

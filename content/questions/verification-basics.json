@@ -481,7 +481,7 @@
       "topic": "V&Vの手順",
       "type": "mc",
       "difficulty": 2,
-      "question": "現象を表す方程式と条件をA、それを離散化して実装したモデルをBとする。AをBへ正しく実装したか調べる活動をC、実験側の試験体や試験装置を表すモデルをDとする。V&Vでの名称の組合せはどれか。",
+      "question": "図のA〜Dについて、現象を表す方程式と条件をA、それを離散化して実装したモデルをBとする。AをBへ正しく実装したか調べる活動をC、実験側の試験体や試験装置を表すモデルをDとする。V&Vでの名称の組合せはどれか。",
       "choices": [
         "A=計算モデル、B=数理モデル、C=妥当性確認、D=概念モデル",
         "A=数理モデル、B=計算モデル、C=コード検証、D=物理モデル",
@@ -497,12 +497,22 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "ver11VVProc",
-      "preFigureImage": null,
+      "preFigureImage": "s2Before11_16",
       "figureHint": "数理モデルA→計算モデルBのコード検証Cと、物理モデルD→実験の二枝。結果比較を妥当性確認と示す独自簡略図。",
       "relatedFormulas": [
         "asme-flow",
         "code-verification"
-      ]
+      ],
+      "editorialReview": {
+        "officialPoint": "数理モデル・計算モデルとV&V",
+        "alignment": "公式の該当図を参照し、物体形状・比較候補・境界条件と本文の整合を確認。図は標準体裁で独自作図。",
+        "distractorMisconceptions": {
+          "1": "A=計算モデル、B=数理モデル、C=妥当性確認、D=概念モデル",
+          "3": "A=数理モデル、B=計算モデル、C=妥当性確認、D=物理モデル",
+          "4": "A=物理モデル、B=数理モデル、C=コード検証、D=計算モデル"
+        },
+        "sha256": "80429e5144fe9e66e642b87441633f5dc23d45e7be02a60f722035487996dae8"
+      }
     },
     {
       "id": "ver-11-17",

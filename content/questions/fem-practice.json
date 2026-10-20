@@ -132,7 +132,7 @@
       "topic": "座標変換(iso要素)",
       "type": "mc",
       "difficulty": 2,
-      "question": "四辺形アイソパラメトリック要素で、正規化された局所座標を $(\\xi,\\eta)$、節点の全体座標を $(x_i,y_i)$、形状関数を $N_i(\\xi,\\eta)$ とする。局所座標で指定した点の全体座標 $(x,y)$ を求める式はどれか。",
+      "question": "図の正規化された局所座標と全体座標の関係を考える。四辺形アイソパラメトリック要素で、正規化された局所座標を $(\\xi,\\eta)$、節点の全体座標を $(x_i,y_i)$、形状関数を $N_i(\\xi,\\eta)$ とする。局所座標で指定した点の全体座標 $(x,y)$ を求める式はどれか。",
       "choices": [
         "$x=\\sum_iN_ix_i,\\quad y=\\sum_iN_iy_i$",
         "$x=\\sum_i(\\partial N_i/\\partial\\xi)x_i,\\quad y=\\sum_i(\\partial N_i/\\partial\\eta)y_i$",
@@ -155,7 +155,17 @@
       ],
       "figureImage": "f5CoordMap",
       "figureHint": "同じ点Pが正規化局所座標(0.5,0)と全体座標(45,30)mmで表されることを、節点の対応・座標軸・形状関数の重みで示す回答後図。",
-      "preFigureImage": null
+      "preFigureImage": "s2Before5_5",
+      "editorialReview": {
+        "officialPoint": "正規化局所座標と全体座標",
+        "alignment": "公式の該当図を参照し、物体形状・比較候補・境界条件と本文の整合を確認。図は標準体裁で独自作図。",
+        "distractorMisconceptions": {
+          "2": "$x=\\sum_i(\\partial N_i/\\partial\\xi)x_i,\\quad y=\\sum_i(\\partial N_i/\\partial\\eta)y_i$",
+          "3": "$x=\\sum_iN_i^2x_i,\\quad y=\\sum_iN_i^2y_i$",
+          "4": "$x=\\sum_ix_i/N_i,\\quad y=\\sum_iy_i/N_i$"
+        },
+        "sha256": "7a6209e2638229b80a77aca06e350bcbff7dcafce99d37c6f360b7c873a8116f"
+      }
     },
     {
       "title": "Q4の曲げ表現",
@@ -186,7 +196,17 @@
       ],
       "figureImage": "f5BendLimit",
       "figureHint": "四つの候補を比較。純曲げにはQ4にないx²が必要。",
-      "preFigureImage": null
+      "preFigureImage": "s2Before5_6",
+      "editorialReview": {
+        "officialPoint": "Q4の曲げ表現",
+        "alignment": "公式の該当図を参照し、物体形状・比較候補・境界条件と本文の整合を確認。図は標準体裁で独自作図。",
+        "distractorMisconceptions": {
+          "1": "u=ax、v=0",
+          "2": "u=0、v=by",
+          "3": "u=cy、v=0"
+        },
+        "sha256": "cbe77a0ecda4c2780593011b15594f706bfd0b9885b6847a8b60dffeaa820e09"
+      }
     },
     {
       "title": "ヤコビ行列",
@@ -223,7 +243,7 @@
       "topic": "非適合モードの追加と要素内消去",
       "type": "mc",
       "difficulty": 3,
-      "question": "4節点四辺形要素の曲げ表現を補うため、節点を持たない変数を加え、要素剛性を作った後に静的縮約で消去する。誤った説明はどれか。",
+      "question": "図の正規化された局所座標を用いる。4節点四辺形要素の曲げ表現を補うため、節点を持たない変数を加え、要素剛性を作った後に静的縮約で消去する。誤った説明はどれか。",
       "choices": [
         "二次の変位モードを追加して、曲げの表現を改善できる。",
         "隅の節点の変位が一致しても、隣接要素の辺全体で変位が一致するとは限らない。",
@@ -246,7 +266,17 @@
       ],
       "figureImage": "f5Incompatible",
       "figureHint": "曲げの追加変数を要素内で消去し、全体で解く節点変位の数は増えず、求解規模が変わらない利点を中心に示す回答後図。",
-      "preFigureImage": null
+      "preFigureImage": "s2Before5_8",
+      "editorialReview": {
+        "officialPoint": "四節点要素に節点を持たない変数を加え、要素内消去する効果",
+        "alignment": "公式5-8の四隅の番号と局所座標を参照。追加変数を節点として図示せず、曲げモード・適合性・消去・全体未知数という四肢と整合。",
+        "distractorMisconceptions": {
+          "1": "二次の曲げモードを加えられるという正しい記述を誤りとする混同",
+          "2": "隅の変位の一致が辺全体の適合を保証するとする混同",
+          "3": "要素内で追加変数を消去できるという正しい記述を誤りとする混同"
+        },
+        "sha256": "bec3009929d086608cf00d9bdc58d1c198d462b7c6e6da6bb33569ca267501c8"
+      }
     },
     {
       "title": "高次六面体",
@@ -851,7 +881,17 @@
       ],
       "figureImage": "f5SolveFlow",
       "figureHint": "白地660x420で、変位法の手順(要素剛性→全体組立→境界条件→Ku=f求解→ひずみ・応力)を示すフロー図",
-      "preFigureImage": null
+      "preFigureImage": "s2Before5_29",
+      "editorialReview": {
+        "officialPoint": "計算手順",
+        "alignment": "公式の該当図を参照し、物体形状・比較候補・境界条件と本文の整合を確認。図は標準体裁で独自作図。",
+        "distractorMisconceptions": {
+          "1": "求解→要素剛性→組立→条件→応力",
+          "2": "応力→要素剛性→組立→条件→求解",
+          "3": "組立→求解→要素剛性→条件→応力"
+        },
+        "sha256": "99aab608ffb864dcf678a91ea8a6f4b3703868f3585d1f77b1ecc9e0a347e83c"
+      }
     }
   ]
 }
