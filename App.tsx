@@ -73,7 +73,7 @@ import {
 import { loadBookmarks, toggleBookmark, isBookmarked, bookmarkIdsFrom, type BookmarkMap } from './src/bookmarks';
 import { maybeAskForReview, maybeAskForReviewEvent } from './src/review';
 import Paywall, { type PayTarget } from './src/pro/Paywall';
-import { TERMS_URL, PRIVACY_URL, SUPPORT_MAILTO_URL, reviewUrl } from './src/config/revenuecat';
+import { TERMS_URL, PRIVACY_URL, SUPPORT_URL, SUPPORT_MAILTO_URL, reviewUrl } from './src/config/revenuecat';
 import {
   loadProState,
   saveOwned,
@@ -2662,6 +2662,10 @@ function SettingsTab(props: {
       {/* お問い合わせ導線：JLPT等 別アプリと同じ受信箱を共有するため、件名に【CAE】を自動付与して混同を防ぐ。 */}
       <Text style={[styles.sectionHead, { color: t.text }]}>お問い合わせ</Text>
       <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border }]}>
+        <Pressable onPress={() => Linking.openURL(SUPPORT_URL)} style={{ paddingVertical: 10 }} hitSlop={8}>
+          <Text style={[styles.bodyText, { color: t.primary }]}>サポートページ</Text>
+        </Pressable>
+        <View style={{ height: 1, backgroundColor: t.border }} />
         <Pressable onPress={() => Linking.openURL(SUPPORT_MAILTO_URL)} style={{ paddingVertical: 10 }} hitSlop={8}>
           <Text style={[styles.bodyText, { color: t.primary }]}>お問い合わせ（メール）</Text>
         </Pressable>
