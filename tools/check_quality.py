@@ -61,6 +61,37 @@ def editorial_digest(q):
                                     separators=(",", ":")).encode("utf-8")).hexdigest()
 
 
+EASY_EXPLANATION_MIN_CHARS = 1200
+
+
+def easy_explanation_body_length(sections):
+    """Count body text only: omit headings/whitespace; include inline math source."""
+    return sum(len(re.sub(r"\s", "", section["body"])) for section in sections)
+
+
+def easy_explanation_errors(data):
+    """The length floor prevents under-explanation; semantic clarity is reviewed separately."""
+    errors = []
+    for q in data.get("questions", []):
+        if "easyExplanation" not in q:
+            continue
+        sections = q["easyExplanation"]
+        num = q.get("number", "?")
+        if (not isinstance(sections, list)
+                or any(not isinstance(section, dict)
+                       or any(not isinstance(section.get(key), str) or not section[key].strip()
+                              for key in ("title", "body")) for section in sections)):
+            errors.append(f"{num}: やさしい解説の見出し・本文が不正または欠落")
+            continue
+        # 空配列は任意の補足を表示しない指定。作成された補足は全問で下限を守る。
+        if sections:
+            length = easy_explanation_body_length(sections)
+            if length < EASY_EXPLANATION_MIN_CHARS:
+                errors.append(f"{num}: やさしく解説の本文が{length}字で"
+                              f"{EASY_EXPLANATION_MIN_CHARS}字未満（見出し・空白除外）")
+    return errors
+
+
 def editorial_errors(data):
     """Semantic judgement is manual; missing/stale judgement is a blocking error.
 
@@ -75,20 +106,13 @@ def editorial_errors(data):
               or (meta.get("grade") == "熱流体力学 1級" and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8))
               or (meta.get("grade") == "熱流体力学 2級" and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)))
     if not target:
-        return []
+        return easy_explanation_errors(data)
     baseline_path = Path(__file__).with_name("solid2_editorial_baseline.json")
     baseline = json.loads(baseline_path.read_text(encoding="utf-8"))["legacy"]
     legacy = {key: value for chapter in baseline.values() for key, value in chapter.items()}
-    errors = []
+    errors = easy_explanation_errors(data)
     for q in data.get("questions", []):
         num = q.get("number", "?")
-        if "easyExplanation" in q:
-            sections = q["easyExplanation"]
-            if (not isinstance(sections, list) or not sections
-                    or any(not isinstance(s, dict)
-                           or any(not isinstance(s.get(k), str) or not s[k].strip()
-                                  for k in ("title", "body")) for s in sections)):
-                errors.append(f"{num}: やさしい解説の見出し・本文が不正または欠落")
         review = q.get("editorialReview")
         signature = editorial_digest(q)
         if review is None and legacy.get(q.get("id")) == signature:

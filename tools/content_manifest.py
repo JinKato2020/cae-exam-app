@@ -64,11 +64,38 @@ def collect(root: str):
 
 def main():
     root = os.getcwd()
-    # Stop before producing any distributable data if a changed question lacks review.
+    # Full releases review every chapter. Scoped releases review every selected chapter
+    # and require all other payloads to equal the currently published manifest.
     from pathlib import Path
-    for question_path in sorted((Path(root) / "content" / "questions").glob("*.json")):
-        require_editorial_review(json.loads(question_path.read_bytes()))
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--only", nargs="+", default=os.environ.get("CAE_OTA_QUESTION_FILES", "").split())
+    selected = set(parser.parse_args().only)
     files = collect(root)
+    if selected:
+        import re
+        import time
+        import urllib.request
+        if any(not re.fullmatch(r"content/questions/[A-Za-z0-9_-]+\.json", key)
+               or key not in files for key in selected):
+            raise ValueError("限定配信の対象は既存の問題JSONだけ指定できます")
+        request = urllib.request.Request(
+            f"https://content.safa-lang.com/{APP_ID}/_manifest.json?t={time.time_ns()}",
+            headers={"User-Agent": "CAE-content-release/1.0", "Cache-Control": "no-cache"})
+        with urllib.request.urlopen(request, timeout=30) as response:
+            published = json.load(response)
+        if published.get("appId") != APP_ID or published.get("schema") != 1:
+            raise ValueError("公開manifestのアプリ・スキーマが不一致")
+        previous = published["files"]
+        changed = {key for key in set(files) | set(previous)
+                   if files.get(key) != previous.get(key)}
+        if changed - selected:
+            raise ValueError("限定配信の対象外に差分があります: " + ", ".join(sorted(changed - selected)))
+        question_paths = [Path(root) / key for key in sorted(selected)]
+    else:
+        question_paths = sorted((Path(root) / "content" / "questions").glob("*.json"))
+    for question_path in question_paths:
+        require_editorial_review(json.loads(question_path.read_bytes()))
     manifest = {
         "appId": APP_ID,
         "schema": 1,

@@ -6,6 +6,12 @@ run-name: "CAE コンテンツを棚(R2)へ配信"
 # 前提: 起点となる「土台ビルド(P5)」を1本入れたアプリがインストールされていること。
 on:
   workflow_dispatch:
+    inputs:
+      question_files:
+        description: '限定配信する問題JSON（空白区切り）。空欄は全教材を検証'
+        required: false
+        default: ''
+        type: string
 
 # 配信先レイアウト（量産共通: 1バケットに アプリID prefix で相乗り）:
 #   r2:<R2_BUCKET>/cae/_manifest.json
@@ -28,6 +34,8 @@ jobs:
 
       # 配信する実ファイルに合わせて _manifest.json（指紋台帳）を作り直す＝常に整合。
       - name: Rebuild content manifest
+        env:
+          CAE_OTA_QUESTION_FILES: ${{ inputs.question_files }}
         run: |
           python tools/content_manifest.py
           echo "::notice::manifest 再生成完了"
