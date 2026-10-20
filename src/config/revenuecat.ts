@@ -17,9 +17,11 @@ const ANDROID_KEY = 'goog_ZqItVqIEXCEvNmVQaMfyGVKXSct';
 //   ・対応する App Store の製品IDは 'com.safa.cae.solid.g2' 等（RevenueCat側で商品に紐づけ）。
 // （旧・単一Pro('pro'/'lifetime')は廃止。分野×級ごとの個別購入に変更）
 
-// 審査で必要な導線（利用規約・プライバシーポリシー）。公開先=公開リポ JinKato2020/cae-legal の GitHub Pages。
-export const TERMS_URL = 'https://jinkato2020.github.io/cae-legal/terms.html';
-export const PRIVACY_URL = 'https://jinkato2020.github.io/cae-legal/privacy.html';
+// 審査で必要な導線（利用規約・プライバシーポリシー・サポート）。公開先=公開リポ JinKato2020/LEGAL の GitHub Pages（/LEGAL/cae/ 配下）。
+export const TERMS_URL = 'https://jinkato2020.github.io/LEGAL/cae/terms.html';
+export const PRIVACY_URL = 'https://jinkato2020.github.io/LEGAL/cae/privacy.html';
+// サポートページ（審査・ストア掲載で必要なサポートURL）。/LEGAL/cae/ 配下。
+export const SUPPORT_URL = 'https://jinkato2020.github.io/LEGAL/cae/support.html';
 
 // 問い合わせ窓口。JLPT等 別アプリと同じ受信箱(contact@safa-lang.com)を共有するため、
 // 件名に必ず【CAE】を自動付与して、どのアプリからの問い合わせか一目で分かるようにする(混同防止)。
