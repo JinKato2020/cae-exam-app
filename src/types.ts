@@ -1,3 +1,8 @@
+export type EasyExplanationSection = {
+  title: string;
+  body: string;
+};
+
 // 問題データの型（content/questions/*.json に対応）
 export type Question = {
   id: string;
@@ -7,6 +12,7 @@ export type Question = {
   choices: string[];
   answer: number; // 1始まりの正解番号
   explanation: string;
+  easyExplanation?: EasyExplanationSection[]; // 回答後に開く、公式・導出・具体例を含む補足解説
   figure?: string; // 図の表示タイミング: 'required'=回答前から表示 / 'helpful'=回答後(解説と一緒)
   figureImage?: string; // 実画像のキー（src/figures.ts の FIGURES に対応）。preFigureImage がある時は「回答後の解説図」として使う
   preFigureImage?: string; // 回答前用の図キー（答えを一切示さない配置図/概念図）。あれば回答前はこちらを表示し、回答後は figureImage を表示（前後2図）

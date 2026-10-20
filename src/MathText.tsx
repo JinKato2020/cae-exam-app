@@ -20,7 +20,8 @@ function buildHtml(
   bold: boolean,
   scroll: boolean,
   bg: string,
-  bodyBg: string
+  bodyBg: string,
+  scrollOnlyOverflow: boolean
 ) {
   const payload = JSON.stringify(text); // 本文はJSで textContent に入れる（HTML注入を避け、\ や $ をそのまま保持）
   const displayCss = scroll
@@ -55,6 +56,7 @@ function buildHtml(
 ${scroll ? '<div id="fade"></div>' : ''}
 <script>
   var SCROLL=${scroll ? 'true' : 'false'};
+  var SCROLL_ONLY_OVERFLOW=${scrollOnlyOverflow ? 'true' : 'false'};
   document.getElementById('c').textContent = ${payload};
   // scroll でないときだけ、箱幅を超える表示数式を左上基点で縮小して収める（従来動作）。
   function fitDisplays(){
@@ -112,6 +114,7 @@ ${scroll ? '<div id="fade"></div>' : ''}
     for(var i=0;i<roots.length;i++){
       var k=roots[i], parent=k.parentElement;
       if(!parent || parent.classList.contains('katex-display') || parent.classList.contains('math-scroll')) continue;
+      if(SCROLL_ONLY_OVERFLOW && k.getBoundingClientRect().width <= document.getElementById('c').clientWidth + 1) continue;
       var row=document.createElement('span'); row.className='math-scroll';
       parent.insertBefore(row,k); row.appendChild(k);
     }
@@ -125,6 +128,7 @@ ${scroll ? '<div id="fade"></div>' : ''}
     f.style.display = over ? 'block' : 'none';
   }
   function post(){
+    if (SCROLL_ONLY_OVERFLOW) prepareMathScroll();
     fitDisplays(); updateFade();
     var el = document.getElementById('c');
     var h = Math.ceil(Math.max(
@@ -163,6 +167,7 @@ export function MathText(props: {
   fontSize?: number;
   bold?: boolean;
   scroll?: boolean; // true=横スクロール可（縮小しない）。公式カードで使用
+  scrollOnlyOverflow?: boolean; // 混在本文では、収まる数式はインラインのままにする
   bg?: string; // 右端フェードの色＝ボックス背景色
   // scroll時、この領域に指が触れている間だけ親の横スワイプ（タブ切替・前後移動）を止めるための通知。
   onScrollActiveChange?: (active: boolean) => void;
@@ -177,7 +182,7 @@ export function MathText(props: {
   const webview = (
     <WebView
       originWhitelist={['*']}
-      source={{ html: buildHtml(props.text, props.color, fontSize, props.bold ?? false, scroll, props.bg ?? '#ffffff', bodyBg) }}
+      source={{ html: buildHtml(props.text, props.color, fontSize, props.bold ?? false, scroll, props.bg ?? '#ffffff', bodyBg, props.scrollOnlyOverflow ?? false) }}
       style={{ height, backgroundColor: bodyBg, width: '100%' }}
       // scroll のときは横スクロールを受け付ける。縦は中身ぴったりの高さなので動かない。
       scrollEnabled={scroll}
@@ -221,6 +226,7 @@ export function RichText(props: {
   bold?: boolean;
   style?: StyleProp<TextStyle>;
   scroll?: boolean;
+  scrollOnlyOverflow?: boolean;
   bg?: string;
   onScrollActiveChange?: (active: boolean) => void;
 }) {
@@ -246,6 +252,7 @@ export function RichText(props: {
         fontSize={props.fontSize}
         bold={props.bold}
         scroll={props.scroll}
+        scrollOnlyOverflow={props.scrollOnlyOverflow}
         bg={props.bg}
         onScrollActiveChange={props.onScrollActiveChange}
       />

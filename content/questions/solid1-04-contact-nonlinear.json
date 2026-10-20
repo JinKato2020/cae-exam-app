@@ -460,7 +460,7 @@
       "officialRef": "問4-12",
       "role": "primary",
       "relatedFormulas": [
-        "s1ch4-13"
+        "s1ch4-16"
       ],
       "editorialReview": {
         "officialPoint": "摩擦仕事増分・変換係数・熱伝導の発熱項",
@@ -470,7 +470,7 @@
           "2": "仕事率と熱量の時間換算を省略",
           "4": "接線滑りを法線変位へ置換"
         },
-        "sha256": "d872b196c08c2951090f1610a78d7c96ec72d8c01d24c562cf84c4ed4a023649"
+        "sha256": "29befe78032840f6a855cbac81150a2b62ce9da71a935ae1b761e1e857d51cbd"
       }
     },
     {

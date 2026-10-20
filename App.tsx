@@ -34,6 +34,7 @@ import { FIGURE_ASPECT } from './src/figures';
 import { figureSource, hasFigure } from './src/data/figureStore';
 import { getMapDataUri } from './src/mapData';
 import { RichText } from './src/MathText';
+import { EasyExplanation } from './src/EasyExplanation';
 import { ProblemCalculator } from './src/Calculator';
 import { CATALOG, questionsByIds, QUESTION_FORMULA_ID, examRule, type ChapterEntry } from './src/catalog';
 import { formulaDoc, type FormulaItem } from './src/formulas';
@@ -1968,7 +1969,8 @@ function ProblemScreen(props: {
   const related = relatedFormulaItems(q);
   const relFormulaId = QUESTION_FORMULA_ID[q.id];
   // 左スワイプ=次の問題 / 右スワイプ=前の問題（ボタンと同じ動作。両端はクランプ済）
-  const pan = useSwipeNav(props.onNext, props.onPrev);
+  const mathScrollLock = useRef(false);
+  const pan = useSwipeNav(props.onNext, props.onPrev, true, mathScrollLock);
 
   return (
     <View style={{ flex: 1 }} {...pan}>
@@ -2154,6 +2156,15 @@ function ProblemScreen(props: {
           </View>
         </View>
       ) : null}
+
+      <EasyExplanation
+        key={q.id}
+        question={q}
+        answered={answered}
+        locked={locked}
+        colors={t}
+        onScrollActiveChange={active => { mathScrollLock.current = active; }}
+      />
 
       {/* 前へ / 次の問題へ */}
       <View style={styles.qNav}>

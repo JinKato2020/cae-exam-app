@@ -82,6 +82,13 @@ def editorial_errors(data):
     errors = []
     for q in data.get("questions", []):
         num = q.get("number", "?")
+        if "easyExplanation" in q:
+            sections = q["easyExplanation"]
+            if (not isinstance(sections, list) or not sections
+                    or any(not isinstance(s, dict)
+                           or any(not isinstance(s.get(k), str) or not s[k].strip()
+                                  for k in ("title", "body")) for s in sections)):
+                errors.append(f"{num}: やさしい解説の見出し・本文が不正または欠落")
         review = q.get("editorialReview")
         signature = editorial_digest(q)
         if review is None and legacy.get(q.get("id")) == signature:
@@ -139,9 +146,11 @@ def presentation_errors(data):
                 errors.append("数式の区切りが閉じていません")
         elif isinstance(v, list):
             for x in v: visible(x)
+        elif isinstance(v, dict):
+            for x in v.values(): visible(x)
     for record in records:
         for key, value in record.items():
-            if key in ("question", "choices", "explanation", "formula", "body", "example", "term", "title"):
+            if key in ("question", "choices", "explanation", "easyExplanation", "formula", "body", "example", "term", "title"):
                 visible(value)
             if key in ("figureImage", "preFigureImage") and value:
                 keys.add(value)
