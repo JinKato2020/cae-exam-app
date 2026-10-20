@@ -24,14 +24,27 @@ async function applyCache(): Promise<void> {
   rebuildProState();
 }
 
-// onApplied: 裏の同期で新しいコンテンツを取り込み、この起動中に反映したときに呼ばれる（画面の再描画用）。
+// 同期中の復帰イベントは同じ処理を共有し、並行ダウンロードを避ける。
+let refreshInFlight: Promise<boolean> | undefined;
+
+export function refreshContent(): Promise<boolean> {
+  if (refreshInFlight) return refreshInFlight;
+  refreshInFlight = (async () => {
+    const result = await syncContent();
+    if (!result || result.updated <= 0) return false;
+    await applyCache();
+    return true;
+  })().catch(() => false).finally(() => {
+    refreshInFlight = undefined;
+  });
+  return refreshInFlight;
+}
+
+// onApplied: 新しい教材を反映したとき、表示中の問題も最新データで描き直す。
 export async function initContent(onApplied?: () => void): Promise<void> {
   await applyCache();
-  // 最新（テキスト＋図）を裏で取り込む。起動表示は待たない。
-  void syncContent().then(async (r) => {
-    // 更新が無ければ従来どおり何もしない（＝不要な再描画を出さない）。
-    if (!r || r.updated <= 0) return;
-    await applyCache();     // 取り込んだ差分を同セッションで反映
-    onApplied?.();          // 画面へ「反映した」と通知（再描画）
-  }).catch(() => {});
+  // 起動表示はローカル読込だけで進め、ネット同期を待たない。
+  void refreshContent().then(updated => {
+    if (updated) onApplied?.();
+  });
 }

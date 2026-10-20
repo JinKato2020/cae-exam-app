@@ -21,9 +21,11 @@ export function EasyExplanation(props: {
 }) {
   const { question, answered, locked, colors: c } = props;
   const [open, setOpen] = useState(false);
-  useEffect(() => { setOpen(false); }, [question.id, answered, locked]);
-
   const sections = question.easyExplanation;
+  const available = Boolean(sections?.length);
+  useEffect(() => { setOpen(false); }, [question.id, answered, locked, available]);
+
+  // 分野・級・問題番号で限定せず、OTAで届いたデータの有無だけで表示する。
   if (locked || !answered || !sections?.length) return null;
 
   return (

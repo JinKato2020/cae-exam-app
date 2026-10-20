@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import {
   ActivityIndicator,
   Alert,
+  AppState,
   Image,
   ImageBackground,
   Linking,
@@ -38,7 +39,7 @@ import { EasyExplanation } from './src/EasyExplanation';
 import { ProblemCalculator } from './src/Calculator';
 import { CATALOG, questionsByIds, QUESTION_FORMULA_ID, examRule, type ChapterEntry } from './src/catalog';
 import { formulaDoc, type FormulaItem } from './src/formulas';
-import { initContent } from './src/data/initContent';
+import { initContent, refreshContent } from './src/data/initContent';
 import { BUILD_NUMBER } from './src/buildInfo';
 import Svg, { Circle, Line, Polygon, Text as SvgText, Defs, LinearGradient, RadialGradient, Stop, Rect } from 'react-native-svg';
 import {
@@ -235,7 +236,29 @@ export default function App() {
   const [contentReady, setContentReady] = useState(false);
   const [contentVersion, setContentVersion] = useState(0);
   useEffect(() => {
-    initContent(() => setContentVersion((v) => v + 1)).finally(() => setContentReady(true));
+    let mounted = true;
+    let ready = false;
+    let previousState = AppState.currentState;
+    const onApplied = () => {
+      if (mounted) setContentVersion(v => v + 1);
+    };
+    void initContent(onApplied).finally(() => {
+      ready = true;
+      if (mounted) setContentReady(true);
+    });
+    const subscription = AppState.addEventListener('change', state => {
+      const resumed = state === 'active' && previousState !== 'active';
+      previousState = state;
+      if (ready && resumed) {
+        void refreshContent().then(updated => {
+          if (updated) onApplied();
+        });
+      }
+    });
+    return () => {
+      mounted = false;
+      subscription.remove();
+    };
   }, []);
   return (
     <SafeAreaProvider>
