@@ -1772,3 +1772,7 @@ PDF更新・コミット・Push・OTA配信・本体ビルドは今回未実施�
 ## 2026-10-21-OTA-T2-EASY1-3：熱流体2級第1〜3章の一括配信
 
 利用者の「すべて配信して」により、直前に整備した熱流体2級第1〜3章全52問をまとめてOTA対象とする。対象はthermal2-01-math-basics.json、thermal2-02-fluid-basics.json、thermal2-03-thermo-heat.json。3章の既存必須ゲートを再確認し、配信前の公開manifest全3,544件と予定内容の比較で、この3JSONだけが変わることを確認。固体2級第5〜8章の未改稿は公開済み13800dcの内容を保持した配信用コミットへ分離する。mainの教材正本・記録はコミット・Pushして保存し、配信は専用ブランチから既存ワークフローを使う。配信結果は後続記録へ追記し、成功後の公開JSON・manifest再取得は行わない。PDF・本体ビルドは今回未依頼。
+
+## 2026-10-21-OTA-T2-EASY1-3-DONE：全52問のOTA配信完了
+
+熱流体2級第1〜3章の改稿はmain commit fae6eb8でコミット・Push済み。公開済み13800dcを基に対象3JSONと共有記録だけを載せた配信commit e9b9aa2（codex/release-thermal2-easy1-3-20261021）から、本番OTA run39523035596はsuccess（https://github.com/JinKato2020/cae-exam-app/actions/runs/39523035596）。既存の対象章ゲート・対象外差分ゲート・manifest生成・R2同期が成功した。第1〜3章全52問の通常解説とやさしく解説はOTA配信処理完了。過去の未配信記録はこの状態で更新する。配信後の公開JSON・manifest再取得は行っていない。次回の公開内容基準はe9b9aa2。固体2級第5〜8章の未改稿は含めず、main上の正本を保持。PDF・本体ビルドは未実施、実機確認は未実施。
