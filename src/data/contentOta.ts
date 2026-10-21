@@ -21,7 +21,11 @@ const BUNDLE_TAG_PATH = DIR + '_bundle.tag';
 // OTA対象＝テキスト(content/*.json)と図(figures/*.png)。
 const isOtaTarget = (key: string): boolean => key.startsWith('content/') || key.startsWith('figures/');
 
-const enc = (key: string): string => encodeURIComponent(key); // キー→安全なローカル名
+// Androidのfile URIは%2Fを/へ復号する。%を含まない名前にして、
+// content/questions/...を存在しないサブフォルダとして解釈させない。
+const enc = (key: string): string => 'v2-' + encodeURIComponent(key).replace(/~/g, '%7E').replace(/%/g, '~');
+const dec = (name: string): string => decodeURIComponent(name.startsWith('v2-')
+  ? name.slice(3).replace(/~/g, '%') : name); // 旧iOSキャッシュも引き続き読む
 // figures/<name>.png → 図名(<name>)。FIGURES / q.figureImage と同じキーに揃える。
 const figureName = (key: string): string => key.slice('figures/'.length).replace(/\.(png|jpe?g)$/i, '');
 type ManifestFiles = Record<string, { sha256: string; size?: number }>;
@@ -89,7 +93,8 @@ export async function loadCache(): Promise<CacheLoad> {
     const out: CacheLoad = { content: {}, figures: {} };
     for (const name of names) {
       if (name === '_shas.json' || name === '_bundle.tag') continue;
-      const key = decodeURIComponent(name);
+      let key: string;
+      try { key = dec(name); } catch { continue; }
       // 同梱と同じ版は同梱を使う。追跡されていない旧ファイルも復活させない。
       if (!cachedShas[key] || cachedShas[key] === bundled[key]?.sha256) continue;
       if (key.startsWith('figures/')) {
