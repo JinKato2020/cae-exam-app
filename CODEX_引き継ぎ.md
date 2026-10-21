@@ -1804,3 +1804,7 @@ PDF更新・コミット・Push・OTA配信・本体ビルドは今回未実施�
 ## 2026-10-21-OTA-T1-EASY1-3：第1〜3章の一括配信手順
 
 利用者の「全部終わったらまとめて配信して」により、thermal1-01-single-phase-physics.json、thermal1-02-single-phase-calc1.json、thermal1-03-single-phase-calc2.jsonの3件を配信する。現行公開内容の基準e9b9aa2を維持し、上記3件だけを差し替える配信用コミットを専用ブランチへ作る。mainに残る固体2級第5〜8章の未改稿は配信しない。既存の対象外差分ゲートと必須ゲートを維持し、成功後の公開JSON・manifest再取得は行わない。結果は後続記録へ追記する。
+
+## 2026-10-21-OTA-T1-EASY1-3-DONE：第1〜3章全41問のOTA配信完了
+
+熱流体1級・単相流第1〜3章の詳解はmain commit 655704eでコミット・Push済み。公開済みe9b9aa2を基に対象3JSONと共有記録だけを差し替えた配信commit 2923f36（codex/release-thermal1-easy1-3-20261021）から、本番OTA run39533782219はsuccess（https://github.com/JinKato2020/cae-exam-app/actions/runs/39533782219）。全3,544件の配信前範囲確認、対象3章の既存必須ゲート、manifest生成、R2同期が成功。第1〜3章全41問の通常解説とやさしく解説はOTA配信処理完了で、前記の未配信・未コミットという作業当時の状態を更新する。成功後の公開JSON・manifest再取得は行っていない。次回の公開内容基準は2923f36。固体2級第5〜8章の未改稿は含めずmainに保持。PDF・本体ビルドは未実施、実機表示は未確認。
