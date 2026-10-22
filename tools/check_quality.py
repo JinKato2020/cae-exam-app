@@ -83,8 +83,12 @@ def easy_explanation_errors(data):
                               for key in ("title", "body")) for section in sections)):
             errors.append(f"{num}: やさしい解説の見出し・本文が不正または欠落")
             continue
-        # 空配列は任意の補足を表示しない指定。作成された補足は全問で下限を守る。
-        if sections:
+        # 空配列は任意の補足を表示しない指定。作成された補足は下記の適用対象で下限を守る。
+        # 固体1級1〜6章は2026-10-22の指示により文字数より導出と読みやすさを優先。
+        meta = data.get("meta", {})
+        concise_solid1 = (meta.get("grade") == "固体力学 1級"
+                          and meta.get("chapter") in (1, 2, 3, 4, 5, 6))
+        if sections and not concise_solid1:
             length = easy_explanation_body_length(sections)
             if length < EASY_EXPLANATION_MIN_CHARS:
                 errors.append(f"{num}: やさしく解説の本文が{length}字で"
