@@ -806,8 +806,10 @@
           "3": "内部固有モードの境界条件を自由とする",
           "4": "Craig-Bamptonでも固有モードを追加しないと誤解"
         },
-        "sha256": "4543c7ea8461f9346f1d29bc8dce172a2b689ae43522fce2f3151336c0ea6118"
-      }
+        "sha256": "70226dadf8e38778ffc1880eed4c999d78851f8633cfd43efb13b706cf23ba8b"
+      },
+      "preFigureImage": "v1e8BoundaryModesPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-8-22",
@@ -844,8 +846,10 @@
           "2": "静たわみを慣性変形とし全次数の厳密性を誤認",
           "4": "静縮小の精度が次数によらないと誤認"
         },
-        "sha256": "7c54988eb51ecec2d43213a62a8894b528a89181019bcfa959798c7bea645cf9"
-      }
+        "sha256": "c216cb279320bea157cfb0fa4954be9f16ddfcb28e0ea6c06da36159153ef326"
+      },
+      "preFigureImage": "v1e8BoundaryModesPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-8-23",
@@ -882,8 +886,10 @@
           "3": "Tθを動的変形・φ1を非拘束とし表現力同等とした誤り",
           "4": "Tu,Tθを剛体モード・φ1を静たわみとした誤り"
         },
-        "sha256": "5728ef818f4424c22ef508b2ac12015dce28468016c2c00d0a7ca2836f58808f"
-      }
+        "sha256": "6875482f0f5b50c3497f5c5020e8fb3b5434af0d1d4407e3a725ccf6071b682e"
+      },
+      "preFigureImage": "v1e8BoundaryModesPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-8-24",
@@ -1225,8 +1231,10 @@
           "2": "界面への伝達係数を入力点自身の係数と混同",
           "4": "第2分系を励振する界面力と元の入力を同一視"
         },
-        "sha256": "6b7ebc8010fbebec25b4cf4fd95bdede6c03c0efdb4fb73cadd514881ab942f3"
-      }
+        "sha256": "21ff343d77f18ca482c1b96561fca292da4a2a786ab3d6fd0767e4f2d4647488"
+      },
+      "preFigureImage": "v1e8SubstructureJoinPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-8-33",
@@ -1339,8 +1347,10 @@
           "2": "精度が必ず低下するとした誤り",
           "4": "付加質量が一様で固有値計算不要とした誤り"
         },
-        "sha256": "b9eef486337dcc52f634c2843b627e36e14f3d42171e69abd9cee585b51bf9fc"
-      }
+        "sha256": "96546b16f0a0b89fcb8b6b28e895757ecd153205f52989d2ad814a7912ae5273"
+      },
+      "preFigureImage": "v1e8SubmergedSetupPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-8-36",
@@ -1377,8 +1387,10 @@
           "2": "縮小前を6万とした誤り",
           "3": "結合節点の自由度を足さず縮小後を100とした誤り"
         },
-        "sha256": "f0bfc735312c7e015fbc18fcf04435cefeac1c726f5981b65a032a2879636cae"
-      }
+        "sha256": "74540ac1905db79accad4577c3f8fdf5496ed0a8df1140689f0383ef59c2879e"
+      },
+      "preFigureImage": "v1e8BonnetInterfacesPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-8-37",
@@ -1415,8 +1427,10 @@
           "3": "ロック部のみを拘束し結合部の作用を表現できない誤り",
           "4": "結合点と無関係な点を選び力学的作用を再現できない誤り"
         },
-        "sha256": "215587b0c3ce6bf1e31d8d665cd2b37ec87ca03e0334a9955c263fcd9bc18d08"
-      }
+        "sha256": "4838dc57b9ca29428d8b5f4deb2ec0099513afd15a4626840260a96989c1a729"
+      },
+      "preFigureImage": "v1e8BonnetInterfacesPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     }
   ]
 }

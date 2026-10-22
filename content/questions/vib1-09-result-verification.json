@@ -123,8 +123,10 @@
           "2": "値域を0〜∞とし大小判定を取り違える誤解",
           "4": "値域を-∞〜∞とし対応モードで0に近いほど妥当と逆に捉える誤解"
         },
-        "sha256": "4b5a7980818022e9bca749bcd3f9ec9fc188b348524226226e69260785f2a982"
-      }
+        "sha256": "c4f0057b8c0375a57d55a2fbda3b4fbf8ee528e2d6bf442498eeadf0bd2a6d6c"
+      },
+      "preFigureImage": "v1e9BogieModelsPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-9-4",
@@ -161,8 +163,10 @@
           "2": "内積を二乗し忘れる",
           "3": "分母の積を和に置き換え二乗"
         },
-        "sha256": "48a329654c64c4597bcf81fd98e5444a6658e2b25b9a3accce4227ee28e93518"
-      }
+        "sha256": "4e84ecf2952440e456f11f46498dd9b88c48a152a7458decc15260b45805f089"
+      },
+      "preFigureImage": "v1e9BarModesPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-9-5",
@@ -275,8 +279,10 @@
           "2": "静縮小で使わない動的モードのみが効くとする誤解",
           "4": "動的モード抽出数(ウ)まで関与するとCraig-Bampton法と混同する誤解"
         },
-        "sha256": "08e62567adfd773af6b14c0fa91231601a701982b65ce92b4c256ab360a6d19d"
-      }
+        "sha256": "e7894b1da4991dc803dd7113fd413be71c97bd645115f69f2a406ba0c6aa813b"
+      },
+      "preFigureImage": "v1e9GuyanSplitPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-9-8",
@@ -313,8 +319,10 @@
           "2": "ねじりの3929Hzを曲げ1次と取り違える誤解",
           "3": "2方向の中間の約500Hzになると考える誤解"
         },
-        "sha256": "000afe0e8cb078f36a4dd60bf77bc73b8b390b5c93b413072e322d6c2ae4a79f"
-      }
+        "sha256": "e0b22cb5ffb54c05694376cbd2d6a0f3fdc18756101a43650c6b3bfb502f5d1e"
+      },
+      "preFigureImage": "v1e9CantileverDimensionsPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-9-9",
@@ -337,7 +345,7 @@
       "reviewed": true,
       "officialRef": "問9-9",
       "role": "primary",
-      "figure": "none",
+      "figure": "helpful",
       "relatedFormulas": [
         "v1ch9-5"
       ],
@@ -349,10 +357,13 @@
           "3": "剛性と密度の比を逆にし$\\sqrt{a/b}$とする誤解",
           "4": "剛性と質量の積$\\sqrt{ab}$と取り違える誤解"
         },
-        "sha256": "673c2c8a4c9d27f7ab381de43ee3b074675c803914bce6c4bc7c21de7ae1f3d1"
+        "sha256": "842b42ede668cf3fe75da51b120c8992b61d76394eb7639427216f67dbad080c"
       },
       "figureExempt": true,
-      "figureExemptReason": "手法の分類または倍率の式を文章と途中式で比較でき、空間的な図を必要としないため。"
+      "figureExemptReason": "手法の分類または倍率の式を文章と途中式で比較でき、空間的な図を必要としないため。",
+      "preFigureImage": "v1e9ShaftMaterialsPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "figureImage": "v1e9ShaftMaterialsPre"
     },
     {
       "id": "vib1-9-10",
@@ -389,8 +400,10 @@
           "3": "荷重が腹に作用して共振しないと逆に捉える誤解",
           "4": "減衰過大が原因で固有モードが荷重位置依存とする誤解"
         },
-        "sha256": "88abf9e514cae61526850a8d37211f5804dd4c8ba60ee27c01897fabf5004d7d"
-      }
+        "sha256": "6073d9b5e64a57466f18fb8f93bdc66c8021ffe6fe329d23e8e3c46bf370b029"
+      },
+      "preFigureImage": "v1e9LFrameSetupPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-9-11",
@@ -427,8 +440,10 @@
           "2": "高回転で振幅0に収束すると誤る誤解",
           "4": "位相遅れが常に0で高回転0収束と誤る誤解"
         },
-        "sha256": "f6ec89ead22cd44dd2f5da61a3b65176f55c78ebb9e892e7b5d1ede67ed535d8"
-      }
+        "sha256": "04a248a0f10b4c83321dfe7674aa42c5cc0907179b98e4935ecaef05f4a691f4"
+      },
+      "preFigureImage": "v1e9UnbalancedMachinePre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-9-12",
@@ -504,8 +519,10 @@
           "3": "面内を慣性力とし膜要素で十分とする誤解",
           "4": "初期応力が生じず固有振動数は変化しないとする誤解"
         },
-        "sha256": "44670b477d268d0b2aad89474ce549046a57c1abc053ed9a9e7cff3fa3976b73"
-      }
+        "sha256": "103ed04fa7800c2d0fea46202d036bbeba6f68ec556429de8b9955eae68aec90"
+      },
+      "preFigureImage": "v1e9HangingPanelPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-9-14",
@@ -542,8 +559,10 @@
           "3": "下2箇所を3.2倍と過大に見積もる誤解",
           "4": "上2箇所を3.2倍にすれば足りると見誤る誤解"
         },
-        "sha256": "2eccf0859b773ba8fe207ebb5bca50131a832366d57804a8b5d9f187af5c2d23"
-      }
+        "sha256": "e38644d0ae36b45d2716235417a7790fae0aaee08f785a87e38cdc0df499ec71"
+      },
+      "preFigureImage": "v1e9RadiatorEnergyPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-9-15",
@@ -580,8 +599,10 @@
           "2": "4440Hz(2次)を1次と取り違える誤解",
           "4": "周波数は正しいが$\\Delta f=100$Hzでは粗くピークを取り逃す誤解"
         },
-        "sha256": "70029f0cc3c27b9e2fcf6139fa5edda7b7b7b85eba24407d893c9f9b626e0438"
-      }
+        "sha256": "7490c96f1a4b5ab5ed4c31d4fa500d4cab7962555403ca1863966bee70b20d25"
+      },
+      "preFigureImage": "v1e9GearWheelPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-9-16",
@@ -618,8 +639,10 @@
           "2": "入力PSDを2乗し次元が合わない誤解",
           "3": "無相関のときのみ成立する式を常に厳密と誤る誤解"
         },
-        "sha256": "0708755080e13edb18ffaf46b1c0023805bd7908fa98dd824e57400a85a2e1aa"
-      }
+        "sha256": "1d8e4d61baa31ae352be38980c24f60a8db7dd123a8339a28b55e1c2ddb7e7c9"
+      },
+      "preFigureImage": "v1e9TwoWheelInputsPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-9-17",
@@ -771,8 +794,10 @@
           "2": "多入力(異なる波)でも計算できるのに同一波限定と誤る誤解",
           "3": "モード数を増やせば必ず精度が上がると誤る誤解"
         },
-        "sha256": "74d20e541dc18b422e333d9f4d0d77e162d2374b8aba4b3a28039685026f823d"
-      }
+        "sha256": "4c1a463f36ed6087b3f6b7578342f700ca35cadfdda8cd97e55ce26bc2275e7d"
+      },
+      "preFigureImage": "v1e9FilledPipePre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-9-21",
@@ -810,8 +835,10 @@
           "3": "ひずみエネルギー最大の瞬間の分布と取り違える誤解",
           "4": "運動エネルギー最大の瞬間の分布と取り違える誤解"
         },
-        "sha256": "76382720fc614949313f11e6f4e3bf4c90cdef49d93545fc1496368ee2b2a670"
-      }
+        "sha256": "f96f0eee3adc31ec9f28506c83deb16d8e112396c6e401fbdf30e9d60c98e132"
+      },
+      "preFigureImage": "v1e9FilledPipePre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-9-22",
@@ -887,8 +914,10 @@
           "2": "物理条件の荷重(ウ)まで縮約精度要因に含める誤解",
           "4": "荷重(ウ)・付加質量(エ)まで全て含める誤解"
         },
-        "sha256": "7666ac515fa11efe87e5b820576f535afd5247caec9ce3ababc1138e90f39cf6"
-      }
+        "sha256": "2ad7b8d0927e4e2b2fd1e83bbd6f65eb47ed8c5005ef00b805d50dd2bd9f8e2c"
+      },
+      "preFigureImage": "v1e9SubmergedBodyPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-9-24",
@@ -925,8 +954,10 @@
           "2": "シェル/ソリッド要素と同等精度と過大評価する誤解",
           "4": "慣性力を考慮せず動解析では常に無意味と誤る誤解"
         },
-        "sha256": "da22de1a1013c06ffaa5cb94e99cc50a3e3c229a69af7dbc853e4b3589a96da7"
-      }
+        "sha256": "9c56d5dba9d4cd52664fd4b7fcc619378f4fa213c00c404af0b0fd2f8915cb7c"
+      },
+      "preFigureImage": "v1e9ValvePipePre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-9-25",
@@ -963,8 +994,10 @@
           "3": "位相差180°と混同し逆符号-1.0mmと誤る誤解",
           "4": "別の位相の瞬間値0.71mm($1/\\sqrt2$)と取り違える誤解"
         },
-        "sha256": "228417e871d6bce4c0bf7714201b1b75af6fa147e7ed9567e74275691d759ace"
-      }
+        "sha256": "dead27ea79f1de0d074375a1dabe2e69d2a1655c1722d9e2ff46e4e5be7774c2"
+      },
+      "preFigureImage": "v1e9ValvePipePre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-9-26",
@@ -988,7 +1021,7 @@
       "officialRef": "問9-26",
       "role": "primary",
       "figure": "helpful",
-      "figureImage": "v1e9PhaseValveSetup",
+      "figureImage": "v1e9SeatPhasePre",
       "figureHint": "回答後の標準図で、与条件と解説の物理関係・計算操作を示します。",
       "relatedFormulas": [
         "v1ch9-15"
@@ -1001,8 +1034,10 @@
           "3": "各点の符号を取り違えb=-2.0・c=+1.0・d=+2.0とする誤解",
           "4": "c=+1.0と位相180°の符号を取り違える誤解"
         },
-        "sha256": "c6d5425922c493320fd1e262cf45d914f235db47d4b780c3915ed3923b0fe660"
-      }
+        "sha256": "292790ae0da4cc9128525245df84a9cea57edb44ab5c4057b5268fd61e25d2e3"
+      },
+      "preFigureImage": "v1e9SeatPhasePre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     }
   ]
 }

@@ -1,1421 +1,1463 @@
 {
- "meta": {
-  "grade": "振動 1級",
-  "category": "第6章 音響連成系の解析基礎",
-  "chapter": 6,
-  "source": "完全オリジナル(振動1級標準問題集 第6章 音響連成系の解析基礎に対応)",
-  "origin": "original",
-  "count": 37,
-  "officialCount": 37,
-  "presentationStyle": "cae-standard-v1"
- },
- "questions": [
-  {
-   "id": "vib1-6-1",
-   "number": "6-1",
-   "title": "平面波を記述する2つの基礎式(連続の式・運動方程式)",
-   "topic": "1次元平面波の基礎式",
-   "type": "mc",
-   "difficulty": 2,
-   "question": "1次元の平面波音波の伝播は音圧 $p$ と粒子速度 $v$ の2量で記述され、体積変化に基づく連続の式と、ニュートンの第二法則に基づく運動方程式の2式が必要である。体積弾性率を $K$、媒質の密度を $\\rho$ とするとき、この2式の組合せとして正しいものはどれか。",
-   "choices": [
-    "連続の式 $\\dfrac{\\partial v}{\\partial x}=-\\dfrac{1}{K}\\dfrac{\\partial p}{\\partial t}$、運動方程式 $\\rho\\dfrac{\\partial v}{\\partial t}=-\\dfrac{\\partial p}{\\partial x}$",
-    "連続の式 $\\dfrac{\\partial v}{\\partial x}=+\\dfrac{1}{K}\\dfrac{\\partial p}{\\partial t}$、運動方程式 $\\rho\\dfrac{\\partial v}{\\partial t}=-\\dfrac{\\partial p}{\\partial x}$",
-    "連続の式 $\\dfrac{\\partial v}{\\partial x}=-\\dfrac{1}{K}\\dfrac{\\partial p}{\\partial t}$、運動方程式 $\\rho\\dfrac{\\partial v}{\\partial t}=+\\dfrac{\\partial p}{\\partial x}$",
-    "連続の式 $\\rho\\dfrac{\\partial v}{\\partial t}=-\\dfrac{\\partial p}{\\partial x}$、運動方程式 $\\dfrac{\\partial v}{\\partial x}=-\\dfrac{1}{K}\\dfrac{\\partial p}{\\partial t}$"
-   ],
-   "answer": 1,
-   "explanation": "【基礎】平面波は音圧 $p$ と粒子速度 $v$ の2つの量で表され、これらを結ぶ式が2本必要です。1本は体積変化(圧縮性)に基づく連続の式、もう1本は空気のかたまりを動かす力を表す運動方程式(ニュートンの第二法則)です。\n【考え方】連続の式は $\\dfrac{\\partial v}{\\partial x}=-\\dfrac{1}{K}\\dfrac{\\partial p}{\\partial t}$、運動方程式は $\\rho\\dfrac{\\partial v}{\\partial t}=-\\dfrac{\\partial p}{\\partial x}$ で、どちらも右辺にマイナス符号が付きます。名称と式が正しく対応する選択肢①が正解です。\n【ポイント】連続の式=体積変化の式、運動方程式=力の式で、両式ともマイナス符号です。\n【引っかけ】②は連続の式の符号を $+$ とした誤り、③は運動方程式の符号を $+$ とした誤り、④は名称と式を入れ替えて連続の式に運動方程式の形を当てた誤りです。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-1",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6PlaneWaveEqs",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-1"
-   ],
-   "editorialReview": {
-    "officialPoint": "平面波は音圧pと粒子速度vの2量で記述され、連続の式∂v/∂x=-(1/K)∂p/∂tと運動方程式ρ∂v/∂t=-∂p/∂xの2式が必要で、両式とも右辺が負。",
-    "alignment": "正しい2式の符号と名称の対応を問う現問題に一致。",
-    "distractorMisconceptions": {
-     "2": "連続の式の符号を+とし圧力上昇と流入の対応を取り違える誤解",
-     "3": "運動方程式の符号を+とし圧力勾配と加速の向きを取り違える誤解",
-     "4": "連続の式と運動方程式の名称と式を入れ替える誤解"
-    },
-    "sha256": "c7a1ad264c2f76935830eb314905729fbf07d93c24becd7fb9ba269f6f71a337"
-   }
+  "meta": {
+    "grade": "振動 1級",
+    "category": "第6章 音響連成系の解析基礎",
+    "chapter": 6,
+    "source": "完全オリジナル(振動1級標準問題集 第6章 音響連成系の解析基礎に対応)",
+    "origin": "original",
+    "count": 37,
+    "officialCount": 37,
+    "presentationStyle": "cae-standard-v1"
   },
-  {
-   "id": "vib1-6-2",
-   "number": "6-2",
-   "title": "音圧・粒子速度の波動方程式",
-   "topic": "波動方程式・音速",
-   "type": "mc",
-   "difficulty": 2,
-   "question": "一様な媒質の1次元平面波について、連続の式は $\\partial v/\\partial x=-(1/K)\\partial p/\\partial t$、運動方程式は $\\rho\\partial v/\\partial t=-\\partial p/\\partial x$ である。$c=\\sqrt{K/\\rho}$ として一方の未知量を消去したときの正しい組はどれか。",
-   "choices": [
-    "$v_{xx}=c^2v_{tt}$、$p_{xx}=c^2p_{tt}$：波動方程式",
-    "$v_{xx}=-(1/c^2)v_{tt}$、$p_{xx}=-(1/c^2)p_{tt}$：波動方程式",
-    "$v_{xx}=(1/c^2)v_{tt}$、$p_{xx}=(1/c^2)p_{tt}$：波動方程式",
-    "$v_{xx}=(1/c^2)v_{tt}$、$p_{xx}=c^2p_{tt}$：ラグランジュ方程式"
-   ],
-   "answer": 3,
-   "explanation": "【基礎】音圧 $p$ と粒子速度 $v$ は互いに影響しながら変化します。2つの式を微分して、同じ $p_{xt}$ または $v_{xt}$ を作り、一方を消すと1種類の未知量だけの式になります。添字 $xx,tt$ はその変数で2回微分する意味です。\n【考え方】連続の式を $x$ で微分すると $v_{xx}=-(1/K)p_{tx}$ です。運動方程式を $t$ で微分すると $p_{xt}=-\\rho v_{tt}$ です。代入して $v_{xx}=(\\rho/K)v_{tt}=(1/c^2)v_{tt}$ です。音圧についても同様なので③です。\n【ポイント】空間方向の2階微分と時間方向の2階微分を、音速 $c$ が結びます。$1/c^2$ は時間側の係数です。\n【引っかけ】①は $c^2$ と $1/c^2$ を逆にしています。②は消去で2つの負号が打ち消されることを見落としています。④は音圧の係数と方程式の名称を誤っています。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-2",
-   "role": "primary",
-   "figure": "none",
-   "relatedFormulas": [
-    "v1ch6-2"
-   ],
-   "editorialReview": {
-    "officialPoint": "連続の式と運動方程式を微分し、pまたはvを消去して波動方程式を得る。",
-    "alignment": "抽出テキストの同番号の問題・解説と照合し、公式と同じ判断・導出を独自の問題で扱う。",
-    "distractorMisconceptions": {
-     "1": "音速の係数をc²と逆にする",
-     "2": "2つの負号が消えることを落とす",
-     "4": "音圧側の係数と方程式の名称を取り違える"
+  "questions": [
+    {
+      "id": "vib1-6-1",
+      "number": "6-1",
+      "title": "平面波を記述する2つの基礎式(連続の式・運動方程式)",
+      "topic": "1次元平面波の基礎式",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "1次元の平面波音波の伝播は音圧 $p$ と粒子速度 $v$ の2量で記述され、体積変化に基づく連続の式と、ニュートンの第二法則に基づく運動方程式の2式が必要である。体積弾性率を $K$、媒質の密度を $\\rho$ とするとき、この2式の組合せとして正しいものはどれか。",
+      "choices": [
+        "連続の式 $\\dfrac{\\partial v}{\\partial x}=-\\dfrac{1}{K}\\dfrac{\\partial p}{\\partial t}$、運動方程式 $\\rho\\dfrac{\\partial v}{\\partial t}=-\\dfrac{\\partial p}{\\partial x}$",
+        "連続の式 $\\dfrac{\\partial v}{\\partial x}=+\\dfrac{1}{K}\\dfrac{\\partial p}{\\partial t}$、運動方程式 $\\rho\\dfrac{\\partial v}{\\partial t}=-\\dfrac{\\partial p}{\\partial x}$",
+        "連続の式 $\\dfrac{\\partial v}{\\partial x}=-\\dfrac{1}{K}\\dfrac{\\partial p}{\\partial t}$、運動方程式 $\\rho\\dfrac{\\partial v}{\\partial t}=+\\dfrac{\\partial p}{\\partial x}$",
+        "連続の式 $\\rho\\dfrac{\\partial v}{\\partial t}=-\\dfrac{\\partial p}{\\partial x}$、運動方程式 $\\dfrac{\\partial v}{\\partial x}=-\\dfrac{1}{K}\\dfrac{\\partial p}{\\partial t}$"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】平面波は音圧 $p$ と粒子速度 $v$ の2つの量で表され、これらを結ぶ式が2本必要です。1本は体積変化(圧縮性)に基づく連続の式、もう1本は空気のかたまりを動かす力を表す運動方程式(ニュートンの第二法則)です。\n【考え方】連続の式は $\\dfrac{\\partial v}{\\partial x}=-\\dfrac{1}{K}\\dfrac{\\partial p}{\\partial t}$、運動方程式は $\\rho\\dfrac{\\partial v}{\\partial t}=-\\dfrac{\\partial p}{\\partial x}$ で、どちらも右辺にマイナス符号が付きます。名称と式が正しく対応する選択肢①が正解です。\n【ポイント】連続の式=体積変化の式、運動方程式=力の式で、両式ともマイナス符号です。\n【引っかけ】②は連続の式の符号を $+$ とした誤り、③は運動方程式の符号を $+$ とした誤り、④は名称と式を入れ替えて連続の式に運動方程式の形を当てた誤りです。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-1",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6PlaneWaveEqs",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-1"
+      ],
+      "editorialReview": {
+        "officialPoint": "平面波は音圧pと粒子速度vの2量で記述され、連続の式∂v/∂x=-(1/K)∂p/∂tと運動方程式ρ∂v/∂t=-∂p/∂xの2式が必要で、両式とも右辺が負。",
+        "alignment": "正しい2式の符号と名称の対応を問う現問題に一致。",
+        "distractorMisconceptions": {
+          "2": "連続の式の符号を+とし圧力上昇と流入の対応を取り違える誤解",
+          "3": "運動方程式の符号を+とし圧力勾配と加速の向きを取り違える誤解",
+          "4": "連続の式と運動方程式の名称と式を入れ替える誤解"
+        },
+        "sha256": "c7a1ad264c2f76935830eb314905729fbf07d93c24becd7fb9ba269f6f71a337"
+      }
     },
-    "sha256": "5c0ff6b2008d3383178f093a48572c77a3b783baac7288c79b3993777502dbe3"
-   },
-   "figureExempt": true,
-   "figureExemptReason": "2つの基礎式の微分と消去を途中式で説明でき、追加の図は不要なため。"
-  },
-  {
-   "id": "vib1-6-3",
-   "number": "6-3",
-   "title": "速度ポテンシャルによる音圧と波動方程式",
-   "topic": "速度ポテンシャル",
-   "type": "mc",
-   "difficulty": 2,
-   "question": "平面波で粒子速度 $v$ が未知関数 $\\varphi$ を用いて $v=-\\dfrac{\\partial\\varphi}{\\partial x}$ で与えられるとき、$\\varphi$ を速度ポテンシャルという。機械工学便覧「機械力学」に準拠したこの符号定義のもとで、音圧 $p$ を $\\varphi$ で表した式と、$\\varphi$ が満たす方程式の組合せとして正しいものはどれか。",
-   "choices": [
-    "$p=-\\rho\\dfrac{\\partial\\varphi}{\\partial t}$、$\\dfrac{\\partial^2\\varphi}{\\partial x^2}=\\dfrac{1}{c^2}\\dfrac{\\partial^2\\varphi}{\\partial t^2}$",
-    "$p=\\rho\\dfrac{\\partial\\varphi}{\\partial x}$、$\\dfrac{\\partial^2\\varphi}{\\partial x^2}=c^2\\dfrac{\\partial^2\\varphi}{\\partial t^2}$",
-    "$p=\\rho\\dfrac{\\partial\\varphi}{\\partial t}$、$\\dfrac{\\partial^2\\varphi}{\\partial x^2}=\\dfrac{1}{c^2}\\dfrac{\\partial^2\\varphi}{\\partial t^2}$",
-    "$p=\\rho\\dfrac{\\partial^2\\varphi}{\\partial t^2}$、ラグランジュ方程式"
-   ],
-   "answer": 3,
-   "explanation": "【基礎】速度ポテンシャル $\\varphi$ は、粒子速度と音圧の両方を1つの関数から導くための補助関数です。$v=-\\partial\\varphi/\\partial x$ と定義すると、音圧は $p=+\\rho\\partial\\varphi/\\partial t$ で与えられます(便覧の符号)。\n【考え方】定義式 $v=-\\partial\\varphi/\\partial x$ と整合する音圧は $p=\\rho\\partial\\varphi/\\partial t$ で、$\\varphi$ も $v$ や $p$ と同じ波動方程式 $\\partial^2\\varphi/\\partial x^2=(1/c^2)\\partial^2\\varphi/\\partial t^2$ を満たします。これらを満たす選択肢③が正解です。\n【ポイント】$v=-\\partial\\varphi/\\partial x$ とセットで $p=+\\rho\\partial\\varphi/\\partial t$、波動方程式は $1/c^2$ が時間微分側に付きます。\n【引っかけ】①は音圧の符号を $-$ とした別の符号系で不整合、②は $p$ を $\\varphi$ の $x$ 微分とし波動方程式も $c^2$ 側に誤り、④は $p$ を2階時間微分としラグランジュ方程式とした誤りです。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-3",
-   "role": "primary",
-   "figure": "none",
-   "relatedFormulas": [
-    "v1ch6-3"
-   ],
-   "editorialReview": {
-    "officialPoint": "便覧の符号定義v=-∂φ/∂xに対し音圧はp=ρ∂φ/∂tで、φは1/c²が時間側の波動方程式を満たす。",
-    "alignment": "速度ポテンシャルによる音圧表現と満たす方程式の組合せを問う現問題に一致。",
-    "distractorMisconceptions": {
-     "1": "音圧の符号を-とする別符号系を混用する誤解",
-     "2": "音圧をφのx微分とし波動方程式もc²側とする誤解",
-     "4": "音圧を2階時間微分としラグランジュ方程式と混同する誤解"
+    {
+      "id": "vib1-6-2",
+      "number": "6-2",
+      "title": "音圧・粒子速度の波動方程式",
+      "topic": "波動方程式・音速",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "一様な媒質の1次元平面波について、連続の式は $\\partial v/\\partial x=-(1/K)\\partial p/\\partial t$、運動方程式は $\\rho\\partial v/\\partial t=-\\partial p/\\partial x$ である。$c=\\sqrt{K/\\rho}$ として一方の未知量を消去したときの正しい組はどれか。",
+      "choices": [
+        "$v_{xx}=c^2v_{tt}$、$p_{xx}=c^2p_{tt}$：波動方程式",
+        "$v_{xx}=-(1/c^2)v_{tt}$、$p_{xx}=-(1/c^2)p_{tt}$：波動方程式",
+        "$v_{xx}=(1/c^2)v_{tt}$、$p_{xx}=(1/c^2)p_{tt}$：波動方程式",
+        "$v_{xx}=(1/c^2)v_{tt}$、$p_{xx}=c^2p_{tt}$：ラグランジュ方程式"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】音圧 $p$ と粒子速度 $v$ は互いに影響しながら変化します。2つの式を微分して、同じ $p_{xt}$ または $v_{xt}$ を作り、一方を消すと1種類の未知量だけの式になります。添字 $xx,tt$ はその変数で2回微分する意味です。\n【考え方】連続の式を $x$ で微分すると $v_{xx}=-(1/K)p_{tx}$ です。運動方程式を $t$ で微分すると $p_{xt}=-\\rho v_{tt}$ です。代入して $v_{xx}=(\\rho/K)v_{tt}=(1/c^2)v_{tt}$ です。音圧についても同様なので③です。\n【ポイント】空間方向の2階微分と時間方向の2階微分を、音速 $c$ が結びます。$1/c^2$ は時間側の係数です。\n【引っかけ】①は $c^2$ と $1/c^2$ を逆にしています。②は消去で2つの負号が打ち消されることを見落としています。④は音圧の係数と方程式の名称を誤っています。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-2",
+      "role": "primary",
+      "figure": "none",
+      "relatedFormulas": [
+        "v1ch6-2"
+      ],
+      "editorialReview": {
+        "officialPoint": "連続の式と運動方程式を微分し、pまたはvを消去して波動方程式を得る。",
+        "alignment": "抽出テキストの同番号の問題・解説と照合し、公式と同じ判断・導出を独自の問題で扱う。",
+        "distractorMisconceptions": {
+          "1": "音速の係数をc²と逆にする",
+          "2": "2つの負号が消えることを落とす",
+          "4": "音圧側の係数と方程式の名称を取り違える"
+        },
+        "sha256": "5c0ff6b2008d3383178f093a48572c77a3b783baac7288c79b3993777502dbe3"
+      },
+      "figureExempt": true,
+      "figureExemptReason": "2つの基礎式の微分と消去を途中式で説明でき、追加の図は不要なため。"
     },
-    "sha256": "0041977292c266fa693d64ed79bd1ccf1609a7e22ffbe0284cc24f23dc6968ef"
-   },
-   "figureExempt": true,
-   "figureExemptReason": "速度ポテンシャルの符号定義と微分式の対応を問うため、式で直接説明する。"
-  },
-  {
-   "id": "vib1-6-4",
-   "number": "6-4",
-   "title": "調和振動とヘルムホルツ方程式",
-   "topic": "ヘルムホルツ方程式・波数",
-   "type": "mc",
-   "difficulty": 2,
-   "question": "速度ポテンシャルの波動方程式 $\\varphi_{xx}=(1/c^2)\\varphi_{tt}$ に、調和振動の形 $\\varphi(x,t)=\\Phi(x)e^{j\\omega t}$ を代入する。空間分布 $\\Phi$ の式とその名称の正しい組はどれか。",
-   "choices": [
-    "$\\Phi\\prime\\prime-(\\omega/c)^2\\Phi=0$／ヘルムホルツ方程式",
-    "$\\Phi\\prime\\prime+(\\omega/c)^2\\Phi=0$／ヘルムホルツ方程式",
-    "$\\Phi\\prime\\prime+(\\omega c)^2\\Phi=0$／ヘルムホルツ方程式",
-    "$\\Phi\\prime\\prime+(\\omega/c)\\Phi=0$／ラグランジュ方程式"
-   ],
-   "answer": 2,
-   "explanation": "【基礎】時間の変化を共通の $e^{j\\omega t}$ にまとめると、場所ごとの振幅と位相を表す $\\Phi(x)$ だけを求める式にできます。$j^2=-1$ です。\n【考え方】$e^{j\\omega t}$ の時間微分は $j\\omega e^{j\\omega t}$、2回目は $-\\omega^2e^{j\\omega t}$ です。波動方程式に入れて共通の指数を消すと $\\Phi\\prime\\prime=-(\\omega/c)^2\\Phi$、移項して $\\Phi\\prime\\prime+(\\omega/c)^2\\Phi=0$ です。ヘルムホルツ方程式なので②です。\n【ポイント】波数 $k=\\omega/c$ を用いれば $\\Phi\\prime\\prime+k^2\\Phi=0$ です。時間の微分を角振動数の係数へ置き換える操作が要点です。\n【引っかけ】①は2階時間微分の負号を移項したときの符号が違います。③は音速を掛けています。④は角振動数の2乗と、方程式の名称を誤っています。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-4",
-   "role": "primary",
-   "figure": "none",
-   "relatedFormulas": [
-    "v1ch6-4"
-   ],
-   "editorialReview": {
-    "officialPoint": "波動方程式に調和時間変化を代入してヘルムホルツ方程式を導く。",
-    "alignment": "抽出テキストの同番号の問題・解説と照合し、公式と同じ判断・導出を独自の問題で扱う。",
-    "distractorMisconceptions": {
-     "1": "二階時間微分の負号と移項符号の誤り",
-     "3": "音速で割らず掛ける",
-     "4": "角振動数の二乗と名称の誤り"
+    {
+      "id": "vib1-6-3",
+      "number": "6-3",
+      "title": "速度ポテンシャルによる音圧と波動方程式",
+      "topic": "速度ポテンシャル",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "平面波で粒子速度 $v$ が未知関数 $\\varphi$ を用いて $v=-\\dfrac{\\partial\\varphi}{\\partial x}$ で与えられるとき、$\\varphi$ を速度ポテンシャルという。機械工学便覧「機械力学」に準拠したこの符号定義のもとで、音圧 $p$ を $\\varphi$ で表した式と、$\\varphi$ が満たす方程式の組合せとして正しいものはどれか。",
+      "choices": [
+        "$p=-\\rho\\dfrac{\\partial\\varphi}{\\partial t}$、$\\dfrac{\\partial^2\\varphi}{\\partial x^2}=\\dfrac{1}{c^2}\\dfrac{\\partial^2\\varphi}{\\partial t^2}$",
+        "$p=\\rho\\dfrac{\\partial\\varphi}{\\partial x}$、$\\dfrac{\\partial^2\\varphi}{\\partial x^2}=c^2\\dfrac{\\partial^2\\varphi}{\\partial t^2}$",
+        "$p=\\rho\\dfrac{\\partial\\varphi}{\\partial t}$、$\\dfrac{\\partial^2\\varphi}{\\partial x^2}=\\dfrac{1}{c^2}\\dfrac{\\partial^2\\varphi}{\\partial t^2}$",
+        "$p=\\rho\\dfrac{\\partial^2\\varphi}{\\partial t^2}$、ラグランジュ方程式"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】速度ポテンシャル $\\varphi$ は、粒子速度と音圧の両方を1つの関数から導くための補助関数です。$v=-\\partial\\varphi/\\partial x$ と定義すると、音圧は $p=+\\rho\\partial\\varphi/\\partial t$ で与えられます(便覧の符号)。\n【考え方】定義式 $v=-\\partial\\varphi/\\partial x$ と整合する音圧は $p=\\rho\\partial\\varphi/\\partial t$ で、$\\varphi$ も $v$ や $p$ と同じ波動方程式 $\\partial^2\\varphi/\\partial x^2=(1/c^2)\\partial^2\\varphi/\\partial t^2$ を満たします。これらを満たす選択肢③が正解です。\n【ポイント】$v=-\\partial\\varphi/\\partial x$ とセットで $p=+\\rho\\partial\\varphi/\\partial t$、波動方程式は $1/c^2$ が時間微分側に付きます。\n【引っかけ】①は音圧の符号を $-$ とした別の符号系で不整合、②は $p$ を $\\varphi$ の $x$ 微分とし波動方程式も $c^2$ 側に誤り、④は $p$ を2階時間微分としラグランジュ方程式とした誤りです。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-3",
+      "role": "primary",
+      "figure": "none",
+      "relatedFormulas": [
+        "v1ch6-3"
+      ],
+      "editorialReview": {
+        "officialPoint": "便覧の符号定義v=-∂φ/∂xに対し音圧はp=ρ∂φ/∂tで、φは1/c²が時間側の波動方程式を満たす。",
+        "alignment": "速度ポテンシャルによる音圧表現と満たす方程式の組合せを問う現問題に一致。",
+        "distractorMisconceptions": {
+          "1": "音圧の符号を-とする別符号系を混用する誤解",
+          "2": "音圧をφのx微分とし波動方程式もc²側とする誤解",
+          "4": "音圧を2階時間微分としラグランジュ方程式と混同する誤解"
+        },
+        "sha256": "0041977292c266fa693d64ed79bd1ccf1609a7e22ffbe0284cc24f23dc6968ef"
+      },
+      "figureExempt": true,
+      "figureExemptReason": "速度ポテンシャルの符号定義と微分式の対応を問うため、式で直接説明する。"
     },
-    "sha256": "f4c6006ba288aedde16a8e3195dd0541a5d600825cedad1e41dde804c22b5316"
-   },
-   "figureExempt": true,
-   "figureExemptReason": "調和振動の時間微分を途中式で追う設問で、別図を必要としないため。"
-  },
-  {
-   "id": "vib1-6-5",
-   "number": "6-5",
-   "title": "音圧を規定する基本境界条件",
-   "topic": "基本境界条件",
-   "type": "mc",
-   "difficulty": 2,
-   "question": "1次元音響問題で $\\varphi=\\Phi e^{j\\omega t}$ とし、ヘルムホルツ方程式 $d^2\\Phi/dx^2+(\\omega/c)^2\\Phi=0$ を解く。管路の端 $x=0$ で音圧を $p=p_0 e^{j\\omega t}$ と規定するとき、これを速度ポテンシャル振幅 $\\Phi$ の値 $\\bar\\Phi_0$ に換算した式と、このように未知関数の値そのものを指定する境界条件の呼称の組合せとして正しいものはどれか。 速度ポテンシャルの符号は $v=-\\partial\\varphi/\\partial x$ と定義する。",
-   "choices": [
-    "$\\bar\\Phi_0=+j\\dfrac{p_0}{\\rho\\omega}$、基本境界条件",
-    "$\\bar\\Phi_0=-j\\dfrac{p_0}{\\rho\\omega}$、自然境界条件",
-    "$\\bar\\Phi_0=-v_l$、自然境界条件",
-    "$\\bar\\Phi_0=-j\\dfrac{p_0}{\\rho\\omega}$、基本境界条件"
-   ],
-   "answer": 4,
-   "explanation": "【基礎】音圧は $p=\\rho\\partial\\varphi/\\partial t=\\rho(j\\omega)\\Phi e^{j\\omega t}$ です。これを $p_0 e^{j\\omega t}$ と等しく置くと $\\Phi=p_0/(j\\rho\\omega)=-j\\,p_0/(\\rho\\omega)$ が得られます。\n【考え方】未知関数 $\\Phi$ の値そのものを端で指定する境界条件を基本境界条件(強制境界条件)といい、音圧の規定はこれに当たります。式と名称が正しい選択肢④が正解です。\n【ポイント】$\\bar\\Phi_0=-j\\,p_0/(\\rho\\omega)$、名称は基本境界条件で、$1/j=-j$ に注意します。\n【引っかけ】①は符号を $+j$ として $1/j=-j$ を誤り、②は名称を自然境界条件とした誤り、③は粒子速度規定の式 $-v_l$ を当てた誤りです。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-5",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6PressureBC",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-5"
-   ],
-   "editorialReview": {
-    "officialPoint": "音圧規定p=p0e^{jωt}をΦに換算するとΦ̄0=-j p0/(ρω)、未知関数の値を指定するので基本境界条件。",
-    "alignment": "音圧規定のΦ換算式と名称の組合せを問う現問題に一致。",
-    "distractorMisconceptions": {
-     "1": "1/j=-jを誤り符号を+jとする誤解",
-     "2": "名称を自然境界条件と取り違える誤解",
-     "3": "粒子速度規定の式-vlを当てはめる誤解"
+    {
+      "id": "vib1-6-4",
+      "number": "6-4",
+      "title": "調和振動とヘルムホルツ方程式",
+      "topic": "ヘルムホルツ方程式・波数",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "速度ポテンシャルの波動方程式 $\\varphi_{xx}=(1/c^2)\\varphi_{tt}$ に、調和振動の形 $\\varphi(x,t)=\\Phi(x)e^{j\\omega t}$ を代入する。空間分布 $\\Phi$ の式とその名称の正しい組はどれか。",
+      "choices": [
+        "$\\Phi\\prime\\prime-(\\omega/c)^2\\Phi=0$／ヘルムホルツ方程式",
+        "$\\Phi\\prime\\prime+(\\omega/c)^2\\Phi=0$／ヘルムホルツ方程式",
+        "$\\Phi\\prime\\prime+(\\omega c)^2\\Phi=0$／ヘルムホルツ方程式",
+        "$\\Phi\\prime\\prime+(\\omega/c)\\Phi=0$／ラグランジュ方程式"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】時間の変化を共通の $e^{j\\omega t}$ にまとめると、場所ごとの振幅と位相を表す $\\Phi(x)$ だけを求める式にできます。$j^2=-1$ です。\n【考え方】$e^{j\\omega t}$ の時間微分は $j\\omega e^{j\\omega t}$、2回目は $-\\omega^2e^{j\\omega t}$ です。波動方程式に入れて共通の指数を消すと $\\Phi\\prime\\prime=-(\\omega/c)^2\\Phi$、移項して $\\Phi\\prime\\prime+(\\omega/c)^2\\Phi=0$ です。ヘルムホルツ方程式なので②です。\n【ポイント】波数 $k=\\omega/c$ を用いれば $\\Phi\\prime\\prime+k^2\\Phi=0$ です。時間の微分を角振動数の係数へ置き換える操作が要点です。\n【引っかけ】①は2階時間微分の負号を移項したときの符号が違います。③は音速を掛けています。④は角振動数の2乗と、方程式の名称を誤っています。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-4",
+      "role": "primary",
+      "figure": "none",
+      "relatedFormulas": [
+        "v1ch6-4"
+      ],
+      "editorialReview": {
+        "officialPoint": "波動方程式に調和時間変化を代入してヘルムホルツ方程式を導く。",
+        "alignment": "抽出テキストの同番号の問題・解説と照合し、公式と同じ判断・導出を独自の問題で扱う。",
+        "distractorMisconceptions": {
+          "1": "二階時間微分の負号と移項符号の誤り",
+          "3": "音速で割らず掛ける",
+          "4": "角振動数の二乗と名称の誤り"
+        },
+        "sha256": "f4c6006ba288aedde16a8e3195dd0541a5d600825cedad1e41dde804c22b5316"
+      },
+      "figureExempt": true,
+      "figureExemptReason": "調和振動の時間微分を途中式で追う設問で、別図を必要としないため。"
     },
-    "sha256": "387c33cfbccaf03504e19a41b2467eafbe3d87982f1ef96d2ea42e0f581c6627"
-   }
-  },
-  {
-   "id": "vib1-6-6",
-   "number": "6-6",
-   "title": "粒子速度を規定する自然境界条件",
-   "topic": "自然境界条件",
-   "type": "mc",
-   "difficulty": 2,
-   "question": "問6-5と同じ設定で、管路の端 $x=l$ で今度は粒子速度を $v=v_l e^{j\\omega t}$ と規定する。これを速度ポテンシャル振幅 $\\Phi$ の微分 $d\\Phi/dx$ で表した式と、このように未知関数の微分を指定する境界条件の呼称の組合せとして正しいものはどれか。 速度ポテンシャルの符号は $v=-\\partial\\varphi/\\partial x$ と定義する。",
-   "choices": [
-    "$\\dfrac{d\\Phi}{dx}=+v_l$、自然境界条件",
-    "$\\dfrac{d\\Phi}{dx}=-v_l$、自然境界条件",
-    "$\\dfrac{d\\Phi}{dx}=-v_l$、基本境界条件",
-    "$\\dfrac{d\\Phi}{dx}=-j\\dfrac{v_l}{\\rho\\omega}$、自然境界条件"
-   ],
-   "answer": 2,
-   "explanation": "【基礎】粒子速度は $v=-\\partial\\varphi/\\partial x=-\\dfrac{d\\Phi}{dx}e^{j\\omega t}$ です。これを $v_l e^{j\\omega t}$ と等しく置くと $d\\Phi/dx=-v_l$ が得られます。\n【考え方】未知関数 $\\Phi$ の微分(勾配)を端で指定する境界条件を自然境界条件といい、粒子速度の規定はこれに当たります。式と名称が正しい選択肢②が正解です。\n【ポイント】$d\\Phi/dx=-v_l$、名称は自然境界条件で、速度は $\\varphi$ の $x$ 微分にマイナスを付けた量です。\n【引っかけ】①は符号を $+v_l$ とした誤り、③は名称を基本境界条件とした誤り、④は音圧換算の $-j/(\\rho\\omega)$ 係数を持ち込んだ誤りで、速度規定では不要です。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-6",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6PressureBC",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-5"
-   ],
-   "editorialReview": {
-    "officialPoint": "粒子速度規定v=vl e^{jωt}をΦの微分で表すとdΦ/dx=-vl、微分を指定するので自然境界条件。",
-    "alignment": "粒子速度規定の式と名称の組合せを問う現問題に一致。",
-    "distractorMisconceptions": {
-     "1": "速度の符号を+vlとする誤解",
-     "3": "名称を基本境界条件と取り違える誤解",
-     "4": "音圧換算の係数-j/(ρω)を速度規定に持ち込む誤解"
+    {
+      "id": "vib1-6-5",
+      "number": "6-5",
+      "title": "音圧を規定する基本境界条件",
+      "topic": "基本境界条件",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "1次元音響問題で $\\varphi=\\Phi e^{j\\omega t}$ とし、ヘルムホルツ方程式 $d^2\\Phi/dx^2+(\\omega/c)^2\\Phi=0$ を解く。管路の端 $x=0$ で音圧を $p=p_0 e^{j\\omega t}$ と規定するとき、これを速度ポテンシャル振幅 $\\Phi$ の値 $\\bar\\Phi_0$ に換算した式と、このように未知関数の値そのものを指定する境界条件の呼称の組合せとして正しいものはどれか。 速度ポテンシャルの符号は $v=-\\partial\\varphi/\\partial x$ と定義する。",
+      "choices": [
+        "$\\bar\\Phi_0=+j\\dfrac{p_0}{\\rho\\omega}$、基本境界条件",
+        "$\\bar\\Phi_0=-j\\dfrac{p_0}{\\rho\\omega}$、自然境界条件",
+        "$\\bar\\Phi_0=-v_l$、自然境界条件",
+        "$\\bar\\Phi_0=-j\\dfrac{p_0}{\\rho\\omega}$、基本境界条件"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】音圧は $p=\\rho\\partial\\varphi/\\partial t=\\rho(j\\omega)\\Phi e^{j\\omega t}$ です。これを $p_0 e^{j\\omega t}$ と等しく置くと $\\Phi=p_0/(j\\rho\\omega)=-j\\,p_0/(\\rho\\omega)$ が得られます。\n【考え方】未知関数 $\\Phi$ の値そのものを端で指定する境界条件を基本境界条件(強制境界条件)といい、音圧の規定はこれに当たります。式と名称が正しい選択肢④が正解です。\n【ポイント】$\\bar\\Phi_0=-j\\,p_0/(\\rho\\omega)$、名称は基本境界条件で、$1/j=-j$ に注意します。\n【引っかけ】①は符号を $+j$ として $1/j=-j$ を誤り、②は名称を自然境界条件とした誤り、③は粒子速度規定の式 $-v_l$ を当てた誤りです。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-5",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6PressureBC",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-5"
+      ],
+      "editorialReview": {
+        "officialPoint": "音圧規定p=p0e^{jωt}をΦに換算するとΦ̄0=-j p0/(ρω)、未知関数の値を指定するので基本境界条件。",
+        "alignment": "音圧規定のΦ換算式と名称の組合せを問う現問題に一致。",
+        "distractorMisconceptions": {
+          "1": "1/j=-jを誤り符号を+jとする誤解",
+          "2": "名称を自然境界条件と取り違える誤解",
+          "3": "粒子速度規定の式-vlを当てはめる誤解"
+        },
+        "sha256": "387c33cfbccaf03504e19a41b2467eafbe3d87982f1ef96d2ea42e0f581c6627"
+      }
     },
-    "sha256": "56c94613f8b622db2203c0f36d10c97db2ab0e3a081c62bc50eae6bb76739279"
-   }
-  },
-  {
-   "id": "vib1-6-7",
-   "number": "6-7",
-   "title": "両端剛体壁・途中ばね支持振動体の境界条件",
-   "topic": "音響振動連成の境界条件",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "断面積 $S$・長さ $l$ の管路が両端を剛体壁で閉じられ、途中の位置 $x=l_1$ にばね支持振動体(質量 $m_s$、ばね定数 $k_s$)がある。振動体の左右の粒子速度を $v_1,v_2$、変位を $w$(右向き正)とする。両端($x=0,\\,x=l$)の音場の境界条件と、振動体位置での速度連続条件の組合せとして正しいものはどれか。",
-   "choices": [
-    "$x=0$ で $v_1=0$、$x=l$ で $v_2=0$、$x=l_1$ で $v_1=v_2=\\dfrac{\\partial w}{\\partial t}$",
-    "$x=0$ で $p_1=0$、$x=l$ で $p_2=0$、$x=l_1$ で $v_1=v_2=\\dfrac{\\partial w}{\\partial t}$",
-    "$x=0$ で $v_1=0$、$x=l$ で $v_2=0$、$x=l_1$ で $v_1=v_2=-\\dfrac{\\partial w}{\\partial t}$",
-    "$x=0$ で $v_1=0$、$x=l$ で $p_2=0$、$x=l_1$ で $v_1=v_2=\\dfrac{\\partial w}{\\partial t}$"
-   ],
-   "answer": 1,
-   "explanation": "【基礎】剛体壁では空気が壁を通り抜けられないため、壁面での粒子速度がゼロになります(音圧がゼロになるのは開放端です)。\n【考え方】両端 $x=0,\\,x=l$ は剛体壁なので $v_1=0$、$v_2=0$、振動体の位置では空気が面にぴったり付いて動くので左右の粒子速度が振動体速度に等しく $v_1=v_2=\\partial w/\\partial t$(右向き正)になります。これらを満たす選択肢①が正解です。\n【ポイント】剛体壁→速度ゼロ、連成面→粒子速度=振動体速度です。\n【引っかけ】②は剛体壁を音圧ゼロ($p=0$)とした開放端との取り違え、③は振動体速度に誤った符号 $-\\partial w/\\partial t$ を付けた誤り、④は片端だけ開放端とした誤りです。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-7",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6DuctSpringBody",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-10",
-    "v1ch6-5"
-   ],
-   "editorialReview": {
-    "officialPoint": "両端剛体壁では粒子速度v=0、振動体位置では左右の粒子速度が振動体速度∂w/∂tに等しい。",
-    "alignment": "両端剛体壁の速度ゼロと連成面の速度連続条件の組合せに一致。",
-    "distractorMisconceptions": {
-     "2": "剛体壁を音圧ゼロ(開放端)と取り違える誤解",
-     "3": "振動体速度の符号を-∂w/∂tとする誤解",
-     "4": "片端だけ開放端とする誤解"
+    {
+      "id": "vib1-6-6",
+      "number": "6-6",
+      "title": "粒子速度を規定する自然境界条件",
+      "topic": "自然境界条件",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "問6-5と同じ設定で、管路の端 $x=l$ で今度は粒子速度を $v=v_l e^{j\\omega t}$ と規定する。これを速度ポテンシャル振幅 $\\Phi$ の微分 $d\\Phi/dx$ で表した式と、このように未知関数の微分を指定する境界条件の呼称の組合せとして正しいものはどれか。 速度ポテンシャルの符号は $v=-\\partial\\varphi/\\partial x$ と定義する。",
+      "choices": [
+        "$\\dfrac{d\\Phi}{dx}=+v_l$、自然境界条件",
+        "$\\dfrac{d\\Phi}{dx}=-v_l$、自然境界条件",
+        "$\\dfrac{d\\Phi}{dx}=-v_l$、基本境界条件",
+        "$\\dfrac{d\\Phi}{dx}=-j\\dfrac{v_l}{\\rho\\omega}$、自然境界条件"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】粒子速度は $v=-\\partial\\varphi/\\partial x=-\\dfrac{d\\Phi}{dx}e^{j\\omega t}$ です。これを $v_l e^{j\\omega t}$ と等しく置くと $d\\Phi/dx=-v_l$ が得られます。\n【考え方】未知関数 $\\Phi$ の微分(勾配)を端で指定する境界条件を自然境界条件といい、粒子速度の規定はこれに当たります。式と名称が正しい選択肢②が正解です。\n【ポイント】$d\\Phi/dx=-v_l$、名称は自然境界条件で、速度は $\\varphi$ の $x$ 微分にマイナスを付けた量です。\n【引っかけ】①は符号を $+v_l$ とした誤り、③は名称を基本境界条件とした誤り、④は音圧換算の $-j/(\\rho\\omega)$ 係数を持ち込んだ誤りで、速度規定では不要です。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-6",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6PressureBC",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-5"
+      ],
+      "editorialReview": {
+        "officialPoint": "粒子速度規定v=vl e^{jωt}をΦの微分で表すとdΦ/dx=-vl、微分を指定するので自然境界条件。",
+        "alignment": "粒子速度規定の式と名称の組合せを問う現問題に一致。",
+        "distractorMisconceptions": {
+          "1": "速度の符号を+vlとする誤解",
+          "3": "名称を基本境界条件と取り違える誤解",
+          "4": "音圧換算の係数-j/(ρω)を速度規定に持ち込む誤解"
+        },
+        "sha256": "56c94613f8b622db2203c0f36d10c97db2ab0e3a081c62bc50eae6bb76739279"
+      }
     },
-    "sha256": "821e01c69ca92c5f5d5cef0350a8f0c3e6bac003fcd6ab3ce1bd010f0dec9787"
-   }
-  },
-  {
-   "id": "vib1-6-8",
-   "number": "6-8",
-   "title": "ばね支持振動体の運動方程式",
-   "topic": "連成系の運動方程式",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "問6-7の系で、振動体には左右の音圧 $p_1(l_1,t),\\,p_2(l_1,t)$ が断面積 $S$ に作用する力と、ばねの復元力が働く。変位 $w$ を右向き正とするとき、この振動体の運動方程式として正しいものはどれか。",
-   "choices": [
-    "$m_s\\dfrac{d^2 w}{dt^2}=-k_s w-S p_1(l_1,t)+S p_2(l_1,t)$",
-    "$m_s\\dfrac{d^2 w}{dt^2}=-k_s w+S p_1(l_1,t)+S p_2(l_1,t)$",
-    "$m_s\\dfrac{d^2 w}{dt^2}=-k_s w+S p_1(l_1,t)-S p_2(l_1,t)$",
-    "$m_s\\dfrac{d^2 w}{dt^2}=+k_s w+S p_1(l_1,t)-S p_2(l_1,t)$"
-   ],
-   "answer": 3,
-   "explanation": "【基礎】振動体に働く力は、左側音圧が右向きに押す力 $+S p_1$、右側音圧が左向きに押す力 $-S p_2$、ばねが元へ戻そうとする復元力 $-k_s w$ です。\n【考え方】右向きを正とすると $m_s\\ddot w=-k_s w+S p_1(l_1,t)-S p_2(l_1,t)$ となり、左右音圧の差 $S(p_1-p_2)$ が効きます。これに一致する選択肢③が正解です。\n【ポイント】左右音圧は差 $S(p_1-p_2)$ として効き、ばねは $-k_s w$ です。\n【引っかけ】①は左右音圧の符号を逆にした誤り、②は両方を同符号($+S p_1+S p_2$)とした誤り、④はばね力を $+k_s w$ とした誤りです。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-8",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6DuctSpringBody",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-10"
-   ],
-   "editorialReview": {
-    "officialPoint": "振動体の運動方程式はms d²w/dt²=-ks w+Sp1-Sp2で、左右音圧は差として効く。",
-    "alignment": "右向き正での音圧差とばね復元力の符号の組合せに一致。",
-    "distractorMisconceptions": {
-     "1": "左右音圧の符号を逆にする誤解",
-     "2": "左右音圧を同符号で加える誤解",
-     "4": "ばね力を+ks wとする誤解"
+    {
+      "id": "vib1-6-7",
+      "number": "6-7",
+      "title": "両端剛体壁・途中ばね支持振動体の境界条件",
+      "topic": "音響振動連成の境界条件",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "断面積 $S$・長さ $l$ の管路が両端を剛体壁で閉じられ、途中の位置 $x=l_1$ にばね支持振動体(質量 $m_s$、ばね定数 $k_s$)がある。振動体の左右の粒子速度を $v_1,v_2$、変位を $w$(右向き正)とする。両端($x=0,\\,x=l$)の音場の境界条件と、振動体位置での速度連続条件の組合せとして正しいものはどれか。",
+      "choices": [
+        "$x=0$ で $v_1=0$、$x=l$ で $v_2=0$、$x=l_1$ で $v_1=v_2=\\dfrac{\\partial w}{\\partial t}$",
+        "$x=0$ で $p_1=0$、$x=l$ で $p_2=0$、$x=l_1$ で $v_1=v_2=\\dfrac{\\partial w}{\\partial t}$",
+        "$x=0$ で $v_1=0$、$x=l$ で $v_2=0$、$x=l_1$ で $v_1=v_2=-\\dfrac{\\partial w}{\\partial t}$",
+        "$x=0$ で $v_1=0$、$x=l$ で $p_2=0$、$x=l_1$ で $v_1=v_2=\\dfrac{\\partial w}{\\partial t}$"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】剛体壁では空気が壁を通り抜けられないため、壁面での粒子速度がゼロになります(音圧がゼロになるのは開放端です)。\n【考え方】両端 $x=0,\\,x=l$ は剛体壁なので $v_1=0$、$v_2=0$、振動体の位置では空気が面にぴったり付いて動くので左右の粒子速度が振動体速度に等しく $v_1=v_2=\\partial w/\\partial t$(右向き正)になります。これらを満たす選択肢①が正解です。\n【ポイント】剛体壁→速度ゼロ、連成面→粒子速度=振動体速度です。\n【引っかけ】②は剛体壁を音圧ゼロ($p=0$)とした開放端との取り違え、③は振動体速度に誤った符号 $-\\partial w/\\partial t$ を付けた誤り、④は片端だけ開放端とした誤りです。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-7",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6DuctSpringBody",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-10",
+        "v1ch6-5"
+      ],
+      "editorialReview": {
+        "officialPoint": "両端剛体壁では粒子速度v=0、振動体位置では左右の粒子速度が振動体速度∂w/∂tに等しい。",
+        "alignment": "両端剛体壁の速度ゼロと連成面の速度連続条件の組合せに一致。",
+        "distractorMisconceptions": {
+          "2": "剛体壁を音圧ゼロ(開放端)と取り違える誤解",
+          "3": "振動体速度の符号を-∂w/∂tとする誤解",
+          "4": "片端だけ開放端とする誤解"
+        },
+        "sha256": "4d8eeadc50f248500bbe96d1ba2270630f0c38526002b4b75b90639ca3cbcf76"
+      },
+      "preFigureImage": "v1e6InternalPistonPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
-    "sha256": "98dff9c51e220f5f2017155656b35d88111001b8019d54bf7af6838f9db5408f"
-   }
-  },
-  {
-   "id": "vib1-6-9",
-   "number": "6-9",
-   "title": "左端調和振動板・右端ばね支持振動体の支配式",
-   "topic": "音響振動連成の支配式",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "断面積 $S$・長さ $l$ の管路で、左端が速度 $v_0\\cos\\omega t$ で調和振動する振動板、右端がばね支持振動体(質量 $m_s$、ばね定数 $k_s$)で閉じられている。管内を速度ポテンシャル $\\varphi(x,t)$ で記述するとき、$\\varphi$ の支配方程式、音圧 $p$、粒子速度 $v$ の組合せとして正しいものはどれか。 速度ポテンシャルの符号は $v=-\\partial\\varphi/\\partial x$ と定義する。",
-   "choices": [
-    "$\\dfrac{\\partial^2\\varphi}{\\partial x^2}=c^2\\dfrac{\\partial^2\\varphi}{\\partial t^2}$、$p=\\rho\\dfrac{\\partial\\varphi}{\\partial t}$、$v=-\\dfrac{\\partial\\varphi}{\\partial x}$",
-    "$\\dfrac{\\partial^2\\varphi}{\\partial x^2}=\\dfrac{1}{c^2}\\dfrac{\\partial^2\\varphi}{\\partial t^2}$、$p=-\\rho\\dfrac{\\partial\\varphi}{\\partial t}$、$v=\\dfrac{\\partial\\varphi}{\\partial x}$",
-    "$\\dfrac{\\partial^2\\varphi}{\\partial x^2}=\\dfrac{1}{c^2}\\dfrac{\\partial^2\\varphi}{\\partial t^2}$、$p=\\rho\\dfrac{\\partial^2\\varphi}{\\partial t^2}$、$v=-\\dfrac{\\partial^2\\varphi}{\\partial x^2}$",
-    "$\\dfrac{\\partial^2\\varphi}{\\partial x^2}=\\dfrac{1}{c^2}\\dfrac{\\partial^2\\varphi}{\\partial t^2}$、$p=\\rho\\dfrac{\\partial\\varphi}{\\partial t}$、$v=-\\dfrac{\\partial\\varphi}{\\partial x}$"
-   ],
-   "answer": 4,
-   "explanation": "【基礎】管内の音場は速度ポテンシャル $\\varphi$ の波動方程式で支配され、形は $\\partial^2\\varphi/\\partial x^2=(1/c^2)\\partial^2\\varphi/\\partial t^2$ です。\n【考え方】便覧の符号定義 $v=-\\partial\\varphi/\\partial x$ に整合する音圧は $p=+\\rho\\partial\\varphi/\\partial t$ で、音圧・速度はともに $\\varphi$ の1階微分です(2階微分ではありません)。これらを満たす選択肢④が正解です。\n【ポイント】波動方程式は $1/c^2$ が時間側、$p=\\rho\\partial\\varphi/\\partial t$、$v=-\\partial\\varphi/\\partial x$ です。\n【引っかけ】①は時間微分側の係数を $c^2$ にしています。②は一般には使われる別の符号定義ですが、本問で指定した定義と一致しません。③は音圧と粒子速度を2階微分としています。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-9",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6DrivenPistonSpring",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-3",
-    "v1ch6-10"
-   ],
-   "editorialReview": {
-    "officialPoint": "管内音場はφの波動方程式(1/c²が時間側)で支配され、p=ρ∂φ/∂t、v=-∂φ/∂x。",
-    "alignment": "支配方程式・音圧・粒子速度の正しい組合せに一致。",
-    "distractorMisconceptions": {
-     "1": "波動方程式をc²側とする誤解",
-     "2": "音圧を-・速度を+とする符号の誤解",
-     "3": "音圧と速度を2階微分とする誤解"
+    {
+      "id": "vib1-6-8",
+      "number": "6-8",
+      "title": "ばね支持振動体の運動方程式",
+      "topic": "連成系の運動方程式",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "問6-7の系で、振動体には左右の音圧 $p_1(l_1,t),\\,p_2(l_1,t)$ が断面積 $S$ に作用する力と、ばねの復元力が働く。変位 $w$ を右向き正とするとき、この振動体の運動方程式として正しいものはどれか。",
+      "choices": [
+        "$m_s\\dfrac{d^2 w}{dt^2}=-k_s w-S p_1(l_1,t)+S p_2(l_1,t)$",
+        "$m_s\\dfrac{d^2 w}{dt^2}=-k_s w+S p_1(l_1,t)+S p_2(l_1,t)$",
+        "$m_s\\dfrac{d^2 w}{dt^2}=-k_s w+S p_1(l_1,t)-S p_2(l_1,t)$",
+        "$m_s\\dfrac{d^2 w}{dt^2}=+k_s w+S p_1(l_1,t)-S p_2(l_1,t)$"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】振動体に働く力は、左側音圧が右向きに押す力 $+S p_1$、右側音圧が左向きに押す力 $-S p_2$、ばねが元へ戻そうとする復元力 $-k_s w$ です。\n【考え方】右向きを正とすると $m_s\\ddot w=-k_s w+S p_1(l_1,t)-S p_2(l_1,t)$ となり、左右音圧の差 $S(p_1-p_2)$ が効きます。これに一致する選択肢③が正解です。\n【ポイント】左右音圧は差 $S(p_1-p_2)$ として効き、ばねは $-k_s w$ です。\n【引っかけ】①は左右音圧の符号を逆にした誤り、②は両方を同符号($+S p_1+S p_2$)とした誤り、④はばね力を $+k_s w$ とした誤りです。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-8",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6DuctSpringBody",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-10"
+      ],
+      "editorialReview": {
+        "officialPoint": "振動体の運動方程式はms d²w/dt²=-ks w+Sp1-Sp2で、左右音圧は差として効く。",
+        "alignment": "右向き正での音圧差とばね復元力の符号の組合せに一致。",
+        "distractorMisconceptions": {
+          "1": "左右音圧の符号を逆にする誤解",
+          "2": "左右音圧を同符号で加える誤解",
+          "4": "ばね力を+ks wとする誤解"
+        },
+        "sha256": "787336c5952f3a5bd48d3db34d672329e95add1fe72558302723871921f51991"
+      },
+      "preFigureImage": "v1e6InternalPistonPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
-    "sha256": "ada5a05a1ad0a0d3be2ccc24dc93d69423dcf869fd4d56bb7083681dc8be612a"
-   }
-  },
-  {
-   "id": "vib1-6-10",
-   "number": "6-10",
-   "title": "調和振動板・ばね支持系の境界条件",
-   "topic": "連成系の境界条件",
-   "type": "mc",
-   "difficulty": 2,
-   "question": "問6-9の系の境界条件を考える。左端($x=0$)は速度 $v_0\\cos\\omega t$ で駆動される振動板に接し、右端($x=l$)では管内空気の粒子速度と振動体の速度が等しくなる。左端の境界条件と右端の速度連続条件の組合せとして正しいものはどれか。",
-   "choices": [
-    "左端 $v=-v_0\\cos\\omega t$、右端 $v(l,t)=\\dfrac{dw(t)}{dt}$",
-    "左端 $v=v_0\\cos\\omega t$、右端 $v(l,t)=\\dfrac{d^2 w(t)}{dt^2}$",
-    "左端 $v=v_0\\cos\\omega t$、右端 $v(l,t)=\\dfrac{dw(t)}{dt}$",
-    "左端 $v=v_0\\cos\\omega t$、右端 $\\dfrac{dv}{dt}=\\dfrac{dw(t)}{dt}$"
-   ],
-   "answer": 3,
-   "explanation": "【基礎】振動板や振動体に接する空気は、面にぴったり付いて同じ速度で動きます(速度の連続)。\n【考え方】左端は空気の粒子速度が振動板速度に等しく $v=v_0\\cos\\omega t$、右端は振動体速度(変位の1階時間微分)に等しく $v(l,t)=dw/dt$(加速度ではありません)。これらを満たす選択肢③が正解です。\n【ポイント】連成面は『速度』が一致し、左端=$v_0\\cos\\omega t$、右端=$dw/dt$ です。\n【引っかけ】①は左端速度に誤った符号を付けた誤り、②は右端を加速度 $d^2w/dt^2$ とした誤り、④は両辺を時間微分して速度の一致を崩した誤りです。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-10",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6DrivenPistonSpring",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-10"
-   ],
-   "editorialReview": {
-    "officialPoint": "連成面は速度が一致し、左端v=v0cosωt、右端v(l,t)=dw/dt。",
-    "alignment": "左端駆動と右端の速度連続条件の組合せに一致。",
-    "distractorMisconceptions": {
-     "1": "左端速度に誤った符号を付ける誤解",
-     "2": "右端を加速度d²w/dt²とする誤解",
-     "4": "両辺を時間微分して速度一致を崩す誤解"
+    {
+      "id": "vib1-6-9",
+      "number": "6-9",
+      "title": "左端調和振動板・右端ばね支持振動体の支配式",
+      "topic": "音響振動連成の支配式",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "断面積 $S$・長さ $l$ の管路で、左端が速度 $v_0\\cos\\omega t$ で調和振動する振動板、右端がばね支持振動体(質量 $m_s$、ばね定数 $k_s$)で閉じられている。管内を速度ポテンシャル $\\varphi(x,t)$ で記述するとき、$\\varphi$ の支配方程式、音圧 $p$、粒子速度 $v$ の組合せとして正しいものはどれか。 速度ポテンシャルの符号は $v=-\\partial\\varphi/\\partial x$ と定義する。",
+      "choices": [
+        "$\\dfrac{\\partial^2\\varphi}{\\partial x^2}=c^2\\dfrac{\\partial^2\\varphi}{\\partial t^2}$、$p=\\rho\\dfrac{\\partial\\varphi}{\\partial t}$、$v=-\\dfrac{\\partial\\varphi}{\\partial x}$",
+        "$\\dfrac{\\partial^2\\varphi}{\\partial x^2}=\\dfrac{1}{c^2}\\dfrac{\\partial^2\\varphi}{\\partial t^2}$、$p=-\\rho\\dfrac{\\partial\\varphi}{\\partial t}$、$v=\\dfrac{\\partial\\varphi}{\\partial x}$",
+        "$\\dfrac{\\partial^2\\varphi}{\\partial x^2}=\\dfrac{1}{c^2}\\dfrac{\\partial^2\\varphi}{\\partial t^2}$、$p=\\rho\\dfrac{\\partial^2\\varphi}{\\partial t^2}$、$v=-\\dfrac{\\partial^2\\varphi}{\\partial x^2}$",
+        "$\\dfrac{\\partial^2\\varphi}{\\partial x^2}=\\dfrac{1}{c^2}\\dfrac{\\partial^2\\varphi}{\\partial t^2}$、$p=\\rho\\dfrac{\\partial\\varphi}{\\partial t}$、$v=-\\dfrac{\\partial\\varphi}{\\partial x}$"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】管内の音場は速度ポテンシャル $\\varphi$ の波動方程式で支配され、形は $\\partial^2\\varphi/\\partial x^2=(1/c^2)\\partial^2\\varphi/\\partial t^2$ です。\n【考え方】便覧の符号定義 $v=-\\partial\\varphi/\\partial x$ に整合する音圧は $p=+\\rho\\partial\\varphi/\\partial t$ で、音圧・速度はともに $\\varphi$ の1階微分です(2階微分ではありません)。これらを満たす選択肢④が正解です。\n【ポイント】波動方程式は $1/c^2$ が時間側、$p=\\rho\\partial\\varphi/\\partial t$、$v=-\\partial\\varphi/\\partial x$ です。\n【引っかけ】①は時間微分側の係数を $c^2$ にしています。②は一般には使われる別の符号定義ですが、本問で指定した定義と一致しません。③は音圧と粒子速度を2階微分としています。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-9",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6DrivenPistonSpring",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-3",
+        "v1ch6-10"
+      ],
+      "editorialReview": {
+        "officialPoint": "管内音場はφの波動方程式(1/c²が時間側)で支配され、p=ρ∂φ/∂t、v=-∂φ/∂x。",
+        "alignment": "支配方程式・音圧・粒子速度の正しい組合せに一致。",
+        "distractorMisconceptions": {
+          "1": "波動方程式をc²側とする誤解",
+          "2": "音圧を-・速度を+とする符号の誤解",
+          "3": "音圧と速度を2階微分とする誤解"
+        },
+        "sha256": "36d4716697f61da14d1e143718ec95471cf8a9eaf55df705cbd40568e260929d"
+      },
+      "preFigureImage": "v1e6DrivenDuctPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
-    "sha256": "399e47f4a0fbe330850217eedced035d9e77af69607eff31378aa88e1ef2d3f7"
-   }
-  },
-  {
-   "id": "vib1-6-11",
-   "number": "6-11",
-   "title": "調和振動板・ばね支持系の振動体運動方程式",
-   "topic": "連成系の運動方程式",
-   "type": "mc",
-   "difficulty": 2,
-   "question": "問6-9の系で、右端の振動体には右端音圧 $p(l,t)$ が断面積 $S$ に作用する力とばね復元力が働く。変位を $w$ とするとき、この振動体の運動方程式として正しいものはどれか。",
-   "choices": [
-    "$m_s\\dfrac{d^2 w}{dt^2}=+k_s w+S p(l,t)$",
-    "$m_s\\dfrac{d^2 w}{dt^2}=-k_s w+S p(l,t)$",
-    "$m_s\\dfrac{d^2 w}{dt^2}=-k_s w+p(l,t)\\,v$",
-    "$m_s\\dfrac{d^2 w}{dt^2}=-k_s w-S p(l,t)$"
-   ],
-   "answer": 2,
-   "explanation": "【基礎】振動体に働く力は、右端音圧が面積 $S$ に及ぼす力 $S p(l,t)$ と、ばねの復元力 $-k_s w$ の2つです。\n【考え方】ニュートンの式は $m_s\\ddot w=+S p(l,t)-k_s w$ で、音圧は面積を掛けて力にします。これに一致する選択肢②が正解です。\n【ポイント】音圧による力=$S\\times p$、ばね力=$-k_s w$ です。\n【引っかけ】①はばね力を $+k_s w$ とした誤り、③は音圧に面積を掛けず $p\\cdot v$ など次元の合わない量とした誤り、④は音圧による力の符号を $-$ とした誤りです。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-11",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6DrivenPistonSpring",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-10"
-   ],
-   "editorialReview": {
-    "officialPoint": "右端振動体の運動方程式はms d²w/dt²=-ks w+Sp(l,t)で、音圧は面積Sを掛けて力にする。",
-    "alignment": "音圧による力Spとばね復元力の符号の組合せに一致。",
-    "distractorMisconceptions": {
-     "1": "ばね力を+ks wとする誤解",
-     "3": "音圧に面積を掛けずpvなど次元の合わない力とする誤解",
-     "4": "音圧による力の符号を-とする誤解"
+    {
+      "id": "vib1-6-10",
+      "number": "6-10",
+      "title": "調和振動板・ばね支持系の境界条件",
+      "topic": "連成系の境界条件",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "問6-9の系の境界条件を考える。左端($x=0$)は速度 $v_0\\cos\\omega t$ で駆動される振動板に接し、右端($x=l$)では管内空気の粒子速度と振動体の速度が等しくなる。左端の境界条件と右端の速度連続条件の組合せとして正しいものはどれか。",
+      "choices": [
+        "左端 $v=-v_0\\cos\\omega t$、右端 $v(l,t)=\\dfrac{dw(t)}{dt}$",
+        "左端 $v=v_0\\cos\\omega t$、右端 $v(l,t)=\\dfrac{d^2 w(t)}{dt^2}$",
+        "左端 $v=v_0\\cos\\omega t$、右端 $v(l,t)=\\dfrac{dw(t)}{dt}$",
+        "左端 $v=v_0\\cos\\omega t$、右端 $\\dfrac{dv}{dt}=\\dfrac{dw(t)}{dt}$"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】振動板や振動体に接する空気は、面にぴったり付いて同じ速度で動きます(速度の連続)。\n【考え方】左端は空気の粒子速度が振動板速度に等しく $v=v_0\\cos\\omega t$、右端は振動体速度(変位の1階時間微分)に等しく $v(l,t)=dw/dt$(加速度ではありません)。これらを満たす選択肢③が正解です。\n【ポイント】連成面は『速度』が一致し、左端=$v_0\\cos\\omega t$、右端=$dw/dt$ です。\n【引っかけ】①は左端速度に誤った符号を付けた誤り、②は右端を加速度 $d^2w/dt^2$ とした誤り、④は両辺を時間微分して速度の一致を崩した誤りです。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-10",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6DrivenPistonSpring",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-10"
+      ],
+      "editorialReview": {
+        "officialPoint": "連成面は速度が一致し、左端v=v0cosωt、右端v(l,t)=dw/dt。",
+        "alignment": "左端駆動と右端の速度連続条件の組合せに一致。",
+        "distractorMisconceptions": {
+          "1": "左端速度に誤った符号を付ける誤解",
+          "2": "右端を加速度d²w/dt²とする誤解",
+          "4": "両辺を時間微分して速度一致を崩す誤解"
+        },
+        "sha256": "e24c2aa66a7db6b2492394ed12baee6b903a5ceb6bc4f3f32f59adfccd082bf2"
+      },
+      "preFigureImage": "v1e6DrivenDuctPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
-    "sha256": "b24524bb0236f643e737fea3da8d502e1ac311227757c18d931f4678bbc2af5f"
-   }
-  },
-  {
-   "id": "vib1-6-12",
-   "number": "6-12",
-   "title": "有限要素法による要素・節点への分割",
-   "topic": "音響FEMの離散化",
-   "type": "mc",
-   "difficulty": 2,
-   "question": "1次元音響問題を有限要素法で扱う。領域 $0\\le x\\le l$ を多数の小領域に分割し、各小領域の両端に点をとって左から番号を付け、それらの点でのΦの値を未知量とする。分割した小領域、その両端の点、および点以外の任意位置のΦ値を点の値から定める操作、の呼称の組合せとして正しいものはどれか。",
-   "choices": [
-    "小領域=要素／点=節点／操作=内挿",
-    "小領域=分系／点=結合領域／操作=モード合成法",
-    "小領域=要素／点=節点／操作=モード合成法",
-    "小領域=要素／点=結合領域／操作=内挿"
-   ],
-   "answer": 1,
-   "explanation": "【基礎】有限要素法では対象領域を小さな『要素』に分け、要素の境目にある『節点』の値を未知量にし、節点以外の値は節点値から『内挿(補間)』で求めます。\n【考え方】1次元音響でも同じで、管を要素に分割し、要素両端の節点でΦの値を未知量とし、途中の値を内挿します。要素/節点/内挿がそろう選択肢①が正解です。\n【ポイント】要素/節点/内挿の3語がセットです。\n【引っかけ】②は小領域を『分系』・点を『結合領域』・操作を『モード合成法』とした用語違い、③は操作を『モード合成法』とした誤り(モード合成法はモードの重ね合わせで別概念)、④は点を『結合領域』とした誤りです。",
-   "hasMath": false,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-12",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6FemMeshNodes",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-9"
-   ],
-   "editorialReview": {
-    "officialPoint": "有限要素法では領域を要素に分割し、両端の節点値を未知量とし、途中は内挿で定める。",
-    "alignment": "要素/節点/内挿の呼称の組合せに一致。",
-    "distractorMisconceptions": {
-     "2": "要素を分系・節点を結合領域・操作をモード合成法とする用語違い",
-     "3": "内挿をモード合成法と取り違える誤解",
-     "4": "節点を結合領域と取り違える誤解"
+    {
+      "id": "vib1-6-11",
+      "number": "6-11",
+      "title": "調和振動板・ばね支持系の振動体運動方程式",
+      "topic": "連成系の運動方程式",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "問6-9の系で、右端の振動体には右端音圧 $p(l,t)$ が断面積 $S$ に作用する力とばね復元力が働く。変位を $w$ とするとき、この振動体の運動方程式として正しいものはどれか。",
+      "choices": [
+        "$m_s\\dfrac{d^2 w}{dt^2}=+k_s w+S p(l,t)$",
+        "$m_s\\dfrac{d^2 w}{dt^2}=-k_s w+S p(l,t)$",
+        "$m_s\\dfrac{d^2 w}{dt^2}=-k_s w+p(l,t)\\,v$",
+        "$m_s\\dfrac{d^2 w}{dt^2}=-k_s w-S p(l,t)$"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】振動体に働く力は、右端音圧が面積 $S$ に及ぼす力 $S p(l,t)$ と、ばねの復元力 $-k_s w$ の2つです。\n【考え方】ニュートンの式は $m_s\\ddot w=+S p(l,t)-k_s w$ で、音圧は面積を掛けて力にします。これに一致する選択肢②が正解です。\n【ポイント】音圧による力=$S\\times p$、ばね力=$-k_s w$ です。\n【引っかけ】①はばね力を $+k_s w$ とした誤り、③は音圧に面積を掛けず $p\\cdot v$ など次元の合わない量とした誤り、④は音圧による力の符号を $-$ とした誤りです。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-11",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6DrivenPistonSpring",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-10"
+      ],
+      "editorialReview": {
+        "officialPoint": "右端振動体の運動方程式はms d²w/dt²=-ks w+Sp(l,t)で、音圧は面積Sを掛けて力にする。",
+        "alignment": "音圧による力Spとばね復元力の符号の組合せに一致。",
+        "distractorMisconceptions": {
+          "1": "ばね力を+ks wとする誤解",
+          "3": "音圧に面積を掛けずpvなど次元の合わない力とする誤解",
+          "4": "音圧による力の符号を-とする誤解"
+        },
+        "sha256": "a7c79bd70e93ed8089ee7e1a4d72c035652a8699ab6410ae615b493e332c507f"
+      },
+      "preFigureImage": "v1e6DrivenDuctPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
-    "sha256": "8857a0e47c6d43583a8ecb4cc375a4b9db46df1581007d10cebaf58ef6014e99"
-   }
-  },
-  {
-   "id": "vib1-6-13",
-   "number": "6-13",
-   "title": "形状関数による内挿",
-   "topic": "形状関数",
-   "type": "mc",
-   "difficulty": 2,
-   "question": "問6-12の分割で、要素内の任意点のΦ値を節点値から内挿するために関数 $N_i(x)$ を用いる。各節点で三角形(ハット型)の折れ線となるこの関数の呼称と、領域全体のΦを近似する式の形の組合せとして正しいものはどれか。",
-   "choices": [
-    "中央差分関数、$\\Phi(x)=\\sum_i\\Phi_i N_i(x)$",
-    "形状関数、$\\Phi(x)=\\sum_i\\dfrac{\\Phi_{i-1}+2\\Phi_i+\\Phi_{i+1}}{4}N_i(x)$",
-    "モード関数、$\\Phi(x)=\\sum_i\\Phi_i N_i(x)$",
-    "形状関数、$\\Phi(x)=\\Phi_0 N_0(x)+\\Phi_1 N_1(x)+\\cdots+\\Phi_N N_N(x)$"
-   ],
-   "answer": 4,
-   "explanation": "【基礎】要素内の値を節点値から補間する重み関数を形状関数 $N_i(x)$ といい、1次要素では各節点でハット型(三角形)の折れ線になって自節点で1・隣の節点で0の値をとります。\n【考え方】全体のΦは各節点値に形状関数を掛けて足す線形結合 $\\Phi(x)=\\Phi_0 N_0+\\Phi_1 N_1+\\cdots+\\Phi_N N_N$ で近似し、係数は節点値そのものです。これに一致する選択肢④が正解です。\n【ポイント】呼称=形状関数、近似=節点値の単純な線形結合です。\n【引っかけ】①は呼称を『中央差分関数』、③は『モード関数』とした用語違い、②は係数を隣接値の重み付き平均 $(\\Phi_{i-1}+2\\Phi_i+\\Phi_{i+1})/4$ とした誤りです。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-13",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6FemMeshNodes",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-9"
-   ],
-   "editorialReview": {
-    "officialPoint": "内挿の重み関数が形状関数Ni(x)で、全体は節点値の線形結合Φ=ΣΦiNiで近似する。",
-    "alignment": "形状関数の呼称と線形結合近似式の組合せに一致。",
-    "distractorMisconceptions": {
-     "1": "呼称を中央差分関数とする用語違い",
-     "2": "係数を隣接値の重み付き平均とする誤解",
-     "3": "呼称をモード関数とする用語違い"
+    {
+      "id": "vib1-6-12",
+      "number": "6-12",
+      "title": "有限要素法による要素・節点への分割",
+      "topic": "音響FEMの離散化",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "1次元音響問題を有限要素法で扱う。領域 $0\\le x\\le l$ を多数の小領域に分割し、各小領域の両端に点をとって左から番号を付け、それらの点でのΦの値を未知量とする。分割した小領域、その両端の点、および点以外の任意位置のΦ値を点の値から定める操作、の呼称の組合せとして正しいものはどれか。",
+      "choices": [
+        "小領域=要素／点=節点／操作=内挿",
+        "小領域=分系／点=結合領域／操作=モード合成法",
+        "小領域=要素／点=節点／操作=モード合成法",
+        "小領域=要素／点=結合領域／操作=内挿"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】有限要素法では対象領域を小さな『要素』に分け、要素の境目にある『節点』の値を未知量にし、節点以外の値は節点値から『内挿(補間)』で求めます。\n【考え方】1次元音響でも同じで、管を要素に分割し、要素両端の節点でΦの値を未知量とし、途中の値を内挿します。要素/節点/内挿がそろう選択肢①が正解です。\n【ポイント】要素/節点/内挿の3語がセットです。\n【引っかけ】②は小領域を『分系』・点を『結合領域』・操作を『モード合成法』とした用語違い、③は操作を『モード合成法』とした誤り(モード合成法はモードの重ね合わせで別概念)、④は点を『結合領域』とした誤りです。",
+      "hasMath": false,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-12",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6FemMeshNodes",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-9"
+      ],
+      "editorialReview": {
+        "officialPoint": "有限要素法では領域を要素に分割し、両端の節点値を未知量とし、途中は内挿で定める。",
+        "alignment": "要素/節点/内挿の呼称の組合せに一致。",
+        "distractorMisconceptions": {
+          "2": "要素を分系・節点を結合領域・操作をモード合成法とする用語違い",
+          "3": "内挿をモード合成法と取り違える誤解",
+          "4": "節点を結合領域と取り違える誤解"
+        },
+        "sha256": "1e882a0f55c2591cd3c50bd162ca827745c61152e73644d8dbbde20a75396865"
+      },
+      "preFigureImage": "v1e6MeshInterpolationPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
-    "sha256": "925abe645bd543c87d64d292fd738777f1ce9ff66eb9c6f1f000e4a31fc5fa6e"
-   }
-  },
-  {
-   "id": "vib1-6-14",
-   "number": "6-14",
-   "title": "基本境界条件での重み付き残差条件式",
-   "topic": "重み付き残差法",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "基本境界条件 $x=0$ で $p=p_0 e^{j\\omega t}$、$x=l$ で $p=p_l e^{j\\omega t}$ を、形状関数近似 $\\Phi(x)=\\Phi_0 N_0(x)+\\cdots+\\Phi_N N_N(x)$ で満たしたい。端の節点値 $\\Phi_0,\\Phi_N$ の与え方と、採用する重み付き残差条件式($k=\\omega/c$、$W$ は重み関数)の組合せとして正しいものはどれか。 速度ポテンシャルの符号は $v=-\\partial\\varphi/\\partial x$ と定義する。",
-   "choices": [
-    "$\\Phi_0=+j\\dfrac{p_0}{\\rho\\omega}$、$\\Phi_N=+j\\dfrac{p_l}{\\rho\\omega}$、$\\displaystyle\\int_0^l\\!\\left(\\dfrac{d^2\\Phi}{dx^2}+k^2\\Phi\\right)W\\,dx=0$",
-    "$\\Phi_0=-j\\dfrac{p_0}{\\rho\\omega}$、$\\Phi_N=-j\\dfrac{p_l}{\\rho\\omega}$、$\\displaystyle\\int_0^l\\!\\left(\\dfrac{d^2\\Phi}{dx^2}+k^2\\Phi\\right)W\\,dx=0$",
-    "$\\Phi_0=-j\\dfrac{p_0}{\\rho\\omega}$、$\\Phi_N=-j\\dfrac{p_l}{\\rho\\omega}$、$\\displaystyle\\int_0^l\\!\\left(\\dfrac{d^2\\Phi}{dx^2}-k^2\\Phi\\right)W\\,dx=0$",
-    "$\\Phi_0=-v_l$、$\\Phi_N=-v_l$、$\\displaystyle\\int_0^l\\!\\left(\\dfrac{d^2\\Phi}{dx^2}+k^2\\Phi\\right)W\\,dx=0$"
-   ],
-   "answer": 2,
-   "explanation": "【基礎】音圧規定は基本境界条件なので、端の節点値 $\\Phi_0,\\Phi_N$ を音圧換算値に直接固定します。$p_0$ の換算は $\\Phi=-j\\,p_0/(\\rho\\omega)$(問6-5と同じ)です。\n【考え方】内部節点はヘルムホルツ方程式の残差に重みを掛けた条件 $\\int_0^l(d^2\\Phi/dx^2+k^2\\Phi)W\\,dx=0$ で決め、方程式が $d^2\\Phi/dx^2+k^2\\Phi=0$ なので残差の中も $+k^2\\Phi$ です。これに一致する選択肢②が正解です。\n【ポイント】端は $\\Phi_0=-j p_0/(\\rho\\omega)$ 等で固定します。内部の残差は $+k^2\\Phi$ で、既知の端の値を変えないよう重み関数は両端で0にします。\n【引っかけ】①は節点値の符号を $+j$ とした誤り、③は残差の符号を $-k^2\\Phi$ とした誤り、④は粒子速度換算 $-v_l$ を当てた誤りです。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-14",
-   "role": "primary",
-   "figure": "none",
-   "relatedFormulas": [
-    "v1ch6-9",
-    "v1ch6-5"
-   ],
-   "editorialReview": {
-    "officialPoint": "基本境界条件では端節点値をΦ0=-j p0/(ρω)等に固定し、内部はヘルムホルツ残差∫(Φ''+k²Φ)Wdx=0で決める。",
-    "alignment": "端節点値の符号と残差条件式の符号の組合せに一致。",
-    "distractorMisconceptions": {
-     "1": "端節点値の符号を+jとする誤解",
-     "3": "残差を-k²Φとする符号の誤解",
-     "4": "粒子速度換算-vlを音圧規定に当てる誤解"
+    {
+      "id": "vib1-6-13",
+      "number": "6-13",
+      "title": "形状関数による内挿",
+      "topic": "形状関数",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "問6-12の分割で、要素内の任意点のΦ値を節点値から内挿するために関数 $N_i(x)$ を用いる。各節点で三角形(ハット型)の折れ線となるこの関数の呼称と、領域全体のΦを近似する式の形の組合せとして正しいものはどれか。",
+      "choices": [
+        "中央差分関数、$\\Phi(x)=\\sum_i\\Phi_i N_i(x)$",
+        "形状関数、$\\Phi(x)=\\sum_i\\dfrac{\\Phi_{i-1}+2\\Phi_i+\\Phi_{i+1}}{4}N_i(x)$",
+        "モード関数、$\\Phi(x)=\\sum_i\\Phi_i N_i(x)$",
+        "形状関数、$\\Phi(x)=\\Phi_0 N_0(x)+\\Phi_1 N_1(x)+\\cdots+\\Phi_N N_N(x)$"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】要素内の値を節点値から補間する重み関数を形状関数 $N_i(x)$ といい、1次要素では各節点でハット型(三角形)の折れ線になって自節点で1・隣の節点で0の値をとります。\n【考え方】全体のΦは各節点値に形状関数を掛けて足す線形結合 $\\Phi(x)=\\Phi_0 N_0+\\Phi_1 N_1+\\cdots+\\Phi_N N_N$ で近似し、係数は節点値そのものです。これに一致する選択肢④が正解です。\n【ポイント】呼称=形状関数、近似=節点値の単純な線形結合です。\n【引っかけ】①は呼称を『中央差分関数』、③は『モード関数』とした用語違い、②は係数を隣接値の重み付き平均 $(\\Phi_{i-1}+2\\Phi_i+\\Phi_{i+1})/4$ とした誤りです。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-13",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6FemMeshNodes",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-9"
+      ],
+      "editorialReview": {
+        "officialPoint": "内挿の重み関数が形状関数Ni(x)で、全体は節点値の線形結合Φ=ΣΦiNiで近似する。",
+        "alignment": "形状関数の呼称と線形結合近似式の組合せに一致。",
+        "distractorMisconceptions": {
+          "1": "呼称を中央差分関数とする用語違い",
+          "2": "係数を隣接値の重み付き平均とする誤解",
+          "3": "呼称をモード関数とする用語違い"
+        },
+        "sha256": "ec235436fa72695eaeb7097d97585ba307f0a393d4f80c865eed1e59ccf392a7"
+      },
+      "preFigureImage": "v1e6HatFunctionsPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
-    "sha256": "671aab2e7f5f2467d8a380e5ef7bcec5207b4e3e0274e444d6dc2371099f76ec"
-   },
-   "figureExempt": true,
-   "figureExemptReason": "端の既知値と重み付き残差式の関係を式で説明でき、形状の図を必要としないため。"
-  },
-  {
-   "id": "vib1-6-15",
-   "number": "6-15",
-   "title": "部分積分による弱形式化",
-   "topic": "弱形式化",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "重み付き残差条件式 $\\int_0^l(d^2\\Phi/dx^2+k^2\\Phi)W\\,dx=0$ で、重み関数 $W$ に形状関数を用いることを考える。形状関数の性質、その2階微分が不連続点での扱い、およびそれを避けるために式に施す操作の組合せとして正しいものはどれか。",
-   "choices": [
-    "形状関数は折れ線→折れ点で通常の2階微分を定義できない→部分積分して弱形式化する",
-    "形状関数は滑らか→2階微分は不連続点で0→因数分解する",
-    "形状関数は折れ線→2階微分は不連続点で0→部分積分して弱形式化する",
-    "形状関数は折れ線→折れ点で通常の2階微分を定義できない→因数分解する"
-   ],
-   "answer": 1,
-   "explanation": "【基礎】折れ線の形状関数は、節点で傾きが急に変わります。1階微分は段差状となり、その段差点では通常の意味の2階微分を定義できません。公式の「無限大」は、この急な変化を表す表現です。有限の数としてそのまま計算へ代入しません。\n【考え方】正解は①です。部分積分は、片方に2回かかっていた微分を、近似関数と重み関数へ1回ずつ分ける操作です。$\\int_0^l\\Phi\\prime\\prime Wdx=[\\Phi\\prime W]_0^l-\\int_0^l\\Phi\\prime W\\prime dx$ を元の式へ入れ、全体に負号を掛けると、弱形式 $\\int_0^l(\\Phi\\prime W\\prime-k^2\\Phi W)dx=[\\Phi\\prime W]_0^l$ になります。これなら折れ線の区間ごとの傾きを積分できます。\n【ポイント】折れ線の折れ目で2階微分を直接評価する代わりに、1階微分の積と端の項を使います。式の意味を保ったまま、近似関数で計算できる形へ直すのが弱形式化です。\n【引っかけ】②は形状関数を『滑らか』『2階微分は0』とし操作を因数分解とした誤り、③は2階微分を『0』とした誤り、④は操作を『因数分解』とした誤りで、正しくは部分積分です。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-15",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6WeakForm",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-9"
-   ],
-   "editorialReview": {
-    "officialPoint": "折れ線の一次形状関数では折れ点で通常の二階微分を定義できず、部分積分で一階微分へ下げて弱形式化する。",
-    "alignment": "形状関数の性質・2階微分の扱い・弱形式化操作の組合せに一致。",
-    "distractorMisconceptions": {
-     "2": "形状関数を滑らか・2階微分0とし因数分解とする誤解",
-     "3": "2階微分を不連続点で0とする誤解",
-     "4": "操作を因数分解とする誤解"
+    {
+      "id": "vib1-6-14",
+      "number": "6-14",
+      "title": "基本境界条件での重み付き残差条件式",
+      "topic": "重み付き残差法",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "基本境界条件 $x=0$ で $p=p_0 e^{j\\omega t}$、$x=l$ で $p=p_l e^{j\\omega t}$ を、形状関数近似 $\\Phi(x)=\\Phi_0 N_0(x)+\\cdots+\\Phi_N N_N(x)$ で満たしたい。端の節点値 $\\Phi_0,\\Phi_N$ の与え方と、採用する重み付き残差条件式($k=\\omega/c$、$W$ は重み関数)の組合せとして正しいものはどれか。 速度ポテンシャルの符号は $v=-\\partial\\varphi/\\partial x$ と定義する。",
+      "choices": [
+        "$\\Phi_0=+j\\dfrac{p_0}{\\rho\\omega}$、$\\Phi_N=+j\\dfrac{p_l}{\\rho\\omega}$、$\\displaystyle\\int_0^l\\!\\left(\\dfrac{d^2\\Phi}{dx^2}+k^2\\Phi\\right)W\\,dx=0$",
+        "$\\Phi_0=-j\\dfrac{p_0}{\\rho\\omega}$、$\\Phi_N=-j\\dfrac{p_l}{\\rho\\omega}$、$\\displaystyle\\int_0^l\\!\\left(\\dfrac{d^2\\Phi}{dx^2}+k^2\\Phi\\right)W\\,dx=0$",
+        "$\\Phi_0=-j\\dfrac{p_0}{\\rho\\omega}$、$\\Phi_N=-j\\dfrac{p_l}{\\rho\\omega}$、$\\displaystyle\\int_0^l\\!\\left(\\dfrac{d^2\\Phi}{dx^2}-k^2\\Phi\\right)W\\,dx=0$",
+        "$\\Phi_0=-v_l$、$\\Phi_N=-v_l$、$\\displaystyle\\int_0^l\\!\\left(\\dfrac{d^2\\Phi}{dx^2}+k^2\\Phi\\right)W\\,dx=0$"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】音圧規定は基本境界条件なので、端の節点値 $\\Phi_0,\\Phi_N$ を音圧換算値に直接固定します。$p_0$ の換算は $\\Phi=-j\\,p_0/(\\rho\\omega)$(問6-5と同じ)です。\n【考え方】内部節点はヘルムホルツ方程式の残差に重みを掛けた条件 $\\int_0^l(d^2\\Phi/dx^2+k^2\\Phi)W\\,dx=0$ で決め、方程式が $d^2\\Phi/dx^2+k^2\\Phi=0$ なので残差の中も $+k^2\\Phi$ です。これに一致する選択肢②が正解です。\n【ポイント】端は $\\Phi_0=-j p_0/(\\rho\\omega)$ 等で固定します。内部の残差は $+k^2\\Phi$ で、既知の端の値を変えないよう重み関数は両端で0にします。\n【引っかけ】①は節点値の符号を $+j$ とした誤り、③は残差の符号を $-k^2\\Phi$ とした誤り、④は粒子速度換算 $-v_l$ を当てた誤りです。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-14",
+      "role": "primary",
+      "figure": "helpful",
+      "relatedFormulas": [
+        "v1ch6-9",
+        "v1ch6-5"
+      ],
+      "editorialReview": {
+        "officialPoint": "基本境界条件では端節点値をΦ0=-j p0/(ρω)等に固定し、内部はヘルムホルツ残差∫(Φ''+k²Φ)Wdx=0で決める。",
+        "alignment": "端節点値の符号と残差条件式の符号の組合せに一致。",
+        "distractorMisconceptions": {
+          "1": "端節点値の符号を+jとする誤解",
+          "3": "残差を-k²Φとする符号の誤解",
+          "4": "粒子速度換算-vlを音圧規定に当てる誤解"
+        },
+        "sha256": "2503e6d987f17243cdd27381785cd2c0a14c9d3a576acad94e239f65e40d6c01"
+      },
+      "figureExempt": true,
+      "figureExemptReason": "端の既知値と重み付き残差式の関係を式で説明でき、形状の図を必要としないため。",
+      "preFigureImage": "v1e6HatFunctionsPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "figureImage": "v1e6HatFunctionsPre"
     },
-    "sha256": "3b8200d52028771bcd2bf383143f9797fc861e8ecc821542a6fdfbd79db1de55"
-   }
-  },
-  {
-   "id": "vib1-6-16",
-   "number": "6-16",
-   "title": "有限要素連立方程式の未知数の個数",
-   "topic": "音響FEMの連立方程式",
-   "type": "mc",
-   "difficulty": 2,
-   "question": "1次元音響問題を有限要素法で解く。領域を要素数 $N=10$ に分割すると節点は $0,1,\\cdots,10$ の計11個となる。両端の節点値 $\\Phi_0,\\Phi_{10}$ は基本境界条件から既知として与え、残りの内部節点値を重み付き残差式から連立方程式で解く。このとき解くべき未知節点値の個数(連立方程式の元数)はいくつか。",
-   "choices": [
-    "11個",
-    "10個",
-    "9個",
-    "8個"
-   ],
-   "answer": 3,
-   "explanation": "【基礎】節点は要素数 $N$ に対して $N+1$ 個でき、$N=10$ なら $0$〜$10$ の11個です。\n【考え方】両端2つの節点値 $\\Phi_0,\\Phi_{10}$ は基本境界条件で既知なので、未知は内部節点だけで $(N+1)-2=N-1=9$ 個となり、連立方程式は9元です。選択肢③が正解です。\n【ポイント】節点数=$N+1$、既知は両端2つ、未知=$N-1$ 個です。\n【引っかけ】①は既知の両端も未知数に数えています。②は要素数と未知節点数を混同しています。④は11節点から3個を除いてしまい、既知の端が2個という条件と合いません。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-16",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6FemMeshNodes",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-9"
-   ],
-   "editorialReview": {
-    "officialPoint": "節点数はN+1、両端2つが基本境界条件で既知なので未知はN-1個。",
-    "alignment": "N=10で未知節点値9個(連立9元)を求める計算に一致。",
-    "distractorMisconceptions": {
-     "1": "全節点数11をそのまま未知数とする誤解",
-     "2": "要素数10をそのまま未知数とする誤解",
-     "4": "11節点から既知の両端2個ではなく3個を引き、8個とする誤解"
+    {
+      "id": "vib1-6-15",
+      "number": "6-15",
+      "title": "部分積分による弱形式化",
+      "topic": "弱形式化",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "重み付き残差条件式 $\\int_0^l(d^2\\Phi/dx^2+k^2\\Phi)W\\,dx=0$ で、重み関数 $W$ に形状関数を用いることを考える。形状関数の性質、その2階微分が不連続点での扱い、およびそれを避けるために式に施す操作の組合せとして正しいものはどれか。",
+      "choices": [
+        "形状関数は折れ線→折れ点で通常の2階微分を定義できない→部分積分して弱形式化する",
+        "形状関数は滑らか→2階微分は不連続点で0→因数分解する",
+        "形状関数は折れ線→2階微分は不連続点で0→部分積分して弱形式化する",
+        "形状関数は折れ線→折れ点で通常の2階微分を定義できない→因数分解する"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】折れ線の形状関数は、節点で傾きが急に変わります。1階微分は段差状となり、その段差点では通常の意味の2階微分を定義できません。公式の「無限大」は、この急な変化を表す表現です。有限の数としてそのまま計算へ代入しません。\n【考え方】正解は①です。部分積分は、片方に2回かかっていた微分を、近似関数と重み関数へ1回ずつ分ける操作です。$\\int_0^l\\Phi\\prime\\prime Wdx=[\\Phi\\prime W]_0^l-\\int_0^l\\Phi\\prime W\\prime dx$ を元の式へ入れ、全体に負号を掛けると、弱形式 $\\int_0^l(\\Phi\\prime W\\prime-k^2\\Phi W)dx=[\\Phi\\prime W]_0^l$ になります。これなら折れ線の区間ごとの傾きを積分できます。\n【ポイント】折れ線の折れ目で2階微分を直接評価する代わりに、1階微分の積と端の項を使います。式の意味を保ったまま、近似関数で計算できる形へ直すのが弱形式化です。\n【引っかけ】②は形状関数を『滑らか』『2階微分は0』とし操作を因数分解とした誤り、③は2階微分を『0』とした誤り、④は操作を『因数分解』とした誤りで、正しくは部分積分です。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-15",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6WeakForm",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-9"
+      ],
+      "editorialReview": {
+        "officialPoint": "折れ線の一次形状関数では折れ点で通常の二階微分を定義できず、部分積分で一階微分へ下げて弱形式化する。",
+        "alignment": "形状関数の性質・2階微分の扱い・弱形式化操作の組合せに一致。",
+        "distractorMisconceptions": {
+          "2": "形状関数を滑らか・2階微分0とし因数分解とする誤解",
+          "3": "2階微分を不連続点で0とする誤解",
+          "4": "操作を因数分解とする誤解"
+        },
+        "sha256": "ce3c15eb4a3ae126a2cedf6b763b5be220a7db3d5ed52edb598b73558fc7e60d"
+      },
+      "preFigureImage": "v1e6HatFunctionsPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
-    "sha256": "e7c5cbf348eaa485ca407af4440b6bcff5e8e04b864e1362cb00fa71a33c392b"
-   }
-  },
-  {
-   "id": "vib1-6-17",
-   "number": "6-17",
-   "title": "吸音率と音響インピーダンス密度の定義",
-   "topic": "吸音率・音響インピーダンス密度",
-   "type": "mc",
-   "difficulty": 2,
-   "question": "吸音材の性能評価には吸音率と音響インピーダンス密度が用いられる。吸音率は入射音と反射されなかった音の『何』の比か、また音響インピーダンス密度は『何』と媒質の『何』との比で定義されるか。組合せとして正しいものはどれか。",
-   "choices": [
-    "吸音率=音圧の比、音響インピーダンス密度=音圧と粒子速度の比",
-    "吸音率=エネルギーの比、音響インピーダンス密度=音速と粒子速度の比",
-    "吸音率=エネルギーの比、音響インピーダンス密度=音圧と粒子変位の比",
-    "吸音率=エネルギーの比、音響インピーダンス密度=音圧と粒子速度の比"
-   ],
-   "answer": 4,
-   "explanation": "【基礎】吸音率は、入ってきた音のエネルギーのうちどれだけが反射されずに吸われたかを表す比で、入射音と反射されなかった音の『エネルギー』の比で定義されます。\n【考え方】音響インピーダンス密度は電気のインピーダンス(電圧/電流)に相当し、音圧を粒子速度で割った量で、一般に複素数になります。吸音率がエネルギー比・インピーダンス密度が音圧/粒子速度である選択肢④が正解です。\n【ポイント】吸音率=エネルギー比、音響インピーダンス密度=音圧/粒子速度です。\n【引っかけ】①は吸音率を『音圧』の比とした誤り、②はインピーダンス密度を『音速/粒子速度』とした誤り、③は『音圧/粒子変位』とした定義違いです。",
-   "hasMath": false,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-17",
-   "role": "primary",
-   "figure": "none",
-   "relatedFormulas": [
-    "v1ch6-7"
-   ],
-   "editorialReview": {
-    "officialPoint": "吸音率は入射音と反射されなかった音のエネルギー比、音響インピーダンス密度は音圧と粒子速度の比。",
-    "alignment": "吸音率と音響インピーダンス密度の定義の組合せに一致。",
-    "distractorMisconceptions": {
-     "1": "吸音率を音圧の比とする誤解",
-     "2": "インピーダンス密度を音速/粒子速度とする誤解",
-     "3": "インピーダンス密度を音圧/粒子変位とする誤解"
+    {
+      "id": "vib1-6-16",
+      "number": "6-16",
+      "title": "有限要素連立方程式の未知数の個数",
+      "topic": "音響FEMの連立方程式",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "1次元音響問題を有限要素法で解く。領域を要素数 $N=10$ に分割すると節点は $0,1,\\cdots,10$ の計11個となる。両端の節点値 $\\Phi_0,\\Phi_{10}$ は基本境界条件から既知として与え、残りの内部節点値を重み付き残差式から連立方程式で解く。このとき解くべき未知節点値の個数(連立方程式の元数)はいくつか。",
+      "choices": [
+        "11個",
+        "10個",
+        "9個",
+        "8個"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】節点は要素数 $N$ に対して $N+1$ 個でき、$N=10$ なら $0$〜$10$ の11個です。\n【考え方】両端2つの節点値 $\\Phi_0,\\Phi_{10}$ は基本境界条件で既知なので、未知は内部節点だけで $(N+1)-2=N-1=9$ 個となり、連立方程式は9元です。選択肢③が正解です。\n【ポイント】節点数=$N+1$、既知は両端2つ、未知=$N-1$ 個です。\n【引っかけ】①は既知の両端も未知数に数えています。②は要素数と未知節点数を混同しています。④は11節点から3個を除いてしまい、既知の端が2個という条件と合いません。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-16",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6FemMeshNodes",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-9"
+      ],
+      "editorialReview": {
+        "officialPoint": "節点数はN+1、両端2つが基本境界条件で既知なので未知はN-1個。",
+        "alignment": "N=10で未知節点値9個(連立9元)を求める計算に一致。",
+        "distractorMisconceptions": {
+          "1": "全節点数11をそのまま未知数とする誤解",
+          "2": "要素数10をそのまま未知数とする誤解",
+          "4": "11節点から既知の両端2個ではなく3個を引き、8個とする誤解"
+        },
+        "sha256": "1ef6098db61cdcc7822ece208e92b55844928e5c674f816a58dd2a389c828e48"
+      },
+      "preFigureImage": "v1e6TenElementsPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
-    "sha256": "d8aead6ee088c3017769ab17480dd18fad9afe30d9642bb2293b7a9946cff574"
-   },
-   "figureExempt": true,
-   "figureExemptReason": "吸音率と音響インピーダンス密度の定義を比較する設問で、図を追加しても判断情報が増えないため。"
-  },
-  {
-   "id": "vib1-6-18",
-   "number": "6-18",
-   "title": "音響インテンシティと音響パワー",
-   "topic": "音響インテンシティ・パワー",
-   "type": "mc",
-   "difficulty": 2,
-   "question": "音波進行方向に垂直な単位面積を単位時間当たり通過する音のエネルギー(音圧×粒子速度の時間平均で計算)を表す量、それがベクトル量かスカラー量か、音源を囲む面でその法線方向成分を積分して求まる量、およびその測定に必要なマイクの本数の組合せとして正しいものはどれか。",
-   "choices": [
-    "音響インテンシティ／ベクトル量／音響パワー／複数のマイク",
-    "音響パワー／スカラー量／音響インテンシティ／一つのマイク",
-    "音響インテンシティ／スカラー量／音響パワー／一つのマイク",
-    "音響エネルギー／ベクトル量／音響インテンシティ／複数のマイク"
-   ],
-   "answer": 1,
-   "explanation": "【基礎】音響インテンシティは、ある向きに単位面積・単位時間当たり流れる音のエネルギーです。音圧と粒子速度を先に掛け、その積を時間平均します。音が流れる向きもあるためベクトル量です。\n【考え方】音源を囲む閉じた面全体で面に垂直な方向のインテンシティ成分を積分すると、音源が放射する音響パワーが求まります。測定には複数のマイクが必要です。これらがそろう選択肢①が正解です。\n【ポイント】インテンシティ=ベクトル→面積分→音響パワー、測定は複数のマイクで行います。\n【引っかけ】②はインテンシティとパワーを入れ替え、スカラー量・1本マイクとした誤り、③はインテンシティをスカラー量・1本マイクとした誤り、④は名称を『音響エネルギー』とし積分結果を『音響インテンシティ』とした誤りです。",
-   "hasMath": false,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-18",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6IntensityPower",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-8"
-   ],
-   "editorialReview": {
-    "officialPoint": "音響インテンシティは単位面積を通過する音のエネルギーでベクトル量、面積分で音響パワーが求まり、測定は複数マイク。",
-    "alignment": "インテンシティ・ベクトル量・音響パワー・複数マイクの組合せに一致。",
-    "distractorMisconceptions": {
-     "2": "インテンシティとパワーを入れ替えスカラー・1本マイクとする誤解",
-     "3": "インテンシティをスカラー量・1本マイクとする誤解",
-     "4": "名称を音響エネルギーとし積分結果をインテンシティとする誤解"
+    {
+      "id": "vib1-6-17",
+      "number": "6-17",
+      "title": "吸音率と音響インピーダンス密度の定義",
+      "topic": "吸音率・音響インピーダンス密度",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "吸音材の性能評価には吸音率と音響インピーダンス密度が用いられる。吸音率は入射音と反射されなかった音の『何』の比か、また音響インピーダンス密度は『何』と媒質の『何』との比で定義されるか。組合せとして正しいものはどれか。",
+      "choices": [
+        "吸音率=音圧の比、音響インピーダンス密度=音圧と粒子速度の比",
+        "吸音率=エネルギーの比、音響インピーダンス密度=音速と粒子速度の比",
+        "吸音率=エネルギーの比、音響インピーダンス密度=音圧と粒子変位の比",
+        "吸音率=エネルギーの比、音響インピーダンス密度=音圧と粒子速度の比"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】吸音率は、入ってきた音のエネルギーのうちどれだけが反射されずに吸われたかを表す比で、入射音と反射されなかった音の『エネルギー』の比で定義されます。\n【考え方】音響インピーダンス密度は電気のインピーダンス(電圧/電流)に相当し、音圧を粒子速度で割った量で、一般に複素数になります。吸音率がエネルギー比・インピーダンス密度が音圧/粒子速度である選択肢④が正解です。\n【ポイント】吸音率=エネルギー比、音響インピーダンス密度=音圧/粒子速度です。\n【引っかけ】①は吸音率を『音圧』の比とした誤り、②はインピーダンス密度を『音速/粒子速度』とした誤り、③は『音圧/粒子変位』とした定義違いです。",
+      "hasMath": false,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-17",
+      "role": "primary",
+      "figure": "none",
+      "relatedFormulas": [
+        "v1ch6-7"
+      ],
+      "editorialReview": {
+        "officialPoint": "吸音率は入射音と反射されなかった音のエネルギー比、音響インピーダンス密度は音圧と粒子速度の比。",
+        "alignment": "吸音率と音響インピーダンス密度の定義の組合せに一致。",
+        "distractorMisconceptions": {
+          "1": "吸音率を音圧の比とする誤解",
+          "2": "インピーダンス密度を音速/粒子速度とする誤解",
+          "3": "インピーダンス密度を音圧/粒子変位とする誤解"
+        },
+        "sha256": "d8aead6ee088c3017769ab17480dd18fad9afe30d9642bb2293b7a9946cff574"
+      },
+      "figureExempt": true,
+      "figureExemptReason": "吸音率と音響インピーダンス密度の定義を比較する設問で、図を追加しても判断情報が増えないため。"
     },
-    "sha256": "26acd7a05f63c7a8a0be2240cd06bbbcdf30e84ffdae99c3f279c6c48cadc590"
-   }
-  },
-  {
-   "id": "vib1-6-19",
-   "number": "6-19",
-   "title": "複素音響インテンシティの実部と虚部",
-   "topic": "複素音響インテンシティ",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "音圧と粒子速度の複素振幅を $p,u$ とし、$I=pu^*/2$ と定義する（$*$ は複素共役）。実部・虚部の呼称と意味について正しいものはどれか。",
-   "choices": [
-    "実部はリアクティブ成分で正味のエネルギー流、虚部はアクティブ成分で定在波的な蓄積を表す。",
-    "実部はアクティブ成分で正味のエネルギー流、虚部はリアクティブ成分で定在波的な成分を表す。",
-    "実部・虚部とも音圧の強さであり、音のエネルギーの流れとは関係しない。",
-    "実部はアクティブ成分、虚部はリアクティブ成分だが、純粋な定在波で正味のエネルギー流が最大になる。"
-   ],
-   "answer": 2,
-   "explanation": "【基礎】空気が往復するだけの場合と、音のエネルギーが一方向へ運ばれる場合を区別します。$I=pu^*/2$ の実部が、1周期で平均した正味のエネルギー流です。\n【考え方】実部をアクティブ成分、虚部をリアクティブ成分と呼ぶので②です。進行波では音圧と粒子速度が同位相で $I$ は実数になります。損失のない純粋な定在波では両者が90度ずれ、$I$ は純虚数になり、正味の流れは零です。\n【ポイント】例えば $p=4\\,\\mathrm{Pa}$、$u=0.002\\,\\mathrm{m/s}$ が同位相なら、実部は $4\\times0.002/2=0.004\\,\\mathrm{W/m^2}$ です。虚部は0です。音圧が大きいことと、エネルギーが流れることは同じではありません。\n【引っかけ】①は呼称を逆にしています。③は音圧と粒子速度の積という定義を無視しています。④は定在波と進行波のエネルギーの流れを取り違えています。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-19",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6ComplexIntensity",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-8"
-   ],
-   "editorialReview": {
-    "officialPoint": "複素インテンシティの実部アクティブ・虚部リアクティブ、進行波と定在波の違い。",
-    "alignment": "抽出テキストの同番号の問題・解説と照合し、公式と同じ判断・導出を独自の問題で扱う。",
-    "distractorMisconceptions": {
-     "1": "実部と虚部の名称を逆にする",
-     "3": "音圧振幅とエネルギー流を混同",
-     "4": "定在波の大音圧と正味の流れを混同"
+    {
+      "id": "vib1-6-18",
+      "number": "6-18",
+      "title": "音響インテンシティと音響パワー",
+      "topic": "音響インテンシティ・パワー",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "音波進行方向に垂直な単位面積を単位時間当たり通過する音のエネルギー(音圧×粒子速度の時間平均で計算)を表す量、それがベクトル量かスカラー量か、音源を囲む面でその法線方向成分を積分して求まる量、およびその測定に必要なマイクの本数の組合せとして正しいものはどれか。",
+      "choices": [
+        "音響インテンシティ／ベクトル量／音響パワー／複数のマイク",
+        "音響パワー／スカラー量／音響インテンシティ／一つのマイク",
+        "音響インテンシティ／スカラー量／音響パワー／一つのマイク",
+        "音響エネルギー／ベクトル量／音響インテンシティ／複数のマイク"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】音響インテンシティは、ある向きに単位面積・単位時間当たり流れる音のエネルギーです。音圧と粒子速度を先に掛け、その積を時間平均します。音が流れる向きもあるためベクトル量です。\n【考え方】音源を囲む閉じた面全体で面に垂直な方向のインテンシティ成分を積分すると、音源が放射する音響パワーが求まります。測定には複数のマイクが必要です。これらがそろう選択肢①が正解です。\n【ポイント】インテンシティ=ベクトル→面積分→音響パワー、測定は複数のマイクで行います。\n【引っかけ】②はインテンシティとパワーを入れ替え、スカラー量・1本マイクとした誤り、③はインテンシティをスカラー量・1本マイクとした誤り、④は名称を『音響エネルギー』とし積分結果を『音響インテンシティ』とした誤りです。",
+      "hasMath": false,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-18",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6IntensityPower",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-8"
+      ],
+      "editorialReview": {
+        "officialPoint": "音響インテンシティは単位面積を通過する音のエネルギーでベクトル量、面積分で音響パワーが求まり、測定は複数マイク。",
+        "alignment": "インテンシティ・ベクトル量・音響パワー・複数マイクの組合せに一致。",
+        "distractorMisconceptions": {
+          "2": "インテンシティとパワーを入れ替えスカラー・1本マイクとする誤解",
+          "3": "インテンシティをスカラー量・1本マイクとする誤解",
+          "4": "名称を音響エネルギーとし積分結果をインテンシティとする誤解"
+        },
+        "sha256": "26acd7a05f63c7a8a0be2240cd06bbbcdf30e84ffdae99c3f279c6c48cadc590"
+      }
     },
-    "sha256": "08b07bceaf2a6d721ea2406cbedcde6c6bc46d94f540973e917eb7f9e3ba5d99"
-   }
-  },
-  {
-   "id": "vib1-6-20",
-   "number": "6-20",
-   "title": "吸音層ダクトの伝達マトリクスと入口インピーダンス",
-   "topic": "伝達マトリクス・音響インピーダンス",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "断面積 $S$ 一定のダクトに、特性インピーダンス $z_a$、伝搬定数 $\\gamma_a$、長さ $l_a$ の吸音層がある。左右の音圧・粒子速度を $\\{p_1;Sv_1\\}=T\\{p_2;Sv_2\\}$、$T=\\begin{bmatrix}\\cosh\\gamma_a l_a & \\frac{z_a}{S}\\sinh\\gamma_a l_a\\\\ \\frac{S}{z_a}\\sinh\\gamma_a l_a & \\cosh\\gamma_a l_a\\end{bmatrix}$ で結ぶ。右端境界が剛壁の場合に指定する条件と、そのときの左側の音響インピーダンス $Z_1=p_1/(Sv_1)$ の組合せとして正しいものはどれか。",
-   "choices": [
-    "$p_2=0$、$Z_1=\\dfrac{z_a\\sinh\\gamma_a l_a}{S\\cosh\\gamma_a l_a}$",
-    "$v_2=0$、$Z_1=\\dfrac{S\\sinh\\gamma_a l_a}{z_a\\cosh\\gamma_a l_a}$",
-    "$v_2=0$、$Z_1=\\dfrac{z_a\\cosh\\gamma_a l_a}{S\\sinh\\gamma_a l_a}$",
-    "$p_2=0$、$Z_1=\\dfrac{z_a\\cosh\\gamma_a l_a}{S\\sinh\\gamma_a l_a}$"
-   ],
-   "answer": 3,
-   "explanation": "【基礎】剛壁では空気が動けないので粒子速度がゼロ($v_2=0$)、開放端では音圧がほぼゼロ($p_2=0$)になります。\n【考え方】$v_2=0$ を伝達マトリクスに代入すると $p_1=\\cosh\\gamma_a l_a\\cdot p_2$、$Sv_1=\\frac{S}{z_a}\\sinh\\gamma_a l_a\\cdot p_2$ となり $Z_1=p_1/(Sv_1)=\\dfrac{z_a\\cosh\\gamma_a l_a}{S\\sinh\\gamma_a l_a}$ です。これに一致する選択肢③が正解です。\n【ポイント】剛壁→$v_2=0$、$Z_1=z_a\\cosh/(S\\sinh)$ で、開放端なら $p_2=0$ で $\\sinh$ と $\\cosh$ が入れ替わります。\n【引っかけ】①は剛壁を $p_2=0$ とし $\\sinh$・$\\cosh$ も入れ替えた誤り、②は $z_a$ と $S$ を分子分母で逆にした誤り、④は条件を $p_2=0$ とした開放端との取り違えです。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-20",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6LinedDuctImpedance",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-7"
-   ],
-   "editorialReview": {
-    "officialPoint": "剛壁ではv2=0、伝達マトリクスからZ1=za coshγala/(S sinhγala)。",
-    "alignment": "剛壁条件と左側音響インピーダンスの組合せに一致。",
-    "distractorMisconceptions": {
-     "1": "剛壁をp2=0としsinh/coshを入れ替える誤解",
-     "2": "zaとSを分子分母で逆にする誤解",
-     "4": "条件をp2=0(開放端)と取り違える誤解"
+    {
+      "id": "vib1-6-19",
+      "number": "6-19",
+      "title": "複素音響インテンシティの実部と虚部",
+      "topic": "複素音響インテンシティ",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "音圧と粒子速度の複素振幅を $p,u$ とし、$I=pu^*/2$ と定義する（$*$ は複素共役）。実部・虚部の呼称と意味について正しいものはどれか。",
+      "choices": [
+        "実部はリアクティブ成分で正味のエネルギー流、虚部はアクティブ成分で定在波的な蓄積を表す。",
+        "実部はアクティブ成分で正味のエネルギー流、虚部はリアクティブ成分で定在波的な成分を表す。",
+        "実部・虚部とも音圧の強さであり、音のエネルギーの流れとは関係しない。",
+        "実部はアクティブ成分、虚部はリアクティブ成分だが、純粋な定在波で正味のエネルギー流が最大になる。"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】空気が往復するだけの場合と、音のエネルギーが一方向へ運ばれる場合を区別します。$I=pu^*/2$ の実部が、1周期で平均した正味のエネルギー流です。\n【考え方】実部をアクティブ成分、虚部をリアクティブ成分と呼ぶので②です。進行波では音圧と粒子速度が同位相で $I$ は実数になります。損失のない純粋な定在波では両者が90度ずれ、$I$ は純虚数になり、正味の流れは零です。\n【ポイント】例えば $p=4\\,\\mathrm{Pa}$、$u=0.002\\,\\mathrm{m/s}$ が同位相なら、実部は $4\\times0.002/2=0.004\\,\\mathrm{W/m^2}$ です。虚部は0です。音圧が大きいことと、エネルギーが流れることは同じではありません。\n【引っかけ】①は呼称を逆にしています。③は音圧と粒子速度の積という定義を無視しています。④は定在波と進行波のエネルギーの流れを取り違えています。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-19",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6ComplexIntensity",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-8"
+      ],
+      "editorialReview": {
+        "officialPoint": "複素インテンシティの実部アクティブ・虚部リアクティブ、進行波と定在波の違い。",
+        "alignment": "抽出テキストの同番号の問題・解説と照合し、公式と同じ判断・導出を独自の問題で扱う。",
+        "distractorMisconceptions": {
+          "1": "実部と虚部の名称を逆にする",
+          "3": "音圧振幅とエネルギー流を混同",
+          "4": "定在波の大音圧と正味の流れを混同"
+        },
+        "sha256": "08b07bceaf2a6d721ea2406cbedcde6c6bc46d94f540973e917eb7f9e3ba5d99"
+      }
     },
-    "sha256": "70440ed18c890f3ae758b65093204d4acf6c3ff54abb8d97ef567ae1c2d91c49"
-   }
-  },
-  {
-   "id": "vib1-6-21",
-   "number": "6-21",
-   "title": "弾性板で仕切られた音場-弾性体結合系",
-   "topic": "音場-弾性体結合系",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "2つの閉空間 $V_i$($i=1,2$)を弾性板で仕切り、他の壁面は剛壁とする音場-弾性体結合系を考える。閉空間の音圧振幅 $P_i$ が満たすヘルムホルツ方程式($k=\\omega/c$)の符号と、板のたわみを支配する運動方程式の右辺(板に働く外力項。$P_{S1},P_{S2}$ は両側の板面上音圧振幅)の組合せとして正しいものはどれか。 板の正方向は $V_1$ から $V_2$ へ向かう方向とする。",
-   "choices": [
-    "$\\left(\\dfrac{\\partial^2}{\\partial x^2}+\\dfrac{\\partial^2}{\\partial y^2}+\\dfrac{\\partial^2}{\\partial z^2}\\right)P_i-k^2 P_i=0$、外力項 $=P_{S1}-P_{S2}$",
-    "$\\left(\\dfrac{\\partial^2}{\\partial x^2}+\\dfrac{\\partial^2}{\\partial y^2}+\\dfrac{\\partial^2}{\\partial z^2}\\right)P_i-k^2 P_i=0$、外力項 $=P_{S2}-P_{S1}$",
-    "$\\left(\\dfrac{\\partial^2}{\\partial x^2}+\\dfrac{\\partial^2}{\\partial y^2}+\\dfrac{\\partial^2}{\\partial z^2}\\right)P_i+k^2 P_i=0$、外力項 $=P_{S2}-P_{S1}$",
-    "$\\left(\\dfrac{\\partial^2}{\\partial x^2}+\\dfrac{\\partial^2}{\\partial y^2}+\\dfrac{\\partial^2}{\\partial z^2}\\right)P_i+k^2 P_i=0$、外力項 $=P_{S1}-P_{S2}$"
-   ],
-   "answer": 4,
-   "explanation": "【基礎】各閉空間の音圧はヘルムホルツ方程式 $\\nabla^2 P_i+k^2 P_i=0$($+k^2$ が正しい)を満たし、板は両側の空気から音圧を受けて曲げ振動します。\n【考え方】正解は④です。左側の $V_1$ の音圧は板を正方向へ押し、右側の $V_2$ の音圧は負方向へ押すので、板の単位面積に働く力は $P_{S1}-P_{S2}$ です。音場側は2階時間微分が $-\\omega^2$ になるため $\\nabla^2P_i+k^2P_i=0$ です。\n【ポイント】ヘルムホルツ方程式は $+k^2 P_i=0$、外力は音圧差 $P_{S1}-P_{S2}$ です。\n【引っかけ】①はヘルムホルツを $-k^2$ とした符号違い、②は $-k^2$ かつ外力を $P_{S2}-P_{S1}$ とした誤り、③は外力を $P_{S2}-P_{S1}$ と逆向きにした誤りです。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-21",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6PlateCoupledCavities",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-14"
-   ],
-   "editorialReview": {
-    "officialPoint": "閉空間はヘルムホルツ方程式∇²P+k²P=0(+k²)、板の外力は両側音圧差PS1-PS2。",
-    "alignment": "ヘルムホルツ方程式の符号と板外力項の組合せに一致。",
-    "distractorMisconceptions": {
-     "1": "ヘルムホルツを-k²とする符号の誤解",
-     "2": "-k²かつ外力をPS2-PS1とする誤解",
-     "3": "外力をPS2-PS1と逆向きにする誤解"
+    {
+      "id": "vib1-6-20",
+      "number": "6-20",
+      "title": "吸音層ダクトの伝達マトリクスと入口インピーダンス",
+      "topic": "伝達マトリクス・音響インピーダンス",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "断面積 $S$ 一定のダクトに、特性インピーダンス $z_a$、伝搬定数 $\\gamma_a$、長さ $l_a$ の吸音層がある。左右の音圧・粒子速度を $\\{p_1;Sv_1\\}=T\\{p_2;Sv_2\\}$、$T=\\begin{bmatrix}\\cosh\\gamma_a l_a & \\frac{z_a}{S}\\sinh\\gamma_a l_a\\\\ \\frac{S}{z_a}\\sinh\\gamma_a l_a & \\cosh\\gamma_a l_a\\end{bmatrix}$ で結ぶ。右端境界が剛壁の場合に指定する条件と、そのときの左側の音響インピーダンス $Z_1=p_1/(Sv_1)$ の組合せとして正しいものはどれか。",
+      "choices": [
+        "$p_2=0$、$Z_1=\\dfrac{z_a\\sinh\\gamma_a l_a}{S\\cosh\\gamma_a l_a}$",
+        "$v_2=0$、$Z_1=\\dfrac{S\\sinh\\gamma_a l_a}{z_a\\cosh\\gamma_a l_a}$",
+        "$v_2=0$、$Z_1=\\dfrac{z_a\\cosh\\gamma_a l_a}{S\\sinh\\gamma_a l_a}$",
+        "$p_2=0$、$Z_1=\\dfrac{z_a\\cosh\\gamma_a l_a}{S\\sinh\\gamma_a l_a}$"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】剛壁では空気が動けないので粒子速度がゼロ($v_2=0$)、開放端では音圧がほぼゼロ($p_2=0$)になります。\n【考え方】$v_2=0$ を伝達マトリクスに代入すると $p_1=\\cosh\\gamma_a l_a\\cdot p_2$、$Sv_1=\\frac{S}{z_a}\\sinh\\gamma_a l_a\\cdot p_2$ となり $Z_1=p_1/(Sv_1)=\\dfrac{z_a\\cosh\\gamma_a l_a}{S\\sinh\\gamma_a l_a}$ です。これに一致する選択肢③が正解です。\n【ポイント】剛壁→$v_2=0$、$Z_1=z_a\\cosh/(S\\sinh)$ で、開放端なら $p_2=0$ で $\\sinh$ と $\\cosh$ が入れ替わります。\n【引っかけ】①は剛壁を $p_2=0$ とし $\\sinh$・$\\cosh$ も入れ替えた誤り、②は $z_a$ と $S$ を分子分母で逆にした誤り、④は条件を $p_2=0$ とした開放端との取り違えです。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-20",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6LinedDuctImpedance",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-7"
+      ],
+      "editorialReview": {
+        "officialPoint": "剛壁ではv2=0、伝達マトリクスからZ1=za coshγala/(S sinhγala)。",
+        "alignment": "剛壁条件と左側音響インピーダンスの組合せに一致。",
+        "distractorMisconceptions": {
+          "1": "剛壁をp2=0としsinh/coshを入れ替える誤解",
+          "2": "zaとSを分子分母で逆にする誤解",
+          "4": "条件をp2=0(開放端)と取り違える誤解"
+        },
+        "sha256": "6e7914c61d375f9e7eba0c1361e5f5b56f78052d03d61a641c03ac5b2898acab"
+      },
+      "preFigureImage": "v1e6AbsorberDuctPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
-    "sha256": "c4e0f7017f7ed90e6cae13b025784075ba76e06c026096b33081f252e61ca6e1"
-   }
-  },
-  {
-   "id": "vib1-6-22",
-   "number": "6-22",
-   "title": "構造-音響連成のモード法解析と相反性",
-   "topic": "モード法・相反定理",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "自動車客室のような剛性の低い壁で囲まれた構造物の固体伝播音を、最大解析周波数200Hz・入力ホワイトノイズでモード重ね合わせ法により解析する。(a)最初に構造側・音響側で各々行う固有値解析の種類、(b)固有値計算で確保すべき解析周波数の目安、(c)相反性により入力点構造加振に対する評価点音圧の伝達関数と等しくなる、評価点を加振する量の組合せとして正しいものはどれか。",
-   "choices": [
-    "実固有値解析／400Hz(最大解析周波数の約2倍)／体積加速度",
-    "複素固有値解析／200Hz／粒子速度",
-    "実固有値解析／100Hz／音圧",
-    "複素固有値解析／400Hz／変位"
-   ],
-   "answer": 1,
-   "explanation": "【基礎】減衰は後からモード減衰として与えるので、最初のモード計算は減衰を入れない実固有値解析で行います。\n【考え方】(a)実固有値解析でモーダルパラメータを求め、(b)最大解析周波数200Hzより高いモードの影響を拾うため固有値計算は約2倍の400Hzまで確保し、(c)相反定理により構造加振に対する音圧応答は評価点を体積加速度で加振したときの加振点加速度応答に等しくなります。これらがそろう選択肢①が正解です。\n【ポイント】実固有値解析／約2倍の周波数(400Hz)／音響加振は体積加速度です。\n【引っかけ】②は複素固有値解析・200Hz・粒子速度とした誤り、③は100Hz・音圧とした誤り、④は複素固有値解析・変位とした誤りで、相反で対応するのは体積加速度です。",
-   "hasMath": false,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-22",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6Coupled3DMatrix",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-12",
-    "v1ch6-11"
-   ],
-   "editorialReview": {
-    "officialPoint": "最初は実固有値解析でモードを求め、固有値計算は最大解析周波数の約2倍(400Hz)まで確保、音響加振は相反で体積加速度。",
-    "alignment": "固有値解析の種類・周波数目安・相反で対応する加振量の組合せに一致。",
-    "distractorMisconceptions": {
-     "2": "複素固有値解析・200Hz・粒子速度とする誤解",
-     "3": "固有値計算を100Hzまで・音圧とする誤解",
-     "4": "複素固有値解析・変位とする誤解"
+    {
+      "id": "vib1-6-21",
+      "number": "6-21",
+      "title": "弾性板で仕切られた音場-弾性体結合系",
+      "topic": "音場-弾性体結合系",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "2つの閉空間 $V_i$($i=1,2$)を弾性板で仕切り、他の壁面は剛壁とする音場-弾性体結合系を考える。閉空間の音圧振幅 $P_i$ が満たすヘルムホルツ方程式($k=\\omega/c$)の符号と、板のたわみを支配する運動方程式の右辺(板に働く外力項。$P_{S1},P_{S2}$ は両側の板面上音圧振幅)の組合せとして正しいものはどれか。 板の正方向は $V_1$ から $V_2$ へ向かう方向とする。",
+      "choices": [
+        "$\\left(\\dfrac{\\partial^2}{\\partial x^2}+\\dfrac{\\partial^2}{\\partial y^2}+\\dfrac{\\partial^2}{\\partial z^2}\\right)P_i-k^2 P_i=0$、外力項 $=P_{S1}-P_{S2}$",
+        "$\\left(\\dfrac{\\partial^2}{\\partial x^2}+\\dfrac{\\partial^2}{\\partial y^2}+\\dfrac{\\partial^2}{\\partial z^2}\\right)P_i-k^2 P_i=0$、外力項 $=P_{S2}-P_{S1}$",
+        "$\\left(\\dfrac{\\partial^2}{\\partial x^2}+\\dfrac{\\partial^2}{\\partial y^2}+\\dfrac{\\partial^2}{\\partial z^2}\\right)P_i+k^2 P_i=0$、外力項 $=P_{S2}-P_{S1}$",
+        "$\\left(\\dfrac{\\partial^2}{\\partial x^2}+\\dfrac{\\partial^2}{\\partial y^2}+\\dfrac{\\partial^2}{\\partial z^2}\\right)P_i+k^2 P_i=0$、外力項 $=P_{S1}-P_{S2}$"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】各閉空間の音圧はヘルムホルツ方程式 $\\nabla^2 P_i+k^2 P_i=0$($+k^2$ が正しい)を満たし、板は両側の空気から音圧を受けて曲げ振動します。\n【考え方】正解は④です。左側の $V_1$ の音圧は板を正方向へ押し、右側の $V_2$ の音圧は負方向へ押すので、板の単位面積に働く力は $P_{S1}-P_{S2}$ です。音場側は2階時間微分が $-\\omega^2$ になるため $\\nabla^2P_i+k^2P_i=0$ です。\n【ポイント】ヘルムホルツ方程式は $+k^2 P_i=0$、外力は音圧差 $P_{S1}-P_{S2}$ です。\n【引っかけ】①はヘルムホルツを $-k^2$ とした符号違い、②は $-k^2$ かつ外力を $P_{S2}-P_{S1}$ とした誤り、③は外力を $P_{S2}-P_{S1}$ と逆向きにした誤りです。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-21",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6PlateCoupledCavities",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-14"
+      ],
+      "editorialReview": {
+        "officialPoint": "閉空間はヘルムホルツ方程式∇²P+k²P=0(+k²)、板の外力は両側音圧差PS1-PS2。",
+        "alignment": "ヘルムホルツ方程式の符号と板外力項の組合せに一致。",
+        "distractorMisconceptions": {
+          "1": "ヘルムホルツを-k²とする符号の誤解",
+          "2": "-k²かつ外力をPS2-PS1とする誤解",
+          "3": "外力をPS2-PS1と逆向きにする誤解"
+        },
+        "sha256": "dac32c23492054f69d38f839ae2f9cbd75f8036848b132f8d15a0bfa2424db11"
+      },
+      "preFigureImage": "v1e6TwoCavitiesPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
-    "sha256": "b1d4bfcce020dcc25ff12f3069266665a7f37e5ce4a8415785ac1134e7a6e78e"
-   }
-  },
-  {
-   "id": "vib1-6-23",
-   "number": "6-23",
-   "title": "両端閉口音響管の1次固有振動数",
-   "topic": "音響管の固有振動数",
-   "type": "mc",
-   "difficulty": 2,
-   "question": "両端を剛壁とみなした長さ $l=3.4\\,\\mathrm{m}$ の音響管（音速 $c=340\\,\\mathrm{m/s}$）の、0Hzを除く1次音圧モードと固有振動数を考える。次に一端へばね支持の機械系を接続し、その固有振動数をこの音響1次に合わせ、機械系を加振する。音圧モード・1次周波数・連成後の共振ピークの正しい組はどれか（減衰は小さい）。",
-   "choices": [
-    "$\\phi=\\cos(\\pi x/l)$／50Hz／1つの共振が2つのピークに分かれる",
-    "$\\phi=\\sin(\\pi x/l)$／50Hz／1つの共振が2つのピークに分かれる",
-    "$\\phi=\\cos(\\pi x/l)$／100Hz／連成しても1つの共振ピークのまま",
-    "$\\phi=\\sin(\\pi x/l)$／100Hz／連成しても1つの共振ピークのまま"
-   ],
-   "answer": 1,
-   "explanation": "【基礎】両端が閉じた(剛壁)音響管の音圧固有モードは $\\phi=\\cos(n\\pi x/l)$、固有振動数は $f_n=nc/2l$ です($n=0$ は $f=0$ の一様圧力モードで、最初の振動モードは $n=1$)。\n【考え方】閉端では速度が0なので音圧の勾配が0です。$\\cos(\\pi x/l)$ は両端で勾配0、中央で音圧0となります。周波数は $f_1=c/(2l)=340/6.8=50\\,\\mathrm{Hz}$ です。ここへ同調した機械系をつなぐと動吸振器のように働き、元の1つの共振が2つに分かれるので①です。\n【ポイント】$f_1=c/2l$ で、機械系の固有振動数をこの音響1次に合わせると動吸振器のように働き、1つの共振ピークが2つに分裂します。\n【引っかけ】②は閉端の音圧を0とするsin形にしています。③は周波数の分母の2を落とし、連成による共振の分裂も無視しています。④は両方の誤りです。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-23",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6DuctModeShape",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-6"
-   ],
-   "editorialReview": {
-    "officialPoint": "閉端管の1次音圧モード・周波数・同調機械系を接続した2ピーク化。",
-    "alignment": "l=3.4m・c=340m/sからf1=50Hzを求める計算に一致。",
-    "distractorMisconceptions": {
-     "2": "閉端の音圧と速度の節を混同",
-     "3": "周波数の係数2と連成の効果を落とす",
-     "4": "境界条件・係数・連成の効果を取り違える"
+    {
+      "id": "vib1-6-22",
+      "number": "6-22",
+      "title": "構造-音響連成のモード法解析と相反性",
+      "topic": "モード法・相反定理",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "自動車客室のような剛性の低い壁で囲まれた構造物の固体伝播音を、最大解析周波数200Hz・入力ホワイトノイズでモード重ね合わせ法により解析する。(a)最初に構造側・音響側で各々行う固有値解析の種類、(b)固有値計算で確保すべき解析周波数の目安、(c)相反性により入力点構造加振に対する評価点音圧の伝達関数と等しくなる、評価点を加振する量の組合せとして正しいものはどれか。",
+      "choices": [
+        "実固有値解析／400Hz(最大解析周波数の約2倍)／体積加速度",
+        "複素固有値解析／200Hz／粒子速度",
+        "実固有値解析／100Hz／音圧",
+        "複素固有値解析／400Hz／変位"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】減衰は後からモード減衰として与えるので、最初のモード計算は減衰を入れない実固有値解析で行います。\n【考え方】(a)実固有値解析でモーダルパラメータを求め、(b)最大解析周波数200Hzより高いモードの影響を拾うため固有値計算は約2倍の400Hzまで確保し、(c)相反定理により構造加振に対する音圧応答は評価点を体積加速度で加振したときの加振点加速度応答に等しくなります。これらがそろう選択肢①が正解です。\n【ポイント】実固有値解析／約2倍の周波数(400Hz)／音響加振は体積加速度です。\n【引っかけ】②は複素固有値解析・200Hz・粒子速度とした誤り、③は100Hz・音圧とした誤り、④は複素固有値解析・変位とした誤りで、相反で対応するのは体積加速度です。",
+      "hasMath": false,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-22",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6Coupled3DMatrix",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-12",
+        "v1ch6-11"
+      ],
+      "editorialReview": {
+        "officialPoint": "最初は実固有値解析でモードを求め、固有値計算は最大解析周波数の約2倍(400Hz)まで確保、音響加振は相反で体積加速度。",
+        "alignment": "固有値解析の種類・周波数目安・相反で対応する加振量の組合せに一致。",
+        "distractorMisconceptions": {
+          "2": "複素固有値解析・200Hz・粒子速度とする誤解",
+          "3": "固有値計算を100Hzまで・音圧とする誤解",
+          "4": "複素固有値解析・変位とする誤解"
+        },
+        "sha256": "b1d4bfcce020dcc25ff12f3069266665a7f37e5ce4a8415785ac1134e7a6e78e"
+      }
     },
-    "sha256": "39d7a57f3ac32b9b01b22ec61ae96d5cdc368d73b870cbfceb5c369bba5b5d1b"
-   }
-  },
-  {
-   "id": "vib1-6-24",
-   "number": "6-24",
-   "title": "構造-音響連成系解析の一般的注意事項",
-   "topic": "連成解析の一般的注意",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "構造・音響連成系の解析に関する一般的注意事項として最も適切なものはどれか。",
-   "choices": [
-    "連成系をFEMでモデル化した全体質量行列や全体剛性行列は、構造系単体と同様に必ず対称行列となる。",
-    "連成系の固有周波数は、構造系単体と音響系単体それぞれの固有周波数に一致する。",
-    "連成系でも相反定理が成り立ち、構造系入力点に力を与えたときの受音点音圧と、受音点に体積変位を与えたときの入力点変位は、同じ周波数応答関数で結ばれる。",
-    "連成系の解析に、有限要素法と境界要素法を組み合わせて用いることは原理的にできない。"
-   ],
-   "answer": 3,
-   "explanation": "【基礎】構造-音響連成系では、連成の効果を表す行列によって全体行列が非対称になり、単体とは異なる固有周波数を持ちます。\n【考え方】相反定理は連成系でも成り立ち、構造の入力点に力を加えたときの受音点音圧と、受音点に体積変位を加えたときの入力点変位が同じ周波数応答関数で結ばれます。これを述べた選択肢③が正解です。\n【ポイント】連成の要点=行列は非対称・固有周波数は単体と異なる・相反定理は成立・FEMとBEMは併用可能です。\n【引っかけ】①は連成行列が非対称になるので誤り、②は連成で固有周波数が単体からずれるので誤り、④はFEM(構造・近接音場)とBEM(遠方音場)の併用はよく使われるので誤りです。",
-   "hasMath": false,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-24",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6Coupled3DMatrix",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-11",
-    "v1ch6-12"
-   ],
-   "editorialReview": {
-    "officialPoint": "連成系は全体行列が非対称・固有周波数は単体と異なる・相反定理は成立・FEMとBEMは併用可能。",
-    "alignment": "連成解析の一般的注意として相反定理の成立を述べた記述に一致。",
-    "distractorMisconceptions": {
-     "1": "連成の全体行列も対称になるとする誤解",
-     "2": "連成系の固有周波数が単体と一致するとする誤解",
-     "4": "FEMとBEMは併用できないとする誤解"
+    {
+      "id": "vib1-6-23",
+      "number": "6-23",
+      "title": "両端閉口音響管の1次固有振動数",
+      "topic": "音響管の固有振動数",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "両端を剛壁とみなした長さ $l=3.4\\,\\mathrm{m}$ の音響管（音速 $c=340\\,\\mathrm{m/s}$）の、0Hzを除く1次音圧モードと固有振動数を考える。次に一端へばね支持の機械系を接続し、その固有振動数をこの音響1次に合わせ、機械系を加振する。音圧モード・1次周波数・連成後の共振ピークの正しい組はどれか（減衰は小さい）。",
+      "choices": [
+        "$\\phi=\\cos(\\pi x/l)$／50Hz／1つの共振が2つのピークに分かれる",
+        "$\\phi=\\sin(\\pi x/l)$／50Hz／1つの共振が2つのピークに分かれる",
+        "$\\phi=\\cos(\\pi x/l)$／100Hz／連成しても1つの共振ピークのまま",
+        "$\\phi=\\sin(\\pi x/l)$／100Hz／連成しても1つの共振ピークのまま"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】両端が閉じた(剛壁)音響管の音圧固有モードは $\\phi=\\cos(n\\pi x/l)$、固有振動数は $f_n=nc/2l$ です($n=0$ は $f=0$ の一様圧力モードで、最初の振動モードは $n=1$)。\n【考え方】閉端では速度が0なので音圧の勾配が0です。$\\cos(\\pi x/l)$ は両端で勾配0、中央で音圧0となります。周波数は $f_1=c/(2l)=340/6.8=50\\,\\mathrm{Hz}$ です。ここへ同調した機械系をつなぐと動吸振器のように働き、元の1つの共振が2つに分かれるので①です。\n【ポイント】$f_1=c/2l$ で、機械系の固有振動数をこの音響1次に合わせると動吸振器のように働き、1つの共振ピークが2つに分裂します。\n【引っかけ】②は閉端の音圧を0とするsin形にしています。③は周波数の分母の2を落とし、連成による共振の分裂も無視しています。④は両方の誤りです。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-23",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6DuctModeShape",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-6"
+      ],
+      "editorialReview": {
+        "officialPoint": "閉端管の1次音圧モード・周波数・同調機械系を接続した2ピーク化。",
+        "alignment": "l=3.4m・c=340m/sからf1=50Hzを求める計算に一致。",
+        "distractorMisconceptions": {
+          "2": "閉端の音圧と速度の節を混同",
+          "3": "周波数の係数2と連成の効果を落とす",
+          "4": "境界条件・係数・連成の効果を取り違える"
+        },
+        "sha256": "1365d714066c079df6471582a188f378e2bf3e4395a05450a8a25fd020700031"
+      },
+      "preFigureImage": "v1e6DuctCandidatesPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
-    "sha256": "50eafd68476a603a0c6917057c6753d575f6f0d0142840b0b633aad3e80ff8cd"
-   }
-  },
-  {
-   "id": "vib1-6-25",
-   "number": "6-25",
-   "title": "構造と音場の波長に合わせた要素分割",
-   "topic": "要素分割・波長基準",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "薄い鉄板6面からなる箱と内部空気の連成応答を500Hzまで解析する。構造の曲げ波の波長を板厚から求め、要素分割を決める。波長と分割に関する説明の正しい組はどれか。板厚は約1mmとする。",
-   "choices": [
-    "構造の音速を求め、その1/6〜1/8を要素寸法とする。音響波長は構造波長より長い。",
-    "構造の曲げ波長を求め、その1/6〜1/8を分割の目安とする。この条件では音響波長は構造波長より長い。",
-    "構造の曲げ波長を求め、その1/6〜1/8を分割の目安とする。この条件では音響波長は構造波長より短い。",
-    "構造の曲げ波長を求め、その1/2を分割の目安とする。音響波長と構造波長は常に等しい。"
-   ],
-   "answer": 2,
-   "explanation": "【基礎】1つの波の山と谷を少数の直線で表すと、本当の波形からずれます。波長に対して十分小さな要素を使い、構造の曲げ波と空気の音波を両方表せるようにします。\n【考え方】正解は②です。まず板厚を用いて対象周波数の曲げ波長を求め、その1/6〜1/8を分割の目安にします。本問の薄い鉄板・500Hzでは、空気の音波の方が波長が長いため、より細かい構造の波に合わせて連成面を分割します。\n【ポイント】波長は長さ、音速は長さ/時間なので、音速そのものを要素寸法にしません。構造の波長と音響波長の大小は、板厚や周波数が変われば変わる場合があります。\n【引っかけ】①は速度を長さとして扱っています。③は本問の波長の大小が逆です。④は波を表す分割が粗く、構造波長と音響波長が等しいという断定も誤りです。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-25",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6WavelengthMesh",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-13"
-   ],
-   "editorialReview": {
-    "officialPoint": "薄板の曲げ波長を板厚から求め1/6〜1/8で分割し、当該条件では音響波長が長いと判断する。",
-    "alignment": "抽出テキストの同番号の問題・解説と照合し、公式と同じ判断・導出を独自の問題で扱う。",
-    "distractorMisconceptions": {
-     "1": "位相速度と波長の次元を混同",
-     "3": "当該条件の構造波長と音響波長の大小を逆にする",
-     "4": "波長に対する要素分割数が不足し両波長も同一視"
+    {
+      "id": "vib1-6-24",
+      "number": "6-24",
+      "title": "構造-音響連成系解析の一般的注意事項",
+      "topic": "連成解析の一般的注意",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "構造・音響連成系の解析に関する一般的注意事項として最も適切なものはどれか。",
+      "choices": [
+        "連成系をFEMでモデル化した全体質量行列や全体剛性行列は、構造系単体と同様に必ず対称行列となる。",
+        "連成系の固有周波数は、構造系単体と音響系単体それぞれの固有周波数に一致する。",
+        "連成系でも相反定理が成り立ち、構造系入力点に力を与えたときの受音点音圧と、受音点に体積変位を与えたときの入力点変位は、同じ周波数応答関数で結ばれる。",
+        "連成系の解析に、有限要素法と境界要素法を組み合わせて用いることは原理的にできない。"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】構造-音響連成系では、連成の効果を表す行列によって全体行列が非対称になり、単体とは異なる固有周波数を持ちます。\n【考え方】相反定理は連成系でも成り立ち、構造の入力点に力を加えたときの受音点音圧と、受音点に体積変位を加えたときの入力点変位が同じ周波数応答関数で結ばれます。これを述べた選択肢③が正解です。\n【ポイント】連成の要点=行列は非対称・固有周波数は単体と異なる・相反定理は成立・FEMとBEMは併用可能です。\n【引っかけ】①は連成行列が非対称になるので誤り、②は連成で固有周波数が単体からずれるので誤り、④はFEM(構造・近接音場)とBEM(遠方音場)の併用はよく使われるので誤りです。",
+      "hasMath": false,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-24",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6Coupled3DMatrix",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-11",
+        "v1ch6-12"
+      ],
+      "editorialReview": {
+        "officialPoint": "連成系は全体行列が非対称・固有周波数は単体と異なる・相反定理は成立・FEMとBEMは併用可能。",
+        "alignment": "連成解析の一般的注意として相反定理の成立を述べた記述に一致。",
+        "distractorMisconceptions": {
+          "1": "連成の全体行列も対称になるとする誤解",
+          "2": "連成系の固有周波数が単体と一致するとする誤解",
+          "4": "FEMとBEMは併用できないとする誤解"
+        },
+        "sha256": "50eafd68476a603a0c6917057c6753d575f6f0d0142840b0b633aad3e80ff8cd"
+      }
     },
-    "sha256": "53bf11b2fff5669d1c27487a9e852569d96eaf6c847fe3ce4f5907b53e3f26af"
-   }
-  },
-  {
-   "id": "vib1-6-26",
-   "number": "6-26",
-   "title": "音響モードの採用上限周波数",
-   "topic": "音響モードの採用範囲",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "鋼板の箱と内部空気の連成応答をモード法で計算する。構造側に採用するモードの最小波長は $0.34\\,\\mathrm{m}$、音速は $340\\,\\mathrm{m/s}$ である。この波長と同じ音響波長に対応する周波数を少なくとも含め、候補の中からそれを上回る最も小さい採用上限を選ぶとどれか。",
-   "choices": [
-    "$500\\,\\mathrm{Hz}$",
-    "$750\\,\\mathrm{Hz}$",
-    "$1500\\,\\mathrm{Hz}$",
-    "$3000\\,\\mathrm{Hz}$"
-   ],
-   "answer": 3,
-   "explanation": "【基礎】構造と空気の連成を精度よく計算するには、両者の最小波長がそろうところまでのモードを採用する必要があります。\n【考え方】正解は③です。構造の最小波長と同じ音響波長に対応する周波数は $f=c/\\lambda=340/0.34=1000\\,\\mathrm{Hz}$ です。この値を下回る上限では対応する細かい音場を欠くため、候補中で1000Hzを超える最小の1500Hzを選びます。\n【ポイント】構造の細かい波長に音波の波長を合わせると、対応周波数は $f=c/\\lambda$ で高くなります。\n【引っかけ】①②は1000Hzへ届きません。④も1000Hzを含みますが、候補中で必要な上限を超える最小のものという条件では③です。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-26",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6AcousticModeRange",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-13"
-   ],
-   "editorialReview": {
-    "officialPoint": "構造側の最小波長に対応する音響周波数を見積もり、その周波数を含む音響モード採用上限を選ぶ。",
-    "alignment": "λ=0.34mからf=340/0.34=1000Hzを求める計算に一致。",
-    "distractorMisconceptions": {
-     "1": "解析帯域だけを採用し空間波長を合わせない",
-     "2": "構造最小波長に対応する音響モードを欠く",
-     "4": "必要な上限を満たす最小候補という条件を見落とす"
+    {
+      "id": "vib1-6-25",
+      "number": "6-25",
+      "title": "構造と音場の波長に合わせた要素分割",
+      "topic": "要素分割・波長基準",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "薄い鉄板6面からなる箱と内部空気の連成応答を500Hzまで解析する。構造の曲げ波の波長を板厚から求め、要素分割を決める。波長と分割に関する説明の正しい組はどれか。板厚は約1mmとする。",
+      "choices": [
+        "構造の音速を求め、その1/6〜1/8を要素寸法とする。音響波長は構造波長より長い。",
+        "構造の曲げ波長を求め、その1/6〜1/8を分割の目安とする。この条件では音響波長は構造波長より長い。",
+        "構造の曲げ波長を求め、その1/6〜1/8を分割の目安とする。この条件では音響波長は構造波長より短い。",
+        "構造の曲げ波長を求め、その1/2を分割の目安とする。音響波長と構造波長は常に等しい。"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】1つの波の山と谷を少数の直線で表すと、本当の波形からずれます。波長に対して十分小さな要素を使い、構造の曲げ波と空気の音波を両方表せるようにします。\n【考え方】正解は②です。まず板厚を用いて対象周波数の曲げ波長を求め、その1/6〜1/8を分割の目安にします。本問の薄い鉄板・500Hzでは、空気の音波の方が波長が長いため、より細かい構造の波に合わせて連成面を分割します。\n【ポイント】波長は長さ、音速は長さ/時間なので、音速そのものを要素寸法にしません。構造の波長と音響波長の大小は、板厚や周波数が変われば変わる場合があります。\n【引っかけ】①は速度を長さとして扱っています。③は本問の波長の大小が逆です。④は波を表す分割が粗く、構造波長と音響波長が等しいという断定も誤りです。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-25",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6WavelengthMesh",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-13"
+      ],
+      "editorialReview": {
+        "officialPoint": "薄板の曲げ波長を板厚から求め1/6〜1/8で分割し、当該条件では音響波長が長いと判断する。",
+        "alignment": "抽出テキストの同番号の問題・解説と照合し、公式と同じ判断・導出を独自の問題で扱う。",
+        "distractorMisconceptions": {
+          "1": "位相速度と波長の次元を混同",
+          "3": "当該条件の構造波長と音響波長の大小を逆にする",
+          "4": "波長に対する要素分割数が不足し両波長も同一視"
+        },
+        "sha256": "53bf11b2fff5669d1c27487a9e852569d96eaf6c847fe3ce4f5907b53e3f26af"
+      }
     },
-    "sha256": "ebcbeb361c6068275bd73db9d586a3e527031677d978f196a99f976cf877a589"
-   }
-  },
-  {
-   "id": "vib1-6-27",
-   "number": "6-27",
-   "title": "自由音場に置かれた構造体の音響加振モデル化",
-   "topic": "自由音場のモデル化",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "自由音場に置かれた構造体を、離れた点音源で音響加振する。構造体まわりの音場をFEMでモデル化して周波数応答解析を行うとき、最も適切な記述はどれか。",
-   "choices": [
-    "自由音場のモデル化にPerfectly Matched Layer(PML)を用いれば、完全な自由音場を作ることができる。",
-    "自由音場要素に高次要素を用いることで、大幅な精度向上が見込める。",
-    "解析結果は、スピーカ加振の実測結果と全周波数域にわたって完全に一致する。",
-    "構造体に隙間がある場合、その隙間が十分小さくても、隙間をモデル化する必要が生じることがある。"
-   ],
-   "answer": 4,
-   "explanation": "【基礎】自由音場は外向きに出た音波が反射して戻らない空間で、FEMでは吸収境界(PML等)で近似するため、完全な無反射にはなりません。\n【考え方】2つ以上の空間が幅の小さい隙間でつながると、その隙間がのど(スロート)となってヘルムホルツ共鳴が起き、特定周波数で音が大きく変化することがあります。隙間が小さくてもモデル化が必要になる場合があるとした選択肢④が正解です。\n【ポイント】小さい隙間でもヘルムホルツ共鳴を作りうるので、モデル化が要る場合があります。\n【引っかけ】①の無反射モデルは離散化や境界の設置条件も影響するため、手法名だけで完全性は保証できません。②も要素次数だけで大幅な精度向上を保証できず、波長と分割の関係を確かめる必要があります。③は有限の大きさをもつスピーカと点音源の違いを無視しています。",
-   "hasMath": false,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-27",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6FreeFieldGap",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [],
-   "editorialReview": {
-    "officialPoint": "自由音場はPMLでも完全無反射にはできず、小さな隙間もヘルムホルツ共鳴を作りうるのでモデル化が要る場合がある。",
-    "alignment": "自由音場モデル化の最も適切な記述として隙間のモデル化の必要性を述べた記述に一致。",
-    "distractorMisconceptions": {
-     "1": "PMLで完全な自由音場が作れるとする誤解",
-     "2": "高次要素で大幅な精度向上が見込めるとする誤解",
-     "3": "点音源計算がスピーカ実測と全域一致するとする誤解"
+    {
+      "id": "vib1-6-26",
+      "number": "6-26",
+      "title": "音響モードの採用上限周波数",
+      "topic": "音響モードの採用範囲",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "鋼板の箱と内部空気の連成応答をモード法で計算する。構造側に採用するモードの最小波長は $0.34\\,\\mathrm{m}$、音速は $340\\,\\mathrm{m/s}$ である。この波長と同じ音響波長に対応する周波数を少なくとも含め、候補の中からそれを上回る最も小さい採用上限を選ぶとどれか。",
+      "choices": [
+        "$500\\,\\mathrm{Hz}$",
+        "$750\\,\\mathrm{Hz}$",
+        "$1500\\,\\mathrm{Hz}$",
+        "$3000\\,\\mathrm{Hz}$"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】構造と空気の連成を精度よく計算するには、両者の最小波長がそろうところまでのモードを採用する必要があります。\n【考え方】正解は③です。構造の最小波長と同じ音響波長に対応する周波数は $f=c/\\lambda=340/0.34=1000\\,\\mathrm{Hz}$ です。この値を下回る上限では対応する細かい音場を欠くため、候補中で1000Hzを超える最小の1500Hzを選びます。\n【ポイント】構造の細かい波長に音波の波長を合わせると、対応周波数は $f=c/\\lambda$ で高くなります。\n【引っかけ】①②は1000Hzへ届きません。④も1000Hzを含みますが、候補中で必要な上限を超える最小のものという条件では③です。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-26",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6AcousticModeRange",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-13"
+      ],
+      "editorialReview": {
+        "officialPoint": "構造側の最小波長に対応する音響周波数を見積もり、その周波数を含む音響モード採用上限を選ぶ。",
+        "alignment": "λ=0.34mからf=340/0.34=1000Hzを求める計算に一致。",
+        "distractorMisconceptions": {
+          "1": "解析帯域だけを採用し空間波長を合わせない",
+          "2": "構造最小波長に対応する音響モードを欠く",
+          "4": "必要な上限を満たす最小候補という条件を見落とす"
+        },
+        "sha256": "a046c5209c383f11c319b76673411b45ac0b7712a8ea1ef148eb6f9def63c1ae"
+      },
+      "preFigureImage": "v1e6EnclosurePre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
-    "sha256": "f5970afcf5e80b2e36cc7f3c43546cd88c185e2fa4cf2c60fd39c3948f12456e"
-   }
-  },
-  {
-   "id": "vib1-6-28",
-   "number": "6-28",
-   "title": "不拘束モードモデルへの変換の留意点",
-   "topic": "不拘束モードモデル",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "箱状に閉じた薄い鋼板製構造物と内部空気を連成させ、500Hzまでの周波数応答特性を、計算自由度削減のため各々を不拘束モードモデルに変換して計算する。(a)狭い範囲や一点に集中して加振する場合に加振点に考慮すべきもの、(b)音響不拘束モードを採用する際の目安(500Hzまでに存在する構造振動の腹と腹の最小間隔を何とする全モードまで採るか)、(c)連成面の要素分割が構造・音響で異なる場合にエネルギーを漏れなく伝えるために用いるものの組合せとして正しいものはどれか。",
-   "choices": [
-    "剰余剛性／半波長／多点拘束",
-    "慣性拘束／一波長／単点拘束",
-    "剰余剛性／一波長／剛体要素",
-    "慣性拘束／半波長／ばね要素"
-   ],
-   "answer": 1,
-   "explanation": "【基礎】不拘束モードモデルは自由に浮いた状態のモードで系を表す縮約法で、集中加振では局部変形が生じるため、モードだけでは表せない静的変形を補う剰余剛性を加振点に考慮します。\n【考え方】(b)薄板構造の振動波長は音響波長より短いので、音響側は構造振動の腹と腹の最小間隔を半波長とする高次モードまで採用し、(c)分割が異なる連成面では節点間でエネルギーを過不足なくやり取りする多点拘束を用います。これらがそろう選択肢①が正解です。\n【ポイント】剰余剛性／半波長／多点拘束です。\n【引っかけ】②は慣性拘束・一波長・単点拘束、③は一波長・剛体要素、④は慣性拘束・ばね要素とした誤りです。",
-   "hasMath": false,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-28",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6AcousticModeRange",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-13",
-    "v1ch6-11"
-   ],
-   "editorialReview": {
-    "officialPoint": "不拘束モードモデルでは集中加振点に剰余剛性を考慮、音響は構造振動の腹の最小間隔を半波長とするモードまで採用、異分割連成面は多点拘束で結ぶ。",
-    "alignment": "剰余剛性・半波長・多点拘束の組合せに一致。",
-    "distractorMisconceptions": {
-     "2": "慣性拘束・一波長・単点拘束とする誤解",
-     "3": "一波長・剛体要素とする誤解",
-     "4": "慣性拘束・ばね要素とする誤解"
+    {
+      "id": "vib1-6-27",
+      "number": "6-27",
+      "title": "自由音場に置かれた構造体の音響加振モデル化",
+      "topic": "自由音場のモデル化",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "自由音場に置かれた構造体を、離れた点音源で音響加振する。構造体まわりの音場をFEMでモデル化して周波数応答解析を行うとき、最も適切な記述はどれか。",
+      "choices": [
+        "自由音場のモデル化にPerfectly Matched Layer(PML)を用いれば、完全な自由音場を作ることができる。",
+        "自由音場要素に高次要素を用いることで、大幅な精度向上が見込める。",
+        "解析結果は、スピーカ加振の実測結果と全周波数域にわたって完全に一致する。",
+        "構造体に隙間がある場合、その隙間が十分小さくても、隙間をモデル化する必要が生じることがある。"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】自由音場は外向きに出た音波が反射して戻らない空間で、FEMでは吸収境界(PML等)で近似するため、完全な無反射にはなりません。\n【考え方】2つ以上の空間が幅の小さい隙間でつながると、その隙間がのど(スロート)となってヘルムホルツ共鳴が起き、特定周波数で音が大きく変化することがあります。隙間が小さくてもモデル化が必要になる場合があるとした選択肢④が正解です。\n【ポイント】小さい隙間でもヘルムホルツ共鳴を作りうるので、モデル化が要る場合があります。\n【引っかけ】①の無反射モデルは離散化や境界の設置条件も影響するため、手法名だけで完全性は保証できません。②も要素次数だけで大幅な精度向上を保証できず、波長と分割の関係を確かめる必要があります。③は有限の大きさをもつスピーカと点音源の違いを無視しています。",
+      "hasMath": false,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-27",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6FreeFieldGap",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [],
+      "editorialReview": {
+        "officialPoint": "自由音場はPMLでも完全無反射にはできず、小さな隙間もヘルムホルツ共鳴を作りうるのでモデル化が要る場合がある。",
+        "alignment": "自由音場モデル化の最も適切な記述として隙間のモデル化の必要性を述べた記述に一致。",
+        "distractorMisconceptions": {
+          "1": "PMLで完全な自由音場が作れるとする誤解",
+          "2": "高次要素で大幅な精度向上が見込めるとする誤解",
+          "3": "点音源計算がスピーカ実測と全域一致するとする誤解"
+        },
+        "sha256": "f5970afcf5e80b2e36cc7f3c43546cd88c185e2fa4cf2c60fd39c3948f12456e"
+      }
     },
-    "sha256": "e69debb2c06d5aee4bd9c70222892e1d16bebfd0c830c3f913edd295c0ff90a2"
-   }
-  },
-  {
-   "id": "vib1-6-29",
-   "number": "6-29",
-   "title": "音響の剛体モード",
-   "topic": "音響剛体モード",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "剛壁に囲まれた空気の音響不拘束モードモデルは剛体モードを持つ。空気の振動を表す状態変化の種類、剛体モードで空間全体に一様分布する状態量、音響剛体モードの個数、および構造連成で剛体モードを顕著に励起させる境界積分量の組合せとして正しいものはどれか。",
-   "choices": [
-    "等圧変化／一様分布量=温度／3個／励起量=境界の温度分布",
-    "断熱変化／一様分布量=圧力／1個／励起量=境界の垂直方向速度を面積積分した体積の時間変化",
-    "断熱変化／一様分布量=温度／1個／励起量=境界の圧力を面積積分した量",
-    "断熱変化／一様分布量=圧力／3個／励起量=境界の温度分布"
-   ],
-   "answer": 2,
-   "explanation": "【基礎】空気の振動は状態方程式に従い、音の振動は速い変化なので熱の逃げない断熱変化として扱います。状態量は圧力・体積・温度で結ばれます。\n【考え方】剛体モードは圧力が空間全体で一様(波長無限大)に分布するモードで、音圧はスカラー量なので剛体モードは1個だけ(固有振動数0Hz)、構造連成では境界面の垂直方向速度を面積積分した体積の時間変化が大きいときに顕著に励起されます。これらがそろう選択肢②が正解です。\n【ポイント】圧力が一様な零周波数モードは、連結した閉空間1つに対して1個です。境界の法線速度を面積で足した量は体積変化率です。全体として空気を押し縮める動きがあると、この一様な圧力成分を励起します。\n【引っかけ】①は等圧変化・温度一様・3個とした誤り、③は一様分布量を温度とした誤り、④は3個とし励起量を温度分布とした誤りです。",
-   "hasMath": false,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-29",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6RigidBodyMode",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [],
-   "editorialReview": {
-    "officialPoint": "空気振動は断熱変化で、剛体モードは圧力が一様分布するモードで1個(0Hz)、境界の垂直速度を面積積分した体積の時間変化で励起。",
-    "alignment": "状態変化・一様分布量・個数・励起量の組合せに一致。",
-    "distractorMisconceptions": {
-     "1": "等圧変化・温度一様・3個とする誤解",
-     "3": "一様分布量を温度とする誤解",
-     "4": "個数を3個とし励起量を温度分布とする誤解"
+    {
+      "id": "vib1-6-28",
+      "number": "6-28",
+      "title": "不拘束モードモデルへの変換の留意点",
+      "topic": "不拘束モードモデル",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "箱状に閉じた薄い鋼板製構造物と内部空気を連成させ、500Hzまでの周波数応答特性を、計算自由度削減のため各々を不拘束モードモデルに変換して計算する。(a)狭い範囲や一点に集中して加振する場合に加振点に考慮すべきもの、(b)音響不拘束モードを採用する際の目安(500Hzまでに存在する構造振動の腹と腹の最小間隔を何とする全モードまで採るか)、(c)連成面の要素分割が構造・音響で異なる場合にエネルギーを漏れなく伝えるために用いるものの組合せとして正しいものはどれか。",
+      "choices": [
+        "剰余剛性／半波長／多点拘束",
+        "慣性拘束／一波長／単点拘束",
+        "剰余剛性／一波長／剛体要素",
+        "慣性拘束／半波長／ばね要素"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】不拘束モードモデルは自由に浮いた状態のモードで系を表す縮約法で、集中加振では局部変形が生じるため、モードだけでは表せない静的変形を補う剰余剛性を加振点に考慮します。\n【考え方】(b)薄板構造の振動波長は音響波長より短いので、音響側は構造振動の腹と腹の最小間隔を半波長とする高次モードまで採用し、(c)分割が異なる連成面では節点間でエネルギーを過不足なくやり取りする多点拘束を用います。これらがそろう選択肢①が正解です。\n【ポイント】剰余剛性／半波長／多点拘束です。\n【引っかけ】②は慣性拘束・一波長・単点拘束、③は一波長・剛体要素、④は慣性拘束・ばね要素とした誤りです。",
+      "hasMath": false,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-28",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6AcousticModeRange",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-13",
+        "v1ch6-11"
+      ],
+      "editorialReview": {
+        "officialPoint": "不拘束モードモデルでは集中加振点に剰余剛性を考慮、音響は構造振動の腹の最小間隔を半波長とするモードまで採用、異分割連成面は多点拘束で結ぶ。",
+        "alignment": "剰余剛性・半波長・多点拘束の組合せに一致。",
+        "distractorMisconceptions": {
+          "2": "慣性拘束・一波長・単点拘束とする誤解",
+          "3": "一波長・剛体要素とする誤解",
+          "4": "慣性拘束・ばね要素とする誤解"
+        },
+        "sha256": "e69debb2c06d5aee4bd9c70222892e1d16bebfd0c830c3f913edd295c0ff90a2"
+      }
     },
-    "sha256": "fee470d14abac2dee80dec43aa92727013a7798682f23e8f7dacd828252c7075"
-   }
-  },
-  {
-   "id": "vib1-6-30",
-   "number": "6-30",
-   "title": "3次元音響振動連成のFEM式とモード法",
-   "topic": "3次元連成FEM式",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "3次元の構造・音場連成有限要素式を、$M\\ddot x+C\\dot x+Kx=P$ と書く。ここで $x=\\{x_s;x_a\\}$、$P=\\{P_s;P_a\\}$、$M=\\begin{bmatrix}M_s&0\\\\-A^T&M_a\\end{bmatrix}$、$C=\\begin{bmatrix}C_s&0\\\\0&C_a\\end{bmatrix}$、$K=\\begin{bmatrix}K_s&A\\\\0&K_a\\end{bmatrix}$ とする。添字 $s$ は構造、$a$ は音場、$A$ は連成行列である。(a)音場の未知ベクトル $x_a$ の物理量、(b)減衰項と連成行列を省いて基底モードを求める固有値解析の種類、(c)連成を戻して低次元化した質量・剛性行列の一般的性質の正しい組はどれか。",
-   "choices": [
-    "速度ポテンシャル／複素固有値解析／対角行列",
-    "粒子速度／静解析／対角行列",
-    "音圧／実固有値解析／非対角行列",
-    "音圧／複素固有値解析／対角行列"
-   ],
-   "answer": 3,
-   "explanation": "【基礎】この連成有限要素式では構造系の未知量が節点変位 $\\{x_s\\}$、音響系の未知量が節点音圧 $\\{x_a\\}$ で、連成行列 $A$ により全体行列が非対称になります。\n【考え方】非対称のまま固有値解析するのは大変なので、通常は減衰項と $A$ を無視した実固有値解析でモードベクトルを求めて低次元化し、連成効果が残るため低次元化後の質量・剛性行列は一般に非対角行列です。これに一致する選択肢③が正解です。\n【ポイント】$\\{x_a\\}$=音圧／実固有値解析／低次元化後は非対角です。\n【引っかけ】①は未知量を速度ポテンシャル・複素固有値解析・対角、②は粒子速度・静解析・対角、④は複素固有値解析・対角とした誤りです。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-30",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6Coupled3DMatrix",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-11"
-   ],
-   "editorialReview": {
-    "officialPoint": "音響系未知量は音圧、連成行列Aで全体行列が非対称、実固有値解析で低次元化し、低次元化後の質量・剛性行列は非対角。",
-    "alignment": "音響未知量・固有値解析の種類・低次元化後の行列性質の組合せに一致。",
-    "distractorMisconceptions": {
-     "1": "未知量を速度ポテンシャル・複素固有値解析・対角とする誤解",
-     "2": "未知量を粒子速度・静解析・対角とする誤解",
-     "4": "複素固有値解析・対角とする誤解"
+    {
+      "id": "vib1-6-29",
+      "number": "6-29",
+      "title": "音響の剛体モード",
+      "topic": "音響剛体モード",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "剛壁に囲まれた空気の音響不拘束モードモデルは剛体モードを持つ。空気の振動を表す状態変化の種類、剛体モードで空間全体に一様分布する状態量、音響剛体モードの個数、および構造連成で剛体モードを顕著に励起させる境界積分量の組合せとして正しいものはどれか。",
+      "choices": [
+        "等圧変化／一様分布量=温度／3個／励起量=境界の温度分布",
+        "断熱変化／一様分布量=圧力／1個／励起量=境界の垂直方向速度を面積積分した体積の時間変化",
+        "断熱変化／一様分布量=温度／1個／励起量=境界の圧力を面積積分した量",
+        "断熱変化／一様分布量=圧力／3個／励起量=境界の温度分布"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】空気の振動は状態方程式に従い、音の振動は速い変化なので熱の逃げない断熱変化として扱います。状態量は圧力・体積・温度で結ばれます。\n【考え方】剛体モードは圧力が空間全体で一様(波長無限大)に分布するモードで、音圧はスカラー量なので剛体モードは1個だけ(固有振動数0Hz)、構造連成では境界面の垂直方向速度を面積積分した体積の時間変化が大きいときに顕著に励起されます。これらがそろう選択肢②が正解です。\n【ポイント】圧力が一様な零周波数モードは、連結した閉空間1つに対して1個です。境界の法線速度を面積で足した量は体積変化率です。全体として空気を押し縮める動きがあると、この一様な圧力成分を励起します。\n【引っかけ】①は等圧変化・温度一様・3個とした誤り、③は一様分布量を温度とした誤り、④は3個とし励起量を温度分布とした誤りです。",
+      "hasMath": false,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-29",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6RigidBodyMode",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [],
+      "editorialReview": {
+        "officialPoint": "空気振動は断熱変化で、剛体モードは圧力が一様分布するモードで1個(0Hz)、境界の垂直速度を面積積分した体積の時間変化で励起。",
+        "alignment": "状態変化・一様分布量・個数・励起量の組合せに一致。",
+        "distractorMisconceptions": {
+          "1": "等圧変化・温度一様・3個とする誤解",
+          "3": "一様分布量を温度とする誤解",
+          "4": "個数を3個とし励起量を温度分布とする誤解"
+        },
+        "sha256": "fee470d14abac2dee80dec43aa92727013a7798682f23e8f7dacd828252c7075"
+      }
     },
-    "sha256": "8667b7544534bb686ef9f7ac0e050dd75080e5f045b26e600d6f296c49b2b787"
-   }
-  },
-  {
-   "id": "vib1-6-31",
-   "number": "6-31",
-   "title": "固体伝播騒音の調査(加速度応答分布)",
-   "topic": "固体伝播騒音の調査",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "自動車客室のような剛性の低い壁で囲まれた構造物の固体伝播騒音の原因を、入力点の構造加振と評価点の音響加振に対応する2種類の解析で、構造物の加速度応答分布を調べて調査する。正しい記述はどれか。",
-   "choices": [
-    "構造加振と音響加振で計算した加速度パワースペクトルのピーク周波数は、常に一致する。",
-    "加速度分布は、構造加振時と音響加振時で同一周波数でも一致しない場合が多い。",
-    "音響加振時の加速度分布は、客室内音の発生原因となっている固有振動モードとは無関係である。",
-    "客室内音の低減には、構造系の加振点応答に現れるピークのレベルを下げることが必須である。"
-   ],
-   "answer": 2,
-   "explanation": "【基礎】車体は200Hzまでに数千もの固有モードを持ち、加振の仕方が変わると励起されるモードも変わります。\n【考え方】構造加振と音響加振では励起モードが異なることが多く、加速度分布は同一周波数でも一致しないことが多いです。これを述べた選択肢②が正解です。\n【ポイント】加振方法が違えば励起モードが違い、応答分布も一致しないことが多いです。\n【引っかけ】①はピーク周波数が常に一致するとは限らないので誤り、③は音響加振時の分布はむしろ原因モードに近いことが多く『無関係』は誤り、④は音への寄与が小さいモードが加振点応答のピークを作る場合もあり『必須』は誤りです。",
-   "hasMath": false,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-31",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6CarCabinExcitation",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-11",
-    "v1ch6-12"
-   ],
-   "editorialReview": {
-    "officialPoint": "構造加振と音響加振では励起モードが異なることが多く、加速度分布は同一周波数でも一致しないことが多い。",
-    "alignment": "固体伝播騒音調査の正しい記述として加速度分布の不一致を述べた記述に一致。",
-    "distractorMisconceptions": {
-     "1": "ピーク周波数が常に一致するとする誤解",
-     "3": "音響加振時の分布が原因モードと無関係とする誤解",
-     "4": "加振点応答ピーク低減が音低減に必須とする誤解"
+    {
+      "id": "vib1-6-30",
+      "number": "6-30",
+      "title": "3次元音響振動連成のFEM式とモード法",
+      "topic": "3次元連成FEM式",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "3次元の構造・音場連成有限要素式を、$M\\ddot x+C\\dot x+Kx=P$ と書く。ここで $x=\\{x_s;x_a\\}$、$P=\\{P_s;P_a\\}$、$M=\\begin{bmatrix}M_s&0\\\\-A^T&M_a\\end{bmatrix}$、$C=\\begin{bmatrix}C_s&0\\\\0&C_a\\end{bmatrix}$、$K=\\begin{bmatrix}K_s&A\\\\0&K_a\\end{bmatrix}$ とする。添字 $s$ は構造、$a$ は音場、$A$ は連成行列である。(a)音場の未知ベクトル $x_a$ の物理量、(b)減衰項と連成行列を省いて基底モードを求める固有値解析の種類、(c)連成を戻して低次元化した質量・剛性行列の一般的性質の正しい組はどれか。",
+      "choices": [
+        "速度ポテンシャル／複素固有値解析／対角行列",
+        "粒子速度／静解析／対角行列",
+        "音圧／実固有値解析／非対角行列",
+        "音圧／複素固有値解析／対角行列"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】この連成有限要素式では構造系の未知量が節点変位 $\\{x_s\\}$、音響系の未知量が節点音圧 $\\{x_a\\}$ で、連成行列 $A$ により全体行列が非対称になります。\n【考え方】非対称のまま固有値解析するのは大変なので、通常は減衰項と $A$ を無視した実固有値解析でモードベクトルを求めて低次元化し、連成効果が残るため低次元化後の質量・剛性行列は一般に非対角行列です。これに一致する選択肢③が正解です。\n【ポイント】$\\{x_a\\}$=音圧／実固有値解析／低次元化後は非対角です。\n【引っかけ】①は未知量を速度ポテンシャル・複素固有値解析・対角、②は粒子速度・静解析・対角、④は複素固有値解析・対角とした誤りです。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-30",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6Coupled3DMatrix",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-11"
+      ],
+      "editorialReview": {
+        "officialPoint": "音響系未知量は音圧、連成行列Aで全体行列が非対称、実固有値解析で低次元化し、低次元化後の質量・剛性行列は非対角。",
+        "alignment": "音響未知量・固有値解析の種類・低次元化後の行列性質の組合せに一致。",
+        "distractorMisconceptions": {
+          "1": "未知量を速度ポテンシャル・複素固有値解析・対角とする誤解",
+          "2": "未知量を粒子速度・静解析・対角とする誤解",
+          "4": "複素固有値解析・対角とする誤解"
+        },
+        "sha256": "8667b7544534bb686ef9f7ac0e050dd75080e5f045b26e600d6f296c49b2b787"
+      }
     },
-    "sha256": "0a7bc3662844195c891ed282c1ce5f9abbf6c3df2de9de2d2e1a1210400b327b"
-   }
-  },
-  {
-   "id": "vib1-6-32",
-   "number": "6-32",
-   "title": "自由音場のFEMモデル化",
-   "topic": "自由音場FEM",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "自由音場に置かれた構造体まわりの音場をFEMでモデル化し、点音源で音響加振する周波数応答解析を行う。自由音場は、構造体を除き境界がなく、構造から外向きに放射された音波が反射して戻らない音響空間である。正しい記述はどれか。",
-   "choices": [
-    "FEMによる自由音場計算は、原理的に精度を確保できない。",
-    "一次のテトラ要素でモデルを作成しても、応力解析ほどの精度問題は生じない。",
-    "点音源設定位置の音圧計算結果を、スピーカ加振の実測結果とそのまま比較して検証してよい。",
-    "対象音波の波長に対して十分小さい幅の隙間は、常に塞がっているものとして有限要素モデルを作成してよい。"
-   ],
-   "answer": 2,
-   "explanation": "【基礎】線形の音場はせん断力成分を持たないので、応力解析ほど要素次数の影響を受けにくいです。\n【考え方】そのため一次のテトラ要素でモデル化しても、応力解析ほどの深刻な精度問題は生じません。これを述べた選択肢②が正解です。\n【ポイント】一次の四面体要素を使えることと、粗い分割でよいことは別です。音響でも対象周波数の波長に対して十分な分割が必要です。\n【引っかけ】①は無限要素など精度の高い手法が実用化されており『精度を確保できない』は誤り、③は大きさを持つスピーカの空間を考慮すべきで点音源計算とそのまま比較はできない、④は幅の小さい隙間でもヘルムホルツ共鳴を作りうるので『常に塞いでよい』は誤りです。",
-   "hasMath": false,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-32",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6FreeFieldGap",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [],
-   "editorialReview": {
-    "officialPoint": "線形音場はせん断成分がなく、一次テトラ要素でも応力解析ほどの精度問題は生じない。",
-    "alignment": "自由音場FEMの正しい記述として一次要素でも精度問題が小さいことを述べた記述に一致。",
-    "distractorMisconceptions": {
-     "1": "FEMの自由音場計算は原理的に精度確保できないとする誤解",
-     "3": "点音源計算をスピーカ実測とそのまま比較してよいとする誤解",
-     "4": "小さい隙間は常に塞いでよいとする誤解"
+    {
+      "id": "vib1-6-31",
+      "number": "6-31",
+      "title": "固体伝播騒音の調査(加速度応答分布)",
+      "topic": "固体伝播騒音の調査",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "自動車客室のような剛性の低い壁で囲まれた構造物の固体伝播騒音の原因を、入力点の構造加振と評価点の音響加振に対応する2種類の解析で、構造物の加速度応答分布を調べて調査する。正しい記述はどれか。",
+      "choices": [
+        "構造加振と音響加振で計算した加速度パワースペクトルのピーク周波数は、常に一致する。",
+        "加速度分布は、構造加振時と音響加振時で同一周波数でも一致しない場合が多い。",
+        "音響加振時の加速度分布は、客室内音の発生原因となっている固有振動モードとは無関係である。",
+        "客室内音の低減には、構造系の加振点応答に現れるピークのレベルを下げることが必須である。"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】車体は200Hzまでに数千もの固有モードを持ち、加振の仕方が変わると励起されるモードも変わります。\n【考え方】構造加振と音響加振では励起モードが異なることが多く、加速度分布は同一周波数でも一致しないことが多いです。これを述べた選択肢②が正解です。\n【ポイント】加振方法が違えば励起モードが違い、応答分布も一致しないことが多いです。\n【引っかけ】①はピーク周波数が常に一致するとは限らないので誤り、③は音響加振時の分布はむしろ原因モードに近いことが多く『無関係』は誤り、④は音への寄与が小さいモードが加振点応答のピークを作る場合もあり『必須』は誤りです。",
+      "hasMath": false,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-31",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6CarCabinExcitation",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-11",
+        "v1ch6-12"
+      ],
+      "editorialReview": {
+        "officialPoint": "構造加振と音響加振では励起モードが異なることが多く、加速度分布は同一周波数でも一致しないことが多い。",
+        "alignment": "固体伝播騒音調査の正しい記述として加速度分布の不一致を述べた記述に一致。",
+        "distractorMisconceptions": {
+          "1": "ピーク周波数が常に一致するとする誤解",
+          "3": "音響加振時の分布が原因モードと無関係とする誤解",
+          "4": "加振点応答ピーク低減が音低減に必須とする誤解"
+        },
+        "sha256": "cd2d8b636578f708bb14d91a8bd0533b28e807df5b5f483f28003ddf7ab9eaf2"
+      },
+      "preFigureImage": "v1e6CarAcousticSetupPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
-    "sha256": "b6dca5204de3de8049aad63d8a94a5b23dce13b8196317a7460a635c677bf530"
-   }
-  },
-  {
-   "id": "vib1-6-33",
-   "number": "6-33",
-   "title": "吸音効果のモデル化(音響インピーダンス密度)",
-   "topic": "吸音効果のモデル化",
-   "type": "mc",
-   "difficulty": 2,
-   "question": "自動車車室内装(シート・インパネ・ルーフライナ等)の吸音効果をモデル化するため、音響吸収材要素に音響インピーダンス密度を定義する。この量は『何』と媒質の『何』との比か、また複素数で表したときの実数部・虚数部の呼称の組合せとして正しいものはどれか。",
-   "choices": [
-    "音速と粒子変位の比、実数部=音響抵抗、虚数部=音響リアクタンス",
-    "音圧と粒子速度の比、実数部=音響リアクタンス、虚数部=音響抵抗",
-    "力と粒子変位の比、実数部=音響抵抗、虚数部=音響リアクタンス",
-    "音圧と粒子速度の比、実数部=音響抵抗、虚数部=音響リアクタンス"
-   ],
-   "answer": 4,
-   "explanation": "【基礎】音響インピーダンス密度は音圧を粒子速度で割った量(電気の電圧/電流に相当)で、一般に複素数になります。\n【考え方】複素数の実数部を音響抵抗(エネルギーを吸収する成分)、虚数部を音響リアクタンス(位相ずれの成分)と呼びます。音圧/粒子速度で実部=音響抵抗・虚部=音響リアクタンスとする選択肢④が正解です。\n【ポイント】音圧/粒子速度の比、実部=音響抵抗、虚部=音響リアクタンスです。\n【引っかけ】①は『音速/粒子変位』、③は『力/粒子変位』とした定義の取り違え、②は実部と虚部の呼称を入れ替えた誤りです。",
-   "hasMath": false,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-33",
-   "role": "primary",
-   "figure": "none",
-   "relatedFormulas": [
-    "v1ch6-7"
-   ],
-   "editorialReview": {
-    "officialPoint": "音響インピーダンス密度は音圧と粒子速度の比、実部が音響抵抗・虚部が音響リアクタンス。",
-    "alignment": "定義の比と実部・虚部の呼称の組合せに一致。",
-    "distractorMisconceptions": {
-     "1": "音速/粒子変位の比とする定義の誤解",
-     "2": "実部と虚部の呼称を入れ替える誤解",
-     "3": "力/粒子変位の比とする定義の誤解"
+    {
+      "id": "vib1-6-32",
+      "number": "6-32",
+      "title": "自由音場のFEMモデル化",
+      "topic": "自由音場FEM",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "自由音場に置かれた構造体まわりの音場をFEMでモデル化し、点音源で音響加振する周波数応答解析を行う。自由音場は、構造体を除き境界がなく、構造から外向きに放射された音波が反射して戻らない音響空間である。正しい記述はどれか。",
+      "choices": [
+        "FEMによる自由音場計算は、原理的に精度を確保できない。",
+        "一次のテトラ要素でモデルを作成しても、応力解析ほどの精度問題は生じない。",
+        "点音源設定位置の音圧計算結果を、スピーカ加振の実測結果とそのまま比較して検証してよい。",
+        "対象音波の波長に対して十分小さい幅の隙間は、常に塞がっているものとして有限要素モデルを作成してよい。"
+      ],
+      "answer": 2,
+      "explanation": "【基礎】線形の音場はせん断力成分を持たないので、応力解析ほど要素次数の影響を受けにくいです。\n【考え方】そのため一次のテトラ要素でモデル化しても、応力解析ほどの深刻な精度問題は生じません。これを述べた選択肢②が正解です。\n【ポイント】一次の四面体要素を使えることと、粗い分割でよいことは別です。音響でも対象周波数の波長に対して十分な分割が必要です。\n【引っかけ】①は無限要素など精度の高い手法が実用化されており『精度を確保できない』は誤り、③は大きさを持つスピーカの空間を考慮すべきで点音源計算とそのまま比較はできない、④は幅の小さい隙間でもヘルムホルツ共鳴を作りうるので『常に塞いでよい』は誤りです。",
+      "hasMath": false,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-32",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6FreeFieldGap",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [],
+      "editorialReview": {
+        "officialPoint": "線形音場はせん断成分がなく、一次テトラ要素でも応力解析ほどの精度問題は生じない。",
+        "alignment": "自由音場FEMの正しい記述として一次要素でも精度問題が小さいことを述べた記述に一致。",
+        "distractorMisconceptions": {
+          "1": "FEMの自由音場計算は原理的に精度確保できないとする誤解",
+          "3": "点音源計算をスピーカ実測とそのまま比較してよいとする誤解",
+          "4": "小さい隙間は常に塞いでよいとする誤解"
+        },
+        "sha256": "b6dca5204de3de8049aad63d8a94a5b23dce13b8196317a7460a635c677bf530"
+      }
     },
-    "sha256": "bc44c8a23eebc002d1d9de3eaf9aec97a6dd048d2af43a3b8fb052568fa065fb"
-   },
-   "figureExempt": true,
-   "figureExemptReason": "音圧と粒子速度の比および実部・虚部の用語を問うため、式と文章で簡潔に説明する。"
-  },
-  {
-   "id": "vib1-6-34",
-   "number": "6-34",
-   "title": "吸音材のモデル化(Equivalent fluid / Biot)",
-   "topic": "多孔質吸音材モデル",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "建設機械キャビン内の音圧分布計算で、吸音材自体をモデル化して高精度化する。(a)骨格が振動せず材料中の空気部分の音波伝搬のみを扱うモデル、(b)骨格振動と空気部分を伝搬する音波の相互作用を考慮するモデル、(c)繊維を圧縮した内装材で適する代表モデル、(d)ウレタンのような発泡吸音材で適する代表モデルの組合せとして正しいものはどれか。 本問では圧縮繊維の骨格振動は無視でき、発泡材の骨格振動は無視できないものとする。",
-   "choices": [
-    "(a)Equivalent fluid ／(b)Biot ／(c)Equivalent fluid ／(d)Biot",
-    "(a)Biot ／(b)Equivalent fluid ／(c)Equivalent fluid ／(d)Biot",
-    "(a)Equivalent fluid ／(b)Biot ／(c)Biot ／(d)Equivalent fluid",
-    "(a)Biot ／(b)Equivalent fluid ／(c)Biot ／(d)Equivalent fluid"
-   ],
-   "answer": 1,
-   "explanation": "【基礎】多孔質吸音材には2つの代表モデルがあり、Equivalent fluid(Rigid)モデルは骨格が振動しないとみなして材料中の空気部分の音波伝搬だけを扱い、Biot(Elastic)モデルは骨格の振動と空気中の音波の相互作用まで考えます。\n【考え方】正解は①です。骨格を動かさず空気部分の伝搬だけを扱うのがEquivalent fluid、骨格と空気の相互作用まで扱うのがBiotです。本問の条件では、骨格を動かさない近似ができる圧縮繊維に前者、骨格の振動を残す必要がある発泡材に後者を対応させます。材料の名称だけで、常にどちらが最高精度かを断定するわけではありません。\n【ポイント】(a)EF／(b)Biot／(c)EF(圧縮繊維)／(d)Biot(発泡)です。\n【引っかけ】②は(a)(b)を入れ替えた誤り、③は(c)(d)を取り違えて圧縮繊維にBiot・発泡材にEquivalent fluidを当てた誤り、④は(a)(b)入れ替えかつ(c)(d)取り違えの誤りです。",
-   "hasMath": false,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-34",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6ConstructionCabin",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-15"
-   ],
-   "editorialReview": {
-    "officialPoint": "骨格運動を省く等価流体と骨格・流体連成を扱うBiotを区別し、骨格の動きの条件で選ぶ。",
-    "alignment": "(a)EF/(b)Biot/(c)EF/(d)Biotの組合せに一致。",
-    "distractorMisconceptions": {
-     "2": "(a)(b)を入れ替える誤解",
-     "3": "(c)(d)を取り違え圧縮繊維にBiot・発泡にEFとする誤解",
-     "4": "(a)(b)入れ替えかつ(c)(d)取り違えの誤解"
+    {
+      "id": "vib1-6-33",
+      "number": "6-33",
+      "title": "吸音効果のモデル化(音響インピーダンス密度)",
+      "topic": "吸音効果のモデル化",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "自動車車室内装(シート・インパネ・ルーフライナ等)の吸音効果をモデル化するため、音響吸収材要素に音響インピーダンス密度を定義する。この量は『何』と媒質の『何』との比か、また複素数で表したときの実数部・虚数部の呼称の組合せとして正しいものはどれか。",
+      "choices": [
+        "音速と粒子変位の比、実数部=音響抵抗、虚数部=音響リアクタンス",
+        "音圧と粒子速度の比、実数部=音響リアクタンス、虚数部=音響抵抗",
+        "力と粒子変位の比、実数部=音響抵抗、虚数部=音響リアクタンス",
+        "音圧と粒子速度の比、実数部=音響抵抗、虚数部=音響リアクタンス"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】音響インピーダンス密度は音圧を粒子速度で割った量(電気の電圧/電流に相当)で、一般に複素数になります。\n【考え方】複素数の実数部を音響抵抗(エネルギーを吸収する成分)、虚数部を音響リアクタンス(位相ずれの成分)と呼びます。音圧/粒子速度で実部=音響抵抗・虚部=音響リアクタンスとする選択肢④が正解です。\n【ポイント】音圧/粒子速度の比、実部=音響抵抗、虚部=音響リアクタンスです。\n【引っかけ】①は『音速/粒子変位』、③は『力/粒子変位』とした定義の取り違え、②は実部と虚部の呼称を入れ替えた誤りです。",
+      "hasMath": false,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-33",
+      "role": "primary",
+      "figure": "helpful",
+      "relatedFormulas": [
+        "v1ch6-7"
+      ],
+      "editorialReview": {
+        "officialPoint": "音響インピーダンス密度は音圧と粒子速度の比、実部が音響抵抗・虚部が音響リアクタンス。",
+        "alignment": "定義の比と実部・虚部の呼称の組合せに一致。",
+        "distractorMisconceptions": {
+          "1": "音速/粒子変位の比とする定義の誤解",
+          "2": "実部と虚部の呼称を入れ替える誤解",
+          "3": "力/粒子変位の比とする定義の誤解"
+        },
+        "sha256": "b60d4ae46a7109a80e06e0775c9fb8b2e9601a3cf86df76f2319e52ac5978250"
+      },
+      "figureExempt": true,
+      "figureExemptReason": "音圧と粒子速度の比および実部・虚部の用語を問うため、式と文章で簡潔に説明する。",
+      "preFigureImage": "v1e6CabinInteriorPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "figureImage": "v1e6CabinInteriorPre"
     },
-    "sha256": "683f377465c92427b5bd2dafdfc97f000adc6964325c685449b62d321984014d"
-   }
-  },
-  {
-   "id": "vib1-6-35",
-   "number": "6-35",
-   "title": "窓ガラス透過音のメッシュサイズ(曲げ波波長基準)",
-   "topic": "透過音のメッシュサイズ",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "建設機械キャビンで、エンジン音が窓ガラスを透過して耳元に到来する。500Hzを上限に窓ガラス透過音を解析する。ガラスの曲げ波の伝搬速度は500Hzで $140\\,\\mathrm{m/s}$、空気の音速は $340\\,\\mathrm{m/s}$ とする。構造と音波で波長の小さいほうをメッシュサイズ決定に用い、波長の $1/8$ を目安とするとき、ガラスのメッシュサイズに最も近いものはどれか。",
-   "choices": [
-    "$85\\,\\mathrm{mm}$",
-    "$15\\,\\mathrm{mm}$",
-    "$35\\,\\mathrm{mm}$",
-    "$47\\,\\mathrm{mm}$"
-   ],
-   "answer": 3,
-   "explanation": "【基礎】境界メッシュは、構造の波と音波のうち波長の小さいほうに合わせて分割しないと細かい波を表現できません。\n【考え方】ガラス曲げ波の波長 $\\lambda_s=140/500=0.28\\,\\mathrm{m}=280\\,\\mathrm{mm}$、音波の波長 $\\lambda_a=340/500=680\\,\\mathrm{mm}$ で小さいほうは $280\\,\\mathrm{mm}$、その $1/8$ は $35\\,\\mathrm{mm}$ となり選択肢③が正解です。\n【ポイント】小さい波長280mmを基準に $1/8$ で35mmです。\n【引っかけ】①は音波波長680mmの $1/8(=85\\,\\mathrm{mm})$ で大きすぎ、②は過度に細かい15mm、④は $1/6(\\approx47\\,\\mathrm{mm})$ で今回の $1/8$ 目安と合わない誤りです。",
-   "hasMath": true,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-35",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6CabinGlassMesh",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-13"
-   ],
-   "editorialReview": {
-    "officialPoint": "境界メッシュは構造と音波で波長の小さいほうに合わせ、波長の1/8を目安とする。",
-    "alignment": "ガラス曲げ波280mmの1/8=35mmを求める計算に一致。",
-    "distractorMisconceptions": {
-     "1": "音波波長680mmの1/8=85mmとする誤解",
-     "2": "過度に細かい15mmとする誤解",
-     "4": "1/6(47mm)とし今回の1/8目安と合わない誤解"
+    {
+      "id": "vib1-6-34",
+      "number": "6-34",
+      "title": "吸音材のモデル化(Equivalent fluid / Biot)",
+      "topic": "多孔質吸音材モデル",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "建設機械キャビン内の音圧分布計算で、吸音材自体をモデル化して高精度化する。(a)骨格が振動せず材料中の空気部分の音波伝搬のみを扱うモデル、(b)骨格振動と空気部分を伝搬する音波の相互作用を考慮するモデル、(c)繊維を圧縮した内装材で適する代表モデル、(d)ウレタンのような発泡吸音材で適する代表モデルの組合せとして正しいものはどれか。 本問では圧縮繊維の骨格振動は無視でき、発泡材の骨格振動は無視できないものとする。",
+      "choices": [
+        "(a)Equivalent fluid ／(b)Biot ／(c)Equivalent fluid ／(d)Biot",
+        "(a)Biot ／(b)Equivalent fluid ／(c)Equivalent fluid ／(d)Biot",
+        "(a)Equivalent fluid ／(b)Biot ／(c)Biot ／(d)Equivalent fluid",
+        "(a)Biot ／(b)Equivalent fluid ／(c)Biot ／(d)Equivalent fluid"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】多孔質吸音材には2つの代表モデルがあり、Equivalent fluid(Rigid)モデルは骨格が振動しないとみなして材料中の空気部分の音波伝搬だけを扱い、Biot(Elastic)モデルは骨格の振動と空気中の音波の相互作用まで考えます。\n【考え方】正解は①です。骨格を動かさず空気部分の伝搬だけを扱うのがEquivalent fluid、骨格と空気の相互作用まで扱うのがBiotです。本問の条件では、骨格を動かさない近似ができる圧縮繊維に前者、骨格の振動を残す必要がある発泡材に後者を対応させます。材料の名称だけで、常にどちらが最高精度かを断定するわけではありません。\n【ポイント】(a)EF／(b)Biot／(c)EF(圧縮繊維)／(d)Biot(発泡)です。\n【引っかけ】②は(a)(b)を入れ替えた誤り、③は(c)(d)を取り違えて圧縮繊維にBiot・発泡材にEquivalent fluidを当てた誤り、④は(a)(b)入れ替えかつ(c)(d)取り違えの誤りです。",
+      "hasMath": false,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-34",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6ConstructionCabin",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-15"
+      ],
+      "editorialReview": {
+        "officialPoint": "骨格運動を省く等価流体と骨格・流体連成を扱うBiotを区別し、骨格の動きの条件で選ぶ。",
+        "alignment": "(a)EF/(b)Biot/(c)EF/(d)Biotの組合せに一致。",
+        "distractorMisconceptions": {
+          "2": "(a)(b)を入れ替える誤解",
+          "3": "(c)(d)を取り違え圧縮繊維にBiot・発泡にEFとする誤解",
+          "4": "(a)(b)入れ替えかつ(c)(d)取り違えの誤解"
+        },
+        "sha256": "1b71e9ebfb656cd7a0f58ba5469a681030c3fe47e253b40d01ead205992dcbd5"
+      },
+      "preFigureImage": "v1e6MachineCabinPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
-    "sha256": "708fcca8ef0e78ddc29dd66a0b8a3a3f9c0ccf716dbb8d2100ba69589780982c"
-   }
-  },
-  {
-   "id": "vib1-6-36",
-   "number": "6-36",
-   "title": "相反定理を用いたキャビン内音圧予測",
-   "topic": "相反定理による音圧予測",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "建設機械で、エンジン音等がキャビン壁面を透過してキャビン内に伝わる音を、相反定理を用いてキャビン外空間とキャビン内空間に分離して予測する。「騒音源に設置した単位体積速度音源に対する、キャビン外表面の音圧」と掛け合わせることでキャビン内評価点の音圧を予測できる、もう一方の解析(キャビン内評価点に単位体積速度音源を置き、壁面を連成させた解析)から得るべき情報はどれか。",
-   "choices": [
-    "キャビン内表面の音響インテンシティ",
-    "キャビン内表面の音圧",
-    "キャビン外表面の音響インテンシティ",
-    "キャビン壁面の振動速度"
-   ],
-   "answer": 4,
-   "explanation": "【基礎】相反定理を使うと、音源側と受音側を入れ替えても伝達関数が等しいことを利用して、複雑な連成問題を分けて計算できます。\n【考え方】正解は④です。内側の評価点を音源として逆向きに計算し、各壁面がどの速さで動くかを求めます。その壁面速度と、外側音源が各壁面へ与える音圧を対応させて掛け、壁面全体で足し合わせます。必要なのは壁面の振動速度です。複素振幅の位相も保って組み合わせ、1点だけの積で全体の音圧としません。\n【ポイント】掛け合わせる情報=キャビン壁面の振動速度です。\n【引っかけ】①はキャビン内表面の音響インテンシティ、②はキャビン内表面の音圧、③はキャビン外表面の音響インテンシティで、いずれも相反定理でつなぐべき壁面振動速度ではなく誤りです。",
-   "hasMath": false,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-36",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6ReciprocityCabin",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-12"
-   ],
-   "editorialReview": {
-    "officialPoint": "相反定理で、評価点音源に対する壁面振動速度と騒音源に対する外表面音圧を掛け合わせると評価点音圧が求まる。",
-    "alignment": "掛け合わせる情報を壁面振動速度とした記述に一致。",
-    "distractorMisconceptions": {
-     "1": "キャビン内表面の音響インテンシティとする誤解",
-     "2": "キャビン内表面の音圧とする誤解",
-     "3": "キャビン外表面の音響インテンシティとする誤解"
+    {
+      "id": "vib1-6-35",
+      "number": "6-35",
+      "title": "窓ガラス透過音のメッシュサイズ(曲げ波波長基準)",
+      "topic": "透過音のメッシュサイズ",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "建設機械キャビンで、エンジン音が窓ガラスを透過して耳元に到来する。500Hzを上限に窓ガラス透過音を解析する。ガラスの曲げ波の伝搬速度は500Hzで $140\\,\\mathrm{m/s}$、空気の音速は $340\\,\\mathrm{m/s}$ とする。構造と音波で波長の小さいほうをメッシュサイズ決定に用い、波長の $1/8$ を目安とするとき、ガラスのメッシュサイズに最も近いものはどれか。",
+      "choices": [
+        "$85\\,\\mathrm{mm}$",
+        "$15\\,\\mathrm{mm}$",
+        "$35\\,\\mathrm{mm}$",
+        "$47\\,\\mathrm{mm}$"
+      ],
+      "answer": 3,
+      "explanation": "【基礎】境界メッシュは、構造の波と音波のうち波長の小さいほうに合わせて分割しないと細かい波を表現できません。\n【考え方】ガラス曲げ波の波長 $\\lambda_s=140/500=0.28\\,\\mathrm{m}=280\\,\\mathrm{mm}$、音波の波長 $\\lambda_a=340/500=680\\,\\mathrm{mm}$ で小さいほうは $280\\,\\mathrm{mm}$、その $1/8$ は $35\\,\\mathrm{mm}$ となり選択肢③が正解です。\n【ポイント】小さい波長280mmを基準に $1/8$ で35mmです。\n【引っかけ】①は音波波長680mmの $1/8(=85\\,\\mathrm{mm})$ で大きすぎ、②は過度に細かい15mm、④は $1/6(\\approx47\\,\\mathrm{mm})$ で今回の $1/8$ 目安と合わない誤りです。",
+      "hasMath": true,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-35",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6CabinGlassMesh",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-13"
+      ],
+      "editorialReview": {
+        "officialPoint": "境界メッシュは構造と音波で波長の小さいほうに合わせ、波長の1/8を目安とする。",
+        "alignment": "ガラス曲げ波280mmの1/8=35mmを求める計算に一致。",
+        "distractorMisconceptions": {
+          "1": "音波波長680mmの1/8=85mmとする誤解",
+          "2": "過度に細かい15mmとする誤解",
+          "4": "1/6(47mm)とし今回の1/8目安と合わない誤解"
+        },
+        "sha256": "b907583d4355535f43381d30dd8113d1bfb93bf3356e73d51d534323b10e3b5c"
+      },
+      "preFigureImage": "v1e6MachineCabinPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
-    "sha256": "24eb6feeb8bc6240cab4f65bd8c47d50091519d0e8418252d40e18d1a9006914"
-   }
-  },
-  {
-   "id": "vib1-6-37",
-   "number": "6-37",
-   "title": "鉄道用車輪の振動放射音の構造・音場解析",
-   "topic": "車輪の振動放射音",
-   "type": "mc",
-   "difficulty": 3,
-   "question": "鉄道用車輪から発生する振動放射音を、構造・音場解析で解明する。(a)車輪板部(ウェブ)等の境界表面に与える定義(弾性体か剛体か)、(b)車輪からの音響パワーを表す、音圧と粒子速度に対する演算(積か和か)、(c)コンクリート製スラブ軌道が有る場合の反射に関する記述の組合せとして正しいものはどれか。",
-   "choices": [
-    "(a)弾性体／(b)積／(c)スラブ有りでは鏡像原理により反射音が加わり、観測点音圧はスラブ無しと異なる",
-    "(a)剛体／(b)積／(c)スラブ有りでも反射音は生じず、観測点音圧はスラブ無しと変わらない",
-    "(a)弾性体／(b)和／(c)スラブ有りでは反射音が加わり、観測点音圧はスラブ無しと異なる",
-    "(a)剛体／(b)和／(c)スラブ有りでも反射音は生じず、観測点音圧はスラブ無しと変わらない"
-   ],
-   "answer": 1,
-   "explanation": "【基礎】車輪は実際に変形して音を出すので、構造・音場解析では境界表面を弾性体として定義します。\n【考え方】正解は①です。車輪を弾性体として変形を表し、音圧と法線方向の粒子速度の積を時間平均して、車輪を囲む面全体で積分すると音響パワーになります。スラブ面の反射音は直接音と重なり、観測点の音圧を変えます。干渉するため、どの周波数でも必ず大きくなるとは限りません。\n【ポイント】(a)弾性体／(b)積／(c)スラブ有りは反射音が加わり音圧が変わります。\n【引っかけ】②は境界を剛体・反射音なしとした誤り、③は音圧と粒子速度の『和』とした誤り、④は剛体かつ反射音なしとした誤りです。",
-   "hasMath": false,
-   "origin": "original",
-   "reviewed": true,
-   "officialRef": "問6-37",
-   "role": "primary",
-   "figure": "helpful",
-   "figureImage": "v1e6RailWheelRadiation",
-   "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
-   "relatedFormulas": [
-    "v1ch6-8"
-   ],
-   "editorialReview": {
-    "officialPoint": "車輪境界は弾性体、音響パワーは音圧と粒子速度の積の面積分、スラブ有りは鏡像原理で反射音が加わり音圧が変わる。",
-    "alignment": "境界定義・演算・反射の記述の組合せに一致。",
-    "distractorMisconceptions": {
-     "2": "境界を剛体・反射音なしとする誤解",
-     "3": "音圧と粒子速度の和とする誤解",
-     "4": "剛体かつ反射音なしとする誤解"
+    {
+      "id": "vib1-6-36",
+      "number": "6-36",
+      "title": "相反定理を用いたキャビン内音圧予測",
+      "topic": "相反定理による音圧予測",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "建設機械で、エンジン音等がキャビン壁面を透過してキャビン内に伝わる音を、相反定理を用いてキャビン外空間とキャビン内空間に分離して予測する。「騒音源に設置した単位体積速度音源に対する、キャビン外表面の音圧」と掛け合わせることでキャビン内評価点の音圧を予測できる、もう一方の解析(キャビン内評価点に単位体積速度音源を置き、壁面を連成させた解析)から得るべき情報はどれか。",
+      "choices": [
+        "キャビン内表面の音響インテンシティ",
+        "キャビン内表面の音圧",
+        "キャビン外表面の音響インテンシティ",
+        "キャビン壁面の振動速度"
+      ],
+      "answer": 4,
+      "explanation": "【基礎】相反定理を使うと、音源側と受音側を入れ替えても伝達関数が等しいことを利用して、複雑な連成問題を分けて計算できます。\n【考え方】正解は④です。内側の評価点を音源として逆向きに計算し、各壁面がどの速さで動くかを求めます。その壁面速度と、外側音源が各壁面へ与える音圧を対応させて掛け、壁面全体で足し合わせます。必要なのは壁面の振動速度です。複素振幅の位相も保って組み合わせ、1点だけの積で全体の音圧としません。\n【ポイント】掛け合わせる情報=キャビン壁面の振動速度です。\n【引っかけ】①はキャビン内表面の音響インテンシティ、②はキャビン内表面の音圧、③はキャビン外表面の音響インテンシティで、いずれも相反定理でつなぐべき壁面振動速度ではなく誤りです。",
+      "hasMath": false,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-36",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6ReciprocityCabin",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-12"
+      ],
+      "editorialReview": {
+        "officialPoint": "相反定理で、評価点音源に対する壁面振動速度と騒音源に対する外表面音圧を掛け合わせると評価点音圧が求まる。",
+        "alignment": "掛け合わせる情報を壁面振動速度とした記述に一致。",
+        "distractorMisconceptions": {
+          "1": "キャビン内表面の音響インテンシティとする誤解",
+          "2": "キャビン内表面の音圧とする誤解",
+          "3": "キャビン外表面の音響インテンシティとする誤解"
+        },
+        "sha256": "442ab6c4913df0a5e5802fc16ff5f487cb1340dddf76bc80609e3da88a7cd312"
+      },
+      "preFigureImage": "v1e6MachineCabinPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
-    "sha256": "e809cb270e9626799e45ed338337f97f83643cb64d8a2a929245fe9219dd17ca"
-   }
-  }
- ]
+    {
+      "id": "vib1-6-37",
+      "number": "6-37",
+      "title": "鉄道用車輪の振動放射音の構造・音場解析",
+      "topic": "車輪の振動放射音",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "鉄道用車輪から発生する振動放射音を、構造・音場解析で解明する。(a)車輪板部(ウェブ)等の境界表面に与える定義(弾性体か剛体か)、(b)車輪からの音響パワーを表す、音圧と粒子速度に対する演算(積か和か)、(c)コンクリート製スラブ軌道が有る場合の反射に関する記述の組合せとして正しいものはどれか。",
+      "choices": [
+        "(a)弾性体／(b)積／(c)スラブ有りでは鏡像原理により反射音が加わり、観測点音圧はスラブ無しと異なる",
+        "(a)剛体／(b)積／(c)スラブ有りでも反射音は生じず、観測点音圧はスラブ無しと変わらない",
+        "(a)弾性体／(b)和／(c)スラブ有りでは反射音が加わり、観測点音圧はスラブ無しと異なる",
+        "(a)剛体／(b)和／(c)スラブ有りでも反射音は生じず、観測点音圧はスラブ無しと変わらない"
+      ],
+      "answer": 1,
+      "explanation": "【基礎】車輪は実際に変形して音を出すので、構造・音場解析では境界表面を弾性体として定義します。\n【考え方】正解は①です。車輪を弾性体として変形を表し、音圧と法線方向の粒子速度の積を時間平均して、車輪を囲む面全体で積分すると音響パワーになります。スラブ面の反射音は直接音と重なり、観測点の音圧を変えます。干渉するため、どの周波数でも必ず大きくなるとは限りません。\n【ポイント】(a)弾性体／(b)積／(c)スラブ有りは反射音が加わり音圧が変わります。\n【引っかけ】②は境界を剛体・反射音なしとした誤り、③は音圧と粒子速度の『和』とした誤り、④は剛体かつ反射音なしとした誤りです。",
+      "hasMath": false,
+      "origin": "original",
+      "reviewed": true,
+      "officialRef": "問6-37",
+      "role": "primary",
+      "figure": "helpful",
+      "figureImage": "v1e6RailWheelRadiation",
+      "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
+      "relatedFormulas": [
+        "v1ch6-8"
+      ],
+      "editorialReview": {
+        "officialPoint": "車輪境界は弾性体、音響パワーは音圧と粒子速度の積の面積分、スラブ有りは鏡像原理で反射音が加わり音圧が変わる。",
+        "alignment": "境界定義・演算・反射の記述の組合せに一致。",
+        "distractorMisconceptions": {
+          "2": "境界を剛体・反射音なしとする誤解",
+          "3": "音圧と粒子速度の和とする誤解",
+          "4": "剛体かつ反射音なしとする誤解"
+        },
+        "sha256": "ff8c33d2d0d66c8a0e6d39d9682e80b70e0335ea1729fe5cb6ca35b90485c53c"
+      },
+      "preFigureImage": "v1e6WheelRadiationSetupPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+    }
+  ]
 }
