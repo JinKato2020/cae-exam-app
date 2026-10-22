@@ -108,20 +108,22 @@
       "reviewed": true,
       "officialRef": "問9-3",
       "role": "primary",
-      "figure": "none",
+      "figure": "helpful",
       "editorialReview": {
         "officialPoint": "保存量の識別",
-        "alignment": "公式抽出の問9-3の問題・解説と照合。近似の条件と判断の根拠を明示。",
+        "alignment": "公式抽出の問9-3の問題・解説と照合。近似の条件と判断の根拠を明示。 公式問題編の実図を照合し、アプリの与件・選択肢と整合する標準回答前図を追加。正解の強調・計算結果の先出しはない（2026-10-22）。",
         "distractorMisconceptions": {
           "2": "密度一定で質量だけ変化とする",
           "3": "圧縮性の流量変化と混同",
           "4": "速度と流量を混同"
         },
-        "sha256": "e20d0078e2fd2221195b49b05889e42b1b5efdaa10c81a8004779a8646871ffb"
+        "sha256": "45b42e4c14f86c750b42fcf7e8459cdcc3afca56ce40165eec6a36aeaca32b94"
       },
       "relatedFormulas": [
         "t2ch9-2"
-      ]
+      ],
+      "preFigureImage": "t2e9Q3Before",
+      "figureImage": "t2e9Q3Before"
     },
     {
       "id": "ver-9-4",
@@ -149,17 +151,18 @@
       "figureHint": "回答後専用。現問題の与件と検証の見方を示す独自標準図。",
       "editorialReview": {
         "officialPoint": "質量保存の破れ",
-        "alignment": "公式抽出の問9-4の問題・解説と照合。近似の条件と判断の根拠を明示。",
+        "alignment": "公式抽出の問9-4の問題・解説と照合。近似の条件と判断の根拠を明示。 公式問題編の実図を照合し、アプリの与件・選択肢と整合する標準回答前図を追加。正解の強調・計算結果の先出しはない（2026-10-22）。",
         "distractorMisconceptions": {
           "1": "吸込を吹出と混同",
           "2": "圧力で不透過壁の横断を説明",
           "4": "旋回で不透過壁の横断を説明"
         },
-        "sha256": "1bc2a7a19a3a5dc8d0fa3e3a155fa9c33c4d263d3030f176c6a32ce4222c3424"
+        "sha256": "00aad725c3ce70505bd7d96e3f93126bbb23dcee03e561f425f97db3b388f85c"
       },
       "relatedFormulas": [
         "t2ch9-2"
-      ]
+      ],
+      "preFigureImage": "t2e9Q4Before"
     },
     {
       "id": "ver-9-5",
@@ -187,18 +190,19 @@
       "figureHint": "回答後専用。現問題の与件と検証の見方を示す独自標準図。",
       "editorialReview": {
         "officialPoint": "収束不十分・オイラー",
-        "alignment": "公式抽出の問9-5の問題・解説と照合。近似の条件と判断の根拠を明示。",
+        "alignment": "公式抽出の問9-5の問題・解説と照合。近似の条件と判断の根拠を明示。 公式問題編の実図を照合し、アプリの与件・選択肢と整合する標準回答前図を追加。正解の強調・計算結果の先出しはない（2026-10-22）。",
         "distractorMisconceptions": {
           "1": "未確認の正確さを断定",
           "2": "オイラーで粘性境界層を再現するとする",
           "3": "残差と位置の変化を無視"
         },
-        "sha256": "970c7c90cb662804ec70b0566ac36676f3caa7e616f41d905ff53466da44eb3c"
+        "sha256": "7a3bc67e2c53b31958f397a6a421806dc3f5c2be3b218aa690a21a606a16e28f"
       },
       "relatedFormulas": [
         "t2ch9-5",
         "t2ch9-13"
-      ]
+      ],
+      "preFigureImage": "t2e9Q5Before"
     },
     {
       "id": "ver-9-6",
@@ -266,17 +270,18 @@
       "figureHint": "回答後専用。現問題の与件と検証の見方を示す独自標準図。",
       "editorialReview": {
         "officialPoint": "乱れの生産",
-        "alignment": "公式抽出の問9-7の問題・解説と照合。近似の条件と判断の根拠を明示。",
+        "alignment": "公式抽出の問9-7の問題・解説と照合。近似の条件と判断の根拠を明示。 公式問題編の実図を照合し、アプリの与件・選択肢と整合する標準回答前図を追加。正解の強調・計算結果の先出しはない（2026-10-22）。",
         "distractorMisconceptions": {
           "1": "速さと勾配を混同",
           "2": "局所生産の違いを無視",
           "4": "生産と消失を逆にする"
         },
-        "sha256": "3ce4ff8c9184e9fdf35d1bf6a7d91f7a25f6a794312cf1f5fc55a9e96eb59959"
+        "sha256": "7391940cdd0e14d97e224c683868fa9c7549a2b5d9fb61137c63e7f2a714ea33"
       },
       "relatedFormulas": [
         "t2ch9-10"
-      ]
+      ],
+      "preFigureImage": "t2e9Q7Before"
     },
     {
       "id": "ver-9-8",
@@ -340,17 +345,18 @@
       "figureHint": "回答後専用。現問題の与件と検証の見方を示す独自標準図。",
       "editorialReview": {
         "officialPoint": "空間分解能不足",
-        "alignment": "公式抽出の問9-9の問題・解説と照合。近似の条件と判断の根拠を明示。",
+        "alignment": "公式抽出の問9-9の問題・解説と照合。近似の条件と判断の根拠を明示。 公式問題編の実図を照合し、アプリの与件・選択肢と整合する標準回答前図を追加。正解の強調・計算結果の先出しはない（2026-10-22）。",
         "distractorMisconceptions": {
           "1": "振動を未確認で採用",
           "2": "圧力勾配だけで説明",
           "3": "旋回だけで説明"
         },
-        "sha256": "fb1e0cf5bad31758c36c6821cb5528d8f1075432453faac5ebd1920c560617e1"
+        "sha256": "ddccc18aa82980662573357df8a5e0cd5b6efa5a97590ca262ba4d920c8c6a73"
       },
       "relatedFormulas": [
         "t2ch9-12"
-      ]
+      ],
+      "preFigureImage": "t2e9Q9Before"
     },
     {
       "id": "ver-9-10",
@@ -378,15 +384,16 @@
       "figureHint": "回答後専用。現問題の与件と検証の見方を示す独自標準図。",
       "editorialReview": {
         "officialPoint": "自然対流・浮力",
-        "alignment": "公式抽出の問9-10の問題・解説と照合。近似の条件と判断の根拠を明示。",
+        "alignment": "公式抽出の問9-10の問題・解説と照合。近似の条件と判断の根拠を明示。 公式問題編の実図を照合し、アプリの与件・選択肢と整合する標準回答前図を追加。正解の強調・計算結果の先出しはない（2026-10-22）。",
         "distractorMisconceptions": {
           "2": "浮力の向きが逆",
           "3": "引込と広がりを無視",
           "4": "上昇を欠く"
         },
-        "sha256": "eab430916f7fb8479de3e49b00e1bcb99edaf95ebf85da05102ebd2352b2f418"
+        "sha256": "ecb4dfd6122ec3cfd086082977bc76da65fd3b3b0fda757624992f422da90a93"
       },
-      "relatedFormulas": []
+      "relatedFormulas": [],
+      "preFigureImage": "t2e9Q10Before"
     },
     {
       "id": "ver-9-11",
@@ -414,17 +421,18 @@
       "figureHint": "回答後専用。現問題の与件と検証の見方を示す独自標準図。",
       "editorialReview": {
         "officialPoint": "速度/温度境界層厚",
-        "alignment": "公式抽出の問9-11の問題・解説と照合。近似の条件と判断の根拠を明示。",
+        "alignment": "公式抽出の問9-11の問題・解説と照合。近似の条件と判断の根拠を明示。 公式問題編の実図を照合し、アプリの与件・選択肢と整合する標準回答前図を追加。正解の強調・計算結果の先出しはない（2026-10-22）。",
         "distractorMisconceptions": {
           "1": "厚さ比を逆に解く",
           "2": "0.9を1とする",
           "4": "逆数を加算とする"
         },
-        "sha256": "730f52d8a6a5d4db0adbc09512c339ec8eb3c618f87917df3758d5a6bdb5d754"
+        "sha256": "bf572871038ec5bc8df68dd4ea6f1f2a7d113e30ddf7e90c9fbc88a776ca1cd8"
       },
       "relatedFormulas": [
         "t2ch9-8"
-      ]
+      ],
+      "preFigureImage": "t2e9Q11Before"
     },
     {
       "id": "ver-9-12",
@@ -491,17 +499,18 @@
       "figureHint": "回答後専用。現問題の与件と検証の見方を示す独自標準図。",
       "editorialReview": {
         "officialPoint": "再循環渦",
-        "alignment": "公式抽出の問9-13の問題・解説と照合。近似の条件と判断の根拠を明示。",
+        "alignment": "公式抽出の問9-13の問題・解説と照合。近似の条件と判断の根拠を明示。 公式問題編の実図を照合し、アプリの与件・選択肢と整合する標準回答前図を追加。正解の強調・計算結果の先出しはない（2026-10-22）。",
         "distractorMisconceptions": {
           "2": "壁を横切って消える",
           "3": "はく離域を無視",
           "4": "壁から吹き出す"
         },
-        "sha256": "f2770793a00c19595f4c844c36419cad24572c1b4ffb1cc8fa6bf135c5171c65"
+        "sha256": "080189612d139f7ed56b8e437f50e532891a2ecc6e70c02e955f8c3695542737"
       },
       "relatedFormulas": [
         "t2ch9-2"
-      ]
+      ],
+      "preFigureImage": "t2e9Q13Before"
     },
     {
       "id": "ver-9-14",
