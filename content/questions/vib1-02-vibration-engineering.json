@@ -80,8 +80,10 @@
           "2": "復元力に管長Lを掛ける次元の誤り",
           "3": "係数2を二重に掛けて4とする過大評価"
         },
-        "sha256": "ed34727a50b259bda6b6542df356a22e437e2a40f050a0b3957ca65e480a01ac"
-      }
+        "sha256": "1cd522fd35a53673df916d9af28bb869e38d4db3206fe26e98e4c7412f00da9c"
+      },
+      "preFigureImage": "v1e2UtubeSetupPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-2-3",
@@ -118,8 +120,10 @@
           "3": "r=1-2ζ²と平方根を落とす振動数比の誤り",
           "4": "最大倍率で√(1-ζ²)の扱いを誤り過大にする誤り"
         },
-        "sha256": "fd69d1174968f1889a86cc794c26356a218bc948828d6dafb60da1c342d0d4cf"
-      }
+        "sha256": "56b32c7563839a4b91e1175d0a2ddb776bb5b9eff970564a586fd6992b75ceb9"
+      },
+      "preFigureImage": "v1e2ForcedOscillatorPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-2-4",
@@ -230,8 +234,10 @@
           "3": "測定帯域を共振点に置く誤り",
           "4": "両者を同条件とし区別できないとする誤り"
         },
-        "sha256": "776b496095262f19f57de70bcc05f7b796c25bef8d691d110135d221903b5bae"
-      }
+        "sha256": "23b1c59619c91a1b3cba05f7e36528334571d2fc9af3393f21b83602c850ea96"
+      },
+      "preFigureImage": "v1e2SeismographPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-2-7",
@@ -268,8 +274,10 @@
           "2": "質量比のみで決まるとする誤り",
           "3": "主系共振点に合わせると応答が増大する誤り"
         },
-        "sha256": "c870358f540c97b6a20857fa567426927025c69c33413f125b5a9b81cfbfb79f"
-      }
+        "sha256": "aa17050b58ae812e0a723216bdb5068a63ae921cbef3ddae27878953f8fb76cf"
+      },
+      "preFigureImage": "v1e2AbsorberSetupPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-2-8",
@@ -370,7 +378,7 @@
       "reviewed": true,
       "officialRef": "問2-10",
       "role": "primary",
-      "figure": "none",
+      "figure": "helpful",
       "relatedFormulas": [
         "v1f2-6",
         "v1f2-8"
@@ -383,8 +391,11 @@
           "3": "[K]を非対称とし複素固有値とする減衰系との混同",
           "4": "拘束系を半正定値の非拘束系と取り違える誤り"
         },
-        "sha256": "750acd5492bee79611b254cb3c3367af7e1863d1229d1df3ee1176641aaf307d"
-      }
+        "sha256": "f6226791e9590bc6b408ffe67be90359f029a531e5ce75c77ba8a81712bee505"
+      },
+      "preFigureImage": "v1e2ManyMassSetupPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "figureImage": "v1e2ManyMassSetupPre"
     },
     {
       "id": "vib1-2-11",
@@ -422,8 +433,10 @@
           "2": "ω2の係数を落とし剛体モードを減衰モードと誤る",
           "3": "モード慣性の2を割り忘れ√(4k/I)とし剛体モードを弾性モードと誤る"
         },
-        "sha256": "2ae730056d9d7febcec693bf72ba741dc4f9387f964d1f91f008aacf3924b9dd"
-      }
+        "sha256": "b4d6d60e2ba96a1af4d3618bb620dae0ffad7a0acee6a5e8f1e3902c5f748541"
+      },
+      "preFigureImage": "v1e2TwoDisksPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-2-12",
@@ -942,8 +955,10 @@
           "2": "分母の減衰項c²ω²を落とす誤り",
           "4": "ω/ωn=0.8<√2で増幅側なのに絶縁側X/Y<1を選ぶ誤り"
         },
-        "sha256": "a64b934d0e592b52bfd5038ad629d469578a4ea95a2283d0b18d5716d1f76606"
-      }
+        "sha256": "6993384728cb08a62f0c60e97bd8a7f4cbe46fcd21371d71a27da032a93fc693"
+      },
+      "preFigureImage": "v1e2BaseDrivenSetupPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-2-26",
@@ -980,8 +995,10 @@
           "3": "面積を弾性ひずみエネルギーとし散逸をひずみ速度比例とする誤り",
           "4": "面積を温度上昇量としひずみ振幅と無関係とする誤り"
         },
-        "sha256": "75f213f745cbe50852179437bf89d65ff4e3b6684f5924472d0423a676dff995"
-      }
+        "sha256": "bfac520df4a64d36f43c37982ca89b94a772395032942c2134c0dd646461714b"
+      },
+      "preFigureImage": "v1e2HysteresisPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-2-27",
@@ -1466,8 +1483,10 @@
           "3": "ベルト速度零のときのみ発生とする誤り",
           "4": "摩擦力の値が零になる速度に限定する誤り"
         },
-        "sha256": "2a9151ef650e8e0475bcbc87014194be6da4beaeb7ac5ec0aa5773c8b461a037"
-      }
+        "sha256": "73c38f17f6dc2efe7149befb271e5b8592f3b2dc2d04c3deb3b73fefc783bac7"
+      },
+      "preFigureImage": "v1e2BeltSetupPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-2-40",
@@ -1504,8 +1523,10 @@
           "2": "外部周期加振による共振とする誤り",
           "4": "減衰行列が正定値で安定化とし自励を説明しない誤り"
         },
-        "sha256": "cc3b07bf0e0a7c00e5d93be4e74bf0baaf39629950e1577a579bd9c2907ed2ed"
-      }
+        "sha256": "98c68ccdac972d34e8580741187eacbfa13b21c4c129699c4427320bad145999"
+      },
+      "preFigureImage": "v1e2ChalkSetupPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-2-41",
@@ -1542,8 +1563,10 @@
           "3": "自由振動としτが大きいほど安定とする誤り",
           "4": "係数励振と取り違える誤り"
         },
-        "sha256": "d4992e78464544a6cc7e59ce3817801c36685c1e598fb514e1ccdc973b82e9a7"
-      }
+        "sha256": "12f603b8293bfed88c67ec465a51aa6a04eb5f4c1b72b3856980e8c299d9bc2a"
+      },
+      "preFigureImage": "v1e2CuttingSurfacePre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-2-42",
@@ -1580,8 +1603,10 @@
           "2": "自由振動とし減衰で固有振動数が下がるとする誤り",
           "4": "共振とし減衰で共振振動数が下がるとする誤り"
         },
-        "sha256": "8bf199609ade0d85a0bb69c58920a7d152185813686188ea1838937b10585336"
-      }
+        "sha256": "13f6ed047ee4b73ba4541f40f20cf52676f8225f9fa53e96ee5d83f53017c240"
+      },
+      "preFigureImage": "v1e2MovingPivotPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-2-43",
@@ -1654,8 +1679,10 @@
           "3": "自由振動とし非対称性が無関係とする誤り",
           "4": "共振とし固有振動数一致でのみ加振とする誤り"
         },
-        "sha256": "bcc95904f230c726263a00dcdf4a5a31c0040eb7ceaade21a63b87ef279bf561"
-      }
+        "sha256": "a4c5adef894559a50c54be210a64b2a1b1b279244fbe2ab8b0b5c92c6dec4029"
+      },
+      "preFigureImage": "v1e2RotatingRectShaftPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     },
     {
       "id": "vib1-2-45",
@@ -1692,8 +1719,10 @@
           "2": "張力変動が無関係とする誤り",
           "4": "ω=2ω0のみで他では一切起こらないと断定する誤り"
         },
-        "sha256": "5a3b138137ea470d5a5f50394f3ae9e844ad1fcd78b62e278f89ef892e74c436"
-      }
+        "sha256": "d4483c59c8d0ae54ad0a0aa27188a36ee4c3b44bc0f841b90337dc0a2460fc6c"
+      },
+      "preFigureImage": "v1e2TuningForkStringPre",
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
     }
   ]
 }
