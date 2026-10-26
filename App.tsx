@@ -8,7 +8,6 @@ import {
   Linking,
   Modal,
   PanResponder,
-  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -1134,10 +1133,10 @@ function HomeTab(props: {
     props.onMapViewerChange?.(!!mapView);
   }, [mapView]);
   useEffect(() => () => props.onMapViewerChange?.(false), []); // アンマウント時は必ず解除
-  // Android：相関図を開いたらPNGを読み出して base64 data URI にし、WebView（ピンチ拡大・高精細）で表示する。
-  // OTA版は file:// をそのまま読み、同梱(require)版は resolveAssetSource のURIを読む。失敗時は素のImageへ。
+  // iOS/Android共通：相関図を開いたらPNGを読み出して base64 data URI にし、WebView（ピンチ拡大・高精細・幅フィット）で表示する。
+  // RNのScrollViewズームはiOSで%幅＋複数子要素だと効かず「大きすぎ・拡大不可」になるため、両OSともWebViewへ統一。
+  // OTA版は file:// をそのまま読み、同梱(require)版は焼き込み base64／resolveAssetSource のURIを読む。失敗時は素のImageへ。
   useEffect(() => {
-    if (Platform.OS !== 'android') return;
     let alive = true;
     setMapDataUri(null);
     setMapDataErr(false);
@@ -1456,58 +1455,30 @@ function HomeTab(props: {
           </Pressable>
         </View>
         {mapView && hasFigure(mapView.key) ? (
-          Platform.OS === 'android' ? (
-            // Android：WebViewでピンチ／ダブルタップ拡大（くっきり再描画）。下に章の問題リスト（高さ上限つき）。
-            mapDataUri ? (
-              <>
-                <WebView
-                  style={{ flex: 1, backgroundColor: '#fff' }}
-                  originWhitelist={['*']}
-                  showsVerticalScrollIndicator
-                  overScrollMode="never"
-                  source={{ html: `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=8, user-scalable=yes"><style>html,body{margin:0;padding:0;background:#fff;}img{display:block;width:100%;height:auto;}</style></head><body><img src="${mapDataUri}"></body></html>` }}
-                />
-                {mapQList && (
-                  <ScrollView
-                    style={{ maxHeight: 220, borderTopWidth: 1, borderTopColor: HOME.border }}
-                    contentContainerStyle={{ padding: 12, paddingBottom: insets.bottom + 12 }}
-                  >
-                    {mapQList}
-                  </ScrollView>
-                )}
-              </>
-            ) : mapDataErr ? (
-              // 読み出し失敗時は素のImage（拡大は効かないが表示は必ず出す）。
-              <ScrollView
-                style={{ flex: 1 }}
-                contentContainerStyle={[home.mapScroll, { paddingBottom: insets.bottom + 24 }]}
+          // iOS/Android共通：WebViewでピンチ/ダブルタップ拡大（くっきり再描画・全幅フィット）。下に章の問題リスト（高さ上限つき）。
+          mapDataUri ? (
+            <>
+              <WebView
+                style={{ flex: 1, backgroundColor: '#fff' }}
+                originWhitelist={['*']}
                 showsVerticalScrollIndicator
-              >
-                <Image
-                  source={figureSource(mapView.key)}
-                  onLoad={(e) => {
-                    const s: any = e.nativeEvent?.source;
-                    if (s?.width && s?.height) setMapAspect(s.width / s.height);
-                  }}
-                  style={[home.mapFullImg, { aspectRatio: mapAspect ?? 0.7 }]}
-                  resizeMode="contain"
-                />
-                {mapQList}
-              </ScrollView>
-            ) : (
-              <View style={home.mapPlaceWrap}>
-                <ActivityIndicator color={HOME.cyan} />
-                <Text style={[home.mapPlaceholder, { marginTop: 10 }]}>相関図を読み込んでいます…</Text>
-              </View>
-            )
-          ) : (
-            // iOS：従来どおりScrollViewのピンチ拡大（なめらか）。全幅フィット＋縦スクロール。
+                overScrollMode="never"
+                source={{ html: `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=8, user-scalable=yes"><style>html,body{margin:0;padding:0;background:#fff;}img{display:block;width:100%;height:auto;}</style></head><body><img src="${mapDataUri}"></body></html>` }}
+              />
+              {mapQList && (
+                <ScrollView
+                  style={{ maxHeight: 220, borderTopWidth: 1, borderTopColor: HOME.border }}
+                  contentContainerStyle={{ padding: 12, paddingBottom: insets.bottom + 12 }}
+                >
+                  {mapQList}
+                </ScrollView>
+              )}
+            </>
+          ) : mapDataErr ? (
+            // 読み出し失敗時は素のImage（拡大は効かないが表示は必ず出す）。
             <ScrollView
               style={{ flex: 1 }}
               contentContainerStyle={[home.mapScroll, { paddingBottom: insets.bottom + 24 }]}
-              maximumZoomScale={4}
-              minimumZoomScale={1}
-              bouncesZoom
               showsVerticalScrollIndicator
             >
               <Image
@@ -1521,6 +1492,11 @@ function HomeTab(props: {
               />
               {mapQList}
             </ScrollView>
+          ) : (
+            <View style={home.mapPlaceWrap}>
+              <ActivityIndicator color={HOME.cyan} />
+              <Text style={[home.mapPlaceholder, { marginTop: 10 }]}>相関図を読み込んでいます…</Text>
+            </View>
           )
         ) : (
           <View style={home.mapPlaceWrap}>
