@@ -34,6 +34,7 @@ import { FIGURE_ASPECT } from './src/figures';
 import { figureSource, hasFigure } from './src/data/figureStore';
 import { getMapDataUri } from './src/mapData';
 import { RichText } from './src/MathText';
+import { WrittenReviewButton } from './src/WrittenReview';
 import { EasyExplanation } from './src/EasyExplanation';
 import { ProblemCalculator } from './src/Calculator';
 import { CATALOG, questionsByIds, QUESTION_FORMULA_ID, examRule, type ChapterEntry } from './src/catalog';
@@ -1089,6 +1090,9 @@ function HomeTab(props: {
   useEffect(() => { loadChapterSnaps().then(setChapSnaps); }, [props.progress]);
   const [showGrade, setShowGrade] = useState(false);
   const [showExamRule, setShowExamRule] = useState(false); // 試験前の準備カード→合格・足切りルールの詳細モーダル
+  const writtenReviewChapters = useMemo(() => props.subChapterIds
+    ? new Set(fieldGradeChapters(field, grade).filter((ch) => props.subChapterIds!.has(ch.id)).map((ch) => ch.data.meta.chapter))
+    : null, [field, grade, props.subChapterIds]);
   // 「全体の相関図」カードの図ビューア（全章マップ／各章マップをモーダルで拡大表示）。
   const [mapView, setMapView] = useState<{ title: string; key: string; chapterId: string } | null>(null);
   const [mapAspect, setMapAspect] = useState<number | null>(null); // 相関図の縦横比（iOS: onLoadで取得→全幅表示＋ピンチ拡大）
@@ -1349,7 +1353,7 @@ function HomeTab(props: {
 
         {/* 試験前の準備（モック準拠: 琥珀の淡い温かみ＋下部にデスク画像がマスクでふわっと出る）。
             タップで、いま選んでいる分野×級の「合格・足切りルール」詳細モーダルを開く。 */}
-        <Pressable style={home.examCard} onPress={() => setShowExamRule(true)}>
+        <View style={home.examCard}>
           {/* 琥珀→ネイビーの淡いグラデを土台に敷く（カード全体をほのかに温める） */}
           <Svg style={StyleSheet.absoluteFill} pointerEvents="none">
             <Defs>
@@ -1376,6 +1380,7 @@ function HomeTab(props: {
             </Svg>
           </View>
           <View style={home.examIn}>
+            <Pressable onPress={() => setShowExamRule(true)}>
             <View style={home.examHead}>
               <View style={home.examIco}><Text style={{ fontSize: 20 }}>📋</Text></View>
               <View style={{ flex: 1 }}>
@@ -1388,8 +1393,12 @@ function HomeTab(props: {
               <View key={li} style={home.examLi}><View style={home.examDot} /><Text style={home.examLiTxt}>{li}</Text></View>
             ))}
             <Text style={home.examCautn}>※ タップで詳細 ／ 足切り・持ち込み可否は必ず公式の受験要項でご確認ください</Text>
+            </Pressable>
+            <WrittenReviewButton field={field} grade={grade}
+              chapters={writtenReviewChapters}
+              subjectLabel={subjectLabel} t={t} proState={props.proState} onOpenPaywall={props.onOpenPaywall} />
           </View>
-        </Pressable>
+        </View>
 
         {/* 名言（最後） */}
         <View style={home.quote}>

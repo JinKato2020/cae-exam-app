@@ -9,6 +9,7 @@ export const BUNDLED: Record<string, unknown> = {
   'content/exam/passrule-thermal-2.json': require('../../content/exam/passrule-thermal-2.json'),
   'content/exam/passrule-vibration-1.json': require('../../content/exam/passrule-vibration-1.json'),
   'content/exam/passrule-vibration-2.json': require('../../content/exam/passrule-vibration-2.json'),
+  'content/exam/written-review.json': require('../../content/exam/written-review.json'),
   'content/formulas/ch1.json': require('../../content/formulas/ch1.json'),
   'content/formulas/ch10.json': require('../../content/formulas/ch10.json'),
   'content/formulas/ch11.json': require('../../content/formulas/ch11.json'),
