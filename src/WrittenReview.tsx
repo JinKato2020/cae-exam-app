@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Image, Modal, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { getContent } from './data/contentStore';
 import { figureSource } from './data/figureStore';
 import { questionsByIds } from './catalog';
-import { RichText } from './MathText';
+import { MathText } from './MathText';
 import type { FieldId, GradeId } from './progress';
 import { entInfoByKey, entKey, isLocked, type ProState } from './pro/proState';
 import type { PayTarget } from './pro/Paywall';
@@ -84,15 +84,11 @@ export function WrittenReviewButton(props: {
   const [open, setOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [zoom, setZoom] = useState<WrittenReviewImage | null>(null);
-  const scroller = useRef<ScrollView>(null);
   const index = entries.findIndex((e) => e.id === selectedId);
   const entry = entries[index];
   useEffect(() => {
     setSelectedId(null); setZoom(null); setOpen(false);
   }, [props.field, props.grade, props.chapters]);
-  useEffect(() => {
-    scroller.current?.scrollTo({ y: 0, animated: false });
-  }, [selectedId]);
   const q = entry?.questionId ? questionsByIds([entry.questionId])[0] : undefined;
   const locked = entry ? (q ? isLocked(q, props.proState)
     : !props.proState.devPro && !props.proState.owned.includes(entKey(props.field, props.grade))) : false;
@@ -124,22 +120,27 @@ export function WrittenReviewButton(props: {
             <Pressable accessibilityRole="button" onPress={() => setSelectedId(null)} style={s.back}>
               <Text style={[s.link, { color: t.primary }]}>‹ 問題一覧に戻る</Text>
             </Pressable>
-            <ScrollView ref={scroller} contentContainerStyle={s.content}>
-              <Text style={[s.heading, { color: t.text }]}>問{entry.officialNumber}　{entry.title}</Text>
+            <View style={s.detail}>
               {locked ? <Pressable accessibilityRole="button" onPress={purchase}
                 style={[s.answerButton, { borderColor: t.primary }]}>
                 <Text style={[s.launchText, { color: t.primary }]}>購入して説明を見る</Text>
-              </Pressable> : <View style={[s.card, { backgroundColor: t.card, borderColor: t.border }]}>
-                {!!entry.explanation && <RichText text={entry.explanation} color={t.text} fontSize={17} scroll scrollOnlyOverflow bg={t.card} />}
-                {(entry.explanationImages ?? []).map((image) => (
+              </Pressable> : <View style={[s.reader, { backgroundColor: t.card, borderColor: t.border }]}>
+                <MathText key={entry.id} verticalScroll
+                  text={'問' + entry.officialNumber + '　' + entry.title + '\n\n'
+                    + (entry.explanation ?? '') + '\n\n'
+                    + (entry.source.kind === 'verbatim' ? '公式の説明（原文）' : '公式資料の抽出テキスト（要約を含む）')
+                    + '\n' + entry.source.label}
+                  color={t.text} fontSize={17} scroll scrollOnlyOverflow bg={t.card} />
+              </View>}
+              {!locked && !!entry.explanationImages?.length && <ScrollView horizontal style={s.thumbnails}>
+                {entry.explanationImages.map((image) => (
                   <Pressable key={image.key} accessibilityRole="button" accessibilityLabel="公式の説明を拡大"
                     onPress={() => setZoom(image)} style={s.image}>
-                    <Image source={figureSource(image.key)} style={{ width: '100%', aspectRatio: image.width / image.height }} resizeMode="contain" />
+                    <Image source={figureSource(image.key)} style={{ width: 180, height: 88 }} resizeMode="contain" />
                     <Text style={[s.subject, { color: t.primary }]}>タップして拡大{image.page ? ' · ' + image.page : ''}</Text>
                   </Pressable>
                 ))}
-                <Text style={[s.subject, { color: t.sub }]}>{entry.source.kind === 'verbatim' ? '公式の説明（原文）' : '公式資料の抽出テキスト（要約を含む）'}{ '\n' }{entry.source.label}</Text>
-              </View>}
+              </ScrollView>}
               <View style={s.navigation}>
                 <Pressable disabled={index === 0} accessibilityRole="button"
                   onPress={() => setSelectedId(entries[index - 1].id)} style={[s.navButton, { opacity: index === 0 ? 0.35 : 1 }]}>
@@ -151,8 +152,8 @@ export function WrittenReviewButton(props: {
                   <Text style={[s.link, { color: t.primary }]}>次へ ›</Text>
                 </Pressable>
               </View>
-            </ScrollView>
-          </> : <ScrollView contentContainerStyle={s.content}>
+            </View>
+          </> : <ScrollView style={s.flex} contentContainerStyle={s.content}>
             {entries.some((e) => e.source.kind === 'extracted') && <Text style={[s.subject, { color: t.sub }]}>保存済みの公式資料から拾った復習候補です。説明には要約を含み、公式原文との照合・全件の確認は未完了です。</Text>}
             {entries.length === 0 && <Text style={[s.paragraph, { color: t.text }]}>{contentReady
               ? 'この範囲には復習候補がまだ登録されていません。記述式問題がないと確認したものではありません。'
@@ -176,6 +177,9 @@ export function WrittenReviewButton(props: {
 
 const s = StyleSheet.create({
   screen: { flex: 1 }, flex: { flex: 1 },
+  detail: { flex: 1, minHeight: 0, paddingHorizontal: 16, paddingBottom: 8 },
+  reader: { flex: 1, minHeight: 0, borderRadius: 14, borderWidth: 1, padding: 16, overflow: 'hidden' },
+  thumbnails: { flexGrow: 0, flexShrink: 0, maxHeight: 128 },
   launch: { marginTop: 16, padding: 14, borderRadius: 12, borderWidth: 1, backgroundColor: '#0E1728' },
   launchText: { fontSize: 16, fontWeight: '700', textAlign: 'center' },
   header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 8, borderBottomWidth: 1, flexShrink: 0, zIndex: 1 },

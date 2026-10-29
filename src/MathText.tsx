@@ -168,12 +168,14 @@ export function MathText(props: {
   bold?: boolean;
   scroll?: boolean; // true=横スクロール可（縮小しない）。公式カードで使用
   scrollOnlyOverflow?: boolean; // 混在本文では、収まる数式はインラインのままにする
+  verticalScroll?: boolean; // 高さが決まった領域内で本文全体を縦スクロール（外側のScrollViewと重ねない）
   bg?: string; // 右端フェードの色＝ボックス背景色
   // scroll時、この領域に指が触れている間だけ親の横スワイプ（タブ切替・前後移動）を止めるための通知。
   onScrollActiveChange?: (active: boolean) => void;
 }) {
   const fontSize = props.fontSize ?? 16;
   const scroll = props.scroll ?? false;
+  const verticalScroll = props.verticalScroll ?? false;
   const [height, setHeight] = useState(Math.round(fontSize * 1.75));
   // Android は WebView の「透過」が端末により黒く潰れ、数式が真っ黒で読めなくなることがある。
   // 透過に頼らず、置かれる場所と同じ色でベタ塗りする（bg＝カード等の背景色）。
@@ -183,19 +185,22 @@ export function MathText(props: {
     <WebView
       originWhitelist={['*']}
       source={{ html: buildHtml(props.text, props.color, fontSize, props.bold ?? false, scroll, props.bg ?? '#ffffff', bodyBg, props.scrollOnlyOverflow ?? false) }}
-      style={{ height, backgroundColor: bodyBg, width: '100%' }}
-      // scroll のときは横スクロールを受け付ける。縦は中身ぴったりの高さなので動かない。
-      scrollEnabled={scroll}
-      showsVerticalScrollIndicator={false}
+      style={verticalScroll
+        ? { flex: 1, minHeight: 0, backgroundColor: bodyBg, width: '100%' }
+        : { height, backgroundColor: bodyBg, width: '100%' }}
+      // 通常は本文に高さを合わせて横だけスクロール。verticalScroll時は画面内で縦もスクロール。
+      scrollEnabled={scroll || verticalScroll}
+      showsVerticalScrollIndicator={verticalScroll}
       showsHorizontalScrollIndicator={scroll}
       onMessage={(e) => {
+        if (verticalScroll) return; // 本文の高さへ広げず、画面の残りの高さを保つ
         const h = Number(e.nativeEvent.data);
         if (h && Math.abs(h - height) > 1) setHeight(h);
       }}
       // 透過に頼らずベタ塗り（Android の黒潰れ対策）。iOS も不透明（従来と同じ）。
       opaque
       // 通常はタップを親（選択肢の Pressable など）に通す。scroll のときは自分でスクロールを受ける。
-      pointerEvents={scroll ? 'auto' : 'none'}
+      pointerEvents={scroll || verticalScroll ? 'auto' : 'none'}
     />
   );
   // scroll時は、この領域に指が触れている間だけ親の横スワイプを無効化する（公式欄を横スクロール
