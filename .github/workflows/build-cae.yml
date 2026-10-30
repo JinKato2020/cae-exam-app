@@ -1,5 +1,5 @@
 name: CAE試験対策 (iOS/Android ビルド)
-run-name: "${{ inputs.build_number && format('CAE v{0} ({1}) — {2} ビルド', inputs.app_version, inputs.build_number, inputs.platforms) || format('CAE v{0} (番号未指定※tools/build_cae.ps1推奨) — {1} ビルド', inputs.app_version, inputs.platforms) }}"
+run-name: "${{ inputs.app_version && format('CAE v{0}以上 ({1}) — {2} ビルド', inputs.app_version, inputs.build_number || '自動', inputs.platforms) || format('CAE ({0}) — {1} ビルド・版自動決定', inputs.build_number || '自動', inputs.platforms) }}"
 
 # =============================================================================
 # CAE試験対策アプリ — JLPTアプリ(build-jlpt.yml)を土台に、CAE用へ簡素化。
@@ -40,9 +40,9 @@ on:
         default: ''
         type: string
       app_version:
-        description: 'タイトル表示用のアプリ版(app.jsonのversionに合わせる)。例 1.2.1'
+        description: '起動元のアプリ版。実際の版はApple事前確認で自動決定し、両OSのジョブ名に表示'
         required: false
-        default: '1.2.1'
+        default: ''
         type: string
       submit:
         description: 'iOS: ビルド後 TestFlight へ提出(既定true)'
@@ -76,8 +76,32 @@ env:
   IOS_DAILY_LIMIT: '5'
 
 jobs:
+  # A single Apple snapshot resolves the same version for both platforms before native compilation.
+  prepare-version:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      app_version: ${{ steps.version.outputs.app_version }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+      - name: Test version preflight
+        run: node --test tools/test_build_version.cjs
+      - name: Resolve version from App Store Connect
+        id: version
+        env:
+          CHECK_APPLE: ${{ inputs.platforms != 'android' && inputs.submit != 'false' }}
+          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY_BASE64: ${{ secrets.APP_STORE_CONNECT_API_KEY_BASE64 }}
+        run: node tools/resolve_build_version.cjs
+
   # ① iOSビルド(手動時のみ)。
   build-ios:
+    needs: prepare-version
+    name: iOS v${{ needs.prepare-version.outputs.app_version }}
     if: github.event_name == 'workflow_dispatch' && (inputs.platforms == 'both' || inputs.platforms == 'ios')
     runs-on: macos-26
     timeout-minutes: 90
@@ -115,6 +139,11 @@ jobs:
 
       - name: Install npm dependencies
         run: npm ci || npm install
+
+      - name: Apply shared app version
+        env:
+          RESOLVED_APP_VERSION: ${{ needs.prepare-version.outputs.app_version }}
+        run: node tools/resolve_build_version.cjs --apply
 
       - name: Calculate build number
         run: |
@@ -269,6 +298,8 @@ jobs:
 
   # ② Androidビルド(手動時のみ)。AAB を生成 → Play へ自動提出（既定=draft下書き。公開はConsoleで手動）。
   build-android:
+    needs: prepare-version
+    name: Android v${{ needs.prepare-version.outputs.app_version }}
     if: github.event_name == 'workflow_dispatch' && (inputs.platforms == 'both' || inputs.platforms == 'android')
     runs-on: ubuntu-latest
     timeout-minutes: 90
@@ -297,6 +328,10 @@ jobs:
           restore-keys: gradle-cae-android-
       - name: Install npm dependencies
         run: npm ci || npm install
+      - name: Apply shared app version
+        env:
+          RESOLVED_APP_VERSION: ${{ needs.prepare-version.outputs.app_version }}
+        run: node tools/resolve_build_version.cjs --apply
       - name: Calculate versionCode (1000+commit・iOS Build番号と同一値)
         run: |
           BUILD_NUMBER=$((1150 + $(git rev-list --count HEAD)))
