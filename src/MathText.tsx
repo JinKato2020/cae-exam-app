@@ -9,6 +9,7 @@ import { WebView } from 'react-native-webview';
 
 const KATEX = '0.16.9';
 const CDN = `https://cdnjs.cloudflare.com/ajax/libs/KaTeX/${KATEX}`;
+export type MathTextBlock = { label: string; text: string };
 
 // $...$（インライン）と $$...$$（ブロック）を含む1ブロックの HTML を作る。
 // scroll=true のときは「文字サイズを揃えたまま、はみ出す表示数式は横スクロール」で見せる
@@ -21,7 +22,8 @@ function buildHtml(
   scroll: boolean,
   bg: string,
   bodyBg: string,
-  scrollOnlyOverflow: boolean
+  scrollOnlyOverflow: boolean,
+  blocks?: readonly MathTextBlock[]
 ) {
   const payload = JSON.stringify(text); // 本文はJSで textContent に入れる（HTML注入を避け、\ や $ をそのまま保持）
   const displayCss = scroll
@@ -45,6 +47,10 @@ function buildHtml(
      font-family:-apple-system,'Hiragino Kaku Gothic ProN','Noto Sans JP',Roboto,sans-serif;
      white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;padding:2px 0;overflow:visible;}
   .katex{font-size:1.05em;}
+  .review-block{margin:0 0 24px;white-space:normal;}
+  .review-label{font-size:15px;line-height:1.5;margin:0 0 12px;padding:8px 12px;border-left:4px solid #27D8EA;background:rgba(39,216,234,.08);}
+  .review-block:nth-child(even) .review-label{border-left-color:#3ECF8E;background:rgba(62,207,142,.08);}
+  .review-body{white-space:pre-wrap;}
   /* #c の折り返し指定(日本語本文用)が数式にも継承され、数式が途中で改行されて
      中央にバラけて見える(＝「右詰め・縦長」の崩れ)のを防ぐ。数式は折り返さず、
      はみ出す分は .katex-display の横スクロール(scroll時)／縮小(非scroll時)で処理する。 */
@@ -57,7 +63,22 @@ ${scroll ? '<div id="fade"></div>' : ''}
 <script>
   var SCROLL=${scroll ? 'true' : 'false'};
   var SCROLL_ONLY_OVERFLOW=${scrollOnlyOverflow ? 'true' : 'false'};
-  document.getElementById('c').textContent = ${payload};
+  var root = document.getElementById('c');
+  var blocks = ${JSON.stringify(blocks ?? null)};
+  if (blocks && blocks.length) {
+    blocks.forEach(function(block) {
+      var section = document.createElement('section');
+      section.className = 'review-block';
+      section.setAttribute('aria-label', block.label);
+      var heading = document.createElement('h2');
+      heading.className = 'review-label';
+      heading.textContent = block.label;
+      var body = document.createElement('div');
+      body.className = 'review-body';
+      body.textContent = block.text;
+      section.appendChild(heading); section.appendChild(body); root.appendChild(section);
+    });
+  } else { root.textContent = ${payload}; }
   // scroll でないときだけ、箱幅を超える表示数式を左上基点で縮小して収める（従来動作）。
   function fitDisplays(){
     if (SCROLL) return; // スクロール表示は縮小せず文字サイズを揃える
@@ -169,6 +190,7 @@ export function MathText(props: {
   scroll?: boolean; // true=横スクロール可（縮小しない）。公式カードで使用
   scrollOnlyOverflow?: boolean; // 混在本文では、収まる数式はインラインのままにする
   verticalScroll?: boolean; // 高さが決まった領域内で本文全体を縦スクロール（外側のScrollViewと重ねない）
+  blocks?: readonly MathTextBlock[]; // 問題・解答例などの見出し付き区画。復習画面で使用
   bg?: string; // 右端フェードの色＝ボックス背景色
   // scroll時、この領域に指が触れている間だけ親の横スワイプ（タブ切替・前後移動）を止めるための通知。
   onScrollActiveChange?: (active: boolean) => void;
@@ -184,7 +206,7 @@ export function MathText(props: {
   const webview = (
     <WebView
       originWhitelist={['*']}
-      source={{ html: buildHtml(props.text, props.color, fontSize, props.bold ?? false, scroll, props.bg ?? '#ffffff', bodyBg, props.scrollOnlyOverflow ?? false) }}
+      source={{ html: buildHtml(props.text, props.color, fontSize, props.bold ?? false, scroll, props.bg ?? '#ffffff', bodyBg, props.scrollOnlyOverflow ?? false, props.blocks) }}
       style={verticalScroll
         ? { flex: 1, minHeight: 0, backgroundColor: bodyBg, width: '100%' }
         : { height, backgroundColor: bodyBg, width: '100%' }}

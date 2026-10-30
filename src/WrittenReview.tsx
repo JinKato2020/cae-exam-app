@@ -18,6 +18,8 @@ export type WrittenReviewEntry = {
   officialNumber: string;
   title: string;
   kind: string;
+  answerTypes?: string[];
+  questionLabel?: string;
   questionId?: string;
   question: string;
   questionImages?: WrittenReviewImage[];
@@ -121,15 +123,20 @@ export function WrittenReviewButton(props: {
               <Text style={[s.link, { color: t.primary }]}>‹ 問題一覧に戻る</Text>
             </Pressable>
             <View style={s.detail}>
+              <Text style={[s.itemTitle, { color: t.text }]}>問{entry.officialNumber}　{entry.title}</Text>
+              <View style={s.tags}>{(entry.answerTypes ?? [entry.kind]).map((label) => (
+                <Text key={label} style={[s.tag, { color: t.primary, borderColor: t.border }]}>{label}</Text>
+              ))}</View>
               {locked ? <Pressable accessibilityRole="button" onPress={purchase}
                 style={[s.answerButton, { borderColor: t.primary }]}>
                 <Text style={[s.launchText, { color: t.primary }]}>購入して説明を見る</Text>
               </Pressable> : <View style={[s.reader, { backgroundColor: t.card, borderColor: t.border }]}>
                 <MathText key={entry.id} verticalScroll
-                  text={'問' + entry.officialNumber + '　' + entry.title + '\n\n'
-                    + (entry.explanation ?? '') + '\n\n'
-                    + (entry.source.kind === 'verbatim' ? '公式の説明（原文）' : '公式資料の抽出テキスト（要約を含む）')
-                    + '\n' + entry.source.label}
+                  text={entry.explanation ?? ''}
+                  blocks={[
+                    { label: entry.questionLabel ?? '問題', text: entry.question },
+                    { label: '解答例・解説', text: entry.explanation ?? '' },
+                  ]}
                   color={t.text} fontSize={17} scroll scrollOnlyOverflow bg={t.card} />
               </View>}
               {!locked && !!entry.explanationImages?.length && <ScrollView horizontal style={s.thumbnails}>
@@ -154,7 +161,6 @@ export function WrittenReviewButton(props: {
               </View>
             </View>
           </> : <ScrollView style={s.flex} contentContainerStyle={s.content}>
-            {entries.some((e) => e.source.kind === 'extracted') && <Text style={[s.subject, { color: t.sub }]}>保存済みの公式資料から拾った復習候補です。説明には要約を含み、公式原文との照合・全件の確認は未完了です。</Text>}
             {entries.length === 0 && <Text style={[s.paragraph, { color: t.text }]}>{contentReady
               ? 'この範囲には復習候補がまだ登録されていません。記述式問題がないと確認したものではありません。'
               : '記述式の復習データがまだ登録されていません。'}</Text>}
@@ -163,7 +169,9 @@ export function WrittenReviewButton(props: {
               <Pressable accessibilityRole="button" onPress={() => setSelectedId(e.id)}
                 style={[s.card, { backgroundColor: t.card, borderColor: t.border }]}>
                 <Text style={[s.itemTitle, { color: t.text }]}>問{e.officialNumber}　{e.title} ›</Text>
-                <Text style={[s.subject, { color: t.sub }]}>{e.kind}</Text>
+                <View style={s.tags}>{(e.answerTypes ?? [e.kind]).map((label) => (
+                  <Text key={label} style={[s.tag, { color: t.primary, borderColor: t.border }]}>{label}</Text>
+                ))}</View>
               </Pressable>
             </View>)}
           </ScrollView>}
@@ -178,6 +186,8 @@ export function WrittenReviewButton(props: {
 const s = StyleSheet.create({
   screen: { flex: 1 }, flex: { flex: 1 },
   detail: { flex: 1, minHeight: 0, paddingHorizontal: 16, paddingBottom: 8 },
+  tags: { flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginVertical: 10 },
+  tag: { fontSize: 13, lineHeight: 20, borderWidth: 1, borderRadius: 7, paddingHorizontal: 8, paddingVertical: 3 },
   reader: { flex: 1, minHeight: 0, borderRadius: 14, borderWidth: 1, padding: 16, overflow: 'hidden' },
   thumbnails: { flexGrow: 0, flexShrink: 0, maxHeight: 128 },
   launch: { marginTop: 16, padding: 14, borderRadius: 12, borderWidth: 1, backgroundColor: '#0E1728' },
