@@ -35,7 +35,8 @@ function resolveVersion(configured, versions) {
     const a = version.attributes;
     if (!a || !a.platform) throw Error('Apple returned an incomplete version record');
     if (a.platform !== 'IOS') continue;
-    parts(a.versionString);
+    try { parts(a.versionString); }
+    catch { throw Error('Invalid Apple app version: ' + String(a.versionString).replace(/[^a-zA-Z0-9._-]/g, '?').slice(0, 64)); }
     const state = a.appVersionState ?? a.appStoreState;
     if (!RESERVED.has(state) && !OPEN.has(state)) throw Error('Unknown Apple version state');
     if (RESERVED.has(state) && (floor === null || compare(a.versionString, floor) > 0)) {
@@ -141,6 +142,7 @@ module.exports = { parts, compare, resolveVersion, token, listVersions, applyVer
 if (require.main === module) main().catch(error => {
   // Only expose messages authored here, never crypto/fetch errors or raw Apple data.
   const safe = /^(App Store Connect credentials are missing|App Store Connect signing key could not be decoded|App Store Connect lookup failed \(HTTP \d{3}\)|App Store Connect lookup failed; native build was not started|Could not uniquely identify the app in App Store Connect|Apple returned an incomplete version record|Unknown Apple version state|Invalid App Store Connect response|Invalid Apple pagination(?: URL)?|Invalid numeric app version|App version is out of range|CI output destination is missing|CHECK_APPLE must be explicitly set)$/.test(error?.message ?? '')
+    || /^Invalid Apple app version: [a-zA-Z0-9._?\-]{1,64}$/.test(error?.message ?? '')
     ? error.message : 'Unexpected local preflight error';
   console.error('::error::Version preflight failed: ' + safe + '. Native builds were not started.');
   process.exitCode = 1;

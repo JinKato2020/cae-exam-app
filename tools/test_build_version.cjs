@@ -107,6 +107,12 @@ test('CI command fails without Apple access and emits no fallback version or cre
     assert.notEqual(blocked.status, 0);
     assert.ok(!fs.existsSync(output));
     assert.ok(!blocked.stdout.includes('private-marker') && !blocked.stderr.includes('private-marker'));
+    assert.match(blocked.stderr, /credentials are missing/);
+    const invalidKey = spawnSync(process.execPath, [command], { cwd: dir,
+      env: { ...env, APP_STORE_CONNECT_ISSUER_ID: 'issuer',
+        APP_STORE_CONNECT_API_KEY_BASE64: Buffer.from('private-key-marker').toString('base64') }, encoding: 'utf8' });
+    assert.match(invalidKey.stderr, /signing key could not be decoded/);
+    assert.ok(!invalidKey.stderr.includes('private-key-marker'));
     const applied = spawnSync(process.execPath, [command, '--apply'], { cwd: dir,
       env: { ...env, RESOLVED_APP_VERSION: '1.2.12' }, encoding: 'utf8' });
     assert.equal(applied.status, 0);
