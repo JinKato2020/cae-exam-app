@@ -45,7 +45,8 @@ function buildHtml(
   body{display:flow-root;}
   #c{visibility:hidden;color:${color};font-size:${fontSize}px;line-height:1.75;font-weight:${bold ? '600' : '400'};
      font-family:-apple-system,'Hiragino Kaku Gothic ProN','Noto Sans JP',Roboto,sans-serif;
-     white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;padding:2px 0;overflow:visible;}
+     width:100%;max-width:100%;box-sizing:border-box;
+     white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere;padding:2px 4px 4px 0;overflow:visible;}
   .katex{font-size:1.05em;}
   .review-block{margin:0 0 24px;white-space:normal;}
   .review-label{font-size:15px;line-height:1.5;margin:0 0 12px;padding:8px 12px;border-left:4px solid #27D8EA;background:rgba(39,216,234,.08);}
@@ -79,6 +80,11 @@ ${scroll ? '<div id="fade"></div>' : ''}
       section.appendChild(heading); section.appendChild(body); root.appendChild(section);
     });
   } else { root.textContent = ${payload}; }
+  // 本文の右余白を数式の利用可能幅に含めない。
+  function contentWidth(){
+    var c=document.getElementById('c'), s=window.getComputedStyle(c);
+    return c.clientWidth-parseFloat(s.paddingLeft||0)-parseFloat(s.paddingRight||0);
+  }
   // scroll でないときだけ、箱幅を超える表示数式を左上基点で縮小して収める（従来動作）。
   function fitDisplays(){
     if (SCROLL) return; // スクロール表示は縮小せず文字サイズを揃える
@@ -101,7 +107,7 @@ ${scroll ? '<div id="fade"></div>' : ''}
   function fitInline(){
     if (SCROLL) return;
     var c = document.getElementById('c');
-    var avail = c.clientWidth;
+    var avail = contentWidth();
     if (!avail) return;
     var list = c.querySelectorAll('.katex');
     for (var i=0;i<list.length;i++){
@@ -135,7 +141,7 @@ ${scroll ? '<div id="fade"></div>' : ''}
     for(var i=0;i<roots.length;i++){
       var k=roots[i], parent=k.parentElement;
       if(!parent || parent.classList.contains('katex-display') || parent.classList.contains('math-scroll')) continue;
-      if(SCROLL_ONLY_OVERFLOW && k.getBoundingClientRect().width <= document.getElementById('c').clientWidth + 1) continue;
+      if(SCROLL_ONLY_OVERFLOW && k.getBoundingClientRect().width <= contentWidth() + 1) continue;
       var row=document.createElement('span'); row.className='math-scroll';
       parent.insertBefore(row,k); row.appendChild(k);
     }
@@ -261,8 +267,11 @@ export function RichText(props: {
   if (!hasMath) {
     return (
       <Text
+        lineBreakStrategyIOS="standard"
         style={[
-          { color: props.color, fontSize: props.fontSize ?? 16, lineHeight: (props.fontSize ?? 16) * 1.4 },
+          // iOSの末尾行も親の本文幅で折り返す。右端の字形・句読点用の余白を残す。
+          { color: props.color, fontSize: props.fontSize ?? 16, lineHeight: Math.ceil((props.fontSize ?? 16) * 1.4),
+            width: '100%', maxWidth: '100%', minWidth: 0, flexShrink: 1, paddingRight: 4 },
           props.bold ? { fontWeight: '600' } : null,
           props.style,
         ]}

@@ -90,11 +90,17 @@ export async function loadCache(): Promise<CacheLoad> {
     const cachedShas = await readJson<Record<string, string>>(SHA_PATH, {});
     const bundled = ((bundledManifest as ManifestLike).files) ?? {};
     const names = await FileSystem.readDirectoryAsync(DIR);
-    const out: CacheLoad = { content: {}, figures: {} };
+    // iOSには同じキーの旧形式名とv2名が共存し得る。列挙順で旧版が新版を
+    // 上書きしないよう、読む前にキーごとにv2を優先して一つに決める。
+    const preferredNames = new Map<string, string>();
     for (const name of names) {
       if (name === '_shas.json' || name === '_bundle.tag') continue;
       let key: string;
       try { key = dec(name); } catch { continue; }
+      if (!preferredNames.has(key) || name.startsWith('v2-')) preferredNames.set(key, name);
+    }
+    const out: CacheLoad = { content: {}, figures: {} };
+    for (const [key, name] of preferredNames) {
       // 同梱と同じ版は同梱を使う。追跡されていない旧ファイルも復活させない。
       if (!cachedShas[key] || cachedShas[key] === bundled[key]?.sha256) continue;
       if (key.startsWith('figures/')) {
