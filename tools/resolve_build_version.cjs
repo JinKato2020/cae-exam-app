@@ -35,12 +35,16 @@ function resolveVersion(configured, versions) {
     const a = version.attributes;
     if (!a || !a.platform) throw Error('Apple returned an incomplete version record');
     if (a.platform !== 'IOS') continue;
-    try { parts(a.versionString); }
+    // Apple retains historical versions such as "1.2.2.". Ignore that terminal
+    // separator for numeric comparison only; new app.json versions stay strict.
+    const appleVersion = typeof a.versionString === 'string' && /^\d+(?:\.\d+){0,2}\.$/.test(a.versionString)
+      ? a.versionString.slice(0, -1) : a.versionString;
+    try { parts(appleVersion); }
     catch { throw Error('Invalid Apple app version: ' + String(a.versionString).replace(/[^a-zA-Z0-9._-]/g, '?').slice(0, 64)); }
     const state = a.appVersionState ?? a.appStoreState;
     if (!RESERVED.has(state) && !OPEN.has(state)) throw Error('Unknown Apple version state');
-    if (RESERVED.has(state) && (floor === null || compare(a.versionString, floor) > 0)) {
-      floor = a.versionString;
+    if (RESERVED.has(state) && (floor === null || compare(appleVersion, floor) > 0)) {
+      floor = appleVersion;
     }
   }
   let version = configured;

@@ -31,9 +31,19 @@ test('submitted and approved-but-unreleased versions cannot become a race during
 test('an editable draft can still receive more TestFlight builds', () => {
   assert.equal(resolveVersion('1.2.11', [version('1.2.10'), version('1.2.11', 'PREPARE_FOR_SUBMISSION')]).version, '1.2.11');
 });
+
+test('observed historical Apple version with a terminal dot is compared numerically', () => {
+  assert.equal(resolveVersion('1.2.11', [version('1.2.2.'), version('1.2.11')]).version, '1.2.12');
+  assert.deepEqual(resolveVersion('1.2.1', [version('1.2.2.')]), { version: '1.2.3', floor: '1.2.2' });
+  assert.throws(() => resolveVersion('1.2.11.', []), /Invalid numeric/);
+  for (const value of ['1.2..2', '1.2.2..', '1.2.2-beta']) {
+    assert.throws(() => resolveVersion('1.2.11', [version(value)]), /Invalid Apple app version/);
+  }
+});
 test('legacy state and two-part versions work; unknown or corrupt data stops the build', () => {
   assert.equal(resolveVersion('1.2', [{ attributes: { versionString: '1.2', platform: 'IOS', appStoreState: 'READY_FOR_SALE' } }]).version, '1.2.1');
   assert.throws(() => resolveVersion('1.2.11', [version('1.2.11', 'NEW_UNKNOWN_STATE')]));
+  assert.throws(() => resolveVersion('1.2.11', [version('1.2.3.4')]), /Invalid Apple app version: 1.2.3.4/);
   assert.throws(() => resolveVersion('1.2.11', [{}]));
   assert.throws(() => resolveVersion('1.2.11-beta', []));
 });
