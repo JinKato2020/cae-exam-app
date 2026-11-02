@@ -1114,6 +1114,7 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   s1e9ConvCrit: require('../assets/figures/s1e9ConvCrit.png'),
   s1e9DomainDecomp: require('../assets/figures/s1e9DomainDecomp.png'),
   s1e9EigenConverge: require('../assets/figures/s1e9EigenConverge.png'),
+  s1e9EigenMethods: require('../assets/figures/s1e9EigenMethods.png'),
   s1e9LoadDispCurves: require('../assets/figures/s1e9LoadDispCurves.png'),
   s1e9LoadDispSetup: require('../assets/figures/s1e9LoadDispSetup.png'),
   s1e9MethodID: require('../assets/figures/s1e9MethodID.png'),
