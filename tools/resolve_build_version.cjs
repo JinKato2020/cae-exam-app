@@ -57,7 +57,9 @@ function token(env, now = Math.floor(Date.now() / 1000)) {
   const iss = (env.APP_STORE_CONNECT_ISSUER_ID ?? '').replace(/\s/g, '');
   const encoded = (env.APP_STORE_CONNECT_API_KEY_BASE64 ?? '').replace(/\s/g, '');
   if (!kid || !iss || !encoded) throw Error('App Store Connect credentials are missing');
-  const key = crypto.createPrivateKey(Buffer.from(encoded, 'base64').toString('utf8'));
+  let key;
+  try { key = crypto.createPrivateKey(Buffer.from(encoded, 'base64').toString('utf8')); }
+  catch { throw Error('App Store Connect signing key could not be decoded'); }
   const encode = value => Buffer.from(JSON.stringify(value)).toString('base64url');
   const data = encode({ alg: 'ES256', kid, typ: 'JWT' }) + '.'
     + encode({ iss, iat: now, exp: now + 600, aud: 'appstoreconnect-v1' });
@@ -136,7 +138,10 @@ async function main() {
 }
 
 module.exports = { parts, compare, resolveVersion, token, listVersions, applyVersion };
-if (require.main === module) main().catch(() => {
-  console.error('::error::Version preflight failed. Check Apple API access, credentials and version data. Native builds were not started.');
+if (require.main === module) main().catch(error => {
+  // Only expose messages authored here, never crypto/fetch errors or raw Apple data.
+  const safe = /^(App Store Connect credentials are missing|App Store Connect signing key could not be decoded|App Store Connect lookup failed \(HTTP \d{3}\)|App Store Connect lookup failed; native build was not started|Could not uniquely identify the app in App Store Connect|Apple returned an incomplete version record|Unknown Apple version state|Invalid App Store Connect response|Invalid Apple pagination(?: URL)?|Invalid numeric app version|App version is out of range|CI output destination is missing|CHECK_APPLE must be explicitly set)$/.test(error?.message ?? '')
+    ? error.message : 'Unexpected local preflight error';
+  console.error('::error::Version preflight failed: ' + safe + '. Native builds were not started.');
   process.exitCode = 1;
 });

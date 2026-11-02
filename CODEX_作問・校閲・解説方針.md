@@ -2156,3 +2156,11 @@ main 14729b4に第2・3章の詳解と共有記録をコミット・Push済み�
 ## 2026-11-02｜2026-11-02-OTA-LEGACY-SHADOW-BUILD
 - 利用者が「修正版の本体ビルドを起動する」と明示許可。最新教材基準39aefc50を親に、iOS新旧キャッシュ競合の修正src/data/contentOta.ts、回帰テストtools/test_content_ota.cjs、先行の共通右端見切れ対策src/MathText.tsx、共有2文書だけを加えた本体を両OSで起動する。既存全教材・復習機能は維持し、固体2級5〜8章の未完成稿は追加しない。
 - キャッシュ回帰テストとTypeScript診断0を確認済み。実機ファイルの取得や実機解消確認は未完了。版確認ゲート付きtools/build_cae.ps1 -Refを使い、Appleの現行版から共通の提出版を決定する。起動後の進捗・成功・ストア提出完了待ちは行わない。教材OTAは既に起動した39aefc50のままで、今回追加起動しない。
+
+
+## 2026-11-02｜2026-11-02-OTA-LEGACY-SHADOW-B1506-DISPATCH
+- 修正版commit6fa9ead1c5a736a04cc0b9f7cab147c860302865、枝codex/build-ios-cache-priority-20261102をPush。既存tools/build_cae.ps1 -RefでBuild1506をiOS・Android両方起動受付済み：https://github.com/JinKato2020/cae-exam-app/actions/runs/41390813676 。起動元設定は1.2.11、実際の両OS版はApple事前確認で決まるため、取得・断定していない。
+- 旧キャッシュ上書き防止と回帰テスト、先行見切れ対策を含む。第9章14問の詳解・3-2追記・固体1級全章の完成教材・復習データを継承。前回39aefc50との差分は指定5ファイルのみ。起動後の状態・成功・TestFlight/Android提出完了・実機反映を確認せず待機していない。次回本体基準は6fa9ead1。ローカルmainへは未統合。
+
+## 2026-11-02｜2026-11-02-B1506-PREFLIGHT-DIAG
+- 利用者の失敗指摘を受けrun41390813676を調査。prepare-versionのApple照会が失敗し両OSはskipped。本体ビルドは未着手だった。既存catchが原因を一律非表示にしていたため、自作の安全なエラー種別とHTTPステータスだけを表示するよう修正。鍵・トークン・API生データ・外部例外文は出さない。12テスト成功。障害調査の再実行で原因を切り分ける。
