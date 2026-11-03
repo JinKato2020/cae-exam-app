@@ -102,16 +102,16 @@ export function WrittenReviewButton(props: {
   const { t } = props;
   return (
     <>
-      <Pressable accessibilityRole="button" accessibilityLabel="記述式問題を復習"
+      <Pressable accessibilityRole="button" accessibilityLabel="記述・計算・導出を復習"
         onPress={() => { setSelectedId(null); setOpen(true); }}
         style={[s.launch, { borderColor: t.primary }]}>
-        <Text style={[s.launchText, { color: t.primary }]}>復習 · 記述式問題{contentReady ? '（' + entries.length + '問の候補）' : ''} ›</Text>
+        <Text style={[s.launchText, { color: t.primary }]}>復習 · 記述・計算・導出{contentReady ? '（' + entries.length + '問の候補）' : ''} ›</Text>
       </Pressable>
       <Modal visible={open} animationType="slide" onRequestClose={() => { setZoom(null); setOpen(false); }}>
         <SafeAreaProvider>
         <SafeAreaView style={[s.screen, { backgroundColor: t.bg }]}>
           <View style={[s.header, { borderBottomColor: t.border }]}>
-            <Text style={[s.heading, s.headerTitle, { color: t.text }]}>記述式の復習</Text>
+            <Text style={[s.heading, s.headerTitle, { color: t.text }]}>記述・計算・導出の復習</Text>
             <Pressable accessibilityRole="button" accessibilityLabel="復習を閉じる" hitSlop={8}
               onPress={() => { setZoom(null); setOpen(false); }} style={s.close}>
               <Text style={[s.link, { color: t.primary }]}>閉じる</Text>
@@ -162,8 +162,8 @@ export function WrittenReviewButton(props: {
             </View>
           </> : <ScrollView style={s.flex} contentContainerStyle={s.content}>
             {entries.length === 0 && <Text style={[s.paragraph, { color: t.text }]}>{contentReady
-              ? 'この範囲には復習候補がまだ登録されていません。記述式問題がないと確認したものではありません。'
-              : '記述式の復習データがまだ登録されていません。'}</Text>}
+              ? 'この範囲には復習候補がまだ登録されていません。対象問題がないと確認したものではありません。'
+              : '記述・計算・導出の復習データがまだ登録されていません。'}</Text>}
             {entries.map((e, i) => <View key={e.id}>
               {(i === 0 || entries[i - 1].chapter !== e.chapter) && <Text style={[s.chapter, { color: t.sub }]}>第{e.chapter}章</Text>}
               <Pressable accessibilityRole="button" onPress={() => setSelectedId(e.id)}
