@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Image, Modal, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { getContent } from './data/contentStore';
@@ -22,8 +22,13 @@ export type WrittenReviewEntry = {
   questionLabel?: string;
   questionId?: string;
   question: string;
+  questionBody?: string;
+  choices?: string[];
+  answer?: string;
+  responseFormat?: 'written' | 'choice';
   questionImages?: WrittenReviewImage[];
   explanation?: string;
+  explanationBody?: string;
   explanationImages?: WrittenReviewImage[];
   source: { kind: 'verbatim' | 'extracted'; label: string };
 };
@@ -86,9 +91,34 @@ export function WrittenReviewButton(props: {
   const [open, setOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [zoom, setZoom] = useState<WrittenReviewImage | null>(null);
+  const listRef = useRef<ScrollView>(null);
+  const returnCardId = useRef<string | null>(null);
+  const cardPositions = useRef(new Map<string, number>());
+  const listHeight = useRef(0);
+  const contentHeight = useRef(0);
+  function restoreListPosition() {
+    const id = returnCardId.current;
+    const y = id ? cardPositions.current.get(id) : undefined;
+    if (y === undefined || !listRef.current || !listHeight.current || !contentHeight.current) return;
+    listRef.current.scrollTo({
+      y: Math.max(0, Math.min(y - 8, contentHeight.current - listHeight.current)),
+      animated: false,
+    });
+    returnCardId.current = null;
+  }
+  function backToList() {
+    // 前後移動した場合も、最後に読んだ問題を戻り先にする。
+    returnCardId.current = selectedId;
+    cardPositions.current.clear();
+    listHeight.current = 0;
+    contentHeight.current = 0;
+    setSelectedId(null);
+  }
   const index = entries.findIndex((e) => e.id === selectedId);
   const entry = entries[index];
   useEffect(() => {
+    returnCardId.current = null;
+    cardPositions.current.clear();
     setSelectedId(null); setZoom(null); setOpen(false);
   }, [props.field, props.grade, props.chapters]);
   const q = entry?.questionId ? questionsByIds([entry.questionId])[0] : undefined;
@@ -103,7 +133,7 @@ export function WrittenReviewButton(props: {
   return (
     <>
       <Pressable accessibilityRole="button" accessibilityLabel="記述・計算・導出を復習"
-        onPress={() => { setSelectedId(null); setOpen(true); }}
+        onPress={() => { returnCardId.current = null; setSelectedId(null); setOpen(true); }}
         style={[s.launch, { borderColor: t.primary }]}>
         <Text style={[s.launchText, { color: t.primary }]}>復習 · 記述・計算・導出{contentReady ? '（' + entries.length + '問の候補）' : ''} ›</Text>
       </Pressable>
@@ -119,7 +149,7 @@ export function WrittenReviewButton(props: {
           </View>
           <Text style={[s.subject, { color: t.sub }]}>{props.subjectLabel} · {entries.length}問</Text>
           {entry ? <>
-            <Pressable accessibilityRole="button" onPress={() => setSelectedId(null)} style={s.back}>
+            <Pressable accessibilityRole="button" onPress={backToList} style={s.back}>
               <Text style={[s.link, { color: t.primary }]}>‹ 問題一覧に戻る</Text>
             </Pressable>
             <View style={s.detail}>
@@ -134,8 +164,13 @@ export function WrittenReviewButton(props: {
                 <MathText key={entry.id} verticalScroll
                   text={entry.explanation ?? ''}
                   blocks={[
-                    { label: entry.questionLabel ?? '問題', text: entry.question },
-                    { label: '解答例・解説', text: entry.explanation ?? '' },
+                    { label: '問題', text: entry.questionBody ?? entry.question },
+                    { label: '選択肢', text: entry.choices?.length
+                      ? entry.choices.join('\n\n')
+                      : entry.responseFormat === 'written' ? '選択肢はありません。式や文章で解答する問題です。'
+                      : '保存済み資料では選択肢を確認できていません。' },
+                    { label: '正解', text: entry.answer ?? '正解欄は整理中です。下の解説にある解答と併せて確認してください。' },
+                    { label: '解説', text: entry.explanationBody ?? entry.explanation ?? '' },
                   ]}
                   color={t.text} fontSize={17} scroll scrollOnlyOverflow bg={t.card} />
               </View>}
@@ -160,11 +195,17 @@ export function WrittenReviewButton(props: {
                 </Pressable>
               </View>
             </View>
-          </> : <ScrollView style={s.flex} contentContainerStyle={s.content}>
+          </> : <ScrollView ref={listRef} style={s.flex} contentContainerStyle={s.content}
+            onLayout={(event) => { listHeight.current = event.nativeEvent.layout.height; restoreListPosition(); }}
+            onContentSizeChange={(_width, height) => { contentHeight.current = height; restoreListPosition(); }}>
             {entries.length === 0 && <Text style={[s.paragraph, { color: t.text }]}>{contentReady
               ? 'この範囲には復習候補がまだ登録されていません。対象問題がないと確認したものではありません。'
               : '記述・計算・導出の復習データがまだ登録されていません。'}</Text>}
-            {entries.map((e, i) => <View key={e.id}>
+            {entries.map((e, i) => <View key={e.id}
+              onLayout={(event) => {
+                cardPositions.current.set(e.id, event.nativeEvent.layout.y);
+                restoreListPosition();
+              }}>
               {(i === 0 || entries[i - 1].chapter !== e.chapter) && <Text style={[s.chapter, { color: t.sub }]}>第{e.chapter}章</Text>}
               <Pressable accessibilityRole="button" onPress={() => setSelectedId(e.id)}
                 style={[s.card, { backgroundColor: t.card, borderColor: t.border }]}>
