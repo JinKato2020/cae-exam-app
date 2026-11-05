@@ -5,6 +5,7 @@
 // ※起動時に initContent()→rebuildCatalog() を呼ぶ前提。呼ばれなくても同梱データで従来どおり動く。
 import type { Chapter, Question } from './types';
 import { getContent } from './data/contentStore';
+import { expandChapter } from './questionParts';
 
 export type ChapterEntry = { id: string; title: string; data: Chapter; ready?: boolean; formulaId?: string };
 export type GradeEntry = { id: string; name: string; chapters: ChapterEntry[] };
@@ -29,7 +30,7 @@ function buildCatalog(): FieldEntry[] {
       id: g.id,
       name: g.name,
       chapters: (g.chapters ?? []).map((c) => {
-        const data = (c.content ? getContent<Chapter>(c.content) : null) ?? emptyChapter(c.title);
+        const data = expandChapter((c.content ? getContent<Chapter>(c.content) : null) ?? emptyChapter(c.title));
         return { id: c.id, title: c.title, data, ready: c.ready ?? true, formulaId: c.formulaId };
       }),
     })),
@@ -88,5 +89,5 @@ export function rebuildCatalog(): void {
 
 export function questionsByIds(ids: string[]): Question[] {
   const set = new Set(ids);
-  return ALL_QUESTIONS.filter((q) => set.has(q.id));
+  return ALL_QUESTIONS.filter((q) => set.has(q.id) || Boolean(q.rootQuestionId && set.has(q.rootQuestionId)));
 }

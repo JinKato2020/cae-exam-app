@@ -36,8 +36,9 @@ import { getMapDataUri } from './src/mapData';
 import { RichText } from './src/MathText';
 import { WrittenReviewButton } from './src/WrittenReview';
 import { EasyExplanation } from './src/EasyExplanation';
+import { refreshQuestionSession } from './src/questionParts';
 import { ProblemCalculator } from './src/Calculator';
-import { CATALOG, questionsByIds, QUESTION_FORMULA_ID, examRule, type ChapterEntry } from './src/catalog';
+import { CATALOG, ALL_QUESTIONS, questionsByIds, QUESTION_FORMULA_ID, examRule, type ChapterEntry } from './src/catalog';
 import { formulaDoc, type FormulaItem } from './src/formulas';
 import { initContent, refreshContent } from './src/data/initContent';
 import { BUILD_NUMBER } from './src/buildInfo';
@@ -364,6 +365,21 @@ function AppInner(props: { contentVersion: number }) {
   const [qIndex, setQIndex] = useState(0);
   // 出題セッション内の選択（問題ID → 選んだ番号）。前後移動しても選択が残る。
   const [answers, setAnswers] = useState<Record<string, number>>({});
+  useEffect(() => {
+    const updated = refreshQuestionSession(activeList, qIndex, ALL_QUESTIONS);
+    const previous = new Map(activeList.map(q => [q.id, q]));
+    setAnswers(old => Object.fromEntries(updated.questions.flatMap(q => {
+      const before = previous.get(q.id);
+      const unchanged = before && before.question === q.question && before.answer === q.answer
+        && JSON.stringify(before.choices) === JSON.stringify(q.choices);
+      return unchanged && old[q.id] != null ? [[q.id, old[q.id]]] : [];
+    })));
+    setActiveList(updated.questions);
+    setQIndex(updated.index);
+    setChapter(old => old ? course?.chapters.find(c => c.id === old.id) ?? null : null);
+    if (activeList.length && !updated.questions.length) setStudyView('chapters');
+    // 教材OTAの適用時だけ一覧を再構成する。回答・前後移動では再構成しない。
+  }, [props.contentVersion]);
 
   // 公式・用語タブ（課程 → 章 → タイトル一覧 → 個別解説）
   const [formulaView, setFormulaView] = useState<FormulaView>('list');
@@ -484,7 +500,7 @@ function AppInner(props: { contentVersion: number }) {
   function openQuestionById(gradeId: GradeId, chapterId: string, questionId: string, fieldId: FieldId = 'solid') {
     const c = fieldGradeChapters(fieldId, gradeId).find((x) => x.id === chapterId);
     if (!c) return;
-    const idx = c.data.questions.findIndex((q) => q.id === questionId);
+    const idx = c.data.questions.findIndex((q) => q.id === questionId || q.rootQuestionId === questionId);
     openProblems(c.data.questions, c.title, idx < 0 ? 0 : idx);
   }
 
@@ -2055,6 +2071,11 @@ function ProblemScreen(props: {
 
       {/* チップ：学習履歴・公式対応 */}
       <View style={styles.qChipRow}>
+        {q.partLabel ? (
+          <View style={[styles.qChip, { backgroundColor: t.primary + '18' }]}>
+            <Text style={[styles.qChipTxt, { color: t.primary }]}>{q.partLabel}</Text>
+          </View>
+        ) : null}
         <View
           style={[
             styles.qChip,

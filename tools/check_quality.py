@@ -61,6 +61,52 @@ def editorial_digest(q):
                                     separators=(",", ":")).encode("utf-8")).hexdigest()
 
 
+def question_nodes(data):
+    """Include OTA subquestions in the same semantic/math/figure gates as ordinary questions."""
+    def visit(q):
+        yield q
+        parts = q.get("parts")
+        if isinstance(parts, list):
+            for part in parts:
+                if isinstance(part, dict):
+                    yield from visit(part)
+    for q in data.get("questions", []):
+        yield from visit(q)
+
+
+def part_structure_errors(data):
+    errors, ids = [], set()
+    for q in question_nodes(data):
+        parts = q.get("parts")
+        if parts is not None and (not isinstance(parts, list) or any(not isinstance(p, dict) for p in parts)):
+            errors.append(f"{q.get('number', '?')}: partsは設問オブジェクトの配列が必要")
+            continue
+        if parts:
+            first, common = q, []
+            while isinstance(first.get('parts'), list) and first['parts'] and isinstance(first['parts'][0], dict):
+                if first.get('sharedQuestion'):
+                    common.append(first['sharedQuestion'])
+                first = first['parts'][0]
+            if first.get('sharedQuestion'):
+                common.append(first['sharedQuestion'])
+            fallback = '\n\n'.join(common + [first.get('question', '')])
+            if q.get('question') != fallback or any(q.get(k) != first.get(k) for k in ('choices', 'answer', 'explanation', 'easyExplanation', 'figure', 'figureImage', 'preFigureImage')):
+                errors.append(f"{q.get('number', '?')}: 旧本体向けフィールドを先頭設問と同期してください")
+            for p in parts:
+                missing = [k for k in REQUIRED if k not in p]
+                if missing:
+                    errors.append(f"{q.get('number', '?')}: 設問の必須項目欠落 {missing}")
+                if len(p.get('choices', [])) != 4 or type(p.get('answer')) is not int or not 1 <= p['answer'] <= 4:
+                    errors.append(f"{p.get('number', '?')}: 設問の4択・正解番号が不正")
+        else:
+            key = q.get('id')
+            if not isinstance(key, str) or not key or key in ids:
+                errors.append(f"{q.get('number', '?')}: 学習対象のIDが空または重複")
+            if isinstance(key, str):
+                ids.add(key)
+    return errors
+
+
 EASY_EXPLANATION_MIN_CHARS = 1200
 
 
@@ -72,7 +118,7 @@ def easy_explanation_body_length(sections):
 def easy_explanation_errors(data):
     """The length floor prevents under-explanation; semantic clarity is reviewed separately."""
     errors = []
-    for q in data.get("questions", []):
+    for q in question_nodes(data):
         if "easyExplanation" not in q:
             continue
         sections = q["easyExplanation"]
@@ -110,12 +156,12 @@ def editorial_errors(data):
               or (meta.get("grade") == "熱流体力学 1級" and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8))
               or (meta.get("grade") == "熱流体力学 2級" and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)))
     if not target:
-        return easy_explanation_errors(data)
+        return easy_explanation_errors(data) + part_structure_errors(data)
     baseline_path = Path(__file__).with_name("solid2_editorial_baseline.json")
     baseline = json.loads(baseline_path.read_text(encoding="utf-8"))["legacy"]
     legacy = {key: value for chapter in baseline.values() for key, value in chapter.items()}
-    errors = easy_explanation_errors(data)
-    for q in data.get("questions", []):
+    errors = easy_explanation_errors(data) + part_structure_errors(data)
+    for q in question_nodes(data):
         num = q.get("number", "?")
         review = q.get("editorialReview")
         signature = editorial_digest(q)
@@ -160,7 +206,7 @@ def presentation_errors(data):
     thermal = "熱流体" in meta.get("grade", "")
     vibration = "振動" in meta.get("grade", "")
     directory = root / "図" / (("振動" if vibration else "熱流体" if thermal else "固体") + grade) / ("第%02d章" % meta["chapter"])
-    records = list(data.get("questions", []))
+    records = list(question_nodes(data))
     term_path = root / "content" / "formulas" / (("vib" + grade[0] + "-" if vibration else "thermal" + grade[0] + "-" if thermal else "solid1-" if grade == "1級" else "") + "ch%d.json" % meta["chapter"])
     if term_path.exists():
         records += json.loads(term_path.read_bytes()).get("items", [])
@@ -178,7 +224,7 @@ def presentation_errors(data):
             for x in v.values(): visible(x)
     for record in records:
         for key, value in record.items():
-            if key in ("question", "choices", "explanation", "easyExplanation", "formula", "body", "example", "term", "title"):
+            if key in ("question", "sharedQuestion", "choices", "explanation", "easyExplanation", "formula", "body", "example", "term", "title"):
                 visible(value)
             if key in ("figureImage", "preFigureImage") and value:
                 keys.add(value)

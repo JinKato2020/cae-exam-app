@@ -58,7 +58,14 @@ function buildFreeQuestionIds(): Set<string> {
   for (const f of CATALOG) {
     for (const g of f.grades) {
       for (const c of g.chapters) {
-        c.data.questions.slice(0, FREE_PER_CHAPTER).forEach((q) => s.add(q.id));
+        // 設問への分割で、従来無料だった親問題の途中からロックしない。
+        const roots = new Set<string>();
+        for (const q of c.data.questions) {
+          const root = q.rootQuestionId ?? q.id;
+          if (!roots.has(root) && roots.size >= FREE_PER_CHAPTER) continue;
+          roots.add(root);
+          s.add(q.id);
+        }
       }
     }
   }
