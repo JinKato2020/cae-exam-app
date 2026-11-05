@@ -282,6 +282,7 @@ function AppInner(props: { contentVersion: number }) {
   // 公式欄の横スクロール中はタブ横スワイプを無効化。state だと setState の反映が非同期で、
   // 最初の横移動判定（キャプチャ）に間に合わず取りこぼす→ ref に入れて指を置いた瞬間に同期反映する。
   const formulaScrollLockRef = useRef(false);
+  const formulaAreaLockRef = useRef(true);
   const [progress, setProgress] = useState<ProgressMap>({});
   // ブックマーク（栞）。後で見返したい問題にユーザーが付ける。ホームの「ブックマークを復習」で使う。
   const [bookmarks, setBookmarks] = useState<BookmarkMap>({});
@@ -555,7 +556,8 @@ function AppInner(props: { contentVersion: number }) {
     () => swipeTab(1),
     () => swipeTab(-1),
     !(tab === 'study' && studyView === 'problem') && !(tab === 'formula' && formulaView === 'item') && !formulaChapterListOpen && !mapViewerOpen,
-    formulaScrollLockRef // 公式カードの横スクロール中（指が触れている間）はこの ref=true でタブ横スワイプを止める
+    formulaScrollLockRef,
+    tab === 'formula' ? formulaAreaLockRef : undefined
   );
 
   return (
@@ -646,6 +648,7 @@ function AppInner(props: { contentVersion: number }) {
             fav={formulaFav}
             onSetKind={(k) => { setFormulaKind(k); setFormulaFav(false); }}
             onSetFav={setFormulaFav}
+            scrollAreaLockRef={formulaAreaLockRef}
             onFormulaScrollActive={(a) => { formulaScrollLockRef.current = a; }}
             chapterId={formulaChapterId}
             itemId={formulaItemId}
@@ -1917,25 +1920,55 @@ function relatedFormulaItems(q: Question): FormulaItem[] {
     .filter((x): x is FormulaItem => !!x);
 }
 
+// Scrollable content never doubles as a navigation gesture area, even while stationary.
+function useScrollAreaLock(key: string, shared?: { current: boolean }) {
+  const local = useRef(true);
+  const lock = shared ?? local;
+  const sizes = useRef({ key: '', viewport: 0, content: -1 });
+  if (sizes.current.key !== key) {
+    sizes.current = { key, viewport: 0, content: -1 };
+    lock.current = true;
+  }
+  const update = () => {
+    const { viewport, content } = sizes.current;
+    lock.current = viewport <= 0 || content < 0 || content > viewport + 1;
+  };
+  return {
+    lock,
+    events: {
+      onLayout: (e: { nativeEvent: { layout: { height: number } } }) => {
+        sizes.current.viewport = e.nativeEvent.layout.height; update();
+      },
+      onContentSizeChange: (_width: number, height: number) => {
+        sizes.current.content = height; update();
+      },
+    },
+  };
+}
+
 // 横スワイプで前後移動。縦スクロールは邪魔しない（横成分が縦より十分大きい時だけ発火）。
 function useSwipeNav(
   onLeft: () => void,
   onRight: () => void,
   enabled = true,
-  lockRef?: { current: boolean }
+  lockRef?: { current: boolean },
+  scrollAreaLockRef?: { current: boolean }
 ) {
   // enabled を ref に入れて常に最新を読む。無効化中は responder を一切取らない＝
   // 内側（問題/用語画面）のスワイプを外側のタブ切替スワイプが横取りしないようにする。
   // lockRef=true の間も捕捉しない（公式カードの横スクロール中など）。
-  const cb = useRef({ onLeft, onRight, enabled, lockRef });
-  cb.current = { onLeft, onRight, enabled, lockRef };
-  const locked = () => !!(cb.current.lockRef && cb.current.lockRef.current);
+  const cb = useRef({ onLeft, onRight, enabled, lockRef, scrollAreaLockRef });
+  cb.current = { onLeft, onRight, enabled, lockRef, scrollAreaLockRef };
+  const locked = () => !!(cb.current.lockRef?.current || cb.current.scrollAreaLockRef?.current);
   const pan = useRef(
     PanResponder.create({
-      // 指を置いた瞬間（キャプチャ段階・親→子の順で必ず最初に呼ばれる）にロックを解除する。
+      // カードの接触ロックだけを更新する。スクロール可能領域のロックは解除しない。
       // 公式カードに触れた時だけ、この後に呼ばれるカード側がロックを再び true にする＝
       // カード外のスワイプでロックが残らず、取りこぼしても自己回復する。responder は取らない。
-      onStartShouldSetPanResponderCapture: () => { if (cb.current.lockRef) cb.current.lockRef.current = false; return false; },
+      onStartShouldSetPanResponderCapture: () => {
+        if (cb.current.lockRef) cb.current.lockRef.current = false;
+        return false;
+      },
       onMoveShouldSetPanResponder: (_e, g) =>
         cb.current.enabled && !locked() && Math.abs(g.dx) > 24 && Math.abs(g.dx) > Math.abs(g.dy) * 1.8,
       // はっきり横方向のスワイプは、中の ScrollView や数式WebView より先に親が取る
@@ -1943,6 +1976,7 @@ function useSwipeNav(
       onMoveShouldSetPanResponderCapture: (_e, g) =>
         cb.current.enabled && !locked() && Math.abs(g.dx) > 44 && Math.abs(g.dx) > Math.abs(g.dy) * 2,
       onPanResponderRelease: (_e, g) => {
+        if (!cb.current.enabled || locked()) return;
         if (g.dx <= -50) cb.current.onLeft();
         else if (g.dx >= 50) cb.current.onRight();
       },
@@ -2231,6 +2265,7 @@ function FormulaTab(props: {
   onBackToStudy?: () => void;
   // 公式カードの横スクロール領域に触れている間だけ、親のタブ横スワイプを止めるための通知。
   onFormulaScrollActive?: (active: boolean) => void;
+  scrollAreaLockRef: { current: boolean };
 }) {
   const { t } = props;
   // 無課金ロック：相関図と同じく、用語・公式も先頭3章は無料、4章目以降は級の買い切りで解除。
@@ -2267,10 +2302,13 @@ function FormulaTab(props: {
   const openIdx = openBlock ? blocks.findIndex((b) => b.chapterId === openBlock.chapterId) : -1;
   const prevChapterId = openIdx > 0 ? blocks[openIdx - 1].chapterId : null;
   const nextChapterId = openIdx >= 0 && openIdx < blocks.length - 1 ? blocks[openIdx + 1].chapterId : null;
+  const listAreaKey = `${props.field}:${props.grade}:${props.view}:${props.listChapterId}:${props.kind}:${props.fav}`;
+  const listArea = useScrollAreaLock(listAreaKey, props.scrollAreaLockRef);
+  const listMathLock = useRef(false);
   const listPan = useSwipeNav(
     () => { if (nextChapterId) props.onSelectListChapter(nextChapterId); },
     () => { if (prevChapterId) props.onSelectListChapter(prevChapterId); },
-    !!openBlock
+    !!openBlock, listMathLock, listArea.lock
   );
 
   // 個別解説画面（リストのタップ、または問題からのリンクで飛んでくる）
@@ -2314,7 +2352,7 @@ function FormulaTab(props: {
         key={r.favId}
         t={t}
         item={r.item}
-        onScrollActive={props.onFormulaScrollActive}
+        onScrollActive={(active) => { listMathLock.current = active; props.onFormulaScrollActive?.(active); }}
         right={
           <Pressable
             onPress={() => props.onToggleBookmark(r.favId)}
@@ -2331,7 +2369,7 @@ function FormulaTab(props: {
 
   const segActive = (on: boolean, bg: string) => ({ backgroundColor: on ? bg : t.card });
   return (
-    <ScrollView contentContainerStyle={styles.content}>
+    <ScrollView key={listAreaKey} {...listArea.events} contentContainerStyle={styles.content}>
       <Text style={[styles.title, { color: t.text }]}>公式・用語</Text>
       {/* 種類トグル（用語／公式）＋お気に入りフィルタ */}
       <View style={styles.segRow}>
@@ -2401,8 +2439,18 @@ function FormulaTab(props: {
           <BackLink t={t} label="章一覧へ戻る" onPress={() => props.onSelectListChapter(null)} />
           <Text style={[styles.formulaChapterHead, { color: t.sub, borderColor: t.border }]}>{openBlock.chapterTitle}</Text>
           <Text style={[styles.subtitle, { color: t.sub }]}>
-            解説を縦に並べて常時表示。⭐で苦手登録（全 {openBlock.rows.length} 項目）・スワイプで隣の章へ（左=次 / 右=前）
+            解説を縦に並べて常時表示。⭐で苦手登録（全 {openBlock.rows.length} 項目）。スクロールが不要な画面では左右スワイプで隣の章へ移動できます
           </Text>
+          <View style={styles.qNav}>
+            <Pressable disabled={!prevChapterId} onPress={() => { if (prevChapterId) props.onSelectListChapter(prevChapterId); }}
+              style={[styles.qNavPrev, { borderColor: t.border, opacity: prevChapterId ? 1 : 0.4 }]}>
+              <Text style={[styles.qNavPrevTxt, { color: t.sub }]}>‹ 前の章</Text>
+            </Pressable>
+            <Pressable disabled={!nextChapterId} onPress={() => { if (nextChapterId) props.onSelectListChapter(nextChapterId); }}
+              style={[styles.qNavNext, { backgroundColor: t.primary, opacity: nextChapterId ? 1 : 0.4 }]}>
+              <Text style={styles.qNavNextTxt}>次の章 ›</Text>
+            </Pressable>
+          </View>
           {openBlock.rows.map(renderCard)}
         </View>
       )}
@@ -2443,11 +2491,13 @@ function FormulaItemScreen(props: {
   // 公式欄の横スクロール中は前後移動スワイプを止める（横スクロールが前後切替に化けるのを防ぐ）。
   // state だと反映が非同期で最初の横移動に間に合わないため ref で同期的に止める。
   const mathScrollLockRef = useRef(false);
-  const pan = useSwipeNav(goNext, goPrev, true, mathScrollLockRef); // 左スワイプ=次 / 右スワイプ=前
+  const itemAreaKey = `${props.chapterId}:${props.itemId}`;
+  const itemArea = useScrollAreaLock(itemAreaKey);
+  const pan = useSwipeNav(goNext, goPrev, true, mathScrollLockRef, itemArea.lock);
 
   return (
     <View style={{ flex: 1 }} {...pan}>
-      <ScrollView contentContainerStyle={styles.content}>
+      <ScrollView key={itemAreaKey} {...itemArea.events} contentContainerStyle={styles.content}>
         {props.fromStudy && props.onBackToStudy ? (
           <BackLink t={t} label="問題に戻る" onPress={props.onBackToStudy} />
         ) : (
