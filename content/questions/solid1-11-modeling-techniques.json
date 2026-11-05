@@ -354,15 +354,15 @@
       "topic": "貯蔵/損失弾性率",
       "type": "mc",
       "difficulty": 3,
-      "question": "定常状態の動的粘弾性試験で、$\\varepsilon(t)=\\varepsilon_0\\sin\\omega t$、$\\sigma(t)=\\sigma_0\\sin(\\omega t+\\delta)$、$\\delta=30^\\circ$である。図A〜Dは横軸$\\varepsilon/\\varepsilon_0$、縦軸$\\sigma/\\sigma_0$の候補である。応力―ひずみ曲線と、貯蔵弾性率$E\\prime$・損失弾性率$E\\prime\\prime$の式の正しい組合せはどれか。$M=\\sigma_0/\\varepsilon_0$とする。",
+      "question": "ゴムの動的粘弾性試験で、十分時間が経過した定常状態のひずみと応力が$\\varepsilon(t)=\\varepsilon_0\\sin\\omega t$、$\\sigma(t)=\\sigma_0\\sin(\\omega t+\\delta)$で表される。$\\varepsilon_0>0$、$\\sigma_0>0$、$0<\\delta<\\pi/2$とする。(1) 応力―ひずみ曲線の概形と軸切片の表示、(2) 貯蔵弾性率$E\\prime(\\omega)$と損失弾性率$E\\prime\\prime(\\omega)$の式について、上記範囲の任意の$\\delta$で成り立つ組合せはどれか。図A〜Dの横軸はひずみ$\\varepsilon$、縦軸は応力$\\sigma$で、切片の「±」は原点の両側の交点を示す。図は概形であり、式の表示を比較する。$M=\\sigma_0/\\varepsilon_0$とする。",
       "choices": [
-        "図A、$E\\prime=M\\sin\\delta$、$E\\prime\\prime=M\\cos\\delta$",
-        "図B、$E\\prime=M\\cos\\delta$、$E\\prime\\prime=M\\sin\\delta$",
-        "図C、$E\\prime=M\\cos\\delta$、$E\\prime\\prime=M\\sin\\delta$",
-        "図D、$E\\prime=M\\cos^2\\delta$、$E\\prime\\prime=M\\sin^2\\delta$"
+        "図A、$E\\prime=M\\cos\\delta$、$E\\prime\\prime=M\\sin\\delta$",
+        "図B、$E\\prime=M\\cos^2\\delta$、$E\\prime\\prime=M\\sin^2\\delta$",
+        "図C、$E\\prime=M\\sin\\delta$、$E\\prime\\prime=M\\cos\\delta$",
+        "図D、$E\\prime=M\\cos\\delta$、$E\\prime\\prime=M\\sin\\delta$"
       ],
-      "answer": 3,
-      "explanation": "【基礎】時間に対する正弦波を、その時刻のひずみと応力の組として平面に並べると楕円になります。縦軸・横軸はそれぞれの振幅で割っているため、最大値は1、最小値は−1です。\n【考え方】加法定理で$\\sigma=\\sigma_0\\cos\\delta\\sin\\omega t+\\sigma_0\\sin\\delta\\cos\\omega t$と分けます。ひずみと同位相の係数から$E\\prime=M\\cos\\delta$、90度ずれた成分から$E\\prime\\prime=M\\sin\\delta$です。横軸0で縦軸は$\\pm\\sin30^\\circ=\\pm0.5$となり、右上がりの図Cと組み合わせた選択肢3が正解です。\n【ポイント】縦軸0の横切片も$\\pm\\sin\\delta=\\pm0.5$です。図Aは切片が約0.866で、図B・Dは傾きが逆です。応力とひずみが同位相なら楕円は直線へつぶれます。\n【引っかけ】1は切片と位相差が合わず、貯蔵と損失のsin・cosも逆です。2は式は正しいものの図Bの傾きが逆です。4は図の傾きと切片が合わず、式のsin・cosを二乗する理由もありません。",
+      "answer": 4,
+      "explanation": "【基礎】ひずみを横軸、同じ時刻の応力を縦軸に取ると、位相差のある二つの正弦波は楕円を描きます。軸切片は、曲線が横軸・縦軸と交わる位置です。貯蔵弾性率はひずみと同位相の応力成分、損失弾性率は90度ずれた応力成分の係数です。\n【考え方】$\\varepsilon=0$なら$\\omega t=n\\pi$なので、$\\sigma=\\pm\\sigma_0\\sin\\delta$です。$\\sigma=0$なら$\\omega t=n\\pi-\\delta$なので、$\\varepsilon=\\pm\\varepsilon_0\\sin\\delta$です。両切片ともsinを使う図Dを選びます。加法定理で$\\sigma=\\sigma_0\\cos\\delta\\sin\\omega t+\\sigma_0\\sin\\delta\\cos\\omega t$と分けると、$E\\prime=M\\cos\\delta$、$E\\prime\\prime=M\\sin\\delta$です。したがって選択肢4が正解です。\n【ポイント】振幅$\\varepsilon_0$・$\\sigma_0$は曲線の横方向・縦方向の最大値であり、軸切片とは違います。例えばひずみ最大の時刻では$\\sigma=\\sigma_0\\cos\\delta$ですが、これは縦軸との交点ではありません。$\\delta=0$の極限では軸切片と損失弾性率が0となり、楕円は原点を通る直線へつぶれます。\n【引っかけ】1は弾性率の式は正しいですが、図Aの両切片をcosとする点が誤りです。2は図Bの縦切片がcosであり、弾性率の係数を二乗する点も誤りです。3は図Cの横切片がcosであり、貯蔵と損失のsin・cosも逆です。4だけが両切片と二つの弾性率をすべて満たします。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -374,32 +374,36 @@
         "s1ch11-5"
       ],
       "editorialReview": {
-        "officialPoint": "公式CBT版の楕円候補と切片、および貯蔵・損失弾性率の式を併せて問う",
-        "alignment": "保存済み公式第11章の問題・解説と、図で問う対象・記号・条件・選択肢を再照合。図形と文章は独自作成。",
+        "officialPoint": "公式11(2)-2の二つの論点：正弦波の位相差から楕円の両軸切片を求め、加法定理から貯蔵・損失弾性率を導く",
+        "alignment": "保存済み公式第11章の問11(2)-2および解説2-4に照合。特定位相差の数値・傾き主体の旧設問から、一般のδによる切片表示と弾性率を問う独自の組合せ問題へ変更。id・number・officialRefを維持。",
         "distractorMisconceptions": {
-          "1": "切片とsin/cos対応を逆転",
-          "2": "正しい式と逆向きの楕円を組み合わせる",
-          "4": "楕円の向きと位相差、および係数の二乗を誤る"
+          "1": "軸切片とひずみ最大時の応力を混同して両切片をcosとする",
+          "2": "縦切片をcosとし、加法定理の係数を二乗する",
+          "3": "横切片をcosとし、貯蔵と損失の係数を交換する"
         },
-        "sha256": "57bf6ad8092e91c89ba846f95f458721a1741fe373ee27a4df587714fa6052ee"
+        "sha256": "752752dcd9387c39dc3467f4a91902815316144b99355393c4ad5227ee475339"
       },
       "preFigureImage": "s1e11DynViscoEllipsePre",
       "easyExplanation": [
         {
-          "title": "時間のグラフを応力―ひずみの図へ変える",
-          "body": "各時刻のεとσを一組の座標にして並べます。横軸は$x=\\varepsilon/\\varepsilon_0$、縦軸は$y=\\sigma/\\sigma_0$なので、両方とも−1〜1です。時間を横軸にした二本の正弦波とは違う図になります。"
+          "title": "まず、時間の波形と楕円の違いをつかむ",
+          "body": "ゴムを周期的に伸ばしたり戻したりする試験です。$\\varepsilon_0$はひずみの振幅、$\\sigma_0$は応力の振幅、$\\omega$は振動の速さを表す角周波数、$\\delta$は二つの波の位相差です。ここでは応力の式が$+\\delta$なので、応力の波がひずみの波より先に進みます。各時刻のひずみと応力を一組の座標にして点を打つと、1周期で楕円を1周します。時間を横軸にしたグラフではないことに注意してください。図では、楕円の形を細かく測るのではなく、軸との交点に書かれた式を確認します。"
         },
         {
-          "title": "加法定理で応力を二つに分ける",
-          "body": "$\\sin(\\omega t+\\delta)=\\sin\\omega t\\cos\\delta+\\cos\\omega t\\sin\\delta$です。これをσへ代入すると、$\\sigma=\\sigma_0\\cos\\delta\\sin\\omega t+\\sigma_0\\sin\\delta\\cos\\omega t$です。\n\n$M=\\sigma_0/\\varepsilon_0$を使えば、$\\sigma=(M\\cos\\delta)\\varepsilon_0\\sin\\omega t+(M\\sin\\delta)\\varepsilon_0\\cos\\omega t$です。ひずみと同位相の係数が貯蔵弾性率$E'=M\\cos\\delta$、90度ずれた係数が損失弾性率$E''=M\\sin\\delta$です。"
+          "title": "縦軸との交点は、ひずみを0にして求める",
+          "body": "縦軸上では横座標が0なので、$\\varepsilon=0$です。与式$\\varepsilon=\\varepsilon_0\\sin\\omega t$に代入すると$\\sin\\omega t=0$です。1周期の中では$\\omega t=0,\\pi$になります。これらを応力の式へ入れると、$\\sigma(0)=\\sigma_0\\sin\\delta$、$\\sigma(\\pi/\\omega)=\\sigma_0\\sin(\\pi+\\delta)=-\\sigma_0\\sin\\delta$です。したがって縦切片は$\\pm\\sigma_0\\sin\\delta$です。「ひずみが0でも応力は0とは限らない」という位相差の影響が、この交点に表れています。"
         },
         {
-          "title": "30度の楕円を切片から特定",
-          "body": "x=0なら$\\sin\\omega t=0$なので、yは$\\pm\\sin\\delta=\\pm0.5$です。y=0でも、xは$\\pm\\sin\\delta=\\pm0.5$です。横・縦の最大値はそれぞれ1のままです。\n\nまたx=1ではωt=90度なので、$y=\\cos30^\\circ\\approx0.866$です。右端でyが正なので、右上がりの楕円を選びます。切片0.5とこの向きがそろうのは図Cです。"
+          "title": "横軸との交点は、応力を0にして求める",
+          "body": "横軸上では$\\sigma=0$です。したがって$\\sin(\\omega t+\\delta)=0$となり、$\\omega t=n\\pi-\\delta$です。$n$は整数を表します。これをひずみに戻すと$\\varepsilon=\\varepsilon_0\\sin(n\\pi-\\delta)$なので、横切片は$\\pm\\varepsilon_0\\sin\\delta$です。例えば$\\omega t=\\pi-\\delta$では正の切片$\\varepsilon_0\\sin\\delta$になります。両方の軸切片がsinなので図Dです。振幅は曲線全体の最大値で、軸切片とは別です。ひずみが最大となる$\\omega t=\\pi/2$では応力は$\\sigma_0\\cos\\delta$ですが、その点のひずみは$\\varepsilon_0$であり、縦軸上にはありません。"
         },
         {
-          "title": "式の意味と答え",
-          "body": "貯蔵は蓄えて返す弾性的な成分、損失は一周期で散逸する成分に関係します。Mと同じ応力の単位を持ち、三角関数は割合を振り分けます。δ=30度なら$E'\\approx0.866M$、$E''=0.5M$です。\n\n図Cと正しい式を組み合わせる③が正解です。①は切片とsin・cosの割当てが違い、②は楕円の向きが逆、④は向きと切片に加え不要な二乗も入れています。δ=0なら損失成分が0となり、楕円が直線に戻ることも検算になります。"
+          "title": "加法定理から二つの弾性率を導く",
+          "body": "使う公式は$\\sin(a+b)=\\sin a\\cos b+\\cos a\\sin b$です。応力を展開すると$\\sigma=\\sigma_0\\cos\\delta\\sin\\omega t+\\sigma_0\\sin\\delta\\cos\\omega t$です。次に$M=\\sigma_0/\\varepsilon_0$を使い、$\\sigma=(M\\cos\\delta)\\varepsilon_0\\sin\\omega t+(M\\sin\\delta)\\varepsilon_0\\cos\\omega t$と書き換えます。最初の項はひずみ$\\varepsilon_0\\sin\\omega t$と同じタイミングで変化する成分です。その係数が貯蔵弾性率$E\\prime=M\\cos\\delta$です。後ろの項は90度ずれた成分で、その係数が損失弾性率$E\\prime\\prime=M\\sin\\delta$です。加法定理ではcosやsinを二乗しないので、選択肢2の二乗は入りません。"
+        },
+        {
+          "title": "意味と簡単な検算を確認する",
+          "body": "貯蔵は、ばねのようにエネルギーを蓄えて返す働きに関係します。損失は、1周期の変形で熱として失われるエネルギーに関係します。ひずみは無次元なので、両弾性率の単位は応力と同じPaです。例として$\\delta=30^\\circ$なら、縦切片は$\\pm0.5\\sigma_0$、横切片は$\\pm0.5\\varepsilon_0$、弾性率は$E\\prime\\approx0.866M$、$E\\prime\\prime=0.5M$です。さらに位相差を0へ近づけると、両切片と損失弾性率は0へ近づき、$\\sigma=M\\varepsilon$という弾性体の直線に戻ります。図Dと正しい弾性率の組合せである④が正解です。①は両切片、②は縦切片と二乗、③は横切片と弾性率の対応が誤っています。"
         }
       ]
     },
