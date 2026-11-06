@@ -16,12 +16,23 @@ CHTITLE={1:"第1章 数学の基礎",2:"第2章 固体力学の基礎",3:"第3�
 
 used={}  # key -> chapter
 missing=[]
+def figure_keys(value):
+    if isinstance(value, dict):
+        for name, child in value.items():
+            if name in ('figureImage', 'preFigureImage') and isinstance(child, str) and child:
+                yield child
+            elif isinstance(child, (dict, list)):
+                yield from figure_keys(child)
+    elif isinstance(value, list):
+        for child in value:
+            yield from figure_keys(child)
+
 for p in glob.glob(os.path.join(QDIR,"*.json")):
     data=json.load(open(p,encoding="utf-8"))
     ch=data.get("meta",{}).get("chapter",99)
     for q in data.get("questions",[]):
         # figureImage(回答後の解説図) と preFigureImage(回答前の配置図) の両方を登録
-        for k in (q.get("figureImage"), q.get("preFigureImage")):
+        for k in figure_keys(q):
             if k:
                 used[k]=ch
                 if not os.path.exists(os.path.join(FIG,k+".png")):
@@ -53,7 +64,7 @@ lines.append("};")
 lines.append("")
 lines.append("// 図の縦横比（全図とも 660x420 で生成）")
 lines.append("export const FIGURE_ASPECT = 660 / 420;")
-open(TS,"w",encoding="utf-8").write("\n".join(lines)+"\n")
+open(TS,"w",encoding="utf-8",newline="\n").write("\n".join(lines)+"\n")
 
 # 幽霊PNG(参照されていないPNG)
 allpng={os.path.splitext(os.path.basename(x))[0] for x in glob.glob(os.path.join(FIG,"*.png"))}

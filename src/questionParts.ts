@@ -1,4 +1,14 @@
-import type { Chapter, Question } from './types';
+import type { Chapter, Question, StudyResponses } from './types';
+
+/** 同一公式問の選択回答と記述の自己確認を集約。途中回答は完了にしない。 */
+export function studyResult(parts: Question[], responses: StudyResponses) {
+  const complete = parts.length > 0 && parts.every(p => p.responseType === 'written'
+    ? responses[p.id]?.understood != null && responses[p.id]?.revealed === true
+    : responses[p.id]?.choice != null);
+  const correct = complete && parts.every(p => p.responseType === 'written'
+    ? responses[p.id]?.understood === true : responses[p.id]?.choice === p.answer);
+  return { complete, correct };
+}
 
 /** 生データは親1問のまま維持し、学習画面には末端の設問を任意数展開する。 */
 export function expandChapter(chapter: Chapter): Chapter {
@@ -10,6 +20,7 @@ export function expandChapter(chapter: Chapter): Chapter {
         ...part,
         officialRef: part.officialRef ?? q.officialRef,
         relatedFormulas: part.relatedFormulas ?? q.relatedFormulas,
+        explanationMode: part.explanationMode ?? q.explanationMode,
       }, root, context, [...labels, `${i + 1} / ${q.parts!.length}`]));
       return;
     }
@@ -22,7 +33,11 @@ export function expandChapter(chapter: Chapter): Chapter {
       partLabel: `設問 ${labels.join(' · ')}`,
     });
   }
-  chapter.questions.forEach(q => visit(q, q, [], []));
+  chapter.questions.forEach(q => {
+    const effective = q.explanationMode || !chapter.meta.explanationMode
+      ? q : { ...q, explanationMode: chapter.meta.explanationMode };
+    visit(effective, q, [], []);
+  });
   const sizes = new Map<string, number>();
   for (const q of questions) if (q.rootQuestionId) sizes.set(q.rootQuestionId, (sizes.get(q.rootQuestionId) ?? 0) + 1);
   for (const q of questions) if (q.rootQuestionId) q.groupSize = sizes.get(q.rootQuestionId);

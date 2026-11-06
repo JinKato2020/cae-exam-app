@@ -15,10 +15,25 @@ function load(file, imports = {}) {
   return exports;
 }
 const parts = load('src/questionParts.ts');
+const groupedChoice = { id: 'one', responseType: 'choice', answer: 2 };
+const groupedWritten = { id: 'two', responseType: 'written', answer: 0 };
+const grouped = [groupedChoice, groupedWritten];
+assert.equal(parts.studyResult([], {}).complete, false);
+assert.equal(parts.studyResult(grouped, { one: { choice: 2 } }).complete, false);
+assert.equal(parts.studyResult(grouped, { one: { choice: 2 }, two: { revealed: true } }).complete, false);
+assert.equal(parts.studyResult(grouped, { one: { choice: 2 }, two: { revealed: true, understood: true } }).correct, true);
+assert.equal(parts.studyResult(grouped, { one: { choice: 2 }, two: { revealed: true, understood: false } }).complete, true);
+assert.equal(parts.studyResult(grouped, { one: { choice: 2 }, two: { revealed: true, understood: false } }).correct, false);
+assert.equal(parts.studyResult(grouped, { one: { choice: 1 }, two: { revealed: true, understood: true } }).correct, false);
 const simple = id => ({ id, number: id, question: `question ${id}`, choices: ['a','b','c','d'], answer: 1, explanation: 'explanation' });
 const chapter = questions => ({ meta: { count: questions.length }, questions });
 const ordinary = simple('ordinary');
 assert.equal(parts.expandChapter(chapter([ordinary])).questions[0], ordinary);
+const guidedChapter = { ...chapter([ordinary]), meta: { count: 1, explanationMode: 'guided' } };
+assert.equal(parts.expandChapter(guidedChapter).questions[0].explanationMode, 'guided');
+assert.equal(ordinary.explanationMode, undefined, 'chapter display policy must not mutate source JSON');
+assert.equal(parts.expandChapter(chapter([{ ...ordinary, studyParts: grouped }])).questions.length, 1,
+  'grouped study remains one official question in navigation and progress');
 const root = { ...simple('root'), sharedQuestion: 'common conditions', figureImage: 'parent-only', relatedFormulas: ['term'], parts: [simple('a'), simple('b')] };
 const before = JSON.stringify(root);
 const expanded = parts.expandChapter(chapter([ordinary, root]));
@@ -97,3 +112,31 @@ for defect in ('duplicate','answer','fallback'):
  assert part_structure_errors(b),defect
 `], { stdio: 'pipe' });
 console.log('Question parts: legacy, independent scoring, OTA add/reorder/remove, nested context, review scope and catalog PASS');
+require('node:child_process').execFileSync('python', ['-c', `
+import sys,json,copy
+from pathlib import Path
+sys.path.insert(0,'tools')
+from check_quality import study_parts_errors,easy_explanation_errors,presentation_errors
+d=json.loads(Path('content/questions/solid1-01-nonlinear-stress-strain.json').read_bytes())
+assert not study_parts_errors(d)
+from unittest.mock import patch
+with patch.object(Path,'is_file',return_value=False):
+ assert not study_parts_errors(d),'verified official evidence must work in CI without private source files'
+ bad=copy.deepcopy(d);q=next(q for q in bad['questions'] if q.get('studyParts'))
+ q['studyParts'][0]['officialWrittenEvidence']['excerpt']+=' invented'
+ assert study_parts_errors(bad),'unverified written evidence must fail even without private source files'
+q=next(q for q in d['questions'] if q.get('studyParts'))
+q['studyParts'][0].pop('officialWrittenEvidence')
+assert study_parts_errors(d),'original written questions without official evidence must be blocked'
+d=json.loads(Path('content/questions/solid1-02-material-nonlinear.json').read_bytes())
+q=next(q for q in d['questions'] if q.get('studyParts') and q['studyParts'][0].get('responseType')=='choice')
+q['studyParts'][0]['answer']=99
+assert study_parts_errors(d),'invalid choice answer must be blocked'
+d=json.loads(Path('content/questions/solid1-03-geometric-nonlinear.json').read_bytes())
+before=json.dumps(d)
+assert not easy_explanation_errors(d)
+assert json.dumps(d)==before,'validation must not append explanation figures into pre-answer figures'
+d['questions'][0]['easyExplanation'][0]['figures']=[{'figureImage':'missing-inline-figure','caption':'test'}]
+assert any('missing-inline-figure' in e for e in presentation_errors(d)),'inline figures must pass the same figure gate'
+`], { stdio: 'pipe' });
+console.log('Guided grouped study: official written evidence, self-check, inline figures and data immutability PASS');

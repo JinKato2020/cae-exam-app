@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { RichText } from './MathText';
+import { LearningFigure } from './LearningFigure';
 import type { Question } from './types';
 
 type Colors = {
@@ -23,6 +24,7 @@ export function EasyExplanation(props: {
   const [open, setOpen] = useState(false);
   const sections = question.easyExplanation;
   const available = Boolean(sections?.length);
+  const guided = question.explanationMode === 'guided';
   useEffect(() => { setOpen(false); }, [question.id, answered, locked, available]);
 
   // 分野・級・問題番号で限定せず、OTAで届いたデータの有無だけで表示する。
@@ -30,7 +32,7 @@ export function EasyExplanation(props: {
 
   return (
     <View style={s.container}>
-      <Pressable
+      {!guided && <Pressable
         accessibilityRole="button"
         accessibilityLabel="やさしく解説"
         accessibilityState={{ expanded: open }}
@@ -39,27 +41,34 @@ export function EasyExplanation(props: {
       >
         <Text style={[s.buttonTitle, { color: c.primary }]}>やさしく解説</Text>
         <Text style={[s.buttonAction, { color: c.sub }]}>{open ? '閉じる −' : '開く ＋'}</Text>
-      </Pressable>
-      {open && (
-        <View style={[s.body, { backgroundColor: c.card, borderColor: c.border }]}>
+      </Pressable>}
+      {(guided || open) && (
+        <View style={[s.body, { backgroundColor: c.card, borderColor: c.border }, guided && { marginTop: 0 }]}>
+          {guided && question.answerSummary ? (
+            <View style={[s.summary, { borderLeftColor: c.primary }]}>
+              <Text accessibilityRole="header" style={[s.heading, { color: c.text }]}>ここが答えのポイント</Text>
+              <RichText text={question.answerSummary} color={c.text} fontSize={17} bg={c.card}
+                scroll scrollOnlyOverflow onScrollActiveChange={props.onScrollActiveChange} />
+            </View>
+          ) : null}
           {sections.map((section, i) => (
             <View key={i} style={s.section}>
-              <Text accessibilityRole="header" style={[s.heading, { color: c.primary }]}>
+              <Text accessibilityRole="header" style={[s.heading, { color: c.text }]}>
                 {i + 1}. {section.title}
               </Text>
-              {section.body.split(/\n\s*\n/).map((paragraph, j) => (
-                <View key={j} style={s.paragraph}>
+                <View style={s.paragraph}>
                   <RichText
-                    text={paragraph}
+                    text={section.body}
                     color={c.text}
-                    fontSize={16}
+                    fontSize={17}
+                    style={{ lineHeight: 29 }}
                     bg={c.card}
                     scroll
                     scrollOnlyOverflow
                     onScrollActiveChange={props.onScrollActiveChange}
                   />
                 </View>
-              ))}
+              {section.figures?.map((figure, j) => <LearningFigure key={`${figure.figureImage}-${j}`} figure={figure} colors={c} />)}
             </View>
           ))}
         </View>
@@ -77,4 +86,5 @@ const s = StyleSheet.create({
   section: { marginBottom: 18 },
   heading: { fontSize: 17, lineHeight: 25, fontWeight: '700', marginBottom: 8 },
   paragraph: { marginBottom: 10 },
+  summary: { borderLeftWidth: 3, paddingLeft: 12, marginBottom: 24 },
 });

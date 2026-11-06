@@ -1,7 +1,16 @@
+export type LearningFigure = {
+  figureImage: string;
+  caption: string; // 図のどこを読むかを文章でも伝える。読み上げにも使用する
+};
+
 export type EasyExplanationSection = {
   title: string;
   body: string;
+  figures?: LearningFigure[]; // この段階の説明と一緒に読む図。順序・枚数はOTAで変更可能
 };
+
+export type StudyResponse = { choice?: number; draft?: string; revealed?: boolean; understood?: boolean };
+export type StudyResponses = Record<string, StudyResponse>;
 
 // 問題データの型（content/questions/*.json に対応）
 export type Question = {
@@ -10,9 +19,17 @@ export type Question = {
   title?: string;
   question: string;
   choices: string[];
-  answer: number; // 1始まりの正解番号
+  answer: number; // 選択式は1始まり。記述小問は0（自動採点せず自己確認する）
   explanation: string;
-  easyExplanation?: EasyExplanationSection[]; // 回答後に開く、公式・導出・具体例を含む補足解説
+  easyExplanation?: EasyExplanationSection[]; // 公式・導出・具体例を含む詳解。guidedでは回答後に標準表示
+  explanationMode?: 'guided' | 'standard'; // guidedは詳解を標準表示。章から継承し、設問単位で上書き可能
+  answerSummary?: string; // 正解の理由を一息で読める要点。詳しい手順はeasyExplanationへ
+  preFigures?: LearningFigure[]; // 共通条件・候補図。回答後も問題のそばに保持する
+  studyParts?: Question[]; // 同じ公式番号の中で学ぶ小問。旧本体では親の4択を維持
+  responseType?: 'choice' | 'written';
+  modelAnswer?: string; // 記述式の独自表現による解答例
+  answerCheckpoints?: string[]; // 記述式の自己確認点。完全一致採点はしない
+  officialWrittenEvidence?: { file: string; excerpt: string }; // 公式が記述式とする根拠。生成・配信前ゲートで照合
   sharedQuestion?: string; // 複数設問に共通する条件。旧本体向けのquestionは別途維持する
   parts?: Question[]; // 固定IDを持つ任意数の設問。入れ子にも対応し、各末端を独立採点する
   rootQuestionId?: string; // 以下2項目はカタログ構築時に付与する表示・更新用の情報
@@ -38,6 +55,7 @@ export type Chapter = {
     category: string;
     chapter: number;
     count: number;
+    explanationMode?: 'guided' | 'standard';
     [k: string]: unknown;
   };
   questions: Question[];

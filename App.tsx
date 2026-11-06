@@ -29,14 +29,16 @@ import {
 } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import type { Question, Chapter } from './src/types';
+import type { Question, Chapter, StudyResponses } from './src/types';
 import { FIGURE_ASPECT } from './src/figures';
 import { figureSource, hasFigure } from './src/data/figureStore';
 import { getMapDataUri } from './src/mapData';
 import { RichText } from './src/MathText';
 import { WrittenReviewButton } from './src/WrittenReview';
 import { EasyExplanation } from './src/EasyExplanation';
-import { refreshQuestionSession } from './src/questionParts';
+import { LearningFigure } from './src/LearningFigure';
+import { StudyParts } from './src/StudyParts';
+import { refreshQuestionSession, studyResult } from './src/questionParts';
 import { ProblemCalculator } from './src/Calculator';
 import { CATALOG, ALL_QUESTIONS, questionsByIds, QUESTION_FORMULA_ID, examRule, type ChapterEntry } from './src/catalog';
 import { formulaDoc, type FormulaItem } from './src/formulas';
@@ -365,14 +367,22 @@ function AppInner(props: { contentVersion: number }) {
   const [qIndex, setQIndex] = useState(0);
   // 出題セッション内の選択（問題ID → 選んだ番号）。前後移動しても選択が残る。
   const [answers, setAnswers] = useState<Record<string, number>>({});
+  const [studyResponses, setStudyResponses] = useState<Record<string, StudyResponses>>({});
   useEffect(() => {
     const updated = refreshQuestionSession(activeList, qIndex, ALL_QUESTIONS);
     const previous = new Map(activeList.map(q => [q.id, q]));
     setAnswers(old => Object.fromEntries(updated.questions.flatMap(q => {
       const before = previous.get(q.id);
       const unchanged = before && before.question === q.question && before.answer === q.answer
-        && JSON.stringify(before.choices) === JSON.stringify(q.choices);
+        && JSON.stringify(before.choices) === JSON.stringify(q.choices)
+        && JSON.stringify(before.studyParts) === JSON.stringify(q.studyParts)
+        && before.sharedQuestion === q.sharedQuestion;
       return unchanged && old[q.id] != null ? [[q.id, old[q.id]]] : [];
+    })));
+    setStudyResponses(old => Object.fromEntries(updated.questions.flatMap(q => {
+      const before = previous.get(q.id);
+      return old[q.id] && before?.sharedQuestion === q.sharedQuestion
+        && JSON.stringify(before?.studyParts) === JSON.stringify(q.studyParts) ? [[q.id, old[q.id]]] : [];
     })));
     setActiveList(updated.questions);
     setQIndex(updated.index);
@@ -477,6 +487,7 @@ function AppInner(props: { contentVersion: number }) {
     setActiveTitle(title);
     setQIndex(Math.min(Math.max(startIndex, 0), list.length - 1));
     setAnswers({});
+    setStudyResponses({});
     setStudyView('problem');
     setTab('study');
   }
@@ -624,6 +635,12 @@ function AppInner(props: { contentVersion: number }) {
             activeTitle={activeTitle}
             qIndex={qIndex}
             answers={answers}
+            studyResponses={studyResponses}
+            onStudyResponses={(q, responses) => {
+              setStudyResponses(old => ({ ...old, [q.id]: responses }));
+              const result = studyResult(q.studyParts ?? [], responses);
+              if (result.complete) void onSelectAnswer(q, result.correct ? q.answer : (q.answer === 1 ? 2 : 1));
+            }}
             progress={progress}
             bookmarks={bookmarks}
             onToggleBookmark={onToggleBookmark}
@@ -1756,6 +1773,8 @@ function StudyTab(props: {
   activeTitle: string;
   qIndex: number;
   answers: Record<string, number>;
+  studyResponses: Record<string, StudyResponses>;
+  onStudyResponses: (q: Question, responses: StudyResponses) => void;
   progress: ProgressMap;
   bookmarks: BookmarkMap;
   onToggleBookmark: (id: string) => void;
@@ -1859,6 +1878,7 @@ function StudyTab(props: {
     const q = questionsByIds([snapshot.id])[0] ?? snapshot;
     return (
       <ProblemScreen
+        key={q.id}
         t={t}
         title={props.activeTitle}
         q={q}
@@ -1866,6 +1886,8 @@ function StudyTab(props: {
         index={props.qIndex}
         total={props.activeList.length}
         selected={props.answers[q.id] ?? null}
+        studyResponses={props.studyResponses[q.id] ?? {}}
+        onStudyResponses={responses => props.onStudyResponses(q, responses)}
         bookmarked={isBookmarked(props.bookmarks, q.id)}
         onToggleBookmark={() => props.onToggleBookmark(q.id)}
         onSelect={(n) => props.onSelectAnswer(q, n)}
@@ -2009,6 +2031,8 @@ function ProblemScreen(props: {
   index: number;
   total: number;
   selected: number | null;
+  studyResponses: StudyResponses;
+  onStudyResponses: (responses: StudyResponses) => void;
   bookmarked: boolean;
   onToggleBookmark: () => void;
   onSelect: (n: number) => void;
@@ -2022,6 +2046,8 @@ function ProblemScreen(props: {
   const { t, q, selected, past } = props;
   const locked = props.locked;
   const answered = selected !== null;
+  const guided = q.explanationMode === 'guided' && Boolean(q.easyExplanation?.length);
+  const grouped = Boolean(q.studyParts?.length);
   const isCorrect = selected === q.answer;
   const atFirst = props.index === 0;
   const atLast = props.index === props.total - 1;
@@ -2030,11 +2056,11 @@ function ProblemScreen(props: {
   const relFormulaId = QUESTION_FORMULA_ID[q.id];
   // 左スワイプ=次の問題 / 右スワイプ=前の問題（ボタンと同じ動作。両端はクランプ済）
   const mathScrollLock = useRef(false);
-  const pan = useSwipeNav(props.onNext, props.onPrev, true, mathScrollLock);
+  const pan = useSwipeNav(props.onNext, props.onPrev, !guided && !grouped, mathScrollLock);
 
   return (
     <View style={{ flex: 1 }} {...pan}>
-    <ScrollView contentContainerStyle={styles.content}>
+    <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled" keyboardDismissMode="on-drag" automaticallyAdjustKeyboardInsets>
       {/* 上部バー：戻る・課程/章・問番号 */}
       <View style={styles.qTopbar}>
         <Pressable onPress={props.onBack} hitSlop={8} style={[styles.qChev, { backgroundColor: t.card }]}>
@@ -2104,7 +2130,9 @@ function ProblemScreen(props: {
 
       {/* 問題文（主役・余白広め） */}
       <View style={styles.qQuestion}>
-        <RichText text={q.question} color={t.text} fontSize={18} bold bg={t.bg} />
+        {guided && q.title ? <Text accessibilityRole="header" style={{ color: t.text, fontSize: 20, lineHeight: 30, fontWeight: '700', marginBottom: 16 }}>問{q.number}　{q.title}</Text> : null}
+        <RichText text={grouped ? (q.sharedQuestion ?? q.question) : q.question} color={t.text} fontSize={18} bold={!guided} bg={t.bg}
+          scroll={guided} scrollOnlyOverflow={guided} onScrollActiveChange={active => { mathScrollLock.current = active; }} />
       </View>
 
       {/* 図：回答前と回答後で出し分ける（前後2図に対応）。
@@ -2113,6 +2141,13 @@ function ProblemScreen(props: {
           preFigureImage を持たない従来問題は今まで通り（required=前/helpful=後）。 */}
       {(() => {
         if (locked) return null;
+        // 統一解説では与件図を回答後も保持し、結果の図は対応する説明の段階へ置く。
+        if (guided || q.preFigures?.length) {
+          const figures = q.preFigures?.length ? q.preFigures :
+            q.preFigureImage ? [{ figureImage: q.preFigureImage, caption: '問題の条件を図で確認します。' }] :
+            q.figure === 'required' && q.figureImage ? [{ figureImage: q.figureImage, caption: '図の条件・候補を確認します。' }] : [];
+          return figures.map((figure, i) => <LearningFigure key={`${q.id}-pre-${i}`} figure={figure} colors={t} />);
+        }
         const key = !answered
           ? (q.preFigureImage && hasFigure(q.preFigureImage)
               ? q.preFigureImage
@@ -2126,7 +2161,7 @@ function ProblemScreen(props: {
       })()}
 
       {/* 選択肢：丸番号カード */}
-      <View style={styles.qChoices}>
+      {!grouped && <View style={styles.qChoices}>
         {q.choices.map((choice, i) => {
           const num = i + 1;
           // ロック中は正誤の色分け（＝正解の露出）をしない。タップは購入導線へ。
@@ -2144,16 +2179,20 @@ function ProblemScreen(props: {
                 <Text style={[styles.qOptIdxTxt, { color: isAns ? '#ffffff' : t.sub }]}>{num}</Text>
               </View>
               <View style={styles.qOptTxt}>
-                <RichText text={choice} color={c.text} fontSize={15} bg={c.bg} />
+                <RichText text={choice} color={c.text} fontSize={guided ? 17 : 15} bg={c.bg} />
               </View>
               {isAns ? <Text style={[styles.qOptTick, { color: t.correct }]}>✓</Text> : null}
             </Pressable>
           );
         })}
-      </View>
+      </View>}
+
+      {grouped && <StudyParts question={q} responses={props.studyResponses} colors={t} locked={locked}
+        onChange={responses => { if (!locked) props.onStudyResponses(responses); }} onOpenPaywall={props.onOpenPaywall}
+        onScrollActiveChange={active => { mathScrollLock.current = active; }} />}
 
       {/* 解説：正誤＋ラベル別ブロック */}
-      {!locked && answered && (
+      {!grouped && !locked && answered && (
         <View style={[styles.qExplain, { backgroundColor: t.card }]}>
           <View style={styles.qVerdictRow}>
             <View style={[styles.qVerdictPill, { backgroundColor: isCorrect ? t.correct : t.wrong }]}>
@@ -2161,7 +2200,7 @@ function ProblemScreen(props: {
             </View>
             <Text style={[styles.qVerdictAns, { color: t.sub }]}>正解は {q.answer}</Text>
           </View>
-          {parseExplanation(q.explanation).map((sec, i) => {
+          {!guided && parseExplanation(q.explanation).map((sec, i) => {
             const accent = sectionAccent(t, sec.label);
             return (
               <View key={i} style={styles.qSec}>
@@ -2176,6 +2215,9 @@ function ProblemScreen(props: {
           })}
         </View>
       )}
+
+      {guided && !grouped && <EasyExplanation key={q.id} question={q} answered={answered} locked={locked} colors={t}
+        onScrollActiveChange={active => { mathScrollLock.current = active; }} />}
 
       {locked && (
         <Pressable
@@ -2222,14 +2264,14 @@ function ProblemScreen(props: {
         </View>
       ) : null}
 
-      <EasyExplanation
+      {!guided && !grouped && <EasyExplanation
         key={q.id}
         question={q}
         answered={answered}
         locked={locked}
         colors={t}
         onScrollActiveChange={active => { mathScrollLock.current = active; }}
-      />
+      />}
 
       {/* 前へ / 次の問題へ */}
       <View style={styles.qNav}>

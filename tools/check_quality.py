@@ -65,11 +65,12 @@ def question_nodes(data):
     """Include OTA subquestions in the same semantic/math/figure gates as ordinary questions."""
     def visit(q):
         yield q
-        parts = q.get("parts")
-        if isinstance(parts, list):
-            for part in parts:
-                if isinstance(part, dict):
-                    yield from visit(part)
+        for field in ("parts", "studyParts"):
+            parts = q.get(field)
+            if isinstance(parts, list):
+                for part in parts:
+                    if isinstance(part, dict):
+                        yield from visit(part)
     for q in data.get("questions", []):
         yield from visit(q)
 
@@ -119,6 +120,27 @@ def easy_explanation_errors(data):
     """The length floor prevents under-explanation; semantic clarity is reviewed separately."""
     errors = []
     for q in question_nodes(data):
+        num = q.get('number', '?')
+        mode = q.get('explanationMode', data.get('meta', {}).get('explanationMode'))
+        if mode not in (None, 'standard', 'guided'):
+            errors.append(f'{num}: 解説表示形式が不正')
+        if mode == 'guided' and (not q.get('easyExplanation') or not q.get('answerSummary')):
+            errors.append(f'{num}: 標準詳解には本文と答えの要点が必要')
+        figures = q.get('preFigures', [])
+        if not isinstance(figures, list):
+            errors.append(f'{num}: 回答前図は配列が必要')
+            figures = []
+        figures = list(figures)
+        for section in q.get('easyExplanation', []) if isinstance(q.get('easyExplanation'), list) else []:
+            if isinstance(section, dict):
+                extra = section.get('figures', [])
+                if not isinstance(extra, list):
+                    errors.append(f'{num}: 解説図は配列が必要')
+                else:
+                    figures += extra
+        for figure in figures:
+            if not isinstance(figure, dict) or any(not isinstance(figure.get(k), str) or not figure[k].strip() for k in ('figureImage', 'caption')):
+                errors.append(f'{num}: 図の参照と読み方の説明が必要')
         if "easyExplanation" not in q:
             continue
         sections = q["easyExplanation"]
@@ -142,6 +164,61 @@ def easy_explanation_errors(data):
     return errors
 
 
+# 公式で記述指定を確認済みの根拠の指紋。非公開原本を持たない配信CIでも制約を維持する。
+# 新しい記述番号は保存済み公式テキストを人が確認した後にだけ登録する。
+OFFICIAL_WRITTEN_EVIDENCE = {
+    ('固体力学 1級', '1-8'): 'f2e3da5dd2af3e0c4083cef41a77b1864c79f67d65ab6d016356cc9393dda000',
+    ('固体力学 1級', '1-9'): '0c84bc18c8a6ba825cd849ff52eb0d20760c6c5a79ee4ba233a3560bed1e9aca',
+    ('固体力学 1級', '1-10'): 'b3d667371e311a526821fc7869e497c15301958c10879d2f1e8a862732a44835',
+    ('固体力学 1級', '1-11'): '88e8aa961cbda36124b4a8e85b3a15c7a0d63b86ad317c410865b63787a5cef0',
+    ('固体力学 1級', '1-17'): 'dcb489d5ede0360363f3274a9223e1c93195a8ea26d3e542d73041bbc16d51b2',
+    ('固体力学 1級', '1-18'): 'b9fbcb67a7ee373036ebb13bc6af4a05aa615401085479d7837d09059cca8d19',
+    ('固体力学 1級', '2-8'): '923acceee1ea8db892ce2f8292cbdd719256bba9849d9ffd5710096896701ebf',
+    ('固体力学 1級', '2-13'): '239ed1275aed786ddf58b4fdefb90538ace95450e2c8d223a2212c23b6409cdb',
+    ('固体力学 1級', '3-2'): '68bd72f583179d43faa2a0c11ea1b835b4d50b50d2f77b2469f439459a5dbed1',
+    ('固体力学 1級', '3-7'): '6773dbe09d81966243ed0862042a33dfd54b1d6aec86c72d4ed798cb8718886a',
+}
+
+
+def study_parts_errors(data):
+    errors, ids = [], set()
+    root = Path(__file__).resolve().parent.parent
+    for parent in question_nodes(data):
+        if 'studyParts' not in parent:
+            continue
+        parts = parent['studyParts']
+        if not isinstance(parts, list) or not parts or any(not isinstance(p, dict) for p in parts):
+            errors.append(f"{parent.get('number')}: 小問は空でない配列が必要")
+            continue
+        for part in parts:
+            num = part.get('number', '?')
+            key = part.get('id')
+            if not key or key in ids or key == parent.get('id'):
+                errors.append(f'{num}: 小問の固定IDが空または重複')
+            ids.add(key)
+            if part.get('number') != parent.get('number') or part.get('officialRef') != parent.get('officialRef'):
+                errors.append(f'{num}: 小問は親の公式番号を保持してください')
+            if part.get('parts') or part.get('studyParts'):
+                errors.append(f'{num}: 同一画面の小問は入れ子にしません')
+            if part.get('responseType') == 'written':
+                if part.get('choices') != [] or part.get('answer') != 0 or not part.get('modelAnswer') or not part.get('answerCheckpoints'):
+                    errors.append(f'{num}: 記述式には解答例・自己確認点が必要です')
+                evidence = part.get('officialWrittenEvidence', {})
+                source = root / evidence.get('file', '')
+                excerpt = evidence.get('excerpt', '')
+                allowed = (root / '_原本(非公開)' / '_抽出テキスト').resolve()
+                fingerprint = hashlib.sha256((evidence.get('file', '') + '\n' + excerpt).encode('utf-8')).hexdigest()
+                registered = OFFICIAL_WRITTEN_EVIDENCE.get((data.get('meta', {}).get('grade'), num))
+                # 手元では原文にも照合する。CIへ非公開資料をアップロードする必要はない。
+                if (not source.resolve().is_relative_to(allowed) or fingerprint != registered
+                    or '記述' not in excerpt or '問' + str(num) not in excerpt
+                    or (source.is_file() and excerpt not in source.read_text(encoding='utf-8-sig'))):
+                    errors.append(f'{num}: 公式の記述式である根拠を保存済みテキストから確認してください')
+            elif part.get('responseType', 'choice') != 'choice' or len(part.get('choices', [])) not in (2, 4) or type(part.get('answer')) is not int or not 1 <= part['answer'] <= len(part['choices']):
+                errors.append(f'{num}: 小問は2択・4択または公式記述式にしてください')
+    return errors
+
+
 def editorial_errors(data):
     """Semantic judgement is manual; missing/stale judgement is a blocking error.
 
@@ -156,11 +233,11 @@ def editorial_errors(data):
               or (meta.get("grade") == "熱流体力学 1級" and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8))
               or (meta.get("grade") == "熱流体力学 2級" and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)))
     if not target:
-        return easy_explanation_errors(data) + part_structure_errors(data)
+        return easy_explanation_errors(data) + part_structure_errors(data) + study_parts_errors(data)
     baseline_path = Path(__file__).with_name("solid2_editorial_baseline.json")
     baseline = json.loads(baseline_path.read_text(encoding="utf-8"))["legacy"]
     legacy = {key: value for chapter in baseline.values() for key, value in chapter.items()}
-    errors = easy_explanation_errors(data) + part_structure_errors(data)
+    errors = easy_explanation_errors(data) + part_structure_errors(data) + study_parts_errors(data)
     for q in question_nodes(data):
         num = q.get("number", "?")
         review = q.get("editorialReview")
@@ -173,7 +250,7 @@ def editorial_errors(data):
         for key in ("officialPoint", "alignment"):
             if not isinstance(review.get(key), str) or not review[key].strip():
                 errors.append(f"{num}: {key} の内容確認が未記録")
-        expected = {str(i) for i in range(1, 5) if i != q.get("answer")}
+        expected = {str(i) for i in range(1, len(q.get('choices', [])) + 1) if i != q.get("answer")}
         reasons = review.get("distractorMisconceptions")
         if (not isinstance(reasons, dict) or set(reasons) != expected
                 or any(not isinstance(v, str) or not v.strip() for v in reasons.values())):
@@ -222,9 +299,19 @@ def presentation_errors(data):
             for x in v: visible(x)
         elif isinstance(v, dict):
             for x in v.values(): visible(x)
+    def collect_figures(value):
+        if isinstance(value, dict):
+            for k, v in value.items():
+                if k in ('figureImage', 'preFigureImage') and isinstance(v, str) and v:
+                    keys.add(v)
+                elif isinstance(v, (dict, list)):
+                    collect_figures(v)
+        elif isinstance(value, list):
+            for v in value: collect_figures(v)
     for record in records:
+        collect_figures(record)
         for key, value in record.items():
-            if key in ("question", "sharedQuestion", "choices", "explanation", "easyExplanation", "formula", "body", "example", "term", "title"):
+            if key in ("question", "sharedQuestion", "choices", "explanation", "easyExplanation", "formula", "body", "example", "term", "title", "answerSummary", "modelAnswer", "answerCheckpoints", "preFigures"):
                 visible(value)
             if key in ("figureImage", "preFigureImage") and value:
                 keys.add(value)
