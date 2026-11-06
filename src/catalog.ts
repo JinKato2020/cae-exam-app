@@ -89,5 +89,6 @@ export function rebuildCatalog(): void {
 
 export function questionsByIds(ids: string[]): Question[] {
   const set = new Set(ids);
-  return ALL_QUESTIONS.filter((q) => set.has(q.id) || Boolean(q.rootQuestionId && set.has(q.rootQuestionId)));
+  return ALL_QUESTIONS.filter((q) => set.has(q.id) || Boolean(q.rootQuestionId && set.has(q.rootQuestionId))
+    || Boolean(q.studyParts?.some(part => set.has(part.id))));
 }

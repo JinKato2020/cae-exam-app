@@ -167,6 +167,19 @@ def easy_explanation_errors(data):
 # 公式で記述指定を確認済みの根拠の指紋。非公開原本を持たない配信CIでも制約を維持する。
 # 新しい記述番号は保存済み公式テキストを人が確認した後にだけ登録する。
 OFFICIAL_WRITTEN_EVIDENCE = {
+    ('固体力学 1級', '10-1'): 'df57380ec5af6c02cda36667e44bf92b88964f8f273c69347a402503ade41881',
+    ('固体力学 1級', '10-6'): '9943656f19f0f52926da8a58451d6ad536b0c920f87478cd3b66f1daff343ed0',
+    ('固体力学 1級', '10-7'): 'bc98c5666d4eb2f42f035e813c11960a8f2b9d14c59d47dd6e76d25adde0ed31',
+    ('固体力学 1級', '10-10'): 'a378bcebb6477cd8d15437627e717f5850238b0765b531009b759e5e339ff975',
+    ('固体力学 1級', '11(1)-2'): '763fd0cc610f06a5187d59974af9e5d12ef41f766a5c5329b6ddaef6ff069092',
+    ('固体力学 1級', '11(1)-4'): '64193e884e83c41374aabbef71d20f9877cb17514092a83d20e6c5f034a448b9',
+    ('固体力学 1級', '11(2)-2'): 'b6629cc2c71c47ebe761f3ca3966b1f3fbd0944d4a50f17d6bba27ace0b9103e',
+    ('固体力学 1級', '11(2)-3'): 'f604afd434d65f447934fec8155ce2e18234cbd5b621d87cbc85eda530302b7d',
+    ('固体力学 1級', '11(2)-4'): '37fd0070379282fdb9b4862c3cecf013667a25d40af75635130ef2542cf4c1a3',
+    ('固体力学 1級', '11(3)-1'): '952906612a56f65e1bb72421b1b8f2d7a51a92e252eb81509212bd46344b587a',
+    ('固体力学 1級', '11(3)-2'): 'faaa61badc0e5eb2657b3b2db8f57317e62082af8035e6b86376c593bd859c19',
+    ('固体力学 1級', '11(3)-3'): '2306d976289ddfdec5dbdc11cf280b33328d3e10e76f4dbeb8a6eb3dc528d825',
+    ('固体力学 1級', '11(3)-4'): '08cc8a77c1aabd8becc1f81027ade2a662b2aed8b8a5febee16dfcde629b1345',
     ('固体力学 1級', '1-8'): 'f2e3da5dd2af3e0c4083cef41a77b1864c79f67d65ab6d016356cc9393dda000',
     ('固体力学 1級', '1-9'): '0c84bc18c8a6ba825cd849ff52eb0d20760c6c5a79ee4ba233a3560bed1e9aca',
     ('固体力学 1級', '1-10'): 'b3d667371e311a526821fc7869e497c15301958c10879d2f1e8a862732a44835',
@@ -177,6 +190,36 @@ OFFICIAL_WRITTEN_EVIDENCE = {
     ('固体力学 1級', '2-13'): '239ed1275aed786ddf58b4fdefb90538ace95450e2c8d223a2212c23b6409cdb',
     ('固体力学 1級', '3-2'): '68bd72f583179d43faa2a0c11ea1b835b4d50b50d2f77b2469f439459a5dbed1',
     ('固体力学 1級', '3-7'): '6773dbe09d81966243ed0862042a33dfd54b1d6aec86c72d4ed798cb8718886a',
+    ('固体力学 1級', '4-4'): 'ca43f53ec951a75c51e6e9c25f528e9e3f223e6edcf4e95a7f9c4086f540856a',
+    ('固体力学 1級', '4-7'): '09953b153fd8e46fd6d88ffbf41b358234dddfcf64b2a407d11b0ed48dba2159',
+    ('固体力学 1級', '4-8'): '476ecd2a6f7315e66fefabbaa87534ba5553aebabca5d16ddf34f20167c6567a',
+    ('固体力学 1級', '4-10'): '303ffbf2c3be62f4da69ca41ad8da2fc62d550f09c122aa0f1bffc413e9b0f3d',
+    ('固体力学 1級', '4-11'): '3ab564ea805c6f291e5680044f4060410a39a9a1c3a3da8d8aac3f275a4936a3',
+    ('固体力学 1級', '4-12'): '92d4fe24e25d673d4d5178dd540c5964784cc681bf75d48823fc11197c68adc5',
+    ('固体力学 1級', '5-13'): '27ba22d777aaa30b5592b9bc6a86d46dc3555d2e7474f399d449e8fea39178b0',
+    ('固体力学 1級', '6-3'): '51cee17d8ff06d9e919ed515b82039f7d0ddf95eb805982f84c3c5541da6597d',
+    ('固体力学 1級', '6-4'): 'a08eaf5d6d4f76fded78c2b5ebdd3316c63d750442e056bf4b7b415b06ca59b4',
+    ('固体力学 1級', '6-6'): '7c0fa25216c4e5df460ddd964cb7a9d18bc0fc3431878c35f40436300fb8699e',
+    ('固体力学 1級', '6-10'): 'd1d2a7cbeaaca9ba8f671a5d3c7505241923bf488792ae6efa0a3092d150ab00',
+    ('固体力学 1級', '6-15'): 'a0399176f63bf71cc309b2ff7a7e8df20c1ba622b1d0ae874d5f9b67c8ffa808',
+    ('固体力学 1級', '6-16'): 'c0b27bcd234d7afb65b49aa0130bb03e0702a85cf422ade7ce00999f5ca83e3b',
+    ('固体力学 1級', '6-17'): '621e561756eb9f0fc2611c62eb3945cca131e1273a99f2c59b48ba8805accca0',
+    ('固体力学 1級', '6-18'): 'd4aa58d8cff596ba16dd190468fb693def6b502300319f02f4f2709287af393f',
+    ('固体力学 1級', '6-19'): '946752a84e756449c81533305fb47f359bd37a7dcd69aede28670c3aa688a4df',
+    ('固体力学 1級', '7-4'): '8e7946a66eea301c81a22d262fcc1cb8ea0116e0c444648eb952946ed2302bfa',
+    ('固体力学 1級', '7-9'): 'e95066ccc349d0f2d0f46da1a2db43a2e8afc2377eaab72d7c3af2e78fbd7333',
+    ('固体力学 1級', '7-10'): '46c968c6b578a4ac5a425c36c80ec7e955650babbc346c47afa509f759b37a87',
+    ('固体力学 1級', '7-11'): '2140cf35970fd4d63f2a2c74f5532f0fcdf2dab8f5f70ccc35442def1eecba3d',
+    ('固体力学 1級', '8-2'): '1b50cfc1c8c5e22944cffaa5e3d8d6851dd3eb06611e8aeb2efc5600232e8a15',
+    ('固体力学 1級', '8-8'): '3cecb8a4a8e0e82f7143c09f66e816e9617358d8b7e33e64facac3342ff42873',
+    ('固体力学 1級', '8-9'): '7b8502000f5af92247bf274cbe5c0fb8c4ce90332b34dacfb95a80ff4ffd356e',
+    ('固体力学 1級', '8-10'): 'cf6b1493bb7e8d104113d70e3d0cdb9cddd05a690e174dade7ae64333dc0cecc',
+    ('固体力学 1級', '8-12'): 'e626e6e78f1aa020873455cd502e3bfbb469ad368d470bf906e4b238b97bb205',
+    ('固体力学 1級', '8-13'): '51023d46632b259c25ae2d1f278e383df86620bc4e9ffe882a5801cb47d80e11',
+    ('固体力学 1級', '8-14'): '87481f069b2e42eca0665781dc4445cc9e936ff47be8c79da172b352fbf7ddac',
+    ('固体力学 1級', '8-15'): 'fca77c93fc929a4cb31297601069187a625ed145d46970dac9251f0cd270e607',
+    ('固体力学 1級', '8-19'): '02b414760fe2f76344ba88d26567ebac3c07114e9cd8aa6cdb1569b7315fbbde',
+    ('固体力学 1級', '9-9'): 'ff22c3288ac80dbdcfd99599322405f2810c2e550cb05c2d27c0bf9aa387ae11',
 }
 
 
@@ -209,9 +252,10 @@ def study_parts_errors(data):
                 allowed = (root / '_原本(非公開)' / '_抽出テキスト').resolve()
                 fingerprint = hashlib.sha256((evidence.get('file', '') + '\n' + excerpt).encode('utf-8')).hexdigest()
                 registered = OFFICIAL_WRITTEN_EVIDENCE.get((data.get('meta', {}).get('grade'), num))
-                # 手元では原文にも照合する。CIへ非公開資料をアップロードする必要はない。
+                # 記述・数値記入・語句記入の形式を原文で確認した指紋だけを許可する。
+                # 「記述選択」等のキーワード一致では登録せず、手元では根拠の原文にも照合する。
                 if (not source.resolve().is_relative_to(allowed) or fingerprint != registered
-                    or '記述' not in excerpt or '問' + str(num) not in excerpt
+                    or '問' + str(num) not in excerpt
                     or (source.is_file() and excerpt not in source.read_text(encoding='utf-8-sig'))):
                     errors.append(f'{num}: 公式の記述式である根拠を保存済みテキストから確認してください')
             elif part.get('responseType', 'choice') != 'choice' or len(part.get('choices', [])) not in (2, 4) or type(part.get('answer')) is not int or not 1 <= part['answer'] <= len(part['choices']):
@@ -460,8 +504,11 @@ def check_file(path, all_titles):
         hard.append(f"preFigureImage(回答前図)があるのに figureImage(回答後図)が無い問 {len(pre_bad)}: {pre_bad}"
                     f"（前後2図は回答前=preFigureImage/回答後=figureImage の対で使う）")
 
-    # 固体2級の現行方針: 不要な図は省く（旧全問必須ルールを適用しない）。
+    # 不要な図を省く現行方針。固体1級の統一教材でも文章だけで明快な問へ図を強制しない。
     solid2 = d.get("meta", {}).get("grade") == "固体力学 2級"
+    optional_figures = solid2 or (
+        d.get("meta", {}).get("grade") == "固体力学 1級"
+        and d.get("meta", {}).get("explanationMode") == "guided")
     # --- 図の必須化＋「回答前/回答後」タグ整合(FAIL・恒久ルール／ユーザー厳命2026-09-18) ---
     #   厳命: 初学者のため【全問に例外なく図を付ける】。かつ各図は回答前/回答後を明示する。
     #   仕組み: App.tsx は figure=='required' の時だけ図を回答前から表示し、'helpful' は回答後(解説と一緒)。
@@ -475,7 +522,7 @@ def check_file(path, all_titles):
     #     技術題材ではこのフラグは使わない＝抜け穴にしない。
     no_or_bad_fig = [q.get("number") for q in qs
                      if not q.get("figureExempt")
-                     and (not solid2 or q.get("figureImage") or q.get("figure") in ("required", "helpful"))
+                     and (not optional_figures or q.get("figureImage") or q.get("figure") in ("required", "helpful"))
                      and (q.get("figure") not in ("required", "helpful") or not q.get("figureImage"))]
     bad_exempt = [q.get("number") for q in qs
                   if q.get("figureExempt") and not str(q.get("figureExemptReason","")).strip()]
@@ -484,7 +531,7 @@ def check_file(path, all_titles):
     if no_or_bad_fig:
         hard.append(
             f"図なし/不完全な問 {len(no_or_bad_fig)}/{n}: {no_or_bad_fig}"
-            f"（図を付ける問はキーと前後タグをそろえる。固体2級は不要図の省略可。他級は従来基準）")
+            f"（図を付ける問はキーと前後タグをそろえる。固体2級・固体1級の統一教材は不要図の省略可）")
 
     # --- 回答前(required)の図に答えが写り込む事故ガード(FAIL) ---
     #   過去事故: 答えを図に描いて回答前(required)に出しネタバレ。required図は問題理解用で

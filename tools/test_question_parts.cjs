@@ -32,6 +32,18 @@ assert.equal(parts.expandChapter(chapter([ordinary])).questions[0], ordinary);
 const guidedChapter = { ...chapter([ordinary]), meta: { count: 1, explanationMode: 'guided' } };
 assert.equal(parts.expandChapter(guidedChapter).questions[0].explanationMode, 'guided');
 assert.equal(ordinary.explanationMode, undefined, 'chapter display policy must not mutate source JSON');
+// 章番号で表示を限定しない。実データ全章を画面が読む形へ展開して確認する。
+const solid1Files = fs.readdirSync('content/questions').filter(name => /^solid1-\d\d-.*\.json$/.test(name));
+assert.equal(solid1Files.length, 11);
+for (const file of solid1Files) {
+  const raw = JSON.parse(fs.readFileSync(`content/questions/${file}`, 'utf8'));
+  for (const q of parts.expandChapter(raw).questions) {
+    assert.equal(q.explanationMode, 'guided', `${q.id}: unified display must reach the screen`);
+    for (const answer of q.studyParts?.length ? q.studyParts : [q]) {
+      assert(answer.easyExplanation?.length, `${answer.id}: unified answer must not be empty`);
+    }
+  }
+}
 assert.equal(parts.expandChapter(chapter([{ ...ordinary, studyParts: grouped }])).questions.length, 1,
   'grouped study remains one official question in navigation and progress');
 const root = { ...simple('root'), sharedQuestion: 'common conditions', figureImage: 'parent-only', relatedFormulas: ['term'], parts: [simple('a'), simple('b')] };
@@ -74,13 +86,22 @@ assert.equal(catalog.ALL_QUESTIONS.length, 3);
 assert.equal(catalog.QUESTION_CHAPTER.c, 'ch11');
 const real = JSON.parse(fs.readFileSync('content/questions/solid1-11-modeling-techniques.json','utf8'));
 const realExpanded = parts.expandChapter(real);
-assert.equal(realExpanded.questions.length, real.questions.length + 1);
-const sample = realExpanded.questions.filter(q => q.rootQuestionId === 'solid1-11-06');
-assert.equal(sample.length, 2);
+assert.equal(realExpanded.questions.length, real.questions.length);
+const visco = realExpanded.questions.find(q => q.id === 'solid1-11-06');
+const sample = visco.studyParts;
+assert.equal(sample.length, 3);
 assert.equal(sample[0].answer, 3);
-assert.equal(sample[1].answer, 1);
-assert.notEqual(sample[0].id, sample[1].id);
-assert.equal(sample[1].figureImage, 's1e11DynViscoModuli');
+assert.equal(sample[1].responseType, 'written');
+assert.equal(sample[2].answer, 1);
+assert.equal(sample[0].id, 'solid1-11-06-timing');
+assert.equal(sample[2].id, 'solid1-11-06-moduli');
+assert.equal(sample[2].figureImage, 's1e11DynViscoModuli');
+data = real; catalog.rebuildCatalog();
+assert.equal(catalog.questionsByIds([sample[2].id])[0].id, visco.id, 'old child bookmark must open grouped page');
+const oldChild = { ...sample[2], rootQuestionId: visco.id, groupSize: 2 };
+const mergedSession = parts.refreshQuestionSession([oldChild], 0, realExpanded.questions);
+assert.equal(mergedSession.questions.length, 1, 'one old child must survive consolidation');
+assert.equal(mergedSession.questions[0].id, visco.id);
 // 設問を増やしても親5問分の無料範囲と、分野×級の購入権限を維持する。
 data = chapter([simple('one'),simple('two'),simple('three'),simple('four'),root,simple('paid')]);
 catalog.rebuildCatalog();
@@ -104,6 +125,12 @@ sys.path.insert(0,'tools')
 from check_quality import editorial_errors,part_structure_errors
 d=json.loads(Path('content/questions/solid1-11-modeling-techniques.json').read_bytes())
 assert not editorial_errors(d)
+# Retain explicit legacy-parts coverage after the real chapter moves to studyParts.
+source=next(q for q in d['questions'] if q['number']=='11(2)-2')
+children=[copy.deepcopy(q) for q in source['studyParts'] if q['responseType']=='choice']
+legacy=copy.deepcopy(children[0]);legacy['id']='legacy-parent';legacy['parts']=children
+d={'questions':[legacy]}
+assert not part_structure_errors(d)
 for defect in ('duplicate','answer','fallback'):
  b=copy.deepcopy(d);q=next(q for q in b['questions'] if q.get('parts'))
  if defect=='duplicate':q['parts'][1]['id']=q['parts'][0]['id']
@@ -138,5 +165,20 @@ assert not easy_explanation_errors(d)
 assert json.dumps(d)==before,'validation must not append explanation figures into pre-answer figures'
 d['questions'][0]['easyExplanation'][0]['figures']=[{'figureImage':'missing-inline-figure','caption':'test'}]
 assert any('missing-inline-figure' in e for e in presentation_errors(d)),'inline figures must pass the same figure gate'
+# 公式の語句記入も許可するが、選択式の「記述選択」は記述問題へ転用しない。
+d=json.loads(Path('content/questions/solid1-06-dynamic-analysis.json').read_bytes())
+with patch.object(Path,'is_file',return_value=False):
+ assert not study_parts_errors(d),'verified official term/calculation entry must work without private sources'
+ bad=copy.deepcopy(d)
+ q=next(q for q in bad['questions'] if q['number']=='6-6')
+ q['studyParts'][0]['officialWrittenEvidence']['excerpt']+=' invented'
+ assert study_parts_errors(bad),'unregistered entry evidence must be rejected'
+d=json.loads(Path('content/questions/solid1-05-fracture-fatigue.json').read_bytes())
+q=next(q for q in d['questions'] if q['number']=='5-12')
+p=copy.deepcopy(next(q for q in d['questions'] if q['number']=='5-13')['studyParts'][0])
+p.update(id=q['id']+'-invented',number=q['number'],officialRef=q['officialRef'])
+q['studyParts']=[p]
+assert study_parts_errors(d),'a statement-selection question must not become a written question'
+
 `], { stdio: 'pipe' });
 console.log('Guided grouped study: official written evidence, self-check, inline figures and data immutability PASS');

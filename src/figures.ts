@@ -1374,6 +1374,7 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   s1e11DynViscoEllipse: require('../assets/figures/s1e11DynViscoEllipse.png'),
   s1e11DynViscoEllipsePre: require('../assets/figures/s1e11DynViscoEllipsePre.png'),
   s1e11DynViscoModuli: require('../assets/figures/s1e11DynViscoModuli.png'),
+  s1e11DynViscoLoop: require('../assets/figures/s1e11DynViscoLoop.png'),
   s1e11Effective: require('../assets/figures/s1e11Effective.png'),
   s1e11ElasTensorSym: require('../assets/figures/s1e11ElasTensorSym.png'),
   s1e11Fsdt: require('../assets/figures/s1e11Fsdt.png'),

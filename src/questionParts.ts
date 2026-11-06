@@ -63,7 +63,8 @@ export function refreshQuestionSession(previous: Question[], index: number, late
     // 苦手問題や栞で一部の設問だけを開いていた場合、未選択の兄弟を勝手に追加しない。
     if (q.groupSize && selected.length < q.groupSize) {
       const ids = new Set(selected.map(item => item.id));
-      return updated.filter(item => ids.has(item.id));
+      // 独立ページだった旧小問が同一ページへ統合されても、開いた問題を失わない。
+      return updated.filter(item => ids.has(item.id) || item.studyParts?.some(part => ids.has(part.id)));
     }
     return updated;
   });
