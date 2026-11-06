@@ -4,6 +4,7 @@
 import type { ImageSourcePropType } from 'react-native';
 
 export const FIGURES: Record<string, ImageSourcePropType> = {
+  solid2_review_13_1_after: require('../assets/figures/solid2_review_13_1_after.png'),
   // 第1章 数学の基礎
   math2ndStencil: require('../assets/figures/math2ndStencil.png'),
   mathConvOrder: require('../assets/figures/mathConvOrder.png'),
@@ -831,6 +832,7 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   s1e7ViewFactor: require('../assets/figures/s1e7ViewFactor.png'),
   s1e7ViewFactorSetup: require('../assets/figures/s1e7ViewFactorSetup.png'),
   s2Before7_3: require('../assets/figures/s2Before7_3.png'),
+  s2After7_3: require('../assets/figures/s2After7_3.png'),
   s2Before7_8: require('../assets/figures/s2Before7_8.png'),
   t1e7Amdahl: require('../assets/figures/t1e7Amdahl.png'),
   t1e7GPGPU: require('../assets/figures/t1e7GPGPU.png'),
@@ -1807,6 +1809,7 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   pp10SkewAngle: require('../assets/figures/pp10SkewAngle.png'),
   pp10SweepMesh: require('../assets/figures/pp10SweepMesh.png'),
   s1f1TLUL: require('../assets/figures/s1f1TLUL.png'),
+  s1f7Fourier: require('../assets/figures/s1f7Fourier.png'),
   s1f7BoundaryCond: require('../assets/figures/s1f7BoundaryCond.png'),
   s2BeamDeflEI: require('../assets/figures/s2BeamDeflEI.png'),
   s2GoodmanDiagram: require('../assets/figures/s2GoodmanDiagram.png'),

@@ -137,11 +137,21 @@ ${scroll ? '<div id="fade"></div>' : ''}
   // KaTeXは等号・加号ごとにbaseを分けるため、nowrapだけでなく外側の箱が必要。
   function prepareMathScroll(){
     if (!SCROLL) return;
+    var avail=contentWidth();
+    if (avail <= 0) return; // 初期レイアウトの幅が決まるまで判定しない。
     var roots=document.querySelectorAll('#c .katex');
     for(var i=0;i<roots.length;i++){
       var k=roots[i], parent=k.parentElement;
-      if(!parent || parent.classList.contains('katex-display') || parent.classList.contains('math-scroll')) continue;
-      if(SCROLL_ONLY_OVERFLOW && k.getBoundingClientRect().width <= contentWidth() + 1) continue;
+      if(!parent || parent.classList.contains('katex-display')) continue;
+      var fits=k.getBoundingClientRect().width <= avail + 1;
+      if(parent.classList.contains('math-scroll')){
+        // 回転・再レイアウト後は再判定し、収まる式を本文内へ戻す。
+        if(SCROLL_ONLY_OVERFLOW && fits && parent.parentNode){
+          parent.parentNode.insertBefore(k,parent); parent.remove();
+        }
+        continue;
+      }
+      if(SCROLL_ONLY_OVERFLOW && fits) continue;
       var row=document.createElement('span'); row.className='math-scroll';
       parent.insertBefore(row,k); row.appendChild(k);
     }
@@ -158,10 +168,9 @@ ${scroll ? '<div id="fade"></div>' : ''}
     if (SCROLL_ONLY_OVERFLOW) prepareMathScroll();
     fitDisplays(); updateFade();
     var el = document.getElementById('c');
-    var h = Math.ceil(Math.max(
-      el.scrollHeight, el.getBoundingClientRect().height,
-      document.body.scrollHeight, document.documentElement.scrollHeight
-    ));
+    // 旧WebViewの高さ（documentElement）を含めると、内容が短くなっても
+    // 高さが縮まず巨大な空白が残る。余白を含む本文の実寸だけを送る。
+    var h = Math.ceil(Math.max(el.scrollHeight, el.getBoundingClientRect().height));
     if (h && window.ReactNativeWebView) window.ReactNativeWebView.postMessage(String(h));
   }
   function run(){

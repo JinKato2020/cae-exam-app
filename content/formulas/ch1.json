@@ -9,42 +9,55 @@
       "term": "連立一次方程式と正則性",
       "formula": "$A\\mathbf{x}=\\mathbf{b}$\n正則であるための条件：\n$\\det A\\neq 0$",
       "body": "「正則」とは逆行列をもつこと（＝行列式が0でない）です。$A$ が正則なら、どんな $\\mathbf{b}$ に対しても解がちょうど1つに決まります。正則でない（$\\det A=0$）ときは、解なし（不能）か、無数にある（不定）かのどちらかになります。",
-      "example": "2式 $x+3y=b_1,\\ 2x+6y=b_2$ は係数行列 $\\begin{bmatrix}1&3\\\\2&6\\end{bmatrix}$ が $\\det=0$（2直線は平行）。(i) $b_2=2b_1$ なら2直線は完全に重なり、解は無数（不定）。(ii) $b_2\\neq2b_1$ なら平行で交わらず解なし（不能）。正則（$\\det\\neq0$）なら2直線は1点で交わり解はただ1つ。",
-      "figureImage": "mathLinSolve"
+      "example": "図の $x+2y=3$ と $2x+4y=6$ は、片方がもう片方の2倍で、同じ直線を表します。どちらも満たす点は無数にあります。第2式の右辺だけを7に変えると、係数は2倍のままですが条件が両立せず、解はありません。係数行列 $\\begin{bmatrix}1&2\\\\2&4\\end{bmatrix}$ の行列式は $1\\times4-2\\times2=0$ です。",
+      "figureImage": "mathLinSolve",
+      "summary": "複数の条件を同時に満たす未知数を求めます。係数行列が正則なら、答えは一つです。",
+      "exampleLabel": "具体例・確認",
+      "figureCaption": "2本の直線が同じなら解は無数、平行で重ならなければ解はありません。係数の関係だけでなく右辺も確認します。"
     },
     {
       "id": "determinant-properties",
       "kind": "formula",
       "term": "行列式の性質",
-      "formula": "$|cA|=c^{n}|A|,\\quad |AB|=|A|\\,|B|,\\quad |A+B|\\neq|A|+|B|$",
-      "body": "行列式は面積・体積の拡大率を表す量です。行列全体を $c$ 倍すると（$n$ 次なら）$c^{n}$ 倍になります。積の行列式は行列式の積に等しい一方、和については線形性（$|A+B|=|A|+|B|$）は成り立ちません。",
-      "example": "2次なら $|cA|=c^{2}|A|$。$|AB|=|A||B|$ はいつでも成立（公式問1-2の正解）。$|A+B|$ は各列を $A,B$ から選ぶ $2^{n}$ 個の行列式の和になるため単純な和にはなりません。",
-      "figureImage": "mathDetScale"
+      "formula": "$\\det(cA)=c^n\\det A$\n$\\det(AB)=\\det A\\,\\det B$",
+      "body": "行列式は、図形を変換したときの面積・体積の倍率と向きに関係する数です。面積の倍率は行列式の絶対値で、負の符号は向きの反転を表します。\nn行n列の行列全体をc倍すると、各方向にc倍されるため、行列式はcのn乗倍です。積ABの行列式は、二つの変換の倍率を掛けた値になります。\n和については、行列式を足す規則は一般にはありません。「必ず等しくない」という意味でもなく、特別な行列では一致することもあります。積の規則と区別します。",
+      "example": "2次の単位行列をIとすると、$\\det I=1$、$\\det(2I)=2^2=4$。一方、$\\det I+\\det I=2$です。したがって、$\\det(I+I)$を$\\det I+\\det I$へ分けると間違います。",
+      "figureImage": "mathDetScale",
+      "summary": "行列式は面積・体積の倍率と向きに関係し、解が一つに決まるかの判定にも使います。",
+      "exampleLabel": "具体例・確認",
+      "figureCaption": "各方向を2倍にすると、面積は2×2で4倍です。行列式はこの面積の倍率を表します。"
     },
     {
       "id": "eigenvalue-eigenvector",
       "kind": "formula",
       "term": "固有値・固有ベクトル",
-      "formula": "$[A]\\{x\\}=\\lambda\\{x\\}\\ (\\{x\\}\\neq\\mathbf{0}),\\qquad \\det([A]-\\lambda I)=0$",
-      "body": "行列 $[A]$ を掛けても向きが変わらず、大きさだけ $\\lambda$ 倍されるベクトル $\\{x\\}$ を固有ベクトル、その倍率 $\\lambda$ を固有値といいます。$\\lambda$ は固有方程式 $\\det([A]-\\lambda I)=0$ の根として求めます。",
-      "example": "固有値 $\\lambda$ を固有方程式から求め、$([A]-\\lambda I)\\{x\\}=\\mathbf{0}$ を解いて固有ベクトルを得ます。解は無数にあるので、ふつう単位長さに規格化します。",
-      "figureImage": "mathEigenVec"
+      "formula": "$A\\mathbf x=\\lambda\\mathbf x\\quad(\\mathbf x\\ne\\mathbf0)$\n$\\det(A-\\lambda I)=0$",
+      "body": "ベクトルに行列Aを掛けると、一般には長さも方向も変わります。特別な非零ベクトルで、変換後も元と同じ直線上に残るものを固有ベクトルと呼び、その倍率λを固有値と呼びます。λが負なら逆向き、λが0なら零ベクトルになります。\n式を移項すると$(A-\\lambda I)\\mathbf x=\\mathbf0$です。ゼロ以外の解が存在するには、この行列が正則でないことが必要なので、行列式を0と置きます。\nまずこの式からλを求め、次に元の式へ代入してベクトルの成分比を求めます。固有ベクトルの長さは任意なので、比較のため長さ1へそろえることがあります。",
+      "example": "図の$A=\\operatorname{diag}(2,-1,0)$では、x軸方向のベクトルは2倍、y軸方向は逆向き、z軸方向は0へ写ります。対応する固有値は2、−1、0です。固有ベクトル自体に零ベクトルを選ばないことに注意します。",
+      "figureImage": "mathEigenVec",
+      "summary": "行列を掛けても同じ直線上に残る特別な方向と、その倍率を求めます。",
+      "exampleLabel": "具体例・確認",
+      "figureCaption": "固有ベクトルの方向では、変換後も同じ直線上に残ります。負の固有値は反転、ゼロは長さ0への変換です。"
     },
     {
       "id": "taylor-maclaurin",
       "kind": "formula",
       "term": "テイラー展開・マクローリン展開（多変数）",
-      "formula": "$$\\begin{aligned}& f(x,y)= f(0,0) \\\\ & +\\tfrac{1}{1!}\\left(f_x\\,x+f_y\\,y\\right) \\\\ & +\\tfrac{1}{2!}\\left(f_{xx}\\,x^{2}+2f_{xy}\\,xy+f_{yy}\\,y^{2}\\right) \\\\ & +\\tfrac{1}{3!}\\left(f_{xxx}\\,x^{3}+3f_{xxy}\\,x^{2}y+3f_{xyy}\\,xy^{2}+f_{yyy}\\,y^{3}\\right)+\\cdots\\end{aligned}$$",
-      "body": "1変数のマクローリン展開 $f(x)=f(0)+\\dfrac{f'(0)}{1!}x+\\dfrac{f''(0)}{2!}x^{2}+\\dfrac{f'''(0)}{3!}x^{3}+\\cdots$ を多変数へ広げたものです（上式の偏微分はすべて原点 $(0,0)$ で評価）。一般形は $f(a+h,b+k)=\\sum_{n}\\dfrac{1}{n!}\\left(h\\dfrac{\\partial}{\\partial x}+k\\dfrac{\\partial}{\\partial y}\\right)^{n}f(a,b)$ で、基準点が原点 $(a,b)=(0,0)$ の場合がマクローリン展開です。各 $n$ 次の項は二項展開になり、係数はパスカルの三角形（$n=2$ で 1,2,1／$n=3$ で 1,3,3,1）。「一次まで」の近似なら $n=1$ の項で止めます。",
-      "example": "【手順1】各偏微分係数を $(1,1)$ で求める：$f(1,1)=0$、$f_x=2x-2y$ なので $f_x(1,1)=0$、$f_y=-2x+2y$ なので $f_y(1,1)=0$、$f_{xx}=2$、$f_{xy}=-2$、$f_{yy}=2$。【手順2】1次の項は $f_x,f_y$ が0なので消え、2次の項だけ残る：$f=\\dfrac{1}{2!}\\left[f_{xx}(x-1)^2+2f_{xy}(x-1)(y-1)+f_{yy}(y-1)^2\\right]=\\dfrac12\\left[2(x-1)^2-4(x-1)(y-1)+2(y-1)^2\\right]$。【手順3】$\\dfrac12$ を掛けて $f=(x-1)^2-2(x-1)(y-1)+(y-1)^2$。【検算】もとの式は $f=(x-y)^2$ で、$x-y=(x-1)-(y-1)$ だから $f=\\{(x-1)-(y-1)\\}^2$ を展開しても同じ式になる（元が2次式なのでテイラー展開は厳密に一致）。"
+      "formula": "$f(a+h,b+k)=f(a,b)+hf_x+kf_y+\\frac12(h^2f_{xx}+2hkf_{xy}+k^2f_{yy})+\\cdots$",
+      "body": "基準点の近くでは、関数を「基準点の値＋傾きによる変化＋曲がり方による補正…」で表せます。これがテイラー展開です。基準点が原点ならマクローリン展開と呼びます。\n上式では基準点が$(a,b)$、移動量がhとkです。$f_x,f_y$はx方向・y方向の傾きで、全て基準点で計算します。$f_{xx},f_{yy}$は各方向の曲がり方、$f_{xy}$は二方向が組み合わさる項です。\n「一次まで」なら傾きの項で止め、「二次まで」なら二乗とhkの項も使います。二次の交差項の係数が2になるのは$(h\\partial_x+k\\partial_y)^2$を展開するためです。三次では係数が1、3、3、1になります。必要な次数まで計算し、残りを省くと近似誤差が生じます。",
+      "example": "例として$f(x,y)=(x-y)^2$を基準点$(1,1)$のまわりで表します。\n【手順1】各偏微分係数を $(1,1)$ で求める：$f(1,1)=0$、$f_x=2x-2y$ なので $f_x(1,1)=0$、$f_y=-2x+2y$ なので $f_y(1,1)=0$、$f_{xx}=2$、$f_{xy}=-2$、$f_{yy}=2$。【手順2】1次の項は $f_x,f_y$ が0なので消え、2次の項だけ残る：$f=\\dfrac{1}{2!}\\left[f_{xx}(x-1)^2+2f_{xy}(x-1)(y-1)+f_{yy}(y-1)^2\\right]=\\dfrac12\\left[2(x-1)^2-4(x-1)(y-1)+2(y-1)^2\\right]$。【手順3】$\\dfrac12$ を掛けて $f=(x-1)^2-2(x-1)(y-1)+(y-1)^2$。【検算】もとの式は $f=(x-y)^2$ で、$x-y=(x-1)-(y-1)$ だから $f=\\{(x-1)-(y-1)\\}^2$ を展開しても同じ式になる（元が2次式なのでテイラー展開は厳密に一致）。",
+      "summary": "基準点の値・傾き・曲がり方から、近くの関数値を多項式で表します。",
+      "exampleLabel": "具体例・確認"
     },
     {
       "id": "chain-rule-polar",
       "kind": "formula",
       "term": "合成関数の偏微分（連鎖律）",
-      "formula": "$$\\begin{aligned}& \\partial w/\\partial x =(\\partial f/\\partial u)(\\partial u/\\partial x)+(\\partial f/\\partial v)(\\partial v/\\partial x) \\\\ & \\partial w/\\partial y =(\\partial f/\\partial u)(\\partial u/\\partial y)+(\\partial f/\\partial v)(\\partial v/\\partial y)\\end{aligned}$$",
-      "body": "変数を経由して微分するときは、経路ごとの微分の積を足し合わせます。極座標 $x=r\\cos\\theta,\\ y=r\\sin\\theta$ では、二乗和をとると交差項が消えて次の関係になります：$(\\partial w/\\partial r)^{2}+(1/r^{2})(\\partial w/\\partial\\theta)^{2}=(\\partial w/\\partial x)^{2}+(\\partial w/\\partial y)^{2}$。",
-      "example": "$\\partial w/\\partial r=\\cos\\theta\\,f_x+\\sin\\theta\\,f_y$、$\\partial w/\\partial\\theta=-r\\sin\\theta\\,f_x+r\\cos\\theta\\,f_y$。$\\partial w/\\partial\\theta$ に $r$ が掛かるため、二乗和では $1/r^{2}$ の係数が現れます（公式問1-5の正解）。"
+      "formula": "$\\frac{\\partial w}{\\partial x}=\\frac{\\partial f}{\\partial u}\\frac{\\partial u}{\\partial x}+\\frac{\\partial f}{\\partial v}\\frac{\\partial v}{\\partial x}$\n$\\frac{\\partial w}{\\partial y}=\\frac{\\partial f}{\\partial u}\\frac{\\partial u}{\\partial y}+\\frac{\\partial f}{\\partial v}\\frac{\\partial v}{\\partial y}$",
+      "body": "$w=f(u,v)$で、uとvがどちらもxやyで変わるとします。xを少し変えると「uが変わってwが変わる経路」と「vが変わってwが変わる経路」があるので、各経路の微分の積を足します。\n極座標$x=r\\cos\\theta,\\ y=r\\sin\\theta$も同じ考え方です。半径rを変える効果と角度θを変える効果を、xとyを経由して計算します。角度はラジアンで扱います。",
+      "example": "$w=f(x,y)$とすると、$w_r=f_x\\cos\\theta+f_y\\sin\\theta$、$w_\\theta=-rf_x\\sin\\theta+rf_y\\cos\\theta$です。\n後者をrで割ってから、それぞれを二乗して足します。交差項が打ち消され、$\\sin^2\\theta+\\cos^2\\theta=1$より$w_r^2+w_\\theta^2/r^2=f_x^2+f_y^2$となります。これは$r>0$での関係で、角度方向の微分を距離当たりへ換算するためにrで割ります。",
+      "summary": "一つの変数が複数の経路で結果に影響するとき、各経路の変化を足します。",
+      "exampleLabel": "具体例・確認"
     },
     {
       "id": "gauss-green",
@@ -53,15 +66,20 @@
       "formula": "$\\displaystyle\\int_{\\Omega} f\\,\\mathrm{div}\\,\\mathbf{g}\\,dx=\\int_{\\Gamma} f\\,\\mathbf{g}\\cdot\\mathbf{n}\\,ds-\\int_{\\Omega}\\mathrm{grad}\\,f\\cdot\\mathbf{g}\\,dx$",
       "body": "勾配 $\\mathrm{grad}\\,f$、発散 $\\mathrm{div}\\,\\mathbf{g}$、ラプラシアン $\\Delta f=\\mathrm{div}\\,\\mathrm{grad}\\,f$ が基本の演算です。ガウス・グリーンの公式は「部分積分の多次元版」で、有限要素法の弱形式を導く土台になります。",
       "example": "$f\\equiv1$ とすると発散定理 $\\int_{\\Omega}\\mathrm{div}\\,\\mathbf{g}\\,dx=\\int_{\\Gamma}\\mathbf{g}\\cdot\\mathbf{n}\\,ds$。$\\mathbf{g}=\\mathrm{grad}\\,g$ とすると $\\int_{\\Omega} f\\Delta g\\,dx=\\int_{\\Gamma} f\\dfrac{\\partial g}{\\partial n}ds-\\int_{\\Omega}\\mathrm{grad}\\,f\\cdot\\mathrm{grad}\\,g\\,dx$（公式問1-6）。",
-      "figureImage": "mathGaussGreen"
+      "figureImage": "mathGaussGreen",
+      "summary": "内部での変化の合計を境界を通る量へ結び付け、微分を別の関数へ移します。",
+      "exampleLabel": "具体例・確認",
+      "figureCaption": "隣り合う小領域の共有境界では出入りが打ち消し合い、全体の外側の境界だけが残ります。"
     },
     {
       "id": "jacobian",
       "kind": "term",
       "term": "ヤコビ行列式（ヤコビアン）",
       "formula": "$J=\\det\\begin{bmatrix}\\partial x/\\partial u & \\partial x/\\partial v\\\\ \\partial y/\\partial u & \\partial y/\\partial v\\end{bmatrix}$\n$dx\\,dy=|J|\\,du\\,dv$",
-      "body": "変数変換したときの面積（体積）の拡大率がヤコビ行列式です。重積分の変数変換や、有限要素法でアイソパラメトリック要素を基準要素へ写すときに使います。",
-      "example": "極座標 $x=r\\cos\\theta,\\ y=r\\sin\\theta$ では $J=r$ となり、$dx\\,dy=r\\,dr\\,d\\theta$。"
+      "body": "同じ領域でも、座標を変えると小さな区画の面積が変わります。ヤコビ行列はその局所的な座標変換をまとめたもの、行列式Jの絶対値は面積の倍率です。\n積分は小区画の寄与を足す計算なので、$du\\,dv$の区画を実際の面積$dx\\,dy$へ直す係数$|J|$が必要です。行列そのものと、その行列式という一つの数を区別します。",
+      "example": "$x=2u,\\ y=3v$ならヤコビ行列は対角成分2と3を持ち、$J=6$です。u-v座標の面積1は、x-y座標では面積6になります。\n極座標$x=r\\cos\\theta,\\ y=r\\sin\\theta$では、$J=r(\\cos^2\\theta+\\sin^2\\theta)=r$。したがって$dx\\,dy=r\\,dr\\,d\\theta$です。",
+      "summary": "座標の取り方を変えたとき、小さな面積や体積が何倍になるかを表します。",
+      "exampleLabel": "具体例・確認"
     },
     {
       "id": "ibvp-boundary-conditions",
@@ -69,23 +87,29 @@
       "term": "初期値問題・境界値問題と境界条件",
       "formula": "荷重境界条件（力学的＝ノイマン）／ 変位境界条件（幾何学的＝ディリクレ）",
       "body": "境界値問題は、領域の境界で境界条件を満たす解を求める問題。初期値問題は、ある時刻の値から時間発展を求める問題です。線形弾性の静的解析は時間に依存しないので初期条件は不要です。",
-      "example": "構造解析には、荷重境界条件（表面力）と変位境界条件（節点変位）があります。変位境界条件を与えないと剛体移動が生じて解けません（公式問1-7の正解）。"
+      "example": "構造解析には、荷重境界条件（表面力）と変位境界条件（節点変位）があります。変位境界条件を与えないと剛体移動が生じて解けません（公式問1-7の正解）。",
+      "summary": "どこを固定するか、何を加えるか、いつの状態から始めるかで、解が決まります。",
+      "exampleLabel": "具体例・確認"
     },
     {
       "id": "equilibrium-equation",
       "kind": "formula",
       "term": "応力の釣合い方程式",
-      "formula": "$$\\begin{aligned}& \\dfrac{\\partial\\sigma_x}{\\partial x}+\\dfrac{\\partial\\tau_{xy}}{\\partial y}+\\dfrac{\\partial\\tau_{zx}}{\\partial z}+X =0 \\\\ & \\tau_{xy} =\\tau_{yx}\\end{aligned}$$",
-      "body": "固体力学の支配方程式です。微小要素に働く力の釣合いから導かれ、物体力 $X,Y,Z$ を含みます。モーメントの釣合いから、せん断応力は対称（$\\tau_{xy}=\\tau_{yx}$）になります。",
-      "example": "3方向の釣合い式があり、物体力を無視すると右辺の $X,Y,Z$ が0になります。これを応力-ひずみ関係式・ひずみ-変位関係式と連立し、境界条件のもとで解きます（公式問1-8）。"
+      "formula": "$\\frac{\\partial\\sigma_x}{\\partial x}+\\frac{\\partial\\tau_{xy}}{\\partial y}+\\frac{\\partial\\tau_{zx}}{\\partial z}+X=0$\n$\\tau_{xy}=\\tau_{yx}$",
+      "body": "微小な直方体を切り出し、x方向の力を足して0と置いた式です。向かい合う面の応力の差が、微分の項になります。Xは単位体積当たりのx方向物体力で、重力などを表します。\n応力の単位をN/m²とすると、位置で微分した項もXもN/m³です。y、z方向にも同様の式があります。回転のつり合いから、通常の固体ではせん断応力が対称になります。\n静的なつり合いを、材料の応力–ひずみ関係、ひずみ–変位関係、境界条件と組み合わせて解きます。",
+      "example": "物体力を無視する場合は$X=Y=Z=0$です。例えば断面一定の棒に分布荷重がなく、軸方向だけを考えるなら$d\\sigma_x/dx=0$なので、軸応力は位置によらず一定になります。",
+      "summary": "小さな部分に働く力が、各方向でつり合うことを数式にします。",
+      "exampleLabel": "具体例・確認"
     },
     {
       "id": "linearity-superposition",
       "kind": "formula",
       "term": "線形性と重ね合わせ",
       "formula": "$L(a\\mathbf{x}+b\\mathbf{y})=a\\,L(\\mathbf{x})+b\\,L(\\mathbf{y})$",
-      "body": "この関係を満たす写像を線形写像といいます。例えば $-\\Delta$ は線形で $-\\Delta(au+bv)=a(-\\Delta u)+b(-\\Delta v)$。だからソースを定数倍・足し合わせると、解も同じ組合せになります（重ね合わせ）。非線形問題では重ね合わせはできません。",
-      "example": "$-\\Delta u=f$ の解 $u$ が分かっていれば、$-\\Delta u=2f$ の解は $2u$ でちょうど厳密（公式問1-9の正解）。"
+      "body": "この関係を満たす写像を線形写像といいます。例えば $-\\Delta$ は線形で $-\\Delta(au+bv)=a(-\\Delta u)+b(-\\Delta v)$。だからソースを定数倍・足し合わせると、解も同じ組合せになります（重ね合わせ）。非線形問題では重ね合わせはできません。\n方程式だけでなく境界条件も対応させる必要があります。ゼロ変位境界を保って荷重を2倍にする場合は変位も2倍です。ゼロでない指定変位をそのまま固定した問題へ、この結論を無条件には使えません。",
+      "example": "$-\\Delta u=f$を同次の境界条件で解いた結果がuなら、荷重源を2fにした解は2uです。式に代入すると$-\\Delta(2u)=2f$となり、ゼロの境界値も満たすためです。",
+      "summary": "線形な問題では、荷重の足し合わせに応じて応答も足し合わせられます。",
+      "exampleLabel": "具体例・確認"
     },
     {
       "id": "finite-difference-1st",
@@ -93,24 +117,31 @@
       "term": "1階微分の差分近似（前進・後退・中央）",
       "formula": "前進（1次精度） $f'(x)\\approx\\dfrac{f(x+h)-f(x)}{h}$\n後退（1次精度） $f'(x)\\approx\\dfrac{f(x)-f(x-h)}{h}$\n中央（2次精度） $f'(x)\\approx\\dfrac{f(x+h)-f(x-h)}{2h}$",
       "body": "テイラー展開から導きます。前進差分・後退差分は誤差が $O(h)$ の1次精度、中央差分は誤差が $O(h^{2})$ の2次精度で、刻み幅 $h$ を半分にすると誤差が約1/4になり精度が良いです。",
-      "example": "中央差分は $f(x+h)$ と $f(x-h)$ の差を使うため、テイラー展開の1次の誤差項が打ち消し合って2次精度になります（公式問1-10の正解）。"
+      "example": "中央差分は $f(x+h)$ と $f(x-h)$ の差を使うため、テイラー展開の1次の誤差項が打ち消し合って2次精度になります（公式問1-10の正解）。",
+      "summary": "傾きを近くの点の値の差から求めます。中央差分では左右を使って誤差を打ち消します。",
+      "exampleLabel": "具体例・確認"
     },
     {
       "id": "finite-difference-2nd",
       "kind": "formula",
       "term": "2階微分の中央差分",
       "formula": "$f''(x)\\approx\\dfrac{f(x+h)-2f(x)+f(x-h)}{h^{2}}$（2次精度）",
-      "body": "テイラー展開の $f(x+h)$ と $f(x-h)$ を足すと1階微分の項が消え、2階微分だけが残ります。3点を使う（3点ステンシル）2次精度の近似で、熱伝導やポアソン方程式の離散化で頻出します。",
+      "body": "二階微分は「傾きが場所によってどれだけ変わるか」を表します。左の傾き$(f(x)-f(x-h))/h$と右の傾き$(f(x+h)-f(x))/h$の差を、さらにhで割ると表示した式になります。\nテイラー展開で確認すると、左右を足したとき奇数階微分の項が打ち消され、$f(x+h)+f(x-h)-2f(x)=h^2f''(x)+O(h^4)$です。hの二乗で割ると、十分滑らかな関数では誤差が$O(h^2)$になります。高次の項まで全て消えるわけではありません。",
       "example": "分母は $h^{2}$、分子は $f(x+h)-2f(x)+f(x-h)$。中央の係数が $-2$ になるのが要点です（公式問1-11の正解）。",
-      "figureImage": "mathStencil2nd"
+      "figureImage": "mathStencil2nd",
+      "summary": "左側と右側の傾きの差から、分布の曲がり方を近似します。",
+      "exampleLabel": "具体例・確認",
+      "figureCaption": "左右の区間の傾きの差を、点の間隔で割ります。傾きが右へ増すほど2階微分は正になります。"
     },
     {
       "id": "fem-convergence",
       "kind": "formula",
       "term": "有限要素解の収束次数",
-      "formula": "$\\|u_h-u\\|\\le C\\,H^{k}$\n（k次収束）",
-      "body": "要素サイズ $H$ を小さくすると数値解 $u_h$ が厳密解 $u$ に近づきます。$k$ 次ラグランジュ要素では、解の1階微分（応力・ひずみ）は $k$ 次、解そのもの（変位）は $(k+1)$ 次で収束します。$H$ を固定したままでは誤差に下限ができます。",
-      "example": "アスペクト比＝外接円の径÷内接円の径。誤差の大きい所だけ要素を細分するのが h法、節点を再配置するのが r法です（公式問1-12の正解）。"
+      "formula": "$e(H)\\approx C H^p$\n$\\frac{e(H/2)}{e(H)}\\approx\\frac{1}{2^p}$",
+      "body": "Hを代表的な要素寸法、eを選んだ方法で測る誤差、pを収束次数とします。Cがほぼ一定とみなせる範囲では、要素寸法を半分にすると誤差はおよそ$1/2^p$になります。\n滑らかな解を適切な形状のk次要素で近似する標準的な場合、変位のL²ノルム誤差は$O(H^{k+1})$、一階微分を含む誤差は$O(H^k)$が目安です。L²ノルムは、全領域の誤差を二乗して積分し、平方根を取る測り方です。\n点ごとの最大応力まで同じ次数で減る保証ではありません。特異点や極端にゆがんだ要素では前提が崩れます。誤差の測り方を示さず「変位は常にk次」とだけ書かないことが大切です。",
+      "example": "$p=2$ならHを半分にした誤差は約1/4、$p=1$なら約1/2です。h法は要素を細かくし、p法は近似の次数を上げ、r法は節点位置を動かします。どの方法でも、同じ位置・同じ物理量で結果を比較します。",
+      "summary": "要素を細かくしたとき、変位や応力の誤差がどの程度減るかを表します。",
+      "exampleLabel": "具体例・確認"
     }
   ]
 }

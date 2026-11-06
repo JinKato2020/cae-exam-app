@@ -156,7 +156,10 @@ def easy_explanation_errors(data):
         meta = data.get("meta", {})
         concise_solid1 = (meta.get("grade") == "固体力学 1級"
                           and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11))
-        if sections and not concise_solid1:
+        # 統一解説へ改稿した固体2級1〜13章も、必要な導出と読みやすさで判断する。
+        concise_solid2_guided = (meta.get("grade") == "固体力学 2級"
+                                and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13) and mode == 'guided')
+        if sections and not (concise_solid1 or concise_solid2_guided):
             length = easy_explanation_body_length(sections)
             if length < EASY_EXPLANATION_MIN_CHARS:
                 errors.append(f"{num}: やさしく解説の本文が{length}字で"
@@ -334,7 +337,8 @@ def presentation_errors(data):
     keys = set()
     def visible(v):
         if isinstance(v, str):
-            plain = re.sub(r"\$[^$]*\$", "", v)
+            # 旧用語データの表示数式もレンダラーが処理する。本文への露出だけを検出する。
+            plain = re.sub(r"\$\$[\s\S]*?\$\$|\$[^$]*\$", "", v)
             if "^" in plain or re.search(r"\\(?:frac|mathbf|partial|sqrt|begin)\b", plain):
                 errors.append("未組版の数式記号が本文に露出しています")
             if v.count("$") % 2:
@@ -354,8 +358,13 @@ def presentation_errors(data):
             for v in value: collect_figures(v)
     for record in records:
         collect_figures(record)
+        if record.get("term") and record.get("summary"):
+            if any("$" in record.get(k, "") for k in ("term", "summary", "figureCaption")):
+                errors.append(record.get("id", "用語") + ": 通常文字の見出し・要点・図注に数式コードがあります")
+            if record.get("figureImage") and not record.get("figureCaption", "").strip():
+                errors.append(record.get("id", "用語") + ": 図と説明を結ぶ図注がありません")
         for key, value in record.items():
-            if key in ("question", "sharedQuestion", "choices", "explanation", "easyExplanation", "formula", "body", "example", "term", "title", "answerSummary", "modelAnswer", "answerCheckpoints", "preFigures"):
+            if key in ("question", "sharedQuestion", "choices", "explanation", "easyExplanation", "formula", "body", "example", "term", "summary", "figureCaption", "exampleLabel", "title", "answerSummary", "modelAnswer", "answerCheckpoints", "preFigures"):
                 visible(value)
             if key in ("figureImage", "preFigureImage") and value:
                 keys.add(value)

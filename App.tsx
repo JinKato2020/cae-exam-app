@@ -1,3 +1,5 @@
+import { matchesFormula } from './src/formulas';
+import { FormulaCard } from './src/FormulaCard';
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import {
   ActivityIndicator,
@@ -2346,6 +2348,15 @@ function FormulaTab(props: {
     </ScrollView>
   );
 
+  const searchScope = `${props.field}:${props.grade}`;
+  const [search, setSearch] = useState({ scope: '', text: '' });
+  const searchText = search.scope === searchScope ? search.text : '';
+  const searching = searchText.trim().length > 0;
+  const searchRows = props.rows.filter(r => (!props.fav || isBookmarked(props.bookmarks, r.favId)) && matchesFormula(r.item, searchText));
+  const listScroll = useRef<ScrollView>(null);
+  const savedOffsets = useRef<Record<string, number>>({});
+  const restoreList = useRef({ key: '', done: false, offset: 0 });
+
   // いま表示する行：お気に入りモード=ブックマーク済（用語＋公式）、通常=選択中の種類。
   const visible = props.fav
     ? props.rows.filter((r) => isBookmarked(props.bookmarks, r.favId))
@@ -2365,13 +2376,17 @@ function FormulaTab(props: {
   const openIdx = openBlock ? blocks.findIndex((b) => b.chapterId === openBlock.chapterId) : -1;
   const prevChapterId = openIdx > 0 ? blocks[openIdx - 1].chapterId : null;
   const nextChapterId = openIdx >= 0 && openIdx < blocks.length - 1 ? blocks[openIdx + 1].chapterId : null;
-  const listAreaKey = `${props.field}:${props.grade}:${props.view}:${props.listChapterId}:${props.kind}:${props.fav}`;
+  const listPositionKey = `${searchScope}:${props.listChapterId}:${props.kind}:${props.fav}:${searchText}`;
+  const listAreaKey = `${listPositionKey}:${props.view}`;
+  if (restoreList.current.key !== listAreaKey) {
+    restoreList.current = { key: listAreaKey, done: false, offset: savedOffsets.current[listPositionKey] ?? 0 };
+  }
   const listArea = useScrollAreaLock(listAreaKey, props.scrollAreaLockRef);
   const listMathLock = useRef(false);
   const listPan = useSwipeNav(
     () => { if (nextChapterId) props.onSelectListChapter(nextChapterId); },
     () => { if (prevChapterId) props.onSelectListChapter(prevChapterId); },
-    !!openBlock, listMathLock, listArea.lock
+    !!openBlock && !searching, listMathLock, listArea.lock
   );
 
   // 個別解説画面（リストのタップ、または問題からのリンクで飛んでくる）
@@ -2384,7 +2399,7 @@ function FormulaTab(props: {
     return (
       <FormulaItemScreen
         t={t}
-        siblings={visible}
+        siblings={searching ? searchRows : visible}
         chapterId={props.chapterId}
         itemId={props.itemId}
         bookmarks={props.bookmarks}
@@ -2420,10 +2435,12 @@ function FormulaTab(props: {
           <Pressable
             onPress={() => props.onToggleBookmark(r.favId)}
             hitSlop={8}
+            accessibilityRole="button"
+            accessibilityState={{ selected: marked }}
             accessibilityLabel={marked ? 'お気に入りを外す' : 'お気に入りに追加'}
-            style={[styles.formulaFavBtn, { marginLeft: 8, backgroundColor: marked ? t.amber : 'transparent' }]}
+            style={[styles.formulaFavBtn, { width: 48, height: 48, marginLeft: 8, backgroundColor: marked ? t.amber : 'transparent' }]}
           >
-            <Text style={{ color: marked ? '#fff' : t.sub, opacity: marked ? 1 : 0.5, fontSize: 16 }}>⭐</Text>
+            <Text style={{ color: marked ? '#16233a' : t.sub, opacity: marked ? 1 : 0.5, fontSize: 16 }}>⭐</Text>
           </Pressable>
         }
       />
@@ -2432,22 +2449,60 @@ function FormulaTab(props: {
 
   const segActive = (on: boolean, bg: string) => ({ backgroundColor: on ? bg : t.card });
   return (
-    <ScrollView key={listAreaKey} {...listArea.events} contentContainerStyle={styles.content}>
+    <ScrollView key={listAreaKey} ref={listScroll} {...listArea.events} contentContainerStyle={styles.content}
+      keyboardShouldPersistTaps="handled" scrollEventThrottle={100}
+      onScroll={e => { savedOffsets.current[listPositionKey] = e.nativeEvent.contentOffset.y; }}
+      onContentSizeChange={(width, height) => {
+        listArea.events.onContentSizeChange(width, height);
+        const restore = restoreList.current;
+        if (!restore.done && height >= restore.offset) {
+          restore.done = true;
+          listScroll.current?.scrollTo({ y: restore.offset, animated: false });
+        }
+      }}>
       <Text style={[styles.title, { color: t.text }]}>公式・用語</Text>
       {/* 種類トグル（用語／公式）＋お気に入りフィルタ */}
       <View style={styles.segRow}>
         <Pressable onPress={() => props.onSetKind('term')} style={[styles.segBtn, { borderColor: t.border }, segActive(!props.fav && props.kind === 'term', t.primary)]}>
-          <Text style={[styles.segTxt, { color: !props.fav && props.kind === 'term' ? '#fff' : t.sub }]}>用語</Text>
+          <Text style={[styles.segTxt, { color: !props.fav && props.kind === 'term' ? t.onPrimary : t.sub }]}>用語</Text>
         </Pressable>
         <Pressable onPress={() => props.onSetKind('formula')} style={[styles.segBtn, { borderColor: t.border }, segActive(!props.fav && props.kind === 'formula', t.primary)]}>
-          <Text style={[styles.segTxt, { color: !props.fav && props.kind === 'formula' ? '#fff' : t.sub }]}>公式</Text>
+          <Text style={[styles.segTxt, { color: !props.fav && props.kind === 'formula' ? t.onPrimary : t.sub }]}>公式</Text>
         </Pressable>
         <Pressable onPress={() => props.onSetFav(!props.fav)} style={[styles.segBtn, { borderColor: t.border }, segActive(props.fav, t.amber)]}>
-          <Text style={[styles.segTxt, { color: props.fav ? '#fff' : t.sub }]}>⭐ お気に入り</Text>
+          <Text style={[styles.segTxt, { color: props.fav ? '#16233a' : t.sub }]}>⭐ お気に入り</Text>
         </Pressable>
       </View>
 
-      {props.fav ? (
+      <View style={{ flexDirection: 'row', gap: 8, alignItems: 'center', marginBottom: 16 }}>
+        <TextInput value={searchText} onChangeText={text => setSearch({ scope: searchScope, text })}
+          placeholder="全章の用語・公式を検索" placeholderTextColor={t.sub}
+          accessibilityLabel="用語・公式の検索" autoCorrect={false} returnKeyType="search"
+          style={{ flex: 1, minWidth: 0, minHeight: 48, padding: 12, borderRadius: 10, borderWidth: 1,
+            borderColor: t.border, color: t.text, backgroundColor: t.card, fontSize: 16 }} />
+        {!!searchText && <Pressable onPress={() => setSearch({ scope: searchScope, text: '' })}
+          accessibilityRole="button" accessibilityLabel="検索をクリア" style={{ minHeight: 48, justifyContent: 'center', paddingHorizontal: 10 }}>
+          <Text style={{ color: t.primary }}>クリア</Text>
+        </Pressable>}
+      </View>
+      {searching ? (
+        <View>
+          <Text accessibilityLiveRegion="polite" style={[styles.subtitle, { color: t.sub }]}>
+            {props.fav ? 'お気に入りから' : '全章の用語・公式から'} {searchRows.length} 件
+          </Text>
+          {searchRows.length === 0 && <Text style={[styles.bodyText, { color: t.sub }]}>見つかりませんでした。短い用語や別の表記で検索してください。</Text>}
+          {searchRows.map(r => {
+            const locked = chapterLocked(r.chapterId);
+            return <Pressable key={r.favId} accessibilityRole="button" accessibilityLabel={`${r.item.term}を開く`}
+              onPress={() => locked ? props.onOpenPaywall(lockTarget) : props.onOpenItem(r.chapterId, r.item.id)}
+              style={[styles.card, { backgroundColor: t.card, borderColor: t.border, marginBottom: 12 }]}>
+              <Text style={{ color: t.sub, fontSize: 13, lineHeight: 22 }}>{r.chapterTitle} · {r.item.kind === 'formula' ? '公式' : '用語'}</Text>
+              <Text style={{ color: t.text, fontSize: 18, lineHeight: 29, fontWeight: '700', marginVertical: 6 }}>{r.item.term} ›</Text>
+              <Text style={{ color: t.sub, fontSize: 15, lineHeight: 25 }}>{locked ? '🔒 この級の解除が必要です' : r.item.summary || 'タップして説明を読む'}</Text>
+            </Pressable>;
+          })}
+        </View>
+      ) : props.fav ? (
         /* お気に入り：章をまたいで登録済みだけを章見出し付きで一覧 */
         <>
           <Text style={[styles.subtitle, { color: t.sub }]}>お気に入り登録した用語・公式だけを表示中</Text>
@@ -2571,12 +2626,14 @@ function FormulaItemScreen(props: {
             {/* お気に入り(苦手)トグル */}
             <Pressable
               onPress={() => props.onToggleBookmark(favId)}
-              style={[styles.formulaFavBar, { borderColor: t.border, backgroundColor: marked ? t.amber : t.card }]}
+              accessibilityRole="button" accessibilityState={{ selected: marked }}
+              style={[styles.formulaFavBar, { minHeight: 48 }, { borderColor: t.border, backgroundColor: marked ? t.amber : t.card }]}
             >
-              <Text style={{ color: marked ? '#fff' : t.sub, fontWeight: '700' }}>
+              <Text style={{ color: marked ? '#16233a' : t.sub, fontWeight: '700' }}>
                 {marked ? '⭐ お気に入り登録済み（タップで解除）' : '⭐ お気に入り（苦手）に登録'}
               </Text>
             </Pressable>
+            <Text style={{ color: t.sub, fontSize: 14, lineHeight: 23, marginBottom: 12 }}>{doc?.title} · {idx + 1} / {seq.length}</Text>
             <FormulaCard t={t} item={item} onScrollActive={(a) => { mathScrollLockRef.current = a; }} />
             {/* 隣の項目へ（スワイプでも移動可） */}
             <View style={styles.qNav}>
@@ -2603,37 +2660,6 @@ function FormulaItemScreen(props: {
           <Text style={[styles.bodyText, { color: t.sub }]}>項目が見つかりません。</Text>
         )}
       </ScrollView>
-    </View>
-  );
-}
-
-function FormulaCard(props: { t: Theme; item: FormulaItem; right?: ReactNode; onScrollActive?: (active: boolean) => void }) {
-  const { t, item } = props;
-  const badge = item.kind === 'formula' ? '公式' : '用語';
-  const badgeColor = item.kind === 'formula' ? t.primary : t.reviewBtn;
-  return (
-    <View style={[styles.card, { backgroundColor: t.card, borderColor: t.border, marginBottom: 12 }]}>
-      <View style={styles.formulaHead}>
-        <View style={[styles.badge, { backgroundColor: badgeColor }]}>
-          <Text style={styles.badgeText}>{badge}</Text>
-        </View>
-        <Text style={[styles.formulaTerm, { color: t.text }]}>{item.term}</Text>
-        {props.right ?? null}
-      </View>
-      {item.formula ? (
-        <View style={[styles.formulaBox, { backgroundColor: t.bg, borderColor: t.border }]}>
-          {/* 公式は縮小せず文字サイズを揃える。長い式ではみ出す分は横スクロール（右端フェードで誘導） */}
-          <RichText text={displayMath(item.formula)} color={t.text} fontSize={22} bold scroll bg={t.bg} onScrollActiveChange={props.onScrollActive} />
-        </View>
-      ) : null}
-      <RichText text={item.body} color={t.text} fontSize={14} bg={t.card} />
-      {item.example ? (
-        <View style={[styles.exampleBox, { borderColor: t.border }]}>
-          <Text style={[styles.exampleLabel, { color: t.primary }]}>数値例</Text>
-          <RichText text={item.example} color={t.text} fontSize={14} bg={t.card} />
-        </View>
-      ) : null}
-      {item.figureImage && hasFigure(item.figureImage) ? <AutoFigure t={t} source={figureSource(item.figureImage)} /> : null}
     </View>
   );
 }

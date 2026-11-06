@@ -182,3 +182,65 @@ assert study_parts_errors(d),'a statement-selection question must not become a w
 
 `], { stdio: 'pipe' });
 console.log('Guided grouped study: official written evidence, self-check, inline figures and data immutability PASS');
+// 選択式の組合せ問題は分割せず、章の統一表示設定を全問へ継承する。
+for (const [file, count] of [['math-basics', 12], ['solid-basics', 44], ['heat-basics', 17], ['fem-basics', 29], ['fem-practice', 29], ['numerical-basics', 15], ['element-tech', 17], ['modeling-basics', 27], ['boundary-conditions', 33], ['prepost-basics', 41], ['verification-basics', 17], ['computer-basics', 33], ['ethics', 12]]) {
+  const source = JSON.parse(fs.readFileSync('content/questions/' + file + '.json', 'utf8'));
+  const expanded = parts.expandChapter(source);
+  assert.equal(expanded.questions.length, count);
+  assert.deepEqual(Array.from(expanded.questions, q => q.id), source.questions.map(q => q.id));
+  assert(expanded.questions.every(q => q.explanationMode === 'guided' && q.answerSummary && q.easyExplanation.length));
+  assert(expanded.questions.every(q => !q.parts && (q.studyParts?.length
+    ? q.studyParts.every(p => p.responseType === 'choice' && [2, 4].includes(p.choices.length))
+    : q.choices.length === 4)), 'keep combination questions intact; permit grouped choice subquestions');
+  for (const q of expanded.questions) {
+    if (q.preFigureImage) assert(q.preFigures.some(f => f.figureImage === q.preFigureImage && f.caption));
+    if (q.figureImage && q.figureImage !== q.preFigureImage) {
+      assert(q.easyExplanation.some(s => s.figures?.some(f => f.figureImage === q.figureImage && f.caption)), q.number + ': explanation figure lost');
+    }
+  }
+}
+// 固体2級1〜4章も同じ小問機能を使う。検証用データだけをメモリ内で組み、教材は変えない。
+for (const file of ['math-basics', 'solid-basics', 'heat-basics', 'fem-basics']) {
+  const source = JSON.parse(fs.readFileSync('content/questions/' + file + '.json', 'utf8'));
+  const parent = source.questions.find(q => q.preFigures?.length) ?? source.questions[0];
+  const children = [2, 4].map((count, i) => ({
+    ...parent, id: parent.id + '-grouping-test-' + i, responseType: 'choice',
+    choices: parent.choices.slice(0, count), answer: count,
+    preFigureImage: undefined, preFigures: [],
+  }));
+  const updated = { ...source, questions: source.questions.map(q => q.id === parent.id
+    ? { ...q, sharedQuestion: q.question, studyParts: children } : q) };
+  const expanded = parts.expandChapter(updated);
+  assert.equal(expanded.questions.length, source.questions.length, file + ': no separate pages for subquestions');
+  const grouped = expanded.questions.find(q => q.id === parent.id);
+  assert.equal(grouped.explanationMode, 'guided');
+  assert.equal(grouped.sharedQuestion, parent.question);
+  assert.equal(grouped.preFigures, parent.preFigures, 'retain the shared figure on its parent');
+  assert(grouped.studyParts.every(p => !p.preFigures.length));
+  const answers = { [children[0].id]: { choice: children[0].answer } };
+  assert.equal(parts.studyResult(grouped.studyParts, answers).complete, false);
+  answers[children[1].id] = { choice: children[1].answer };
+  assert.equal(parts.studyResult(grouped.studyParts, answers).correct, true);
+  const previous = parts.expandChapter(source);
+  const index = previous.questions.findIndex(q => q.id === parent.id);
+  const session = parts.refreshQuestionSession(previous.questions, index, expanded.questions);
+  assert.equal(session.questions[session.index].id, parent.id, 'OTA grouping retains the open question');
+  assert.equal(session.questions[session.index].studyParts.length, 2);
+}
+require('node:child_process').execFileSync('python', ['-c', `
+import json,sys,copy
+from pathlib import Path
+sys.path.insert(0,'tools')
+from check_quality import require_editorial_review,easy_explanation_errors,presentation_errors
+for name in ('math-basics','solid-basics','heat-basics','fem-basics','fem-practice','numerical-basics','element-tech','modeling-basics','boundary-conditions','prepost-basics','verification-basics','computer-basics','ethics'):
+ d=json.loads(Path('content/questions/'+name+'.json').read_bytes())
+ require_editorial_review(d)
+ bad=copy.deepcopy(d);bad['questions'][0].pop('answerSummary')
+ assert easy_explanation_errors(bad),'guided mode needs an answer summary even without a length floor'
+ bad=copy.deepcopy(d);bad['meta']['explanationMode']='standard'
+ bad['questions'][0]['easyExplanation']=[{'title':'test','body':'short'}]
+ assert any('1200' in e for e in easy_explanation_errors(bad)),'non-guided explanations retain their existing rule'
+ bad=copy.deepcopy(d);bad['questions'][0]['answerSummary']='unrendered ^T'
+ assert presentation_errors(bad),'unrendered formulas must still fail'
+`], {stdio: 'pipe'});
+console.log('Solid2 unified chapters: IDs, choice grouping, inline figures and quality gates PASS');
