@@ -1,216 +1,62 @@
-<title>固体2級 第10章 相関図プレビュー</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<style>
-  /* レイアウト: 1図構成。各問の要点＋キー公式を Aメッシュ分割／B品質・生成／Cポスト処理 の3トラックにサブ分け。CAE標準色をトークン化 */
-  :root {
-    --bg: #f5f6f9;
-    --surface: #ffffff;
-    --ink: #1F3A65;        /* 主線・見出し */
-    --ink-soft: #35507f;   /* 補助見出し */
-    --fill: #E1E7F2;       /* ボックス面 */
-    --accent: #C82D2D;     /* 強調 */
-    --muted: #6b7280;      /* 補助・凡例 */
-    --line: #c7d0e2;
-    --num: #1F3A65;
-    --form: #0b7285;       /* キー公式の色 */
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
-      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
-      --form: #5fd0e0; color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
-    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
-    --form: #5fd0e0; color-scheme: dark;
-  }
-  * { box-sizing: border-box; }
-  body {
-    background: var(--bg); color: var(--ink);
-    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
-    line-height: 1.5; margin: 0;
-  }
-  .wrap {
-    max-width: 1060px; margin: 0 auto;
-    padding-left: max(16px, env(safe-area-inset-left, 0px));
-    padding-right: max(16px, env(safe-area-inset-right, 0px));
-    padding-block: 24px 48px;
-  }
-  header.page { margin-bottom: 8px; }
-  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
-  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
-  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
-  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
-  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
-  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
-             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
-  .track-h.a { background: var(--ink); }
-  .track-h.b { background: var(--ink-soft); }
-  .track-h.c { background: var(--accent); }
-  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
-  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
-  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
-  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
-  .box.lead { border-color: var(--accent); }
-  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
-            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
-  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
-  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
-  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
-  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
-  .box.lead .q { background: var(--accent); }
-  li .txt { min-width: 0; }
-  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
-  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
-  .grayband {
-    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
-    padding: 12px 14px; margin-top: 18px;
-  }
-  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
-  .grayband ul.q-list { gap: 7px; }
-  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
-  @media (max-width: 760px) {
-    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 460px) {
-    .grid4, .grid3 { grid-template-columns: 1fr; }
-  }
-</style>
-
-<div class="wrap">
-  <header class="page">
-    <h1>固体2級 第10章「プリポスト処理の基礎」相関図（プレビュー）</h1>
-    <p>各問の要点とキー公式を、A メッシュ分割の方針／B 要素品質・メッシュ生成／C ポスト処理 ＋ 横串（CAD・データ交換）にサブ分けして配置。</p>
-  </header>
-
-  <section class="fig">
-    <h2>プリポスト処理の基礎 ― 各問の要点とキー公式</h2>
-    <p class="lead">実物を計算できるモデルに変え（プリ処理）、解いた結果を読む（ポスト処理）。全41問を A／B／C ＋ 横串（CAD）に整理。</p>
-
-    <!-- トラックA -->
-    <div class="track-h a">A｜プリ処理の流れとメッシュ分割の方針</div>
-    <div class="track-desc">CAEの基本の流れ（起動 → プリ処理 → ソルバ → ポスト処理）を押さえ、形状を要素に分けるメッシュを作る段。応力が短い距離で急に変わる場所（穴縁・切欠き・応力集中部）は、粗い要素では変化を表せないため重点的に細かく分割する。曲げでは断面の高さ方向に複数要素や高次要素が要る。ここで作ったメッシュの良し悪しが、Bの品質評価とCの結果精度に直結する。</div>
-    <div class="grid3">
-      <div class="box">
-        <h3>全体の流れ</h3>
-        <ul class="q-list">
-          <li><span class="q">10-1</span><span class="txt"><b>起動から終了までの順序</b><span class="f">起動→ログイン→解析→終了</span></span></li>
-          <li><span class="q">10-2</span><span class="txt"><b>三工程の順序</b><span class="f">プリ処理→ソルバ→ポスト処理</span></span></li>
-          <li><span class="q">10-3</span><span class="txt"><b>プリ処理の作業</b><span class="f">形状・メッシュ・材料・境界条件</span></span></li>
-          <li><span class="q">10-4</span><span class="txt"><b>解析の基本順序</b><span class="f">形状入力→分割→計算→評価</span></span></li>
-        </ul>
-      </div>
-      <div class="box lead">
-        <h3>応力勾配で細かく分ける</h3>
-        <ul class="q-list">
-          <li><span class="q">10-5</span><span class="txt"><b>効率よく応力を評価する方針</b><span class="f">勾配が大きい所を細かく</span></span></li>
-          <li><span class="q">10-6</span><span class="txt"><b>細かい要素を置く場所</b><span class="f">応力集中部・急変部</span></span></li>
-          <li><span class="q">10-7</span><span class="txt"><b>穴縁の重点細分化</b>薄板の面内引張　<span class="f">平面応力要素</span></span></li>
-          <li><span class="q">10-9</span><span class="txt"><b>切欠きの応力評価</b><span class="f">先端半径が応力集中を決める</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>重点細分化の実務</h3>
-        <ul class="q-list">
-          <li><span class="q">10-8</span><span class="txt"><b>曲げの高さ(せい)方向分割</b>Q4　<span class="f">上下の伸縮差を表す分割</span></span></li>
-          <li><span class="q">10-10</span><span class="txt"><b>対称な接触円板</b><span class="f">1/4モデル＋対称条件</span></span></li>
-          <li><span class="q">10-11</span><span class="txt"><b>溶接止端のホットスポット</b><span class="f">止端から規定距離の応力を読む</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- トラックB -->
-    <div class="track-h b">B｜要素の形状品質とメッシュ生成</div>
-    <div class="track-desc">作ったメッシュが「正しく解ける形」かを確かめ、領域に応じて生成法を選ぶ段。スキュー（直角からの偏り）・テーパ（幅の変化）・アスペクト比・ヤコビ行列式といった形状品質の指標で、つぶれた・細長い・ゆがんだ要素を見つける。領域の形に応じてマップド・掃引・デラウニーなどを使い分ける。品質が悪いと、計算が正しくても精度が落ちる。</div>
-    <div class="grid3">
-      <div class="box">
-        <h3>形状品質の指標</h3>
-        <ul class="q-list">
-          <li><span class="q">10-13</span><span class="txt"><b>平行四辺形Q4のスキュー</b><span class="f">直角からの偏りが小さい</span></span></li>
-          <li><span class="q">10-14</span><span class="txt"><b>台形のテーパ指標</b><span class="f">面積比＝上底/下底</span></span></li>
-          <li><span class="q">10-15</span><span class="txt"><b>望ましいQ4の形</b><span class="f">スキュー・テーパが小さい</span></span></li>
-          <li><span class="q">10-16</span><span class="txt"><b>形状品質でない項目</b><span class="f">ヤコビ・スキュー・アスペクト比</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>計算規模・遷移</h3>
-        <ul class="q-list">
-          <li><span class="q">10-12</span><span class="txt"><b>要素と解法の誤り</b><span class="f">規模は節点数・結合・解法で変わる</span></span></li>
-          <li><span class="q">10-17</span><span class="txt"><b>サイズを急に変える問題</b><span class="f">遷移部につぶれ・傾き要素</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>メッシュ生成法</h3>
-        <ul class="q-list">
-          <li><span class="q">10-18</span><span class="txt"><b>マップド生成の失敗対策</b><span class="f">六面体へ対応付くつながり</span></span></li>
-          <li><span class="q">10-19</span><span class="txt"><b>六面体の掃引生成</b><span class="f">ソース面を層状に押し出す</span></span></li>
-          <li><span class="q">10-20</span><span class="txt"><b>デラウニー法の自動分割</b><span class="f">三次元は四面体を自動生成</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- トラックC -->
-    <div class="track-h c">C｜ポスト処理（応力評価と可視化）</div>
-    <div class="track-desc">解いた後の結果を取り出して評価する段。節点変位 u からひずみ ε=Bu・応力 σ=Dε を求め、積分点で求めた応力を節点へ外挿してコンタ（色・等値線）で表示する。延性材料はミーゼス応力、ぜい性材料は最大主応力と、見るべき量を使い分ける。主応力ベクトルの向きや1次元棒の一定応力など、表示の読み方にも注意がいる。</div>
-    <div class="grid4">
-      <div class="box">
-        <h3>出力量と材料</h3>
-        <ul class="q-list">
-          <li><span class="q">10-30</span><span class="txt"><b>コンタで表せる量</b><span class="f">応力・変位を色/等値線で</span></span></li>
-          <li><span class="q">10-31</span><span class="txt"><b>延性とぜい性の使い分け</b>ねじり軸　<span class="f">延性=ミーゼス/ぜい性=最大主応力</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>応力の評価</h3>
-        <ul class="q-list">
-          <li><span class="q">10-32</span><span class="txt"><b>積分点応力を使う理由</b><span class="f">外挿前の積分点値が精度良い</span></span></li>
-          <li><span class="q">10-33</span><span class="txt"><b>応力計算とコンタ描画</b>Q4　<span class="f">ε=Bu → σ=Dε</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>可視化・表示順</h3>
-        <ul class="q-list">
-          <li><span class="q">10-34</span><span class="txt"><b>可視化手法</b><span class="f">ワイヤーフレーム/シェーディング/隠面</span></span></li>
-          <li><span class="q">10-35</span><span class="txt"><b>表面表示の順序</b><span class="f">表面抽出→表示座標へ変換</span></span></li>
-          <li><span class="q">10-36</span><span class="txt"><b>平面切断の応力表示</b><span class="f">切断位置→要素探索→断面生成</span></span></li>
-        </ul>
-      </div>
-      <div class="box lead">
-        <h3>コンタの読み方</h3>
-        <ul class="q-list">
-          <li><span class="q">10-37</span><span class="txt"><b>片持ち板のたわみコンタ</b><span class="f">面外z方向が主なたわみ</span></span></li>
-          <li><span class="q">10-38</span><span class="txt"><b>自由表面の主応力方向</b><span class="f">σ=diag(100,40,0)・引張はx</span></span></li>
-          <li><span class="q">10-39</span><span class="txt"><b>主応力方向の入れ替わり</b><span class="f">最大主方向が90°変わる</span></span></li>
-          <li><span class="q">10-40</span><span class="txt"><b>1次元棒の軸応力表示</b><span class="f">σ=P/A（一定）</span></span></li>
-          <li><span class="q">10-41</span><span class="txt"><b>ミーゼスコンタの解釈</b><span class="f">σv=√(…)・1つの大きさ</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- 横串 -->
-    <div class="grayband">
-      <b class="gh">横串：形状データの受け渡し（CAD・中間形式・品質）― メッシュの元になる形状を、別CADから取り込み整える</b>
-      <div class="grid3">
-        <ul class="q-list">
-          <li><span class="q">10-21</span><span class="txt"><b>CAD間の交換中間形式</b>ANSI標準　<span class="f">IGES</span></span></li>
-          <li><span class="q">10-22</span><span class="txt"><b>列形式で表計算へ渡す</b><span class="f">CSV（区切り文字）</span></span></li>
-          <li><span class="q">10-23</span><span class="txt"><b>IGES交換後の注意</b><span class="f">隙間・面欠落・単位違い</span></span></li>
-        </ul>
-        <ul class="q-list">
-          <li><span class="q">10-24</span><span class="txt"><b>パラメトリックCAD機能</b><span class="f">寸法＋幾何拘束を保存</span></span></li>
-          <li><span class="q">10-25</span><span class="txt"><b>NURBS曲線</b><span class="f">制御点＋重みで形を調整</span></span></li>
-          <li><span class="q">10-26</span><span class="txt"><b>非有理ベジエ曲線</b><span class="f">端の制御点を通る</span></span></li>
-        </ul>
-        <ul class="q-list">
-          <li><span class="q">10-27</span><span class="txt"><b>製品データの品質</b><span class="f">PDQ（Product Data Quality）</span></span></li>
-          <li><span class="q">10-28</span><span class="txt"><b>形状の修復作業</b><span class="f">ヒーリング（隙間・微小面）</span></span></li>
-          <li><span class="q">10-29</span><span class="txt"><b>アセンブリの配置条件</b><span class="f">面一致・距離・角度／階層</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）メッシュ分割・B（藍）品質・生成・C（赤）ポスト処理＋横串（灰）CAD。全41問（Aメッシュ分割11・B品質・生成9・Cポスト処理12・横串CAD9）。</p>
-  </section>
-</div>
+<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>固体2級 · 第10章 相関図</title><style>
+*{box-sizing:border-box}html,body{margin:0;background:#fff;color:#1F3A65;font-family:Meiryo,'メイリオ',Arial,sans-serif}
+main{width:600px;padding:24px}header{padding:0 0 22px;border-bottom:3px solid #1F3A65}
+.course{font-size:20px;font-weight:bold;margin:0 0 10px}h1{font-size:32px;line-height:1.5;margin:0;text-wrap:balance}
+.how{font-size:19px;line-height:1.7;margin:14px 0 0;color:#1F3A65}.legend{font-size:18px;line-height:1.65;margin:12px 0 0}
+section{margin-top:30px}h2{font-size:25px;line-height:1.6;margin:0 0 24px;padding:0 0 0 12px;border-left:5px solid #C82D2D;text-wrap:balance}
+.graph{position:relative}.row{display:flex;justify-content:center;gap:24px;align-items:stretch;position:relative}
+.row+.row{margin-top:112px}.node{width:264px;padding:16px 16px 14px;border:2px solid #1F3A65;border-radius:12px;background:#E1E7F2;position:relative;z-index:1}
+.row.single .node{width:440px}.node h3{font-size:24px;line-height:1.55;margin:0 0 10px;font-weight:bold;overflow-wrap:anywhere}
+.node p{font-size:22px;line-height:1.7;margin:0;overflow-wrap:anywhere}.refs{display:block;font-size:18px;line-height:1.65;margin-top:12px;padding-top:8px;border-top:1px solid #888888;overflow-wrap:anywhere}
+.row:last-of-type .node{border-color:#C82D2D}.edge-label{position:absolute;transform:translate(-50%,-50%);font-size:19px;line-height:1.5;text-align:center;background:#fff;padding:3px 8px;z-index:2;max-width:240px;width:max-content}
+.edge-label.compare{color:#888888}.edges{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:0;pointer-events:none}
+.note{font-size:20px;line-height:1.8;margin:20px 0 0;padding:14px 0;border-top:1px solid #888888}
+footer{font-size:18px;line-height:1.7;margin-top:28px;padding-top:16px;border-top:2px solid #1F3A65}
+</style><main>
+<header><p class="course">固体2級 · 第10章 ／ 相関図</p><h1>形状の準備から、結果の読み取りまで</h1><p class="legend">矢印の言葉で、項目どうしの関係をたどれます。</p></header>
+<section><h2>計算する前に整える</h2><div class="graph" data-edges="[[&quot;plan&quot;,&quot;cad&quot;,&quot;目的に必要な形を残す&quot;],[&quot;cad&quot;,&quot;density&quot;,&quot;メッシュを作る&quot;],[&quot;cad&quot;,&quot;quality&quot;,&quot;メッシュを点検&quot;]]"><div class="row single"><article class="node" data-id="plan"><h3>解析の目的と工程</h3><p>何を知りたいか決め、プリ処理・求解・ポスト処理へ進む。</p><span class="refs">10-1〜10-4</span></article></div><div class="row single"><article class="node" data-id="cad"><h3>CAD形状を整える</h3><p>交換形式、曲線・曲面、品質、すきまや部品の接続を確認する。</p><span class="refs">10-21〜10-29</span></article></div><div class="row "><article class="node" data-id="density"><h3>必要な場所を細かく</h3><p>孔・切欠き・曲げなど、応力が変化する場所を重点化。</p><span class="refs">10-5〜10-11</span></article><article class="node" data-id="quality"><h3>要素形状も確かめる</h3><p>生成法、ゆがみ、サイズ遷移と計算規模を点検。</p><span class="refs">10-12〜10-20</span></article></div></div></section><section><h2>色の分布を、物理的な意味へ戻す</h2><div class="graph" data-edges="[[&quot;quantity&quot;,&quot;interpret&quot;,&quot;何の色か確認&quot;],[&quot;display&quot;,&quot;interpret&quot;,&quot;加工の影響を確認&quot;]]"><div class="row "><article class="node" data-id="quantity"><h3>評価する量を選ぶ</h3><p>変位・主応力・相当応力などを目的に合わせる。</p><span class="refs">10-30〜10-31</span></article><article class="node" data-id="display"><h3>表示の加工を理解</h3><p>積分点からの外挿・平均化・陰影・断面表示を区別。</p><span class="refs">10-32〜10-36</span></article></div><div class="row single"><article class="node" data-id="interpret"><h3>コンタを読む</h3><p>凡例と単位を確認し、最大位置・方向・荷重との関係を考える。</p><span class="refs">10-37〜10-41</span></article></div></div></section>
+<footer>線の言葉が、二つの項目の関係を表します。<br>番号から対応する章・問題へ戻って確認できます。</footer></main><script>function drawRelations() {
+  const ns = 'http://www.w3.org/2000/svg';
+  const issues = [];
+  document.querySelectorAll('.graph').forEach((graph, index) => {
+    graph.querySelectorAll('.edges,.edge-label').forEach(el => el.remove());
+    const svg = document.createElementNS(ns, 'svg'); svg.classList.add('edges');
+    svg.setAttribute('aria-hidden', 'true');
+    const bounds = graph.getBoundingClientRect();
+    svg.setAttribute('viewBox', `0 0 ${bounds.width} ${bounds.height}`);
+    svg.innerHTML = `<defs><marker id="arrow${index}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#1F3A65"/></marker></defs>`;
+    graph.prepend(svg);
+    const relations = JSON.parse(graph.dataset.edges);
+    const points = [];
+    relations.forEach(([from, to, label, kind]) => {
+      const a = graph.querySelector(`[data-id="${from}"]`).getBoundingClientRect();
+      const b = graph.querySelector(`[data-id="${to}"]`).getBoundingClientRect();
+      const x1 = a.x + a.width/2 - bounds.x, x2 = b.x + b.width/2 - bounds.x;
+      const y1 = a.bottom - bounds.y + 3, y2 = b.top - bounds.y - 6;
+      const mid = (y1 + y2)/2;
+      const line = document.createElementNS(ns, 'path');
+      line.setAttribute('d', `M ${x1} ${y1} L ${x1} ${y1+18} L ${x2} ${y2-18} L ${x2} ${y2}`);
+      line.setAttribute('fill','none'); line.setAttribute('stroke',kind === 'compare' ? '#888888' : '#1F3A65'); line.setAttribute('stroke-width','2.5');
+      if (kind === 'compare') line.setAttribute('stroke-dasharray','7 5'); else line.setAttribute('marker-end',`url(#arrow${index})`);
+      svg.append(line);
+      const caption = document.createElement('span'); caption.className = 'edge-label' + (kind === 'compare' ? ' compare' : ''); caption.textContent = label;
+      // Separate branch captions into their own half of the gap, without detaching from the line.
+      const isFork = relations.filter(e => e[0] === from).length > 1;
+      const isJoin = relations.filter(e => e[1] === to).length > 1;
+      const x = isFork ? x2 : isJoin ? x1 : (x1+x2)/2;
+      caption.style.left = x + 'px'; caption.style.top = mid + 'px';
+      graph.append(caption);
+      points.push({caption,from,to});
+    });
+    const rect = el => el.getBoundingClientRect();
+    const intersects = (a,b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+    points.forEach(({caption,from,to}, i) => {
+      const b = rect(caption);
+      if (b.left < bounds.left || b.right > bounds.right) issues.push(`edge outside graph: ${from}/${to}`);
+      for(const node of graph.querySelectorAll('.node')) if(intersects(b,rect(node))) issues.push(`edge overlaps node: ${from}/${to}`);
+      for(const prev of points.slice(0,i)) if(intersects(b,rect(prev.caption))) issues.push(`edge labels overlap: ${from}/${to}`);
+    });
+  });
+  for(const el of document.querySelectorAll('.node,h1,h2,.note,.refs')) if(el.scrollWidth > el.clientWidth+1) issues.push('text overflow: '+el.textContent.slice(0,30));
+  window.relationMapIssues = issues; window.relationMapReady = true;
+};document.fonts.ready.then(drawRelations);</script></html>

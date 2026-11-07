@@ -1,163 +1,62 @@
-<title>固体1級 第9章 相関図プレビュー</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<style>
-  /* レイアウト: 1図構成。各問の要点＋キー公式を A応力／B部材／C評価 の3トラックにサブ分け。CAE標準色をトークン化 */
-  :root {
-    --bg: #f5f6f9;
-    --surface: #ffffff;
-    --ink: #1F3A65;        /* 主線・見出し */
-    --ink-soft: #35507f;   /* 補助見出し */
-    --fill: #E1E7F2;       /* ボックス面 */
-    --accent: #C82D2D;     /* 強調 */
-    --muted: #6b7280;      /* 補助・凡例 */
-    --line: #c7d0e2;
-    --num: #1F3A65;
-    --form: #0b7285;       /* キー公式の色 */
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
-      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
-      --form: #5fd0e0; color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
-    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
-    --form: #5fd0e0; color-scheme: dark;
-  }
-  * { box-sizing: border-box; }
-  body {
-    background: var(--bg); color: var(--ink);
-    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
-    line-height: 1.5; margin: 0;
-  }
-  .wrap {
-    max-width: 1060px; margin: 0 auto;
-    padding-left: max(16px, env(safe-area-inset-left, 0px));
-    padding-right: max(16px, env(safe-area-inset-right, 0px));
-    padding-block: 24px 48px;
-  }
-  header.page { margin-bottom: 8px; }
-  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
-  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
-  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
-  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
-  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
-  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
-             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
-  .track-h.a { background: var(--ink); }
-  .track-h.b { background: var(--ink-soft); }
-  .track-h.c { background: var(--accent); }
-  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
-  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
-  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
-  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
-  .box.lead { border-color: var(--accent); }
-  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
-            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
-  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
-  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
-  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
-  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
-  .box.lead .q { background: var(--accent); }
-  li .txt { min-width: 0; }
-  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
-  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
-  .grayband {
-    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
-    padding: 12px 14px; margin-top: 18px;
-  }
-  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
-  .grayband ul.q-list { gap: 7px; }
-  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
-  @media (max-width: 760px) {
-    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 460px) {
-    .grid4, .grid3 { grid-template-columns: 1fr; }
-  }
-</style>
-
-<div class="wrap">
-  <header class="page">
-    <h1>固体1級 第9章「数値解析法」相関図（プレビュー）</h1>
-    <p>各問の要点とキー公式を、A 固有値問題を解く／B 連立一次方程式を解く／C 非線形方程式を解く の3トラック＋横串に整理して配置。</p>
-  </header>
-
-  <section class="fig">
-    <h2>数値解析法 ― 各問の要点とキー公式</h2>
-    <p class="lead">有限要素法の内部で行う行列計算（固有値・連立方程式・非線形反復）を解く技術。全14問を A／B／C ＋ 横串（並列計算）に整理。</p>
-
-    <!-- トラックA -->
-    <div class="track-h a">A｜固有値問題を解く（固有振動・座屈）</div>
-    <div class="track-desc">固有振動や座屈の解析では、大規模な行列から必要な固有値・固有ベクトルを求める。自由度が非常に大きい場合は、少数の試行ベクトルをまとめて反復するサブスペース法が疎行列の性質も活かせて有利。収束の速さは固有値の比で決まり、小さい問題へは三重対角化（ランチョス法・ハウスホルダー法）やヤコビ法などの相似変換を使う。</div>
-    <div class="grid3">
-      <div class="box">
-        <h3>解法の選択と特徴</h3>
-        <ul class="q-list">
-          <li><span class="q">9-1</span><span class="txt"><b>大規模固有値問題に適した解法</b><span class="f">サブスペース法（低次を同時）</span></span></li>
-          <li><span class="q">9-3</span><span class="txt"><b>サブスペース法の特徴</b><span class="f">小行列 C=XᵀAX を解く・疎性を利用</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>収束率・三重対角化</h3>
-        <ul class="q-list">
-          <li><span class="q">9-2</span><span class="txt"><b>反復固有値解法の収束性</b><span class="f">逆べき乗|λ₁/λ₂|・サブスペース|λ₁/λ_{p+1}|</span></span></li>
-          <li><span class="q">9-4</span><span class="txt"><b>三重対角化と相似変換系の解法</b><span class="f">ランチョス法・ハウスホルダー法</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- トラックB -->
-    <div class="track-h b">B｜連立一次方程式を解く（反復・前処理・条件数）</div>
-    <div class="track-desc">剛性方程式[K]{u}={f}を解く反復法の良し悪しは、係数行列の条件数（固有値の絶対値の最大／最小）で左右される。悪条件ほど誤差が増幅されやすいので、前処理で係数行列を単位行列に近づけて収束を速める。共役こう配（CG）法は係数行列が対称かつ正定（任意の非零vでvᵀKv>0）のときに使え、剛体運動が残らないよう拘束を与える。</div>
-    <div class="box">
-      <h3>反復法・前処理・条件数</h3>
-      <ul class="q-list">
-        <li><span class="q">9-5</span><span class="txt"><b>反復法の前処理</b><span class="f">M⁻¹A≈I・不完全LU・対角スケーリング</span></span></li>
-        <li><span class="q">9-6</span><span class="txt"><b>共役こう配法の適用条件</b>対称かつ正定　<span class="f">vᵀKv&gt;0</span></span></li>
-        <li><span class="q">9-7</span><span class="txt"><b>条件数の定義と悪条件</b><span class="f">cond₂=‖K‖‖K⁻¹‖=|λ|max/|λ|min</span></span></li>
-      </ul>
-    </div>
-
-    <!-- トラックC -->
-    <div class="track-h c">C｜非線形方程式を解く（反復・残差・経路追跡）</div>
-    <div class="track-desc">非線形解析では、力と変位の関係が曲線になるため反復でつり合いへ近づける。ニュートン・ラフソン法は毎回接線剛性を更新し、修正ニュートン法は剛性を固定、準ニュートン法は履歴から逆剛性を近似する。自由成分の残差力φ=P−fを0へ近づけ、最大残差／最大反力などで収束を判定する。極大点や折り返しのあるつり合い経路は、荷重制御・変位制御・弧長法を使い分けて連続的に追う。</div>
-    <div class="grid3">
-      <div class="box lead">
-        <h3>ニュートン系の反復</h3>
-        <ul class="q-list">
-          <li><span class="q">9-8</span><span class="txt"><b>ニュートン法と修正・準ニュートン法</b><span class="f">接線更新／固定・準=BFGS逆剛性近似</span></span></li>
-          <li><span class="q">9-9</span><span class="txt"><b>反復パターンによる判別</b><span class="f">接線=N／履歴近似=準N／固定=修正N</span></span></li>
-        </ul>
-      </div>
-      <div class="box lead">
-        <h3>残差・収束判定</h3>
-        <ul class="q-list">
-          <li><span class="q">9-10</span><span class="txt"><b>残差力とは</b>自由成分でつり合い　<span class="f">φ=P−f→0</span></span></li>
-          <li><span class="q">9-11</span><span class="txt"><b>非線形解析の収束判定</b><span class="f">最大残差力／最大反力・極小反力は例外</span></span></li>
-        </ul>
-      </div>
-      <div class="box lead">
-        <h3>経路追跡・増分刻み</h3>
-        <ul class="q-list">
-          <li><span class="q">9-12</span><span class="txt"><b>荷重制御・変位制御・弧長法</b><span class="f">折り返す経路は弧長増分法</span></span></li>
-          <li><span class="q">9-14</span><span class="txt"><b>増分幅と時間積分の安定条件</b><span class="f">中心差分Δt≤T_min/π・平均加速度は無条件安定</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- 横串 -->
-    <div class="grayband">
-      <b class="gh">横串：並列計算（大規模問題を分けて解く）</b>
-      <div class="grid3">
-        <ul class="q-list">
-          <li><span class="q">9-13</span><span class="txt"><b>領域分割法とサブストラクチャ法</b>内部自由度を静的縮約　<span class="f">粒度=計算量／通信量</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）固有値・B（藍）連立方程式・C（赤）非線形反復＋横串（灰）並列計算。全14問（A4・B3・C6・横串1）。</p>
-  </section>
-</div>
+<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>固体1級 · 第9章 相関図</title><style>
+*{box-sizing:border-box}html,body{margin:0;background:#fff;color:#1F3A65;font-family:Meiryo,'メイリオ',Arial,sans-serif}
+main{width:600px;padding:24px}header{padding:0 0 22px;border-bottom:3px solid #1F3A65}
+.course{font-size:20px;font-weight:bold;margin:0 0 10px}h1{font-size:32px;line-height:1.5;margin:0;text-wrap:balance}
+.how{font-size:19px;line-height:1.7;margin:14px 0 0;color:#1F3A65}.legend{font-size:18px;line-height:1.65;margin:12px 0 0}
+section{margin-top:30px}h2{font-size:25px;line-height:1.6;margin:0 0 24px;padding:0 0 0 12px;border-left:5px solid #C82D2D;text-wrap:balance}
+.graph{position:relative}.row{display:flex;justify-content:center;gap:24px;align-items:stretch;position:relative}
+.row+.row{margin-top:112px}.node{width:264px;padding:16px 16px 14px;border:2px solid #1F3A65;border-radius:12px;background:#E1E7F2;position:relative;z-index:1}
+.row.single .node{width:440px}.node h3{font-size:24px;line-height:1.55;margin:0 0 10px;font-weight:bold;overflow-wrap:anywhere}
+.node p{font-size:22px;line-height:1.7;margin:0;overflow-wrap:anywhere}.refs{display:block;font-size:18px;line-height:1.65;margin-top:12px;padding-top:8px;border-top:1px solid #888888;overflow-wrap:anywhere}
+.row:last-of-type .node{border-color:#C82D2D}.edge-label{position:absolute;transform:translate(-50%,-50%);font-size:19px;line-height:1.5;text-align:center;background:#fff;padding:3px 8px;z-index:2;max-width:240px;width:max-content}
+.edge-label.compare{color:#888888}.edges{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:0;pointer-events:none}
+.note{font-size:20px;line-height:1.8;margin:20px 0 0;padding:14px 0;border-top:1px solid #888888}
+footer{font-size:18px;line-height:1.7;margin-top:28px;padding-top:16px;border-top:2px solid #1F3A65}
+</style><main>
+<header><p class="course">固体1級 · 第9章 ／ 相関図</p><h1>何を未知として、何を反復している？</h1><p class="legend">矢印の言葉で、項目どうしの関係をたどれます。</p></header>
+<section><h2>方程式の種類で、解法を使い分ける</h2><div class="graph" data-edges="[[&quot;fem&quot;,&quot;linear&quot;,&quot;力に対する応答&quot;],[&quot;fem&quot;,&quot;eigen&quot;,&quot;特有の倍率と形&quot;],[&quot;linear&quot;,&quot;pre&quot;,&quot;反復の効率を改善&quot;],[&quot;eigen&quot;,&quot;subspace&quot;,&quot;必要な範囲で選ぶ&quot;]]"><div class="row single"><article class="node" data-id="fem"><h3>FEMで行列と力を組む</h3><p>モデルを有限個の未知量の式へ。大きな系は領域分割・部分構造法も利用する。</p><span class="refs">9-13</span></article></div><div class="row "><article class="node" data-id="linear"><h3>連立方程式</h3><p>既知の力から変位などを求める。直接法や反復法を使う。</p><span class="refs">9-5〜9-7</span></article><article class="node" data-id="eigen"><h3>固有値問題</h3><p>固有振動数や座屈倍率と、その形を求める。</p><span class="refs">9-1〜9-4</span></article></div><div class="row "><article class="node" data-id="pre"><h3>前処理・条件数</h3><p>連立方程式を解きやすい形に整える。残差の減り方にも関わる。</p><span class="refs">9-5〜9-7</span></article><article class="node" data-id="subspace"><h3>必要な固有値を選ぶ</h3><p>大規模で低次の複数組ならサブスペース法。相似変換法などと区別する。</p><span class="refs">9-1〜9-4</span></article></div></div><p class="note">固有値解法の内部で連立方程式を解くこともあります。二つの分類は同じものではありません。</p></section><section><h2>非線形では、釣合うまで式を更新する</h2><div class="graph" data-edges="[[&quot;res&quot;,&quot;newton&quot;,&quot;釣合いのずれを入力&quot;],[&quot;newton&quot;,&quot;conv&quot;,&quot;変位を更新&quot;],[&quot;conv&quot;,&quot;path&quot;,&quot;収束したら進む&quot;]]"><div class="row single"><article class="node" data-id="res"><h3>残差力</h3><p>外力と内力の差を求める。</p><span class="refs">9-10</span></article></div><div class="row single"><article class="node" data-id="newton"><h3>接線剛性で修正</h3><p>ニュートン系の方法で、変位の修正量を連立方程式から求める。</p><span class="refs">9-8〜9-9</span></article></div><div class="row single"><article class="node" data-id="conv"><h3>収束を判定</h3><p>残差や変位修正量を確認。未収束なら、内力を再計算して反復する。</p><span class="refs">9-11</span></article></div><div class="row single"><article class="node" data-id="path"><h3>次の荷重・変位へ</h3><p>荷重制御・変位制御・弧長法、増分幅を選び経路を追う。</p><span class="refs">9-12、9-14</span></article></div></div><p class="note">領域分割・部分構造法（9-13）は、大きな系を分けて扱う工夫です。上の解法と組み合わせて使います。</p></section>
+<footer>線の言葉が、二つの項目の関係を表します。<br>番号から対応する章・問題へ戻って確認できます。</footer></main><script>function drawRelations() {
+  const ns = 'http://www.w3.org/2000/svg';
+  const issues = [];
+  document.querySelectorAll('.graph').forEach((graph, index) => {
+    graph.querySelectorAll('.edges,.edge-label').forEach(el => el.remove());
+    const svg = document.createElementNS(ns, 'svg'); svg.classList.add('edges');
+    svg.setAttribute('aria-hidden', 'true');
+    const bounds = graph.getBoundingClientRect();
+    svg.setAttribute('viewBox', `0 0 ${bounds.width} ${bounds.height}`);
+    svg.innerHTML = `<defs><marker id="arrow${index}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#1F3A65"/></marker></defs>`;
+    graph.prepend(svg);
+    const relations = JSON.parse(graph.dataset.edges);
+    const points = [];
+    relations.forEach(([from, to, label, kind]) => {
+      const a = graph.querySelector(`[data-id="${from}"]`).getBoundingClientRect();
+      const b = graph.querySelector(`[data-id="${to}"]`).getBoundingClientRect();
+      const x1 = a.x + a.width/2 - bounds.x, x2 = b.x + b.width/2 - bounds.x;
+      const y1 = a.bottom - bounds.y + 3, y2 = b.top - bounds.y - 6;
+      const mid = (y1 + y2)/2;
+      const line = document.createElementNS(ns, 'path');
+      line.setAttribute('d', `M ${x1} ${y1} L ${x1} ${y1+18} L ${x2} ${y2-18} L ${x2} ${y2}`);
+      line.setAttribute('fill','none'); line.setAttribute('stroke',kind === 'compare' ? '#888888' : '#1F3A65'); line.setAttribute('stroke-width','2.5');
+      if (kind === 'compare') line.setAttribute('stroke-dasharray','7 5'); else line.setAttribute('marker-end',`url(#arrow${index})`);
+      svg.append(line);
+      const caption = document.createElement('span'); caption.className = 'edge-label' + (kind === 'compare' ? ' compare' : ''); caption.textContent = label;
+      // Separate branch captions into their own half of the gap, without detaching from the line.
+      const isFork = relations.filter(e => e[0] === from).length > 1;
+      const isJoin = relations.filter(e => e[1] === to).length > 1;
+      const x = isFork ? x2 : isJoin ? x1 : (x1+x2)/2;
+      caption.style.left = x + 'px'; caption.style.top = mid + 'px';
+      graph.append(caption);
+      points.push({caption,from,to});
+    });
+    const rect = el => el.getBoundingClientRect();
+    const intersects = (a,b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+    points.forEach(({caption,from,to}, i) => {
+      const b = rect(caption);
+      if (b.left < bounds.left || b.right > bounds.right) issues.push(`edge outside graph: ${from}/${to}`);
+      for(const node of graph.querySelectorAll('.node')) if(intersects(b,rect(node))) issues.push(`edge overlaps node: ${from}/${to}`);
+      for(const prev of points.slice(0,i)) if(intersects(b,rect(prev.caption))) issues.push(`edge labels overlap: ${from}/${to}`);
+    });
+  });
+  for(const el of document.querySelectorAll('.node,h1,h2,.note,.refs')) if(el.scrollWidth > el.clientWidth+1) issues.push('text overflow: '+el.textContent.slice(0,30));
+  window.relationMapIssues = issues; window.relationMapReady = true;
+};document.fonts.ready.then(drawRelations);</script></html>

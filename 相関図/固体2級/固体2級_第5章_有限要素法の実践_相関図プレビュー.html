@@ -1,186 +1,62 @@
-<title>固体2級 第5章 相関図プレビュー</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<style>
-  /* レイアウト: 1図構成。各問の要点＋キー公式を A要素／B荷重と境界／C熱応力と手順 の3トラックにサブ分け。CAE標準色をトークン化 */
-  :root {
-    --bg: #f5f6f9;
-    --surface: #ffffff;
-    --ink: #1F3A65;        /* 主線・見出し */
-    --ink-soft: #35507f;   /* 補助見出し */
-    --fill: #E1E7F2;       /* ボックス面 */
-    --accent: #C82D2D;     /* 強調 */
-    --muted: #6b7280;      /* 補助・凡例 */
-    --line: #c7d0e2;
-    --num: #1F3A65;
-    --form: #0b7285;       /* キー公式の色 */
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
-      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
-      --form: #5fd0e0; color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
-    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
-    --form: #5fd0e0; color-scheme: dark;
-  }
-  * { box-sizing: border-box; }
-  body {
-    background: var(--bg); color: var(--ink);
-    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
-    line-height: 1.5; margin: 0;
-  }
-  .wrap {
-    max-width: 1060px; margin: 0 auto;
-    padding-left: max(16px, env(safe-area-inset-left, 0px));
-    padding-right: max(16px, env(safe-area-inset-right, 0px));
-    padding-block: 24px 48px;
-  }
-  header.page { margin-bottom: 8px; }
-  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
-  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
-  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
-  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
-  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
-  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
-             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
-  .track-h.a { background: var(--ink); }
-  .track-h.b { background: var(--ink-soft); }
-  .track-h.c { background: var(--accent); }
-  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
-  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
-  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
-  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
-  .box.lead { border-color: var(--accent); }
-  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
-            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
-  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
-  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
-  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
-  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
-  .box.lead .q { background: var(--accent); }
-  li .txt { min-width: 0; }
-  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
-  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
-  .grayband {
-    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
-    padding: 12px 14px; margin-top: 18px;
-  }
-  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
-  .grayband ul.q-list { gap: 7px; }
-  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
-  @media (max-width: 760px) {
-    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 460px) {
-    .grid4, .grid3 { grid-template-columns: 1fr; }
-  }
-</style>
-
-<div class="wrap">
-  <header class="page">
-    <h1>固体2級 第5章「有限要素法の実践」相関図（プレビュー）</h1>
-    <p>各問の要点とキー公式を、A 要素の種類と補間／B 荷重と境界条件／C 熱応力・残留応力と手順 の3トラックにサブ分けして配置。</p>
-  </header>
-
-  <section class="fig">
-    <h2>有限要素法の実践 ― 各問の要点とキー公式</h2>
-    <p class="lead">定式化を実際のモデルへ適用する。要素選び・荷重・境界条件・熱応力を全29問で A／B／C に整理。</p>
-
-    <!-- トラックA -->
-    <div class="track-h a">A｜要素の種類と補間（アイソパラメトリック・高次要素）</div>
-    <div class="track-desc">要素内の位置と変位を同じ形状関数で表すアイソパラメトリック要素を土台に、Q4・Q8・H20 などの要素次数や、正規化局所座標とヤコビ行列による微分の扱いを押さえる。曲げを苦手とするQ4を補う非適合モードなど、要素の変形能力も比べる。ここで選んだ補間が、トラックBの荷重・境界条件を要素へ落とし込む前提になる。</div>
-    <div class="grid3">
-      <div class="box">
-        <h3>アイソパラメトリック要素</h3>
-        <ul class="q-list">
-          <li><span class="q">5-1</span><span class="txt"><b>アイソパラメトリック要素</b>位置と変位を同じNで補間　<span class="f">x=ΣNixi, u=ΣNiui</span></span></li>
-          <li><span class="q">5-2</span><span class="txt"><b>補間の分類</b>座標と変位の次数を比較　<span class="f">iso／super／sub</span></span></li>
-          <li><span class="q">5-4</span><span class="txt"><b>アイソパラメトリック要素の座標</b>局所座標 −1〜+1　<span class="f">ξ,η で形状関数</span></span></li>
-          <li><span class="q">5-5</span><span class="txt"><b>正規化局所座標と全体座標</b>同じ点の別表現　<span class="f">(ξ,η)↔(x,y)・Nで対応</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>ヤコビ行列と微分</h3>
-        <ul class="q-list">
-          <li><span class="q">5-7</span><span class="txt"><b>ヤコビ行列と[B]の評価</b>局所微分と全体微分をつなぐ　<span class="f">J（[N,ξ]=J[N,x]）</span></span></li>
-          <li><span class="q">5-10</span><span class="txt"><b>補間と微分の次数</b>微分で次数が一つ下がる　<span class="f">εx=∂u/∂x</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>要素次数と変形モード</h3>
-        <ul class="q-list">
-          <li><span class="q">5-3</span><span class="txt"><b>四辺形要素の次数</b><span class="f">Q4=双一次4節点／Q8=二次8節点</span></span></li>
-          <li><span class="q">5-6</span><span class="txt"><b>Q4の曲げ表現</b>1,x,y,xy のみ　<span class="f">x²項を含まない</span></span></li>
-          <li><span class="q">5-8</span><span class="txt"><b>節点を持たない変数の追加</b>曲げを補い要素内で消去　<span class="f">N5=1−ξ², N6=1−η²</span></span></li>
-          <li><span class="q">5-9</span><span class="txt"><b>高次六面体</b>8隅＋12辺中間　<span class="f">H20（20節点）</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- トラックB -->
-    <div class="track-h b">B｜荷重と境界条件（条件を方程式へ入れる）</div>
-    <div class="track-desc">外から加わる表面力・物体力・死荷重を等価節点力へ換算し、ディリクレ（変位指定）・ノイマン（力指定）の境界条件を剛性方程式へ組み込む。対称面の利用や非零の変位指定、剛体運動の除去もこの段階で扱う。既知変位を移項して未知変位だけの縮約方程式にするところまでが、解く直前の準備。</div>
-    <div class="grid3">
-      <div class="box">
-        <h3>荷重の扱い</h3>
-        <ul class="q-list">
-          <li><span class="q">5-11</span><span class="txt"><b>分布圧力の節点力</b>面積分で換算　<span class="f">t=−p n</span></span></li>
-          <li><span class="q">5-12</span><span class="txt"><b>物体力と表面力</b>作用する場所で区別　<span class="f">物体力=内部／表面力=表面</span></span></li>
-          <li><span class="q">5-13</span><span class="txt"><b>死荷重</b>大きさ・向きが変わらない　<span class="f">自重（鉛直下向き）</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>境界条件の種類と指定</h3>
-        <ul class="q-list">
-          <li><span class="q">5-14</span><span class="txt"><b>境界条件の呼び方</b><span class="f">ディリクレ=第1種・基本／ノイマン=第2種・自然</span></span></li>
-          <li><span class="q">5-15</span><span class="txt"><b>ディリクレ条件の与え方</b>節点の変位成分を指定　<span class="f">変位を指定</span></span></li>
-          <li><span class="q">5-16</span><span class="txt"><b>非零の変位指定と剛体運動</b><span class="f">u=2mm も指定可・剛体運動を除く</span></span></li>
-          <li><span class="q">5-17</span><span class="txt"><b>対称面へのディリクレ条件</b><span class="f">半分モデルの利用</span></span></li>
-          <li><span class="q">5-18</span><span class="txt"><b>温度境界</b>温度Tの指定　<span class="f">T指定＝ディリクレ</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>剛性方程式への適用</h3>
-        <ul class="q-list">
-          <li><span class="q">5-19</span><span class="txt"><b>既知変位を含む剛性方程式</b>未知α・既知βに分け移項　<span class="f">Kαα uα=f−Kαβ uβ</span></span></li>
-          <li><span class="q">5-20</span><span class="txt"><b>縮約方程式</b>既知を代入し未知行を抽出　<span class="f">右辺修正・未知行の抽出</span></span></li>
-          <li><span class="q">5-21</span><span class="txt"><b>荷重（ノイマン）の組込み</b>等価節点力fへ　<span class="f">Ku=f</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- トラックC -->
-    <div class="track-h c">C｜熱応力・残留応力と解析手順（初期ひずみで表す）</div>
-    <div class="track-desc">温度変化による熱ひずみや、焼きばめ・貼合せの残留応力を、初期ひずみとして構成式へ組み込み、異材接合や面外の反りを三次元ソリッド要素で解く。自由なら伸びたい量が、拘束や界面の連続で妨げられて応力が残る、という流れを押さえる。最後に、要素剛性→組立て→境界条件→求解→応力という解析全体の手順を確認する。</div>
-    <div class="grid3">
-      <div class="box lead">
-        <h3>熱ひずみ・熱応力</h3>
-        <ul class="q-list">
-          <li><span class="q">5-22</span><span class="txt"><b>熱応力の材料定数</b>温度差→伸びたい量を換算　<span class="f">ε^th=α(T−Tref)</span></span></li>
-          <li><span class="q">5-23</span><span class="txt"><b>自由熱膨張</b>α×ΔT は無次元　<span class="f">ε^th=αΔT</span></span></li>
-          <li><span class="q">5-24</span><span class="txt"><b>厚板とブロックの熱応力</b>厚さ方向にも応力　<span class="f">三次元ソリッド要素</span></span></li>
-          <li><span class="q">5-25</span><span class="txt"><b>異材薄板の反りと要素選択</b>二層を厚みのある立体で　<span class="f">面外の反り（3Dソリッド）</span></span></li>
-        </ul>
-      </div>
-      <div class="box lead">
-        <h3>残留応力（初期ひずみ法）</h3>
-        <ul class="q-list">
-          <li><span class="q">5-26</span><span class="txt"><b>焼きばめを初期ひずみで表す</b>寸法差を置換　<span class="f">初期ひずみ法</span></span></li>
-          <li><span class="q">5-27</span><span class="txt"><b>異材二層の熱変形</b>界面は共通長さ　<span class="f">α1ΔT≠α2ΔT で残留応力</span></span></li>
-          <li><span class="q">5-28</span><span class="txt"><b>予ひずみを与えて接着</b>初期ひずみの符号　<span class="f">残留応力（符号に注意）</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>解析手順</h3>
-        <ul class="q-list">
-          <li><span class="q">5-29</span><span class="txt"><b>FEM解析の計算手順</b><span class="f">要素剛性→組立て→境界→求解→応力</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）要素の種類と補間・B（藍）荷重と境界条件・C（赤）熱応力・残留応力と手順。全29問（A10・B11・C8）。</p>
-  </section>
-</div>
+<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>固体2級 · 第5章 相関図</title><style>
+*{box-sizing:border-box}html,body{margin:0;background:#fff;color:#1F3A65;font-family:Meiryo,'メイリオ',Arial,sans-serif}
+main{width:600px;padding:24px}header{padding:0 0 22px;border-bottom:3px solid #1F3A65}
+.course{font-size:20px;font-weight:bold;margin:0 0 10px}h1{font-size:32px;line-height:1.5;margin:0;text-wrap:balance}
+.how{font-size:19px;line-height:1.7;margin:14px 0 0;color:#1F3A65}.legend{font-size:18px;line-height:1.65;margin:12px 0 0}
+section{margin-top:30px}h2{font-size:25px;line-height:1.6;margin:0 0 24px;padding:0 0 0 12px;border-left:5px solid #C82D2D;text-wrap:balance}
+.graph{position:relative}.row{display:flex;justify-content:center;gap:24px;align-items:stretch;position:relative}
+.row+.row{margin-top:112px}.node{width:264px;padding:16px 16px 14px;border:2px solid #1F3A65;border-radius:12px;background:#E1E7F2;position:relative;z-index:1}
+.row.single .node{width:440px}.node h3{font-size:24px;line-height:1.55;margin:0 0 10px;font-weight:bold;overflow-wrap:anywhere}
+.node p{font-size:22px;line-height:1.7;margin:0;overflow-wrap:anywhere}.refs{display:block;font-size:18px;line-height:1.65;margin-top:12px;padding-top:8px;border-top:1px solid #888888;overflow-wrap:anywhere}
+.row:last-of-type .node{border-color:#C82D2D}.edge-label{position:absolute;transform:translate(-50%,-50%);font-size:19px;line-height:1.5;text-align:center;background:#fff;padding:3px 8px;z-index:2;max-width:240px;width:max-content}
+.edge-label.compare{color:#888888}.edges{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:0;pointer-events:none}
+.note{font-size:20px;line-height:1.8;margin:20px 0 0;padding:14px 0;border-top:1px solid #888888}
+footer{font-size:18px;line-height:1.7;margin-top:28px;padding-top:16px;border-top:2px solid #1F3A65}
+</style><main>
+<header><p class="course">固体2級 · 第5章 ／ 相関図</p><h1>要素の式に、実際の条件を入れる</h1><p class="legend">矢印の言葉で、項目どうしの関係をたどれます。</p></header>
+<section><h2>標準的な要素から実際の形へ</h2><div class="graph" data-edges="[[&quot;interp&quot;,&quot;jac&quot;,&quot;微分を変換&quot;],[&quot;interp&quot;,&quot;order&quot;,&quot;補間の能力を決定&quot;],[&quot;jac&quot;,&quot;assemble&quot;,&quot;Bの計算に使う&quot;],[&quot;order&quot;,&quot;assemble&quot;,&quot;要素の式に反映&quot;]]"><div class="row single"><article class="node" data-id="interp"><h3>座標と変位の補間</h3><p>同じ形状関数を使うのがアイソパラメトリック要素。</p><span class="refs">5-1〜5-2、5-4〜5-5</span></article></div><div class="row "><article class="node" data-id="jac"><h3>ヤコビ行列</h3><p>局所座標の微分を全体座標の微分へ変換する。</p><span class="refs">5-7、5-10</span></article><article class="node" data-id="order"><h3>表せる変形を選ぶ</h3><p>要素の次数・節点・内部変数で表現力が変わる。</p><span class="refs">5-3、5-6、5-8〜5-9</span></article></div><div class="row single"><article class="node" data-id="assemble"><h3>要素剛性を全体へ</h3><p>各要素の式を組み立て、節点の未知量を解く準備をする。</p><span class="refs">5-29</span></article></div></div></section><section><h2>既知の変位と荷重では、入れ方が違う</h2><div class="graph" data-edges="[[&quot;disp&quot;,&quot;system&quot;,&quot;既知量を代入&quot;],[&quot;load&quot;,&quot;system&quot;,&quot;右辺に加える&quot;],[&quot;system&quot;,&quot;initial&quot;,&quot;変形の原因を拡張&quot;]]"><div class="row "><article class="node" data-id="disp"><h3>変位・温度を指定</h3><p>ディリクレ条件。既知の節点値を与える。</p><span class="refs">5-14〜5-18</span></article><article class="node" data-id="load"><h3>力を指定</h3><p>物体力・表面力を等価節点荷重へ。</p><span class="refs">5-11〜5-13、5-21</span></article></div><div class="row single"><article class="node" data-id="system"><h3>未知自由度の方程式</h3><p>既知変位の項を右辺へ移し、残る未知変位を解く。</p><span class="refs">5-19〜5-20</span></article></div><div class="row single"><article class="node" data-id="initial"><h3>熱膨張・初期ひずみも入力</h3><p>伸びようとする量を荷重項に換算。拘束や接着により応力が生じる。</p><span class="refs">5-22〜5-28</span></article></div></div></section>
+<footer>線の言葉が、二つの項目の関係を表します。<br>番号から対応する章・問題へ戻って確認できます。</footer></main><script>function drawRelations() {
+  const ns = 'http://www.w3.org/2000/svg';
+  const issues = [];
+  document.querySelectorAll('.graph').forEach((graph, index) => {
+    graph.querySelectorAll('.edges,.edge-label').forEach(el => el.remove());
+    const svg = document.createElementNS(ns, 'svg'); svg.classList.add('edges');
+    svg.setAttribute('aria-hidden', 'true');
+    const bounds = graph.getBoundingClientRect();
+    svg.setAttribute('viewBox', `0 0 ${bounds.width} ${bounds.height}`);
+    svg.innerHTML = `<defs><marker id="arrow${index}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#1F3A65"/></marker></defs>`;
+    graph.prepend(svg);
+    const relations = JSON.parse(graph.dataset.edges);
+    const points = [];
+    relations.forEach(([from, to, label, kind]) => {
+      const a = graph.querySelector(`[data-id="${from}"]`).getBoundingClientRect();
+      const b = graph.querySelector(`[data-id="${to}"]`).getBoundingClientRect();
+      const x1 = a.x + a.width/2 - bounds.x, x2 = b.x + b.width/2 - bounds.x;
+      const y1 = a.bottom - bounds.y + 3, y2 = b.top - bounds.y - 6;
+      const mid = (y1 + y2)/2;
+      const line = document.createElementNS(ns, 'path');
+      line.setAttribute('d', `M ${x1} ${y1} L ${x1} ${y1+18} L ${x2} ${y2-18} L ${x2} ${y2}`);
+      line.setAttribute('fill','none'); line.setAttribute('stroke',kind === 'compare' ? '#888888' : '#1F3A65'); line.setAttribute('stroke-width','2.5');
+      if (kind === 'compare') line.setAttribute('stroke-dasharray','7 5'); else line.setAttribute('marker-end',`url(#arrow${index})`);
+      svg.append(line);
+      const caption = document.createElement('span'); caption.className = 'edge-label' + (kind === 'compare' ? ' compare' : ''); caption.textContent = label;
+      // Separate branch captions into their own half of the gap, without detaching from the line.
+      const isFork = relations.filter(e => e[0] === from).length > 1;
+      const isJoin = relations.filter(e => e[1] === to).length > 1;
+      const x = isFork ? x2 : isJoin ? x1 : (x1+x2)/2;
+      caption.style.left = x + 'px'; caption.style.top = mid + 'px';
+      graph.append(caption);
+      points.push({caption,from,to});
+    });
+    const rect = el => el.getBoundingClientRect();
+    const intersects = (a,b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+    points.forEach(({caption,from,to}, i) => {
+      const b = rect(caption);
+      if (b.left < bounds.left || b.right > bounds.right) issues.push(`edge outside graph: ${from}/${to}`);
+      for(const node of graph.querySelectorAll('.node')) if(intersects(b,rect(node))) issues.push(`edge overlaps node: ${from}/${to}`);
+      for(const prev of points.slice(0,i)) if(intersects(b,rect(prev.caption))) issues.push(`edge labels overlap: ${from}/${to}`);
+    });
+  });
+  for(const el of document.querySelectorAll('.node,h1,h2,.note,.refs')) if(el.scrollWidth > el.clientWidth+1) issues.push('text overflow: '+el.textContent.slice(0,30));
+  window.relationMapIssues = issues; window.relationMapReady = true;
+};document.fonts.ready.then(drawRelations);</script></html>

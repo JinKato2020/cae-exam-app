@@ -46,6 +46,27 @@ for (const file of solid1Files) {
 }
 assert.equal(parts.expandChapter(chapter([{ ...ordinary, studyParts: grouped }])).questions.length, 1,
   'grouped study remains one official question in navigation and progress');
+// 熱流体1級1〜8章も同じ殻で、公式番号107件の中に145設問を表示する。
+let thermalAnswers = 0, thermalWritten = 0;
+for (const file of ['thermal1-01-single-phase-physics', 'thermal1-02-single-phase-calc1', 'thermal1-03-single-phase-calc2', 'thermal1-04-grid-handling', 'thermal1-05-turbulence-models', 'thermal1-06-design-application', 'thermal1-07-acceleration-and-postprocessing', 'thermal1-08-results-and-evaluation']) {
+  const raw = JSON.parse(fs.readFileSync(`content/questions/${file}.json`, 'utf8'));
+  const expanded = parts.expandChapter(raw);
+  assert.equal(expanded.questions.length, raw.meta.officialCount);
+  for (const q of expanded.questions) {
+    assert.equal(q.explanationMode, 'guided');
+    const prompts = q.studyParts?.length ? q.studyParts : [q];
+    thermalAnswers += prompts.length;
+    for (const prompt of prompts) {
+      assert(prompt.answerSummary && prompt.easyExplanation.length, `${prompt.id}: missing guided content`);
+      if (prompt.responseType === 'written') {
+        thermalWritten++;
+        assert(prompt.officialWrittenEvidence && prompt.modelAnswer && prompt.answerCheckpoints.length);
+      }
+    }
+  }
+}
+assert.equal(thermalAnswers, 145);
+assert.equal(thermalWritten, 41);
 const root = { ...simple('root'), sharedQuestion: 'common conditions', figureImage: 'parent-only', relatedFormulas: ['term'], parts: [simple('a'), simple('b')] };
 const before = JSON.stringify(root);
 const expanded = parts.expandChapter(chapter([ordinary, root]));
@@ -152,6 +173,13 @@ with patch.object(Path,'is_file',return_value=False):
  bad=copy.deepcopy(d);q=next(q for q in bad['questions'] if q.get('studyParts'))
  q['studyParts'][0]['officialWrittenEvidence']['excerpt']+=' invented'
  assert study_parts_errors(bad),'unverified written evidence must fail even without private source files'
+thermal=json.loads(Path('content/questions/thermal1-07-acceleration-and-postprocessing.json').read_bytes())
+assert not study_parts_errors(thermal),'verified numbered source lists must be accepted'
+with patch.object(Path,'is_file',return_value=False):
+ assert not study_parts_errors(thermal),'verified list evidence must work without private sources'
+ bad=copy.deepcopy(thermal)
+ next(q for q in bad['questions'] if q['number']=='7-1')['studyParts'][0]['officialWrittenEvidence']=next(q for q in thermal['questions'] if q['number']=='7-10')['studyParts'][0]['officialWrittenEvidence']
+ assert study_parts_errors(bad),'7-10 evidence must not authorize 7-1'
 q=next(q for q in d['questions'] if q.get('studyParts'))
 q['studyParts'][0].pop('officialWrittenEvidence')
 assert study_parts_errors(d),'original written questions without official evidence must be blocked'
@@ -179,6 +207,12 @@ p=copy.deepcopy(next(q for q in d['questions'] if q['number']=='5-13')['studyPar
 p.update(id=q['id']+'-invented',number=q['number'],officialRef=q['officialRef'])
 q['studyParts']=[p]
 assert study_parts_errors(d),'a statement-selection question must not become a written question'
+# nuの誤エスケープはKaTeXでエラーにならなくても、数式の意味を変える。
+d=json.loads(Path('content/questions/thermal1-05-turbulence-models.json').read_bytes())
+assert not easy_explanation_errors(d)
+d['questions'][0]['easyExplanation'][0]['body']='$'+chr(10)+'u_t$'
+assert any('制御文字' in e for e in easy_explanation_errors(d)),'escaped math corruption must be blocked'
+
 
 `], { stdio: 'pipe' });
 console.log('Guided grouped study: official written evidence, self-check, inline figures and data immutability PASS');

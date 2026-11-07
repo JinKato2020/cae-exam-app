@@ -1,191 +1,62 @@
-<title>固体2級 第4章 相関図プレビュー</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<style>
-  /* レイアウト: 1図構成。各問の要点＋キー公式を A式の土台／B仮想仕事／C組立て の3トラックにサブ分け。CAE標準色をトークン化 */
-  :root {
-    --bg: #f5f6f9;
-    --surface: #ffffff;
-    --ink: #1F3A65;        /* 主線・見出し */
-    --ink-soft: #35507f;   /* 補助見出し */
-    --fill: #E1E7F2;       /* ボックス面 */
-    --accent: #C82D2D;     /* 強調 */
-    --muted: #6b7280;      /* 補助・凡例 */
-    --line: #c7d0e2;
-    --num: #1F3A65;
-    --form: #0b7285;       /* キー公式の色 */
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
-      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
-      --form: #5fd0e0; color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
-    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
-    --form: #5fd0e0; color-scheme: dark;
-  }
-  * { box-sizing: border-box; }
-  body {
-    background: var(--bg); color: var(--ink);
-    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
-    line-height: 1.5; margin: 0;
-  }
-  .wrap {
-    max-width: 1060px; margin: 0 auto;
-    padding-left: max(16px, env(safe-area-inset-left, 0px));
-    padding-right: max(16px, env(safe-area-inset-right, 0px));
-    padding-block: 24px 48px;
-  }
-  header.page { margin-bottom: 8px; }
-  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
-  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
-  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
-  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
-  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
-  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
-             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
-  .track-h.a { background: var(--ink); }
-  .track-h.b { background: var(--ink-soft); }
-  .track-h.c { background: var(--accent); }
-  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
-  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
-  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
-  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
-  .box.lead { border-color: var(--accent); }
-  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
-            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
-  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
-  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
-  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
-  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
-  .box.lead .q { background: var(--accent); }
-  li .txt { min-width: 0; }
-  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
-  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
-  .grayband {
-    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
-    padding: 12px 14px; margin-top: 18px;
-  }
-  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
-  .grayband ul.q-list { gap: 7px; }
-  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
-  @media (max-width: 760px) {
-    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 460px) {
-    .grid4, .grid3 { grid-template-columns: 1fr; }
-  }
-</style>
-
-<div class="wrap">
-  <header class="page">
-    <h1>固体2級 第4章「有限要素法の定式化」相関図（プレビュー）</h1>
-    <p>各問の要点とキー公式を、A 式を作る土台／B 仮想仕事と弱形式／C 要素を組み立てて解く の3トラックにサブ分けして配置。</p>
-  </header>
-
-  <section class="fig">
-    <h2>有限要素法の定式化 ― 各問の要点とキー公式</h2>
-    <p class="lead">連続体を有限個の節点自由度へ置き換え、原理に基づく連立方程式 Kd=f を作る。全29問を A／B／C に整理。</p>
-
-    <!-- トラックA -->
-    <div class="track-h a">A｜式を作る土台（離散化・エネルギー原理）</div>
-    <div class="track-desc">まず有限要素法が「複雑な形状を有限個の未知量へ置き換えて近似的に解く」考え方と、その連立方程式を根拠づけるエネルギー原理を押さえる。ひずみエネルギー・補ひずみエネルギー・最小ポテンシャルエネルギーが、どの変位が真の平衡かを決める。ここで整えた原理が、トラックBの仮想仕事・弱形式へ直接つながる。</div>
-    <div class="grid3">
-      <div class="box">
-        <h3>離散化の考え方</h3>
-        <ul class="q-list">
-          <li><span class="q">4-1</span><span class="txt"><b>有限要素法の目的</b>複雑形状を有限自由度で近似　<span class="f">節点変位を解く Kd=f</span></span></li>
-          <li><span class="q">4-2</span><span class="txt"><b>離散化法と反復解法の区別</b><span class="f">ガウス・ザイデルは解法（離散化でない）</span></span></li>
-          <li><span class="q">4-3</span><span class="txt"><b>重み付き残差法とガラーキン法</b><span class="f">∫w·R dV=0（w=N がガラーキン）</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>エネルギーの蓄え方</h3>
-        <ul class="q-list">
-          <li><span class="q">4-4</span><span class="txt"><b>段付き棒のひずみエネルギー比較</b>力一定と伸び一定で逆転　<span class="f">U=P²/2k, U=kδ²/2</span></span></li>
-          <li><span class="q">4-5</span><span class="txt"><b>二次元のひずみエネルギー密度</b><span class="f">U₀=½(σxεx+σyεy+τxyγxy)</span></span></li>
-          <li><span class="q">4-6</span><span class="txt"><b>ひずみ／補ひずみエネルギー</b>線形は等・非線形は不等　<span class="f">U₀=∫σdε, U₀*=∫εdσ</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>エネルギー原理と解法</h3>
-        <ul class="q-list">
-          <li><span class="q">4-7</span><span class="txt"><b>全ポテンシャルエネルギー最小</b>許容変位の中で　<span class="f">Π=U−W（最小で平衡）</span></span></li>
-          <li><span class="q">4-8</span><span class="txt"><b>変位法と応力法の対応</b><span class="f">変位法=仮想仕事／応力法=補仮想仕事</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- トラックB -->
-    <div class="track-h b">B｜仮想仕事と弱形式（釣合いを積分の式へ）</div>
-    <div class="track-desc">各点の力の釣合い（強形式）を、許容仮想変位を掛けて積分した弱形式へ書き換える。この「内部仮想仕事＝外部仮想仕事」がFEMの連立方程式の出発点になり、体積力や指定表面力が外部仕事の各項として現れる。熱膨張などの初期ひずみ・初期応力も、右辺の等価節点力としてこの枠組みに組み込む。</div>
-    <div class="grid3">
-      <div class="box">
-        <h3>仮想仕事の原理</h3>
-        <ul class="q-list">
-          <li><span class="q">4-9</span><span class="txt"><b>節点の仮想仕事で軸力算定</b>角度分解　<span class="f">N_CB=10√3≈17.3 kN</span></span></li>
-          <li><span class="q">4-10</span><span class="txt"><b>仮想仕事の原理</b>許容仮想変位すべてで　<span class="f">内部仮想仕事＝外部仮想仕事</span></span></li>
-          <li><span class="q">4-12</span><span class="txt"><b>外部仮想仕事（表面力）</b>指定表面で積分　<span class="f">∫Γt t·δu dS</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>強形式から弱形式へ</h3>
-        <ul class="q-list">
-          <li><span class="q">4-11</span><span class="txt"><b>平衡の弱形式</b>平衡＋表面力条件を積分形に　<span class="f">強形式→弱形式</span></span></li>
-          <li><span class="q">4-14</span><span class="txt"><b>弱形式の導出</b>残差×仮想変位→部分積分　<span class="f">内部仕事＋表面項</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>初期ひずみ・初期応力</h3>
-        <ul class="q-list">
-          <li><span class="q">4-13</span><span class="txt"><b>初期項を等価節点力へ移す</b><span class="f">fε=∫BᵀDε₀, fσ=−∫Bᵀσ₀</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- トラックC -->
-    <div class="track-h c">C｜要素を組み立てて解く（補間・行列・全体方程式）</div>
-    <div class="track-desc">節点変位から要素内の変位・ひずみ・応力を求める形状関数と B・D 行列を用意し、要素剛性を全体へ重ね合わせ、境界条件を入れて連立方程式を解く。形状関数 N は補間、B は微分でひずみへ、D は材料則で応力へと役割が分かれる。A・Bで作った原理を、実際に計算できる行列の形へ落とし込む段階。</div>
-    <div class="grid4">
-      <div class="box">
-        <h3>形状関数と補間</h3>
-        <ul class="q-list">
-          <li><span class="q">4-15</span><span class="txt"><b>節点補間の性質</b>自節点で1・和1で平行移動再現　<span class="f">Ni(xj)=δij, ΣNi=1</span></span></li>
-          <li><span class="q">4-16</span><span class="txt"><b>一次要素の直線補間</b>x=3L/4　<span class="f">u=7.5 mm（N1=¼,N2=¾）</span></span></li>
-          <li><span class="q">4-17</span><span class="txt"><b>微小ひずみ（ひずみ–変位）</b><span class="f">γxy=u,y+v,x（和）</span></span></li>
-          <li><span class="q">4-18</span><span class="txt"><b>三節点三角形CST</b>変位は一次・ひずみ応力一定　<span class="f">一定ひずみ三角形</span></span></li>
-          <li><span class="q">4-29</span><span class="txt"><b>面積座標・体積座標</b>部分／全体の比　<span class="f">単位なしの割合</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>B・D行列の役割</h3>
-        <ul class="q-list">
-          <li><span class="q">4-19</span><span class="txt"><b>各行列の役割</b>N補間・B微分・D応力　<span class="f">ε=Bd</span></span></li>
-          <li><span class="q">4-20</span><span class="txt"><b>B行列の成分と自由度の順序</b>各ひずみ式から一行ずつ　<span class="f">行[N,x 0][0 N,y][N,y N,x]</span></span></li>
-          <li><span class="q">4-21</span><span class="txt"><b>平面応力・平面ひずみのD</b>独立定数はE,ν　<span class="f">平面応力σz=0／平面ひずみεz=0</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>要素剛性と組立て</h3>
-        <ul class="q-list">
-          <li><span class="q">4-22</span><span class="txt"><b>直列ばねの剛性方程式</b>自分に+k・相手に−k　<span class="f">Kd=f の組立て</span></span></li>
-          <li><span class="q">4-23</span><span class="txt"><b>斜めばねを含む系</b>二回の投影　<span class="f">水平剛性 k cos²θ</span></span></li>
-          <li><span class="q">4-24</span><span class="txt"><b>剛性行列の対称性・対角</b><span class="f">Kij=Kji（対角>0）</span></span></li>
-          <li><span class="q">4-25</span><span class="txt"><b>行和と剛体移動</b>全節点同量移動で力0　<span class="f">行和=0</span></span></li>
-          <li><span class="q">4-26</span><span class="txt"><b>共有節点での重ね合わせ</b>変位は共通・力は加算　<span class="f">アセンブリ</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>境界条件・自由度</h3>
-        <ul class="q-list">
-          <li><span class="q">4-27</span><span class="txt"><b>変位境界と荷重の相補</b>指定変位の反力は釣合いで決まる　<span class="f">力学的／幾何学的境界</span></span></li>
-          <li><span class="q">4-28</span><span class="txt"><b>未知自由度の数</b>2Dトラス節点=並進2・回転なし　<span class="f">自由度−拘束</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）式を作る土台・B（藍）仮想仕事と弱形式・C（赤）要素を組み立てて解く。全29問（A8・B6・C15）。</p>
-  </section>
-</div>
+<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>固体2級 · 第4章 相関図</title><style>
+*{box-sizing:border-box}html,body{margin:0;background:#fff;color:#1F3A65;font-family:Meiryo,'メイリオ',Arial,sans-serif}
+main{width:600px;padding:24px}header{padding:0 0 22px;border-bottom:3px solid #1F3A65}
+.course{font-size:20px;font-weight:bold;margin:0 0 10px}h1{font-size:32px;line-height:1.5;margin:0;text-wrap:balance}
+.how{font-size:19px;line-height:1.7;margin:14px 0 0;color:#1F3A65}.legend{font-size:18px;line-height:1.65;margin:12px 0 0}
+section{margin-top:30px}h2{font-size:25px;line-height:1.6;margin:0 0 24px;padding:0 0 0 12px;border-left:5px solid #C82D2D;text-wrap:balance}
+.graph{position:relative}.row{display:flex;justify-content:center;gap:24px;align-items:stretch;position:relative}
+.row+.row{margin-top:112px}.node{width:264px;padding:16px 16px 14px;border:2px solid #1F3A65;border-radius:12px;background:#E1E7F2;position:relative;z-index:1}
+.row.single .node{width:440px}.node h3{font-size:24px;line-height:1.55;margin:0 0 10px;font-weight:bold;overflow-wrap:anywhere}
+.node p{font-size:22px;line-height:1.7;margin:0;overflow-wrap:anywhere}.refs{display:block;font-size:18px;line-height:1.65;margin-top:12px;padding-top:8px;border-top:1px solid #888888;overflow-wrap:anywhere}
+.row:last-of-type .node{border-color:#C82D2D}.edge-label{position:absolute;transform:translate(-50%,-50%);font-size:19px;line-height:1.5;text-align:center;background:#fff;padding:3px 8px;z-index:2;max-width:240px;width:max-content}
+.edge-label.compare{color:#888888}.edges{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:0;pointer-events:none}
+.note{font-size:20px;line-height:1.8;margin:20px 0 0;padding:14px 0;border-top:1px solid #888888}
+footer{font-size:18px;line-height:1.7;margin-top:28px;padding-top:16px;border-top:2px solid #1F3A65}
+</style><main>
+<header><p class="course">固体2級 · 第4章 ／ 相関図</p><h1>物理法則から、節点の方程式へ</h1><p class="legend">矢印の言葉で、項目どうしの関係をたどれます。</p></header>
+<section><h2>方程式を作る原理</h2><div class="graph" data-edges="[[&quot;energy&quot;,&quot;weak&quot;,&quot;変分を取る&quot;],[&quot;residual&quot;,&quot;weak&quot;,&quot;部分積分する&quot;],[&quot;weak&quot;,&quot;fem&quot;,&quot;補間を代入する&quot;]]"><div class="row "><article class="node" data-id="energy"><h3>仕事とエネルギー</h3><p>内部に蓄える量と外力の仕事を数える。</p><span class="refs">4-4〜4-8</span></article><article class="node" data-id="residual"><h3>釣合い式の残差</h3><p>残差に重みを掛けて積分する。ガラーキン法は重みの選び方。</p><span class="refs">4-2〜4-3、4-11、4-14</span></article></div><div class="row single"><article class="node" data-id="weak"><h3>仮想仕事・弱形式</h3><p>内部の仕事と、物体力・表面力の仕事を釣り合わせる。</p><span class="refs">4-9〜4-10、4-12</span></article></div><div class="row single"><article class="node" data-id="fem"><h3>有限要素の式へ</h3><p>連続した変位場を、節点変位で近似する。</p><span class="refs">4-1</span></article></div></div><p class="note">エネルギーからの導出は、対応するポテンシャルを定義できる条件で用います。</p></section><section><h2>N・B・D は何を受け渡す？</h2><div class="graph" data-edges="[[&quot;N&quot;,&quot;B&quot;,&quot;補間を微分する&quot;],[&quot;B&quot;,&quot;D&quot;,&quot;ひずみに材料則を使う&quot;],[&quot;D&quot;,&quot;K&quot;,&quot;BとDから要素剛性へ&quot;],[&quot;K&quot;,&quot;bc&quot;,&quot;全体の連立方程式へ&quot;]]"><div class="row single"><article class="node" data-id="N"><h3>N：節点 → 要素内部</h3><p>形状関数で変位を補間する。</p><span class="refs">4-15〜4-16、4-18、4-29</span></article></div><div class="row single"><article class="node" data-id="B"><h3>B：変位 → ひずみ</h3><p>形状関数の微分を使う。</p><span class="refs">4-17、4-19〜4-20</span></article></div><div class="row single"><article class="node" data-id="D"><h3>D：ひずみ → 応力</h3><p>平面応力か平面ひずみかで材料行列を選ぶ。</p><span class="refs">4-21</span></article></div><div class="row single"><article class="node" data-id="K"><h3>要素剛性を組み立てる</h3><p>BとDを使って要素の式を作り、共有節点で足し合わせる。</p><span class="refs">4-22〜4-26</span></article></div><div class="row single"><article class="node" data-id="bc"><h3>既知の値を与えて解く</h3><p>変位拘束、荷重、初期ひずみ・初期応力を組み込む。</p><span class="refs">4-13、4-27〜4-28</span></article></div></div></section>
+<footer>線の言葉が、二つの項目の関係を表します。<br>番号から対応する章・問題へ戻って確認できます。</footer></main><script>function drawRelations() {
+  const ns = 'http://www.w3.org/2000/svg';
+  const issues = [];
+  document.querySelectorAll('.graph').forEach((graph, index) => {
+    graph.querySelectorAll('.edges,.edge-label').forEach(el => el.remove());
+    const svg = document.createElementNS(ns, 'svg'); svg.classList.add('edges');
+    svg.setAttribute('aria-hidden', 'true');
+    const bounds = graph.getBoundingClientRect();
+    svg.setAttribute('viewBox', `0 0 ${bounds.width} ${bounds.height}`);
+    svg.innerHTML = `<defs><marker id="arrow${index}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#1F3A65"/></marker></defs>`;
+    graph.prepend(svg);
+    const relations = JSON.parse(graph.dataset.edges);
+    const points = [];
+    relations.forEach(([from, to, label, kind]) => {
+      const a = graph.querySelector(`[data-id="${from}"]`).getBoundingClientRect();
+      const b = graph.querySelector(`[data-id="${to}"]`).getBoundingClientRect();
+      const x1 = a.x + a.width/2 - bounds.x, x2 = b.x + b.width/2 - bounds.x;
+      const y1 = a.bottom - bounds.y + 3, y2 = b.top - bounds.y - 6;
+      const mid = (y1 + y2)/2;
+      const line = document.createElementNS(ns, 'path');
+      line.setAttribute('d', `M ${x1} ${y1} L ${x1} ${y1+18} L ${x2} ${y2-18} L ${x2} ${y2}`);
+      line.setAttribute('fill','none'); line.setAttribute('stroke',kind === 'compare' ? '#888888' : '#1F3A65'); line.setAttribute('stroke-width','2.5');
+      if (kind === 'compare') line.setAttribute('stroke-dasharray','7 5'); else line.setAttribute('marker-end',`url(#arrow${index})`);
+      svg.append(line);
+      const caption = document.createElement('span'); caption.className = 'edge-label' + (kind === 'compare' ? ' compare' : ''); caption.textContent = label;
+      // Separate branch captions into their own half of the gap, without detaching from the line.
+      const isFork = relations.filter(e => e[0] === from).length > 1;
+      const isJoin = relations.filter(e => e[1] === to).length > 1;
+      const x = isFork ? x2 : isJoin ? x1 : (x1+x2)/2;
+      caption.style.left = x + 'px'; caption.style.top = mid + 'px';
+      graph.append(caption);
+      points.push({caption,from,to});
+    });
+    const rect = el => el.getBoundingClientRect();
+    const intersects = (a,b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+    points.forEach(({caption,from,to}, i) => {
+      const b = rect(caption);
+      if (b.left < bounds.left || b.right > bounds.right) issues.push(`edge outside graph: ${from}/${to}`);
+      for(const node of graph.querySelectorAll('.node')) if(intersects(b,rect(node))) issues.push(`edge overlaps node: ${from}/${to}`);
+      for(const prev of points.slice(0,i)) if(intersects(b,rect(prev.caption))) issues.push(`edge labels overlap: ${from}/${to}`);
+    });
+  });
+  for(const el of document.querySelectorAll('.node,h1,h2,.note,.refs')) if(el.scrollWidth > el.clientWidth+1) issues.push('text overflow: '+el.textContent.slice(0,30));
+  window.relationMapIssues = issues; window.relationMapReady = true;
+};document.fonts.ready.then(drawRelations);</script></html>

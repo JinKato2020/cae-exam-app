@@ -1,196 +1,62 @@
-<title>固体1級 第2章 相関図プレビュー</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<style>
-  /* レイアウト: 1図構成。各問の要点＋キー公式を A降伏と硬化／B流れと解析／C時間と大変形 の3トラックにサブ分け。CAE標準色をトークン化 */
-  :root {
-    --bg: #f5f6f9;
-    --surface: #ffffff;
-    --ink: #1F3A65;        /* 主線・見出し */
-    --ink-soft: #35507f;   /* 補助見出し */
-    --fill: #E1E7F2;       /* ボックス面 */
-    --accent: #C82D2D;     /* 強調 */
-    --muted: #6b7280;      /* 補助・凡例 */
-    --line: #c7d0e2;
-    --num: #1F3A65;
-    --form: #0b7285;       /* キー公式の色 */
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
-      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
-      --form: #5fd0e0; color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
-    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
-    --form: #5fd0e0; color-scheme: dark;
-  }
-  * { box-sizing: border-box; }
-  body {
-    background: var(--bg); color: var(--ink);
-    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
-    line-height: 1.5; margin: 0;
-  }
-  .wrap {
-    max-width: 1060px; margin: 0 auto;
-    padding-left: max(16px, env(safe-area-inset-left, 0px));
-    padding-right: max(16px, env(safe-area-inset-right, 0px));
-    padding-block: 24px 48px;
-  }
-  header.page { margin-bottom: 8px; }
-  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
-  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
-  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
-  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
-  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
-  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
-             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
-  .track-h.a { background: var(--ink); }
-  .track-h.b { background: var(--ink-soft); }
-  .track-h.c { background: var(--accent); }
-  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
-  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
-  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
-  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
-  .box.lead { border-color: var(--accent); }
-  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
-            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
-  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
-  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
-  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
-  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
-  .box.lead .q { background: var(--accent); }
-  li .txt { min-width: 0; }
-  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
-  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
-  .grayband {
-    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
-    padding: 12px 14px; margin-top: 18px;
-  }
-  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
-  .grayband ul.q-list { gap: 7px; }
-  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
-  @media (max-width: 760px) {
-    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 460px) {
-    .grid4, .grid3 { grid-template-columns: 1fr; }
-  }
-</style>
-
-<div class="wrap">
-  <header class="page">
-    <h1>固体1級 第2章「材料非線形」相関図（プレビュー）</h1>
-    <p>各問の要点とキー公式を、A 降伏と硬化（塑性の入口と記憶）／B 流れと塑性解析（どう進み・解き・崩れるか）／C 時間と大変形（熱・クリープ・粘弾性・超弾性）の3トラックにサブ分けして配置。</p>
-  </header>
-
-  <section class="fig">
-    <h2>材料非線形 ― 各問の要点とキー公式</h2>
-    <p class="lead">材料が線形弾性からはずれる「弾塑性・時間依存・大変形」のふるまいを、全29問を A／B／C に整理。</p>
-
-    <!-- トラックA -->
-    <div class="track-h a">A｜降伏と硬化（いつ塑性が始まり、どう記憶するか）</div>
-    <div class="track-desc">材料が元に戻る弾性から、戻らない塑性へ移る境目を押さえる段。まず弾塑性線図で全ひずみを弾性分と塑性分に分け、次にミーゼス・トレスカ・モール・クーロンなど「いつ降伏するか」を決める降伏条件を比べる。さらに塑性変形を重ねると降伏面がどう変わるか（等方硬化＝拡大、移動硬化＝背応力による中心移動）を整理する。ここで決まる降伏面と硬化則が、トラックBの流れ則・解析の前提になる。</div>
-    <div class="grid4">
-      <div class="box">
-        <h3>弾塑性の応力ひずみ</h3>
-        <ul class="q-list">
-          <li><span class="q">2-1</span><span class="txt"><b>2直線近似の塑性ひずみ</b>全ひずみ＝弾性＋塑性　<span class="f">εᵖ=ε−σ/E</span></span></li>
-        </ul>
-      </div>
-      <div class="box lead">
-        <h3>降伏条件（ミーゼス系）</h3>
-        <ul class="q-list">
-          <li><span class="q">2-2</span><span class="txt"><b>ミーゼス条件の意味</b><span class="f">せん断ひずみエネルギー説</span></span></li>
-          <li><span class="q">2-3</span><span class="txt"><b>ミーゼスのせん断降伏応力</b>純せん断を主応力に　<span class="f">τ=Y/√3</span></span></li>
-          <li><span class="q">2-4</span><span class="txt"><b>平面応力の降伏曲線</b><span class="f">ミーゼス楕円・トレスカ六角形・最大主応力正方形</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>摩擦性・静水圧依存</h3>
-        <ul class="q-list">
-          <li><span class="q">2-5</span><span class="txt"><b>モール・クーロン条件</b>土・砂の限界線　<span class="f">|τ|=c+σₙtanφ</span></span></li>
-          <li><span class="q">2-6</span><span class="txt"><b>静水圧を考慮する条件</b><span class="f">MC・DPは依存／ミーゼス・トレスカは非依存</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>硬化則（降伏面の変化）</h3>
-        <ul class="q-list">
-          <li><span class="q">2-7</span><span class="txt"><b>等方硬化の再降伏</b>両側へ同じ大きさで拡大　<span class="f">範囲 ±σ(硬化後)</span></span></li>
-          <li><span class="q">2-8</span><span class="txt"><b>移動硬化・バウシンガー効果</b>大きさ一定で中心移動　<span class="f">σ=α−Y</span></span></li>
-          <li><span class="q">2-9</span><span class="txt"><b>線形移動硬化の反転負荷</b>除荷は傾きE・幅2Y　<span class="f">|σ−α|=Y</span></span></li>
-          <li><span class="q">2-10</span><span class="txt"><b>降伏関数と背応力</b>aᵢⱼ＝中心移動　<span class="f">f=(3/2)(s−a)(s−a)−σy²</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- トラックB -->
-    <div class="track-h b">B｜流れと塑性解析（どう進み・どう解き・どこで崩れるか）</div>
-    <div class="track-desc">降伏したあと塑性変形が「どの向きに・どれだけ進むか」を決める流れ則と、それを使った解析を扱う段。関連流れ則では塑性ひずみ増分が降伏面の外向き法線方向を向き、相当応力・相当塑性ひずみで多軸状態を1つの尺度にまとめる。進む量は経路に依存するため積分で追う。さらに弾性を無視する剛塑性解析と上界定理、繰返しでのシェイクダウン、断面全体が降伏する塑性崩壊まで、塑性を「解く・評価する」側面をまとめる。</div>
-    <div class="grid4">
-      <div class="box lead">
-        <h3>流れ則・法線則</h3>
-        <ul class="q-list">
-          <li><span class="q">2-11</span><span class="txt"><b>3荷重経路の軸ひずみ比較</b>経路依存性　<span class="f">dεᵖ=σdσ̄/(Hσ̄)・A&lt;B&lt;C</span></span></li>
-          <li><span class="q">2-12</span><span class="txt"><b>流れ則と関連流れ則</b>関連＝降伏関数を塑性ポテンシャルに　<span class="f">g=F</span></span></li>
-          <li><span class="q">2-13</span><span class="txt"><b>法線則と負荷・除荷判定</b>塑性増分は外向き法線　<span class="f">負荷で (∂F/∂σ)dσ&gt;0</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>相当応力・相当ひずみ</h3>
-        <ul class="q-list">
-          <li><span class="q">2-14</span><span class="txt"><b>相当応力・相当塑性ひずみ速度の定義</b>偏差応力で　<span class="f">σ̄=√(3/2 s·s)・ε̄̇ᵖ=√(2/3 ε̇ᵖ·ε̇ᵖ)</span></span></li>
-          <li><span class="q">2-15</span><span class="txt"><b>平面応力3状態の相当応力比較</b><span class="f">せん断成分は2回数える</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>剛塑性解析・上界定理</h3>
-        <ul class="q-list">
-          <li><span class="q">2-16</span><span class="txt"><b>弾塑性と剛塑性解析の比較</b>剛塑性は弾性を無視　<span class="f">加工・崩壊解析向き</span></span></li>
-          <li><span class="q">2-17</span><span class="txt"><b>剛塑性FEMの上界定理</b>許容速度場で上界　<span class="f">散逸仕事率を最小化</span></span></li>
-          <li><span class="q">2-18</span><span class="txt"><b>上界原理の汎関数</b><span class="f">内部塑性散逸−物体力−表面力／体積一定</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>繰返し・塑性崩壊</h3>
-        <ul class="q-list">
-          <li><span class="q">2-19</span><span class="txt"><b>繰返し荷重とシェイクダウン</b>残留変形→弾性応答　<span class="f">メラン(静力学)・コイター(運動学)</span></span></li>
-          <li><span class="q">2-20</span><span class="txt"><b>はりの塑性崩壊と残留応力</b>全塑性で崩壊　<span class="f">崩壊倍率 Mp/My・除荷で残留応力</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- トラックC -->
-    <div class="track-h c">C｜時間と大変形（熱・クリープ・粘弾性・超弾性）</div>
-    <div class="track-desc">時間や温度、大きな伸びがかかわる非線形を扱う段。温度変化は熱ひずみを生み、拘束されると熱応力となるので、節点温度をみかけの荷重へ換算して熱弾塑性で解く。クリープは一定応力でも時間とともに変形が進む現象で、時間硬化則・ひずみ硬化則やノルトン則で表す。粘弾性はばねとダッシュポットの組合せ、超弾性はゴムの大変形をひずみエネルギー密度の微分で表す。いずれも「弾性＝瞬間・時間によらない」という前提を外した材料モデルである。</div>
-    <div class="grid3">
-      <div class="box">
-        <h3>熱弾塑性（温度 → 応力）</h3>
-        <ul class="q-list">
-          <li><span class="q">2-21</span><span class="txt"><b>熱応力による降伏温度</b>拘束で熱応力　<span class="f">σ=EαΔT=σy</span></span></li>
-          <li><span class="q">2-22</span><span class="txt"><b>熱弾塑性構成式の温度項</b>みかけの節点荷重へ　<span class="f">σ̇=[Dᵉᵖ]ε̇−Ṫ{Θ}</span></span></li>
-          <li><span class="q">2-23</span><span class="txt"><b>節点温度から熱応力</b>熱ひずみを初期ひずみに　<span class="f">{F}=∫Bᵀ D εᵗʰ dV</span></span></li>
-          <li><span class="q">2-24</span><span class="txt"><b>非定常熱と熱弾塑性の交互解析</b>積分点へ温度増分　<span class="f">形状関数固定なら増分補間と可換</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>クリープ・粘弾性（時間依存）</h3>
-        <ul class="q-list">
-          <li><span class="q">2-25</span><span class="txt"><b>クリープ解析（誤りを選ぶ）</b>3段階の速度　<span class="f">ノルトン則で非定常追跡</span></span></li>
-          <li><span class="q">2-26</span><span class="txt"><b>時間硬化則とひずみ硬化則</b>時間基準／ひずみ基準　<span class="f">εᶜ=Aσ√t</span></span></li>
-          <li><span class="q">2-27</span><span class="txt"><b>粘弾性モデル</b>並列＝フォークト／直列＝マックスウェル　<span class="f">クリープ・応力緩和</span></span></li>
-        </ul>
-      </div>
-      <div class="box lead">
-        <h3>超弾性（大変形）</h3>
-        <ul class="q-list">
-          <li><span class="q">2-28</span><span class="txt"><b>ゴムの大変形と超弾性モデル</b>非線形弾性　<span class="f">Neo-Hooke等・実験範囲に注意</span></span></li>
-          <li><span class="q">2-29</span><span class="txt"><b>超弾性体の構成式</b>エネルギーを微分して応力　<span class="f">S=∂W/∂E</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）降伏と硬化・B（藍）流れと塑性解析・C（赤）時間と大変形。全29問（A10・B10・C9）。矢印や並びは“理解のつながり”で、学習する順番そのものではありません。</p>
-  </section>
-</div>
+<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>固体1級 · 第2章 相関図</title><style>
+*{box-sizing:border-box}html,body{margin:0;background:#fff;color:#1F3A65;font-family:Meiryo,'メイリオ',Arial,sans-serif}
+main{width:600px;padding:24px}header{padding:0 0 22px;border-bottom:3px solid #1F3A65}
+.course{font-size:20px;font-weight:bold;margin:0 0 10px}h1{font-size:32px;line-height:1.5;margin:0;text-wrap:balance}
+.how{font-size:19px;line-height:1.7;margin:14px 0 0;color:#1F3A65}.legend{font-size:18px;line-height:1.65;margin:12px 0 0}
+section{margin-top:30px}h2{font-size:25px;line-height:1.6;margin:0 0 24px;padding:0 0 0 12px;border-left:5px solid #C82D2D;text-wrap:balance}
+.graph{position:relative}.row{display:flex;justify-content:center;gap:24px;align-items:stretch;position:relative}
+.row+.row{margin-top:112px}.node{width:264px;padding:16px 16px 14px;border:2px solid #1F3A65;border-radius:12px;background:#E1E7F2;position:relative;z-index:1}
+.row.single .node{width:440px}.node h3{font-size:24px;line-height:1.55;margin:0 0 10px;font-weight:bold;overflow-wrap:anywhere}
+.node p{font-size:22px;line-height:1.7;margin:0;overflow-wrap:anywhere}.refs{display:block;font-size:18px;line-height:1.65;margin-top:12px;padding-top:8px;border-top:1px solid #888888;overflow-wrap:anywhere}
+.row:last-of-type .node{border-color:#C82D2D}.edge-label{position:absolute;transform:translate(-50%,-50%);font-size:19px;line-height:1.5;text-align:center;background:#fff;padding:3px 8px;z-index:2;max-width:240px;width:max-content}
+.edge-label.compare{color:#888888}.edges{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:0;pointer-events:none}
+.note{font-size:20px;line-height:1.8;margin:20px 0 0;padding:14px 0;border-top:1px solid #888888}
+footer{font-size:18px;line-height:1.7;margin-top:28px;padding-top:16px;border-top:2px solid #1F3A65}
+</style><main>
+<header><p class="course">固体1級 · 第2章 ／ 相関図</p><h1>材料が変わるとき、何を決める？</h1><p class="legend">矢印の言葉で、項目どうしの関係をたどれます。</p></header>
+<section><h2>塑性：いつ始まり、どう進み、次にどう変わる？</h2><div class="graph" data-edges="[[&quot;split&quot;,&quot;yield&quot;,&quot;塑性の開始を判定&quot;],[&quot;yield&quot;,&quot;flow&quot;,&quot;変形の方向を決定&quot;],[&quot;yield&quot;,&quot;hard&quot;,&quot;降伏後の限界を更新&quot;],[&quot;flow&quot;,&quot;history&quot;,&quot;ひずみ増分を加える&quot;],[&quot;hard&quot;,&quot;history&quot;,&quot;各段階の状態を更新&quot;]]"><div class="row single"><article class="node" data-id="split"><h3>弾性と塑性を分ける</h3><p>戻るひずみと、力を除いても残るひずみを区別する。</p><span class="refs">2-1</span></article></div><div class="row single"><article class="node" data-id="yield"><h3>いつ？：降伏条件</h3><p>相当応力などで限界を判定。材料により圧力依存性が異なる。</p><span class="refs">2-2〜2-6、2-14〜2-15</span></article></div><div class="row "><article class="node" data-id="flow"><h3>どちらへ？：流れ則</h3><p>塑性ひずみ増分の方向を決める。関連流れ則では降伏面の法線方向。</p><span class="refs">2-12〜2-13</span></article><article class="node" data-id="hard"><h3>次の限界は？：硬化則</h3><p>降伏面の大きさや位置の変化を決める。反転時の応答にも効く。</p><span class="refs">2-7〜2-10</span></article></div><div class="row single"><article class="node" data-id="history"><h3>経路に沿って積み重ねる</h3><p>流れ則と硬化則を使って増分を積分する。最後の応力だけでは決まらない。</p><span class="refs">2-11、2-19〜2-20</span></article></div></div></section><section><h2>目的・時間・温度に応じてモデルを組み合わせる</h2><div class="graph" data-edges="[[&quot;choose&quot;,&quot;plastic&quot;,&quot;永久変形を扱う&quot;],[&quot;choose&quot;,&quot;thermal&quot;,&quot;温度で変形する&quot;]]"><div class="row single"><article class="node" data-id="choose"><h3>何を再現したい？</h3><p>残留変形、温度による変形、時間依存、大きな弾性変形を見分ける。</p></article></div><div class="row "><article class="node" data-id="plastic"><h3>弾塑性・剛塑性</h3><p>弾性回復が必要か判断。剛塑性では上界原理などを用いる。</p><span class="refs">2-16〜2-18</span></article><article class="node" data-id="thermal"><h3>温度を入力</h3><p>熱ひずみを初期ひずみとして扱い、等価節点力へ変換する。</p><span class="refs">2-21〜2-24</span></article></div></div><p class="note">解析方法と温度入力は組み合わせて使います。温度を考えること自体は、材料構成式の選択とは別です。</p></section><section><h2>時間依存と、大きな弾性変形を区別する</h2><div class="graph" data-edges="[[&quot;response&quot;,&quot;time&quot;,&quot;時間で変化する&quot;],[&quot;response&quot;,&quot;rubber&quot;,&quot;大きな弾性変形&quot;]]"><div class="row single"><article class="node" data-id="response"><h3>いつ・どのくらい変形する？</h3><p>同じ荷重でも時間で変わるか。大きく伸びても弾性的に戻るか。</p></article></div><div class="row "><article class="node" data-id="time"><h3>時間の影響を表す</h3><p>クリープは荷重を保っても進む変形。粘弾性はばねと粘性の組合せ。</p><span class="refs">2-25〜2-27</span></article><article class="node" data-id="rubber"><h3>大きな弾性変形を表す</h3><p>超弾性はひずみエネルギーから応力を導く。塑性とは異なる。</p><span class="refs">2-28〜2-29</span></article></div></div><p class="note">実際の材料は複数の性質を持ちます。モデルは再現したい現象に合わせて選びます。</p></section>
+<footer>線の言葉が、二つの項目の関係を表します。<br>番号から対応する章・問題へ戻って確認できます。</footer></main><script>function drawRelations() {
+  const ns = 'http://www.w3.org/2000/svg';
+  const issues = [];
+  document.querySelectorAll('.graph').forEach((graph, index) => {
+    graph.querySelectorAll('.edges,.edge-label').forEach(el => el.remove());
+    const svg = document.createElementNS(ns, 'svg'); svg.classList.add('edges');
+    svg.setAttribute('aria-hidden', 'true');
+    const bounds = graph.getBoundingClientRect();
+    svg.setAttribute('viewBox', `0 0 ${bounds.width} ${bounds.height}`);
+    svg.innerHTML = `<defs><marker id="arrow${index}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#1F3A65"/></marker></defs>`;
+    graph.prepend(svg);
+    const relations = JSON.parse(graph.dataset.edges);
+    const points = [];
+    relations.forEach(([from, to, label, kind]) => {
+      const a = graph.querySelector(`[data-id="${from}"]`).getBoundingClientRect();
+      const b = graph.querySelector(`[data-id="${to}"]`).getBoundingClientRect();
+      const x1 = a.x + a.width/2 - bounds.x, x2 = b.x + b.width/2 - bounds.x;
+      const y1 = a.bottom - bounds.y + 3, y2 = b.top - bounds.y - 6;
+      const mid = (y1 + y2)/2;
+      const line = document.createElementNS(ns, 'path');
+      line.setAttribute('d', `M ${x1} ${y1} L ${x1} ${y1+18} L ${x2} ${y2-18} L ${x2} ${y2}`);
+      line.setAttribute('fill','none'); line.setAttribute('stroke',kind === 'compare' ? '#888888' : '#1F3A65'); line.setAttribute('stroke-width','2.5');
+      if (kind === 'compare') line.setAttribute('stroke-dasharray','7 5'); else line.setAttribute('marker-end',`url(#arrow${index})`);
+      svg.append(line);
+      const caption = document.createElement('span'); caption.className = 'edge-label' + (kind === 'compare' ? ' compare' : ''); caption.textContent = label;
+      // Separate branch captions into their own half of the gap, without detaching from the line.
+      const isFork = relations.filter(e => e[0] === from).length > 1;
+      const isJoin = relations.filter(e => e[1] === to).length > 1;
+      const x = isFork ? x2 : isJoin ? x1 : (x1+x2)/2;
+      caption.style.left = x + 'px'; caption.style.top = mid + 'px';
+      graph.append(caption);
+      points.push({caption,from,to});
+    });
+    const rect = el => el.getBoundingClientRect();
+    const intersects = (a,b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+    points.forEach(({caption,from,to}, i) => {
+      const b = rect(caption);
+      if (b.left < bounds.left || b.right > bounds.right) issues.push(`edge outside graph: ${from}/${to}`);
+      for(const node of graph.querySelectorAll('.node')) if(intersects(b,rect(node))) issues.push(`edge overlaps node: ${from}/${to}`);
+      for(const prev of points.slice(0,i)) if(intersects(b,rect(prev.caption))) issues.push(`edge labels overlap: ${from}/${to}`);
+    });
+  });
+  for(const el of document.querySelectorAll('.node,h1,h2,.note,.refs')) if(el.scrollWidth > el.clientWidth+1) issues.push('text overflow: '+el.textContent.slice(0,30));
+  window.relationMapIssues = issues; window.relationMapReady = true;
+};document.fonts.ready.then(drawRelations);</script></html>

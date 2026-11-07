@@ -159,7 +159,17 @@ def easy_explanation_errors(data):
         # 統一解説へ改稿した固体2級1〜13章も、必要な導出と読みやすさで判断する。
         concise_solid2_guided = (meta.get("grade") == "固体力学 2級"
                                 and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13) and mode == 'guided')
-        if sections and not (concise_solid1 or concise_solid2_guided):
+        # 熱流体1級・単相流1〜8章も統一教材へ移行。小問ごとに必要な説明を残し、水増ししない。
+        concise_thermal1_guided = (meta.get("grade") == "熱流体力学 1級"
+                                  and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8) and mode == 'guided')
+        # JSONで数式のバックスラッシュを落とすと、nu等が制御文字として保存されても描画は通る。
+        # 改稿済み単相流のインライン数式には実際の改行・タブ等を入れない。
+        if concise_thermal1_guided:
+            for section in sections:
+                for formula in re.findall(r'\$([^$]*)\$', section['body']):
+                    if any(ord(c) < 32 for c in formula):
+                        errors.append(f"{num}: 数式内に制御文字があります。LaTeXのエスケープを確認してください")
+        if sections and not (concise_solid1 or concise_solid2_guided or concise_thermal1_guided):
             length = easy_explanation_body_length(sections)
             if length < EASY_EXPLANATION_MIN_CHARS:
                 errors.append(f"{num}: やさしく解説の本文が{length}字で"
@@ -170,6 +180,39 @@ def easy_explanation_errors(data):
 # 公式で記述指定を確認済みの根拠の指紋。非公開原本を持たない配信CIでも制約を維持する。
 # 新しい記述番号は保存済み公式テキストを人が確認した後にだけ登録する。
 OFFICIAL_WRITTEN_EVIDENCE = {
+    ('熱流体力学 1級', '7-1'): '89889cdee5f310ef434e32c7a5a76bf5f830b8d9f42bc5b9417bd1274614af33',
+    ('熱流体力学 1級', '7-2'): '764f0065c06a844440e6b2bf8739b6fa59139e0ce651ae82dc111ce6ca9c9d37',
+    ('熱流体力学 1級', '7-10'): 'a227b87861f13eeaea848314869aa21f424e7382cca5e949fedaa205f7f1f8b8',
+    ('熱流体力学 1級', '8-7'): '26c0bea1da6a39e0f8affe8a83a9c7383173267dd4d9e4ece8d3873494b91b07',
+    ('熱流体力学 1級', '8-8'): '4aa1368ed847f8d9f3ed400e7286d7bc12999bb05e5a4e054f02e78afc681b87',
+    ('熱流体力学 1級', '8-12'): '9a2b29477c75f465b7a16fa2f703ac1f1bf256c7d02ee874a8e273d82379b2dd',
+    ('熱流体力学 1級', '8-14'): '023a20e18fe2ff543d308b4904f03fa02bd5041932912cf27a8e664b59c984d2',
+    ('熱流体力学 1級', '5-1'): '029c00140cdc2103f07967173c0d364be3ef199665e5cbdafa18e8e289f498e3',
+    ('熱流体力学 1級', '5-5'): '68464147cdeb806d49a797ecc00397e8ba70bedd66fbe6ab797b994985cacb7c',
+    ('熱流体力学 1級', '5-6'): 'a805ae4cebbab071834816d29066bacbddecde501fb78b726fee46801387e716',
+    ('熱流体力学 1級', '5-10'): 'd82f9c29fd4ff722aa23e1df23e0e22062a406ed1caa938c1b37574e658f758c',
+    ('熱流体力学 1級', '6-2'): '853a2e0b78c56064351affd735065f206f8978a85bb6554736b9e6b1fd8008d8',
+    ('熱流体力学 1級', '6-3'): '391e17b8ada47e1657a4b8a05834436c3b44c2d2e62bfb379b8dd3202a97c5c8',
+    ('熱流体力学 1級', '6-4'): 'cc95314aea2f80411a3907b78f48f86ee19eaf69d03807f457186746d243e847',
+    ('熱流体力学 1級', '6-5'): 'e4099ed7a18ba3c51dad445e10709c5d84bfcae73aa74005e47e7f1c3838c5e7',
+    ('熱流体力学 1級', '6-6'): '52e86e4d8de96cd0bcf06cc5a2b6a52f12ea06cd62f1d368a74bc75b0cb5b7d3',
+    ('熱流体力学 1級', '6-7'): '8382eb6a4cbcfe3d45cb97c3604707ee8a39bf1e573dcf8353c58549d6276a6d',
+    ('熱流体力学 1級', '6-8'): '99c9ff26998b5d3b3c294a2c40c978da663c6540a2d34005bbfab931e829e1b3',
+    ('熱流体力学 1級', '6-9'): '5ac5266648ae7b6f7770f376624946db132257763bb101f96269e5bd48ea535d',
+    ('熱流体力学 1級', '6-10'): 'f352b339a6fe2fc67b856f0980a380d86622b3cdccb42d4a473246e51df5b404',
+    ('熱流体力学 1級', '6-11'): '4b1b2fe593d060a044c00ce59bbbf59c32ab03dcaff4e636407864d4ed4f803d',
+    ('熱流体力学 1級', '6-12'): '3009eb399207e303cc118c81a4e79b3c4321fe1837306038aad009156f9275e3',
+    ('熱流体力学 1級', '3-11'): '553f6f1db23dabbbf25d4556c4aa71127d3bfdefdb612af4ad3d1ca294fc2193',
+    ('熱流体力学 1級', '3-12'): '8cf28030d510466d612d27e3223d1ba367e4b72e645ca1cc112d73def02b9a25',
+    ('熱流体力学 1級', '4-3'): 'e72ae82fd9cc57dc07312561f423dbb9cd275a6b921b9870557dd9dfc956f76f',
+    ('熱流体力学 1級', '4-4'): 'bd4b831d049fb36fdda86da563854fbec0f78f024c42331e7c5960ef4335f183',
+    ('熱流体力学 1級', '4-6'): 'ff61e44dd0c90d3fc0df4af7462be489f13dbc504664308d901c888b11ecafb7',
+    ('熱流体力学 1級', '4-10'): 'aeb2c81a4d263ebdbca7929b00898011ed19db232031ebb26103aa7db294b28f',
+    ('熱流体力学 1級', '1-1'): '6b1f2f7fa9f4739ea360ed97d318524d059ecdcdd74de68508ed74edaa985c0f',
+    ('熱流体力学 1級', '1-2'): '1e69a5795c0307dae5b815d3ac028c02d4504ce3080ee4c07fd0cf98773df3be',
+    ('熱流体力学 1級', '1-3'): '61a0c0f219bdf57aee01d1446865fb1fe71ec870ffc82e7c701a97db6a9002f7',
+    ('熱流体力学 1級', '2-7'): 'e615b446064eddbdcc35f87e996de37c086c770c0cea4e96711ee4c2d36a403c',
+    ('熱流体力学 1級', '2-8'): 'bfa26875e205f91e92c5d69974f84f7c16e76a66d20626b8136ca4842c4e878d',
     ('固体力学 1級', '10-1'): 'df57380ec5af6c02cda36667e44bf92b88964f8f273c69347a402503ade41881',
     ('固体力学 1級', '10-6'): '9943656f19f0f52926da8a58451d6ad536b0c920f87478cd3b66f1daff343ed0',
     ('固体力学 1級', '10-7'): 'bc98c5666d4eb2f42f035e813c11960a8f2b9d14c59d47dd6e76d25adde0ed31',
@@ -258,7 +301,7 @@ def study_parts_errors(data):
                 # 記述・数値記入・語句記入の形式を原文で確認した指紋だけを許可する。
                 # 「記述選択」等のキーワード一致では登録せず、手元では根拠の原文にも照合する。
                 if (not source.resolve().is_relative_to(allowed) or fingerprint != registered
-                    or '問' + str(num) not in excerpt
+                    or not re.search(r'(?:問\s*|^(?:#{1,6}|-)\s+)' + re.escape(str(num)) + r'(?![\d-])', excerpt, re.MULTILINE)
                     or (source.is_file() and excerpt not in source.read_text(encoding='utf-8-sig'))):
                     errors.append(f'{num}: 公式の記述式である根拠を保存済みテキストから確認してください')
             elif part.get('responseType', 'choice') != 'choice' or len(part.get('choices', [])) not in (2, 4) or type(part.get('answer')) is not int or not 1 <= part['answer'] <= len(part['choices']):

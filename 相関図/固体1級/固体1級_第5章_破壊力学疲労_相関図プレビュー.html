@@ -1,191 +1,62 @@
-<title>固体1級 第5章 相関図プレビュー</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<style>
-  /* レイアウト: 1図構成。各問の要点＋キー公式を A破壊力学の基礎／BFEM評価／C疲労 の3トラックにサブ分け。CAE標準色をトークン化 */
-  :root {
-    --bg: #f5f6f9;
-    --surface: #ffffff;
-    --ink: #1F3A65;        /* 主線・見出し */
-    --ink-soft: #35507f;   /* 補助見出し */
-    --fill: #E1E7F2;       /* ボックス面 */
-    --accent: #C82D2D;     /* 強調 */
-    --muted: #6b7280;      /* 補助・凡例 */
-    --line: #c7d0e2;
-    --num: #1F3A65;
-    --form: #0b7285;       /* キー公式の色 */
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
-      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
-      --form: #5fd0e0; color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
-    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
-    --form: #5fd0e0; color-scheme: dark;
-  }
-  * { box-sizing: border-box; }
-  body {
-    background: var(--bg); color: var(--ink);
-    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
-    line-height: 1.5; margin: 0;
-  }
-  .wrap {
-    max-width: 1060px; margin: 0 auto;
-    padding-left: max(16px, env(safe-area-inset-left, 0px));
-    padding-right: max(16px, env(safe-area-inset-right, 0px));
-    padding-block: 24px 48px;
-  }
-  header.page { margin-bottom: 8px; }
-  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
-  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
-  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
-  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
-  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
-  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
-             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
-  .track-h.a { background: var(--ink); }
-  .track-h.b { background: var(--ink-soft); }
-  .track-h.c { background: var(--accent); }
-  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
-  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
-  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
-  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
-  .box.lead { border-color: var(--accent); }
-  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
-            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
-  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
-  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
-  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
-  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
-  .box.lead .q { background: var(--accent); }
-  li .txt { min-width: 0; }
-  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
-  li .f { color: var(--form); font-weight: 600; }  /* キー公式・用語 */
-  .grayband {
-    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
-    padding: 12px 14px; margin-top: 18px;
-  }
-  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
-  .grayband ul.q-list { gap: 7px; }
-  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
-  @media (max-width: 760px) {
-    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 460px) {
-    .grid4, .grid3 { grid-template-columns: 1fr; }
-  }
-</style>
-
-<div class="wrap">
-  <header class="page">
-    <h1>固体1級 第5章「破壊力学・疲労解析」相関図（プレビュー）</h1>
-    <p>各問の要点とキー公式を、A 破壊力学の基礎（き裂先端場とパラメータ）／B FEMでき裂を評価する（特異要素・エネルギー法）／C 疲労（寿命評価と設計）の3トラックにサブ分けして配置。</p>
-  </header>
-
-  <section class="fig">
-    <h2>破壊力学・疲労解析 ― 各問の要点とキー公式</h2>
-    <p class="lead">き裂のある部材が「どう壊れ、どう寿命を迎えるか」を、全24問を A／B／C に整理。</p>
-
-    <!-- トラックA -->
-    <div class="track-h a">A｜破壊力学の基礎（き裂先端場とパラメータ）</div>
-    <div class="track-desc">き裂のある部材の壊れ方を物理量で表す段。鋭いき裂の先端では応力が 1/√r で急増し、その強さを応力拡大係数 K、エネルギーの出入りをエネルギー解放率 G、経路によらない J 積分で表す。変形の向きはモードⅠ（開口）・Ⅱ（面内せん断）・Ⅲ（面外せん断）に分け、線形弾性なら重ね合わせられる。小規模降伏が成り立てば K で破壊を判定できる。ここで定義した K・G・J が、トラックBのFEM評価とトラックCのき裂進展の共通言語になる。</div>
-    <div class="grid4">
-      <div class="box lead">
-        <h3>き裂と破壊の全体像</h3>
-        <ul class="q-list">
-          <li><span class="q">5-1</span><span class="txt"><b>破壊現象の形態分類</b><span class="f">発生→安定成長→最終破断</span></span></li>
-          <li><span class="q">5-2</span><span class="txt"><b>き裂先端の応力特異性</b>主項1/√r　<span class="f">K(応力×√長さ)・G・J</span></span></li>
-          <li><span class="q">5-3</span><span class="txt"><b>小規模降伏とK支配場</b>塑性域が小・外側にK支配場　<span class="f">薄板で見かけじん性上昇</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>変形モードと対称性</h3>
-        <ul class="q-list">
-          <li><span class="q">5-4</span><span class="txt"><b>き裂の3変形モード</b><span class="f">Ⅰ開口・Ⅱ面内せん断・Ⅲ面外せん断（重ね合わせ）</span></span></li>
-          <li><span class="q">5-5</span><span class="txt"><b>モードⅠ・Ⅱの応力対称性</b>変位の向きから符号　<span class="f">Ⅰ:σy同値・τxy反転／Ⅱ:σy反転</span></span></li>
-          <li><span class="q">5-10</span><span class="txt"><b>傾斜角とKⅠ・KⅡのグラフ</b><span class="f">KⅠ/K₀=cos²θ・|KⅡ|/K₀=sinθcosθ</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>Kの重ね合わせ・相似則</h3>
-        <ul class="q-list">
-          <li><span class="q">5-6</span><span class="txt"><b>引張と曲げの重ね合わせ</b>膜＋純曲げに分解　<span class="f">KⅠ=σₜ√(πa)fₜ+σ_b√(πa)f_b</span></span></li>
-          <li><span class="q">5-7</span><span class="txt"><b>応力拡大係数の相似則</b>寸法3倍で応力1/√3　<span class="f">K=Yσ√(πa)</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>エネルギー解放率とJ積分</h3>
-        <ul class="q-list">
-          <li><span class="q">5-8</span><span class="txt"><b>エネルギー解放率とK</b>平面応力　<span class="f">G=(KⅠ²+KⅡ²)/E+(1+ν)KⅢ²/E</span></span></li>
-          <li><span class="q">5-9</span><span class="txt"><b>J積分の性質</b>経路独立・非線形弾性/全ひずみ理論　<span class="f">成立条件下で J=G</span></span></li>
-          <li><span class="q">5-16</span><span class="txt"><b>混合モードのJ積分</b><span class="f">J₁は延長方向x₁への全モード寄与</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- トラックB -->
-    <div class="track-h b">B｜FEMでき裂を評価する（特異要素・エネルギー法・COD）</div>
-    <div class="track-desc">先端応力が理論上は無限大になるき裂を、有限要素法で精度よく扱う技術の段。通常の多項式補間では 1/√r の急変を少数要素で表せないため、中間節点を先端から L/4 に移すBarsoum特異要素を使う。K や J は、先端を微小に動かしたときのエネルギー変化（エネルギー法・仮想き裂進展法）から求め、開口量は COD・CTOD で測る。対称性を使う半モデルでは変位を2倍するなどの約束がある。トラックAの K・G・J を、実際のメッシュ上で数値評価する手段をまとめる。</div>
-    <div class="grid3">
-      <div class="box lead">
-        <h3>特異要素</h3>
-        <ul class="q-list">
-          <li><span class="q">5-12</span><span class="txt"><b>Barsoumの1/4点要素</b>中間節点を先端からL/4　<span class="f">変位√r・応力1/√r</span></span></li>
-          <li><span class="q">5-13</span><span class="txt"><b>特異要素の役割</b>1/√r特異性を表現　<span class="f">少要素でK・J精度向上</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>エネルギー法・仮想進展</h3>
-        <ul class="q-list">
-          <li><span class="q">5-14</span><span class="txt"><b>エネルギー法によるK評価</b>対称半モデルのエネルギー差　<span class="f">G=ΣPΔv/(bΔa)・K=√(E′G)</span></span></li>
-          <li><span class="q">5-15</span><span class="txt"><b>仮想き裂進展法</b>先端を微小に剛体移動　<span class="f">Δaはき裂長の10⁻³〜10⁻⁴</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>き裂開口変位</h3>
-        <ul class="q-list">
-          <li><span class="q">5-17</span><span class="txt"><b>COD・CTOD</b>指定位置の上下開口幅　<span class="f">対称半モデルは2倍</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- トラックC -->
-    <div class="track-h c">C｜疲労（寿命評価と設計）</div>
-    <div class="track-desc">繰返し荷重でじわじわ壊れる疲労を評価する段。応力振幅と平均応力の影響は修正グッドマン線図、低サイクル域はひずみ基準のコフィン・マンソン則で寿命を見る。大きさの違う応力が混ざるときは線形累積損傷（マイナー則 D=Σn/N）で寿命を足し合わせる。すでにあるき裂は、進展速度 da/dN と応力拡大係数範囲 ΔK を結ぶパリス則で成長を追う。これらを踏まえ、安全寿命・フェールセーフ・損傷許容という設計思想を選ぶ。</div>
-    <div class="grid4">
-      <div class="box">
-        <h3>平均応力・寿命線</h3>
-        <ul class="q-list">
-          <li><span class="q">5-18</span><span class="txt"><b>平均応力一定の許容振幅</b>修正グッドマン　<span class="f">σa=σw(1−σm/σu)</span></span></li>
-          <li><span class="q">5-19</span><span class="txt"><b>コフィン・マンソン則</b>弾性成分＋塑性成分　<span class="f">εa=A(2Nf)ᵇ+B(2Nf)ᶜ</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>累積損傷</h3>
-        <ul class="q-list">
-          <li><span class="q">5-20</span><span class="txt"><b>最長寿命を与えるS-N線図</b>疲労限以下を損傷に入れない　<span class="f">D=Σn/N</span></span></li>
-          <li><span class="q">5-21</span><span class="txt"><b>マイナー則と修正マイナー則</b>線形累積損傷　<span class="f">D=Σnᵢ/Nᵢ=1で破断</span></span></li>
-        </ul>
-      </div>
-      <div class="box lead">
-        <h3>き裂進展（パリス則）</h3>
-        <ul class="q-list">
-          <li><span class="q">5-23</span><span class="txt"><b>進展速度とΔK</b>B領域で直線　<span class="f">da/dN=C(ΔK)ᵐ</span></span></li>
-          <li><span class="q">5-24</span><span class="txt"><b>パリス則で使うΔK</b>先に差をとる　<span class="f">ΔK=Kmax−Kmin</span></span></li>
-          <li><span class="q">5-11</span><span class="txt"><b>混合モード疲労き裂進展</b>最大周方向応力説で方向　<span class="f">ΔKe=[ΔKⅠ⁴+8ΔKⅡ⁴]¹ᐟ⁴</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>疲労設計の考え方</h3>
-        <ul class="q-list">
-          <li><span class="q">5-22</span><span class="txt"><b>疲労設計の3つの思想</b><span class="f">安全寿命・フェールセーフ・損傷許容</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー公式/用語</span>／A（青）破壊力学の基礎・B（藍）FEM評価・C（赤）疲労。全24問（A11・B5・C8）。矢印や並びは“理解のつながり”で、学習する順番そのものではありません。</p>
-  </section>
-</div>
+<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>固体1級 · 第5章 相関図</title><style>
+*{box-sizing:border-box}html,body{margin:0;background:#fff;color:#1F3A65;font-family:Meiryo,'メイリオ',Arial,sans-serif}
+main{width:600px;padding:24px}header{padding:0 0 22px;border-bottom:3px solid #1F3A65}
+.course{font-size:20px;font-weight:bold;margin:0 0 10px}h1{font-size:32px;line-height:1.5;margin:0;text-wrap:balance}
+.how{font-size:19px;line-height:1.7;margin:14px 0 0;color:#1F3A65}.legend{font-size:18px;line-height:1.65;margin:12px 0 0}
+section{margin-top:30px}h2{font-size:25px;line-height:1.6;margin:0 0 24px;padding:0 0 0 12px;border-left:5px solid #C82D2D;text-wrap:balance}
+.graph{position:relative}.row{display:flex;justify-content:center;gap:24px;align-items:stretch;position:relative}
+.row+.row{margin-top:112px}.node{width:264px;padding:16px 16px 14px;border:2px solid #1F3A65;border-radius:12px;background:#E1E7F2;position:relative;z-index:1}
+.row.single .node{width:440px}.node h3{font-size:24px;line-height:1.55;margin:0 0 10px;font-weight:bold;overflow-wrap:anywhere}
+.node p{font-size:22px;line-height:1.7;margin:0;overflow-wrap:anywhere}.refs{display:block;font-size:18px;line-height:1.65;margin-top:12px;padding-top:8px;border-top:1px solid #888888;overflow-wrap:anywhere}
+.row:last-of-type .node{border-color:#C82D2D}.edge-label{position:absolute;transform:translate(-50%,-50%);font-size:19px;line-height:1.5;text-align:center;background:#fff;padding:3px 8px;z-index:2;max-width:240px;width:max-content}
+.edge-label.compare{color:#888888}.edges{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:0;pointer-events:none}
+.note{font-size:20px;line-height:1.8;margin:20px 0 0;padding:14px 0;border-top:1px solid #888888}
+footer{font-size:18px;line-height:1.7;margin-top:28px;padding-top:16px;border-top:2px solid #1F3A65}
+</style><main>
+<header><p class="course">固体1級 · 第5章 ／ 相関図</p><h1>き裂の状態から、破壊と寿命を評価する</h1><p class="legend">矢印の言葉で、項目どうしの関係をたどれます。</p></header>
+<section><h2>き裂先端を、代表する量で表す</h2><div class="graph" data-edges="[[&quot;crack&quot;,&quot;K&quot;,&quot;先端の強さを表す&quot;],[&quot;crack&quot;,&quot;GJ&quot;,&quot;別の量で評価&quot;],[&quot;K&quot;,&quot;fem&quot;,&quot;特異性を再現&quot;],[&quot;GJ&quot;,&quot;fem&quot;,&quot;エネルギーを利用&quot;]]"><div class="row single"><article class="node" data-id="crack"><h3>き裂と変形モード</h3><p>発生・成長・破断を区別。開口・面内せん断・面外せん断を見分ける。</p><span class="refs">5-1、5-4〜5-5、5-10</span></article></div><div class="row "><article class="node" data-id="K"><h3>応力拡大係数 K</h3><p>小規模降伏などの条件で、先端近傍の特異な応力場を表す。</p><span class="refs">5-2〜5-3、5-6〜5-7</span></article><article class="node" data-id="GJ"><h3>エネルギーと開口量</h3><p>G・J・CODを、材料と変形の条件に応じて使う。</p><span class="refs">5-8〜5-9、5-16〜5-17</span></article></div><div class="row single"><article class="node" data-id="fem"><h3>FEMで先端を評価</h3><p>特異要素で先端の場を表し、エネルギー差や仮想進展からも評価する。</p><span class="refs">5-12〜5-15</span></article></div></div></section><section><h2>繰返し荷重から、寿命へ</h2><div class="graph" data-edges="[[&quot;load&quot;,&quot;damage&quot;,&quot;発生までの寿命&quot;],[&quot;load&quot;,&quot;growth&quot;,&quot;既存き裂の成長&quot;],[&quot;damage&quot;,&quot;design&quot;,&quot;寿命の根拠&quot;],[&quot;growth&quot;,&quot;design&quot;,&quot;点検・許容の根拠&quot;]]"><div class="row single"><article class="node" data-id="load"><h3>荷重の振幅と平均</h3><p>平均応力やひずみ振幅を寿命の関係に結び付ける。</p><span class="refs">5-18〜5-19</span></article></div><div class="row "><article class="node" data-id="damage"><h3>損傷を積み重ねる</h3><p>S–N線図とマイナー則などで荷重の繰返しを数える。</p><span class="refs">5-20〜5-21</span></article><article class="node" data-id="growth"><h3>き裂進展を追う</h3><p>荷重範囲からΔKを求め、パリス則などで進展を評価する。</p><span class="refs">5-11、5-23〜5-24</span></article></div><div class="row single"><article class="node" data-id="design"><h3>疲労設計へ</h3><p>安全寿命・フェールセーフ・損傷許容を目的に応じて選ぶ。</p><span class="refs">5-22</span></article></div></div></section>
+<footer>線の言葉が、二つの項目の関係を表します。<br>番号から対応する章・問題へ戻って確認できます。</footer></main><script>function drawRelations() {
+  const ns = 'http://www.w3.org/2000/svg';
+  const issues = [];
+  document.querySelectorAll('.graph').forEach((graph, index) => {
+    graph.querySelectorAll('.edges,.edge-label').forEach(el => el.remove());
+    const svg = document.createElementNS(ns, 'svg'); svg.classList.add('edges');
+    svg.setAttribute('aria-hidden', 'true');
+    const bounds = graph.getBoundingClientRect();
+    svg.setAttribute('viewBox', `0 0 ${bounds.width} ${bounds.height}`);
+    svg.innerHTML = `<defs><marker id="arrow${index}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#1F3A65"/></marker></defs>`;
+    graph.prepend(svg);
+    const relations = JSON.parse(graph.dataset.edges);
+    const points = [];
+    relations.forEach(([from, to, label, kind]) => {
+      const a = graph.querySelector(`[data-id="${from}"]`).getBoundingClientRect();
+      const b = graph.querySelector(`[data-id="${to}"]`).getBoundingClientRect();
+      const x1 = a.x + a.width/2 - bounds.x, x2 = b.x + b.width/2 - bounds.x;
+      const y1 = a.bottom - bounds.y + 3, y2 = b.top - bounds.y - 6;
+      const mid = (y1 + y2)/2;
+      const line = document.createElementNS(ns, 'path');
+      line.setAttribute('d', `M ${x1} ${y1} L ${x1} ${y1+18} L ${x2} ${y2-18} L ${x2} ${y2}`);
+      line.setAttribute('fill','none'); line.setAttribute('stroke',kind === 'compare' ? '#888888' : '#1F3A65'); line.setAttribute('stroke-width','2.5');
+      if (kind === 'compare') line.setAttribute('stroke-dasharray','7 5'); else line.setAttribute('marker-end',`url(#arrow${index})`);
+      svg.append(line);
+      const caption = document.createElement('span'); caption.className = 'edge-label' + (kind === 'compare' ? ' compare' : ''); caption.textContent = label;
+      // Separate branch captions into their own half of the gap, without detaching from the line.
+      const isFork = relations.filter(e => e[0] === from).length > 1;
+      const isJoin = relations.filter(e => e[1] === to).length > 1;
+      const x = isFork ? x2 : isJoin ? x1 : (x1+x2)/2;
+      caption.style.left = x + 'px'; caption.style.top = mid + 'px';
+      graph.append(caption);
+      points.push({caption,from,to});
+    });
+    const rect = el => el.getBoundingClientRect();
+    const intersects = (a,b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+    points.forEach(({caption,from,to}, i) => {
+      const b = rect(caption);
+      if (b.left < bounds.left || b.right > bounds.right) issues.push(`edge outside graph: ${from}/${to}`);
+      for(const node of graph.querySelectorAll('.node')) if(intersects(b,rect(node))) issues.push(`edge overlaps node: ${from}/${to}`);
+      for(const prev of points.slice(0,i)) if(intersects(b,rect(prev.caption))) issues.push(`edge labels overlap: ${from}/${to}`);
+    });
+  });
+  for(const el of document.querySelectorAll('.node,h1,h2,.note,.refs')) if(el.scrollWidth > el.clientWidth+1) issues.push('text overflow: '+el.textContent.slice(0,30));
+  window.relationMapIssues = issues; window.relationMapReady = true;
+};document.fonts.ready.then(drawRelations);</script></html>

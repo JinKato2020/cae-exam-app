@@ -4,6 +4,9 @@
 import type { ImageSourcePropType } from 'react-native';
 
 export const FIGURES: Record<string, ImageSourcePropType> = {
+  t1e3StaggeredSetup: require('../assets/figures/t1e3StaggeredSetup.png'),
+  t1e1WaterHammerChoices: require('../assets/figures/t1e1WaterHammerChoices.png'),
+  t1e1WaterHammerVelocity: require('../assets/figures/t1e1WaterHammerVelocity.png'),
   solid2_review_13_1_after: require('../assets/figures/solid2_review_13_1_after.png'),
   // 第1章 数学の基礎
   math2ndStencil: require('../assets/figures/math2ndStencil.png'),

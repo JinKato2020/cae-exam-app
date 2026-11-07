@@ -1,159 +1,62 @@
-<title>固体2級 第13章 相関図プレビュー</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<style>
-  /* レイアウト: 1図構成。各問の要点＋キー観点を A誠実さと報告／B情報と権利／C契約と立場 の3トラックにサブ分け。CAE標準色をトークン化 */
-  :root {
-    --bg: #f5f6f9;
-    --surface: #ffffff;
-    --ink: #1F3A65;        /* 主線・見出し */
-    --ink-soft: #35507f;   /* 補助見出し */
-    --fill: #E1E7F2;       /* ボックス面 */
-    --accent: #C82D2D;     /* 強調 */
-    --muted: #6b7280;      /* 補助・凡例 */
-    --line: #c7d0e2;
-    --num: #1F3A65;
-    --form: #0b7285;       /* キー観点の色 */
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
-      --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
-      --form: #5fd0e0; color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #0e141f; --surface: #16202f; --ink: #cdd9f0; --ink-soft: #9fb3d6;
-    --fill: #1f2d44; --accent: #ff6a6a; --muted: #9aa6ba; --line: #2c3a52; --num: #cdd9f0;
-    --form: #5fd0e0; color-scheme: dark;
-  }
-  * { box-sizing: border-box; }
-  body {
-    background: var(--bg); color: var(--ink);
-    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
-    line-height: 1.5; margin: 0;
-  }
-  .wrap {
-    max-width: 1060px; margin: 0 auto;
-    padding-left: max(16px, env(safe-area-inset-left, 0px));
-    padding-right: max(16px, env(safe-area-inset-right, 0px));
-    padding-block: 24px 48px;
-  }
-  header.page { margin-bottom: 8px; }
-  header.page h1 { font-size: 1.25rem; margin: 0 0 2px; letter-spacing: .02em; }
-  header.page p { margin: 0; color: var(--muted); font-size: .85rem; }
-  .fig { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 16px; margin-top: 22px; }
-  .fig h2 { font-size: 1.05rem; margin: 0 0 4px; text-align: center; color: var(--ink); text-wrap: balance; }
-  .fig .lead { text-align:center; color: var(--muted); font-size: .82rem; margin: 0 0 6px; }
-  .track-h { font-size: .9rem; color:#fff; font-weight: 800; letter-spacing:.03em;
-             margin: 18px 0 2px; padding: 6px 13px; border-radius: 8px; display:inline-block; }
-  .track-h.a { background: var(--ink); }
-  .track-h.b { background: var(--ink-soft); }
-  .track-h.c { background: var(--accent); }
-  .track-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.6; margin: 3px 2px 9px; }
-  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items:start; }
-  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items:start; }
-  .box { background: var(--fill); border: 1.5px solid var(--ink); border-radius: 10px; padding: 11px 12px; min-width: 0; }
-  .box.lead { border-color: var(--accent); }
-  .box h3 { margin: 0 0 7px; font-size: .86rem; color: var(--ink); font-weight: 800;
-            border-bottom: 1.5px solid var(--line); padding-bottom: 5px; }
-  .box.lead h3 { color: var(--accent); border-bottom-color: var(--accent); }
-  ul.q-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
-  ul.q-list li { font-size: .79rem; color: var(--ink-soft); display: grid; grid-template-columns: auto 1fr; gap: 7px; align-items: baseline; }
-  .q { color: #fff; background: var(--num); border-radius: 5px; padding: 1px 6px; font-size: .71rem; font-weight: 700; white-space: nowrap; }
-  .box.lead .q { background: var(--accent); }
-  li .txt { min-width: 0; }
-  li .txt b { font-weight: 700; color: var(--ink); display:block; margin-bottom: 1px; }
-  li .f { color: var(--form); font-weight: 600; }  /* キー観点・用語 */
-  .grayband {
-    border: 1.5px dashed var(--muted); background: transparent; border-radius: 10px;
-    padding: 12px 14px; margin-top: 18px;
-  }
-  .grayband b.gh { color: var(--muted); font-size: .88rem; display:block; margin-bottom: 8px; }
-  .grayband ul.q-list { gap: 7px; }
-  .legend { margin-top: 14px; color: var(--muted); font-size: .76rem; text-align: center; }
-  @media (max-width: 760px) {
-    .grid4, .grid3 { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 460px) {
-    .grid4, .grid3 { grid-template-columns: 1fr; }
-  }
-</style>
-
-<div class="wrap">
-  <header class="page">
-    <h1>固体2級 第13章「計算力学技術者倫理」相関図（プレビュー）</h1>
-    <p>各問の要点とキー観点を、A 誠実さと報告／B 情報と権利を守る／C 契約と立場の誠実さ の3トラックにサブ分けして配置。</p>
-  </header>
-
-  <section class="fig">
-    <h2>計算力学技術者倫理 ― 各問の要点とキー観点</h2>
-    <p class="lead">計算結果を信頼できるものにする最後の工程。技術者としての責任・判断を、全12問を A／B／C の3トラックに整理。</p>
-
-    <!-- トラックA -->
-    <div class="track-h a">A｜誠実さと報告（事実を曲げない）</div>
-    <div class="track-desc">技術者倫理の根っこは、法令を守ることに加えて、公衆の安全・誠実さ・専門家としての責任まで考える姿勢です。根拠のない数値の操作や隠蔽をせず、たとえ契約範囲外でも既知の誤りや影響は速やかに伝え、再計算・再評価して訂正します。「事実をそのまま報告する」ことがすべての判断の土台になります。</div>
-    <div class="grid3">
-      <div class="box">
-        <h3>判断の基盤</h3>
-        <ul class="q-list">
-          <li><span class="q">13-1</span><span class="txt"><b>倫理と法の関係</b><span class="f">法令遵守＋安全・誠実さ・専門的責任</span></span></li>
-        </ul>
-      </div>
-      <div class="box lead">
-        <h3>事実を曲げず報告する</h3>
-        <ul class="q-list">
-          <li><span class="q">13-2</span><span class="txt"><b>根拠のない材料係数の変更</b><span class="f">事実の歪曲・隠蔽の禁止</span></span></li>
-          <li><span class="q">13-8</span><span class="txt"><b>追加計算の誤りの通知</b>契約外でも　<span class="f">誠実報告（誤りと影響を速やかに）</span></span></li>
-          <li><span class="q">13-11</span><span class="txt"><b>複数の誤りの訂正</b>E・評価方法　<span class="f">再計算・再検証して報告</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- トラックB -->
-    <div class="track-h b">B｜情報と権利を守る（守秘・著作権・ライセンス）</div>
-    <div class="track-desc">仕事で扱うソフトやデータには、使ってよい範囲を定める使用許諾契約・著作権・守秘義務があります。「お金を払った」「同じ会社だ」「記憶している」だけでは利用や開示の権限は生まれません。対象・用途・台数・公開範囲を契約で確認し、機密は正規のルートで入手し、暗号化やアクセス制限で安全に管理します。</div>
-    <div class="grid3">
-      <div class="box">
-        <h3>ソフトの使用許諾・著作権</h3>
-        <ul class="q-list">
-          <li><span class="q">13-3</span><span class="txt"><b>指定外PCでの利用</b><span class="f">使用許諾契約（指定台数・移設条件）</span></span></li>
-          <li><span class="q">13-4</span><span class="txt"><b>購入と複製権限は別</b><span class="f">著作権・複製権の範囲を確認</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>情報管理・守秘義務</h3>
-        <ul class="q-list">
-          <li><span class="q">13-5</span><span class="txt"><b>適切な情報管理</b><span class="f">許された範囲・暗号化・アクセス制限</span></span></li>
-          <li><span class="q">13-6</span><span class="txt"><b>同一社内の別部署からの依頼</b><span class="f">守秘義務・必要最小限・利益相反調整</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>機密の正規入手・越権回避</h3>
-        <ul class="q-list">
-          <li><span class="q">13-9</span><span class="txt"><b>過去に知った評価基準</b><span class="f">社外秘・無断利用や越権の回避</span></span></li>
-          <li><span class="q">13-12</span><span class="txt"><b>機密データの正式な入手</b><span class="f">権限ある窓口・版/用途/利用範囲</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- トラックC -->
-    <div class="track-h c">C｜契約と立場の誠実さ（受発注・派遣）</div>
-    <div class="track-desc">契約の種類や自分の立場を正しく理解して、誠実に振る舞う段です。固定額契約で費用が下がっても勝手な返金や虚偽記載はせず、条件どおり請求し説明を求められたら事実を伝えます。労働者派遣と請負の違いを踏まえ、未達時は決めつけず、役割・契約・実態を確認して関係者と協議します。</div>
-    <div class="grid3">
-      <div class="box">
-        <h3>契約・受発注の誠実さ</h3>
-        <ul class="q-list">
-          <li><span class="q">13-7</span><span class="txt"><b>固定額契約と効率化</b><span class="f">精算条項の有無・虚偽記載の禁止</span></span></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h3>派遣の役割と責任</h3>
-        <ul class="q-list">
-          <li><span class="q">13-10</span><span class="txt"><b>派遣の役割と未達</b><span class="f">労働者派遣と請負の区別・指揮命令</span></span></li>
-        </ul>
-      </div>
-    </div>
-
-    <p class="legend">各行＝問番号＋要点＋<span style="color:var(--form);font-weight:600;">キー観点/用語</span>／A（青）誠実さと報告・B（藍）情報と権利・C（赤）契約と立場。倫理の事例判断が中心のため公式ではなく観点を示す。全12問（A4・B6・C2）。</p>
-  </section>
-</div>
+<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>固体2級 · 第13章 相関図</title><style>
+*{box-sizing:border-box}html,body{margin:0;background:#fff;color:#1F3A65;font-family:Meiryo,'メイリオ',Arial,sans-serif}
+main{width:600px;padding:24px}header{padding:0 0 22px;border-bottom:3px solid #1F3A65}
+.course{font-size:20px;font-weight:bold;margin:0 0 10px}h1{font-size:32px;line-height:1.5;margin:0;text-wrap:balance}
+.how{font-size:19px;line-height:1.7;margin:14px 0 0;color:#1F3A65}.legend{font-size:18px;line-height:1.65;margin:12px 0 0}
+section{margin-top:30px}h2{font-size:25px;line-height:1.6;margin:0 0 24px;padding:0 0 0 12px;border-left:5px solid #C82D2D;text-wrap:balance}
+.graph{position:relative}.row{display:flex;justify-content:center;gap:24px;align-items:stretch;position:relative}
+.row+.row{margin-top:112px}.node{width:264px;padding:16px 16px 14px;border:2px solid #1F3A65;border-radius:12px;background:#E1E7F2;position:relative;z-index:1}
+.row.single .node{width:440px}.node h3{font-size:24px;line-height:1.55;margin:0 0 10px;font-weight:bold;overflow-wrap:anywhere}
+.node p{font-size:22px;line-height:1.7;margin:0;overflow-wrap:anywhere}.refs{display:block;font-size:18px;line-height:1.65;margin-top:12px;padding-top:8px;border-top:1px solid #888888;overflow-wrap:anywhere}
+.row:last-of-type .node{border-color:#C82D2D}.edge-label{position:absolute;transform:translate(-50%,-50%);font-size:19px;line-height:1.5;text-align:center;background:#fff;padding:3px 8px;z-index:2;max-width:240px;width:max-content}
+.edge-label.compare{color:#888888}.edges{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:0;pointer-events:none}
+.note{font-size:20px;line-height:1.8;margin:20px 0 0;padding:14px 0;border-top:1px solid #888888}
+footer{font-size:18px;line-height:1.7;margin-top:28px;padding-top:16px;border-top:2px solid #1F3A65}
+</style><main>
+<header><p class="course">固体2級 · 第13章 ／ 相関図</p><h1>技術者として、何を守って判断する？</h1><p class="legend">矢印の言葉で、項目どうしの関係をたどれます。</p></header>
+<section><h2>安全・誠実さを、実際の行動へ</h2><div class="graph" data-edges="[[&quot;duty&quot;,&quot;truth&quot;,&quot;結果を扱うとき&quot;],[&quot;duty&quot;,&quot;rights&quot;,&quot;情報を扱うとき&quot;],[&quot;truth&quot;,&quot;action&quot;,&quot;正確に伝える&quot;],[&quot;rights&quot;,&quot;action&quot;,&quot;権限内で進める&quot;]]"><div class="row single"><article class="node" data-id="duty"><h3>専門家としての責任</h3><p>法令だけでなく、安全と誠実な技術判断を基準にする。</p><span class="refs">13-1</span></article></div><div class="row "><article class="node" data-id="truth"><h3>事実と根拠を守る</h3><p>都合のよい係数へ変えない。誤りと影響を隠さない。</p><span class="refs">13-2、13-8、13-11</span></article><article class="node" data-id="rights"><h3>権利と機密を守る</h3><p>使用許諾・複製範囲・守秘・正規の入手経路を確認。</p><span class="refs">13-3〜13-6、13-9、13-12</span></article></div><div class="row single"><article class="node" data-id="action"><h3>責任範囲を確認して行動</h3><p>契約・派遣の役割を理解し、誤りは訂正・報告、情報は許可範囲で扱う。</p><span class="refs">13-7、13-10</span></article></div></div><p class="note">契約上の範囲だけを理由に、安全に関わる誤りを放置しないことが大切です。</p></section>
+<footer>線の言葉が、二つの項目の関係を表します。<br>番号から対応する章・問題へ戻って確認できます。</footer></main><script>function drawRelations() {
+  const ns = 'http://www.w3.org/2000/svg';
+  const issues = [];
+  document.querySelectorAll('.graph').forEach((graph, index) => {
+    graph.querySelectorAll('.edges,.edge-label').forEach(el => el.remove());
+    const svg = document.createElementNS(ns, 'svg'); svg.classList.add('edges');
+    svg.setAttribute('aria-hidden', 'true');
+    const bounds = graph.getBoundingClientRect();
+    svg.setAttribute('viewBox', `0 0 ${bounds.width} ${bounds.height}`);
+    svg.innerHTML = `<defs><marker id="arrow${index}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#1F3A65"/></marker></defs>`;
+    graph.prepend(svg);
+    const relations = JSON.parse(graph.dataset.edges);
+    const points = [];
+    relations.forEach(([from, to, label, kind]) => {
+      const a = graph.querySelector(`[data-id="${from}"]`).getBoundingClientRect();
+      const b = graph.querySelector(`[data-id="${to}"]`).getBoundingClientRect();
+      const x1 = a.x + a.width/2 - bounds.x, x2 = b.x + b.width/2 - bounds.x;
+      const y1 = a.bottom - bounds.y + 3, y2 = b.top - bounds.y - 6;
+      const mid = (y1 + y2)/2;
+      const line = document.createElementNS(ns, 'path');
+      line.setAttribute('d', `M ${x1} ${y1} L ${x1} ${y1+18} L ${x2} ${y2-18} L ${x2} ${y2}`);
+      line.setAttribute('fill','none'); line.setAttribute('stroke',kind === 'compare' ? '#888888' : '#1F3A65'); line.setAttribute('stroke-width','2.5');
+      if (kind === 'compare') line.setAttribute('stroke-dasharray','7 5'); else line.setAttribute('marker-end',`url(#arrow${index})`);
+      svg.append(line);
+      const caption = document.createElement('span'); caption.className = 'edge-label' + (kind === 'compare' ? ' compare' : ''); caption.textContent = label;
+      // Separate branch captions into their own half of the gap, without detaching from the line.
+      const isFork = relations.filter(e => e[0] === from).length > 1;
+      const isJoin = relations.filter(e => e[1] === to).length > 1;
+      const x = isFork ? x2 : isJoin ? x1 : (x1+x2)/2;
+      caption.style.left = x + 'px'; caption.style.top = mid + 'px';
+      graph.append(caption);
+      points.push({caption,from,to});
+    });
+    const rect = el => el.getBoundingClientRect();
+    const intersects = (a,b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+    points.forEach(({caption,from,to}, i) => {
+      const b = rect(caption);
+      if (b.left < bounds.left || b.right > bounds.right) issues.push(`edge outside graph: ${from}/${to}`);
+      for(const node of graph.querySelectorAll('.node')) if(intersects(b,rect(node))) issues.push(`edge overlaps node: ${from}/${to}`);
+      for(const prev of points.slice(0,i)) if(intersects(b,rect(prev.caption))) issues.push(`edge labels overlap: ${from}/${to}`);
+    });
+  });
+  for(const el of document.querySelectorAll('.node,h1,h2,.note,.refs')) if(el.scrollWidth > el.clientWidth+1) issues.push('text overflow: '+el.textContent.slice(0,30));
+  window.relationMapIssues = issues; window.relationMapReady = true;
+};document.fonts.ready.then(drawRelations);</script></html>
