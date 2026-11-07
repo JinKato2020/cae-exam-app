@@ -162,14 +162,17 @@ def easy_explanation_errors(data):
         # 熱流体1級・単相流1〜8章も統一教材へ移行。小問ごとに必要な説明を残し、水増ししない。
         concise_thermal1_guided = (meta.get("grade") == "熱流体力学 1級"
                                   and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8) and mode == 'guided')
+        # 熱流体2級1〜11章も統合。必要な導出を優先し、文字数で水増ししない。
+        concise_thermal2_guided = (meta.get("grade") == "熱流体力学 2級"
+                                  and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11) and mode == 'guided')
         # JSONで数式のバックスラッシュを落とすと、nu等が制御文字として保存されても描画は通る。
         # 改稿済み単相流のインライン数式には実際の改行・タブ等を入れない。
-        if concise_thermal1_guided:
+        if concise_thermal1_guided or concise_thermal2_guided:
             for section in sections:
                 for formula in re.findall(r'\$([^$]*)\$', section['body']):
                     if any(ord(c) < 32 for c in formula):
                         errors.append(f"{num}: 数式内に制御文字があります。LaTeXのエスケープを確認してください")
-        if sections and not (concise_solid1 or concise_solid2_guided or concise_thermal1_guided):
+        if sections and not (concise_solid1 or concise_solid2_guided or concise_thermal1_guided or concise_thermal2_guided):
             length = easy_explanation_body_length(sections)
             if length < EASY_EXPLANATION_MIN_CHARS:
                 errors.append(f"{num}: やさしく解説の本文が{length}字で"

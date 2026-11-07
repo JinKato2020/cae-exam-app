@@ -217,7 +217,7 @@ assert any('制御文字' in e for e in easy_explanation_errors(d)),'escaped mat
 `], { stdio: 'pipe' });
 console.log('Guided grouped study: official written evidence, self-check, inline figures and data immutability PASS');
 // 選択式の組合せ問題は分割せず、章の統一表示設定を全問へ継承する。
-for (const [file, count] of [['math-basics', 12], ['solid-basics', 44], ['heat-basics', 17], ['fem-basics', 29], ['fem-practice', 29], ['numerical-basics', 15], ['element-tech', 17], ['modeling-basics', 27], ['boundary-conditions', 33], ['prepost-basics', 41], ['verification-basics', 17], ['computer-basics', 33], ['ethics', 12]]) {
+for (const [file, count] of [['math-basics', 12], ['solid-basics', 44], ['heat-basics', 17], ['fem-basics', 29], ['fem-practice', 29], ['numerical-basics', 15], ['element-tech', 17], ['modeling-basics', 27], ['boundary-conditions', 33], ['prepost-basics', 41], ['verification-basics', 17], ['computer-basics', 33], ['ethics', 12], ['thermal2-01-math-basics', 11], ['thermal2-02-fluid-basics', 22], ['thermal2-03-thermo-heat', 19], ['thermal2-04-numerical-methods', 13], ['thermal2-05-grid-generation', 15], ['thermal2-06-turbulence', 16], ['thermal2-07-boundary-conditions', 12], ['thermal2-08-post-processing', 14], ['thermal2-09-verification', 18], ['thermal2-10-computer-basics', 32], ['thermal2-11-ethics', 12]]) {
   const source = JSON.parse(fs.readFileSync('content/questions/' + file + '.json', 'utf8'));
   const expanded = parts.expandChapter(source);
   assert.equal(expanded.questions.length, count);
@@ -266,7 +266,7 @@ import json,sys,copy
 from pathlib import Path
 sys.path.insert(0,'tools')
 from check_quality import require_editorial_review,easy_explanation_errors,presentation_errors
-for name in ('math-basics','solid-basics','heat-basics','fem-basics','fem-practice','numerical-basics','element-tech','modeling-basics','boundary-conditions','prepost-basics','verification-basics','computer-basics','ethics'):
+for name in ('math-basics','solid-basics','heat-basics','fem-basics','fem-practice','numerical-basics','element-tech','modeling-basics','boundary-conditions','prepost-basics','verification-basics','computer-basics','ethics','thermal2-01-math-basics','thermal2-02-fluid-basics','thermal2-03-thermo-heat','thermal2-04-numerical-methods','thermal2-05-grid-generation','thermal2-06-turbulence','thermal2-07-boundary-conditions','thermal2-08-post-processing','thermal2-09-verification','thermal2-10-computer-basics','thermal2-11-ethics'):
  d=json.loads(Path('content/questions/'+name+'.json').read_bytes())
  require_editorial_review(d)
  bad=copy.deepcopy(d);bad['questions'][0].pop('answerSummary')
@@ -277,4 +277,4 @@ for name in ('math-basics','solid-basics','heat-basics','fem-basics','fem-practi
  bad=copy.deepcopy(d);bad['questions'][0]['answerSummary']='unrendered ^T'
  assert presentation_errors(bad),'unrendered formulas must still fail'
 `], {stdio: 'pipe'});
-console.log('Solid2 unified chapters: IDs, choice grouping, inline figures and quality gates PASS');
+console.log('Solid2 and Thermal2 unified chapters: IDs, choice grouping, inline figures and quality gates PASS');
