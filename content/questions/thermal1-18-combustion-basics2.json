@@ -6,7 +6,8 @@
     "source": "完全オリジナル(公式標準問題集 燃焼流 第2章 2-1〜2-14 にテーマ対応)",
     "origin": "original",
     "count": 14,
-    "officialCount": 14
+    "officialCount": 14,
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -63,7 +64,10 @@
       "figure": "helpful",
       "preFigureImage": "t1e18ActivationEnergyCurve",
       "figureImage": "t1e18ActivationEnergyAns",
-      "figureHint": "白地660x420。横軸=反応過程、縦軸=ポテンシャルエネルギー。A+B(120)→遷移状態(AB)*(350)→C+D(80)の山型曲線に各レベルの値のみ記入(矢印ラベルは付けない)"
+      "figureHint": "白地660x420。横軸=反応過程、縦軸=ポテンシャルエネルギー。A+B(120)→遷移状態(AB)*(350)→C+D(80)の山型曲線に各レベルの値のみ記入(矢印ラベルは付けない)",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-18-2",
@@ -118,7 +122,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e18MoleBalance",
-      "figureHint": "白地660x420。各反応の反応側モル数と生成側モル数を天秤で比較し、Δν=0の反応だけ左右が釣り合う様子を示す"
+      "figureHint": "白地660x420。各反応の反応側モル数と生成側モル数を天秤で比較し、Δν=0の反応だけ左右が釣り合う様子を示す",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-18-3",
@@ -174,7 +181,10 @@
       "figure": "helpful",
       "preFigureImage": "t1e18ArrheniusPlot",
       "figureImage": "t1e18ArrheniusAns",
-      "figureHint": "白地660x420。横軸=1/T、縦軸=ln k の右下がり直線。傾き=−E/R⁰ と注記し、二点(1/800,1/1000)を軸上に目盛る(kの値やEの答えは書かない)"
+      "figureHint": "白地660x420。横軸=1/T、縦軸=ln k の右下がり直線。傾き=−E/R⁰ と注記し、二点(1/800,1/1000)を軸上に目盛る(kの値やEの答えは書かない)",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-18-4",
@@ -229,7 +239,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e18RateEquilibrium",
-      "figureHint": "白地660x420。反応物と生成物の間を正反応(速度定数kf)と逆反応(速度定数kb)の両矢印で結び、平衡でqnet=0となる関係を示す"
+      "figureHint": "白地660x420。反応物と生成物の間を正反応(速度定数kf)と逆反応(速度定数kb)の両矢印で結び、平衡でqnet=0となる関係を示す",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-18-5",
@@ -284,7 +297,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e18ReactionHeatLevels",
-      "figureHint": "白地660x420。反応物CH4+2O2と生成物CO2+2H2Oのエンタルピー準位を左右に描き、その差ΔH_rxn(発熱で下向き)を矢印で示す"
+      "figureHint": "白地660x420。反応物CH4+2O2と生成物CO2+2H2Oのエンタルピー準位を左右に描き、その差ΔH_rxn(発熱で下向き)を矢印で示す",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-18-6",
@@ -339,7 +355,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e18GibbsFormation",
-      "figureHint": "白地660x420。単体(O2,N2,C)は基準線ΔGf=0上に、化合物(H2O)だけ基準線から離れた位置に配置した棒グラフ模式図"
+      "figureHint": "白地660x420。単体(O2,N2,C)は基準線ΔGf=0上に、化合物(H2O)だけ基準線から離れた位置に配置した棒グラフ模式図",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-18-7",
@@ -394,7 +413,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e18EntropyProcess",
-      "figureHint": "白地660x420。断熱系内で可逆変化(S一定)と不可逆変化(S増大)を矢印で対比し、S減少に×印を付けた模式図"
+      "figureHint": "白地660x420。断熱系内で可逆変化(S一定)と不可逆変化(S増大)を矢印で対比し、S減少に×印を付けた模式図",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-18-8",
@@ -449,7 +471,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e18ExergyGibbs",
-      "figureHint": "白地660x420。エンタルピー差H0−H1の棒を、有効分(エクセルギーE=G0−G1)と無効分TΔSに分割して示す帯グラフ"
+      "figureHint": "白地660x420。エンタルピー差H0−H1の棒を、有効分(エクセルギーE=G0−G1)と無効分TΔSに分割して示す帯グラフ",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-18-9",
@@ -504,7 +529,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e18DiffusionPressure",
-      "figureHint": "白地660x420。横軸=圧力、縦軸=拡散係数Dの反比例曲線(D∝1/p)を描き、高圧側で平均自由行程が短くなる様子を添える"
+      "figureHint": "白地660x420。横軸=圧力、縦軸=拡散係数Dの反比例曲線(D∝1/p)を描き、高圧側で平均自由行程が短くなる様子を添える",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-18-10",
@@ -559,7 +587,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e18ViscosityTemp",
-      "figureHint": "白地660x420。横軸=温度、縦軸=粘性係数μで、気体(右上がり√T)と液体(右下がり)の曲線を対比して描く"
+      "figureHint": "白地660x420。横軸=温度、縦軸=粘性係数μで、気体(右上がり√T)と液体(右下がり)の曲線を対比して描く",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-18-11",
@@ -614,7 +645,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e18StefanBoltzmann",
-      "figureHint": "白地660x420。横軸=絶対温度T、縦軸=黒体ふく射能Ebの急峻な4乗曲線を描き、T=1000Kと2000Kの高さの比が1:16になることを示す"
+      "figureHint": "白地660x420。横軸=絶対温度T、縦軸=黒体ふく射能Ebの急峻な4乗曲線を描き、T=1000Kと2000Kの高さの比が1:16になることを示す",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-18-12",
@@ -669,7 +703,10 @@
       "role": "primary",
       "figure": "required",
       "figureImage": "t1e18GasRadiationBeer",
-      "figureHint": "白地660x420。厚さxのガス層に強度I(0)のふく射が入射し、透過光I(x)が弱まる様子を層と入射・透過の矢印で示す。指数減衰の式や減衰曲線(答え)は回答後に回す"
+      "figureHint": "白地660x420。厚さxのガス層に強度I(0)のふく射が入射し、透過光I(x)が弱まる様子を層と入射・透過の矢印で示す。指数減衰の式や減衰曲線(答え)は回答後に回す",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-18-13",
@@ -725,7 +762,10 @@
       "figure": "helpful",
       "preFigureImage": "t1e18SurfaceReactionSites",
       "figureImage": "t1e18SurfaceReactionAns",
-      "figureHint": "白地660x420。触媒表面の活性点上にCO(s)とO(s)が吸着した反応前の占有状態を示す。反応後の生成物と空き活性点の内訳(答え)は回答後に回す"
+      "figureHint": "白地660x420。触媒表面の活性点上にCO(s)とO(s)が吸着した反応前の占有状態を示す。反応後の生成物と空き活性点の内訳(答え)は回答後に回す",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-18-14",
@@ -780,7 +820,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e18Adsorption",
-      "figureHint": "白地660x420。物理吸着(van der Waals力・弱い・電子共有なし)と化学吸着(化学結合・強い・電子共有あり)を左右に対比した模式図"
+      "figureHint": "白地660x420。物理吸着(van der Waals力・弱い・電子共有なし)と化学吸着(化学結合・強い・電子共有あり)を左右に対比した模式図",
+      "officialQuestionItems": [
+        "main"
+      ]
     }
   ]
 }

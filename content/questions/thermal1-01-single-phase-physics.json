@@ -8,7 +8,8 @@
     "count": 15,
     "officialCount": 15,
     "presentationStyle": "cae-standard-v1",
-    "explanationMode": "guided"
+    "explanationMode": "guided",
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -47,7 +48,7 @@
           "3": "密度差を封入液密度とする",
           "4": "速度式の係数2を4とする"
         },
-        "sha256": "7f8713c53664036628bb0bb4156558d08c49d2184d98371f30917d5d2d5458d7"
+        "sha256": "8df84b9afdea048901ac5310e92e640225c5ef6c77a06ab80cafb398d97b467a"
       },
       "easyExplanation": [
         {
@@ -81,7 +82,7 @@
           "body": "Aが高い場合、静かな流体でもBの圧力は高くなります。流れの摩擦で失われるものは、圧力だけでなく位置エネルギーを合わせた収支です。だから$p_A-p_B$だけへ封入液の高さを直接当てはめないことが大切です。また管摩擦係数λは本問で指定された損失式の定義を使います。同じ記号でも別の摩擦係数の定義と混ぜると、係数2や4を取り違えます。"
         }
       ],
-      "answerSummary": "液柱は下がるほど圧力が増します。AをBより$H$だけ高く取ると、マノメータのつり合いは$p_A+\\rho gH+\\rho gh=p_B+\\rho\\prime gh$です。",
+      "answerSummary": "液柱の圧力のつり合い：$p_A+\\rho gH+\\rho gh=p_B+\\rho'gh$です。整理すると$p_A-p_B+\\rho gH=(\\rho'-\\rho)gh$となります。\n平均流速を求める：②です。$V=\\sqrt{2gh(\\rho'-\\rho)d/(\\rho\\lambda L)}\\approx4.97\\ \\mathrm{m/s}$となります。\n組み合わせた法則の名前：ベルヌーイの式です。本問では摩擦損失を含めた形を使います。",
       "preFigures": [
         {
           "figureImage": "t1e1ManometerSetup",
@@ -140,8 +141,9 @@
             "officialPoint": "ベルヌーイの式と損失／液柱の圧力のつり合い",
             "alignment": "保存済み公式テキストの問1-1の当該設問に対応。公式指定の解答形式を確認し、共通条件の下で解答・導出・誤答理由を整えた。",
             "distractorMisconceptions": {},
-            "sha256": "c3324aff84b478d5989d2dbe177b04bf6d98f5bf08655122c76527774c721808"
-          }
+            "sha256": "71a92675c2463829827e6f128e02cb4774eac1f05797d10f75343d681b5bbe15"
+          },
+          "officialQuestionItem": "existing-1"
         },
         {
           "id": "t1e1-1-1-velocity",
@@ -203,8 +205,9 @@
               "3": "密度差を封入液密度とする",
               "4": "速度式の係数2を4とする"
             },
-            "sha256": "d05b69021c2b46b695bf2e0d292092b055eee7e6fb7cfb0b9fcd805a472b2089"
-          }
+            "sha256": "172ee1943877974abc31ea3403e04aebaf369319ff5e51e1bdf3aeedb52d5b01"
+          },
+          "officialQuestionItem": "existing-2"
         },
         {
           "id": "t1e1-1-1-energy-law",
@@ -252,9 +255,15 @@
             "officialPoint": "ベルヌーイの式と損失／組み合わせた法則の名前",
             "alignment": "保存済み公式テキストの問1-1の当該設問に対応。公式指定の解答形式を確認し、共通条件の下で解答・導出・誤答理由を整えた。",
             "distractorMisconceptions": {},
-            "sha256": "ba8cd84636885ea36f4b7eb239ce0f7bef35ec914779bf678799a9f57eda1451"
-          }
+            "sha256": "2efd8b4f0f3fc9d9fc3ea8806aeffff94ef026985dc98d4a367c616c1d475358"
+          },
+          "officialQuestionItem": "existing-3"
         }
+      ],
+      "officialQuestionItems": [
+        "existing-1",
+        "existing-2",
+        "existing-3"
       ]
     },
     {
@@ -286,13 +295,13 @@
       ],
       "editorialReview": {
         "officialPoint": "渦度輸送方程式",
-        "alignment": "保存済み公式テキストの問1-2と論点・条件・独立した設問数を照合。必要な途中式・具体例を残して標準詳解へ統合し、図を本文へ対応させた。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "y方向速度の負号を落とす",
           "3": "粘性拡散係数を逆数にする",
           "4": "輸送される渦度を流れ関数と混同"
         },
-        "sha256": "2b30baed96406c1a224707879ba58445a5d6907187e6191ae680919f01a9a86d"
+        "sha256": "7faba5771606c4ed357415947721c441abcee022724af6a70f62c01f35cdddc0"
       },
       "easyExplanation": [
         {
@@ -326,7 +335,7 @@
           "body": "ある場所でψᵧ＝2m/s、ψₓ＝−1m/sなら、u＝2m/s、v＝1m/sです。ζₓ＝3、ζᵧ＝4をそれぞれの単位で与えると、運搬項は2×3＋1×4＝10です。ψの式でも2×3−(−1)×4＝10で一致します。負号を落とす②なら2となり、同じ流れを表せません。渦度輸送式とψのポアソン方程式を交互に解く考え方が渦度－流れ関数法です。"
         }
       ],
-      "answerSummary": "渦度は流体の小さな部分の回転を表す量です。渦度輸送式は「時間変化＋流れによる運搬＝粘性による拡散」を表します。",
+      "answerSummary": "渦度の定義：$\\zeta=\\partial v/\\partial x-\\partial u/\\partial y$です。\n運動の方程式：ナビエ・ストークス方程式（運動方程式）です。\n保存の条件：連続の式です。\n流れ関数で表した輸送式：①です。速度の代入で$\\psi_y\\zeta_x-\\psi_x\\zeta_y$となり、粘性の係数は$\\mu/\\rho$です。\n渦度と流れ関数を連立する方法：渦度－流れ関数法です。",
       "sharedQuestion": "密度$\\rho$と粘性係数$\\mu$が一定の、2次元・非定常・非圧縮性の粘性流れを考えます。$x,y$方向の速度を$u,v$、時間を$t$、圧力を$p$とします。$z$軸の正方向から見て反時計回りを正とする渦度を$\\zeta$とし、流れ関数は$u=\\partial\\psi/\\partial y$、$v=-\\partial\\psi/\\partial x$と定義します。$\\nabla^2=\\partial^2/\\partial x^2+\\partial^2/\\partial y^2$です。",
       "studyParts": [
         {
@@ -370,20 +379,21 @@
             "officialPoint": "渦度輸送方程式／渦度の定義",
             "alignment": "保存済み公式テキストの問1-2の当該設問に対応。公式指定の解答形式を確認し、共通条件の下で解答・導出・誤答理由を整えた。",
             "distractorMisconceptions": {},
-            "sha256": "15267652436ab664419f4dc53ae06bc838fbc164cff5b8e496b734702415c94e"
-          }
+            "sha256": "8ba624c7da586e7bc62f16d8cb1c8c817cdd0a898015d5b514091d9d237cd9cf"
+          },
+          "officialQuestionItem": "existing-1"
         },
         {
           "id": "t1e1-1-2-equations",
           "number": "1-2",
-          "title": "出発点となる方程式",
+          "title": "運動の方程式",
           "topic": "渦度輸送方程式",
           "type": "記述",
           "difficulty": 3,
-          "question": "渦度の輸送式を導くために使う、2種類の方程式の名前を書いてください。",
+          "question": "渦度の輸送式を導くため、速度の時間変化を表すどの方程式を使いますか。",
           "choices": [],
           "answer": 0,
-          "explanation": "【基礎】必要なのは、力と加速度を結ぶナビエ・ストークス方程式（運動方程式）と、質量保存を表す連続の式です。「x方向とy方向」という2本を答える問いではなく、法則の種類を2つ答えます。\n【考え方】ナビエ・ストークス方程式（運動方程式）と、連続の式です。 添字$x,y,t$をそれぞれの偏微分の略記とすると、$u_t+uu_x+vu_y=-p_x/\\rho+(\\mu/\\rho)\\nabla^2u$、$v_t+uv_x+vv_y=-p_y/\\rho+(\\mu/\\rho)\\nabla^2v$が運動方程式です。連続の式は$u_x+v_y=0$です。圧力の作用と粘性の作用で速度が変わり、その速度が質量保存も満たすようにします。\n【ポイント】運動方程式と連続の式を両方挙げている。 圧力を消す微分操作と、非圧縮性の条件の役割を区別できる。\n【引っかけ】解答例と同じ言い回しでなくても、必要な記号・条件・意味がそろっていれば正解です。",
+          "explanation": "【基礎】運動の方程式を確認します。\n【考え方】ナビエ・ストークス方程式（運動方程式）です。\n【ポイント】x方向とy方向の運動方程式を交差微分して引き、圧力を消去します。\n【引っかけ】条件と記号の意味をそろえ、途中手順と単位を確認します。",
           "hasMath": true,
           "origin": "original",
           "reviewed": true,
@@ -395,8 +405,8 @@
           ],
           "easyExplanation": [
             {
-              "title": "流体を動かす法則と、出入りを合わせる法則",
-              "body": "必要なのは、力と加速度を結ぶナビエ・ストークス方程式（運動方程式）と、質量保存を表す連続の式です。「x方向とy方向」という2本を答える問いではなく、法則の種類を2つ答えます。"
+              "title": "答えに至る考え方",
+              "body": "x方向とy方向の運動方程式を交差微分して引き、圧力を消去します。"
             },
             {
               "title": "本問で使う式の形",
@@ -407,24 +417,69 @@
               "body": "x方向の運動方程式の圧力項は−pₓ/ρ、y方向は−pᵧ/ρです。y方向の式をxで微分し、x方向の式をyで微分して引くと、$-(p_{yx}-p_{xy})/\\rho=0$となります。粘性項には$(\\mu/\\rho)\\nabla^2(v_x-u_y)$が残ります。非線形の項は、連続の式uₓ＋vᵧ＝0を使って整理すると、uζₓ＋vζᵧとなります。"
             }
           ],
-          "answerSummary": "ナビエ・ストークス方程式（運動方程式）と、連続の式です。",
+          "answerSummary": "ナビエ・ストークス方程式（運動方程式）です。",
           "responseType": "written",
           "explanationMode": "guided",
-          "modelAnswer": "ナビエ・ストークス方程式（運動方程式）と、連続の式です。",
+          "modelAnswer": "ナビエ・ストークス方程式（運動方程式）です。",
           "answerCheckpoints": [
-            "運動方程式と連続の式を両方挙げている。",
-            "圧力を消す微分操作と、非圧縮性の条件の役割を区別できる。"
+            "x方向とy方向の運動方程式を交差微分して引き、圧力を消去します。"
           ],
           "officialWrittenEvidence": {
             "file": "_原本(非公開)/_抽出テキスト/熱流体1級_01_単相流の物理.md",
             "excerpt": "## 問1-2 渦度定義と渦度輸送方程式（渦度－流れ関数法）\n- **問題**: 2次元非定常非圧縮流れ、$x$方向速度 $u$、$y$方向速度 $v$。渦度 $\\zeta$ の定義式を記述。渦度輸送方程式の導出に必要な2本の方程式名を記述。流れ関数 $\\psi$ と渦度 $\\zeta$ の方程式で正しい式を①〜⑤から選び、渦度と流れ関数の関係式を連立して $\\psi, \\zeta$ を求める手法名を記述。$\\mu$=粘性係数、$\\rho$=密度。"
           },
           "editorialReview": {
-            "officialPoint": "渦度輸送方程式／出発点となる方程式",
+            "officialPoint": "渦度輸送方程式／出発点となる方程式／運動の方程式",
             "alignment": "保存済み公式テキストの問1-2の当該設問に対応。公式指定の解答形式を確認し、共通条件の下で解答・導出・誤答理由を整えた。",
             "distractorMisconceptions": {},
-            "sha256": "f430bf2c286bab76a5ccad9d99493743ad0ecf5abba760779d3e378598480968"
-          }
+            "sha256": "0ad9521f6931db75a57ac598e7bb5da15c1bf07a796f9ebb8e4ce05602b90e15"
+          },
+          "officialQuestionItem": "momentum"
+        },
+        {
+          "id": "t1e1-1-2-equations-continuity",
+          "number": "1-2",
+          "title": "保存の条件",
+          "topic": "渦度輸送方程式",
+          "type": "記述",
+          "difficulty": 3,
+          "question": "上の導出で速度の発散を0とするために用いる式の名前を書いてください。",
+          "choices": [],
+          "answer": 0,
+          "explanation": "【基礎】保存の条件を確認します。\n【考え方】連続の式です。\n【ポイント】一定密度では $u_x+v_y=0$ です。圧力消去後の対流項をまとめる際に使います。\n【引っかけ】条件と記号の意味をそろえ、途中手順と単位を確認します。",
+          "hasMath": true,
+          "origin": "original",
+          "reviewed": true,
+          "officialRef": "問1-2",
+          "role": "primary",
+          "relatedFormulas": [
+            "t1ch1-vorticity",
+            "t1ch1-vorticity-stream"
+          ],
+          "easyExplanation": [
+            {
+              "title": "答えに至る考え方",
+              "body": "一定密度では $u_x+v_y=0$ です。圧力消去後の対流項をまとめる際に使います。"
+            }
+          ],
+          "answerSummary": "連続の式です。",
+          "responseType": "written",
+          "explanationMode": "guided",
+          "modelAnswer": "連続の式です。",
+          "answerCheckpoints": [
+            "一定密度では $u_x+v_y=0$ です。圧力消去後の対流項をまとめる際に使います。"
+          ],
+          "officialWrittenEvidence": {
+            "file": "_原本(非公開)/_抽出テキスト/熱流体1級_01_単相流の物理.md",
+            "excerpt": "## 問1-2 渦度定義と渦度輸送方程式（渦度－流れ関数法）\n- **問題**: 2次元非定常非圧縮流れ、$x$方向速度 $u$、$y$方向速度 $v$。渦度 $\\zeta$ の定義式を記述。渦度輸送方程式の導出に必要な2本の方程式名を記述。流れ関数 $\\psi$ と渦度 $\\zeta$ の方程式で正しい式を①〜⑤から選び、渦度と流れ関数の関係式を連立して $\\psi, \\zeta$ を求める手法名を記述。$\\mu$=粘性係数、$\\rho$=密度。"
+          },
+          "editorialReview": {
+            "officialPoint": "渦度輸送方程式／出発点となる方程式／保存の条件",
+            "alignment": "保存済み公式テキストの問1-2の当該設問に対応。公式指定の解答形式を確認し、共通条件の下で解答・導出・誤答理由を整えた。",
+            "distractorMisconceptions": {},
+            "sha256": "7f6877396c845c26c8586569563b889b2b2b2b5e15bd4543f26ffb7cefd6b39d"
+          },
+          "officialQuestionItem": "continuity"
         },
         {
           "id": "t1e1-1-2-transport",
@@ -490,8 +545,9 @@
               "3": "粘性拡散係数を逆数にする",
               "4": "輸送される渦度を流れ関数と混同"
             },
-            "sha256": "39fcdf8493a1c32ec8dd1550c4a130a0529169c47b96710af4dfbb32d50dcc59"
-          }
+            "sha256": "d2ac65b567452172b7107ba5382149d95b9a75cfb890bdfcfcde7d5578a11070"
+          },
+          "officialQuestionItem": "existing-4"
         },
         {
           "id": "t1e1-1-2-method",
@@ -539,10 +595,19 @@
             "officialPoint": "渦度輸送方程式／渦度と流れ関数を連立する方法",
             "alignment": "保存済み公式テキストの問1-2の当該設問に対応。公式指定の解答形式を確認し、共通条件の下で解答・導出・誤答理由を整えた。",
             "distractorMisconceptions": {},
-            "sha256": "de160057cbfaf9912c354110bea7d363f18c05611aa75f5fc2e50b9c7942d63a"
-          }
+            "sha256": "f008f1368abfeddc7e66d73c86aa6d0d643fa3e458a79f2fc43c836d390b0ecb"
+          },
+          "officialQuestionItem": "existing-5"
         }
-      ]
+      ],
+      "officialQuestionItems": [
+        "existing-1",
+        "momentum",
+        "continuity",
+        "existing-4",
+        "existing-5"
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t1e1-1-3",
@@ -572,13 +637,13 @@
       ],
       "editorialReview": {
         "officialPoint": "バッキンガムのπ定理",
-        "alignment": "保存済み公式テキストの問1-3と論点・条件・独立した設問数を照合。必要な途中式・具体例を残して標準詳解へ統合し、図を本文へ対応させた。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "平方根を取らない",
           "2": "密度で割らず掛ける",
           "4": "密度と弾性率の比を逆にする"
         },
-        "sha256": "cd7a565584e9c223691af8add6d1db048fa44a6abf014c60f09700983cf37e9a"
+        "sha256": "1f84dbd242f72848b45310eea1105c0ff3b8e6761c0faa37086e2846df7fc012"
       },
       "easyExplanation": [
         {
@@ -612,7 +677,7 @@
           "body": "①のK/ρは速さの二乗、②の積Kρは質量の単位が残り、④の平方根はs/mとなって速さの逆数です。③だけがm/sになります。ただしCが1か2かといった数値までは、単位を比べても判定できません。次元解析は式の形を絞る方法です。係数の決定には追加の物理法則や実験などが必要で、本問は微小な断熱音波に対応する係数1を条件として与えています。"
         }
       ],
-      "answerSummary": "次元解析は、式の両辺の単位がそろう組合せを探す方法です。基本単位は長さm・質量kg・時間sです。",
+      "answerSummary": "次元解析に使う定理：バッキンガムの$\\pi$定理です。\n基本単位の数：3種類です。\n単位の種類：m（長さ）、kg（質量）、s（時間）です。\n音速の式：③です。$a=\\sqrt{K/\\rho}$となります。",
       "sharedQuestion": "液体中を伝わる微小な音波の速さ$a$が、液体の密度$\\rho$と断熱体積弾性率$K$で決まると考えます。使う物理量はこの3つです。単位の組合せから式の形を調べ、最後の式の選択では無次元の比例係数を1とします。",
       "studyParts": [
         {
@@ -660,20 +725,21 @@
             "officialPoint": "バッキンガムのπ定理／次元解析に使う定理",
             "alignment": "保存済み公式テキストの問1-3の当該設問に対応。公式指定の解答形式を確認し、共通条件の下で解答・導出・誤答理由を整えた。",
             "distractorMisconceptions": {},
-            "sha256": "4fce3da472311250eb23fc2015937b761ac825abc2e714e85ee6667554c20074"
-          }
+            "sha256": "8befff38e4f8e35b92b2c78efd3cc116b380651e0629d133ab7ab9f85e235982"
+          },
+          "officialQuestionItem": "existing-1"
         },
         {
           "id": "t1e1-1-3-units",
           "number": "1-3",
-          "title": "必要な基本単位",
+          "title": "基本単位の数",
           "topic": "バッキンガムのπ定理",
           "type": "記述",
           "difficulty": 3,
-          "question": "$a,K,\\rho$の単位をSI基本単位へ分解すると、何種類の基本単位が現れますか。それぞれの単位記号と物理量を書いてください。",
+          "question": "a、K、ρの単位に現れるSI基本単位は何種類ですか。",
           "choices": [],
           "answer": 0,
-          "explanation": "【基礎】音速は$\\mathrm{m/s}$、密度は$\\mathrm{kg/m^3}$です。体積弾性率は圧力と同じPaで、$\\mathrm{Pa=N/m^2}$、$\\mathrm{N=kg\\,m/s^2}$なので、$K$の単位は$\\mathrm{kg/(m\\,s^2)}$となります。現れた基本単位はm・kg・sの3種類です。\n【考え方】3種類です。m（長さ）、kg（質量）、s（時間）です。 mは長さ、kgは質量、sは時間を表します。「重さ」を力の意味で使うと単位はNになるため、ここでは質量とはっきり区別します。また、基本単位が3種類現れることと、次元行列の独立な行が3本あることは別です。本問の行は従属関係を持つため、無次元量は$a^2\\rho/K$の1個を作れます。\n【ポイント】m・kg・sの3種類を挙げている。 kgを力ではなく質量の単位としている。\n【引っかけ】解答例と同じ言い回しでなくても、必要な記号・条件・意味がそろっていれば正解です。",
+          "explanation": "【基礎】基本単位の数を確認します。\n【考え方】3種類です。\n【ポイント】速度はm/s、密度はkg/m³、体積弾性率はPa＝kg/(m・s²)で、m・kg・sが現れます。\n【引っかけ】条件と記号の意味をそろえ、途中手順と単位を確認します。",
           "hasMath": true,
           "origin": "original",
           "reviewed": true,
@@ -684,32 +750,80 @@
           ],
           "easyExplanation": [
             {
-              "title": "Paを基本単位へ分解します",
-              "body": "音速は$\\mathrm{m/s}$、密度は$\\mathrm{kg/m^3}$です。体積弾性率は圧力と同じPaで、$\\mathrm{Pa=N/m^2}$、$\\mathrm{N=kg\\,m/s^2}$なので、$K$の単位は$\\mathrm{kg/(m\\,s^2)}$となります。現れた基本単位はm・kg・sの3種類です。"
+              "title": "答えに至る考え方",
+              "body": "速度はm/s、密度はkg/m³、体積弾性率はPa＝kg/(m・s²)で、m・kg・sが現れます。"
             },
             {
-              "title": "kgは質量の単位です",
-              "body": "mは長さ、kgは質量、sは時間を表します。「重さ」を力の意味で使うと単位はNになるため、ここでは質量とはっきり区別します。また、基本単位が3種類現れることと、次元行列の独立な行が3本あることは別です。本問の行は従属関係を持つため、無次元量は$a^2\\rho/K$の1個を作れます。"
+              "title": "Paを基本単位へ分解します",
+              "body": "音速は$\\mathrm{m/s}$、密度は$\\mathrm{kg/m^3}$です。体積弾性率は圧力と同じPaで、$\\mathrm{Pa=N/m^2}$、$\\mathrm{N=kg\\,m/s^2}$なので、$K$の単位は$\\mathrm{kg/(m\\,s^2)}$となります。現れた基本単位はm・kg・sの3種類です。"
             }
           ],
-          "answerSummary": "3種類です。m（長さ）、kg（質量）、s（時間）です。",
+          "answerSummary": "3種類です。",
           "responseType": "written",
           "explanationMode": "guided",
-          "modelAnswer": "3種類です。m（長さ）、kg（質量）、s（時間）です。",
+          "modelAnswer": "3種類です。",
           "answerCheckpoints": [
-            "m・kg・sの3種類を挙げている。",
-            "kgを力ではなく質量の単位としている。"
+            "速度はm/s、密度はkg/m³、体積弾性率はPa＝kg/(m・s²)で、m・kg・sが現れます。"
           ],
           "officialWrittenEvidence": {
             "file": "_原本(非公開)/_抽出テキスト/熱流体1級_01_単相流の物理.md",
             "excerpt": "## 問1-3 液体中の音速（バッキンガムのπ定理）\n- **問題**: 液体中の音速 $a$ は密度 $\\rho$ と体積弾性率 $K$ の2物理量でほぼ決まる。$a$ を $\\rho, K$ で表す式を推定するのに用いる定理名を記述。$a, K, \\rho$ の3つに対する基本単位の数とそのSI系での単位を答える。推定した音速 $a$ の正しい式を①〜⑤から選ぶ。"
           },
           "editorialReview": {
-            "officialPoint": "バッキンガムのπ定理／必要な基本単位",
+            "officialPoint": "バッキンガムのπ定理／必要な基本単位／基本単位の数",
             "alignment": "保存済み公式テキストの問1-3の当該設問に対応。公式指定の解答形式を確認し、共通条件の下で解答・導出・誤答理由を整えた。",
             "distractorMisconceptions": {},
-            "sha256": "e4c6356e413f0ad765e8532bb31deaefd45f884eff702f7c36a1698e8a7140a2"
-          }
+            "sha256": "78511764bf3658c606f47288638e04b37782ed176b50ea58e7ee706d2d64d76b"
+          },
+          "officialQuestionItem": "count"
+        },
+        {
+          "id": "t1e1-1-3-units-units",
+          "number": "1-3",
+          "title": "単位の種類",
+          "topic": "バッキンガムのπ定理",
+          "type": "記述",
+          "difficulty": 3,
+          "question": "上で数えたSI基本単位の記号と物理量を答えてください。",
+          "choices": [],
+          "answer": 0,
+          "explanation": "【基礎】単位の種類を確認します。\n【考え方】m（長さ）、kg（質量）、s（時間）です。\n【ポイント】kgは質量の単位です。力としての重さの単位Nとは区別します。\n【引っかけ】条件と記号の意味をそろえ、途中手順と単位を確認します。",
+          "hasMath": true,
+          "origin": "original",
+          "reviewed": true,
+          "officialRef": "問1-3",
+          "role": "primary",
+          "relatedFormulas": [
+            "t1ch1-buckingham"
+          ],
+          "easyExplanation": [
+            {
+              "title": "答えに至る考え方",
+              "body": "kgは質量の単位です。力としての重さの単位Nとは区別します。"
+            },
+            {
+              "title": "kgは質量の単位です",
+              "body": "mは長さ、kgは質量、sは時間を表します。「重さ」を力の意味で使うと単位はNになるため、ここでは質量とはっきり区別します。また、基本単位が3種類現れることと、次元行列の独立な行が3本あることは別です。本問の行は従属関係を持つため、無次元量は$a^2\\rho/K$の1個を作れます。"
+            }
+          ],
+          "answerSummary": "m（長さ）、kg（質量）、s（時間）です。",
+          "responseType": "written",
+          "explanationMode": "guided",
+          "modelAnswer": "m（長さ）、kg（質量）、s（時間）です。",
+          "answerCheckpoints": [
+            "kgは質量の単位です。力としての重さの単位Nとは区別します。"
+          ],
+          "officialWrittenEvidence": {
+            "file": "_原本(非公開)/_抽出テキスト/熱流体1級_01_単相流の物理.md",
+            "excerpt": "## 問1-3 液体中の音速（バッキンガムのπ定理）\n- **問題**: 液体中の音速 $a$ は密度 $\\rho$ と体積弾性率 $K$ の2物理量でほぼ決まる。$a$ を $\\rho, K$ で表す式を推定するのに用いる定理名を記述。$a, K, \\rho$ の3つに対する基本単位の数とそのSI系での単位を答える。推定した音速 $a$ の正しい式を①〜⑤から選ぶ。"
+          },
+          "editorialReview": {
+            "officialPoint": "バッキンガムのπ定理／必要な基本単位／単位の種類",
+            "alignment": "保存済み公式テキストの問1-3の当該設問に対応。公式指定の解答形式を確認し、共通条件の下で解答・導出・誤答理由を整えた。",
+            "distractorMisconceptions": {},
+            "sha256": "cc11ba522b9fe75f0d6cf786b18449c4bf359a9fdcedbacfe5fe548dc0bf696b"
+          },
+          "officialQuestionItem": "units"
         },
         {
           "id": "t1e1-1-3-speed",
@@ -778,10 +892,18 @@
               "2": "密度で割らず掛ける",
               "4": "密度と弾性率の比を逆にする"
             },
-            "sha256": "218f47b4331bcd4f3f3386cc200f9c8ad6fac3deacc103feb0a79f88592c3ddb"
-          }
+            "sha256": "09a122aea17c1a0aa86667ab0268414a8c31fb66afe5d7515f70b389c6cb184a"
+          },
+          "officialQuestionItem": "existing-3"
         }
-      ]
+      ],
+      "officialQuestionItems": [
+        "existing-1",
+        "count",
+        "units",
+        "existing-3"
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t1e1-1-4",
@@ -813,13 +935,13 @@
       ],
       "editorialReview": {
         "officialPoint": "次元解析・無次元数",
-        "alignment": "保存済み公式テキストの問1-4と論点・条件・独立した設問数を照合。必要な途中式・具体例を残して標準詳解へ統合し、図を本文へ対応させた。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "単位が残る量を無次元数と数える",
           "2": "ヌセルト数を落とす",
           "3": "距離を掛けず割る"
         },
-        "sha256": "9f852763b5e378918f64cfcc012ec1868db6647412625491517cd746eeb1acdd"
+        "sha256": "a85b498e8a9807175c249a5202e97c7fbe6f7453db50b6550e787e92dd8388b9"
       },
       "easyExplanation": [
         {
@@ -857,7 +979,211 @@
           "body": "①は無次元でない$h_x/\\lambda$と動粘度$\\mu/\\rho$(次元$L^2/t$)を余分に数え4個とした誤り、②は$Nu_x$を数え落として2個とした誤り、③は$Nu_x$を$h_x/(\\lambda x)$と長さの取り方を逆にした誤りです。"
         }
       ],
-      "answerSummary": "関与する物理量は$h_x,u_\\infty,x,\\mu,\\rho,c_p,\\lambda$の7個で、基本単位は熱量と温度が組$H/\\Theta$で現れるため実質$H/\\Theta,L,t,M$の4つ、バッキンガムのπ定理より独立な無次元数は$7-4=3$個です。"
+      "answerSummary": "無次元数の数：7−4＝3個です。\n熱伝達の無次元数：熱伝達率に長さを掛けて熱伝導率で割ります。\n流れの無次元数：レイノルズ数です。\n拡散の無次元数：プランドル数はν/αです。",
+      "officialQuestionItems": [
+        "count",
+        "nu",
+        "re",
+        "pr"
+      ],
+      "sharedQuestion": "平板の強制対流熱伝達を、$h_x,u_\\infty,x,\\mu,\\rho,c_p,\\lambda$ の7量で整理します。独立な基本次元は4つです。",
+      "studyParts": [
+        {
+          "id": "t1e1-1-4-item-count",
+          "number": "1-4",
+          "officialRef": "問1-4",
+          "officialQuestionItem": "count",
+          "title": "無次元数の数",
+          "topic": "次元解析・無次元数",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "独立な無次元数は何個ですか。",
+          "choices": [
+            "4個",
+            "3個"
+          ],
+          "answer": 2,
+          "answerSummary": "7−4＝3個です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "変数の個数から独立な次元の数を引きます。"
+            },
+            {
+              "title": "七つの変数を、三つの比較にまとめる問題です",
+              "body": "板に沿って流れる空気へ熱を渡すとき、流速、距離、粘度など多数の量が関わります。すべてを別々の単位で整理するより、単位の消える組合せへまとめると、条件の異なる実験や計算を比較しやすくなります。ここで距離xも一つの変数です。問題文に六つの物性や量が並んでいても、前縁からの距離を数え落とさないでください。"
+            },
+            {
+              "title": "まず個数と、独立な次元の数を数えます",
+              "body": "対象は$h_x,u_\\infty,x,\\mu,\\rho,c_p,\\lambda$の七つです。基本的な独立次元は質量・長さ・時間・温度の四つで整理できます。したがって、次元の独立性を確認したこの組では、π定理から7−4＝3個の独立無次元数です。熱量を独立な単位として書く整理でも、熱量と温度が共通の比で現れるため、実質四つとなり同じ結果です。"
+            }
+          ],
+          "explanation": "【基礎】7−4＝3個です。\n【考え方】正解は2です。変数の個数から独立な次元の数を引きます。\n【ポイント】板に沿って流れる空気へ熱を渡すとき、流速、距離、粘度など多数の量が関わります。すべてを別々の単位で整理するより、単位の消える組合せへまとめると、条件の異なる実験や計算を比較しやすくなります。ここで距離xも一つの変数です。問題文に六つの物性や量が並んでいても、前縁からの距離を数え落とさないでください。\n【引っかけ】1：「4個」ではなく、3個です。変数の個数から独立な次元の数を引きます。",
+          "relatedFormulas": [
+            "t1ch1-buckingham",
+            "t1ch1-reynolds",
+            "t1ch1-prandtl-nusselt"
+          ],
+          "editorialReview": {
+            "officialPoint": "次元解析・無次元数／個別の質問：無次元数の数",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「4個」ではなく、3個です。変数の個数から独立な次元の数を引きます。"
+            },
+            "sha256": "cc4a805c1529eeff948eb1c4ff1131d43b8f6907928abcae08c91b4c0eedeb13"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-4-item-nu",
+          "number": "1-4",
+          "officialRef": "問1-4",
+          "officialQuestionItem": "nu",
+          "title": "熱伝達の無次元数",
+          "topic": "次元解析・無次元数",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "hₓを含む無次元数はどれですか。",
+          "choices": [
+            "$h_x/(\\lambda x)$",
+            "$Nu_x=h_xx/\\lambda$"
+          ],
+          "answer": 2,
+          "answerSummary": "熱伝達率に長さを掛けて熱伝導率で割ります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "単位を消すためにxは分子です。"
+            },
+            {
+              "title": "熱伝達率を、熱伝導率と長さで無次元化します",
+              "body": "$h_x$はW/(m²K)、λはW/(mK)です。そのまま割ると$h_x/\\lambda$は1/mとなり、単位が残ります。距離xを掛けた$\\mathrm{Nu}_x=h_xx/\\lambda$なら、単位は$[\\mathrm{W/(m^2K)}]\\mathrm m/[\\mathrm{W/(mK)}]=1$です。これが局所ヌセルト数です。xまで分母に置くと単位が消えず、ヌセルト数にはなりません。"
+            }
+          ],
+          "explanation": "【基礎】熱伝達率に長さを掛けて熱伝導率で割ります。\n【考え方】正解は2です。単位を消すためにxは分子です。\n【ポイント】$h_x$はW/(m²K)、λはW/(mK)です。そのまま割ると$h_x/\\lambda$は1/mとなり、単位が残ります。距離xを掛けた$\\mathrm{Nu}_x=h_xx/\\lambda$なら、単位は$[\\mathrm{W/(m^2K)}]\\mathrm m/[\\mathrm{W/(mK)}]=1$です。これが局所ヌセルト数です。③のようにxまで分母に置くと1/m²となるため、個数が三つでも正しい組合せではありません。\n【引っかけ】1：「$h_x/(\\lambda x)$」ではなく、$Nu_x=h_xx/\\lambda$です。単位を消すためにxは分子です。",
+          "relatedFormulas": [
+            "t1ch1-buckingham",
+            "t1ch1-reynolds",
+            "t1ch1-prandtl-nusselt"
+          ],
+          "editorialReview": {
+            "officialPoint": "次元解析・無次元数／個別の質問：熱伝達の無次元数",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$h_x/(\\lambda x)$」ではなく、$Nu_x=h_xx/\\lambda$です。単位を消すためにxは分子です。"
+            },
+            "sha256": "a8f2c1f61cafede04e9032f6af5495540479e5b0539da48a2892f1cc492fb692"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-4-item-re",
+          "number": "1-4",
+          "officialRef": "問1-4",
+          "officialQuestionItem": "re",
+          "title": "流れの無次元数",
+          "topic": "次元解析・無次元数",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "慣性と粘性を比較する量はどれですか。",
+          "choices": [
+            "$u_\\infty x/\\mu$",
+            "$Re_x=\\rho u_\\infty x/\\mu$"
+          ],
+          "answer": 2,
+          "answerSummary": "レイノルズ数です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "粘度を密度で割った動粘度を使えば u∞x/ν です。"
+            },
+            {
+              "title": "残る二つは、流れと拡散の比較です",
+              "body": "動粘性率ν＝μ/ρの単位はm²/sです。主流速度と距離の積もm²/sなので、$\\mathrm{Re}_x=u_\\infty x/\\nu$は無次元です。また$\\mathrm{Pr}=c_p\\mu/\\lambda$も無次元です。比熱の単位J/(kgK)と粘度Pa・sを掛ければW/(mK)となってλで割れます。動粘性係数νだけでは単位があるため、独立の無次元数として数えません。",
+              "figures": [
+                {
+                  "figureImage": "t1e1FlatPlate",
+                  "caption": "前縁からの距離xで変わる局所熱伝達を、Nu・Re・Prの3つの無次元数で整理します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】レイノルズ数です。\n【考え方】正解は2です。粘度を密度で割った動粘度を使えば u∞x/ν です。\n【ポイント】動粘性率ν＝μ/ρの単位はm²/sです。主流速度と距離の積もm²/sなので、$\\mathrm{Re}_x=u_\\infty x/\\nu$は無次元です。また$\\mathrm{Pr}=c_p\\mu/\\lambda$も無次元です。比熱の単位J/(kgK)と粘度Pa・sを掛ければW/(mK)となってλで割れます。νそのものは単位を持つため、①のように独立な無次元数として追加してはいけません。\n【引っかけ】1：「$u_\\infty x/\\mu$」ではなく、$Re_x=\\rho u_\\infty x/\\mu$です。粘度を密度で割った動粘度を使えば u∞x/ν です。",
+          "relatedFormulas": [
+            "t1ch1-buckingham",
+            "t1ch1-reynolds",
+            "t1ch1-prandtl-nusselt"
+          ],
+          "editorialReview": {
+            "officialPoint": "次元解析・無次元数／個別の質問：流れの無次元数",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$u_\\infty x/\\mu$」ではなく、$Re_x=\\rho u_\\infty x/\\mu$です。粘度を密度で割った動粘度を使えば u∞x/ν です。"
+            },
+            "sha256": "9d129bc5878de8703edfb27d6c0db48a0a4cb574275a76aa8de7204ef3d0f761"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-4-item-pr",
+          "number": "1-4",
+          "officialRef": "問1-4",
+          "officialQuestionItem": "pr",
+          "title": "拡散の無次元数",
+          "topic": "次元解析・無次元数",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "運動量と熱の拡散を比較する量はどれですか。",
+          "choices": [
+            "$Pr=c_p\\mu/\\lambda$",
+            "$Pr=\\lambda/(c_p\\mu)$"
+          ],
+          "answer": 1,
+          "answerSummary": "プランドル数はν/αです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "熱拡散率α＝λ/(ρcp)、動粘度ν＝μ/ρを割るとcpμ/λになります。"
+            },
+            {
+              "title": "仮の値で、三つを作ってみます",
+              "body": "計算例としてx＝0.1m、hₓ＝30W/(m²K)、λ＝0.03W/(mK)、主流速度10m/s、ν＝1.5×10⁻⁵m²/sとします。Nuₓ＝30×0.1/0.03＝100、Reₓ＝10×0.1/(1.5×10⁻⁵)≈66667です。さらにμ＝1.8×10⁻⁵Pa・s、cₚ＝1000J/(kgK)ならPr＝0.6です。これは単位の消える組を確認する計算例で、実際の流れの相関式を満たすと指定したデータではありません。"
+            },
+            {
+              "title": "次元解析は、経験式そのものを決めるわけではありません",
+              "body": "結果は$\\mathrm{Nu}_x=f(\\mathrm{Re}_x,\\mathrm{Pr})$と表せます。つまりヌセルト数が、残り二つを入力とする関数になるという関係です。どの係数や指数を使うかまでは、この作業だけで決まりません。実験や流れの方程式から追加で決めます。熱伝達を表すNu、流れを表すRe、拡散の比を表すPrをそろえます。"
+            }
+          ],
+          "explanation": "【基礎】プランドル数はν/αです。\n【考え方】正解は1です。熱拡散率α＝λ/(ρcp)、動粘度ν＝μ/ρを割るとcpμ/λになります。\n【ポイント】計算例としてx＝0.1m、hₓ＝30W/(m²K)、λ＝0.03W/(mK)、主流速度10m/s、ν＝1.5×10⁻⁵m²/sとします。Nuₓ＝30×0.1/0.03＝100、Reₓ＝10×0.1/(1.5×10⁻⁵)≈66667です。さらにμ＝1.8×10⁻⁵Pa・s、cₚ＝1000J/(kgK)ならPr＝0.6です。これは単位の消える組を確認する計算例で、実際の流れの相関式を満たすと指定したデータではありません。\n【引っかけ】2：「$Pr=\\lambda/(c_p\\mu)$」ではなく、$Pr=c_p\\mu/\\lambda$です。熱拡散率α＝λ/(ρcp)、動粘度ν＝μ/ρを割るとcpμ/λになります。",
+          "relatedFormulas": [
+            "t1ch1-buckingham",
+            "t1ch1-reynolds",
+            "t1ch1-prandtl-nusselt"
+          ],
+          "editorialReview": {
+            "officialPoint": "次元解析・無次元数／個別の質問：拡散の無次元数",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$Pr=\\lambda/(c_p\\mu)$」ではなく、$Pr=c_p\\mu/\\lambda$です。熱拡散率α＝λ/(ρcp)、動粘度ν＝μ/ρを割るとcpμ/λになります。"
+            },
+            "sha256": "1f0b462d9126cfd5300f4d1c910e0bbc94c59a571c5f9af08ef3ce63a4179040"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t1e1-1-5",
@@ -887,13 +1213,13 @@
       ],
       "editorialReview": {
         "officialPoint": "非定常・旋回失速",
-        "alignment": "保存済み公式テキストの問1-5と論点・条件・独立した設問数を照合。必要な途中式・具体例を残して標準詳解へ統合し、図を本文へ対応させた。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "隣の迎え角が減るとする",
           "2": "伝播先を圧力面とする",
           "3": "疲労破壊を座屈と混同"
         },
-        "sha256": "96c18bbf4c402b65b61f5955791a814d19603ac1a704685d2a63faf6f6ddc53a"
+        "sha256": "661f46c157f5c57011ee20b28b1bdf899ea0dcb3cda6898985cf6317080ad12e"
       },
       "easyExplanation": [
         {
@@ -932,13 +1258,209 @@
         }
       ],
       "preFigureImage": "t1e1Q5Before",
-      "answerSummary": "失速とは迎え角が大きくなって流れが羽根からはがれ、正常に流れなくなることです。塞がれた流路の周囲では流れの向きが変わり、隣の羽根への入り方も変わります。",
+      "answerSummary": "最初の迎え角：迎え角が過大になると流れが羽根からはがれやすくなります。\n隣の迎え角：流れの入り方が変わって隣の羽根も失速しやすくなります。\n失速域の移動：負圧面側の隣接羽根へ伝わります。\n繰返し荷重の影響：繰返し応力で疲労損傷が進みます。",
       "preFigures": [
         {
           "figureImage": "t1e1Q5Before",
           "caption": "羽根と流れの向きを確認し、失速したときに隣の羽根への流入がどう変わるかを考えます。"
         }
-      ]
+      ],
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "sharedQuestion": "羽根の一部で始まる失速が隣の羽根へ移る現象について答えます。",
+      "studyParts": [
+        {
+          "id": "t1e1-1-5-item-a",
+          "number": "1-5",
+          "officialRef": "問1-5",
+          "officialQuestionItem": "a",
+          "title": "最初の迎え角",
+          "topic": "非定常・旋回失速",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "失速しやすいのは迎え角がどちらのときですか。",
+          "choices": [
+            "大きい",
+            "小さい"
+          ],
+          "answer": 1,
+          "answerSummary": "迎え角が過大になると流れが羽根からはがれやすくなります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "流れと羽根のなす角が大きいほど、常に性能が良くなるわけではありません。"
+            },
+            {
+              "title": "迎え角は、羽根に入ってくる流れの向きです",
+              "body": "羽根の向きと、羽根から見た流入方向とのずれを迎え角と呼びます。迎え角が大きくなり過ぎると、流れが羽根の表面に沿えず、はがれて正常に流れにくくなります。これが失速です。本問は一枚の羽根の失速が周囲の流れを変え、隣の羽根へ順番に失速を伝える過程を問うています。羽根自体が隣の場所へ移るという意味ではありません。"
+            }
+          ],
+          "explanation": "【基礎】迎え角が過大になると流れが羽根からはがれやすくなります。\n【考え方】正解は1です。流れと羽根のなす角が大きいほど、常に性能が良くなるわけではありません。\n【ポイント】羽根の向きと、羽根から見た流入方向とのずれを迎え角と呼びます。迎え角が大きくなり過ぎると、流れが羽根の表面に沿えず、はがれて正常に流れにくくなります。これが失速です。本問は一枚の羽根の失速が周囲の流れを変え、隣の羽根へ順番に失速を伝える過程を問うています。羽根自体が隣の場所へ移るという意味ではありません。\n【引っかけ】2：「小さい」ではなく、大きいです。流れと羽根のなす角が大きいほど、常に性能が良くなるわけではありません。",
+          "relatedFormulas": [
+            "t1ch1-rotating-stall-surging"
+          ],
+          "editorialReview": {
+            "officialPoint": "非定常・旋回失速／個別の質問：最初の迎え角",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「小さい」ではなく、大きいです。流れと羽根のなす角が大きいほど、常に性能が良くなるわけではありません。"
+            },
+            "sha256": "5a1b71373c5239a0d902f237dbb085ced8cdec40ff7c77be2d613f897d109a73"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-5-item-b",
+          "number": "1-5",
+          "officialRef": "問1-5",
+          "officialQuestionItem": "b",
+          "title": "隣の迎え角",
+          "topic": "非定常・旋回失速",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "閉塞の影響で、負圧面側に隣接する羽根の迎え角はどう変わりますか。",
+          "choices": [
+            "減少する",
+            "増大する"
+          ],
+          "answer": 2,
+          "answerSummary": "流れの入り方が変わって隣の羽根も失速しやすくなります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "通れない流れが隣へ回り込むことから考えます。"
+            },
+            {
+              "title": "一つの通路が塞がれると、隣への入り方が変わります",
+              "body": "翼列の一枚が失速すると、その間の流路が通りにくくなります。人が通路を避けて横の通路へ回るように、流れも周囲へ向きを変えます。その結果、本問の配置では負圧面側の隣接羽根へ入る流れの迎え角が増大します。隣の羽根も失速しやすくなるので、(a)は増大、(b)は負圧面です。圧力面と負圧面は、羽根の両側を区別する名称です。"
+            }
+          ],
+          "explanation": "【基礎】流れの入り方が変わって隣の羽根も失速しやすくなります。\n【考え方】正解は2です。通れない流れが隣へ回り込むことから考えます。\n【ポイント】翼列の一枚が失速すると、その間の流路が通りにくくなります。人が通路を避けて横の通路へ回るように、流れも周囲へ向きを変えます。その結果、本問の配置では負圧面側の隣接羽根へ入る流れの迎え角が増大します。隣の羽根も失速しやすくなるので、(a)は増大、(b)は負圧面です。圧力面と負圧面は、羽根の両側を区別する名称です。\n【引っかけ】1：「減少する」ではなく、増大するです。通れない流れが隣へ回り込むことから考えます。",
+          "relatedFormulas": [
+            "t1ch1-rotating-stall-surging"
+          ],
+          "editorialReview": {
+            "officialPoint": "非定常・旋回失速／個別の質問：隣の迎え角",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「減少する」ではなく、増大するです。通れない流れが隣へ回り込むことから考えます。"
+            },
+            "sha256": "bb8d7894de3e1fae43e7fa72de0b2283859f048ffe527a6962800fbfb8a0fc70"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-5-item-c",
+          "number": "1-5",
+          "officialRef": "問1-5",
+          "officialQuestionItem": "c",
+          "title": "失速域の移動",
+          "topic": "非定常・旋回失速",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "失速域はどちらへ順に移りますか。",
+          "choices": [
+            "負圧面側",
+            "圧力面側"
+          ],
+          "answer": 1,
+          "answerSummary": "負圧面側の隣接羽根へ伝わります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "最初の羽根は回復するため、失速した領域が移って見えます。"
+            },
+            {
+              "title": "元の羽根が回復するので、失速域が移って見えます",
+              "body": "最初の羽根では逆に迎え角が小さくなり、流れが回復します。一方、その隣では迎え角が増し失速します。さらに次の羽根へ同じことが伝わるため、失速している領域が翼列を回るように移動します。観客席で立ち上がる人が順に変わると波が進んで見えるのと似ています。ただし流体では、流路閉塞と流入方向の変化が、隣へ伝わる原因です。",
+              "figures": [
+                {
+                  "figureImage": "t1e1RotatingStall",
+                  "caption": "赤の失速した羽根Bから隣のCへ失速域が移り、Bは回復します。羽根が隣へ移動する図ではありません。"
+                }
+              ]
+            },
+            {
+              "title": "伝わる領域と、羽根の回転は同じ速度ではありません",
+              "body": "代表的な旋回失速では、静止した側から見た失速域は、羽根車と同じ回転方向へ、その回転速度の30〜70％程度で伝わると説明されます。例えば羽根車が1秒に100回転し、失速域が50％の速度なら、失速域は1秒に50周するイメージです。この値は理解用の例で、すべての機械や運転点で50％に固定されるわけではありません。重要なのは、羽根と失速域を区別することです。"
+            }
+          ],
+          "explanation": "【基礎】負圧面側の隣接羽根へ伝わります。\n【考え方】正解は1です。最初の羽根は回復するため、失速した領域が移って見えます。\n【ポイント】最初の羽根では逆に迎え角が小さくなり、流れが回復します。一方、その隣では迎え角が増し失速します。さらに次の羽根へ同じことが伝わるため、失速している領域が翼列を回るように移動します。観客席で立ち上がる人が順に変わると波が進んで見えるのと似ています。ただし流体では、流路閉塞と流入方向の変化が、隣へ伝わる原因です。\n【引っかけ】2：「圧力面側」ではなく、負圧面側です。最初の羽根は回復するため、失速した領域が移って見えます。",
+          "relatedFormulas": [
+            "t1ch1-rotating-stall-surging"
+          ],
+          "editorialReview": {
+            "officialPoint": "非定常・旋回失速／個別の質問：失速域の移動",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「圧力面側」ではなく、負圧面側です。最初の羽根は回復するため、失速した領域が移って見えます。"
+            },
+            "sha256": "fa8f476e684a68582439751dbc8ac5688e1cc31842a532904b14c2c21813b61f"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-5-item-d",
+          "number": "1-5",
+          "officialRef": "問1-5",
+          "officialQuestionItem": "d",
+          "title": "繰返し荷重の影響",
+          "topic": "非定常・旋回失速",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "繰り返す応力で問題となるのはどれですか。",
+          "choices": [
+            "一度の圧縮による座屈",
+            "疲労破壊"
+          ],
+          "answer": 2,
+          "answerSummary": "繰返し応力で疲労損傷が進みます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "一回では壊れない大きさでも繰り返すことで亀裂や破壊へつながります。"
+            },
+            {
+              "title": "問題となるのは、一度の大荷重だけではありません",
+              "body": "失速域が通過するたび、羽根に作用する力が変化します。その変化が繰り返されると、単発なら壊れない大きさの応力でも損傷が蓄積して疲労破壊を招く場合があります。針金を一度曲げただけでは切れなくても、何度も曲げると折れる例が近いイメージです。したがって(c)は疲労破壊です。押しつぶす力で不安定な形へ変わる座屈を、ここで選ぶのではありません。"
+            },
+            {
+              "title": "サージングとは、変動の範囲が違います",
+              "body": "旋回失速は、翼列内で失速域が周方向へ伝わる局所的な現象です。次問のサージングは、ターボ機械と管路系全体の流量・圧力が周期的に変動する現象です。どちらも非定常ですが、同じ名前でまとめられません。"
+            }
+          ],
+          "explanation": "【基礎】繰返し応力で疲労損傷が進みます。\n【考え方】正解は2です。一回では壊れない大きさでも繰り返すことで亀裂や破壊へつながります。\n【ポイント】失速域が通過するたび、羽根に作用する力が変化します。その変化が繰り返されると、単発なら壊れない大きさの応力でも損傷が蓄積して疲労破壊を招く場合があります。針金を一度曲げただけでは切れなくても、何度も曲げると折れる例が近いイメージです。したがって(c)は疲労破壊です。押しつぶす力で不安定な形へ変わる座屈を、ここで選ぶのではありません。\n【引っかけ】1：「一度の圧縮による座屈」ではなく、疲労破壊です。一回では壊れない大きさでも繰り返すことで亀裂や破壊へつながります。",
+          "relatedFormulas": [
+            "t1ch1-rotating-stall-surging"
+          ],
+          "editorialReview": {
+            "officialPoint": "非定常・旋回失速／個別の質問：繰返し荷重の影響",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「一度の圧縮による座屈」ではなく、疲労破壊です。一回では壊れない大きさでも繰り返すことで亀裂や破壊へつながります。"
+            },
+            "sha256": "e04a97a7178bf710b60bb9c6e9b1e2e0e5c39572fe185c8bc4ce70567d6c0203"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t1e1-1-6",
@@ -968,13 +1490,13 @@
       ],
       "editorialReview": {
         "officialPoint": "自励振動・サージング",
-        "alignment": "保存済み公式テキストの問1-6と論点・条件・独立した設問数を照合。必要な途中式・具体例を残して標準詳解へ統合し、図を本文へ対応させた。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "成長する勾配の符号が逆",
           "2": "容量部をダンパーと混同",
           "3": "系全体の変動を旋回失速と混同"
         },
-        "sha256": "f7946f6f73628f2fb44b1adde6af7093661677a0f3ce21296993731f72aa1d89"
+        "sha256": "1fb1909a9dfc075032f3b99f863d65d47d9b966ba50215b2bec325d9d85a9816"
       },
       "easyExplanation": [
         {
@@ -1009,13 +1531,205 @@
         }
       ],
       "preFigureImage": "t1e1Q6Before",
-      "answerSummary": "サージングは、機械と管路全体の圧力・流量が自ら振動する現象です。タンク水位や空気溜まりの圧縮が、流量変動を押し戻すばねの役割をします。",
+      "answerSummary": "現象名：ポンプと管路を含む系全体の自励振動です。\n容量部の作用：蓄えた流体や圧力が押し戻す作用を持ちます。\n安定となる傾き：右下がり特性は変動を弱める方向です。\n不安定となる傾き：右上がり特性は変動を増幅する方向です。",
       "preFigures": [
         {
           "figureImage": "t1e1Q6Before",
           "caption": "機械・管路・容量部を一つの系として見ます。流体を蓄える部分が圧力と流量の変動に関わります。"
         }
-      ]
+      ],
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "sharedQuestion": "管路系全体の圧力・流量が周期的に変動する場合を考えます。ポンプ揚程曲線の傾きを $\\beta=dh/dQ$ とし、他の抵抗を省いた本問の安定性モデルで判断します。",
+      "studyParts": [
+        {
+          "id": "t1e1-1-6-item-a",
+          "number": "1-6",
+          "officialRef": "問1-6",
+          "officialQuestionItem": "a",
+          "title": "現象名",
+          "topic": "自励振動・サージング",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "管路系全体の周期変動はどれですか。",
+          "choices": [
+            "スロッシング",
+            "サージング"
+          ],
+          "answer": 2,
+          "answerSummary": "ポンプと管路を含む系全体の自励振動です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "タンク液面の揺動を指すスロッシングとは異なります。"
+            },
+            {
+              "title": "全体の流量が増えたり減ったりする振動です",
+              "body": "サージングでは、機械の羽根付近だけでなく、接続した管路全体の圧力や流量が周期的に変動します。タンクへ入り過ぎれば水位が上がり、今度は高くなった水位が流入を押し戻します。管内の流体には慣性があるため、すぐには止まれず行き過ぎます。これが、ばねにつないだ重りが往復する仕組みに似た振動を作ります。"
+            }
+          ],
+          "explanation": "【基礎】ポンプと管路を含む系全体の自励振動です。\n【考え方】正解は2です。タンク液面の揺動を指すスロッシングとは異なります。\n【ポイント】サージングでは、機械の羽根付近だけでなく、接続した管路全体の圧力や流量が周期的に変動します。タンクへ入り過ぎれば水位が上がり、今度は高くなった水位が流入を押し戻します。管内の流体には慣性があるため、すぐには止まれず行き過ぎます。これが、ばねにつないだ重りが往復する仕組みに似た振動を作ります。\n【引っかけ】1：「スロッシング」ではなく、サージングです。タンク液面の揺動を指すスロッシングとは異なります。",
+          "relatedFormulas": [
+            "t1ch1-rotating-stall-surging"
+          ],
+          "editorialReview": {
+            "officialPoint": "自励振動・サージング／個別の質問：現象名",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「スロッシング」ではなく、サージングです。タンク液面の揺動を指すスロッシングとは異なります。"
+            },
+            "sha256": "08bd6ef57bc849ccc0b5b52f7b1835b3f4a2552f1fa04d517b78965714ff6fe1"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-6-item-b",
+          "number": "1-6",
+          "officialRef": "問1-6",
+          "officialQuestionItem": "b",
+          "title": "容量部の作用",
+          "topic": "自励振動・サージング",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "タンクや空気溜まりは振動系の何に相当しますか。",
+          "choices": [
+            "ばね",
+            "ダンパー"
+          ],
+          "answer": 1,
+          "answerSummary": "蓄えた流体や圧力が押し戻す作用を持ちます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "速度に比例してエネルギーを失わせるダンパーとは役割が違います。"
+            },
+            {
+              "title": "容量部は、流体をためて押し戻す役割です",
+              "body": "タンクの断面積をS、流入流量をQ、一定の流出流量をQ₂とすれば、水位hの変化は$S\\,dh/dt=Q-Q_2$です。流入が多ければ水位が上がり、少なければ下がります。水位が上がると、管の下流側の圧力ρghも上がります。この蓄積と復元の働きが、ばねに対応します。摩擦でエネルギーを消費するダンパーとは働きが違います。"
+            },
+            {
+              "title": "圧力をためる効果と、抵抗の効果を区別します",
+              "body": "このmとkは、管内流体の慣性とタンクの復元作用を、流量の方程式へ換算した正の係数です。ばね付き重りと同形ですが、qは変位そのものではなく流量の変動です。機械が変動へエネルギーを与える向きなら、ばねの復元作用があっても振幅は増えます。ばねは必ず振動を消す部品という意味ではなく、往復運動を可能にする蓄積要素です。"
+            }
+          ],
+          "explanation": "【基礎】蓄えた流体や圧力が押し戻す作用を持ちます。\n【考え方】正解は1です。速度に比例してエネルギーを失わせるダンパーとは役割が違います。\n【ポイント】タンクの断面積をS、流入流量をQ、一定の流出流量をQ₂とすれば、水位hの変化は$S\\,dh/dt=Q-Q_2$です。流入が多ければ水位が上がり、少なければ下がります。水位が上がると、管の下流側の圧力ρghも上がります。この蓄積と復元の働きが、ばねに対応します。摩擦でエネルギーを消費するダンパーとは働きが違います。\n【引っかけ】2：「ダンパー」ではなく、ばねです。速度に比例してエネルギーを失わせるダンパーとは役割が違います。",
+          "relatedFormulas": [
+            "t1ch1-rotating-stall-surging"
+          ],
+          "editorialReview": {
+            "officialPoint": "自励振動・サージング／個別の質問：容量部の作用",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「ダンパー」ではなく、ばねです。速度に比例してエネルギーを失わせるダンパーとは役割が違います。"
+            },
+            "sha256": "362669a8d0a987563be6dab601383832a1e16455d4c253c242e86e47f642fbad"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-6-item-c",
+          "number": "1-6",
+          "officialRef": "問1-6",
+          "officialQuestionItem": "c",
+          "title": "安定となる傾き",
+          "topic": "自励振動・サージング",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "本問のモデルで減衰するのはどれですか。",
+          "choices": [
+            "$\\beta>0$",
+            "$\\beta<0$"
+          ],
+          "answer": 2,
+          "answerSummary": "右下がり特性は変動を弱める方向です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "振動方程式では抵抗の係数が−βに対応し、β<0なら正の減衰となります。"
+            },
+            {
+              "title": "揚程曲線の傾きが、変動を弱めるか強めるかを決めます",
+              "body": "運転点の近くで流量が少し増えたとします。β＝dh/dQが負なら機械の出せる揚程が下がり、増え過ぎた流量を抑える側に働きます。βが正なら、流量が増えたときに揚程も上がり、さらに流れを押す側に働きます。ここでは機械の揚程曲線の勾配をβと呼んでいます。管路抵抗の勾配を省いた本問の簡略化の下で、後者が振動成長の原因になります。",
+              "figures": [
+                {
+                  "figureImage": "t1e1Surging",
+                  "caption": "左の容量部が流体をため、管路の流体が動き続けようとします。右上がりの揚程曲線は、この単純モデルで流量変動を増幅させます。"
+                }
+              ]
+            },
+            {
+              "title": "振動方程式のマイナスを、標準形と比べます",
+              "body": "変動流量qの式は$m\\ddot q-\\beta\\dot q+kq=0$です。点一つは時間による1回微分、点二つは2回微分です。通常の減衰振動の形$m\\ddot q+c\\dot q+kq=0$と比べれば、減衰係数c＝−βです。β＜0ならc＞0で減衰、β＞0ならc＜0で増幅です。βの符号をそのまま「抵抗が正」と読まず、式の前のマイナスを含めて判断します。"
+            }
+          ],
+          "explanation": "【基礎】右下がり特性は変動を弱める方向です。\n【考え方】正解は2です。振動方程式では抵抗の係数が−βに対応し、β<0なら正の減衰となります。\n【ポイント】運転点の近くで流量が少し増えたとします。β＝dh/dQが負なら機械の出せる揚程が下がり、増え過ぎた流量を抑える側に働きます。βが正なら、流量が増えたときに揚程も上がり、さらに流れを押す側に働きます。ここでは機械の揚程曲線の勾配をβと呼んでいます。管路抵抗の勾配を省いた本問の簡略化の下で、後者が振動成長の原因になります。\n【引っかけ】1：「$\\beta>0$」ではなく、$\\beta<0$です。振動方程式では抵抗の係数が−βに対応し、β<0なら正の減衰となります。",
+          "relatedFormulas": [
+            "t1ch1-rotating-stall-surging"
+          ],
+          "editorialReview": {
+            "officialPoint": "自励振動・サージング／個別の質問：安定となる傾き",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$\\beta>0$」ではなく、$\\beta<0$です。振動方程式では抵抗の係数が−βに対応し、β<0なら正の減衰となります。"
+            },
+            "sha256": "dce9ce3c16249a92c2f2beefbbd2b21cf16270843c550108b7f809a69ec3399a"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-6-item-d",
+          "number": "1-6",
+          "officialRef": "問1-6",
+          "officialQuestionItem": "d",
+          "title": "不安定となる傾き",
+          "topic": "自励振動・サージング",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "本問のモデルで変動が成長するのはどれですか。",
+          "choices": [
+            "$\\beta>0$",
+            "$\\beta<0$"
+          ],
+          "answer": 1,
+          "answerSummary": "右上がり特性は変動を増幅する方向です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "流量が増えると揚程も増え、増加をさらに助ける作用になります。"
+            }
+          ],
+          "explanation": "【基礎】右上がり特性は変動を増幅する方向です。\n【考え方】正解は1です。流量が増えると揚程も増え、増加をさらに助ける作用になります。\n【ポイント】右上がり特性は変動を増幅する方向です。\n【引っかけ】2：「$\\beta<0$」ではなく、$\\beta>0$です。流量が増えると揚程も増え、増加をさらに助ける作用になります。",
+          "relatedFormulas": [
+            "t1ch1-rotating-stall-surging"
+          ],
+          "editorialReview": {
+            "officialPoint": "自励振動・サージング／個別の質問：不安定となる傾き",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$\\beta<0$」ではなく、$\\beta>0$です。流量が増えると揚程も増え、増加をさらに助ける作用になります。"
+            },
+            "sha256": "fb04f143f32c8eab7a82df922e9b2366b28023262e15d937dd854fd7262199de"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t1e1-1-7",
@@ -1051,7 +1765,7 @@
           "3": "対数領域の正しい分布",
           "4": "主流乱れなしの場合の正しいkの分布"
         },
-        "sha256": "c4375745762d19e96fc61841f66f777e833a866558b05056cb30fd1f2df111e7"
+        "sha256": "a4080cb3b134eb66e21b981ef903bf1e3da1ef2cdb31db5d4bf606dbc9d2120b"
       },
       "easyExplanation": [
         {
@@ -1089,7 +1803,10 @@
           "body": "①の粘性底層$U^{+}=y^{+}$、③の対数則、④の$k$のピーク位置はいずれも正しい記述で、②だけが約1であるべき無次元応力を「1より遥かに大きい」と誤っています。"
         }
       ],
-      "answerSummary": "壁近傍の一定応力層では粘性応力とレイノルズ応力の和(全せん断応力)が壁面せん断応力$\\tau_w=\\rho u_\\tau^2$にほぼ等しく保たれ、粘性底層では$U^{+}=y^{+}$、対数域では$U^{+}=\\dfrac{1}{\\kappa}\\ln y^{+}+C$($\\kappa=0.41,\\ C=5.0$)が成り立ちます。"
+      "answerSummary": "壁近傍の一定応力層では粘性応力とレイノルズ応力の和(全せん断応力)が壁面せん断応力$\\tau_w=\\rho u_\\tau^2$にほぼ等しく保たれ、粘性底層では$U^{+}=y^{+}$、対数域では$U^{+}=\\dfrac{1}{\\kappa}\\ln y^{+}+C$($\\kappa=0.41,\\ C=5.0$)が成り立ちます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t1e1-1-8",
@@ -1121,13 +1838,13 @@
       ],
       "editorialReview": {
         "officialPoint": "水撃・特性曲線法",
-        "alignment": "保存済み公式テキストの問1-8と論点・条件・独立した設問数を照合。必要な途中式・具体例を残して標準詳解へ統合し、図を本文へ対応させた。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "反射後の移動距離が短い",
           "2": "水撃圧を動圧と混同",
           "4": "反射後の逆流を見落とす"
         },
-        "sha256": "7ffea4e391869b680cb458492a1d675cbc7e8dfd0947fb8768fb668abe859376"
+        "sha256": "06f81f0462c8fe1fec0ddc3a9991cef33b9a0efbbc779e52965f1fecdf429275"
       },
       "easyExplanation": [
         {
@@ -1161,7 +1878,7 @@
           "body": "中央Oの流速は、0.10sまでは＋2m/s、その波の後は0、0.30sに反射波が来た後は−2m/sです。したがって③です。②は水撃圧を動圧と混同し、④は反射後も止まったままとしています。ここでは摩擦も液柱分離もない理想化を用いています。実際には圧力が低くなり過ぎると液柱分離などが起こり得るため、理想的な反射を無制限に実現できるという意味ではありません。"
         }
       ],
-      "answerSummary": "弁を閉めると、水を止める圧力波が水槽へ進みます。波の速さは水の流速ではなく音速$c$です。特性曲線法では、この波の通り道に沿って圧力と流速の関係を追います。",
+      "answerSummary": "最初の圧力上昇：水撃圧はρcΔUで求めます。\n最初の到達時刻：弁から中央までの距離L/2を音速で割ります。\n反射波の到達時刻：弁から水槽までL、戻って中央までL/2を進みます。\nOでの流速の変化：図②です。$+U_1\\rightarrow0\\rightarrow-U_1$と、波が到達するたびに流速が変わります。",
       "preFigures": [
         {
           "figureImage": "t1e1WaterHammerSetup",
@@ -1173,29 +1890,27 @@
         {
           "id": "t1e1-1-8-pressure-time",
           "number": "1-8",
-          "title": "圧力上昇と到達時刻",
+          "officialRef": "問1-8",
+          "officialQuestionItem": "pressure",
+          "title": "最初の圧力上昇",
           "topic": "水撃・特性曲線法",
           "type": "mc",
+          "responseType": "choice",
           "difficulty": 3,
-          "question": "Oに生じる最初の圧力上昇$\\Delta p$と、時刻$T_1,T_2$の組として正しいものを選んでください。",
-          "choices": [
-            "$\\Delta p=2.8\\ \\mathrm{MPa},\\ T_1=0.10\\ \\mathrm s,\\ T_2=0.20\\ \\mathrm s$",
-            "$\\Delta p=0.0020\\ \\mathrm{MPa},\\ T_1=0.10\\ \\mathrm s,\\ T_2=0.30\\ \\mathrm s$",
-            "$\\Delta p=2.8\\ \\mathrm{MPa},\\ T_1=0.10\\ \\mathrm s,\\ T_2=0.30\\ \\mathrm s$",
-            "$\\Delta p=2.8\\ \\mathrm{MPa},\\ T_1=70\\ \\mathrm s,\\ T_2=210\\ \\mathrm s$"
-          ],
-          "answer": 3,
-          "explanation": "【基礎】弁を急に閉じても、長い管の水が全部同時に止まるわけではありません。弁の近くで圧力が上がり、その圧力の変化が水槽へ伝わって、順に水を止めます。水が元々進む速さは2m/sですが、この圧力波は約1400m/sで進みます。管が剛体でも水には小さな圧縮性があるため、有限の音速を使います。\n【考え方】③です。$\\Delta p=2.8\\ \\mathrm{MPa}$、$T_1=0.10\\ \\mathrm s$、$T_2=0.30\\ \\mathrm s$です。 小さい流速の近似では、進行する圧力波について圧力変化と速度変化がρcを介して結ばれます。流速をU₁から0へ落とすための圧力上昇は$\\Delta P=\\rho cU_1$です。代入すれば1000×1400×2＝2800000Pa＝2.8MPaです。通常の動圧ρU₁²/2＝2000Paとは別の量です。音速が流速より非常に大きいため、急閉止による圧力上昇は動圧より大きくなります。\n【ポイント】弁から水槽までL、水槽から中央までL/2なので、道のりは合計3L/2＝420mです。閉止時刻から数える到着時刻は$T_2=(3L/2)/c=420/1400=0.30$sです。最初の到達から追加でかかる時間は0.20sです。T₂そのものを0.20sとする①は、時刻0からの経過時間と、二つの到着時刻の差を混同しています。\n【引っかけ】T₂を、水槽への到達時刻L/cと混同している。 急閉止による水撃圧を動圧ρU₁²/2に置き換えている。 波の伝播速度cを流体の速度U₁に置き換えている。",
-          "hasMath": true,
           "origin": "original",
           "reviewed": true,
-          "officialRef": "問1-8",
-          "role": "primary",
-          "relatedFormulas": [
-            "t1ch1-water-hammer",
-            "t1ch1-moc"
+          "question": "Δpはどれですか。",
+          "choices": [
+            "0.002 MPa",
+            "2.8 MPa"
           ],
+          "answer": 2,
+          "answerSummary": "水撃圧はρcΔUで求めます。",
           "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$\\Delta p=1000\\times1400\\times2=2.8\\times10^6\\,\\mathrm{Pa}=2.8\\,\\mathrm{MPa}$ です。"
+            },
             {
               "title": "止める情報は、水の流速でなく音速で伝わります",
               "body": "弁を急に閉じても、長い管の水が全部同時に止まるわけではありません。弁の近くで圧力が上がり、その圧力の変化が水槽へ伝わって、順に水を止めます。水が元々進む速さは2m/sですが、この圧力波は約1400m/sで進みます。管が剛体でも水には小さな圧縮性があるため、有限の音速を使います。"
@@ -1203,39 +1918,116 @@
             {
               "title": "水撃圧は、流速変化と音速の積で決まります",
               "body": "小さい流速の近似では、進行する圧力波について圧力変化と速度変化がρcを介して結ばれます。流速をU₁から0へ落とすための圧力上昇は$\\Delta P=\\rho cU_1$です。代入すれば1000×1400×2＝2800000Pa＝2.8MPaです。通常の動圧ρU₁²/2＝2000Paとは別の量です。音速が流速より非常に大きいため、急閉止による圧力上昇は動圧より大きくなります。"
+            }
+          ],
+          "explanation": "【基礎】水撃圧はρcΔUで求めます。\n【考え方】正解は2です。$\\Delta p=1000\\times1400\\times2=2.8\\times10^6\\,\\mathrm{Pa}=2.8\\,\\mathrm{MPa}$ です。\n【ポイント】弁を急に閉じても、長い管の水が全部同時に止まるわけではありません。弁の近くで圧力が上がり、その圧力の変化が水槽へ伝わって、順に水を止めます。水が元々進む速さは2m/sですが、この圧力波は約1400m/sで進みます。管が剛体でも水には小さな圧縮性があるため、有限の音速を使います。\n【引っかけ】1：この選択では、上で説明した条件・式を満たしません。水撃圧はρcΔUで求めます。 2：水撃圧はρcΔUで求めます。",
+          "relatedFormulas": [
+            "t1ch1-water-hammer",
+            "t1ch1-moc"
+          ],
+          "editorialReview": {
+            "officialPoint": "水撃・特性曲線法／個別の質問：最初の圧力上昇",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "この選択では、上で説明した条件・式を満たしません。水撃圧はρcΔUで求めます。"
+            },
+            "sha256": "a596bdc8e24f95c1f16ad7f628b82a3623084c79cc750afdca6ff97919c57534"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-8-item-t1",
+          "number": "1-8",
+          "officialRef": "問1-8",
+          "officialQuestionItem": "t1",
+          "title": "最初の到達時刻",
+          "topic": "水撃・特性曲線法",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "T₁はどれですか。",
+          "choices": [
+            "0.20 s",
+            "0.10 s"
+          ],
+          "answer": 2,
+          "answerSummary": "弁から中央までの距離L/2を音速で割ります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$T_1=(280/2)/1400=0.10\\,\\mathrm s$ です。"
             },
             {
               "title": "最初に中央へ届くまでの距離を測ります",
               "body": "管長L＝280mで、観測点Oは中央です。弁からOまでは140mなので、$T_1=(L/2)/c=140/1400=0.10$sです。水がその距離を走る時間140/2＝70sではありません。圧力の変化という情報が伝わる時間を求めています。この最初の波を受けた直後、Oの水は止まり、流速は0になります。"
+            }
+          ],
+          "explanation": "【基礎】弁から中央までの距離L/2を音速で割ります。\n【考え方】正解は2です。$T_1=(280/2)/1400=0.10\\,\\mathrm s$ です。\n【ポイント】管長L＝280mで、観測点Oは中央です。弁からOまでは140mなので、$T_1=(L/2)/c=140/1400=0.10$sです。水がその距離を走る時間140/2＝70sではありません。圧力の変化という情報が伝わる時間を求めています。この最初の波を受けた直後、Oの水は止まり、流速は0になります。\n【引っかけ】1：「0.20 s」ではなく、0.10 sです。$T_1=(280/2)/1400=0.10\\,\\mathrm s$ です。",
+          "relatedFormulas": [
+            "t1ch1-water-hammer",
+            "t1ch1-moc"
+          ],
+          "editorialReview": {
+            "officialPoint": "水撃・特性曲線法／個別の質問：最初の到達時刻",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「0.20 s」ではなく、0.10 sです。$T_1=(280/2)/1400=0.10\\,\\mathrm s$ です。"
+            },
+            "sha256": "960082df8d5a1e232da858c6605fb1529d1df0323dd60474baa50d12d6975e82"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-8-item-t2",
+          "number": "1-8",
+          "officialRef": "問1-8",
+          "officialQuestionItem": "t2",
+          "title": "反射波の到達時刻",
+          "topic": "水撃・特性曲線法",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "T₂はどれですか。",
+          "choices": [
+            "0.30 s",
+            "0.20 s"
+          ],
+          "answer": 1,
+          "answerSummary": "弁から水槽までL、戻って中央までL/2を進みます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$T_2=(L+L/2)/c=3L/(2c)=0.30\\,\\mathrm s$ です。"
             },
             {
               "title": "反射波は、いったん水槽まで行ってから戻ります",
-              "body": "弁から水槽までL、水槽から中央までL/2なので、道のりは合計3L/2＝420mです。閉止時刻から数える到着時刻は$T_2=(3L/2)/c=420/1400=0.30$sです。最初の到達から追加でかかる時間は0.20sです。T₂そのものを0.20sとする①は、時刻0からの経過時間と、二つの到着時刻の差を混同しています。",
+              "body": "弁から水槽までL、水槽から中央までL/2なので、道のりは合計3L/2＝420mです。閉止時刻から数える到着時刻は$T_2=(3L/2)/c=420/1400=0.30$sです。最初の到達から追加でかかる時間は0.20sです。0.20 sは二つの到着時刻の差です。閉止時刻を基準としたT₂とは異なります。",
               "figures": [
                 {
                   "figureImage": "t1e1WaterHammer",
-                  "caption": "弁→OはL/2、弁→水槽→Oは3L/2です。移動距離を音速cで割って到達時刻を求めます。"
+                  "caption": "弁から中央Oへの最初の到達は0.10s、水槽で反射してOへ戻るのは0.30sです。波が進む速さは水の流速とは違います。"
                 }
               ]
-            },
-            {
-              "title": "誤答のどこが違うか",
-              "body": "①の0.20sは波が水槽へ届く時刻で、Oへ戻るにはさらに0.10sかかります。②の0.0020MPaは$\\rho U_1^2/2$という動圧であり、急閉止の水撃圧ではありません。④は波が進む速さ$c$を水の流速$U_1$に置き換えています。"
             }
           ],
-          "answerSummary": "③です。$\\Delta p=2.8\\ \\mathrm{MPa}$、$T_1=0.10\\ \\mathrm s$、$T_2=0.30\\ \\mathrm s$です。",
-          "responseType": "choice",
-          "explanationMode": "guided",
+          "explanation": "【基礎】弁から水槽までL、戻って中央までL/2を進みます。\n【考え方】正解は1です。$T_2=(L+L/2)/c=3L/(2c)=0.30\\,\\mathrm s$ です。\n【ポイント】弁から水槽までL、水槽から中央までL/2なので、道のりは合計3L/2＝420mです。閉止時刻から数える到着時刻は$T_2=(3L/2)/c=420/1400=0.30$sです。最初の到達から追加でかかる時間は0.20sです。T₂そのものを0.20sとする①は、時刻0からの経過時間と、二つの到着時刻の差を混同しています。\n【引っかけ】2：「0.20 s」ではなく、0.30 sです。$T_2=(L+L/2)/c=3L/(2c)=0.30\\,\\mathrm s$ です。",
+          "relatedFormulas": [
+            "t1ch1-water-hammer",
+            "t1ch1-moc"
+          ],
           "editorialReview": {
-            "officialPoint": "水撃・特性曲線法／圧力上昇と到達時刻",
-            "alignment": "保存済み公式テキストの問1-8の当該設問に対応。公式指定の解答形式を確認し、共通条件の下で解答・導出・誤答理由を整えた。",
+            "officialPoint": "水撃・特性曲線法／個別の質問：反射波の到達時刻",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
             "distractorMisconceptions": {
-              "1": "T₂を、水槽への到達時刻L/cと混同している。",
-              "2": "急閉止による水撃圧を動圧ρU₁²/2に置き換えている。",
-              "4": "波の伝播速度cを流体の速度U₁に置き換えている。"
+              "2": "「0.20 s」ではなく、0.30 sです。$T_2=(L+L/2)/c=3L/(2c)=0.30\\,\\mathrm s$ です。"
             },
-            "sha256": "af8ced9a32d51e45afd37d5ede1009a01f43d71901c0fc6e8599d162e97a467f"
-          }
+            "sha256": "598d079c53ec84282196b580f4cf1498e4de580460eff51d8caf764b27d08e48"
+          },
+          "explanationMode": "guided"
         },
         {
           "id": "t1e1-1-8-velocity-wave",
@@ -1303,10 +2095,18 @@
               "3": "最初の圧縮波による停止と、反射波による逆流を同時とする。",
               "4": "水槽で反射した波が流速を変えることを落としている。"
             },
-            "sha256": "1614847727611b5415b964df1c9fa8a19413815c97798b40966177ca063fac68"
-          }
+            "sha256": "8577c2d458f259dfd265be70e8f14ca9cd3d8971a4fdaba91a75e0b44bb8e2d9"
+          },
+          "officialQuestionItem": "existing-2"
         }
-      ]
+      ],
+      "officialQuestionItems": [
+        "pressure",
+        "t1",
+        "t2",
+        "existing-2"
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t1e1-1-9",
@@ -1340,7 +2140,7 @@
           "3": "起電力を力と取り違える",
           "4": "電流密度を静電場による部分だけで置き換える"
         },
-        "sha256": "67275301bd0e663d56e6f03833010b83df7052d98bea416d4501c7c903b922e0"
+        "sha256": "fb2c418328482141d5b4d8d4f4999cd5ced503bba6122b4894a0ca54ef467a80"
       },
       "easyExplanation": [
         {
@@ -1374,7 +2174,10 @@
           "body": "①が力そのものです。②のj×Eは、電流と磁場の関係を電場へ置き換えています。③のv×Bは電流を生む側の電磁気的な項で、ホール定数で割っても、一般的なローレンツ力の定義にはなりません。電場・磁場から電流を求め、その電流と磁場から力を求め、流れが変われば電流も変わる、というつながりを考えると、複数の方程式を連立する理由が分かります。"
         }
       ],
-      "answerSummary": "MHDは流体力学と電磁気学にまたがるマルチフィジックス問題で、導電性流体に電流$\\mathbf{j}$が流れ磁場$\\mathbf{B}$中にあると、単位体積あたり$\\mathbf{j}\\times\\mathbf{B}$のローレンツ力(体積力)を受けます。"
+      "answerSummary": "MHDは流体力学と電磁気学にまたがるマルチフィジックス問題で、導電性流体に電流$\\mathbf{j}$が流れ磁場$\\mathbf{B}$中にあると、単位体積あたり$\\mathbf{j}\\times\\mathbf{B}$のローレンツ力(体積力)を受けます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t1e1-1-10",
@@ -1404,13 +2207,13 @@
       ],
       "editorialReview": {
         "officialPoint": "境界層はく離",
-        "alignment": "保存済み公式テキストの問1-10と論点・条件・独立した設問数を照合。必要な途中式・具体例を残して標準詳解へ統合し、図を本文へ対応させた。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "順圧力勾配での挙動を逆にする",
           "3": "損失増大を減少とする",
           "4": "壁面速度と壁面速度勾配を混同"
         },
-        "sha256": "a3c7638b0cccd41253515933c02a732bfb2a201daf53c6109940f4771d5c4197"
+        "sha256": "10ede33189a5f51b7319d38d60c58b400225274a9e77af2987ffb2d5642d8a42"
       },
       "easyExplanation": [
         {
@@ -1444,7 +2247,279 @@
           "body": "②は逆圧力勾配・粘性・運動エネルギー・壁面速度勾配0という関係を満たすので正解です。①の順圧力勾配は下流へ圧力が下がる加速側で、はく離を起こす方向が逆です。③は損失の増減が逆です。④は速度と速度勾配を混同しています。なお、三次元や非定常のはく離では判定がより複雑になります。ここでの速度勾配0という条件は、問題が指定した定常2次元の流れで使ってください。"
         }
       ],
-      "answerSummary": "本問の2次元はく離は、逆圧力勾配(流れ方向に圧力が上がる場)で境界層内の流体が減速し、壁面上の速度勾配$\\partial u/\\partial y|_{y=0}$が0となった点から流れが壁面を離れる現象です。"
+      "answerSummary": "減速に関係する作用：粘性によって機械的エネルギーが熱へ変わります。\n失われるエネルギー：速度に関係する運動エネルギーです。\n壁面で0となる量：速度勾配が0となり壁面せん断応力も0になります。\n現象の名称：壁に沿えなくなるはく離です。\n機械への影響：後流や混合などにより損失が増えます。\n抑制の方法：壁付近の流れを変える境界層制御です。",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f"
+      ],
+      "sharedQuestion": "定常2次元の、滑らかな静止壁に沿う境界層が逆圧力勾配を受ける場合を考えます。",
+      "studyParts": [
+        {
+          "id": "t1e1-1-10-item-a",
+          "number": "1-10",
+          "officialRef": "問1-10",
+          "officialQuestionItem": "a",
+          "title": "減速に関係する作用",
+          "topic": "境界層はく離",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "壁付近で流体の機械的エネルギーを散逸させる作用はどれですか。",
+          "choices": [
+            "粘性",
+            "慣性だけ"
+          ],
+          "answer": 1,
+          "answerSummary": "粘性によって機械的エネルギーが熱へ変わります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "壁付近の遅い流体は逆圧力勾配の下でさらに進みにくくなります。"
+            },
+            {
+              "title": "圧力が上がる方向へ進むと、流れは減速しやすくなります",
+              "body": "流れ方向をxとすると、逆圧力勾配はdp/dx＞0、つまり下流ほど圧力が高い状態です。流体には高圧側から低圧側へ向かう力が働くため、進行方向と逆向きの力になります。上り坂へ進む物体が減速するイメージに似ています。特に壁近くの遅い流体は、粘性の影響もあるため、この逆向きの圧力作用に耐えて進みにくくなります。"
+            }
+          ],
+          "explanation": "【基礎】粘性によって機械的エネルギーが熱へ変わります。\n【考え方】正解は1です。壁付近の遅い流体は逆圧力勾配の下でさらに進みにくくなります。\n【ポイント】流れ方向をxとすると、逆圧力勾配はdp/dx＞0、つまり下流ほど圧力が高い状態です。流体には高圧側から低圧側へ向かう力が働くため、進行方向と逆向きの力になります。上り坂へ進む物体が減速するイメージに似ています。特に壁近くの遅い流体は、粘性の影響もあるため、この逆向きの圧力作用に耐えて進みにくくなります。\n【引っかけ】2：「慣性だけ」ではなく、粘性です。壁付近の遅い流体は逆圧力勾配の下でさらに進みにくくなります。",
+          "relatedFormulas": [
+            "t1ch1-separation"
+          ],
+          "editorialReview": {
+            "officialPoint": "境界層はく離／個別の質問：減速に関係する作用",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「慣性だけ」ではなく、粘性です。壁付近の遅い流体は逆圧力勾配の下でさらに進みにくくなります。"
+            },
+            "sha256": "e7b9bfea2f4d91e1cb4c509051258e64a531cbe5598808254f0ec88f1bdae285"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-10-item-b",
+          "number": "1-10",
+          "officialRef": "問1-10",
+          "officialQuestionItem": "b",
+          "title": "失われるエネルギー",
+          "topic": "境界層はく離",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "ここで失われる運動のエネルギーはどれですか。",
+          "choices": [
+            "熱エネルギー",
+            "運動エネルギー"
+          ],
+          "answer": 2,
+          "answerSummary": "速度に関係する運動エネルギーです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "粘性散逸で機械的エネルギーが内部エネルギーへ移り、全エネルギーが消滅するわけではありません。"
+            }
+          ],
+          "explanation": "【基礎】速度に関係する運動エネルギーです。\n【考え方】正解は2です。粘性散逸で機械的エネルギーが内部エネルギーへ移り、全エネルギーが消滅するわけではありません。\n【ポイント】速度に関係する運動エネルギーです。\n【引っかけ】1：「熱エネルギー」ではなく、運動エネルギーです。粘性散逸で機械的エネルギーが内部エネルギーへ移り、全エネルギーが消滅するわけではありません。",
+          "relatedFormulas": [
+            "t1ch1-separation"
+          ],
+          "editorialReview": {
+            "officialPoint": "境界層はく離／個別の質問：失われるエネルギー",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「熱エネルギー」ではなく、運動エネルギーです。粘性散逸で機械的エネルギーが内部エネルギーへ移り、全エネルギーが消滅するわけではありません。"
+            },
+            "sha256": "7155e7aed2f30b6df66e1c49a841f95bfe8dff1207b14b0723e197dd1924db44"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-10-item-c",
+          "number": "1-10",
+          "officialRef": "問1-10",
+          "officialQuestionItem": "c",
+          "title": "壁面で0となる量",
+          "topic": "境界層はく離",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "古典的な2次元はく離点で0となるのはどれですか。",
+          "choices": [
+            "壁に垂直な方向の接線速度勾配",
+            "壁面の速度だけ"
+          ],
+          "answer": 1,
+          "answerSummary": "速度勾配が0となり壁面せん断応力も0になります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "滑りなしでは壁面速度はもともと至る所で0です。それだけでははく離点を特定できません。"
+            },
+            {
+              "title": "壁の速度0と、はく離の条件は違います",
+              "body": "滑らかな固定壁で滑りなしを仮定すると、壁面の速度u(x,0)は、はく離する前から0です。したがって「壁の速度が0だから、そこではく離する」とは言えません。確認するのは、壁から離れる向きyに速度がどれだけ増えるか、すなわち$(\\partial u/\\partial y)_{y=0}$です。これは速度分布を壁の位置で見た接線の傾きです。"
+            },
+            {
+              "title": "壁面せん断応力の式へつなぎます",
+              "body": "ニュートン流体では$\\tau_w=\\mu(\\partial u/\\partial y)_{y=0}$です。粘度μは正なので、速度勾配が0なら$\\tau_w$も0です。例としてμ＝0.001Pa・s、壁の勾配が100s⁻¹なら$\\tau_w$＝0.1Pa、0なら0Pa、−20s⁻¹なら−0.02Paです。本問の定常2次元の状況では、この壁面摩擦が0へ至る場所をはく離点として判定します。"
+            }
+          ],
+          "explanation": "【基礎】速度勾配が0となり壁面せん断応力も0になります。\n【考え方】正解は1です。滑りなしでは壁面速度はもともと至る所で0です。それだけでははく離点を特定できません。\n【ポイント】滑らかな固定壁で滑りなしを仮定すると、壁面の速度u(x,0)は、はく離する前から0です。したがって「壁の速度が0だから、そこではく離する」とは言えません。確認するのは、壁から離れる向きyに速度がどれだけ増えるか、すなわち$(\\partial u/\\partial y)_{y=0}$です。これは速度分布を壁の位置で見た接線の傾きです。\n【引っかけ】2：「壁面の速度だけ」ではなく、壁に垂直な方向の接線速度勾配です。滑りなしでは壁面速度はもともと至る所で0です。それだけでははく離点を特定できません。",
+          "relatedFormulas": [
+            "t1ch1-separation"
+          ],
+          "editorialReview": {
+            "officialPoint": "境界層はく離／個別の質問：壁面で0となる量",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「壁面の速度だけ」ではなく、壁に垂直な方向の接線速度勾配です。滑りなしでは壁面速度はもともと至る所で0です。それだけでははく離点を特定できません。"
+            },
+            "sha256": "b195b3eaf28b83f81f24ddb9b08130149ad4f17abe99b0cf8df80d99dd852d1d"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-10-item-d",
+          "number": "1-10",
+          "officialRef": "問1-10",
+          "officialQuestionItem": "d",
+          "title": "現象の名称",
+          "topic": "境界層はく離",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "流れが壁から離れるこの現象はどれですか。",
+          "choices": [
+            "再付着",
+            "はく離"
+          ],
+          "answer": 2,
+          "answerSummary": "壁に沿えなくなるはく離です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "一度離れた流れが再び壁へ戻る再付着とは逆の段階です。"
+            },
+            {
+              "title": "速度分布の三段階を思い浮かべます",
+              "body": "はく離前は、壁から離れるとすぐに正の速度が現れるため、壁の速度勾配は正です。減速が強まると傾きが小さくなり、はく離点では0になります。さらに下流の逆流域では、壁のすぐ近くでu＜0となり、傾きは負になります。例えば壁近傍でu≈ay＋by²と表せば、壁の勾配はaです。u(0)は常に0でも、aの符号は変化することが分かります。",
+              "figures": [
+                {
+                  "figureImage": "t1e1Separation",
+                  "caption": "横方向が流速u、縦方向が壁からの距離yです。赤い分布の壁でのdu/dyが正→0→負となり、はく離から逆流へ進みます。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】壁に沿えなくなるはく離です。\n【考え方】正解は2です。一度離れた流れが再び壁へ戻る再付着とは逆の段階です。\n【ポイント】はく離前は、壁から離れるとすぐに正の速度が現れるため、壁の速度勾配は正です。減速が強まると傾きが小さくなり、はく離点では0になります。さらに下流の逆流域では、壁のすぐ近くでu＜0となり、傾きは負になります。例えば壁近傍でu≈ay＋by²と表せば、壁の勾配はaです。u(0)は常に0でも、aの符号は変化することが分かります。\n【引っかけ】1：「再付着」ではなく、はく離です。一度離れた流れが再び壁へ戻る再付着とは逆の段階です。",
+          "relatedFormulas": [
+            "t1ch1-separation"
+          ],
+          "editorialReview": {
+            "officialPoint": "境界層はく離／個別の質問：現象の名称",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「再付着」ではなく、はく離です。一度離れた流れが再び壁へ戻る再付着とは逆の段階です。"
+            },
+            "sha256": "2dbe46b24b78702f0c8bc2b480f1216b3b8b471cd511e8cb6ddc1a51ebb29bf1"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-10-item-e",
+          "number": "1-10",
+          "officialRef": "問1-10",
+          "officialQuestionItem": "e",
+          "title": "機械への影響",
+          "topic": "境界層はく離",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "はく離によって大きくなりやすいのはどれですか。",
+          "choices": [
+            "エネルギー損失",
+            "有効な圧力回復だけ"
+          ],
+          "answer": 1,
+          "answerSummary": "後流や混合などにより損失が増えます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "流れが乱れて渦が生じることで、望む向きに使えるエネルギーが減ります。"
+            },
+            {
+              "title": "はく離すると、なぜ損失が増えるのでしょう",
+              "body": "流れが壁から離れると、下流に大きな後流や逆流領域を作り、混ざり合いなどによって利用できる流れのエネルギーが失われます。圧力の回復も悪くなり、機械の性能を下げる場合があります。そこで壁近くの流れを制御し、はく離を抑える考え方が境界層制御です。本問では、その具体的な装置の暗記より、はく離とエネルギー損失の増大を対応させることが要点です。"
+            }
+          ],
+          "explanation": "【基礎】後流や混合などにより損失が増えます。\n【考え方】正解は1です。流れが乱れて渦が生じることで、望む向きに使えるエネルギーが減ります。\n【ポイント】流れが壁から離れると、下流に大きな後流や逆流領域を作り、混ざり合いなどによって利用できる流れのエネルギーが失われます。圧力の回復も悪くなり、機械の性能を下げる場合があります。そこで壁近くの流れを制御し、はく離を抑える考え方が境界層制御です。本問では、その具体的な装置の暗記より、はく離とエネルギー損失の増大を対応させることが要点です。\n【引っかけ】2：「有効な圧力回復だけ」ではなく、エネルギー損失です。流れが乱れて渦が生じることで、望む向きに使えるエネルギーが減ります。",
+          "relatedFormulas": [
+            "t1ch1-separation"
+          ],
+          "editorialReview": {
+            "officialPoint": "境界層はく離／個別の質問：機械への影響",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「有効な圧力回復だけ」ではなく、エネルギー損失です。流れが乱れて渦が生じることで、望む向きに使えるエネルギーが減ります。"
+            },
+            "sha256": "69b5e11c6800ac7628f0309e638fe967921ba4483759c6272f5f3003ae8e6ce9"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-10-item-f",
+          "number": "1-10",
+          "officialRef": "問1-10",
+          "officialQuestionItem": "f",
+          "title": "抑制の方法",
+          "topic": "境界層はく離",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "吸込みや吹出しなどではく離を抑える考え方はどれですか。",
+          "choices": [
+            "主流だけを一様に増速する操作",
+            "境界層制御"
+          ],
+          "answer": 2,
+          "answerSummary": "壁付近の流れを変える境界層制御です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "壁付近に運動量を補う、遅い流体を吸い取るなどにより、逆圧力勾配に耐えやすくします。"
+            }
+          ],
+          "explanation": "【基礎】壁付近の流れを変える境界層制御です。\n【考え方】正解は2です。壁付近に運動量を補う、遅い流体を吸い取るなどにより、逆圧力勾配に耐えやすくします。\n【ポイント】壁付近の流れを変える境界層制御です。\n【引っかけ】1：「主流だけを一様に増速する操作」ではなく、境界層制御です。壁付近に運動量を補う、遅い流体を吸い取るなどにより、逆圧力勾配に耐えやすくします。",
+          "relatedFormulas": [
+            "t1ch1-separation"
+          ],
+          "editorialReview": {
+            "officialPoint": "境界層はく離／個別の質問：抑制の方法",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「主流だけを一様に増速する操作」ではなく、境界層制御です。壁付近に運動量を補う、遅い流体を吸い取るなどにより、逆圧力勾配に耐えやすくします。"
+            },
+            "sha256": "4d60fc9448ec63287f1ece553806017fcea2b947822c6bc58d1ebe926da4907a"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t1e1-1-11",
@@ -1474,13 +2549,13 @@
       ],
       "editorialReview": {
         "officialPoint": "自然対流",
-        "alignment": "保存済み公式テキストの問1-11と論点・条件・独立した設問数を照合。必要な途中式・具体例を残して標準詳解へ統合し、図を本文へ対応させた。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "自然対流と強制対流を混同",
           "2": "Grを慣性と粘性の比とする",
           "3": "密度変化が小さいという近似条件を逆にする"
         },
-        "sha256": "76972b21911845b1c82c5d63974e26fa22002b4fbe2f2cd51000020583a237ad"
+        "sha256": "a32f9f674846dfb10b8d8653332405999ebb7b6f5a5169fdf750187c0866fcc3"
       },
       "easyExplanation": [
         {
@@ -1514,7 +2589,359 @@
           "body": "①は温度による密度差を原因とする自然対流を、外部から駆動する強制対流へ置き換えています。②はGrの意味を、慣性と粘性を比較するReの意味へ変えています。密度差・浮力・小さい温度差でのブシネ近似がそろう④が正解です。Grが大きいという一つの値から、あらゆる形状で同じ流れや熱伝達が決まるわけではありません。自然対流を分類する重要な指標として、境界条件などと一緒に使います。"
         }
       ],
-      "answerSummary": "自然対流は、流体が加熱されて密度差が生じ、その密度差による浮力が駆動源となって起こる流れで、外部から流れを与える強制対流とは区別されます。"
+      "answerSummary": "加熱で生じる差：通常、温まった流体は密度が小さくなります。\n流れの駆動力：周囲との重さの差による浮力です。\n小さい差の条件：温度差による相対密度変化が小さいことが条件です。\n近似の名称：ブシネ近似です。\n適用する方程式：重力による力は運動方程式に入ります。\n無次元数：グラスホフ数です。\n流れを起こす力：温度差による浮力が駆動側です。\n流れを抑える作用：粘性による抑制と比較します。",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h"
+      ],
+      "sharedQuestion": "加熱によって生じる自然対流と、密度変化を小さいとして近似する方法を考えます。",
+      "studyParts": [
+        {
+          "id": "t1e1-1-11-item-a",
+          "number": "1-11",
+          "officialRef": "問1-11",
+          "officialQuestionItem": "a",
+          "title": "加熱で生じる差",
+          "topic": "自然対流",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "加熱により直接生じる物性の差はどれですか。",
+          "choices": [
+            "粘度差だけ",
+            "密度差"
+          ],
+          "answer": 2,
+          "answerSummary": "通常、温まった流体は密度が小さくなります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "周囲の重い流体との密度差が上昇を起こす原因になります。"
+            },
+            {
+              "title": "加熱が、流れを起こす原因になります",
+              "body": "自然対流は、ポンプで先に流れを与えるのでなく、温度差から流れが生まれる現象です。例えば水を下から加熱すると、温かい部分の密度が周囲より小さくなり、浮力によって上がります。空いた所へ周囲の低温の流体が移動して循環ができます。温度差、密度差、浮力、流れという順序でつなげると、単に「温かいものは上がる」という暗記から一歩進めます。"
+            }
+          ],
+          "explanation": "【基礎】通常、温まった流体は密度が小さくなります。\n【考え方】正解は2です。周囲の重い流体との密度差が上昇を起こす原因になります。\n【ポイント】自然対流は、ポンプで先に流れを与えるのでなく、温度差から流れが生まれる現象です。例えば水を下から加熱すると、温かい部分の密度が周囲より小さくなり、浮力によって上がります。空いた所へ周囲の低温の流体が移動して循環ができます。温度差、密度差、浮力、流れという順序でつなげると、単に「温かいものは上がる」という暗記から一歩進めます。\n【引っかけ】1：「粘度差だけ」ではなく、密度差です。周囲の重い流体との密度差が上昇を起こす原因になります。",
+          "relatedFormulas": [
+            "t1ch1-grashof-boussinesq"
+          ],
+          "editorialReview": {
+            "officialPoint": "自然対流／個別の質問：加熱で生じる差",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「粘度差だけ」ではなく、密度差です。周囲の重い流体との密度差が上昇を起こす原因になります。"
+            },
+            "sha256": "61d86fa3565720de30c83557b85928ba2d149c57b7e8a1b92860efb565b28e6b"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-11-item-b",
+          "number": "1-11",
+          "officialRef": "問1-11",
+          "officialQuestionItem": "b",
+          "title": "流れの駆動力",
+          "topic": "自然対流",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "この密度差が重力場で生む駆動力はどれですか。",
+          "choices": [
+            "浮力",
+            "圧縮力だけ"
+          ],
+          "answer": 1,
+          "answerSummary": "周囲との重さの差による浮力です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "外部のポンプで押す強制対流と区別します。"
+            }
+          ],
+          "explanation": "【基礎】周囲との重さの差による浮力です。\n【考え方】正解は1です。外部のポンプで押す強制対流と区別します。\n【ポイント】周囲との重さの差による浮力です。\n【引っかけ】2：「圧縮力だけ」ではなく、浮力です。外部のポンプで押す強制対流と区別します。",
+          "relatedFormulas": [
+            "t1ch1-grashof-boussinesq"
+          ],
+          "editorialReview": {
+            "officialPoint": "自然対流／個別の質問：流れの駆動力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「圧縮力だけ」ではなく、浮力です。外部のポンプで押す強制対流と区別します。"
+            },
+            "sha256": "b1f37569f690631060b3ff0041c50b0d87cd911837bdd9c60ebcada5d9488a8b"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-11-item-c",
+          "number": "1-11",
+          "officialRef": "問1-11",
+          "officialQuestionItem": "c",
+          "title": "小さい差の条件",
+          "topic": "自然対流",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "次の近似を使いやすいのは、どの差が十分小さいときですか。",
+          "choices": [
+            "温度差が十分大きいとき",
+            "温度差"
+          ],
+          "answer": 2,
+          "answerSummary": "温度差による相対密度変化が小さいことが条件です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "目安はβΔTが十分小さいことで、温度差が大きければ常に高精度になるわけではありません。"
+            },
+            {
+              "title": "温度差は、大きいほど近似が良いわけではありません",
+              "body": "密度を基準値の近くで扱うため、相対変化の目安$\\beta|\\Delta T|$が小さいことが必要です。上の例では0.0002×10＝0.002で、約0.2％です。温度差を極端に大きくすれば、この前提は崩れます。さらに粘度などの物性変化も大きい場合は、一定物性という扱いが適切か確認します。温度差が大きいほど近似精度が上がるとは限りません。"
+            }
+          ],
+          "explanation": "【基礎】温度差による相対密度変化が小さいことが条件です。\n【考え方】正解は2です。目安はβΔTが十分小さいことで、温度差が大きければ常に高精度になるわけではありません。\n【ポイント】密度を基準値の近くで扱うため、相対変化の目安$\\beta|\\Delta T|$が小さいことが必要です。上の例では0.0002×10＝0.002で、約0.2％です。温度差を極端に大きくすれば、この前提は崩れます。さらに粘度などの物性変化も大きい場合は、一定物性という扱いが適切か確認します。③の「高温差ほど精度が上がる」は、この近似の前提と逆です。\n【引っかけ】1：「温度差が十分大きいとき」ではなく、温度差です。目安はβΔTが十分小さいことで、温度差が大きければ常に高精度になるわけではありません。",
+          "relatedFormulas": [
+            "t1ch1-grashof-boussinesq"
+          ],
+          "editorialReview": {
+            "officialPoint": "自然対流／個別の質問：小さい差の条件",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「温度差が十分大きいとき」ではなく、温度差です。目安はβΔTが十分小さいことで、温度差が大きければ常に高精度になるわけではありません。"
+            },
+            "sha256": "1fb1dddc699b337200103459ecd899ac31b3f38d651c608b2416a317b60178a7"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-11-item-d",
+          "number": "1-11",
+          "officialRef": "問1-11",
+          "officialQuestionItem": "d",
+          "title": "近似の名称",
+          "topic": "自然対流",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "浮力項で密度差を残し、他では基準密度を使う近似はどれですか。",
+          "choices": [
+            "ブシネ近似",
+            "低マッハ数近似と常に同じもの"
+          ],
+          "answer": 1,
+          "answerSummary": "ブシネ近似です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "小さい密度差でも浮力として重要な効果だけを残します。"
+            },
+            {
+              "title": "ブシネ近似では、密度差を浮力項だけへ残します",
+              "body": "基準温度T₀の密度をρ₀、体膨張係数をβとすると、密度差は$\\rho-\\rho_0\\approx-\\rho_0\\beta(T-T_0)$です。加熱すると密度が小さくなることを負号で表します。密度差が小さければ、慣性などの項ではρをρ₀として扱い、浮力を計算する部分だけにこの差を残します。全部の項で密度差を消すと、温度差が流れを起こす原因まで消えてしまいます。"
+            }
+          ],
+          "explanation": "【基礎】ブシネ近似です。\n【考え方】正解は1です。小さい密度差でも浮力として重要な効果だけを残します。\n【ポイント】基準温度T₀の密度をρ₀、体膨張係数をβとすると、密度差は$\\rho-\\rho_0\\approx-\\rho_0\\beta(T-T_0)$です。加熱すると密度が小さくなることを負号で表します。密度差が小さければ、慣性などの項ではρをρ₀として扱い、浮力を計算する部分だけにこの差を残します。全部の項で密度差を消すと、温度差が流れを起こす原因まで消えてしまいます。\n【引っかけ】2：「低マッハ数近似と常に同じもの」ではなく、ブシネ近似です。小さい密度差でも浮力として重要な効果だけを残します。",
+          "relatedFormulas": [
+            "t1ch1-grashof-boussinesq"
+          ],
+          "editorialReview": {
+            "officialPoint": "自然対流／個別の質問：近似の名称",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「低マッハ数近似と常に同じもの」ではなく、ブシネ近似です。小さい密度差でも浮力として重要な効果だけを残します。"
+            },
+            "sha256": "16b667d4237edc0809c3cb332964a062d085427a5476562a830628b321e8f0b0"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-11-item-e",
+          "number": "1-11",
+          "officialRef": "問1-11",
+          "officialQuestionItem": "e",
+          "title": "適用する方程式",
+          "topic": "自然対流",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "浮力の密度差を残すのは主にどの方程式ですか。",
+          "choices": [
+            "連続の式だけ",
+            "運動方程式"
+          ],
+          "answer": 2,
+          "answerSummary": "重力による力は運動方程式に入ります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "密度差による力を速度変化へつなげます。"
+            },
+            {
+              "title": "力を密度で割ると、浮力による加速度になります",
+              "body": "鉛直上向きを正に取ると、基準の静水圧と釣り合う重力を除いた力は単位体積当たり$-(\\rho-\\rho_0)g$です。上の密度差を入れてρ₀で割れば、$g\\beta(T-T_0)$となります。例えばβ＝0.0002K⁻¹、温度差10Kなら、g＝9.8m/s²として0.0196m/s²です。温度差の符号を反転すれば、この追加作用の向きも反転します。",
+              "figures": [
+                {
+                  "figureImage": "t1e1NaturalConv",
+                  "caption": "加熱された壁の近くで密度が下がり、浮力で上昇します。温度差が流れを起こす原因です。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】重力による力は運動方程式に入ります。\n【考え方】正解は2です。密度差による力を速度変化へつなげます。\n【ポイント】鉛直上向きを正に取ると、基準の静水圧と釣り合う重力を除いた力は単位体積当たり$-(\\rho-\\rho_0)g$です。上の密度差を入れてρ₀で割れば、$g\\beta(T-T_0)$となります。例えばβ＝0.0002K⁻¹、温度差10Kなら、g＝9.8m/s²として0.0196m/s²です。温度差の符号を反転すれば、この追加作用の向きも反転します。\n【引っかけ】1：「連続の式だけ」ではなく、運動方程式です。密度差による力を速度変化へつなげます。",
+          "relatedFormulas": [
+            "t1ch1-grashof-boussinesq"
+          ],
+          "editorialReview": {
+            "officialPoint": "自然対流／個別の質問：適用する方程式",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「連続の式だけ」ではなく、運動方程式です。密度差による力を速度変化へつなげます。"
+            },
+            "sha256": "10f493fbe177c4ecaea77a04c09a417a43f5a424e45f39d618aca94b9e6df84f"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-11-item-f",
+          "number": "1-11",
+          "officialRef": "問1-11",
+          "officialQuestionItem": "f",
+          "title": "無次元数",
+          "topic": "自然対流",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "自然対流の強さの整理に使う代表的な数はどれですか。",
+          "choices": [
+            "グラスホフ数",
+            "マッハ数"
+          ],
+          "answer": 1,
+          "answerSummary": "グラスホフ数です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$Gr=g\\beta\\Delta T L^3/\\nu^2$ で、浮力による流れと粘性による抑制を比較します。"
+            },
+            {
+              "title": "グラスホフ数は、浮力と粘性に関係する比較です",
+              "body": "代表長さL、動粘性率νを使うと$\\mathrm{Gr}=g\\beta\\Delta T L^3/\\nu^2$です。分子も分母もm⁴/s²の単位となり、比は無次元です。例えばL＝0.1m、ν＝10⁻⁶m²/s、上のβと温度差なら、$\\mathrm{Gr}=9.8\\times0.0002\\times10\\times0.1^3/(10^{-6})^2=1.96\\times10^7$です。νが小さいほど粘性による抑制は相対的に弱くなり、Grは大きくなります。"
+            }
+          ],
+          "explanation": "【基礎】グラスホフ数です。\n【考え方】正解は1です。$Gr=g\\beta\\Delta T L^3/\\nu^2$ で、浮力による流れと粘性による抑制を比較します。\n【ポイント】代表長さL、動粘性率νを使うと$\\mathrm{Gr}=g\\beta\\Delta T L^3/\\nu^2$です。分子も分母もm⁴/s²の単位となり、比は無次元です。例えばL＝0.1m、ν＝10⁻⁶m²/s、上のβと温度差なら、$\\mathrm{Gr}=9.8\\times0.0002\\times10\\times0.1^3/(10^{-6})^2=1.96\\times10^7$です。νが小さいほど粘性による抑制は相対的に弱くなり、Grは大きくなります。\n【引っかけ】2：「マッハ数」ではなく、グラスホフ数です。$Gr=g\\beta\\Delta T L^3/\\nu^2$ で、浮力による流れと粘性による抑制を比較します。",
+          "relatedFormulas": [
+            "t1ch1-grashof-boussinesq"
+          ],
+          "editorialReview": {
+            "officialPoint": "自然対流／個別の質問：無次元数",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「マッハ数」ではなく、グラスホフ数です。$Gr=g\\beta\\Delta T L^3/\\nu^2$ で、浮力による流れと粘性による抑制を比較します。"
+            },
+            "sha256": "eaa5ec0716e90ffbacb5be9b171215a68d7716bc6c26d1b93f3d13e67ed18da3"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-11-item-g",
+          "number": "1-11",
+          "officialRef": "問1-11",
+          "officialQuestionItem": "g",
+          "title": "流れを起こす力",
+          "topic": "自然対流",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Grが表す比較で、自然対流を起こす側の力はどれですか。",
+          "choices": [
+            "慣性力だけ",
+            "浮力"
+          ],
+          "answer": 2,
+          "answerSummary": "温度差による浮力が駆動側です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "慣性と粘性を比べるレイノルズ数の説明とは分けます。"
+            }
+          ],
+          "explanation": "【基礎】温度差による浮力が駆動側です。\n【考え方】正解は2です。慣性と粘性を比べるレイノルズ数の説明とは分けます。\n【ポイント】温度差による浮力が駆動側です。\n【引っかけ】1：「慣性力だけ」ではなく、浮力です。慣性と粘性を比べるレイノルズ数の説明とは分けます。",
+          "relatedFormulas": [
+            "t1ch1-grashof-boussinesq"
+          ],
+          "editorialReview": {
+            "officialPoint": "自然対流／個別の質問：流れを起こす力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「慣性力だけ」ではなく、浮力です。慣性と粘性を比べるレイノルズ数の説明とは分けます。"
+            },
+            "sha256": "b219384faf672def57099bf114cec1d5f5d35b6c4eff7350b09a856e7388e08d"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-11-item-h",
+          "number": "1-11",
+          "officialRef": "問1-11",
+          "officialQuestionItem": "h",
+          "title": "流れを抑える作用",
+          "topic": "自然対流",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Grの比較で、流れを抑える側はどれですか。",
+          "choices": [
+            "粘性の作用",
+            "浮力そのもの"
+          ],
+          "answer": 1,
+          "answerSummary": "粘性による抑制と比較します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "動粘度νが大きいほどGrは小さくなります。"
+            }
+          ],
+          "explanation": "【基礎】粘性による抑制と比較します。\n【考え方】正解は1です。動粘度νが大きいほどGrは小さくなります。\n【ポイント】粘性による抑制と比較します。\n【引っかけ】2：「浮力そのもの」ではなく、粘性の作用です。動粘度νが大きいほどGrは小さくなります。",
+          "relatedFormulas": [
+            "t1ch1-grashof-boussinesq"
+          ],
+          "editorialReview": {
+            "officialPoint": "自然対流／個別の質問：流れを抑える作用",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「浮力そのもの」ではなく、粘性の作用です。動粘度νが大きいほどGrは小さくなります。"
+            },
+            "sha256": "e8acddac17342cda981402bee6fd838fbb890a518759a92a54438e3960fac929"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t1e1-1-12",
@@ -1551,7 +2978,7 @@
           "3": "指数の付け忘れ",
           "4": "指数の分子γを落とす"
         },
-        "sha256": "d7beb6ee0a1a3c9c61dfba8739cc02c8a6a010bf10927d7c5334606a050be189"
+        "sha256": "a8475d4e60fa8697772ac52d8995694642214924e8ef678fe04ad11a7e5de668"
       },
       "easyExplanation": [
         {
@@ -1585,7 +3012,10 @@
           "body": "γ＞1なので2/(γ＋1)は1より小さく、指数は正です。したがってp*/p₀も1より小さくなります。流れの運動エネルギーがある場所の静圧と、停止させたよどみ圧力の関係として自然です。④の指数1/(γ−1)は密度比に現れる指数で、圧力比にはγが必要です。底の向き、指数、臨界のM＝1という三点を順に確認すれば、似た公式を取り違えにくくなります。"
         }
       ],
-      "answerSummary": "等エントロピー流れでは$\\dfrac{p_0}{p}=\\left(1+\\dfrac{\\gamma-1}{2}M^2\\right)^{\\frac{\\gamma}{\\gamma-1}}$が成り立ち、臨界状態は$M=1$の状態です。"
+      "answerSummary": "等エントロピー流れでは$\\dfrac{p_0}{p}=\\left(1+\\dfrac{\\gamma-1}{2}M^2\\right)^{\\frac{\\gamma}{\\gamma-1}}$が成り立ち、臨界状態は$M=1$の状態です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t1e1-1-13",
@@ -1615,13 +3045,13 @@
       ],
       "editorialReview": {
         "officialPoint": "準1次元ノズル流れ",
-        "alignment": "保存済み公式テキストの問1-13と論点・条件・独立した設問数を照合。必要な途中式・具体例を残して標準詳解へ統合し、図を本文へ対応させた。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "面積条件と温度が逆",
           "3": "超音速の面積条件と温度が逆",
           "4": "亜音速で末広がりとする"
         },
-        "sha256": "6b2eece90c5ce4bd3e91d21ac16de59cea039fc185a8ce3328b33ef667799f56"
+        "sha256": "e3eea937635360bd65bc06d6115d2f42639a1aee1c9a203571c1d03878491340"
       },
       "easyExplanation": [
         {
@@ -1655,7 +3085,159 @@
           "body": "亜音速では先細り、超音速では末広がり、加速時の温度は減少で②です。①は面積条件と温度が逆、③は超音速での面積と温度が違い、④は亜音速での面積が違います。M＝1では式の分母が0になるため、そのまま割って使えません。音速を通って滑らかに亜音速から超音速へ移るには、のど部の形状などを含む条件が必要です。本問はM＜1とM＞1の各領域で符号を判断しています。"
         }
       ],
-      "answerSummary": "流速が増えるかは、断面積の変化と$M^2-1$の符号で決まります。$M<1$では負、$M>1$では正です。"
+      "answerSummary": "亜音速の断面積：分母が負なのでdAも負にします。\n超音速の断面積：分母が正なのでdAを正にします。\n加速時の温度：運動エネルギーが増える分、温度が下がります。",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "sharedQuestion": "衝撃波のない等エントロピー準一次元流れで、$du/u=(M^2-1)^{-1}dA/A$ です。流速を増やす場合の断面積と温度を答えます。",
+      "studyParts": [
+        {
+          "id": "t1e1-1-13-item-a",
+          "number": "1-13",
+          "officialRef": "問1-13",
+          "officialQuestionItem": "a",
+          "title": "亜音速の断面積",
+          "topic": "準1次元ノズル流れ",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$M<1$ で加速するには断面積をどうしますか。",
+          "choices": [
+            "下流へ広げる",
+            "下流へ狭める"
+          ],
+          "answer": 2,
+          "answerSummary": "分母が負なのでdAも負にします。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "密度変化も連続の式に含めて導かれた関係です。"
+            },
+            {
+              "title": "圧縮性では、断面積だけで速度を決められません",
+              "body": "水のように密度一定なら、同じ流量を細い部分へ通すと流速が上がります。一方、気体が高速で流れると密度も変わります。断面積が増えても、密度が十分下がれば流速が上がることがあります。その違いを判断する式が、問題に与えられた面積と流速の関係です。亜音速か超音速かで、式の分母の符号が変わります。"
+            },
+            {
+              "title": "連続の式から、密度の変化も含めます",
+              "body": "定常の準1次元流れでは質量流量ρuAが一定です。小さな相対変化に分けると$d\\rho/\\rho+du/u+dA/A=0$です。摩擦や外部仕事を省いた運動の関係はdp＋ρu du＝0、等エントロピー音速はc²＝dp/dρです。両者を使うと$d\\rho/\\rho=-u\\,du/c^2=-M^2\\,du/u$となります。"
+            },
+            {
+              "title": "面積と速度の関係へまとめます",
+              "body": "密度の式を連続の式へ代入すると、$-M^2du/u+du/u+dA/A=0$です。整理して$(1-M^2)du/u=-dA/A$、すなわち$du/u=(dA/A)/(M^2-1)$です。速度uも面積Aも正なので、加速にはdu＞0が必要です。M＜1なら分母が負で、dAも負でなければなりません。M＞1なら分母が正なので、dAを正にします。"
+            }
+          ],
+          "explanation": "【基礎】分母が負なのでdAも負にします。\n【考え方】正解は2です。密度変化も連続の式に含めて導かれた関係です。\n【ポイント】水のように密度一定なら、同じ流量を細い部分へ通すと流速が上がります。一方、気体が高速で流れると密度も変わります。断面積が増えても、密度が十分下がれば流速が上がることがあります。その違いを判断する式が、問題に与えられた面積と流速の関係です。亜音速か超音速かで、式の分母の符号が変わります。\n【引っかけ】1：「下流へ広げる」ではなく、下流へ狭めるです。密度変化も連続の式に含めて導かれた関係です。",
+          "relatedFormulas": [
+            "t1ch1-compressible-nozzle"
+          ],
+          "editorialReview": {
+            "officialPoint": "準1次元ノズル流れ／個別の質問：亜音速の断面積",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「下流へ広げる」ではなく、下流へ狭めるです。密度変化も連続の式に含めて導かれた関係です。"
+            },
+            "sha256": "d9ce008e42487081551d807e963d31e7ad8c484cf81a94edec8515cc77cd27b2"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-13-item-b",
+          "number": "1-13",
+          "officialRef": "問1-13",
+          "officialQuestionItem": "b",
+          "title": "超音速の断面積",
+          "topic": "準1次元ノズル流れ",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$M>1$ で加速するには断面積をどうしますか。",
+          "choices": [
+            "下流へ広げる",
+            "下流へ狭める"
+          ],
+          "answer": 1,
+          "answerSummary": "分母が正なのでdAを正にします。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "亜音速と超音速では必要な面積変化が逆になります。"
+            },
+            {
+              "title": "小さな変化の例で、符号を確認します",
+              "body": "M＝0.5ならM²−1＝−0.75です。面積が1％減る小さな変化dA/A＝−0.01に対し、du/u≈0.0133で流速は増えます。M＝2なら分母は3です。面積が1％増えるdA/A＝0.01で、du/u≈0.00333となり、やはり加速します。これらは微小変化の関係を使った近似で、有限の大きな変化に同じMを固定して使う計算ではありません。"
+            }
+          ],
+          "explanation": "【基礎】分母が正なのでdAを正にします。\n【考え方】正解は1です。亜音速と超音速では必要な面積変化が逆になります。\n【ポイント】M＝0.5ならM²−1＝−0.75です。面積が1％減る小さな変化dA/A＝−0.01に対し、du/u≈0.0133で流速は増えます。M＝2なら分母は3です。面積が1％増えるdA/A＝0.01で、du/u≈0.00333となり、やはり加速します。これらは微小変化の関係を使った近似で、有限の大きな変化に同じMを固定して使う計算ではありません。\n【引っかけ】2：「下流へ狭める」ではなく、下流へ広げるです。亜音速と超音速では必要な面積変化が逆になります。",
+          "relatedFormulas": [
+            "t1ch1-compressible-nozzle"
+          ],
+          "editorialReview": {
+            "officialPoint": "準1次元ノズル流れ／個別の質問：超音速の断面積",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「下流へ狭める」ではなく、下流へ広げるです。亜音速と超音速では必要な面積変化が逆になります。"
+            },
+            "sha256": "47619eeb0bf84652eb1a64913162b75eb6ad4c02ff34dd208c3787ab19b62fe8"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t1e1-1-13-item-c",
+          "number": "1-13",
+          "officialRef": "問1-13",
+          "officialQuestionItem": "c",
+          "title": "加速時の温度",
+          "topic": "準1次元ノズル流れ",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "亜音速流れを狭まり流路で加速すると温度はどうなりますか。",
+          "choices": [
+            "上昇する",
+            "低下する"
+          ],
+          "answer": 2,
+          "answerSummary": "運動エネルギーが増える分、温度が下がります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$c_pT+u^2/2$ が一定なので $c_p\\,dT=-u\\,du<0$ です。"
+            },
+            {
+              "title": "温度は、エネルギーの行き先から求めます",
+              "body": "よどみエンタルピー一定より$c_p\\,dT+u\\,du=0$です。cₚTで割って$dT/T=-[u^2/(c_pT)]du/u$です。u²＝γRTM²、cₚ＝γR/(γ−1)を入れると$dT/T=-(\\gamma-1)M^2du/u$です。γ＞1なので、加速するdu/u＞0のとき温度は低下します。熱を外へ捨てたのでなく、気体のエンタルピーが運動エネルギーへ移ったためです。",
+              "figures": [
+                {
+                  "figureImage": "t1e1Nozzle",
+                  "caption": "同じ加速でも、亜音速では先細り、超音速では末広がりです。どちらもエンタルピーが運動エネルギーへ移り、温度が下がります。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】運動エネルギーが増える分、温度が下がります。\n【考え方】正解は2です。$c_pT+u^2/2$ が一定なので $c_p\\,dT=-u\\,du<0$ です。\n【ポイント】よどみエンタルピー一定より$c_p\\,dT+u\\,du=0$です。cₚTで割って$dT/T=-[u^2/(c_pT)]du/u$です。u²＝γRTM²、cₚ＝γR/(γ−1)を入れると$dT/T=-(\\gamma-1)M^2du/u$です。γ＞1なので、加速するdu/u＞0のとき温度は低下します。熱を外へ捨てたのでなく、気体のエンタルピーが運動エネルギーへ移ったためです。\n【引っかけ】1：「上昇する」ではなく、低下するです。$c_pT+u^2/2$ が一定なので $c_p\\,dT=-u\\,du<0$ です。",
+          "relatedFormulas": [
+            "t1ch1-compressible-nozzle"
+          ],
+          "editorialReview": {
+            "officialPoint": "準1次元ノズル流れ／個別の質問：加速時の温度",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「上昇する」ではなく、低下するです。$c_pT+u^2/2$ が一定なので $c_p\\,dT=-u\\,du<0$ です。"
+            },
+            "sha256": "92c7e8ca93d1227683a88ee562906bb751146bebdad7de7226352ab35c400483"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t1e1-1-14",
@@ -1689,7 +3271,7 @@
           "2": "壁面で速度0となる正しい記述",
           "4": "粘性損失と平均速度の正しい関係"
         },
-        "sha256": "7bd559deb03563655d53dfcf9544e066b136a1f9119c3836baee9383cac2c996"
+        "sha256": "10b7503e1bd8c73554ca096cc300a435267be4aad3d16987257a256a24b5e618"
       },
       "easyExplanation": [
         {
@@ -1723,7 +3305,10 @@
           "body": "①は粘性で速度が非一様になること、②は壁面速度0と壁に垂直な速度勾配、④は摩擦と平均速度低下を述べており、本問の説明として正しい記述です。誤りを選ぶため、答えは③です。衝撃波自体にも不可逆な変化がありますが、本問はさらに壁面境界層の影響を加えた場合の違いを尋ねています。衝撃波の急な状態変化と、壁から発達する境界層を同じものと考えないことが大切です。"
         }
       ],
-      "answerSummary": "単純理論では衝撃波を除いて1次元等エントロピー流れと仮定しますが、実際には気体粘性のため管壁に境界層が発達し、断面内の速度分布は一様でなくなります。"
+      "answerSummary": "単純理論では衝撃波を除いて1次元等エントロピー流れと仮定しますが、実際には気体粘性のため管壁に境界層が発達し、断面内の速度分布は一様でなくなります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t1e1-1-15",
@@ -1760,7 +3345,7 @@
           "2": "原点を指定した特性線の正しい関係",
           "4": "単純波でPが一様になる正しい記述"
         },
-        "sha256": "04c6725a87e087daab0a21512439b9a9c5c61584cd7093b5456f825dab627288"
+        "sha256": "e62950706e40a9552de10e3c159478fb71e8b2fcdfa2edde9fd1a7fed519bc99"
       },
       "easyExplanation": [
         {
@@ -1800,6 +3385,9 @@
           "figureImage": "t1e1ExpansionWaveSetup",
           "caption": "右端を開いた原点から膨張波が管内へ広がります。点aの位置と時間を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     }
   ]

@@ -6,7 +6,8 @@
     "source": "完全オリジナル(燃焼流第5章)",
     "origin": "original",
     "count": 14,
-    "officialCount": 14
+    "officialCount": 14,
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -62,7 +63,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e21Damkohler",
-      "figureHint": "白地660x420で流れの滞在時間と反応時間の2本の時間スケールを並べ、その比がDaであることを示す模式図"
+      "figureHint": "白地660x420で流れの滞在時間と反応時間の2本の時間スケールを並べ、その比がDaであることを示す模式図",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-21-2",
@@ -114,7 +118,10 @@
       "figure": "helpful",
       "preFigureImage": "t1e21Counterflow",
       "figureImage": "t1e21CounterflowAns",
-      "figureHint": "白地660x420で対向流バーナー（上Air・下Fuel(メタン)）の流線とよどみ面、火炎面の候補位置(空気側/よどみ点/燃料側)を示す（正解は示さない）"
+      "figureHint": "白地660x420で対向流バーナー（上Air・下Fuel(メタン)）の流線とよどみ面、火炎面の候補位置(空気側/よどみ点/燃料側)を示す（正解は示さない）",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-21-3",
@@ -165,7 +172,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e21GradBalance",
-      "figureHint": "白地660x420で薄い火炎面をはさむ燃料Y_Fと酸化剤Y_Oの質量分率プロファイルと、火炎面直近の勾配(矢印)の釣り合いを示す"
+      "figureHint": "白地660x420で薄い火炎面をはさむ燃料Y_Fと酸化剤Y_Oの質量分率プロファイルと、火炎面直近の勾配(矢印)の釣り合いを示す",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-21-4",
@@ -221,7 +231,10 @@
       "figure": "helpful",
       "preFigureImage": "t1e21SCurve",
       "figureImage": "t1e21SCurveAns",
-      "figureHint": "白地660x420で横軸=速度勾配・縦軸=最高火炎温度のS字曲線、上折り返し点Aと下折り返し点B、上枝・中間枝・下枝を示す（各枝の安定性の答えは書かない）"
+      "figureHint": "白地660x420で横軸=速度勾配・縦軸=最高火炎温度のS字曲線、上折り返し点Aと下折り返し点B、上枝・中間枝・下枝を示す（各枝の安定性の答えは書かない）",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-21-5",
@@ -273,7 +286,10 @@
       "figure": "helpful",
       "preFigureImage": "t1e21Coaxial",
       "figureImage": "t1e21CoaxialAns",
-      "figureHint": "白地660x420で同軸流拡散火炎の外形（中心Fuel・周囲Air・上向き流れ）と断面A-A'線の位置のみを示す（温度・濃度プロファイルは描かない）"
+      "figureHint": "白地660x420で同軸流拡散火炎の外形（中心Fuel・周囲Air・上向き流れ）と断面A-A'線の位置のみを示す（温度・濃度プロファイルは描かない）",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-21-6",
@@ -328,7 +344,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e21FlameLength",
-      "figureHint": "白地660x420で横軸=燃料流速・縦軸=火炎長さ、層流域は増加・遷移域で減少・乱流域でほぼ一定となる曲線を示す"
+      "figureHint": "白地660x420で横軸=燃料流速・縦軸=火炎長さ、層流域は増加・遷移域で減少・乱流域でほぼ一定となる曲線を示す",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-21-7",
@@ -383,7 +402,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e21Luminous",
-      "figureHint": "白地660x420で拡散火炎の内部にすす生成領域と、そこが高温で黄橙色に発光する輝炎域を示す模式図"
+      "figureHint": "白地660x420で拡散火炎の内部にすす生成領域と、そこが高温で黄橙色に発光する輝炎域を示す模式図",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-21-8",
@@ -435,7 +457,150 @@
       "figure": "helpful",
       "preFigureImage": "t1e21Lifted",
       "figureImage": "t1e21LiftedAns",
-      "figureHint": "白地660x420で浮き上がり火炎基部の三又構造、外側(a)・内側(b)の予混合ウィングと後方(c)の位置を(a)(b)(c)の記号のみで示す（火炎種の名称は書かない）"
+      "figureHint": "白地660x420で浮き上がり火炎基部の三又構造、外側(a)・内側(b)の予混合ウィングと後方(c)の位置を(a)(b)(c)の記号のみで示す（火炎種の名称は書かない）",
+      "editorialReview": {
+        "officialPoint": "層流浮き上がり火炎（三又火炎）",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "1": "通常解説の各肢の理由を参照。",
+          "2": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "ce81d592088243d26e6fb2a4264be2033a28bcbea9dd23513d2ff479d3ff27cf"
+      },
+      "sharedQuestion": "浮き上がった層流拡散火炎の基部では、燃料と空気が到達前に混合し、三又火炎ができます。各枝の種類を選んでください。",
+      "studyParts": [
+        {
+          "id": "thermal1-21-8-item-inner",
+          "number": "21-8",
+          "officialRef": "燃焼流5-8",
+          "officialQuestionItem": "inner",
+          "title": "燃料側の枝",
+          "topic": "層流浮き上がり火炎（三又火炎）",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "内側の燃料が多い枝は？",
+          "choices": [
+            "希薄予混合火炎",
+            "過濃予混合火炎"
+          ],
+          "answer": 2,
+          "answerSummary": "燃料側では、事前に混ざった混合気でも酸素が量論量より少なくなります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "燃料側では、事前に混ざった混合気でも酸素が量論量より少なくなります。混合の有無と過濃・希薄を別々に考えます。"
+            }
+          ],
+          "explanation": "【基礎】燃料側では、事前に混ざった混合気でも酸素が量論量より少なくなります。\n【考え方】正解は2です。燃料側では、事前に混ざった混合気でも酸素が量論量より少なくなります。混合の有無と過濃・希薄を別々に考えます。\n【ポイント】燃料側では、事前に混ざった混合気でも酸素が量論量より少なくなります。\n【引っかけ】1：「希薄予混合火炎」ではなく、過濃予混合火炎です。燃料側では、事前に混ざった混合気でも酸素が量論量より少なくなります。混合の有無と過濃・希薄を別々に考えます。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "層流浮き上がり火炎（三又火炎）／個別の質問：燃料側の枝",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「希薄予混合火炎」ではなく、過濃予混合火炎です。燃料側では、事前に混ざった混合気でも酸素が量論量より少なくなります。混合の有無と過濃・希薄を別々に考えます。"
+            },
+            "sha256": "85850197f72dfb003b80181c339000bab22bac195bbf4a235c093f0ae9e0c4da"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-21-8-item-outer",
+          "number": "21-8",
+          "officialRef": "燃焼流5-8",
+          "officialQuestionItem": "outer",
+          "title": "空気側の枝",
+          "topic": "層流浮き上がり火炎（三又火炎）",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "外側の空気が多い枝は？",
+          "choices": [
+            "希薄予混合火炎",
+            "過濃予混合火炎"
+          ],
+          "answer": 1,
+          "answerSummary": "空気側へ行くほど燃料の割合が下がります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "空気側へ行くほど燃料の割合が下がります。事前に混ざった希薄混合気を伝わる枝です。"
+            }
+          ],
+          "explanation": "【基礎】空気側へ行くほど燃料の割合が下がります。\n【考え方】正解は1です。空気側へ行くほど燃料の割合が下がります。事前に混ざった希薄混合気を伝わる枝です。\n【ポイント】空気側へ行くほど燃料の割合が下がります。\n【引っかけ】2：「過濃予混合火炎」ではなく、希薄予混合火炎です。空気側へ行くほど燃料の割合が下がります。事前に混ざった希薄混合気を伝わる枝です。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "層流浮き上がり火炎（三又火炎）／個別の質問：空気側の枝",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「過濃予混合火炎」ではなく、希薄予混合火炎です。空気側へ行くほど燃料の割合が下がります。事前に混ざった希薄混合気を伝わる枝です。"
+            },
+            "sha256": "058a3b5a7bce0f38e103d355f8f2ae4abad0892e5cd24f2467e2632b60ecd8e4"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-21-8-item-downstream",
+          "number": "21-8",
+          "officialRef": "燃焼流5-8",
+          "officialQuestionItem": "downstream",
+          "title": "後流の枝",
+          "topic": "層流浮き上がり火炎（三又火炎）",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "二つの予混合火炎の後方に続く枝は？",
+          "choices": [
+            "未燃気だけの予熱帯",
+            "拡散火炎"
+          ],
+          "answer": 2,
+          "answerSummary": "過濃側の燃え残り燃料と希薄側の酸素が、後方で混ざって反応する枝です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "過濃側の燃え残り燃料と希薄側の酸素が、後方で混ざって反応する枝です。三つの枝が交わるため三又火炎と呼びます。",
+              "figures": [
+                {
+                  "figureImage": "t1e21LiftedAns",
+                  "caption": "浮き上がり火炎の構造の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】過濃側の燃え残り燃料と希薄側の酸素が、後方で混ざって反応する枝です。\n【考え方】正解は2です。過濃側の燃え残り燃料と希薄側の酸素が、後方で混ざって反応する枝です。三つの枝が交わるため三又火炎と呼びます。\n【ポイント】過濃側の燃え残り燃料と希薄側の酸素が、後方で混ざって反応する枝です。\n【引っかけ】1：「未燃気だけの予熱帯」ではなく、拡散火炎です。過濃側の燃え残り燃料と希薄側の酸素が、後方で混ざって反応する枝です。三つの枝が交わるため三又火炎と呼びます。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "層流浮き上がり火炎（三又火炎）／個別の質問：後流の枝",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「未燃気だけの予熱帯」ではなく、拡散火炎です。過濃側の燃え残り燃料と希薄側の酸素が、後方で混ざって反応する枝です。三つの枝が交わるため三又火炎と呼びます。"
+            },
+            "sha256": "53e39e4c014f501b913a80b93b6ace79f625203d058481a02a75fcb0103a1312"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "inner",
+        "outer",
+        "downstream"
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "燃料側の枝：燃料側では、事前に混ざった混合気でも酸素が量論量より少なくなります。\n空気側の枝：空気側へ行くほど燃料の割合が下がります。\n後流の枝：過濃側の燃え残り燃料と希薄側の酸素が、後方で混ざって反応する枝です。",
+      "preFigures": [
+        {
+          "figureImage": "t1e21Lifted",
+          "caption": "各小問に共通する位置・形状・条件をこの図で確認してください。"
+        }
+      ]
     },
     {
       "id": "thermal1-21-9",
@@ -486,7 +651,106 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e21Bunsen",
-      "figureHint": "白地660x420でブンゼン火炎の断面、内側の青い予混合内炎コーンと外側の拡散外炎の2層構造を示す"
+      "figureHint": "白地660x420でブンゼン火炎の断面、内側の青い予混合内炎コーンと外側の拡散外炎の2層構造を示す",
+      "editorialReview": {
+        "officialPoint": "ブンゼン火炎",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "1": "通常解説の各肢の理由を参照。",
+          "2": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "cd6d63bbb93452686aebc8a15773dbb8d798cd05408555a821ae12ab9c077779"
+      },
+      "officialQuestionItems": [
+        "inner",
+        "outer"
+      ],
+      "sharedQuestion": "燃料過濃の予混合気を供給するブンゼン火炎で、内炎と外炎の燃え方を選んでください。",
+      "studyParts": [
+        {
+          "id": "thermal1-21-9-item-inner",
+          "number": "21-9",
+          "officialRef": "燃焼流5-9",
+          "officialQuestionItem": "inner",
+          "title": "内炎",
+          "topic": "ブンゼン火炎",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "内炎の分類は？",
+          "choices": [
+            "過濃予混合火炎",
+            "拡散火炎"
+          ],
+          "answer": 1,
+          "answerSummary": "燃料と空気はバーナー内で既に混ざっています。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "燃料と空気はバーナー内で既に混ざっています。酸素不足なので、内炎を通過しても燃料成分が残ります。"
+            }
+          ],
+          "explanation": "【基礎】燃料と空気はバーナー内で既に混ざっています。\n【考え方】正解は1です。燃料と空気はバーナー内で既に混ざっています。酸素不足なので、内炎を通過しても燃料成分が残ります。\n【ポイント】燃料と空気はバーナー内で既に混ざっています。\n【引っかけ】2：「拡散火炎」ではなく、過濃予混合火炎です。燃料と空気はバーナー内で既に混ざっています。酸素不足なので、内炎を通過しても燃料成分が残ります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "ブンゼン火炎／個別の質問：内炎",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「拡散火炎」ではなく、過濃予混合火炎です。燃料と空気はバーナー内で既に混ざっています。酸素不足なので、内炎を通過しても燃料成分が残ります。"
+            },
+            "sha256": "141215e98cf8ab20243bbb881b07995261eeb6b47af248109aec3d2d878c6596"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-21-9-item-outer",
+          "number": "21-9",
+          "officialRef": "燃焼流5-9",
+          "officialQuestionItem": "outer",
+          "title": "外炎",
+          "topic": "ブンゼン火炎",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "外炎の分類は？",
+          "choices": [
+            "希薄予混合火炎",
+            "拡散火炎"
+          ],
+          "answer": 2,
+          "answerSummary": "内炎の燃え残りが周囲からの酸素と出会って燃えます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "内炎の燃え残りが周囲からの酸素と出会って燃えます。別々の場所から届いた成分が混ざることで燃焼します。",
+              "figures": [
+                {
+                  "figureImage": "t1e21Bunsen",
+                  "caption": "ブンゼン火炎の内炎と外炎の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】内炎の燃え残りが周囲からの酸素と出会って燃えます。\n【考え方】正解は2です。内炎の燃え残りが周囲からの酸素と出会って燃えます。別々の場所から届いた成分が混ざることで燃焼します。\n【ポイント】内炎の燃え残りが周囲からの酸素と出会って燃えます。\n【引っかけ】1：「希薄予混合火炎」ではなく、拡散火炎です。内炎の燃え残りが周囲からの酸素と出会って燃えます。別々の場所から届いた成分が混ざることで燃焼します。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "ブンゼン火炎／個別の質問：外炎",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「希薄予混合火炎」ではなく、拡散火炎です。内炎の燃え残りが周囲からの酸素と出会って燃えます。別々の場所から届いた成分が混ざることで燃焼します。"
+            },
+            "sha256": "5212822b62b408c98c6fae19f99d65b40591c08d535de85eba382c3a17140067"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "内炎：燃料と空気はバーナー内で既に混ざっています。\n外炎：内炎の燃え残りが周囲からの酸素と出会って燃えます。"
     },
     {
       "id": "thermal1-21-10",
@@ -541,7 +805,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e21ConservedScalar",
-      "figureHint": "白地660x420で断面を横切るN2濃度の単調プロファイルと、反応性種(CH4,O2)や温度の非単調・片側ゼロのプロファイルを対比して示す"
+      "figureHint": "白地660x420で断面を横切るN2濃度の単調プロファイルと、反応性種(CH4,O2)や温度の非単調・片側ゼロのプロファイルを対比して示す",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-21-11",
@@ -596,7 +863,106 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e21Coupling",
-      "figureHint": "白地660x420で断面を横切る結合関数β=Y_O2-νY_Fのプロファイルが量論点でゼロを横切る様子を示す"
+      "figureHint": "白地660x420で断面を横切る結合関数β=Y_O2-νY_Fのプロファイルが量論点でゼロを横切る様子を示す",
+      "editorialReview": {
+        "officialPoint": "結合関数β",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "2": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "50ef869b478b2b5c164d7f58140044b264582a1f15c1f2cb4a0a2b2ad0cc663e"
+      },
+      "officialQuestionItems": [
+        "ratio",
+        "beta"
+      ],
+      "sharedQuestion": "メタンと酸素の反応は $\\mathrm{CH_4+2O_2\\to CO_2+2H_2O}$ です。分子量は16と32、結合関数は $\\beta=Y_{O_2}-\\nu Y_F$ とします。",
+      "studyParts": [
+        {
+          "id": "thermal1-21-11-item-ratio",
+          "number": "21-11",
+          "officialRef": "燃焼流5-11",
+          "officialQuestionItem": "ratio",
+          "title": "酸素の質量比",
+          "topic": "結合関数β",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "燃料1 kgに必要な酸素の質量 $\\nu$ は？",
+          "choices": [
+            "$4$",
+            "$2$"
+          ],
+          "answer": 1,
+          "answerSummary": "モル比2に分子量の比を掛け、$\\nu=(2\\times32)/(1\\times16)=4$ です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "モル比2に分子量の比を掛け、$\\nu=(2\\times32)/(1\\times16)=4$ です。質量比とモル比を取り違えないようにします。"
+            }
+          ],
+          "explanation": "【基礎】モル比2に分子量の比を掛け、$\\nu=(2\\times32)/(1\\times16)=4$ です。\n【考え方】正解は1です。モル比2に分子量の比を掛け、$\\nu=(2\\times32)/(1\\times16)=4$ です。質量比とモル比を取り違えないようにします。\n【ポイント】モル比2に分子量の比を掛け、$\\nu=(2\\times32)/(1\\times16)=4$ です。\n【引っかけ】2：「$2$」ではなく、$4$です。モル比2に分子量の比を掛け、$\\nu=(2\\times32)/(1\\times16)=4$ です。質量比とモル比を取り違えないようにします。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "結合関数β／個別の質問：酸素の質量比",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$2$」ではなく、$4$です。モル比2に分子量の比を掛け、$\\nu=(2\\times32)/(1\\times16)=4$ です。質量比とモル比を取り違えないようにします。"
+            },
+            "sha256": "8c0707bd14099ad9523b0f0301f08ac422b8372ace666f0d3763f515e81a1653"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-21-11-item-beta",
+          "number": "21-11",
+          "officialRef": "燃焼流5-11",
+          "officialQuestionItem": "beta",
+          "title": "量論混合気",
+          "topic": "結合関数β",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "量論混合気での $\\beta$ は？",
+          "choices": [
+            "$1$",
+            "$0$"
+          ],
+          "answer": 2,
+          "answerSummary": "量論状態では $Y_{O_2}=\\nu Y_F$ です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "量論状態では $Y_{O_2}=\\nu Y_F$ です。したがって $\\beta=\\nu Y_F-\\nu Y_F=0$ となります。燃料側を1と定義する混合分率とは別の量です。",
+              "figures": [
+                {
+                  "figureImage": "t1e21Coupling",
+                  "caption": "結合関数と量論混合気の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】量論状態では $Y_{O_2}=\\nu Y_F$ です。\n【考え方】正解は2です。量論状態では $Y_{O_2}=\\nu Y_F$ です。したがって $\\beta=\\nu Y_F-\\nu Y_F=0$ となります。燃料側を1と定義する混合分率とは別の量です。\n【ポイント】量論状態では $Y_{O_2}=\\nu Y_F$ です。\n【引っかけ】1：「$1$」ではなく、$0$です。量論状態では $Y_{O_2}=\\nu Y_F$ です。したがって $\\beta=\\nu Y_F-\\nu Y_F=0$ となります。燃料側を1と定義する混合分率とは別の量です。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "結合関数β／個別の質問：量論混合気",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$1$」ではなく、$0$です。量論状態では $Y_{O_2}=\\nu Y_F$ です。したがって $\\beta=\\nu Y_F-\\nu Y_F=0$ となります。燃料側を1と定義する混合分率とは別の量です。"
+            },
+            "sha256": "32f09976affcaf8a20c2e8ef9bcd6e1fada5511a253821c5562a83cd7834b37b"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "酸素の質量比：モル比2に分子量の比を掛け、$\\nu=(2\\times32)/(1\\times16)=4$ です。\n量論混合気：量論状態では $Y_{O_2}=\\nu Y_F$ です。"
     },
     {
       "id": "thermal1-21-12",
@@ -651,7 +1017,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e21Zst",
-      "figureHint": "白地660x420で燃料別(水素・メタン・プロパン)の量論混合分率を高さで比較する棒グラフ(水素<メタン<プロパン)"
+      "figureHint": "白地660x420で燃料別(水素・メタン・プロパン)の量論混合分率を高さで比較する棒グラフ(水素<メタン<プロパン)",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-21-13",
@@ -707,7 +1076,10 @@
       "figure": "helpful",
       "preFigureImage": "t1e21TvsZ",
       "figureImage": "t1e21TvsZAns",
-      "figureHint": "白地660x420で横軸=混合分率Z・縦軸=温度、Z_stで頂点をもつ三角形状(左端T_Oから急上昇し右端T_Fへ低下)の関係を示す(数値は入れない)"
+      "figureHint": "白地660x420で横軸=混合分率Z・縦軸=温度、Z_stで頂点をもつ三角形状(左端T_Oから急上昇し右端T_Fへ低下)の関係を示す(数値は入れない)",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-21-14",
@@ -762,7 +1134,126 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e21Flamelet",
-      "figureHint": "白地660x420で混合分率空間の火炎温度プロファイルが、スカラー散逸率χの増大とともにピーク温度が下がり消炎に近づく様子を複数曲線で示す"
+      "figureHint": "白地660x420で混合分率空間の火炎温度プロファイルが、スカラー散逸率χの増大とともにピーク温度が下がり消炎に近づく様子を複数曲線で示す",
+      "editorialReview": {
+        "officialPoint": "フレームレット方程式・スカラー散逸率",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "2": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "356415125e3e073e47314b88e0b8a9850b317dcccebf9d807924785a2b17827b"
+      },
+      "officialQuestionItems": [
+        "equation",
+        "chi"
+      ],
+      "sharedQuestion": "反応性スカラー $\\phi_i$ を混合分率 $Z$ で表す定常フレームレットを考えます。密度 $\\rho$、拡散係数 $D$、単位体積・単位時間あたりの生成項 $\\omega_i$ を用います。",
+      "studyParts": [
+        {
+          "id": "thermal1-21-14-item-equation",
+          "number": "21-14",
+          "officialRef": "燃焼流5-14",
+          "officialQuestionItem": "equation",
+          "title": "フレームレット方程式",
+          "topic": "フレームレット方程式・スカラー散逸率",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "基本的な定常方程式は？",
+          "choices": [
+            "$(\\rho\\chi/2)d^2\\phi_i/dZ^2+\\omega_i=0$",
+            "$(\\rho\\chi/2)(d\\phi_i/dZ)^2+\\omega_i=0$"
+          ],
+          "answer": 1,
+          "answerSummary": "拡散に対応する項は二階微分です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "拡散に対応する項は二階微分です。一階微分の二乗ではありません。反応と混合分率方向の拡散が釣り合っています。"
+            },
+            {
+              "title": "場所の代わりに混ざり具合を横軸にします",
+              "body": "通常は位置xごとの温度や質量分率を求めます。フレームレットの考え方では、燃料側1、酸化剤側0の混合分率Zを座標として火炎の内部構造を整理します。同じZの状態でも混合や伸張が強いかで反応の状態は変わり得るので、その強さを表すχも必要になります。定常で一つの基本的な火炎片を解く近似であり、任意の流れを座標の文字だけ変えて全て同じにする操作ではありません。"
+            },
+            {
+              "title": "二階微分が出る理由",
+              "body": "$\\phi_i=\\phi_i(Z)$ と考えると、連鎖律より $d\\phi_i/dx=(d\\phi_i/dZ)(dZ/dx)$ です。もう一度微分すると、$d^2\\phi_i/dx^2=(d^2\\phi_i/dZ^2)(dZ/dx)^2+(d\\phi_i/dZ)(d^2Z/dx^2)$ です。保存されるZの輸送と、対応する対流・拡散項を基本近似の下で整理すると、反応と釣り合う主要な拡散項に $D(dZ/dx)^2\\,d^2\\phi_i/dZ^2$ が残ります。φの一次微分を二乗するのではありません。"
+            }
+          ],
+          "explanation": "【基礎】拡散に対応する項は二階微分です。\n【考え方】正解は1です。拡散に対応する項は二階微分です。一階微分の二乗ではありません。反応と混合分率方向の拡散が釣り合っています。\n【ポイント】通常は位置xごとの温度や質量分率を求めます。フレームレットの考え方では、燃料側1、酸化剤側0の混合分率Zを座標として火炎の内部構造を整理します。同じZの状態でも混合や伸張が強いかで反応の状態は変わり得るので、その強さを表すχも必要になります。定常で一つの基本的な火炎片を解く近似であり、任意の流れを座標の文字だけ変えて全て同じにする操作ではありません。\n【引っかけ】2：「$(\\rho\\chi/2)(d\\phi_i/dZ)^2+\\omega_i=0$」ではなく、$(\\rho\\chi/2)d^2\\phi_i/dZ^2+\\omega_i=0$です。拡散に対応する項は二階微分です。一階微分の二乗ではありません。反応と混合分率方向の拡散が釣り合っています。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "フレームレット方程式・スカラー散逸率／個別の質問：フレームレット方程式",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$(\\rho\\chi/2)(d\\phi_i/dZ)^2+\\omega_i=0$」ではなく、$(\\rho\\chi/2)d^2\\phi_i/dZ^2+\\omega_i=0$です。拡散に対応する項は二階微分です。一階微分の二乗ではありません。反応と混合分率方向の拡散が釣り合っています。"
+            },
+            "sha256": "dd7afcc6dfc2305af177b64c4fcdc2caacf2daf7eb44758994bada955326b0ee"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-21-14-item-chi",
+          "number": "21-14",
+          "officialRef": "燃焼流5-14",
+          "officialQuestionItem": "chi",
+          "title": "スカラー散逸率",
+          "topic": "フレームレット方程式・スカラー散逸率",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "1次元でのスカラー散逸率の定義は？",
+          "choices": [
+            "$\\chi=2D(dZ/dx)^2$",
+            "$\\chi=2D\\,d^2Z/dx^2$"
+          ],
+          "answer": 1,
+          "answerSummary": "こちらは勾配の二乗です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "こちらは勾配の二乗です。値は0以上、単位は $\\mathrm{s^{-1}}$ です。混合分率の空間変化が急なほど値が大きくなります。"
+            },
+            {
+              "title": "χへまとめると係数1/2です",
+              "body": "$D(dZ/dx)^2=\\chi/2$ と定義すれば、密度も含めた拡散の係数は $\\rho\\chi/2$ です。Zは無次元、$dZ/dx$ は長さの逆数、Dは $\\mathrm{m^2/s}$ なので、χは $\\mathrm{s^{-1}}$ です。勾配を二乗するためχは0以上です。φを質量分率のような無次元量とすれば、拡散項の単位は $\\mathrm{kg/(m^3\\,s)}$ で、対応する反応生成項とそろいます。"
+            },
+            {
+              "title": "値が大きい意味",
+              "body": "同じDなら、Zの勾配を2倍にするとχは4倍です。近い距離で燃料由来の割合が大きく変わるほど、混合に伴う拡散の作用が強い尺度になります。火炎片のモデルでは、χの増加は伸張の影響と関係し、最高温度が下がって消炎することがあります。χが大きければ発熱も必ず大きくなり温度が上がる、という単純な指標ではありません。輸送と反応がどう釣り合うかを見る量です。"
+            },
+            {
+              "title": "混合分率だけでは足りない場合へつながります",
+              "body": "無限に速い反応や平衡の基本モデルなら、温度や成分をZの関数として表せます。しかし反応が混合に追い付かない場合には、Zが同じでも燃焼状態が違うことがあります。χを加えて火炎片の状態を整理するのは、その影響を残すためです。混合分率に関する二階微分と、空間勾配の二乗を区別して式を読みます。",
+              "figures": [
+                {
+                  "figureImage": "t1e21Flamelet",
+                  "caption": "定常フレームレット方程式の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】こちらは勾配の二乗です。\n【考え方】正解は1です。こちらは勾配の二乗です。値は0以上、単位は $\\mathrm{s^{-1}}$ です。混合分率の空間変化が急なほど値が大きくなります。\n【ポイント】$D(dZ/dx)^2=\\chi/2$ と定義すれば、密度も含めた拡散の係数は $\\rho\\chi/2$ です。Zは無次元、$dZ/dx$ は長さの逆数、Dは $\\mathrm{m^2/s}$ なので、χは $\\mathrm{s^{-1}}$ です。勾配を二乗するためχは0以上です。φを質量分率のような無次元量とすれば、拡散項の単位は $\\mathrm{kg/(m^3\\,s)}$ で、対応する反応生成項とそろいます。\n【引っかけ】2：「$\\chi=2D\\,d^2Z/dx^2$」ではなく、$\\chi=2D(dZ/dx)^2$です。こちらは勾配の二乗です。値は0以上、単位は $\\mathrm{s^{-1}}$ です。混合分率の空間変化が急なほど値が大きくなります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "フレームレット方程式・スカラー散逸率／個別の質問：スカラー散逸率",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$\\chi=2D\\,d^2Z/dx^2$」ではなく、$\\chi=2D(dZ/dx)^2$です。こちらは勾配の二乗です。値は0以上、単位は $\\mathrm{s^{-1}}$ です。混合分率の空間変化が急なほど値が大きくなります。"
+            },
+            "sha256": "c24500e2ed86c5b043864ff1cfe5f30ace104684c7715f092df56b91d3a8f345"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "フレームレット方程式：拡散に対応する項は二階微分です。\nスカラー散逸率：こちらは勾配の二乗です。"
     }
   ]
 }

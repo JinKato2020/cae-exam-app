@@ -8,7 +8,8 @@
     "count": 33,
     "officialCount": 33,
     "explanationMode": "guided",
-    "presentationStyle": "cae-standard-v1"
+    "presentationStyle": "cae-standard-v1",
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -58,11 +59,14 @@
           "2": "級数の打ち切りだけを丸めと呼ぶ。",
           "4": "境界条件の仮定だけを数値表現の丸めと呼ぶ。"
         },
-        "sha256": "88d5ba27706478f3e11c78638397d5a28cb1486f1804d61832b695df0339c5cb"
+        "sha256": "06df924f422132639c3b609b784670f10a243f63799bf3c215722886970e5b6e"
       },
       "answerSummary": "正解③：演算の正確な実数値を表現可能な近い値へ置き換えることによる誤差。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-2",
@@ -117,11 +121,14 @@
           "3": "有限桁の加算順序を常に無関係とする。",
           "4": "整数の桁あふれが必ず実数へ自動変換されるとする。"
         },
-        "sha256": "2b912d742b5869998145ce2ee144abb86b7040f91e5f9c8b976af3d33870836a"
+        "sha256": "90141e97fa378bf8c22780ebe69823bbc3f31e317f7578b96e089cf44ad1634d"
       },
       "answerSummary": "正解①：同じ数学的な式でも評価順序や算法で誤差が変わり得る。",
       "figureImage": "comp12SumOrder",
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-3",
@@ -170,11 +177,14 @@
           "3": "指定式の負の項を含む計算手順を落とす。",
           "4": "括弧と整数除算の演算順序を誤る。"
         },
-        "sha256": "6e04559efe8557ef57b9c51979f1ab01787c6802eb1c96b390ff6b648bdf023f"
+        "sha256": "363c54173c4ebf79e70f9054add3708251bea83e21843f4c8e1bedc3cedd0dff"
       },
       "answerSummary": "正解①：−1。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-4",
@@ -227,11 +237,14 @@
           "2": "最後まで正確に計算して途中の丸めを省く。",
           "4": "途中値や差を誤ってゼロとする。"
         },
-        "sha256": "00452ab12ec135a695ce4fc3d94c4abda4e14b3c52ff29c0c4328fe68d2dbfa3"
+        "sha256": "514922976c385c7694532b1439b64e04ab5aa0527a2365932dd3facac016482d"
       },
       "answerSummary": "正解③：3.000。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-5",
@@ -286,11 +299,14 @@
           "3": "桁の異なる乗算だけを相対精度低下の典型とする。",
           "4": "全ての加算で同程度の精度低下があるとする。"
         },
-        "sha256": "153dfb1d57537bee9bd690ae0fbeacb1a71e056252cc4e2bdac95260f079998d"
+        "sha256": "b19b7bb1d198f2f2b81575796c5d61309f426ae37ffc672c49a60d63157b2ec5"
       },
       "answerSummary": "正解②：ほぼ等しい同符号の2数の減算。",
       "figureImage": "comp12Cancellation",
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-6",
@@ -340,11 +356,14 @@
           "2": "必要な命令や値を変更して行末形式の問題と混同する。",
           "4": "実数演算を削除して形式不一致を直そうとする。"
         },
-        "sha256": "79815826fadafd9b0a3eaebf811894c737d5d4c6f8df07820fdd428d52c540bd"
+        "sha256": "b615241b4f9d7322f7af79060f6956ac76baf25bf06886c8d4ff28302eb89427"
       },
       "answerSummary": "正解③：内容を保って改行をLFに変換する。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-7",
@@ -396,11 +415,14 @@
           "2": "仮想記憶とCPU演算回路を混同する。",
           "3": "電源断で保持する性質だけを仮想記憶の定義とする。"
         },
-        "sha256": "c2713d01682799dc68800a4e35ed2b910a6b2ce1fa5ff6b515049f49d9f57c6c"
+        "sha256": "266c7703efd37718375d9f702fad88206dee48aaab1856472cc398c8a012c68c"
       },
       "answerSummary": "正解④：プロセスの仮想アドレスを物理記憶へ対応付け、保護や必要に応じたページ退避を行う仕組み。",
       "figureImage": "comp12VirtualMem",
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-8",
@@ -446,11 +468,14 @@
           "3": "浮動小数点演算をFPUが扱う正しい説明。",
           "4": "DSPを信号処理の積和等へ対応させた正しい説明。"
         },
-        "sha256": "da7310c7a6025a0b1432022174939c1b4c633f1eaab14893763e26fd7ea4d3d8"
+        "sha256": "9676099afc3b7433608ac641c7913bf57a9d051d62c0c59ba68f481387b84d57"
       },
       "answerSummary": "正解①：キャッシュは浮動小数点乗算だけを行う専用回路。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-9",
@@ -499,11 +524,14 @@
           "3": "扱えるメモリにはOS等の制限もある正しい説明。",
           "4": "利用可能なアドレス空間が広がり得る正しい説明。"
         },
-        "sha256": "619821cfb65d34da46eee9cd9b594e39dc56e49be9a1d96249ce238f1fe1e537"
+        "sha256": "6291dd28f198fa3130d34e0d0d6fd8ad75b93df4e8fdaa4b374005ee0b10c3f2"
       },
       "answerSummary": "正解②：同じ浮動小数点形式でも計算精度が必ず2倍になる。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-10",
@@ -549,11 +577,14 @@
           "2": "CPUが全データを逐次コピーすることだけをDMAとする。",
           "4": "データ転送とライセンス配布を混同する。"
         },
-        "sha256": "faafdaec21a231748e2a582c199334ad5a70547cb2dede8d0894e08b93d85519"
+        "sha256": "a771211a3eba164219526dfca14f9b58329b5a86cde430fd8455985960ff9251"
       },
       "answerSummary": "正解③：DMA機構がCPUの逐次コピーを減らしてデータを転送する。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-11",
@@ -593,17 +624,137 @@
       ],
       "editorialReview": {
         "officialPoint": "記憶メディア：光ディスクの区別",
-        "alignment": "保存済み固体2級第12章の問題・解説を参照し、現アプリの条件と各肢に対応する新規詳解を作成。公式例とアプリ例の数値を混ぜず、必要な計算と判断理由を確認。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "読出専用と書換え可能の対応を逆にする。",
           "3": "書込可能と読出専用を入れ替える。",
           "4": "RとRWの書換え可否を逆にする。"
         },
-        "sha256": "d5668eb762b70e1bfabb6b9ad71cc73c8877206538faa8fa871f99b21e777dc5"
+        "sha256": "62ddf4ecfd89195d96776448d397352f5ac1ecf02c3b64203785f23c7d26a3d1"
       },
-      "answerSummary": "正解①：CD-ROM／CD-R／CD-RW。",
+      "answerSummary": "読出専用：読出専用はCD-ROMです。\n記録後の書換え不可：CD-Rです。\n繰返し書換え：CD-RWです。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "sharedQuestion": "各記録方式の更新の可否から、対応するCDの種類を選んでください。",
+      "studyParts": [
+        {
+          "id": "comp-12-11-item-rom",
+          "number": "12-11",
+          "officialRef": "問12-11",
+          "officialQuestionItem": "rom",
+          "title": "読出専用",
+          "topic": "記憶メディア",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "通常の利用で読出専用の方式はどれか。",
+          "choices": [
+            "CD-ROM",
+            "CD-R"
+          ],
+          "answer": 1,
+          "answerSummary": "読出専用はCD-ROMです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "ROMはRead Only Memoryです。利用者が新しい計算結果を書き込むための媒体ではありません。Rは記録できるので、読出専用とは違います。"
+            }
+          ],
+          "explanation": "【基礎】読出専用はCD-ROMです。\n【考え方】正解は1です。ROMはRead Only Memoryです。利用者が新しい計算結果を書き込むための媒体ではありません。Rは記録できるので、読出専用とは違います。\n【ポイント】読出専用はCD-ROMです。\n【引っかけ】2：「CD-R」ではなく、CD-ROMです。ROMはRead Only Memoryです。利用者が新しい計算結果を書き込むための媒体ではありません。Rは記録できるので、読出専用とは違います。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "記憶メディア：光ディスクの区別／個別の質問：読出専用",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「CD-R」ではなく、CD-ROMです。ROMはRead Only Memoryです。利用者が新しい計算結果を書き込むための媒体ではありません。Rは記録できるので、読出専用とは違います。"
+            },
+            "sha256": "b9304232353b5e17e7631f8733af80d7d1392fe8bb1ec72611191e27af9e7c49"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "comp-12-11-item-r",
+          "number": "12-11",
+          "officialRef": "問12-11",
+          "officialQuestionItem": "r",
+          "title": "記録後の書換え不可",
+          "topic": "記憶メディア",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "追記等の書込は可能でも、記録済みの部分を消去して書き換えられない方式はどれか。",
+          "choices": [
+            "CD-R",
+            "CD-RW"
+          ],
+          "answer": 1,
+          "answerSummary": "CD-Rです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "RはRecordableです。記録方式や状態によって空き領域への追記ができても、すでに書いた場所を消去して再利用する方式ではありません。"
+            }
+          ],
+          "explanation": "【基礎】CD-Rです。\n【考え方】正解は1です。RはRecordableです。記録方式や状態によって空き領域への追記ができても、すでに書いた場所を消去して再利用する方式ではありません。\n【ポイント】CD-Rです。\n【引っかけ】2：「CD-RW」ではなく、CD-Rです。RはRecordableです。記録方式や状態によって空き領域への追記ができても、すでに書いた場所を消去して再利用する方式ではありません。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "記憶メディア：光ディスクの区別／個別の質問：記録後の書換え不可",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「CD-RW」ではなく、CD-Rです。RはRecordableです。記録方式や状態によって空き領域への追記ができても、すでに書いた場所を消去して再利用する方式ではありません。"
+            },
+            "sha256": "9228aa4768fc85180a05478473789ad9d280b38a653d21ced44b7926e316e234"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "comp-12-11-item-rw",
+          "number": "12-11",
+          "officialRef": "問12-11",
+          "officialQuestionItem": "rw",
+          "title": "繰返し書換え",
+          "topic": "記憶メディア",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "対応装置で消去・書換えができる方式はどれか。",
+          "choices": [
+            "CD-R",
+            "CD-RW"
+          ],
+          "answer": 2,
+          "answerSummary": "CD-RWです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "RWはReWritableです。CD-Rとの違いは、記録済みの内容を消して入れ替えられることです。使える装置や方式の条件まで無条件に同じという意味ではありません。"
+            }
+          ],
+          "explanation": "【基礎】CD-RWです。\n【考え方】正解は2です。RWはReWritableです。CD-Rとの違いは、記録済みの内容を消して入れ替えられることです。使える装置や方式の条件まで無条件に同じという意味ではありません。\n【ポイント】CD-RWです。\n【引っかけ】1：「CD-R」ではなく、CD-RWです。RWはReWritableです。CD-Rとの違いは、記録済みの内容を消して入れ替えられることです。使える装置や方式の条件まで無条件に同じという意味ではありません。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "記憶メディア：光ディスクの区別／個別の質問：繰返し書換え",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「CD-R」ではなく、CD-RWです。RWはReWritableです。CD-Rとの違いは、記録済みの内容を消して入れ替えられることです。使える装置や方式の条件まで無条件に同じという意味ではありません。"
+            },
+            "sha256": "a08cee643d96dbfd61af1a4e8d5d44eec878a583fc25f41c6868cba647774885"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "rom",
+        "r",
+        "rw"
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "comp-12-12",
@@ -653,11 +804,14 @@
           "2": "USBメモリが常に最大という名称への思い込みで指定値を比べない。",
           "3": "DVD-RAMがCD-Rや今回USBより大きいことを全候補の最大へ広げる。"
         },
-        "sha256": "01813f59bbb51d45182bfd47e528949fd885405d6ddfa67be44763c951ddcb41"
+        "sha256": "f483b0eca5f76ee90bc4149dbfa2311cd4546e7956298f7aefb68ae272345ad6"
       },
       "answerSummary": "正解④：BD・BDXL（128 GB）。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-13",
@@ -709,11 +863,14 @@
           "2": "圧縮率を記憶装置と取り違える。",
           "3": "退避領域を主記憶より高速なキャッシュとする。"
         },
-        "sha256": "7205fab51d75ff9581f9f22d2235f19b13f01f51628ce3ec722e71be7563f099"
+        "sha256": "8687a313e7ee7bb133bd1511bbbce49d5de419845fa2bc5b081c6c1df57a50e0"
       },
       "answerSummary": "正解④：キャッシュ。",
       "figureImage": "comp12CacheHierarchy",
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-14",
@@ -759,11 +916,14 @@
           "3": "OSが全業務アプリを標準で含むとする。",
           "4": "資源管理と解析のモデル選択を同一にする。"
         },
-        "sha256": "844c7c00aeb7eae5a0e500828f17c265b7452b9b779df885997900ea39e4738f"
+        "sha256": "16e5640d749d891f6ae5b64a361b80464eb39855a43a4fe7550fdcb7065ac0f1"
       },
       "answerSummary": "正解①：プロセス・メモリ・入出力などの資源を管理する。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-15",
@@ -809,11 +969,14 @@
           "2": "macOSが必ずLinuxカーネルとする。",
           "3": "UNIXをプログラミング言語とする。"
         },
-        "sha256": "e3b1f5940e8d2b37f9b3db00f645b96d5a816f54c61df15c4b37bd703528b7c7"
+        "sha256": "b2a7bb524d4c86dc589bbce445f5e7fb363c15f287cc0757306d57784bce76cb"
       },
       "answerSummary": "正解④：Linuxカーネルはオープンソースで、各種ソフトと組み合わせたディストリビューションで利用される。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-16",
@@ -859,11 +1022,14 @@
           "3": "macOS製品全体の扱いを、公開される一部の構成要素と混同する。",
           "4": "従来の商用UNIX製品をLinuxと同じ公開条件とみなす。"
         },
-        "sha256": "29c7626e23c0705684ac24bc58fca752cd606fb68a93a1e74905f69b1650a000"
+        "sha256": "390b0193b7c61a64ba814488e72d3e57a0aea92b4e8876956a0d54760123cae1"
       },
       "answerSummary": "正解②：Linux。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-17",
@@ -909,11 +1075,14 @@
           "3": "OSとソルバの実行環境の関係を無視する。",
           "4": "本番を最初の試験環境とする。"
         },
-        "sha256": "44f896526c794d55d56764091ee18c9ba74e9d5162d07246ab6815db185ca84b"
+        "sha256": "417b7e4c6bc66987649371a51359569b8a4974e25fc50509efc40337921e683c"
       },
       "answerSummary": "正解②：対応環境を確認し、バックアップと検証・復旧手段を用意して導入する。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-18",
@@ -959,11 +1128,14 @@
           "2": "対象ソフトの対応OSを確かめる適切な方針。",
           "4": "計算規模に足りるメモリを確かめる適切な方針。"
         },
-        "sha256": "b0e4cc11d167c9efc1dcfc8ebf85f396a2bf84006b67f39d79f84c8f39b96b76"
+        "sha256": "f7e1e3cd2b94f09325bbe413180bbfb2b5fd79fbb0f69969444cfe2678aaa920"
       },
       "answerSummary": "正解③：普及率だけで選び、対応や連携を確認しない。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-19",
@@ -1019,11 +1191,14 @@
           "3": "実行方式だけで速度が一意に決まるとする。",
           "4": "コンパイルだけで同じ計算が必ず高速とする。"
         },
-        "sha256": "b5fcfcb3dc7cd0f8fec40b0e7852615679454e76a0c152f89b31a4853b0094bc"
+        "sha256": "c86b5c04b123909e5181d514faeb2eeb442ea610228bf90a1e7c4ee82208c883"
       },
       "answerSummary": "正解①：実行方式には事前変換・実行時変換・中間コードなどがあり、速度は実装や処理に依存する。",
       "figureImage": "comp12CompInterp",
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-20",
@@ -1069,11 +1244,14 @@
           "3": "利用のたびに本人が必ず翻訳するとする。",
           "4": "ネイティブ実行ファイルが機械語を含まないとする。"
         },
-        "sha256": "3450864c951367bfc343044b7583d250b87d6c3d57a0d8989d99f8af70c1c014"
+        "sha256": "8026840ae6e18f305e82542a14ed471fa8340fcaa945eec6ddcc66eded4e17d4"
       },
       "answerSummary": "正解①：別のCPU・OSでは互換層や再ビルド等が必要な場合がある。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-21",
@@ -1115,11 +1293,14 @@
           "2": "Fortranを特定の一台だけへ限定する。",
           "4": "科学技術計算の用途を否定する。"
         },
-        "sha256": "45de10d07ec547ebba8c583839057b80ff09428dce8ac0e84b8da0c54078b717"
+        "sha256": "78bda16c5982640fa1198d6810b75a5af0c020b1161f351e1eb31050e57d767f"
       },
       "answerSummary": "正解③：科学技術計算に広く使われ、数値計算のライブラリ資産がある。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-22",
@@ -1159,17 +1340,99 @@
       ],
       "editorialReview": {
         "officialPoint": "FortranとCの開発背景を科学技術計算・UNIXに対応させる。",
-        "alignment": "保存済み公式抽出テキストの当該番号と照合し、同じ知識・判断ポイントを独自の文章で問う。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "FortranとCの開発元と背景を逆にする。",
           "3": "科学技術計算・システム実装を専用の別用途と取り違える。",
           "4": "両方を低水準言語と誤認する。"
         },
-        "sha256": "7ee29e99eb17305a9a32d362bcb702217175006545d37b49120bef0bf21d8ca3"
+        "sha256": "4688d127201703eca1143076202fe1ae1787a66c160e41c7bcb658098ad817fd"
       },
-      "answerSummary": "正解①：FortranはIBMで科学技術計算向けに開発され、Cはベル研究所で開発されUNIXの実装に使われた。",
+      "answerSummary": "Fortran：FortranはIBMで科学技術計算向けに開発されました。\nC：Cはベル研究所で開発され、UNIXの実装に使われました。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "f",
+        "c"
+      ],
+      "sharedQuestion": "FortranとCの開発の背景を比較してください。",
+      "studyParts": [
+        {
+          "id": "comp-12-22-item-f",
+          "number": "12-22",
+          "officialRef": "問12-22",
+          "officialQuestionItem": "f",
+          "title": "Fortran",
+          "topic": "プログラミング言語",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Fortranの開発の背景はどれか。",
+          "choices": [
+            "IBMで科学技術計算向けに開発",
+            "ベル研究所でUNIX実装向けに開発"
+          ],
+          "answer": 1,
+          "answerSummary": "FortranはIBMで科学技術計算向けに開発されました。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "FortranはIBMで開発された初期の高水準言語で、科学技術計算との関係が深い言語です。例えば、材料の応力を式へ代入して求めたり、行列の成分を配列へ入れて計算したりする処理を書きます。名前はFormula Translationに由来し、数式をコンピュータの処理へ結び付けるという背景があります。"
+            }
+          ],
+          "explanation": "【基礎】FortranはIBMで科学技術計算向けに開発されました。\n【考え方】正解は1です。FortranはIBMで開発された初期の高水準言語で、科学技術計算との関係が深い言語です。例えば、材料の応力を式へ代入して求めたり、行列の成分を配列へ入れて計算したりする処理を書きます。名前はFormula Translationに由来し、数式をコンピュータの処理へ結び付けるという背景があります。\n【ポイント】FortranはIBMで科学技術計算向けに開発されました。\n【引っかけ】2：「ベル研究所でUNIX実装向けに開発」ではなく、IBMで科学技術計算向けに開発です。FortranはIBMで開発された初期の高水準言語で、科学技術計算との関係が深い言語です。例えば、材料の応力を式へ代入して求めたり、行列の成分を配列へ入れて計算したりする処理を書きます。名前はFormula Translationに由来し、数式をコンピュータの処理へ結び付けるという背景があります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "FortranとCの開発背景を科学技術計算・UNIXに対応させる。／個別の質問：Fortran",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「ベル研究所でUNIX実装向けに開発」ではなく、IBMで科学技術計算向けに開発です。FortranはIBMで開発された初期の高水準言語で、科学技術計算との関係が深い言語です。例えば、材料の応力を式へ代入して求めたり、行列の成分を配列へ入れて計算したりする処理を書きます。名前はFormula Translationに由来し、数式をコンピュータの処理へ結び付けるという背景があります。"
+            },
+            "sha256": "1e71251a1c4b170b4f4e5f96c90697ff2ea61550d87fa82e348cb954a0654618"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "comp-12-22-item-c",
+          "number": "12-22",
+          "officialRef": "問12-22",
+          "officialQuestionItem": "c",
+          "title": "C",
+          "topic": "プログラミング言語",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Cの開発の背景はどれか。",
+          "choices": [
+            "IBMで科学技術計算向けに開発",
+            "ベル研究所で開発され、UNIXの実装に使用"
+          ],
+          "answer": 2,
+          "answerSummary": "Cはベル研究所で開発され、UNIXの実装に使われました。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "OSではメモリ・入出力・データを扱います。Cはそうしたシステムを記述するために発展しました。Fortranと同様に高水準言語で、機械命令を一対一で記号へ置き換えるアセンブリ言語ではありません。"
+            }
+          ],
+          "explanation": "【基礎】Cはベル研究所で開発され、UNIXの実装に使われました。\n【考え方】正解は2です。OSではメモリ・入出力・データを扱います。Cはそうしたシステムを記述するために発展しました。Fortranと同様に高水準言語で、機械命令を一対一で記号へ置き換えるアセンブリ言語ではありません。\n【ポイント】Cはベル研究所で開発され、UNIXの実装に使われました。\n【引っかけ】1：「IBMで科学技術計算向けに開発」ではなく、ベル研究所で開発され、UNIXの実装に使用です。OSではメモリ・入出力・データを扱います。Cはそうしたシステムを記述するために発展しました。Fortranと同様に高水準言語で、機械命令を一対一で記号へ置き換えるアセンブリ言語ではありません。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "FortranとCの開発背景を科学技術計算・UNIXに対応させる。／個別の質問：C",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「IBMで科学技術計算向けに開発」ではなく、ベル研究所で開発され、UNIXの実装に使用です。OSではメモリ・入出力・データを扱います。Cはそうしたシステムを記述するために発展しました。Fortranと同様に高水準言語で、機械命令を一対一で記号へ置き換えるアセンブリ言語ではありません。"
+            },
+            "sha256": "68dcb4690199fc8d66b47802e231bb7fff91895af97f4412f41dbe23ccc5271a"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "comp-12-23",
@@ -1215,11 +1478,14 @@
           "2": "高水準言語Javaを低水準と分類する。",
           "3": "高水準言語Perlを低水準と分類する。"
         },
-        "sha256": "b3b0bc51c022acf7c5c9807db238f535dfeff8b80dc7c281b2e638fa5d2a0f93"
+        "sha256": "0e2640583172dc641c5e04980e97f847d4dbd74260fe7ccf8cdda298b26fb7a1"
       },
       "answerSummary": "正解④：アセンブリ言語。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-24",
@@ -1271,11 +1537,14 @@
           "3": "契約の同時使用数を守る正しい説明。",
           "4": "複数導入が認められれば導入数が同時使用数を超えてよい正しい説明。"
         },
-        "sha256": "800817577cc2445a38a0a6442969a72ee27f7378ec5d380b2e8389702677653b"
+        "sha256": "5c762700c4e47ef7c65be4bc94c9bcd4e8b5331ab2a8982c1900dacdf06fb483"
       },
       "answerSummary": "正解①：導入台数と同時使用ライセンス数は必ず一致する。",
       "figureImage": "comp12FloatingSeats",
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-25",
@@ -1327,11 +1596,14 @@
           "2": "上限使用中は空きを待つ適切な利用。",
           "4": "導入数と同時使用数を分けて上限を守る適切な利用。"
         },
-        "sha256": "379f82d7d767b4886da83fa841a3bfd4bbbbbb391389fec1ae167d65e0cc017c"
+        "sha256": "ce3f07421ff48bde6d46bb6de909a798bf194b897ce11635ea14d8a1c35c9267"
       },
       "answerSummary": "正解③：サーバから完全に切り離した3台で同時に使う。",
       "figureImage": "comp12FloatingSeats",
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-26",
@@ -1377,11 +1649,14 @@
           "2": "LANとWANを同義とする。",
           "3": "LANが必ず全世界を結ぶとする。"
         },
-        "sha256": "17dd91b36bf1f893b6342802f123f72977b477e8729523e9639dd893e35fec76"
+        "sha256": "728f0480cef7eeab27886648bacebc54c32c036d029afc9de4f5514bdfc44f52"
       },
       "answerSummary": "正解④：LANは建物や拠点内など比較的限定された区域のネットワーク。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-27",
@@ -1423,11 +1698,14 @@
           "2": "機密を無制限公開する。",
           "3": "平文メールで宛先確認を省く。"
         },
-        "sha256": "24264fc4200a6232f2c1d36a18d2dfd0dfcde907eb0b5bd2434a2ea8c7cf56c0"
+        "sha256": "5b9bcfe5165aa6097589883cd97977123d260c1177c1ef9cf790f6b85de1dbbb"
       },
       "answerSummary": "正解④：承認方式で暗号化と本人確認・アクセス制限を行い、宛先と送付範囲を確認する。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-28",
@@ -1473,11 +1751,14 @@
           "2": "名前等の管理のNISとファイル共有を取り違える。",
           "4": "CPU命令体系と遠隔ファイル利用の約束を混同する。"
         },
-        "sha256": "ec3deb025e2b833da1bb96740aabba95d1445943d9eb82e2fa0be26bb07a2bd1"
+        "sha256": "5944767051684d0d1b78c7dfe3a8336767162363a92244b8189dba5cde96a67d"
       },
       "answerSummary": "正解③：NFS。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-29",
@@ -1519,11 +1800,14 @@
           "3": "メール送信のSMTPをファイル転送主目的とする。",
           "4": "メール受信のPOP3をファイル転送主目的とする。"
         },
-        "sha256": "0c45788a4ec6f66df035095cfc5d020dc11bf0af29b339186acc95cd4196e610"
+        "sha256": "39e4620a2843f791fd122a9d9e9298b1db3cf0ebd544977c194cff1a46fc6858"
       },
       "answerSummary": "正解②：FTP。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-30",
@@ -1582,11 +1866,14 @@
           "2": "MPIを分散メモリ環境で使えないとする。",
           "3": "自動並列化で全コードが無変更の理想加速とする。"
         },
-        "sha256": "70b0735650b6c0f227e1fb5d62dc22d42592566cb12d3d75ff7e85e80b83fd51"
+        "sha256": "f7d7926c3c1f5fe70726e0ac1c92c002c592a1dad81356d83e7ec110986534c4"
       },
       "answerSummary": "正解④：MPIはプロセス間通信、OpenMPは主に共有メモリ並列を扱い、併用もできる。",
       "figureImage": "comp12ParallelMemory",
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-31",
@@ -1642,7 +1929,7 @@
           "3": "並列/逐次の時間比を効率とする。",
           "4": "高速化倍率2.5を台数で割らず効率とする。"
         },
-        "sha256": "b4c045e1c272a30df8b16950ffabb1fbbbd9de0360b13795aee32fe7fefc683d"
+        "sha256": "cfa6ef6a78ba205ecdfe559385ecd87768987e28a47eb3d78d8b30c5aa4610a5"
       },
       "answerSummary": "正解②：62.5%。",
       "figureImage": "comp12ParallelEff",
@@ -1652,7 +1939,10 @@
           "caption": "同じ仕事を、1プロセッサと4プロセッサで計算した時間です。"
         }
       ],
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-32",
@@ -1694,11 +1984,14 @@
           "3": "構造理解と内容を読めなくする操作を取り違える。",
           "4": "構造や仕様の分析を速度測定だけへ限定する。"
         },
-        "sha256": "1b27fb7e30726bf61b61aaa7140bebde9ebe44a43a10e64b16de7aa6a18024a4"
+        "sha256": "a48698a06ac197c64a57bf64d280bfd167b451b8e8a7267dca6507e33e36e841"
       },
       "answerSummary": "正解②：既存の実装から構造・仕様等を理解し、修正や再開発に役立てる。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-12-33",
@@ -1754,11 +2047,14 @@
           "2": "対外宣伝だけを目的とする。",
           "3": "組織の方針を個人の気分で変更する。"
         },
-        "sha256": "d919d3facf1cbcd62be06b92cdf1bec9cadc63362fd1d1b92afe78721391b209"
+        "sha256": "f3e0b7ec50834ef73f4bd430efc14b48fac7d78cce9aee034675e0d4a8c94d10"
       },
       "answerSummary": "正解④：守る情報資産と基本方針・責任を明示し、規程・手順の拠り所にする。",
       "figureImage": "comp12SecPolicy",
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     }
   ]
 }

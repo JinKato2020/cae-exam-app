@@ -8,7 +8,8 @@
     "count": 32,
     "officialCount": 32,
     "presentationStyle": "cae-standard-v1",
-    "explanationMode": "guided"
+    "explanationMode": "guided",
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -46,7 +47,7 @@
           "2": "桁落ちと混同",
           "4": "情報落ちと混同"
         },
-        "sha256": "09098a83c2a2bd0387e347ef9176178824ac4072ede96982c72836efd75b349e"
+        "sha256": "94d1e0e6febddb5ac305934284fd1cfc8bbbe31608eda5561966b38fa14e8c31"
       },
       "easyExplanation": [
         {
@@ -68,7 +69,10 @@
           "body": "選択肢1は打切り誤差、選択肢2は桁落ち、選択肢4は情報落ちで、丸めの影響と関係していても説明する仕組みが異なります。"
         }
       ],
-      "answerSummary": "③：保存できる桁数に合わせて数を近似することで生じるのが丸め誤差です。"
+      "answerSummary": "③：保存できる桁数に合わせて数を近似することで生じるのが丸め誤差です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-2",
@@ -105,7 +109,7 @@
           "2": "実数除算後の−0.5を整数化",
           "3": "整数除算の商で止める"
         },
-        "sha256": "942c506867356edf6ecf65ef2c06226f5155d3d821d8eb84f769e0725d91403a"
+        "sha256": "c473b58ecfa8512e0cd99d0ebba92549af5e0db12453bf012311cf5f3c5b2ed1"
       },
       "easyExplanation": [
         {
@@ -131,7 +135,10 @@
           "body": "選択肢1は最初から実数除算をした値で、代入後の整数でもありません。選択肢2は最初を実数除算として−0.5を整数化した値です。選択肢3は整数除算の商1で止め、cを引く処理を忘れています。"
         }
       ],
-      "answerSummary": "④：整数除算3÷2が先に1となるので、格納される値は−1です。"
+      "answerSummary": "④：整数除算3÷2が先に1となるので、格納される値は−1です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-3",
@@ -168,7 +175,7 @@
           "3": "倍精度を万能とする",
           "4": "演算順序の影響を否定"
         },
-        "sha256": "e6352f9630a585cf4b0f0ca468f2daa56b3e4c90c82621626f07eb568b525fb8"
+        "sha256": "522585f885f76239ea47b4ea07f8026a920b32ce44c3cde0c945e84087aed31d"
       },
       "easyExplanation": [
         {
@@ -190,7 +197,10 @@
           "body": "選択肢2は加減算の誤差を否定しています。選択肢3は倍精度を万能とし、選択肢4は演算順序の影響を否定しています。"
         }
       ],
-      "answerSummary": "①：加算・減算でも、桁落ちや情報落ちで精度が損なわれます。"
+      "answerSummary": "①：加算・減算でも、桁落ちや情報落ちで精度が損なわれます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-4",
@@ -227,7 +237,7 @@
           "3": "整数除算か優先順位を誤る",
           "4": "整数除算か優先順位を誤る"
         },
-        "sha256": "cb0fc081a0bc593a8fa463e7c2157f3205dc59e0d66933bcab835c6323de3167"
+        "sha256": "4c268426b62fe1871eebb570946535c144513a363c856e891a5a00839d718868"
       },
       "easyExplanation": [
         {
@@ -253,7 +263,10 @@
           "body": "選択肢1の2、選択肢3の0、選択肢4の1はいずれも、整数除算か括弧・乗除の順序を守った結果ではありません。"
         }
       ],
-      "answerSummary": "②：整数の1÷2は0なので、全体は−1です。"
+      "answerSummary": "②：整数の1÷2は0なので、全体は−1です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-5",
@@ -290,7 +303,7 @@
           "2": "ポスト処理と混同",
           "4": "計算後の報告と混同"
         },
-        "sha256": "0b2c0978dbf9e7cba37d7eea01f5b95db54785179639d4ae6b0071ceb2910101"
+        "sha256": "75d0ea69e5b104da3862af80434a75d43d580e335c20282f47a1445404e67c4b"
       },
       "easyExplanation": [
         {
@@ -312,7 +325,10 @@
           "body": "選択肢1はソルバの仕事、選択肢2はポスト処理、選択肢4は計算後の整理・報告です。"
         }
       ],
-      "answerSummary": "③：形状・格子・物性・境界条件を用意するのがプリ処理です。"
+      "answerSummary": "③：形状・格子・物性・境界条件を用意するのがプリ処理です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-6",
@@ -349,7 +365,7 @@
           "3": "分割より先に計算",
           "4": "結果より先に評価"
         },
-        "sha256": "206a841a62414cbf9899fb660d9d3a397e2554b4490257866c850bddf0b82238"
+        "sha256": "db3425a44f3d873eaf08432b3e37c0b9e117f85ee881fd25197a02ec47389d2a"
       },
       "easyExplanation": [
         {
@@ -371,7 +387,10 @@
           "body": "選択肢2は形状より先に分割し、選択肢3は分割より先に計算しています。選択肢4は結果がない段階で評価を置いています。"
         }
       ],
-      "answerSummary": "①：形状を決め、要素分割し、計算してから結果を評価します。"
+      "answerSummary": "①：形状を決め、要素分割し、計算してから結果を評価します。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-7",
@@ -404,7 +423,7 @@
           "3": "ログインと終了の順を誤る",
           "4": "起動と終了の順が不成立"
         },
-        "sha256": "25617082536ba6e547c766b46dbefb4d37a98901e455caf589085e6292d0903b"
+        "sha256": "952a8d1c9793da0a3922fc95730802f1d792510182e86bff9e5814992c1f4f92"
       },
       "easyExplanation": [
         {
@@ -420,7 +439,10 @@
           "body": "選択肢1は電源切断後にログアウトを置きます。選択肢3はアプリ起動とログインの順、終了とログアウトの順が逆です。選択肢4は起動・終了の順序が成立しません。"
         }
       ],
-      "answerSummary": "②：利用開始から終了まで、操作に必要な前提がそろう順に進めます。"
+      "answerSummary": "②：利用開始から終了まで、操作に必要な前提がそろう順に進めます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-8",
@@ -457,7 +479,7 @@
           "3": "計算前に結果表示",
           "4": "結果表示から開始"
         },
-        "sha256": "2aa2d285a0fd8e968e92b2f1797ea7bd93c9865255e15b5f57a4930912223241"
+        "sha256": "56e7929f5eda790648d2b15729bbc3f9a9b47c6a19b4ee99750b9c24bc78a7ad"
       },
       "easyExplanation": [
         {
@@ -479,7 +501,10 @@
           "body": "選択肢1は準備前に計算し、選択肢3は計算前に結果表示を置きます。選択肢4は結果表示から始めています。"
         }
       ],
-      "answerSummary": "②：入力を準備するプリ処理→計算するソルバ→評価するポスト処理です。"
+      "answerSummary": "②：入力を準備するプリ処理→計算するソルバ→評価するポスト処理です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-9",
@@ -514,7 +539,7 @@
           "3": "転送規約と混同",
           "4": "共有規約と混同"
         },
-        "sha256": "b0072caa4303e7b40bfd869f4661962507980bbaa35ee52859208ca95e9ede96"
+        "sha256": "2dbb2823bfb5ffb499d7867cf98e499ec051d3f5331544e788a8cf6fd9162266"
       },
       "easyExplanation": [
         {
@@ -530,7 +555,10 @@
           "body": "選択肢2は広域の接続、選択肢3はFTP、選択肢4はNFSの役割です。"
         }
       ],
-      "answerSummary": "①：LANは、建物や敷地などの限られた範囲を結ぶネットワークです。"
+      "answerSummary": "①：LANは、建物や敷地などの限られた範囲を結ぶネットワークです。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-10",
@@ -565,7 +593,7 @@
           "2": "条件を満たさないメール送信",
           "4": "公開場所へ機密を置く"
         },
-        "sha256": "a1ec8e4c2d8fa12616cd7b29f78fd379e334e9420482273d2625f4bfff1cf743"
+        "sha256": "7b3e55287b010bab5096c2f6620085998e08fe88561a3c0ad08709e5fe58d987"
       },
       "easyExplanation": [
         {
@@ -581,7 +609,10 @@
           "body": "選択肢1は平文送信を許す点が条件に反します。選択肢2も認められた暗号化手段ではなく、選択肢4は公開範囲のある場所へ機密を置いています。"
         }
       ],
-      "answerSummary": "③：本問で承認されている、管理された記録媒体の受け渡しを選びます。"
+      "answerSummary": "③：本問で承認されている、管理された記録媒体の受け渡しを選びます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-11",
@@ -616,7 +647,7 @@
           "2": "管理情報共有と混同",
           "4": "メール送信と混同"
         },
-        "sha256": "64ddf5eecee9c5404302cbd9db2003ee5a44e70d7f513a5a49cb0a1738741380"
+        "sha256": "8ec316b9a542c2f1edd58d97e230b7c7b950eac85c5d8726d2b81c7a99222e22"
       },
       "easyExplanation": [
         {
@@ -632,7 +663,10 @@
           "body": "選択肢1のFTPはファイル転送、選択肢2のNISはユーザーなどの管理情報の共有、選択肢4のSMTPはメール送信です。"
         }
       ],
-      "answerSummary": "③：NFSは、別のコンピュータ上のファイルを共有して使う仕組みです。"
+      "answerSummary": "③：NFSは、別のコンピュータ上のファイルを共有して使う仕組みです。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-12",
@@ -669,7 +703,7 @@
           "3": "字下げと改行を混同",
           "4": "言語規格と改行を混同"
         },
-        "sha256": "adc6d9ceb90fd5064206cd00f42195f003b1675180997d29f1f4141af2165caf"
+        "sha256": "b4ca1e1ad9507f059b77ceeb71a3a1b548a1601da6caae67158c59c82c4040b2"
       },
       "easyExplanation": [
         {
@@ -691,7 +725,10 @@
           "body": "選択肢1は日本語文字コードの問題、選択肢3は字下げ、選択肢4は言語規格の対応で、今回の行末CRという情報に合いません。"
         }
       ],
-      "answerSummary": "②：見た目は同じ改行でも、行末のCR＋LFとLFが違います。"
+      "answerSummary": "②：見た目は同じ改行でも、行末のCR＋LFとLFが違います。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-13",
@@ -726,7 +763,7 @@
           "2": "メール受信用",
           "3": "メール送信用"
         },
-        "sha256": "75543583ee4c57e410a25af1052e0fc3d4736677f21a292e25c318012d7d5f7e"
+        "sha256": "8303e8191f7cd45da668f104f7fcd41c5c99b12868daa3124bb398a885e58ffb"
       },
       "easyExplanation": [
         {
@@ -742,7 +779,10 @@
           "body": "選択肢1のPOP3と選択肢2のIMAP4はメールを受け取る用途、選択肢3のSMTPはメールを送る用途です。"
         }
       ],
-      "answerSummary": "④：ファイル転送のためのプロトコルはFTPです。"
+      "answerSummary": "④：ファイル転送のためのプロトコルはFTPです。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-14",
@@ -777,7 +817,7 @@
           "3": "アセンブラの水準が逆",
           "4": "Perlの用途が逆"
         },
-        "sha256": "e31869b2275bf68857f677bf6f5c224a3ca6a3f7d63507d58957084c519917fa"
+        "sha256": "76aa10627de6ae27d14fe0e036dcfea284bb5225328cce5a750d4bad36991814"
       },
       "easyExplanation": [
         {
@@ -793,7 +833,10 @@
           "body": "選択肢2のCOBOLは事務処理向けです。選択肢3のアセンブラは低水準、選択肢4のPerlはテキスト処理を得意とします。"
         }
       ],
-      "answerSummary": "①：Fortranは、数値計算の記述やライブラリを備える科学技術計算向けの言語です。"
+      "answerSummary": "①：Fortranは、数値計算の記述やライブラリを備える科学技術計算向けの言語です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-15",
@@ -830,7 +873,7 @@
           "2": "アプリ内自動化と混同",
           "3": "実行ファイルの移植性を過大評価"
         },
-        "sha256": "035acb57b4852dcae4cc0bd4d7aac2496d5c546e2f5f3fe597619dd7f31528f9"
+        "sha256": "2ffc157894b3a31416b3b033827c5711cacdb2510cdb2f1a3533a663fc8ec278"
       },
       "easyExplanation": [
         {
@@ -852,7 +895,10 @@
           "body": "選択肢1は実行時の逐次解釈です。選択肢2はアプリ内の操作自動化で、選択肢3は生成済み実行ファイルがどこでも動くとしています。"
         }
       ],
-      "answerSummary": "④：CPUやOSを対象に作った実行ファイルは、どの環境でもそのまま動くとは限りません。"
+      "answerSummary": "④：CPUやOSを対象に作った実行ファイルは、どの環境でもそのまま動くとは限りません。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-16",
@@ -887,7 +933,7 @@
           "2": "高水準言語Java",
           "3": "高水準言語Perl"
         },
-        "sha256": "1dce60d1382cf13d3e82ef78cf8b65734a2c9f12c464e0e440b3dbe612a0bdc4"
+        "sha256": "e19b95f5f9e204c2bd427f04d88f5dc4c7968fc3dc9d751d7df19795a4e4586c"
       },
       "easyExplanation": [
         {
@@ -903,7 +949,10 @@
           "body": "選択肢1のC++、選択肢2のJava、選択肢3のPerlは、いずれも高水準言語です。"
         }
       ],
-      "answerSummary": "④：アセンブラ言語はCPUの命令に近い低水準言語です。"
+      "answerSummary": "④：アセンブラ言語はCPUの命令に近い低水準言語です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-17",
@@ -938,7 +987,7 @@
           "3": "Javaの用途を混同",
           "4": "Perlの水準と速さを誤認"
         },
-        "sha256": "10d3357baf5220fa236d0009a6bf2a50c2ba7e25a69c65a0ab32256373d86b5e"
+        "sha256": "101f107d4cbe14388da8a3a0302fad7439ac6e5d14d5c8e7dad40385e6b15b7e"
       },
       "easyExplanation": [
         {
@@ -954,7 +1003,10 @@
           "body": "選択肢1はCOBOLとFORTRAN、選択肢3はJavaと事務処理言語の用途を混同しています。選択肢4はPerlを低水準とし、速さまで保証しています。"
         }
       ],
-      "answerSummary": "②：Fortranは、科学技術計算で使われてきた初期の高級言語の一つです。"
+      "answerSummary": "②：Fortranは、科学技術計算で使われてきた初期の高級言語の一つです。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-18",
@@ -991,7 +1043,7 @@
           "2": "実行方式が逆",
           "3": "スクリプトの実装を一律化"
         },
-        "sha256": "86ffe875aac521718711312a557069aa17f74876ac67e80cbf30f855ab1af6d7"
+        "sha256": "ed9be2fc880754decc8715dc096dde82f7cc8d683fb281ee863c78b2f7f2e307"
       },
       "easyExplanation": [
         {
@@ -1013,7 +1065,10 @@
           "body": "選択肢1と2は両方式の説明が逆です。選択肢3はスクリプト言語を一律に機械語への事前コンパイルとしています。"
         }
       ],
-      "answerSummary": "④：事前に翻訳すれば、実行中に逐次解釈する負担を減らせます。"
+      "answerSummary": "④：事前に翻訳すれば、実行中に逐次解釈する負担を減らせます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-19",
@@ -1050,7 +1105,7 @@
           "2": "64ビットは適切",
           "4": "有限数の上限は適切"
         },
-        "sha256": "f55c2d9f5cffc91528e3233a401496037c25c72dcf6ae5eb89ebf98a50b04bba"
+        "sha256": "c61638b69d473ddc7961a87ba049379476c9b78ace02229909d7ffceadc249b7"
       },
       "easyExplanation": [
         {
@@ -1076,7 +1131,10 @@
           "body": "選択肢1は単精度より広い範囲と精度、選択肢2は64ビット、選択肢4は有限数の上限で、いずれも正しい説明です。"
         }
       ],
-      "answerSummary": "③が不適切：64ビットの有限な表現で、すべての実数は表せません。"
+      "answerSummary": "③が不適切：64ビットの有限な表現で、すべての実数は表せません。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-20",
@@ -1111,7 +1169,7 @@
           "3": "CAD交換形式",
           "4": "画像形式"
         },
-        "sha256": "009010487c3a6149a0d14a5cb09bf7a8c56df4f372d6c59cbb2b2c2df5126566"
+        "sha256": "35090440c20e0789638ac69ca88db475fe9965531440b7365077e9953f449617"
       },
       "easyExplanation": [
         {
@@ -1127,7 +1185,10 @@
           "body": "選択肢2のIGESと選択肢3のDXFはCADのデータ交換、選択肢4のGIFは画像形式です。"
         }
       ],
-      "answerSummary": "①：値をカンマで区切って表のデータを交換する形式はCSVです。"
+      "answerSummary": "①：値をカンマで区切って表のデータを交換する形式はCSVです。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-21",
@@ -1164,7 +1225,7 @@
           "2": "パイプラインは適切",
           "3": "キャッシュは適切"
         },
-        "sha256": "29a07d2caf374a44c76d5a8c420b83b9e694740dc678666c0fa28c99a0815f85"
+        "sha256": "6b5dfc2003649d1f19d46d5f2a74f16e5c9cdebe7ccf72513a03639110e0c5d7"
       },
       "easyExplanation": [
         {
@@ -1186,7 +1247,10 @@
           "body": "選択肢1はマルチコア、選択肢2はパイプライン、選択肢3はキャッシュで、いずれも処理性能を高める代表的な技術です。"
         }
       ],
-      "answerSummary": "④：DMAはデータ転送の負担を減らす仕組みで、CPUの演算そのものの高速化とは区別します。"
+      "answerSummary": "④：DMAはデータ転送の負担を減らす仕組みで、CPUの演算そのものの高速化とは区別します。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-22",
@@ -1223,7 +1287,7 @@
           "2": "GPU専用と限定",
           "4": "実装が一つと限定"
         },
-        "sha256": "2ffc49ac561ef4c044ca1459a2a0a3da14552e1069f997650b33355c4a61f657"
+        "sha256": "e4d10e1410b33939c768419b77d41d1b6d18f41247229a046f544683c36f6732"
       },
       "easyExplanation": [
         {
@@ -1249,7 +1313,10 @@
           "body": "選択肢1は1台の共有メモリだけへ限定しています。選択肢2はGPU専用とし、選択肢4は実装がmpich一つだけとしています。"
         }
       ],
-      "answerSummary": "③：MPIはプロセス間でデータを交換する規格で、対応環境では起動にsshも使えます。"
+      "answerSummary": "③：MPIはプロセス間でデータを交換する規格で、対応環境では起動にsshも使えます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-23",
@@ -1284,7 +1351,7 @@
           "3": "Windowsと混同",
           "4": "Mac OSと混同"
         },
-        "sha256": "e78370ed035f15ad08671b3c6ab85f1940e7e0d0f4debf3a47e1fde7c763b974"
+        "sha256": "3c46ebdfa083aef47eb819323348f9fc3cc42a445f2d6d1db5766d0fea5162a9"
       },
       "easyExplanation": [
         {
@@ -1300,7 +1367,10 @@
           "body": "選択肢1の商用UNIX、選択肢3のWindows、選択肢4のMac OSは、ここで示すLinuxカーネルの公開形態には該当しません。"
         }
       ],
-      "answerSummary": "②：GPLの下でカーネルのソースが公開されるUNIX系OSはLinuxです。"
+      "answerSummary": "②：GPLの下でカーネルのソースが公開されるUNIX系OSはLinuxです。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-24",
@@ -1335,7 +1405,7 @@
           "3": "自動対応と仮定",
           "4": "評判だけで導入"
         },
-        "sha256": "ca0be019868c0beebf6aa1f40cd9abb854b0e175aabcd5269a1029271e45ed6b"
+        "sha256": "7b55534ef3b3e6faecdf024660b196f43f174903595b24a53e29061f7cd0c7d5"
       },
       "easyExplanation": [
         {
@@ -1351,7 +1421,10 @@
           "body": "選択肢2は確認を飛ばし、選択肢3は自動で対応すると仮定しています。選択肢4も評判だけで本番導入を決めています。"
         }
       ],
-      "answerSummary": "①：新OSと、実際に使う業務ソフトの対応を事前に確認します。"
+      "answerSummary": "①：新OSと、実際に使う業務ソフトの対応を事前に確認します。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-25",
@@ -1386,7 +1459,7 @@
           "2": "既存環境との連携は適切",
           "4": "計算資源の確認は適切"
         },
-        "sha256": "e100de794acf75fcfd4e6ec507acecb32be251bdcd72634d289cf4aaf16642de"
+        "sha256": "92166f13563dbbd723bce6e6c28483192a1d44903ab80a0e182cd349a2276442"
       },
       "easyExplanation": [
         {
@@ -1402,7 +1475,10 @@
           "body": "選択肢1の動作要件、選択肢2の既存環境との連携、選択肢4のCPUとメモリは、いずれも適切な検討項目です。"
         }
       ],
-      "answerSummary": "③が誤り：普及している構成でも、用途を問わず最良とは限りません。"
+      "answerSummary": "③が誤り：普及している構成でも、用途を問わず最良とは限りません。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-26",
@@ -1439,7 +1515,7 @@
           "2": "暗号化専用と混同",
           "3": "数値ライブラリと混同"
         },
-        "sha256": "1eaba3746680ed0757c163fef3e5dc1413270c1c2372261b29bb96bde9ab5a1d"
+        "sha256": "54951452a963f7e1932dc1419d5e673d961fc878a07029e5984009478bf1f681"
       },
       "easyExplanation": [
         {
@@ -1461,7 +1537,10 @@
           "body": "選択肢1は業務アプリ、選択肢2は暗号化専用ソフト、選択肢3は数値計算ライブラリと取り違えています。"
         }
       ],
-      "answerSummary": "④：OSは機器や資源を管理し、アプリ・利用者とハードウェアをつなぎます。"
+      "answerSummary": "④：OSは機器や資源を管理し、アプリ・利用者とハードウェアをつなぎます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-27",
@@ -1496,7 +1575,7 @@
           "3": "Microsoft製とする",
           "4": "PCでは動かないとする"
         },
-        "sha256": "cdde30fafb608754bd036cf565327e60c2c12435b08e499b688bee669d9ab9c1"
+        "sha256": "fd14101359f39c9cacd65126353d3e2d1fdbdc39d5c926d64d75502f2c3c6f60"
       },
       "easyExplanation": [
         {
@@ -1512,7 +1591,10 @@
           "body": "選択肢1はミニコン専用とし、選択肢3はMicrosoft製の非公開OSとしています。選択肢4もPC上で動かないという点が誤りです。"
         }
       ],
-      "answerSummary": "②：LinuxはオープンソースのUNIX系OSで、PC上でも利用できます。"
+      "answerSummary": "②：LinuxはオープンソースのUNIX系OSで、PC上でも利用できます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-28",
@@ -1549,7 +1631,7 @@
           "2": "使用要求は適切",
           "4": "上限拒否は適切"
         },
-        "sha256": "0b1ede0f6e7b947f554dc0a683bba354a0cab07e4f336841371b6d48ec160832"
+        "sha256": "67a14e539cf27e116e8848521710d2de55a0288823ca3a25957caa564798250d"
       },
       "easyExplanation": [
         {
@@ -1575,7 +1657,10 @@
           "body": "選択肢1は管理の役割、選択肢2は使用要求、選択肢4は上限を超える要求の扱いで、いずれも本方式に合います。"
         }
       ],
-      "answerSummary": "③が誤り：本契約で管理するのは同時利用数で、インストール台数との一致は不要です。"
+      "answerSummary": "③が誤り：本契約で管理するのは同時利用数で、インストール台数との一致は不要です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-29",
@@ -1612,7 +1697,7 @@
           "3": "空き枠を使うため適切",
           "4": "時刻を分けるため適切"
         },
-        "sha256": "8cfd8da660f1f6e8fce0909a352dc3b28bacb58e254131f53e0270e97fcfc577"
+        "sha256": "c4058557895c980a2f1051a052a0ead0e6ae2a56eb39c28860adf719750994e9"
       },
       "easyExplanation": [
         {
@@ -1634,7 +1719,10 @@
           "body": "選択肢1は接続した端末で3人まで、選択肢3は空いた枠を利用、選択肢4は時間を分けた共有で、いずれも条件内です。"
         }
       ],
-      "answerSummary": "②：常時サーバー接続が必要なので、独立したオフラインPCでは利用できません。"
+      "answerSummary": "②：常時サーバー接続が必要なので、独立したオフラインPCでは利用できません。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-30",
@@ -1671,7 +1759,7 @@
           "3": "退避が高速化とする",
           "4": "物理増設とする"
         },
-        "sha256": "67a1e73ae01dc983b32573f186d49d4f7cb5a4cbd42c007f7b9e361ce1eb21ee"
+        "sha256": "72d6884c6afef2e78815e52a23f53669279e20e95344058fbb1e7a46dac150df"
       },
       "easyExplanation": [
         {
@@ -1697,7 +1785,10 @@
           "body": "選択肢2は主記憶を不要としています。選択肢3は退避が高速化になるとし、選択肢4は物理容量が増えるとしています。"
         }
       ],
-      "answerSummary": "①：外部記憶から主記憶へ読み込み、CPUが処理するのが基本です。"
+      "answerSummary": "①：外部記憶から主記憶へ読み込み、CPUが処理するのが基本です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "comp-10-31",
@@ -1728,13 +1819,13 @@
       ],
       "editorialReview": {
         "officialPoint": "C言語・引数渡し",
-        "alignment": "公式抽出の問10-31の問題・解説と論点を照合。処理規則・契約条件・技術の適用範囲を明示。 2026-11-07：保存済み公式抽出テキストの当該番号と問いの焦点・選択肢・解答を再照合。通常4節とやさしい解説を統合表示へ整理し、必要な途中計算・具体例・図の読み方を更新。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "aの書換えを無視",
           "2": "反映する側を逆にする",
           "3": "q変更がbにも反映とする"
         },
-        "sha256": "83aa6122800a9bda859abe6d91fa095fd0a92d913ea54b2a6abef0771748c480"
+        "sha256": "9b7a33c04f9cdfb073d3491e6495d4ac1ed9cb476ee23f114d27f66196b15789"
       },
       "easyExplanation": [
         {
@@ -1764,7 +1855,275 @@
           "body": "選択肢1はaへの書換えを無視します。選択肢2は変更が伝わる側を逆にし、選択肢3はqの変更がbにも伝わるとしています。"
         }
       ],
-      "answerSummary": "④：「5 3」と表示されます。aは指し先から書き換わり、bは元の値を保ちます。"
+      "answerSummary": "Aの第1値：まだ関数を呼んでいないので初期値2です。\nAの第2値：bの初期値は3です。\nCの第1値：pはaを指すので、aへ2＋3＝5を代入します。\nCの第2値：bからコピーした3に1を加え、qは4です。\nBの第1値：ポインタ経由で書き換えたaは5のままです。\nBの第2値：関数内で変えたのはコピーのqなので、bは3です。",
+      "sharedQuestion": "次のC言語プログラムのA・B・Cで表示する各値を答えてください。A、C、Bの順に実行されます。\n#include <stdio.h>\nvoid f(int *p,int q){\n  *p = *p + q;\n  q = q + 1;\n  printf(\"%d %d\\n\",*p,q); /* C */\n}\nint main(void){\n  int a=2,b=3;\n  printf(\"%d %d\\n\",a,b); /* A */\n  f(&a,b);\n  printf(\"%d %d\\n\",a,b); /* B */\n  return 0;\n}",
+      "studyParts": [
+        {
+          "id": "comp-10-31-item-a1",
+          "number": "10-31",
+          "officialRef": "問10-31",
+          "officialQuestionItem": "a1",
+          "title": "Aの第1値",
+          "topic": "C言語・引数渡し",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Aでaの値はどれですか。",
+          "choices": [
+            "2",
+            "5"
+          ],
+          "answer": 1,
+          "answerSummary": "まだ関数を呼んでいないので初期値2です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "変数が変わるのは代入を実行したときです。宣言時の値と関数実行後の値を分けます。"
+            },
+            {
+              "title": "値のコピーと、住所のコピーを区別する",
+              "body": "C言語では引数の値をコピーして関数へ渡します。f(&a, b)の「&a」はaの置き場所を示すアドレスで、そのコピーがpへ渡ります。一方、bからは中身の3がqへコピーされます。pはaの場所を指し、qはbとは別の箱です。"
+            }
+          ],
+          "explanation": "【基礎】まだ関数を呼んでいないので初期値2です。\n【考え方】正解は1です。変数が変わるのは代入を実行したときです。宣言時の値と関数実行後の値を分けます。\n【ポイント】C言語では引数の値をコピーして関数へ渡します。f(&a, b)の「&a」はaの置き場所を示すアドレスで、そのコピーがpへ渡ります。一方、bからは中身の3がqへコピーされます。pはaの場所を指し、qはbとは別の箱です。\n【引っかけ】2：「5」ではなく、2です。変数が変わるのは代入を実行したときです。宣言時の値と関数実行後の値を分けます。",
+          "relatedFormulas": [
+            "t2ch10-10"
+          ],
+          "editorialReview": {
+            "officialPoint": "C言語・引数渡し／個別の質問：Aの第1値",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「5」ではなく、2です。変数が変わるのは代入を実行したときです。宣言時の値と関数実行後の値を分けます。"
+            },
+            "sha256": "75aa19f920c87ff75f7fd2e401de2ed2500b8063f8dff3790adb441f7c43c68d"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "comp-10-31-item-a2",
+          "number": "10-31",
+          "officialRef": "問10-31",
+          "officialQuestionItem": "a2",
+          "title": "Aの第2値",
+          "topic": "C言語・引数渡し",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Aでbの値はどれですか。",
+          "choices": [
+            "4",
+            "3"
+          ],
+          "answer": 2,
+          "answerSummary": "bの初期値は3です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "この時点では関数fの処理はまだ行われていません。"
+            }
+          ],
+          "explanation": "【基礎】bの初期値は3です。\n【考え方】正解は2です。この時点では関数fの処理はまだ行われていません。\n【ポイント】bの初期値は3です。\n【引っかけ】1：「4」ではなく、3です。この時点では関数fの処理はまだ行われていません。",
+          "relatedFormulas": [
+            "t2ch10-10"
+          ],
+          "editorialReview": {
+            "officialPoint": "C言語・引数渡し／個別の質問：Aの第2値",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「4」ではなく、3です。この時点では関数fの処理はまだ行われていません。"
+            },
+            "sha256": "e1bb5af35737b63360a52671b0e77254d49a3184bf68682c2e75e8870f556ddd"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "comp-10-31-item-c1",
+          "number": "10-31",
+          "officialRef": "問10-31",
+          "officialQuestionItem": "c1",
+          "title": "Cの第1値",
+          "topic": "C言語・引数渡し",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Cで*pの値はどれですか。",
+          "choices": [
+            "5",
+            "2"
+          ],
+          "answer": 1,
+          "answerSummary": "pはaを指すので、aへ2＋3＝5を代入します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "アドレスを通じて呼出し元のaを書き換えます。"
+            },
+            {
+              "title": "最初の代入は、aの中身を書き換える",
+              "body": "「*p」は、pが指している場所の中身を意味します。呼び出し直後はa＝2、b＝3、q＝3です。「*p = *p + q」の右辺は2＋3＝5で、左辺はaの場所です。ここでaが5になり、bとqはまだ3のままです。"
+            }
+          ],
+          "explanation": "【基礎】pはaを指すので、aへ2＋3＝5を代入します。\n【考え方】正解は1です。アドレスを通じて呼出し元のaを書き換えます。\n【ポイント】「*p」は、pが指している場所の中身を意味します。呼び出し直後はa＝2、b＝3、q＝3です。「*p = *p + q」の右辺は2＋3＝5で、左辺はaの場所です。ここでaが5になり、bとqはまだ3のままです。\n【引っかけ】2：「2」ではなく、5です。アドレスを通じて呼出し元のaを書き換えます。",
+          "relatedFormulas": [
+            "t2ch10-10"
+          ],
+          "editorialReview": {
+            "officialPoint": "C言語・引数渡し／個別の質問：Cの第1値",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「2」ではなく、5です。アドレスを通じて呼出し元のaを書き換えます。"
+            },
+            "sha256": "91f241f3ec1acc99ed12d57617d97396437712856eb780aeb045efda2186ba92"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "comp-10-31-item-c2",
+          "number": "10-31",
+          "officialRef": "問10-31",
+          "officialQuestionItem": "c2",
+          "title": "Cの第2値",
+          "topic": "C言語・引数渡し",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Cでqの値はどれですか。",
+          "choices": [
+            "3",
+            "4"
+          ],
+          "answer": 2,
+          "answerSummary": "bからコピーした3に1を加え、qは4です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "qは関数内の別の変数なので、bまで4になるわけではありません。"
+            },
+            {
+              "title": "次の代入で変わるのは、関数内のqだけ",
+              "body": "「q = q + 1」でqは4になります。しかしqはコピー用の別の箱なので、元のbは3のままです。関数から戻った後のaとbは、それぞれ5と3です。図の上段の矢印はaへの書換え、下段はbのコピーを示しています。",
+              "figures": [
+                {
+                  "figureImage": "t2e10PointerTrace",
+                  "caption": "上段の指し先aは5へ変わり、下段のコピーqが4になってもbは3のままです。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】bからコピーした3に1を加え、qは4です。\n【考え方】正解は2です。qは関数内の別の変数なので、bまで4になるわけではありません。\n【ポイント】「q = q + 1」でqは4になります。しかしqはコピー用の別の箱なので、元のbは3のままです。関数から戻った後のprintfはaとbを表示するため、「5 3」の④です。図の上段の矢印はaへの書換え、下段はbのコピーを示しています。\n【引っかけ】1：「3」ではなく、4です。qは関数内の別の変数なので、bまで4になるわけではありません。",
+          "relatedFormulas": [
+            "t2ch10-10"
+          ],
+          "editorialReview": {
+            "officialPoint": "C言語・引数渡し／個別の質問：Cの第2値",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「3」ではなく、4です。qは関数内の別の変数なので、bまで4になるわけではありません。"
+            },
+            "sha256": "91f6e9f113602286dfd06dec3f853adf6bd1e4a126c2ab98aa3f837921ba86f0"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "comp-10-31-item-b1",
+          "number": "10-31",
+          "officialRef": "問10-31",
+          "officialQuestionItem": "b1",
+          "title": "Bの第1値",
+          "topic": "C言語・引数渡し",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "関数から戻ったBでaの値はどれですか。",
+          "choices": [
+            "2",
+            "5"
+          ],
+          "answer": 2,
+          "answerSummary": "ポインタ経由で書き換えたaは5のままです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "関数を抜けても呼出し元の変数への変更は残ります。"
+            },
+            {
+              "title": "ポインタを渡しても、コピーという原則は同じ",
+              "body": "住所を書いた紙をコピーして渡すと、その住所の家へ届け物はできますが、紙自体は別物です。同様にpそのものはアドレス値のコピーでも、その指し先を書き換えれば元のaが変わります。Cに別方式の参照渡しがある、と覚える必要はありません。"
+            }
+          ],
+          "explanation": "【基礎】ポインタ経由で書き換えたaは5のままです。\n【考え方】正解は2です。関数を抜けても呼出し元の変数への変更は残ります。\n【ポイント】住所を書いた紙をコピーして渡すと、その住所の家へ届け物はできますが、紙自体は別物です。同様にpそのものはアドレス値のコピーでも、その指し先を書き換えれば元のaが変わります。Cに別方式の参照渡しがある、と覚える必要はありません。\n【引っかけ】1：「2」ではなく、5です。関数を抜けても呼出し元の変数への変更は残ります。",
+          "relatedFormulas": [
+            "t2ch10-10"
+          ],
+          "editorialReview": {
+            "officialPoint": "C言語・引数渡し／個別の質問：Bの第1値",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「2」ではなく、5です。関数を抜けても呼出し元の変数への変更は残ります。"
+            },
+            "sha256": "2a7dec0ccd46c3638f120def2d906db3faec413251057166b15b3e49f1122fe7"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "comp-10-31-item-b2",
+          "number": "10-31",
+          "officialRef": "問10-31",
+          "officialQuestionItem": "b2",
+          "title": "Bの第2値",
+          "topic": "C言語・引数渡し",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "関数から戻ったBでbの値はどれですか。",
+          "choices": [
+            "3",
+            "4"
+          ],
+          "answer": 1,
+          "answerSummary": "関数内で変えたのはコピーのqなので、bは3です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "元のbとコピーのqを区別するのがこのプログラムのポイントです。"
+            }
+          ],
+          "explanation": "【基礎】関数内で変えたのはコピーのqなので、bは3です。\n【考え方】正解は1です。元のbとコピーのqを区別するのがこのプログラムのポイントです。\n【ポイント】関数内で変えたのはコピーのqなので、bは3です。\n【引っかけ】2：「4」ではなく、3です。元のbとコピーのqを区別するのがこのプログラムのポイントです。",
+          "relatedFormulas": [
+            "t2ch10-10"
+          ],
+          "editorialReview": {
+            "officialPoint": "C言語・引数渡し／個別の質問：Bの第2値",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「4」ではなく、3です。元のbとコピーのqを区別するのがこのプログラムのポイントです。"
+            },
+            "sha256": "16fa106ef0c691fb393f4145ffbe136d19306dd44e5f2e34cfdafbb33c782601"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "a1",
+        "a2",
+        "c1",
+        "c2",
+        "b1",
+        "b2"
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "comp-10-32",
@@ -1801,7 +2160,7 @@
           "3": "ミラーとバックアップあり",
           "4": "別媒体の複製あり"
         },
-        "sha256": "d74e839e40341b62f0ae11f915c613d6c25d958fe9ad0730c90165c1fdeabae0"
+        "sha256": "ef5c676fd614292d6c371aea4fc97273ee6325935562e3bf50833fb874d30742"
       },
       "easyExplanation": [
         {
@@ -1827,7 +2186,10 @@
           "body": "選択肢2はミラー、選択肢3はミラーと別媒体のバックアップ、選択肢4も別媒体の複製があり、本問のRAID0より復旧の手がかりがあります。"
         }
       ],
-      "answerSummary": "①：RAID0には冗長な複製がないため、1台の故障で必要なデータの一部を失います。"
+      "answerSummary": "①：RAID0には冗長な複製がないため、1台の故障で必要なデータの一部を失います。",
+      "officialQuestionItems": [
+        "main"
+      ]
     }
   ]
 }

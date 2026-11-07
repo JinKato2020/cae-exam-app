@@ -6,7 +6,8 @@
     "source": "完全オリジナル(公式標準問題集 燃焼流 第4章 4-1〜4-13 にテーマ対応)",
     "origin": "original",
     "count": 13,
-    "officialCount": 13
+    "officialCount": 13,
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -62,7 +63,10 @@
       "role": "primary",
       "figure": "required",
       "figureImage": "t1e20FlameStructure",
-      "figureHint": "白地660x420。横軸x(左=未燃側)、縦軸=温度。左のTuから右のTbへS字状に上昇する温度曲線を描き、予熱帯と反応帯の帯領域を仕切り線で分けるだけ。数値は書かない。"
+      "figureHint": "白地660x420。横軸x(左=未燃側)、縦軸=温度。左のTuから右のTbへS字状に上昇する温度曲線を描き、予熱帯と反応帯の帯領域を仕切り線で分けるだけ。数値は書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-20-2",
@@ -115,10 +119,121 @@
       "reviewed": true,
       "officialRef": "燃焼流4-2",
       "role": "primary",
-      "figure": "helpful",
+      "figure": "none",
       "preFigureImage": "t1e20BurnerDiameter",
-      "figureImage": "t1e20BurnerDiameterAns",
-      "figureHint": "白地660x420。太さの異なる円筒バーナー3本(A太→B中→C細)を左右に並べ、上部に予混合ガスの噴出矢印と火炎のとんがりを描くだけ。逆火・消炎などの結論ラベルや数値は書かない。"
+      "figureHint": "白地660x420。太さの異なる円筒バーナー3本(A太→B中→C細)を左右に並べ、上部に予混合ガスの噴出矢印と火炎のとんがりを描くだけ。逆火・消炎などの結論ラベルや数値は書かない。",
+      "editorialReview": {
+        "officialPoint": "逆火・消炎の口径依存",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "2": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "dde61da9a6d6c3d73e26eb875243ed644f9cab43bac5473bab50cc8e21b57b00"
+      },
+      "sharedQuestion": "口径が大きい順に A>B>C の3本の円筒バーナーで、同一組成の未燃予混合ガスを噴出させ、それぞれのバーナー上に層流予混合火炎を保持した。A・Bの口径は消炎直径より十分大きく、Cの口径は消炎直径程度に小さいものとする。ここから未燃予混合ガスの供給量をゆっくり減らしていくと、あるバーナーでは火炎がバーナー内へ戻り、別のバーナーでは火炎が消えた。",
+      "studyParts": [
+        {
+          "id": "thermal1-20-2-item-large",
+          "number": "20-2",
+          "officialRef": "燃焼流4-2",
+          "officialQuestionItem": "large",
+          "title": "大きいバーナー",
+          "topic": "逆火・消炎の口径依存",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "A・Bで供給量を下げると現れうる現象は？",
+          "choices": [
+            "小口径による消炎だけ",
+            "逆火"
+          ],
+          "answer": 2,
+          "answerSummary": "流速が火炎の伝播速度より小さくなると、火炎が上流へ戻ります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "流速が火炎の伝播速度より小さくなると、火炎が上流へ戻ります。口径が消炎直径より大きいため、内部へ火炎が伝わり得ます。"
+            },
+            {
+              "title": "火炎を止めるには流れとの釣合いが必要",
+              "body": "未燃ガスがバーナーから外へ流れる一方、火炎は未燃ガスへ向かって燃え進む性質があります。火炎が静止して見えるのは、この両者が局所的に釣り合うためです。流れを弱めると、ガスが押し出す働きより火炎が上流へ進む働きが勝つ場所ができ、火炎がバーナー内へ戻り得ます。これが逆火です。層流燃焼速度は気体に対する火炎の速度で、実験室での火炎の移動速度とは分けます。"
+            },
+            {
+              "title": "小さい通路では壁の影響が大きい",
+              "body": "円管の断面積は $\\pi d^2/4$、周長は $\\pi d$ です。周長を断面積で割ると $4/d$ なので、径が小さいほど、流れる気体の量に対する壁の割合が大きくなります。壁へ熱が吸い取られやすければ、次の混合気を温めて反応を続ける熱が足りなくなります。燃料と酸素が残っていても、火炎が維持できず消えることがあります。Cが消炎直径程度という指定は、この影響を考えるためです。"
+            }
+          ],
+          "explanation": "【基礎】流速が火炎の伝播速度より小さくなると、火炎が上流へ戻ります。\n【考え方】正解は2です。流速が火炎の伝播速度より小さくなると、火炎が上流へ戻ります。口径が消炎直径より大きいため、内部へ火炎が伝わり得ます。\n【ポイント】未燃ガスがバーナーから外へ流れる一方、火炎は未燃ガスへ向かって燃え進む性質があります。火炎が静止して見えるのは、この両者が局所的に釣り合うためです。流れを弱めると、ガスが押し出す働きより火炎が上流へ進む働きが勝つ場所ができ、火炎がバーナー内へ戻り得ます。これが逆火です。層流燃焼速度は気体に対する火炎の速度で、実験室での火炎の移動速度とは分けます。\n【引っかけ】1：「小口径による消炎だけ」ではなく、逆火です。流速が火炎の伝播速度より小さくなると、火炎が上流へ戻ります。口径が消炎直径より大きいため、内部へ火炎が伝わり得ます。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "逆火・消炎の口径依存／個別の質問：大きいバーナー",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「小口径による消炎だけ」ではなく、逆火です。流速が火炎の伝播速度より小さくなると、火炎が上流へ戻ります。口径が消炎直径より大きいため、内部へ火炎が伝わり得ます。"
+            },
+            "sha256": "8659f6862efc421e3696257321fe9e65609b3e961d66c807cc23c142e0b538d6"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-20-2-item-small",
+          "number": "20-2",
+          "officialRef": "燃焼流4-2",
+          "officialQuestionItem": "small",
+          "title": "小さいバーナー",
+          "topic": "逆火・消炎の口径依存",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "消炎直径程度のCでは、火炎が内部へ侵入しようとすると何が起こりやすいですか？",
+          "choices": [
+            "熱損失を受けずに逆火し続ける",
+            "壁への熱損失で消炎する"
+          ],
+          "answer": 2,
+          "answerSummary": "細い管は体積に対する壁面積が大きく、火炎から壁へ熱を失いやすいため、火炎が持続できなくなります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "細い管は体積に対する壁面積が大きく、火炎から壁へ熱を失いやすいため、火炎が持続できなくなります。"
+            },
+            {
+              "title": "逆火と消炎は別の現象",
+              "body": "逆火は火炎の位置が上流へ移る現象で、燃焼が続いています。消炎は反応を維持できなくなる現象です。どちらも供給量を減らす操作に伴って起こり得ますが、原因を同じにしません。また大きい流速で火炎が下流へ押される吹き飛びとは、今回の減流量の状況が異なります。小口径Cで熱が失われる説明を、流速が大きすぎるから吹き消えると置き換えないことも大切です。",
+              "figures": []
+            }
+          ],
+          "explanation": "【基礎】細い管は体積に対する壁面積が大きく、火炎から壁へ熱を失いやすいため、火炎が持続できなくなります。\n【考え方】正解は2です。細い管は体積に対する壁面積が大きく、火炎から壁へ熱を失いやすいため、火炎が持続できなくなります。\n【ポイント】逆火は火炎の位置が上流へ移る現象で、燃焼が続いています。消炎は反応を維持できなくなる現象です。どちらも供給量を減らす操作に伴って起こり得ますが、原因を同じにしません。また大きい流速で火炎が下流へ押される吹き飛びとは、今回の減流量の状況が異なります。小口径Cで熱が失われる説明を、流速が大きすぎるから吹き消えると置き換えないことも大切です。\n【引っかけ】1：「熱損失を受けずに逆火し続ける」ではなく、壁への熱損失で消炎するです。細い管は体積に対する壁面積が大きく、火炎から壁へ熱を失いやすいため、火炎が持続できなくなります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "逆火・消炎の口径依存／個別の質問：小さいバーナー",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「熱損失を受けずに逆火し続ける」ではなく、壁への熱損失で消炎するです。細い管は体積に対する壁面積が大きく、火炎から壁へ熱を失いやすいため、火炎が持続できなくなります。"
+            },
+            "sha256": "bddf629dc90579e5c86d4cbe357743d22d0249566e9cf7ce8c484e83f4e8ffbb"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "large",
+        "small"
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "大きいバーナー：流速が火炎の伝播速度より小さくなると、火炎が上流へ戻ります。\n小さいバーナー：細い管は体積に対する壁面積が大きく、火炎から壁へ熱を失いやすいため、火炎が持続できなくなります。",
+      "preFigures": [
+        {
+          "figureImage": "t1e20BurnerDiameter",
+          "caption": "各小問に共通する位置・形状・条件をこの図で確認してください。"
+        }
+      ]
     },
     {
       "id": "thermal1-20-3",
@@ -173,7 +288,153 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e20RayleighLine",
-      "figureHint": "白地660x420。横軸=比容積1/ρ、縦軸=圧力p。右下がりの直線(Rayleigh線)を引き、未燃状態1(左上寄り)と既燃状態2(右下寄り)の2点を線上に打つだけ。数値やp低下などの結論文字は書かない。"
+      "figureHint": "白地660x420。横軸=比容積1/ρ、縦軸=圧力p。右下がりの直線(Rayleigh線)を引き、未燃状態1(左上寄り)と既燃状態2(右下寄り)の2点を線上に打つだけ。数値やp低下などの結論文字は書かない。",
+      "editorialReview": {
+        "officialPoint": "保存則・Rayleigh線・Rankine-Hugoniot",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "1": "通常解説の各肢の理由を参照。",
+          "2": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "ae3078c72a93042d1a88f2239e734627ee545191c7ea5edca47679c961ce66f8"
+      },
+      "officialQuestionItems": [
+        "rayleigh",
+        "hugoniot",
+        "pressure"
+      ],
+      "sharedQuestion": "定常1次元火炎の上流1と下流2で、質量流束 $m=\\rho_1u_1=\\rho_2u_2$、運動量 $p_1+\\rho_1u_1^2=p_2+\\rho_2u_2^2$、全エンタルピー $h_1+u_1^2/2=h_2+u_2^2/2$ が保存されます。$h$ には化学エネルギーを含めます。",
+      "studyParts": [
+        {
+          "id": "thermal1-20-3-item-rayleigh",
+          "number": "20-3",
+          "officialRef": "燃焼流4-3",
+          "officialQuestionItem": "rayleigh",
+          "title": "Rayleigh線",
+          "topic": "保存則・Rayleigh線・Rankine-Hugoniot",
+          "type": "記述",
+          "responseType": "written",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "質量・運動量保存から圧力と密度の関係を導いてください。",
+          "choices": [],
+          "answer": 0,
+          "answerSummary": "$p_2-p_1=-m^2(1/\\rho_2-1/\\rho_1)$。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "質量保存から $u_i=m/\\rho_i$。運動量保存に代入すると $p_1+m^2/\\rho_1=p_2+m^2/\\rho_2$ となるので、圧力差を左辺にまとめます。"
+            }
+          ],
+          "explanation": "【基礎】Rayleigh線を確認します。\n【考え方】$p_2-p_1=-m^2(1/\\rho_2-1/\\rho_1)$。\n【ポイント】質量保存から $u_i=m/\\rho_i$。運動量保存に代入すると $p_1+m^2/\\rho_1=p_2+m^2/\\rho_2$ となるので、圧力差を左辺にまとめます。\n【引っかけ】",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "保存則・Rayleigh線・Rankine-Hugoniot／個別の質問：Rayleigh線",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {},
+            "sha256": "43aa3cbba7d0a5c754cf437eebafb37fda513d62c6129fc3145033ad60ded600"
+          },
+          "modelAnswer": "$p_2-p_1=-m^2(1/\\rho_2-1/\\rho_1)$。",
+          "answerCheckpoints": [
+            "質量保存から $u_i=m/\\rho_i$。運動量保存に代入すると $p_1+m^2/\\rho_1=p_2+m^2/\\rho_2$ となるので、圧力差を左辺にまとめます。"
+          ],
+          "officialWrittenEvidence": {
+            "file": "_原本(非公開)/_抽出テキスト/熱流体1級_20_層流予混合火炎.md",
+            "excerpt": "- **問4-3** 圧縮性の基礎方程式を用いて1次元層流予混合火炎の数値計算を行った。Rayleigh線の関係式および Rankin-Hugoniot 方程式を導いて火炎面前後の圧力変化について論ぜよ（記述式）。"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-20-3-item-hugoniot",
+          "number": "20-3",
+          "officialRef": "燃焼流4-3",
+          "officialQuestionItem": "hugoniot",
+          "title": "Rankine–Hugoniot関係",
+          "topic": "保存則・Rayleigh線・Rankine-Hugoniot",
+          "type": "記述",
+          "responseType": "written",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "エネルギー保存からエンタルピー差を圧力差で表してください。",
+          "choices": [],
+          "answer": 0,
+          "answerSummary": "$h_2-h_1=\\tfrac12(1/\\rho_1+1/\\rho_2)(p_2-p_1)$。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$h_2-h_1=(u_1^2-u_2^2)/2=m^2(1/\\rho_1^2-1/\\rho_2^2)/2$。二乗の差を因数分解し、Rayleigh線の $m^2(1/\\rho_1-1/\\rho_2)=p_2-p_1$ を代入します。"
+            }
+          ],
+          "explanation": "【基礎】Rankine–Hugoniot関係を確認します。\n【考え方】$h_2-h_1=\\tfrac12(1/\\rho_1+1/\\rho_2)(p_2-p_1)$。\n【ポイント】$h_2-h_1=(u_1^2-u_2^2)/2=m^2(1/\\rho_1^2-1/\\rho_2^2)/2$。二乗の差を因数分解し、Rayleigh線の $m^2(1/\\rho_1-1/\\rho_2)=p_2-p_1$ を代入します。\n【引っかけ】",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "保存則・Rayleigh線・Rankine-Hugoniot／個別の質問：Rankine–Hugoniot関係",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {},
+            "sha256": "3da8b98b8538e027658d44841f57ac375b44ca3f719bf40e2b4b657d766781f9"
+          },
+          "modelAnswer": "$h_2-h_1=\\tfrac12(1/\\rho_1+1/\\rho_2)(p_2-p_1)$。",
+          "answerCheckpoints": [
+            "$h_2-h_1=(u_1^2-u_2^2)/2=m^2(1/\\rho_1^2-1/\\rho_2^2)/2$。二乗の差を因数分解し、Rayleigh線の $m^2(1/\\rho_1-1/\\rho_2)=p_2-p_1$ を代入します。"
+          ],
+          "officialWrittenEvidence": {
+            "file": "_原本(非公開)/_抽出テキスト/熱流体1級_20_層流予混合火炎.md",
+            "excerpt": "- **問4-3** 圧縮性の基礎方程式を用いて1次元層流予混合火炎の数値計算を行った。Rayleigh線の関係式および Rankin-Hugoniot 方程式を導いて火炎面前後の圧力変化について論ぜよ（記述式）。"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-20-3-item-pressure",
+          "number": "20-3",
+          "officialRef": "燃焼流4-3",
+          "officialQuestionItem": "pressure",
+          "title": "火炎前後の圧力",
+          "topic": "保存則・Rayleigh線・Rankine-Hugoniot",
+          "type": "記述",
+          "responseType": "written",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "熱膨張する亜音速火炎では、圧力はどう変化しますか？",
+          "choices": [],
+          "answer": 0,
+          "answerSummary": "$\\rho_2<\\rho_1$ なので $p_2<p_1$ です。低マッハ数では、この圧力低下は周囲の圧力に比べて小さくなります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "熱膨張で密度が下がると同じ質量を運ぶため速度が上がります。運動量流束の増加分に対応して圧力が下がります。圧力がほぼ一定という近似と、密度が一定という近似は別です。",
+              "figures": [
+                {
+                  "figureImage": "t1e20RayleighLine",
+                  "caption": "火炎面前後の圧力変化(Rayleigh線)の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】火炎前後の圧力を確認します。\n【考え方】$\\rho_2<\\rho_1$ なので $p_2<p_1$ です。低マッハ数では、この圧力低下は周囲の圧力に比べて小さくなります。\n【ポイント】熱膨張で密度が下がると同じ質量を運ぶため速度が上がります。運動量流束の増加分に対応して圧力が下がります。圧力がほぼ一定という近似と、密度が一定という近似は別です。\n【引っかけ】",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "保存則・Rayleigh線・Rankine-Hugoniot／個別の質問：火炎前後の圧力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {},
+            "sha256": "40dcf8aec6f0941a3de2e74538163b9ae4d85f5ff801031e95b6f26e1ed6e57e"
+          },
+          "modelAnswer": "$\\rho_2<\\rho_1$ なので $p_2<p_1$ です。低マッハ数では、この圧力低下は周囲の圧力に比べて小さくなります。",
+          "answerCheckpoints": [
+            "熱膨張で密度が下がると同じ質量を運ぶため速度が上がります。運動量流束の増加分に対応して圧力が下がります。圧力がほぼ一定という近似と、密度が一定という近似は別です。"
+          ],
+          "officialWrittenEvidence": {
+            "file": "_原本(非公開)/_抽出テキスト/熱流体1級_20_層流予混合火炎.md",
+            "excerpt": "- **問4-3** 圧縮性の基礎方程式を用いて1次元層流予混合火炎の数値計算を行った。Rayleigh線の関係式および Rankin-Hugoniot 方程式を導いて火炎面前後の圧力変化について論ぜよ（記述式）。"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "Rayleigh線：$p_2-p_1=-m^2(1/\\rho_2-1/\\rho_1)$。\nRankine–Hugoniot関係：$h_2-h_1=\\tfrac12(1/\\rho_1+1/\\rho_2)(p_2-p_1)$。\n火炎前後の圧力：$\\rho_2<\\rho_1$ なので $p_2<p_1$ です。低マッハ数では、この圧力低下は周囲の圧力に比べて小さくなります。"
     },
     {
       "id": "thermal1-20-4",
@@ -229,7 +490,10 @@
       "figure": "helpful",
       "preFigureImage": "t1e20FlamePropagationRest",
       "figureImage": "t1e20FlamePropagationAns",
-      "figureHint": "白地660x420。水平な管を描き、左に静止未燃ガス(Tu)、中央に火炎面、右に既燃ガス(Tb)。火炎面が左へ進む矢印(Su)と、既燃ガスが右へ動く矢印(S)を向きだけ示す。数値は書かない。"
+      "figureHint": "白地660x420。水平な管を描き、左に静止未燃ガス(Tu)、中央に火炎面、右に既燃ガス(Tb)。火炎面が左へ進む矢印(Su)と、既燃ガスが右へ動く矢印(S)を向きだけ示す。数値は書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-20-5",
@@ -285,7 +549,10 @@
       "figure": "helpful",
       "preFigureImage": "t1e20SoapBubbleMethod",
       "figureImage": "t1e20SoapBubbleAns",
-      "figureHint": "白地660x420。小さい実線円(点火前 半径ru)と、それを囲む大きい破線円(全燃焼後 半径rb)を同心に描き、中心に点火点、外向きの火炎伝播矢印を1本。数値は書かない。"
+      "figureHint": "白地660x420。小さい実線円(点火前 半径ru)と、それを囲む大きい破線円(全燃焼後 半径rb)を同心に描き、中心に点火点、外向きの火炎伝播矢印を1本。数値は書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-20-6",
@@ -340,7 +607,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e20EquivalenceRatioCurve",
-      "figureHint": "白地660x420。横軸=当量比φ(1の位置に目盛線)、縦軸=層流燃焼速度Su。φ=1よりわずかに右にピークをもつ上に凸の曲線を1本描くだけ。数値やピーク位置の注記は書かない。"
+      "figureHint": "白地660x420。横軸=当量比φ(1の位置に目盛線)、縦軸=層流燃焼速度Su。φ=1よりわずかに右にピークをもつ上に凸の曲線を1本描くだけ。数値やピーク位置の注記は書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-20-7",
@@ -396,7 +666,77 @@
       "figure": "helpful",
       "preFigureImage": "t1e20ThermalTheoryProfile",
       "figureImage": "t1e20ThermalTheoryAns",
-      "figureHint": "白地660x420。横軸x、縦軸=温度。TuからTbへ立ち上がるS字温度分布に、火炎帯厚さδの区間を両矢印で示し、予熱帯と反応帯を仕切るだけ。式や数値は書かない。"
+      "figureHint": "白地660x420。横軸x、縦軸=温度。TuからTbへ立ち上がるS字温度分布に、火炎帯厚さδの区間を両矢印で示し、予熱帯と反応帯を仕切るだけ。式や数値は書かない。",
+      "editorialReview": {
+        "officialPoint": "熱拡散率・熱理論",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "1": "通常解説の各肢の理由を参照。",
+          "2": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "86528f9c47386d9a252bd52d2ec380c89463bf1065363014880030770d06c00c"
+      },
+      "officialQuestionItems": [
+        "derive"
+      ],
+      "sharedQuestion": "分子拡散を省いた熱理論を考えます。未燃温度 $T_u$、反応帯入口温度 $T_i$、既燃温度 $T_b$、火炎厚さ $\\delta$、熱伝導率 $\\lambda$、密度 $\\rho_u$、比熱 $c_p$ とし、入口の勾配を $(T_b-T_u)/\\delta$ と近似します。",
+      "studyParts": [
+        {
+          "id": "thermal1-20-7-item-derive",
+          "number": "20-7",
+          "officialRef": "燃焼流4-7",
+          "officialQuestionItem": "derive",
+          "title": "熱理論による燃焼速度",
+          "topic": "熱拡散率・熱理論",
+          "type": "記述",
+          "responseType": "written",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "熱の釣合いから燃焼速度と熱拡散率の関係を導いてください。",
+          "choices": [],
+          "answer": 0,
+          "answerSummary": "$\\rho_uc_pS_u(T_i-T_u)=\\lambda(T_b-T_u)/\\delta$ より、$S_u=(a_0/\\delta)(T_b-T_u)/(T_i-T_u)$、$a_0=\\lambda/(\\rho_uc_p)$ です。温度比と厚さを固定すれば $S_u\\propto a_0$ です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "左辺は、単位面積・単位時間に流入する気体を入口温度まで温める熱量です。右辺は高温側から熱伝導で供給される熱量です。両者を等しくして $S_u$ を求めます。温度比を1程度と近似すると $S_u\\approx a_0/\\delta$。ただし厚さも条件とともに変わるので、この比例を任意の条件へ無条件に広げません。",
+              "figures": [
+                {
+                  "figureImage": "t1e20ThermalTheoryAns",
+                  "caption": "火炎側から伝わる熱と、未燃ガスが着火温度まで上がるために必要な熱を釣り合わせます。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】熱理論による燃焼速度を確認します。\n【考え方】$\\rho_uc_pS_u(T_i-T_u)=\\lambda(T_b-T_u)/\\delta$ より、$S_u=(a_0/\\delta)(T_b-T_u)/(T_i-T_u)$、$a_0=\\lambda/(\\rho_uc_p)$ です。温度比と厚さを固定すれば $S_u\\propto a_0$ です。\n【ポイント】左辺は、単位面積・単位時間に流入する気体を入口温度まで温める熱量です。右辺は高温側から熱伝導で供給される熱量です。両者を等しくして $S_u$ を求めます。温度比を1程度と近似すると $S_u\\approx a_0/\\delta$。ただし厚さも条件とともに変わるので、この比例を任意の条件へ無条件に広げません。\n【引っかけ】",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "熱拡散率・熱理論／個別の質問：熱理論による燃焼速度",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {},
+            "sha256": "cb58476fa41bb097773dac16ef461ff0be8e61ae22c5f6b7adff67574007b800"
+          },
+          "modelAnswer": "$\\rho_uc_pS_u(T_i-T_u)=\\lambda(T_b-T_u)/\\delta$ より、$S_u=(a_0/\\delta)(T_b-T_u)/(T_i-T_u)$、$a_0=\\lambda/(\\rho_uc_p)$ です。温度比と厚さを固定すれば $S_u\\propto a_0$ です。",
+          "answerCheckpoints": [
+            "左辺は、単位面積・単位時間に流入する気体を入口温度まで温める熱量です。右辺は高温側から熱伝導で供給される熱量です。両者を等しくして $S_u$ を求めます。温度比を1程度と近似すると $S_u\\approx a_0/\\delta$。ただし厚さも条件とともに変わるので、この比例を任意の条件へ無条件に広げません。"
+          ],
+          "officialWrittenEvidence": {
+            "file": "_原本(非公開)/_抽出テキスト/熱流体1級_20_層流予混合火炎.md",
+            "excerpt": "- **問4-7** 1次元層流予混合火炎の火炎構造（図: Tu→Ti→Tb のS字温度分布、予熱帯δp・反応帯δr・火炎帯δ）に対し、分子拡散を無視し熱の授受に基づく熱理論を考えた場合、層流燃焼速度 Su が熱拡散率 a0=λ/ρu·cp に比例することを証明する（記述式）。λ, cp, ρu は混合気の平均熱伝導率・平均比熱・密度。反応帯入口（点i）の温度勾配 (dT/dx)i は (Tb−Tu)/δ で近似できると仮定。Tb=既燃ガス温度、Tu=未燃混合気温度、δ=火炎帯厚さ。"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "熱理論による燃焼速度：$\\rho_uc_pS_u(T_i-T_u)=\\lambda(T_b-T_u)/\\delta$ より、$S_u=(a_0/\\delta)(T_b-T_u)/(T_i-T_u)$、$a_0=\\lambda/(\\rho_uc_p)$ です。温度比と厚さを固定すれば $S_u\\propto a_0$ です。",
+      "preFigures": [
+        {
+          "figureImage": "t1e20ThermalTheoryProfile",
+          "caption": "各小問に共通する位置・形状・条件をこの図で確認してください。"
+        }
+      ]
     },
     {
       "id": "thermal1-20-8",
@@ -451,7 +791,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e20PressureDependence",
-      "figureHint": "白地660x420。横軸=圧力p(1・5・10気圧の目盛)、縦軸=層流燃焼速度Su。右下がりに単調減少する曲線を1本描くだけ。具体的な数値は書かない。"
+      "figureHint": "白地660x420。横軸=圧力p(1・5・10気圧の目盛)、縦軸=層流燃焼速度Su。右下がりに単調減少する曲線を1本描くだけ。具体的な数値は書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-20-9",
@@ -506,7 +849,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e20DilutionComparison",
-      "figureHint": "白地660x420。横軸=希釈濃度、縦軸=層流燃焼速度Su。上側にアルゴン希釈、下側に水蒸気希釈の2本の右下がり曲線を描き、どちらが上かだけ分かるようにする。数値は書かない。"
+      "figureHint": "白地660x420。横軸=希釈濃度、縦軸=層流燃焼速度Su。上側にアルゴン希釈、下側に水蒸気希釈の2本の右下がり曲線を描き、どちらが上かだけ分かるようにする。数値は書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-20-10",
@@ -561,7 +907,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e20FlammabilityLimit",
-      "figureHint": "白地660x420。横軸=燃料濃度。水素とメタンについて、下限界から上限界までの可燃範囲を横棒(帯)で2本示し、水素の帯の方が長いことが分かるようにするだけ。数値は書かない。"
+      "figureHint": "白地660x420。横軸=燃料濃度。水素とメタンについて、下限界から上限界までの可燃範囲を横棒(帯)で2本示し、水素の帯の方が長いことが分かるようにするだけ。数値は書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-20-11",
@@ -617,7 +966,10 @@
       "figure": "helpful",
       "preFigureImage": "t1e20KarlovitzShear",
       "figureImage": "t1e20KarlovitzAns",
-      "figureHint": "白地660x420。左に上ほど速い速度分布の矢印列(せん断流)、中央に湾曲した火炎面(曲率半径R)、火炎法線方向のη軸と流れとのなす角θを描くだけ。背景せん断流とA点の流れの向きは一致させる。数値は書かない。"
+      "figureHint": "白地660x420。左に上ほど速い速度分布の矢印列(せん断流)、中央に湾曲した火炎面(曲率半径R)、火炎法線方向のη軸と流れとのなす角θを描くだけ。背景せん断流とA点の流れの向きは一致させる。数値は書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-20-12",
@@ -672,7 +1024,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e20LewisNumberQuench",
-      "figureHint": "白地660x420。対向する2本のノズルの間に平たい火炎面を描き、火炎帯への熱の流入出を示す矢印を添える。Le<1とLe>1でエンタルピーの出入りが逆になる様子を向きだけで示し、数値や結論は書かない。"
+      "figureHint": "白地660x420。対向する2本のノズルの間に平たい火炎面を描き、火炎帯への熱の流入出を示す矢印を添える。Le<1とLe>1でエンタルピーの出入りが逆になる様子を向きだけで示し、数値や結論は書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-20-13",
@@ -727,7 +1082,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e20CellularFlame",
-      "figureHint": "白地660x420。上段に滑らかな平面火炎、下段に凹凸が並んだセル状火炎を描いて対比するだけ。ルイス数や不安定名などの文字・数値は書かない。"
+      "figureHint": "白地660x420。上段に滑らかな平面火炎、下段に凹凸が並んだセル状火炎を描いて対比するだけ。ルイス数や不安定名などの文字・数値は書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     }
   ]
 }

@@ -8,7 +8,8 @@
     "count": 12,
     "officialCount": 12,
     "presentationStyle": "cae-standard-v1",
-    "explanationMode": "guided"
+    "explanationMode": "guided",
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -38,13 +39,13 @@
       ],
       "editorialReview": {
         "officialPoint": "ディリクレ条件・ノイマン条件・流入境界",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。公式の中心論点、条件、選択肢の一意性を確認し、やさしい解説を標準表示へ統合。必要な式・途中手順・図との対応を同じ設問内に整理。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "両方を勾配指定と誤認",
           "3": "速度を勾配指定と誤認",
           "4": "温度を勾配指定と誤認"
         },
-        "sha256": "b1883f339f2abdb3dbf466289ea6535b7dab55dff0ce032f58b6090e7e2e9ddc"
+        "sha256": "a7e8fe0c939adc9b2e7ef5684e712e7e57e2a755cf9d840bd2eb40bcd606a71d"
       },
       "easyExplanation": [
         {
@@ -60,7 +61,101 @@
           "body": "選択肢2は両方を勾配指定としています。選択肢3は速度、選択肢4は温度を勾配指定と取り違えています。"
         }
       ],
-      "answerSummary": "①です。速度も温度も、値を直接指定するディリクレ条件です。"
+      "answerSummary": "速度の条件：値を指定するのでディリクレ条件です。\n温度の条件：温度も値の指定です。",
+      "sharedQuestion": "流入境界で速度を一様な値、温度を一定の値に指定します。",
+      "studyParts": [
+        {
+          "id": "num7-1-item-velocity",
+          "number": "7-1",
+          "officialRef": "問7-1",
+          "officialQuestionItem": "velocity",
+          "title": "速度の条件",
+          "topic": "ディリクレ条件・ノイマン条件・流入境界",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "速度の値を直接指定する条件はどれですか。",
+          "choices": [
+            "ディリクレ条件",
+            "ノイマン条件"
+          ],
+          "answer": 1,
+          "answerSummary": "値を指定するのでディリクレ条件です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "流速10m/sのように、その場所の値を決めます。勾配の指定とは区別します。"
+            },
+            {
+              "title": "境界で「何を指定するか」を見る",
+              "body": "ディリクレ条件は値そのもの、ノイマン条件は境界に垂直な方向の変化の割合を指定します。「温度を20℃にする」と「境界を横切る熱を0にする」は、同じ温度の問題でも違う条件です。"
+            }
+          ],
+          "explanation": "【基礎】値を指定するのでディリクレ条件です。\n【考え方】正解は1です。流速10m/sのように、その場所の値を決めます。勾配の指定とは区別します。\n【ポイント】ディリクレ条件は値そのもの、ノイマン条件は境界に垂直な方向の変化の割合を指定します。「温度を20℃にする」と「境界を横切る熱を0にする」は、同じ温度の問題でも違う条件です。\n【引っかけ】2：「ノイマン条件」ではなく、ディリクレ条件です。流速10m/sのように、その場所の値を決めます。勾配の指定とは区別します。",
+          "relatedFormulas": [
+            "t2ch7-1"
+          ],
+          "editorialReview": {
+            "officialPoint": "ディリクレ条件・ノイマン条件・流入境界／個別の質問：速度の条件",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「ノイマン条件」ではなく、ディリクレ条件です。流速10m/sのように、その場所の値を決めます。勾配の指定とは区別します。"
+            },
+            "sha256": "3e8a515ed600a9ede1a9c1d7ad78f74814539d1b5142f63cb2850ed98bea89c4"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num7-1-item-temperature",
+          "number": "7-1",
+          "officialRef": "問7-1",
+          "officialQuestionItem": "temperature",
+          "title": "温度の条件",
+          "topic": "ディリクレ条件・ノイマン条件・流入境界",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "温度の値を直接指定する条件はどれですか。",
+          "choices": [
+            "ノイマン条件",
+            "ディリクレ条件"
+          ],
+          "answer": 2,
+          "answerSummary": "温度も値の指定です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "入口を20℃に保つ場合、指定しているのは温度の変化率ではなく温度そのものです。"
+            },
+            {
+              "title": "入口に与えた値を分類する",
+              "body": "本問は速度を $u=U_{\\mathrm{in}}$、温度を $T=T_{\\mathrm{in}}$ と直接与えています。どちらもディリクレ条件です。一方、例えば $\\partial T/\\partial n=0$ のように法線方向nの勾配を与えるならノイマン条件になります。「一様」は入口面内のどこでも同じ値という意味で、勾配指定に変わるわけではありません。"
+            }
+          ],
+          "explanation": "【基礎】温度も値の指定です。\n【考え方】正解は2です。入口を20℃に保つ場合、指定しているのは温度の変化率ではなく温度そのものです。\n【ポイント】本問は速度を $u=U_{\\mathrm{in}}$、温度を $T=T_{\\mathrm{in}}$ と直接与えています。どちらもディリクレ条件です。一方、例えば $\\partial T/\\partial n=0$ のように法線方向nの勾配を与えるならノイマン条件になります。「一様」は入口面内のどこでも同じ値という意味で、勾配指定に変わるわけではありません。\n【引っかけ】1：「ノイマン条件」ではなく、ディリクレ条件です。入口を20℃に保つ場合、指定しているのは温度の変化率ではなく温度そのものです。",
+          "relatedFormulas": [
+            "t2ch7-1"
+          ],
+          "editorialReview": {
+            "officialPoint": "ディリクレ条件・ノイマン条件・流入境界／個別の質問：温度の条件",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「ノイマン条件」ではなく、ディリクレ条件です。入口を20℃に保つ場合、指定しているのは温度の変化率ではなく温度そのものです。"
+            },
+            "sha256": "25a99741c71104754c36c1d68d82aaf94cb9b5d579112ed62d6c0c1192f36f7f"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "velocity",
+        "temperature"
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "num7-2",
@@ -91,13 +186,13 @@
       ],
       "editorialReview": {
         "officialPoint": "流出境界条件・完全発達・ノイマン条件",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。公式の中心論点、条件、選択肢の一意性を確認し、やさしい解説を標準表示へ統合。必要な式・途中手順・図との対応を同じ設問内に整理。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "流出条件の設定場所を無視",
           "3": "発達すれば温度値を固定できるとする",
           "4": "設定場所と温度値の根拠を無視"
         },
-        "sha256": "0ea8d7fddb94591d3b36348f74fea805b1297d39743163abcccc47999b4d6d2c"
+        "sha256": "a1a5f1c9bb5e77703341096b08b08a93f174314ae4ad9ca2606cdec468194296"
       },
       "easyExplanation": [
         {
@@ -123,7 +218,111 @@
           "body": "選択肢1は未発達でもどこに置いてよいとしています。選択肢3は発達だけを根拠に温度値を指定し、選択肢4は場所も温度値の妥当性も確認していません。"
         }
       ],
-      "answerSummary": "②です。十分下流で温度の流れ方向変化が小さい場所に、$\\partial T/\\partial x=0$ を近似的に与えます。"
+      "answerSummary": "出口の場所：仮定した境界条件に合う場所まで領域を延ばします。\n温度条件の種類：指定するのは温度の微分です。",
+      "officialQuestionItems": [
+        "location",
+        "type"
+      ],
+      "sharedQuestion": "管の加熱区間の下流に十分長い断熱区間を設け、定常計算の出口を置きます。",
+      "studyParts": [
+        {
+          "id": "num7-2-item-location",
+          "number": "7-2",
+          "officialRef": "問7-2",
+          "officialQuestionItem": "location",
+          "title": "出口の場所",
+          "topic": "流出境界条件・完全発達・ノイマン条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "温度の流れ方向勾配を0とする出口はどこに置きますか。",
+          "choices": [
+            "加熱途中を含め、どこでもよい",
+            "温度分布が流れ方向に十分変化しなくなった下流"
+          ],
+          "answer": 2,
+          "answerSummary": "仮定した境界条件に合う場所まで領域を延ばします。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "出口は実物の壁ではなく、計算領域を打ち切った面です。不適切な場所では内部の温度分布までゆがめます。"
+            },
+            {
+              "title": "出口は、計算を打ち切るために置いた面",
+              "body": "現実の管はさらに続いていても、計算領域には終わりが必要です。出口の条件がその場所の状態と合わないと、出口付近の温度分布を不自然に変えてしまいます。条件の種類と置く場所をセットで選びます。"
+            },
+            {
+              "title": "今回なら、加熱後の長い断熱区間の下流",
+              "body": "加熱中は流体の温度が進むにつれて変わるため、速度が十分発達しただけで温度の勾配も0とは限りません。本問では加熱後に長い断熱区間を設けています。温度分布の流れ方向変化が十分小さい下流では、勾配ゼロのノイマン条件が適します。",
+              "figures": [
+                {
+                  "figureImage": "t2e7OutflowBC",
+                  "caption": "赤い流出面は加熱区間の直後ではなく、十分長い断熱区間の下流に置いています。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】仮定した境界条件に合う場所まで領域を延ばします。\n【考え方】正解は2です。出口は実物の壁ではなく、計算領域を打ち切った面です。不適切な場所では内部の温度分布までゆがめます。\n【ポイント】現実の管はさらに続いていても、計算領域には終わりが必要です。出口の条件がその場所の状態と合わないと、出口付近の温度分布を不自然に変えてしまいます。条件の種類と置く場所をセットで選びます。\n【引っかけ】1：「加熱途中を含め、どこでもよい」ではなく、温度分布が流れ方向に十分変化しなくなった下流です。出口は実物の壁ではなく、計算領域を打ち切った面です。不適切な場所では内部の温度分布までゆがめます。",
+          "relatedFormulas": [
+            "t2ch7-2"
+          ],
+          "editorialReview": {
+            "officialPoint": "流出境界条件・完全発達・ノイマン条件／個別の質問：出口の場所",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「加熱途中を含め、どこでもよい」ではなく、温度分布が流れ方向に十分変化しなくなった下流です。出口は実物の壁ではなく、計算領域を打ち切った面です。不適切な場所では内部の温度分布までゆがめます。"
+            },
+            "sha256": "4e6250731e473877483d732add9dc2f47f8117df8439c540b987678a8e2e9bac"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num7-2-item-type",
+          "number": "7-2",
+          "officialRef": "問7-2",
+          "officialQuestionItem": "type",
+          "title": "温度条件の種類",
+          "topic": "流出境界条件・完全発達・ノイマン条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "出口で流れ方向の温度勾配を0とするのはどれですか。",
+          "choices": [
+            "ノイマン条件",
+            "温度0のディリクレ条件"
+          ],
+          "answer": 1,
+          "answerSummary": "指定するのは温度の微分です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "温度が0℃という意味ではありません。下流へ進んでも温度が変化しない条件です。"
+            },
+            {
+              "title": "勾配0と、温度0は違う",
+              "body": "$\\partial T/\\partial x=0$ は、流れ方向xへ進んでも温度が変わらないという近似です。温度を0℃にする意味ではありません。上流の計算で得られた温度を出口で勝手に固定せず、そのまま自然に出ていく条件として使います。"
+            }
+          ],
+          "explanation": "【基礎】指定するのは温度の微分です。\n【考え方】正解は1です。温度が0℃という意味ではありません。下流へ進んでも温度が変化しない条件です。\n【ポイント】$\\partial T/\\partial x=0$ は、流れ方向xへ進んでも温度が変わらないという近似です。温度を0℃にする意味ではありません。上流の計算で得られた温度を出口で勝手に固定せず、そのまま自然に出ていく条件として使います。\n【引っかけ】2：「温度0のディリクレ条件」ではなく、ノイマン条件です。温度が0℃という意味ではありません。下流へ進んでも温度が変化しない条件です。",
+          "relatedFormulas": [
+            "t2ch7-2"
+          ],
+          "editorialReview": {
+            "officialPoint": "流出境界条件・完全発達・ノイマン条件／個別の質問：温度条件の種類",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「温度0のディリクレ条件」ではなく、ノイマン条件です。温度が0℃という意味ではありません。下流へ進んでも温度が変化しない条件です。"
+            },
+            "sha256": "4c59ee1f4b1ce26b44215f3b717a2a86a59714683d054303ffbcba044f6831a2"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "num7-3",
@@ -154,13 +353,13 @@
       ],
       "editorialReview": {
         "officialPoint": "滑りなし条件・壁温一定条件",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。公式の中心論点、条件、選択肢の一意性を確認し、やさしい解説を標準表示へ統合。必要な式・途中手順・図との対応を同じ設問内に整理。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "滑りと熱流束一定を選ぶ",
           "2": "滑りと断熱を選ぶ",
           "4": "壁温一定を熱流束一定と混同"
         },
-        "sha256": "febf563427642ed1367a632825a45df1f34c28c306f30ab4d55bddf87e4f4d4d"
+        "sha256": "a4de7480a044822189ce63238d98a63c109fbc5071ec1bd87e56a1515ae0cb41"
       },
       "easyExplanation": [
         {
@@ -186,7 +385,111 @@
           "body": "選択肢1は速度と温度の両方、選択肢2は滑り条件と断熱が設定に合いません。選択肢4は滑りなしは正しいものの、壁温一定を熱流束一定へ置き換えています。"
         }
       ],
-      "answerSummary": "③です。速度は滑りなし、温度は壁温一定とします。"
+      "answerSummary": "壁の速度：流体の速度を静止壁の速度0に合わせます。\n壁の温度：問題では温度を保つ条件が与えられています。",
+      "officialQuestionItems": [
+        "velocity",
+        "temperature"
+      ],
+      "sharedQuestion": "静止した円管壁を一定温度 $T_w$ に保ち、管内を粘性流体が流れます。",
+      "studyParts": [
+        {
+          "id": "num7-3-item-velocity",
+          "number": "7-3",
+          "officialRef": "問7-3",
+          "officialQuestionItem": "velocity",
+          "title": "壁の速度",
+          "topic": "滑りなし条件・壁温一定条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "壁面の速度条件はどれですか。",
+          "choices": [
+            "滑りなし",
+            "滑り"
+          ],
+          "answer": 1,
+          "answerSummary": "流体の速度を静止壁の速度0に合わせます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "粘性流体の固体壁で通常用いる条件です。入口速度10m/sを壁に指定するわけではありません。"
+            },
+            {
+              "title": "壁では、流体の速度を壁の速度に合わせる",
+              "body": "粘性流体の滑りなし条件は、接する流体と壁の速度が等しいという条件です。今回の壁は静止しているので、壁面の流体速度は0です。入口の10m/sを壁面全体へ与えるわけではありません。"
+            }
+          ],
+          "explanation": "【基礎】流体の速度を静止壁の速度0に合わせます。\n【考え方】正解は1です。粘性流体の固体壁で通常用いる条件です。入口速度10m/sを壁に指定するわけではありません。\n【ポイント】粘性流体の滑りなし条件は、接する流体と壁の速度が等しいという条件です。今回の壁は静止しているので、壁面の流体速度は0です。入口の10m/sを壁面全体へ与えるわけではありません。\n【引っかけ】2：「滑り」ではなく、滑りなしです。粘性流体の固体壁で通常用いる条件です。入口速度10m/sを壁に指定するわけではありません。",
+          "relatedFormulas": [
+            "t2ch7-3"
+          ],
+          "editorialReview": {
+            "officialPoint": "滑りなし条件・壁温一定条件／個別の質問：壁の速度",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「滑り」ではなく、滑りなしです。粘性流体の固体壁で通常用いる条件です。入口速度10m/sを壁に指定するわけではありません。"
+            },
+            "sha256": "b809cdcd2391340ba91c8bb37ccf4357e53f8e8d6ffed31a9b742941ba5b9310"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num7-3-item-temperature",
+          "number": "7-3",
+          "officialRef": "問7-3",
+          "officialQuestionItem": "temperature",
+          "title": "壁の温度",
+          "topic": "滑りなし条件・壁温一定条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "温度の境界条件はどれですか。",
+          "choices": [
+            "熱流束一定",
+            "壁温一定"
+          ],
+          "answer": 2,
+          "answerSummary": "問題では温度を保つ条件が与えられています。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "壁と流体の温度差が変われば、同じ壁温でも熱流束は変わります。"
+            },
+            {
+              "title": "温度は、問題で何を保つかが指定されている",
+              "body": "管内壁温度を一定 $T_w$ に保つので、壁面では $T=T_w$ を与えます。入口の20℃は入口温度であり、壁温と同じとは限りません。本問の指定は滑りなしと壁温一定です。",
+              "figures": [
+                {
+                  "figureImage": "t2e7HeatedPipeWall",
+                  "caption": "赤矢印は外側からの加熱です。壁面では速度0、温度は指定された壁温という別々の条件を与えます。"
+                }
+              ]
+            },
+            {
+              "title": "温度一定でも、流れる熱の量は変わる",
+              "body": "流体が進むにつれて温まれば、壁との温度差も変わります。壁温を一定に保つことは、どの場所でも同じ熱流束が入ることとは違います。また加熱しているので、断熱に置き換えることもできません。"
+            }
+          ],
+          "explanation": "【基礎】問題では温度を保つ条件が与えられています。\n【考え方】正解は2です。壁と流体の温度差が変われば、同じ壁温でも熱流束は変わります。\n【ポイント】管内壁温度を一定 $T_w$ に保つので、壁面では $T=T_w$ を与えます。入口の20℃は入口温度であり、壁温と同じとは限りません。したがって滑りなしと壁温一定を組み合わせた③です。\n【引っかけ】1：「熱流束一定」ではなく、壁温一定です。壁と流体の温度差が変われば、同じ壁温でも熱流束は変わります。",
+          "relatedFormulas": [
+            "t2ch7-3"
+          ],
+          "editorialReview": {
+            "officialPoint": "滑りなし条件・壁温一定条件／個別の質問：壁の温度",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「熱流束一定」ではなく、壁温一定です。壁と流体の温度差が変われば、同じ壁温でも熱流束は変わります。"
+            },
+            "sha256": "10e304f60b5a3f9b7bc0d8dab07beff90558b37c02f3a7d65974f8fe84980e3a"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "num7-4",
@@ -223,7 +526,7 @@
           "2": "速度0なら圧力勾配0とする",
           "3": "圧力と運動方程式を切り離す"
         },
-        "sha256": "909cc174ba1243dda187ef670a4afc16931e90a62cf713d0d82e51ed93894151"
+        "sha256": "a85ad710b88dfcf620fab22d90b30b5a34bb5b2b44ac285be68d8022ea074fc2"
       },
       "easyExplanation": [
         {
@@ -253,7 +556,10 @@
           "body": "選択肢1は壁全体の圧力を0と決めつけ、選択肢2は勾配を必ず0としています。選択肢3は圧力と運動方程式の関係を無視しています。"
         }
       ],
-      "answerSummary": "④です。圧力は壁面上の運動方程式のつり合いから決めます。"
+      "answerSummary": "④です。圧力は壁面上の運動方程式のつり合いから決めます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "num7-5",
@@ -284,13 +590,13 @@
       ],
       "editorialReview": {
         "officialPoint": "2次元自然対流・熱的境界条件・フーリエの法則",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。公式の中心論点、条件、選択肢の一意性を確認し、やさしい解説を標準表示へ統合。必要な式・途中手順・図との対応を同じ設問内に整理。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "共通x軸と外向き法線の符号を混同",
           "2": "断熱を温度0とする",
           "3": "上下壁の法線方向を誤る"
         },
-        "sha256": "7ff5ff9168bfea81ee52d0e800ea9ad964f86c3677f03bf7a39cc784da027c4a"
+        "sha256": "a8d4873f98b4fee616e16dbf538cf545332cb4d5a1e729bae3185a572f8dbd96"
       },
       "preFigureImage": "t2e7Q5Before",
       "easyExplanation": [
@@ -321,13 +627,201 @@
           "body": "選択肢1は右壁の $q_x$ の符号を逆にしています。選択肢2の温度0は断熱ではありません。選択肢3は上下壁の法線方向をxと取り違えています。"
         }
       ],
-      "answerSummary": "④です。上下は $\\partial T/\\partial y=0$、左右はともに $q_x=q$ です。",
+      "answerSummary": "上壁A：断熱では壁を横切る熱を0にします。\n下壁B：下壁でも法線方向はy方向です。\n左壁C：流入する熱は右向きで、正のx方向です。\n右壁D：流出する熱も右向きなので正です。",
       "preFigures": [
         {
           "figureImage": "t2e7Q5Before",
           "caption": "上下の壁が断熱、左から熱が入り右から出ます。x軸は右向き、y軸は上向きです。"
         }
-      ]
+      ],
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "sharedQuestion": "幅と高さが等しい2次元閉空間で定常自然対流を計算する。上壁Aと下壁Bは断熱、左壁Cから一定熱流束 $q>0$ を流入させ、右壁Dから同量を排出する。$x$ は右向き、$y$ は上向き、$q_x=-\\lambda\\partial T/\\partial x$ は右向きを正とする。各壁の温度境界条件を答えてください。温度の基準値は別途1点で定める。",
+      "studyParts": [
+        {
+          "id": "num7-5-item-a",
+          "number": "7-5",
+          "officialRef": "問7-5",
+          "officialQuestionItem": "a",
+          "title": "上壁A",
+          "topic": "2次元自然対流・熱的境界条件・フーリエの法則",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "上壁Aの断熱条件はどれですか。",
+          "choices": [
+            "$\\partial T/\\partial y=0$",
+            "$T=0$"
+          ],
+          "answer": 1,
+          "answerSummary": "断熱では壁を横切る熱を0にします。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "上壁に垂直なのはy方向です。温度の値自体を0にはしません。"
+            },
+            {
+              "title": "断熱は「温度0」ではなく「壁を横切る熱0」",
+              "body": "熱伝導の式は $q_y=-\\lambda\\partial T/\\partial y$ です。上下の壁に垂直なのはy方向なので、断熱なら $q_y=0$。熱伝導率 $\\lambda>0$ として $\\partial T/\\partial y=0$ になります。壁に沿うx方向の温度差を0にする条件ではありません。"
+            }
+          ],
+          "explanation": "【基礎】断熱では壁を横切る熱を0にします。\n【考え方】正解は1です。上壁に垂直なのはy方向です。温度の値自体を0にはしません。\n【ポイント】熱伝導の式は $q_y=-\\lambda\\partial T/\\partial y$ です。上下の壁に垂直なのはy方向なので、断熱なら $q_y=0$。熱伝導率 $\\lambda>0$ として $\\partial T/\\partial y=0$ になります。壁に沿うx方向の温度差を0にする条件ではありません。\n【引っかけ】2：「$T=0$」ではなく、$\\partial T/\\partial y=0$です。上壁に垂直なのはy方向です。温度の値自体を0にはしません。",
+          "relatedFormulas": [
+            "t2ch7-5"
+          ],
+          "editorialReview": {
+            "officialPoint": "2次元自然対流・熱的境界条件・フーリエの法則／個別の質問：上壁A",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$T=0$」ではなく、$\\partial T/\\partial y=0$です。上壁に垂直なのはy方向です。温度の値自体を0にはしません。"
+            },
+            "sha256": "5f7f11de7365ba3d3ad35e092513d98e0060e381ce2b9718f63c4586c740c2e5"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num7-5-item-b",
+          "number": "7-5",
+          "officialRef": "問7-5",
+          "officialQuestionItem": "b",
+          "title": "下壁B",
+          "topic": "2次元自然対流・熱的境界条件・フーリエの法則",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "下壁Bの断熱条件はどれですか。",
+          "choices": [
+            "$\\partial T/\\partial x=0$",
+            "$\\partial T/\\partial y=0$"
+          ],
+          "answer": 2,
+          "answerSummary": "下壁でも法線方向はy方向です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "外向き法線が上壁と逆でも、0という条件は同じです。"
+            }
+          ],
+          "explanation": "【基礎】下壁でも法線方向はy方向です。\n【考え方】正解は2です。外向き法線が上壁と逆でも、0という条件は同じです。\n【ポイント】下壁でも法線方向はy方向です。\n【引っかけ】1：「$\\partial T/\\partial x=0$」ではなく、$\\partial T/\\partial y=0$です。外向き法線が上壁と逆でも、0という条件は同じです。",
+          "relatedFormulas": [
+            "t2ch7-5"
+          ],
+          "editorialReview": {
+            "officialPoint": "2次元自然対流・熱的境界条件・フーリエの法則／個別の質問：下壁B",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$\\partial T/\\partial x=0$」ではなく、$\\partial T/\\partial y=0$です。外向き法線が上壁と逆でも、0という条件は同じです。"
+            },
+            "sha256": "9187b1ff8cd6bf8caa6c28a2402d2ec7dba77a8869a80a4eb96a1e977cba6b1d"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num7-5-item-c",
+          "number": "7-5",
+          "officialRef": "問7-5",
+          "officialQuestionItem": "c",
+          "title": "左壁C",
+          "topic": "2次元自然対流・熱的境界条件・フーリエの法則",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "左壁から流入する熱のx成分はどれですか。",
+          "choices": [
+            "$q_x=q$",
+            "$q_x=-q$"
+          ],
+          "answer": 1,
+          "answerSummary": "流入する熱は右向きで、正のx方向です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "外向き法線ではなく、問題で固定したx座標で符号を判断します。"
+            },
+            {
+              "title": "左から入る熱と、右から出る熱を矢印で見る",
+              "body": "左壁から空間へ入る熱は右向きです。右壁から外へ出る熱も右向きです。本問のqₓはどの場所でも右を正とするので、左右とも正のqです。流入か流出かという言葉だけを見て、片方のqₓを負にしないようにします。",
+              "figures": [
+                {
+                  "figureImage": "t2e7CavityNaturalConv",
+                  "caption": "赤矢印は左でも右でも右向きです。「流入・流出」と「x成分の正負」を分けて読みます。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】流入する熱は右向きで、正のx方向です。\n【考え方】正解は1です。外向き法線ではなく、問題で固定したx座標で符号を判断します。\n【ポイント】左壁から空間へ入る熱は右向きです。右壁から外へ出る熱も右向きです。本問のqₓはどの場所でも右を正とするので、左右とも正のqです。流入か流出かという言葉だけを見て、片方のqₓを負にしないようにします。\n【引っかけ】2：「$q_x=-q$」ではなく、$q_x=q$です。外向き法線ではなく、問題で固定したx座標で符号を判断します。",
+          "relatedFormulas": [
+            "t2ch7-5"
+          ],
+          "editorialReview": {
+            "officialPoint": "2次元自然対流・熱的境界条件・フーリエの法則／個別の質問：左壁C",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$q_x=-q$」ではなく、$q_x=q$です。外向き法線ではなく、問題で固定したx座標で符号を判断します。"
+            },
+            "sha256": "093d662e12338af8aa87ce2fa2f045f55fd045592361741b29ee3d3b545c9fe3"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num7-5-item-d",
+          "number": "7-5",
+          "officialRef": "問7-5",
+          "officialQuestionItem": "d",
+          "title": "右壁D",
+          "topic": "2次元自然対流・熱的境界条件・フーリエの法則",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "右壁から流出する熱のx成分はどれですか。",
+          "choices": [
+            "$q_x=-q$",
+            "$q_x=q$"
+          ],
+          "answer": 2,
+          "answerSummary": "流出する熱も右向きなので正です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "流入と流出で言葉は反対でも、熱の矢印はどちらも右向きです。"
+            },
+            {
+              "title": "外向き法線で測る場合だけ、符号が変わる",
+              "body": "左壁の外側は左なので、左から入る熱は外向き法線と逆で負です。右壁の外側は右なので、出る熱は外向き法線と同じで正です。この「各壁の外向き」と「共通のx軸」は別の基準です。共通のx軸で記すため、左右の熱流束成分は同じ符号です。"
+            },
+            {
+              "title": "定常の熱収支も確認する",
+              "body": "左右の壁面積をAとすれば、入る熱量率も出る熱量率も $qA$ です。上下は断熱なので、内部に熱がたまり続けず定常条件に合います。全壁で熱流束を与えるため、温度の絶対的な基準は問題の指定どおり別途決めます。"
+            }
+          ],
+          "explanation": "【基礎】流出する熱も右向きなので正です。\n【考え方】正解は2です。流入と流出で言葉は反対でも、熱の矢印はどちらも右向きです。\n【ポイント】左壁の外側は左なので、左から入る熱は外向き法線と逆で負です。右壁の外側は右なので、出る熱は外向き法線と同じで正です。この「各壁の外向き」と「共通のx軸」は別の基準です。今回の選択肢は共通のx軸なので、同符号の④になります。\n【引っかけ】1：「$q_x=-q$」ではなく、$q_x=q$です。流入と流出で言葉は反対でも、熱の矢印はどちらも右向きです。",
+          "relatedFormulas": [
+            "t2ch7-5"
+          ],
+          "editorialReview": {
+            "officialPoint": "2次元自然対流・熱的境界条件・フーリエの法則／個別の質問：右壁D",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$q_x=-q$」ではなく、$q_x=q$です。流入と流出で言葉は反対でも、熱の矢印はどちらも右向きです。"
+            },
+            "sha256": "3f62fd2c1920668293ade6e5d30d750f427cb35d4a80d84ff96a6b1de7a08e94"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "num7-6",
@@ -358,13 +852,13 @@
       ],
       "editorialReview": {
         "officialPoint": "高レイノルズ数型k-ε・壁関数・一定応力層",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。公式の中心論点、条件、選択肢の一意性を確認し、やさしい解説を標準表示へ統合。必要な式・途中手順・図との対応を同じ設問内に整理。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "第一格子点の全量を0とする",
           "3": "第一格子点を壁面と混同",
           "4": "対数域のkと散逸率を0とする"
         },
-        "sha256": "816025a78cb158dc8c54a8302d739652aa57efc9bd985b82dc1b28555aaeec37"
+        "sha256": "f80fffd9728b26358b925ce851b2b820253e602a4e4a04667b26ec36229fd3d8"
       },
       "easyExplanation": [
         {
@@ -394,7 +888,155 @@
           "body": "選択肢1は離れた点でも速度・乱れをすべて0にしています。選択肢3は第一格子点を壁面と混同して速度を0としています。選択肢4は対数域でもkと散逸率を0にしています。"
         }
       ],
-      "answerSummary": "②です。第一格子点には対数則、$k=u_\\tau^2/\\sqrt{C_\\mu}$、$\\varepsilon=u_\\tau^3/(\\kappa y_0)$ を与えます。"
+      "answerSummary": "第一点の速度：対数域の第一格子点に対数則を使います。\n乱流エネルギー：第一点では乱れが存在するためkは0ではありません。\n散逸率：生成と散逸がつり合う対数域の関係です。",
+      "officialQuestionItems": [
+        "u",
+        "k",
+        "epsilon"
+      ],
+      "sharedQuestion": "高レイノルズ数型k-εモデルで、圧力勾配のない非圧縮性乱流境界層を計算する。壁面第一格子点を対数則が適用できる距離 $y_0$ に置く。平均速度 $\\overline U$、乱流エネルギー $k$、散逸率 $\\varepsilon$ をこの点に与える各量の条件を答えてください。$u_\\tau$ は摩擦速度、$\\nu$ は動粘性係数、$\\kappa,C,C_\\mu$ は定数とする。",
+      "studyParts": [
+        {
+          "id": "num7-6-item-u",
+          "number": "7-6",
+          "officialRef": "問7-6",
+          "officialQuestionItem": "u",
+          "title": "第一点の速度",
+          "topic": "高レイノルズ数型k-ε・壁関数・一定応力層",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$\\overline U/u_\\tau$ はどれですか。",
+          "choices": [
+            "$0$",
+            "$\\kappa^{-1}\\ln(y_0u_\\tau/\\nu)+C$"
+          ],
+          "answer": 2,
+          "answerSummary": "対数域の第一格子点に対数則を使います。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "条件を置く場所は壁そのものではありません。壁の滑りなし条件と取り違えないようにします。"
+            },
+            {
+              "title": "条件を与えるのは、壁から離れた点",
+              "body": "高Re型の壁関数は、壁ぎわを全て細かく解く代わりに、壁と第一格子点の間を代表的な分布でつなぎます。壁そのものでは速度0ですが、対数域にある第一格子点の速度は0ではありません。",
+              "figures": [
+                {
+                  "figureImage": "t2e7WallFunctionLog",
+                  "caption": "赤い点は壁面ではなく、壁からy₀離れた第一格子点です。3つの式はこの点と壁を結び付ける条件です。"
+                }
+              ]
+            },
+            {
+              "title": "速度は無次元距離を使う対数則",
+              "body": "摩擦速度 $u_\\tau=\\sqrt{\\tau_w/\\rho}$ は、壁面摩擦の強さを速度の尺度にした量です。$y_0^+=y_0u_\\tau/\\nu$ と $U^+=\\overline U/u_\\tau$ を使うと、対数則は $U^+=(1/\\kappa)\\ln y_0^++C$。無次元速度と無次元距離の定義を戻すと、速度の境界条件になります。"
+            }
+          ],
+          "explanation": "【基礎】対数域の第一格子点に対数則を使います。\n【考え方】正解は2です。条件を置く場所は壁そのものではありません。壁の滑りなし条件と取り違えないようにします。\n【ポイント】高Re型の壁関数は、壁ぎわを全て細かく解く代わりに、壁と第一格子点の間を代表的な分布でつなぎます。壁そのものでは速度0ですが、対数域にある第一格子点の速度は0ではありません。ここを区別すると①と③を除けます。\n【引っかけ】1：「$0$」ではなく、$\\kappa^{-1}\\ln(y_0u_\\tau/\\nu)+C$です。条件を置く場所は壁そのものではありません。壁の滑りなし条件と取り違えないようにします。",
+          "relatedFormulas": [
+            "t2ch7-6"
+          ],
+          "editorialReview": {
+            "officialPoint": "高レイノルズ数型k-ε・壁関数・一定応力層／個別の質問：第一点の速度",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$0$」ではなく、$\\kappa^{-1}\\ln(y_0u_\\tau/\\nu)+C$です。条件を置く場所は壁そのものではありません。壁の滑りなし条件と取り違えないようにします。"
+            },
+            "sha256": "f26e19c9f42b20c9f054345291d32de0e5ed52f284b11ea8b76f2341a2cbc3d9"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num7-6-item-k",
+          "number": "7-6",
+          "officialRef": "問7-6",
+          "officialQuestionItem": "k",
+          "title": "乱流エネルギー",
+          "topic": "高レイノルズ数型k-ε・壁関数・一定応力層",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$k$ はどれですか。",
+          "choices": [
+            "$0$",
+            "$u_\\tau^2/\\sqrt{C_\\mu}$"
+          ],
+          "answer": 2,
+          "answerSummary": "第一点では乱れが存在するためkは0ではありません。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "平衡状態の一定応力層の関係 $u_\\tau^2=\\sqrt{C_\\mu}k$ を解きます。"
+            },
+            {
+              "title": "kの式は、一定応力層の関係から求める",
+              "body": "壁近くの対数域では $-\\overline{u'v'}\\simeq u_\\tau^2$、また標準モデルの平衡関係は $-\\overline{u'v'}/k\\simeq\\sqrt{C_\\mu}$ です。代入すると $u_\\tau^2/k\\simeq\\sqrt{C_\\mu}$ なので、$k\\simeq u_\\tau^2/\\sqrt{C_\\mu}$。$C_\\mu=0.09$ なら平方根は0.3です。"
+            }
+          ],
+          "explanation": "【基礎】第一点では乱れが存在するためkは0ではありません。\n【考え方】正解は2です。平衡状態の一定応力層の関係 $u_\\tau^2=\\sqrt{C_\\mu}k$ を解きます。\n【ポイント】壁近くの対数域では $-\\overline{u'v'}\\simeq u_\\tau^2$、また標準モデルの平衡関係は $-\\overline{u'v'}/k\\simeq\\sqrt{C_\\mu}$ です。代入すると $u_\\tau^2/k\\simeq\\sqrt{C_\\mu}$ なので、$k\\simeq u_\\tau^2/\\sqrt{C_\\mu}$。$C_\\mu=0.09$ なら平方根は0.3です。\n【引っかけ】1：「$0$」ではなく、$u_\\tau^2/\\sqrt{C_\\mu}$です。平衡状態の一定応力層の関係 $u_\\tau^2=\\sqrt{C_\\mu}k$ を解きます。",
+          "relatedFormulas": [
+            "t2ch7-6"
+          ],
+          "editorialReview": {
+            "officialPoint": "高レイノルズ数型k-ε・壁関数・一定応力層／個別の質問：乱流エネルギー",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$0$」ではなく、$u_\\tau^2/\\sqrt{C_\\mu}$です。平衡状態の一定応力層の関係 $u_\\tau^2=\\sqrt{C_\\mu}k$ を解きます。"
+            },
+            "sha256": "b3ef966f4612dc8a3564f009f997bf9425bcc93906fda355487241f091ebc3da"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num7-6-item-epsilon",
+          "number": "7-6",
+          "officialRef": "問7-6",
+          "officialQuestionItem": "epsilon",
+          "title": "散逸率",
+          "topic": "高レイノルズ数型k-ε・壁関数・一定応力層",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$\\varepsilon$ はどれですか。",
+          "choices": [
+            "$u_\\tau^3/(\\kappa y_0)$",
+            "$0$"
+          ],
+          "answer": 1,
+          "answerSummary": "生成と散逸がつり合う対数域の関係です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "生成率 $u_\\tau^2\\,d\\overline U/dy$ に $d\\overline U/dy=u_\\tau/(\\kappa y)$ を入れます。"
+            },
+            {
+              "title": "散逸率は、生成とのつり合いから求める",
+              "body": "対数則をyで微分すると $d\\overline U/dy=u_\\tau/(\\kappa y)$ です。乱れの生成は $P_k=-\\overline{u'v'}\\,d\\overline U/dy\\simeq u_\\tau^2\\times u_\\tau/(\\kappa y)$。局所平衡として $\\varepsilon\\simeq P_k$ を使い、第一点 $y=y_0$ で $\\varepsilon\\simeq u_\\tau^3/(\\kappa y_0)$ が得られます。壁から離れた点には乱れがあるため、kと散逸率をともにゼロにする条件ではありません。"
+            }
+          ],
+          "explanation": "【基礎】生成と散逸がつり合う対数域の関係です。\n【考え方】正解は1です。生成率 $u_\\tau^2\\,d\\overline U/dy$ に $d\\overline U/dy=u_\\tau/(\\kappa y)$ を入れます。\n【ポイント】対数則をyで微分すると $d\\overline U/dy=u_\\tau/(\\kappa y)$ です。乱れの生成は $P_k=-\\overline{u'v'}\\,d\\overline U/dy\\simeq u_\\tau^2\\times u_\\tau/(\\kappa y)$。局所平衡として $\\varepsilon\\simeq P_k$ を使い、第一点 $y=y_0$ で $\\varepsilon\\simeq u_\\tau^3/(\\kappa y_0)$ が得られます。ここは乱れがあるので、kと散逸率を0にする④は合いません。\n【引っかけ】2：「$0$」ではなく、$u_\\tau^3/(\\kappa y_0)$です。生成率 $u_\\tau^2\\,d\\overline U/dy$ に $d\\overline U/dy=u_\\tau/(\\kappa y)$ を入れます。",
+          "relatedFormulas": [
+            "t2ch7-6"
+          ],
+          "editorialReview": {
+            "officialPoint": "高レイノルズ数型k-ε・壁関数・一定応力層／個別の質問：散逸率",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$0$」ではなく、$u_\\tau^3/(\\kappa y_0)$です。生成率 $u_\\tau^2\\,d\\overline U/dy$ に $d\\overline U/dy=u_\\tau/(\\kappa y)$ を入れます。"
+            },
+            "sha256": "c51a2f26782d62ace7f2887146d81ef6d44a281ea3d2215a3a4a3be84dd6e545"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "num7-7",
@@ -425,13 +1067,13 @@
       ],
       "editorialReview": {
         "officialPoint": "低レイノルズ数型k-ε・厳密境界条件",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。公式の中心論点、条件、選択肢の一意性を確認し、やさしい解説を標準表示へ統合。必要な式・途中手順・図との対応を同じ設問内に整理。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "壁面速度へ壁関数を使い散逸率も0とする",
           "2": "壁面へ対数域のkを与える",
           "4": "高Re型の第一点条件と混同"
         },
-        "sha256": "a32aa08a012ff181a719cc3c3fddbc60e73ee1adad13a56d9b639485bd752f53"
+        "sha256": "20b0a86bd96c0c2751a06b636c939d9008feae087b18e3961f9274a101f6b1a1"
       },
       "easyExplanation": [
         {
@@ -461,7 +1103,195 @@
           "body": "選択肢1は壁面速度に壁関数を使い、物理的散逸率も0としています。選択肢2は対数域のkを壁面へ与えています。選択肢4は高レイノルズ数型の第一格子点条件です。"
         }
       ],
-      "answerSummary": "③です。壁では平均速度とkは0、物理的な散逸率は $\\varepsilon=\\nu\\partial^2k/\\partial y^2$ で与えます。"
+      "answerSummary": "壁に平行な速度：静止壁では滑りなしなので0です。\n壁に垂直な速度：壁を流体が通り抜けない条件です。\n壁の乱流エネルギー：壁面では速度変動も0なのでk＝0です。\n壁の散逸率：kの値が0でも、その2階微分は0とは限りません。",
+      "officialQuestionItems": [
+        "u",
+        "v",
+        "k",
+        "epsilon"
+      ],
+      "sharedQuestion": "物理的な散逸率 $\\varepsilon$ を用いる低レイノルズ数型 $k\\text{-}\\varepsilon$ 2方程式モデルで、壁面近傍まで格子を配置して乱流境界層を計算する。静止壁の法線をy方向とし、壁面そのものに条件を与えます。",
+      "studyParts": [
+        {
+          "id": "num7-7-item-u",
+          "number": "7-7",
+          "officialRef": "問7-7",
+          "officialQuestionItem": "u",
+          "title": "壁に平行な速度",
+          "topic": "低レイノルズ数型k-ε・厳密境界条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "壁の $\\overline U$ はどれですか。",
+          "choices": [
+            "$0$",
+            "対数則の値"
+          ],
+          "answer": 1,
+          "answerSummary": "静止壁では滑りなしなので0です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "対数域に第一点を置く壁関数法とは位置が違います。"
+            },
+            {
+              "title": "今回は壁面そのものまで解く",
+              "body": "低Re型で壁近くまで細かい格子を置くので、静止壁の平均速度には滑りなしの0を与えます。壁で瞬時速度も0なら、その平均からの変動も0です。変動の2乗から作る乱流エネルギーkも、壁で0になります。"
+            }
+          ],
+          "explanation": "【基礎】静止壁では滑りなしなので0です。\n【考え方】正解は1です。対数域に第一点を置く壁関数法とは位置が違います。\n【ポイント】低Re型で壁近くまで細かい格子を置くので、静止壁の平均速度には滑りなしの0を与えます。壁で瞬時速度も0なら、その平均からの変動も0です。変動の2乗から作る乱流エネルギーkも、壁で0になります。\n【引っかけ】2：「対数則の値」ではなく、$0$です。対数域に第一点を置く壁関数法とは位置が違います。",
+          "relatedFormulas": [
+            "t2ch7-7"
+          ],
+          "editorialReview": {
+            "officialPoint": "低レイノルズ数型k-ε・厳密境界条件／個別の質問：壁に平行な速度",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「対数則の値」ではなく、$0$です。対数域に第一点を置く壁関数法とは位置が違います。"
+            },
+            "sha256": "7b2dfaa302dc1204fe0a3e1bd0a7e561a16ff7b89c1d96158b6ae1761dbc21b2"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num7-7-item-v",
+          "number": "7-7",
+          "officialRef": "問7-7",
+          "officialQuestionItem": "v",
+          "title": "壁に垂直な速度",
+          "topic": "低レイノルズ数型k-ε・厳密境界条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "壁の $\\overline V$ はどれですか。",
+          "choices": [
+            "自由な非零値",
+            "$0$"
+          ],
+          "answer": 2,
+          "answerSummary": "壁を流体が通り抜けない条件です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "不透過の静止壁の法線方向速度も0になります。"
+            }
+          ],
+          "explanation": "【基礎】壁を流体が通り抜けない条件です。\n【考え方】正解は2です。不透過の静止壁の法線方向速度も0になります。\n【ポイント】壁を流体が通り抜けない条件です。\n【引っかけ】1：「自由な非零値」ではなく、$0$です。不透過の静止壁の法線方向速度も0になります。",
+          "relatedFormulas": [
+            "t2ch7-7"
+          ],
+          "editorialReview": {
+            "officialPoint": "低レイノルズ数型k-ε・厳密境界条件／個別の質問：壁に垂直な速度",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「自由な非零値」ではなく、$0$です。不透過の静止壁の法線方向速度も0になります。"
+            },
+            "sha256": "0ae72cb7e518a8bc717fd01eee786b45262a16ecb859b11780ef98acbbe39294"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num7-7-item-k",
+          "number": "7-7",
+          "officialRef": "問7-7",
+          "officialQuestionItem": "k",
+          "title": "壁の乱流エネルギー",
+          "topic": "低レイノルズ数型k-ε・厳密境界条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "壁面の $k$ はどれですか。",
+          "choices": [
+            "$0$",
+            "$u_\\tau^2/\\sqrt{C_\\mu}$"
+          ],
+          "answer": 1,
+          "answerSummary": "壁面では速度変動も0なのでk＝0です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "壁から離れた対数域の値は壁面そのものには使いません。"
+            },
+            {
+              "title": "高Re型の第一点条件と入れ替えない",
+              "body": "7-6の対数則は壁から離れた点の条件です。本問の壁面にそのまま与えることはできません。また、散逸率を修正した別の変数を解くモデルには0条件を使うものもありますが、本問は物理的な散逸率を使うと指定しています。"
+            }
+          ],
+          "explanation": "【基礎】壁面では速度変動も0なのでk＝0です。\n【考え方】正解は1です。壁から離れた対数域の値は壁面そのものには使いません。\n【ポイント】7-6の対数則は壁から離れた点の条件です。本問の壁面にそのまま与えることはできません。また、散逸率を修正した別の変数を解くモデルには0条件を使うものもありますが、本問は物理的な散逸率を使うと指定しています。\n【引っかけ】2：「$u_\\tau^2/\\sqrt{C_\\mu}$」ではなく、$0$です。壁から離れた対数域の値は壁面そのものには使いません。",
+          "relatedFormulas": [
+            "t2ch7-7"
+          ],
+          "editorialReview": {
+            "officialPoint": "低レイノルズ数型k-ε・厳密境界条件／個別の質問：壁の乱流エネルギー",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$u_\\tau^2/\\sqrt{C_\\mu}$」ではなく、$0$です。壁から離れた対数域の値は壁面そのものには使いません。"
+            },
+            "sha256": "f47d58f5cbb51d93c155e2bc6e28c98f51f7e1e69fde1e16455b497aa36bdd07"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num7-7-item-epsilon",
+          "number": "7-7",
+          "officialRef": "問7-7",
+          "officialQuestionItem": "epsilon",
+          "title": "壁の散逸率",
+          "topic": "低レイノルズ数型k-ε・厳密境界条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "物理的散逸率 $\\varepsilon$ の壁面条件はどれですか。",
+          "choices": [
+            "$0$",
+            "$\\nu\\,\\partial^2k/\\partial y^2$"
+          ],
+          "answer": 2,
+          "answerSummary": "kの値が0でも、その2階微分は0とは限りません。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "例えば $k=ay^2$ なら壁 $y=0$ で $k=0$ ですが $\\partial^2k/\\partial y^2=2a$ です。本問は物理的な散逸率を変数とするモデルで、修正散逸率を0とする別形式とは区別します。"
+            },
+            {
+              "title": "kが0でも、散逸率は必ずしも0ではない",
+              "body": "壁面ではkの生成・移流などが消え、物理的な散逸率と分子粘性による拡散がつり合います。収支を $0=\\nu\\partial^2k/\\partial y^2-\\varepsilon$ と書いて移項すると、$\\varepsilon=\\nu\\partial^2k/\\partial y^2$ です。"
+            },
+            {
+              "title": "2階微分が残ることを、小さな例で確かめる",
+              "body": "壁の近くで $k=ay^2$ とします。壁ではy＝0なのでk＝0ですが、1回微分すると $dk/dy=2ay$、もう1回微分すると $d^2k/dy^2=2a$ です。したがって壁面でも $\\varepsilon=2\\nu a$ と有限の値を持てます。値と、分布の曲がりは別の量です。",
+              "figures": [
+                {
+                  "figureImage": "t2e7LowReNearWall",
+                  "caption": "右はk＝ay²の模式例です。壁でk＝0でも曲がりは残り、散逸率も0とは限りません。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】kの値が0でも、その2階微分は0とは限りません。\n【考え方】正解は2です。例えば $k=ay^2$ なら壁 $y=0$ で $k=0$ ですが $\\partial^2k/\\partial y^2=2a$ です。本問は物理的な散逸率を変数とするモデルで、修正散逸率を0とする別形式とは区別します。\n【ポイント】壁面ではkの生成・移流などが消え、物理的な散逸率と分子粘性による拡散がつり合います。収支を $0=\\nu\\partial^2k/\\partial y^2-\\varepsilon$ と書いて移項すると、$\\varepsilon=\\nu\\partial^2k/\\partial y^2$ です。これと速度0・k＝0を組にした③が正解です。\n【引っかけ】1：「$0$」ではなく、$\\nu\\,\\partial^2k/\\partial y^2$です。例えば $k=ay^2$ なら壁 $y=0$ で $k=0$ ですが $\\partial^2k/\\partial y^2=2a$ です。本問は物理的な散逸率を変数とするモデルで、修正散逸率を0とする別形式とは区別します。",
+          "relatedFormulas": [
+            "t2ch7-7"
+          ],
+          "editorialReview": {
+            "officialPoint": "低レイノルズ数型k-ε・厳密境界条件／個別の質問：壁の散逸率",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$0$」ではなく、$\\nu\\,\\partial^2k/\\partial y^2$です。例えば $k=ay^2$ なら壁 $y=0$ で $k=0$ ですが $\\partial^2k/\\partial y^2=2a$ です。本問は物理的な散逸率を変数とするモデルで、修正散逸率を0とする別形式とは区別します。"
+            },
+            "sha256": "629f79a4cb5467e3cf615cb1823ad28120c25a07eda8c4df7a7ff9233fd0ff5a"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "num7-8",
@@ -492,13 +1322,13 @@
       ],
       "editorialReview": {
         "officialPoint": "自由表面・滑り(Slip)条件",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。公式の中心論点、条件、選択肢の一意性を確認し、やさしい解説を標準表示へ統合。必要な式・途中手順・図との対応を同じ設問内に整理。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "自由表面を固体壁と混同",
           "3": "平行と垂直の指定を逆にする",
           "4": "滑りなしと勾配0を混同"
         },
-        "sha256": "cda2ddd191e20dc7f2b4aa722af2816cab4e5d57d66cc0b862c098452dcd720e"
+        "sha256": "88b6015e5d145a4b30dda67a0c309ecfc6b3a35c5c870965e437ac9778c559d8"
       },
       "preFigureImage": "t2e7Q8Before",
       "easyExplanation": [
@@ -525,13 +1355,197 @@
           "body": "選択肢2は水面を静止した固体壁と同じ扱いにしています。選択肢3は平行成分を0にして法線成分を勾配指定にしています。選択肢4は滑りなしという名称と勾配0という条件が一致していません。"
         }
       ],
-      "answerSummary": "①です。$V=0$、$\\partial U/\\partial y=\\partial W/\\partial y=0$ とします。",
+      "answerSummary": "表面の扱い：水面に沿う運動を許します。\n流れ方向の速度：平行速度の法線方向勾配を0にします。\n鉛直速度：固定された水平面を流体が横切らない条件です。\n奥行き方向の速度：奥行き方向も表面に平行です。",
       "preFigures": [
         {
           "figureImage": "t2e7Q8Before",
           "caption": "水面に平行なx・z方向と、水面に垂直なy方向を分けて考えます。"
         }
-      ]
+      ],
+      "officialQuestionItems": [
+        "type",
+        "u",
+        "v",
+        "w"
+      ],
+      "sharedQuestion": "一定の圧力勾配 $\\partial P/\\partial x=$一定 で流れる自由表面をもつ3次元開水路を計算する。水路上面は水平に固定された平面として近似し、波・風によるせん断・表面張力の勾配・蒸発を無視する。座標を $x$（流れ方向）、$y$（鉛直上向き）、$z$（奥行き）、速度成分を $U,V,W$ とするとき、水路上面の各境界条件を答えてください。",
+      "studyParts": [
+        {
+          "id": "num7-8-item-type",
+          "number": "7-8",
+          "officialRef": "問7-8",
+          "officialQuestionItem": "type",
+          "title": "表面の扱い",
+          "topic": "自由表面・滑り(Slip)条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "せん断を無視する平らな自由表面はどれですか。",
+          "choices": [
+            "滑り条件",
+            "滑りなし条件"
+          ],
+          "answer": 1,
+          "answerSummary": "水面に沿う運動を許します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "摩擦を無視した自由表面を、静止固体壁のように全速度0にはしません。"
+            },
+            {
+              "title": "固体壁との違いを押さえる",
+              "body": "静止した固体壁の滑りなしならUもVもWも0です。応力ゼロの水面は滑りなし固体壁とは異なり、接線速度そのものをゼロにはしません。波・風・表面張力の変化などがある場合は条件が変わるので、問題にある無視できる条件も一緒に読みます。"
+            }
+          ],
+          "explanation": "【基礎】水面に沿う運動を許します。\n【考え方】正解は1です。摩擦を無視した自由表面を、静止固体壁のように全速度0にはしません。\n【ポイント】静止した固体壁の滑りなしならUもVもWも0です。本問の水面はその壁ではないため、②の全成分0は不適切です。波・風・表面張力の変化などがある場合は条件が変わるので、問題にある無視できる条件も一緒に読みます。\n【引っかけ】2：「滑りなし条件」ではなく、滑り条件です。摩擦を無視した自由表面を、静止固体壁のように全速度0にはしません。",
+          "relatedFormulas": [
+            "t2ch7-8"
+          ],
+          "editorialReview": {
+            "officialPoint": "自由表面・滑り(Slip)条件／個別の質問：表面の扱い",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「滑りなし条件」ではなく、滑り条件です。摩擦を無視した自由表面を、静止固体壁のように全速度0にはしません。"
+            },
+            "sha256": "0d981fc058eab7508f4b72ce2c6d327aef661a7e353a6e6b8ae1e1899aecc790"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num7-8-item-u",
+          "number": "7-8",
+          "officialRef": "問7-8",
+          "officialQuestionItem": "u",
+          "title": "流れ方向の速度",
+          "topic": "自由表面・滑り(Slip)条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$U$ に対する条件はどれですか。",
+          "choices": [
+            "$U=0$",
+            "$\\partial U/\\partial y=0$"
+          ],
+          "answer": 2,
+          "answerSummary": "平行速度の法線方向勾配を0にします。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "平らな表面でせん断応力を無視する条件です。"
+            },
+            {
+              "title": "摩擦を無視した水面では、平行速度の垂直勾配を0にする",
+              "body": "空気によるせん断などを無視する自由すべり条件です。平らな水面でV＝0が面に沿って続く場合、接線方向のせん断応力0から $\\partial U/\\partial y=0$ と $\\partial W/\\partial y=0$ が得られます。微分するのは水面を横切るy方向です。",
+              "figures": [
+                {
+                  "figureImage": "t2e7FreeSurfaceChannel",
+                  "caption": "赤いUの矢印のように水面に沿って流れられます。V＝0は水面を横切らない条件で、Uそのものを0にする条件ではありません。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】平行速度の法線方向勾配を0にします。\n【考え方】正解は2です。平らな表面でせん断応力を無視する条件です。\n【ポイント】空気によるせん断などを無視する自由すべり条件です。平らな水面でV＝0が面に沿って続く場合、接線方向のせん断応力0から $\\partial U/\\partial y=0$ と $\\partial W/\\partial y=0$ が得られます。微分するのは水面を横切るy方向です。\n【引っかけ】1：「$U=0$」ではなく、$\\partial U/\\partial y=0$です。平らな表面でせん断応力を無視する条件です。",
+          "relatedFormulas": [
+            "t2ch7-8"
+          ],
+          "editorialReview": {
+            "officialPoint": "自由表面・滑り(Slip)条件／個別の質問：流れ方向の速度",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$U=0$」ではなく、$\\partial U/\\partial y=0$です。平らな表面でせん断応力を無視する条件です。"
+            },
+            "sha256": "5407ecda3018ada3f03c4fc546b3a3a32ec7f099799852d04070c04a66163d94"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num7-8-item-v",
+          "number": "7-8",
+          "officialRef": "問7-8",
+          "officialQuestionItem": "v",
+          "title": "鉛直速度",
+          "topic": "自由表面・滑り(Slip)条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$V$ の条件はどれですか。",
+          "choices": [
+            "$V=0$",
+            "$\\partial V/\\partial y=0$ のみ"
+          ],
+          "answer": 1,
+          "answerSummary": "固定された水平面を流体が横切らない条件です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "自由表面の変形を追わないという本問の仮定を使います。"
+            },
+            {
+              "title": "水面に沿って流れてよいが、水面を横切らない",
+              "body": "水平で動かない水面を仮定し、蒸発もないので、鉛直方向の流れはありません。したがってV＝0です。一方、水面に沿うUとWを0にする必要はありません。水面上でも水は横へ流れられます。"
+            }
+          ],
+          "explanation": "【基礎】固定された水平面を流体が横切らない条件です。\n【考え方】正解は1です。自由表面の変形を追わないという本問の仮定を使います。\n【ポイント】水平で動かない水面を仮定し、蒸発もないので、鉛直方向の流れはありません。したがってV＝0です。一方、水面に沿うUとWを0にする必要はありません。水面上でも水は横へ流れられます。\n【引っかけ】2：「$\\partial V/\\partial y=0$ のみ」ではなく、$V=0$です。自由表面の変形を追わないという本問の仮定を使います。",
+          "relatedFormulas": [
+            "t2ch7-8"
+          ],
+          "editorialReview": {
+            "officialPoint": "自由表面・滑り(Slip)条件／個別の質問：鉛直速度",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$\\partial V/\\partial y=0$ のみ」ではなく、$V=0$です。自由表面の変形を追わないという本問の仮定を使います。"
+            },
+            "sha256": "8e31e4dd300ec37d0581d367e24716a606039f64424860ceb1ac052a5ac77df9"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num7-8-item-w",
+          "number": "7-8",
+          "officialRef": "問7-8",
+          "officialQuestionItem": "w",
+          "title": "奥行き方向の速度",
+          "topic": "自由表面・滑り(Slip)条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$W$ の条件はどれですか。",
+          "choices": [
+            "$W=0$",
+            "$\\partial W/\\partial y=0$"
+          ],
+          "answer": 2,
+          "answerSummary": "奥行き方向も表面に平行です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "流れ方向と同じく、値を0にせず法線方向の勾配を0にします。"
+            }
+          ],
+          "explanation": "【基礎】奥行き方向も表面に平行です。\n【考え方】正解は2です。流れ方向と同じく、値を0にせず法線方向の勾配を0にします。\n【ポイント】奥行き方向も表面に平行です。\n【引っかけ】1：「$W=0$」ではなく、$\\partial W/\\partial y=0$です。流れ方向と同じく、値を0にせず法線方向の勾配を0にします。",
+          "relatedFormulas": [
+            "t2ch7-8"
+          ],
+          "editorialReview": {
+            "officialPoint": "自由表面・滑り(Slip)条件／個別の質問：奥行き方向の速度",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$W=0$」ではなく、$\\partial W/\\partial y=0$です。流れ方向と同じく、値を0にせず法線方向の勾配を0にします。"
+            },
+            "sha256": "eee91d617ef22fd4e1363e00be4a50832d22cb5b97c89380cb31d1d0a8da2130"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "num7-9",
@@ -562,13 +1576,13 @@
       ],
       "editorialReview": {
         "officialPoint": "壁法則・カルマン定数・対数則",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。公式の中心論点、条件、選択肢の一意性を確認し、やさしい解説を標準表示へ統合。必要な式・途中手順・図との対応を同じ設問内に整理。 経験定数の許容差だけを誤答根拠にしないよう、第4選択肢を温度対数則の係数の取り違えへ修正。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "粘性底層の直線を対数域へ適用",
           "3": "温度直線則と内部流係数を選ぶ",
           "4": "温度対数則の係数κtと1/κtを取り違える"
         },
-        "sha256": "b54e74764937188878a68503d17ac880b32c76b145de5862a97b9d9b2e60fdbe"
+        "sha256": "e0e5cba86155429a0513dd50b4e5b26a307f85df48345feb91fdbc779cf2d743"
       },
       "easyExplanation": [
         {
@@ -594,7 +1608,191 @@
           "body": "選択肢1は壁のごく近くの直線関係を対数域にも使っています。選択肢3は同じ誤りに加え内部流で使われる5.5を選んでいます。選択肢4は温度の対数項の係数を $1/\\kappa_t$ ではなく $\\kappa_t$ としています。"
         }
       ],
-      "answerSummary": "②です。代表値は $\\kappa=0.41,C=5.0$、温度の対数則は $T^+=(1/\\kappa_t)\\ln y_0^++C_t$ です。"
+      "answerSummary": "カルマン定数：κの代表値は約0.41です。\n速度側の切片：本問ではC＝5.0の組を使います。\n温度分布の名称：温度差も対数則で表します。\n温度側の式：対数に掛かる係数は1/κtです。",
+      "officialQuestionItems": [
+        "kappa",
+        "c",
+        "name",
+        "formula"
+      ],
+      "sharedQuestion": "高Re型モデルで一定温度の壁上の対数域を扱います。$T^+=(T_w-T)/t_\\tau$、$y_0^+=y_0u_\\tau/\\nu$ とし、$\\kappa_t,C_t$ は温度側の係数です。速度側については公式標準問題の代表的な経験定数の組を答えます。",
+      "studyParts": [
+        {
+          "id": "num7-9-item-kappa",
+          "number": "7-9",
+          "officialRef": "問7-9",
+          "officialQuestionItem": "kappa",
+          "title": "カルマン定数",
+          "topic": "壁法則・カルマン定数・対数則",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "この対数則で用いるκの値はどれですか。",
+          "choices": [
+            "0.41",
+            "4.1"
+          ],
+          "answer": 1,
+          "answerSummary": "κの代表値は約0.41です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "速度の対数則の傾きは1/κです。文献やモデルによる係数の違いとは区別します。"
+            },
+            {
+              "title": "壁近くの分布は、距離によって形が違う",
+              "body": "壁のごく近くと、少し離れた対数域では使う関係式が異なります。本問は高Re型の壁関数を使う対数域です。速度には $U^+=(1/\\kappa)\\ln y^++C$ を使い、外部のゼロ圧力勾配境界層では0.41と5.0が代表的な経験値です。"
+            }
+          ],
+          "explanation": "【基礎】κの代表値は約0.41です。\n【考え方】正解は1です。速度の対数則の傾きは1/κです。文献やモデルによる係数の違いとは区別します。\n【ポイント】壁のごく近くと、少し離れた対数域では使う関係式が異なります。本問は高Re型の壁関数を使う対数域です。速度には $U^+=(1/\\kappa)\\ln y^++C$ を使い、外部のゼロ圧力勾配境界層では0.41と5.0が代表的な経験値です。\n【引っかけ】2：「4.1」ではなく、0.41です。速度の対数則の傾きは1/κです。文献やモデルによる係数の違いとは区別します。",
+          "relatedFormulas": [
+            "t2ch7-9"
+          ],
+          "editorialReview": {
+            "officialPoint": "壁法則・カルマン定数・対数則／個別の質問：カルマン定数",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「4.1」ではなく、0.41です。速度の対数則の傾きは1/κです。文献やモデルによる係数の違いとは区別します。"
+            },
+            "sha256": "337b9f120266d2c96c5fac49b7ae10361640894923e59230f78fc9cb9f9a05e0"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num7-9-item-c",
+          "number": "7-9",
+          "officialRef": "問7-9",
+          "officialQuestionItem": "c",
+          "title": "速度側の切片",
+          "topic": "壁法則・カルマン定数・対数則",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "本問で指定した代表的な切片Cはどれですか。",
+          "choices": [
+            "5.0",
+            "0.5"
+          ],
+          "answer": 1,
+          "answerSummary": "本問ではC＝5.0の組を使います。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "無次元速度に足される定数で、速度の単位を持つ量ではありません。"
+            }
+          ],
+          "explanation": "【基礎】本問ではC＝5.0の組を使います。\n【考え方】正解は1です。無次元速度に足される定数で、速度の単位を持つ量ではありません。\n【ポイント】本問ではC＝5.0の組を使います。\n【引っかけ】2：「0.5」ではなく、5.0です。無次元速度に足される定数で、速度の単位を持つ量ではありません。",
+          "relatedFormulas": [
+            "t2ch7-9"
+          ],
+          "editorialReview": {
+            "officialPoint": "壁法則・カルマン定数・対数則／個別の質問：速度側の切片",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「0.5」ではなく、5.0です。無次元速度に足される定数で、速度の単位を持つ量ではありません。"
+            },
+            "sha256": "5148e2305e6af4a95970cfe4d2f5c519a0164c5d7d29327cbb1e2d77707621da"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num7-9-item-name",
+          "number": "7-9",
+          "officialRef": "問7-9",
+          "officialQuestionItem": "name",
+          "title": "温度分布の名称",
+          "topic": "壁法則・カルマン定数・対数則",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "対数域の温度に使う関係の名称はどれですか。",
+          "choices": [
+            "温度の対数則",
+            "全域での線形温度則"
+          ],
+          "answer": 1,
+          "answerSummary": "温度差も対数則で表します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "粘性・伝導が支配する壁のごく近くの直線的な関係を、全域へ延長しません。"
+            },
+            {
+              "title": "温度差も、壁での輸送を尺度にして表す",
+              "body": "$T^+=(T_w-T)/t_\\tau$ は壁と流体の温度差を無次元にした量です。摩擦温度 $t_\\tau=q_w/(\\rho c_pu_\\tau)$ は、熱流束 $q_w$ を温度の尺度へ換算します。加熱壁では壁から離れるにつれ温度差が生じ、その対数域の関係を $T^+=(1/\\kappa_t)\\ln y_0^++C_t$ と表します。"
+            }
+          ],
+          "explanation": "【基礎】温度差も対数則で表します。\n【考え方】正解は1です。粘性・伝導が支配する壁のごく近くの直線的な関係を、全域へ延長しません。\n【ポイント】$T^+=(T_w-T)/t_\\tau$ は壁と流体の温度差を無次元にした量です。摩擦温度 $t_\\tau=q_w/(\\rho c_pu_\\tau)$ は、熱流束 $q_w$ を温度の尺度へ換算します。加熱壁では壁から離れるにつれ温度差が生じ、その対数域の関係を $T^+=(1/\\kappa_t)\\ln y_0^++C_t$ と表します。\n【引っかけ】2：「全域での線形温度則」ではなく、温度の対数則です。粘性・伝導が支配する壁のごく近くの直線的な関係を、全域へ延長しません。",
+          "relatedFormulas": [
+            "t2ch7-9"
+          ],
+          "editorialReview": {
+            "officialPoint": "壁法則・カルマン定数・対数則／個別の質問：温度分布の名称",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「全域での線形温度則」ではなく、温度の対数則です。粘性・伝導が支配する壁のごく近くの直線的な関係を、全域へ延長しません。"
+            },
+            "sha256": "3eab7a01c7284d091043e8e483cfdeca4dbd1b2ebd9fb630fa2f18031c523b7f"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num7-9-item-formula",
+          "number": "7-9",
+          "officialRef": "問7-9",
+          "officialQuestionItem": "formula",
+          "title": "温度側の式",
+          "topic": "壁法則・カルマン定数・対数則",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$T^+$ の対数則はどれですか。",
+          "choices": [
+            "$\\kappa_t\\ln y_0^++C_t$",
+            "$\\kappa_t^{-1}\\ln y_0^++C_t$"
+          ],
+          "answer": 2,
+          "answerSummary": "対数に掛かる係数は1/κtです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "横軸を対数目盛で描くと直線になりますが、距離そのものに比例するという意味ではありません。"
+            },
+            {
+              "title": "図が直線でも、距離そのものに比例するのではない",
+              "body": "図の横軸は距離の対数 $\\ln y^+$ です。これに対して直線なので、元の距離に対しては対数分布です。$T^+=Pr\\,y^+$ の直線関係は壁のごく近くで使うもので、対数域を含む全域へ使うことはできません。温度側の $\\kappa_t,C_t$ は速度側の定数と区別します。",
+              "figures": [
+                {
+                  "figureImage": "t2e7VelTempLogLaw",
+                  "caption": "速度も温度も、横軸をln y⁺とした対数域の模式図です。傾き・切片は両者で同じとは限りません。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】対数に掛かる係数は1/κtです。\n【考え方】正解は2です。横軸を対数目盛で描くと直線になりますが、距離そのものに比例するという意味ではありません。\n【ポイント】図の横軸は距離の対数 $\\ln y^+$ です。これに対して直線なので、元の距離に対しては対数分布です。$T^+=Pr\\,y^+$ の直線関係は壁のごく近くで使うもので、対数域を含む全域へ使うことはできません。温度側の $\\kappa_t,C_t$ は速度側の定数と区別します。\n【引っかけ】1：「$\\kappa_t\\ln y_0^++C_t$」ではなく、$\\kappa_t^{-1}\\ln y_0^++C_t$です。横軸を対数目盛で描くと直線になりますが、距離そのものに比例するという意味ではありません。",
+          "relatedFormulas": [
+            "t2ch7-9"
+          ],
+          "editorialReview": {
+            "officialPoint": "壁法則・カルマン定数・対数則／個別の質問：温度側の式",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$\\kappa_t\\ln y_0^++C_t$」ではなく、$\\kappa_t^{-1}\\ln y_0^++C_t$です。横軸を対数目盛で描くと直線になりますが、距離そのものに比例するという意味ではありません。"
+            },
+            "sha256": "412a44f03cc1dbbfe9b04543aa3d21ad19e6fdcbd7748522d37d32e836bd8b99"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "num7-10",
@@ -625,13 +1823,13 @@
       ],
       "editorialReview": {
         "officialPoint": "境界層外縁条件・境界層方程式",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。公式の中心論点、条件、選択肢の一意性を確認し、やさしい解説を標準表示へ統合。必要な式・途中手順・図との対応を同じ設問内に整理。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "圧力低下の符号を逆にする",
           "2": "流れ方向と壁垂直方向を混同",
           "4": "外縁を壁面速度0と混同"
         },
-        "sha256": "66229b2e87c628290c9ceb679eec878db0bc29e7ddb09c0c310df81e1615a682"
+        "sha256": "ac5e31b389cff58994b7dee902350702f5baf6b7b758162cb18156ad2ba7d8f4"
       },
       "easyExplanation": [
         {
@@ -661,7 +1859,115 @@
           "body": "選択肢1は加速と圧力低下の符号を逆にしています。選択肢2はx微分をy微分としています。選択肢4は外縁の主流速度を壁面の速度0と混同しています。"
         }
       ],
-      "answerSummary": "③です。$U=U_e$ と、$-(1/\\rho)dP/dx=U_e\\,dU_e/dx$ を与えます。"
+      "answerSummary": "外縁の速度：境界層の外側を主流の速度へつなぎます。\n主流と圧力勾配：圧力が下がる向きに主流が加速します。",
+      "officialQuestionItems": [
+        "velocity",
+        "pressure"
+      ],
+      "sharedQuestion": "非圧縮性流体の定常な境界層を、境界層近似した運動方程式で計算する。外縁の主流速度は流れ方向の位置 $x$ の関数 $U_e(x)$ として与えられる。外縁の速度 $U$ と圧力 $P$ に対する条件の各条件を答えてください。密度 $\\rho$ は一定、$y$ は壁に垂直な座標とする。",
+      "studyParts": [
+        {
+          "id": "num7-10-item-velocity",
+          "number": "7-10",
+          "officialRef": "問7-10",
+          "officialQuestionItem": "velocity",
+          "title": "外縁の速度",
+          "topic": "境界層外縁条件・境界層方程式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "外縁でのUはどれですか。",
+          "choices": [
+            "$U_e(x)$",
+            "$0$"
+          ],
+          "answer": 1,
+          "answerSummary": "境界層の外側を主流の速度へつなぎます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "壁で0だった速度が壁から離れるほど主流へ近づきます。"
+            },
+            {
+              "title": "境界層の外側では、主流へつなぐ",
+              "body": "壁の近くは粘性の影響で速度が変わりますが、外縁では外側の主流速度Uₑへ近づきます。したがって外縁の速度はU＝Uₑです。壁面の滑りなし条件U＝0を外縁へ与えるわけではありません。"
+            }
+          ],
+          "explanation": "【基礎】境界層の外側を主流の速度へつなぎます。\n【考え方】正解は1です。壁で0だった速度が壁から離れるほど主流へ近づきます。\n【ポイント】壁の近くは粘性の影響で速度が変わりますが、外縁では外側の主流速度Uₑへ近づきます。したがって外縁の速度はU＝Uₑです。壁面の滑りなし条件U＝0を外縁へ与えるわけではありません。\n【引っかけ】2：「$0$」ではなく、$U_e(x)$です。壁で0だった速度が壁から離れるほど主流へ近づきます。",
+          "relatedFormulas": [
+            "t2ch7-10"
+          ],
+          "editorialReview": {
+            "officialPoint": "境界層外縁条件・境界層方程式／個別の質問：外縁の速度",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$0$」ではなく、$U_e(x)$です。壁で0だった速度が壁から離れるほど主流へ近づきます。"
+            },
+            "sha256": "5ca780f54575266ce097bac4f2b6bede56820984abca5b99c5936fb0dcf11673"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num7-10-item-pressure",
+          "number": "7-10",
+          "officialRef": "問7-10",
+          "officialQuestionItem": "pressure",
+          "title": "主流と圧力勾配",
+          "topic": "境界層外縁条件・境界層方程式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$-(1/\\rho)dP/dx$ はどれですか。",
+          "choices": [
+            "$U_e\\,dU_e/dx$",
+            "$-U_e\\,dU_e/dx$"
+          ],
+          "answer": 1,
+          "answerSummary": "圧力が下がる向きに主流が加速します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "主流側のオイラー方程式を使います。下流へ加速するなら圧力勾配が負になるので符号も確認できます。"
+            },
+            {
+              "title": "圧力勾配と加速のつり合いを書く",
+              "body": "定常な外側の流れでは、主流方向の運動方程式が $\\rho U_e\\,dU_e/dx=-dP/dx$ になります。流体が位置xを進むと、その場所の速度 $U_e(x)$ が変わるため、加速度は $U_e\\,dU_e/dx$ です。右辺は単位体積当たりの圧力による力です。密度で割ることで、速度と圧力勾配を対応させる式になります。",
+              "figures": [
+                {
+                  "figureImage": "t2e7BLedge",
+                  "caption": "赤線の外側で指定された主流速度へ接続します。外縁の圧力勾配は、主流方向の速度変化と結び付きます。"
+                }
+              ]
+            },
+            {
+              "title": "符号を、加速する例で確かめる",
+              "body": "$U_e>0$ で下流ほど速くなるなら $dU_e/dx>0$ なので、$dP/dx<0$ です。上流側の高い圧力が流体を押して加速させます。例えば $\\rho=1.2\\,\\mathrm{kg/m^3}$、$U_e=20\\,\\mathrm{m/s}$、$dU_e/dx=5\\,\\mathrm{s^{-1}}$ なら、$dP/dx=-1.2\\times20\\times5=-120\\,\\mathrm{Pa/m}$ です。"
+            },
+            {
+              "title": "微分の向きを変えない",
+              "body": "指定された主流速度はxの関数なので、使うのはx方向の微分です。y方向の壁からの変化とは違います。境界層内の壁垂直速度は、流量のつり合いである連続の式から求めます。"
+            }
+          ],
+          "explanation": "【基礎】圧力が下がる向きに主流が加速します。\n【考え方】正解は1です。主流側のオイラー方程式を使います。下流へ加速するなら圧力勾配が負になるので符号も確認できます。\n【ポイント】定常な外側の流れでは、主流方向の運動方程式が $\\rho U_e\\,dU_e/dx=-dP/dx$ になります。流体が位置xを進むと、その場所の速度 $U_e(x)$ が変わるため、加速度は $U_e\\,dU_e/dx$ です。右辺は単位体積当たりの圧力による力です。密度で割れば③の式が得られます。\n【引っかけ】2：「$-U_e\\,dU_e/dx$」ではなく、$U_e\\,dU_e/dx$です。主流側のオイラー方程式を使います。下流へ加速するなら圧力勾配が負になるので符号も確認できます。",
+          "relatedFormulas": [
+            "t2ch7-10"
+          ],
+          "editorialReview": {
+            "officialPoint": "境界層外縁条件・境界層方程式／個別の質問：主流と圧力勾配",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$-U_e\\,dU_e/dx$」ではなく、$U_e\\,dU_e/dx$です。主流側のオイラー方程式を使います。下流へ加速するなら圧力勾配が負になるので符号も確認できます。"
+            },
+            "sha256": "d3328c4ebd4b2f2c39730853df0e2c58f6cff68f4ec31b7db5e48381d4878f0a"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "num7-11",
@@ -692,13 +1998,13 @@
       ],
       "editorialReview": {
         "officialPoint": "超音速流・特性線・自由流出",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。公式の中心論点、条件、選択肢の一意性を確認し、やさしい解説を標準表示へ統合。必要な式・途中手順・図との対応を同じ設問内に整理。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "出口で過剰な値を固定",
           "3": "亜音速の条件数を適用",
           "4": "入口にも必要な値を与えない"
         },
-        "sha256": "2e94f145809e638a8620bfeb6943e6b790691492aa5ae7ca2c8ec6595fcba98e"
+        "sha256": "acacf7a502106342ebcf966694e41e1d38534a5257d0f3154dfcbcc617826293"
       },
       "easyExplanation": [
         {
@@ -728,7 +2034,115 @@
           "body": "選択肢2は出口で過剰に値を固定しています。選択肢3は亜音速での条件数に対応します。選択肢4は入口の情報まで指定しないため不適切です。"
         }
       ],
-      "answerSummary": "①です。入口で5つの独立変数を与え、出口では内部から来た情報を流出させます。"
+      "answerSummary": "超音速流入：情報が全て流入側から領域内に入ります。\n超音速流出：情報は領域内から流出方向へ進みます。",
+      "officialQuestionItems": [
+        "in",
+        "out"
+      ],
+      "sharedQuestion": "マッハ数2の超音速流中に置かれた航空機まわりの3次元数値計算を行う。流入・流出面はいずれも主流に垂直で、境界上の流れは面に垂直な方向にも超音速とする。密度・速度3成分・静温の5つの独立変数について、流入・流出の条件を別々に答えてください。",
+      "studyParts": [
+        {
+          "id": "num7-11-item-in",
+          "number": "7-11",
+          "officialRef": "問7-11",
+          "officialQuestionItem": "in",
+          "title": "超音速流入",
+          "topic": "超音速流・特性線・自由流出",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "流入面で独立な5変数をどう扱いますか。",
+          "choices": [
+            "全て内部から外挿する",
+            "全て外部から指定する"
+          ],
+          "answer": 2,
+          "answerSummary": "情報が全て流入側から領域内に入ります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "境界法線方向にも超音速という条件が重要です。"
+            },
+            {
+              "title": "情報が境界を通る向きで、与える条件を決める",
+              "body": "圧力の小さな変化は音として伝わります。空気が音速より速く下流へ進めば、流れに逆らう音も地上から見ると下流へ運ばれます。本問では入口・出口に垂直な速度も超音速なので、情報は全て下流へ進みます。"
+            },
+            {
+              "title": "マッハ2なら、逆向きの音も戻れない",
+              "body": "流速をU、音速をcとすると、主流方向の代表的な情報の速さは $U-c$、$U$、$U+c$ です。$U=2c$ を入れると $c,2c,3c$ で全て正になります。3次元ではUの速さで伝わるものが3種類あり、合わせて5種類の情報です。",
+              "figures": [
+                {
+                  "figureImage": "t2e7SupersonicChar",
+                  "caption": "U＝2cなら3種類の速さは全て右向きです。入口から入った情報が、出口から出ていきます。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】情報が全て流入側から領域内に入ります。\n【考え方】正解は2です。境界法線方向にも超音速という条件が重要です。\n【ポイント】圧力の小さな変化は音として伝わります。空気が音速より速く下流へ進めば、流れに逆らう音も地上から見ると下流へ運ばれます。本問では入口・出口に垂直な速度も超音速なので、情報は全て下流へ進みます。\n【引っかけ】1：「全て内部から外挿する」ではなく、全て外部から指定するです。境界法線方向にも超音速という条件が重要です。",
+          "relatedFormulas": [
+            "t2ch7-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "超音速流・特性線・自由流出／個別の質問：超音速流入",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「全て内部から外挿する」ではなく、全て外部から指定するです。境界法線方向にも超音速という条件が重要です。"
+            },
+            "sha256": "64707330601d14239143c403f6fb2bf8eb8090cdb87ce05580699e95db2190fb"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num7-11-item-out",
+          "number": "7-11",
+          "officialRef": "問7-11",
+          "officialQuestionItem": "out",
+          "title": "超音速流出",
+          "topic": "超音速流・特性線・自由流出",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "流出面で独立な5変数をどう扱いますか。",
+          "choices": [
+            "内部から外挿し自由流出とする",
+            "全て外部の固定値を指定する"
+          ],
+          "answer": 1,
+          "answerSummary": "情報は領域内から流出方向へ進みます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "勾配0は代表的な外挿です。出口から圧力などを余分に固定して内部解を拘束しません。"
+            },
+            {
+              "title": "入口で与え、出口では内部の解を使う",
+              "body": "入口では全ての情報が領域に入るため、密度・速度3成分・静温の5つを指定します。出口では全てが出ていくので、外側から値を固定して押し戻しません。代表的な近似として、全変数の流れ方向勾配ゼロの自由流出条件を使います。勾配0だけが唯一の流出方法という意味ではありません。"
+            },
+            {
+              "title": "亜音速の条件を混ぜない",
+              "body": "亜音速では $U-c<0$ となり、情報の一部が上流へ戻れます。そのため出口静圧などを指定する条件数になります。本問は入口・出口とも超音速という条件が判断の鍵です。"
+            }
+          ],
+          "explanation": "【基礎】情報は領域内から流出方向へ進みます。\n【考え方】正解は1です。勾配0は代表的な外挿です。出口から圧力などを余分に固定して内部解を拘束しません。\n【ポイント】入口では全ての情報が領域に入るため、密度・速度3成分・静温の5つを指定します。出口では全てが出ていくので、外側から値を固定して押し戻しません。代表的な近似として全変数の勾配0の自由流出を使う①です。勾配0だけが唯一の流出方法という意味ではありません。\n【引っかけ】2：「全て外部の固定値を指定する」ではなく、内部から外挿し自由流出とするです。勾配0は代表的な外挿です。出口から圧力などを余分に固定して内部解を拘束しません。",
+          "relatedFormulas": [
+            "t2ch7-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "超音速流・特性線・自由流出／個別の質問：超音速流出",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「全て外部の固定値を指定する」ではなく、内部から外挿し自由流出とするです。勾配0は代表的な外挿です。出口から圧力などを余分に固定して内部解を拘束しません。"
+            },
+            "sha256": "b1da2e01e8b82ef77bbf918036cc5b82170fb6f6d7fa57401e97a4be8f860e64"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "num7-12",
@@ -765,7 +2179,7 @@
           "2": "地面の摩擦を除く",
           "3": "相対速度の向きを逆にする"
         },
-        "sha256": "05630ab97ffbe2e54a3db6e4343a700771f399052e734b17d21a8689f6d8955a"
+        "sha256": "09e17e5837b93fad47eaafe8d87d22701c9ae1f132fe84d9b9db698835c44bc6"
       },
       "preFigureImage": "t2e7Q12Before",
       "easyExplanation": [
@@ -798,6 +2212,9 @@
           "figureImage": "t2e7Q12Before",
           "caption": "矢印は地面から見た車の走行方向です。計算は車に固定した座標系で行います。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     }
   ]

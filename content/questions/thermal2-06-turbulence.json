@@ -8,7 +8,8 @@
     "count": 16,
     "officialCount": 16,
     "presentationStyle": "cae-standard-v1",
-    "explanationMode": "guided"
+    "explanationMode": "guided",
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -46,7 +47,7 @@
           "3": "kと散逸率のべきが不適切",
           "4": "散逸率を余分に割る"
         },
-        "sha256": "50236bef6fe41427830cded537fb6ad86e368905f80cd033c28fd7e0577859b5"
+        "sha256": "31b774e13fd377d619f5e23129fc9dd81131810387dc6cfedbfef20d7157b95e"
       },
       "easyExplanation": [
         {
@@ -76,7 +77,10 @@
           "body": "選択肢1はkの2乗が不足し、選択肢3と4は散逸率を余分に1回割っています。いずれも動粘性と同じ単位になりません。"
         }
       ],
-      "answerSummary": "② $\\nu_t\\propto k^2/\\varepsilon$ です。割り算後の単位が $\\mathrm{m^2/s}$ になります。"
+      "answerSummary": "② $\\nu_t\\propto k^2/\\varepsilon$ です。割り算後の単位が $\\mathrm{m^2/s}$ になります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "num6-2",
@@ -113,7 +117,7 @@
           "3": "非対角を垂直と呼ぶ",
           "4": "対角をせん断と呼ぶ"
         },
-        "sha256": "5c20ffce32fa88d739bf82df1f6ea9cecf18de9dc0cab5d1f715de93f1c253de"
+        "sha256": "a28262b5984a43df73ad540f602f08cf22b7ed42273f6e51fa029ef0939f9cd5"
       },
       "easyExplanation": [
         {
@@ -139,7 +143,10 @@
           "body": "選択肢2は対称を反対称としています。選択肢3は非対角を垂直、選択肢4は対角をせん断と呼んでいます。"
         }
       ],
-      "answerSummary": "①です。対角成分の和は $R_{11}+R_{22}+R_{33}=2k$ です。"
+      "answerSummary": "①です。対角成分の和は $R_{11}+R_{22}+R_{33}=2k$ です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "num6-3",
@@ -176,7 +183,7 @@
           "2": "格子細分でモデル誤差も消えるとする",
           "4": "LESの非定常な大渦の解像を無視"
         },
-        "sha256": "a18d53358340b76fd39608ea8fb38e59973aebe194e1f793ae589c76ae2a7208"
+        "sha256": "744c8c37f82741b152f080d2d216c24c57c985e851f95dcf747f0f089aa3e216"
       },
       "easyExplanation": [
         {
@@ -202,7 +209,10 @@
           "body": "選択肢1は負荷の順序を逆にしています。選択肢2は格子を細かくすればモデルの仮定もなくなるとしています。選択肢4はLESが大きな渦の時間変化を追うことを見落としています。"
         }
       ],
-      "answerSummary": "③です。通常の計算時間はRANS＜LES＜DNSの順に大きくなります。"
+      "answerSummary": "③です。通常の計算時間はRANS＜LES＜DNSの順に大きくなります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "num6-4",
@@ -239,7 +249,7 @@
           "2": "RSMの安定性を過大評価",
           "3": "非等方性への適性が逆"
         },
-        "sha256": "06441bf7b6b996c5e1809060fcbb08265387ce3eb38aaabf9a1fbd882360f8e1"
+        "sha256": "2d040e1980cb17e7e81658c2ec2d6e775cfd99ff7da6b03e4cef3134351b545c"
       },
       "easyExplanation": [
         {
@@ -265,7 +275,10 @@
           "body": "選択肢1は計算負荷が低いという点が誤りです。選択肢2はRSMなら安定性も優れるとする一般化が不適切です。選択肢3は方向差が重要なときの両モデルの適性を逆にしています。"
         }
       ],
-      "answerSummary": "④です。方向による乱れの違いが重要なら応力モデルが適しますが、計算負荷は高くなります。"
+      "answerSummary": "④です。方向による乱れの違いが重要なら応力モデルが適しますが、計算負荷は高くなります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "num6-5",
@@ -300,7 +313,7 @@
           "3": "プラントル数をレイノルズ数と混同",
           "4": "比を解く乗除が逆"
         },
-        "sha256": "0a1eec3f282d7f541be65055be864b984cfaf2a675930e87d221f40d7e00723c"
+        "sha256": "ec994891aeeb6412020903d416d1899105d141885c4196add406a4c24c7fb469"
       },
       "easyExplanation": [
         {
@@ -320,7 +333,10 @@
           "body": "選択肢2は渦拡散係数を熱伝達率と混同しています。選択肢3は乱流プラントル数をレイノルズ数としています。選択肢4は比を解くときの乗除が逆です。"
         }
       ],
-      "answerSummary": "①です。渦粘性係数 $\\nu_t$ の単位は $\\mathrm{m^2/s}$ です。"
+      "answerSummary": "①です。渦粘性係数 $\\nu_t$ の単位は $\\mathrm{m^2/s}$ です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "num6-6",
@@ -357,7 +373,7 @@
           "3": "散逸を分子拡散とする",
           "4": "分子拡散を生成とする"
         },
-        "sha256": "2f5d519e910ffdc85533d87c5043d13e937e223da6a2ddd91077c1977859b49d"
+        "sha256": "741300ebe62a9d76a127f5226d6f3697a906ac239d895be38f299bfab58ec4da"
       },
       "easyExplanation": [
         {
@@ -383,7 +399,10 @@
           "body": "選択肢1は生成を散逸としています。選択肢3は散逸を分子拡散としています。選択肢4は分子拡散を生成としています。"
         }
       ],
-      "answerSummary": "②です。$D_2$ は渦粘性を用いて表した乱流拡散項です。"
+      "answerSummary": "②です。$D_2$ は渦粘性を用いて表した乱流拡散項です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "num6-7",
@@ -420,7 +439,7 @@
           "2": "実際の方向差をモデル予測と混同",
           "4": "せん断も全域で0とする"
         },
-        "sha256": "a321bc32d3486525271362a830338ad6f04350bf6587cd036d453d09f029866f"
+        "sha256": "2cb4ac7e8d365a0d0ac93bdafeca03892a591d64eb7f8cb5235ed3244dc03855"
       },
       "easyExplanation": [
         {
@@ -450,7 +469,10 @@
           "body": "選択肢1と2は方向差のある応力をモデルが出すとしています。選択肢2は典型的な実際の順序に近くても、今回のモデルの予測ではありません。選択肢4はせん断応力まで全域で0にしています。"
         }
       ],
-      "answerSummary": "③です。このモデルでは3つの垂直応力が全て $2k/3$ になります。"
+      "answerSummary": "③です。このモデルでは3つの垂直応力が全て $2k/3$ になります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "num6-8",
@@ -479,13 +501,13 @@
       ],
       "editorialReview": {
         "officialPoint": "モデル定数の標準値",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。公式の中心論点、条件、選択肢の一意性を確認し、やさしい解説を標準表示へ統合。必要な式・途中手順・図との対応を同じ設問内に整理。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "0.09の桁を誤る",
           "2": "1.92を2.92とする",
           "3": "拡散の2定数を逆にする"
         },
-        "sha256": "e4844667a231dbf6d36e27a8069804985218e4e58ab13ca44fecdf93b4af1ae2"
+        "sha256": "693dc0cf5c2dd0473ca448865a9a7ec5bb8eee5bd916e3b9323bb58f3dce7186"
       },
       "easyExplanation": [
         {
@@ -501,7 +523,221 @@
           "body": "選択肢1は0.09を0.9にしています。選択肢2は最後の1.92を2.92にしています。選択肢3はkと散逸率の拡散定数を逆にしています。"
         }
       ],
-      "answerSummary": "④ $(0.09,1.0,1.3,1.44,1.92)$ です。"
+      "answerSummary": "Cμ：標準値は0.09です。\nσk：kの拡散に関する標準値は1.0です。\nσε：εの拡散に関する標準値は1.3です。\nCε1：生成項側の標準値は1.44です。\nCε2：消滅項側の標準値は1.92です。",
+      "sharedQuestion": "標準 $k$–$\\varepsilon$ モデルの通常の係数を答えます。改良モデルの値と混同しないようにします。",
+      "studyParts": [
+        {
+          "id": "num6-8-item-cmu",
+          "number": "6-8",
+          "officialRef": "問6-8",
+          "officialQuestionItem": "cmu",
+          "title": "Cμ",
+          "topic": "モデル定数の標準値",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$C_\\mu$ はどれですか。",
+          "choices": [
+            "0.09",
+            "0.9"
+          ],
+          "answer": 1,
+          "answerSummary": "標準値は0.09です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$\\nu_t=C_\\mu k^2/\\varepsilon$ の係数で、乱流粘性の大きさを調整します。"
+            },
+            {
+              "title": "5つの定数を、役割と組にする",
+              "body": "$C_\\mu=0.09$ は $\\nu_t=C_\\mu k^2/\\varepsilon$ の係数です。$\\sigma_k=1.0$ と $\\sigma_\\varepsilon=1.3$ はkと散逸率の拡散の係数です。$C_{\\varepsilon1}=1.44$ と $C_{\\varepsilon2}=1.92$ は散逸率の輸送方程式に使う定数です。"
+            },
+            {
+              "title": "物性値ではなく、標準モデルの係数",
+              "body": "これらは代表的な乱流の実験や理論との整合から選ばれたモデル定数です。密度や分子粘度のように材料だけで決まる値ではなく、モデルの種類が変われば同じ組とは限りません。本問は「標準」の組を尋ねています。小数点の位置と、k・εの拡散定数の並びを確かめます。"
+            }
+          ],
+          "explanation": "【基礎】標準値は0.09です。\n【考え方】正解は1です。$\\nu_t=C_\\mu k^2/\\varepsilon$ の係数で、乱流粘性の大きさを調整します。\n【ポイント】$C_\\mu=0.09$ は $\\nu_t=C_\\mu k^2/\\varepsilon$ の係数です。$\\sigma_k=1.0$ と $\\sigma_\\varepsilon=1.3$ はkと散逸率の拡散の係数です。$C_{\\varepsilon1}=1.44$ と $C_{\\varepsilon2}=1.92$ は散逸率の輸送方程式に使う定数です。この順でそろうのが④です。\n【引っかけ】2：「0.9」ではなく、0.09です。$\\nu_t=C_\\mu k^2/\\varepsilon$ の係数で、乱流粘性の大きさを調整します。",
+          "relatedFormulas": [
+            "t2ch6-8"
+          ],
+          "editorialReview": {
+            "officialPoint": "モデル定数の標準値／個別の質問：Cμ",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「0.9」ではなく、0.09です。$\\nu_t=C_\\mu k^2/\\varepsilon$ の係数で、乱流粘性の大きさを調整します。"
+            },
+            "sha256": "a0598b2e2ec539a0bd14cd3ceb95bd2fb2f2f8422aef6760d5868198340eaa13"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num6-8-item-sk",
+          "number": "6-8",
+          "officialRef": "問6-8",
+          "officialQuestionItem": "sk",
+          "title": "σk",
+          "topic": "モデル定数の標準値",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$\\sigma_k$ はどれですか。",
+          "choices": [
+            "1.3",
+            "1.0"
+          ],
+          "answer": 2,
+          "answerSummary": "kの拡散に関する標準値は1.0です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "kとεの拡散係数を入れ替えないようにします。"
+            }
+          ],
+          "explanation": "【基礎】kの拡散に関する標準値は1.0です。\n【考え方】正解は2です。kとεの拡散係数を入れ替えないようにします。\n【ポイント】kの拡散に関する標準値は1.0です。\n【引っかけ】1：「1.3」ではなく、1.0です。kとεの拡散係数を入れ替えないようにします。",
+          "relatedFormulas": [
+            "t2ch6-8"
+          ],
+          "editorialReview": {
+            "officialPoint": "モデル定数の標準値／個別の質問：σk",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「1.3」ではなく、1.0です。kとεの拡散係数を入れ替えないようにします。"
+            },
+            "sha256": "c588ab025646961717bf4a5a4c4bd414a2294c443d3ebf8d1fb536c8cf3834ec"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num6-8-item-se",
+          "number": "6-8",
+          "officialRef": "問6-8",
+          "officialQuestionItem": "se",
+          "title": "σε",
+          "topic": "モデル定数の標準値",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$\\sigma_\\varepsilon$ はどれですか。",
+          "choices": [
+            "1.0",
+            "1.3"
+          ],
+          "answer": 2,
+          "answerSummary": "εの拡散に関する標準値は1.3です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "kの式の1.0とは別の係数です。"
+            }
+          ],
+          "explanation": "【基礎】εの拡散に関する標準値は1.3です。\n【考え方】正解は2です。kの式の1.0とは別の係数です。\n【ポイント】εの拡散に関する標準値は1.3です。\n【引っかけ】1：「1.0」ではなく、1.3です。kの式の1.0とは別の係数です。",
+          "relatedFormulas": [
+            "t2ch6-8"
+          ],
+          "editorialReview": {
+            "officialPoint": "モデル定数の標準値／個別の質問：σε",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「1.0」ではなく、1.3です。kの式の1.0とは別の係数です。"
+            },
+            "sha256": "0825e6137cee87b473b242c3d622126b31d238fa3fc2e49acc72188869f8b1a5"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num6-8-item-ce1",
+          "number": "6-8",
+          "officialRef": "問6-8",
+          "officialQuestionItem": "ce1",
+          "title": "Cε1",
+          "topic": "モデル定数の標準値",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$C_{\\varepsilon1}$ はどれですか。",
+          "choices": [
+            "1.44",
+            "1.92"
+          ],
+          "answer": 1,
+          "answerSummary": "生成項側の標準値は1.44です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "ε方程式で生成の効果を調整する係数です。"
+            }
+          ],
+          "explanation": "【基礎】生成項側の標準値は1.44です。\n【考え方】正解は1です。ε方程式で生成の効果を調整する係数です。\n【ポイント】生成項側の標準値は1.44です。\n【引っかけ】2：「1.92」ではなく、1.44です。ε方程式で生成の効果を調整する係数です。",
+          "relatedFormulas": [
+            "t2ch6-8"
+          ],
+          "editorialReview": {
+            "officialPoint": "モデル定数の標準値／個別の質問：Cε1",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「1.92」ではなく、1.44です。ε方程式で生成の効果を調整する係数です。"
+            },
+            "sha256": "3ba01ee8a1d4842c5af4245a828e9309e6f9f04d260c4dc5c66ae2210260710c"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num6-8-item-ce2",
+          "number": "6-8",
+          "officialRef": "問6-8",
+          "officialQuestionItem": "ce2",
+          "title": "Cε2",
+          "topic": "モデル定数の標準値",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$C_{\\varepsilon2}$ はどれですか。",
+          "choices": [
+            "1.44",
+            "1.92"
+          ],
+          "answer": 2,
+          "answerSummary": "消滅項側の標準値は1.92です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "ε方程式の消滅項に現れます。これらは流体の粘度のような物性値ではなくモデルの係数です。"
+            }
+          ],
+          "explanation": "【基礎】消滅項側の標準値は1.92です。\n【考え方】正解は2です。ε方程式の消滅項に現れます。これらは流体の粘度のような物性値ではなくモデルの係数です。\n【ポイント】消滅項側の標準値は1.92です。\n【引っかけ】1：「1.44」ではなく、1.92です。ε方程式の消滅項に現れます。これらは流体の粘度のような物性値ではなくモデルの係数です。",
+          "relatedFormulas": [
+            "t2ch6-8"
+          ],
+          "editorialReview": {
+            "officialPoint": "モデル定数の標準値／個別の質問：Cε2",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「1.44」ではなく、1.92です。ε方程式の消滅項に現れます。これらは流体の粘度のような物性値ではなくモデルの係数です。"
+            },
+            "sha256": "19d59bda2808c0dfefce2dabdb6742852aff7d3f293cab8b2ef68136aa53e4b0"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "cmu",
+        "sk",
+        "se",
+        "ce1",
+        "ce2"
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "num6-9",
@@ -538,7 +774,7 @@
           "2": "標準型を無修正で壁まで適用",
           "3": "低Re型の壁面減衰を否定"
         },
-        "sha256": "7427161e3ba113eab4ea1560e39ccfc557581d317fe98c621dbfe8fbb009d086"
+        "sha256": "e5f70f9af463b5c61918807d764bc0c8a814e9a7120076daeee98204a916f6db"
       },
       "easyExplanation": [
         {
@@ -564,7 +800,10 @@
           "body": "選択肢1は低Re型を高Re流れから除外しています。選択肢2は標準型を無修正で壁まで使えるとしています。選択肢3は低Re型が壁の減衰を考慮しないとしています。"
         }
       ],
-      "answerSummary": "④です。標準モデルをそのまま壁まで使っても、粘性底層は正しく表せません。"
+      "answerSummary": "④です。標準モデルをそのまま壁まで使っても、粘性底層は正しく表せません。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "num6-10",
@@ -601,7 +840,7 @@
           "2": "SAの未知量をkとする",
           "4": "0方程式を1方程式とする"
         },
-        "sha256": "499c0f4dcc7522d62f79bba1d976b68bb34d9b217ef3df98def6497b3f113f0d"
+        "sha256": "029c7c329ae6e7b2db31ba7f5f4dc8f30466c6377ea70defb68871c8e1949a39"
       },
       "easyExplanation": [
         {
@@ -627,7 +866,10 @@
           "body": "選択肢1は0方程式を2方程式、選択肢2はSAの変数をk、選択肢4は0方程式を1方程式としています。"
         }
       ],
-      "answerSummary": "③です。SSTモデルはkとωの2本の輸送方程式を解きます。"
+      "answerSummary": "③です。SSTモデルはkとωの2本の輸送方程式を解きます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "num6-11",
@@ -664,7 +906,7 @@
           "2": "壁関数の適用条件を無視",
           "4": "高Prの温度層の薄さを逆にする"
         },
-        "sha256": "d0729d5321722a487b4bd0a3562bf588386e82e64770241ef3463bf814e746b2"
+        "sha256": "8e66e776d5992a1cca4721df0cda4fc7d8668021d3969dd3b6222eef3712d4b0"
       },
       "easyExplanation": [
         {
@@ -690,7 +932,10 @@
           "body": "選択肢1はRANSで原理的に予測不能としています。選択肢2は空気用壁関数の適用条件を確認していません。選択肢4は高Prほど温度層が厚いとしており逆です。"
         }
       ],
-      "answerSummary": "③です。壁に近づくときの渦粘性の変化を適切に表すモデルが重要です。"
+      "answerSummary": "③です。壁に近づくときの渦粘性の変化を適切に表すモデルが重要です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "num6-12",
@@ -727,7 +972,7 @@
           "2": "応力各成分を独立に扱えるとする",
           "3": "Csを普遍定数とする"
         },
-        "sha256": "5169daa2f8cddb8e2e877df1660c72669fe4c3c72e6dcf2db8441bf353ca2d62"
+        "sha256": "91e5271211819c3b852a70f43205cf4169ffb0eb857ff2d34d649a15eb4750d9"
       },
       "easyExplanation": [
         {
@@ -757,7 +1002,10 @@
           "body": "選択肢1は壁面減衰の影響を過小評価しています。選択肢2は応力の方向差を独立に表すモデルと混同しています。選択肢3は定数を普遍値としています。"
         }
       ],
-      "answerSummary": "④です。$C_S=0.1$ は一つの目安であり、全ての流れに共通の普遍定数ではありません。"
+      "answerSummary": "④です。$C_S=0.1$ は一つの目安であり、全ての流れに共通の普遍定数ではありません。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "num6-13",
@@ -788,13 +1036,13 @@
       ],
       "editorialReview": {
         "officialPoint": "RANSの適用範囲",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。公式の中心論点、条件、選択肢の一意性を確認し、やさしい解説を標準表示へ統合。必要な式・途中手順・図との対応を同じ設問内に整理。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "平均場イまで不適とする",
           "3": "瞬時の広い渦スケールも解像するとする",
           "4": "平均場アとイも不適とする"
         },
-        "sha256": "7505c0cd50f2814494f235804e7e4cb56ac5fc079c0425f10b4b5ff7e70ee478"
+        "sha256": "be819a6025db11d03511967280314035959a125524be144219f612c8ba2afaae"
       },
       "easyExplanation": [
         {
@@ -820,7 +1068,151 @@
           "body": "選択肢1は平均場のイも不適とし、選択肢3は瞬時の広い渦スケールまで通常のRANSで得られるとし、選択肢4は平均場のア・イも除外しています。"
         }
       ],
-      "answerSummary": "②です。ア・イの平均速度場はRANSの対象ですが、ウの幅広い瞬時の乱流変動そのものは得られません。"
+      "answerSummary": "乱流境界層の平均：代表的な適用対象です。\n平行平板間流れの平均：平均場はRANSで扱う対象です。\n全スケールの瞬時変動：平均化で失われる乱れを全て直接解く方法ではありません。",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "sharedQuestion": "通常のRANSが何を予測する方法かを踏まえ、各対象への適用を判断します。",
+      "studyParts": [
+        {
+          "id": "num6-13-item-a",
+          "number": "6-13",
+          "officialRef": "問6-13",
+          "officialQuestionItem": "a",
+          "title": "乱流境界層の平均",
+          "topic": "RANSの適用範囲",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "圧力勾配のない乱流境界層の平均速度場の予測に適しますか。",
+          "choices": [
+            "適する",
+            "適さない"
+          ],
+          "answer": 1,
+          "answerSummary": "代表的な適用対象です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "瞬時の乱れを平均化し、平均速度の分布を求めます。"
+            },
+            {
+              "title": "平均を知ることと、毎瞬の動きを知ることは違う",
+              "body": "川のある地点の平均流速を知るだけなら、細かな揺れを一つずつ再現する必要はありません。しかし、その瞬間にどの渦がどこへ動くかを知りたいなら、平均値だけでは足りません。RANSは乱れの効果をモデルで補い、平均量を計算する方法です。",
+              "figures": [
+                {
+                  "figureImage": "t2e6_13",
+                  "caption": "赤い瞬時変動を平均すると青い平均値になります。青い値を知ることから、赤い細かな波形がそのまま分かるわけではありません。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】代表的な適用対象です。\n【考え方】正解は1です。瞬時の乱れを平均化し、平均速度の分布を求めます。\n【ポイント】川のある地点の平均流速を知るだけなら、細かな揺れを一つずつ再現する必要はありません。しかし、その瞬間にどの渦がどこへ動くかを知りたいなら、平均値だけでは足りません。RANSは乱れの効果をモデルで補い、平均量を計算する方法です。\n【引っかけ】2：「適さない」ではなく、適するです。瞬時の乱れを平均化し、平均速度の分布を求めます。",
+          "relatedFormulas": [
+            "t2ch6-12"
+          ],
+          "editorialReview": {
+            "officialPoint": "RANSの適用範囲／個別の質問：乱流境界層の平均",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「適さない」ではなく、適するです。瞬時の乱れを平均化し、平均速度の分布を求めます。"
+            },
+            "sha256": "807176112409905a9db8985a52df8ea63d12f88a29f2d22a4b72478e62017193"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num6-13-item-b",
+          "number": "6-13",
+          "officialRef": "問6-13",
+          "officialQuestionItem": "b",
+          "title": "平行平板間流れの平均",
+          "topic": "RANSの適用範囲",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "十分発達した平行平板間乱流の平均速度場の予測に適しますか。",
+          "choices": [
+            "適さない",
+            "適する"
+          ],
+          "answer": 2,
+          "answerSummary": "平均場はRANSで扱う対象です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "壁付近のモデルと格子が適切であることは必要ですが、乱流だからRANSを使えないわけではありません。"
+            },
+            {
+              "title": "各対象が何を求めているかを見る",
+              "body": "アの乱流境界層、イの平行平板間乱流は、どちらも平均速度場が目的です。適切なモデルと条件のもとでRANSの代表的な対象になります。ウは円柱の後方の幅広いスケールの瞬時変動が目的なので、通常のRANSでは不足します。"
+            }
+          ],
+          "explanation": "【基礎】平均場はRANSで扱う対象です。\n【考え方】正解は2です。壁付近のモデルと格子が適切であることは必要ですが、乱流だからRANSを使えないわけではありません。\n【ポイント】アの乱流境界層、イの平行平板間乱流は、どちらも平均速度場が目的です。適切なモデルと条件のもとでRANSの代表的な対象になります。ウは円柱の後方の幅広いスケールの瞬時変動が目的なので、通常のRANSでは不足します。\n【引っかけ】1：「適さない」ではなく、適するです。壁付近のモデルと格子が適切であることは必要ですが、乱流だからRANSを使えないわけではありません。",
+          "relatedFormulas": [
+            "t2ch6-12"
+          ],
+          "editorialReview": {
+            "officialPoint": "RANSの適用範囲／個別の質問：平行平板間流れの平均",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「適さない」ではなく、適するです。壁付近のモデルと格子が適切であることは必要ですが、乱流だからRANSを使えないわけではありません。"
+            },
+            "sha256": "841f2f30737e8976b9af1b88d2fafbd59187c125e7abb7ecee8f6626641b7150"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num6-13-item-c",
+          "number": "6-13",
+          "officialRef": "問6-13",
+          "officialQuestionItem": "c",
+          "title": "全スケールの瞬時変動",
+          "topic": "RANSの適用範囲",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "円柱まわりの乱流渦の広いスケールにわたる瞬時変動そのものを通常のRANSで予測できますか。",
+          "choices": [
+            "できない",
+            "できる"
+          ],
+          "answer": 1,
+          "answerSummary": "平均化で失われる乱れを全て直接解く方法ではありません。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "非定常RANSで大きな周期変動を扱う場合もありますが、全ての乱流スケールを解像する意味ではありません。"
+            },
+            {
+              "title": "非定常RANSもあるが、全ての渦を解くわけではない",
+              "body": "非定常RANSで大規模な周期変動を扱うことはあります。それでも、あらゆる乱流渦の瞬時の動きを直接解像する意味ではありません。「非定常だから必ず不可」ではなく、「何の平均・変動を知りたいか」で判断します。"
+            }
+          ],
+          "explanation": "【基礎】平均化で失われる乱れを全て直接解く方法ではありません。\n【考え方】正解は1です。非定常RANSで大きな周期変動を扱う場合もありますが、全ての乱流スケールを解像する意味ではありません。\n【ポイント】非定常RANSで大規模な周期変動を扱うことはあります。それでも、あらゆる乱流渦の瞬時の動きを直接解像する意味ではありません。「非定常だから必ず不可」ではなく、「何の平均・変動を知りたいか」で判断します。\n【引っかけ】2：「できる」ではなく、できないです。非定常RANSで大きな周期変動を扱う場合もありますが、全ての乱流スケールを解像する意味ではありません。",
+          "relatedFormulas": [
+            "t2ch6-12"
+          ],
+          "editorialReview": {
+            "officialPoint": "RANSの適用範囲／個別の質問：全スケールの瞬時変動",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「できる」ではなく、できないです。非定常RANSで大きな周期変動を扱う場合もありますが、全ての乱流スケールを解像する意味ではありません。"
+            },
+            "sha256": "a0c9c2a336c05c8486c73f54d8c8feae8e6b7fde51c99e5c77f29fccb7714131"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "num6-14",
@@ -851,13 +1243,13 @@
       ],
       "editorialReview": {
         "officialPoint": "定常層流/カルマン渦/乱流の遷移",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。公式の中心論点、条件、選択肢の一意性を確認し、やさしい解説を標準表示へ統合。必要な式・途中手順・図との対応を同じ設問内に整理。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "非定常条件も定常層流とする",
           "3": "Re100の渦放出を定常とする",
           "4": "高Reだけを定常層流とする"
         },
-        "sha256": "8addc5ae7a94680cb19046b4951f2b5d3f69c2be0784ee91a21f30ebd6c9d4c2"
+        "sha256": "e35cca2172628ca044b59e723d6271624a6690c2024b9023b0d0adf7002f598f"
       },
       "easyExplanation": [
         {
@@ -883,7 +1275,151 @@
           "body": "選択肢2は全条件を定常層流、選択肢3はRe=100も定常としています。選択肢4は低Reを除いて乱れた高Reだけを層流定常で扱えるとしています。"
         }
       ],
-      "answerSummary": "①です。提示された3条件で層流の定常計算が適するのは、アのRe＝1です。"
+      "answerSummary": "Re＝1：粘性の影響が強い定常層流として扱えます。\nRe＝100：層流でも周期的な渦放出があり、定常とは限りません。\nRe＝10000：非定常性や乱流の影響を無視できません。",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "sharedQuestion": "円柱直径と上流の一様速度で定義したReを使い、層流の定常計算の適否を答えます。",
+      "studyParts": [
+        {
+          "id": "num6-14-item-a",
+          "number": "6-14",
+          "officialRef": "問6-14",
+          "officialQuestionItem": "a",
+          "title": "Re＝1",
+          "topic": "定常層流/カルマン渦/乱流の遷移",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Re＝1に層流の定常計算は適しますか。",
+          "choices": [
+            "適さない",
+            "適する"
+          ],
+          "answer": 2,
+          "answerSummary": "粘性の影響が強い定常層流として扱えます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "円柱後方の周期的な渦放出を考えなくてよい範囲です。"
+            },
+            {
+              "title": "定常と層流は、別の分類",
+              "body": "定常は時間がたっても同じ場所の値が変わらないこと、層流は流れが乱流のように不規則に混ざり合わない状態を指します。層流でも規則的に時間変化することがあります。"
+            }
+          ],
+          "explanation": "【基礎】粘性の影響が強い定常層流として扱えます。\n【考え方】正解は2です。円柱後方の周期的な渦放出を考えなくてよい範囲です。\n【ポイント】定常は時間がたっても同じ場所の値が変わらないこと、層流は流れが乱流のように不規則に混ざり合わない状態を指します。層流でも規則的に時間変化することがあります。\n【引っかけ】1：「適さない」ではなく、適するです。円柱後方の周期的な渦放出を考えなくてよい範囲です。",
+          "relatedFormulas": [
+            "t2ch6-13"
+          ],
+          "editorialReview": {
+            "officialPoint": "定常層流/カルマン渦/乱流の遷移／個別の質問：Re＝1",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「適さない」ではなく、適するです。円柱後方の周期的な渦放出を考えなくてよい範囲です。"
+            },
+            "sha256": "6c711af494fa0e491aa8e8355ff0e6b1d2e2e668140c87ed848ea1aaf6231973"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num6-14-item-b",
+          "number": "6-14",
+          "officialRef": "問6-14",
+          "officialQuestionItem": "b",
+          "title": "Re＝100",
+          "topic": "定常層流/カルマン渦/乱流の遷移",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Re＝100に層流の定常計算は適しますか。",
+          "choices": [
+            "適さない",
+            "適する"
+          ],
+          "answer": 1,
+          "answerSummary": "層流でも周期的な渦放出があり、定常とは限りません。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "乱流でないことと、時間変化がないことは別です。非定常層流として解く必要があります。"
+            },
+            {
+              "title": "円柱後方の変化を比べる",
+              "body": "Re＝1では粘性の影響が強く、定常層流として扱えます。Re＝100では渦が左右交互に放出される非定常層流です。Re＝10000では乱れた後流があり、層流の定常計算では不足します。",
+              "figures": [
+                {
+                  "figureImage": "t2e6_14",
+                  "caption": "中央のRe＝100でも渦の交互放出で時間変化します。「層流なら定常」とは限りません。"
+                }
+              ]
+            },
+            {
+              "title": "Re＝100を定常にしない理由",
+              "body": "交互に渦が出るたび、速度や円柱に作用する力が時間的に変わります。時間変化を止めた計算では、その現象を表せません。なお、円柱の定常層流がRe＝1だけに限られるという意味ではなく、本問は提示された3条件の比較です。"
+            }
+          ],
+          "explanation": "【基礎】層流でも周期的な渦放出があり、定常とは限りません。\n【考え方】正解は1です。乱流でないことと、時間変化がないことは別です。非定常層流として解く必要があります。\n【ポイント】Re＝1では粘性の影響が強く、定常層流として扱えます。Re＝100では渦が左右交互に放出される非定常層流です。Re＝10000では乱れた後流があり、層流の定常計算では不足します。したがってアだけを選ぶ①です。\n【引っかけ】2：「適する」ではなく、適さないです。乱流でないことと、時間変化がないことは別です。非定常層流として解く必要があります。",
+          "relatedFormulas": [
+            "t2ch6-13"
+          ],
+          "editorialReview": {
+            "officialPoint": "定常層流/カルマン渦/乱流の遷移／個別の質問：Re＝100",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「適する」ではなく、適さないです。乱流でないことと、時間変化がないことは別です。非定常層流として解く必要があります。"
+            },
+            "sha256": "134059ddffd6ea0c4ee0bb3a28d17ca33a752b86cddc8104f2c50f349d8c776a"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "num6-14-item-c",
+          "number": "6-14",
+          "officialRef": "問6-14",
+          "officialQuestionItem": "c",
+          "title": "Re＝10000",
+          "topic": "定常層流/カルマン渦/乱流の遷移",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Re＝10000に層流の定常計算は適しますか。",
+          "choices": [
+            "適する",
+            "適さない"
+          ],
+          "answer": 2,
+          "answerSummary": "非定常性や乱流の影響を無視できません。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "定常層流という二つの仮定から外れるため、対象に応じた乱流・非定常解析が必要です。"
+            }
+          ],
+          "explanation": "【基礎】非定常性や乱流の影響を無視できません。\n【考え方】正解は2です。定常層流という二つの仮定から外れるため、対象に応じた乱流・非定常解析が必要です。\n【ポイント】非定常性や乱流の影響を無視できません。\n【引っかけ】1：「適する」ではなく、適さないです。定常層流という二つの仮定から外れるため、対象に応じた乱流・非定常解析が必要です。",
+          "relatedFormulas": [
+            "t2ch6-13"
+          ],
+          "editorialReview": {
+            "officialPoint": "定常層流/カルマン渦/乱流の遷移／個別の質問：Re＝10000",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「適する」ではなく、適さないです。定常層流という二つの仮定から外れるため、対象に応じた乱流・非定常解析が必要です。"
+            },
+            "sha256": "1d213246db4bebb847c5aae4b6fb3f7c98d36e7ef329a4b215f91889c1b5d00c"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "num6-15",
@@ -920,7 +1456,7 @@
           "3": "時間離散誤差を軽視",
           "4": "過大な数値粘性を精度向上に推奨"
         },
-        "sha256": "abe166cdfb90af42b3d1e48f4c25fba69c843626eed654e59e357ff89d9e1ecc"
+        "sha256": "f977355698f13776e93a42a7ebd18c1fdff6c9c7bbac9664401e664a34ac8b8d"
       },
       "easyExplanation": [
         {
@@ -946,7 +1482,10 @@
           "body": "選択肢1は数値粘性を積極的に増やすことを目的化しています。選択肢3は時間誤差を軽視しています。選択肢4は強い数値粘性の低次手法を、精度向上のために勧めています。"
         }
       ],
-      "answerSummary": "②です。数値粘性を抑えた保存性のよい空間離散化と、十分な時間精度を組み合わせます。"
+      "answerSummary": "②です。数値粘性を抑えた保存性のよい空間離散化と、十分な時間精度を組み合わせます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "num6-16",
@@ -981,7 +1520,7 @@
           "3": "低Re型を遷移モデルと混同",
           "4": "直接解像できる条件で追加のSGS散逸を選ぶ"
         },
-        "sha256": "95a48be5c7745a161e3340e9656c52512f15031114accfb823cf1dfab8fb7a51"
+        "sha256": "ec2eb5329a27ab924bc1655307e90fd3cda9880aabfbaf4c6cfa5d846c2ebc77"
       },
       "easyExplanation": [
         {
@@ -1001,7 +1540,10 @@
           "body": "選択肢2と3は発達乱流のモデルをそのまま選び、選択肢4は一定係数スマゴリンスキーの散逸を加えます。これらが全ての遷移計算で原理的に使用不能という主張ではなく、本問の目的と4択に対する選択です。"
         }
       ],
-      "answerSummary": "①です。必要な解像度を確保し、発達乱流用モデルを加えず非定常の直接計算を行います。"
+      "answerSummary": "①です。必要な解像度を確保し、発達乱流用モデルを加えず非定常の直接計算を行います。",
+      "officialQuestionItems": [
+        "main"
+      ]
     }
   ]
 }

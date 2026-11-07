@@ -8,7 +8,8 @@
     "count": 17,
     "officialCount": 17,
     "explanationMode": "guided",
-    "presentationStyle": "cae-standard-v1"
+    "presentationStyle": "cae-standard-v1",
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -68,7 +69,7 @@
           "3": "公称応力を分母にして、理論最大応力基準と取り違える。",
           "4": "外挿すれば理論値との誤差が消えると考える。"
         },
-        "sha256": "358798c05dc2532e4e520c77853aec7ab4e228c95dd3d7f5e7da88ac186ec81f"
+        "sha256": "a271d5e051829502f645146f5ba76cf83b37938bd5befd0f32ed720782bf3771"
       },
       "answerSummary": "正解①：16.0%。",
       "preFigures": [
@@ -77,7 +78,10 @@
           "caption": "問題の形状・荷重・支持条件を確認します。"
         }
       ],
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "ver-11-2",
@@ -115,7 +119,7 @@
           "3": "全周固定を単純支持に取り違える",
           "4": "ヤング率を1桁小さく入力"
         },
-        "sha256": "e3cad2f0a3fba4b28dc748e1cea040cd69281bfa5f2c1e8d3cdcd9f47f313376"
+        "sha256": "e699951385d4262cebf7e5e2e98dbe9cf11b2ba3d1e46c07a0235e1533918138"
       },
       "easyExplanation": [
         {
@@ -148,7 +152,10 @@
           "caption": "問題の形状・荷重・支持条件を確認します。"
         }
       ],
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "ver-11-3",
@@ -207,7 +214,7 @@
           "3": "外挿する傾きの符号を逆にする。",
           "4": "15mmの内部値を表面値として使う。"
         },
-        "sha256": "a356e057caf9cade7ba85bbf6b45876ba539390d1ae12dc4499017b643913c45"
+        "sha256": "41ed8559bdb5b890a22b12e4ae07e09fd7bd61de58f6441653ddbe929fa3071e"
       },
       "answerSummary": "正解①：2.2%。",
       "preFigures": [
@@ -216,7 +223,10 @@
           "caption": "円筒内表面から5mm・15mmの位置で求めた応力を使います。"
         }
       ],
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "ver-11-4",
@@ -274,7 +284,7 @@
           "2": "メッシュ細分で接合や理論の前提の違いも消えるとする。",
           "4": "条件によらずねじり角が必ず半分とする。"
         },
-        "sha256": "de8c3cf296fa3522f35592c67267b26a015eb7a59f63f3cb1a4ecf713e0f1d5b"
+        "sha256": "69a5e3d349858bada53d46dedd806be8df36b4f7f17c2a2a045ab5499699217a"
       },
       "answerSummary": "正解③：溶接間の変形でFEMのねじれが連続閉断面理論より大きくなり得るため、結合・そり拘束・端部条件を確認して比べる。",
       "preFigures": [
@@ -283,7 +293,10 @@
           "caption": "問題の形状・荷重・支持条件を確認します。"
         }
       ],
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "ver-11-5",
@@ -341,7 +354,7 @@
           "2": "偏った荷重でも中央で最大とする。",
           "3": "たわみを拘束した支点を最大位置とする。"
         },
-        "sha256": "8dc3c1e93cfc453c60a574f23b0b9f794edef4f0331522931cc3434ce891ad23"
+        "sha256": "de29c781f6cc2f9b95c4dbcbc61ab8a88c192d3470d0eb7e305cd58dac134783"
       },
       "answerSummary": "正解④：左右非対称にたわみ、最大位置は荷重点より右、中央より左にある。",
       "preFigures": [
@@ -350,7 +363,10 @@
           "caption": "問題の形状・荷重・支持条件を確認します。"
         }
       ],
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "ver-11-6",
@@ -412,7 +428,7 @@
           "2": "集中と分散の変形の大小を逆にする。",
           "3": "P/3ずつの分散Bを中央集中Aより大きいとする。"
         },
-        "sha256": "490bafb99eaf1922e5f2c0f6337bba8bce1c3d4a740a4a414959fc3cce6b2ec0"
+        "sha256": "d4eaacd786d3838108be5b84949c67c809671eb1e77423c0850597cbf1dfea5a"
       },
       "answerSummary": "正解④：A>B>C。",
       "preFigures": [
@@ -421,7 +437,10 @@
           "caption": "Aは中央P、Bは三点に各P/3、Cは全長にP/Lを与えます。"
         }
       ],
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "ver-11-7",
@@ -479,7 +498,7 @@
           "3": "単純支持端で曲げモーメントが最大とする。",
           "4": "一様断面なら曲げモーメントも全長一定とする。"
         },
-        "sha256": "e7126005db076eed050ab805ec04493d4a876b56beed871e50513a41a93624bd"
+        "sha256": "c245bfe0c09f5218d0218aff5809a3945a0f6ee4bf0c273340d9fbaa13808145"
       },
       "answerSummary": "正解②：荷重点x=200 mm。",
       "preFigures": [
@@ -488,7 +507,10 @@
           "caption": "問題の形状・荷重・支持条件を確認します。"
         }
       ],
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "ver-11-8",
@@ -546,7 +568,7 @@
           "2": "変形しない剛体を力も伝えない部材とする。",
           "4": "伝達力の向きとモーメントの力×長さの単位を誤る。"
         },
-        "sha256": "e6a0ac72c6d6fc6216d5a9b6f43cb2312b10263dc7ea916da2ac622e2072e772"
+        "sha256": "7f973896ce42bd92236e5f46b66d8c6e2acfdff8dc3f008782c1a08df3e62d77"
       },
       "answerSummary": "正解③：はり1には軸力Pと曲げモーメントPaが作用し、剛体腕は回転する。はり2は軸伸びをするが、曲げモーメントはゼロ。",
       "preFigures": [
@@ -555,7 +577,10 @@
           "caption": "問題の形状・荷重・支持条件を確認します。"
         }
       ],
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "ver-11-9",
@@ -613,7 +638,7 @@
           "2": "完全接着なのに界面変位を不連続とする。",
           "3": "剛体内の一定変位を周囲の弾性板まで拡張する。"
         },
-        "sha256": "ab8023cdb4382c0d8f15fe34a7c80081b69a8ebd9b2cc06fd87c2f28a979bc82"
+        "sha256": "d5fa0a66d562c1a137d82db4e416c31d2aa6660428dac68c4dfab89477d55a53"
       },
       "answerSummary": "正解④：挿入物内は一定、接着界面で変位は連続。",
       "preFigures": [
@@ -622,7 +647,10 @@
           "caption": "問題の形状・荷重・支持条件を確認します。"
         }
       ],
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "ver-11-10",
@@ -660,7 +688,7 @@
           "3": "外側熱伝達率を過大にして外表面と外気の温度差を消す",
           "4": "完全接触なのに材料界面に温度不連続を設ける"
         },
-        "sha256": "9451f61f516b332e4c3b59eca4666c8ca46a84de648f112deab0e4391f696c30"
+        "sha256": "ea938f40e98419dcb2ca6386da118f0018ffa1be6a578ca88fa9ba5170abca11"
       },
       "easyExplanation": [
         {
@@ -705,7 +733,10 @@
           "caption": "問題の形状・荷重・支持条件を確認します。"
         }
       ],
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "ver-11-11",
@@ -763,7 +794,7 @@
           "3": "つり合いの一致だけで材料やメッシュ精度も保証されたとする。",
           "4": "不一致の原因を荷重入力だけへ限定する。"
         },
-        "sha256": "08e4d54b62a6d188d57d94280749760d3df5a5ccd0f04b393d48a6baa808f84f"
+        "sha256": "ebd93a975ac8efb705cd66acdc3b7eebddbf6cf5caf809868dfedbceaf533fce"
       },
       "answerSummary": "正解①：力とモーメントのつり合いを確認し、不一致なら入力・集計・収束などを調べる。",
       "preFigures": [
@@ -772,7 +803,10 @@
           "caption": "図の荷重と拘束を読み取ります。"
         }
       ],
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "ver-11-12",
@@ -809,7 +843,7 @@
           "2": "力のkgfと面積cm²への換算を見落とす",
           "4": "力のNと重量トンtfの換算を見落とす"
         },
-        "sha256": "9632e61e8decc77575e4fc91a71977ca6cff71be4d524f78304481fa3152129e"
+        "sha256": "906d0a3362432b39c6b660548960b107390975d3018bdf47e8f345d8850df635"
       },
       "easyExplanation": [
         {
@@ -832,7 +866,10 @@
         }
       ],
       "answerSummary": "正解③：N/mm²（MPa）。",
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "ver-11-13",
@@ -881,11 +918,14 @@
           "3": "m系へkg/mm³の数値を換算せず使う。",
           "4": "力/面積である応力を密度と取り違える。"
         },
-        "sha256": "60c3dbc16ed662c1907305534e44689c1a2c0c15d9cf9ff9fac2004ab16950aa"
+        "sha256": "6244d7500d727d8bd93a13338ac4b2299abfcca82eba4b1a0b3f2aa545fa967b"
       },
       "answerSummary": "正解②：kg/m³。",
       "figureExempt": true,
-      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。"
+      "figureExemptReason": "この設問は文章と必要な途中式で判断でき、別図を重ねる必要がないため。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "ver-11-14",
@@ -947,10 +987,13 @@
           "2": "剛性増大時の変位の増減を逆にする。",
           "3": "剛性増大で応力も変位も3倍とする。"
         },
-        "sha256": "d83372189ae119044e45593777949f581a1cab11beb54f63ef4b8eda30711682"
+        "sha256": "89a12aed701c4749fdabfb1722e66ae8f791ef47aab31109fd6b6a4eb50ca5d8"
       },
       "answerSummary": "正解④：応力同じ、変位1/3。",
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "ver-11-15",
@@ -1002,16 +1045,110 @@
       ],
       "editorialReview": {
         "officialPoint": "単位系不整合の影響：GPaとMPaの混同",
-        "alignment": "保存済み固体2級第11章の問題・解説を参照し、現アプリの条件と各肢に対応する新規詳解を作成。公式例とアプリ例の数値を混ぜず、必要な計算と判断理由を確認。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "応力も変位も1000倍とし補正の向きを誤る。",
           "3": "応力を補正し、誤った変位を据え置く。",
           "4": "明記された線形条件でも比例換算で復元できないとする。"
         },
-        "sha256": "16e5094caae3541c81c2ab5e5fc9e6458c536357a465311ebc0ecde647e7b4ac"
+        "sha256": "26aed154aabe6450874682097f2f818f136f47f87485773e97c79305e9e91aa2"
       },
-      "answerSummary": "正解①：応力は同じ、誤計算の変位を1000で割る。",
-      "figureExempt": false
+      "answerSummary": "応力の補正：この条件では応力は同じです。\n変位の補正：誤計算の変位を1000で割ります。",
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "s",
+        "u"
+      ],
+      "sharedQuestion": "単一等方材料の微小変位線形弾性静解析で、全体のνは一定、変位境界はゼロ、力荷重は同じ、熱・初期ひずみはない。mm-N系の正しいE=200000 MPaを、GPaの数値200のまま入力した。応力と変位をそれぞれどう補正するか答えてください。",
+      "studyParts": [
+        {
+          "id": "ver-11-15-item-s",
+          "number": "11-15",
+          "officialRef": "問11-15",
+          "officialQuestionItem": "s",
+          "title": "応力の補正",
+          "topic": "単位系不整合の影響",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "正しい応力は誤計算の応力に比べてどうなるか。",
+          "choices": [
+            "同じ",
+            "1000分の1"
+          ],
+          "answer": 1,
+          "answerSummary": "この条件では応力は同じです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "応力はE×ひずみです。誤計算ではEが1/1000、ひずみが1000倍なので、その積は変わりません。例えば本来0.1mmの変位が誤計算では100mmとなっても、本問の微小変位線形弾性という計算式の中では、応力の倍率は相殺します。実物が100mm動いても微小変形とみなせる、という意味ではありません。"
+            }
+          ],
+          "explanation": "【基礎】この条件では応力は同じです。\n【考え方】正解は1です。応力はE×ひずみです。誤計算ではEが1/1000、ひずみが1000倍なので、その積は変わりません。例えば本来0.1mmの変位が誤計算では100mmとなっても、本問の微小変位線形弾性という計算式の中では、応力の倍率は相殺します。実物が100mm動いても微小変形とみなせる、という意味ではありません。\n【ポイント】この条件では応力は同じです。\n【引っかけ】2：「1000分の1」ではなく、同じです。応力はE×ひずみです。誤計算ではEが1/1000、ひずみが1000倍なので、その積は変わりません。例えば本来0.1mmの変位が誤計算では100mmとなっても、本問の微小変位線形弾性という計算式の中では、応力の倍率は相殺します。実物が100mm動いても微小変形とみなせる、という意味ではありません。",
+          "relatedFormulas": [
+            "input-mistake",
+            "unit-system"
+          ],
+          "editorialReview": {
+            "officialPoint": "単位系不整合の影響：GPaとMPaの混同／個別の質問：応力の補正",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「1000分の1」ではなく、同じです。応力はE×ひずみです。誤計算ではEが1/1000、ひずみが1000倍なので、その積は変わりません。例えば本来0.1mmの変位が誤計算では100mmとなっても、本問の微小変位線形弾性という計算式の中では、応力の倍率は相殺します。実物が100mm動いても微小変形とみなせる、という意味ではありません。"
+            },
+            "sha256": "7d0ae400c3623cd601694efe0aa5ce1056e8c7fbdb9dd489f68ae40a6783b1c4"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "ver-11-15-item-u",
+          "number": "11-15",
+          "officialRef": "問11-15",
+          "officialQuestionItem": "u",
+          "title": "変位の補正",
+          "topic": "単位系不整合の影響",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "正しい変位は誤計算の変位からどう求めるか。",
+          "choices": [
+            "1000で割る",
+            "1000を掛ける"
+          ],
+          "answer": 1,
+          "answerSummary": "誤計算の変位を1000で割ります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "正しい200GPaは $200\\times1000=200000\\,\\mathrm{MPa}$ です。mm-N系へ200と入れると、材料を本来の1/1000のEとして計算します。力が同じ線形解析では、変位とひずみはEに反比例するので、誤計算の値は正しい値の1000倍です。したがって $u_{\\mathrm{correct}}=u_{\\mathrm{wrong}}/1000$ です。",
+              "figures": [
+                {
+                  "figureImage": "ver11UnitMismatch",
+                  "caption": "Eの入力を1000分の1にした計算では、変位・ひずみが1000倍になります。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】誤計算の変位を1000で割ります。\n【考え方】正解は1です。正しい200GPaは $200\\times1000=200000\\,\\mathrm{MPa}$ です。mm-N系へ200と入れると、材料を本来の1/1000のEとして計算します。力が同じ線形解析では、変位とひずみはEに反比例するので、誤計算の値は正しい値の1000倍です。したがって $u_{\\mathrm{correct}}=u_{\\mathrm{wrong}}/1000$ です。\n【ポイント】誤計算の変位を1000で割ります。\n【引っかけ】2：「1000を掛ける」ではなく、1000で割るです。正しい200GPaは $200\\times1000=200000\\,\\mathrm{MPa}$ です。mm-N系へ200と入れると、材料を本来の1/1000のEとして計算します。力が同じ線形解析では、変位とひずみはEに反比例するので、誤計算の値は正しい値の1000倍です。したがって $u_{\\mathrm{correct}}=u_{\\mathrm{wrong}}/1000$ です。",
+          "relatedFormulas": [
+            "input-mistake",
+            "unit-system"
+          ],
+          "editorialReview": {
+            "officialPoint": "単位系不整合の影響：GPaとMPaの混同／個別の質問：変位の補正",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「1000を掛ける」ではなく、1000で割るです。正しい200GPaは $200\\times1000=200000\\,\\mathrm{MPa}$ です。mm-N系へ200と入れると、材料を本来の1/1000のEとして計算します。力が同じ線形解析では、変位とひずみはEに反比例するので、誤計算の値は正しい値の1000倍です。したがって $u_{\\mathrm{correct}}=u_{\\mathrm{wrong}}/1000$ です。"
+            },
+            "sha256": "0ca8226637f53edb0268f234aedd12da5e90d93aaf96ec950940158c68309655"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "ver-11-16",
@@ -1044,13 +1181,13 @@
       ],
       "editorialReview": {
         "officialPoint": "数理モデル・計算モデルとV&V",
-        "alignment": "公式の該当図を参照し、物体形状・比較候補・境界条件と本文の整合を確認。図は標準体裁で独自作図。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "A=計算モデル、B=数理モデル、C=妥当性確認、D=概念モデル",
           "3": "A=数理モデル、B=計算モデル、C=妥当性確認、D=物理モデル",
           "4": "A=物理モデル、B=数理モデル、C=コード検証、D=計算モデル"
         },
-        "sha256": "c9f1009d48c9cb6bf976be7fa850397c315cc9ef8605207b534e9929b257dbb9"
+        "sha256": "1ea7a1ab690ede9585314edda2605e4733f8c83990710f5342f9500bcaac515b"
       },
       "easyExplanation": [
         {
@@ -1076,14 +1213,190 @@
           "body": "例えば入力値をmmで受けると決めた数理モデルを、プログラム側でmと誤解すれば、式の選択以前に実装の対応が崩れます。どの矢印を調べる活動なのかに注目すると、コード検証という名称の意味が分かります。"
         }
       ],
-      "answerSummary": "正解②：A=数理モデル、B=計算モデル、C=コード検証、D=物理モデル。",
+      "answerSummary": "Aのモデル名：Aは数理モデルです。\nBのモデル名：Bは計算モデルです。\nCの活動名：Cはコード検証です。\nDのモデル名：Dは物理モデルです。",
       "preFigures": [
         {
           "figureImage": "s2Before11_16",
           "caption": "計算側A・Bと実験側D、および実装の確認Cの役割を選びます。"
         }
       ],
-      "figureExempt": false
+      "figureExempt": false,
+      "sharedQuestion": "図のA〜Dについて、現象を表す方程式と条件をA、それを離散化して実装したモデルをBとする。AをBへ正しく実装したか調べる活動をC、実験側の試験体や試験装置を表すモデルをDとする。V&Vでの各名称を答えてください。",
+      "studyParts": [
+        {
+          "id": "ver-11-16-item-a",
+          "number": "11-16",
+          "officialRef": "問11-16",
+          "officialQuestionItem": "a",
+          "title": "Aのモデル名",
+          "topic": "V&Vの手順",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "現象を表す方程式と条件Aはどれか。",
+          "choices": [
+            "計算モデル",
+            "数理モデル"
+          ],
+          "answer": 2,
+          "answerSummary": "Aは数理モデルです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "例えば棒の伸びを $\\delta=FL/(EA)$ と表す式と、その適用条件です。この段階はまだプログラムへの実装とは区別します。"
+            }
+          ],
+          "explanation": "【基礎】Aは数理モデルです。\n【考え方】正解は2です。例えば棒の伸びを $\\delta=FL/(EA)$ と表す式と、その適用条件です。この段階はまだプログラムへの実装とは区別します。\n【ポイント】Aは数理モデルです。\n【引っかけ】1：「計算モデル」ではなく、数理モデルです。例えば棒の伸びを $\\delta=FL/(EA)$ と表す式と、その適用条件です。この段階はまだプログラムへの実装とは区別します。",
+          "relatedFormulas": [
+            "asme-flow",
+            "code-verification"
+          ],
+          "editorialReview": {
+            "officialPoint": "数理モデル・計算モデルとV&V／個別の質問：Aのモデル名",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「計算モデル」ではなく、数理モデルです。例えば棒の伸びを $\\delta=FL/(EA)$ と表す式と、その適用条件です。この段階はまだプログラムへの実装とは区別します。"
+            },
+            "sha256": "7fa90e02769891d4631610de7bfba0329069eaa3a4607214983a03ba3a153786"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "ver-11-16-item-b",
+          "number": "11-16",
+          "officialRef": "問11-16",
+          "officialQuestionItem": "b",
+          "title": "Bのモデル名",
+          "topic": "V&Vの手順",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Aを離散化して実装したBはどれか。",
+          "choices": [
+            "計算モデル",
+            "物理モデル"
+          ],
+          "answer": 1,
+          "answerSummary": "Bは計算モデルです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "数式を要素や差分などで離散化し、コンピュータ上で計算できる形へ移したものです。実験に使う試験体そのものではありません。"
+            }
+          ],
+          "explanation": "【基礎】Bは計算モデルです。\n【考え方】正解は1です。数式を要素や差分などで離散化し、コンピュータ上で計算できる形へ移したものです。実験に使う試験体そのものではありません。\n【ポイント】Bは計算モデルです。\n【引っかけ】2：「物理モデル」ではなく、計算モデルです。数式を要素や差分などで離散化し、コンピュータ上で計算できる形へ移したものです。実験に使う試験体そのものではありません。",
+          "relatedFormulas": [
+            "asme-flow",
+            "code-verification"
+          ],
+          "editorialReview": {
+            "officialPoint": "数理モデル・計算モデルとV&V／個別の質問：Bのモデル名",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「物理モデル」ではなく、計算モデルです。数式を要素や差分などで離散化し、コンピュータ上で計算できる形へ移したものです。実験に使う試験体そのものではありません。"
+            },
+            "sha256": "74467efdfb051a7d755f81aa4ab46ccb17764c9a86f5f7d1dea34f9dac56c559"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "ver-11-16-item-c",
+          "number": "11-16",
+          "officialRef": "問11-16",
+          "officialQuestionItem": "c",
+          "title": "Cの活動名",
+          "topic": "V&Vの手順",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "AをBへ正しく実装したか調べるCはどれか。",
+          "choices": [
+            "妥当性確認",
+            "コード検証"
+          ],
+          "answer": 2,
+          "answerSummary": "Cはコード検証です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "選んだ式をプログラムが正しく解くかを、理論解などと比較します。現実を十分に表すモデルかを実験と比較する妥当性確認とは、確かめる対象が違います。"
+            }
+          ],
+          "explanation": "【基礎】Cはコード検証です。\n【考え方】正解は2です。選んだ式をプログラムが正しく解くかを、理論解などと比較します。現実を十分に表すモデルかを実験と比較する妥当性確認とは、確かめる対象が違います。\n【ポイント】Cはコード検証です。\n【引っかけ】1：「妥当性確認」ではなく、コード検証です。選んだ式をプログラムが正しく解くかを、理論解などと比較します。現実を十分に表すモデルかを実験と比較する妥当性確認とは、確かめる対象が違います。",
+          "relatedFormulas": [
+            "asme-flow",
+            "code-verification"
+          ],
+          "editorialReview": {
+            "officialPoint": "数理モデル・計算モデルとV&V／個別の質問：Cの活動名",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「妥当性確認」ではなく、コード検証です。選んだ式をプログラムが正しく解くかを、理論解などと比較します。現実を十分に表すモデルかを実験と比較する妥当性確認とは、確かめる対象が違います。"
+            },
+            "sha256": "05baf8979ab1c63591226e43801080c811b8d677355bed78b0d0904989771ea4"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "ver-11-16-item-d",
+          "number": "11-16",
+          "officialRef": "問11-16",
+          "officialQuestionItem": "d",
+          "title": "Dのモデル名",
+          "topic": "V&Vの手順",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "実験側の試験体・試験装置を表すDはどれか。",
+          "choices": [
+            "物理モデル",
+            "計算モデル"
+          ],
+          "answer": 1,
+          "answerSummary": "Dは物理モデルです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "図では実験側の試験体や装置を指します。「物理」という名前だけで方程式側だと思わず、実験と計算のどちらに置かれたものかを読みます。",
+              "figures": [
+                {
+                  "figureImage": "ver11VVProc",
+                  "caption": "左は数式から計算へ、右は試験体から実験へ進む経路です。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】Dは物理モデルです。\n【考え方】正解は1です。図では実験側の試験体や装置を指します。「物理」という名前だけで方程式側だと思わず、実験と計算のどちらに置かれたものかを読みます。\n【ポイント】Dは物理モデルです。\n【引っかけ】2：「計算モデル」ではなく、物理モデルです。図では実験側の試験体や装置を指します。「物理」という名前だけで方程式側だと思わず、実験と計算のどちらに置かれたものかを読みます。",
+          "relatedFormulas": [
+            "asme-flow",
+            "code-verification"
+          ],
+          "editorialReview": {
+            "officialPoint": "数理モデル・計算モデルとV&V／個別の質問：Dのモデル名",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「計算モデル」ではなく、物理モデルです。図では実験側の試験体や装置を指します。「物理」という名前だけで方程式側だと思わず、実験と計算のどちらに置かれたものかを読みます。"
+            },
+            "sha256": "c865e2e80021044c914acb2bab3e66eabfc22d5d8541c2adfff9dad94a97e39d"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "ver-11-17",
@@ -1146,10 +1459,13 @@
           "2": "分割や反復による数値誤差を計算の検証とする正しい説明。",
           "4": "実験との比較を用途に照らす妥当性確認の正しい説明。"
         },
-        "sha256": "4257439011750fdee08d05f6276d25279f48c321c6a417328475767aa636c97a"
+        "sha256": "c28851a0c768a2465788ca992b0c4d92be2e5c19a77cac59ae49fffef6cdef63"
       },
       "answerSummary": "正解③：理論解が既知の問題を計算し、その理論解と合うか調べる活動を妥当性確認と呼ぶ。",
-      "figureExempt": false
+      "figureExempt": false,
+      "officialQuestionItems": [
+        "main"
+      ]
     }
   ]
 }

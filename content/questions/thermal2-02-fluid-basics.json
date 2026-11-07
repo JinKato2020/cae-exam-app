@@ -8,7 +8,8 @@
     "count": 22,
     "officialCount": 22,
     "presentationStyle": "cae-standard-v1",
-    "explanationMode": "guided"
+    "explanationMode": "guided",
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -39,13 +40,13 @@
       ],
       "editorialReview": {
         "officialPoint": "基礎方程式",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。独立小問のない選択式として同じ番号内で統合。答えに必要な導出・記号の意味と誤答理由を残し、図を説明段階へ配置。既存の正解番号を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "名称の逆転",
           "3": "保存則と状態方程式の混同",
           "4": "構成方程式の省略"
         },
-        "sha256": "3befc7e22bd08396663f72121f7d8103d0cbbe5ec1c5007948f901030dbe5a53"
+        "sha256": "3ebfdac434c63d9290dacd4050fcf121254ef7b87e8fddc50005b1983ac81949"
       },
       "easyExplanation": [
         {
@@ -65,7 +66,105 @@
           "body": "①は二つの名称が逆です。③の状態方程式は、例えば気体の圧力・密度・温度を結ぶ式で、保存則を表す名称ではありません。④は粘性応力や熱流束をどう決めるかが欠けます。②なら「収支の式」と「材料の応答の式」がそろいます。"
         }
       ],
-      "answerSummary": "正解は②です。保存則から導くのが輸送方程式、材料の応答を結ぶのが構成方程式です。"
+      "answerSummary": "保存則：輸送方程式は量の出入りと蓄積を表します。\n材料の応答：構成方程式は、流体がどう抵抗し、熱をどう伝えるかを与えます。",
+      "sharedQuestion": "熱流体の基礎方程式について、保存則と物性を表す関係式の役割を区別します。",
+      "studyParts": [
+        {
+          "id": "t2f-2-1-item-transport",
+          "number": "2-1",
+          "officialRef": "問2-1",
+          "officialQuestionItem": "transport",
+          "title": "保存則",
+          "topic": "基礎方程式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "質量・運動量・エネルギーの収支から導く式はどれですか。",
+          "choices": [
+            "輸送方程式",
+            "構成方程式"
+          ],
+          "answer": 1,
+          "answerSummary": "輸送方程式は量の出入りと蓄積を表します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "水槽の水がどれだけ増えるかを、流入量と流出量の差で計算する考え方です。"
+            },
+            {
+              "title": "水槽の収支と、流れやすさは別の情報",
+              "body": "水槽の水がどれだけ増えるかは「入る量−出る量」で決まります。これは水を油へ変えても守られる保存則です。一方、同じ押し方でどれだけ流れるかは粘り気などで変わります。その材料の性質を式にしたものが構成方程式です。シミュレーションには両方が必要です。"
+            },
+            {
+              "title": "輸送方程式は、量の出入りを数える",
+              "body": "質量・運動量・エネルギーなどについて、「内部の増加率＝流入−流出＋内部で生じる量」を式にします。例えば質量保存は $\\partial\\rho/\\partial t+\\nabla\\cdot(\\rho\\boldsymbol u)=0$ です。$\\rho$ は密度、$\\boldsymbol u$ は流速で、後半は単位体積当たりの正味の流出です。こうした保存量が運ばれる様子を表す式を輸送方程式と呼びます。"
+            }
+          ],
+          "explanation": "【基礎】輸送方程式は量の出入りと蓄積を表します。\n【考え方】正解は1です。水槽の水がどれだけ増えるかを、流入量と流出量の差で計算する考え方です。\n【ポイント】水槽の水がどれだけ増えるかは「入る量−出る量」で決まります。これは水を油へ変えても守られる保存則です。一方、同じ押し方でどれだけ流れるかは粘り気などで変わります。その材料の性質を式にしたものが構成方程式です。シミュレーションには両方が必要です。\n【引っかけ】2：「構成方程式」ではなく、輸送方程式です。水槽の水がどれだけ増えるかを、流入量と流出量の差で計算する考え方です。",
+          "relatedFormulas": [
+            "t2ch2-transport"
+          ],
+          "editorialReview": {
+            "officialPoint": "基礎方程式／個別の質問：保存則",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「構成方程式」ではなく、輸送方程式です。水槽の水がどれだけ増えるかを、流入量と流出量の差で計算する考え方です。"
+            },
+            "sha256": "3d7af3f6923c857cfb3ad2f3860d10564553988fc8a869590b8ee3c549e1efbb"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2f-2-1-item-constitutive",
+          "number": "2-1",
+          "officialRef": "問2-1",
+          "officialQuestionItem": "constitutive",
+          "title": "材料の応答",
+          "topic": "基礎方程式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "ニュートン流体の応力と変形速度や、熱流束と温度勾配の関係を与える式はどれですか。",
+          "choices": [
+            "構成方程式",
+            "輸送方程式"
+          ],
+          "answer": 1,
+          "answerSummary": "構成方程式は、流体がどう抵抗し、熱をどう伝えるかを与えます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "保存則だけでは粘度や熱の伝わりやすさは決まりません。材料に応じた関係式で未知量を結びます。"
+            },
+            {
+              "title": "構成方程式は、応力や熱流束を決める",
+              "body": "単純なせん断流れのニュートン流体では $\\tau=\\mu\\,du/dy$ です。速度の変わり方 $du/dy$ と粘度 $\\mu$ から、せん断応力 $\\tau$ を求めます。熱伝導なら $q_x=-k\\,dT/dx$ で、温度の傾きと熱伝導率 $k$ から熱流束を求めます。保存則だけでは決まらない量を、こうした関係で求められるようにします。"
+            }
+          ],
+          "explanation": "【基礎】構成方程式は、流体がどう抵抗し、熱をどう伝えるかを与えます。\n【考え方】正解は1です。保存則だけでは粘度や熱の伝わりやすさは決まりません。材料に応じた関係式で未知量を結びます。\n【ポイント】単純なせん断流れのニュートン流体では $\\tau=\\mu\\,du/dy$ です。速度の変わり方 $du/dy$ と粘度 $\\mu$ から、せん断応力 $\\tau$ を求めます。熱伝導なら $q_x=-k\\,dT/dx$ で、温度の傾きと熱伝導率 $k$ から熱流束を求めます。保存則だけでは決まらない量を、こうした関係で求められるようにします。\n【引っかけ】2：「輸送方程式」ではなく、構成方程式です。保存則だけでは粘度や熱の伝わりやすさは決まりません。材料に応じた関係式で未知量を結びます。",
+          "relatedFormulas": [
+            "t2ch2-transport"
+          ],
+          "editorialReview": {
+            "officialPoint": "基礎方程式／個別の質問：材料の応答",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「輸送方程式」ではなく、構成方程式です。保存則だけでは粘度や熱の伝わりやすさは決まりません。材料に応じた関係式で未知量を結びます。"
+            },
+            "sha256": "0304e1741e7b9eee4a05fbbc430070a8d00226ff8f4d135a00a3fcaa5b1f279d"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "transport",
+        "constitutive"
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t2f-2-2",
@@ -95,13 +194,13 @@
       ],
       "editorialReview": {
         "officialPoint": "無次元化",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。独立小問のない選択式として同じ番号内で統合。答えに必要な導出・記号の意味と誤答理由を残し、図を説明段階へ配置。既存の正解番号を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "粘性係数の逆数",
           "3": "重力係数の逆数",
           "4": "両係数の逆数"
         },
-        "sha256": "2b0b63b2ecf2d03e7b218cb6388f45b18f26f8915c0c0ee25d55d0f1a9bd37d4"
+        "sha256": "6494d3307b5bb5eee15fac4ac96f62c4a84ca18d1f9b3ca7c6cca205be996540"
       },
       "easyExplanation": [
         {
@@ -125,7 +224,113 @@
           "body": "$Re=\\rho VL/\\mu$ とすると粘性項の係数は $1/Re$ です。フルード数を $Fr=V/\\sqrt{gL}$ と定義する流儀では重力項は $1/Fr^2$ です。$Fr=V^2/(gL)$ と定義する流儀なら $1/Fr$ となりますが、実際の係数 $Lg/V^2$ は同じです。②は粘性側、③は重力側、④は両方を逆数にしています。"
         }
       ],
-      "answerSummary": "正解は①です。粘性項の係数は $\\mu/(\\rho VL)$、重力項の係数は $Lg/V^2$ です。"
+      "answerSummary": "粘性項の係数：粘性の係数はレイノルズ数の逆数です。\n重力項の係数：重力項も慣性項と同じ量で割ります。",
+      "officialQuestionItems": [
+        "viscosity",
+        "gravity"
+      ],
+      "sharedQuestion": "密度 $\\rho$・粘度 $\\mu$ が一定の非圧縮流れの運動方程式 $\\rho\\{\\partial\\boldsymbol u/\\partial t+(\\boldsymbol u\\cdot\\nabla)\\boldsymbol u\\}=-\\nabla p+\\mu\\nabla^2\\boldsymbol u+\\rho g\\boldsymbol e_g$ を考える。代表速度 $V$、代表長さ $L$ を使い、$\\boldsymbol u^*=\\boldsymbol u/V$、$t^*=Vt/L$、$\\nabla^*=L\\nabla$、$p^*=p/(\\rho V^2)$ とする。左辺を $\\partial\\boldsymbol u^*/\\partial t^*+(\\boldsymbol u^*\\cdot\\nabla^*)\\boldsymbol u^*$ と書いたとき、粘性項と重力項の係数を求めます。$\\boldsymbol e_g$ は重力方向の単位ベクトルとする。",
+      "studyParts": [
+        {
+          "id": "t2f-2-2-item-viscosity",
+          "number": "2-2",
+          "officialRef": "問2-2",
+          "officialQuestionItem": "viscosity",
+          "title": "粘性項の係数",
+          "topic": "無次元化",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "無次元化後の粘性項の係数はどれですか。",
+          "choices": [
+            "$\\rho VL/\\mu$",
+            "$\\mu/(\\rho VL)$"
+          ],
+          "answer": 2,
+          "answerSummary": "粘性の係数はレイノルズ数の逆数です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "粘性項の代表量 $\\mu V/L^2$ を慣性項の代表量 $\\rho V^2/L$ で割ると $\\mu/(\\rho VL)$ です。"
+            },
+            {
+              "title": "無次元化は、ものさしをそろえること",
+              "body": "長さを $L$、速度を $V$、移動時間を $L/V$ という代表値で測ります。例えば $u^*=u/V=0.5$ なら「代表速度の半分」です。単位を消すと、大きさの違う装置でも各作用の相対的な強さを比べられます。星印は無次元の量を表します。"
+            },
+            {
+              "title": "元の式へ戻せる形にする",
+              "body": "与えられた定義から $\\boldsymbol u=V\\boldsymbol u^*$、$t=(L/V)t^*$、$p=\\rho V^2p^*$ です。空間の微分は $\\nabla=(1/L)\\nabla^*$、時間の微分は $\\partial/\\partial t=(V/L)\\partial/\\partial t^*$ となります。空間で2回微分する粘性項には $1/L^2$ が掛かります。"
+            },
+            {
+              "title": "各項の前に付く量を求める",
+              "body": "非定常項は $\\rho V(V/L)=\\rho V^2/L$、対流項も $\\rho V(V/L)=\\rho V^2/L$ が共通の係数です。圧力勾配も $\\rho V^2/L$、粘性項は $\\mu V/L^2$、重力項は $\\rho g$ です。\n式全体を $\\rho V^2/L$ で割ると、左辺と圧力項の係数は1になります。"
+            }
+          ],
+          "explanation": "【基礎】粘性の係数はレイノルズ数の逆数です。\n【考え方】正解は2です。粘性項の代表量 $\\mu V/L^2$ を慣性項の代表量 $\\rho V^2/L$ で割ると $\\mu/(\\rho VL)$ です。\n【ポイント】長さを $L$、速度を $V$、移動時間を $L/V$ という代表値で測ります。例えば $u^*=u/V=0.5$ なら「代表速度の半分」です。単位を消すと、大きさの違う装置でも各作用の相対的な強さを比べられます。星印は無次元の量を表します。\n【引っかけ】1：「$\\rho VL/\\mu$」ではなく、$\\mu/(\\rho VL)$です。粘性項の代表量 $\\mu V/L^2$ を慣性項の代表量 $\\rho V^2/L$ で割ると $\\mu/(\\rho VL)$ です。",
+          "relatedFormulas": [
+            "t2ch2-reynolds-froude"
+          ],
+          "editorialReview": {
+            "officialPoint": "無次元化／個別の質問：粘性項の係数",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$\\rho VL/\\mu$」ではなく、$\\mu/(\\rho VL)$です。粘性項の代表量 $\\mu V/L^2$ を慣性項の代表量 $\\rho V^2/L$ で割ると $\\mu/(\\rho VL)$ です。"
+            },
+            "sha256": "0b0e8af331fd149ef90cb82b3bee57fc62e02f08ecf4916707e6a1746ea3604b"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2f-2-2-item-gravity",
+          "number": "2-2",
+          "officialRef": "問2-2",
+          "officialQuestionItem": "gravity",
+          "title": "重力項の係数",
+          "topic": "無次元化",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "無次元化後の重力項の係数はどれですか。",
+          "choices": [
+            "$Lg/V^2$",
+            "$V^2/(Lg)$"
+          ],
+          "answer": 1,
+          "answerSummary": "重力項も慣性項と同じ量で割ります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$\\rho g\\div(\\rho V^2/L)=Lg/V^2=1/Fr^2$ です。$Fr=V/\\sqrt{gL}$ なので、二乗と逆数を落とさないようにします。"
+            },
+            {
+              "title": "二つの割り算が、選択肢の係数になる",
+              "body": "粘性項は $\\dfrac{\\mu V/L^2}{\\rho V^2/L}=\\dfrac{\\mu}{\\rho VL}$、重力項は $\\dfrac{\\rho g}{\\rho V^2/L}=\\dfrac{Lg}{V^2}$ です。整理すると右辺は $-\\nabla^*p^*+\\mu/(\\rho VL)\\nabla^{*2}\\boldsymbol u^*+(Lg/V^2)\\boldsymbol e_g$ です。"
+            },
+            {
+              "title": "無次元数との関係と誤答の理由",
+              "body": "$Re=\\rho VL/\\mu$ とすると粘性項の係数は $1/Re$ です。フルード数を $Fr=V/\\sqrt{gL}$ と定義する流儀では重力項は $1/Fr^2$ です。$Fr=V^2/(gL)$ と定義する流儀なら $1/Fr$ となりますが、実際の係数 $Lg/V^2$ は同じです。粘性項と重力項の係数を、それぞれ逆数にしないようにします。"
+            }
+          ],
+          "explanation": "【基礎】重力項も慣性項と同じ量で割ります。\n【考え方】正解は1です。$\\rho g\\div(\\rho V^2/L)=Lg/V^2=1/Fr^2$ です。$Fr=V/\\sqrt{gL}$ なので、二乗と逆数を落とさないようにします。\n【ポイント】粘性項は $\\dfrac{\\mu V/L^2}{\\rho V^2/L}=\\dfrac{\\mu}{\\rho VL}$、重力項は $\\dfrac{\\rho g}{\\rho V^2/L}=\\dfrac{Lg}{V^2}$ です。したがって右辺は $-\\nabla^*p^*+\\dfrac{\\mu}{\\rho VL}\\nabla^{*2}\\boldsymbol u^*+\\dfrac{Lg}{V^2}\\boldsymbol e_g$ で、①です。\n【引っかけ】2：「$V^2/(Lg)$」ではなく、$Lg/V^2$です。$\\rho g\\div(\\rho V^2/L)=Lg/V^2=1/Fr^2$ です。$Fr=V/\\sqrt{gL}$ なので、二乗と逆数を落とさないようにします。",
+          "relatedFormulas": [
+            "t2ch2-reynolds-froude"
+          ],
+          "editorialReview": {
+            "officialPoint": "無次元化／個別の質問：重力項の係数",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$V^2/(Lg)$」ではなく、$Lg/V^2$です。$\\rho g\\div(\\rho V^2/L)=Lg/V^2=1/Fr^2$ です。$Fr=V/\\sqrt{gL}$ なので、二乗と逆数を落とさないようにします。"
+            },
+            "sha256": "a93c8ebdb2ab68854c6a39ba6d01b9cfe01b4375a153dd442b9d61b411852033"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t2f-2-3",
@@ -161,7 +366,7 @@
           "2": "時間の逆数の次元",
           "3": "加速度の次元"
         },
-        "sha256": "ee8a26395bdc912ad7f516bca3de737b2e1bebeb508cdcf1b6a0e598b11e4240"
+        "sha256": "e3c93a9cd7361bb9aed24e7e16bd5864fea9a3efe073abcfd1d475df9a8a5183"
       },
       "easyExplanation": [
         {
@@ -181,7 +386,10 @@
           "body": "①は $\\mathrm{m/s}$、②は $\\mathrm{1/s}$、③は $\\mathrm{m/s^2}$ となり、どれも目的の単位と違います。④だけが合います。ただし次元だけでは無次元の比例定数までは決まりません。「この形に比例する」と判断する計算です。"
         }
       ],
-      "answerSummary": "正解は④です。散逸率の次元に合う形は $\\nu^3/\\eta^4$ です。"
+      "answerSummary": "正解は④です。散逸率の次元に合う形は $\\nu^3/\\eta^4$ です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2f-2-4",
@@ -218,7 +426,7 @@
           "3": "鉛直加速度を省略",
           "4": "水平基準と斜面基準の角度の混同"
         },
-        "sha256": "e6fea7d83dbe914a04b3509eab2a9be8747a03e03a42ac9886b3b57d9d542e0a"
+        "sha256": "08afebfaa326503132d620541f20b30aa46a35383587df434d767147968b8014"
       },
       "easyExplanation": [
         {
@@ -251,6 +459,9 @@
           "figureImage": "t2e2Q4Before",
           "caption": "斜面は20°、加速度は斜面に沿ってg/3です。水面の傾きは未知なので、与件図には描いていません。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -288,7 +499,7 @@
           "3": "内側にも自由渦",
           "4": "内外を逆転"
         },
-        "sha256": "488001d5d36d0fc4b5cd8a457187489cb23299eabbadd22bf3a023f7f5695911"
+        "sha256": "e8edb791f16a09bf414154cc872e5b0bf81c14a5b1df6ba46f4172dde0780b9d"
       },
       "easyExplanation": [
         {
@@ -317,6 +528,9 @@
           "figureImage": "t2e2Q5Before",
           "caption": "4つのグラフは同じ尺度です。グラフの番号は選択肢の番号に対応します。半径aの内側と外側を比べてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -355,7 +569,7 @@
           "2": "速さと静圧の大小を逆転",
           "4": "損失を追加"
         },
-        "sha256": "51baa850be85aae08ccfbbceb5905eeb16b08ed3e4d27b2c87628ba7208098c9"
+        "sha256": "372246103eda836829ede992e5ef584302cf12af4b35e3e2a34f977fe0d572c6"
       },
       "easyExplanation": [
         {
@@ -388,6 +602,9 @@
           "figureImage": "t2e2Q6Before",
           "caption": "共通の水平基準から測った液面の候補です。図の番号は選択肢の番号に対応します。aとcは同じ断面積です。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -425,7 +642,7 @@
           "2": "相対速度を両方とも絶対速度に置換",
           "3": "流入質量に絶対速度を使用"
         },
-        "sha256": "9ad946af27c2fe61a989143f9ff0adb50e8a7ea7bbdc0339797ac574ac8d8111"
+        "sha256": "ff139d50f9db56acaa67ee91958c40a1baa2a15481a69db6fb91d33ab718ee86"
       },
       "easyExplanation": [
         {
@@ -462,6 +679,9 @@
           "figureImage": "t2e2Q7Before",
           "caption": "噴流は20 m/s、板は8 m/sで右へ進みます。120°は板から見た流入方向から流出方向までの角度です。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -499,7 +719,7 @@
           "3": "半径因子2つ不足",
           "4": "角速度の次数不足"
         },
-        "sha256": "d3caf7f56f5b5021bcbb5cd802a133f72aef84eac47a6aaaef36bb55f4239cae"
+        "sha256": "5bb668b7ec0f06627bc30172f8ffc39473ac76042919513148d434ced82a3b35"
       },
       "easyExplanation": [
         {
@@ -532,6 +752,9 @@
           "figureImage": "t2e2Q8Before",
           "caption": "半径Rの円板の片面を扱います。半径r、幅drの円環を取り出し、そこに働く摩擦を考えます。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -569,7 +792,7 @@
           "2": "チョーク後も流量増大",
           "4": "亜音速の面積速度関係を逆転"
         },
-        "sha256": "21728ea0cc372836b1fd0374d94517c3398936cb7052c2f66754bf3f23d57bc6"
+        "sha256": "4f48ab222ec41fe7ed63e003080e47d83e62835deced7022e4e8655b95ab240b"
       },
       "easyExplanation": [
         {
@@ -602,6 +825,9 @@
           "figureImage": "t2e2Q9Before",
           "caption": "タンクの状態を保ち、背圧を臨界圧力より低くします。問う範囲はノズル内部から出口までです。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -633,13 +859,13 @@
       ],
       "editorialReview": {
         "officialPoint": "揚力・抗力",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。独立小問のない選択式として同じ番号内で統合。答えに必要な導出・記号の意味と誤答理由を残し、図を説明段階へ配置。既存の正解番号を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "方向を鉛直水平に固定",
           "2": "物体の速度だけで判定",
           "3": "流体の速度だけで判定"
         },
-        "sha256": "4790dfb3468a0653a88e64dfd1a32fd52e09ccf018471a1dce2612e9c060d2eb"
+        "sha256": "accd578be82a6c83707439a94f1a6f4a03255411f269319b7003cfae6904b7bc"
       },
       "easyExplanation": [
         {
@@ -666,13 +892,117 @@
         }
       ],
       "preFigureImage": "t2e2Q10Before",
-      "answerSummary": "正解は④です。物体の流体に対する速度 $\\boldsymbol V-\\boldsymbol U$ を基準に、平行な抗力と直交する揚力へ分けます。",
+      "answerSummary": "抗力の方向：流体に対する物体の相対運動に逆らう向きです。\n揚力の方向：揚力は相対速度に直交する成分です。",
       "preFigures": [
         {
           "figureImage": "t2e2Q10Before",
           "caption": "地面から見た流体の速度Uと物体の速度Vです。向きも含めて相対速度を考えます。"
         }
-      ]
+      ],
+      "officialQuestionItems": [
+        "drag",
+        "lift"
+      ],
+      "sharedQuestion": "一様流の速度を $\\boldsymbol U$、物体の速度を $\\boldsymbol V$ とし、$\\boldsymbol V-\\boldsymbol U\\ne\\boldsymbol0$ とします。",
+      "studyParts": [
+        {
+          "id": "t2f-2-10-item-drag",
+          "number": "2-10",
+          "officialRef": "問2-10",
+          "officialQuestionItem": "drag",
+          "title": "抗力の方向",
+          "topic": "揚力・抗力",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "物体に働く抗力の方向はどれですか。",
+          "choices": [
+            "地面に対する $\\boldsymbol V$ と必ず逆向き",
+            "$\\boldsymbol V-\\boldsymbol U$ と逆向き"
+          ],
+          "answer": 2,
+          "answerSummary": "流体に対する物体の相対運動に逆らう向きです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "風より遅く同じ向きに走る物体は追い風に押されます。地面に対する速度だけでは抗力の向きを決められません。"
+            },
+            {
+              "title": "地面ではなく、流体との相対運動を見る",
+              "body": "静止した自転車でも風が吹けば力を受けます。逆に同じ方向へ風と同じ速さで動けば、体に当たる風は弱くなります。流体力を分ける基準は、地面に対する物体の速度だけではなく、物体と周囲の流体の速度の差です。"
+            },
+            {
+              "title": "二つの相対速度は、向きが逆",
+              "body": "物体の流体に対する速度は $\\boldsymbol V-\\boldsymbol U$ です。物体から見た流体の速度は $\\boldsymbol U-\\boldsymbol V$ で、その逆向きです。抗力は前者に逆向き、後者と同じ向きになります。揚力はその方向に直交する成分です。",
+              "figures": [
+                {
+                  "figureImage": "t2e2LiftDrag",
+                  "caption": "青矢印は物体の相対速度です。赤い抗力は逆向き、揚力は直角です。揚力が必ず鉛直上向きになるわけではありません。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】流体に対する物体の相対運動に逆らう向きです。\n【考え方】正解は2です。風より遅く同じ向きに走る物体は追い風に押されます。地面に対する速度だけでは抗力の向きを決められません。\n【ポイント】静止した自転車でも風が吹けば力を受けます。逆に同じ方向へ風と同じ速さで動けば、体に当たる風は弱くなります。流体力を分ける基準は、地面に対する物体の速度だけではなく、物体と周囲の流体の速度の差です。\n【引っかけ】1：「地面に対する $\\boldsymbol V$ と必ず逆向き」ではなく、$\\boldsymbol V-\\boldsymbol U$ と逆向きです。風より遅く同じ向きに走る物体は追い風に押されます。地面に対する速度だけでは抗力の向きを決められません。",
+          "relatedFormulas": [
+            "t2ch2-lift-drag"
+          ],
+          "editorialReview": {
+            "officialPoint": "揚力・抗力／個別の質問：抗力の方向",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「地面に対する $\\boldsymbol V$ と必ず逆向き」ではなく、$\\boldsymbol V-\\boldsymbol U$ と逆向きです。風より遅く同じ向きに走る物体は追い風に押されます。地面に対する速度だけでは抗力の向きを決められません。"
+            },
+            "sha256": "75127d8f754c586eb909a27abc7073e441e5e7429753ef1459ca3eedc51f49f7"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2f-2-10-item-lift",
+          "number": "2-10",
+          "officialRef": "問2-10",
+          "officialQuestionItem": "lift",
+          "title": "揚力の方向",
+          "topic": "揚力・抗力",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "揚力は何に直交する成分ですか。",
+          "choices": [
+            "相対速度 $\\boldsymbol V-\\boldsymbol U$",
+            "常に水平方向"
+          ],
+          "answer": 1,
+          "answerSummary": "揚力は相対速度に直交する成分です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "揚力という名前でも、必ず上向きになるわけではありません。相対的な流れを基準に力を分けます。"
+            },
+            {
+              "title": "簡単な場合で確かめる",
+              "body": "物体が止まり $\\boldsymbol V=\\boldsymbol0$、風が右向きなら、物体の相対速度は左向きです。その逆の右向きに抗力が働くので、風に押される感覚と一致します。流体が静止している場合だけは、相対速度と物体の速度 $\\boldsymbol V$ が同じになります。"
+            }
+          ],
+          "explanation": "【基礎】揚力は相対速度に直交する成分です。\n【考え方】正解は1です。揚力という名前でも、必ず上向きになるわけではありません。相対的な流れを基準に力を分けます。\n【ポイント】物体が止まり $\\boldsymbol V=\\boldsymbol0$、風が右向きなら、物体の相対速度は左向きです。その逆の右向きに抗力が働くので、風に押される感覚と一致します。流体が静止している場合だけは、相対速度と物体の速度 $\\boldsymbol V$ が同じになります。\n【引っかけ】2：「常に水平方向」ではなく、相対速度 $\\boldsymbol V-\\boldsymbol U$です。揚力という名前でも、必ず上向きになるわけではありません。相対的な流れを基準に力を分けます。",
+          "relatedFormulas": [
+            "t2ch2-lift-drag"
+          ],
+          "editorialReview": {
+            "officialPoint": "揚力・抗力／個別の質問：揚力の方向",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「常に水平方向」ではなく、相対速度 $\\boldsymbol V-\\boldsymbol U$です。揚力という名前でも、必ず上向きになるわけではありません。相対的な流れを基準に力を分けます。"
+            },
+            "sha256": "c607d9c50975cb81d9755fa15fe10bc156e9cbe53f08a41dddeeeb60dff5feb0"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t2f-2-11",
@@ -708,7 +1038,7 @@
           "3": "縮尺を逆に適用",
           "4": "縮尺を二乗"
         },
-        "sha256": "9e1996e16c8d5f06d97b96806ae7280aea7f604e4409e7712f5aca6182c7de75"
+        "sha256": "3e4bad977bf1016dea9ba4e6b6d18ec0d0d3c0de2e6b192c77bb2eae224798f5"
       },
       "easyExplanation": [
         {
@@ -728,7 +1058,10 @@
           "body": "②ではレイノルズ数が実物の1/8になります。③の約0.19 m/sは速度まで1/8にしており、レイノルズ数は約1/64です。④の96 m/sは長さ比8を二重に掛けています。①だけが $UL$ を保ちます。"
         }
       ],
-      "answerSummary": "正解は①の12 m/sです。同じ水で長さを1/8にするため、速度を8倍にします。"
+      "answerSummary": "正解は①の12 m/sです。同じ水で長さを1/8にするため、速度を8倍にします。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2f-2-12",
@@ -765,7 +1098,7 @@
           "3": "動圧をさらに半分",
           "4": "係数1/2の省略"
         },
-        "sha256": "7cca848aee09bc00283ae22fe000add25f1ed72937c92405f9b46d12a95bde8d"
+        "sha256": "8d0f04c8f49c9faf8368055e4f9b7691fdceae06035f05a6f77c62e3c596e551"
       },
       "easyExplanation": [
         {
@@ -798,6 +1131,9 @@
           "figureImage": "t2e2Q12Before",
           "caption": "先端Bはよどみ点、側面Cは静圧孔です。流速30 m/s、密度1.2 kg/m³からBとCの圧力差を求めます。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -835,7 +1171,7 @@
           "2": "面積比と直径比の混同",
           "4": "断面変化を無視"
         },
-        "sha256": "fdfbc16eadcfcda87237d9817649d55a375fa24dc8667a91c7dad5659d2654c1"
+        "sha256": "b67e2a547c875178277f5f6c913f942b9526845499184cb3daa71da64739c110"
       },
       "easyExplanation": [
         {
@@ -861,7 +1197,10 @@
           "body": "①の0.15 m/sは面積が小さくなった分だけ速度も減らしています。②の1.2 m/sは直径比をそのまま使い、面積の二乗を落としています。④の0.6 m/sは断面積の変化を無視しています。"
         }
       ],
-      "answerSummary": "正解は③の2.4 m/sです。直径が半分になると面積は1/4になり、平均流速は4倍になります。"
+      "answerSummary": "正解は③の2.4 m/sです。直径が半分になると面積は1/4になり、平均流速は4倍になります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2f-2-14",
@@ -899,7 +1238,7 @@
           "3": "係数1/2省略",
           "4": "面積差の減算を省略"
         },
-        "sha256": "512b22f5fa16da421094ab7fcf6103f2d976c783c06d69456e4c6097acbb7eee"
+        "sha256": "44dece76a271d03089fc61032aff8063ea3406657f5b886d18d94c232ffb59b1"
       },
       "easyExplanation": [
         {
@@ -936,6 +1275,9 @@
           "figureImage": "t2e2Q14Before",
           "caption": "断面aの面積は0.010 m²、bは0.004 m²です。圧力差800 Paから、絞り前aの流速Uを求めます。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -966,13 +1308,13 @@
       ],
       "editorialReview": {
         "officialPoint": "NS方程式",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。独立小問のない選択式として同じ番号内で統合。答えに必要な導出・記号の意味と誤答理由を残し、図を説明段階へ配置。既存の正解番号を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "線形・圧力項とする",
           "2": "原因を粘性とする",
           "4": "線形・ニュートン流体とする"
         },
-        "sha256": "a3ba932ec09a376260b6f9bec3701e75c98da2c62f7c67b889e4f594138e0846"
+        "sha256": "7c2664903defe2738573a0a42efb1b24e8389e229ee7cd16da3b881994419f34"
       },
       "easyExplanation": [
         {
@@ -992,7 +1334,145 @@
           "body": "①は非線形性とその原因を誤っています。②は対流項と粘性項、完全流体とニュートン流体を取り違えています。④も「線形」と流体の名称が違います。③の「非線形・対流項・完全流体」が正しい組合せです。"
         }
       ],
-      "answerSummary": "正解は③です。非線形性の原因は対流項で、粘性を無視する流体は完全流体と呼びます。"
+      "answerSummary": "方程式の性質：未知の速度どうしの積を含むため非線形です。\n非線形性の原因：流れによって運ばれる変化を表す対流項です。\n粘性を無視する流体：この場合の運動方程式はオイラー方程式です。",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "sharedQuestion": "非圧縮流れのNS方程式の性質と、粘性を無視した流体の名称を確認します。",
+      "studyParts": [
+        {
+          "id": "t2f-2-15-item-a",
+          "number": "2-15",
+          "officialRef": "問2-15",
+          "officialQuestionItem": "a",
+          "title": "方程式の性質",
+          "topic": "NS方程式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "NS方程式は一般にどちらですか。",
+          "choices": [
+            "線形方程式",
+            "非線形方程式"
+          ],
+          "answer": 2,
+          "answerSummary": "未知の速度どうしの積を含むため非線形です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$u\\partial u/\\partial x$ では速度とその勾配を掛けます。速度を2倍にするとこの項は4倍になるので、単純な比例ではありません。"
+            },
+            {
+              "title": "同じ場所でも、動いた先でも速度は変わる",
+              "body": "流体粒子の加速度は二つに分けられます。$\\partial\\boldsymbol u/\\partial t$ は同じ場所で時間とともに速度が変わる分です。$(\\boldsymbol u\\cdot\\nabla)\\boldsymbol u$ は、粒子が速度の違う場所へ進むために変わる分で、対流項または移流項と呼びます。例えば定常でも、細くなる管へ進む粒子は加速します。"
+            },
+            {
+              "title": "対流項に、未知の速度が二度現れる",
+              "body": "1次元なら対流項は $u\\,du/dx$ です。速度を一律2倍すると、$2u\\,d(2u)/dx=4u\\,du/dx$ となり、項は4倍です。このように未知量を2倍しても式全体が単純に2倍にならない関係が非線形です。一定粘度の粘性項 $\\nu\\,d^2u/dx^2$ は速度を2倍すると2倍で、今回の非線形性の原因ではありません。"
+            }
+          ],
+          "explanation": "【基礎】未知の速度どうしの積を含むため非線形です。\n【考え方】正解は2です。$u\\partial u/\\partial x$ では速度とその勾配を掛けます。速度を2倍にするとこの項は4倍になるので、単純な比例ではありません。\n【ポイント】流体粒子の加速度は二つに分けられます。$\\partial\\boldsymbol u/\\partial t$ は同じ場所で時間とともに速度が変わる分です。$(\\boldsymbol u\\cdot\\nabla)\\boldsymbol u$ は、粒子が速度の違う場所へ進むために変わる分で、対流項または移流項と呼びます。例えば定常でも、細くなる管へ進む粒子は加速します。\n【引っかけ】1：「線形方程式」ではなく、非線形方程式です。$u\\partial u/\\partial x$ では速度とその勾配を掛けます。速度を2倍にするとこの項は4倍になるので、単純な比例ではありません。",
+          "relatedFormulas": [
+            "t2ch2-ns"
+          ],
+          "editorialReview": {
+            "officialPoint": "NS方程式／個別の質問：方程式の性質",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「線形方程式」ではなく、非線形方程式です。$u\\partial u/\\partial x$ では速度とその勾配を掛けます。速度を2倍にするとこの項は4倍になるので、単純な比例ではありません。"
+            },
+            "sha256": "eb604787c444822e9928288bd2cc7bd81ab6cf9415997c59b117a5affa78e6a7"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2f-2-15-item-b",
+          "number": "2-15",
+          "officialRef": "問2-15",
+          "officialQuestionItem": "b",
+          "title": "非線形性の原因",
+          "topic": "NS方程式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "速度自身を含む非線形項はどれですか。",
+          "choices": [
+            "対流項",
+            "一定粘度の粘性項"
+          ],
+          "answer": 1,
+          "answerSummary": "流れによって運ばれる変化を表す対流項です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$(\\boldsymbol u\\cdot\\nabla)\\boldsymbol u$ は、移動する速さと移動先での速度変化を掛けています。一定粘度での粘性項は速度の2階微分であり、速度に関して線形です。"
+            }
+          ],
+          "explanation": "【基礎】流れによって運ばれる変化を表す対流項です。\n【考え方】正解は1です。$(\\boldsymbol u\\cdot\\nabla)\\boldsymbol u$ は、移動する速さと移動先での速度変化を掛けています。一定粘度での粘性項は速度の2階微分であり、速度に関して線形です。\n【ポイント】流れによって運ばれる変化を表す対流項です。\n【引っかけ】2：「一定粘度の粘性項」ではなく、対流項です。$(\\boldsymbol u\\cdot\\nabla)\\boldsymbol u$ は、移動する速さと移動先での速度変化を掛けています。一定粘度での粘性項は速度の2階微分であり、速度に関して線形です。",
+          "relatedFormulas": [
+            "t2ch2-ns"
+          ],
+          "editorialReview": {
+            "officialPoint": "NS方程式／個別の質問：非線形性の原因",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「一定粘度の粘性項」ではなく、対流項です。$(\\boldsymbol u\\cdot\\nabla)\\boldsymbol u$ は、移動する速さと移動先での速度変化を掛けています。一定粘度での粘性項は速度の2階微分であり、速度に関して線形です。"
+            },
+            "sha256": "b517c6640c39f3ae6bf45d204414fa9069b8c7b8bb95e1dbd62e18f971768c4e"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2f-2-15-item-c",
+          "number": "2-15",
+          "officialRef": "問2-15",
+          "officialQuestionItem": "c",
+          "title": "粘性を無視する流体",
+          "topic": "NS方程式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "粘性を無視する理想流体の名称はどれですか。",
+          "choices": [
+            "ニュートン流体",
+            "完全流体"
+          ],
+          "answer": 2,
+          "answerSummary": "この場合の運動方程式はオイラー方程式です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "ニュートン流体は粘性応力が変形速度に比例する流体です。粘性を無視することとは意味が異なります。"
+            },
+            {
+              "title": "完全流体とニュートン流体を区別する",
+              "body": "完全流体は粘性を無視して扱う流体です。NS方程式から粘性項を省くとオイラー方程式になります。一方、ニュートン流体は粘性応力と変形速度の関係が比例する流体です。水や空気も通常このモデルで扱いますが、粘性が0という意味ではありません。"
+            }
+          ],
+          "explanation": "【基礎】この場合の運動方程式はオイラー方程式です。\n【考え方】正解は2です。ニュートン流体は粘性応力が変形速度に比例する流体です。粘性を無視することとは意味が異なります。\n【ポイント】完全流体は粘性を無視して扱う流体です。NS方程式から粘性項を省くとオイラー方程式になります。一方、ニュートン流体は粘性応力と変形速度の関係が比例する流体です。水や空気も通常このモデルで扱いますが、粘性が0という意味ではありません。\n【引っかけ】1：「ニュートン流体」ではなく、完全流体です。ニュートン流体は粘性応力が変形速度に比例する流体です。粘性を無視することとは意味が異なります。",
+          "relatedFormulas": [
+            "t2ch2-ns"
+          ],
+          "editorialReview": {
+            "officialPoint": "NS方程式／個別の質問：粘性を無視する流体",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「ニュートン流体」ではなく、完全流体です。ニュートン流体は粘性応力が変形速度に比例する流体です。粘性を無視することとは意味が異なります。"
+            },
+            "sha256": "de1701e45d85165d643f19f54b2d3b715ed5c2b56a203cc3955fb94a1a4f92ac"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t2f-2-16",
@@ -1023,13 +1503,13 @@
       ],
       "editorialReview": {
         "officialPoint": "境界層",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。独立小問のない選択式として同じ番号内で統合。答えに必要な導出・記号の意味と誤答理由を残し、図を説明段階へ配置。既存の正解番号を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "近壁域を対数層とする",
           "2": "摩擦速度と壁での実流速の混同",
           "3": "対数域も距離に比例とする"
         },
-        "sha256": "0bea3e26231f1b6a08aefc4fb53d376efbefabf83170abaa28b10a9815a9df3b"
+        "sha256": "cf98ebdfe617292300d46be1dfbca27b6bbd72cca5b2986c0abd47fa5373a643"
       },
       "easyExplanation": [
         {
@@ -1059,7 +1539,155 @@
           "body": "①は粘性底層と対数域を取り違えています。②は摩擦速度を壁面での実流速としています。③は対数域まで距離に比例するとしています。④は領域と名称を正しく対応させています。"
         }
       ],
-      "answerSummary": "正解は④です。摩擦速度・粘性底層・対数速度分布の組合せになります。"
+      "answerSummary": "速度の尺度：壁面摩擦の強さを速度の単位で表した量です。\n壁のごく近く：壁のごく近くでは粘性が主に働きます。\nその外側の速度分布：距離の対数を含む対数速度分布です。",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "sharedQuestion": "壁面せん断応力を $\\tau_w$、密度を $\\rho$、動粘度を $\\nu$、壁からの距離を $y$ とします。$y^+=u_\\tau y/\\nu$ を使って壁付近の乱流を整理します。",
+      "studyParts": [
+        {
+          "id": "t2f-2-16-item-a",
+          "number": "2-16",
+          "officialRef": "問2-16",
+          "officialQuestionItem": "a",
+          "title": "速度の尺度",
+          "topic": "境界層",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$u_\\tau=\\sqrt{\\tau_w/\\rho}$ の名称はどれですか。",
+          "choices": [
+            "摩擦速度",
+            "壁面の実際の流速"
+          ],
+          "answer": 1,
+          "answerSummary": "壁面摩擦の強さを速度の単位で表した量です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "静止壁の実際の流速は0でも壁面せん断応力は0とは限らず、摩擦速度は正になります。"
+            },
+            {
+              "title": "摩擦速度は、摩擦の強さを測るものさし",
+              "body": "$u_\\tau=\\sqrt{\\tau_w/\\rho}$ の $\\tau_w$ は壁面せん断応力、$\\rho$ は密度です。単位は速度ですが、壁での実際の流速ではありません。例えば $\\tau_w=1\\,\\mathrm{Pa}$、$\\rho=1000\\,\\mathrm{kg/m^3}$ なら $u_\\tau\\approx0.0316\\,\\mathrm{m/s}$ です。壁で実流速が0でも、速度勾配があれば摩擦速度は0とは限りません。"
+            },
+            {
+              "title": "壁からの距離も、共通のものさしへ",
+              "body": "$y^+=u_\\tau y/\\nu$ は無次元距離です。$y$ は壁からの実際の距離、$\\nu=\\mu/\\rho$ は動粘度です。また速度を $u^+=u/u_\\tau$ と表すと、壁のごく近くの粘性底層では $u^+=y^+$、すなわち流速は距離に比例します。",
+              "figures": [
+                {
+                  "figureImage": "t2e2WallLayer",
+                  "caption": "左は壁のごく近くの比例関係、右は離れた内層の対数関係です。左右は目盛りが異なる別の模式図です。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】壁面摩擦の強さを速度の単位で表した量です。\n【考え方】正解は1です。静止壁の実際の流速は0でも壁面せん断応力は0とは限らず、摩擦速度は正になります。\n【ポイント】$u_\\tau=\\sqrt{\\tau_w/\\rho}$ の $\\tau_w$ は壁面せん断応力、$\\rho$ は密度です。単位は速度ですが、壁での実際の流速ではありません。例えば $\\tau_w=1\\,\\mathrm{Pa}$、$\\rho=1000\\,\\mathrm{kg/m^3}$ なら $u_\\tau\\approx0.0316\\,\\mathrm{m/s}$ です。壁で実流速が0でも、速度勾配があれば摩擦速度は0とは限りません。\n【引っかけ】2：「壁面の実際の流速」ではなく、摩擦速度です。静止壁の実際の流速は0でも壁面せん断応力は0とは限らず、摩擦速度は正になります。",
+          "relatedFormulas": [
+            "t2ch2-wall-turbulence"
+          ],
+          "editorialReview": {
+            "officialPoint": "境界層／個別の質問：速度の尺度",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「壁面の実際の流速」ではなく、摩擦速度です。静止壁の実際の流速は0でも壁面せん断応力は0とは限らず、摩擦速度は正になります。"
+            },
+            "sha256": "9569c346521715fe2264ded8b1da685de9a8f7494e80a9d4031f0299109e06c3"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2f-2-16-item-b",
+          "number": "2-16",
+          "officialRef": "問2-16",
+          "officialQuestionItem": "b",
+          "title": "壁のごく近く",
+          "topic": "境界層",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "おおむね y⁺<5 で速度が壁からの距離に比例する層はどれですか。",
+          "choices": [
+            "対数層",
+            "粘性底層"
+          ],
+          "answer": 2,
+          "answerSummary": "壁のごく近くでは粘性が主に働きます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$u^+=y^+$ なので、壁からの距離を2倍にすると平均速度も2倍になる直線的な分布です。"
+            },
+            {
+              "title": "壁に近いほど、流れは遅い",
+              "body": "静止した壁では流体の速度が0になり、離れるにつれて速くなります。ただし乱流では、壁からの距離に対する速度の増え方が領域ごとに変わります。その区別を、壁での摩擦の強さと距離を使って表します。"
+            }
+          ],
+          "explanation": "【基礎】壁のごく近くでは粘性が主に働きます。\n【考え方】正解は2です。$u^+=y^+$ なので、壁からの距離を2倍にすると平均速度も2倍になる直線的な分布です。\n【ポイント】静止した壁では流体の速度が0になり、離れるにつれて速くなります。ただし乱流では、壁からの距離に対する速度の増え方が領域ごとに変わります。その区別を、壁での摩擦の強さと距離を使って表します。\n【引っかけ】1：「対数層」ではなく、粘性底層です。$u^+=y^+$ なので、壁からの距離を2倍にすると平均速度も2倍になる直線的な分布です。",
+          "relatedFormulas": [
+            "t2ch2-wall-turbulence"
+          ],
+          "editorialReview": {
+            "officialPoint": "境界層／個別の質問：壁のごく近く",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「対数層」ではなく、粘性底層です。$u^+=y^+$ なので、壁からの距離を2倍にすると平均速度も2倍になる直線的な分布です。"
+            },
+            "sha256": "11fa30f34b3d9c2b13d423f9bc1e8fa05b7c20a11ff14d8b8aa4025f83380f3e"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2f-2-16-item-c",
+          "number": "2-16",
+          "officialRef": "問2-16",
+          "officialQuestionItem": "c",
+          "title": "その外側の速度分布",
+          "topic": "境界層",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "適用範囲内で $u=u_\\tau(2.5\\ln y^++5.5)$ と書く分布はどれですか。",
+          "choices": [
+            "対数速度分布",
+            "距離に比例する速度分布"
+          ],
+          "answer": 1,
+          "answerSummary": "距離の対数を含む対数速度分布です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "壁から離れるほど速度は増えますが、距離に比例しては増えません。粘性底層へこの式をそのまま延長することもできません。"
+            },
+            {
+              "title": "対数分布を、壁まで延ばさない",
+              "body": "問題で指定した $70<y^+$ かつ $y/\\delta<0.2$ の範囲では、$u^+=2.5\\ln y^++5.5$ です。これが対数速度分布です。$\\delta$ は境界層厚さで、数値範囲や係数は目安です。粘性底層との間には移行域があり、対数式を壁面の $y=0$ へ代入することはできません。"
+            }
+          ],
+          "explanation": "【基礎】距離の対数を含む対数速度分布です。\n【考え方】正解は1です。壁から離れるほど速度は増えますが、距離に比例しては増えません。粘性底層へこの式をそのまま延長することもできません。\n【ポイント】問題で指定した $70<y^+$ かつ $y/\\delta<0.2$ の範囲では、$u^+=2.5\\ln y^++5.5$ です。これが対数速度分布です。$\\delta$ は境界層厚さで、数値範囲や係数は目安です。粘性底層との間には移行域があり、対数式を壁面の $y=0$ へ代入することはできません。\n【引っかけ】2：「距離に比例する速度分布」ではなく、対数速度分布です。壁から離れるほど速度は増えますが、距離に比例しては増えません。粘性底層へこの式をそのまま延長することもできません。",
+          "relatedFormulas": [
+            "t2ch2-wall-turbulence"
+          ],
+          "editorialReview": {
+            "officialPoint": "境界層／個別の質問：その外側の速度分布",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「距離に比例する速度分布」ではなく、対数速度分布です。壁から離れるほど速度は増えますが、距離に比例しては増えません。粘性底層へこの式をそのまま延長することもできません。"
+            },
+            "sha256": "143696c70c33fdce626de2a50c1195142a69b4a6757565d696d594cb4f05d96c"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t2f-2-17",
@@ -1090,13 +1718,13 @@
       ],
       "editorialReview": {
         "officialPoint": "管内流れ",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。独立小問のない選択式として同じ番号内で統合。答えに必要な導出・記号の意味と誤答理由を残し、図を説明段階へ配置。既存の正解番号を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "指標と層流乱流の逆転",
           "3": "密度変化閾値と層流乱流の逆転",
           "4": "層流乱流の逆転"
         },
-        "sha256": "487ddacbce753dcf8dbf0c77bf926a4b9f4e2dc7993fabf40c61d07f321e94a2"
+        "sha256": "745163d0cab9b627b1f15cd16b5fc96634062516b8f9d4513211dc2969ec759e"
       },
       "easyExplanation": [
         {
@@ -1116,7 +1744,189 @@
           "body": "①は「マッハ数・0.3・層流・乱流」の対応が正しいです。②はマッハ数をレイノルズ数にし、層流と乱流も逆です。③は0.3を1.0とし、層流と乱流も逆です。④も層流と乱流を交換しています。低マッハ数の乱流もあるので、非圧縮と層流を同じ意味にしないでください。"
         }
       ],
-      "answerSummary": "正解は①です。圧縮性の目安にはマッハ数、層流・乱流の目安にはレイノルズ数を使います。"
+      "answerSummary": "圧縮性の尺度：速度と音速の比がマッハ数です。\n非圧縮の目安：目安は0.3以下です。\n低いレイノルズ数：低いReでは整った層状の流れが保たれやすくなります。\n遷移後の状態：大小の乱れを伴う乱流になり得ます。",
+      "officialQuestionItems": [
+        "d",
+        "a",
+        "b",
+        "c"
+      ],
+      "sharedQuestion": "管内流れについて、圧縮性の目安と層流・乱流を判断する量を区別します。",
+      "studyParts": [
+        {
+          "id": "t2f-2-17-item-d",
+          "number": "2-17",
+          "officialRef": "問2-17",
+          "officialQuestionItem": "d",
+          "title": "圧縮性の尺度",
+          "topic": "管内流れ",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "流速を音速で割った量はどれですか。",
+          "choices": [
+            "マッハ数",
+            "レイノルズ数"
+          ],
+          "answer": 1,
+          "answerSummary": "速度と音速の比がマッハ数です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "レイノルズ数は慣性と粘性の比で、調べる性質が異なります。"
+            },
+            {
+              "title": "二つの無次元数は、調べることが違う",
+              "body": "マッハ数 $M=U/c$ は流速 $U$ と音速 $c$ の比で、流速に伴う密度変化の影響を考える目安です。レイノルズ数 $Re=UD/\\nu$ は慣性と粘性の比で、管内流れが層流か乱流かを考える目安です。$D$ は管径、$\\nu$ は動粘度です。"
+            }
+          ],
+          "explanation": "【基礎】速度と音速の比がマッハ数です。\n【考え方】正解は1です。レイノルズ数は慣性と粘性の比で、調べる性質が異なります。\n【ポイント】マッハ数 $M=U/c$ は流速 $U$ と音速 $c$ の比で、流速に伴う密度変化の影響を考える目安です。レイノルズ数 $Re=UD/\\nu$ は慣性と粘性の比で、管内流れが層流か乱流かを考える目安です。$D$ は管径、$\\nu$ は動粘度です。\n【引っかけ】2：「レイノルズ数」ではなく、マッハ数です。レイノルズ数は慣性と粘性の比で、調べる性質が異なります。",
+          "relatedFormulas": [
+            "t2ch2-compressible-nozzle",
+            "t2ch2-reynolds-froude"
+          ],
+          "editorialReview": {
+            "officialPoint": "管内流れ／個別の質問：圧縮性の尺度",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「レイノルズ数」ではなく、マッハ数です。レイノルズ数は慣性と粘性の比で、調べる性質が異なります。"
+            },
+            "sha256": "1e0428dc636ec7f307418a3293eb96198391847f3ef653e4eb0c2714b5035df9"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2f-2-17-item-a",
+          "number": "2-17",
+          "officialRef": "問2-17",
+          "officialQuestionItem": "a",
+          "title": "非圧縮の目安",
+          "topic": "管内流れ",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "密度変化を小さいとみなす一般的なマッハ数の目安はどれですか。",
+          "choices": [
+            "おおむね1以下",
+            "おおむね0.3以下"
+          ],
+          "answer": 2,
+          "answerSummary": "目安は0.3以下です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "音速より遅いだけでは密度変化を無視できません。温度差などによる密度変化が小さいことも前提です。"
+            },
+            {
+              "title": "音速より十分遅ければ、密度変化は小さい",
+              "body": "通常の低速気体流れでは、おおむね $M\\lesssim0.3$ なら流速による密度変化が小さく、非圧縮として近似できます。例えば音速340 m/sに対する流速34 m/sは $M=0.1$ です。音速に達する $M=1$ まで密度変化を無視できる、という意味ではありません。強い加熱などで密度が変わる場合は別に判断します。"
+            }
+          ],
+          "explanation": "【基礎】目安は0.3以下です。\n【考え方】正解は2です。音速より遅いだけでは密度変化を無視できません。温度差などによる密度変化が小さいことも前提です。\n【ポイント】通常の低速気体流れでは、おおむね $M\\lesssim0.3$ なら流速による密度変化が小さく、非圧縮として近似できます。例えば音速340 m/sに対する流速34 m/sは $M=0.1$ です。音速に達する $M=1$ まで密度変化を無視できる、という意味ではありません。強い加熱などで密度が変わる場合は別に判断します。\n【引っかけ】1：「おおむね1以下」ではなく、おおむね0.3以下です。音速より遅いだけでは密度変化を無視できません。温度差などによる密度変化が小さいことも前提です。",
+          "relatedFormulas": [
+            "t2ch2-compressible-nozzle",
+            "t2ch2-reynolds-froude"
+          ],
+          "editorialReview": {
+            "officialPoint": "管内流れ／個別の質問：非圧縮の目安",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「おおむね1以下」ではなく、おおむね0.3以下です。音速より遅いだけでは密度変化を無視できません。温度差などによる密度変化が小さいことも前提です。"
+            },
+            "sha256": "b0ec2fce738dec1b5ef9aadbb9996d1e34aa0a71979eff9e64ca3de6766ec9b9"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2f-2-17-item-b",
+          "number": "2-17",
+          "officialRef": "問2-17",
+          "officialQuestionItem": "b",
+          "title": "低いレイノルズ数",
+          "topic": "管内流れ",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "滑らかな円管で Re が約2300以下の場合、一般にどの流れですか。",
+          "choices": [
+            "層流",
+            "乱流"
+          ],
+          "answer": 1,
+          "answerSummary": "低いReでは整った層状の流れが保たれやすくなります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "粘性が乱れを抑える方向に働きます。数値は目安であり、流入条件にも依存します。"
+            },
+            {
+              "title": "層流から乱流への遷移は、数字だけで固定されない",
+              "body": "層流は流れが比較的整い、乱流は速度が不規則に変動して混ざる流れです。円管では $Re\\lesssim2300$ がおおむね層流の目安ですが、それを超えた瞬間に必ず乱流になるわけではありません。入口の乱れや管の状態にも影響されます。問題文の「なり得る」という表現が大切です。"
+            }
+          ],
+          "explanation": "【基礎】低いReでは整った層状の流れが保たれやすくなります。\n【考え方】正解は1です。粘性が乱れを抑える方向に働きます。数値は目安であり、流入条件にも依存します。\n【ポイント】層流は流れが比較的整い、乱流は速度が不規則に変動して混ざる流れです。円管では $Re\\lesssim2300$ がおおむね層流の目安ですが、それを超えた瞬間に必ず乱流になるわけではありません。入口の乱れや管の状態にも影響されます。問題文の「なり得る」という表現が大切です。\n【引っかけ】2：「乱流」ではなく、層流です。粘性が乱れを抑える方向に働きます。数値は目安であり、流入条件にも依存します。",
+          "relatedFormulas": [
+            "t2ch2-compressible-nozzle",
+            "t2ch2-reynolds-froude"
+          ],
+          "editorialReview": {
+            "officialPoint": "管内流れ／個別の質問：低いレイノルズ数",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「乱流」ではなく、層流です。粘性が乱れを抑える方向に働きます。数値は目安であり、流入条件にも依存します。"
+            },
+            "sha256": "178081c222c43230255d3898838eee656e7d88610f29b62f133855d10167decd"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2f-2-17-item-c",
+          "number": "2-17",
+          "officialRef": "問2-17",
+          "officialQuestionItem": "c",
+          "title": "遷移後の状態",
+          "topic": "管内流れ",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Reが大きくなり遷移すると、どの流れになり得ますか。",
+          "choices": [
+            "必ず層流のまま",
+            "乱流"
+          ],
+          "answer": 2,
+          "answerSummary": "大小の乱れを伴う乱流になり得ます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "2300を超えれば必ず直ちに乱流になるという意味ではありません。入口の乱れや管の状態が遷移に影響します。"
+            }
+          ],
+          "explanation": "【基礎】大小の乱れを伴う乱流になり得ます。\n【考え方】正解は2です。2300を超えれば必ず直ちに乱流になるという意味ではありません。入口の乱れや管の状態が遷移に影響します。\n【ポイント】大小の乱れを伴う乱流になり得ます。\n【引っかけ】1：「必ず層流のまま」ではなく、乱流です。2300を超えれば必ず直ちに乱流になるという意味ではありません。入口の乱れや管の状態が遷移に影響します。",
+          "relatedFormulas": [
+            "t2ch2-compressible-nozzle",
+            "t2ch2-reynolds-froude"
+          ],
+          "editorialReview": {
+            "officialPoint": "管内流れ／個別の質問：遷移後の状態",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「必ず層流のまま」ではなく、乱流です。2300を超えれば必ず直ちに乱流になるという意味ではありません。入口の乱れや管の状態が遷移に影響します。"
+            },
+            "sha256": "4fc3b62c28da70ac81c2eb86a5f2cffa7a539439c32199f7c3a40774c471245f"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t2f-2-18",
@@ -1154,7 +1964,7 @@
           "3": "最初の粒子の流跡線",
           "4": "切替なしの仮定"
         },
-        "sha256": "a0ac12e776aad3ad84a72e47892238b0e81174fdc8d3d16779e9412a9cb51455"
+        "sha256": "9c86cd2128246f6ec8524c2a057cd837c7e5f8a8d417a110f73677f4ac0dc147"
       },
       "easyExplanation": [
         {
@@ -1186,6 +1996,9 @@
           "figureImage": "t2e2StreaklineBefore",
           "caption": "同じ尺度の4候補です。横軸はx、縦軸はyで単位はmです。3秒時点の流脈線を選びます。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1217,13 +2030,13 @@
       ],
       "editorialReview": {
         "officialPoint": "助走区間",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。独立小問のない選択式として同じ番号内で統合。答えに必要な導出・記号の意味と誤答理由を残し、図を説明段階へ配置。既存の正解番号を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "下流へ圧力上昇",
           "2": "助走区間を対数域とする",
           "4": "クエット流れとの混同"
         },
-        "sha256": "df09b7939055fc8bdd028b7196715363e24f8965a1808d25d15e057105e82dde"
+        "sha256": "ee0c1324cef3624c46115c491b090632c26e3b5d4ae37f4b628cf0dbac0fc9c5"
       },
       "easyExplanation": [
         {
@@ -1249,7 +2062,151 @@
           "body": "①は圧力を上昇させています。②は入口からの発達を、乱流境界層の対数領域と混同しています。④は円管の放物線分布をクエット流れとしています。③が正しい組合せです。約20Dは本問で観察された助走長さで、すべての層流に共通の定数ではありません。"
         }
       ],
-      "answerSummary": "正解は③です。入口の助走区間を過ぎると放物線状の分布になり、発達後も圧力は下流へ向かって低下します。"
+      "answerSummary": "入口付近：入口の一様分布が壁の影響で発達する助走区間です。\n発達後の流れ：圧力差で駆動され、半径方向に放物線状の分布になります。\n圧力の変化：形の変わらない速度分布でも摩擦損失は続きます。",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "sharedQuestion": "水平円管の入口に一様流速、出口に圧力0を与えます。層流の速度分布は入口から約20Dまで変化し、その先では流れ方向に変化しなくなりました。",
+      "studyParts": [
+        {
+          "id": "t2f-2-19-item-a",
+          "number": "2-19",
+          "officialRef": "問2-19",
+          "officialQuestionItem": "a",
+          "title": "入口付近",
+          "topic": "助走区間",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "速度分布が流れ方向に変化する区間の名称はどれですか。",
+          "choices": [
+            "対数領域",
+            "助走区間"
+          ],
+          "answer": 2,
+          "answerSummary": "入口の一様分布が壁の影響で発達する助走区間です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "壁のすぐそばは減速し、壁の影響が中心側へ広がっていきます。"
+            },
+            {
+              "title": "壁から、速度分布が変わっていく",
+              "body": "入口では断面全体の流速を同じに与えています。しかし壁に接する流体は静止壁と同じ速度0になるため、壁の近くから遅くなります。流量を保つため中央側は速くなり、下流へ進むにつれて速度分布の形が整います。この区間を助走区間と呼びます。",
+              "figures": [
+                {
+                  "figureImage": "t2e2Entrance",
+                  "caption": "入口の一様分布が、下流で放物線状へ変わります。発達後は同じ形が続きますが、下段の圧力は下がり続けます。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】入口の一様分布が壁の影響で発達する助走区間です。\n【考え方】正解は2です。壁のすぐそばは減速し、壁の影響が中心側へ広がっていきます。\n【ポイント】入口では断面全体の流速を同じに与えています。しかし壁に接する流体は静止壁と同じ速度0になるため、壁の近くから遅くなります。流量を保つため中央側は速くなり、下流へ進むにつれて速度分布の形が整います。この区間を助走区間と呼びます。\n【引っかけ】1：「対数領域」ではなく、助走区間です。壁のすぐそばは減速し、壁の影響が中心側へ広がっていきます。",
+          "relatedFormulas": [
+            "t2ch2-entrance-hagen"
+          ],
+          "editorialReview": {
+            "officialPoint": "助走区間／個別の質問：入口付近",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「対数領域」ではなく、助走区間です。壁のすぐそばは減速し、壁の影響が中心側へ広がっていきます。"
+            },
+            "sha256": "8b29dcd597e357686700ac19a2991640c2eb06420c40779a21909f0ab6e7d8e1"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2f-2-19-item-b",
+          "number": "2-19",
+          "officialRef": "問2-19",
+          "officialQuestionItem": "b",
+          "title": "発達後の流れ",
+          "topic": "助走区間",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "円管内の十分発達した層流はどれですか。",
+          "choices": [
+            "ハーゲン・ポアズイユ流れ",
+            "クエット流れ"
+          ],
+          "answer": 1,
+          "answerSummary": "圧力差で駆動され、半径方向に放物線状の分布になります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "クエット流れは動く壁に引きずられる流れで、駆動の仕組みが違います。"
+            },
+            {
+              "title": "発達後の形は、半径の二乗で決まる",
+              "body": "十分発達した円管層流はハーゲン・ポアズイユ流れです。半径 $R$ の管で、中心からの距離を $r$ とすると、$u(r)=u_{\\max}(1-r^2/R^2)$ です。中心 $r=0$ で最大、壁 $r=R$ で0になる放物線分布です。クエット流れのように壁の相対運動で作る流れとは異なります。"
+            }
+          ],
+          "explanation": "【基礎】圧力差で駆動され、半径方向に放物線状の分布になります。\n【考え方】正解は1です。クエット流れは動く壁に引きずられる流れで、駆動の仕組みが違います。\n【ポイント】十分発達した円管層流はハーゲン・ポアズイユ流れです。半径 $R$ の管で、中心からの距離を $r$ とすると、$u(r)=u_{\\max}(1-r^2/R^2)$ です。中心 $r=0$ で最大、壁 $r=R$ で0になる放物線分布です。クエット流れのように壁の相対運動で作る流れとは異なります。\n【引っかけ】2：「クエット流れ」ではなく、ハーゲン・ポアズイユ流れです。クエット流れは動く壁に引きずられる流れで、駆動の仕組みが違います。",
+          "relatedFormulas": [
+            "t2ch2-entrance-hagen"
+          ],
+          "editorialReview": {
+            "officialPoint": "助走区間／個別の質問：発達後の流れ",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「クエット流れ」ではなく、ハーゲン・ポアズイユ流れです。クエット流れは動く壁に引きずられる流れで、駆動の仕組みが違います。"
+            },
+            "sha256": "ab2e08742f81e52e98311b75ea1516925e55326164bee2eea2c66a8c53bf5b8f"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2f-2-19-item-c",
+          "number": "2-19",
+          "officialRef": "問2-19",
+          "officialQuestionItem": "c",
+          "title": "圧力の変化",
+          "topic": "助走区間",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "十分発達した区間で下流へ進むと圧力はどうなりますか。",
+          "choices": [
+            "一定になる",
+            "減少する"
+          ],
+          "answer": 2,
+          "answerSummary": "形の変わらない速度分布でも摩擦損失は続きます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "壁の抵抗に打ち勝って流すには圧力差が必要です。速度分布が変わらないことと、圧力が一定であることを混同しません。"
+            },
+            {
+              "title": "分布が同じでも、摩擦は残る",
+              "body": "壁で粘性抵抗が働くため、上流の高い圧力が流体を押し続ける必要があります。水平な一定径の発達域では圧力勾配が負の一定値となり、圧力は距離に比例して減少します。「これ以上形が変わらない」と「力が要らない」は別です。下流境界の圧力0は基準値の指定です。"
+            }
+          ],
+          "explanation": "【基礎】形の変わらない速度分布でも摩擦損失は続きます。\n【考え方】正解は2です。壁の抵抗に打ち勝って流すには圧力差が必要です。速度分布が変わらないことと、圧力が一定であることを混同しません。\n【ポイント】壁で粘性抵抗が働くため、上流の高い圧力が流体を押し続ける必要があります。水平な一定径の発達域では圧力勾配が負の一定値となり、圧力は距離に比例して減少します。「これ以上形が変わらない」と「力が要らない」は別です。下流境界の圧力0は基準値の指定です。\n【引っかけ】1：「一定になる」ではなく、減少するです。壁の抵抗に打ち勝って流すには圧力差が必要です。速度分布が変わらないことと、圧力が一定であることを混同しません。",
+          "relatedFormulas": [
+            "t2ch2-entrance-hagen"
+          ],
+          "editorialReview": {
+            "officialPoint": "助走区間／個別の質問：圧力の変化",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「一定になる」ではなく、減少するです。壁の抵抗に打ち勝って流すには圧力差が必要です。速度分布が変わらないことと、圧力が一定であることを混同しません。"
+            },
+            "sha256": "6838ad029ce7a45cbcdb1b098f2fa8e047911580a3106aee8320fcf35d59a398"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t2f-2-20",
@@ -1279,13 +2236,13 @@
       ],
       "editorialReview": {
         "officialPoint": "希薄気体",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。独立小問のない選択式として同じ番号内で統合。答えに必要な導出・記号の意味と誤答理由を残し、図を説明段階へ配置。既存の正解番号を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "指標と方程式を取り違える",
           "3": "乱流と希薄化の混同",
           "4": "粘性を省けば希薄化を扱えるとする"
         },
-        "sha256": "60124cca660278c4557be3dc76ac7a9705f6b6b211764c9045e2495fe197c12c"
+        "sha256": "c773f3aebe0aca22f899678661d72cb8ec84bd3c712441b72ca027c59ef485f9"
       },
       "easyExplanation": [
         {
@@ -1305,7 +2262,149 @@
           "body": "②はクヌッセン数をレイノルズ数とし、③は希薄気体を乱流と混同しています。②と④のオイラー方程式は、連続体の式から粘性を省いたものです。連続体としてよいかという今回の問題は、それだけでは解決しません。①が現象・無次元数・方程式を正しく対応させています。"
         }
       ],
-      "answerSummary": "正解は①です。希薄気体流れをクヌッセン数で判断し、分子運動を扱うボルツマン方程式を用います。"
+      "answerSummary": "流れの名称：分子どうしの衝突が装置の大きさに比べて少ない流れです。\n無次元数：クヌッセン数は連続体として扱えるかの目安です。\n用いる方程式：ボルツマン方程式で分子の分布を扱います。",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "sharedQuestion": "低圧または非常に小さい装置では、分子平均自由行程 $\\lambda$ が代表長さ $L$ に比べて無視できなくなります。",
+      "studyParts": [
+        {
+          "id": "t2f-2-20-item-a",
+          "number": "2-20",
+          "officialRef": "問2-20",
+          "officialQuestionItem": "a",
+          "title": "流れの名称",
+          "topic": "希薄気体",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "連続体近似が成り立ちにくいこの気体流れはどれですか。",
+          "choices": [
+            "乱流",
+            "希薄気体流れ"
+          ],
+          "answer": 2,
+          "answerSummary": "分子どうしの衝突が装置の大きさに比べて少ない流れです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "乱流は速度の乱れに関する分類で、分子の希薄さとは別です。"
+            },
+            {
+              "title": "流体を、滑らかにつながるものとして見てよいか",
+              "body": "普段は気体も連続した流体として扱います。しかし分子が装置の大きさに比べて長い距離を衝突せずに進むと、滑らかな場としての近似が十分でなくなります。圧力を下げて分子が少なくなる場合や、装置を非常に小さくする場合に、この影響が目立ちます。"
+            }
+          ],
+          "explanation": "【基礎】分子どうしの衝突が装置の大きさに比べて少ない流れです。\n【考え方】正解は2です。乱流は速度の乱れに関する分類で、分子の希薄さとは別です。\n【ポイント】普段は気体も連続した流体として扱います。しかし分子が装置の大きさに比べて長い距離を衝突せずに進むと、滑らかな場としての近似が十分でなくなります。圧力を下げて分子が少なくなる場合や、装置を非常に小さくする場合に、この影響が目立ちます。\n【引っかけ】1：「乱流」ではなく、希薄気体流れです。乱流は速度の乱れに関する分類で、分子の希薄さとは別です。",
+          "relatedFormulas": [
+            "t2ch2-knudsen"
+          ],
+          "editorialReview": {
+            "officialPoint": "希薄気体／個別の質問：流れの名称",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「乱流」ではなく、希薄気体流れです。乱流は速度の乱れに関する分類で、分子の希薄さとは別です。"
+            },
+            "sha256": "d22171defaa9a3a851693432d9f1b06710cdc83505abb4f26b56d4f199ec190b"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2f-2-20-item-b",
+          "number": "2-20",
+          "officialRef": "問2-20",
+          "officialQuestionItem": "b",
+          "title": "無次元数",
+          "topic": "希薄気体",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$\\lambda/L$ の名称はどれですか。",
+          "choices": [
+            "クヌッセン数",
+            "レイノルズ数"
+          ],
+          "answer": 1,
+          "answerSummary": "クヌッセン数は連続体として扱えるかの目安です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "分子が次に衝突するまで進む距離を装置寸法と比べます。"
+            },
+            {
+              "title": "平均自由行程を、装置の大きさと比べる",
+              "body": "平均自由行程 $\\lambda$ は、分子が次に衝突するまでに進む平均距離です。クヌッセン数は $K=\\lambda/L$ で、$L$ は代表長さです。例えば $\\lambda=0.1\\,\\mu\\mathrm m$、$L=10\\,\\mu\\mathrm m$ なら $K=0.01$ です。同じ気体でも装置を小さくすると $K$ は大きくなります。"
+            }
+          ],
+          "explanation": "【基礎】クヌッセン数は連続体として扱えるかの目安です。\n【考え方】正解は1です。分子が次に衝突するまで進む距離を装置寸法と比べます。\n【ポイント】平均自由行程 $\\lambda$ は、分子が次に衝突するまでに進む平均距離です。クヌッセン数は $K=\\lambda/L$ で、$L$ は代表長さです。例えば $\\lambda=0.1\\,\\mu\\mathrm m$、$L=10\\,\\mu\\mathrm m$ なら $K=0.01$ です。同じ気体でも装置を小さくすると $K$ は大きくなります。\n【引っかけ】2：「レイノルズ数」ではなく、クヌッセン数です。分子が次に衝突するまで進む距離を装置寸法と比べます。",
+          "relatedFormulas": [
+            "t2ch2-knudsen"
+          ],
+          "editorialReview": {
+            "officialPoint": "希薄気体／個別の質問：無次元数",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「レイノルズ数」ではなく、クヌッセン数です。分子が次に衝突するまで進む距離を装置寸法と比べます。"
+            },
+            "sha256": "23ac752e29aaa03a1c905fec2183cdab1689dc08acbe69bd43470955860eacaf"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2f-2-20-item-c",
+          "number": "2-20",
+          "officialRef": "問2-20",
+          "officialQuestionItem": "c",
+          "title": "用いる方程式",
+          "topic": "希薄気体",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "クヌッセン数が大きい領域で分子速度の分布を扱う式はどれですか。",
+          "choices": [
+            "オイラー方程式",
+            "ボルツマン方程式"
+          ],
+          "answer": 2,
+          "answerSummary": "ボルツマン方程式で分子の分布を扱います。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "単にNS方程式から粘性項を除いても、連続体近似の限界を解消できません。"
+            },
+            {
+              "title": "数が大きくなると、分子の運動を直接考える",
+              "body": "$K$ が十分小さければ通常の連続体近似を使えます。おおむね0.01〜0.1では壁面のすべりなどの補正が重要になり、さらに大きい領域では従来のNS方程式だけでは不十分です。そこで、分子の速度分布と衝突を扱うボルツマン方程式などの分子運動論を使います。境界となる数値は目安です。"
+            },
+            {
+              "title": "粘性を消せばよいわけではない",
+              "body": "オイラー方程式は連続体の式から粘性を省いたものです。希薄気体で連続体の前提が崩れる問題は、粘性を省くだけでは解決しません。連続体としてよいかという今回の問題は、それだけでは解決しません。"
+            }
+          ],
+          "explanation": "【基礎】ボルツマン方程式で分子の分布を扱います。\n【考え方】正解は2です。単にNS方程式から粘性項を除いても、連続体近似の限界を解消できません。\n【ポイント】$K$ が十分小さければ通常の連続体近似を使えます。おおむね0.01〜0.1では壁面のすべりなどの補正が重要になり、さらに大きい領域では従来のNS方程式だけでは不十分です。そこで、分子の速度分布と衝突を扱うボルツマン方程式などの分子運動論を使います。境界となる数値は目安です。\n【引っかけ】1：「オイラー方程式」ではなく、ボルツマン方程式です。単にNS方程式から粘性項を除いても、連続体近似の限界を解消できません。",
+          "relatedFormulas": [
+            "t2ch2-knudsen"
+          ],
+          "editorialReview": {
+            "officialPoint": "希薄気体／個別の質問：用いる方程式",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「オイラー方程式」ではなく、ボルツマン方程式です。単にNS方程式から粘性項を除いても、連続体近似の限界を解消できません。"
+            },
+            "sha256": "a6abede8370283a7ff0bdd9f0abb0165cbc427508a77abe7ffc3598ecce6c7f8"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t2f-2-21",
@@ -1342,7 +2441,7 @@
           "2": "圧力の空間微分と時間微分の混同",
           "3": "移流と拡散の混同"
         },
-        "sha256": "a0c6e78b1094cacd4a034d8b3a7f402b304007de6386b576de9cb177ba07adaf"
+        "sha256": "a8d4a77b2a79a7788206363aa5cb87b2e450e0d6145e26a3bb75e50a38da3473"
       },
       "easyExplanation": [
         {
@@ -1368,7 +2467,10 @@
           "body": "④は「高レイノルズ数では常に粘性が大きい」と言っているわけではありません。壁から離れた領域では粘性を無視できても、壁の近くでは無視できない場合がある、という意味です。項を省くときは係数だけでなく、流れの場所と変化の大きさも確認します。"
         }
       ],
-      "answerSummary": "正解は④です。小さい係数 $1/Re$ だけで、粘性項全体を無視できるとは決まりません。"
+      "answerSummary": "正解は④です。小さい係数 $1/Re$ だけで、粘性項全体を無視できるとは決まりません。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2f-2-22",
@@ -1399,13 +2501,13 @@
       ],
       "editorialReview": {
         "officialPoint": "流れの可視化",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。独立小問のない選択式として同じ番号内で統合。答えに必要な導出・記号の意味と誤答理由を残し、図を説明段階へ配置。既存の正解番号を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "流線と流跡線・定常非定常の混同",
           "3": "3線の定義を混同",
           "4": "流跡線と流脈線・定常非定常の混同"
         },
-        "sha256": "695add0aa8176b189c6311f8c40c7c60c2eec01a974f22fc4f165d907f8170cf"
+        "sha256": "b88fb9fa15fc9208c396283cc9925adac3a58dd8afa570248e5e0467d371ffa1"
       },
       "easyExplanation": [
         {
@@ -1435,7 +2537,195 @@
           "body": "①は流線と流跡線を逆にし、一致する条件も誤っています。③は瞬間の速度を流脈線、放出された粒子の列を流跡線としています。④は流跡線と流脈線を入れ替え、一致する条件も逆です。「今の矢印・1粒子の履歴・1地点からの列」と対応させると②を選べます。"
         }
       ],
-      "answerSummary": "正解は②です。流線・流跡線・流脈線は、定常流で対応する同じ曲線になります。"
+      "answerSummary": "瞬間の速度に接する線：今の速度場を一枚の写真として見た線です。\n一粒子の軌跡：同じ粒子の過去から現在までの道筋です。\n同じ場所を通った粒子の列：固定した場所から色素を出し続けたときの現在の列です。\n一致する条件：流れが時間で変わらなければ、後の粒子も同じ道を進みます。",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "sharedQuestion": "流れを表す三つの線と、それらが一致する条件を答えます。",
+      "studyParts": [
+        {
+          "id": "t2f-2-22-item-a",
+          "number": "2-22",
+          "officialRef": "問2-22",
+          "officialQuestionItem": "a",
+          "title": "瞬間の速度に接する線",
+          "topic": "流れの可視化",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "ある瞬間の各点の速度ベクトルに接する曲線はどれですか。",
+          "choices": [
+            "流跡線",
+            "流線"
+          ],
+          "answer": 2,
+          "answerSummary": "今の速度場を一枚の写真として見た線です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "時間を止め、各点の速度の矢印をつなぐと考えます。"
+            },
+            {
+              "title": "流線は、今の速度の矢印をつなぐ",
+              "body": "ある瞬間の写真で、流れの各場所に速度の矢印を描きます。その矢印に接するようにたどった曲線が流線です。各点の速度方向を、同じ時刻で見ています。将来も粒子が必ずこの線を通る、という意味ではありません。"
+            }
+          ],
+          "explanation": "【基礎】今の速度場を一枚の写真として見た線です。\n【考え方】正解は2です。時間を止め、各点の速度の矢印をつなぐと考えます。\n【ポイント】ある瞬間の写真で、流れの各場所に速度の矢印を描きます。その矢印に接するようにたどった曲線が流線です。各点の速度方向を、同じ時刻で見ています。将来も粒子が必ずこの線を通る、という意味ではありません。\n【引っかけ】1：「流跡線」ではなく、流線です。時間を止め、各点の速度の矢印をつなぐと考えます。",
+          "relatedFormulas": [
+            "t2ch2-streaklines"
+          ],
+          "editorialReview": {
+            "officialPoint": "流れの可視化／個別の質問：瞬間の速度に接する線",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「流跡線」ではなく、流線です。時間を止め、各点の速度の矢印をつなぐと考えます。"
+            },
+            "sha256": "3cec4a7434a549906c3042fa4ce8b9b4c60a14425cc353512a4970b8b552f661"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2f-2-22-item-b",
+          "number": "2-22",
+          "officialRef": "問2-22",
+          "officialQuestionItem": "b",
+          "title": "一粒子の軌跡",
+          "topic": "流れの可視化",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "一個の流体粒子を追い掛けた軌跡はどれですか。",
+          "choices": [
+            "流跡線",
+            "流脈線"
+          ],
+          "answer": 1,
+          "answerSummary": "同じ粒子の過去から現在までの道筋です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "水に浮かぶ一粒の目印を撮影し続けるイメージです。"
+            },
+            {
+              "title": "流跡線は、一つの粒子を追い掛ける",
+              "body": "一つの粒子に印を付け、時間とともにどこを通るかを記録したものが流跡線です。人が歩いた足跡のような線です。流れの向きが途中で変われば、その粒子の進路も変わります。"
+            }
+          ],
+          "explanation": "【基礎】同じ粒子の過去から現在までの道筋です。\n【考え方】正解は1です。水に浮かぶ一粒の目印を撮影し続けるイメージです。\n【ポイント】一つの粒子に印を付け、時間とともにどこを通るかを記録したものが流跡線です。人が歩いた足跡のような線です。流れの向きが途中で変われば、その粒子の進路も変わります。\n【引っかけ】2：「流脈線」ではなく、流跡線です。水に浮かぶ一粒の目印を撮影し続けるイメージです。",
+          "relatedFormulas": [
+            "t2ch2-streaklines"
+          ],
+          "editorialReview": {
+            "officialPoint": "流れの可視化／個別の質問：一粒子の軌跡",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「流脈線」ではなく、流跡線です。水に浮かぶ一粒の目印を撮影し続けるイメージです。"
+            },
+            "sha256": "2f6cba316b4783a4ff595fe352c5d16235a9188dc835e09972aa7963f8468b0b"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2f-2-22-item-c",
+          "number": "2-22",
+          "officialRef": "問2-22",
+          "officialQuestionItem": "c",
+          "title": "同じ場所を通った粒子の列",
+          "topic": "流れの可視化",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "一定点を順次通過した粒子の現在位置を結ぶ線はどれですか。",
+          "choices": [
+            "流線",
+            "流脈線"
+          ],
+          "answer": 2,
+          "answerSummary": "固定した場所から色素を出し続けたときの現在の列です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "異なる時刻に出発した別々の粒子を、同じ時刻に見ます。"
+            },
+            {
+              "title": "流脈線は、一つの場所から出た粒子の今の列",
+              "body": "決まった注入口から染料を出し続け、ある時刻に見える染料の列が流脈線です。列には、前に出た粒子と今出た粒子が混ざっています。2-18では流れを2秒で切り替えたため、流脈線と最初の1粒子の流跡線が違う形になりました。",
+              "figures": [
+                {
+                  "figureImage": "t2e2FlowLines",
+                  "caption": "2-18と同じ流れを3秒時点で比べた図です。左は今の速度方向、中央は最初の粒子の通り道、右は放出時刻の違う粒子の今の位置です。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】固定した場所から色素を出し続けたときの現在の列です。\n【考え方】正解は2です。異なる時刻に出発した別々の粒子を、同じ時刻に見ます。\n【ポイント】決まった注入口から染料を出し続け、ある時刻に見える染料の列が流脈線です。列には、前に出た粒子と今出た粒子が混ざっています。2-18では流れを2秒で切り替えたため、流脈線と最初の1粒子の流跡線が違う形になりました。\n【引っかけ】1：「流線」ではなく、流脈線です。異なる時刻に出発した別々の粒子を、同じ時刻に見ます。",
+          "relatedFormulas": [
+            "t2ch2-streaklines"
+          ],
+          "editorialReview": {
+            "officialPoint": "流れの可視化／個別の質問：同じ場所を通った粒子の列",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「流線」ではなく、流脈線です。異なる時刻に出発した別々の粒子を、同じ時刻に見ます。"
+            },
+            "sha256": "86f1217458d2e44f772eaf8b9273ea910de0ef73fadc58a552bb0f39772b4b97"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2f-2-22-item-d",
+          "number": "2-22",
+          "officialRef": "問2-22",
+          "officialQuestionItem": "d",
+          "title": "一致する条件",
+          "topic": "流れの可視化",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "三つの線が一致するのはどれですか。",
+          "choices": [
+            "定常流",
+            "一般の非定常流"
+          ],
+          "answer": 1,
+          "answerSummary": "流れが時間で変わらなければ、後の粒子も同じ道を進みます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "非定常流では粒子の出発時刻によって道が変わるため、三つの線は一般に一致しません。"
+            },
+            {
+              "title": "定常なら、後から来る粒子も同じ道を通る",
+              "body": "定常流では各場所の速度が時間とともに変わりません。後から同じ場所に来た粒子も同じ方向へ進むため、流線・流跡線・流脈線は対応する同じ曲線になります。非定常流では一般に一致しません。"
+            }
+          ],
+          "explanation": "【基礎】流れが時間で変わらなければ、後の粒子も同じ道を進みます。\n【考え方】正解は1です。非定常流では粒子の出発時刻によって道が変わるため、三つの線は一般に一致しません。\n【ポイント】定常流では各場所の速度が時間とともに変わりません。後から同じ場所に来た粒子も同じ方向へ進むため、流線・流跡線・流脈線は対応する同じ曲線になります。非定常流では一般に一致しません。\n【引っかけ】2：「一般の非定常流」ではなく、定常流です。非定常流では粒子の出発時刻によって道が変わるため、三つの線は一般に一致しません。",
+          "relatedFormulas": [
+            "t2ch2-streaklines"
+          ],
+          "editorialReview": {
+            "officialPoint": "流れの可視化／個別の質問：一致する条件",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「一般の非定常流」ではなく、定常流です。非定常流では粒子の出発時刻によって道が変わるため、三つの線は一般に一致しません。"
+            },
+            "sha256": "49f9d0d4a0a0a6214887d274bb5586b8fb08bd391bfe9627659c7ce7fbaced04"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     }
   ]
 }

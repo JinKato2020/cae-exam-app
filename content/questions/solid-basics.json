@@ -8,7 +8,8 @@
     "count": 44,
     "officialCount": 44,
     "explanationMode": "guided",
-    "presentationStyle": "cae-standard-v1"
+    "presentationStyle": "cae-standard-v1",
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -79,9 +80,12 @@
           "3": "等方弾性定数三つが独立と考える",
           "4": "ひずみ比に応力の単位を付ける"
         },
-        "sha256": "59f6f24877e3d7bd1db1bdcd0810921a9775f269198b5827615d9263d23b9bdd"
+        "sha256": "bfd7adee3b4e6702603aa66cb34fa6aced51d7968fafc1a8797b7fe8ba4558ac"
       },
-      "answerSummary": "②。等方線形弾性では $G=E/[2(1+\\nu)]$。$E,G$ は応力の単位を持ち、$\\nu$ は無次元です。"
+      "answerSummary": "②。等方線形弾性では $G=E/[2(1+\\nu)]$。$E,G$ は応力の単位を持ち、$\\nu$ は無次元です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "solid2-2-2",
@@ -147,21 +151,125 @@
       ],
       "editorialReview": {
         "officialPoint": "荷重・断面積・軸ひずみ・横ひずみからヤング率とポアソン比を求める",
-        "alignment": "保存済み公式の該当番号と選択式の論点を照合。通常4節を旧本体用に保持し、標準詳解は結論・必要な導出・具体例・誤答理由へ統合。重複を削り、式と数値例の整合、単位、図の対応を確認。文字数で水増ししない。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "横ひずみの負号と定義の負号を取り違える",
           "3": "引張荷重のkNをNへ換算しない",
           "4": "横ひずみと軸ひずみの比を逆にする"
         },
-        "sha256": "9c3683401eb0cb598fc12957799eb0ccaac79035282862564d7bf52653939584"
+        "sha256": "f0585270c8219873f1a90c1f0537906f1f9adaf9b4a6f5df106cb1672820161c"
       },
-      "answerSummary": "②。荷重と断面積から応力200 MPa、軸ひずみから $E=200\\,\\mathrm{GPa}$、横と軸のひずみの比から $\\nu=0.30$ です。",
+      "answerSummary": "ヤング率：荷重を面積で割った応力を、軸方向ひずみで割ります。\nポアソン比：横ひずみ÷軸ひずみにマイナスを付けるので、正の0.30です。",
       "preFigures": [
         {
           "figureImage": "s2PoissonRodSetup",
           "caption": "軸方向と円周方向の二つのゲージで、同じ荷重時のひずみを測ります。"
         }
-      ]
+      ],
+      "sharedQuestion": "断面積 $A=100\\,\\mathrm{mm^2}$ の丸棒に軸方向の引張荷重 $P=20\\,\\mathrm{kN}$ を加えた。弾性範囲の単軸応力状態で、軸方向ひずみ $\\varepsilon_a=1.00\\times10^{-3}$、円周（横）方向ひずみ $\\varepsilon_t=-0.30\\times10^{-3}$ を測定した。ヤング率とポアソン比をそれぞれ求めてください。",
+      "studyParts": [
+        {
+          "id": "solid2-2-2-item-young",
+          "number": "2-2",
+          "officialRef": "問2-2",
+          "officialQuestionItem": "young",
+          "title": "ヤング率",
+          "topic": "ヤング率・ポアソン比",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "ヤング率$E$はどちらですか。",
+          "choices": [
+            "$0.20\\ \\mathrm{GPa}$",
+            "$200\\ \\mathrm{GPa}$"
+          ],
+          "answer": 2,
+          "answerSummary": "荷重を面積で割った応力を、軸方向ひずみで割ります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "応力は単位面積が受け持つ力です。まず $20\\,\\mathrm{kN}=20000\\,\\mathrm N$ と直し、$\\sigma=P/A=20000/100=200\\,\\mathrm{N/mm^2}=200\\,\\mathrm{MPa}$ とします。\n\nkNの20をそのままNとして入れると、結果が1000分の1になります。"
+            },
+            {
+              "title": "応力を軸ひずみで割るとヤング率",
+              "body": "弾性範囲の単軸引張りでは $\\sigma=E\\varepsilon_a$ です。両辺を $\\varepsilon_a$ で割ると、$E=\\sigma/\\varepsilon_a$。\n\n数値を入れると $E=200/0.001=200000\\,\\mathrm{MPa}=200\\,\\mathrm{GPa}$ です。大きな応力でも伸びる割合が小さいほど、伸びにくい材料、つまり大きいヤング率になります。"
+            }
+          ],
+          "explanation": "【基礎】荷重を面積で割った応力を、軸方向ひずみで割ります。\n【考え方】正解は2です。応力は単位面積が受け持つ力です。まず $20\\,\\mathrm{kN}=20000\\,\\mathrm N$ と直し、$\\sigma=P/A=20000/100=200\\,\\mathrm{N/mm^2}=200\\,\\mathrm{MPa}$ とします。 kNの20をそのままNとして入れると、結果が1000分の1になります。\n【ポイント】弾性範囲の単軸引張りでは $\\sigma=E\\varepsilon_a$ です。両辺を $\\varepsilon_a$ で割ると、$E=\\sigma/\\varepsilon_a$。 数値を入れると $E=200/0.001=200000\\,\\mathrm{MPa}=200\\,\\mathrm{GPa}$ です。大きな応力でも伸びる割合が小さいほど、伸びにくい材料、つまり大きいヤング率になります。\n【引っかけ】1：「$0.20\\ \\mathrm{GPa}$」ではなく、$200\\ \\mathrm{GPa}$です。応力は単位面積が受け持つ力です。まず $20\\,\\mathrm{kN}=20000\\,\\mathrm N$ と直し、$\\sigma=P/A=20000/100=200\\,\\mathrm{N/mm^2}=200\\,\\mathrm{MPa}$ とします。 kNの20をそのままNとして入れると、結果が1000分の1になります。",
+          "relatedFormulas": [
+            "poisson",
+            "normal-stress",
+            "hooke"
+          ],
+          "editorialReview": {
+            "officialPoint": "荷重・断面積・軸ひずみ・横ひずみからヤング率とポアソン比を求める／個別の質問：ヤング率",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$0.20\\ \\mathrm{GPa}$」ではなく、$200\\ \\mathrm{GPa}$です。応力は単位面積が受け持つ力です。まず $20\\,\\mathrm{kN}=20000\\,\\mathrm N$ と直し、$\\sigma=P/A=20000/100=200\\,\\mathrm{N/mm^2}=200\\,\\mathrm{MPa}$ とします。\n\nkNの20をそのままNとして入れると、結果が1000分の1になります。"
+            },
+            "sha256": "66e75d91b8c23107bc5233f88d7e5295ac1daf252f8a32267461a43f1c9da5c9"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "solid2-2-2-item-poisson",
+          "number": "2-2",
+          "officialRef": "問2-2",
+          "officialQuestionItem": "poisson",
+          "title": "ポアソン比",
+          "topic": "ヤング率・ポアソン比",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "ポアソン比$\\nu$はどちらですか。",
+          "choices": [
+            "$0.30$",
+            "$-0.30$"
+          ],
+          "answer": 1,
+          "answerSummary": "横ひずみ÷軸ひずみにマイナスを付けるので、正の0.30です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "定義は $\\nu=-\\varepsilon_t/\\varepsilon_a$ です。分子が横、分母が軸で、先頭に負号があります。\n\n$\\nu=-(-0.30\\times10^{-3})/(1.00\\times10^{-3})=0.30$。共通の $10^{-3}$ は約分できます。\n\n軸ひずみの30%の大きさで、横は逆向きに縮んだという意味です。ひずみ同士の比なので単位はありません。"
+            },
+            {
+              "title": "伸びの長さを直接割らない",
+              "body": "例えば軸の基準長さが1000 mmなら1 mm伸び、横の基準長さが100 mmなら0.03 mm縮みます。変化した長さだけで $0.03/1$ とすると、異なる基準長さを無視してしまいます。\n\nそれぞれを元の長さで割ったひずみの比を使うことが大切です。",
+              "figures": [
+                {
+                  "figureImage": "s2PoissonRod",
+                  "caption": "二つのゲージの方向と、伸びは正・縮みは負という符号を確認します。Eには荷重と面積も必要です。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】横ひずみ÷軸ひずみにマイナスを付けるので、正の0.30です。\n【考え方】正解は1です。定義は $\\nu=-\\varepsilon_t/\\varepsilon_a$ です。分子が横、分母が軸で、先頭に負号があります。 $\\nu=-(-0.30\\times10^{-3})/(1.00\\times10^{-3})=0.30$。共通の $10^{-3}$ は約分できます。 軸ひずみの30%の大きさで、横は逆向きに縮んだという意味です。ひずみ同士の比なので単位はありません。\n【ポイント】例えば軸の基準長さが1000 mmなら1 mm伸び、横の基準長さが100 mmなら0.03 mm縮みます。変化した長さだけで $0.03/1$ とすると、異なる基準長さを無視してしまいます。 それぞれを元の長さで割ったひずみの比を使うことが大切です。\n【引っかけ】2：「$-0.30$」ではなく、$0.30$です。定義は $\\nu=-\\varepsilon_t/\\varepsilon_a$ です。分子が横、分母が軸で、先頭に負号があります。 $\\nu=-(-0.30\\times10^{-3})/(1.00\\times10^{-3})=0.30$。共通の $10^{-3}$ は約分できます。 軸ひずみの30%の大きさで、横は逆向きに縮んだという意味です。ひずみ同士の比なので単位はありません。",
+          "relatedFormulas": [
+            "poisson",
+            "normal-stress",
+            "hooke"
+          ],
+          "editorialReview": {
+            "officialPoint": "荷重・断面積・軸ひずみ・横ひずみからヤング率とポアソン比を求める／個別の質問：ポアソン比",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$-0.30$」ではなく、$0.30$です。定義は $\\nu=-\\varepsilon_t/\\varepsilon_a$ です。分子が横、分母が軸で、先頭に負号があります。\n\n$\\nu=-(-0.30\\times10^{-3})/(1.00\\times10^{-3})=0.30$。共通の $10^{-3}$ は約分できます。\n\n軸ひずみの30%の大きさで、横は逆向きに縮んだという意味です。ひずみ同士の比なので単位はありません。"
+            },
+            "sha256": "44366e6f3323f3dda14f34a3109ba21c72e81cceb278195ad7ee780ac602f744"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "young",
+        "poisson"
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "solid2-2-3",
@@ -218,9 +326,12 @@
           "2": "コンクリートを非圧縮とみなす",
           "4": "横変形の小ささを体積不変と混同する"
         },
-        "sha256": "8dd2a95db3e044e63c32cbe251a36d09e2f97d3ecd0ae4ea378c1890d21e0f02"
+        "sha256": "83d55499625b5b3e31a46ba7ff093d99ea8084703b345663a2358eef75688725"
       },
-      "answerSummary": "③のゴムです。微小変形で $\\nu$ が0.5に近いほど、形を変えても体積は変わりにくくなります。"
+      "answerSummary": "③のゴムです。微小変形で $\\nu$ が0.5に近いほど、形を変えても体積は変わりにくくなります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "solid2-2-4",
@@ -294,7 +405,7 @@
           "3": "破断伸びと最大荷重点までの伸びを混同する",
           "4": "水平部分の傾きをヤング率とする"
         },
-        "sha256": "9036e019da0f144e485e74e93f700c9f2404d746669a4e60c1bc64690caced61"
+        "sha256": "310f8d7c262549621b32c70bf72d4adf1393c9a08eabe655d0ea185405787b5d"
       },
       "answerSummary": "①。引張強さは、公称応力―公称ひずみ線図の縦軸の最大値です。破断点とは区別します。",
       "preFigures": [
@@ -302,6 +413,9 @@
           "figureImage": "s2StressStrainCurveSetup",
           "caption": "横軸が公称ひずみ、縦軸が公称応力です。線図上の位置と用語を対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -368,7 +482,7 @@
           "2": "引張強さの一定割合と考える",
           "3": "破断ひずみの割合と考える"
         },
-        "sha256": "be18bc81cf7e4bb1cae44d70060336115867f324e2755a68f8a2fe5b6cd4af28"
+        "sha256": "1e940de7b560f6c473540c2448e0a3ad503161f8af2f440b84c72fbf5be23cf8"
       },
       "answerSummary": "④。ひずみ0.002から初期弾性直線に平行な線を引き、曲線との交点の応力を読みます。",
       "preFigures": [
@@ -376,6 +490,9 @@
           "figureImage": "s2OffsetYieldSetup",
           "caption": "ひずみ軸の0.2%を基準に、耐力の定義に合う作図を考えます。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -414,7 +531,7 @@
           "3": "回転後二軸の垂直応力を交換する",
           "4": "回転角の積と二乗の係数を誤る"
         },
-        "sha256": "165173d258f3560b1e86f763db7837975e675f90a5d686a1b4d97e771cd0e15a"
+        "sha256": "fc0c4e806a5c215fb427c3585786f7c58e105e633d3dc030143c9dd751ecbc7f"
       },
       "easyExplanation": [
         {
@@ -454,6 +571,9 @@
           "figureImage": "s2Before2_6",
           "caption": "元のx・y軸と、反時計回りに回転したx′・y′軸です。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -519,9 +639,12 @@
           "2": "工学せん断ひずみを2で割る",
           "3": "剛体移動量をひずみに含める"
         },
-        "sha256": "e3fa05a9f62d7f752c26d9736e5bc57bed029057c8b11ae79e0cf352ca19ea2f"
+        "sha256": "fcd97afc40132bb054546c6d2c9b027047ed73d8c249d474c31b5dce80388a2b"
       },
-      "answerSummary": "④。垂直ひずみは同じ方向の変位の微分、工学せん断ひずみは交差する二つの微分の和です。"
+      "answerSummary": "④。垂直ひずみは同じ方向の変位の微分、工学せん断ひずみは交差する二つの微分の和です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "solid2-2-8",
@@ -590,9 +713,12 @@
           "2": "荷重またはひずみの倍率を半分にする",
           "3": "荷重またはひずみの倍率を2倍にする"
         },
-        "sha256": "1fccc06096a74e11e9bc4d3082305d120c14cb48142e76e38c120933875fa976"
+        "sha256": "d0b8f03f33a87c6044477539f03b7bdc1d758b574971595418965dfa6e80b5a9"
       },
-      "answerSummary": "④、200 GPaです。応力50 MPaをひずみ0.00025で割り、MPaからGPaへ換算します。"
+      "answerSummary": "④、200 GPaです。応力50 MPaをひずみ0.00025で割り、MPaからGPaへ換算します。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "solid2-2-9",
@@ -658,7 +784,7 @@
           "3": "柔らかい側だけで変位を求める",
           "4": "共通変位への抵抗を正しく加算しない"
         },
-        "sha256": "272b1a8790f8e77a678ecc6c1593fa1dc442b819030c001e2c5b5eb9fa58dde4"
+        "sha256": "d61a1159d513c834bfeda0e475c798c84070b8127c6820dae678a37158cbd25d"
       },
       "answerSummary": "①、0.048 mmです。Bが動くと左右の区間が同時に抵抗するので、剛性を足します。",
       "preFigures": [
@@ -666,6 +792,9 @@
           "figureImage": "s2FixedBar2MatSetup",
           "caption": "両端は固定、荷重は途中のBに加えます。区間ごとの長さと材料を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -740,7 +869,7 @@
           "3": "左右対称の2倍を重複する",
           "4": "逆数の積分を対数でなく比とする"
         },
-        "sha256": "df67807b19ee4732777b5f91d55a75b45fe36d3b5eb03e882435d4d4f293420b"
+        "sha256": "01e28aaa0c4bd6bde902fc2d8a4e98c53dcf126796104cbd796e0beddbb1b1e3"
       },
       "answerSummary": "①。幅の変わる小区間の伸びを積分し、左右二つ分を足すと $\\delta=2PL\\ln(a/b)/[Et(a-b)]$ です。",
       "preFigures": [
@@ -748,6 +877,9 @@
           "figureImage": "s2TaperBarSetup",
           "caption": "両端の幅bから中央の幅aまで直線的に広がる板です。半分の長さがLです。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -818,7 +950,7 @@
           "3": "張力の倍率と幾何学的倍率を落とす",
           "4": "倍率を余分に掛ける"
         },
-        "sha256": "c1baf571a341a5410d41b6c4431d4e2d0564cb9678b7dc641c0bee77a2853fdc"
+        "sha256": "0beddc2d6a2aa74c8ac71f7927df62b65f712f8b25efce97dfafea39419c820b"
       },
       "answerSummary": "②、先端は2.0 mm下がります。張力→ワイヤの伸び→剛体棒の回転による先端変位の順に求めます。",
       "preFigures": [
@@ -826,6 +958,9 @@
           "figureImage": "s2RigidBarWireSetup",
           "caption": "Aは回転できるピンです。ワイヤはAからaの位置、荷重はbの位置にあります。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -897,7 +1032,7 @@
           "3": "細い棒の軸力を棒1の値とする",
           "4": "棒1だけが全荷重を支えるとする"
         },
-        "sha256": "c9ab7fb6f12f483396219bf6dc9c6d672c962023081edeef2b4cac34a51fa65a"
+        "sha256": "e8d0cfbc6df33f4732f969a3ef8bbe7645a85f090fd6a340a113d0ddd685f0ec"
       },
       "answerSummary": "①。板が水平なので伸びは共通です。面積比2対1で荷重を分担し、棒1は20 kNです。",
       "preFigures": [
@@ -905,6 +1040,9 @@
           "figureImage": "s2RigidPlate2BarsSetup",
           "caption": "二本の棒を剛体板でつなぎ、ガイドで板を水平に保ちます。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -968,7 +1106,7 @@
           "2": "直交二面のせん断を独立とみなす",
           "4": "y面にはせん断がないとする"
         },
-        "sha256": "eb0f477bfb63f11480354a978af3281f18a85c03b21eaafee80aae54f52798f3"
+        "sha256": "15f065aa59ff76c0e4ed165c2866c454f199c5d28c85ae0083e702e1a2084ea7"
       },
       "answerSummary": "③。共役せん断応力は $\\tau_{xy}=\\tau_{yx}$ です。四面の力が作る二組の回転作用を打ち消します。",
       "preFigures": [
@@ -976,6 +1114,9 @@
           "figureImage": "s2ConjugateShearSetup",
           "caption": "左右面のせん断力が与えられています。上下面に必要なせん断力を考えます。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1014,7 +1155,7 @@
           "2": "モーメントが加算される配置を選ぶ",
           "3": "左右自由面に必要な表面力がない点を見落とす"
         },
-        "sha256": "0927206299401708673512bddd71acb06f72c1a603c3a007baeeb539883540ee"
+        "sha256": "2275985c42bfeb9d7bdcbc89fffc4b264c9708093e2ce81b76f94b6e75e21a00"
       },
       "easyExplanation": [
         {
@@ -1054,6 +1195,9 @@
           "figureImage": "s2Before2_14",
           "caption": "四つの候補で、表面力の向きと固定・自由の条件を比較します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1132,7 +1276,7 @@
           "3": "半径でなく直径で割る",
           "4": "直径と半径の倍率を逆に反映する"
         },
-        "sha256": "d3741d5ddc35601fc65669e19b644e7b06aaaa301b651b6218e543a98adbe909"
+        "sha256": "946b959387ed15e94b43991b86076b0aab19be22e78421e9459ff57de2b9b993"
       },
       "answerSummary": "②、約707 N·mです。穴を引いた極断面二次モーメントを求め、外表面の応力を60 MPaに制限します。",
       "preFigures": [
@@ -1140,6 +1284,9 @@
           "figureImage": "s2HollowShaftSetup",
           "caption": "外径と内径を区別します。円軸の外表面に生じるせん断応力を許容値以下にします。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1211,7 +1358,7 @@
           "2": "二つの主応力をともに引張とする",
           "4": "主応力の大きさを2倍にする"
         },
-        "sha256": "a20a3a25373a436cacbaebdb65dfeba48759b16a4a9e38a09faa2b74673a173a"
+        "sha256": "fc5a8c308914e9671294d512483790a222e95eab84e3c5cbac87155d457f444f"
       },
       "answerSummary": "③。純せん断を±45°の向きで見ると、面内主応力は $+\\tau,-\\tau$ となります。",
       "preFigures": [
@@ -1219,6 +1366,9 @@
           "figureImage": "s2TorsionPrincipalSetup",
           "caption": "ねじりを受ける丸棒表面の小要素を取り出した図です。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1277,7 +1427,7 @@
           "3": "軸引張を加えても円の中心が移らないとする",
           "4": "単軸引張の円の中心を原点とする"
         },
-        "sha256": "485cde459c123df7f0f20d7b03855a29b5e5308241a14878bd32733408c7cf9c"
+        "sha256": "1872f07d948fedd564afa7705ee181b5d50682d803f7668e44630321c8c680d1"
       },
       "answerSummary": "②の純トルクです。与えられた候補の中で、面内の平均垂直応力0・せん断応力sとなり、中心0・半径sの円に一致します。",
       "preFigureImage": "s2align2_17",
@@ -1286,6 +1436,9 @@
           "figureImage": "s2align2_17",
           "caption": "中心が原点、半径がsのモール円です。与えられた四つの応力状態と比べます。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1351,21 +1504,127 @@
       ],
       "editorialReview": {
         "officialPoint": "平面応力の最大主応力と主軸角",
-        "alignment": "保存済み公式の該当番号と選択式の論点を照合。通常4節を旧本体用に保持し、標準詳解は結論・必要な導出・具体例・誤答理由へ統合。重複を削り、式と数値例の整合、単位、図の対応を確認。文字数で水増ししない。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "元のx方向応力を最大主応力とする",
           "2": "半径と倍角の計算を誤る",
           "3": "せん断があれば常に45°と考える"
         },
-        "sha256": "5c54d089023459d6f3d7c7ee61b975497601400c3dd863e87d29c7d5d8cebde7"
+        "sha256": "81732e13b8c1f59c708e74593e2169c4bd9e48e49012e7b6d4bbe8f836668cad"
       },
-      "answerSummary": "④。最大主応力65 MPa、その方向はx軸から反時計回りに約18.4°です。",
+      "answerSummary": "最大主応力：平均40 MPaに、半径25 MPaを足した65 MPaです。\n主軸角：求まる正接は2θpについてのものなので、最後に角度を半分にします。",
       "preFigures": [
         {
           "figureImage": "s2PrincipalSetup",
           "caption": "与えられた垂直応力とせん断応力です。主方向・主応力をこれから求めます。"
         }
-      ]
+      ],
+      "officialQuestionItems": [
+        "stress",
+        "angle"
+      ],
+      "sharedQuestion": "平面応力状態 $\\sigma_x=60\\,\\mathrm{MPa},\\ \\sigma_y=20\\,\\mathrm{MPa},\\ \\tau_{xy}=15\\,\\mathrm{MPa}$ が与えられている。最大主応力と、x軸から反時計回りに測ったその主軸角をそれぞれ求めてください。",
+      "studyParts": [
+        {
+          "id": "solid-principal-plane-stress-item-stress",
+          "number": "2-18",
+          "officialRef": "問2-18",
+          "officialQuestionItem": "stress",
+          "title": "最大主応力",
+          "topic": "主応力・主軸",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "最大主応力$\\sigma_1$はどちらですか。",
+          "choices": [
+            "$65\\ \\mathrm{MPa}$",
+            "$60\\ \\mathrm{MPa}$"
+          ],
+          "answer": 1,
+          "answerSummary": "平均40 MPaに、半径25 MPaを足した65 MPaです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "主応力は、せん断応力が0になる面の垂直応力です。二方向の平均応力に、せん断も含めた振れ幅を足すと最大主応力になります。"
+            },
+            {
+              "title": "平均と半径を順に計算する",
+              "body": "平均は$C=(60+20)/2=40\\,\\mathrm{MPa}$です。モール円の半径は$R=\\sqrt{[(60-20)/2]^2+15^2}=\\sqrt{400+225}=25\\,\\mathrm{MPa}$です。\n\n最大主応力は$\\sigma_1=C+R=65\\,\\mathrm{MPa}$です。"
+            }
+          ],
+          "explanation": "【基礎】平均40 MPaに、半径25 MPaを足した65 MPaです。\n【考え方】正解は1です。主応力は、せん断応力が0になる面の垂直応力です。二方向の平均応力に、せん断も含めた振れ幅を足すと最大主応力になります。\n【ポイント】平均は$C=(60+20)/2=40\\,\\mathrm{MPa}$です。モール円の半径は$R=\\sqrt{[(60-20)/2]^2+15^2}=\\sqrt{400+225}=25\\,\\mathrm{MPa}$です。 最大主応力は$\\sigma_1=C+R=65\\,\\mathrm{MPa}$です。\n【引っかけ】2：「$60\\ \\mathrm{MPa}$」ではなく、$65\\ \\mathrm{MPa}$です。主応力は、せん断応力が0になる面の垂直応力です。二方向の平均応力に、せん断も含めた振れ幅を足すと最大主応力になります。",
+          "relatedFormulas": [
+            "mohr",
+            "stress-transformation"
+          ],
+          "editorialReview": {
+            "officialPoint": "平面応力の最大主応力と主軸角／個別の質問：最大主応力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$60\\ \\mathrm{MPa}$」ではなく、$65\\ \\mathrm{MPa}$です。主応力は、せん断応力が0になる面の垂直応力です。二方向の平均応力に、せん断も含めた振れ幅を足すと最大主応力になります。"
+            },
+            "sha256": "cb36e7100caf2dbdea535e3c851566baa8f84fe5eacb20db3e2796a61f3c93ec"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "solid-principal-plane-stress-item-angle",
+          "number": "2-18",
+          "officialRef": "問2-18",
+          "officialQuestionItem": "angle",
+          "title": "主軸角",
+          "topic": "主応力・主軸",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "最大主応力の方向を表す$\\theta_p$はどちらに近いですか。",
+          "choices": [
+            "$36.9^\\circ$",
+            "$18.4^\\circ$"
+          ],
+          "answer": 2,
+          "answerSummary": "求まる正接は2θpについてのものなので、最後に角度を半分にします。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "回転面のせん断は$\\tau_{x'y'}=-[(\\sigma_x-\\sigma_y)/2]\\sin2\\theta+\\tau_{xy}\\cos2\\theta$です。主方向では0なので$-20\\sin2\\theta+15\\cos2\\theta=0$です。\n\n移項して$\\tan2\\theta=15/20=0.75$となります。角度の式を別に暗記するのではなく、せん断が0という条件から作れます。"
+            },
+            {
+              "title": "角度は倍角から戻す",
+              "body": "主方向では$\\tan2\\theta_p=2\\tau_{xy}/(\\sigma_x-\\sigma_y)=30/40=0.75$です。したがって$2\\theta_p\\approx36.87^\\circ$、$\\theta_p\\approx18.43^\\circ$です。\n\n求めた角度を2で割る点に注意します。"
+            },
+            {
+              "title": "角度を応力変換式へ戻して検算する",
+              "body": "求めた角度では$\\cos2\\theta_p=0.8$、$\\sin2\\theta_p=0.6$です。$\\sigma_{x'}=40+20\\cos2\\theta+15\\sin2\\theta$へ入れると$40+16+9=65\\,\\mathrm{MPa}$です。\n\nせん断は$\\tau_{x'y'}=-20\\sin2\\theta+15\\cos2\\theta=-12+12=0$です。最大主応力65とせん断0を両方再現できるので、二つある主軸のうち最大側を選べたことまで確認できます。",
+              "figures": [
+                {
+                  "figureImage": "s2PrincipalMohr",
+                  "caption": "円の中心は40 MPa、半径は25 MPaです。右端の65 MPaが最大主応力で、元の点からの円上の角度は実際の回転角の2倍です。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】求まる正接は2θpについてのものなので、最後に角度を半分にします。\n【考え方】正解は2です。回転面のせん断は$\\tau_{x'y'}=-[(\\sigma_x-\\sigma_y)/2]\\sin2\\theta+\\tau_{xy}\\cos2\\theta$です。主方向では0なので$-20\\sin2\\theta+15\\cos2\\theta=0$です。 移項して$\\tan2\\theta=15/20=0.75$となります。角度の式を別に暗記するのではなく、せん断が0という条件から作れます。\n【ポイント】主方向では$\\tan2\\theta_p=2\\tau_{xy}/(\\sigma_x-\\sigma_y)=30/40=0.75$です。したがって$2\\theta_p\\approx36.87^\\circ$、$\\theta_p\\approx18.43^\\circ$です。 求めた角度を2で割る点に注意します。\n【引っかけ】1：「$36.9^\\circ$」ではなく、$18.4^\\circ$です。回転面のせん断は$\\tau_{x'y'}=-[(\\sigma_x-\\sigma_y)/2]\\sin2\\theta+\\tau_{xy}\\cos2\\theta$です。主方向では0なので$-20\\sin2\\theta+15\\cos2\\theta=0$です。 移項して$\\tan2\\theta=15/20=0.75$となります。角度の式を別に暗記するのではなく、せん断が0という条件から作れます。",
+          "relatedFormulas": [
+            "mohr",
+            "stress-transformation"
+          ],
+          "editorialReview": {
+            "officialPoint": "平面応力の最大主応力と主軸角／個別の質問：主軸角",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$36.9^\\circ$」ではなく、$18.4^\\circ$です。回転面のせん断は$\\tau_{x'y'}=-[(\\sigma_x-\\sigma_y)/2]\\sin2\\theta+\\tau_{xy}\\cos2\\theta$です。主方向では0なので$-20\\sin2\\theta+15\\cos2\\theta=0$です。\n\n移項して$\\tan2\\theta=15/20=0.75$となります。角度の式を別に暗記するのではなく、せん断が0という条件から作れます。"
+            },
+            "sha256": "6ee1da6ba7735bc7747509b36e2c528c42ab3de9275a9be3138f0bc230ddf787"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "solid-3d-pure-shear",
@@ -1424,15 +1683,157 @@
       ],
       "editorialReview": {
         "officialPoint": "三次元応力状態から主応力を求める",
-        "alignment": "保存済み公式の該当番号と選択式の論点を照合。通常4節を旧本体用に保持し、標準詳解は結論・必要な導出・具体例・誤答理由へ統合。重複を削り、式と数値例の整合、単位、図の対応を確認。文字数で水増ししない。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "一組のせん断だけの結果を三組へ流用する",
           "2": "主応力の和が元の垂直応力の和と一致しない",
           "4": "和が一致するだけで正解とする"
         },
-        "sha256": "43b124c7ba2735c3aa2e036e7d44842dfac7d18ccfb799eb062ba7916ccbadab"
+        "sha256": "29dd3424e04edf4dad4979cf5588603f6ea23af27d7def044a3c23ca9178ef75"
       },
-      "answerSummary": "③。応力行列の固有値を求めると、主応力は $40,-20,-20\\,\\mathrm{MPa}$ です。"
+      "answerSummary": "最大主応力：主応力は、せん断応力を含む応力行列の固有値です。\n中間主応力：特性方程式の根は40、−20、−20 MPaです。\n最小主応力：−20 MPaは重根なので、2つの主応力が同じ値になります。",
+      "officialQuestionItems": [
+        "sigma1",
+        "sigma2",
+        "sigma3"
+      ],
+      "sharedQuestion": "ある物体内の一点における応力が、次の行列で表されている。対角成分は垂直応力、対角以外の成分はせん断応力であり、単位はすべてMPaとする。\n$\\mathbf S=\\begin{pmatrix}0&20&20\\\\20&0&20\\\\20&20&0\\end{pmatrix}$\n大きい順の3つの主応力を、それぞれ答えてください。",
+      "studyParts": [
+        {
+          "id": "solid-3d-pure-shear-item-sigma1",
+          "number": "2-19",
+          "officialRef": "問2-19",
+          "officialQuestionItem": "sigma1",
+          "title": "最大主応力",
+          "topic": "純せん断の主応力",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "最大の主応力$\\sigma_1$はどちらですか。",
+          "choices": [
+            "$40\\ \\mathrm{MPa}$",
+            "$20\\ \\mathrm{MPa}$"
+          ],
+          "answer": 1,
+          "answerSummary": "主応力は、せん断応力を含む応力行列の固有値です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "主方向では、その方向の面に働く応力ベクトルが面の法線と同じ直線上にあり、せん断がなくなります。法線を$\\mathbf n$とすると$\\mathbf S\\mathbf n=\\sigma\\mathbf n$です。\n\nこれが固有値の式なので、主応力は応力行列の固有値です。"
+            },
+            {
+              "title": "行列式0が必要になる理由",
+              "body": "主方向の法線$\\mathbf n$には$(\\mathbf S-\\sigma\\mathbf I)\\mathbf n=\\mathbf0$が成立します。係数行列が逆行列を持つと、両辺へ掛けて$\\mathbf n=\\mathbf0$しか残りません。\n\n面の向きを表す非零の矢印が必要なので、逆行列を持たない条件$\\det(\\mathbf S-\\sigma\\mathbf I)=0$を使います。"
+            },
+            {
+              "title": "対角から未知の応力を引く",
+              "body": "$\\det(\\mathbf S-\\sigma\\mathbf I)=0$を作ります。$\\det\\begin{pmatrix}-\\sigma&20&20\\\\20&-\\sigma&20\\\\20&20&-\\sigma\\end{pmatrix}=0$です。\n\n未知の$\\sigma$を引くのは対角だけで、せん断成分20はそのままです。"
+            },
+            {
+              "title": "二次の行列式へ分けて計算する",
+              "body": "第1行で符号を「＋、−、＋」として展開すると、$(-\\sigma)(\\sigma^2-400)-20(-20\\sigma-400)+20(400+20\\sigma)=0$です。同類項をまとめると$-\\sigma^3+1200\\sigma+16000=0$になります。\n\n二次の行列式は左上×右下から右上×左下を引いています。"
+            }
+          ],
+          "explanation": "【基礎】主応力は、せん断応力を含む応力行列の固有値です。\n【考え方】正解は1です。主方向では、その方向の面に働く応力ベクトルが面の法線と同じ直線上にあり、せん断がなくなります。法線を$\\mathbf n$とすると$\\mathbf S\\mathbf n=\\sigma\\mathbf n$です。 これが固有値の式なので、主応力は応力行列の固有値です。\n【ポイント】主方向の法線$\\mathbf n$には$(\\mathbf S-\\sigma\\mathbf I)\\mathbf n=\\mathbf0$が成立します。係数行列が逆行列を持つと、両辺へ掛けて$\\mathbf n=\\mathbf0$しか残りません。 面の向きを表す非零の矢印が必要なので、逆行列を持たない条件$\\det(\\mathbf S-\\sigma\\mathbf I)=0$を使います。\n【引っかけ】2：「$20\\ \\mathrm{MPa}$」ではなく、$40\\ \\mathrm{MPa}$です。主方向では、その方向の面に働く応力ベクトルが面の法線と同じ直線上にあり、せん断がなくなります。法線を$\\mathbf n$とすると$\\mathbf S\\mathbf n=\\sigma\\mathbf n$です。 これが固有値の式なので、主応力は応力行列の固有値です。",
+          "relatedFormulas": [
+            "mohr"
+          ],
+          "editorialReview": {
+            "officialPoint": "三次元応力状態から主応力を求める／個別の質問：最大主応力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$20\\ \\mathrm{MPa}$」ではなく、$40\\ \\mathrm{MPa}$です。主方向では、その方向の面に働く応力ベクトルが面の法線と同じ直線上にあり、せん断がなくなります。法線を$\\mathbf n$とすると$\\mathbf S\\mathbf n=\\sigma\\mathbf n$です。\n\nこれが固有値の式なので、主応力は応力行列の固有値です。"
+            },
+            "sha256": "4177fb524db25947c3fd28bd85ea154cff71f3ecb7afde551918a91d85944d7f"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "solid-3d-pure-shear-item-sigma2",
+          "number": "2-19",
+          "officialRef": "問2-19",
+          "officialQuestionItem": "sigma2",
+          "title": "中間主応力",
+          "topic": "純せん断の主応力",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "2番目の主応力$\\sigma_2$はどちらですか。",
+          "choices": [
+            "$20\\ \\mathrm{MPa}$",
+            "$-20\\ \\mathrm{MPa}$"
+          ],
+          "answer": 2,
+          "answerSummary": "特性方程式の根は40、−20、−20 MPaです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "負号を掛けて$\\sigma^3-1200\\sigma-16000=0$です。$(\\sigma-40)(\\sigma^2+40\\sigma+400)=(\\sigma-40)(\\sigma+20)^2=0$より、根は$40,-20,-20$です。\n\n同じ根も二つ数え、大きい順に並べた③です。"
+            }
+          ],
+          "explanation": "【基礎】特性方程式の根は40、−20、−20 MPaです。\n【考え方】正解は2です。負号を掛けて$\\sigma^3-1200\\sigma-16000=0$です。$(\\sigma-40)(\\sigma^2+40\\sigma+400)=(\\sigma-40)(\\sigma+20)^2=0$より、根は$40,-20,-20$です。 同じ根も二つ数え、大きい順に並べた③です。\n【ポイント】特性方程式の根は40、−20、−20 MPaです。\n【引っかけ】1：「$20\\ \\mathrm{MPa}$」ではなく、$-20\\ \\mathrm{MPa}$です。負号を掛けて$\\sigma^3-1200\\sigma-16000=0$です。$(\\sigma-40)(\\sigma^2+40\\sigma+400)=(\\sigma-40)(\\sigma+20)^2=0$より、根は$40,-20,-20$です。 同じ根も二つ数え、大きい順に並べた③です。",
+          "relatedFormulas": [
+            "mohr"
+          ],
+          "editorialReview": {
+            "officialPoint": "三次元応力状態から主応力を求める／個別の質問：中間主応力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$20\\ \\mathrm{MPa}$」ではなく、$-20\\ \\mathrm{MPa}$です。負号を掛けて$\\sigma^3-1200\\sigma-16000=0$です。$(\\sigma-40)(\\sigma^2+40\\sigma+400)=(\\sigma-40)(\\sigma+20)^2=0$より、根は$40,-20,-20$です。\n\n同じ根も二つ数え、大きい順に並べた③です。"
+            },
+            "sha256": "81ef92391293f36bbc5a7214f08fce306a6a09317b32637f85a4fb256fb854f8"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "solid-3d-pure-shear-item-sigma3",
+          "number": "2-19",
+          "officialRef": "問2-19",
+          "officialQuestionItem": "sigma3",
+          "title": "最小主応力",
+          "topic": "純せん断の主応力",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "最小の主応力$\\sigma_3$はどちらですか。",
+          "choices": [
+            "$-20\\ \\mathrm{MPa}$",
+            "$-40\\ \\mathrm{MPa}$"
+          ],
+          "answer": 1,
+          "answerSummary": "−20 MPaは重根なので、2つの主応力が同じ値になります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "因数分解した特性方程式は$-(\\lambda-40)(\\lambda+20)^2=0$です。$\\lambda=-20$は二重の根です。大きい順に並べても最後は$-20\\ \\mathrm{MPa}$です。対角成分の和が0なので、主応力の和$40-20-20=0$とも一致します。"
+            },
+            {
+              "title": "掛け算で三つの根を独立に確認する",
+              "body": "$(1,1,1)^T$へ応力行列を掛けると、各行は$0+20+20=40$なので、積は元のベクトルの40倍です。次に$(1,-1,0)^T$なら積は$(-20,20,0)^T=-20(1,-1,0)^T$です。\n\n$(1,0,-1)^T$にも同じ倍率−20が対応します。異なる二方向に同じ固有値があるため、−20が二つ現れても誤りではありません。\n\n因数分解した根が、本当に行列の特別な倍率になっていると確かめられます。"
+            }
+          ],
+          "explanation": "【基礎】−20 MPaは重根なので、2つの主応力が同じ値になります。\n【考え方】正解は1です。因数分解した特性方程式は$-(\\lambda-40)(\\lambda+20)^2=0$です。$\\lambda=-20$は二重の根です。大きい順に並べても最後は$-20\\ \\mathrm{MPa}$です。対角成分の和が0なので、主応力の和$40-20-20=0$とも一致します。\n【ポイント】$(1,1,1)^T$へ応力行列を掛けると、各行は$0+20+20=40$なので、積は元のベクトルの40倍です。次に$(1,-1,0)^T$なら積は$(-20,20,0)^T=-20(1,-1,0)^T$です。 $(1,0,-1)^T$にも同じ倍率−20が対応します。異なる二方向に同じ固有値があるため、−20が二つ現れても誤りではありません。 因数分解した根が、本当に行列の特別な倍率になっていると確かめられます。\n【引っかけ】2：「$-40\\ \\mathrm{MPa}$」ではなく、$-20\\ \\mathrm{MPa}$です。因数分解した特性方程式は$-(\\lambda-40)(\\lambda+20)^2=0$です。$\\lambda=-20$は二重の根です。大きい順に並べても最後は$-20\\ \\mathrm{MPa}$です。対角成分の和が0なので、主応力の和$40-20-20=0$とも一致します。",
+          "relatedFormulas": [
+            "mohr"
+          ],
+          "editorialReview": {
+            "officialPoint": "三次元応力状態から主応力を求める／個別の質問：最小主応力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$-40\\ \\mathrm{MPa}$」ではなく、$-20\\ \\mathrm{MPa}$です。因数分解した特性方程式は$-(\\lambda-40)(\\lambda+20)^2=0$です。$\\lambda=-20$は二重の根です。大きい順に並べても最後は$-20\\ \\mathrm{MPa}$です。対角成分の和が0なので、主応力の和$40-20-20=0$とも一致します。"
+            },
+            "sha256": "8d1ec7f139c39d0be2c0d7bef67e636aac43f66746277f80352c912d1101188a"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "solid-overhang-reactions",
@@ -1462,13 +1863,13 @@
       "preFigureImage": "s2Before2_20",
       "editorialReview": {
         "officialPoint": "浮き上がり止めのある支点反力",
-        "alignment": "保存済み公式の該当番号と選択式の論点を照合。通常4節を旧本体用に保持し、標準詳解は結論・必要な導出・具体例・誤答理由へ統合。重複を削り、式と数値例の整合、単位、図の対応を確認。文字数で水増ししない。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "仮定した上向きと実際の下向きを取り違える",
           "3": "AとCの反力を交換する",
           "4": "距離を無視して反力を等分する"
         },
-        "sha256": "ea7058a1cb84aaf07b3377b19dced349db74c9b523a9fd9bd44fdea2fb02d885"
+        "sha256": "24f47dc82f7e94740f55ab90a26a18421a7505a14db355d319c89008355b872c"
       },
       "easyExplanation": [
         {
@@ -1496,13 +1897,107 @@
           "body": "2は反力の向きが逆、3は支点反力の入れ替え、4は合力だけを等分して回転の釣合いを満たしていません。"
         }
       ],
-      "answerSummary": "①。上向きを正として $R_A=-2\\,\\mathrm{kN},R_C=-6\\,\\mathrm{kN}$。負号は実際の反力が下向きという意味です。",
+      "answerSummary": "Aの反力：$R_A=-2\\,\\mathrm{kN}$、下向きです。\nCの反力：$R_C=-6\\,\\mathrm{kN}$、下向きです。",
       "preFigures": [
         {
           "figureImage": "s2Before2_20",
           "caption": "BとDの荷重は上向きです。支持は負の反力も伝えられる条件です。"
         }
-      ]
+      ],
+      "officialQuestionItems": [
+        "a",
+        "c"
+      ],
+      "sharedQuestion": "図のはりは $A$ と $C$ で支持され、$AB=BC=CD=1\\,\\mathrm m$ である。$B$ に上向き $6\\,\\mathrm{kN}$、$D$ に上向き $2\\,\\mathrm{kN}$ を与える。$C$ は上下両方向の反力を伝え、回転を許す支持とする。上向きを正とする各支持点の反力を求めます。",
+      "studyParts": [
+        {
+          "id": "solid-overhang-reactions-item-a",
+          "number": "2-20",
+          "officialRef": "問2-20",
+          "officialQuestionItem": "a",
+          "title": "Aの反力",
+          "topic": "つり合い・反力",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$R_A$はいくらか。",
+          "choices": [
+            "$-2\\,\\mathrm{kN}$",
+            "$+2\\,\\mathrm{kN}$"
+          ],
+          "answer": 1,
+          "answerSummary": "$R_A=-2\\,\\mathrm{kN}$、下向きです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "Cまわりのモーメントを釣り合わせます。反時計回りを正にすると $-2R_A-6\\times1+2\\times1=0$ です。$-2R_A=4$ から $R_A=-2\\,\\mathrm{kN}$。支持点を基準にすると、その支持反力のモーメントを消せます。"
+            },
+            {
+              "title": "支持を反力の矢印へ置き換える",
+              "body": "上向きを正として$R_A,R_C$を仮定します。答えが負なら、実際の反力が下向きという意味です。\n\nCは浮き上がり止めがあり上下両方向の力を伝えられるので、負の反力も許されます。"
+            },
+            {
+              "title": "負の反力と支持装置の関係",
+              "body": "上向きに仮定して負の値になったのは、実際には支点が下向きに作用するという意味です。もしその方向の力を伝えられない支持なら、浮き上がりを検討しなければなりません。\n\n本問はその反力を伝えられる設定なので採用できます。反力の計算では、正方向を決めることと、支持がその方向の力を伝えられるかを分けて確認します。"
+            }
+          ],
+          "explanation": "【基礎】$R_A=-2\\,\\mathrm{kN}$、下向きです。\n【考え方】正解は1です。Cまわりのモーメントを釣り合わせます。反時計回りを正にすると $-2R_A-6\\times1+2\\times1=0$ です。$-2R_A=4$ から $R_A=-2\\,\\mathrm{kN}$。支持点を基準にすると、その支持反力のモーメントを消せます。\n【ポイント】上向きを正として$R_A,R_C$を仮定します。答えが負なら、実際の反力が下向きという意味です。 Cは浮き上がり止めがあり上下両方向の力を伝えられるので、負の反力も許されます。\n【引っかけ】2：「$+2\\,\\mathrm{kN}$」ではなく、$-2\\,\\mathrm{kN}$です。Cまわりのモーメントを釣り合わせます。反時計回りを正にすると $-2R_A-6\\times1+2\\times1=0$ です。$-2R_A=4$ から $R_A=-2\\,\\mathrm{kN}$。支持点を基準にすると、その支持反力のモーメントを消せます。",
+          "relatedFormulas": [
+            "beam-reactions"
+          ],
+          "editorialReview": {
+            "officialPoint": "浮き上がり止めのある支点反力／個別の質問：Aの反力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$+2\\,\\mathrm{kN}$」ではなく、$-2\\,\\mathrm{kN}$です。Cまわりのモーメントを釣り合わせます。反時計回りを正にすると $-2R_A-6\\times1+2\\times1=0$ です。$-2R_A=4$ から $R_A=-2\\,\\mathrm{kN}$。支持点を基準にすると、その支持反力のモーメントを消せます。"
+            },
+            "sha256": "b69fbb667c37aa375309a2ca9a4f1e7aa63589919a0380478004ba5abd43c04a"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "solid-overhang-reactions-item-c",
+          "number": "2-20",
+          "officialRef": "問2-20",
+          "officialQuestionItem": "c",
+          "title": "Cの反力",
+          "topic": "つり合い・反力",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$R_C$はいくらか。",
+          "choices": [
+            "$-6\\,\\mathrm{kN}$",
+            "$-4\\,\\mathrm{kN}$"
+          ],
+          "answer": 1,
+          "answerSummary": "$R_C=-6\\,\\mathrm{kN}$、下向きです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "Aまわりの釣合いは $6\\times1+2R_C+2\\times3=0$ です。$2R_C=-12$ より $R_C=-6\\,\\mathrm{kN}$。等分した−4 kNでは回転を止められません。鉛直合力も $-2-6+6+2=0$ となります。"
+            }
+          ],
+          "explanation": "【基礎】$R_C=-6\\,\\mathrm{kN}$、下向きです。\n【考え方】正解は1です。Aまわりの釣合いは $6\\times1+2R_C+2\\times3=0$ です。$2R_C=-12$ より $R_C=-6\\,\\mathrm{kN}$。等分した−4 kNでは回転を止められません。鉛直合力も $-2-6+6+2=0$ となります。\n【ポイント】$R_C=-6\\,\\mathrm{kN}$、下向きです。\n【引っかけ】2：「$-4\\,\\mathrm{kN}$」ではなく、$-6\\,\\mathrm{kN}$です。Aまわりの釣合いは $6\\times1+2R_C+2\\times3=0$ です。$2R_C=-12$ より $R_C=-6\\,\\mathrm{kN}$。等分した−4 kNでは回転を止められません。鉛直合力も $-2-6+6+2=0$ となります。",
+          "relatedFormulas": [
+            "beam-reactions"
+          ],
+          "editorialReview": {
+            "officialPoint": "浮き上がり止めのある支点反力／個別の質問：Cの反力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$-4\\,\\mathrm{kN}$」ではなく、$-6\\,\\mathrm{kN}$です。Aまわりの釣合いは $6\\times1+2R_C+2\\times3=0$ です。$2R_C=-12$ より $R_C=-6\\,\\mathrm{kN}$。等分した−4 kNでは回転を止められません。鉛直合力も $-2-6+6+2=0$ となります。"
+            },
+            "sha256": "6bbcf5d1e316c8cec010021ba0a94773a51bb86671fcb93e073149e06467cb2c"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "solid-overhang-maxmoment",
@@ -1576,7 +2071,7 @@
           "3": "自由端で曲げモーメントが最大とする",
           "4": "区間内の曲げを釣合いなしに推定する"
         },
-        "sha256": "777463d409b22fc0288f3142117e161aa0e935c06cb0e00a5526d9a8db918b04"
+        "sha256": "e29ddc890daba8a6ca686e5fe68932a7dd0d0e5269867580beb1a697d0ab80fd"
       },
       "answerSummary": "①。Cで $M=-12\\,\\mathrm{kN\\,m}$ となり、曲げモーメントの絶対値が最大です。",
       "preFigures": [
@@ -1584,6 +2079,9 @@
           "figureImage": "s2OverhangBeamSetup",
           "caption": "AからCまでは4 m、張り出し端までは6 mです。荷重と支持の位置を読み取ります。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1620,7 +2118,7 @@
           "3": "合力の位置を区間端とする",
           "4": "合力と作用位置の半分を重ねて誤る"
         },
-        "sha256": "300728876be931b91aba4ed13f03283e11a28b8bca9ff8316864c8bec5eea870"
+        "sha256": "d97468239e80446421b3bd5e95fe280f9b01619893454be39d795888f8e24d68"
       },
       "easyExplanation": [
         {
@@ -1654,6 +2152,9 @@
           "figureImage": "s2Before2_22",
           "caption": "荷重があるのは右半分、求める断面は左から3L/4です。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1690,7 +2191,7 @@
           "2": "非零の曲げでも曲率0とする",
           "3": "横荷重がないのに曲げが位置に比例するとする"
         },
-        "sha256": "8321538a257e0df5026f0438601206ddbbba29557278994ae4f1eeb1181abbe7"
+        "sha256": "d0ace6a2790dacd218e383a4df3a4ff61468aeb3a6924f98d7c18dea51e6146d"
       },
       "easyExplanation": [
         {
@@ -1728,6 +2229,9 @@
           "figureImage": "s2Before2_23",
           "caption": "自由端に与えるのは偶力M₀です。集中した鉛直力とは区別します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1765,7 +2269,7 @@
           "2": "高さの三乗の効果を落とす",
           "3": "断面と材料の倍率を逆に扱う"
         },
-        "sha256": "876a7a9e531fa0605e174e1e2c0546c9e0d0fa186878caef7e40bf7d698d971d"
+        "sha256": "4ba8866543ff5fcd38a76b867f307b95d8d0d81aa5825377e791dbd8199a86b4"
       },
       "easyExplanation": [
         {
@@ -1799,6 +2303,9 @@
           "figureImage": "s2Before2_24",
           "caption": "支持・荷重・幅は同じです。材料のEと断面の高さhの変更を別々に考えます。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1836,7 +2343,7 @@
           "2": "三角形の図心と最遠縁の距離を取り違える",
           "4": "外形だけが同じひし形を正方形と同等とする"
         },
-        "sha256": "85f8f757c2eb1d9af65384ba7c9a429e5ab3505c37c26d5d82aebfd253883fdb"
+        "sha256": "eaedb4c54fb62e3a9a4daad3206df941aa85b76835509af9cb5753f645ac9e94"
       },
       "easyExplanation": [
         {
@@ -1870,6 +2377,9 @@
           "figureImage": "s2Before2_25",
           "caption": "外形の幅・高さを20 mmにそろえた四断面です。水平図心軸から遠い縁を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1900,13 +2410,13 @@
       "preFigureImage": "s2Before2_26",
       "editorialReview": {
         "officialPoint": "組み立て断面を同じ軸へ換算する",
-        "alignment": "保存済み公式の該当番号と選択式の論点を照合。通常4節を旧本体用に保持し、標準詳解は結論・必要な導出・具体例・誤答理由へ統合。重複を削り、式と数値例の整合、単位、図の対応を確認。文字数で水増ししない。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "形と位置が異なる三部分を同じ値とする",
           "3": "平行軸の追加項を落とす",
           "4": "三部分同値と軸のずれの省略をともに認める"
         },
-        "sha256": "b9115faf42d37eb60fa19b295ff1edca7159ead95c4bf3d2e28604b52b5d8049"
+        "sha256": "d884fe7ffa8724e21a46562fac2e1b7a2cad20e41580db08840b0badbecae8d9"
       },
       "easyExplanation": [
         {
@@ -1938,13 +2448,147 @@
           "body": "1はイを正しいとした点、3はウを正しいとした点、4はイ・ウをともに正しいとした点が誤りです。部品ごとの図心軸と、全体の図心軸を混同しないことが要点です。"
         }
       ],
-      "answerSummary": "②（アだけ）。ウェブの式は正しく、上下フランジには全体の図心軸との距離による平行軸の項が必要です。",
+      "answerSummary": "ウェブの断面二次モーメント：ウェブⅡは幅b、高さhで、その中央を軸が通ります。\n3つの部材の比較：上下のフランジ同士は等しいですが、ウェブとは異なります。\n全体の断面二次モーメント：フランジの軸のずれによる平行軸の追加項が抜けています。",
       "preFigures": [
         {
           "figureImage": "s2Before2_26",
           "caption": "三つの長方形を、同じ水平軸yについて評価します。"
         }
-      ]
+      ],
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "sharedQuestion": "図のI形断面を、上下のフランジⅠ・ⅢとウェブⅡに分ける。フランジの幅とウェブの高さは $h$、各部の厚さは $b$ とし、$h>b>0$、重なりはない。水平図心軸 $y$ まわりについて、ア〜ウの主張を、それぞれ判定してください。",
+      "studyParts": [
+        {
+          "id": "s2-2-26-item-a",
+          "number": "2-26",
+          "officialRef": "問2-26",
+          "officialQuestionItem": "a",
+          "title": "ウェブの断面二次モーメント",
+          "topic": "断面二次モーメント・平行軸の定理・I形断面",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Ⅱの水平図心軸まわりの断面二次モーメントは$bh^3/12$である。正しいですか。",
+          "choices": [
+            "正しい",
+            "誤り"
+          ],
+          "answer": 1,
+          "answerSummary": "ウェブⅡは幅b、高さhで、その中央を軸が通ります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "Ⅱは幅$b$、高さ$h$の長方形で、$y$軸が図心を通ります。よって$I_{\\rm II}=bh^3/12$で、アは正しいです。"
+            }
+          ],
+          "explanation": "【基礎】ウェブⅡは幅b、高さhで、その中央を軸が通ります。\n【考え方】正解は1です。Ⅱは幅$b$、高さ$h$の長方形で、$y$軸が図心を通ります。よって$I_{\\rm II}=bh^3/12$で、アは正しいです。\n【ポイント】ウェブⅡは幅b、高さhで、その中央を軸が通ります。\n【引っかけ】2：「誤り」ではなく、正しいです。Ⅱは幅$b$、高さ$h$の長方形で、$y$軸が図心を通ります。よって$I_{\\rm II}=bh^3/12$で、アは正しいです。",
+          "relatedFormulas": [
+            "inertia"
+          ],
+          "editorialReview": {
+            "officialPoint": "組み立て断面を同じ軸へ換算する／個別の質問：ウェブの断面二次モーメント",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「誤り」ではなく、正しいです。Ⅱは幅$b$、高さ$h$の長方形で、$y$軸が図心を通ります。よって$I_{\\rm II}=bh^3/12$で、アは正しいです。"
+            },
+            "sha256": "b7bff521253ad0c70349bd0d4164638540a287f7ae026396f039e28b328ed695"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "s2-2-26-item-b",
+          "number": "2-26",
+          "officialRef": "問2-26",
+          "officialQuestionItem": "b",
+          "title": "3つの部材の比較",
+          "topic": "断面二次モーメント・平行軸の定理・I形断面",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Ⅰ・Ⅱ・Ⅲの断面二次モーメントは全て等しい。正しいですか。",
+          "choices": [
+            "正しい",
+            "誤り"
+          ],
+          "answer": 2,
+          "answerSummary": "上下のフランジ同士は等しいですが、ウェブとは異なります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "ⅠとⅢは幅$h$、高さ$b$です。自分の図心軸なら$I_c=hb^3/12$ですが、全体の$y$軸から距離$a=(h+b)/2$だけ離れています。\n\n平行軸の定理$I=I_c+Aa^2$を使い、$I_{\\rm I}=I_{\\rm III}=hb^3/12+bh[(h+b)/2]^2$です。離れた材料ほど曲げに効くため、距離の二乗が加わります。"
+            },
+            {
+              "title": "離れたフランジの効果を数字で見る",
+              "body": "例えば$b=2,\\ h=10$ mmなら、ウェブは$2\\times10^3/12\\approx166.7\\,\\mathrm{mm^4}$です。各フランジは自分の図心の値$10\\times2^3/12\\approx6.7$に、面積20と距離6 mmによる$20\\times6^2=720$を加え、約726.7です。\n\n全体は$166.7+2\\times726.7\\approx1620\\,\\mathrm{mm^4}$です。軸のずれの寄与を落とすと、大部分を失います。"
+            }
+          ],
+          "explanation": "【基礎】上下のフランジ同士は等しいですが、ウェブとは異なります。\n【考え方】正解は2です。ⅠとⅢは幅$h$、高さ$b$です。自分の図心軸なら$I_c=hb^3/12$ですが、全体の$y$軸から距離$a=(h+b)/2$だけ離れています。 平行軸の定理$I=I_c+Aa^2$を使い、$I_{\\rm I}=I_{\\rm III}=hb^3/12+bh[(h+b)/2]^2$です。離れた材料ほど曲げに効くため、距離の二乗が加わります。\n【ポイント】例えば$b=2,\\ h=10$ mmなら、ウェブは$2\\times10^3/12\\approx166.7\\,\\mathrm{mm^4}$です。各フランジは自分の図心の値$10\\times2^3/12\\approx6.7$に、面積20と距離6 mmによる$20\\times6^2=720$を加え、約726.7です。 全体は$166.7+2\\times726.7\\approx1620\\,\\mathrm{mm^4}$です。軸のずれの寄与を落とすと、大部分を失います。\n【引っかけ】1：「正しい」ではなく、誤りです。ⅠとⅢは幅$h$、高さ$b$です。自分の図心軸なら$I_c=hb^3/12$ですが、全体の$y$軸から距離$a=(h+b)/2$だけ離れています。 平行軸の定理$I=I_c+Aa^2$を使い、$I_{\\rm I}=I_{\\rm III}=hb^3/12+bh[(h+b)/2]^2$です。離れた材料ほど曲げに効くため、距離の二乗が加わります。",
+          "relatedFormulas": [
+            "inertia"
+          ],
+          "editorialReview": {
+            "officialPoint": "組み立て断面を同じ軸へ換算する／個別の質問：3つの部材の比較",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「正しい」ではなく、誤りです。ⅠとⅢは幅$h$、高さ$b$です。自分の図心軸なら$I_c=hb^3/12$ですが、全体の$y$軸から距離$a=(h+b)/2$だけ離れています。\n\n平行軸の定理$I=I_c+Aa^2$を使い、$I_{\\rm I}=I_{\\rm III}=hb^3/12+bh[(h+b)/2]^2$です。離れた材料ほど曲げに効くため、距離の二乗が加わります。"
+            },
+            "sha256": "eec80204b34bd8da0c3aedbcb39bbdd415ef46e53b1b163fddab900b86c09dbb"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "s2-2-26-item-c",
+          "number": "2-26",
+          "officialRef": "問2-26",
+          "officialQuestionItem": "c",
+          "title": "全体の断面二次モーメント",
+          "topic": "断面二次モーメント・平行軸の定理・I形断面",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "全体は$bh^3/12+hb^3/6$である。正しいですか。",
+          "choices": [
+            "誤り",
+            "正しい"
+          ],
+          "answer": 1,
+          "answerSummary": "フランジの軸のずれによる平行軸の追加項が抜けています。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "全体の水平軸からの距離を$z$、小部分自身の図心からの距離を$z_c$、両軸のずれを$a$とすれば$z=z_c+a$です。$I=\\int(z_c+a)^2dA=\\int z_c^2dA+2a\\int z_c\\,dA+a^2\\int dA$です。\n\n小部分の図心を原点としたので$\\int z_c\\,dA=0$となり、$I=I_c+Aa^2$です。水平の軸名$y$と、その軸からの距離$z$を区別して読めます。"
+            },
+            {
+              "title": "足す前に軸をそろえる意味",
+              "body": "部品を別々に机の上へ置けば、各部の図心はそれぞれの中央にあります。しかし組み立てたI形断面では、上下フランジは全体の中央軸から離れています。\n\n全体が曲がると、その離れた位置の材料には大きな伸び縮みが生じます。この効果が$Aa^2$です。\n\nフランジ自身の中央軸の小さい値$hb^3/12$だけを足すと、I形に組んだことによる曲げ抵抗の大部分を落としてしまいます。"
+            }
+          ],
+          "explanation": "【基礎】フランジの軸のずれによる平行軸の追加項が抜けています。\n【考え方】正解は1です。全体の水平軸からの距離を$z$、小部分自身の図心からの距離を$z_c$、両軸のずれを$a$とすれば$z=z_c+a$です。$I=\\int(z_c+a)^2dA=\\int z_c^2dA+2a\\int z_c\\,dA+a^2\\int dA$です。 小部分の図心を原点としたので$\\int z_c\\,dA=0$となり、$I=I_c+Aa^2$です。水平の軸名$y$と、その軸からの距離$z$を区別して読めます。\n【ポイント】部品を別々に机の上へ置けば、各部の図心はそれぞれの中央にあります。しかし組み立てたI形断面では、上下フランジは全体の中央軸から離れています。 全体が曲がると、その離れた位置の材料には大きな伸び縮みが生じます。この効果が$Aa^2$です。 フランジ自身の中央軸の小さい値$hb^3/12$だけを足すと、I形に組んだことによる曲げ抵抗の大部分を落としてしまいます。\n【引っかけ】2：「正しい」ではなく、誤りです。全体の水平軸からの距離を$z$、小部分自身の図心からの距離を$z_c$、両軸のずれを$a$とすれば$z=z_c+a$です。$I=\\int(z_c+a)^2dA=\\int z_c^2dA+2a\\int z_c\\,dA+a^2\\int dA$です。 小部分の図心を原点としたので$\\int z_c\\,dA=0$となり、$I=I_c+Aa^2$です。水平の軸名$y$と、その軸からの距離$z$を区別して読めます。",
+          "relatedFormulas": [
+            "inertia"
+          ],
+          "editorialReview": {
+            "officialPoint": "組み立て断面を同じ軸へ換算する／個別の質問：全体の断面二次モーメント",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「正しい」ではなく、誤りです。全体の水平軸からの距離を$z$、小部分自身の図心からの距離を$z_c$、両軸のずれを$a$とすれば$z=z_c+a$です。$I=\\int(z_c+a)^2dA=\\int z_c^2dA+2a\\int z_c\\,dA+a^2\\int dA$です。\n\n小部分の図心を原点としたので$\\int z_c\\,dA=0$となり、$I=I_c+Aa^2$です。水平の軸名$y$と、その軸からの距離$z$を区別して読めます。"
+            },
+            "sha256": "3fcbb845212224e41e58d7f18b3f29746356236ab5fb6d8af422284a8df3f247"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "s2-2-27",
@@ -2008,21 +2652,125 @@
       ],
       "editorialReview": {
         "officialPoint": "荷重を吊る2部材トラスの部材内力(節点法)",
-        "alignment": "保存済み公式の該当番号と選択式の論点を照合。通常4節を旧本体用に保持し、標準詳解は結論・必要な導出・具体例・誤答理由へ統合。重複を削り、式と数値例の整合、単位、図の対応を確認。文字数で水増ししない。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "左右非対称なのに力を等分する",
           "2": "二部材の値を交換する",
           "3": "値を交換した上で引張を圧縮とする"
         },
-        "sha256": "a84f0d2e152668520d1ec45e23a3aa16108b9668998a2c45c7d9e81524ee40a2"
+        "sha256": "0c4d0702074455a12b05bde7c6f38169e34d0e4ecd68ed172ea951aefcbfc58e"
       },
-      "answerSummary": "④。$S_1=W/2,S_2=\\sqrt3W/2$ で両方引張りです。節点Cで水平・鉛直の力を釣り合わせます。",
+      "answerSummary": "部材1の軸力：$S_1=W/2$です。\n部材2の軸力：$S_2=\\sqrt3W/2$です。",
       "preFigures": [
         {
           "figureImage": "s2Truss2BarSetup",
           "caption": "角度は水平から30°と60°です。Cに作用する荷重は鉛直下向きです。"
         }
-      ]
+      ],
+      "officialQuestionItems": [
+        "s1",
+        "s2"
+      ],
+      "sharedQuestion": "天井から2本の部材で1つの節点Cを吊り、Cに鉛直下向き荷重 $W$ が作用している。部材1は水平から30°、部材2は水平から60°をなし、Cの左右反対側で天井に取り付く。2本とも軸力のみを伝える。節点法で各部材の内力を求めてください。",
+      "studyParts": [
+        {
+          "id": "s2-2-27-item-s1",
+          "number": "2-27",
+          "officialRef": "問2-27",
+          "officialQuestionItem": "s1",
+          "title": "部材1の軸力",
+          "topic": "トラス・節点法・部材内力",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$S_1$はいくらか。",
+          "choices": [
+            "$W/2$（引張）",
+            "$\\sqrt3W/2$（引張）"
+          ],
+          "answer": 1,
+          "answerSummary": "$S_1=W/2$です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "水平の釣合いから $S_1\\cos30^\\circ=S_2\\cos60^\\circ$、よって $S_2=\\sqrt3S_1$。鉛直の釣合いへ入れると $S_1/2+3S_1/2=W$ なので $S_1=W/2$ です。"
+            },
+            {
+              "title": "節点Cへ働く三本の矢印を考える",
+              "body": "部材は軸力だけを伝えるので、Cに働く力はそれぞれ部材に沿います。最初に両部材を引張りと仮定し、Cから天井へ向かう矢印を描きます。\n\n水平成分は左右で打ち消し、鉛直成分の和で$W$を支えます。"
+            },
+            {
+              "title": "斜めの力のうち、支えるのは鉛直成分",
+              "body": "水平から30°の部材では鉛直成分が力の半分、60°では$\\sqrt3/2$倍です。ただし鉛直成分だけでなく、左右の水平成分も釣り合わせる必要があるため、どちらか片方の式だけでは二つの力が決まりません。"
+            }
+          ],
+          "explanation": "【基礎】$S_1=W/2$です。\n【考え方】正解は1です。水平の釣合いから $S_1\\cos30^\\circ=S_2\\cos60^\\circ$、よって $S_2=\\sqrt3S_1$。鉛直の釣合いへ入れると $S_1/2+3S_1/2=W$ なので $S_1=W/2$ です。\n【ポイント】部材は軸力だけを伝えるので、Cに働く力はそれぞれ部材に沿います。最初に両部材を引張りと仮定し、Cから天井へ向かう矢印を描きます。 水平成分は左右で打ち消し、鉛直成分の和で$W$を支えます。\n【引っかけ】2：「$\\sqrt3W/2$（引張）」ではなく、$W/2$（引張）です。水平の釣合いから $S_1\\cos30^\\circ=S_2\\cos60^\\circ$、よって $S_2=\\sqrt3S_1$。鉛直の釣合いへ入れると $S_1/2+3S_1/2=W$ なので $S_1=W/2$ です。",
+          "relatedFormulas": [
+            "truss-joint"
+          ],
+          "editorialReview": {
+            "officialPoint": "荷重を吊る2部材トラスの部材内力(節点法)／個別の質問：部材1の軸力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$\\sqrt3W/2$（引張）」ではなく、$W/2$（引張）です。水平の釣合いから $S_1\\cos30^\\circ=S_2\\cos60^\\circ$、よって $S_2=\\sqrt3S_1$。鉛直の釣合いへ入れると $S_1/2+3S_1/2=W$ なので $S_1=W/2$ です。"
+            },
+            "sha256": "cf4dc8c692178b78fb3f0af9906a9ba66da2eab58df852e948f69d7b0503b5ec"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "s2-2-27-item-s2",
+          "number": "2-27",
+          "officialRef": "問2-27",
+          "officialQuestionItem": "s2",
+          "title": "部材2の軸力",
+          "topic": "トラス・節点法・部材内力",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$S_2$はいくらか。",
+          "choices": [
+            "$W/2$（引張）",
+            "$\\sqrt3W/2$（引張）"
+          ],
+          "answer": 2,
+          "answerSummary": "$S_2=\\sqrt3W/2$です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "水平の釣合いによる $S_2=\\sqrt3S_1$ へ $S_1=W/2$ を代入します。角度が左右で違うので軸力は等分されません。両方とも正の値になり、Cから天井へ引く向きの仮定が合っています。"
+            },
+            {
+              "title": "数値荷重で三本の力を描き直す",
+              "body": "$W=10\\,\\mathrm{kN}$なら$S_1=5\\,\\mathrm{kN}$、$S_2=5\\sqrt3\\approx8.66\\,\\mathrm{kN}$です。水平方向は$5(\\sqrt3/2)\\approx4.33$と$8.66(1/2)\\approx4.33$kNが逆向きに打ち消します。\n\n鉛直方向は$5(1/2)=2.5$と$8.66(\\sqrt3/2)=7.5$kNで、合計10 kNです。力の大きさの和13.66 kNを荷重10 kNと直接比べるのではなく、同じ方向へ分解してから足します。",
+              "figures": [
+                {
+                  "figureImage": "s2Truss2Bar",
+                  "caption": "節点Cから部材に沿う二本の力を、水平と鉛直へ分けます。得られる力はどちらも引張りです。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】$S_2=\\sqrt3W/2$です。\n【考え方】正解は2です。水平の釣合いによる $S_2=\\sqrt3S_1$ へ $S_1=W/2$ を代入します。角度が左右で違うので軸力は等分されません。両方とも正の値になり、Cから天井へ引く向きの仮定が合っています。\n【ポイント】$W=10\\,\\mathrm{kN}$なら$S_1=5\\,\\mathrm{kN}$、$S_2=5\\sqrt3\\approx8.66\\,\\mathrm{kN}$です。水平方向は$5(\\sqrt3/2)\\approx4.33$と$8.66(1/2)\\approx4.33$kNが逆向きに打ち消します。 鉛直方向は$5(1/2)=2.5$と$8.66(\\sqrt3/2)=7.5$kNで、合計10 kNです。力の大きさの和13.66 kNを荷重10 kNと直接比べるのではなく、同じ方向へ分解してから足します。\n【引っかけ】1：「$W/2$（引張）」ではなく、$\\sqrt3W/2$（引張）です。水平の釣合いによる $S_2=\\sqrt3S_1$ へ $S_1=W/2$ を代入します。角度が左右で違うので軸力は等分されません。両方とも正の値になり、Cから天井へ引く向きの仮定が合っています。",
+          "relatedFormulas": [
+            "truss-joint"
+          ],
+          "editorialReview": {
+            "officialPoint": "荷重を吊る2部材トラスの部材内力(節点法)／個別の質問：部材2の軸力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$W/2$（引張）」ではなく、$\\sqrt3W/2$（引張）です。水平の釣合いによる $S_2=\\sqrt3S_1$ へ $S_1=W/2$ を代入します。角度が左右で違うので軸力は等分されません。両方とも正の値になり、Cから天井へ引く向きの仮定が合っています。"
+            },
+            "sha256": "eb21dd960e5631690ca5f8fb5f66a63486b816c5782ec562300f48ac4db973e0"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "s2-2-28",
@@ -2058,7 +2806,7 @@
           "2": "ピン支持に反力モーメントを置く",
           "3": "荷重点の偏りを無視して反力を等分する"
         },
-        "sha256": "2ab5bce3856765a58996c3221c86fd18bd4e3c6f83b9e0b275026659583e8b20"
+        "sha256": "8fa3167179014dcfbadf810f7420bd7b4f30d63e2fad953fed3bde105a54874a"
       },
       "easyExplanation": [
         {
@@ -2092,6 +2840,9 @@
           "figureImage": "s2Before2_28",
           "caption": "上が元の支持・荷重、下が自由体図の四候補です。反力の位置と向きを比較します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -2156,21 +2907,125 @@
       ],
       "editorialReview": {
         "officialPoint": "片持ちはりの固定端反力と固定モーメント",
-        "alignment": "保存済み公式の該当番号と選択式の論点を照合。通常4節を旧本体用に保持し、標準詳解は結論・必要な導出・具体例・誤答理由へ統合。重複を削り、式と数値例の整合、単位、図の対応を確認。文字数で水増ししない。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "分布荷重を全て落とす",
           "2": "分布荷重の力だけ足してモーメントを落とす",
           "3": "分布荷重の強さを合力と混同する"
         },
-        "sha256": "2d836042b06aeb0f92537206ea8ec7b6298d03f1c9474fa792b1c07eff27fcea"
+        "sha256": "886d8aab2181937b90e063405ba01ec0ee88f55532dabdfb607c4b51169128a4"
       },
-      "answerSummary": "④。固定端には上向き9 kNの反力と、大きさ14 kN·mの反力モーメントが必要です。",
+      "answerSummary": "鉛直反力：集中荷重5 kNと、分布荷重の合力4 kNの両方を支えます。\n固定モーメント：集中荷重の腕はL、分布荷重の合力の腕はL/2です。",
       "preFigures": [
         {
           "figureImage": "s2CantReactionsSetup",
           "caption": "右端固定のはりです。集中荷重と全長の等分布荷重が同時に作用します。"
         }
-      ]
+      ],
+      "officialQuestionItems": [
+        "reaction",
+        "moment"
+      ],
+      "sharedQuestion": "右端Dで固定された長さ $L=2\\,\\mathrm m$ の片持ちはりに、自由端（左端）へ下向き集中荷重 $P=5\\,\\mathrm{kN}$ と、全長に下向き等分布荷重 $w=2\\,\\mathrm{kN/m}$ が作用する。固定端Dの鉛直反力と固定モーメントの大きさを、それぞれ求めてください。",
+      "studyParts": [
+        {
+          "id": "s2-2-29-item-reaction",
+          "number": "2-29",
+          "officialRef": "問2-29",
+          "officialQuestionItem": "reaction",
+          "title": "鉛直反力",
+          "topic": "片持ちはり・固定端反力・つり合い",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "鉛直反力$R_D$の大きさはどちらですか。",
+          "choices": [
+            "$5\\ \\mathrm{kN}$",
+            "$9\\ \\mathrm{kN}$"
+          ],
+          "answer": 2,
+          "answerSummary": "集中荷重5 kNと、分布荷重の合力4 kNの両方を支えます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "分布荷重の合力は$wL=2\\times2=4\\ \\mathrm{kN}$で、集中荷重と同じ下向きです。鉛直方向の釣合いより$R_D=P+wL=5+4=9\\ \\mathrm{kN}$です。反力の向きは上向きです。"
+            },
+            {
+              "title": "等分布荷重を合力へ置き換える",
+              "body": "全長の分布荷重の合力は$wL=2\\times2=4\\,\\mathrm{kN}$で、作用位置は全長の中央です。したがって固定端Dからの距離は$L/2=1\\,\\mathrm m$です。"
+            },
+            {
+              "title": "なぜ分布荷重の合力は中央に置く？",
+              "body": "固定端からの距離xにある幅dxの荷重は$w\\,dx$で、モーメントは$wx\\,dx$です。全長で足すと$\\int_0^Lwx\\,dx=wL^2/2$です。\n\n合力wLを距離L/2へ置けば$(wL)(L/2)$となり、この同じモーメントを作れます。"
+            }
+          ],
+          "explanation": "【基礎】集中荷重5 kNと、分布荷重の合力4 kNの両方を支えます。\n【考え方】正解は2です。分布荷重の合力は$wL=2\\times2=4\\ \\mathrm{kN}$で、集中荷重と同じ下向きです。鉛直方向の釣合いより$R_D=P+wL=5+4=9\\ \\mathrm{kN}$です。反力の向きは上向きです。\n【ポイント】全長の分布荷重の合力は$wL=2\\times2=4\\,\\mathrm{kN}$で、作用位置は全長の中央です。したがって固定端Dからの距離は$L/2=1\\,\\mathrm m$です。\n【引っかけ】1：「$5\\ \\mathrm{kN}$」ではなく、$9\\ \\mathrm{kN}$です。分布荷重の合力は$wL=2\\times2=4\\ \\mathrm{kN}$で、集中荷重と同じ下向きです。鉛直方向の釣合いより$R_D=P+wL=5+4=9\\ \\mathrm{kN}$です。反力の向きは上向きです。",
+          "relatedFormulas": [
+            "beam-reactions"
+          ],
+          "editorialReview": {
+            "officialPoint": "片持ちはりの固定端反力と固定モーメント／個別の質問：鉛直反力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$5\\ \\mathrm{kN}$」ではなく、$9\\ \\mathrm{kN}$です。分布荷重の合力は$wL=2\\times2=4\\ \\mathrm{kN}$で、集中荷重と同じ下向きです。鉛直方向の釣合いより$R_D=P+wL=5+4=9\\ \\mathrm{kN}$です。反力の向きは上向きです。"
+            },
+            "sha256": "1f8eecbaa4bede96993fbd515687082a6dce79e3b37da899df9f42cfd8f63c48"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "s2-2-29-item-moment",
+          "number": "2-29",
+          "officialRef": "問2-29",
+          "officialQuestionItem": "moment",
+          "title": "固定モーメント",
+          "topic": "片持ちはり・固定端反力・つり合い",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "固定モーメント$M_D$の大きさはどちらですか。",
+          "choices": [
+            "$14\\ \\mathrm{kN\\,m}$",
+            "$10\\ \\mathrm{kN\\,m}$"
+          ],
+          "answer": 1,
+          "answerSummary": "集中荷重の腕はL、分布荷重の合力の腕はL/2です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "固定端まわりのモーメントを釣り合わせます。$M_D=PL+(wL)(L/2)=5\\times2+4\\times1=14\\ \\mathrm{kN\\,m}$です。10 kN mでは集中荷重分しか数えていません。"
+            },
+            {
+              "title": "反力と固定モーメントは別々に必要",
+              "body": "鉛直方向だけを釣り合わせても、はりは回転しようとする場合があります。固定端は位置だけでなく傾きも止めるため、9 kNの上向き力に加え、荷重の回転作用を打ち消す14 kN·mのモーメントを伝えます。\n\n反力9 kNを固定端の場所へ置くと、その点まわりの腕は0なので、反力そのものでは荷重のモーメントを消せません。力が合えば回転も自動で合う、というわけではありません。",
+              "figures": [
+                {
+                  "figureImage": "s2CantReactions",
+                  "caption": "分布荷重の合力4 kNは中央に作用します。固定端からの腕1 mを集中荷重の腕2 mと区別します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】集中荷重の腕はL、分布荷重の合力の腕はL/2です。\n【考え方】正解は1です。固定端まわりのモーメントを釣り合わせます。$M_D=PL+(wL)(L/2)=5\\times2+4\\times1=14\\ \\mathrm{kN\\,m}$です。10 kN mでは集中荷重分しか数えていません。\n【ポイント】鉛直方向だけを釣り合わせても、はりは回転しようとする場合があります。固定端は位置だけでなく傾きも止めるため、9 kNの上向き力に加え、荷重の回転作用を打ち消す14 kN·mのモーメントを伝えます。 反力9 kNを固定端の場所へ置くと、その点まわりの腕は0なので、反力そのものでは荷重のモーメントを消せません。力が合えば回転も自動で合う、というわけではありません。\n【引っかけ】2：「$10\\ \\mathrm{kN\\,m}$」ではなく、$14\\ \\mathrm{kN\\,m}$です。固定端まわりのモーメントを釣り合わせます。$M_D=PL+(wL)(L/2)=5\\times2+4\\times1=14\\ \\mathrm{kN\\,m}$です。10 kN mでは集中荷重分しか数えていません。",
+          "relatedFormulas": [
+            "beam-reactions"
+          ],
+          "editorialReview": {
+            "officialPoint": "片持ちはりの固定端反力と固定モーメント／個別の質問：固定モーメント",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$10\\ \\mathrm{kN\\,m}$」ではなく、$14\\ \\mathrm{kN\\,m}$です。固定端まわりのモーメントを釣り合わせます。$M_D=PL+(wL)(L/2)=5\\times2+4\\times1=14\\ \\mathrm{kN\\,m}$です。10 kN mでは集中荷重分しか数えていません。"
+            },
+            "sha256": "b85e84534c1e445e4f2d82dec7bb783273ee12a38e88261bef743d99fa97d4ac"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "s2-2-30",
@@ -2244,9 +3099,12 @@
           "3": "体積変化を2倍に過大評価する",
           "4": "軸方向だけなど一部の寄与で評価する"
         },
-        "sha256": "243fd0a00f2c207044690a06dc0357e92dabff5edae97842713537fe74e9d087"
+        "sha256": "0f854a40eb4958f5f11c08bb86f838daac868e653dbe98cf224870167830223c"
       },
-      "answerSummary": "②。周方向と軸方向のひずみから、内容積は約 $3.0\\times10^{-3}\\,\\mathrm{m^3}$ 増えます。"
+      "answerSummary": "②。周方向と軸方向のひずみから、内容積は約 $3.0\\times10^{-3}\\,\\mathrm{m^3}$ 増えます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "s2-2-31",
@@ -2315,9 +3173,12 @@
           "2": "静水圧成分が相当応力に影響しない性質を誤りとする",
           "4": "単軸引張での相当応力の定義を誤りとする"
         },
-        "sha256": "5a371fc4f3e5fb96928c540d2008230e4d2e1e97780aaeedcf5b4faccfe639e6"
+        "sha256": "602291b006d1b65eb5fc13fbbd64286ae67d16188a15b33964ba4ab4af5371c8"
       },
-      "answerSummary": "誤りは③です。ミーゼス相当応力は主応力の差で決まるため、三方向へ共通の応力を加えても増えません。"
+      "answerSummary": "誤りは③です。ミーゼス相当応力は主応力の差で決まるため、三方向へ共通の応力を加えても増えません。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "s2-2-32",
@@ -2378,9 +3239,12 @@
           "2": "最大主応力をミーゼス相当応力の代わりにする",
           "4": "三軸への共通加算を相当応力にも加える"
         },
-        "sha256": "e1c3c9ff19e9c58d4aadc97e32d3a016fae3e2722244a48d2c6c930612a92b2c"
+        "sha256": "0034508b534ba8f1bc9b43b43ce42556c1a62fa3ff41c07b257f0b9f6ee3260b"
       },
-      "answerSummary": "③。A・Bとも相当応力は約159 MPa。降伏応力180 MPaより小さく、どちらも降伏しません。"
+      "answerSummary": "③。A・Bとも相当応力は約159 MPa。降伏応力180 MPaより小さく、どちらも降伏しません。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "s2-2-33",
@@ -2411,13 +3275,13 @@
       "preFigureImage": "s2Before2_33",
       "editorialReview": {
         "officialPoint": "面の法線から応力面を識別する",
-        "alignment": "保存済み公式の該当番号と選択式の論点を照合。通常4節を旧本体用に保持し、標準詳解は結論・必要な導出・具体例・誤答理由へ統合。重複を削り、式と数値例の整合、単位、図の対応を確認。文字数で水増ししない。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "全ての面でせん断が消えるとする",
           "2": "法線成分と三種類の面の対応を取り違える",
           "4": "主軸に一致する法線と等成分の法線を取り違える"
         },
-        "sha256": "80f1eb102565cd93c05788a46c7ee8cac546f95830793d01bf7d753558b470dc"
+        "sha256": "ef75644640948d185d0d5d862c1443fe22e7e784780e6cd264a666ab92ab33cc"
       },
       "easyExplanation": [
         {
@@ -2449,13 +3313,154 @@
           "body": "(1)は主応力が相異なる以上 $Q,R$ には一般にせん断があるので「全てせん断0」は誤りです。(2)と(4)は方向余弦と主軸の対応を取り違えており、主応力面の法線が主軸に一致しない組合せになっています。"
         }
       ],
-      "answerSummary": "③。Pは主応力面、Qは最大せん断面、Rは八面体面です。面の法線がどの主軸へ向くかで見分けます。",
+      "answerSummary": "面P：Pは主応力面です。\n面Q：Qは最大せん断面の一つです。\n面R：Rは八面体面の一つです。",
       "preFigures": [
         {
           "figureImage": "s2Before2_33",
           "caption": "各面に垂直な法線の三成分から、主軸との関係を読みます。"
         }
-      ]
+      ],
+      "officialQuestionItems": [
+        "p",
+        "q",
+        "r"
+      ],
+      "sharedQuestion": "三つの主応力は相異なり $\\sigma_1>\\sigma_2>\\sigma_3$ とする。主軸座標で、面 $P$ の単位法線は $(0,1,0)$、面 $Q$ は $(1,0,1)/\\sqrt2$、面 $R$ は $(1,1,1)/\\sqrt3$ である。各面の種類を答えてください。",
+      "studyParts": [
+        {
+          "id": "s2-2-33-item-p",
+          "number": "2-33",
+          "officialRef": "問2-33",
+          "officialQuestionItem": "p",
+          "title": "面P",
+          "topic": "八面体せん断応力・最大せん断応力・主応力面",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Pはどの面か。",
+          "choices": [
+            "八面体面",
+            "主応力面"
+          ],
+          "answer": 2,
+          "answerSummary": "Pは主応力面です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$(0,1,0)$は主軸2に一致します。主軸に垂直な面では応力が法線方向だけを向き、せん断が0になるので、Pは主応力面です。"
+            },
+            {
+              "title": "面の向きは法線の矢印で指定する",
+              "body": "法線は面に垂直に突き出す矢印です。$(a,b,c)$は主軸1・2・3方向への成分で、単位法線なら$a^2+b^2+c^2=1$です。\n\n面そのものの線と、面へ垂直な法線を区別します。"
+            },
+            {
+              "title": "法線の成分は各軸との角度のcos",
+              "body": "主軸1だけに向けば$(1,0,0)$、主軸2なら$(0,1,0)$です。二軸へ同じ向き具合なら$(1,0,1)$ですが、そのままでは長さが$\\sqrt2$なので$\\sqrt2$で割ります。\n\nこのとき両軸とのcosが$1/\\sqrt2$となり、角度45°と分かります。"
+            }
+          ],
+          "explanation": "【基礎】Pは主応力面です。\n【考え方】正解は2です。$(0,1,0)$は主軸2に一致します。主軸に垂直な面では応力が法線方向だけを向き、せん断が0になるので、Pは主応力面です。\n【ポイント】法線は面に垂直に突き出す矢印です。$(a,b,c)$は主軸1・2・3方向への成分で、単位法線なら$a^2+b^2+c^2=1$です。 面そのものの線と、面へ垂直な法線を区別します。\n【引っかけ】1：「八面体面」ではなく、主応力面です。$(0,1,0)$は主軸2に一致します。主軸に垂直な面では応力が法線方向だけを向き、せん断が0になるので、Pは主応力面です。",
+          "relatedFormulas": [
+            "yield-criteria",
+            "mohr"
+          ],
+          "editorialReview": {
+            "officialPoint": "面の法線から応力面を識別する／個別の質問：面P",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「八面体面」ではなく、主応力面です。$(0,1,0)$は主軸2に一致します。主軸に垂直な面では応力が法線方向だけを向き、せん断が0になるので、Pは主応力面です。"
+            },
+            "sha256": "fc81cbef2920caedaf06b1c5b1bfc091cf191a22c2df49c186c404cce4bfe73c"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "s2-2-33-item-q",
+          "number": "2-33",
+          "officialRef": "問2-33",
+          "officialQuestionItem": "q",
+          "title": "面Q",
+          "topic": "八面体せん断応力・最大せん断応力・主応力面",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Qはどの面か。",
+          "choices": [
+            "最大せん断面の一つ",
+            "主応力面"
+          ],
+          "answer": 1,
+          "answerSummary": "Qは最大せん断面の一つです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$(1,0,1)/\\sqrt2$は主軸1と3へ同じ成分を持ちます。各軸との角度は45°で、最大と最小の主応力の差を最も強くせん断へ変える面です。\n\nその大きさは$(\\sigma_1-\\sigma_3)/2$なので、Qは最大せん断面の一つです。"
+            },
+            {
+              "title": "Q面でせん断が生まれる具体例",
+              "body": "例えば$\\sigma_1=100,\\ \\sigma_3=20\\,\\mathrm{MPa}$なら、Qの法線$\\mathbf n=(1,0,1)/\\sqrt2$の面に働く応力は$\\mathbf t=(100,0,20)/\\sqrt2$です。面内の接線$\\mathbf m=(1,0,-1)/\\sqrt2$へ投影すると$\\mathbf m\\cdot\\mathbf t=(100-20)/2=40\\,\\mathrm{MPa}$です。\n\n最大と最小の差の半分がせん断になることを、この分解でも確認できます。"
+            }
+          ],
+          "explanation": "【基礎】Qは最大せん断面の一つです。\n【考え方】正解は1です。$(1,0,1)/\\sqrt2$は主軸1と3へ同じ成分を持ちます。各軸との角度は45°で、最大と最小の主応力の差を最も強くせん断へ変える面です。 その大きさは$(\\sigma_1-\\sigma_3)/2$なので、Qは最大せん断面の一つです。\n【ポイント】例えば$\\sigma_1=100,\\ \\sigma_3=20\\,\\mathrm{MPa}$なら、Qの法線$\\mathbf n=(1,0,1)/\\sqrt2$の面に働く応力は$\\mathbf t=(100,0,20)/\\sqrt2$です。面内の接線$\\mathbf m=(1,0,-1)/\\sqrt2$へ投影すると$\\mathbf m\\cdot\\mathbf t=(100-20)/2=40\\,\\mathrm{MPa}$です。 最大と最小の差の半分がせん断になることを、この分解でも確認できます。\n【引っかけ】2：「主応力面」ではなく、最大せん断面の一つです。$(1,0,1)/\\sqrt2$は主軸1と3へ同じ成分を持ちます。各軸との角度は45°で、最大と最小の主応力の差を最も強くせん断へ変える面です。 その大きさは$(\\sigma_1-\\sigma_3)/2$なので、Qは最大せん断面の一つです。",
+          "relatedFormulas": [
+            "yield-criteria",
+            "mohr"
+          ],
+          "editorialReview": {
+            "officialPoint": "面の法線から応力面を識別する／個別の質問：面Q",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「主応力面」ではなく、最大せん断面の一つです。$(1,0,1)/\\sqrt2$は主軸1と3へ同じ成分を持ちます。各軸との角度は45°で、最大と最小の主応力の差を最も強くせん断へ変える面です。\n\nその大きさは$(\\sigma_1-\\sigma_3)/2$なので、Qは最大せん断面の一つです。"
+            },
+            "sha256": "0349d556ff6db2efbc5656067802fb3242e607d47576d3f30271a7aaa77ee364"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "s2-2-33-item-r",
+          "number": "2-33",
+          "officialRef": "問2-33",
+          "officialQuestionItem": "r",
+          "title": "面R",
+          "topic": "八面体せん断応力・最大せん断応力・主応力面",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Rはどの面か。",
+          "choices": [
+            "最大せん断面の一つ",
+            "八面体面の一つ"
+          ],
+          "answer": 2,
+          "answerSummary": "Rは八面体面の一つです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$(1,1,1)/\\sqrt3$は三成分が等しく、八面体面の一つです。各軸との角度は$\\cos^{-1}(1/\\sqrt3)\\approx54.7^\\circ$であり、45°のQとは違います。"
+            }
+          ],
+          "explanation": "【基礎】Rは八面体面の一つです。\n【考え方】正解は2です。$(1,1,1)/\\sqrt3$は三成分が等しく、八面体面の一つです。各軸との角度は$\\cos^{-1}(1/\\sqrt3)\\approx54.7^\\circ$であり、45°のQとは違います。\n【ポイント】Rは八面体面の一つです。\n【引っかけ】1：「最大せん断面の一つ」ではなく、八面体面の一つです。$(1,1,1)/\\sqrt3$は三成分が等しく、八面体面の一つです。各軸との角度は$\\cos^{-1}(1/\\sqrt3)\\approx54.7^\\circ$であり、45°のQとは違います。",
+          "relatedFormulas": [
+            "yield-criteria",
+            "mohr"
+          ],
+          "editorialReview": {
+            "officialPoint": "面の法線から応力面を識別する／個別の質問：面R",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「最大せん断面の一つ」ではなく、八面体面の一つです。$(1,1,1)/\\sqrt3$は三成分が等しく、八面体面の一つです。各軸との角度は$\\cos^{-1}(1/\\sqrt3)\\approx54.7^\\circ$であり、45°のQとは違います。"
+            },
+            "sha256": "2cdf5266981d46757ef2abf99eefa2743dce7020fb11056fc20819c6e2827303"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "solid2-ch2-34",
@@ -2519,15 +3524,121 @@
       ],
       "editorialReview": {
         "officialPoint": "材料と強度評価",
-        "alignment": "保存済み公式の該当番号と選択式の論点を照合。通常4節を旧本体用に保持し、標準詳解は結論・必要な導出・具体例・誤答理由へ統合。重複を削り、式と数値例の整合、単位、図の対応を確認。文字数で水増ししない。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "脆性の引張破壊と延性の降伏の指標を逆にする",
           "3": "静水圧成分だけで両者を判断する",
           "4": "最大主応力だけを全材料と全荷重へ適用する"
         },
-        "sha256": "f95aca77fca8cbac3734d76a4a3d2080ab450136a5576db7e55a799d5ed0e7f1"
+        "sha256": "949fdcb9014f9768fcc272b0824db8e1f0f7426a01241b49fdadd1decfe72c01"
       },
-      "answerSummary": "②。脆性材料の引張破壊では最大引張主応力、延性金属の降伏ではミーゼス応力や最大せん断応力に着目します。"
+      "answerSummary": "脆性材料の引張破壊：引張りで割れやすい脆性材料では、最大の引張主応力に着目します。\n延性金属の降伏：延性金属の降伏には、形状を変えるせん断の効果を考慮します。",
+      "officialQuestionItems": [
+        "brittle",
+        "ductile"
+      ],
+      "sharedQuestion": "基礎的な強度評価として、脆性材料の引張破壊と、等方的な延性金属の降伏を考えます。材料の種類ごとに着目する量を選んでください。",
+      "studyParts": [
+        {
+          "id": "solid2-ch2-34-item-brittle",
+          "number": "2-34",
+          "officialRef": "問2-34",
+          "officialQuestionItem": "brittle",
+          "title": "脆性材料の引張破壊",
+          "topic": "破壊予測に着目すべき応力(脆性=最大主応力、延性=せん断/ミーゼス)",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "最も適切な着目量はどちらですか。",
+          "choices": [
+            "ミーゼス応力",
+            "最大主応力"
+          ],
+          "answer": 2,
+          "answerSummary": "引張りで割れやすい脆性材料では、最大の引張主応力に着目します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "ガラスなどの脆性材料では、大きな塑性変形をする前に引張りで割れることが問題になります。延性金属では、まず元に戻らない塑性変形が始まる降伏に注目します。\n\n同じ「壊れにくさ」でも、評価したい現象が違います。"
+            },
+            {
+              "title": "脆性材料では最大の引張主応力",
+              "body": "主応力は、せん断が0になる面での垂直応力です。基礎的な引張破壊の評価では、最も強く引かれる面の主応力を材料の引張強度と比較する考え方が使われます。"
+            }
+          ],
+          "explanation": "【基礎】引張りで割れやすい脆性材料では、最大の引張主応力に着目します。\n【考え方】正解は2です。ガラスなどの脆性材料では、大きな塑性変形をする前に引張りで割れることが問題になります。延性金属では、まず元に戻らない塑性変形が始まる降伏に注目します。 同じ「壊れにくさ」でも、評価したい現象が違います。\n【ポイント】主応力は、せん断が0になる面での垂直応力です。基礎的な引張破壊の評価では、最も強く引かれる面の主応力を材料の引張強度と比較する考え方が使われます。\n【引っかけ】1：「ミーゼス応力」ではなく、最大主応力です。ガラスなどの脆性材料では、大きな塑性変形をする前に引張りで割れることが問題になります。延性金属では、まず元に戻らない塑性変形が始まる降伏に注目します。 同じ「壊れにくさ」でも、評価したい現象が違います。",
+          "relatedFormulas": [
+            "brittle-ductile",
+            "yield-criteria"
+          ],
+          "editorialReview": {
+            "officialPoint": "材料と強度評価／個別の質問：脆性材料の引張破壊",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「ミーゼス応力」ではなく、最大主応力です。ガラスなどの脆性材料では、大きな塑性変形をする前に引張りで割れることが問題になります。延性金属では、まず元に戻らない塑性変形が始まる降伏に注目します。\n\n同じ「壊れにくさ」でも、評価したい現象が違います。"
+            },
+            "sha256": "f0c9f4e8eb47a42af2b88c58d723e5f44c4879c483bddecc835e4086d5fe45ae"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "solid2-ch2-34-item-ductile",
+          "number": "2-34",
+          "officialRef": "問2-34",
+          "officialQuestionItem": "ductile",
+          "title": "延性金属の降伏",
+          "topic": "破壊予測に着目すべき応力(脆性=最大主応力、延性=せん断/ミーゼス)",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "最も適切な着目量はどちらですか。",
+          "choices": [
+            "最大主応力だけ",
+            "ミーゼス応力または最大せん断応力"
+          ],
+          "answer": 2,
+          "answerSummary": "延性金属の降伏には、形状を変えるせん断の効果を考慮します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "ミーゼス応力、または最大せん断応力を使って降伏を評価します。最大せん断応力は$(\\sigma_1-\\sigma_3)/2$で、三主応力の差が重要です。\n\nこの組合せを述べる②です。どの材料・荷重でも一つの量だけで全てを評価できるという説明は広げすぎです。"
+            },
+            {
+              "title": "単軸試験へ戻して二つの尺度を確認する",
+              "body": "引張試験の応力状態は$(\\sigma,0,0)$です。最大主応力は$\\sigma$、ミーゼス相当応力も$|\\sigma|$で一致します。\n\nそのため単軸試験だけを見ていると二つの尺度の違いが見えません。多方向の応力が同時に働くと、最大主応力だけを見る尺度と、主応力の差から形状変化を測る尺度の違いが現れます。\n\n問題が材料の種類と評価現象を組にしている理由はここにあります。"
+            },
+            {
+              "title": "純せん断では最大主応力と相当応力が異なる",
+              "body": "純せん断応力$\\tau$の主応力は$(\\tau,0,-\\tau)$です。ミーゼスの式へ入れると$\\sqrt{(\\tau^2+\\tau^2+4\\tau^2)/2}=\\sqrt3|\\tau|$です。\n\n最大主応力$|\\tau|$とは同じ値ではありません。多軸状態で、二つの尺度を無条件に置き換えられないことを、ねじりの例でも確かめられます。",
+              "figures": [
+                {
+                  "figureImage": "s2BrittleDuctile",
+                  "caption": "左は引張りによる脆性破壊、右はずれによる塑性変形の開始です。評価する現象に合う指標を使います。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】延性金属の降伏には、形状を変えるせん断の効果を考慮します。\n【考え方】正解は2です。ミーゼス応力、または最大せん断応力を使って降伏を評価します。最大せん断応力は$(\\sigma_1-\\sigma_3)/2$で、三主応力の差が重要です。 この組合せを述べる②です。どの材料・荷重でも一つの量だけで全てを評価できるという説明は広げすぎです。\n【ポイント】引張試験の応力状態は$(\\sigma,0,0)$です。最大主応力は$\\sigma$、ミーゼス相当応力も$|\\sigma|$で一致します。 そのため単軸試験だけを見ていると二つの尺度の違いが見えません。多方向の応力が同時に働くと、最大主応力だけを見る尺度と、主応力の差から形状変化を測る尺度の違いが現れます。 問題が材料の種類と評価現象を組にしている理由はここにあります。\n【引っかけ】1：「最大主応力だけ」ではなく、ミーゼス応力または最大せん断応力です。ミーゼス応力、または最大せん断応力を使って降伏を評価します。最大せん断応力は$(\\sigma_1-\\sigma_3)/2$で、三主応力の差が重要です。 この組合せを述べる②です。どの材料・荷重でも一つの量だけで全てを評価できるという説明は広げすぎです。",
+          "relatedFormulas": [
+            "brittle-ductile",
+            "yield-criteria"
+          ],
+          "editorialReview": {
+            "officialPoint": "材料と強度評価／個別の質問：延性金属の降伏",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「最大主応力だけ」ではなく、ミーゼス応力または最大せん断応力です。ミーゼス応力、または最大せん断応力を使って降伏を評価します。最大せん断応力は$(\\sigma_1-\\sigma_3)/2$で、三主応力の差が重要です。\n\nこの組合せを述べる②です。どの材料・荷重でも一つの量だけで全てを評価できるという説明は広げすぎです。"
+            },
+            "sha256": "037e586f986d388e31235e353c35ef6654fb9a89d8404259bde8e414f39142f4"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "solid2-ch2-35",
@@ -2585,9 +3696,12 @@
           "3": "限定的な未破断記録を永久保証へ広げる",
           "4": "応力範囲を振幅とし内部起点を否定する"
         },
-        "sha256": "fd19dc9d7f85da2648baf97526bfe4d9f2a401f7773101f62c32b38da399015f"
+        "sha256": "55873d824b6d6cf0109a96560c34987d92baa51242bb8bb919bd5cedd40fb735"
       },
-      "answerSummary": "②。平均応力100 MPa、振幅60 MPaです。疲労き裂は内部の欠陥から始まる場合もあります。"
+      "answerSummary": "②。平均応力100 MPa、振幅60 MPaです。疲労き裂は内部の欠陥から始まる場合もあります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "solid2-ch2-36",
@@ -2623,7 +3737,7 @@
           "3": "振幅一定なのにBを最短とする",
           "4": "圧縮側へ寄るAを最短とする"
         },
-        "sha256": "adaf0a5bbecd2f6f4f7ab806cd7903cb5a7cf6110158c1b07ca5b92910ac042f"
+        "sha256": "d9807274d9d9861b3837098f65c14f5a5c81f974f1ba92f9e82d086ad12f3ff4"
       },
       "easyExplanation": [
         {
@@ -2653,6 +3767,9 @@
           "figureImage": "s2Before2_36",
           "caption": "縦軸の縮尺と振幅は共通です。波の中心となる平均応力を比べます。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -2714,9 +3831,12 @@
           "2": "ポアソン比と長さから疲労限を決める",
           "4": "剛性と密度を疲労強度へ直接結び付ける"
         },
-        "sha256": "ae6ad1eaf7ca762dae61def7721f6693be3bb1be1f8fd0a4fe49f29f4eea0937"
+        "sha256": "9ee9303b40e6c59f8cd28efd9720dc3dbd990357d60455e1ebdbced26be27e8e"
       },
-      "answerSummary": "③。引張強さと経験的相関の適用条件を確認し、疲労限の暫定値を見積もります。"
+      "answerSummary": "③。引張強さと経験的相関の適用条件を確認し、疲労限の暫定値を見積もります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "solid2-ch2-38",
@@ -2790,9 +3910,12 @@
           "3": "疲労では応力集中を無視してよいとする",
           "4": "形状と応力こう配への依存を否定する"
         },
-        "sha256": "5f4e0fe37a02aaaf751a0f18fb89075ce009b75b6db54100aa29c2d03079b408"
+        "sha256": "86814875400054ebef7711042640089d547048c41266b8dbfa77d5ba093370ae"
       },
-      "answerSummary": "①。切欠き底の最大応力に加え、内部への応力の下がり方と材料の切欠き感度を考えます。"
+      "answerSummary": "①。切欠き底の最大応力に加え、内部への応力の下がり方と材料の切欠き感度を考えます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "solid2-ch2-39",
@@ -2828,7 +3951,7 @@
           "2": "正味断面は使うが応力集中係数を落とす",
           "3": "孔を無視して無孔断面で決める"
         },
-        "sha256": "a833c63abdde88615f2b81657d060da3c1e03856cd6fb13b1c4a7e804b7826d8"
+        "sha256": "1fc831fd11f2f0b08f1541d7b7a9b8a0d3c87e58ee228a928707fbc0738fe9c4"
       },
       "easyExplanation": [
         {
@@ -2866,6 +3989,9 @@
           "figureImage": "s2Before2_39",
           "caption": "孔は荷重方向に離れています。一つの断面から二つの孔を同時に引かないようにします。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -2927,9 +4053,12 @@
           "3": "昇温を一様な引張応力と同一視する",
           "4": "自由膨張でも弾性ひずみが熱ひずみと同じとする"
         },
-        "sha256": "a941523666874183d8558589c8c41632ac333822a3681ee504b76dd77767799e"
+        "sha256": "77b5b7a241eaf7fcd6b6625f5467807270664569e03e95b9c1f84df2a25f2e8b"
       },
-      "answerSummary": "②。熱応力は自由な熱膨張が妨げられると生じます。固定具がなくても、物体内部のつながりが拘束になる場合があります。"
+      "answerSummary": "②。熱応力は自由な熱膨張が妨げられると生じます。固定具がなくても、物体内部のつながりが拘束になる場合があります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "solid2-ch2-41",
@@ -2966,7 +4095,7 @@
           "3": "各区間を独立に固定した応力にする",
           "4": "非加熱側へ軸力が伝わらないと考える"
         },
-        "sha256": "1aba87a250c68e3ea8a6475425a05b77d5caf210cab212cf43744fe86fc9fc0f"
+        "sha256": "a49b9e53632cc5346e80145987e3d2466d560487157e5e07e81eb2cb7fd15c71"
       },
       "easyExplanation": [
         {
@@ -3000,6 +4129,9 @@
           "figureImage": "s2Before2_41",
           "caption": "中間点Bは固定していません。ABだけを温め、両端間の全長を変えない条件です。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -3037,7 +4169,7 @@
           "2": "外力がないから変位も0とする",
           "3": "加熱棒の自由伸びがそのまま共通変位になるとする"
         },
-        "sha256": "9bc8ae2da5d0ef235c7b331756cce8979a1d7182fd35ee130b205528e562beb0"
+        "sha256": "46bac2b94b547fb4148dd7bb30a2ecb6e20c717a01ecc1c4b18da397c4a5be73"
       },
       "easyExplanation": [
         {
@@ -3075,6 +4207,9 @@
           "figureImage": "s2Before2_42",
           "caption": "剛体は回転せず水平移動します。二本の長さと、温める棒を区別します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -3130,15 +4265,145 @@
       ],
       "editorialReview": {
         "officialPoint": "測る操作と試験の目的",
-        "alignment": "保存済み公式の該当番号と選択式の論点を照合。通常4節を旧本体用に保持し、標準詳解は結論・必要な導出・具体例・誤答理由へ統合。重複を削り、式と数値例の整合、単位、図の対応を確認。文字数で水増ししない。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "クリープをシャルピーとし測定量も混同する",
           "3": "クリープを硬さとし測定量も混同する",
           "4": "長時間の変形を通常引張試験と混同する"
         },
-        "sha256": "3a19ec6210adae762ef9217ab8d02c6962b4ba0978d7d8109c7c410f1482a65a"
+        "sha256": "477edbe54cd8990a6ec16a47e41ce58e8d0363d6b2f1eed79843926c5348b013"
       },
-      "answerSummary": "①。Aはシャルピー試験の衝撃吸収エネルギー、Bはビッカースの押込み硬さ、Cはクリープ試験です。"
+      "answerSummary": "A：振り子で打撃する試験：振り子が失ったエネルギーから、破壊時に吸収したエネルギーを測ります。\nB：圧子を押し込む試験：圧痕の大きさから、押し込みに対する抵抗を評価します。\nC：高温で荷重を保つ試験：一定応力を保ったまま進む、時間依存の変形を調べるクリープ試験です。",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "sharedQuestion": "三つの試験記録がある。記録 $A$ は切欠き試験片に振り子を当てて失われたエネルギーを測定。記録 $B$ は角錐圧子で表面へ圧痕を作り、その寸法を測定。記録 $C$ は高温・一定の引張応力を保ち、ひずみの時間変化と破断までの時間を測定した。各記録が何を評価するか、それぞれ答えてください。",
+      "studyParts": [
+        {
+          "id": "solid2-ch2-43-item-a",
+          "number": "2-43",
+          "officialRef": "問2-43",
+          "officialQuestionItem": "a",
+          "title": "A：振り子で打撃する試験",
+          "topic": "材料試験(シャルピー衝撃・引張・硬さ等)と評価する特性・用語の対応",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "記録Aの主な評価量はどちらですか。",
+          "choices": [
+            "衝撃吸収エネルギー",
+            "ヤング率"
+          ],
+          "answer": 1,
+          "answerSummary": "振り子が失ったエネルギーから、破壊時に吸収したエネルギーを測ります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "切欠き試験片を衝撃で破壊するシャルピー試験では、振り子の打撃前後の位置エネルギーの差を調べます。試験片の破壊に吸収されたエネルギーを測り、じん性を評価するために用います。静かに引っ張ったときの応力とひずみの傾きから得るヤング率とは、測定方法も目的も違います。"
+            }
+          ],
+          "explanation": "【基礎】振り子が失ったエネルギーから、破壊時に吸収したエネルギーを測ります。\n【考え方】正解は1です。切欠き試験片を衝撃で破壊するシャルピー試験では、振り子の打撃前後の位置エネルギーの差を調べます。試験片の破壊に吸収されたエネルギーを測り、じん性を評価するために用います。静かに引っ張ったときの応力とひずみの傾きから得るヤング率とは、測定方法も目的も違います。\n【ポイント】振り子が失ったエネルギーから、破壊時に吸収したエネルギーを測ります。\n【引っかけ】2：「ヤング率」ではなく、衝撃吸収エネルギーです。切欠き試験片を衝撃で破壊するシャルピー試験では、振り子の打撃前後の位置エネルギーの差を調べます。試験片の破壊に吸収されたエネルギーを測り、じん性を評価するために用います。静かに引っ張ったときの応力とひずみの傾きから得るヤング率とは、測定方法も目的も違います。",
+          "relatedFormulas": [
+            "material-test"
+          ],
+          "editorialReview": {
+            "officialPoint": "測る操作と試験の目的／個別の質問：A：振り子で打撃する試験",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「ヤング率」ではなく、衝撃吸収エネルギーです。切欠き試験片を衝撃で破壊するシャルピー試験では、振り子の打撃前後の位置エネルギーの差を調べます。試験片の破壊に吸収されたエネルギーを測り、じん性を評価するために用います。静かに引っ張ったときの応力とひずみの傾きから得るヤング率とは、測定方法も目的も違います。"
+            },
+            "sha256": "2d58b4994e5c1c7a72c14f030b591b7a2739c9916ed6c695c674e976daa64d61"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "solid2-ch2-43-item-b",
+          "number": "2-43",
+          "officialRef": "問2-43",
+          "officialQuestionItem": "b",
+          "title": "B：圧子を押し込む試験",
+          "topic": "材料試験(シャルピー衝撃・引張・硬さ等)と評価する特性・用語の対応",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "記録Bの主な評価量はどちらですか。",
+          "choices": [
+            "衝撃吸収エネルギー",
+            "押込み硬さ"
+          ],
+          "answer": 2,
+          "answerSummary": "圧痕の大きさから、押し込みに対する抵抗を評価します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "角錐圧子で表面へ圧痕を付け、その寸法を測るのはビッカース硬さ試験の考え方です。同じ荷重に対して圧痕が小さいほど、押し込みにくい、つまり硬いと評価します。振り子による破壊エネルギーの試験とは区別します。"
+            }
+          ],
+          "explanation": "【基礎】圧痕の大きさから、押し込みに対する抵抗を評価します。\n【考え方】正解は2です。角錐圧子で表面へ圧痕を付け、その寸法を測るのはビッカース硬さ試験の考え方です。同じ荷重に対して圧痕が小さいほど、押し込みにくい、つまり硬いと評価します。振り子による破壊エネルギーの試験とは区別します。\n【ポイント】圧痕の大きさから、押し込みに対する抵抗を評価します。\n【引っかけ】1：「衝撃吸収エネルギー」ではなく、押込み硬さです。角錐圧子で表面へ圧痕を付け、その寸法を測るのはビッカース硬さ試験の考え方です。同じ荷重に対して圧痕が小さいほど、押し込みにくい、つまり硬いと評価します。振り子による破壊エネルギーの試験とは区別します。",
+          "relatedFormulas": [
+            "material-test"
+          ],
+          "editorialReview": {
+            "officialPoint": "測る操作と試験の目的／個別の質問：B：圧子を押し込む試験",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「衝撃吸収エネルギー」ではなく、押込み硬さです。角錐圧子で表面へ圧痕を付け、その寸法を測るのはビッカース硬さ試験の考え方です。同じ荷重に対して圧痕が小さいほど、押し込みにくい、つまり硬いと評価します。振り子による破壊エネルギーの試験とは区別します。"
+            },
+            "sha256": "4527442687cddd5b6f9e97a06888edfb54eecd66bb8eb59cb7e57be889501fcc"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "solid2-ch2-43-item-c",
+          "number": "2-43",
+          "officialRef": "問2-43",
+          "officialQuestionItem": "c",
+          "title": "C：高温で荷重を保つ試験",
+          "topic": "材料試験(シャルピー衝撃・引張・硬さ等)と評価する特性・用語の対応",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "記録Cの試験名はどちらですか。",
+          "choices": [
+            "クリープ試験",
+            "疲労試験"
+          ],
+          "answer": 1,
+          "answerSummary": "一定応力を保ったまま進む、時間依存の変形を調べるクリープ試験です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "高温で一定の引張応力を保ち、ひずみの増加や破断までの時間を測るのがクリープ試験です。一度引いてすぐ破断させる通常の引張試験とは異なります。\n\nCがクリープ、Aが衝撃吸収エネルギー、Bが押込み硬さとなる①です。"
+            },
+            {
+              "title": "クリープと疲労も区別する",
+              "body": "クリープは、高温で一定の応力を保つなどしたときの時間とともに進む変形です。疲労は荷重が繰り返し変わることで問題になる現象です。\n\nCは荷重を何度も往復させる記録ではなく、高温で保つ記録なのでクリープに対応します。"
+            }
+          ],
+          "explanation": "【基礎】一定応力を保ったまま進む、時間依存の変形を調べるクリープ試験です。\n【考え方】正解は1です。高温で一定の引張応力を保ち、ひずみの増加や破断までの時間を測るのがクリープ試験です。一度引いてすぐ破断させる通常の引張試験とは異なります。 Cがクリープ、Aが衝撃吸収エネルギー、Bが押込み硬さとなる①です。\n【ポイント】クリープは、高温で一定の応力を保つなどしたときの時間とともに進む変形です。疲労は荷重が繰り返し変わることで問題になる現象です。 Cは荷重を何度も往復させる記録ではなく、高温で保つ記録なのでクリープに対応します。\n【引っかけ】2：「疲労試験」ではなく、クリープ試験です。高温で一定の引張応力を保ち、ひずみの増加や破断までの時間を測るのがクリープ試験です。一度引いてすぐ破断させる通常の引張試験とは異なります。 Cがクリープ、Aが衝撃吸収エネルギー、Bが押込み硬さとなる①です。",
+          "relatedFormulas": [
+            "material-test"
+          ],
+          "editorialReview": {
+            "officialPoint": "測る操作と試験の目的／個別の質問：C：高温で荷重を保つ試験",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「疲労試験」ではなく、クリープ試験です。高温で一定の引張応力を保ち、ひずみの増加や破断までの時間を測るのがクリープ試験です。一度引いてすぐ破断させる通常の引張試験とは異なります。\n\nCがクリープ、Aが衝撃吸収エネルギー、Bが押込み硬さとなる①です。"
+            },
+            "sha256": "acd7863871aa3898654e0edea8bb7f97ab24c6b43111f0c629f1f274e07db6be"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "solid2-ch2-44",
@@ -3201,15 +4466,125 @@
       ],
       "editorialReview": {
         "officialPoint": "棒の波速を次元と倍率で選ぶ",
-        "alignment": "保存済み公式の該当番号と選択式の論点を照合。通常4節を旧本体用に保持し、標準詳解は結論・必要な導出・具体例・誤答理由へ統合。重複を削り、式と数値例の整合、単位、図の対応を確認。文字数で水増ししない。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "剛性と密度の位置を逆にする",
           "3": "平方根を落として速度倍率を4とする",
           "4": "比でなく積を用い単位も合わなくする"
         },
-        "sha256": "5009cfead30da09795afade7c4e35659f35d0ea8e16400cfb253832d711a2ad8"
+        "sha256": "ba7e8e7667d3421fd5be9ab87d98ab3e2a6ff4c71e7e535842497388d8b63698"
       },
-      "answerSummary": "①。波速は $c=\\sqrt{E/\\rho}$。密度が同じでEが4倍なら、波速は2倍です。"
+      "answerSummary": "波速の関係式：E/ρは速度の二乗の単位を持つので、平方根を取ります。\nEを4倍にした場合：波速はヤング率の平方根に比例します。",
+      "officialQuestionItems": [
+        "formula",
+        "ratio"
+      ],
+      "sharedQuestion": "細長い弾性棒の軸方向に伝わる小さな縦波を考える。波速はヤング率 $E$ と質量密度 $\\rho$ だけで決まる。$E$ を4倍、$\\rho$ を変えないときの関係式と、Eを4倍にした場合の速度倍率をそれぞれ答えてください。無限体の縦波とは区別する。",
+      "studyParts": [
+        {
+          "id": "solid2-ch2-44-item-formula",
+          "number": "2-44",
+          "officialRef": "問2-44",
+          "officialQuestionItem": "formula",
+          "title": "波速の関係式",
+          "topic": "応力波(縦弾性波)の伝播速度の式と具体値",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "細長い棒を伝わる縦波の速度を表すのはどちらですか。",
+          "choices": [
+            "$c=\\sqrt{E/\\rho}$",
+            "$c=E/\\rho$"
+          ],
+          "answer": 1,
+          "answerSummary": "E/ρは速度の二乗の単位を持つので、平方根を取ります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "細長い棒の縦波は$c=\\sqrt{E/\\rho}$です。$E$が大きいほど隣を強く押し戻し、密度$\\rho$が大きいほど動かしにくくなります。\n\nそのため$E$が分子、$\\rho$が分母です。"
+            },
+            {
+              "title": "小さな棒の質量と両端の力を比べる",
+              "body": "断面積A、長さdxの小区間の質量は$\\rho A\\,dx$です。軸変位を$u(x,t)$とすると、ひずみは$\\partial u/\\partial x$、軸力は$EA\\partial u/\\partial x$です。\n\n両端の軸力の差は$EA(\\partial^2u/\\partial x^2)dx$なので、運動の式は$\\rho A\\,dx\\,\\frac{\\partial^2u}{\\partial t^2}=EA\\,dx\\,\\frac{\\partial^2u}{\\partial x^2}$です。位置での微分は隣の点との変位の違い、時間の二階微分は加速度を表します。"
+            },
+            {
+              "title": "面積と小区間の長さを消す",
+              "body": "共通の$A\\,dx$を割ると$\\frac{\\partial^2u}{\\partial t^2}=(E/\\rho)\\frac{\\partial^2u}{\\partial x^2}$です。一定形状の波が速度cで進む式では、時間と位置の二階微分の係数が$c^2$になるため、$c^2=E/\\rho$、正の速さは$c=\\sqrt{E/\\rho}$です。\n\n断面積が消えることも、設問でEと密度だけを使う条件と対応します。"
+            },
+            {
+              "title": "波の形を動かすとcの二乗が出る",
+              "body": "同じ形の波が右へ進むとき、$u(x,t)=g(x-ct)$と書けます。tが増えた分だけ波の位置が右へ動く形です。\n\n連鎖律で$x$を二回微分すると$\\frac{\\partial^2u}{\\partial x^2}=g^{\\prime\\prime}$、tを二回微分すると$\\frac{\\partial^2u}{\\partial t^2}=(-c)^2g^{\\prime\\prime}=c^2g^{\\prime\\prime}$です。運動の式へ代入すると$c^2=E/\\rho$となり、速度に平方根が必要な理由を確認できます。"
+            },
+            {
+              "title": "単位から平方根を確かめる",
+              "body": "$E$の単位は$\\mathrm{Pa}=\\mathrm{kg/(m\\,s^2)}$、$\\rho$は$\\mathrm{kg/m^3}$です。$E/\\rho$の単位は$\\mathrm{m^2/s^2}$なので、平方根を取ると速度の$\\mathrm{m/s}$になります。"
+            }
+          ],
+          "explanation": "【基礎】E/ρは速度の二乗の単位を持つので、平方根を取ります。\n【考え方】正解は1です。細長い棒の縦波は$c=\\sqrt{E/\\rho}$です。$E$が大きいほど隣を強く押し戻し、密度$\\rho$が大きいほど動かしにくくなります。 そのため$E$が分子、$\\rho$が分母です。\n【ポイント】断面積A、長さdxの小区間の質量は$\\rho A\\,dx$です。軸変位を$u(x,t)$とすると、ひずみは$\\partial u/\\partial x$、軸力は$EA\\partial u/\\partial x$です。 両端の軸力の差は$EA(\\partial^2u/\\partial x^2)dx$なので、運動の式は$\\rho A\\,dx\\,\\frac{\\partial^2u}{\\partial t^2}=EA\\,dx\\,\\frac{\\partial^2u}{\\partial x^2}$です。位置での微分は隣の点との変位の違い、時間の二階微分は加速度を表します。\n【引っかけ】2：「$c=E/\\rho$」ではなく、$c=\\sqrt{E/\\rho}$です。細長い棒の縦波は$c=\\sqrt{E/\\rho}$です。$E$が大きいほど隣を強く押し戻し、密度$\\rho$が大きいほど動かしにくくなります。 そのため$E$が分子、$\\rho$が分母です。",
+          "relatedFormulas": [
+            "stress-wave"
+          ],
+          "editorialReview": {
+            "officialPoint": "棒の波速を次元と倍率で選ぶ／個別の質問：波速の関係式",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$c=E/\\rho$」ではなく、$c=\\sqrt{E/\\rho}$です。細長い棒の縦波は$c=\\sqrt{E/\\rho}$です。$E$が大きいほど隣を強く押し戻し、密度$\\rho$が大きいほど動かしにくくなります。\n\nそのため$E$が分子、$\\rho$が分母です。"
+            },
+            "sha256": "b67913f1d702836885d89e018294650c5da19afdfed1d431754025313a4f469d"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "solid2-ch2-44-item-ratio",
+          "number": "2-44",
+          "officialRef": "問2-44",
+          "officialQuestionItem": "ratio",
+          "title": "Eを4倍にした場合",
+          "topic": "応力波(縦弾性波)の伝播速度の式と具体値",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "密度を変えずEを4倍にすると、波速は何倍ですか。",
+          "choices": [
+            "4倍",
+            "2倍"
+          ],
+          "answer": 2,
+          "answerSummary": "波速はヤング率の平方根に比例します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "変更前は$c=\\sqrt{E/\\rho}$、変更後は$c'=\\sqrt{4E/\\rho}=2\\sqrt{E/\\rho}=2c$です。ヤング率の倍率をそのまま波速の倍率にするのではなく、平方根を取ります。"
+            },
+            {
+              "title": "波が伝わる速さと材料の動く速さは別",
+              "body": "棒の端をたたくと、近くの部分が隣を押し、その変化が先へ伝わります。ここでいう波速は、その変化が伝わる速さです。\n\n棒全体が同じ速さで移動する意味ではありません。"
+            },
+            {
+              "title": "鋼に近い数値で速さの大きさを確かめる",
+              "body": "$E=200\\,\\mathrm{GPa}=2.0\\times10^{11}\\,\\mathrm{Pa}$、$\\rho=7800\\,\\mathrm{kg/m^3}$なら、$E/\\rho\\approx2.5641\\times10^7\\,\\mathrm{m^2/s^2}$です。平方根を取ると$c\\approx5064\\,\\mathrm{m/s}$です。\n\nEを4倍にした場合はこの約2倍、10127 m/sとなり、4倍ではありません。この数値例は設問の細長い棒の縦波モデルを使ったもので、無限の三次元固体の波速式とは区別します。"
+            }
+          ],
+          "explanation": "【基礎】波速はヤング率の平方根に比例します。\n【考え方】正解は2です。変更前は$c=\\sqrt{E/\\rho}$、変更後は$c'=\\sqrt{4E/\\rho}=2\\sqrt{E/\\rho}=2c$です。ヤング率の倍率をそのまま波速の倍率にするのではなく、平方根を取ります。\n【ポイント】棒の端をたたくと、近くの部分が隣を押し、その変化が先へ伝わります。ここでいう波速は、その変化が伝わる速さです。 棒全体が同じ速さで移動する意味ではありません。\n【引っかけ】1：「4倍」ではなく、2倍です。変更前は$c=\\sqrt{E/\\rho}$、変更後は$c'=\\sqrt{4E/\\rho}=2\\sqrt{E/\\rho}=2c$です。ヤング率の倍率をそのまま波速の倍率にするのではなく、平方根を取ります。",
+          "relatedFormulas": [
+            "stress-wave"
+          ],
+          "editorialReview": {
+            "officialPoint": "棒の波速を次元と倍率で選ぶ／個別の質問：Eを4倍にした場合",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「4倍」ではなく、2倍です。変更前は$c=\\sqrt{E/\\rho}$、変更後は$c'=\\sqrt{4E/\\rho}=2\\sqrt{E/\\rho}=2c$です。ヤング率の倍率をそのまま波速の倍率にするのではなく、平方根を取ります。"
+            },
+            "sha256": "fcf31d3e11b961858fdd0fb18c8c4cf6ca00cbf771add5eca7ea99838d72f3c1"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     }
   ]
 }

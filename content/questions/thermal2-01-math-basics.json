@@ -8,7 +8,8 @@
     "count": 11,
     "officialCount": 11,
     "presentationStyle": "cae-standard-v1",
-    "explanationMode": "guided"
+    "explanationMode": "guided",
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -42,7 +43,7 @@
           "2": "選択肢1は拡散方程式（2階微分）の平滑化と取り違えた誤り、選択肢2は移流による移動を見落とした誤り、選択肢4は $x=1-ct=-5$ と移動の向きの符号を誤ったものです。",
           "4": "選択肢1は拡散方程式（2階微分）の平滑化と取り違えた誤り、選択肢2は移流による移動を見落とした誤り、選択肢4は $x=1-ct=-5$ と移動の向きの符号を誤ったものです。"
         },
-        "sha256": "d57c4dbadd648fb899481b9c60fecaec74a256958d34156621363454ae87cc1d"
+        "sha256": "192dd19279d498d5b02771e412f1e268cd3a9ac9d8d276b5cbaa67001f22e836"
       },
       "relatedFormulas": [
         "t2ch1-advection"
@@ -71,7 +72,10 @@
           "body": "①は拡散による平滑化を混ぜています。②は分布の移動を無視しています。④は進む向きを逆にしています。観測位置を固定すると山が通過して値は変わりますが、山自体が高くなったり低くなったりするわけではありません。"
         }
       ],
-      "answerSummary": "正解は③です。形も高さも変わらず、頂点が $x=7\\,\\mathrm m$ へ移動します。"
+      "answerSummary": "正解は③です。形も高さも変わらず、頂点が $x=7\\,\\mathrm m$ へ移動します。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2m-1-2",
@@ -104,7 +108,7 @@
           "3": "選択肢1は熱源がないのに熱量を増やす誤りです。選択肢3は拡散を形の変わらない移流と混同しています。選択肢4は温度差が小さくなる向きを逆にしています。",
           "4": "選択肢1は熱源がないのに熱量を増やす誤りです。選択肢3は拡散を形の変わらない移流と混同しています。選択肢4は温度差が小さくなる向きを逆にしています。"
         },
-        "sha256": "da32b63d571b42e878bff9bf84cd7f7aa92f97211fca8d7862ebb999e86576d3"
+        "sha256": "f35640d7e9adc4e3f41f974d08a24d0a56ca0938232477ee48cbadfde1210a99"
       },
       "relatedFormulas": [
         "t2ch1-diffusion"
@@ -133,7 +137,10 @@
           "body": "①は熱源がないのに熱量を増やし、山も鋭くしています。③は外へ熱が逃げる条件がないのに総量を減らし、移流のように平行移動させています。④は温度差をならす向きが逆です。十分時間が経つと、この棒は初期温度の平均値に近い一様な温度になります。"
         }
       ],
-      "answerSummary": "正解は②です。全体の熱量は一定で、温度の山は低く広がります。"
+      "answerSummary": "正解は②です。全体の熱量は一定で、温度の山は低く広がります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2m-1-3",
@@ -160,13 +167,13 @@
       "figureImage": "t2e1PdeTypes",
       "editorialReview": {
         "officialPoint": "放物型と初期・境界条件",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。独立小問のない選択式として同じ番号内で統合。答えに必要な導出・記号の意味と誤答理由を残し、図を説明段階へ配置。既存の正解番号を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "選択肢2は定常的な楕円型の問題との混同です。選択肢3は型が違い、有限区間で端の条件を省いています。選択肢4は型を誤り、端の条件も不足しています。",
           "3": "選択肢2は定常的な楕円型の問題との混同です。選択肢3は型が違い、有限区間で端の条件を省いています。選択肢4は型を誤り、端の条件も不足しています。",
           "4": "選択肢2は定常的な楕円型の問題との混同です。選択肢3は型が違い、有限区間で端の条件を省いています。選択肢4は型を誤り、端の条件も不足しています。"
         },
-        "sha256": "96af735e08417a4a704d22db7ad40df2f7a3c74e29f73802faef394614616d2d"
+        "sha256": "af654a6e72157260eeb150c5a7663341e0ad6b6b7ed0fa4b79d14f2d07bfe099"
       },
       "relatedFormulas": [
         "t2ch1-pde-types"
@@ -195,7 +202,111 @@
           "body": "②は時間変化を扱わない定常的な楕円型の問題と混同しています。③は型が違い、有限区間の端の条件も省いています。④も型を誤り、境界条件がありません。初期条件だけでは、端を冷やす場合と断熱する場合を区別できません。"
         }
       ],
-      "answerSummary": "正解は①です。拡散方程式は放物型で、有限長の棒では初期条件と境界条件の両方が必要です。"
+      "answerSummary": "方程式の型：時間とともに温度差がならされる放物型です。\n必要な条件：最初の温度と両端での条件の両方が必要です。",
+      "sharedQuestion": "有限区間 $0\\le x\\le L$ の棒の温度を $\\partial f/\\partial t=A\\partial^2f/\\partial x^2$（$A>0$）で求めます。",
+      "studyParts": [
+        {
+          "id": "t2m-1-3-item-type",
+          "number": "1-3",
+          "officialRef": "問1-3",
+          "officialQuestionItem": "type",
+          "title": "方程式の型",
+          "topic": "偏微分方程式の分類",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "この拡散方程式は何型ですか。",
+          "choices": [
+            "楕円型",
+            "放物型"
+          ],
+          "answer": 2,
+          "answerSummary": "時間とともに温度差がならされる放物型です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "時間の1階微分と空間の2階微分を結ぶ式です。温度の山が時間とともになだらかになる拡散を表します。"
+            },
+            {
+              "title": "放物型という分類",
+              "body": "$\\partial f/\\partial t=A\\,\\partial^2 f/\\partial x^2$ は、時間について1階、空間について2階の微分をもち、放物型に分類されます。ここでは分類名と必要条件の対応を押さえれば十分です。「放物型」は棒や温度グラフが必ず放物線になるという意味ではありません。"
+            }
+          ],
+          "explanation": "【基礎】時間とともに温度差がならされる放物型です。\n【考え方】正解は2です。時間の1階微分と空間の2階微分を結ぶ式です。温度の山が時間とともになだらかになる拡散を表します。\n【ポイント】$\\partial f/\\partial t=A\\,\\partial^2 f/\\partial x^2$ は、時間について1階、空間について2階の微分をもち、放物型に分類されます。ここでは分類名と必要条件の対応を押さえれば十分です。「放物型」は棒や温度グラフが必ず放物線になるという意味ではありません。\n【引っかけ】1：「楕円型」ではなく、放物型です。時間の1階微分と空間の2階微分を結ぶ式です。温度の山が時間とともになだらかになる拡散を表します。",
+          "relatedFormulas": [
+            "t2ch1-pde-types"
+          ],
+          "editorialReview": {
+            "officialPoint": "放物型と初期・境界条件／個別の質問：方程式の型",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「楕円型」ではなく、放物型です。時間の1階微分と空間の2階微分を結ぶ式です。温度の山が時間とともになだらかになる拡散を表します。"
+            },
+            "sha256": "5197889d2f74ee0cb5740e09fc2acd7903fcab9634cc5e952e30c18dd0409000"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2m-1-3-item-conditions",
+          "number": "1-3",
+          "officialRef": "問1-3",
+          "officialQuestionItem": "conditions",
+          "title": "必要な条件",
+          "topic": "偏微分方程式の分類",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "有限の棒の時間変化を決めるために必要な条件はどれですか。",
+          "choices": [
+            "初期条件のみ",
+            "初期条件と境界条件"
+          ],
+          "answer": 2,
+          "answerSummary": "最初の温度と両端での条件の両方が必要です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "同じ初期温度でも、両端を冷やす場合と断熱する場合では、その後の温度が異なります。"
+            },
+            {
+              "title": "「最初」と「両端」を決める",
+              "body": "同じ棒でも、最初に全体が熱い場合と中央だけ熱い場合では、その後の温度は違います。また、端を氷水で冷やす場合と、熱が逃げないよう断熱する場合でも違います。温度の変化を一つに決めるには、この二つを指定します。",
+              "figures": [
+                {
+                  "figureImage": "t2e1PdeTypes",
+                  "caption": "上段は棒全体の最初の温度、下段は両端での扱いです。時間の出発点と、空間の端を区別します。"
+                }
+              ]
+            },
+            {
+              "title": "条件を式で読む",
+              "body": "初期条件は $f(x,0)=f_0(x)$ のように、時刻0の温度分布を与えます。境界条件は、例えば $f(0,t)=20$、$f(L,t)=20$ として両端を20℃に保つ指定です。断熱なら端での温度勾配を0にします。初期条件は「どこから始めるか」、境界条件は「外とどう接するか」です。"
+            }
+          ],
+          "explanation": "【基礎】最初の温度と両端での条件の両方が必要です。\n【考え方】正解は2です。同じ初期温度でも、両端を冷やす場合と断熱する場合では、その後の温度が異なります。\n【ポイント】同じ棒でも、最初に全体が熱い場合と中央だけ熱い場合では、その後の温度は違います。また、端を氷水で冷やす場合と、熱が逃げないよう断熱する場合でも違います。温度の変化を一つに決めるには、この二つを指定します。\n【引っかけ】1：「初期条件のみ」ではなく、初期条件と境界条件です。同じ初期温度でも、両端を冷やす場合と断熱する場合では、その後の温度が異なります。",
+          "relatedFormulas": [
+            "t2ch1-pde-types"
+          ],
+          "editorialReview": {
+            "officialPoint": "放物型と初期・境界条件／個別の質問：必要な条件",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「初期条件のみ」ではなく、初期条件と境界条件です。同じ初期温度でも、両端を冷やす場合と断熱する場合では、その後の温度が異なります。"
+            },
+            "sha256": "147315e531625b53e0a4273f677d65fec497d048e23c940f94171397e9c2cfcc"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "type",
+        "conditions"
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t2m-1-4",
@@ -227,7 +338,7 @@
           "2": "選択肢1は2次項の符号と係数を誤っています。選択肢2は1次項の符号が逆です。選択肢3は2次項で2で割る操作を忘れています。",
           "3": "選択肢1は2次項の符号と係数を誤っています。選択肢2は1次項の符号が逆です。選択肢3は2次項で2で割る操作を忘れています。"
         },
-        "sha256": "1e7dd49fb695317ca349f489d0a04f2d8678fa5f23b0cd458fe37c409269c466"
+        "sha256": "9e9266d28d131a4b2f1bd786702d59e5aeea6679824a7e362ca21d9a3b82a2ec"
       },
       "relatedFormulas": [
         "t2ch1-taylor"
@@ -250,7 +361,10 @@
           "body": "$x=0.1$ なら近似値は $1-0.05+0.00375=0.95375$、元の式は約0.95346です。0に近い範囲でよく合います。①は2次項の符号と係数、②は1次項の符号が違います。③は2次項で2で割り忘れています。④だけが微分から得た係数と一致します。"
         }
       ],
-      "answerSummary": "正解は④です。$1/\\sqrt{1+x}\\approx1-\\frac12x+\\frac38x^2$ となります。"
+      "answerSummary": "正解は④です。$1/\\sqrt{1+x}\\approx1-\\frac12x+\\frac38x^2$ となります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2m-1-5",
@@ -283,7 +397,7 @@
           "2": "選択肢1の分配則と選択肢2のスカラーとの結合は成分計算から成り立つ正しい記述、選択肢4は同一（平行な）ベクトルどうしの外積が面積 $0$ でゼロベクトルになる正しい記述です。",
           "4": "選択肢1の分配則と選択肢2のスカラーとの結合は成分計算から成り立つ正しい記述、選択肢4は同一（平行な）ベクトルどうしの外積が面積 $0$ でゼロベクトルになる正しい記述です。"
         },
-        "sha256": "fd4443b26f39bc79131cc383cd21602129f0fd0274fd757b597ce686aa706bbe"
+        "sha256": "04b31a00fb9105c007ef73b1d78f1b3422b4366dadc657c38634f60d15deda51"
       },
       "relatedFormulas": [
         "t2ch1-cross-product"
@@ -308,7 +422,10 @@
           "body": "①の分配則では、和の各ベクトルとの外積を別々に計算して足せます。②は片方を $a$ 倍すると外積も $a$ 倍になる関係です。④は同じ矢印同士では平行四辺形がつぶれ、面積が0になるため成り立ちます。内積は交換しても同じですが、外積は符号が変わる点を区別します。"
         }
       ],
-      "answerSummary": "誤っているのは③です。外積は順序を逆にすると向きが反転します。"
+      "answerSummary": "誤っているのは③です。外積は順序を逆にすると向きが反転します。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2m-1-6",
@@ -335,13 +452,13 @@
       "figureImage": "t2e1Invariants",
       "editorialReview": {
         "officialPoint": "固有値と直交変換に対する不変量",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。独立小問のない選択式として同じ番号内で統合。答えに必要な導出・記号の意味と誤答理由を残し、図を説明段階へ配置。既存の正解番号を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "選択肢1は倍率と方向の混同です。選択肢3は見方の変更と対象自体の2倍を混同しています。$\\mathbf A$ を2倍にすると固有値も2倍になり、不変量は順に2倍・4倍・8倍です。選択肢4は両方を混同しています。",
           "3": "選択肢1は倍率と方向の混同です。選択肢3は見方の変更と対象自体の2倍を混同しています。$\\mathbf A$ を2倍にすると固有値も2倍になり、不変量は順に2倍・4倍・8倍です。選択肢4は両方を混同しています。",
           "4": "選択肢1は倍率と方向の混同です。選択肢3は見方の変更と対象自体の2倍を混同しています。$\\mathbf A$ を2倍にすると固有値も2倍になり、不変量は順に2倍・4倍・8倍です。選択肢4は両方を混同しています。"
         },
-        "sha256": "bc63447621c699b7eadfa073313457f09048fa8b3dee2a696aa07eccdecd83bc"
+        "sha256": "5e88a4a69b7d7fd8fa9974c4a68079383cb0bfe55f802994b05d1ececf41f912"
       },
       "relatedFormulas": [
         "t2ch1-tensor-eigen",
@@ -375,7 +492,117 @@
           "body": "①は倍率を固有ベクトルと呼んでいます。③は座標の見方を変えることと、行列そのものを2倍することを混同しています。後者では固有値も2倍になり、不変量は順に2倍・4倍・8倍です。④は名称と変換の両方が違います。"
         }
       ],
-      "answerSummary": "正解は②です。$\\lambda$ は固有値で、座標軸を回す直交変換では不変量は変わりません。"
+      "answerSummary": "λの意味：λは特別な方向の伸縮倍率を表す固有値です。\n不変量：対象を変えず座標軸を回すと不変量は変わりません。",
+      "officialQuestionItems": [
+        "value",
+        "invariant"
+      ],
+      "sharedQuestion": "3次元の2階テンソル $\\mathbf A$ を考える。単位行列を $\\mathbf E$ とし、$\\det(\\lambda\\mathbf E-\\mathbf A)=0$ を $\\lambda^3-\\mathrm I_A\\lambda^2+\\mathrm {II}_A\\lambda-\\mathrm {III}_A=0$ と書く。$\\lambda$ の呼び名と、3つの係数が変わらない座標変換の組として正しいものはどれか。",
+      "studyParts": [
+        {
+          "id": "t2m-1-6-item-value",
+          "number": "1-6",
+          "officialRef": "問1-6",
+          "officialQuestionItem": "value",
+          "title": "λの意味",
+          "topic": "固有値・不変量",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$\\det(\\lambda\\mathbf E-\\mathbf A)=0$ を満たす $\\lambda$ は何ですか。",
+          "choices": [
+            "固有ベクトル",
+            "固有値"
+          ],
+          "answer": 2,
+          "answerSummary": "λは特別な方向の伸縮倍率を表す固有値です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$\\mathbf A\\boldsymbol v=\\lambda\\boldsymbol v$ のうち、方向を示すのがベクトル、倍率を示す数が固有値です。"
+            },
+            {
+              "title": "行列が変えない特別な「方向」を考える",
+              "body": "行列 $\\mathbf A$ は矢印を別の矢印へ変える働きをします。その中で $\\mathbf A\\boldsymbol u=\\lambda\\boldsymbol u$ となる、0でない矢印を固有ベクトルといいます。方向は同じか反対で、長さを何倍するかを表す数 $\\lambda$ が固有値です。「矢印」と「倍率」を分けてください。"
+            },
+            {
+              "title": "なぜ行列式を0にするのか",
+              "body": "式を移項すると $(\\lambda\\mathbf E-\\mathbf A)\\boldsymbol u=\\boldsymbol0$ です。通常は $\\boldsymbol u=\\boldsymbol0$ しかありませんが、それ以外の解が存在する特別な倍率では係数行列の行列式が0になります。これが $\\det(\\lambda\\mathbf E-\\mathbf A)=0$ を解く理由です。$\\mathbf E$ は単位行列です。"
+            }
+          ],
+          "explanation": "【基礎】λは特別な方向の伸縮倍率を表す固有値です。\n【考え方】正解は2です。$\\mathbf A\\boldsymbol v=\\lambda\\boldsymbol v$ のうち、方向を示すのがベクトル、倍率を示す数が固有値です。\n【ポイント】行列 $\\mathbf A$ は矢印を別の矢印へ変える働きをします。その中で $\\mathbf A\\boldsymbol u=\\lambda\\boldsymbol u$ となる、0でない矢印を固有ベクトルといいます。方向は同じか反対で、長さを何倍するかを表す数 $\\lambda$ が固有値です。「矢印」と「倍率」を分けてください。\n【引っかけ】1：「固有ベクトル」ではなく、固有値です。$\\mathbf A\\boldsymbol v=\\lambda\\boldsymbol v$ のうち、方向を示すのがベクトル、倍率を示す数が固有値です。",
+          "relatedFormulas": [
+            "t2ch1-tensor-eigen",
+            "t2ch1-tensor-invariants"
+          ],
+          "editorialReview": {
+            "officialPoint": "固有値と直交変換に対する不変量／個別の質問：λの意味",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「固有ベクトル」ではなく、固有値です。$\\mathbf A\\boldsymbol v=\\lambda\\boldsymbol v$ のうち、方向を示すのがベクトル、倍率を示す数が固有値です。"
+            },
+            "sha256": "ce1dfefa3211fe1d4bc0a1bd85a10efffb5487eb1b7403544e6dc3699134ae72"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2m-1-6-item-invariant",
+          "number": "1-6",
+          "officialRef": "問1-6",
+          "officialQuestionItem": "invariant",
+          "title": "不変量",
+          "topic": "固有値・不変量",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "三つの係数を変えない操作はどれですか。",
+          "choices": [
+            "座標軸の直交変換",
+            "テンソル全体を2倍にする"
+          ],
+          "answer": 1,
+          "answerSummary": "対象を変えず座標軸を回すと不変量は変わりません。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "物差しの向きを変えても対象そのものは同じです。テンソルを2倍にする操作は対象の作用を変えます。"
+            },
+            {
+              "title": "座標を回しても、対象自体は同じ",
+              "body": "同じ物体を、目盛りの向きを変えて見ることを想像してください。行列の成分は変わっても、対象の持つ固有値は変わりません。直交行列 $\\mathbf P$ を使うと $\\mathbf B=\\mathbf P\\mathbf A\\mathbf P^{-1}$ です。固有ベクトルも $\\mathbf P\\boldsymbol u$ へ変わりますが、$\\mathbf B(\\mathbf P\\boldsymbol u)=\\lambda(\\mathbf P\\boldsymbol u)$ となり、倍率は同じです。",
+              "figures": [
+                {
+                  "figureImage": "t2e1Invariants",
+                  "caption": "図の例では座標軸だけを回しています。固有値1、3、3と、そこから作る不変量は変わりません。"
+                }
+              ]
+            },
+            {
+              "title": "3つの不変量を数で確かめる",
+              "body": "固有値を $\\lambda_1,\\lambda_2,\\lambda_3$ とすると、第1不変量は和、第2は2つずつの積の和、第3は3つの積です。例の1、3、3なら、$\\mathrm I_A=1+3+3=7$、$\\mathrm{II}_A=1\\times3+3\\times3+3\\times1=15$、$\\mathrm{III}_A=1\\times3\\times3=9$ です。これらが特性方程式の係数になります。"
+            }
+          ],
+          "explanation": "【基礎】対象を変えず座標軸を回すと不変量は変わりません。\n【考え方】正解は1です。物差しの向きを変えても対象そのものは同じです。テンソルを2倍にする操作は対象の作用を変えます。\n【ポイント】同じ物体を、目盛りの向きを変えて見ることを想像してください。行列の成分は変わっても、対象の持つ固有値は変わりません。直交行列 $\\mathbf P$ を使うと $\\mathbf B=\\mathbf P\\mathbf A\\mathbf P^{-1}$ です。固有ベクトルも $\\mathbf P\\boldsymbol u$ へ変わりますが、$\\mathbf B(\\mathbf P\\boldsymbol u)=\\lambda(\\mathbf P\\boldsymbol u)$ となり、倍率は同じです。\n【引っかけ】2：「テンソル全体を2倍にする」ではなく、座標軸の直交変換です。物差しの向きを変えても対象そのものは同じです。テンソルを2倍にする操作は対象の作用を変えます。",
+          "relatedFormulas": [
+            "t2ch1-tensor-eigen",
+            "t2ch1-tensor-invariants"
+          ],
+          "editorialReview": {
+            "officialPoint": "固有値と直交変換に対する不変量／個別の質問：不変量",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「テンソル全体を2倍にする」ではなく、座標軸の直交変換です。物差しの向きを変えても対象そのものは同じです。テンソルを2倍にする操作は対象の作用を変えます。"
+            },
+            "sha256": "6151d27aea1d4bff8d81e7bc998f751a0b9b51acb13e30bda7776a9bd7a621af"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t2m-1-7",
@@ -407,7 +634,7 @@
           "3": "選択肢2はスカラー側の変化の項を省いています。選択肢3はベクトル側の変化の項を省いています。選択肢4は2項を足すべきところを引いています。",
           "4": "選択肢2はスカラー側の変化の項を省いています。選択肢3はベクトル側の変化の項を省いています。選択肢4は2項を足すべきところを引いています。"
         },
-        "sha256": "d74725ff2b372026cf0c691837da71cd1adb267ab014d697d281f70361126413"
+        "sha256": "eabcf450ca67361b4813429959f2bc9f230b48da46d0e402d30ce5c6682cec75"
       },
       "relatedFormulas": [
         "t2ch1-nabla-product"
@@ -430,7 +657,10 @@
           "body": "$f=x$、$\\boldsymbol v=(x,0,0)$ と置くと、左辺は $d(x^2)/dx=2x$ です。右辺も最初の項が $x$、次の項が $x$ で合計 $2x$ になります。②は $f$ 側、③は速度側の変化を落としています。④の引き算ではこの例が0になり、一致しません。"
         }
       ],
-      "answerSummary": "正解は①です。$f$ を微分する項と、速度を微分する項を足します。"
+      "answerSummary": "正解は①です。$f$ を微分する項と、速度を微分する項を足します。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2m-1-8",
@@ -457,13 +687,13 @@
       "figureImage": "t2e1Cylindrical",
       "editorialReview": {
         "officialPoint": "円柱座標の連鎖律",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。独立小問のない選択式として同じ番号内で統合。答えに必要な導出・記号の意味と誤答理由を残し、図を説明段階へ配置。既存の正解番号を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "選択肢1は分母を距離rでなくxにしています。選択肢2は角度の変化の符号が逆です。選択肢3は正弦・余弦を取り違えています。",
           "2": "選択肢1は分母を距離rでなくxにしています。選択肢2は角度の変化の符号が逆です。選択肢3は正弦・余弦を取り違えています。",
           "3": "選択肢1は分母を距離rでなくxにしています。選択肢2は角度の変化の符号が逆です。選択肢3は正弦・余弦を取り違えています。"
         },
-        "sha256": "333d9a8834409a0aee490ce415a8289bbe69f56928352d0b12c08691213c155a"
+        "sha256": "7e79c8b68a807ad8d165ab06e96125923233520962f1a9f8a6fe020a7c889a6e"
       },
       "relatedFormulas": [
         "t2ch1-cylindrical"
@@ -496,7 +726,119 @@
           "body": "図のように右へ進むと角度は減るため、角度側は負です。また $f=r^2=x^2+y^2$ で検算すると、④の右辺は $\\cos\\theta\\times2r=2x$ で、直接微分した値と一致します。①は分母が $r$ でなく $x$、②は角度側の符号、③は正弦と余弦の配置を誤っています。"
         }
       ],
-      "answerSummary": "正解は④です。$\\dfrac{\\partial}{\\partial x}=\\cos\\theta\\dfrac{\\partial}{\\partial r}-\\dfrac{\\sin\\theta}{r}\\dfrac{\\partial}{\\partial\\theta}$ となります。"
+      "answerSummary": "x方向の微分：距離と角度の両方の変化を足し合わせます。\ny方向の微分：y方向では角度の変化に正の係数が付きます。",
+      "officialQuestionItems": [
+        "x",
+        "y"
+      ],
+      "sharedQuestion": "極座標 $x=r\\cos\\theta,\\ y=r\\sin\\theta$（$r>0$）を用い、直交座標での微分を表します。",
+      "studyParts": [
+        {
+          "id": "t2m-1-8-item-x",
+          "number": "1-8",
+          "officialRef": "問1-8",
+          "officialQuestionItem": "x",
+          "title": "x方向の微分",
+          "topic": "座標変換",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$y$ 一定での $\\partial/\\partial x$ はどれですか。",
+          "choices": [
+            "$\\cos\\theta\\,\\partial_r-\\dfrac{\\sin\\theta}{r}\\partial_\\theta$",
+            "$\\cos\\theta\\,\\partial_r+\\dfrac{\\sin\\theta}{r}\\partial_\\theta$"
+          ],
+          "answer": 1,
+          "answerSummary": "距離と角度の両方の変化を足し合わせます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "連鎖律で $\\partial_x=(\\partial r/\\partial x)\\partial_r+(\\partial\\theta/\\partial x)\\partial_\\theta$ とします。$r_x=x/r=\\cos\\theta$、$\\theta_x=-y/r^2=-\\sin\\theta/r$ を代入します。"
+            },
+            {
+              "title": "横へ動くと、距離と角度が両方変わる",
+              "body": "$x,y$ は横と縦の位置、$r,\\theta$ は原点からの距離と角度です。同じ位置を違う目盛りで表しています。$y$ を固定して右へ少し動いても、$r$ だけが変わるわけではありません。距離の変化と角度の変化を両方数える必要があります。",
+              "figures": [
+                {
+                  "figureImage": "t2e1Cylindrical",
+                  "caption": "第1象限の例です。右へ動くと原点から遠ざかり、正のx軸となす角は小さくなります。"
+                }
+              ]
+            },
+            {
+              "title": "連鎖律で、二つの変化を足す",
+              "body": "ある量 $f(r,\\theta)$ の変化は、$r$ が変わる効果と $\\theta$ が変わる効果の和です。\n$\\dfrac{\\partial f}{\\partial x}=\\dfrac{\\partial f}{\\partial r}\\dfrac{\\partial r}{\\partial x}+\\dfrac{\\partial f}{\\partial\\theta}\\dfrac{\\partial\\theta}{\\partial x}$\nこの「途中の変数を介して微分する」計算を連鎖律と呼びます。あとは二つの係数を求めます。"
+            },
+            {
+              "title": "距離と角度の係数を求める",
+              "body": "$r=\\sqrt{x^2+y^2}$ なので、$y$ 一定で微分すると $\\partial r/\\partial x=x/r=\\cos\\theta$ です。\n角度については $y=r\\sin\\theta$ を、$y$ 一定で微分します。\n$0=\\dfrac{\\partial r}{\\partial x}\\sin\\theta+r\\cos\\theta\\dfrac{\\partial\\theta}{\\partial x}$\n$\\partial r/\\partial x=\\cos\\theta$ を代入して整理すると、$\\partial\\theta/\\partial x=-\\sin\\theta/r$ です。座標軸上でも $r>0$ ならこの関係へ連続につながります。原点では角度が定まらないため使いません。"
+            },
+            {
+              "title": "代入して式を完成する",
+              "body": "連鎖律へ代入すると、$\\dfrac{\\partial f}{\\partial x}=\\cos\\theta\\dfrac{\\partial f}{\\partial r}-\\dfrac{\\sin\\theta}{r}\\dfrac{\\partial f}{\\partial\\theta}$ です。任意の関数に作用させて同じ微分になることを確かめます。同じ手順で $\\partial/\\partial y=\\sin\\theta\\,\\partial/\\partial r+(\\cos\\theta/r)\\,\\partial/\\partial\\theta$ も得られます。"
+            }
+          ],
+          "explanation": "【基礎】距離と角度の両方の変化を足し合わせます。\n【考え方】正解は1です。連鎖律で $\\partial_x=(\\partial r/\\partial x)\\partial_r+(\\partial\\theta/\\partial x)\\partial_\\theta$ とします。$r_x=x/r=\\cos\\theta$、$\\theta_x=-y/r^2=-\\sin\\theta/r$ を代入します。\n【ポイント】$x,y$ は横と縦の位置、$r,\\theta$ は原点からの距離と角度です。同じ位置を違う目盛りで表しています。$y$ を固定して右へ少し動いても、$r$ だけが変わるわけではありません。距離の変化と角度の変化を両方数える必要があります。\n【引っかけ】2：「$\\cos\\theta\\,\\partial_r+\\dfrac{\\sin\\theta}{r}\\partial_\\theta$」ではなく、$\\cos\\theta\\,\\partial_r-\\dfrac{\\sin\\theta}{r}\\partial_\\theta$です。連鎖律で $\\partial_x=(\\partial r/\\partial x)\\partial_r+(\\partial\\theta/\\partial x)\\partial_\\theta$ とします。$r_x=x/r=\\cos\\theta$、$\\theta_x=-y/r^2=-\\sin\\theta/r$ を代入します。",
+          "relatedFormulas": [
+            "t2ch1-cylindrical"
+          ],
+          "editorialReview": {
+            "officialPoint": "円柱座標の連鎖律／個別の質問：x方向の微分",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$\\cos\\theta\\,\\partial_r+\\dfrac{\\sin\\theta}{r}\\partial_\\theta$」ではなく、$\\cos\\theta\\,\\partial_r-\\dfrac{\\sin\\theta}{r}\\partial_\\theta$です。連鎖律で $\\partial_x=(\\partial r/\\partial x)\\partial_r+(\\partial\\theta/\\partial x)\\partial_\\theta$ とします。$r_x=x/r=\\cos\\theta$、$\\theta_x=-y/r^2=-\\sin\\theta/r$ を代入します。"
+            },
+            "sha256": "888dccfe05eb2e01be305a2389290742ab071f90bd144790208c7fd2148e3303"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2m-1-8-item-y",
+          "number": "1-8",
+          "officialRef": "問1-8",
+          "officialQuestionItem": "y",
+          "title": "y方向の微分",
+          "topic": "座標変換",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$x$ 一定での $\\partial/\\partial y$ はどれですか。",
+          "choices": [
+            "$\\sin\\theta\\,\\partial_r-\\dfrac{\\cos\\theta}{r}\\partial_\\theta$",
+            "$\\sin\\theta\\,\\partial_r+\\dfrac{\\cos\\theta}{r}\\partial_\\theta$"
+          ],
+          "answer": 2,
+          "answerSummary": "y方向では角度の変化に正の係数が付きます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$r=\\sqrt{x^2+y^2}$ から $r_y=y/r=\\sin\\theta$、$\\theta_y=x/r^2=\\cos\\theta/r$ です。連鎖律 $\\partial_y=r_y\\partial_r+\\theta_y\\partial_\\theta$ に代入します。例えば正のx軸上で上へ動くと角度が増えるので、符号も確認できます。"
+            },
+            {
+              "title": "符号と分母を確かめる",
+              "body": "y方向なら $\\partial_y=\\sin\\theta\\,\\partial_r+(\\cos\\theta/r)\\partial_\\theta$ です。$f=r^2$ に作用させると $2r\\sin\\theta=2y$ となり、直接微分と一致します。"
+            }
+          ],
+          "explanation": "【基礎】y方向では角度の変化に正の係数が付きます。\n【考え方】正解は2です。$r=\\sqrt{x^2+y^2}$ から $r_y=y/r=\\sin\\theta$、$\\theta_y=x/r^2=\\cos\\theta/r$ です。連鎖律 $\\partial_y=r_y\\partial_r+\\theta_y\\partial_\\theta$ に代入します。例えば正のx軸上で上へ動くと角度が増えるので、符号も確認できます。\n【ポイント】図のように右へ進むと角度は減るため、角度側は負です。また $f=r^2=x^2+y^2$ で検算すると、④の右辺は $\\cos\\theta\\times2r=2x$ で、直接微分した値と一致します。①は分母が $r$ でなく $x$、②は角度側の符号、③は正弦と余弦の配置を誤っています。\n【引っかけ】1：「$\\sin\\theta\\,\\partial_r-\\dfrac{\\cos\\theta}{r}\\partial_\\theta$」ではなく、$\\sin\\theta\\,\\partial_r+\\dfrac{\\cos\\theta}{r}\\partial_\\theta$です。$r=\\sqrt{x^2+y^2}$ から $r_y=y/r=\\sin\\theta$、$\\theta_y=x/r^2=\\cos\\theta/r$ です。連鎖律 $\\partial_y=r_y\\partial_r+\\theta_y\\partial_\\theta$ に代入します。例えば正のx軸上で上へ動くと角度が増えるので、符号も確認できます。",
+          "relatedFormulas": [
+            "t2ch1-cylindrical"
+          ],
+          "editorialReview": {
+            "officialPoint": "円柱座標の連鎖律／個別の質問：y方向の微分",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$\\sin\\theta\\,\\partial_r-\\dfrac{\\cos\\theta}{r}\\partial_\\theta$」ではなく、$\\sin\\theta\\,\\partial_r+\\dfrac{\\cos\\theta}{r}\\partial_\\theta$です。$r=\\sqrt{x^2+y^2}$ から $r_y=y/r=\\sin\\theta$、$\\theta_y=x/r^2=\\cos\\theta/r$ です。連鎖律 $\\partial_y=r_y\\partial_r+\\theta_y\\partial_\\theta$ に代入します。例えば正のx軸上で上へ動くと角度が増えるので、符号も確認できます。"
+            },
+            "sha256": "5b7b5b8295eab160488529ae404386aea75ec7ddf6e5f6fbd54e40a28a79868a"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t2m-1-9",
@@ -523,13 +865,13 @@
       "figureImage": "t2e1Gauss",
       "editorialReview": {
         "officialPoint": "ガウスの発散定理",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。独立小問のない選択式として同じ番号内で統合。答えに必要な導出・記号の意味と誤答理由を残し、図を説明段階へ配置。既存の正解番号を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "選択肢1は面を通る成分を外積で表す誤りです。選択肢2は面積分と線積分の混同です。選択肢4はスカラーの発散とベクトルの回転を混同しています。",
           "2": "選択肢1は面を通る成分を外積で表す誤りです。選択肢2は面積分と線積分の混同です。選択肢4はスカラーの発散とベクトルの回転を混同しています。",
           "4": "選択肢1は面を通る成分を外積で表す誤りです。選択肢2は面積分と線積分の混同です。選択肢4はスカラーの発散とベクトルの回転を混同しています。"
         },
-        "sha256": "ea212a9a14df2415002809064d639a93ebf6d4cffd8578c65cfa4ae08fca3d6d"
+        "sha256": "82bc49fcfe0e0ff84a4a34bd29c08938d92933e237bfa25f3a34e859448a263d"
       },
       "relatedFormulas": [
         "t2ch1-gauss"
@@ -558,7 +900,111 @@
           "body": "①は内積を外積にしています。②は閉じた表面で足すべきところを線に沿った積分にしています。④は発散を回転に変えており、左辺がベクトル、右辺がスカラーで一致しません。十分なめらかな場と閉じた表面について、体積積分と表面積分を結ぶ③を選びます。"
         }
       ],
-      "answerSummary": "正解は③です。内部の発散の合計は、外側の面を通る正味の流出量に等しくなります。"
+      "answerSummary": "表面での積分：面を貫く成分を内積で取り出します。\n定理の名称：ガウスの発散定理です。",
+      "officialQuestionItems": [
+        "integral",
+        "name"
+      ],
+      "sharedQuestion": "領域 $V$ の閉じた表面を $S$、外向き単位法線を $\\boldsymbol n$、ベクトル場を $\\boldsymbol v$ とします。",
+      "studyParts": [
+        {
+          "id": "t2m-1-9-item-integral",
+          "number": "1-9",
+          "officialRef": "問1-9",
+          "officialQuestionItem": "integral",
+          "title": "表面での積分",
+          "topic": "ガウスの定理",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$\\iiint_V\\nabla\\cdot\\boldsymbol v\\,dV$ と等しい量はどれですか。",
+          "choices": [
+            "$\\iint_S\\boldsymbol v\\times\\boldsymbol n\\,dS$",
+            "$\\iint_S\\boldsymbol v\\cdot\\boldsymbol n\\,dS$"
+          ],
+          "answer": 2,
+          "answerSummary": "面を貫く成分を内積で取り出します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "隣り合う小箱の共通面を通る流れは出入りが相殺され、外側の表面を通る分だけが残ります。"
+            },
+            {
+              "title": "小さな箱を合わせて、大きな箱にする",
+              "body": "領域を小さな箱に分けます。隣り合う箱の共有面では、一方から出た流れは他方へ入ります。全部の箱の「出る量−入る量」を足すと共有面の分は相殺され、外側の面を通る分だけ残ります。これがガウスの定理の考え方です。",
+              "figures": [
+                {
+                  "figureImage": "t2e1Gauss",
+                  "caption": "真ん中の共有面では外向き法線が逆です。同じ流れが、一方では流出、他方では流入として数えられます。"
+                }
+              ]
+            },
+            {
+              "title": "式の左右は、同じ量の数え方の違い",
+              "body": "$\\iiint_V\\nabla\\cdot\\boldsymbol v\\,dV=\\iint_S\\boldsymbol v\\cdot\\boldsymbol n\\,dS$ です。左辺の発散は、単位体積当たりの正味の流出です。小さな体積 $dV$ を掛け、領域 $V$ 全体で足します。右辺は、領域を囲む閉じた表面 $S$ 全体で流出を足します。速度の場なら、両辺の単位は体積流量 $\\mathrm{m^3/s}$ です。"
+            },
+            {
+              "title": "なぜ内積を使うのか",
+              "body": "$\\boldsymbol n$ は長さ1の外向き法線です。$\\boldsymbol v\\cdot\\boldsymbol n=|\\boldsymbol v|\\cos\\theta$ は、面を垂直に通り抜ける速度成分を取り出します。面に沿う流れは通り抜けないので0、外へ出れば正、入れば負です。外積ではこの成分を取り出せません。"
+            }
+          ],
+          "explanation": "【基礎】面を貫く成分を内積で取り出します。\n【考え方】正解は2です。隣り合う小箱の共通面を通る流れは出入りが相殺され、外側の表面を通る分だけが残ります。\n【ポイント】領域を小さな箱に分けます。隣り合う箱の共有面では、一方から出た流れは他方へ入ります。全部の箱の「出る量−入る量」を足すと共有面の分は相殺され、外側の面を通る分だけ残ります。これがガウスの定理の考え方です。\n【引っかけ】1：「$\\iint_S\\boldsymbol v\\times\\boldsymbol n\\,dS$」ではなく、$\\iint_S\\boldsymbol v\\cdot\\boldsymbol n\\,dS$です。隣り合う小箱の共通面を通る流れは出入りが相殺され、外側の表面を通る分だけが残ります。",
+          "relatedFormulas": [
+            "t2ch1-gauss"
+          ],
+          "editorialReview": {
+            "officialPoint": "ガウスの発散定理／個別の質問：表面での積分",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$\\iint_S\\boldsymbol v\\times\\boldsymbol n\\,dS$」ではなく、$\\iint_S\\boldsymbol v\\cdot\\boldsymbol n\\,dS$です。隣り合う小箱の共通面を通る流れは出入りが相殺され、外側の表面を通る分だけが残ります。"
+            },
+            "sha256": "5941ed51fc19a1443bf2dbe074bde1c2912270bef964a3ebe0298d37889773c6"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2m-1-9-item-name",
+          "number": "1-9",
+          "officialRef": "問1-9",
+          "officialQuestionItem": "name",
+          "title": "定理の名称",
+          "topic": "ガウスの定理",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "発散の体積積分を外向き流束の表面積分へ置き換える定理はどれですか。",
+          "choices": [
+            "ガウスの発散定理",
+            "ストークスの定理"
+          ],
+          "answer": 1,
+          "answerSummary": "ガウスの発散定理です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "ガウスの定理は体積とその境界面を結びます。ストークスの定理は面上の回転とその境界線の循環を結ぶため、積分する場所が違います。"
+            }
+          ],
+          "explanation": "【基礎】ガウスの発散定理です。\n【考え方】正解は1です。ガウスの定理は体積とその境界面を結びます。ストークスの定理は面上の回転とその境界線の循環を結ぶため、積分する場所が違います。\n【ポイント】ガウスの発散定理です。\n【引っかけ】2：「ストークスの定理」ではなく、ガウスの発散定理です。ガウスの定理は体積とその境界面を結びます。ストークスの定理は面上の回転とその境界線の循環を結ぶため、積分する場所が違います。",
+          "relatedFormulas": [
+            "t2ch1-gauss"
+          ],
+          "editorialReview": {
+            "officialPoint": "ガウスの発散定理／個別の質問：定理の名称",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「ストークスの定理」ではなく、ガウスの発散定理です。ガウスの定理は体積とその境界面を結びます。ストークスの定理は面上の回転とその境界線の循環を結ぶため、積分する場所が違います。"
+            },
+            "sha256": "9c49beb09f03cc30e7e149b5b5ac1925043450c6ea89d981e310674cd0149e9d"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t2m-1-10",
@@ -591,7 +1037,7 @@
           "3": "選択肢1は $\\delta_{11}+\\delta_{22}+\\delta_{33}=3$ で正しいです。選択肢3はポイントのとおり正しいです。選択肢4は9通りのうち対角の3通りだけが1となり、合計3で正しいです。",
           "4": "選択肢1は $\\delta_{11}+\\delta_{22}+\\delta_{33}=3$ で正しいです。選択肢3はポイントのとおり正しいです。選択肢4は9通りのうち対角の3通りだけが1となり、合計3で正しいです。"
         },
-        "sha256": "fe77b069089b82d9c60a16aa343fb68d86e08d50cd6e8b8dfcd3786e6799dd6b"
+        "sha256": "1bb37e5ba99da14385b1a24c75c14a9f1218fa33ac27c82f6e5fc50a128c89dd"
       },
       "relatedFormulas": [
         "t2ch1-kronecker-epsilon"
@@ -620,7 +1066,10 @@
           "body": "①は $\\delta_{ii}=\\delta_{11}+\\delta_{22}+\\delta_{33}=3$ です。④は全9成分を2乗して足しますが、対角の3成分だけが1なので3です。③の式でさらに $l=i$ として $i$ まで足せば $2\\delta_{ii}=6$ となり、②の訂正値を別の方法でも確かめられます。"
         }
       ],
-      "answerSummary": "誤っているのは②です。$\\epsilon_{ijk}\\epsilon_{ijk}$ は2ではなく6です。"
+      "answerSummary": "誤っているのは②です。$\\epsilon_{ijk}\\epsilon_{ijk}$ は2ではなく6です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2m-1-11",
@@ -647,13 +1096,13 @@
       "figureImage": "t2e1FourierLine",
       "editorialReview": {
         "officialPoint": "奇関数のフーリエ係数",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。独立小問のない選択式として同じ番号内で統合。答えに必要な導出・記号の意味と誤答理由を残し、図を説明段階へ配置。既存の正解番号を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "選択肢2は部分積分のマイナスを落としています。選択肢3は奇関数を余弦だけで表す誤りです。選択肢4は左右の積分を2倍する係数を落としています。",
           "3": "選択肢2は部分積分のマイナスを落としています。選択肢3は奇関数を余弦だけで表す誤りです。選択肢4は左右の積分を2倍する係数を落としています。",
           "4": "選択肢2は部分積分のマイナスを落としています。選択肢3は奇関数を余弦だけで表す誤りです。選択肢4は左右の積分を2倍する係数を落としています。"
         },
-        "sha256": "8a0b1fdd27135ba4bee36fe894e3ec3f01b974127e7c2b1de7d1b518486c2ca4"
+        "sha256": "ca60b748d8624d5a9b543fe4430d3a604025395e95d205d8574c672fc52200aa"
       },
       "relatedFormulas": [
         "t2ch1-fourier"
@@ -686,7 +1135,119 @@
           "body": "$n=1,2,3$ の係数は順に $2,-1,2/3$ です。したがって最初の項は $2\\sin x$ で、右半分の正の直線と向きが合います。②は正弦係数の符号が逆、③は正弦と余弦を交換しています。④は左右を合わせる2倍を落としています。展開が元の直線に一致するのは区間の内側で、周期的な飛びの位置では左右の極限値の平均になります。"
         }
       ],
-      "answerSummary": "正解は①です。$a_n=0$、$b_n=2(-1)^{n+1}/n$ です。"
+      "answerSummary": "余弦の係数：奇関数と偶関数の積は奇関数なので、対称区間の積分が0です。\n正弦の係数：部分積分で符号と1/nを求めます。",
+      "officialQuestionItems": [
+        "an",
+        "bn"
+      ],
+      "sharedQuestion": "区間 $[-\\pi,\\pi]$ で関数 $f(x)=x$ をフーリエ級数 $f(x)=\\dfrac{a_0}{2}+\\displaystyle\\sum_{n=1}^{\\infty}\\big\\{a_n\\cos(nx)+b_n\\sin(nx)\\big\\}$ に展開する。",
+      "studyParts": [
+        {
+          "id": "t2m-1-11-item-an",
+          "number": "1-11",
+          "officialRef": "問1-11",
+          "officialQuestionItem": "an",
+          "title": "余弦の係数",
+          "topic": "フーリエ級数",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$n\\ge1$ の $a_n$ はどれですか。",
+          "choices": [
+            "$2(-1)^{n+1}/n$",
+            "$0$"
+          ],
+          "answer": 2,
+          "answerSummary": "奇関数と偶関数の積は奇関数なので、対称区間の積分が0です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$a_n=\\pi^{-1}\\int_{-\\pi}^{\\pi}x\\cos(nx)\\,dx=0$ です。左右の面積が符号反対で打ち消します。"
+            },
+            {
+              "title": "直線を、波の足し算で表す",
+              "body": "フーリエ級数は、正弦波と余弦波を適切な大きさで足し、元の関数に近づける表し方です。$a_n$ は余弦波、$b_n$ は正弦波の係数です。今回の $f(x)=x$ は原点に対称で、$f(-x)=-f(x)$ となる奇関数です。",
+              "figures": [
+                {
+                  "figureImage": "t2e1FourierLine",
+                  "caption": "赤い正弦波の和が、青い直線へ近づきます。区間の端には周期的につなぐ際の飛びがあり、波の和は端の値そのものには一致しません。"
+                }
+              ]
+            },
+            {
+              "title": "余弦の係数は、左右で打ち消す",
+              "body": "$a_n=\\dfrac1\\pi\\int_{-\\pi}^{\\pi}x\\cos(nx)\\,dx$ です。$x$ は奇関数、$\\cos(nx)$ は偶関数なので、その積は奇関数です。左右対称の区間で正負が打ち消し、$a_n=0$ です。定数項の係数 $a_0$ も同様に0になります。"
+            }
+          ],
+          "explanation": "【基礎】奇関数と偶関数の積は奇関数なので、対称区間の積分が0です。\n【考え方】正解は2です。$a_n=\\pi^{-1}\\int_{-\\pi}^{\\pi}x\\cos(nx)\\,dx=0$ です。左右の面積が符号反対で打ち消します。\n【ポイント】フーリエ級数は、正弦波と余弦波を適切な大きさで足し、元の関数に近づける表し方です。$a_n$ は余弦波、$b_n$ は正弦波の係数です。今回の $f(x)=x$ は原点に対称で、$f(-x)=-f(x)$ となる奇関数です。\n【引っかけ】1：「$2(-1)^{n+1}/n$」ではなく、$0$です。$a_n=\\pi^{-1}\\int_{-\\pi}^{\\pi}x\\cos(nx)\\,dx=0$ です。左右の面積が符号反対で打ち消します。",
+          "relatedFormulas": [
+            "t2ch1-fourier"
+          ],
+          "editorialReview": {
+            "officialPoint": "奇関数のフーリエ係数／個別の質問：余弦の係数",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$2(-1)^{n+1}/n$」ではなく、$0$です。$a_n=\\pi^{-1}\\int_{-\\pi}^{\\pi}x\\cos(nx)\\,dx=0$ です。左右の面積が符号反対で打ち消します。"
+            },
+            "sha256": "74af573f2fdea3d9d097b0979d0d9c2fa0b8db783d716d3ace9312759d56fa29"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2m-1-11-item-bn",
+          "number": "1-11",
+          "officialRef": "問1-11",
+          "officialQuestionItem": "bn",
+          "title": "正弦の係数",
+          "topic": "フーリエ級数",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$n\\ge1$ の $b_n$ はどれですか。",
+          "choices": [
+            "$2(-1)^{n+1}/n$",
+            "$2(-1)^n/n$"
+          ],
+          "answer": 1,
+          "answerSummary": "部分積分で符号と1/nを求めます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$b_n=2\\pi^{-1}\\int_0^\\pi x\\sin(nx)\\,dx$ です。原始関数 $-x\\cos(nx)/n+\\sin(nx)/n^2$ の端点差から $b_n=-2(-1)^n/n$ を得ます。"
+            },
+            {
+              "title": "正弦の係数は、右半分を2倍する",
+              "body": "$b_n=\\dfrac1\\pi\\int_{-\\pi}^{\\pi}x\\sin(nx)\\,dx$ です。奇関数同士の積は偶関数なので、$b_n=\\dfrac2\\pi\\int_0^\\pi x\\sin(nx)\\,dx$ です。今回は左右が同じ符号になるため、0にはなりません。"
+            },
+            {
+              "title": "部分積分の途中を追う",
+              "body": "積の積分には $\\int u\\,dv=uv-\\int v\\,du$ を使います。$u=x$、$dv=\\sin(nx)\\,dx$ とすると、$du=dx$、$v=-\\cos(nx)/n$ です。\n$\\int x\\sin(nx)\\,dx=-\\dfrac{x\\cos(nx)}n+\\dfrac{\\sin(nx)}{n^2}$\n0から $\\pi$ を代入します。整数 $n$ では $\\sin(n\\pi)=0$、$\\cos(n\\pi)=(-1)^n$ なので、積分値は $-\\pi(-1)^n/n$ です。これに $2/\\pi$ を掛け、$b_n=2(-1)^{n+1}/n$ を得ます。"
+            },
+            {
+              "title": "最初の波で符号を確かめる",
+              "body": "$n=1,2,3$ の係数は順に $2,-1,2/3$ です。したがって最初の項は $2\\sin x$ で、右半分の正の直線と向きが合います。正弦係数の符号と、左右の区間を合わせる2倍を確認します。展開が元の直線に一致するのは区間の内側で、周期的な飛びの位置では左右の極限値の平均になります。"
+            }
+          ],
+          "explanation": "【基礎】部分積分で符号と1/nを求めます。\n【考え方】正解は1です。$b_n=2\\pi^{-1}\\int_0^\\pi x\\sin(nx)\\,dx$ です。原始関数 $-x\\cos(nx)/n+\\sin(nx)/n^2$ の端点差から $b_n=-2(-1)^n/n$ を得ます。\n【ポイント】$b_n=\\dfrac1\\pi\\int_{-\\pi}^{\\pi}x\\sin(nx)\\,dx$ です。奇関数同士の積は偶関数なので、$b_n=\\dfrac2\\pi\\int_0^\\pi x\\sin(nx)\\,dx$ です。今回は左右が同じ符号になるため、0にはなりません。\n【引っかけ】2：「$2(-1)^n/n$」ではなく、$2(-1)^{n+1}/n$です。$b_n=2\\pi^{-1}\\int_0^\\pi x\\sin(nx)\\,dx$ です。原始関数 $-x\\cos(nx)/n+\\sin(nx)/n^2$ の端点差から $b_n=-2(-1)^n/n$ を得ます。",
+          "relatedFormulas": [
+            "t2ch1-fourier"
+          ],
+          "editorialReview": {
+            "officialPoint": "奇関数のフーリエ係数／個別の質問：正弦の係数",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$2(-1)^n/n$」ではなく、$2(-1)^{n+1}/n$です。$b_n=2\\pi^{-1}\\int_0^\\pi x\\sin(nx)\\,dx$ です。原始関数 $-x\\cos(nx)/n+\\sin(nx)/n^2$ の端点差から $b_n=-2(-1)^n/n$ を得ます。"
+            },
+            "sha256": "5f6d3288ef025836344d6840a18ee0cdfeaf5ac80898ed85c9dfb04865c93f13"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     }
   ]
 }

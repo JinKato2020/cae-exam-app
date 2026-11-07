@@ -6,7 +6,8 @@
     "source": "完全オリジナル(公式標準問題集 燃焼流 第1章 1-1〜1-15 にテーマ対応)",
     "origin": "original",
     "count": 15,
-    "officialCount": 15
+    "officialCount": 15,
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -63,7 +64,10 @@
       "figure": "helpful",
       "preFigureImage": "t1e17AirFuelRatio",
       "figureImage": "t1e17AirFuelRatioAns",
-      "figureHint": "白地660x420。左に燃料CH4分子、中央に空気枠(O2:N2=1:4を丸で表現)、右に生成物CO2+2H2O。空気全体を質量に含めることを矢印で示す(数値は書かない)"
+      "figureHint": "白地660x420。左に燃料CH4分子、中央に空気枠(O2:N2=1:4を丸で表現)、右に生成物CO2+2H2O。空気全体を質量に含めることを矢印で示す(数値は書かない)",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-17-2",
@@ -118,7 +122,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e17EquivalenceRatioAns",
-      "figureHint": "白地660x420。回答後にφの数直線で化学量論(φ=1)・リーン・リッチを色分け表示する解答図。回答前は図を出さない。"
+      "figureHint": "白地660x420。回答後にφの数直線で化学量論(φ=1)・リーン・リッチを色分け表示する解答図。回答前は図を出さない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-17-3",
@@ -173,7 +180,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e17MoleMassFractionAns",
-      "figureHint": "白地660x420。回答後に平均分子量W̄を介してモル分率→質量分率へ変換する解答図。回答前は図を出さない。"
+      "figureHint": "白地660x420。回答後に平均分子量W̄を介してモル分率→質量分率へ変換する解答図。回答前は図を出さない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-17-4",
@@ -226,9 +236,140 @@
       "reviewed": true,
       "officialRef": "燃焼流1-4",
       "role": "primary",
-      "figure": "helpful",
-      "figureImage": "t1e17TransportUnits",
-      "figureHint": "白地660x420。表形式で3列(熱拡散率α・物質拡散係数D・動粘性係数ν)、各列に定義式と単位m²/sを並べ、対比としてλ[W/mK]・μ[Pa·s]を下段に添える"
+      "figure": "none",
+      "figureHint": "白地660x420。表形式で3列(熱拡散率α・物質拡散係数D・動粘性係数ν)、各列に定義式と単位m²/sを並べ、対比としてλ[W/mK]・μ[Pa·s]を下段に添える",
+      "editorialReview": {
+        "officialPoint": "輸送物性係数の単位",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "1": "通常解説の各肢の理由を参照。",
+          "2": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "2484b87d4b99d6ce0a5f84f89530b03c86333714c345952aa13a611c8f1a81c7"
+      },
+      "sharedQuestion": "燃焼流の三つの輸送物性係数について、それぞれのSI単位を選んでください。",
+      "studyParts": [
+        {
+          "id": "thermal1-17-4-item-heat",
+          "number": "17-4",
+          "officialRef": "燃焼流1-4",
+          "officialQuestionItem": "heat",
+          "title": "熱拡散率",
+          "topic": "輸送物性係数の単位",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "熱拡散率の単位は？",
+          "choices": [
+            "$\\mathrm{m^2/s}$",
+            "$\\mathrm{W/(m\\,K)}$"
+          ],
+          "answer": 1,
+          "answerSummary": "熱拡散率は $\\alpha=\\lambda/(\\rho c_p)$ です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "熱拡散率は $\\alpha=\\lambda/(\\rho c_p)$ です。熱伝導率そのものではなく、温度が広がる速さを表す係数なので、単位は $\\mathrm{m^2/s}$ です。"
+            }
+          ],
+          "explanation": "【基礎】熱拡散率は $\\alpha=\\lambda/(\\rho c_p)$ です。\n【考え方】正解は1です。熱拡散率は $\\alpha=\\lambda/(\\rho c_p)$ です。熱伝導率そのものではなく、温度が広がる速さを表す係数なので、単位は $\\mathrm{m^2/s}$ です。\n【ポイント】熱拡散率は $\\alpha=\\lambda/(\\rho c_p)$ です。\n【引っかけ】2：「$\\mathrm{W/(m\\,K)}$」ではなく、$\\mathrm{m^2/s}$です。熱拡散率は $\\alpha=\\lambda/(\\rho c_p)$ です。熱伝導率そのものではなく、温度が広がる速さを表す係数なので、単位は $\\mathrm{m^2/s}$ です。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "輸送物性係数の単位／個別の質問：熱拡散率",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$\\mathrm{W/(m\\,K)}$」ではなく、$\\mathrm{m^2/s}$です。熱拡散率は $\\alpha=\\lambda/(\\rho c_p)$ です。熱伝導率そのものではなく、温度が広がる速さを表す係数なので、単位は $\\mathrm{m^2/s}$ です。"
+            },
+            "sha256": "87e5f8693a4c85ed2b9c0c25472eabdd9c575f6f43dd3106ccbe85d1448477ae"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-17-4-item-mass",
+          "number": "17-4",
+          "officialRef": "燃焼流1-4",
+          "officialQuestionItem": "mass",
+          "title": "物質拡散係数",
+          "topic": "輸送物性係数の単位",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "物質拡散係数の単位は？",
+          "choices": [
+            "$\\mathrm{m^2/s}$",
+            "$\\mathrm{m/s}$"
+          ],
+          "answer": 1,
+          "answerSummary": "拡散で広がる距離の二乗は、おおよそ $Dt$ に比例します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "拡散で広がる距離の二乗は、おおよそ $Dt$ に比例します。$D$ は距離そのものの移動速度ではありません。"
+            }
+          ],
+          "explanation": "【基礎】拡散で広がる距離の二乗は、おおよそ $Dt$ に比例します。\n【考え方】正解は1です。拡散で広がる距離の二乗は、おおよそ $Dt$ に比例します。$D$ は距離そのものの移動速度ではありません。\n【ポイント】拡散で広がる距離の二乗は、おおよそ $Dt$ に比例します。\n【引っかけ】2：「$\\mathrm{m/s}$」ではなく、$\\mathrm{m^2/s}$です。拡散で広がる距離の二乗は、おおよそ $Dt$ に比例します。$D$ は距離そのものの移動速度ではありません。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "輸送物性係数の単位／個別の質問：物質拡散係数",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$\\mathrm{m/s}$」ではなく、$\\mathrm{m^2/s}$です。拡散で広がる距離の二乗は、おおよそ $Dt$ に比例します。$D$ は距離そのものの移動速度ではありません。"
+            },
+            "sha256": "6659208858e8c490e543143521cb8dc6a67b0af86d46e34939171db4897204f0"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-17-4-item-momentum",
+          "number": "17-4",
+          "officialRef": "燃焼流1-4",
+          "officialQuestionItem": "momentum",
+          "title": "動粘性係数",
+          "topic": "輸送物性係数の単位",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "動粘性係数の単位は？",
+          "choices": [
+            "$\\mathrm{m^2/s}$",
+            "$\\mathrm{Pa\\,s}$"
+          ],
+          "answer": 1,
+          "answerSummary": "$\\nu=\\mu/\\rho$ です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$\\nu=\\mu/\\rho$ です。粘性係数 $\\mu$ の単位 $\\mathrm{Pa\\,s}$ と密度で割った後の単位を混同しないようにします。",
+              "figures": []
+            }
+          ],
+          "explanation": "【基礎】$\\nu=\\mu/\\rho$ です。\n【考え方】正解は1です。$\\nu=\\mu/\\rho$ です。粘性係数 $\\mu$ の単位 $\\mathrm{Pa\\,s}$ と密度で割った後の単位を混同しないようにします。\n【ポイント】$\\nu=\\mu/\\rho$ です。\n【引っかけ】2：「$\\mathrm{Pa\\,s}$」ではなく、$\\mathrm{m^2/s}$です。$\\nu=\\mu/\\rho$ です。粘性係数 $\\mu$ の単位 $\\mathrm{Pa\\,s}$ と密度で割った後の単位を混同しないようにします。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "輸送物性係数の単位／個別の質問：動粘性係数",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$\\mathrm{Pa\\,s}$」ではなく、$\\mathrm{m^2/s}$です。$\\nu=\\mu/\\rho$ です。粘性係数 $\\mu$ の単位 $\\mathrm{Pa\\,s}$ と密度で割った後の単位を混同しないようにします。"
+            },
+            "sha256": "565a429663633be56c5e48feaa60f810d116103120df31bb2ce9e34583915008"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "heat",
+        "mass",
+        "momentum"
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "熱拡散率：熱拡散率は $\\alpha=\\lambda/(\\rho c_p)$ です。\n物質拡散係数：拡散で広がる距離の二乗は、おおよそ $Dt$ に比例します。\n動粘性係数：$\\nu=\\mu/\\rho$ です。"
     },
     {
       "id": "thermal1-17-5",
@@ -283,7 +424,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e17LewisNumber",
-      "figureHint": "白地660x420。回答後に熱拡散率α=λ/(ρCp)と物質拡散Dの比Le=α/Dの概念図を示す。回答前は図を出さない(定義式の比が答えの核心のため)。"
+      "figureHint": "白地660x420。回答後に熱拡散率α=λ/(ρCp)と物質拡散Dの比Le=α/Dの概念図を示す。回答前は図を出さない(定義式の比が答えの核心のため)。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-17-6",
@@ -338,7 +482,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e17DimensionlessNumbers",
-      "figureHint": "白地660x420。三角形の各頂点にν(動粘性)・α(熱拡散率)・D(物質拡散係数)、辺にPr=ν/α・Sc=ν/D・Le=α/Dを配置し、νを介して3数が結ばれる関係図"
+      "figureHint": "白地660x420。三角形の各頂点にν(動粘性)・α(熱拡散率)・D(物質拡散係数)、辺にPr=ν/α・Sc=ν/D・Le=α/Dを配置し、νを介して3数が結ばれる関係図",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-17-7",
@@ -393,7 +540,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e17SoretEffect",
-      "figureHint": "白地660x420。上段=ソレ効果(温度勾配の矢印→軽い分子が高温側/低温側へ移動する物質流束)、下段=デュフォ効果(濃度勾配→熱流束)を対比。互いに逆の相反現象であることを示す"
+      "figureHint": "白地660x420。上段=ソレ効果(温度勾配の矢印→軽い分子が高温側/低温側へ移動する物質流束)、下段=デュフォ効果(濃度勾配→熱流束)を対比。互いに逆の相反現象であることを示す",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-17-8",
@@ -448,7 +598,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e17ConservationEqs",
-      "figureHint": "白地660x420。積み上げ表で 質量1本+運動量3本+エネルギー1本+化学種(N-1)本 を段組みで示し、右に合計N+4。化学種がNではなくN-1になる理由(和が質量保存に一致)を注記"
+      "figureHint": "白地660x420。積み上げ表で 質量1本+運動量3本+エネルギー1本+化学種(N-1)本 を段組みで示し、右に合計N+4。化学種がNではなくN-1になる理由(和が質量保存に一致)を注記",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-17-9",
@@ -504,7 +657,10 @@
       "figure": "helpful",
       "preFigureImage": "t1e17ProgressVariable",
       "figureImage": "t1e17ProgressVariableAns",
-      "figureHint": "白地660x420。火炎を横切る温度プロファイル曲線(左Tu=未燃で下、右Tb=既燃で上)。右軸に反応進行変数c(0→1)を対応づけ、未燃c=0・既燃c=1を明示。具体数値解は書かない"
+      "figureHint": "白地660x420。火炎を横切る温度プロファイル曲線(左Tu=未燃で下、右Tb=既燃で上)。右軸に反応進行変数c(0→1)を対応づけ、未燃c=0・既燃c=1を明示。具体数値解は書かない",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-17-10",
@@ -557,9 +713,108 @@
       "reviewed": true,
       "officialRef": "燃焼流1-10",
       "role": "primary",
-      "figure": "required",
-      "figureImage": "t1e17FavreAveraging",
-      "figureHint": "白地660x420。上段=レイノルズ分解 f=f̄+f'(単純平均)、下段=ファーブル分解 f=f̃+f''(密度加重平均)。各平均と分解の定義のみを示し、どの変動が消えるか(答え)は書かない"
+      "figure": "none",
+      "figureHint": "白地660x420。上段=レイノルズ分解 f=f̄+f'(単純平均)、下段=ファーブル分解 f=f̃+f''(密度加重平均)。各平均と分解の定義のみを示し、どの変動が消えるか(答え)は書かない",
+      "editorialReview": {
+        "officialPoint": "レイノルズ平均・ファーブル平均",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "1": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "5efea5e4f22432f0cc7d9bfce47061865adfa4d320890ef197f92e197becf31a"
+      },
+      "officialQuestionItems": [
+        "reynolds",
+        "favre"
+      ],
+      "sharedQuestion": "レイノルズ平均を $\\bar f$、変動を $f'=f-\\bar f$ とします。ファーブル平均は $\\tilde f=\\overline{\\rho f}/\\bar\\rho$、変動は $f''=f-\\tilde f$ です。それぞれの変動を対応する平均で平均するとゼロになることを示してください。",
+      "studyParts": [
+        {
+          "id": "thermal1-17-10-item-reynolds",
+          "number": "17-10",
+          "officialRef": "燃焼流1-10",
+          "officialQuestionItem": "reynolds",
+          "title": "レイノルズ平均",
+          "topic": "レイノルズ平均・ファーブル平均",
+          "type": "記述",
+          "responseType": "written",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$\\overline{f'}=0$ を示してください。",
+          "choices": [],
+          "answer": 0,
+          "answerSummary": "$\\overline{f'}=\\overline{f-\\bar f}=\\bar f-\\bar f=0$。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "平均からのずれを全体で平均すると、上側のずれと下側のずれが相殺されます。平均量を再び平均しても値は変わりません。"
+            }
+          ],
+          "explanation": "【基礎】レイノルズ平均を確認します。\n【考え方】$\\overline{f'}=\\overline{f-\\bar f}=\\bar f-\\bar f=0$。\n【ポイント】平均からのずれを全体で平均すると、上側のずれと下側のずれが相殺されます。平均量を再び平均しても値は変わりません。\n【引っかけ】",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "レイノルズ平均・ファーブル平均／個別の質問：レイノルズ平均",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {},
+            "sha256": "5d400b03581686532f019b4018bedeea27cbb764bae42e748e90236c82e064e7"
+          },
+          "modelAnswer": "$\\overline{f'}=\\overline{f-\\bar f}=\\bar f-\\bar f=0$。",
+          "answerCheckpoints": [
+            "平均からのずれを全体で平均すると、上側のずれと下側のずれが相殺されます。平均量を再び平均しても値は変わりません。"
+          ],
+          "officialWrittenEvidence": {
+            "file": "_原本(非公開)/_抽出テキスト/熱流体1級_17_燃焼の基礎1.md",
+            "excerpt": "- **1-10** ファーブル平均の証明（記述問題）: 物理量fのレイノルズ平均をf̄、変動をf'、密度加重平均（ファーブル平均）をf̃、変動をf''とする。このとき f'̄ = 0 および f''̃ = 0 となることを示せ。（記述式・証明問題）"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-17-10-item-favre",
+          "number": "17-10",
+          "officialRef": "燃焼流1-10",
+          "officialQuestionItem": "favre",
+          "title": "ファーブル平均",
+          "topic": "レイノルズ平均・ファーブル平均",
+          "type": "記述",
+          "responseType": "written",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$\\widetilde{f''}=0$ を示してください。",
+          "choices": [],
+          "answer": 0,
+          "answerSummary": "$\\widetilde{f''}=\\overline{\\rho(f-\\tilde f)}/\\bar\\rho=(\\overline{\\rho f}-\\bar\\rho\\tilde f)/\\bar\\rho=0$。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "密度を重みとして足します。平均量 $\\tilde f$ は平均操作の外へ出せるので、分子は定義からゼロです。通常の平均 $\\overline{f''}$ が必ずゼロという意味ではありません。",
+              "figures": []
+            }
+          ],
+          "explanation": "【基礎】ファーブル平均を確認します。\n【考え方】$\\widetilde{f''}=\\overline{\\rho(f-\\tilde f)}/\\bar\\rho=(\\overline{\\rho f}-\\bar\\rho\\tilde f)/\\bar\\rho=0$。\n【ポイント】密度を重みとして足します。平均量 $\\tilde f$ は平均操作の外へ出せるので、分子は定義からゼロです。通常の平均 $\\overline{f''}$ が必ずゼロという意味ではありません。\n【引っかけ】",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "レイノルズ平均・ファーブル平均／個別の質問：ファーブル平均",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {},
+            "sha256": "2f3e03b98367419af77fa33d25c2b563f8570be375e8412c30d245a5665cf970"
+          },
+          "modelAnswer": "$\\widetilde{f''}=\\overline{\\rho(f-\\tilde f)}/\\bar\\rho=(\\overline{\\rho f}-\\bar\\rho\\tilde f)/\\bar\\rho=0$。",
+          "answerCheckpoints": [
+            "密度を重みとして足します。平均量 $\\tilde f$ は平均操作の外へ出せるので、分子は定義からゼロです。通常の平均 $\\overline{f''}$ が必ずゼロという意味ではありません。"
+          ],
+          "officialWrittenEvidence": {
+            "file": "_原本(非公開)/_抽出テキスト/熱流体1級_17_燃焼の基礎1.md",
+            "excerpt": "- **1-10** ファーブル平均の証明（記述問題）: 物理量fのレイノルズ平均をf̄、変動をf'、密度加重平均（ファーブル平均）をf̃、変動をf''とする。このとき f'̄ = 0 および f''̃ = 0 となることを示せ。（記述式・証明問題）"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "レイノルズ平均：$\\overline{f'}=\\overline{f-\\bar f}=\\bar f-\\bar f=0$。\nファーブル平均：$\\widetilde{f''}=\\overline{\\rho(f-\\tilde f)}/\\bar\\rho=(\\overline{\\rho f}-\\bar\\rho\\tilde f)/\\bar\\rho=0$。"
     },
     {
       "id": "thermal1-17-11",
@@ -614,7 +869,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e17FavreRelations",
-      "figureHint": "白地660x420。表で各関係式を左に、右に○/×と理由(定義/導出可/密度相関で残る)を並べ、f''のチルダ=0は○・f''のバー≠0は×を強調"
+      "figureHint": "白地660x420。表で各関係式を左に、右に○/×と理由(定義/導出可/密度相関で残る)を並べ、f''のチルダ=0は○・f''のバー≠0は×を強調",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-17-12",
@@ -669,7 +927,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e17ScalarTransport",
-      "figureHint": "白地660x420。ファーブル平均スカラー輸送方程式を書き、右辺4項に①対流②分子拡散③乱流拡散④反応の吹き出しラベル。乱流拡散項(変動相関φ''u''を含む)を枠で強調"
+      "figureHint": "白地660x420。ファーブル平均スカラー輸送方程式を書き、右辺4項に①対流②分子拡散③乱流拡散④反応の吹き出しラベル。乱流拡散項(変動相関φ''u''を含む)を枠で強調",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-17-13",
@@ -724,7 +985,10 @@
       "role": "primary",
       "figure": "required",
       "figureImage": "t1e17Continuity",
-      "figureHint": "白地660x420。微小検査体積(立方体)を描き、各面を通る質量フラックスρuの流入出矢印と、内部の密度変化∂ρ/∂tを対応づける質量収支の概念図。式そのものは書かない"
+      "figureHint": "白地660x420。微小検査体積(立方体)を描き、各面を通る質量フラックスρuの流入出矢印と、内部の密度変化∂ρ/∂tを対応づける質量収支の概念図。式そのものは書かない",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-17-14",
@@ -779,7 +1043,79 @@
       "role": "primary",
       "figure": "required",
       "figureImage": "t1e17StateEquation",
-      "figureHint": "白地660x420。複数化学種(色分けの粒)が混在する気体箱と、記号(p,ρ,T,R⁰,Yi,Wi)の定義のみを示す。導出フローや p=cR⁰T などの最終式は回答後の解説図に回す"
+      "figureHint": "白地660x420。複数化学種(色分けの粒)が混在する気体箱と、記号(p,ρ,T,R⁰,Yi,Wi)の定義のみを示す。導出フローや p=cR⁰T などの最終式は回答後の解説図に回す",
+      "editorialReview": {
+        "officialPoint": "多成分系の状態方程式",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "2": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "a5637257b90221f6880ceb258121b24e2512daebc15118311688599235f51095"
+      },
+      "officialQuestionItems": [
+        "equation"
+      ],
+      "sharedQuestion": "化学種数 $N$ の多成分理想気体の状態方程式を書いてください。",
+      "studyParts": [
+        {
+          "id": "thermal1-17-14-item-equation",
+          "number": "17-14",
+          "officialRef": "燃焼流1-14",
+          "officialQuestionItem": "equation",
+          "title": "多成分理想気体の状態方程式",
+          "topic": "多成分系の状態方程式",
+          "type": "記述",
+          "responseType": "written",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$p,\\rho,R^0,T,Y_i,W_i$ を用いて式を書いてください。",
+          "choices": [],
+          "answer": 0,
+          "answerSummary": "$p=\\rho R^0T\\sum_{i=1}^N Y_i/W_i$。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "理想気体の式 $pV=nR^0T$ を体積で割ります。成分 $i$ の単位体積の質量は $\\rho Y_i$、モル濃度は $\\rho Y_i/W_i$ なので、全成分のモル濃度を足して代入します。分子量と気体定数の単位系をそろえます。"
+            },
+            {
+              "title": "まず一成分の状態方程式",
+              "body": "理想気体は $pV=nR^0T$ に従います。$V$ は体積、$n$ はmolでの物質量、$R^0$ は一般気体定数です。複数成分が同じ体積で同じ温度を持つなら、各成分の物質量を足して $n=\\sum_i n_i$ とできます。したがって $p=R^0T\\sum_i(n_i/V)$ です。ここまででは質量分率はまだ出てきません。次に、それぞれのモル濃度を質量の情報から作ります。"
+            },
+            {
+              "title": "質量分率をモル濃度へ変換",
+              "body": "混合気全体の質量は $m=\\rho V$、成分iの質量は $m_i=Y_im$ です。分子量 $W_i$ を質量毎molの単位でそろえれば、$n_i=m_i/W_i=\\rho VY_i/W_i$ です。体積で割ると $n_i/V=\\rho Y_i/W_i$ なので、上の式へ入れて $p=\\rho R^0T\\sum_iY_i/W_i$ が得られます。式の総和は、全成分のモル数を足している部分に対応しています。",
+              "figures": [
+                {
+                  "figureImage": "t1e17StateEquation",
+                  "caption": "多成分系の状態方程式の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】多成分理想気体の状態方程式を確認します。\n【考え方】$p=\\rho R^0T\\sum_{i=1}^N Y_i/W_i$。\n【ポイント】理想気体の式 $pV=nR^0T$ を体積で割ります。成分 $i$ の単位体積の質量は $\\rho Y_i$、モル濃度は $\\rho Y_i/W_i$ なので、全成分のモル濃度を足して代入します。分子量と気体定数の単位系をそろえます。\n【引っかけ】",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "多成分系の状態方程式／個別の質問：多成分理想気体の状態方程式",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {},
+            "sha256": "75fe646427cfee9f43447e6c54387b889ec925f2823a212cb6707f4fcaeb5cc1"
+          },
+          "modelAnswer": "$p=\\rho R^0T\\sum_{i=1}^N Y_i/W_i$。",
+          "answerCheckpoints": [
+            "理想気体の式 $pV=nR^0T$ を体積で割ります。成分 $i$ の単位体積の質量は $\\rho Y_i$、モル濃度は $\\rho Y_i/W_i$ なので、全成分のモル濃度を足して代入します。分子量と気体定数の単位系をそろえます。"
+          ],
+          "officialWrittenEvidence": {
+            "file": "_原本(非公開)/_抽出テキスト/熱流体1級_17_燃焼の基礎1.md",
+            "excerpt": "- **1-14** 多成分系の状態方程式（記述問題）: 化学種数Nの多成分系における理想気体の状態方程式を記せ。圧力p、密度ρ、一般気体定数R⁰、温度T、化学種iの質量分率Y_iおよび分子量W_i。（記述式）正解 p = ρR⁰T Σ_{i=1}^N Y_i/W_i。"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "多成分理想気体の状態方程式：$p=\\rho R^0T\\sum_{i=1}^N Y_i/W_i$。"
     },
     {
       "id": "thermal1-17-15",
@@ -834,7 +1170,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e17LowMach",
-      "figureHint": "白地660x420。低マッハ数燃焼流の特徴を4項目のアイコンで並べる。圧力はほぼ一定(平坦な線)、温度は大きく上昇(急な曲線)、密度は大きく低下、流速<<音速。密度変化が大きい点を強調"
+      "figureHint": "白地660x420。低マッハ数燃焼流の特徴を4項目のアイコンで並べる。圧力はほぼ一定(平坦な線)、温度は大きく上昇(急な曲線)、密度は大きく低下、流速<<音速。密度変化が大きい点を強調",
+      "officialQuestionItems": [
+        "main"
+      ]
     }
   ]
 }

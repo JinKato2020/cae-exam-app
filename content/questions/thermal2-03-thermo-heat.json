@@ -8,7 +8,8 @@
     "count": 19,
     "officialCount": 19,
     "presentationStyle": "cae-standard-v1",
-    "explanationMode": "guided"
+    "explanationMode": "guided",
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -44,7 +45,7 @@
           "3": "単位だけ変更",
           "4": "換算の乗除を逆転"
         },
-        "sha256": "b7e55f2d7d5bbaad606504aa97144e70e97874e566201d47659091a9537ad6ae"
+        "sha256": "6585d45308fa2efd73c3811b16b5c19997f3038f35ee4b9c6a2f1213752cd5ae"
       },
       "easyExplanation": [
         {
@@ -60,7 +61,10 @@
           "body": "選択肢1は重力加速度に由来する9.8を掛けています。選択肢3は単位だけ変えて換算を省き、選択肢4は逆に4.2で割っています。"
         }
       ],
-      "answerSummary": "正解は②の10.5 kJです。熱量の単位を変えても、エネルギーの量自体は変わりません。"
+      "answerSummary": "正解は②の10.5 kJです。熱量の単位を変えても、エネルギーの量自体は変わりません。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2f-3-2",
@@ -95,7 +99,7 @@
           "3": "温度を分母にする",
           "4": "Rを分母にする"
         },
-        "sha256": "a90a8734ef278d63320423486c76d01db6dbb0f4e8db56c0496dc1177ba3808a"
+        "sha256": "8ed375133b7b6bdb047261982131f50cedd511814de13ca13f6fdaedcb98b569"
       },
       "easyExplanation": [
         {
@@ -111,7 +115,10 @@
           "body": "選択肢2は密度を分母、選択肢3は温度を分母、選択肢4は気体定数を分母にしています。いずれも $pV=mRT$ から導けません。"
         }
       ],
-      "answerSummary": "正解は①の $p=\\rho RT$ です。$R$ は単位質量当たりの気体定数です。"
+      "answerSummary": "正解は①の $p=\\rho RT$ です。$R$ は単位質量当たりの気体定数です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2f-3-3",
@@ -148,7 +155,7 @@
           "2": "第3法則との混同",
           "4": "第2法則との混同"
         },
-        "sha256": "9aade181b97073b94eec595be5ff4cfbe250e3ff6a96fa12b7f78b18ae548c51"
+        "sha256": "4bdc1ed311ddb80a03723e20d0dd524554daf216ab3b3cb7346ce41dda9356ce"
       },
       "easyExplanation": [
         {
@@ -170,7 +177,10 @@
           "body": "選択肢1の第0法則は熱平衡、選択肢2の第3法則は絶対零度へ近づくときのエントロピー、選択肢4の第2法則は変化の方向・不可逆性に関する法則です。"
         }
       ],
-      "answerSummary": "正解は③の熱力学の第1法則です。加えた熱は、仕事と内部エネルギーの増加へ分かれます。"
+      "answerSummary": "正解は③の熱力学の第1法則です。加えた熱は、仕事と内部エネルギーの増加へ分かれます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2f-3-4",
@@ -207,7 +217,7 @@
           "3": "量の保存と向きの制約を混同",
           "4": "絶対零度との混同"
         },
-        "sha256": "08a0ee634b903249cf2a6d5f68b0633de8005e1bb876aff053f008b6d334123e"
+        "sha256": "80010d8de37b9a44f4546c75190313ca78a66f7781432d4f42103fd77e8afe0f"
       },
       "easyExplanation": [
         {
@@ -233,7 +243,10 @@
           "body": "選択肢2の第0法則は熱平衡です。選択肢3の第1法則はエネルギー保存ですが、変化の向きまでは決めません。選択肢4の第3法則は絶対零度に関する法則です。"
         }
       ],
-      "answerSummary": "正解は①の熱力学の第2法則です。内部のエントロピー生成量は負になりません。"
+      "answerSummary": "正解は①の熱力学の第2法則です。内部のエントロピー生成量は負になりません。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2f-3-5",
@@ -268,7 +281,7 @@
           "2": "pVを減算",
           "3": "不要なTSを減算"
         },
-        "sha256": "647b976e68d1fa7376ae8f9efe04b91a33fef1f8c1d83ee08959181880e6f298"
+        "sha256": "ea7925bcf5eef7c8f7fd84b39a03c331598377aa6210928aaf76c50803183a57"
       },
       "easyExplanation": [
         {
@@ -284,7 +297,10 @@
           "body": "選択肢1は加える項を $TS$ としています。選択肢2は $pV$ を引き、選択肢3は定義にない $-TS$ をさらに加えています。全てエネルギーの単位になるため、単位だけでなく定義で判断します。"
         }
       ],
-      "answerSummary": "正解は④の $H=U+pV$ です。内部エネルギーに、圧力と体積の積を加えて定義します。"
+      "answerSummary": "正解は④の $H=U+pV$ です。内部エネルギーに、圧力と体積の積を加えて定義します。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2f-3-6",
@@ -321,7 +337,7 @@
           "3": "放熱割合を解答",
           "4": "効率を逆数にする"
         },
-        "sha256": "9a97dd826fe93d4a73539c17be0fad80742b0f141a5e3ad4771b3e90c41b0b32"
+        "sha256": "ff9a1be72f8e7862cb912aa3df91eaf64a21e0bdc94fe785d6710921c06af383"
       },
       "easyExplanation": [
         {
@@ -350,6 +366,9 @@
           "figureImage": "t2e3Q6Before",
           "caption": "高温熱源から800 kJを受け取り、低温熱源へ560 kJを捨てます。仕事Wと熱効率を求めます。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -387,7 +406,7 @@
           "2": "密度の指数をgamma-1にする",
           "4": "pとTの関係の混同"
         },
-        "sha256": "41ae8eaa81027ffc61526affabea054439fd2b1722ca4aaf80676e26f9c345c3"
+        "sha256": "5eff773784cf8e8c810b123ee23f076575fd75e1c0555122af2df4e4114823d7"
       },
       "easyExplanation": [
         {
@@ -417,7 +436,10 @@
           "body": "選択肢1は $p$ と $T$ の組合せが誤りです。選択肢2は密度の指数を $\\gamma-1$ にしています。選択肢4の $p$ と $T$ の積も一定にならず、正しくは $T/p^{(\\gamma-1)/\\gamma}$ が一定です。"
         }
       ],
-      "answerSummary": "正解は③です。可逆断熱変化では $p/\\rho^\\gamma$ が一定です。"
+      "answerSummary": "正解は③です。可逆断熱変化では $p/\\rho^\\gamma$ が一定です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2f-3-8",
@@ -454,7 +476,7 @@
           "3": "gammaをgamma-1にする",
           "4": "gammaを(gamma-1)/gammaにする"
         },
-        "sha256": "6f4e2e400ba401a368d314a5a52f80ef86d7ea62d9f04a61b60fb996aa6743a5"
+        "sha256": "b7b38899496412920516d494d2d4ecfa85eafd7b15808983921888c3a592846a"
       },
       "easyExplanation": [
         {
@@ -480,7 +502,10 @@
           "body": "選択肢2は断熱変化に必要な $\\gamma$ を落としています。選択肢3は $\\gamma$ を $\\gamma-1$ に、選択肢4は $(\\gamma-1)/\\gamma$ に置き換えています。"
         }
       ],
-      "answerSummary": "正解は①の $a=\\sqrt{\\gamma RT}$ です。音速は、微小な圧力変化が伝わる速さです。"
+      "answerSummary": "正解は①の $a=\\sqrt{\\gamma RT}$ です。音速は、微小な圧力変化が伝わる速さです。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2f-3-9",
@@ -518,7 +543,7 @@
           "3": "直線の増加",
           "4": "曲線の増加"
         },
-        "sha256": "9690d0b26c91448e528f06c978042c69765f4147576f1c6df337ff81c82b1d47"
+        "sha256": "b70bdb2e44e02b44102ee8fea11629a385c2f9e9ddd046c326a2ed7117c6e1dd"
       },
       "easyExplanation": [
         {
@@ -546,6 +571,9 @@
           "figureImage": "t2e3IsothermPVBefore",
           "caption": "横軸は体積、縦軸は圧力です。同じ尺度の4候補から、一定質量の等温変化を選びます。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -584,7 +612,7 @@
           "2": "左の帯だけ",
           "3": "共通部分も含める"
         },
-        "sha256": "5dec71a46c56a371c89070dab88b54d1f62f82a0cf680cf6f2063b5bd67f0a01"
+        "sha256": "a70f166e0607c5a7a78c13a756be720531ceb5ccc9993fced79654ae33f15ff9"
       },
       "easyExplanation": [
         {
@@ -616,6 +644,9 @@
           "figureImage": "t2e3CycleWorkBefore",
           "caption": "時計回りのサイクルは全候補で同じです。正味の仕事を表す塗りつぶし領域を選びます。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -648,13 +679,13 @@
       ],
       "editorialReview": {
         "officialPoint": "熱伝導",
-        "alignment": "保存済み公式抽出テキストの該当番号・解説と照合。選択式と組合せ判断を維持し、同じ番号内でやさしい解説を標準表示へ統合。必要な導出・単位・具体例と誤答理由を確認し、図を該当段階へ配置。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "温度分布を上側の曲線とする",
           "2": "時間換算を省略",
           "4": "温度分布を下側の曲線とする"
         },
-        "sha256": "b34efec84b3e954547f22e9c77e3974b164fac2790161c00248888b7d7870b6c"
+        "sha256": "2b9432d8c85043d39307b738bdb9ace7b30617c59f90da837af946091101fe6f"
       },
       "easyExplanation": [
         {
@@ -680,13 +711,117 @@
           "body": "選択肢1と4は温度分布を曲線にしています。選択肢2は分布は正しいですが、3600秒を掛けず1秒間の熱量にしています。"
         }
       ],
-      "answerSummary": "正解は③です。温度分布は直線B、1時間の通過熱量は $5.85\\times10^8\\,\\mathrm J$ です。",
+      "answerSummary": "温度分布：熱伝導率一定・内部発熱なしでは直線分布です。\n1時間の熱量：熱流束に面積と秒で表した時間を掛けます。",
       "preFigures": [
         {
           "figureImage": "t2e3ConductionBefore",
           "caption": "左は鉄板の厚さと両面温度、右は温度分布A〜Cの候補です。熱伝導率一定・内部発熱なしの定常状態を考えます。"
         }
-      ]
+      ],
+      "sharedQuestion": "厚さ $L=8\\,\\mathrm{mm}$ の広い鉄板（熱伝導率 $\\lambda=65\\,\\mathrm{W/(m\\cdot K)}$）の両面を $30\\,{}^\\circ\\mathrm C$ と $10\\,{}^\\circ\\mathrm C$ に保った。熱は厚さ方向だけに流れ、熱伝導率は一定、内部発熱はない。",
+      "studyParts": [
+        {
+          "id": "t2f-3-11-item-distribution",
+          "number": "3-11",
+          "officialRef": "問3-11",
+          "officialQuestionItem": "distribution",
+          "title": "温度分布",
+          "topic": "熱伝導",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "定常状態の温度分布は図A〜Cのどれですか。",
+          "choices": [
+            "A：曲線分布",
+            "B：直線分布"
+          ],
+          "answer": 2,
+          "answerSummary": "熱伝導率一定・内部発熱なしでは直線分布です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "どの断面も同じ熱流束 $q=-\\lambda\\,dT/dx$ が通るため、$dT/dx$ が一定になります。"
+            },
+            {
+              "title": "どの断面でも、同じ熱が通る",
+              "body": "定常で内部発熱もないので、板の途中に熱がたまったり、新しく生じたりしません。厚さ方向のどの断面でも熱流束は同じです。熱伝導率も一定なので、フーリエの法則 $q=-\\lambda\\,dT/dx$ により温度勾配は一定、温度分布は直線Bになります。"
+            }
+          ],
+          "explanation": "【基礎】熱伝導率一定・内部発熱なしでは直線分布です。\n【考え方】正解は2です。どの断面も同じ熱流束 $q=-\\lambda\\,dT/dx$ が通るため、$dT/dx$ が一定になります。\n【ポイント】定常で内部発熱もないので、板の途中に熱がたまったり、新しく生じたりしません。厚さ方向のどの断面でも熱流束は同じです。熱伝導率も一定なので、フーリエの法則 $q=-\\lambda\\,dT/dx$ により温度勾配は一定、温度分布は直線Bになります。\n【引っかけ】1：「A：曲線分布」ではなく、B：直線分布です。どの断面も同じ熱流束 $q=-\\lambda\\,dT/dx$ が通るため、$dT/dx$ が一定になります。",
+          "relatedFormulas": [
+            "t2ch3-fourier"
+          ],
+          "editorialReview": {
+            "officialPoint": "熱伝導／個別の質問：温度分布",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「A：曲線分布」ではなく、B：直線分布です。どの断面も同じ熱流束 $q=-\\lambda\\,dT/dx$ が通るため、$dT/dx$ が一定になります。"
+            },
+            "sha256": "9ae1f764892c58cc9b6dc4c54d092fe16bf429e24ed97cef02bd39da9a750b8a"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "t2f-3-11-item-heat",
+          "number": "3-11",
+          "officialRef": "問3-11",
+          "officialQuestionItem": "heat",
+          "title": "1時間の熱量",
+          "topic": "熱伝導",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "面積 $1\\,\\mathrm{m^2}$ を1時間に通過する熱量はどれですか。",
+          "choices": [
+            "$1.625\\times10^5\\,\\mathrm J$",
+            "$5.85\\times10^8\\,\\mathrm J$"
+          ],
+          "answer": 2,
+          "answerSummary": "熱流束に面積と秒で表した時間を掛けます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$L=0.008\\,\\mathrm m$ なので $q=65\\times20/0.008=162500\\,\\mathrm{W/m^2}$。$Q=qAt=162500\\times1\\times3600=5.85\\times10^8\\,\\mathrm J$ です。"
+            },
+            {
+              "title": "厚さをメートルに直して、熱流束を求める",
+              "body": "厚さは $L=8\\,\\mathrm{mm}=0.008\\,\\mathrm m$、温度差は $30-10=20\\,\\mathrm K$ です。温度差なら℃の差とKの差は同じです。\n$q=\\lambda\\dfrac{30-10}{L}=65\\times\\dfrac{20}{0.008}=162500\\,\\mathrm{W/m^2}$\nこれは「1秒・1 m²当たり」に通る熱量です。"
+            },
+            {
+              "title": "面積と時間を掛けて、熱量へ直す",
+              "body": "面積 $A=1\\,\\mathrm{m^2}$、時間 $t=3600\\,\\mathrm s$ なので、$Q=qAt=162500\\times1\\times3600=585000000\\,\\mathrm J$ です。WはJ/sなので、秒を掛けて初めてJになります。",
+              "figures": [
+                {
+                  "figureImage": "t2e3Conduction",
+                  "caption": "左は高温面から低温面へ熱が流れる向き、右は直線Bの温度分布です。熱流束に面積と3600秒を掛けます。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】熱流束に面積と秒で表した時間を掛けます。\n【考え方】正解は2です。$L=0.008\\,\\mathrm m$ なので $q=65\\times20/0.008=162500\\,\\mathrm{W/m^2}$。$Q=qAt=162500\\times1\\times3600=5.85\\times10^8\\,\\mathrm J$ です。\n【ポイント】厚さは $L=8\\,\\mathrm{mm}=0.008\\,\\mathrm m$、温度差は $30-10=20\\,\\mathrm K$ です。温度差なら℃の差とKの差は同じです。 $q=\\lambda\\dfrac{30-10}{L}=65\\times\\dfrac{20}{0.008}=162500\\,\\mathrm{W/m^2}$ これは「1秒・1 m²当たり」に通る熱量です。\n【引っかけ】1：「$1.625\\times10^5\\,\\mathrm J$」ではなく、$5.85\\times10^8\\,\\mathrm J$です。$L=0.008\\,\\mathrm m$ なので $q=65\\times20/0.008=162500\\,\\mathrm{W/m^2}$。$Q=qAt=162500\\times1\\times3600=5.85\\times10^8\\,\\mathrm J$ です。",
+          "relatedFormulas": [
+            "t2ch3-fourier"
+          ],
+          "editorialReview": {
+            "officialPoint": "熱伝導／個別の質問：1時間の熱量",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$1.625\\times10^5\\,\\mathrm J$」ではなく、$5.85\\times10^8\\,\\mathrm J$です。$L=0.008\\,\\mathrm m$ なので $q=65\\times20/0.008=162500\\,\\mathrm{W/m^2}$。$Q=qAt=162500\\times1\\times3600=5.85\\times10^8\\,\\mathrm J$ です。"
+            },
+            "sha256": "79d7a4fcc08de8ac55e7659bd26a121dc37c9b9c51257cb0e921db50e67f07b1"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "distribution",
+        "heat"
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "t2f-3-12",
@@ -723,7 +858,7 @@
           "3": "銀アルミとガラス空気を逆転",
           "4": "ガラスを銀より高くする"
         },
-        "sha256": "9fdee078094c465c7ec6f72b329b966854b8cf7f16dfbfd052c865eb34d23da1"
+        "sha256": "c8c98f3c38db7f50f6282989513952d373103bf0846b442a8e53e8995726c979"
       },
       "easyExplanation": [
         {
@@ -745,7 +880,10 @@
           "body": "選択肢1は水銀をアルミより高くしています。選択肢3は銀とアルミ、ガラスと空気の順が逆です。選択肢4は銀をガラスより低くするなど、金属の大小関係を取り違えています。"
         }
       ],
-      "answerSummary": "正解は②です。純銀→純アルミニウム→水銀→ガラス→空気の順に熱を通しにくくなります。"
+      "answerSummary": "正解は②です。純銀→純アルミニウム→水銀→ガラス→空気の順に熱を通しにくくなります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2f-3-13",
@@ -780,7 +918,7 @@
           "2": "GrとPrを混同",
           "3": "NuとPrを混同"
         },
-        "sha256": "a5879aa5b68602b7fcc26a75bb2ee81aaf2f3d6b78652d4f6663d49c2b66d46a"
+        "sha256": "87f973d3c55f6a3a8016579d67e557ca87f5a9c4912ccf216ff9ae2620f98205"
       },
       "easyExplanation": [
         {
@@ -796,7 +934,10 @@
           "body": "選択肢1は慣性と粘性を比べる $Re$、選択肢2は浮力の影響を表す $Gr$、選択肢3は熱伝達率を無次元化する $Nu$ です。"
         }
       ],
-      "answerSummary": "正解は④のプラントル数です。$Pr=\\nu/\\alpha$ で、運動量と熱の広がりやすさを比べます。"
+      "answerSummary": "正解は④のプラントル数です。$Pr=\\nu/\\alpha$ で、運動量と熱の広がりやすさを比べます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2f-3-14",
@@ -833,7 +974,7 @@
           "3": "二酸化炭素のPrを低く見積もる",
           "4": "ヘリウムのPrを低く見積もる"
         },
-        "sha256": "ecf394834b03ccc568044c8521bc3955d1c0c2a76ffcd042c3b6e3c437f255ef"
+        "sha256": "7cafb02e57deecfc6fce685b618753f1fd34c99a1461404e4b9b6ae19846945f"
       },
       "easyExplanation": [
         {
@@ -855,7 +996,10 @@
           "body": "選択肢2の空気、選択肢3の二酸化炭素、選択肢4のヘリウムは全て同程度の気体の群で、水銀ほど小さくありません。"
         }
       ],
-      "answerSummary": "正解は①の水銀です。液体金属は熱が広がりやすく、プラントル数が小さくなります。"
+      "answerSummary": "正解は①の水銀です。液体金属は熱が広がりやすく、プラントル数が小さくなります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2f-3-15",
@@ -892,7 +1036,7 @@
           "2": "温度差の符号逆転",
           "4": "係数と符号を混同"
         },
-        "sha256": "e2d89a782899ef2184a3c99dcb1275f9d5872361b346de6c7b62b3bfad8ec209"
+        "sha256": "de4960af641ad6bec14219928ce61f1fe128c854864eb56b99d5484f7a14d592"
       },
       "easyExplanation": [
         {
@@ -918,7 +1062,10 @@
           "body": "①④は係数に $\\lambda$ を使った誤り(次元が合いません)、②は温度差の向きが逆で熱の流れと矛盾します。"
         }
       ],
-      "answerSummary": "正解は③の $q=h(T_w-T)$ です。高温の壁から流体へ出る熱流束を正とします。"
+      "answerSummary": "正解は③の $q=h(T_w-T)$ です。高温の壁から流体へ出る熱流束を正とします。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2f-3-16",
@@ -955,7 +1102,7 @@
           "2": "Pr<1の厚薄逆転",
           "3": "Pr>1の厚薄逆転"
         },
-        "sha256": "8c41e50a1348989e96cdfaad0b405ade9594b9c030f9d31b66d0ff2a4c50463c"
+        "sha256": "9cb116d7ebd21e2ae64bb16ed54f0b5d2bd39493c8a8f06ab3c288f117e77458"
       },
       "easyExplanation": [
         {
@@ -981,7 +1128,10 @@
           "body": "選択肢1は $Pr$ の違いを無視しています。選択肢2は $Pr<1$ の厚薄を、選択肢3は $Pr>1$ の厚薄を逆にしています。"
         }
       ],
-      "answerSummary": "正解は④です。$Pr>1$ では、温度境界層の方が速度境界層より薄くなります。"
+      "answerSummary": "正解は④です。$Pr>1$ では、温度境界層の方が速度境界層より薄くなります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2f-3-17",
@@ -1018,7 +1168,7 @@
           "3": "力密度と加速度を混同",
           "4": "基準温度を省略"
         },
-        "sha256": "8a7762f5c9acea1a86a4835f257d64b041a6b5d39927ce7ee21a96341434e58c"
+        "sha256": "a898cef1bf18805a656a9b81a43289a085f2f7d7362f7abcaa66aab4d6a782cc"
       },
       "easyExplanation": [
         {
@@ -1044,7 +1194,10 @@
           "body": "選択肢1は温度差を逆にして浮力が下向きです。選択肢3は基準密度で割らず、単位体積あたりの力のままです。選択肢4は基準温度を引かず、基準状態でも浮力が残ります。"
         }
       ],
-      "answerSummary": "正解は②の $g\\beta(T-T_0)$ です。基準より温かい流体では上向きの浮力加速度になります。"
+      "answerSummary": "正解は②の $g\\beta(T-T_0)$ です。基準より温かい流体では上向きの浮力加速度になります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2f-3-18",
@@ -1081,7 +1234,7 @@
           "2": "乱流なら浮力を省く",
           "4": "強制作用を省略"
         },
-        "sha256": "58bcddab1a378b674836ab7da3ace03672862a558619b8332e05965662de2cdd"
+        "sha256": "ca6d0c0c2f9270392085c97852ff02c7fdd87574f75ea6cfd6592898c78c06e3"
       },
       "easyExplanation": [
         {
@@ -1107,7 +1260,10 @@
           "body": "選択肢1はこの例を層流とし、浮力も省いています。選択肢2は乱流という点だけで自然対流を省いています。選択肢4は強制対流の作用を省いています。"
         }
       ],
-      "answerSummary": "正解は③です。この条件は、乱流域の複合対流として扱います。"
+      "answerSummary": "正解は③です。この条件は、乱流域の複合対流として扱います。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "t2f-3-19",
@@ -1144,7 +1300,7 @@
           "2": "層流の一定値と混同",
           "3": "増減を逆転"
         },
-        "sha256": "33d8d9fd63b60bf102ed19fd312ccda6cde82c73da28b110f5798d1315939b86"
+        "sha256": "021af92415381d20e48a31810e7bfb5028b6774a29ee2040600713035f830741"
       },
       "easyExplanation": [
         {
@@ -1170,7 +1326,10 @@
           "body": "選択肢1は乱流の相関を否定しています。選択肢2は層流での性質との混同です。選択肢3は増減を逆にしています。"
         }
       ],
-      "answerSummary": "正解は④です。他の条件をそろえると、Reの増加とともにNuは増加する傾向があります。"
+      "answerSummary": "正解は④です。他の条件をそろえると、Reの増加とともにNuは増加する傾向があります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     }
   ]
 }

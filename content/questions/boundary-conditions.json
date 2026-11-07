@@ -8,7 +8,8 @@
     "count": 33,
     "officialCount": 33,
     "explanationMode": "guided",
-    "presentationStyle": "cae-standard-v1"
+    "presentationStyle": "cae-standard-v1",
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -46,7 +47,7 @@
           "3": "完全固定と法線方向だけ止める対称条件の混同",
           "4": "節点間の連動と地面への固定の混同"
         },
-        "sha256": "8f9c8d9c93ace2b129c3c565cc8f9135a85861e3c76464c3bdbbb360cff95964"
+        "sha256": "913f6642d9716f65e9face4a123b902cea01a38a40c1fb376e74a1179ed5a067"
       },
       "easyExplanation": [
         {
@@ -68,7 +69,10 @@
           "body": "一つの節点を止めても、その点まわりの回転は可能な場合があります。面上の多数の離れた点を止める条件は、それとは違います。「回転自由度がないから回転は止めなくてよい」ではなく、並進の組合せで表す回転まで固定面で止まる、と理解します。"
         }
       ],
-      "answerSummary": "正解は①です。固定面の三方向の並進を全て0にします。"
+      "answerSummary": "正解は①です。固定面の三方向の並進を全て0にします。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "bc-9-2",
@@ -125,9 +129,12 @@
           "3": "指定点の反力を得られないとする",
           "4": "測定条件を無視する任意荷重"
         },
-        "sha256": "6fa823de2998fcce9e36d65b8a50835df191799177a7d2d1c745c221e070122c"
+        "sha256": "58ef6808ccf4157c1fb21d9993bbb7d7237d8b41c1459c18bf23749640506b2b"
       },
-      "answerSummary": "正解は②です。測定変位を指定し、必要な力を反力で求めます。"
+      "answerSummary": "正解は②です。測定変位を指定し、必要な力を反力で求めます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "bc-9-3",
@@ -164,7 +171,7 @@
           "3": "誤答候補の取り違え：図3：3節点すべての水平・鉛直変位を固定する。",
           "4": "誤答候補の取り違え：図4：上・下節点の水平変位と、中央節点の鉛直変位を固定する。"
         },
-        "sha256": "dcbf34287655c2abea30397fba4479e542b40cfa0d7d87d00ca956555ee4058a"
+        "sha256": "672220532c70f079862fc6b7ac19285846e3b9e2ae48451ddc772921eb69dcd0"
       },
       "easyExplanation": [
         {
@@ -187,7 +194,10 @@
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
       ],
-      "figureImage": "s2Before9_3"
+      "figureImage": "s2Before9_3",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "bc-9-4",
@@ -241,7 +251,7 @@
           "2": "局所法線を全体鉛直と混同",
           "4": "摩擦なしの滑りも止める"
         },
-        "sha256": "7295d0ed46f3e3f8b7c2aa9b154e2ad0722f6f3ac6e88c199d7e0c9621d86e5e"
+        "sha256": "c808668a324b074c0e3eafb7d1567d005063540e8504c97fbb9e0036851c6ecb"
       },
       "answerSummary": "正解は③です。斜面の法線v′だけを0にします。",
       "preFigures": [
@@ -249,6 +259,9 @@
           "figureImage": "bc9InclinedSlopeSetup",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -288,7 +301,7 @@
           "3": "両端の鉛直と中央の水平を固定",
           "4": "両端の水平・鉛直を固定"
         },
-        "sha256": "7e334bff27303e5661cf6b8481138ba5dd5e7568c71b19cb51f88b3bcf326938"
+        "sha256": "a90a198b7dd6d82a6f94bc5eb8d2efa72a147b1250232ea154d7d00a64251e7e"
       },
       "easyExplanation": [
         {
@@ -316,6 +329,9 @@
           "figureImage": "s2Before9_5",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -366,9 +382,12 @@
           "3": "半径と角速度の二乗を混同",
           "4": "変化する荷重を一様化"
         },
-        "sha256": "62ecaf9b06458fa3530febd17adfa7affe160ad89cde010c4361cfeaf8e02b80"
+        "sha256": "3da27d6d4a25a1cb35d03746258276864108c47873efdf6f5a8dcf1b1738c456"
       },
-      "answerSummary": "正解は②です。節点へ適切に配った質量に重力加速度を掛けます。"
+      "answerSummary": "正解は②です。節点へ適切に配った質量に重力加速度を掛けます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "bc-9-7",
@@ -426,7 +445,7 @@
           "2": "全五節点へ単純等分",
           "4": "二辺の合力をそのまま付与"
         },
-        "sha256": "9f89942ddd9ffcf4960655cff7dd539f98aa3546ce121eba6c6347bcca5e9b8a"
+        "sha256": "0bee997d0310c655273df27c19036bc5c0660b0734d6a27dd761f98dd87c6755"
       },
       "answerSummary": "正解は③です。共有節点には200Nです。",
       "preFigures": [
@@ -434,6 +453,9 @@
           "figureImage": "bc9EqRowSetup",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -466,13 +488,13 @@
       "figure": "helpful",
       "editorialReview": {
         "officialPoint": "幅l・高さ2lの上端水平荷重に対する反力の向きと大きさを力・モーメントで釣り合わせる。",
-        "alignment": "公式の該当番号の抽出テキストと照合。元の判断を維持し、与件から正解の拘束を先に説明しない。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "転倒モーメントを打ち消す偶力の向きを逆にする",
           "2": "鉛直合力と偶力のつり合いの混同",
           "3": "高さと幅の比を反力の計算に反映しない"
         },
-        "sha256": "cd1cbb020a9956995298a3c04684d4a53c04c764dd51cd639e9cd1f968344d94"
+        "sha256": "315e1c9adb6cb5e88ea6dade769f526fcce34a4532cd5cd0cea5e46bf8bd5c2f"
       },
       "easyExplanation": [
         {
@@ -490,13 +512,105 @@
           "body": "①は向きが逆、②は鉛直合力が0になりません。③はモーメントの腕h/b＝2を落としています。④だけが両方を満たします。水平反力の合計も−10kNですが、ここでは二支点への水平配分まで決める必要はありません。問われた鉛直反力は全体の力とモーメントの式から求まります。"
         }
       ],
-      "answerSummary": "正解は④です。Aは下向き20、Bは上向き20kNです。",
+      "answerSummary": "Aの鉛直反力：Aは下向き20 kNです。\nBの鉛直反力：Bは上向き20 kNです。",
       "preFigures": [
         {
           "figureImage": "bc9ElementReactionSetup",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
-      ]
+      ],
+      "sharedQuestion": "幅b=200 mm、高さh=400 mmの矩形の上辺に右向き合力P=10 kNが作用する。下辺の両隅A（左）・B（右）をピン支持する。各支点の鉛直反力を求めてください。",
+      "studyParts": [
+        {
+          "id": "bc-9-8-item-a",
+          "number": "9-8",
+          "officialRef": "問9-8",
+          "officialQuestionItem": "a",
+          "title": "Aの鉛直反力",
+          "topic": "反力・つり合い",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Aの鉛直反力はどれか。",
+          "choices": [
+            "上向き20 kN",
+            "下向き20 kN"
+          ],
+          "answer": 2,
+          "answerSummary": "Aは下向き20 kNです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "水平荷重は時計回りの $Ph$ を作ります。Bの上向き反力を $R_{By}$ とするとAまわりで $R_{By}b=Ph$。$R_{By}=10\\times400/200=20\\,\\mathrm{kN}$ です。鉛直合力は0なので $R_{Ay}=-R_{By}=-20\\,\\mathrm{kN}$ になります。"
+            }
+          ],
+          "explanation": "【基礎】Aは下向き20 kNです。\n【考え方】正解は2です。水平荷重は時計回りの $Ph$ を作ります。Bの上向き反力を $R_{By}$ とするとAまわりで $R_{By}b=Ph$。$R_{By}=10\\times400/200=20\\,\\mathrm{kN}$ です。鉛直合力は0なので $R_{Ay}=-R_{By}=-20\\,\\mathrm{kN}$ になります。\n【ポイント】Aは下向き20 kNです。\n【引っかけ】1：「上向き20 kN」ではなく、下向き20 kNです。水平荷重は時計回りの $Ph$ を作ります。Bの上向き反力を $R_{By}$ とするとAまわりで $R_{By}b=Ph$。$R_{By}=10\\times400/200=20\\,\\mathrm{kN}$ です。鉛直合力は0なので $R_{Ay}=-R_{By}=-20\\,\\mathrm{kN}$ になります。",
+          "relatedFormulas": [
+            "reaction-balance"
+          ],
+          "editorialReview": {
+            "officialPoint": "幅l・高さ2lの上端水平荷重に対する反力の向きと大きさを力・モーメントで釣り合わせる。／個別の質問：Aの鉛直反力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「上向き20 kN」ではなく、下向き20 kNです。水平荷重は時計回りの $Ph$ を作ります。Bの上向き反力を $R_{By}$ とするとAまわりで $R_{By}b=Ph$。$R_{By}=10\\times400/200=20\\,\\mathrm{kN}$ です。鉛直合力は0なので $R_{Ay}=-R_{By}=-20\\,\\mathrm{kN}$ になります。"
+            },
+            "sha256": "e9a670ad84302e98b6588a0493ff934a1c22c4bf88f29e0957ce6d8a2caab961"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "bc-9-8-item-b",
+          "number": "9-8",
+          "officialRef": "問9-8",
+          "officialQuestionItem": "b",
+          "title": "Bの鉛直反力",
+          "topic": "反力・つり合い",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Bの鉛直反力はどれか。",
+          "choices": [
+            "上向き20 kN",
+            "上向き10 kN"
+          ],
+          "answer": 1,
+          "answerSummary": "Bは上向き20 kNです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "Aまわりの釣合い $R_{By}b-Ph=0$ から $R_{By}=Ph/b=10\\times400/200=20\\,\\mathrm{kN}$ です。力の大きさPをそのまま反力とせず、腕の比h/b＝2を掛けます。",
+              "figures": [
+                {
+                  "figureImage": "bc9ElementReaction",
+                  "caption": "反力の向きの条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】Bは上向き20 kNです。\n【考え方】正解は1です。Aまわりの釣合い $R_{By}b-Ph=0$ から $R_{By}=Ph/b=10\\times400/200=20\\,\\mathrm{kN}$ です。力の大きさPをそのまま反力とせず、腕の比h/b＝2を掛けます。\n【ポイント】Bは上向き20 kNです。\n【引っかけ】2：「上向き10 kN」ではなく、上向き20 kNです。Aまわりの釣合い $R_{By}b-Ph=0$ から $R_{By}=Ph/b=10\\times400/200=20\\,\\mathrm{kN}$ です。力の大きさPをそのまま反力とせず、腕の比h/b＝2を掛けます。",
+          "relatedFormulas": [
+            "reaction-balance"
+          ],
+          "editorialReview": {
+            "officialPoint": "幅l・高さ2lの上端水平荷重に対する反力の向きと大きさを力・モーメントで釣り合わせる。／個別の質問：Bの鉛直反力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「上向き10 kN」ではなく、上向き20 kNです。Aまわりの釣合い $R_{By}b-Ph=0$ から $R_{By}=Ph/b=10\\times400/200=20\\,\\mathrm{kN}$ です。力の大きさPをそのまま反力とせず、腕の比h/b＝2を掛けます。"
+            },
+            "sha256": "ee00e0ff6593ed065d57562c29f316c802f1ffb050ea6dcfd59a290cbac29d51"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "a",
+        "b"
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "bc-9-9",
@@ -558,7 +672,7 @@
           "2": "三角形分布を等分",
           "4": "合力全てを右へ付与"
         },
-        "sha256": "4fbee073ad341433afd4a3d15cd36808a755e7d0d282003d8729b8d63316260d"
+        "sha256": "a981a90f26c7a40a4b42e7045c898dfaf1ef89810bc9ce4ea68f42ea02e3d392"
       },
       "answerSummary": "正解は③です。右節点は12 N、左節点は6 Nです。",
       "preFigures": [
@@ -566,6 +680,9 @@
           "figureImage": "bc9EqTriLoadSetup",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -604,7 +721,7 @@
           "2": "誤答候補の取り違え：一次辺の一様線荷重は両端1/2ずつ",
           "3": "誤答候補の取り違え：二次辺の一様線荷重は隅1/6・中間2/3・隅1/6"
         },
-        "sha256": "a2c3efeb1e606902bc517a01605fde3831d330549c5f5eb1211847feb84ac00e"
+        "sha256": "23f7192c7e87014847b663f893416a90249d528c3936a1dee3e54b98f4c7ee10"
       },
       "easyExplanation": [
         {
@@ -641,6 +758,9 @@
           "figureImage": "s2Before9_10",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -700,7 +820,7 @@
           "3": "一要素全体を付与",
           "4": "二要素全体を付与"
         },
-        "sha256": "ffea7ad1e5d49af15cf47dbcdd084a360879f6de171abd1ba6053af4d4e6566b"
+        "sha256": "bcb6c0c752fdc48c4cb47b8486395986e626b527a2cb1c1bbd111dd474eb4a6e"
       },
       "answerSummary": "正解は②です。内部の共有節点一つは40Nです。",
       "preFigures": [
@@ -708,6 +828,9 @@
           "figureImage": "solid2_review_9_11_before",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -758,7 +881,7 @@
           "3": "荷重と強制変位を混同",
           "4": "分布荷重を一点へ集中"
         },
-        "sha256": "3731378c6edceb4844a33e2799d8189c429ccdbbde6fe3ff3fbb0987ba7b159e"
+        "sha256": "07983d4fa2943baef6f10b3cea6bbd5bf25186de799729c26f7756957be9eb35"
       },
       "answerSummary": "正解は①です。荷重のある要素辺へ分布表面力を定義します。",
       "preFigures": [
@@ -768,7 +891,10 @@
         }
       ],
       "figureImage": "bc9PressureApplySetup",
-      "figureHint": "本文に対応する条件と候補を示す図。回答後も条件図として参照する。"
+      "figureHint": "本文に対応する条件と候補を示す図。回答後も条件図として参照する。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "bc-9-13",
@@ -834,7 +960,7 @@
           "2": "対称面上の端も二辺共有と誤認する",
           "4": "中間節点の配分と共有隅の加算を取り違える"
         },
-        "sha256": "c42ae4bf50c8ec0fa7cad983b7c6c40f2fe50154b99e2616bae3c41c61ac832b"
+        "sha256": "9a425cd8fe083d46d117aa0ee94667352f9e1ee6cbc0e9c78316f58ac27e1c5d"
       },
       "answerSummary": "正解は③です。$(F_1,F_2,F_3)=(5\\pi,20\\pi,10\\pi)\\,\\mathrm N$ です。",
       "preFigures": [
@@ -842,6 +968,9 @@
           "figureImage": "solid2_review_9_13_before",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -880,7 +1009,7 @@
           "2": "切断面を自由面として扱う",
           "3": "法線方向と接線方向の取り違え"
         },
-        "sha256": "d9d2d58a8f93d6672b2c6071803b743e4090ac84766ab0ae7febdc82d1885189"
+        "sha256": "7f08ecf666deba2c24f556891e2d9fd2bf2e6eb209ab9d4722c2174d5e540688"
       },
       "easyExplanation": [
         {
@@ -904,6 +1033,9 @@
           "figureImage": "bc9HolePlateQuarterSetup",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -959,7 +1091,7 @@
           "3": "半径の膨張も過剰拘束",
           "4": "軸対称面の条件を欠く"
         },
-        "sha256": "9213840780ab395db9084896ff8806607ba44eb7c22068ad55239221f7c707b5"
+        "sha256": "993236c808a67e6d3fd0ae7736d23d1dbf27dd00eedee5423b9a02d8a6d983e8"
       },
       "answerSummary": "正解は①です。切断したz＝0でuzだけを0にします。",
       "preFigures": [
@@ -967,6 +1099,9 @@
           "figureImage": "bc9AxisymCylBCSetup",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1005,7 +1140,7 @@
           "2": "対称条件を完全固定と混同する",
           "3": "回転のみで水平位置の基準も決まると考える"
         },
-        "sha256": "5176193f543f4cda411c5f29a65a8aed64a2341a77184697e65471f18170ee7b"
+        "sha256": "747900a2f3b93ac43219c3a1d31ca47ef4dca697ed537f6418282cd6ec9e8dec"
       },
       "easyExplanation": [
         {
@@ -1037,6 +1172,9 @@
           "figureImage": "solid2_review_9_16_before",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1075,7 +1213,7 @@
           "3": "反対称面を不動面と混同する",
           "4": "切断面に元の変位の対応条件が要らないと考える"
         },
-        "sha256": "5711f8ee881570d25d562696ff9c8d85c7c09b978520c49bdcbd75b4222d0c37"
+        "sha256": "031ab8c0b157bb47bda171f7d3e76e62493f6d9da3b7eeef89cf0114bce9a3b2"
       },
       "easyExplanation": [
         {
@@ -1103,6 +1241,9 @@
           "figureImage": "bc9AntisymCenterSetup",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1141,7 +1282,7 @@
           "2": "左右への鏡映を見落として片側き裂とする",
           "4": "き裂は中央だが荷重方向を取り違える"
         },
-        "sha256": "618f9a9dc8d8e3384e30159e0ccb3d3067928165469a955ac72f6fde78c96236"
+        "sha256": "32cfccbd5241cba151a63eb6986adf81e241a25e0b0df44d9e5714467d2c02c6"
       },
       "easyExplanation": [
         {
@@ -1169,6 +1310,9 @@
           "figureImage": "solid2_review_9_18_before",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1224,7 +1368,7 @@
           "3": "45度境界の対称拘束を見落とす",
           "4": "中間線の鏡映対称性を見落とす"
         },
-        "sha256": "6249f1f8c458e361e904ae1d3c9bb0e66be634acd395933ff4f8f84857335a9a"
+        "sha256": "1473604beff49c36e700a1e91e08ac7c748ffcec78dc27965d82ad5785742153"
       },
       "answerSummary": "正解は②です。上半分の水平切断面では、横並進が残ります。",
       "preFigures": [
@@ -1232,6 +1376,9 @@
           "figureImage": "solid2_review_9_19_before",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1287,7 +1434,7 @@
           "2": "外周半径の膨張も拘束",
           "3": "外周二点の膨張も拘束"
         },
-        "sha256": "97610d890cbd0d122869e2621ec2fd702def634e7972ddbeb4f142e6b6747860"
+        "sha256": "33100ee23aa2a5248ecb1c1b6c229bbdb1a88ec5007861583f713821ffde23b7"
       },
       "answerSummary": "正解は④です。各半径面の法線だけを0にします。",
       "preFigures": [
@@ -1295,6 +1442,9 @@
           "figureImage": "bc9AnnulusSectorSetup",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1353,7 +1503,7 @@
           "3": "中央回転も固定する",
           "4": "根拠のない軸強制変位"
         },
-        "sha256": "7e7502764eec09e4ad6e0a60926cd85368179146e3e364b1af155d23746e7b49"
+        "sha256": "a6abf4ae548b18c727b2846541f1eb352a3714ea7032588a9f0ad3ffc423140a"
       },
       "answerSummary": "正解は①です。中央uy＝0、回転は自由、uxも0です。",
       "preFigures": [
@@ -1361,6 +1511,9 @@
           "figureImage": "bc9AntisymBeamFixSetup",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1415,7 +1568,7 @@
           "3": "下辺の接線変形も固定",
           "4": "荷重を四分の一にし対称条件欠落"
         },
-        "sha256": "a3ab4c1a85e97f6a00171cea15de765a8a64cd8dc0e85d592f202cf9ae464520"
+        "sha256": "2af1364c4b5894dcc3dacd4f8462a8b19fd2bc6a49f216873d53dd68d0960131"
       },
       "answerSummary": "正解は①です。上の残った接触域にはP/2です。",
       "preFigures": [
@@ -1423,6 +1576,9 @@
           "figureImage": "solid2_review_9_22_before",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1476,9 +1632,12 @@
           "3": "立体回転一つを落とす",
           "4": "平面回転を落とす"
         },
-        "sha256": "051751b648421808246eab2aedfcc89a4cd24bb05d4c96dfd6fac94995dc2529"
+        "sha256": "83c43aec14d748b39ff08e5808d1f778e4bb6be2fd4fa550e01c77656316589d"
       },
-      "answerSummary": "正解は①です。平面3、立体6です。"
+      "answerSummary": "正解は①です。平面3、立体6です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "bc-9-24",
@@ -1535,9 +1694,12 @@
           "2": "剛体モードと特異性は適切",
           "3": "つり合う外力の剛体仕事0は適切"
         },
-        "sha256": "5407e567c03a73c4b650343cb5471f1a0599d6d34ada3ddf4d213f32c46e06f9"
+        "sha256": "c6b8490f0c2ec485a9cb6caad81e83d9cbf55c3106503538ae85b7b0aa33fa7e"
       },
-      "answerSummary": "正解は④です。剛体運動で非零のひずみは増えません。"
+      "answerSummary": "正解は④です。剛体運動で非零のひずみは増えません。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "bc-9-25",
@@ -1574,7 +1736,7 @@
           "2": "誤答候補の取り違え：図2：左下点の水平・鉛直変位だけを固定する。",
           "3": "誤答候補の取り違え：図3：左下点と右下点の水平・鉛直変位を固定する。"
         },
-        "sha256": "51c45c0bc319ca382e8f913a9b3b1221150448613892672030064b86204510fe"
+        "sha256": "5f388a89395d4438c34de6b86b58a7143b7f1ab348c94011de7232340b46a64c"
       },
       "easyExplanation": [
         {
@@ -1597,7 +1759,10 @@
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
       ],
-      "figureImage": "s2Before9_25"
+      "figureImage": "s2Before9_25",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "bc-9-26",
@@ -1651,7 +1816,7 @@
           "2": "斜材の軸抵抗を見落とす",
           "4": "剛接合による曲げ抵抗を見落とす"
         },
-        "sha256": "6628059a8744048f0d4c42624ccbd57360c731b345c40bf26712db281b35497f"
+        "sha256": "3105a0fce5e4a80d5df11dd000fb22e86d32668edb595505a8928f3940b72f1a"
       },
       "answerSummary": "正解は③です。四隅ピンで斜材のない枠は、横へ傾けられます。",
       "preFigures": [
@@ -1659,6 +1824,9 @@
           "figureImage": "solid2_review_9_26_before",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1713,7 +1881,7 @@
           "2": "荷重点の本来の変形を止める",
           "4": "一辺全体を過剰拘束する"
         },
-        "sha256": "1dd2c99e650291eedeecf9e49fc17a407cd8fc19fc442a82066f716a5e0f0bb6"
+        "sha256": "52c704bad272ad5a9447b55ec3099d2fc1b0244626fe9ccadffce1b42f49f61a"
       },
       "answerSummary": "正解は③です。一つの水平変位の基準を追加します。",
       "preFigures": [
@@ -1721,6 +1889,9 @@
           "figureImage": "bc9MeshRbmFixSetup",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1778,9 +1949,12 @@
           "2": "非循環の拘束連鎖は処理可能",
           "4": "非循環の拘束連鎖は処理可能"
         },
-        "sha256": "0a34d656216a5b0d739f379528089cfde709aae7ee7e11db6e4ca4b32f091421"
+        "sha256": "50b17f83d48e9a4b85ea6285aa46a7cd850b6fd367080b7356e8ea5c88334e78"
       },
-      "answerSummary": "正解は③です。同じ自由度を二重に従属へ指定します。"
+      "answerSummary": "正解は③です。同じ自由度を二重に従属へ指定します。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "bc-9-29",
@@ -1838,7 +2012,7 @@
           "2": "水平の連続が不足",
           "4": "座標一致と自由度接続を混同"
         },
-        "sha256": "a3c15607c39657d9a4659036692cf9069f164c9b6da223fe436323829b9c5938"
+        "sha256": "3e379ed5410047e5831fe4fc8c75e51f5ed5e89c0b6b0829abe599729616c757"
       },
       "answerSummary": "正解は③です。中点の両成分を、両端の平均へ合わせます。",
       "preFigures": [
@@ -1846,6 +2020,9 @@
           "figureImage": "bc9MpcMidNodeSetup",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1900,7 +2077,7 @@
           "2": "接線だけを結び法線が不足",
           "3": "摩擦なしの水平滑りも止める"
         },
-        "sha256": "1e494c52322bf560a46a535a7e167d4c383c3561a0d7bce4f0b9787918c5eed5"
+        "sha256": "80ba8c0ffafd8f53e8a7f462365f016054e402a84f159b2d241bb7914f208a01"
       },
       "answerSummary": "正解は④です。鉛直変位を同じ未知量へ結び、水平は自由です。",
       "preFigures": [
@@ -1908,6 +2085,9 @@
           "figureImage": "bc9RigidSlideMPCSetup",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1963,7 +2143,7 @@
           "3": "接線移動も止める",
           "4": "傾斜の符号が逆"
         },
-        "sha256": "c1eb9b1286331bd443a4879c09a813bf30944b494d01b702f411686c9791472a"
+        "sha256": "11059e11efadc9495df34064da65004140ab91b8745b27dea82cb71dbff3df90"
       },
       "answerSummary": "正解は①です。v＝u/√3です。",
       "preFigures": [
@@ -1971,6 +2151,9 @@
           "figureImage": "bc9InclinedMPCSetup",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -2023,21 +2206,113 @@
       ],
       "editorialReview": {
         "officialPoint": "MPC・剛体結合・回転自由度：正解④：u＝uB−yθz、中央だけvA＝vBです",
-        "alignment": "公式第9章MPCの抽出問題・解説と照合し、現問題の角度・接続・支持条件で再確認。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "断面回転を伝えない",
           "2": "回転方向の符号が逆",
           "3": "辺全体の横断方向収縮を止める"
         },
-        "sha256": "e20113ee94168c25f87d69c29f912281350b92e7599b959cad0ef2b69104812c"
+        "sha256": "475e2804705a776cece9fd9c8d6facc3fdec8b7499c21c840ea863d28cd50ed6"
       },
-      "answerSummary": "正解は④です。u＝uB−yθz、中央だけvA＝vBです。",
+      "answerSummary": "水平変位の結合：$u=u_B-y\\theta_z$です。\n鉛直変位の結合：鉛直変位の結合は中央だけです。",
       "preFigures": [
         {
           "figureImage": "solid2_review_9_32_before",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
-      ]
+      ],
+      "officialQuestionItems": [
+        "u",
+        "v"
+      ],
+      "sharedQuestion": "平面応力要素の鉛直な接続辺CDに、水平なはりの端Bを接続する。辺の中央AとBは同じ位置の別自由度である。yはAから上向き、はりの変位はuB,vB、反時計回りの微小回転はθz。断面回転を伝え、横方向の収縮を過剰に止めないMPCを各方向について答えてください。",
+      "studyParts": [
+        {
+          "id": "bc-9-32-item-u",
+          "number": "9-32",
+          "officialRef": "問9-32",
+          "officialQuestionItem": "u",
+          "title": "水平変位の結合",
+          "topic": "MPC・剛体結合・回転自由度",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "辺CDの水平変位uをどう結ぶか。",
+          "choices": [
+            "$u=u_B-y\\theta_z$",
+            "$u=u_B+y\\theta_z$"
+          ],
+          "answer": 1,
+          "answerSummary": "$u=u_B-y\\theta_z$です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "はり端が右へ $u_B$ 動き、さらに反時計回りに $\\theta_z$ 回ると、上の点は回転だけで左へ $y\\theta_z$ 動きます。だから $u=u_B-y\\theta_z$ です。例えば $u_B=0.2\\,\\mathrm{mm}$、$\\theta_z=0.01$、上の点の $y=10\\,\\mathrm{mm}$ なら $u=0.2-0.1=0.1\\,\\mathrm{mm}$。下の $y=-10\\,\\mathrm{mm}$ なら $u=0.3\\,\\mathrm{mm}$ です。上下の変位差で、平面要素へ回転を伝えられます。"
+            }
+          ],
+          "explanation": "【基礎】$u=u_B-y\\theta_z$です。\n【考え方】正解は1です。はり端が右へ $u_B$ 動き、さらに反時計回りに $\\theta_z$ 回ると、上の点は回転だけで左へ $y\\theta_z$ 動きます。だから $u=u_B-y\\theta_z$ です。例えば $u_B=0.2\\,\\mathrm{mm}$、$\\theta_z=0.01$、上の点の $y=10\\,\\mathrm{mm}$ なら $u=0.2-0.1=0.1\\,\\mathrm{mm}$。下の $y=-10\\,\\mathrm{mm}$ なら $u=0.3\\,\\mathrm{mm}$ です。上下の変位差で、平面要素へ回転を伝えられます。\n【ポイント】$u=u_B-y\\theta_z$です。\n【引っかけ】2：「$u=u_B+y\\theta_z$」ではなく、$u=u_B-y\\theta_z$です。はり端が右へ $u_B$ 動き、さらに反時計回りに $\\theta_z$ 回ると、上の点は回転だけで左へ $y\\theta_z$ 動きます。だから $u=u_B-y\\theta_z$ です。例えば $u_B=0.2\\,\\mathrm{mm}$、$\\theta_z=0.01$、上の点の $y=10\\,\\mathrm{mm}$ なら $u=0.2-0.1=0.1\\,\\mathrm{mm}$。下の $y=-10\\,\\mathrm{mm}$ なら $u=0.3\\,\\mathrm{mm}$ です。上下の変位差で、平面要素へ回転を伝えられます。",
+          "relatedFormulas": [
+            "mpc"
+          ],
+          "editorialReview": {
+            "officialPoint": "MPC・剛体結合・回転自由度：正解④：u＝uB−yθz、中央だけvA＝vBです／個別の質問：水平変位の結合",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$u=u_B+y\\theta_z$」ではなく、$u=u_B-y\\theta_z$です。はり端が右へ $u_B$ 動き、さらに反時計回りに $\\theta_z$ 回ると、上の点は回転だけで左へ $y\\theta_z$ 動きます。だから $u=u_B-y\\theta_z$ です。例えば $u_B=0.2\\,\\mathrm{mm}$、$\\theta_z=0.01$、上の点の $y=10\\,\\mathrm{mm}$ なら $u=0.2-0.1=0.1\\,\\mathrm{mm}$。下の $y=-10\\,\\mathrm{mm}$ なら $u=0.3\\,\\mathrm{mm}$ です。上下の変位差で、平面要素へ回転を伝えられます。"
+            },
+            "sha256": "63a41ed750ce0778960c7bfddf832266a26213909af1e6b659fac9149c3db55e"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "bc-9-32-item-v",
+          "number": "9-32",
+          "officialRef": "問9-32",
+          "officialQuestionItem": "v",
+          "title": "鉛直変位の結合",
+          "topic": "MPC・剛体結合・回転自由度",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "鉛直変位vをどう結ぶか。",
+          "choices": [
+            "辺CD全点で $v=v_B$",
+            "中央Aだけ $v_A=v_B$"
+          ],
+          "answer": 2,
+          "answerSummary": "鉛直変位の結合は中央だけです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "辺の上下すべての鉛直変位まで同じにすると、ポアソン効果による断面の伸縮を不必要に止めます。中央の並進だけを共有し、回転は水平変位の差で伝えます。",
+              "figures": [
+                {
+                  "figureImage": "solid2_review_9_32_after",
+                  "caption": "平面要素とはりの接続の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】鉛直変位の結合は中央だけです。\n【考え方】正解は2です。辺の上下すべての鉛直変位まで同じにすると、ポアソン効果による断面の伸縮を不必要に止めます。中央の並進だけを共有し、回転は水平変位の差で伝えます。\n【ポイント】鉛直変位の結合は中央だけです。\n【引っかけ】1：「辺CD全点で $v=v_B$」ではなく、中央Aだけ $v_A=v_B$です。辺の上下すべての鉛直変位まで同じにすると、ポアソン効果による断面の伸縮を不必要に止めます。中央の並進だけを共有し、回転は水平変位の差で伝えます。",
+          "relatedFormulas": [
+            "mpc"
+          ],
+          "editorialReview": {
+            "officialPoint": "MPC・剛体結合・回転自由度：正解④：u＝uB−yθz、中央だけvA＝vBです／個別の質問：鉛直変位の結合",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「辺CD全点で $v=v_B$」ではなく、中央Aだけ $v_A=v_B$です。辺の上下すべての鉛直変位まで同じにすると、ポアソン効果による断面の伸縮を不必要に止めます。中央の並進だけを共有し、回転は水平変位の差で伝えます。"
+            },
+            "sha256": "dffd670cc2eeb19fb853dfc372bee4f453d43f792b22225fce8bb894263a7308"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "bc-9-33",
@@ -2075,7 +2350,7 @@
           "2": "軸方向基準を一切与えない",
           "3": "他端に未検証の熱膨張量を固定値として与える"
         },
-        "sha256": "1852e70867014603a401dadb685c3074d1f0b686abfeab989c1bc29f8818c086"
+        "sha256": "ca74dbbbb969ce7b6c0db961b40a0a459ef78fd75dadccf1ced924c3ee466d8e"
       },
       "easyExplanation": [
         {
@@ -2103,6 +2378,9 @@
           "figureImage": "s2Before9_33",
           "caption": "問題の条件図です。本文の座標・寸法・荷重・節点表示と対応させてください。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     }
   ]

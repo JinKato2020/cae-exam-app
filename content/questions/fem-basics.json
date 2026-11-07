@@ -8,7 +8,8 @@
     "count": 29,
     "officialCount": 29,
     "explanationMode": "guided",
-    "presentationStyle": "cae-standard-v1"
+    "presentationStyle": "cae-standard-v1",
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -79,9 +80,12 @@
           "3": "解析が材料定数の測定を代替するとする",
           "4": "粗くするほど精度が高いとする"
         },
-        "sha256": "3809d6de5c7e915804999f6d7e9d64e160b0f4f84163d98320a79071b5d9ab57"
+        "sha256": "ed471aea0834afb7899eb7fa810c3a04ee505063ddbc36859bb292a92c7de9f5"
       },
-      "answerSummary": "正解は①です。有限要素法は、複雑な物体の変形を有限個の節点変位で近似し、計算できる形にする方法です。"
+      "answerSummary": "正解は①です。有限要素法は、複雑な物体の変形を有限個の節点変位で近似し、計算できる形にする方法です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "title": "離散化と方程式の解法",
@@ -157,9 +161,12 @@
           "2": "エネルギーから式を作る方法を解法と混同する",
           "4": "差分による微分の置換を離散化から除外する"
         },
-        "sha256": "c26e643f4cd872036748bf258d6747c070fe69df3bcb47f9231fdf094a89c584"
+        "sha256": "386947b5f75438fde23eb74d5804ffb507843d92e9f05fd6b4ba65a7e41e91c3"
       },
-      "answerSummary": "正解は③です。ガウス・ザイデル法です。これは離散化してできた連立方程式を解く方法で、離散化そのものではありません。"
+      "answerSummary": "正解は③です。ガウス・ザイデル法です。これは離散化してできた連立方程式を解く方法で、離散化そのものではありません。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "fem-4-3",
@@ -234,9 +241,12 @@
           "3": "元の方程式が不要とする",
           "4": "残差の二乗をガラーキン法の定義とする"
         },
-        "sha256": "c03b5a2a0c85dc87074876918da0cf74c164396de437682eb66a2c4c21516d12"
+        "sha256": "ff882b5f9a18125ec18d14698908eca823aa9e183840225a6d74caaa1c2dc191"
       },
-      "answerSummary": "正解は①です。重み付き残差法では近似のずれを重み付き積分で0にします。重みに形状関数を用いるのがガラーキン法です。"
+      "answerSummary": "正解は①です。重み付き残差法では近似のずれを重み付き積分で0にします。重みに形状関数を用いるのがガラーキン法です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "fem-4-4",
@@ -304,21 +314,125 @@
       ],
       "editorialReview": {
         "officialPoint": "段付き棒のひずみエネルギー比較",
-        "alignment": "保存済み公式第4章の問題・解説と照合。4択の論点を保ち、結論・導出・具体例・図の対応を統合。重複と水増しを削り、必要な途中式・記号・単位・誤答理由を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "荷重一定と変位一定を区別せずIが大きいとする",
           "2": "荷重一定と変位一定を区別せずIIが大きいとする",
           "3": "荷重一定と変位一定での大小を逆にする"
         },
-        "sha256": "a0a91df4f0b7ed9129f16e3a526851cf5b7308a12dd238ef1a369848aa5bf07f"
+        "sha256": "5244573d33e4430fe3153b53d78b09bf795d22185fac02dc7188606ff8cb0914"
       },
-      "answerSummary": "正解は④です。同じ力なら柔らかい棒Iのエネルギーが大きく、同じ伸びなら硬い棒IIのエネルギーが大きくなります。",
+      "answerSummary": "同じ力を与える場合：同じ力なら棒Iです。\n同じ伸びを与える場合：同じ伸びなら棒IIです。",
       "preFigures": [
         {
           "figureImage": "solid2Ch4Review04Before",
           "caption": "問題の条件を確認する図です。形状・向き・境界条件を問題文と対応させて読みます。"
         }
-      ]
+      ],
+      "officialQuestionItems": [
+        "p",
+        "u"
+      ],
+      "sharedQuestion": "同じ材料 $E=200\\,\\mathrm{GPa}$、全長 $L=300\\,\\mathrm{mm}$ の棒Iと棒IIを考える。棒Iは、固定端側100mmの断面積が200mm²、残り200mmが100mm²の段付き棒。棒IIは全長で断面積200mm²の一様棒である。左端固定で軸方向に変形させる。両棒に同じ引張力 $P=10\\,\\mathrm{kN}$ を与えた場合、および同じ端部伸び $\\delta=0.12\\,\\mathrm{mm}$ を与えた場合の、ひずみエネルギーをそれぞれ比較してください。微小変形・線形弾性とし、途中に軸荷重はない。",
+      "studyParts": [
+        {
+          "id": "fem-4-4-item-p",
+          "number": "4-4",
+          "officialRef": "問4-4",
+          "officialQuestionItem": "p",
+          "title": "同じ力を与える場合",
+          "topic": "軸力棒のひずみエネルギー計算",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "同じ引張力で、エネルギーが大きいのはどちらか。",
+          "choices": [
+            "棒I",
+            "棒II"
+          ],
+          "answer": 1,
+          "answerSummary": "同じ力なら棒Iです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "線形弾性の仕事は力が0から増える三角形の面積なので$U=P\\delta/2=SP^2/2$です。$P=10000\\,\\mathrm N$では、Iの伸びは0.125 mm、IIは0.075 mm、エネルギーは625と375 N·mmです。\n\nIの方が大きくなります。"
+            },
+            {
+              "title": "まず伸びやすさを計算する",
+              "body": "各区間の伸びは$PL_i/(EA_i)$です。$\\delta=SP$と書くと、Iは$S_{\\rm I}=100/(200000\\times200)+200/(200000\\times100)=0.0000125\\,\\mathrm{mm/N}$です。IIは$S_{\\rm II}=300/(200000\\times200)=0.0000075\\,\\mathrm{mm/N}$です。"
+            },
+            {
+              "title": "二つのエネルギー式を一つから導く",
+              "body": "出発点は$U=P\\delta/2$です。力一定なら$\\delta=P/k$を代入して$U=P^2/(2k)$となり、kが小さいほど大きくなります。変位一定なら$P=k\\delta$を代入して$U=k\\delta^2/2$となり、kが大きいほど大きくなります。\n\n式を二つ丸暗記するより、何を同じにするかを決めてから、共通の三角形の面積へ戻ると整理できます。"
+            }
+          ],
+          "explanation": "【基礎】同じ力なら棒Iです。\n【考え方】正解は1です。線形弾性の仕事は力が0から増える三角形の面積なので$U=P\\delta/2=SP^2/2$です。$P=10000\\,\\mathrm N$では、Iの伸びは0.125 mm、IIは0.075 mm、エネルギーは625と375 N·mmです。 Iの方が大きくなります。\n【ポイント】各区間の伸びは$PL_i/(EA_i)$です。$\\delta=SP$と書くと、Iは$S_{\\rm I}=100/(200000\\times200)+200/(200000\\times100)=0.0000125\\,\\mathrm{mm/N}$です。IIは$S_{\\rm II}=300/(200000\\times200)=0.0000075\\,\\mathrm{mm/N}$です。\n【引っかけ】2：「棒II」ではなく、棒Iです。線形弾性の仕事は力が0から増える三角形の面積なので$U=P\\delta/2=SP^2/2$です。$P=10000\\,\\mathrm N$では、Iの伸びは0.125 mm、IIは0.075 mm、エネルギーは625と375 N·mmです。 Iの方が大きくなります。",
+          "relatedFormulas": [
+            "strain-energy"
+          ],
+          "editorialReview": {
+            "officialPoint": "段付き棒のひずみエネルギー比較／個別の質問：同じ力を与える場合",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「棒II」ではなく、棒Iです。線形弾性の仕事は力が0から増える三角形の面積なので$U=P\\delta/2=SP^2/2$です。$P=10000\\,\\mathrm N$では、Iの伸びは0.125 mm、IIは0.075 mm、エネルギーは625と375 N·mmです。\n\nIの方が大きくなります。"
+            },
+            "sha256": "ecc6972409d852095ffc401673ebdb442f995ac86234dc88cc0d6acd2e9a90ff"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-4-4-item-u",
+          "number": "4-4",
+          "officialRef": "問4-4",
+          "officialQuestionItem": "u",
+          "title": "同じ伸びを与える場合",
+          "topic": "軸力棒のひずみエネルギー計算",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "同じ端部伸びで、エネルギーが大きいのはどちらか。",
+          "choices": [
+            "棒I",
+            "棒II"
+          ],
+          "answer": 2,
+          "answerSummary": "同じ伸びなら棒IIです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$U=P\\delta/2$ に $P=\\delta/S$ を入れると $U=\\delta^2/(2S)$ です。Iは $0.12^2/(2\\times0.0000125)=576\\,\\mathrm{N\\,mm}$、IIは $0.12^2/(2\\times0.0000075)=960\\,\\mathrm{N\\,mm}$。硬いIIを同じ長さだけ伸ばす方が大きな仕事を要します。"
+            },
+            {
+              "title": "単位を最後にそろえる",
+              "body": "Nとmmで仕事を求めた場合、1000 N·mmが1 N·m、つまり1 Jです。625 N·mmは625 Jではなく0.625 Jです。二つの棒の大小だけを比べるなら同じ単位のままで十分ですが、Jへ直す場合は1000で割ります。\n\nエネルギーと伸びの単位を混ぜないようにします。",
+              "figures": [
+                {
+                  "figureImage": "solid2Ch4Review04After",
+                  "caption": "同じ力と同じ伸びでは大小が逆です。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】同じ伸びなら棒IIです。\n【考え方】正解は2です。$U=P\\delta/2$ に $P=\\delta/S$ を入れると $U=\\delta^2/(2S)$ です。Iは $0.12^2/(2\\times0.0000125)=576\\,\\mathrm{N\\,mm}$、IIは $0.12^2/(2\\times0.0000075)=960\\,\\mathrm{N\\,mm}$。硬いIIを同じ長さだけ伸ばす方が大きな仕事を要します。\n【ポイント】Nとmmで仕事を求めた場合、1000 N·mmが1 N·m、つまり1 Jです。625 N·mmは625 Jではなく0.625 Jです。二つの棒の大小だけを比べるなら同じ単位のままで十分ですが、Jへ直す場合は1000で割ります。 エネルギーと伸びの単位を混ぜないようにします。\n【引っかけ】1：「棒I」ではなく、棒IIです。$U=P\\delta/2$ に $P=\\delta/S$ を入れると $U=\\delta^2/(2S)$ です。Iは $0.12^2/(2\\times0.0000125)=576\\,\\mathrm{N\\,mm}$、IIは $0.12^2/(2\\times0.0000075)=960\\,\\mathrm{N\\,mm}$。硬いIIを同じ長さだけ伸ばす方が大きな仕事を要します。",
+          "relatedFormulas": [
+            "strain-energy"
+          ],
+          "editorialReview": {
+            "officialPoint": "段付き棒のひずみエネルギー比較／個別の質問：同じ伸びを与える場合",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「棒I」ではなく、棒IIです。$U=P\\delta/2$ に $P=\\delta/S$ を入れると $U=\\delta^2/(2S)$ です。Iは $0.12^2/(2\\times0.0000125)=576\\,\\mathrm{N\\,mm}$、IIは $0.12^2/(2\\times0.0000075)=960\\,\\mathrm{N\\,mm}$。硬いIIを同じ長さだけ伸ばす方が大きな仕事を要します。"
+            },
+            "sha256": "caf7332caa34b771caa9ee76f1c085bf7e502642420aca262c0f66bf2a3f37a5"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "fem-4-5",
@@ -391,9 +505,12 @@
           "2": "異なる方向の応力とひずみを掛ける",
           "4": "応力だけを二乗してエネルギーとする"
         },
-        "sha256": "d1277d2e7eb69416d9ecdb8f70bee0010f8b252abde2bbaa1a6d4e472d85ec14"
+        "sha256": "4ceae7758ebd6464ba8a53031eb4ec576aa46ed67801402e9613d5a4cecf22b7"
       },
-      "answerSummary": "正解は③です。$U=\\frac12\\int_V(\\sigma_x\\varepsilon_x+\\sigma_y\\varepsilon_y+\\tau_{xy}\\gamma_{xy})\\,dV$ です。工学せん断ひずみを使うときの係数に注意します。"
+      "answerSummary": "正解は③です。$U=\\frac12\\int_V(\\sigma_x\\varepsilon_x+\\sigma_y\\varepsilon_y+\\tau_{xy}\\gamma_{xy})\\,dV$ です。工学せん断ひずみを使うときの係数に注意します。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "fem-4-6",
@@ -457,15 +574,129 @@
       ],
       "editorialReview": {
         "officialPoint": "ひずみエネルギーと補ひずみエネルギー",
-        "alignment": "保存済み公式第4章の問題・解説と照合。4択の論点を保ち、結論・導出・具体例・図の対応を統合。重複と水増しを削り、必要な途中式・記号・単位・誤答理由を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "非線形でも常に二つの面積が等しいとする",
           "3": "補ひずみエネルギーを動的問題だけの量とする",
           "4": "面積比を常に2倍とする"
         },
-        "sha256": "6e492b6acd4eb4f4385bbf75ff985f10c87b52b58ac14d1f954f9c9881fbd4cc"
+        "sha256": "8dfcc98adbc51ecc4bc4addeab567832ea208d8ebe6fb59ac69edb474e31664a"
       },
-      "answerSummary": "正解は①です。線形弾性では、ひずみエネルギーと補ひずみエネルギーは等しくなります。非線形弾性では一般に異なります。"
+      "answerSummary": "線形弾性：原点からの直線が長方形を二つの同面積の三角形へ分けます。\n非線形弾性：二つの和は $\\sigma\\varepsilon$ ですが、曲線は長方形を半分には分けません。",
+      "officialQuestionItems": [
+        "linear",
+        "nonlinear"
+      ],
+      "sharedQuestion": "原点を通る単調な弾性の応力–ひずみ曲線で、$U_0=\\int_0^\\varepsilon\\sigma\\,d\\varepsilon$、$U_0^*=\\int_0^\\sigma\\varepsilon\\,d\\sigma$ を比べます。",
+      "studyParts": [
+        {
+          "id": "fem-4-6-item-linear",
+          "number": "4-6",
+          "officialRef": "問4-6",
+          "officialQuestionItem": "linear",
+          "title": "線形弾性",
+          "topic": "エネルギー原理の双対",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "線形弾性では二つのエネルギー密度は？",
+          "choices": [
+            "必ず一方が他方の2倍",
+            "等しい"
+          ],
+          "answer": 2,
+          "answerSummary": "原点からの直線が長方形を二つの同面積の三角形へ分けます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "原点からの直線が長方形を二つの同面積の三角形へ分けます。どちらも $\\sigma\\varepsilon/2$ です。"
+            },
+            {
+              "title": "同じ応力ひずみ図の別の面積",
+              "body": "横軸をひずみ、縦軸を応力に取ります。ひずみエネルギー密度$U_0=\\int_0^\\varepsilon\\sigma\\,d\\varepsilon$は、曲線の下側の面積です。積分は細長い帯の面積を全部足す操作です。"
+            },
+            {
+              "title": "積分する方向が違う二つの帯",
+              "body": "曲線の下を縦に細く切れば、帯の幅は$d\\varepsilon$、高さはσで、面積は$\\sigma d\\varepsilon$です。横に細く切れば高さが$d\\sigma$、幅がεで、面積は$\\varepsilon d\\sigma$です。\n\n両方とも応力×ひずみの単位ですが、足し合わせる帯が違います。補ひずみエネルギーの補は不足分という意味で理解でき、同じ長方形を二つの部分へ分けた対応になります。"
+            }
+          ],
+          "explanation": "【基礎】原点からの直線が長方形を二つの同面積の三角形へ分けます。\n【考え方】正解は2です。原点からの直線が長方形を二つの同面積の三角形へ分けます。どちらも $\\sigma\\varepsilon/2$ です。\n【ポイント】横軸をひずみ、縦軸を応力に取ります。ひずみエネルギー密度$U_0=\\int_0^\\varepsilon\\sigma\\,d\\varepsilon$は、曲線の下側の面積です。積分は細長い帯の面積を全部足す操作です。\n【引っかけ】1：「必ず一方が他方の2倍」ではなく、等しいです。原点からの直線が長方形を二つの同面積の三角形へ分けます。どちらも $\\sigma\\varepsilon/2$ です。",
+          "relatedFormulas": [
+            "energy-methods",
+            "strain-energy"
+          ],
+          "editorialReview": {
+            "officialPoint": "ひずみエネルギーと補ひずみエネルギー／個別の質問：線形弾性",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「必ず一方が他方の2倍」ではなく、等しいです。原点からの直線が長方形を二つの同面積の三角形へ分けます。どちらも $\\sigma\\varepsilon/2$ です。"
+            },
+            "sha256": "95ee37dad1f7d67f3a534feb4acd359eeb5292758b398e2ba881ef38d4d3355c"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-4-6-item-nonlinear",
+          "number": "4-6",
+          "officialRef": "問4-6",
+          "officialQuestionItem": "nonlinear",
+          "title": "非線形弾性",
+          "topic": "エネルギー原理の双対",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "非線形弾性では必ず等しくなりますか？",
+          "choices": [
+            "一般には等しくなりません",
+            "曲線の形にかかわらず必ず等しくなります"
+          ],
+          "answer": 1,
+          "answerSummary": "二つの和は $\\sigma\\varepsilon$ ですが、曲線は長方形を半分には分けません。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "二つの和は $\\sigma\\varepsilon$ ですが、曲線は長方形を半分には分けません。例えば $\\sigma=c\\varepsilon^2$ なら $U_0=c\\varepsilon^3/3$、$U_0^*=2c\\varepsilon^3/3$ となります。"
+            },
+            {
+              "title": "補ひずみエネルギーは残りの面積",
+              "body": "$U_0^*=\\int_0^\\sigma\\varepsilon\\,d\\sigma$は、応力方向に帯を足した面積です。単調な弾性曲線なら、二つの面積を足すと応力とひずみを辺とする長方形になり、$U_0+U_0^*=\\sigma\\varepsilon$です。"
+            },
+            {
+              "title": "直線なら半分ずつ、曲線なら一般には違う",
+              "body": "線形弾性では原点からの直線が長方形を二等分し、どちらも$\\sigma\\varepsilon/2$です。非線形の曲線では普通は二等分になりません。補ひずみエネルギーは、動的問題だけの量でも、常に2倍の量でもありません。",
+              "figures": [
+                {
+                  "figureImage": "solid2Ch4Review06After",
+                  "caption": "直線のときだけ二つの面積が半分ずつです。"
+                }
+              ]
+            },
+            {
+              "title": "非線形の例で必ず等しいを否定する",
+              "body": "例えば$\\sigma=a\\varepsilon^3$という弾性曲線なら、$U_0=\\int_0^\\varepsilon ae^3de=a\\varepsilon^4/4=\\sigma\\varepsilon/4$です。残りは$U_0^*=3\\sigma\\varepsilon/4$で、二つは等しくありません。\n\nこの例では補の方が3倍です。曲線の形を変えれば比も変わるので、必ず同じ、必ず2倍という候補はどちらも成立しません。"
+            }
+          ],
+          "explanation": "【基礎】二つの和は $\\sigma\\varepsilon$ ですが、曲線は長方形を半分には分けません。\n【考え方】正解は1です。二つの和は $\\sigma\\varepsilon$ ですが、曲線は長方形を半分には分けません。例えば $\\sigma=c\\varepsilon^2$ なら $U_0=c\\varepsilon^3/3$、$U_0^*=2c\\varepsilon^3/3$ となります。\n【ポイント】$U_0^*=\\int_0^\\sigma\\varepsilon\\,d\\sigma$は、応力方向に帯を足した面積です。単調な弾性曲線なら、二つの面積を足すと応力とひずみを辺とする長方形になり、$U_0+U_0^*=\\sigma\\varepsilon$です。\n【引っかけ】2：「曲線の形にかかわらず必ず等しくなります」ではなく、一般には等しくなりませんです。二つの和は $\\sigma\\varepsilon$ ですが、曲線は長方形を半分には分けません。例えば $\\sigma=c\\varepsilon^2$ なら $U_0=c\\varepsilon^3/3$、$U_0^*=2c\\varepsilon^3/3$ となります。",
+          "relatedFormulas": [
+            "energy-methods",
+            "strain-energy"
+          ],
+          "editorialReview": {
+            "officialPoint": "ひずみエネルギーと補ひずみエネルギー／個別の質問：非線形弾性",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「曲線の形にかかわらず必ず等しくなります」ではなく、一般には等しくなりませんです。二つの和は $\\sigma\\varepsilon$ ですが、曲線は長方形を半分には分けません。例えば $\\sigma=c\\varepsilon^2$ なら $U_0=c\\varepsilon^3/3$、$U_0^*=2c\\varepsilon^3/3$ となります。"
+            },
+            "sha256": "9c1af9327384d5d39da4234ca61a95647121adf0629d44af5e4a01d6f5cbd281"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "fem-4-7",
@@ -540,9 +771,12 @@
           "2": "拘束違反の変位まで候補に入れる",
           "4": "荷重点変位の最大化を平衡条件とする"
         },
-        "sha256": "b89355ca6512c031c89483aacdf4aa72c85b6991b5c8d81b9f89b918ea36589d"
+        "sha256": "4b3e1843b583788ce4de2e291c985665d08e6996878ab9e22f824061edc0f6ce"
       },
-      "answerSummary": "正解は③です。保存力のもとで安定な弾性の釣合いを考えると、変位条件を満たす候補の中で全ポテンシャルエネルギーが最小になります。"
+      "answerSummary": "正解は③です。保存力のもとで安定な弾性の釣合いを考えると、変位条件を満たす候補の中で全ポテンシャルエネルギーが最小になります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "fem-4-8",
@@ -602,15 +836,195 @@
       ],
       "editorialReview": {
         "officialPoint": "変位法・応力法と仮想仕事",
-        "alignment": "保存済み公式第4章の問題・解説と照合。4択の論点を保ち、結論・導出・具体例・図の対応を統合。重複と水増しを削り、必要な途中式・記号・単位・誤答理由を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "変位法の未知量と原理を応力法へ交換する",
           "2": "応力法の未知量と原理を変位法へ交換する",
           "4": "材料定数を主未知量とし変位ひずみ関係を省く"
         },
-        "sha256": "ce936c7b4ce03dcf808025405dd29b2470090d70f241af0f3db29e3c5c6925b4"
+        "sha256": "55088ef23f34294f720b154eae746e1a23462425ad23044b1a53697861c0de7f"
       },
-      "answerSummary": "正解は③です。変位法は変位を未知量として仮想仕事を使い、応力法は力を未知量として変形の適合を満たします。"
+      "answerSummary": "変位法の未知量：変位法では節点変位を主な未知量とします。\n変位法の原理：変位法には仮想仕事の原理が対応します。\n応力法の未知量：応力法は応力や部材力を主な未知量とします。\n応力法の原理：応力法には補仮想仕事の原理が対応します。",
+      "officialQuestionItems": [
+        "du",
+        "dp",
+        "su",
+        "sp"
+      ],
+      "sharedQuestion": "変位法と応力法の、主な未知量と基礎となる原理をそれぞれ答えてください。",
+      "studyParts": [
+        {
+          "id": "fem-4-8-item-du",
+          "number": "4-8",
+          "officialRef": "問4-8",
+          "officialQuestionItem": "du",
+          "title": "変位法の未知量",
+          "topic": "変位法・応力法",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "変位法の主な未知量はどれか。",
+          "choices": [
+            "要素の応力",
+            "節点変位"
+          ],
+          "answer": 2,
+          "answerSummary": "変位法では節点変位を主な未知量とします。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "変位法は、節点がどれだけ動くかを最初に求める方法です。変位からひずみ、材料の式から応力へ進みます。応力法は、応力や部材力などを主な未知量にして組み立てます。"
+            },
+            {
+              "title": "二本で支える棒の同じ問題を二通りに考える",
+              "body": "水平を保つ板を二本の軸ばねで支え、剛性を100、200 N/mm、下向き荷重を300 Nとします。板の変位δを未知量にすれば、二つの力は$100\\delta,200\\delta$です。和を300へ等しくして$\\delta=1$mm、力は100、200 Nです。\n\nこれは変位を最初に決める考え方で、変位から各部の力へ進んでいます。"
+            }
+          ],
+          "explanation": "【基礎】変位法では節点変位を主な未知量とします。\n【考え方】正解は2です。変位法は、節点がどれだけ動くかを最初に求める方法です。変位からひずみ、材料の式から応力へ進みます。応力法は、応力や部材力などを主な未知量にして組み立てます。\n【ポイント】水平を保つ板を二本の軸ばねで支え、剛性を100、200 N/mm、下向き荷重を300 Nとします。板の変位δを未知量にすれば、二つの力は$100\\delta,200\\delta$です。和を300へ等しくして$\\delta=1$mm、力は100、200 Nです。 これは変位を最初に決める考え方で、変位から各部の力へ進んでいます。\n【引っかけ】1：「要素の応力」ではなく、節点変位です。変位法は、節点がどれだけ動くかを最初に求める方法です。変位からひずみ、材料の式から応力へ進みます。応力法は、応力や部材力などを主な未知量にして組み立てます。",
+          "relatedFormulas": [
+            "energy-methods",
+            "virtual-work"
+          ],
+          "editorialReview": {
+            "officialPoint": "変位法・応力法と仮想仕事／個別の質問：変位法の未知量",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「要素の応力」ではなく、節点変位です。変位法は、節点がどれだけ動くかを最初に求める方法です。変位からひずみ、材料の式から応力へ進みます。応力法は、応力や部材力などを主な未知量にして組み立てます。"
+            },
+            "sha256": "b0fd7c836a7afc8d0073876af56baede4e4b3b8117bd8de7f8df21cacf5ebb12"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-4-8-item-dp",
+          "number": "4-8",
+          "officialRef": "問4-8",
+          "officialQuestionItem": "dp",
+          "title": "変位法の原理",
+          "topic": "変位法・応力法",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "変位法に対応する原理はどれか。",
+          "choices": [
+            "仮想仕事の原理",
+            "補仮想仕事の原理"
+          ],
+          "answer": 1,
+          "answerSummary": "変位法には仮想仕事の原理が対応します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "拘束に反しない仮想変位を与え、内部と外部の仮想仕事が等しくなる条件から釣合い式を作ります。"
+            }
+          ],
+          "explanation": "【基礎】変位法には仮想仕事の原理が対応します。\n【考え方】正解は1です。拘束に反しない仮想変位を与え、内部と外部の仮想仕事が等しくなる条件から釣合い式を作ります。\n【ポイント】変位法には仮想仕事の原理が対応します。\n【引っかけ】2：「補仮想仕事の原理」ではなく、仮想仕事の原理です。拘束に反しない仮想変位を与え、内部と外部の仮想仕事が等しくなる条件から釣合い式を作ります。",
+          "relatedFormulas": [
+            "energy-methods",
+            "virtual-work"
+          ],
+          "editorialReview": {
+            "officialPoint": "変位法・応力法と仮想仕事／個別の質問：変位法の原理",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「補仮想仕事の原理」ではなく、仮想仕事の原理です。拘束に反しない仮想変位を与え、内部と外部の仮想仕事が等しくなる条件から釣合い式を作ります。"
+            },
+            "sha256": "a606565665b6f6f09130792033b3e7861e18d061ec6efe744a64f52503dff0a8"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-4-8-item-su",
+          "number": "4-8",
+          "officialRef": "問4-8",
+          "officialQuestionItem": "su",
+          "title": "応力法の未知量",
+          "topic": "変位法・応力法",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "応力法の主な未知量はどれか。",
+          "choices": [
+            "応力・部材力",
+            "材料定数"
+          ],
+          "answer": 1,
+          "answerSummary": "応力法は応力や部材力を主な未知量とします。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "同じ問題で最初に$N_1,N_2$を未知数とすれば、釣合いは$N_1+N_2=300$です。これだけでは分担が決まりません。二本の伸びが共通という条件$N_1/100=N_2/200$を加えて、$N_2=2N_1$、$N_1=100,N_2=200$Nとなります。\n\n応力法が変位やひずみを一切使わない方法ではないことが分かります。未知量を何にするかと、満たすべき物理条件の有無は別です。"
+            }
+          ],
+          "explanation": "【基礎】応力法は応力や部材力を主な未知量とします。\n【考え方】正解は1です。同じ問題で最初に$N_1,N_2$を未知数とすれば、釣合いは$N_1+N_2=300$です。これだけでは分担が決まりません。二本の伸びが共通という条件$N_1/100=N_2/200$を加えて、$N_2=2N_1$、$N_1=100,N_2=200$Nとなります。 応力法が変位やひずみを一切使わない方法ではないことが分かります。未知量を何にするかと、満たすべき物理条件の有無は別です。\n【ポイント】応力法は応力や部材力を主な未知量とします。\n【引っかけ】2：「材料定数」ではなく、応力・部材力です。同じ問題で最初に$N_1,N_2$を未知数とすれば、釣合いは$N_1+N_2=300$です。これだけでは分担が決まりません。二本の伸びが共通という条件$N_1/100=N_2/200$を加えて、$N_2=2N_1$、$N_1=100,N_2=200$Nとなります。 応力法が変位やひずみを一切使わない方法ではないことが分かります。未知量を何にするかと、満たすべき物理条件の有無は別です。",
+          "relatedFormulas": [
+            "energy-methods",
+            "virtual-work"
+          ],
+          "editorialReview": {
+            "officialPoint": "変位法・応力法と仮想仕事／個別の質問：応力法の未知量",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「材料定数」ではなく、応力・部材力です。同じ問題で最初に$N_1,N_2$を未知数とすれば、釣合いは$N_1+N_2=300$です。これだけでは分担が決まりません。二本の伸びが共通という条件$N_1/100=N_2/200$を加えて、$N_2=2N_1$、$N_1=100,N_2=200$Nとなります。\n\n応力法が変位やひずみを一切使わない方法ではないことが分かります。未知量を何にするかと、満たすべき物理条件の有無は別です。"
+            },
+            "sha256": "6142c99979e718b6248b7dd3b2b37eeac0652cbc56e80d39e68ab5cc39684f61"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-4-8-item-sp",
+          "number": "4-8",
+          "officialRef": "問4-8",
+          "officialQuestionItem": "sp",
+          "title": "応力法の原理",
+          "topic": "変位法・応力法",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "応力法に対応する原理はどれか。",
+          "choices": [
+            "仮想仕事の原理",
+            "補仮想仕事の原理"
+          ],
+          "answer": 2,
+          "answerSummary": "応力法には補仮想仕事の原理が対応します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "応力・力の仮想的な変化を用い、変形の適合条件を満たすよう定式化します。変位やひずみの関係を使わなくなるわけではありません。",
+              "figures": [
+                {
+                  "figureImage": "solid2Ch4Review08After",
+                  "caption": "変位を未知にする場合と力を未知にする場合を比べます。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】応力法には補仮想仕事の原理が対応します。\n【考え方】正解は2です。応力・力の仮想的な変化を用い、変形の適合条件を満たすよう定式化します。変位やひずみの関係を使わなくなるわけではありません。\n【ポイント】応力法には補仮想仕事の原理が対応します。\n【引っかけ】1：「仮想仕事の原理」ではなく、補仮想仕事の原理です。応力・力の仮想的な変化を用い、変形の適合条件を満たすよう定式化します。変位やひずみの関係を使わなくなるわけではありません。",
+          "relatedFormulas": [
+            "energy-methods",
+            "virtual-work"
+          ],
+          "editorialReview": {
+            "officialPoint": "変位法・応力法と仮想仕事／個別の質問：応力法の原理",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「仮想仕事の原理」ではなく、補仮想仕事の原理です。応力・力の仮想的な変化を用い、変形の適合条件を満たすよう定式化します。変位やひずみの関係を使わなくなるわけではありません。"
+            },
+            "sha256": "abd07ab7d6f273b1cb23fc822ccc25051eb2c960bead43b0b016d410e3169821"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "fem-4-9",
@@ -684,7 +1098,7 @@
           "2": "鉛直成分への分解を誤る",
           "3": "部材力の比を過大に扱う"
         },
-        "sha256": "0bd49b1760c945eb4a37a96ae99c48fc8c1d0182dd7281550dbeb930f9d4922f"
+        "sha256": "580d07db1e7c6007f2ef78cabd2d6e9969ca043866072cfa16a48994c95d76ca"
       },
       "answerSummary": "正解は④です。部材CBの軸力は $10\\sqrt3\\approx17.3\\,\\mathrm{kN}$ です。任意の仮想変位に対する仕事から、水平・鉛直の釣合いを得ます。",
       "preFigures": [
@@ -692,6 +1106,9 @@
           "figureImage": "solid2Ch4Review09Before",
           "caption": "問題の条件を確認する図です。形状・向き・境界条件を問題文と対応させて読みます。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -765,9 +1182,12 @@
           "3": "非線形材料へ仮想仕事を使えないとする",
           "4": "外部仮想仕事が単独で必ず0とする"
         },
-        "sha256": "aea981f26b954c9eb1cbb9e2f2a14380f7b28dd436834619e5709f33177b1a58"
+        "sha256": "86f89e8f4b66c4f259eff97640442e729296120446bd6892c9c287e1c461c289"
       },
-      "answerSummary": "正解は①です。許されるどの仮想変位に対しても、内部仮想仕事と外部仮想仕事が等しくなる、という原理です。"
+      "answerSummary": "正解は①です。許されるどの仮想変位に対しても、内部仮想仕事と外部仮想仕事が等しくなる、という原理です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "fem-4-11",
@@ -841,9 +1261,12 @@
           "2": "平衡の積分形を変位ひずみ関係だけとする",
           "4": "弱形式を変位拘束だけの罰則とする"
         },
-        "sha256": "3026dc23919908219d5aa2dec1193b03f1f38e31c21fa4b60648d71dfaaf5f45"
+        "sha256": "cbe64fea1f6fdd7803426626d55553c92072bdda7f21f4a28a7d6047c1f625b1"
       },
-      "answerSummary": "正解は③です。仮想仕事の原理は、力の釣合いと表面力の条件を積分で表します。材料の応力とひずみの関係は別に必要です。"
+      "answerSummary": "正解は③です。仮想仕事の原理は、力の釣合いと表面力の条件を積分で表します。材料の応力とひずみの関係は別に必要です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "fem-4-12",
@@ -904,9 +1327,12 @@
           "2": "内部仮想仕事を外部表面仕事とする",
           "4": "慣性項を指定表面力とする"
         },
-        "sha256": "ca976c25493c4f4f7a24205dfbb8d3b41c801e662a81d5e6a9ccd738fc387abb"
+        "sha256": "ad5a9afbb7490edc40300021d3176f07ebb6534bafa53207b6fb8704d2cc9a96"
       },
-      "answerSummary": "正解は③です。表面力の仮想仕事は、表面力と仮想変位の積を、力が作用する表面全体で足した面積積分です。"
+      "answerSummary": "正解は③です。表面力の仮想仕事は、表面力と仮想変位の積を、力が作用する表面全体で足した面積積分です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "fem-4-13",
@@ -990,15 +1416,145 @@
       ],
       "editorialReview": {
         "officialPoint": "初期応力と初期ひずみ",
-        "alignment": "保存済み公式第4章の問題・解説と照合。4択の論点を保ち、結論・導出・具体例・図の対応を統合。重複と水増しを削り、必要な途中式・記号・単位・誤答理由を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "初期応力を右辺へ移す負号を落とす",
           "2": "初期ひずみを応力へ直す材料行列を落とす",
           "4": "既に応力である初期応力へ材料行列を余分に掛ける"
         },
-        "sha256": "6cf96446c384f14c31db754f780a99e136aafe95ea61f850c49c6a19a853409f"
+        "sha256": "cc2753c83789df30de3f2151aa7b5dabd5478f30e667dcc8d272dc7be41d9b33"
       },
-      "answerSummary": "正解は③です。右辺では初期応力項にマイナス、初期ひずみ項にプラスが付きます。初期ひずみはDで応力に換算してからBの転置を掛けます。"
+      "answerSummary": "初期応力の荷重項：初期応力項は内部力にプラスで入るので、右辺へ移すとマイナスになります。\n初期ひずみの荷重項：初期ひずみをDで応力に直し、Bの転置で節点力へ換算します。",
+      "sharedQuestion": "$\\boldsymbol\\sigma=\\mathbf D(\\mathbf B\\mathbf d-\\boldsymbol\\varepsilon_0)+\\boldsymbol\\sigma_0$ とする。初期項を $\\mathbf K\\mathbf d=\\mathbf f+\\mathbf f_\\varepsilon+\\mathbf f_\\sigma$ の右辺へ移す。右辺の初期応力項と初期ひずみ項を、それぞれ選んでください。",
+      "studyParts": [
+        {
+          "id": "fem-4-13-item-stress",
+          "number": "4-13",
+          "officialRef": "問4-13",
+          "officialQuestionItem": "stress",
+          "title": "初期応力の荷重項",
+          "topic": "初期応力・初期ひずみと等価節点力(仮想仕事の原理)",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$\\mathbf f_\\sigma$はどちらですか。",
+          "choices": [
+            "$-\\int_V\\mathbf B^T\\boldsymbol\\sigma_0\\,dV$",
+            "$+\\int_V\\mathbf B^T\\boldsymbol\\sigma_0\\,dV$"
+          ],
+          "answer": 1,
+          "answerSummary": "初期応力項は内部力にプラスで入るので、右辺へ移すとマイナスになります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "温めた棒が自由に伸びれば応力は0ですが、伸びを妨げると圧縮応力が生じます。全ひずみ$\\boldsymbol\\varepsilon$から、熱膨張などの自然な初期ひずみ$\\boldsymbol\\varepsilon_0$を引いた分が応力を作ります。\n\nさらに最初から与える応力$\\boldsymbol\\sigma_0$を加えたのが設問の構成式です。"
+            },
+            {
+              "title": "BとDは何を換算する？",
+              "body": "$\\mathbf d$は節点の変位を並べたものです。$\\mathbf B$は形状関数を微分して作り、$\\boldsymbol\\varepsilon=\\mathbf B\\mathbf d$で節点変位から伸び縮みの割合へ換算します。\n\n$\\mathbf D$は材料の応力ひずみ関係で、そのひずみを応力へ換算します。一本の棒なら$\\mathbf D$に当たる値はヤング率$E$です。 長さLの棒の両端変位を$u_1,u_2$とすれば、$\\varepsilon=(u_2-u_1)/L$なので$\\mathbf B=[-1/L,\\ 1/L]$です。\n\n$L=100$mm、$u_1=0,u_2=0.06$mmなら$\\varepsilon=0.0006$になります。ひずみは動いた長さそのものではなく、両端の移動の差を元の長さで割った割合です。"
+            },
+            {
+              "title": "Bの転置が力へ戻す理由",
+              "body": "仮想ひずみも$\\delta\\boldsymbol\\varepsilon=\\mathbf B\\,\\delta\\mathbf d$です。内部の仕事は$(\\delta\\boldsymbol\\varepsilon)^T\\boldsymbol\\sigma=(\\delta\\mathbf d)^T\\mathbf B^T\\boldsymbol\\sigma$と書けます。\n\n$\\mathbf B^T$は行と列を交換した転置で、同じ仕事になるよう応力を節点側の力へ換算する役目です。逆行列とは違います。"
+            },
+            {
+              "title": "転置と積分を一つずつ読む",
+              "body": "行列$\\mathbf B=[-1/L,\\ 1/L]$の行と列を入れ替えると$\\mathbf B^T=[-1/L,\\ 1/L]^T$です。上付きTは転置で、逆行列でも二乗でもありません。一定の応力を持つ棒では、体積ALを掛けて$\\int_V\\mathbf B^T\\sigma\\,dV=[-A\\sigma,\\ A\\sigma]^T$です。\n\n断面積10 mm²、応力20 MPaなら節点への内力は$[-200,200]^T$Nです。積分は小区間の寄与を足す操作で、一様な場合はこの普通の掛け算になります。"
+            },
+            {
+              "title": "同じ仕事が節点側でも再現される",
+              "body": "棒の内部仮想仕事は$\\sigma\\,\\delta\\varepsilon\\,AL$です。$\\delta\\varepsilon=(\\delta u_2-\\delta u_1)/L$を入れると、$-A\\sigma\\,\\delta u_1+A\\sigma\\,\\delta u_2$となります。\n\nこれは節点力$-A\\sigma,+A\\sigma$がする仕事と同じです。転置を掛ける操作は、内部の応力を勝手に外力へ置き換えるのではなく、節点側でも同じ仕事となるように換算しています。"
+            },
+            {
+              "title": "小さな体積の寄与を全部足す",
+              "body": "内部節点力は$\\int_V\\mathbf B^T\\boldsymbol\\sigma\\,dV$です。$dV$ごとの寄与を足す積分へ、$\\boldsymbol\\sigma=\\mathbf D\\mathbf B\\mathbf d-\\mathbf D\\boldsymbol\\varepsilon_0+\\boldsymbol\\sigma_0$を入れます。\n\nすると$\\mathbf K\\mathbf d-\\int_V\\mathbf B^T\\mathbf D\\boldsymbol\\varepsilon_0\\,dV+\\int_V\\mathbf B^T\\boldsymbol\\sigma_0\\,dV=\\mathbf f$です。ここで$\\mathbf K=\\int_V\\mathbf B^T\\mathbf D\\mathbf B\\,dV$です。"
+            },
+            {
+              "title": "右辺へ移すと符号が逆になる",
+              "body": "$\\mathbf K\\mathbf d=\\mathbf f+\\int_V\\mathbf B^T\\mathbf D\\boldsymbol\\varepsilon_0\\,dV-\\int_V\\mathbf B^T\\boldsymbol\\sigma_0\\,dV$です。初期ひずみ項は正、初期応力項は負になります。初期ひずみはひずみなので$\\mathbf D$で応力へ直しますが、初期応力には既に応力の単位があるため$\\mathbf D$をさらに掛けません。",
+              "figures": [
+                {
+                  "figureImage": "solid2Ch4Review13After",
+                  "caption": "Dで応力に換算し、Bの転置で節点力へ戻します。"
+                }
+              ]
+            },
+            {
+              "title": "初期応力を右辺へ移す場合の数値例",
+              "body": "同じ面積10 mm²で$\\sigma_0=20$MPaなら、初期応力の内部力への寄与は$[-200,200]^T$Nです。右辺へ移せば$\\mathbf f_\\sigma=[200,-200]^T$Nとなります。\n\n応力が圧縮へ変わったのではなく、方程式の左辺から右辺へ移したため力の項の符号が変わっています。初期ひずみにはDで応力へ直す操作が必要ですが、既に応力である$\\sigma_0$へDをもう一度掛けると単位も合わなくなります。"
+            }
+          ],
+          "explanation": "【基礎】初期応力項は内部力にプラスで入るので、右辺へ移すとマイナスになります。\n【考え方】正解は1です。温めた棒が自由に伸びれば応力は0ですが、伸びを妨げると圧縮応力が生じます。全ひずみ$\\boldsymbol\\varepsilon$から、熱膨張などの自然な初期ひずみ$\\boldsymbol\\varepsilon_0$を引いた分が応力を作ります。 さらに最初から与える応力$\\boldsymbol\\sigma_0$を加えたのが設問の構成式です。\n【ポイント】$\\mathbf d$は節点の変位を並べたものです。$\\mathbf B$は形状関数を微分して作り、$\\boldsymbol\\varepsilon=\\mathbf B\\mathbf d$で節点変位から伸び縮みの割合へ換算します。 $\\mathbf D$は材料の応力ひずみ関係で、そのひずみを応力へ換算します。一本の棒なら$\\mathbf D$に当たる値はヤング率$E$です。 長さLの棒の両端変位を$u_1,u_2$とすれば、$\\varepsilon=(u_2-u_1)/L$なので$\\mathbf B=[-1/L,\\ 1/L]$です。 $L=100$mm、$u_1=0,u_2=0.06$mmなら$\\varepsilon=0.0006$になります。ひずみは動いた長さそのものではなく、両端の移動の差を元の長さで割った割合です。\n【引っかけ】2：「$+\\int_V\\mathbf B^T\\boldsymbol\\sigma_0\\,dV$」ではなく、$-\\int_V\\mathbf B^T\\boldsymbol\\sigma_0\\,dV$です。温めた棒が自由に伸びれば応力は0ですが、伸びを妨げると圧縮応力が生じます。全ひずみ$\\boldsymbol\\varepsilon$から、熱膨張などの自然な初期ひずみ$\\boldsymbol\\varepsilon_0$を引いた分が応力を作ります。 さらに最初から与える応力$\\boldsymbol\\sigma_0$を加えたのが設問の構成式です。",
+          "relatedFormulas": [
+            "virtual-work",
+            "thermal-force"
+          ],
+          "editorialReview": {
+            "officialPoint": "初期応力と初期ひずみ／個別の質問：初期応力の荷重項",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$+\\int_V\\mathbf B^T\\boldsymbol\\sigma_0\\,dV$」ではなく、$-\\int_V\\mathbf B^T\\boldsymbol\\sigma_0\\,dV$です。温めた棒が自由に伸びれば応力は0ですが、伸びを妨げると圧縮応力が生じます。全ひずみ$\\boldsymbol\\varepsilon$から、熱膨張などの自然な初期ひずみ$\\boldsymbol\\varepsilon_0$を引いた分が応力を作ります。\n\nさらに最初から与える応力$\\boldsymbol\\sigma_0$を加えたのが設問の構成式です。"
+            },
+            "sha256": "dddad37ce003669186a88083b1afb4c7462898e973a8656f7ca2daf3d6a3763b"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-4-13-item-strain",
+          "number": "4-13",
+          "officialRef": "問4-13",
+          "officialQuestionItem": "strain",
+          "title": "初期ひずみの荷重項",
+          "topic": "初期応力・初期ひずみと等価節点力(仮想仕事の原理)",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$\\mathbf f_\\varepsilon$はどちらですか。",
+          "choices": [
+            "$\\int_V\\mathbf B^T\\boldsymbol\\varepsilon_0\\,dV$",
+            "$\\int_V\\mathbf B^T\\mathbf D\\boldsymbol\\varepsilon_0\\,dV$"
+          ],
+          "answer": 2,
+          "answerSummary": "初期ひずみをDで応力に直し、Bの転置で節点力へ換算します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "構成式を展開すると初期ひずみの項は$-\\mathbf D\\boldsymbol\\varepsilon_0$です。内部力では$-\\int_V\\mathbf B^T\\mathbf D\\boldsymbol\\varepsilon_0\\,dV$なので、右辺へ移すとプラスになります。初期ひずみはまだ応力ではないため、材料行列Dを掛ける段階を省けません。"
+            },
+            {
+              "title": "自由熱伸びと固定した棒を数値で比べる",
+              "body": "$E=200000$MPa、初期ひずみ$\\varepsilon_0=0.0006$、初期応力0なら、自由に伸びて全ひずみが0.0006となる棒の応力は$E(0.0006-0.0006)=0$です。\n\n両端固定なら全ひずみ0なので$E(0-0.0006)=-120$MPaの圧縮です。L=100 mmなら自由な伸びは0.06 mm、断面積10 mm²なら等価節点力は$EA\\varepsilon_0[-1,1]^T=[-1200,1200]^T$Nです。\n\n伸びたい作用を右辺の力の形で表しており、実際に外から1200 Nを加えたわけではありません。"
+            },
+            {
+              "title": "体積積分の後に力の単位になる",
+              "body": "棒でBの単位は1/mm、応力はN/mm²です。これに小体積dVのmm³を掛けると$(1/\\mathrm{mm})(\\mathrm{N/mm^2})\\mathrm{mm^3}=\\mathrm N$となり、節点力の単位になります。\n\n初期ひずみは単位のない割合なので、DのN/mm²を掛けてから同じ換算を行います。単位体積の寄与を出した段階と、全体で足した後の力を区別すると、Dの不足・余分な掛け算を見つけられます。"
+            }
+          ],
+          "explanation": "【基礎】初期ひずみをDで応力に直し、Bの転置で節点力へ換算します。\n【考え方】正解は2です。構成式を展開すると初期ひずみの項は$-\\mathbf D\\boldsymbol\\varepsilon_0$です。内部力では$-\\int_V\\mathbf B^T\\mathbf D\\boldsymbol\\varepsilon_0\\,dV$なので、右辺へ移すとプラスになります。初期ひずみはまだ応力ではないため、材料行列Dを掛ける段階を省けません。\n【ポイント】$E=200000$MPa、初期ひずみ$\\varepsilon_0=0.0006$、初期応力0なら、自由に伸びて全ひずみが0.0006となる棒の応力は$E(0.0006-0.0006)=0$です。 両端固定なら全ひずみ0なので$E(0-0.0006)=-120$MPaの圧縮です。L=100 mmなら自由な伸びは0.06 mm、断面積10 mm²なら等価節点力は$EA\\varepsilon_0[-1,1]^T=[-1200,1200]^T$Nです。 伸びたい作用を右辺の力の形で表しており、実際に外から1200 Nを加えたわけではありません。\n【引っかけ】1：「$\\int_V\\mathbf B^T\\boldsymbol\\varepsilon_0\\,dV$」ではなく、$\\int_V\\mathbf B^T\\mathbf D\\boldsymbol\\varepsilon_0\\,dV$です。構成式を展開すると初期ひずみの項は$-\\mathbf D\\boldsymbol\\varepsilon_0$です。内部力では$-\\int_V\\mathbf B^T\\mathbf D\\boldsymbol\\varepsilon_0\\,dV$なので、右辺へ移すとプラスになります。初期ひずみはまだ応力ではないため、材料行列Dを掛ける段階を省けません。",
+          "relatedFormulas": [
+            "virtual-work",
+            "thermal-force"
+          ],
+          "editorialReview": {
+            "officialPoint": "初期応力と初期ひずみ／個別の質問：初期ひずみの荷重項",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$\\int_V\\mathbf B^T\\boldsymbol\\varepsilon_0\\,dV$」ではなく、$\\int_V\\mathbf B^T\\mathbf D\\boldsymbol\\varepsilon_0\\,dV$です。構成式を展開すると初期ひずみの項は$-\\mathbf D\\boldsymbol\\varepsilon_0$です。内部力では$-\\int_V\\mathbf B^T\\mathbf D\\boldsymbol\\varepsilon_0\\,dV$なので、右辺へ移すとプラスになります。初期ひずみはまだ応力ではないため、材料行列Dを掛ける段階を省けません。"
+            },
+            "sha256": "6231205d59ebbdcdc724b5a0661d43c9d5a503825ab4180393f2de16051035b8"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "stress",
+        "strain"
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "fem-4-14",
@@ -1068,15 +1624,176 @@
       ],
       "editorialReview": {
         "officialPoint": "弱形式の導出",
-        "alignment": "保存済み公式第4章の問題・解説と照合。4択の論点を保ち、結論・導出・具体例・図の対応を統合。重複と水増しを削り、必要な途中式・記号・単位・誤答理由を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "部分積分で慣性が必ず消えるとする",
           "3": "境界項が出るのに表面力条件を無視する",
           "4": "ガラーキン法と部分積分を両立不可とする"
         },
-        "sha256": "822a6aec8e84f6964bfea22f4f00e59599afcec3c5de575422f13666935899c0"
+        "sha256": "343e1c98e7740def1b4816db9e162a00124ca4c299639ee0fe28d0bf05cb27be"
       },
-      "answerSummary": "正解は①です。ガラーキン法で重みを仮想変位とし、釣合い式を部分積分すると仮想仕事の式になります。境界項も残して整理します。"
+      "answerSummary": "領域内の式：小さな体積を取り出し、周囲の応力による力と物体力の合計をゼロにします。\n力を指定する境界：領域内の釣合いだけでは、どの荷重を加えた問題なのか決まりません。\n重みの役割：変位固定境界ではゼロとなる仮想変位を掛け、部分積分で応力と仮想ひずみの内部仕事を導きます。",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "sharedQuestion": "静的線形弾性で、領域内と表面の式に重みを掛けて仮想仕事の式を導くとき、三つの役割を選んでください。",
+      "studyParts": [
+        {
+          "id": "fem-4-14-item-a",
+          "number": "4-14",
+          "officialRef": "問4-14",
+          "officialQuestionItem": "a",
+          "title": "領域内の式",
+          "topic": "仮想仕事とガラーキン法・弱形式の導出",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "領域内部で満たすべき力の式は？",
+          "choices": [
+            "釣合い方程式",
+            "熱伝導方程式"
+          ],
+          "answer": 1,
+          "answerSummary": "小さな体積を取り出し、周囲の応力による力と物体力の合計をゼロにします。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "小さな体積を取り出し、周囲の応力による力と物体力の合計をゼロにします。"
+            },
+            {
+              "title": "一次元の平衡式から出発する",
+              "body": "軸力を$N(x)=EAu^\\prime(x)$、単位長さ当たりの分布力をpとすると、静的な棒の平衡は$N^\\prime+p=0$です。仮想変位vを掛けて$0=\\int_0^L v(N^\\prime+p)dx$とします。\n\nここではvが仮想変位の略記で、実際の変位uと同じ関数である必要はありません。元の式をどれだけ満たすかを、その試しの動きで評価しています。"
+            }
+          ],
+          "explanation": "【基礎】小さな体積を取り出し、周囲の応力による力と物体力の合計をゼロにします。\n【考え方】正解は1です。小さな体積を取り出し、周囲の応力による力と物体力の合計をゼロにします。\n【ポイント】軸力を$N(x)=EAu^\\prime(x)$、単位長さ当たりの分布力をpとすると、静的な棒の平衡は$N^\\prime+p=0$です。仮想変位vを掛けて$0=\\int_0^L v(N^\\prime+p)dx$とします。 ここではvが仮想変位の略記で、実際の変位uと同じ関数である必要はありません。元の式をどれだけ満たすかを、その試しの動きで評価しています。\n【引っかけ】2：「熱伝導方程式」ではなく、釣合い方程式です。小さな体積を取り出し、周囲の応力による力と物体力の合計をゼロにします。",
+          "relatedFormulas": [
+            "virtual-work",
+            "weighted-residual",
+            "discretization-workflow",
+            "rayleigh-ritz"
+          ],
+          "editorialReview": {
+            "officialPoint": "弱形式の導出／個別の質問：領域内の式",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「熱伝導方程式」ではなく、釣合い方程式です。小さな体積を取り出し、周囲の応力による力と物体力の合計をゼロにします。"
+            },
+            "sha256": "f8077101652b2fe84583f39e5f335cef79ca6f089236920117d22962f96a8fab"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-4-14-item-b",
+          "number": "4-14",
+          "officialRef": "問4-14",
+          "officialQuestionItem": "b",
+          "title": "力を指定する境界",
+          "topic": "仮想仕事とガラーキン法・弱形式の導出",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "力を与える表面で使う条件は？",
+          "choices": [
+            "全表面の変位が必ずゼロという条件",
+            "応力から求めた表面力が指定値に一致する条件"
+          ],
+          "answer": 2,
+          "answerSummary": "領域内の釣合いだけでは、どの荷重を加えた問題なのか決まりません。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "領域内の釣合いだけでは、どの荷重を加えた問題なのか決まりません。表面力の条件も必要です。"
+            },
+            {
+              "title": "積の微分を使って部分積分する",
+              "body": "$(vN)^\\prime=v^\\prime N+vN^\\prime$から、$vN^\\prime=(vN)^\\prime-v^\\prime N$です。積分すると$0=[vN]_0^L-\\int_0^L v^\\prime N\\,dx+\\int_0^L vp\\,dx$となります。\n\n内部の項を移すと$\\int_0^L Nv^\\prime dx=[vN]_0^L+\\int_0^L pv\\,dx$です。左が応力と仮想ひずみによる内部仕事、右が端面力と分布力の外部仕事です。負号は普通の積の微分と移項から生じています。"
+            },
+            {
+              "title": "境界の条件を一つずつ使う",
+              "body": "左端が固定なら$v(0)=0$なので左端の項は0です。右端に力Pを指定すれば$N(L)=P$として、境界項は$Pv(L)$となります。この既知の荷重を使って式を完成させます。境界項が出たから全て0にして捨てる、という操作ではありません。\n\n指定変位側と指定荷重側では、0になる理由や代入する情報が異なります。",
+              "figures": [
+                {
+                  "figureImage": "fem4GalerkinVW",
+                  "caption": "部分積分で内部の項と境界の項に分けます。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】領域内の釣合いだけでは、どの荷重を加えた問題なのか決まりません。\n【考え方】正解は2です。領域内の釣合いだけでは、どの荷重を加えた問題なのか決まりません。表面力の条件も必要です。\n【ポイント】$(vN)^\\prime=v^\\prime N+vN^\\prime$から、$vN^\\prime=(vN)^\\prime-v^\\prime N$です。積分すると$0=[vN]_0^L-\\int_0^L v^\\prime N\\,dx+\\int_0^L vp\\,dx$となります。 内部の項を移すと$\\int_0^L Nv^\\prime dx=[vN]_0^L+\\int_0^L pv\\,dx$です。左が応力と仮想ひずみによる内部仕事、右が端面力と分布力の外部仕事です。負号は普通の積の微分と移項から生じています。\n【引っかけ】1：「全表面の変位が必ずゼロという条件」ではなく、応力から求めた表面力が指定値に一致する条件です。領域内の釣合いだけでは、どの荷重を加えた問題なのか決まりません。表面力の条件も必要です。",
+          "relatedFormulas": [
+            "virtual-work",
+            "weighted-residual",
+            "discretization-workflow",
+            "rayleigh-ritz"
+          ],
+          "editorialReview": {
+            "officialPoint": "弱形式の導出／個別の質問：力を指定する境界",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「全表面の変位が必ずゼロという条件」ではなく、応力から求めた表面力が指定値に一致する条件です。領域内の釣合いだけでは、どの荷重を加えた問題なのか決まりません。表面力の条件も必要です。"
+            },
+            "sha256": "21f599ad854792ec34ce10e20163f136d0fff89097474cf62788e6a338c80904"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-4-14-item-c",
+          "number": "4-14",
+          "officialRef": "問4-14",
+          "officialQuestionItem": "c",
+          "title": "重みの役割",
+          "topic": "仮想仕事とガラーキン法・弱形式の導出",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "仮想仕事の導出で重み関数に対応するものは？",
+          "choices": [
+            "許容仮想変位",
+            "実際の応力だけ"
+          ],
+          "answer": 1,
+          "answerSummary": "変位固定境界ではゼロとなる仮想変位を掛け、部分積分で応力と仮想ひずみの内部仕事を導きます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "変位固定境界ではゼロとなる仮想変位を掛け、部分積分で応力と仮想ひずみの内部仕事を導きます。"
+            },
+            {
+              "title": "微分を一段下げることの意味",
+              "body": "平衡式へ$N=EAu^\\prime$を入れると、元の式にはuの二階微分が現れます。部分積分後の式にはuの一階微分とvの一階微分が現れます。これが弱形式と呼ぶ理由の一つで、要素ごとに一次式で近似するFEMへつなげやすくなります。\n\nガラーキン法は重みの選び方なので、部分積分を禁止するものではありません。慣性がないのは今回は静的な式から始めたためで、部分積分が慣性を消したのではありません。"
+            },
+            {
+              "title": "要素ごとに一次式を使える利点",
+              "body": "直線の変位を要素ごとにつなぐと、変位自体は連続でも、隣の要素で傾きが変わることがあります。各要素の内部で一階微分を使って積分する弱形式なら、このような区分的な近似から方程式を作れます。元の二階微分の式を全ての点で直接満たす近似とは違います。\n\n弱いという言葉は、力の釣合いや境界条件を軽視してよい意味ではなく、満たし方を重み付きの積分形へ変えたことを表します。"
+            }
+          ],
+          "explanation": "【基礎】変位固定境界ではゼロとなる仮想変位を掛け、部分積分で応力と仮想ひずみの内部仕事を導きます。\n【考え方】正解は1です。変位固定境界ではゼロとなる仮想変位を掛け、部分積分で応力と仮想ひずみの内部仕事を導きます。\n【ポイント】平衡式へ$N=EAu^\\prime$を入れると、元の式にはuの二階微分が現れます。部分積分後の式にはuの一階微分とvの一階微分が現れます。これが弱形式と呼ぶ理由の一つで、要素ごとに一次式で近似するFEMへつなげやすくなります。 ガラーキン法は重みの選び方なので、部分積分を禁止するものではありません。慣性がないのは今回は静的な式から始めたためで、部分積分が慣性を消したのではありません。\n【引っかけ】2：「実際の応力だけ」ではなく、許容仮想変位です。変位固定境界ではゼロとなる仮想変位を掛け、部分積分で応力と仮想ひずみの内部仕事を導きます。",
+          "relatedFormulas": [
+            "virtual-work",
+            "weighted-residual",
+            "discretization-workflow",
+            "rayleigh-ritz"
+          ],
+          "editorialReview": {
+            "officialPoint": "弱形式の導出／個別の質問：重みの役割",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「実際の応力だけ」ではなく、許容仮想変位です。変位固定境界ではゼロとなる仮想変位を掛け、部分積分で応力と仮想ひずみの内部仕事を導きます。"
+            },
+            "sha256": "22867a6a651bfa085b3fd50fcc1344a123b4e871ab013e81d95450f18e17c3e3"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "fem-4-15",
@@ -1149,9 +1866,12 @@
           "3": "一様移動に必要な和を0とする",
           "4": "補間だけで材料応力が決まるとする"
         },
-        "sha256": "0f575df7848540e0e1b06654e33447fc474909da3a82a04817dba457ca696438"
+        "sha256": "0369bcf4631c992264c19065290b866199497cd3a94bc4ac36d26e6d8cb8ff5c"
       },
-      "answerSummary": "正解は②です。自分の節点では1、他の節点では0です。重みの和が1なので、全節点の同じ移動も再現できます。"
+      "answerSummary": "正解は②です。自分の節点では1、他の節点では0です。重みの和が1なので、全節点の同じ移動も再現できます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "fem-4-16",
@@ -1214,15 +1934,123 @@
       ],
       "editorialReview": {
         "officialPoint": "一次要素の補間",
-        "alignment": "保存済み公式第4章の問題・解説と照合。4択の論点を保ち、結論・導出・具体例・図の対応を統合。重複と水増しを削り、必要な途中式・記号・単位・誤答理由を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "中央でない点を単純平均する",
           "2": "右端でないのに右端値とする",
           "3": "重みと対応する節点値を正しく組み合わせない"
         },
-        "sha256": "33f4e3137591836322296bcde7038eaba1c12b0f258b84abd2331fc82f51b149"
+        "sha256": "a1d718bef96f815ef64e39623fcdd87cf4b0a5ce21ecee9b966abd598d8be3e3"
       },
-      "answerSummary": "正解は④です。$N_1=1/4$、$N_2=3/4$ なので、$u=(1/4)\\times3+(3/4)\\times9=7.5\\,\\mathrm{mm}$ です。"
+      "answerSummary": "節点1の形状関数：節点1で1、節点2で0となる一次式を作ります。\n節点2の形状関数：節点1で0、節点2で1となる一次式です。",
+      "officialQuestionItems": [
+        "n1",
+        "n2"
+      ],
+      "sharedQuestion": "一次元の一次要素で節点座標を $x_1<x_2$、節点変位を $u_1,u_2$ とし、$u(x)=N_1u_1+N_2u_2$ と表します。",
+      "studyParts": [
+        {
+          "id": "fem-4-16-item-n1",
+          "number": "4-16",
+          "officialRef": "問4-16",
+          "officialQuestionItem": "n1",
+          "title": "節点1の形状関数",
+          "topic": "線形形状関数による内挿",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$N_1$ の式は？",
+          "choices": [
+            "$(x_2-x)/(x_2-x_1)$",
+            "$(x-x_1)/(x_2-x_1)$"
+          ],
+          "answer": 1,
+          "answerSummary": "節点1で1、節点2で0となる一次式を作ります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "節点1で1、節点2で0となる一次式を作ります。$x=x_1$ と $x=x_2$ を入れて確認できます。"
+            },
+            {
+              "title": "直線の係数から形状関数を導く",
+              "body": "一次要素では$u(x)=a+bx$と置きます。左端$x=0$で$u_1$だから$a=u_1$です。右端$x=L$で$u_2=u_1+bL$なので$b=(u_2-u_1)/L$です。代入して$u(x)=u_1+(u_2-u_1)x/L=(1-x/L)u_1+(x/L)u_2$となり、二つの形状関数が得られます。\n\n重みは任意に決めたのでなく、二つの節点値を満たす直線から出ています。\n\n左端が $x_1$、右端が $x_2$ の一般の座標では、$N_1=(x_2-x)/(x_2-x_1)$、$N_2=(x-x_1)/(x_2-x_1)$ です。本問の $x_1=0$、$x_2=L$ を入れると、上の式になります。"
+            }
+          ],
+          "explanation": "【基礎】節点1で1、節点2で0となる一次式を作ります。\n【考え方】正解は1です。節点1で1、節点2で0となる一次式を作ります。$x=x_1$ と $x=x_2$ を入れて確認できます。\n【ポイント】一次要素では$u(x)=a+bx$と置きます。左端$x=0$で$u_1$だから$a=u_1$です。右端$x=L$で$u_2=u_1+bL$なので$b=(u_2-u_1)/L$です。代入して$u(x)=u_1+(u_2-u_1)x/L=(1-x/L)u_1+(x/L)u_2$となり、二つの形状関数が得られます。 重みは任意に決めたのでなく、二つの節点値を満たす直線から出ています。 左端が $x_1$、右端が $x_2$ の一般の座標では、$N_1=(x_2-x)/(x_2-x_1)$、$N_2=(x-x_1)/(x_2-x_1)$ です。本問の $x_1=0$、$x_2=L$ を入れると、上の式になります。\n【引っかけ】2：「$(x-x_1)/(x_2-x_1)$」ではなく、$(x_2-x)/(x_2-x_1)$です。節点1で1、節点2で0となる一次式を作ります。$x=x_1$ と $x=x_2$ を入れて確認できます。",
+          "relatedFormulas": [
+            "shape-function"
+          ],
+          "editorialReview": {
+            "officialPoint": "一次要素の補間／個別の質問：節点1の形状関数",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$(x-x_1)/(x_2-x_1)$」ではなく、$(x_2-x)/(x_2-x_1)$です。節点1で1、節点2で0となる一次式を作ります。$x=x_1$ と $x=x_2$ を入れて確認できます。"
+            },
+            "sha256": "7123c72c176c5340cb3ac786b9f9bc8a6ef8bcfcdc633132b61ebb19115e9ef4"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-4-16-item-n2",
+          "number": "4-16",
+          "officialRef": "問4-16",
+          "officialQuestionItem": "n2",
+          "title": "節点2の形状関数",
+          "topic": "線形形状関数による内挿",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$N_2$ の式は？",
+          "choices": [
+            "$(x_2-x)/(x_2-x_1)$",
+            "$(x-x_1)/(x_2-x_1)$"
+          ],
+          "answer": 2,
+          "answerSummary": "節点1で0、節点2で1となる一次式です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "節点1で0、節点2で1となる一次式です。$N_1+N_2=1$。例えば $x_1=0,x_2=L,x=3L/4$ なら重みは1/4と3/4なので、変位3 mmと9 mmから $u=3/4+27/4=7.5\\,\\mathrm{mm}$ になります。"
+            },
+            {
+              "title": "位置から二つの重みを求める",
+              "body": "$x=3L/4$なら$N_1=1-3/4=1/4$、$N_2=3/4$です。右端に近いので、右端の変位9 mmの重みが大きくなります。"
+            },
+            {
+              "title": "重み付きで足す",
+              "body": "$u=N_1u_1+N_2u_2=(1/4)3+(3/4)9=0.75+6.75=7.5\\,\\mathrm{mm}$です。単純平均6 mmになるのは中央$x=L/2$だけです。",
+              "figures": [
+                {
+                  "figureImage": "f4LinearInterp",
+                  "caption": "右端の変位を3/4、左端を1/4の割合で使います。"
+                }
+              ]
+            },
+            {
+              "title": "補間の全ての位置で端の値へ戻れるか",
+              "body": "$x=0$なら$N_1=1,N_2=0$なのでu=3 mm、$x=L$ならu=9 mmです。$x=L/2$なら両方1/2なのでu=6 mmです。今回の$3L/4$は中央と右端の中間なので、6と9の中間7.5 mmになります。\n\n公式へ一回代入するだけでなく、端・中央・評価点の四つを直線上へ並べると、重みの左右を取り違えていないか確かめられます。一次要素内のこの補間値は、二つの端値の間に入りますが、高次要素の全ての補間へ無条件に同じ性質を広げるものではありません。"
+            }
+          ],
+          "explanation": "【基礎】節点1で0、節点2で1となる一次式です。\n【考え方】正解は2です。節点1で0、節点2で1となる一次式です。$N_1+N_2=1$。例えば $x_1=0,x_2=L,x=3L/4$ なら重みは1/4と3/4なので、変位3 mmと9 mmから $u=3/4+27/4=7.5\\,\\mathrm{mm}$ になります。\n【ポイント】$x=3L/4$なら$N_1=1-3/4=1/4$、$N_2=3/4$です。右端に近いので、右端の変位9 mmの重みが大きくなります。\n【引っかけ】1：「$(x_2-x)/(x_2-x_1)$」ではなく、$(x-x_1)/(x_2-x_1)$です。節点1で0、節点2で1となる一次式です。$N_1+N_2=1$。例えば $x_1=0,x_2=L,x=3L/4$ なら重みは1/4と3/4なので、変位3 mmと9 mmから $u=3/4+27/4=7.5\\,\\mathrm{mm}$ になります。",
+          "relatedFormulas": [
+            "shape-function"
+          ],
+          "editorialReview": {
+            "officialPoint": "一次要素の補間／個別の質問：節点2の形状関数",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$(x_2-x)/(x_2-x_1)$」ではなく、$(x-x_1)/(x_2-x_1)$です。節点1で0、節点2で1となる一次式です。$N_1+N_2=1$。例えば $x_1=0,x_2=L,x=3L/4$ なら重みは1/4と3/4なので、変位3 mmと9 mmから $u=3/4+27/4=7.5\\,\\mathrm{mm}$ になります。"
+            },
+            "sha256": "bc29200d9c0c673c76623ba46a368f7ebc4517d6b3da4f0ecec5b68e4e981291"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "title": "微小ひずみ",
@@ -1289,15 +2117,211 @@
       ],
       "editorialReview": {
         "officialPoint": "微小ひずみ",
-        "alignment": "保存済み公式第4章の問題・解説と照合。4択の論点を保ち、結論・導出・具体例・図の対応を統合。重複と水増しを削り、必要な途中式・記号・単位・誤答理由を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "垂直とせん断の微分方向を取り違える",
           "3": "垂直の変位成分を交換しせん断も差にする",
           "4": "工学せん断を二つの傾きの差とする"
         },
-        "sha256": "77951dd2f1722ea4d8160e9eda1d4432a3be4192e8f80012de06fa5cb1ece049"
+        "sha256": "0de1e0c32578df2c2032c049c3a2eff340fd504d9c7fe7e0966246f1e314db6f"
       },
-      "answerSummary": "正解は②です。直ひずみは同じ方向の変位の傾き、工学せん断ひずみは二つの交差方向の傾きの和です。"
+      "answerSummary": "x方向の伸び：x方向に並ぶ二点のx変位の差が、長さの変化になります。\ny方向の伸び：y方向に並ぶ二点のy変位の差から伸びを求めます。\nせん断の第1項：元の水平な辺の傾きは、xに沿うy変位の変化です。\nせん断の第2項：もう一方の辺の傾きも加えます。",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "sharedQuestion": "微小変形で $u$ はx方向、$v$ はy方向の変位です。$\\varepsilon_x=\\mathrm{A}$、$\\varepsilon_y=\\mathrm{B}$、工学せん断ひずみ $\\gamma_{xy}=\\mathrm{C}+\\mathrm{D}$ とし、Cはvを、Dはuを微分した項とします。",
+      "studyParts": [
+        {
+          "id": "fem-4-17-item-a",
+          "number": "4-17",
+          "officialRef": "問4-17",
+          "officialQuestionItem": "a",
+          "title": "x方向の伸び",
+          "topic": "ひずみ-変位関係(微小変形)",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Aの式は？",
+          "choices": [
+            "$\\partial u/\\partial y$",
+            "$\\partial u/\\partial x$"
+          ],
+          "answer": 2,
+          "answerSummary": "x方向に並ぶ二点のx変位の差が、長さの変化になります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "x方向に並ぶ二点のx変位の差が、長さの変化になります。"
+            },
+            {
+              "title": "伸びは同じ方向の変位の変わり方",
+              "body": "$x$方向へ少し離れた二点の$x$変位の差が伸びになるので、$\\varepsilon_x=\\partial u/\\partial x$です。同じ考えで$\\varepsilon_y=\\partial v/\\partial y$です。\n\n変位そのものではなく、隣との違いを長さで割ります。"
+            },
+            {
+              "title": "隣り合う二点の長さの変化から導く",
+              "body": "x方向にdx離れた二点が、もとの位置からそれぞれ$u(x,y),u(x+dx,y)$だけ動くとします。距離の増加は差$u(x+dx,y)-u(x,y)$です。dxで割って区間を小さくすれば$\\varepsilon_x=\\partial u/\\partial x$です。\n\ny方向の伸びならy変位vのy微分です。x変位をyで微分したものは、同方向の伸びではなく辺の傾きへ関係します。"
+            }
+          ],
+          "explanation": "【基礎】x方向に並ぶ二点のx変位の差が、長さの変化になります。\n【考え方】正解は2です。x方向に並ぶ二点のx変位の差が、長さの変化になります。\n【ポイント】$x$方向へ少し離れた二点の$x$変位の差が伸びになるので、$\\varepsilon_x=\\partial u/\\partial x$です。同じ考えで$\\varepsilon_y=\\partial v/\\partial y$です。 変位そのものではなく、隣との違いを長さで割ります。\n【引っかけ】1：「$\\partial u/\\partial y$」ではなく、$\\partial u/\\partial x$です。x方向に並ぶ二点のx変位の差が、長さの変化になります。",
+          "relatedFormulas": [
+            "strain-displacement"
+          ],
+          "editorialReview": {
+            "officialPoint": "微小ひずみ／個別の質問：x方向の伸び",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$\\partial u/\\partial y$」ではなく、$\\partial u/\\partial x$です。x方向に並ぶ二点のx変位の差が、長さの変化になります。"
+            },
+            "sha256": "2345c7b0984e3fef290fb21ae2d204b426a12f62d35f725bc94c8f2045720d7d"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-4-17-item-b",
+          "number": "4-17",
+          "officialRef": "問4-17",
+          "officialQuestionItem": "b",
+          "title": "y方向の伸び",
+          "topic": "ひずみ-変位関係(微小変形)",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Bの式は？",
+          "choices": [
+            "$\\partial v/\\partial y$",
+            "$\\partial v/\\partial x$"
+          ],
+          "answer": 1,
+          "answerSummary": "y方向に並ぶ二点のy変位の差から伸びを求めます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "y方向に並ぶ二点のy変位の差から伸びを求めます。"
+            }
+          ],
+          "explanation": "【基礎】y方向に並ぶ二点のy変位の差から伸びを求めます。\n【考え方】正解は1です。y方向に並ぶ二点のy変位の差から伸びを求めます。\n【ポイント】y方向に並ぶ二点のy変位の差から伸びを求めます。\n【引っかけ】2：「$\\partial v/\\partial x$」ではなく、$\\partial v/\\partial y$です。y方向に並ぶ二点のy変位の差から伸びを求めます。",
+          "relatedFormulas": [
+            "strain-displacement"
+          ],
+          "editorialReview": {
+            "officialPoint": "微小ひずみ／個別の質問：y方向の伸び",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$\\partial v/\\partial x$」ではなく、$\\partial v/\\partial y$です。y方向に並ぶ二点のy変位の差から伸びを求めます。"
+            },
+            "sha256": "69b8f92cb6065e372b7e82e525a706d569f73e44c8780bd554133bceba60596e"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-4-17-item-c",
+          "number": "4-17",
+          "officialRef": "問4-17",
+          "officialQuestionItem": "c",
+          "title": "せん断の第1項",
+          "topic": "ひずみ-変位関係(微小変形)",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Cの式は？",
+          "choices": [
+            "$\\partial v/\\partial y$",
+            "$\\partial v/\\partial x$"
+          ],
+          "answer": 2,
+          "answerSummary": "元の水平な辺の傾きは、xに沿うy変位の変化です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "元の水平な辺の傾きは、xに沿うy変位の変化です。垂直方向の伸びとは区別します。"
+            },
+            {
+              "title": "せん断は直角の変化",
+              "body": "$x$変位が$y$方向で変わる傾き$u_{,y}$と、$y$変位が$x$方向で変わる傾き$v_{,x}$が、二つの辺の間の角度を変えます。工学せん断ひずみは$\\gamma_{xy}=u_{,y}+v_{,x}$です。"
+            }
+          ],
+          "explanation": "【基礎】元の水平な辺の傾きは、xに沿うy変位の変化です。\n【考え方】正解は2です。元の水平な辺の傾きは、xに沿うy変位の変化です。垂直方向の伸びとは区別します。\n【ポイント】$x$変位が$y$方向で変わる傾き$u_{,y}$と、$y$変位が$x$方向で変わる傾き$v_{,x}$が、二つの辺の間の角度を変えます。工学せん断ひずみは$\\gamma_{xy}=u_{,y}+v_{,x}$です。\n【引っかけ】1：「$\\partial v/\\partial y$」ではなく、$\\partial v/\\partial x$です。元の水平な辺の傾きは、xに沿うy変位の変化です。垂直方向の伸びとは区別します。",
+          "relatedFormulas": [
+            "strain-displacement"
+          ],
+          "editorialReview": {
+            "officialPoint": "微小ひずみ／個別の質問：せん断の第1項",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$\\partial v/\\partial y$」ではなく、$\\partial v/\\partial x$です。元の水平な辺の傾きは、xに沿うy変位の変化です。垂直方向の伸びとは区別します。"
+            },
+            "sha256": "1eae9a6bd24f31190795b50fd7cdec58dd4d163d94120a133b6a80ed863d1f8d"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-4-17-item-d",
+          "number": "4-17",
+          "officialRef": "問4-17",
+          "officialQuestionItem": "d",
+          "title": "せん断の第2項",
+          "topic": "ひずみ-変位関係(微小変形)",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Dの式は？",
+          "choices": [
+            "$\\partial u/\\partial y$",
+            "$-\\partial u/\\partial y$"
+          ],
+          "answer": 1,
+          "answerSummary": "もう一方の辺の傾きも加えます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "もう一方の辺の傾きも加えます。剛体回転 $u=-\\theta y,v=\\theta x$ では二項が相殺され、せん断ひずみはゼロです。"
+            },
+            {
+              "title": "簡単な変位場で三つとも計算する",
+              "body": "説明用に$u=0.002x+0.003y+5$、$v=-0.001x+0.004y-2$とします。x,y,u,vを同じ長さの単位で表せば、$\\varepsilon_x=0.002,\\varepsilon_y=0.004$です。\n\n工学せん断は$u_{,y}+v_{,x}=0.003-0.001=0.002$です。定数5と−2は全点共通の移動なので微分すると消えます。三つの成分を、それぞれどの項が作っているかへ対応させます。",
+              "figures": [
+                {
+                  "figureImage": "fem4StrainDisp",
+                  "caption": "長さの変化と直角の変化を区別します。"
+                }
+              ]
+            },
+            {
+              "title": "剛体回転で和の意味を確かめる",
+              "body": "小さい回転$\\theta$では$u=-\\theta y,\\ v=\\theta x$なので、$u_{,y}+v_{,x}=-\\theta+\\theta=0$です。形を変えない回転がひずみにならないことを確認できます。"
+            },
+            {
+              "title": "工学せん断とテンソル成分を分ける",
+              "body": "工学せん断$\\gamma_{xy}$は直角の変化に対応し、テンソルせん断$\\varepsilon_{xy}$はその半分です。今回の選択肢はγなので、二つの微分の和をさらに2で割りません。行列のDやエネルギー式と組み合わせる際も同じ定義でそろえる必要があります。\n\nひずみは長さ同士の比で、変位のmmという単位は残りません。"
+            }
+          ],
+          "explanation": "【基礎】もう一方の辺の傾きも加えます。\n【考え方】正解は1です。もう一方の辺の傾きも加えます。剛体回転 $u=-\\theta y,v=\\theta x$ では二項が相殺され、せん断ひずみはゼロです。\n【ポイント】説明用に$u=0.002x+0.003y+5$、$v=-0.001x+0.004y-2$とします。x,y,u,vを同じ長さの単位で表せば、$\\varepsilon_x=0.002,\\varepsilon_y=0.004$です。 工学せん断は$u_{,y}+v_{,x}=0.003-0.001=0.002$です。定数5と−2は全点共通の移動なので微分すると消えます。三つの成分を、それぞれどの項が作っているかへ対応させます。\n【引っかけ】2：「$-\\partial u/\\partial y$」ではなく、$\\partial u/\\partial y$です。もう一方の辺の傾きも加えます。剛体回転 $u=-\\theta y,v=\\theta x$ では二項が相殺され、せん断ひずみはゼロです。",
+          "relatedFormulas": [
+            "strain-displacement"
+          ],
+          "editorialReview": {
+            "officialPoint": "微小ひずみ／個別の質問：せん断の第2項",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$-\\partial u/\\partial y$」ではなく、$\\partial u/\\partial y$です。もう一方の辺の傾きも加えます。剛体回転 $u=-\\theta y,v=\\theta x$ では二項が相殺され、せん断ひずみはゼロです。"
+            },
+            "sha256": "93c077efd0e4efcd2570d58f42c295b6d9916fd87a2a65db9a3e84c528e4760f"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "fem-4-18",
@@ -1367,9 +2391,12 @@
           "3": "一定ひずみを0と同一視する",
           "4": "節点変位を使わず面積だけで決める"
         },
-        "sha256": "a26358b173888bca6ed8a2fe2bb8319edd90bb0c36e2fce499ebf5fd253c558e"
+        "sha256": "885647ea666ebb99718d9097869356ce1c7530fa6226c3c690772d4c2d240b72"
       },
-      "answerSummary": "正解は②です。三節点一次三角形では、要素内のひずみは一定です。変位が一次式なので、微分すると定数になります。"
+      "answerSummary": "正解は②です。三節点一次三角形では、要素内のひずみは一定です。変位が一次式なので、微分すると定数になります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "fem-4-19",
@@ -1443,9 +2470,12 @@
           "3": "材料行列Dの役割をBとする",
           "4": "Bを剛性行列Kとする"
         },
-        "sha256": "a9c7ce6c6fd550b8e9fc537564c507e4956d9f290709b46071f4c7c29209635c"
+        "sha256": "6c81164171b83a3be5e818570194af1c761ad54034a73101a95a84cf77b24d1c"
       },
-      "answerSummary": "正解は②です。B行列は、形状関数を座標で微分して作る「節点変位からひずみへの換算」です。"
+      "answerSummary": "正解は②です。B行列は、形状関数を座標で微分して作る「節点変位からひずみへの換算」です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "fem-4-20",
@@ -1513,15 +2543,215 @@
       ],
       "editorialReview": {
         "officialPoint": "B行列の成分と自由度の順序",
-        "alignment": "保存済み公式第4章の問題・解説と照合。4択の論点を保ち、結論・導出・具体例・図の対応を統合。重複と水増しを削り、必要な途中式・記号・単位・誤答理由を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "x微分とy微分を交換する",
           "3": "せん断行の交差した微分を落とす",
           "4": "工学せん断の片方を負にする"
         },
-        "sha256": "95a799324afde59d4f6fbb3314aa90c8c5fbee8abc075aa1ed9c0a876c0af8c6"
+        "sha256": "8f5a77b7fad5350603e0ce3929930d750dfcc0b998cabf9971f42867400ea57c"
       },
-      "answerSummary": "正解は②です。直ひずみの行は同じ方向を微分し、せん断ひずみの行は交差方向の微分を足します。"
+      "answerSummary": "第1行・u列：$\\varepsilon_x=\\partial u/\\partial x$ なので、uの形状関数をxで微分します。\n第2行・v列：$\\varepsilon_y=\\partial v/\\partial y$ なので、vの形状関数をyで微分します。\n第3行・u列：せん断ひずみのuに対応する項は $\\partial u/\\partial y$。\n第3行・v列：せん断ひずみのvに対応する項は $\\partial v/\\partial x$。",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "sharedQuestion": "節点 $i$ の変位は $[u_i,v_i]^T$、ひずみは $[\\varepsilon_x,\\varepsilon_y,\\gamma_{xy}]^T$ の順とします。$\\mathbf B_i=\\begin{bmatrix}N_{i,A}&0\\\\0&N_{i,B}\\\\N_{i,C}&N_{i,D}\\end{bmatrix}$ のA〜Dへ入る微分座標を選んでください。",
+      "studyParts": [
+        {
+          "id": "fem-4-20-item-a",
+          "number": "4-20",
+          "officialRef": "問4-20",
+          "officialQuestionItem": "a",
+          "title": "第1行・u列",
+          "topic": "三角形要素のBマトリックス",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Aに入る座標は？",
+          "choices": [
+            "$y$",
+            "$x$"
+          ],
+          "answer": 2,
+          "answerSummary": "$\\varepsilon_x=\\partial u/\\partial x$ なので、uの形状関数をxで微分します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$\\varepsilon_x=\\partial u/\\partial x$ なので、uの形状関数をxで微分します。"
+            },
+            {
+              "title": "列は節点の動く方向、行はひずみの種類",
+              "body": "節点$i$の変位は$u_i,v_i$の順なので、Bの2列もその順です。3行は$\\varepsilon_x,\\varepsilon_y,\\gamma_{xy}$の順です。行列を暗記する前に、一つずつの式へ戻します。"
+            },
+            {
+              "title": "垂直ひずみの二行を作る",
+              "body": "$u=\\sum_iN_iu_i$を$x$で微分すると$\\varepsilon_x=\\sum_iN_{i,x}u_i$なので、節点$i$の列は$[N_{i,x},0]$です。同様に$\\varepsilon_y=\\sum_iN_{i,y}v_i$なので$[0,N_{i,y}]$です。"
+            }
+          ],
+          "explanation": "【基礎】$\\varepsilon_x=\\partial u/\\partial x$ なので、uの形状関数をxで微分します。\n【考え方】正解は2です。$\\varepsilon_x=\\partial u/\\partial x$ なので、uの形状関数をxで微分します。\n【ポイント】節点$i$の変位は$u_i,v_i$の順なので、Bの2列もその順です。3行は$\\varepsilon_x,\\varepsilon_y,\\gamma_{xy}$の順です。行列を暗記する前に、一つずつの式へ戻します。\n【引っかけ】1：「$y$」ではなく、$x$です。$\\varepsilon_x=\\partial u/\\partial x$ なので、uの形状関数をxで微分します。",
+          "relatedFormulas": [
+            "b-matrix",
+            "strain-displacement"
+          ],
+          "editorialReview": {
+            "officialPoint": "B行列の成分と自由度の順序／個別の質問：第1行・u列",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$y$」ではなく、$x$です。$\\varepsilon_x=\\partial u/\\partial x$ なので、uの形状関数をxで微分します。"
+            },
+            "sha256": "2b0db6daff7169ef7fa33fdfba2fb8401e5cb65e6607d8d47557e156796fd64e"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-4-20-item-b",
+          "number": "4-20",
+          "officialRef": "問4-20",
+          "officialQuestionItem": "b",
+          "title": "第2行・v列",
+          "topic": "三角形要素のBマトリックス",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Bに入る座標は？",
+          "choices": [
+            "$y$",
+            "$x$"
+          ],
+          "answer": 1,
+          "answerSummary": "$\\varepsilon_y=\\partial v/\\partial y$ なので、vの形状関数をyで微分します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$\\varepsilon_y=\\partial v/\\partial y$ なので、vの形状関数をyで微分します。"
+            }
+          ],
+          "explanation": "【基礎】$\\varepsilon_y=\\partial v/\\partial y$ なので、vの形状関数をyで微分します。\n【考え方】正解は1です。$\\varepsilon_y=\\partial v/\\partial y$ なので、vの形状関数をyで微分します。\n【ポイント】$\\varepsilon_y=\\partial v/\\partial y$ なので、vの形状関数をyで微分します。\n【引っかけ】2：「$x$」ではなく、$y$です。$\\varepsilon_y=\\partial v/\\partial y$ なので、vの形状関数をyで微分します。",
+          "relatedFormulas": [
+            "b-matrix",
+            "strain-displacement"
+          ],
+          "editorialReview": {
+            "officialPoint": "B行列の成分と自由度の順序／個別の質問：第2行・v列",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$x$」ではなく、$y$です。$\\varepsilon_y=\\partial v/\\partial y$ なので、vの形状関数をyで微分します。"
+            },
+            "sha256": "36878f058d49c5c6d8b8c1b738c974d209567418e2b5767acf8bc00161b62a7b"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-4-20-item-c",
+          "number": "4-20",
+          "officialRef": "問4-20",
+          "officialQuestionItem": "c",
+          "title": "第3行・u列",
+          "topic": "三角形要素のBマトリックス",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Cに入る座標は？",
+          "choices": [
+            "$x$",
+            "$y$"
+          ],
+          "answer": 2,
+          "answerSummary": "せん断ひずみのuに対応する項は $\\partial u/\\partial y$。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "せん断ひずみのuに対応する項は $\\partial u/\\partial y$。変位と異なる方向で微分します。"
+            },
+            {
+              "title": "せん断の行は交差した微分",
+              "body": "$\\gamma_{xy}=u_{,y}+v_{,x}=\\sum_i(N_{i,y}u_i+N_{i,x}v_i)$です。したがって $\\mathbf B_i=\\begin{bmatrix}N_{i,x}&0\\\\0&N_{i,y}\\\\N_{i,y}&N_{i,x}\\end{bmatrix}$ です。\n\n最後の行は足し算で、負号や2分の1は入りません。"
+            }
+          ],
+          "explanation": "【基礎】せん断ひずみのuに対応する項は $\\partial u/\\partial y$。\n【考え方】正解は2です。せん断ひずみのuに対応する項は $\\partial u/\\partial y$。変位と異なる方向で微分します。\n【ポイント】$\\gamma_{xy}=u_{,y}+v_{,x}=\\sum_i(N_{i,y}u_i+N_{i,x}v_i)$です。したがって$\\mathbf B_i=\\begin{bmatrix}N_{i,x}&0\\\\0&N_{i,y}\\N_{i,y}&N_{i,x}\\end{bmatrix}$で②です。 最後の行は足し算で、負号や2分の1は入りません。\n【引っかけ】1：「$x$」ではなく、$y$です。せん断ひずみのuに対応する項は $\\partial u/\\partial y$。変位と異なる方向で微分します。",
+          "relatedFormulas": [
+            "b-matrix",
+            "strain-displacement"
+          ],
+          "editorialReview": {
+            "officialPoint": "B行列の成分と自由度の順序／個別の質問：第3行・u列",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$x$」ではなく、$y$です。せん断ひずみのuに対応する項は $\\partial u/\\partial y$。変位と異なる方向で微分します。"
+            },
+            "sha256": "d918c6c871a4254f3e54f04778faf5b79d62e1045c93e083da43e1ba17d8fe13"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-4-20-item-d",
+          "number": "4-20",
+          "officialRef": "問4-20",
+          "officialQuestionItem": "d",
+          "title": "第3行・v列",
+          "topic": "三角形要素のBマトリックス",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Dに入る座標は？",
+          "choices": [
+            "$x$",
+            "$y$"
+          ],
+          "answer": 1,
+          "answerSummary": "せん断ひずみのvに対応する項は $\\partial v/\\partial x$。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "せん断ひずみのvに対応する項は $\\partial v/\\partial x$。行はひずみ、列は変位という並びを確認します。"
+            },
+            {
+              "title": "一節点分の二列を掛けて意味を確かめる",
+              "body": "正しい$\\mathbf B_i$に$[u_i,v_i]^T$を掛けると、第1行は$N_{i,x}u_i$、第2行は$N_{i,y}v_i$、第3行は$N_{i,y}u_i+N_{i,x}v_i$です。\n\nこれを全節点分足せば、$u_{,x},v_{,y},u_{,y}+v_{,x}$となります。行列の三行を、既に知っている三つのひずみの式へ戻せることが正しさの確認になります。",
+              "figures": [
+                {
+                  "figureImage": "solid2Ch4Review20After",
+                  "caption": "各列がu・vのどちらに掛かるかを追います。"
+                }
+              ]
+            },
+            {
+              "title": "微分係数へ数値を入れてみる",
+              "body": "一節点の寄与を説明するため、$N_{i,x}=0.01\\,\\mathrm{mm^{-1}},N_{i,y}=0.02\\,\\mathrm{mm^{-1}},u_i=0.1$mm、$v_i=0.2$mmとします。この節点の寄与は$\\varepsilon_x$に0.001、$\\varepsilon_y$に0.004、γに$0.02(0.1)+0.01(0.2)=0.004$です。\n\nせん断行を逆の微分にすると0.005となり、元の微分の式と一致しません。実際のひずみは全節点の寄与の和です。"
+            },
+            {
+              "title": "自由度の並びを変える場合",
+              "body": "今回は節点ごとに$u_1,v_1,u_2,v_2,\\ldots$という順です。もし全てのuを先に、全てのvを後に並べれば、Bの列も同じ順へ並べ替えます。物理的なひずみの定義は変わりませんが、同じ配列の行列をそのまま使うことはできません。\n\n行がどのひずみ、列がどの節点のどちらの移動かを、表の見出しとして確認しましょう。"
+            }
+          ],
+          "explanation": "【基礎】せん断ひずみのvに対応する項は $\\partial v/\\partial x$。\n【考え方】正解は1です。せん断ひずみのvに対応する項は $\\partial v/\\partial x$。行はひずみ、列は変位という並びを確認します。\n【ポイント】正しい$\\mathbf B_i$に$[u_i,v_i]^T$を掛けると、第1行は$N_{i,x}u_i$、第2行は$N_{i,y}v_i$、第3行は$N_{i,y}u_i+N_{i,x}v_i$です。 これを全節点分足せば、$u_{,x},v_{,y},u_{,y}+v_{,x}$となります。行列の三行を、既に知っている三つのひずみの式へ戻せることが正しさの確認になります。\n【引っかけ】2：「$y$」ではなく、$x$です。せん断ひずみのvに対応する項は $\\partial v/\\partial x$。行はひずみ、列は変位という並びを確認します。",
+          "relatedFormulas": [
+            "b-matrix",
+            "strain-displacement"
+          ],
+          "editorialReview": {
+            "officialPoint": "B行列の成分と自由度の順序／個別の質問：第3行・v列",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$y$」ではなく、$x$です。せん断ひずみのvに対応する項は $\\partial v/\\partial x$。行はひずみ、列は変位という並びを確認します。"
+            },
+            "sha256": "7bf5b1105da7dc13835a7d69d5aeb456b83072f584faaa9be30172a994eac8cf"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "fem-4-21",
@@ -1602,9 +2832,12 @@
           "3": "Gを独立な第三の定数とする",
           "4": "面内のせん断を面外の垂直成分と混同する"
         },
-        "sha256": "42627ef6fc9f79e1b736f7e4745039e5ed94fc0b2431dbeac5397bfe99ea2d05"
+        "sha256": "feeb157b89963a694901d0cfa2faafa445cd8640cdb13a933f5ada0c1b704124"
       },
-      "answerSummary": "正解は①です。独立な材料定数は2個です。ただし平面応力と平面ひずみは、面外条件が違うためD行列も異なります。"
+      "answerSummary": "正解は①です。独立な材料定数は2個です。ただし平面応力と平面ひずみは、面外条件が違うためD行列も異なります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "fem-4-22",
@@ -1679,7 +2912,7 @@
           "2": "相対変位の非対角の符号を正にする",
           "3": "節点間の結合係数に別のばね定数を使う"
         },
-        "sha256": "68a7041b755c95e9488e7247a1557180a68a0cc8b8aaa826a210d360a1142812"
+        "sha256": "76bc10cd7183d017279e6590f463738d26e9adefb82d055d53c15832348c9532"
       },
       "answerSummary": "正解は④です。共有節点の対角成分には二つのばねの剛性を足し、異なる節点を結ぶ成分にはマイナスを付けます。",
       "preFigures": [
@@ -1687,6 +2920,9 @@
           "figureImage": "solid2Ch4Review22Before",
           "caption": "問題の条件を確認する図です。形状・向き・境界条件を問題文と対応させて読みます。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1762,7 +2998,7 @@
           "2": "節点間の結合符号を正にする",
           "3": "固定点へ接続した二本の寄与を落とす"
         },
-        "sha256": "bf4202834f0c8044d112795f987b5dc92538158f61c15047037a68d129344349"
+        "sha256": "b5af81b5fbd574813c427807ed3508faac113e00138ad1f928d420b7611daf16"
       },
       "answerSummary": "正解は④です。斜めばね1本の水平剛性は $k\\cos^2\\theta$ です。変位と力をそれぞれ投影するため、余弦が2回掛かります。",
       "preFigures": [
@@ -1770,6 +3006,9 @@
           "figureImage": "solid2Ch4Review23Before",
           "caption": "問題の条件を確認する図です。形状・向き・境界条件を問題文と対応させて読みます。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1840,9 +3079,12 @@
           "2": "剛性をもつ自由度の対角を負とする",
           "3": "一次元ばねの負の結合を一般の全成分へ広げる"
         },
-        "sha256": "3d5f58a0b35452c7adf44a3ef49176444558517568f374d6ef8a36274ac27947"
+        "sha256": "907b93e43e59293664d462983d4bca9a37b85a60b3862f842db8b3c88bdd37f4"
       },
-      "answerSummary": "正解は④です。通常の線形弾性の剛性行列は対称です。非対角成分の符号は部材の向きなどに依存し、常に負とは限りません。"
+      "answerSummary": "正解は④です。通常の線形弾性の剛性行列は対称です。非対角成分の符号は部材の向きなどに依存し、常に負とは限りません。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "fem-4-25",
@@ -1916,9 +3158,12 @@
           "3": "要素数の偶奇で説明する",
           "4": "回転自由度を含む全行列へ一般化する"
         },
-        "sha256": "727421928d80b1a9872c20305e98daca4abe6b965e01c95084d3bf7f141a3f3a"
+        "sha256": "04603e91f2b9a6c46222b993719354ff9e0b02e81b7aef2f51daa5a34509c9c2"
       },
-      "answerSummary": "正解は②です。未拘束の一次元ばね系を一様に移動しても伸びは生じないため、各行の和は0です。"
+      "answerSummary": "正解は②です。未拘束の一次元ばね系を一様に移動しても伸びは生じないため、各行の和は0です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "fem-4-26",
@@ -1987,21 +3232,115 @@
       ],
       "editorialReview": {
         "officialPoint": "共有節点での重ね合わせ",
-        "alignment": "保存済み公式第4章の問題・解説と照合。4択の論点を保ち、結論・導出・具体例・図の対応を統合。重複と水増しを削り、必要な途中式・記号・単位・誤答理由を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "変位を足し力を共通値とする",
           "2": "符号を含む寄与をさらに引き算する",
           "4": "共有点の変位まで足す"
         },
-        "sha256": "f0c6f9f3276b2d7d41f2e402436fdd95577201d5289844c2de1840a19a6f6469"
+        "sha256": "d96282bc5513232f0ad9dda4d0cb7cec0cdc59e2d7f6b14f0164e0609a380658"
       },
-      "answerSummary": "正解は③です。共有節点では変位を共通にし、各要素の節点力を符号付きで足し合わせます。",
+      "answerSummary": "変位の連続：同じ節点の変位は共有します。\n節点力の重ね合わせ：符号付きの寄与を足します。",
       "preFigures": [
         {
           "figureImage": "solid2Ch4Review26Before",
           "caption": "問題の条件を確認する図です。形状・向き・境界条件を問題文と対応させて読みます。"
         }
-      ]
+      ],
+      "officialQuestionItems": [
+        "u",
+        "f"
+      ],
+      "sharedQuestion": "直列の節点1–2–3に、ばね要素①（1–2）と②（2–3）を接続する。全体の節点2変位を $u_2$、要素ごとの同じ節点の変位を $u_2^{(1)},u_2^{(2)}$ とする。要素内力の節点2への寄与を $f_2^{(1)},f_2^{(2)}$、その和を $f_2$ とする。変位と節点力について、それぞれの組立て関係を答えてください。",
+      "studyParts": [
+        {
+          "id": "fem-4-26-item-u",
+          "number": "4-26",
+          "officialRef": "問4-26",
+          "officialQuestionItem": "u",
+          "title": "変位の連続",
+          "topic": "アセンブリ(重ね合わせ)",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "節点2の変位の関係はどれか。",
+          "choices": [
+            "$u_2=u_2^{(1)}+u_2^{(2)}$",
+            "$u_2=u_2^{(1)}=u_2^{(2)}$"
+          ],
+          "answer": 2,
+          "answerSummary": "同じ節点の変位は共有します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "二つのばねが節点2でつながっているなら、その点が同時に二つの位置へ動くことはできません。したがって$u_2=u_2^{(1)}=u_2^{(2)}$です。変位を足すのではなく、同じ値を共有します。"
+            }
+          ],
+          "explanation": "【基礎】同じ節点の変位は共有します。\n【考え方】正解は2です。二つのばねが節点2でつながっているなら、その点が同時に二つの位置へ動くことはできません。したがって$u_2=u_2^{(1)}=u_2^{(2)}$です。変位を足すのではなく、同じ値を共有します。\n【ポイント】同じ節点の変位は共有します。\n【引っかけ】1：「$u_2=u_2^{(1)}+u_2^{(2)}$」ではなく、$u_2=u_2^{(1)}=u_2^{(2)}$です。二つのばねが節点2でつながっているなら、その点が同時に二つの位置へ動くことはできません。したがって$u_2=u_2^{(1)}=u_2^{(2)}$です。変位を足すのではなく、同じ値を共有します。",
+          "relatedFormulas": [
+            "stiffness-properties",
+            "element-stiffness"
+          ],
+          "editorialReview": {
+            "officialPoint": "共有節点での重ね合わせ／個別の質問：変位の連続",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$u_2=u_2^{(1)}+u_2^{(2)}$」ではなく、$u_2=u_2^{(1)}=u_2^{(2)}$です。二つのばねが節点2でつながっているなら、その点が同時に二つの位置へ動くことはできません。したがって$u_2=u_2^{(1)}=u_2^{(2)}$です。変位を足すのではなく、同じ値を共有します。"
+            },
+            "sha256": "605320c666e66e9d7d57573159c404d514ba9d6a81e864d1af6f7020158bcd53"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-4-26-item-f",
+          "number": "4-26",
+          "officialRef": "問4-26",
+          "officialQuestionItem": "f",
+          "title": "節点力の重ね合わせ",
+          "topic": "アセンブリ(重ね合わせ)",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "節点2の内力寄与はどう集めるか。",
+          "choices": [
+            "$f_2=f_2^{(1)}+f_2^{(2)}$",
+            "$f_2=f_2^{(1)}-f_2^{(2)}$"
+          ],
+          "answer": 1,
+          "answerSummary": "符号付きの寄与を足します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "節点2には要素①と②の両方から力が伝わるので、全体の節点力は$f_2=f_2^{(1)}+f_2^{(2)}$です。各寄与にはあらかじめ座標の符号を含めるため、組立てでは符号付きの値を足します。",
+              "figures": [
+                {
+                  "figureImage": "solid2Ch4Review26After",
+                  "caption": "節点2で左右の要素から来る力を向きも含めて足します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】符号付きの寄与を足します。\n【考え方】正解は1です。節点2には要素①と②の両方から力が伝わるので、全体の節点力は$f_2=f_2^{(1)}+f_2^{(2)}$です。各寄与にはあらかじめ座標の符号を含めるため、組立てでは符号付きの値を足します。\n【ポイント】符号付きの寄与を足します。\n【引っかけ】2：「$f_2=f_2^{(1)}-f_2^{(2)}$」ではなく、$f_2=f_2^{(1)}+f_2^{(2)}$です。節点2には要素①と②の両方から力が伝わるので、全体の節点力は$f_2=f_2^{(1)}+f_2^{(2)}$です。各寄与にはあらかじめ座標の符号を含めるため、組立てでは符号付きの値を足します。",
+          "relatedFormulas": [
+            "stiffness-properties",
+            "element-stiffness"
+          ],
+          "editorialReview": {
+            "officialPoint": "共有節点での重ね合わせ／個別の質問：節点力の重ね合わせ",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$f_2=f_2^{(1)}-f_2^{(2)}$」ではなく、$f_2=f_2^{(1)}+f_2^{(2)}$です。節点2には要素①と②の両方から力が伝わるので、全体の節点力は$f_2=f_2^{(1)}+f_2^{(2)}$です。各寄与にはあらかじめ座標の符号を含めるため、組立てでは符号付きの値を足します。"
+            },
+            "sha256": "668072b6ecb1532dd7b856d642105621d1a549309e74178023364084a3038a50"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "title": "変位境界と荷重",
@@ -2074,9 +3413,12 @@
           "3": "変位指定で反力が0とする",
           "4": "載荷だけで剛体運動が除去されるとする"
         },
-        "sha256": "819b581ccfbed4a3b3580467ea34f208376d77ba6f31557e9fbf7cd57965ff8b"
+        "sha256": "19a158fa1d9a838c746d5d1a92e693ad37819fa9183fb6c06d83205ed4f943aa"
       },
-      "answerSummary": "正解は②です。指定変位の自由度では反力が未知です。変位を全体の釣合い式へ戻して求めます。"
+      "answerSummary": "正解は②です。指定変位の自由度では反力が未知です。変位を全体の釣合い式へ戻して求めます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "fem-4-28",
@@ -2150,7 +3492,7 @@
           "3": "拘束のある節点を全成分固定と数える",
           "4": "拘束の一部だけを差し引く"
         },
-        "sha256": "8f39d663f581b563716b6a3e37a3336f326dbfd2b07c5f8b4b2c6ddbaeb45cdb"
+        "sha256": "4909f89647d659e240d7bdc64ccae103a8b6a3a664018b114a51358ae30e737f"
       },
       "answerSummary": "正解は①です。未知自由度は6です。5節点で10成分あり、指定される4成分を引きます。",
       "preFigures": [
@@ -2158,6 +3500,9 @@
           "figureImage": "femTrussDofSetup",
           "caption": "問題の条件を確認する図です。形状・向き・境界条件を問題文と対応させて読みます。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -2237,7 +3582,7 @@
           "3": "四面体の重心も各1/3とする",
           "4": "頂点で1と0の対応を逆にする"
         },
-        "sha256": "849b27a8ff1ce4e92f81b800aa530f356e92e06f538370d36abe7448ef04584a"
+        "sha256": "f169b1289450e26abee79096417dcbb086df0151d93978910ec2f35864dbea05"
       },
       "answerSummary": "正解は②です。面積座標・体積座標は、小領域の面積・体積の全体に対する割合です。単位はなく、和は1です。",
       "preFigures": [
@@ -2245,6 +3590,9 @@
           "figureImage": "solid2Ch4Review29Before",
           "caption": "問題の条件を確認する図です。形状・向き・境界条件を問題文と対応させて読みます。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     }
   ]

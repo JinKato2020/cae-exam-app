@@ -165,14 +165,16 @@ def easy_explanation_errors(data):
         # 熱流体2級1〜11章も統合。必要な導出を優先し、文字数で水増ししない。
         concise_thermal2_guided = (meta.get("grade") == "熱流体力学 2級"
                                   and meta.get("chapter") in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11) and mode == 'guided')
+        # 質問ごとの小問へ統合した教材は、各小問に必要な説明を残し文字数で水増ししない。
+        concise_grouped_guided = (meta.get('questionCoverageVersion') == 'all-items-v1' and mode == 'guided')
         # JSONで数式のバックスラッシュを落とすと、nu等が制御文字として保存されても描画は通る。
         # 改稿済み単相流のインライン数式には実際の改行・タブ等を入れない。
-        if concise_thermal1_guided or concise_thermal2_guided:
+        if concise_thermal1_guided or concise_thermal2_guided or concise_grouped_guided:
             for section in sections:
                 for formula in re.findall(r'\$([^$]*)\$', section['body']):
                     if any(ord(c) < 32 for c in formula):
                         errors.append(f"{num}: 数式内に制御文字があります。LaTeXのエスケープを確認してください")
-        if sections and not (concise_solid1 or concise_solid2_guided or concise_thermal1_guided or concise_thermal2_guided):
+        if sections and not (concise_solid1 or concise_solid2_guided or concise_thermal1_guided or concise_thermal2_guided or concise_grouped_guided):
             length = easy_explanation_body_length(sections)
             if length < EASY_EXPLANATION_MIN_CHARS:
                 errors.append(f"{num}: やさしく解説の本文が{length}字で"
@@ -269,12 +271,38 @@ OFFICIAL_WRITTEN_EVIDENCE = {
     ('固体力学 1級', '8-15'): 'fca77c93fc929a4cb31297601069187a625ed145d46970dac9251f0cd270e607',
     ('固体力学 1級', '8-19'): '02b414760fe2f76344ba88d26567ebac3c07114e9cd8aa6cdb1569b7315fbbde',
     ('固体力学 1級', '9-9'): 'ff22c3288ac80dbdcfd99599322405f2810c2e550cb05c2d27c0bf9aa387ae11',
+    ("熱流体力学 1級", "17-10"): "003103142bd10af2379f49d859348a9a82ca786895f7fb4991b3d5f91f020266",
+    ("熱流体力学 1級", "17-14"): "1f165aa606fec74b7ce77a11f940bff54f5aff0402074c822358e0a00cdf9141",
+    ("熱流体力学 1級", "19-6"): "88af982436a87fbc58ed3f9d99b3d0c87286427d5e46e596e8375c73bb6358ae",
+    ("熱流体力学 1級", "20-3"): "7c8f958a72eaab96401c068f05c1c1aeb79e72585d33d73b37785ee418654f06",
+    ("熱流体力学 1級", "20-7"): "7b2708e8e88f22a57221bf6eaf412d7cdf183dc2490cf82c25c6633e8945d814",
+    ("熱流体力学 1級", "22-15"): "ef019740f29e0efebbde6a3398b947adeda872f1f67cea686d662d74f83ba611",
+    ("熱流体力学 1級", "24-5"): "0f1b198b0ba158e96e95f6c3a6d3d5aa87545c8993711b6c3042359dd624ad44",
+    ("熱流体力学 1級", "24-6"): "71c046b3e78fdc1922ca36bca5d42200668b6618f00d08aed57345fade0f55be",
+    ("熱流体力学 1級", "24-8"): "8c9d93b983e75f6222400bbbd535b70b406ad01d67608ceb69603f0e75c59a9d",
 }
 
 
 def study_parts_errors(data):
     errors, ids = [], set()
     root = Path(__file__).resolve().parent.parent
+    # 公式照合で確定した質問キーと、実際に回答できる小問を一対一で対応させる。
+    # 組合せ形式でも項目を省略しない。質問数自体を文章の長さから推定しない。
+    if data.get('meta', {}).get('questionCoverageVersion') == 'all-items-v1':
+        for question in data.get('questions', []):
+            expected = question.get('officialQuestionItems')
+            number = question.get('number', '?')
+            if (not isinstance(expected, list) or not expected
+                    or any(not isinstance(key, str) or not key.strip() for key in expected)
+                    or len(set(expected)) != len(expected)):
+                errors.append(f'{number}: 公式の質問項目と小問の対応が未確認')
+                continue
+            parts = question.get('studyParts')
+            actual = [part.get('officialQuestionItem') for part in parts] if isinstance(parts, list) else ['main']
+            if actual != expected:
+                errors.append(f'{number}: 公式の質問数・順序と回答可能な小問が一致しません')
+            if len(expected) > 1 and (not question.get('sharedQuestion') or question.get('parts')):
+                errors.append(f'{number}: 複数質問は共通条件を持つ同一ページの小問にしてください')
     for parent in question_nodes(data):
         if 'studyParts' not in parent:
             continue
@@ -304,7 +332,7 @@ def study_parts_errors(data):
                 # 記述・数値記入・語句記入の形式を原文で確認した指紋だけを許可する。
                 # 「記述選択」等のキーワード一致では登録せず、手元では根拠の原文にも照合する。
                 if (not source.resolve().is_relative_to(allowed) or fingerprint != registered
-                    or not re.search(r'(?:問\s*|^(?:#{1,6}|-)\s+)' + re.escape(str(num)) + r'(?![\d-])', excerpt, re.MULTILINE)
+                    or not any(re.search(r'(?:問\s*|\*\*|(?:^|\n)(?:#{1,6}|-)\s+)'  + re.escape(label) + r'(?![\d-])', excerpt) for label in (str(num), str(part.get('officialRef', '')).removeprefix('問'), re.sub(r'^(?:混相流|燃焼流)', '', str(part.get('officialRef', '')).removeprefix('問'))))
                     or (source.is_file() and excerpt not in source.read_text(encoding='utf-8-sig'))):
                     errors.append(f'{num}: 公式の記述式である根拠を保存済みテキストから確認してください')
             elif part.get('responseType', 'choice') != 'choice' or len(part.get('choices', [])) not in (2, 4) or type(part.get('answer')) is not int or not 1 <= part['answer'] <= len(part['choices']):

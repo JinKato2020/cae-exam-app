@@ -8,7 +8,8 @@
     "count": 18,
     "officialCount": 18,
     "presentationStyle": "cae-standard-v1",
-    "explanationMode": "guided"
+    "explanationMode": "guided",
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -46,7 +47,7 @@
           "2": "材料線形なら幾何学的にも線形と思う",
           "4": "材料非線形と幾何学的非線形の混同"
         },
-        "sha256": "6423890410cec2f278bf0bbc39bd05e155361f39cbe71b72d3b52da5efbbda0f"
+        "sha256": "1c45cb4a7db90f6ba70e2fbf54ea6c1f8901dcd5b9e7919c351863bfe4e2778e"
       },
       "easyExplanation": [
         {
@@ -80,7 +81,10 @@
           "body": "①は微小変形と有限変形の扱いを取り違えています。②は材料が線形なら、ひずみと変位も線形になると考えた誤りです。\n\n③は材料の性質と幾何学的非線形性を分けているので正解です。④の応力とひずみの関係自体が非線形になる性質は、材料非線形性です。\n\n覚える中心は「材料の式」と「形の変化による式」を分けることです。"
         }
       ],
-      "answerSummary": "材料が線形弾性でも、変わった形で力の釣合いを考えると、荷重と変位の関係は非線形になります。"
+      "answerSummary": "材料が線形弾性でも、変わった形で力の釣合いを考えると、荷重と変位の関係は非線形になります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "solid1-1-21",
@@ -116,7 +120,7 @@
           "3": "有限ひずみの2次項という正しい要因",
           "4": "大回転による作用方向変化という正しい要因"
         },
-        "sha256": "39f4b93aa4f5901dbdd0da5eb6213504ef0933095dff128f6250c8a6156f0cff"
+        "sha256": "a8a9e5fa08e6bedeaca8443af0d7bbac43c3a220644757a35c5fd6e77316817d"
       },
       "easyExplanation": [
         {
@@ -152,7 +156,10 @@
           "body": "本問は通常の構造について、幾何学的非線形性の直接原因を比較しています。場所によって外力が変わるような別の条件を勝手に加える問題ではありません。\n\n①の形状・断面、③の有限ひずみ、④の回転による方向変化は計算へ反映すべき要因です。②では回転も変形もなく全体が同じ量だけ移動するので、それ自体はひずみを生みません。\n\nしたがって正解は②です。"
         }
       ],
-      "answerSummary": "物体全体を同じだけ平行移動しても形は変わりません。移動距離の大きさだけでは、幾何学的非線形の直接の原因になりません。"
+      "answerSummary": "物体全体を同じだけ平行移動しても形は変わりません。移動距離の大きさだけでは、幾何学的非線形の直接の原因になりません。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "solid1-1-2",
@@ -183,13 +190,13 @@
       ],
       "editorialReview": {
         "officialPoint": "変形勾配テンソルの定義",
-        "alignment": "公式固体1級第1章の該当問・解説を抽出テキストで照合。通常解説は要点、やさしく解説は記号・導出・具体例・確認を段階的に説明。現設問の条件で独立検算。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "位置勾配と変位勾配の混同",
           "3": "FとFの逆の取り違え",
           "4": "変形勾配と速度勾配の混同"
         },
-        "sha256": "205344c66865418a8f83835e1c6c3927d61d66e83927bf8dad15209f719d7adf"
+        "sha256": "12d796d125236fda52d12120926ef24454e13325cc83d71e5ec30aef8593be09"
       },
       "easyExplanation": [
         {
@@ -231,7 +238,119 @@
           "body": "①は名称も成分表示も正しいので正解です。②は位置ではなく変位を微分しており、単位行列の分がありません。\n\n③は分子と分母を逆にした戻りの変換です。④は速度の分布を調べる別のテンソルです。\n\n迷ったら、元の10mmを今の20mmへ変えるには倍率2が必要、という具体例へ戻り、式が元から今へ向いているか確認しましょう。"
         }
       ],
-      "answerSummary": "$\\mathbf F$は、変形前の小さな矢印を変形後の矢印へ換算する変形勾配テンソルです。"
+      "answerSummary": "Fの名称：Fは変形勾配テンソルです。\nFの成分：$F_{ij}=\\partial x_i/\\partial X_j$です。",
+      "sharedQuestion": "基準配置の微小ベクトル $d\\mathbf X$ と変形後の $d\\mathbf x$ は $d\\mathbf x=\\mathbf Fd\\mathbf X$ で結ばれます。Fの名称と成分を確認してください。",
+      "studyParts": [
+        {
+          "id": "solid1-1-2-item-name",
+          "number": "1-3",
+          "officialRef": "問1-3",
+          "officialQuestionItem": "name",
+          "title": "Fの名称",
+          "topic": "変形勾配テンソル",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Fの名称はどれか。",
+          "choices": [
+            "変形勾配テンソル",
+            "速度勾配テンソル"
+          ],
+          "answer": 1,
+          "answerSummary": "Fは変形勾配テンソルです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "ゴムの表面に近接する二つの点を印し、その間を結ぶ小さな矢印を考えます。変形前の矢印が$d\\mathbf X$、変形後の矢印が$d\\mathbf x$です。\n\n物体が伸びたり回ったりすると、矢印の長さや方向も変わります。その対応を$d\\mathbf x=\\mathbf Fd\\mathbf X$でまとめるのが変形勾配テンソル$\\mathbf F$です。\n\n物体全体がどこへ動いたかではなく、近くの点どうしの相対的な配置を調べています。"
+            },
+            {
+              "title": "大文字と小文字を使い分けます",
+              "body": "$\\mathbf X$は変形前の点の位置、$\\mathbf x$は同じ点の変形後の位置です。変位は$\\mathbf u=\\mathbf x-\\mathbf X$であり、位置そのものとは違います。\n\nまた$d$は、ここでは近い二点の間の小さな差を表します。$\\mathbf F$は変形前の微小な間隔を変形後へ移す行列です。\n\n行列が苦手なら、まず「元の矢印を入れると、今の矢印が出る換算表」と考えてください。"
+            }
+          ],
+          "explanation": "【基礎】Fは変形勾配テンソルです。\n【考え方】正解は1です。ゴムの表面に近接する二つの点を印し、その間を結ぶ小さな矢印を考えます。変形前の矢印が$d\\mathbf X$、変形後の矢印が$d\\mathbf x$です。 物体が伸びたり回ったりすると、矢印の長さや方向も変わります。その対応を$d\\mathbf x=\\mathbf Fd\\mathbf X$でまとめるのが変形勾配テンソル$\\mathbf F$です。 物体全体がどこへ動いたかではなく、近くの点どうしの相対的な配置を調べています。\n【ポイント】$\\mathbf X$は変形前の点の位置、$\\mathbf x$は同じ点の変形後の位置です。変位は$\\mathbf u=\\mathbf x-\\mathbf X$であり、位置そのものとは違います。 また$d$は、ここでは近い二点の間の小さな差を表します。$\\mathbf F$は変形前の微小な間隔を変形後へ移す行列です。 行列が苦手なら、まず「元の矢印を入れると、今の矢印が出る換算表」と考えてください。\n【引っかけ】2：「速度勾配テンソル」ではなく、変形勾配テンソルです。ゴムの表面に近接する二つの点を印し、その間を結ぶ小さな矢印を考えます。変形前の矢印が$d\\mathbf X$、変形後の矢印が$d\\mathbf x$です。 物体が伸びたり回ったりすると、矢印の長さや方向も変わります。その対応を$d\\mathbf x=\\mathbf Fd\\mathbf X$でまとめるのが変形勾配テンソル$\\mathbf F$です。 物体全体がどこへ動いたかではなく、近くの点どうしの相対的な配置を調べています。",
+          "relatedFormulas": [
+            "s1ch1-2"
+          ],
+          "editorialReview": {
+            "officialPoint": "変形勾配テンソルの定義／個別の質問：Fの名称",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「速度勾配テンソル」ではなく、変形勾配テンソルです。ゴムの表面に近接する二つの点を印し、その間を結ぶ小さな矢印を考えます。変形前の矢印が$d\\mathbf X$、変形後の矢印が$d\\mathbf x$です。\n\n物体が伸びたり回ったりすると、矢印の長さや方向も変わります。その対応を$d\\mathbf x=\\mathbf Fd\\mathbf X$でまとめるのが変形勾配テンソル$\\mathbf F$です。\n\n物体全体がどこへ動いたかではなく、近くの点どうしの相対的な配置を調べています。"
+            },
+            "sha256": "26e9c5d460bc5c043339178c8f587ad21aff4a40d84be408424a90142001b12d"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "solid1-1-2-item-component",
+          "number": "1-3",
+          "officialRef": "問1-3",
+          "officialQuestionItem": "component",
+          "title": "Fの成分",
+          "topic": "変形勾配テンソル",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Fの成分を表す式はどれか。",
+          "choices": [
+            "$F_{ij}=\\partial x_i/\\partial X_j$",
+            "$F_{ij}=\\partial X_i/\\partial x_j$"
+          ],
+          "answer": 1,
+          "answerSummary": "$F_{ij}=\\partial x_i/\\partial X_j$です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$F_{ij}=\\partial x_i/\\partial X_j$です。添字$j$は元のどの方向に進むか、$i$は移動後のどの方向の成分を見るかを示します。\n\n$\\partial$は、ほかの座標を固定して、その方向だけ少し変えたときの変化を調べる記号です。分母が元の位置$X_j$、分子が今の位置$x_i$なので、元から今への変換だと分かります。\n\n両方とも長さなので、$F_{ij}$自体には長さの単位が残りません。"
+            },
+            {
+              "title": "一方向の伸びで計算します",
+              "body": "元の位置が$X$の点が$x=2X$へ移る一様な伸びを考えます。このとき$F=dx/dX=2$です。\n\n元の10mmの間隔なら、$dx=2\\times10=20$mmとなります。一方、普通の伸びの割合は$(20-10)/10=1$です。\n\n変形勾配の2は「元の何倍か」、ひずみの1は「元に対してどれだけ増えたか」です。$\\mathbf F$をそのままひずみと呼ばない理由がここにあります。",
+              "figures": [
+                {
+                  "figureImage": "s1e1DeformGrad",
+                  "caption": "元の10 mmが20 mmへ変わる例です。長さの倍率2が、変形勾配の役割を表します。"
+                }
+              ]
+            },
+            {
+              "title": "変位勾配との関係を導きます",
+              "body": "位置と変位の関係は$\\mathbf x=\\mathbf X+\\mathbf u$です。元の位置で微分すると$\\mathbf F=\\mathbf I+\\partial\\mathbf u/\\partial\\mathbf X$となります。\n\n一方向なら$x=X+u$から$F=1+du/dX$です。何も伸びず回転もない場合は$u$が場所によらず一定なので、$du/dX=0$、$F=1$です。\n\n行列の場合の$\\mathbf I$はこの1に当たります。変形がないからといって$\\mathbf F=\\mathbf0$にはなりません。"
+            },
+            {
+              "title": "二方向の行列を矢印に掛けます",
+              "body": "$\\mathbf F=\\begin{bmatrix}2&0\\\\0&1\\end{bmatrix}$なら、横の矢印$(10,0)^T$は$(20,0)^T$へ、縦の矢印$(0,10)^T$は$(0,10)^T$へ移ります。上の行は変形後の横成分、下の行は縦成分を計算します。\n\n列は元の横方向・縦方向に対応します。全体を回転させる場合も$\\mathbf F$に含められるため、伸びだけを取り出したテンソルと同じものではありません。"
+            },
+            {
+              "title": "逆変換と速度の式を区別します",
+              "body": "$\\partial X_i/\\partial x_j$は、今の間隔から元の間隔へ戻す逆変換$\\mathbf F^{-1}$です。上の一方向の例なら、戻す倍率は$1/2$です。\n\n$\\partial v_i/\\partial x_j$は位置ではなく速度$v_i$の変化で、速度勾配$\\mathbf L$です。その単位は時間の逆数となります。\n\n記号が似ていても、分子・分母が位置か変位か速度かを読むと区別できます。"
+            }
+          ],
+          "explanation": "【基礎】$F_{ij}=\\partial x_i/\\partial X_j$です。\n【考え方】正解は1です。$F_{ij}=\\partial x_i/\\partial X_j$です。添字$j$は元のどの方向に進むか、$i$は移動後のどの方向の成分を見るかを示します。 $\\partial$は、ほかの座標を固定して、その方向だけ少し変えたときの変化を調べる記号です。分母が元の位置$X_j$、分子が今の位置$x_i$なので、元から今への変換だと分かります。 両方とも長さなので、$F_{ij}$自体には長さの単位が残りません。\n【ポイント】元の位置が$X$の点が$x=2X$へ移る一様な伸びを考えます。このとき$F=dx/dX=2$です。 元の10mmの間隔なら、$dx=2\\times10=20$mmとなります。一方、普通の伸びの割合は$(20-10)/10=1$です。 変形勾配の2は「元の何倍か」、ひずみの1は「元に対してどれだけ増えたか」です。$\\mathbf F$をそのままひずみと呼ばない理由がここにあります。\n【引っかけ】2：「$F_{ij}=\\partial X_i/\\partial x_j$」ではなく、$F_{ij}=\\partial x_i/\\partial X_j$です。$F_{ij}=\\partial x_i/\\partial X_j$です。添字$j$は元のどの方向に進むか、$i$は移動後のどの方向の成分を見るかを示します。 $\\partial$は、ほかの座標を固定して、その方向だけ少し変えたときの変化を調べる記号です。分母が元の位置$X_j$、分子が今の位置$x_i$なので、元から今への変換だと分かります。 両方とも長さなので、$F_{ij}$自体には長さの単位が残りません。",
+          "relatedFormulas": [
+            "s1ch1-2"
+          ],
+          "editorialReview": {
+            "officialPoint": "変形勾配テンソルの定義／個別の質問：Fの成分",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$F_{ij}=\\partial X_i/\\partial x_j$」ではなく、$F_{ij}=\\partial x_i/\\partial X_j$です。$F_{ij}=\\partial x_i/\\partial X_j$です。添字$j$は元のどの方向に進むか、$i$は移動後のどの方向の成分を見るかを示します。\n\n$\\partial$は、ほかの座標を固定して、その方向だけ少し変えたときの変化を調べる記号です。分母が元の位置$X_j$、分子が今の位置$x_i$なので、元から今への変換だと分かります。\n\n両方とも長さなので、$F_{ij}$自体には長さの単位が残りません。"
+            },
+            "sha256": "dca87535e066cd3d3a953d35efadef14a5f892bbcd4028c63518925f84b7da28"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "name",
+        "component"
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "solid1-1-3",
@@ -268,7 +387,7 @@
           "3": "ひずみの符号反転",
           "4": "FTFとFFTの取り違え"
         },
-        "sha256": "b1a6b2c0e221d007853ea6f86d3dc827b48cb70f0afe2fe2bf597ed5c2218150"
+        "sha256": "c9a8a23496e4620d73b6f651830b65e0d428301f638535b0cb417d3167b225a8"
       },
       "easyExplanation": [
         {
@@ -310,7 +429,10 @@
           "body": "①は定義に必要な1/2がないため、小さな伸びでも普通のひずみの2倍になります。③は差の向きを逆にしているので、引張りが負になります。\n\n④は積を逆にした左コーシー・グリーン変形テンソルを使っており、元の材料方向を基準にする定義ではありません。行列の積は一般に順序を交換できません。\n\n「元の方向」「長さの2乗差」「半分」の三つを結び付けて②を選びます。"
         }
       ],
-      "answerSummary": "元の長さを基準にしたひずみは、$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$です。"
+      "answerSummary": "元の長さを基準にしたひずみは、$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "solid1-1-4",
@@ -347,7 +469,7 @@
           "2": "逆行列の忘れ",
           "3": "符号と逆行列の取り違え"
         },
-        "sha256": "af742cee455adae02a4528ab84d6c7477de64224c3379a91e2b06d4536e6c0fa"
+        "sha256": "33fbda1adc5f09c4c8a7c89590f15980f4ed609e004b54dd1ccb25c977f90cb8"
       },
       "easyExplanation": [
         {
@@ -389,7 +511,10 @@
           "body": "①は元の配置を基準にするグリーン・ラグランジュひずみです。②は現在から元へ戻す逆行列を使っていません。\n\n③も逆行列がなく、さらに伸びに対する符号が合いません。④は現在の矢印から元を復元して、長さの2乗差を現在基準で測る式です。\n\n公式の形だけでなく、「今を基準にするため、元へ戻す」という操作と結び付けると区別しやすくなります。"
         }
       ],
-      "answerSummary": "今の長さを基準にするので、元へ戻す逆変換を使い、$\\mathbf A=(\\mathbf I-\\mathbf B^{-1})/2$です。"
+      "answerSummary": "今の長さを基準にするので、元へ戻す逆変換を使い、$\\mathbf A=(\\mathbf I-\\mathbf B^{-1})/2$です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "solid1-1-5",
@@ -422,13 +547,13 @@
       ],
       "editorialReview": {
         "officialPoint": "剛体回転とひずみの不変性",
-        "alignment": "公式固体1級第1章の該当問・解説を抽出テキストで照合。通常解説は要点、やさしく解説は記号・導出・具体例・確認を段階的に説明。現設問の条件で独立検算。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "材料基準と空間基準の逆転",
           "3": "Aも成分不変とする",
           "4": "Eも空間軸と回す"
         },
-        "sha256": "7de980289ee294bc5fbf7f3575dbf05b508676c0a21e8873a5d341ebd220111e"
+        "sha256": "6426e74ae0014be9f134a1965d586a006e34a4013d60f640f69304eec8d91105"
       },
       "easyExplanation": [
         {
@@ -466,7 +591,119 @@
           "body": "肢1は材料基準の $\\mathbf E$ が不変、空間基準の $\\mathbf A$ が回転に応じて成分変換されるため正しいです。肢2は両者の基準を逆にしています。\n\n肢3は $\\mathbf A$ の成分も常に不変としています。肢4は元の材料方向で測る $\\mathbf E$ まで空間方向と一緒に回しています。\n\n「成分が変わる」と「材料がさらに変形する」は別です。また、すでに伸びた物体へ回転を加える本問と、初めから回転だけで伸びがない場合を混同しないでください。"
         }
       ],
-      "answerSummary": "追加の回転で伸びは増えません。元の材料方向で測る$\\mathbf E$は不変、空間の軸で表す$\\mathbf A$は$\\mathbf Q\\mathbf A\\mathbf Q^T$へ変換されます。"
+      "answerSummary": "Eの変換：Eは追加の剛体回転で成分が変わりません。\nAの変換：Aは現在の向きに合わせて成分が変換されます。",
+      "officialQuestionItems": [
+        "e",
+        "a"
+      ],
+      "sharedQuestion": "変形勾配を極分解して $\\mathbf{F}=\\mathbf{R}\\mathbf{U}$ とし、さらに剛体回転 $\\mathbf{Q}$ を加えて $\\mathbf{F}'=\\mathbf{Q}\\mathbf{F}$ とする。グリーン・ラグランジュひずみ $\\mathbf{E}$ とアルマンジひずみ $\\mathbf{A}$ の剛体回転に対する振舞いを、それぞれ求めてください。",
+      "studyParts": [
+        {
+          "id": "solid1-1-5-item-e",
+          "number": "1-6",
+          "officialRef": "問1-6",
+          "officialQuestionItem": "e",
+          "title": "Eの変換",
+          "topic": "ひずみの回転不変性",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "回転後の $\\mathbf E'$ はどれか。",
+          "choices": [
+            "$\\mathbf E'=\\mathbf Q\\mathbf E\\mathbf Q^T$",
+            "$\\mathbf E'=\\mathbf E$"
+          ],
+          "answer": 2,
+          "answerSummary": "Eは追加の剛体回転で成分が変わりません。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "ゴムの板を横へ伸ばし、その長方形を形を保って90°回す場面を考えます。回転の前後で、材料自体に追加の伸びはありません。\n\nしかし、部屋に固定した横軸・縦軸から見ると、伸びている方向は横から縦へ変わります。「伸びの実体が変わらないこと」と「固定軸から見た成分が変わらないこと」は同じではありません。\n\n本問はその違いを$\\mathbf E$と$\\mathbf A$で調べます。"
+            },
+            {
+              "title": "記号を、計算の役割で整理します",
+              "body": "材料を伸ばした後、形を変えず向きだけ変える「剛体回転」を加えます。変形勾配 $\\mathbf F$ は伸びと回転の両方を含み、$\\mathbf F=\\mathbf R\\mathbf U=\\mathbf V\\mathbf R$ と分けられます。\n\n$\\mathbf R$ は回転、$\\mathbf U$ は元の材料方向で表す右ストレッチ、$\\mathbf V$ は現在の空間方向で表す左ストレッチです。追加の回転を $\\mathbf Q$ とすると $\\mathbf F'=\\mathbf Q\\mathbf F$ です。\n\n回転は長さを変えないため $\\mathbf Q^T\\mathbf Q=\\mathbf I$、$\\mathbf R^T\\mathbf R=\\mathbf I$ となります。$\\mathbf I$ は掛けても相手を変えない単位行列、上付きの $T$ は行と列を入れ替える転置、$-1$ は変換を元に戻す逆行列を表します。"
+            },
+            {
+              "title": "Eの導出を、内側から追います",
+              "body": "①グリーン・ラグランジュひずみは $\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ です。積の転置は順番が逆になるので $(\\mathbf Q\\mathbf R\\mathbf U)^T=\\mathbf U^T\\mathbf R^T\\mathbf Q^T$ です。\n\n代入すると $\\mathbf E'=(\\mathbf U^T\\mathbf R^T\\mathbf Q^T\\mathbf Q\\mathbf R\\mathbf U-\\mathbf I)/2$。中央の $\\mathbf Q^T\\mathbf Q=\\mathbf I$ を使うと $\\mathbf E'=(\\mathbf U^T\\mathbf R^T\\mathbf R\\mathbf U-\\mathbf I)/2$、続いて $\\mathbf R^T\\mathbf R=\\mathbf I$ を使うと $\\mathbf E'=(\\mathbf U^T\\mathbf U-\\mathbf I)/2$ です。\n\n$\\mathbf U$ は対称、つまり $\\mathbf U^T=\\mathbf U$ なので $\\mathbf E'=(\\mathbf U^2-\\mathbf I)/2=\\mathbf E$ となり、追加の回転は消えます。"
+            }
+          ],
+          "explanation": "【基礎】Eは追加の剛体回転で成分が変わりません。\n【考え方】正解は2です。ゴムの板を横へ伸ばし、その長方形を形を保って90°回す場面を考えます。回転の前後で、材料自体に追加の伸びはありません。 しかし、部屋に固定した横軸・縦軸から見ると、伸びている方向は横から縦へ変わります。「伸びの実体が変わらないこと」と「固定軸から見た成分が変わらないこと」は同じではありません。 本問はその違いを$\\mathbf E$と$\\mathbf A$で調べます。\n【ポイント】材料を伸ばした後、形を変えず向きだけ変える「剛体回転」を加えます。変形勾配 $\\mathbf F$ は伸びと回転の両方を含み、$\\mathbf F=\\mathbf R\\mathbf U=\\mathbf V\\mathbf R$ と分けられます。 $\\mathbf R$ は回転、$\\mathbf U$ は元の材料方向で表す右ストレッチ、$\\mathbf V$ は現在の空間方向で表す左ストレッチです。追加の回転を $\\mathbf Q$ とすると $\\mathbf F'=\\mathbf Q\\mathbf F$ です。 回転は長さを変えないため $\\mathbf Q^T\\mathbf Q=\\mathbf I$、$\\mathbf R^T\\mathbf R=\\mathbf I$ となります。$\\mathbf I$ は掛けても相手を変えない単位行列、上付きの $T$ は行と列を入れ替える転置、$-1$ は変換を元に戻す逆行列を表します。\n【引っかけ】1：「$\\mathbf E'=\\mathbf Q\\mathbf E\\mathbf Q^T$」ではなく、$\\mathbf E'=\\mathbf E$です。ゴムの板を横へ伸ばし、その長方形を形を保って90°回す場面を考えます。回転の前後で、材料自体に追加の伸びはありません。 しかし、部屋に固定した横軸・縦軸から見ると、伸びている方向は横から縦へ変わります。「伸びの実体が変わらないこと」と「固定軸から見た成分が変わらないこと」は同じではありません。 本問はその違いを$\\mathbf E$と$\\mathbf A$で調べます。",
+          "relatedFormulas": [
+            "s1ch1-4",
+            "s1ch1-5",
+            "s1ch1-14"
+          ],
+          "editorialReview": {
+            "officialPoint": "剛体回転とひずみの不変性／個別の質問：Eの変換",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$\\mathbf E'=\\mathbf Q\\mathbf E\\mathbf Q^T$」ではなく、$\\mathbf E'=\\mathbf E$です。ゴムの板を横へ伸ばし、その長方形を形を保って90°回す場面を考えます。回転の前後で、材料自体に追加の伸びはありません。\n\nしかし、部屋に固定した横軸・縦軸から見ると、伸びている方向は横から縦へ変わります。「伸びの実体が変わらないこと」と「固定軸から見た成分が変わらないこと」は同じではありません。\n\n本問はその違いを$\\mathbf E$と$\\mathbf A$で調べます。"
+            },
+            "sha256": "43332ec0a2d11416e181e1f91af79e59f744b3d0c98a84e1d031eb510d01dc01"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "solid1-1-5-item-a",
+          "number": "1-6",
+          "officialRef": "問1-6",
+          "officialQuestionItem": "a",
+          "title": "Aの変換",
+          "topic": "ひずみの回転不変性",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "回転後の $\\mathbf A'$ はどれか。",
+          "choices": [
+            "$\\mathbf A'=\\mathbf A$",
+            "$\\mathbf A'=\\mathbf Q\\mathbf A\\mathbf Q^T$"
+          ],
+          "answer": 2,
+          "answerSummary": "Aは現在の向きに合わせて成分が変換されます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "アルマンジひずみは $\\mathbf A=(\\mathbf I-\\mathbf B^{-1})/2$、$\\mathbf B=\\mathbf F\\mathbf F^T=\\mathbf V^2$ です。回転後は $\\mathbf B'=\\mathbf Q\\mathbf V^2\\mathbf Q^T$。\n\n積の逆行列も順番が逆になるので $(\\mathbf B')^{-1}=(\\mathbf Q^T)^{-1}(\\mathbf V^2)^{-1}\\mathbf Q^{-1}$ です。回転では $\\mathbf Q^{-1}=\\mathbf Q^T$、$(\\mathbf Q^T)^{-1}=\\mathbf Q$、また $(\\mathbf V^2)^{-1}=\\mathbf V^{-2}$ なので $(\\mathbf B')^{-1}=\\mathbf Q\\mathbf V^{-2}\\mathbf Q^T$ となります。\n\nしたがって $\\mathbf A'=(\\mathbf I-\\mathbf Q\\mathbf V^{-2}\\mathbf Q^T)/2$。$\\mathbf I=\\mathbf Q\\mathbf I\\mathbf Q^T$ と書けば $\\mathbf A'=\\mathbf Q(\\mathbf I-\\mathbf V^{-2})\\mathbf Q^T/2=\\mathbf Q\\mathbf A\\mathbf Q^T$ となります。"
+            },
+            {
+              "title": "具体的に、成分の入れ替わりを見ます",
+              "body": "横だけ1.2倍、縦は1倍に伸ばすと、$\\mathbf E=\\operatorname{diag}(0.22,0)$、$\\mathbf A=\\operatorname{diag}(11/72,0)$です。$\\operatorname{diag}$は指定した数を対角に置き、ほかを0にする表記です。\n\n90°回転後も元の材料方向で表す$\\mathbf E$は同じです。一方、固定した空間軸で表す$\\mathbf A^{\\prime}$は$\\operatorname{diag}(0,11/72)$となります。\n\n伸びの大きさ$11/72\\simeq0.1528$は変わらず、向きだけ入れ替わります。",
+              "figures": [
+                {
+                  "figureImage": "s1e1RigidRot",
+                  "caption": "伸ばした後に向きだけ変えています。元の材料方向で見るか、固定した空間の方向で見るかが、二つのひずみの違いです。"
+                }
+              ]
+            },
+            {
+              "title": "不変と、客観的な変換を区別します",
+              "body": "$\\mathbf E'=\\mathbf E$は、追加回転で成分がそのまま変わらないという性質です。$\\mathbf A'=\\mathbf Q\\mathbf A\\mathbf Q^T$は、物体の向きに応じて成分を適切に回す性質です。\n\n後者も、回しただけで材料のひずみが勝手に増えない正しい表現です。「Aの成分が変わるから、Aは誤ったひずみ」ということではありません。\n\n基準配置と現在配置の違いを区別します。"
+            }
+          ],
+          "explanation": "【基礎】Aは現在の向きに合わせて成分が変換されます。\n【考え方】正解は2です。アルマンジひずみは $\\mathbf A=(\\mathbf I-\\mathbf B^{-1})/2$、$\\mathbf B=\\mathbf F\\mathbf F^T=\\mathbf V^2$ です。回転後は $\\mathbf B'=\\mathbf Q\\mathbf V^2\\mathbf Q^T$。 積の逆行列も順番が逆になるので $(\\mathbf B')^{-1}=(\\mathbf Q^T)^{-1}(\\mathbf V^2)^{-1}\\mathbf Q^{-1}$ です。回転では $\\mathbf Q^{-1}=\\mathbf Q^T$、$(\\mathbf Q^T)^{-1}=\\mathbf Q$、また $(\\mathbf V^2)^{-1}=\\mathbf V^{-2}$ なので $(\\mathbf B')^{-1}=\\mathbf Q\\mathbf V^{-2}\\mathbf Q^T$ となります。 したがって $\\mathbf A'=(\\mathbf I-\\mathbf Q\\mathbf V^{-2}\\mathbf Q^T)/2$。$\\mathbf I=\\mathbf Q\\mathbf I\\mathbf Q^T$ と書けば $\\mathbf A'=\\mathbf Q(\\mathbf I-\\mathbf V^{-2})\\mathbf Q^T/2=\\mathbf Q\\mathbf A\\mathbf Q^T$ となります。\n【ポイント】横だけ1.2倍、縦は1倍に伸ばすと、$\\mathbf E=\\operatorname{diag}(0.22,0)$、$\\mathbf A=\\operatorname{diag}(11/72,0)$です。$\\operatorname{diag}$は指定した数を対角に置き、ほかを0にする表記です。 90°回転後も元の材料方向で表す$\\mathbf E$は同じです。一方、固定した空間軸で表す$\\mathbf A^{\\prime}$は$\\operatorname{diag}(0,11/72)$となります。 伸びの大きさ$11/72\\simeq0.1528$は変わらず、向きだけ入れ替わります。\n【引っかけ】1：「$\\mathbf A'=\\mathbf A$」ではなく、$\\mathbf A'=\\mathbf Q\\mathbf A\\mathbf Q^T$です。アルマンジひずみは $\\mathbf A=(\\mathbf I-\\mathbf B^{-1})/2$、$\\mathbf B=\\mathbf F\\mathbf F^T=\\mathbf V^2$ です。回転後は $\\mathbf B'=\\mathbf Q\\mathbf V^2\\mathbf Q^T$。 積の逆行列も順番が逆になるので $(\\mathbf B')^{-1}=(\\mathbf Q^T)^{-1}(\\mathbf V^2)^{-1}\\mathbf Q^{-1}$ です。回転では $\\mathbf Q^{-1}=\\mathbf Q^T$、$(\\mathbf Q^T)^{-1}=\\mathbf Q$、また $(\\mathbf V^2)^{-1}=\\mathbf V^{-2}$ なので $(\\mathbf B')^{-1}=\\mathbf Q\\mathbf V^{-2}\\mathbf Q^T$ となります。 したがって $\\mathbf A'=(\\mathbf I-\\mathbf Q\\mathbf V^{-2}\\mathbf Q^T)/2$。$\\mathbf I=\\mathbf Q\\mathbf I\\mathbf Q^T$ と書けば $\\mathbf A'=\\mathbf Q(\\mathbf I-\\mathbf V^{-2})\\mathbf Q^T/2=\\mathbf Q\\mathbf A\\mathbf Q^T$ となります。",
+          "relatedFormulas": [
+            "s1ch1-4",
+            "s1ch1-5",
+            "s1ch1-14"
+          ],
+          "editorialReview": {
+            "officialPoint": "剛体回転とひずみの不変性／個別の質問：Aの変換",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$\\mathbf A'=\\mathbf A$」ではなく、$\\mathbf A'=\\mathbf Q\\mathbf A\\mathbf Q^T$です。アルマンジひずみは $\\mathbf A=(\\mathbf I-\\mathbf B^{-1})/2$、$\\mathbf B=\\mathbf F\\mathbf F^T=\\mathbf V^2$ です。回転後は $\\mathbf B'=\\mathbf Q\\mathbf V^2\\mathbf Q^T$。\n\n積の逆行列も順番が逆になるので $(\\mathbf B')^{-1}=(\\mathbf Q^T)^{-1}(\\mathbf V^2)^{-1}\\mathbf Q^{-1}$ です。回転では $\\mathbf Q^{-1}=\\mathbf Q^T$、$(\\mathbf Q^T)^{-1}=\\mathbf Q$、また $(\\mathbf V^2)^{-1}=\\mathbf V^{-2}$ なので $(\\mathbf B')^{-1}=\\mathbf Q\\mathbf V^{-2}\\mathbf Q^T$ となります。\n\nしたがって $\\mathbf A'=(\\mathbf I-\\mathbf Q\\mathbf V^{-2}\\mathbf Q^T)/2$。$\\mathbf I=\\mathbf Q\\mathbf I\\mathbf Q^T$ と書けば $\\mathbf A'=\\mathbf Q(\\mathbf I-\\mathbf V^{-2})\\mathbf Q^T/2=\\mathbf Q\\mathbf A\\mathbf Q^T$ となります。"
+            },
+            "sha256": "f6e416cc3ac4484edf79285f6de39df724631502572174e8da7a8ea9b722f5e1"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "solid1-1-6",
@@ -506,7 +743,7 @@
           "3": "Eの対称性を見落とす",
           "4": "Aの対称性を見落とす"
         },
-        "sha256": "1835153efe84cb17138ade5e4cbe2eb1bc6c0822eab340474b971b4c4971e5f6"
+        "sha256": "b5e3b5a4cbfc03a076dc9bc8d1c39cc2dc10f48cf0aa72c80fe77a9b740e90bb"
       },
       "easyExplanation": [
         {
@@ -544,7 +781,10 @@
           "body": "①のCはFの転置との積なので対称です。②のFには上のせん断のような非対称な例があります。\n\n③のEは対称なCから作られ、④のAは対称なBの逆行列から作られるため対称です。したがって②を選びます。\n\n名称を丸暗記するより、「Fは元から今への変換、C・E・Aは長さやひずみを表すために組み合わせた量」と役割を分けると整理しやすくなります。"
         }
       ],
-      "answerSummary": "$\\mathbf F$は一般には非対称です。$\\mathbf F^T\\mathbf F$のように積を作った後の対称性とは区別します。"
+      "answerSummary": "$\\mathbf F$は一般には非対称です。$\\mathbf F^T\\mathbf F$のように積を作った後の対称性とは区別します。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "solid1-1-10",
@@ -577,13 +817,13 @@
       ],
       "editorialReview": {
         "officialPoint": "せん断後の回転と有限ひずみ",
-        "alignment": "公式固体1級第1章の該当問・解説を抽出テキストで照合。記号・導出・具体例・独立検算を段階的に補足し、問題条件と論点を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "全成分の1/2を忘れる",
           "3": "回転が既存のひずみを消すと思う",
           "4": "Eを空間の客観テンソルとして変換する"
         },
-        "sha256": "8c70fe77df65e4c7fa4e85943c175fd46046e2cdf5b90bda2cf8f07e01633e9f"
+        "sha256": "1bf4b0b4c4831aae45b91fca25e684f1acc9ff2eed84e2876d46be71ecbb5993"
       },
       "easyExplanation": [
         {
@@ -625,7 +865,7 @@
           "body": "①は両時刻とも同じ正しい行列なので正解です。②は定義の1/2を忘れ、全成分が2倍です。\n\n③は回転によって、それまでのせん断が消えると考えています。④はEを現在の空間方向の量と同じように回しています。\n\n計算結果の右上と左下が等しいこと、単位がないこと、回転前後で同じになることを確認すると、単純な計算ミスを見つけやすくなります。"
         }
       ],
-      "answerSummary": "せん断後に向きだけ変えても、元の材料方向で測ったひずみは変わりません。二つの時刻の行列を計算して確かめます。",
+      "answerSummary": "時刻t1：E11：$E_{11}=0$です。\n時刻t1：E12：$E_{12}=0.2$です。\n時刻t1：E21：$E_{21}=0.2$です。\n時刻t1：E22：$E_{22}=0.08$です。\n時刻t2：E11：$E_{11}=0$です。\n時刻t2：E12：$E_{12}=0.2$です。\n時刻t2：E21：$E_{21}=0.2$です。\n時刻t2：E22：$E_{22}=0.08$です。",
       "sharedQuestion": "単位正方形をせん断した時刻$t_1$の変形勾配は$\\mathbf F_1=\\begin{bmatrix}1&0.4\\\\0&1\\end{bmatrix}$です。その形を保って$\\mathbf Q=\\begin{bmatrix}0.6&-0.8\\\\0.8&0.6\\end{bmatrix}$だけ回すと、時刻$t_2$では$\\mathbf F_2=\\mathbf Q\\mathbf F_1=\\begin{bmatrix}0.6&-0.56\\\\0.8&0.92\\end{bmatrix}$です。二つの時刻のグリーン・ラグランジュひずみを求めます。",
       "studyParts": [
         {
@@ -636,47 +876,153 @@
           "origin": "original",
           "reviewed": true,
           "id": "solid1-1-10-written-t1",
-          "title": "せん断後のひずみ",
+          "title": "時刻t1：E11",
           "type": "記述",
-          "question": "時刻$t_1$のひずみ行列$\\mathbf E_1$を求め、転置との積を含む計算過程を書いてください。",
+          "question": "時刻$t_1$の成分 $E_{11}$ を求めてください。",
           "responseType": "written",
           "choices": [],
           "answer": 0,
-          "modelAnswer": "$\\mathbf E_1=\\frac12(\\mathbf F_1^T\\mathbf F_1-\\mathbf I)=\\begin{bmatrix}0&0.2\\\\0.2&0.08\\end{bmatrix}$です。",
+          "modelAnswer": "$E_{11}=0$です。",
           "answerCheckpoints": [
-            "転置との積の対角成分は1と1.16、非対角成分は0.4です。",
-            "単位行列を引き、全成分へ1/2を掛けます。"
+            "$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。(1−1)/2=0です。対角成分だけ単位行列の1を引き、非対角では引きません。"
           ],
           "easyExplanation": [
             {
-              "title": "せん断と、その後の回転を分けます",
-              "body": "最初に単位正方形をせん断して、上側を横へずらします。次に、その形を保ったまま全体を回します。\n\n最初の操作は形を変えますが、次の操作は向きだけを変えます。元の材料方向を基準にするグリーン・ラグランジュひずみEでは、回転を加えても値が変わらないはずです。\n\n今回はその性質を、二つの時刻で実際に行列計算して確かめます。"
-            },
-            {
-              "title": "計算の順番を決めます",
-              "body": "使う式は$\\mathbf E_k=(\\mathbf F_k^T\\mathbf F_k-\\mathbf I)/2$です。添字$k$は時刻1か2を区別します。\n\n①Fの転置を作る、②転置と元のFを掛ける、③対角成分から1を引く、④全成分を2で割る、の順です。単位行列は対角にだけ1があるので、全ての成分から1を引くのではありません。\n\nまた、1/2は対角成分にも非対角成分にも掛けます。"
-            },
-            {
-              "title": "時刻1の積を一成分ずつ求めます",
-              "body": "$\\mathbf F_1=\\begin{bmatrix}1&0.4\\\\0&1\\end{bmatrix}$なので、$\\mathbf F_1^T=\\begin{bmatrix}1&0\\\\0.4&1\\end{bmatrix}$です。行と列を掛けて足すと、$C_{11}=1\\times1+0\\times0=1$、$C_{12}=1\\times0.4+0\\times1=0.4$、$C_{21}=0.4\\times1+1\\times0=0.4$、$C_{22}=0.4^2+1^2=1.16$です。\n\n結果は$\\mathbf C_1=\\begin{bmatrix}1&0.4\\\\0.4&1.16\\end{bmatrix}$です。"
-            },
-            {
-              "title": "時刻1のひずみへ直します",
-              "body": "対角から1を引くと$\\mathbf C_1-\\mathbf I=\\begin{bmatrix}0&0.4\\\\0.4&0.16\\end{bmatrix}$です。各成分を半分にして、$\\mathbf E_1=\\begin{bmatrix}0&0.2\\\\0.2&0.08\\end{bmatrix}$を得ます。\n\n元の縦線は斜めになって長くなるので、$E_{22}=0.08$が現れます。せん断したから対角は必ず0、とは限りません。\n\n有限ひずみでは、せん断による長さの変化も2乗項として捉えます。"
+              "title": "答えに至る考え方",
+              "body": "$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。(1−1)/2=0です。対角成分だけ単位行列の1を引き、非対角では引きません。"
             }
           ],
-          "answerSummary": "行列を掛けてから、対角成分から1を引き、全成分を半分にします。",
+          "answerSummary": "$E_{11}=0$です。",
           "officialWrittenEvidence": {
             "file": "_原本(非公開)/_抽出テキスト/固体1級_01_非線形解析における応力とひずみ.md",
             "excerpt": "- **問1-8**（計算・記述）矩形が大変形/大回転。t₁, t₂ の変形勾配 F が与えられ、各時刻の"
           },
-          "explanation": "【基礎】行列を掛けてから、対角成分から1を引き、全成分を半分にします。\n【考え方】$\\mathbf E_1=\\frac12(\\mathbf F_1^T\\mathbf F_1-\\mathbf I)=\\begin{bmatrix}0&0.2\\\\0.2&0.08\\end{bmatrix}$です。\n【ポイント】転置との積の対角成分は1と1.16、非対角成分は0.4です。 単位行列を引き、全成分へ1/2を掛けます。\n【引っかけ】式の基準・符号・単位を確認し、必要な途中手順を示します。",
+          "explanation": "【基礎】時刻t1：E11を確認します。\n【考え方】$E_{11}=0$です。\n【ポイント】$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。(1−1)/2=0です。対角成分だけ単位行列の1を引き、非対角では引きません。\n【引っかけ】条件と記号の意味をそろえ、途中手順と単位を確認します。",
           "editorialReview": {
-            "officialPoint": "1-8の公式記述式：せん断後のひずみ",
+            "officialPoint": "1-8の公式記述式：せん断後のひずみ／時刻t1：E11",
             "alignment": "保存済み公式の記述形式と論点を確認。現アプリの数値条件で導出し、独自表現の解答例と自己確認点を作成。",
             "distractorMisconceptions": {},
-            "sha256": "7767d7fcdc88ac8c9ee438d6138151dd92420900d02890c8a7d072e655e84566"
-          }
+            "sha256": "3359390bd0579e11fa637b3c063d9d7445259d54436cd8f6992a3525c68fb42c"
+          },
+          "officialQuestionItem": "t1-11",
+          "explanationMode": "guided"
+        },
+        {
+          "number": "1-8",
+          "officialRef": "問1-8",
+          "topic": "グリーン・ラグランジュひずみ",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "id": "solid1-1-10-written-t1-t1-12",
+          "title": "時刻t1：E12",
+          "type": "記述",
+          "question": "時刻$t_1$の成分 $E_{12}$ を求めてください。",
+          "responseType": "written",
+          "choices": [],
+          "answer": 0,
+          "modelAnswer": "$E_{12}=0.2$です。",
+          "answerCheckpoints": [
+            "$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。(1×0.4+0×1)/2=0.2です。対角成分だけ単位行列の1を引き、非対角では引きません。"
+          ],
+          "easyExplanation": [
+            {
+              "title": "答えに至る考え方",
+              "body": "$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。(1×0.4+0×1)/2=0.2です。対角成分だけ単位行列の1を引き、非対角では引きません。"
+            }
+          ],
+          "answerSummary": "$E_{12}=0.2$です。",
+          "officialWrittenEvidence": {
+            "file": "_原本(非公開)/_抽出テキスト/固体1級_01_非線形解析における応力とひずみ.md",
+            "excerpt": "- **問1-8**（計算・記述）矩形が大変形/大回転。t₁, t₂ の変形勾配 F が与えられ、各時刻の"
+          },
+          "explanation": "【基礎】時刻t1：E12を確認します。\n【考え方】$E_{12}=0.2$です。\n【ポイント】$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。(1×0.4+0×1)/2=0.2です。対角成分だけ単位行列の1を引き、非対角では引きません。\n【引っかけ】条件と記号の意味をそろえ、途中手順と単位を確認します。",
+          "editorialReview": {
+            "officialPoint": "1-8の公式記述式：せん断後のひずみ／時刻t1：E12",
+            "alignment": "保存済み公式の記述形式と論点を確認。現アプリの数値条件で導出し、独自表現の解答例と自己確認点を作成。",
+            "distractorMisconceptions": {},
+            "sha256": "3463a6cce0bc09adc072b623fbc61d42d3708484828366c317e2bea0f133173f"
+          },
+          "officialQuestionItem": "t1-12",
+          "explanationMode": "guided"
+        },
+        {
+          "number": "1-8",
+          "officialRef": "問1-8",
+          "topic": "グリーン・ラグランジュひずみ",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "id": "solid1-1-10-written-t1-t1-21",
+          "title": "時刻t1：E21",
+          "type": "記述",
+          "question": "時刻$t_1$の成分 $E_{21}$ を求めてください。",
+          "responseType": "written",
+          "choices": [],
+          "answer": 0,
+          "modelAnswer": "$E_{21}=0.2$です。",
+          "answerCheckpoints": [
+            "$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。対称性からE₂₁＝E₁₂＝0.2です。対角成分だけ単位行列の1を引き、非対角では引きません。"
+          ],
+          "easyExplanation": [
+            {
+              "title": "答えに至る考え方",
+              "body": "$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。対称性からE₂₁＝E₁₂＝0.2です。対角成分だけ単位行列の1を引き、非対角では引きません。"
+            }
+          ],
+          "answerSummary": "$E_{21}=0.2$です。",
+          "officialWrittenEvidence": {
+            "file": "_原本(非公開)/_抽出テキスト/固体1級_01_非線形解析における応力とひずみ.md",
+            "excerpt": "- **問1-8**（計算・記述）矩形が大変形/大回転。t₁, t₂ の変形勾配 F が与えられ、各時刻の"
+          },
+          "explanation": "【基礎】時刻t1：E21を確認します。\n【考え方】$E_{21}=0.2$です。\n【ポイント】$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。対称性からE₂₁＝E₁₂＝0.2です。対角成分だけ単位行列の1を引き、非対角では引きません。\n【引っかけ】条件と記号の意味をそろえ、途中手順と単位を確認します。",
+          "editorialReview": {
+            "officialPoint": "1-8の公式記述式：せん断後のひずみ／時刻t1：E21",
+            "alignment": "保存済み公式の記述形式と論点を確認。現アプリの数値条件で導出し、独自表現の解答例と自己確認点を作成。",
+            "distractorMisconceptions": {},
+            "sha256": "51ab46bad1c253ac2c5ce0973ce2de69de91789ea49087ddc56328a2ecd290ec"
+          },
+          "officialQuestionItem": "t1-21",
+          "explanationMode": "guided"
+        },
+        {
+          "number": "1-8",
+          "officialRef": "問1-8",
+          "topic": "グリーン・ラグランジュひずみ",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "id": "solid1-1-10-written-t1-t1-22",
+          "title": "時刻t1：E22",
+          "type": "記述",
+          "question": "時刻$t_1$の成分 $E_{22}$ を求めてください。",
+          "responseType": "written",
+          "choices": [],
+          "answer": 0,
+          "modelAnswer": "$E_{22}=0.08$です。",
+          "answerCheckpoints": [
+            "$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。(0.4²+1²−1)/2=0.08です。対角成分だけ単位行列の1を引き、非対角では引きません。"
+          ],
+          "easyExplanation": [
+            {
+              "title": "答えに至る考え方",
+              "body": "$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。(0.4²+1²−1)/2=0.08です。対角成分だけ単位行列の1を引き、非対角では引きません。"
+            }
+          ],
+          "answerSummary": "$E_{22}=0.08$です。",
+          "officialWrittenEvidence": {
+            "file": "_原本(非公開)/_抽出テキスト/固体1級_01_非線形解析における応力とひずみ.md",
+            "excerpt": "- **問1-8**（計算・記述）矩形が大変形/大回転。t₁, t₂ の変形勾配 F が与えられ、各時刻の"
+          },
+          "explanation": "【基礎】時刻t1：E22を確認します。\n【考え方】$E_{22}=0.08$です。\n【ポイント】$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。(0.4²+1²−1)/2=0.08です。対角成分だけ単位行列の1を引き、非対角では引きません。\n【引っかけ】条件と記号の意味をそろえ、途中手順と単位を確認します。",
+          "editorialReview": {
+            "officialPoint": "1-8の公式記述式：せん断後のひずみ／時刻t1：E22",
+            "alignment": "保存済み公式の記述形式と論点を確認。現アプリの数値条件で導出し、独自表現の解答例と自己確認点を作成。",
+            "distractorMisconceptions": {},
+            "sha256": "b9a1504d973cf65110f5f0eceab87413ef0bc27029ab1e5994c2671299996c59"
+          },
+          "officialQuestionItem": "t1-22",
+          "explanationMode": "guided"
         },
         {
           "number": "1-8",
@@ -686,18 +1032,138 @@
           "origin": "original",
           "reviewed": true,
           "id": "solid1-1-10-written-t2",
-          "title": "回転を加えた後のひずみ",
+          "title": "時刻t2：E11",
           "type": "記述",
-          "question": "時刻$t_2$のひずみ行列$\\mathbf E_2$を求め、$\\mathbf E_1$との関係を説明してください。",
+          "question": "時刻$t_2$の成分 $E_{11}$ を求めてください。",
           "responseType": "written",
           "choices": [],
           "answer": 0,
-          "modelAnswer": "$\\mathbf F_2^T\\mathbf F_2=\\begin{bmatrix}1&0.4\\\\0.4&1.16\\end{bmatrix}$なので、$\\mathbf E_2=\\begin{bmatrix}0&0.2\\\\0.2&0.08\\end{bmatrix}=\\mathbf E_1$です。追加の剛体回転では、元の材料方向で測ったひずみは変わりません。",
+          "modelAnswer": "$E_{11}=0$です。",
           "answerCheckpoints": [
-            "第2時刻も行列積を計算し、同じ成分を得ています。",
-            "$\\mathbf Q^T\\mathbf Q=\\mathbf I$により回転の寄与が消えます。"
+            "$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。(0.6²+0.8²−1)/2=0です。対角成分だけ単位行列の1を引き、非対角では引きません。"
           ],
           "easyExplanation": [
+            {
+              "title": "答えに至る考え方",
+              "body": "$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。(0.6²+0.8²−1)/2=0です。対角成分だけ単位行列の1を引き、非対角では引きません。"
+            }
+          ],
+          "answerSummary": "$E_{11}=0$です。",
+          "officialWrittenEvidence": {
+            "file": "_原本(非公開)/_抽出テキスト/固体1級_01_非線形解析における応力とひずみ.md",
+            "excerpt": "- **問1-8**（計算・記述）矩形が大変形/大回転。t₁, t₂ の変形勾配 F が与えられ、各時刻の"
+          },
+          "explanation": "【基礎】時刻t2：E11を確認します。\n【考え方】$E_{11}=0$です。\n【ポイント】$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。(0.6²+0.8²−1)/2=0です。対角成分だけ単位行列の1を引き、非対角では引きません。\n【引っかけ】条件と記号の意味をそろえ、途中手順と単位を確認します。",
+          "editorialReview": {
+            "officialPoint": "1-8の公式記述式：回転を加えた後のひずみ／時刻t2：E11",
+            "alignment": "保存済み公式の記述形式と論点を確認。現アプリの数値条件で導出し、独自表現の解答例と自己確認点を作成。",
+            "distractorMisconceptions": {},
+            "sha256": "cda353ef37f1b38276c68cb6fc6fde7c1b79e4f69170cb5056f984ab440e5fbc"
+          },
+          "officialQuestionItem": "t2-11",
+          "explanationMode": "guided"
+        },
+        {
+          "number": "1-8",
+          "officialRef": "問1-8",
+          "topic": "グリーン・ラグランジュひずみ",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "id": "solid1-1-10-written-t2-t2-12",
+          "title": "時刻t2：E12",
+          "type": "記述",
+          "question": "時刻$t_2$の成分 $E_{12}$ を求めてください。",
+          "responseType": "written",
+          "choices": [],
+          "answer": 0,
+          "modelAnswer": "$E_{12}=0.2$です。",
+          "answerCheckpoints": [
+            "$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。(0.6×(−0.56)+0.8×0.92)/2=0.2です。対角成分だけ単位行列の1を引き、非対角では引きません。"
+          ],
+          "easyExplanation": [
+            {
+              "title": "答えに至る考え方",
+              "body": "$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。(0.6×(−0.56)+0.8×0.92)/2=0.2です。対角成分だけ単位行列の1を引き、非対角では引きません。"
+            }
+          ],
+          "answerSummary": "$E_{12}=0.2$です。",
+          "officialWrittenEvidence": {
+            "file": "_原本(非公開)/_抽出テキスト/固体1級_01_非線形解析における応力とひずみ.md",
+            "excerpt": "- **問1-8**（計算・記述）矩形が大変形/大回転。t₁, t₂ の変形勾配 F が与えられ、各時刻の"
+          },
+          "explanation": "【基礎】時刻t2：E12を確認します。\n【考え方】$E_{12}=0.2$です。\n【ポイント】$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。(0.6×(−0.56)+0.8×0.92)/2=0.2です。対角成分だけ単位行列の1を引き、非対角では引きません。\n【引っかけ】条件と記号の意味をそろえ、途中手順と単位を確認します。",
+          "editorialReview": {
+            "officialPoint": "1-8の公式記述式：回転を加えた後のひずみ／時刻t2：E12",
+            "alignment": "保存済み公式の記述形式と論点を確認。現アプリの数値条件で導出し、独自表現の解答例と自己確認点を作成。",
+            "distractorMisconceptions": {},
+            "sha256": "6f02e000bdc03a75f69e0b700a907ccd65cb5595e1272935432d99f74c841f61"
+          },
+          "officialQuestionItem": "t2-12",
+          "explanationMode": "guided"
+        },
+        {
+          "number": "1-8",
+          "officialRef": "問1-8",
+          "topic": "グリーン・ラグランジュひずみ",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "id": "solid1-1-10-written-t2-t2-21",
+          "title": "時刻t2：E21",
+          "type": "記述",
+          "question": "時刻$t_2$の成分 $E_{21}$ を求めてください。",
+          "responseType": "written",
+          "choices": [],
+          "answer": 0,
+          "modelAnswer": "$E_{21}=0.2$です。",
+          "answerCheckpoints": [
+            "$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。対称性からE₂₁＝E₁₂＝0.2です。対角成分だけ単位行列の1を引き、非対角では引きません。"
+          ],
+          "easyExplanation": [
+            {
+              "title": "答えに至る考え方",
+              "body": "$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。対称性からE₂₁＝E₁₂＝0.2です。対角成分だけ単位行列の1を引き、非対角では引きません。"
+            }
+          ],
+          "answerSummary": "$E_{21}=0.2$です。",
+          "officialWrittenEvidence": {
+            "file": "_原本(非公開)/_抽出テキスト/固体1級_01_非線形解析における応力とひずみ.md",
+            "excerpt": "- **問1-8**（計算・記述）矩形が大変形/大回転。t₁, t₂ の変形勾配 F が与えられ、各時刻の"
+          },
+          "explanation": "【基礎】時刻t2：E21を確認します。\n【考え方】$E_{21}=0.2$です。\n【ポイント】$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。対称性からE₂₁＝E₁₂＝0.2です。対角成分だけ単位行列の1を引き、非対角では引きません。\n【引っかけ】条件と記号の意味をそろえ、途中手順と単位を確認します。",
+          "editorialReview": {
+            "officialPoint": "1-8の公式記述式：回転を加えた後のひずみ／時刻t2：E21",
+            "alignment": "保存済み公式の記述形式と論点を確認。現アプリの数値条件で導出し、独自表現の解答例と自己確認点を作成。",
+            "distractorMisconceptions": {},
+            "sha256": "9d276215e1937c8ed6b195aaf10095e5a7bb645b82d7b999bcb1ef3abaedf491"
+          },
+          "officialQuestionItem": "t2-21",
+          "explanationMode": "guided"
+        },
+        {
+          "number": "1-8",
+          "officialRef": "問1-8",
+          "topic": "グリーン・ラグランジュひずみ",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "id": "solid1-1-10-written-t2-t2-22",
+          "title": "時刻t2：E22",
+          "type": "記述",
+          "question": "時刻$t_2$の成分 $E_{22}$ を求めてください。",
+          "responseType": "written",
+          "choices": [],
+          "answer": 0,
+          "modelAnswer": "$E_{22}=0.08$です。",
+          "answerCheckpoints": [
+            "$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。((−0.56)²+0.92²−1)/2=0.08です。対角成分だけ単位行列の1を引き、非対角では引きません。"
+          ],
+          "easyExplanation": [
+            {
+              "title": "答えに至る考え方",
+              "body": "$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。((−0.56)²+0.92²−1)/2=0.08です。対角成分だけ単位行列の1を引き、非対角では引きません。"
+            },
             {
               "title": "回転行列と時刻2を確認します",
               "body": "問題の$\\mathbf Q=\\begin{bmatrix}0.6&-0.8\\\\0.8&0.6\\end{bmatrix}$は、$0.6^2+0.8^2=1$、列同士の内積が0なので長さを保つ回転です。$\\mathbf F_2=\\mathbf Q\\mathbf F_1$では、右上は$0.6\\times0.4-0.8=-0.56$、右下は$0.8\\times0.4+0.6=0.92$です。\n\nしたがって、与えられた$\\mathbf F_2$は時刻1の形を回したものになっています。"
@@ -717,18 +1183,37 @@
               ]
             }
           ],
-          "answerSummary": "回転は、それまでに生じたせん断を消しません。向きだけが変わるため、Eの成分は同じです。",
+          "answerSummary": "$E_{22}=0.08$です。",
           "officialWrittenEvidence": {
             "file": "_原本(非公開)/_抽出テキスト/固体1級_01_非線形解析における応力とひずみ.md",
             "excerpt": "- **問1-8**（計算・記述）矩形が大変形/大回転。t₁, t₂ の変形勾配 F が与えられ、各時刻の"
           },
-          "explanation": "【基礎】回転は、それまでに生じたせん断を消しません。向きだけが変わるため、Eの成分は同じです。\n【考え方】$\\mathbf F_2^T\\mathbf F_2=\\begin{bmatrix}1&0.4\\\\0.4&1.16\\end{bmatrix}$なので、$\\mathbf E_2=\\begin{bmatrix}0&0.2\\\\0.2&0.08\\end{bmatrix}=\\mathbf E_1$です。追加の剛体回転では、元の材料方向で測ったひずみは変わりません。\n【ポイント】第2時刻も行列積を計算し、同じ成分を得ています。 $\\mathbf Q^T\\mathbf Q=\\mathbf I$により回転の寄与が消えます。\n【引っかけ】式の基準・符号・単位を確認し、必要な途中手順を示します。",
+          "explanation": "【基礎】時刻t2：E22を確認します。\n【考え方】$E_{22}=0.08$です。\n【ポイント】$\\mathbf E=(\\mathbf F^T\\mathbf F-\\mathbf I)/2$ を使います。((−0.56)²+0.92²−1)/2=0.08です。対角成分だけ単位行列の1を引き、非対角では引きません。\n【引っかけ】条件と記号の意味をそろえ、途中手順と単位を確認します。",
           "editorialReview": {
-            "officialPoint": "1-8の公式記述式：回転を加えた後のひずみ",
+            "officialPoint": "1-8の公式記述式：回転を加えた後のひずみ／時刻t2：E22",
             "alignment": "保存済み公式の記述形式と論点を確認。現アプリの数値条件で導出し、独自表現の解答例と自己確認点を作成。",
             "distractorMisconceptions": {},
-            "sha256": "39d19ce0f61318f21cd6cbcf7e5e423468f430f6a27118672d3064c5ed4eab7f"
-          }
+            "sha256": "26affcfbbc89618f2dbb5eb83640ba334c462c7529f1ad319e2f684ca3e9b976"
+          },
+          "officialQuestionItem": "t2-22",
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "t1-11",
+        "t1-12",
+        "t1-21",
+        "t1-22",
+        "t2-11",
+        "t2-12",
+        "t2-21",
+        "t2-22"
+      ],
+      "explanationMode": "guided",
+      "preFigures": [
+        {
+          "figureImage": "s1e1GLcomputeSetup",
+          "caption": "各小問に共通する位置・形状・条件をこの図で確認してください。"
         }
       ]
     },
@@ -768,7 +1253,7 @@
           "3": "測る配置の差を無視",
           "4": "基準配置と現配置の入替"
         },
-        "sha256": "14b8d1d86b93d87f4edcc9f8261776888f5dd9118617413d3c8f0dc356d34cd7"
+        "sha256": "fe62872436c3387168f732eee4aa9a942780007c61f8b4182ab1b94c1b5e7a6a"
       },
       "easyExplanation": [
         {
@@ -806,7 +1291,7 @@
           "body": "②のE約0.281、A0.180、Eの線形化0.250、Aの線形化0.200が正しい組です。①は有限ひずみと線形化の値が逆です。\n\n③は元と今の基準差を無視しています。④はEとA、および対応する線形化の分母を取り違えています。\n\n公式が問題文に与えられているので、難しい名前を暗記しているかより、比と括弧を正しく使えるかを確認してください。"
         }
       ],
-      "answerSummary": "同じ50 mmの伸びでも、基準にする長さと2次項を残すかどうかで、ひずみの値が変わります。",
+      "answerSummary": "グリーン・ラグランジュひずみE：$E=(l^2-L^2)/(2L^2)=[(250/200)^2-1]/2=0.28125$です。\nアルマンジひずみA：$A=(l^2-L^2)/(2l^2)=[1-(200/250)^2]/2=0.180$です。\nEの式を線形化する：$E=u/L+\\tfrac12(u/L)^2$なので、$E_L=u/L=50/200=0.250$です。\nAの式を線形化する：$A=u/l-\\tfrac12(u/l)^2$なので、$A_L=u/l=50/250=0.200$です。",
       "sharedQuestion": "棒の初期長さを$L=200\\,\\mathrm{mm}$、変形後の長さを$l=250\\,\\mathrm{mm}$、伸びを$u=l-L$とします。同じ伸びを、基準と近似の違う四つのひずみで表してください。",
       "studyParts": [
         {
@@ -848,8 +1333,10 @@
             "officialPoint": "1-9の公式記述式：グリーン・ラグランジュひずみE",
             "alignment": "保存済み公式の記述形式と論点を確認。現アプリの数値条件で導出し、独自表現の解答例と自己確認点を作成。",
             "distractorMisconceptions": {},
-            "sha256": "6e2d81ccb0de56844adbc13b3d5410638200ab8d6ec99e14f343edacc25e5cb0"
-          }
+            "sha256": "11259d9677e6e0770ef4bafbf112dd5f5a55882f21538fe708f640eabd742ecf"
+          },
+          "officialQuestionItem": "existing-1",
+          "explanationMode": "guided"
         },
         {
           "number": "1-9",
@@ -886,8 +1373,10 @@
             "officialPoint": "1-9の公式記述式：アルマンジひずみA",
             "alignment": "保存済み公式の記述形式と論点を確認。現アプリの数値条件で導出し、独自表現の解答例と自己確認点を作成。",
             "distractorMisconceptions": {},
-            "sha256": "5519e2308c0a6c57c047b41c732333a7f1569cb634ad8754624db6922933183e"
-          }
+            "sha256": "501afbe91764d1f9e0a6e329a9247269c298037fb6f4bcd332304762f35f3b32"
+          },
+          "officialQuestionItem": "existing-2",
+          "explanationMode": "guided"
         },
         {
           "number": "1-9",
@@ -928,8 +1417,10 @@
             "officialPoint": "1-9の公式記述式：Eの式を線形化する",
             "alignment": "保存済み公式の記述形式と論点を確認。現アプリの数値条件で導出し、独自表現の解答例と自己確認点を作成。",
             "distractorMisconceptions": {},
-            "sha256": "5cb0c56c8bccbe0238aa017a09f173e43b05e551795d0fc6f125ebfef299eae6"
-          }
+            "sha256": "905b52c45c59b12a988641c15f12ad2b94a73eefb4c0298d05681a577f9920dc"
+          },
+          "officialQuestionItem": "existing-3",
+          "explanationMode": "guided"
         },
         {
           "number": "1-9",
@@ -976,9 +1467,17 @@
             "officialPoint": "1-9の公式記述式：Aの式を線形化する",
             "alignment": "保存済み公式の記述形式と論点を確認。現アプリの数値条件で導出し、独自表現の解答例と自己確認点を作成。",
             "distractorMisconceptions": {},
-            "sha256": "a83f493538516b8624e7b79a4f1ae24467247bebd407367d3a097b596375818e"
-          }
+            "sha256": "6dfac3d38bc94b513804fd836197df9cafb3e0290a9c5f6fd63da4678f670d44"
+          },
+          "officialQuestionItem": "existing-4",
+          "explanationMode": "guided"
         }
+      ],
+      "officialQuestionItems": [
+        "existing-1",
+        "existing-2",
+        "existing-3",
+        "existing-4"
       ]
     },
     {
@@ -1016,7 +1515,7 @@
           "2": "回転方向の逆転",
           "4": "対角成分に回転を反映しない"
         },
-        "sha256": "f3f3ba2a30916f4f5dd8d179bba05c3bd818f275cb52dff56a7cf8ae66a42416"
+        "sha256": "1b9209c749ca8199f02944c4431f6d5f1c593abb1ca96008c3590c4401706adb"
       },
       "easyExplanation": [
         {
@@ -1058,7 +1557,7 @@
           "body": "①は元の方向で見たUを、そのままVとしているものです。②は非対角の符号が逆で、長くなる方向が逆の斜め方向になります。\n\n④は回転前の対角成分を残して非対角だけ足しており、指定した伸長比を再現しません。③は行列積にも、45°方向の伸びにも一致します。\n\n計算が長く感じたら、Vを求める式の変形、二回の積、方向への検算という三段階に分けて追いましょう。"
         }
       ],
-      "answerSummary": "回転後の方向で伸びを表すには、$\\mathbf V=\\mathbf R\\mathbf U\\mathbf R^T$と換算します。",
+      "answerSummary": "左ストレッチテンソルを導く：$\\mathbf V=\\mathbf R\\mathbf U\\mathbf R^T=\\frac12\\begin{bmatrix}2.6&0.6\\\\0.6&2.6\\end{bmatrix}=\\begin{bmatrix}1.3&0.3\\\\0.3&1.3\\end{bmatrix}$です。",
       "sharedQuestion": "単位正方形を元のX₁方向へ1.6倍に伸ばし、その後反時計回りに45°回転する。$\\mathbf U=\\begin{bmatrix}1.6&0\\\\0&1\\end{bmatrix}$、$\\mathbf R=\\frac1{\\sqrt2}\\begin{bmatrix}1&-1\\\\1&1\\end{bmatrix}$ とし、$\\mathbf F=\\mathbf R\\mathbf U=\\mathbf V\\mathbf R$ で表す。",
       "studyParts": [
         {
@@ -1126,9 +1625,14 @@
             "officialPoint": "1-10の公式記述式：左ストレッチテンソルを導く",
             "alignment": "保存済み公式の記述形式と論点を確認。現アプリの数値条件で導出し、独自表現の解答例と自己確認点を作成。",
             "distractorMisconceptions": {},
-            "sha256": "7fdf7677bab69291862584d91e973b484b5c1646b810fa5ed5f11801cc99d7f8"
-          }
+            "sha256": "9632255328e7722bd0bf67dbc491039985945d23f8b3777aa78e6210162cc305"
+          },
+          "officialQuestionItem": "existing-1",
+          "explanationMode": "guided"
         }
+      ],
+      "officialQuestionItems": [
+        "existing-1"
       ]
     },
     {
@@ -1160,13 +1664,13 @@
       ],
       "editorialReview": {
         "officialPoint": "応力ベクトルの計算",
-        "alignment": "公式固体1級第1章の該当問・解説を抽出テキストで照合。記号・導出・具体例・独立検算を段階的に補足し、問題条件と論点を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "法線の向きを垂直応力に反映しない",
           "3": "法線の負号を落とす",
           "4": "せん断成分を落とす"
         },
-        "sha256": "cd19221fe35678d68296b698f1cd9caeaaa8738fcfb97e69270f21a5b49f063f"
+        "sha256": "cbb52464e2a091abcf48936bc41bd3d8765366a090099c5a85600c41db813572"
       },
       "easyExplanation": [
         {
@@ -1200,7 +1704,7 @@
           "body": "②の応力ベクトルと正の垂直応力が正解です。①はtのy成分を、そのまま垂直応力としています。\n\n③は法線の負号を落とした結果です。④は垂直成分だけを残し、せん断を捨てています。\n\nまず行列を掛けてtを出し、次に法線との内積で垂直成分を出す、という二段階を省かなければ、負の法線を使う問題でも迷いにくくなります。"
         }
       ],
-      "answerSummary": "法線の負号も含めて行列を掛けます。ベクトルのy成分が負でも、その面の垂直応力が圧縮とは限りません。",
+      "answerSummary": "応力ベクトルのx成分：−30 MPaです。\n応力ベクトルのy成分：−120 MPaです。\n応力ベクトルのz成分：0 MPaです。",
       "sharedQuestion": "通常の連続体の対称なコーシー応力テンソルを $\\mathbf T=\\begin{bmatrix}80&30&0\\\\30&120&0\\\\0&0&50\\end{bmatrix}\\ \\mathrm{MPa}$ とする。単位法線 $\\mathbf n=(0,-1,0)^T$ の面で、公式の表記 $\\mathbf t=\\mathbf T^T\\mathbf n$ を用いる。",
       "studyParts": [
         {
@@ -1211,16 +1715,15 @@
           "origin": "original",
           "reviewed": true,
           "id": "solid1-1-12-written-traction",
-          "title": "面に働く応力ベクトル",
+          "title": "応力ベクトルのx成分",
           "type": "記述",
-          "question": "この面の応力ベクトル$\\mathbf t$の3成分を、単位と計算過程を添えて求めてください。",
+          "question": "$t_x$を単位と途中計算を添えて求めてください。",
           "responseType": "written",
           "choices": [],
           "answer": 0,
-          "modelAnswer": "$\\mathbf t=\\mathbf T^T\\mathbf n=(-30,-120,0)^T\\,\\mathrm{MPa}$です。",
+          "modelAnswer": "−30 MPaです。",
           "answerCheckpoints": [
-            "法線の第2成分が−1なので、Tの第2列の符号が反転します。",
-            "x方向のせん断成分−30 MPaも残します。"
+            "$80\\times0+30\\times(-1)+0\\times0=-30$ MPaです。対応する行と法線の成分を掛けて足します。"
           ],
           "easyExplanation": [
             {
@@ -1232,8 +1735,86 @@
               "body": "$\\mathbf T=\\begin{bmatrix}80&30&0\\\\30&120&0\\\\0&0&50\\end{bmatrix}$MPa、$\\mathbf n=(0,-1,0)^T$です。法線はy軸の負方向を向く長さ1の矢印です。\n\n問題指定の式は$\\mathbf t=\\mathbf T^T\\mathbf n$です。Tは右上と左下が対応して等しい対称行列なので、$\\mathbf T^T=\\mathbf T$です。\n\n転置の有無について別の約束を持ち込まず、この問題の式をそのまま使えます。"
             },
             {
-              "title": "行列と法線を掛けます",
-              "body": "$t_x=80\\times0+30\\times(-1)+0\\times0=-30$MPa、$t_y=30\\times0+120\\times(-1)+0\\times0=-120$MPa、$t_z=0\\times0+0\\times(-1)+50\\times0=0$です。したがって$\\mathbf t=(-30,-120,0)^T$MPaです。\n\n法線の第2成分だけが−1なので、行列の第2列の符号を逆にしたもの、と見ることもできます。第3方向の50MPaは、この法線では寄与しません。"
+              "title": "答えに至る考え方",
+              "body": "$80\\times0+30\\times(-1)+0\\times0=-30$ MPaです。対応する行と法線の成分を掛けて足します。"
+            }
+          ],
+          "answerSummary": "−30 MPaです。",
+          "officialWrittenEvidence": {
+            "file": "_原本(非公開)/_抽出テキスト/固体1級_01_非線形解析における応力とひずみ.md",
+            "excerpt": "- **問1-11**（計算・記述）コーシー応力テンソル T 与えられ、法線 n={0,−1,0} 面の応力ベクトル"
+          },
+          "explanation": "【基礎】応力ベクトルのx成分を確認します。\n【考え方】−30 MPaです。\n【ポイント】$80\\times0+30\\times(-1)+0\\times0=-30$ MPaです。対応する行と法線の成分を掛けて足します。\n【引っかけ】条件と記号の意味をそろえ、途中手順と単位を確認します。",
+          "editorialReview": {
+            "officialPoint": "1-11の公式記述式：面に働く応力ベクトル／応力ベクトルのx成分",
+            "alignment": "保存済み公式の記述形式と論点を確認。現アプリの数値条件で導出し、独自表現の解答例と自己確認点を作成。",
+            "distractorMisconceptions": {},
+            "sha256": "c34f9fb494e4124d3e4c2a7643b0b93cd316a3826b19ad6935e03150e349b8b8"
+          },
+          "officialQuestionItem": "x",
+          "explanationMode": "guided"
+        },
+        {
+          "number": "1-11",
+          "officialRef": "問1-11",
+          "topic": "コーシー応力と応力ベクトル",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "id": "solid1-1-12-written-traction-y",
+          "title": "応力ベクトルのy成分",
+          "type": "記述",
+          "question": "$t_y$を単位と途中計算を添えて求めてください。",
+          "responseType": "written",
+          "choices": [],
+          "answer": 0,
+          "modelAnswer": "−120 MPaです。",
+          "answerCheckpoints": [
+            "$30\\times0+120\\times(-1)+0\\times0=-120$ MPaです。対応する行と法線の成分を掛けて足します。"
+          ],
+          "easyExplanation": [
+            {
+              "title": "答えに至る考え方",
+              "body": "$30\\times0+120\\times(-1)+0\\times0=-120$ MPaです。対応する行と法線の成分を掛けて足します。"
+            }
+          ],
+          "answerSummary": "−120 MPaです。",
+          "officialWrittenEvidence": {
+            "file": "_原本(非公開)/_抽出テキスト/固体1級_01_非線形解析における応力とひずみ.md",
+            "excerpt": "- **問1-11**（計算・記述）コーシー応力テンソル T 与えられ、法線 n={0,−1,0} 面の応力ベクトル"
+          },
+          "explanation": "【基礎】応力ベクトルのy成分を確認します。\n【考え方】−120 MPaです。\n【ポイント】$30\\times0+120\\times(-1)+0\\times0=-120$ MPaです。対応する行と法線の成分を掛けて足します。\n【引っかけ】条件と記号の意味をそろえ、途中手順と単位を確認します。",
+          "editorialReview": {
+            "officialPoint": "1-11の公式記述式：面に働く応力ベクトル／応力ベクトルのy成分",
+            "alignment": "保存済み公式の記述形式と論点を確認。現アプリの数値条件で導出し、独自表現の解答例と自己確認点を作成。",
+            "distractorMisconceptions": {},
+            "sha256": "188fe72bce9e28f15dbfee4ac85bb4d491308c2adc96773c5bb2241a24548432"
+          },
+          "officialQuestionItem": "y",
+          "explanationMode": "guided"
+        },
+        {
+          "number": "1-11",
+          "officialRef": "問1-11",
+          "topic": "コーシー応力と応力ベクトル",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "id": "solid1-1-12-written-traction-z",
+          "title": "応力ベクトルのz成分",
+          "type": "記述",
+          "question": "$t_z$を単位と途中計算を添えて求めてください。",
+          "responseType": "written",
+          "choices": [],
+          "answer": 0,
+          "modelAnswer": "0 MPaです。",
+          "answerCheckpoints": [
+            "$0\\times0+0\\times(-1)+50\\times0=0$ MPaです。対応する行と法線の成分を掛けて足します。"
+          ],
+          "easyExplanation": [
+            {
+              "title": "答えに至る考え方",
+              "body": "$0\\times0+0\\times(-1)+50\\times0=0$ MPaです。対応する行と法線の成分を掛けて足します。"
             },
             {
               "title": "垂直応力は、法線方向への成分です",
@@ -1246,20 +1827,28 @@
               ]
             }
           ],
-          "answerSummary": "行列の各行と法線を掛け合わせて足します。法線の負号を落とさないことが要点です。",
+          "answerSummary": "0 MPaです。",
           "officialWrittenEvidence": {
             "file": "_原本(非公開)/_抽出テキスト/固体1級_01_非線形解析における応力とひずみ.md",
             "excerpt": "- **問1-11**（計算・記述）コーシー応力テンソル T 与えられ、法線 n={0,−1,0} 面の応力ベクトル"
           },
-          "explanation": "【基礎】行列の各行と法線を掛け合わせて足します。法線の負号を落とさないことが要点です。\n【考え方】$\\mathbf t=\\mathbf T^T\\mathbf n=(-30,-120,0)^T\\,\\mathrm{MPa}$です。\n【ポイント】法線の第2成分が−1なので、Tの第2列の符号が反転します。 x方向のせん断成分−30 MPaも残します。\n【引っかけ】式の基準・符号・単位を確認し、必要な途中手順を示します。",
+          "explanation": "【基礎】応力ベクトルのz成分を確認します。\n【考え方】0 MPaです。\n【ポイント】$0\\times0+0\\times(-1)+50\\times0=0$ MPaです。対応する行と法線の成分を掛けて足します。\n【引っかけ】条件と記号の意味をそろえ、途中手順と単位を確認します。",
           "editorialReview": {
-            "officialPoint": "1-11の公式記述式：面に働く応力ベクトル",
+            "officialPoint": "1-11の公式記述式：面に働く応力ベクトル／応力ベクトルのz成分",
             "alignment": "保存済み公式の記述形式と論点を確認。現アプリの数値条件で導出し、独自表現の解答例と自己確認点を作成。",
             "distractorMisconceptions": {},
-            "sha256": "290188f98f9e6f945b410ba8f2bdb368f842d786763c4dd6e3f3ab2c800acdaf"
-          }
+            "sha256": "2088715c78dfa88a2f15ec418c52d7a80de8c4a2619da92a4b6ccd973da76700"
+          },
+          "officialQuestionItem": "z",
+          "explanationMode": "guided"
         }
-      ]
+      ],
+      "officialQuestionItems": [
+        "x",
+        "y",
+        "z"
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "solid1-1-14",
@@ -1296,7 +1885,7 @@
           "3": "キルヒホッフのスカラー倍を見落とす",
           "4": "第2種PKの対称性を見落とす"
         },
-        "sha256": "a0d3a628e493cb0567c155c81000fcc53484a2078af090bb79139e88cbb56f91"
+        "sha256": "fb3ca1b31c4fd74c1c1b2e8a5ad8400d62e00f719343b3f090dfc8225fa1d528"
       },
       "easyExplanation": [
         {
@@ -1334,7 +1923,10 @@
           "body": "①の第1種PKは一般に非対称なので、これを選びます。②のコーシー応力は通常の連続体のモーメントの釣合いから対称です。\n\n③のキルヒホッフ応力はそのスカラー倍です。④の第2種PKは対称性を保つ両側の変換です。\n\n第1種と第2種を名前だけで覚えず、片側の換算か、左右を対応させた換算か、という式の違いに結び付けて整理しましょう。"
         }
       ],
-      "answerSummary": "第1種PK応力は、面積と力の基準が異なるため、一般には対称になりません。"
+      "answerSummary": "第1種PK応力は、面積と力の基準が異なるため、一般には対称になりません。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "solid1-1-11",
@@ -1372,7 +1964,7 @@
           "2": "Jの逆数を逆にする",
           "4": "Fと逆行列の向き違い"
         },
-        "sha256": "4f76e4982696f2878a90dc440b9a071048733b0c22ad9c9e8c21f103d585a8fc"
+        "sha256": "c7cfd685975a03362353534290ab56b424fe12ada08315da8c31f97a3fc91275"
       },
       "easyExplanation": [
         {
@@ -1406,7 +1998,10 @@
           "body": "③が正解です。①は体積比で割る処理がなく、②は割るところを掛けています。\n\n④は現在へ戻すFを、元へ戻す逆行列と取り違えています。「Sは元、Tは今」という向きを先に決め、元から今へ両側をFで換算し、Jで割ると整理してください。\n\n積の順序まで含めて導けば、似た記号の公式を丸暗記する負担を減らせます。"
         }
       ],
-      "answerSummary": "元の基準から今の基準へは、$\\mathbf T=\\mathbf F\\mathbf S\\mathbf F^T/J$です。両側の変換と体積比をそろえます。"
+      "answerSummary": "元の基準から今の基準へは、$\\mathbf T=\\mathbf F\\mathbf S\\mathbf F^T/J$です。両側の変換と体積比をそろえます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "solid1-1-13",
@@ -1444,7 +2039,7 @@
           "2": "第1種PKが一般に対称と思う",
           "3": "真と公称の名称逆転"
         },
-        "sha256": "5f8f205e3ddebd25c871f5e63fcb09b41ab2aa73b1778403fa4f8fe30e67baa3"
+        "sha256": "c4b1ee16e1a5c2e179a5b4486f971347508775ce85546b626e4dd759bd3c010c"
       },
       "easyExplanation": [
         {
@@ -1486,7 +2081,10 @@
           "body": "①はT・Aの空間軸成分まで常に不変とするため誤りです。②は第1種PKが一般に対称でないことを見落としています。\n\n③は公称応力と真応力の名前が逆です。④は材料基準のS・Eが追加の剛体回転で不変と述べており、正解です。\n\n式ではQが打ち消されるか、イメージでは材料の目印で見るか固定軸で見るかを確かめると、両方から理解できます。"
         }
       ],
-      "answerSummary": "元の材料を基準にする第2種PK応力とグリーン・ラグランジュひずみは、追加の剛体回転で成分が変わりません。"
+      "answerSummary": "元の材料を基準にする第2種PK応力とグリーン・ラグランジュひずみは、追加の剛体回転で成分が変わりません。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "solid1-1-17",
@@ -1523,7 +2121,7 @@
           "2": "δFをSと組にする",
           "3": "仮想変分と時間変化の速さの混同"
         },
-        "sha256": "cb09215bf4f8164815e8ae2d3a50feac8947b4efd286c06f5666ef3971fd42e6"
+        "sha256": "7e85cd84ea2a111bc3ab9620e5d61992dde7f1ea7335c1dd1e10380473c4af7b"
       },
       "easyExplanation": [
         {
@@ -1569,7 +2167,10 @@
           "body": "①のアルマンジひずみは現在配置を基準にするので、Sとそのまま組にできません。②のδFには第1種PKの対応する表記を使います。\n\n③のDは変形の速さであり、そもそも仮想ひずみではありません。④のδEがSの正しい相手です。\n\n仕事共役は「似た名前を組ませる」という暗記ではなく、同じ仕事になるよう基準と操作を合わせる約束だと理解してください。"
         }
       ],
-      "answerSummary": "仕事を表すには、同じ基準の応力とひずみを組にします。第2種PK応力にはグリーン・ラグランジュひずみの変分を組み合わせます。"
+      "answerSummary": "仕事を表すには、同じ基準の応力とひずみを組にします。第2種PK応力にはグリーン・ラグランジュひずみの変分を組み合わせます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "solid1-1-9",
@@ -1601,13 +2202,13 @@
       ],
       "editorialReview": {
         "officialPoint": "公称・真の応力とひずみ",
-        "alignment": "公式固体1級第1章の該当問・解説を抽出テキストで照合。記号・導出・具体例・独立検算を段階的に補足し、問題条件と論点を維持。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "現在の面積と対数を無視",
           "2": "面積の基準を逆にする",
           "3": "公称ひずみを現長で割る"
         },
-        "sha256": "57ee6dd514e8acab2634368b3b597d7d5ec2657849f8f9e5e45bda9bced98bd3"
+        "sha256": "af9c83ae11b86c7245629be41c7c4f59e6809c1fc00d93387c8e3bf35bf148d5"
       },
       "easyExplanation": [
         {
@@ -1645,7 +2246,191 @@
           "body": "公称応力300MPa、真応力375MPa、公称ひずみ0.250、対数ひずみ約0.223なので④です。①は面積変化と対数を無視しています。\n\n②は公称応力と真応力の分母が逆です。③は公称ひずみを現在の長さで割っています。\n\nまず元の寸法を使う二つを計算し、その後で現在の面積と対数の式へ進むと、数字が混ざりにくくなります。"
         }
       ],
-      "answerSummary": "公称応力は元の面積、真応力は今の面積で割ります。公称ひずみと対数ひずみも、それぞれの定義で計算します。"
+      "answerSummary": "公称応力：公称応力は300 MPaです。\n真応力：真応力は375 MPaです。\n公称ひずみ：公称ひずみは0.250です。\n対数ひずみ：対数ひずみは約0.223です。",
+      "officialQuestionItems": [
+        "sn",
+        "st",
+        "e",
+        "log"
+      ],
+      "sharedQuestion": "一様引張中の試験片を測定すると、初期長さ $L=200\\ \\mathrm{mm}$、現長さ $l=250\\ \\mathrm{mm}$、初期断面積 $A_0=100\\ \\mathrm{mm^2}$、現断面積 $a=80\\ \\mathrm{mm^2}$、荷重 $P=30\\ \\mathrm{kN}$ だった。四つの応力・ひずみをそれぞれ求めてください。",
+      "studyParts": [
+        {
+          "id": "solid1-1-9-item-sn",
+          "number": "1-16",
+          "officialRef": "問1-16",
+          "officialQuestionItem": "sn",
+          "title": "公称応力",
+          "topic": "真応力換算",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "公称応力はいくらか。",
+          "choices": [
+            "375 MPa",
+            "300 MPa"
+          ],
+          "answer": 2,
+          "answerSummary": "公称応力は300 MPaです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$\\sigma_n=P/A_0=30000/100=300$N/mm²、つまり300MPaです。公称は初期の断面積を固定して使う測り方です。\n\n引張りで断面が細くなっても、分母は最初の100mm²のままです。荷重と初期面積が分かれば計算しやすい一方、現在の面が実際にどれだけ力を負担しているかを、そのまま表す値ではありません。"
+            },
+            {
+              "title": "元の寸法と今の寸法を分けます",
+              "body": "引張試験では、試験片を引くと長くなり、通常は断面も細くなります。同じ荷重を受けても、元の断面積で計算する応力と、今の断面積で計算する応力では値が違います。\n\nひずみも、元の長さに対する全伸びを一度に割る方法と、各瞬間の長さに対する小さな伸びを足す方法があります。本問はこの二組、合計四つの定義を使い分けます。"
+            },
+            {
+              "title": "測定値と単位をそろえます",
+              "body": "$L=200$mm、$l=250$mm、$A_0=100$mm²、$a=80$mm²、$P=30$kNです。長さLと面積$A_0$が元の値、小文字$l$と$a$が現在の値です。\n\n面積がmm²なので、荷重は$30\\times1000=30000$Nへ直します。N/mm²で求めた応力は、そのままMPaです。\n\n30を100で割って0.3MPaとすると、kNからNへの1000倍を落としています。"
+            }
+          ],
+          "explanation": "【基礎】公称応力は300 MPaです。\n【考え方】正解は2です。$\\sigma_n=P/A_0=30000/100=300$N/mm²、つまり300MPaです。公称は初期の断面積を固定して使う測り方です。 引張りで断面が細くなっても、分母は最初の100mm²のままです。荷重と初期面積が分かれば計算しやすい一方、現在の面が実際にどれだけ力を負担しているかを、そのまま表す値ではありません。\n【ポイント】引張試験では、試験片を引くと長くなり、通常は断面も細くなります。同じ荷重を受けても、元の断面積で計算する応力と、今の断面積で計算する応力では値が違います。 ひずみも、元の長さに対する全伸びを一度に割る方法と、各瞬間の長さに対する小さな伸びを足す方法があります。本問はこの二組、合計四つの定義を使い分けます。\n【引っかけ】1：「375 MPa」ではなく、300 MPaです。$\\sigma_n=P/A_0=30000/100=300$N/mm²、つまり300MPaです。公称は初期の断面積を固定して使う測り方です。 引張りで断面が細くなっても、分母は最初の100mm²のままです。荷重と初期面積が分かれば計算しやすい一方、現在の面が実際にどれだけ力を負担しているかを、そのまま表す値ではありません。",
+          "relatedFormulas": [
+            "s1ch1-6",
+            "s1ch1-7"
+          ],
+          "editorialReview": {
+            "officialPoint": "公称・真の応力とひずみ／個別の質問：公称応力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「375 MPa」ではなく、300 MPaです。$\\sigma_n=P/A_0=30000/100=300$N/mm²、つまり300MPaです。公称は初期の断面積を固定して使う測り方です。\n\n引張りで断面が細くなっても、分母は最初の100mm²のままです。荷重と初期面積が分かれば計算しやすい一方、現在の面が実際にどれだけ力を負担しているかを、そのまま表す値ではありません。"
+            },
+            "sha256": "6f4731566edc2b7655d4efade6e249c28b50d097dd62b94a72214fce396ca433"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "solid1-1-9-item-st",
+          "number": "1-16",
+          "officialRef": "問1-16",
+          "officialQuestionItem": "st",
+          "title": "真応力",
+          "topic": "真応力換算",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "真応力はいくらか。",
+          "choices": [
+            "300 MPa",
+            "375 MPa"
+          ],
+          "answer": 2,
+          "answerSummary": "真応力は375 MPaです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$\\sigma_t=P/a=30000/80=375$MPaです。同じ30000Nを、今は80mm²という小さい面で受けるので、単位面積当たりの力は大きくなります。\n\nしたがって今回は真応力が公称応力より大きいはずです。値の大小だけでも、300MPaと375MPaを逆にしていないか確認できます。\n\n現在面積aが問題文で測定されているので、体積一定を仮定して推定する必要はありません。"
+            }
+          ],
+          "explanation": "【基礎】真応力は375 MPaです。\n【考え方】正解は2です。$\\sigma_t=P/a=30000/80=375$MPaです。同じ30000Nを、今は80mm²という小さい面で受けるので、単位面積当たりの力は大きくなります。 したがって今回は真応力が公称応力より大きいはずです。値の大小だけでも、300MPaと375MPaを逆にしていないか確認できます。 現在面積aが問題文で測定されているので、体積一定を仮定して推定する必要はありません。\n【ポイント】真応力は375 MPaです。\n【引っかけ】1：「300 MPa」ではなく、375 MPaです。$\\sigma_t=P/a=30000/80=375$MPaです。同じ30000Nを、今は80mm²という小さい面で受けるので、単位面積当たりの力は大きくなります。 したがって今回は真応力が公称応力より大きいはずです。値の大小だけでも、300MPaと375MPaを逆にしていないか確認できます。 現在面積aが問題文で測定されているので、体積一定を仮定して推定する必要はありません。",
+          "relatedFormulas": [
+            "s1ch1-6",
+            "s1ch1-7"
+          ],
+          "editorialReview": {
+            "officialPoint": "公称・真の応力とひずみ／個別の質問：真応力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「300 MPa」ではなく、375 MPaです。$\\sigma_t=P/a=30000/80=375$MPaです。同じ30000Nを、今は80mm²という小さい面で受けるので、単位面積当たりの力は大きくなります。\n\nしたがって今回は真応力が公称応力より大きいはずです。値の大小だけでも、300MPaと375MPaを逆にしていないか確認できます。\n\n現在面積aが問題文で測定されているので、体積一定を仮定して推定する必要はありません。"
+            },
+            "sha256": "abad4ad66dcb5643280e168ad9547ecca225cff3fb010fb8c10b8d9c491f0617"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "solid1-1-9-item-e",
+          "number": "1-16",
+          "officialRef": "問1-16",
+          "officialQuestionItem": "e",
+          "title": "公称ひずみ",
+          "topic": "真応力換算",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "公称ひずみはいくらか。",
+          "choices": [
+            "0.200",
+            "0.250"
+          ],
+          "answer": 2,
+          "answerSummary": "公称ひずみは0.250です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "伸びは$u=l-L=250-200=50$mmです。公称ひずみは$e=u/L=50/200=0.250$で、25%に相当します。\n\n50/250=0.200は現在の長さを分母にした別の量です。公称ひずみの定義では、最初の200mmに対してどれだけ増えたかを測ります。\n\nひずみは長さを長さで割るので、mmや%の変換以外の物理単位は残りません。"
+            }
+          ],
+          "explanation": "【基礎】公称ひずみは0.250です。\n【考え方】正解は2です。伸びは$u=l-L=250-200=50$mmです。公称ひずみは$e=u/L=50/200=0.250$で、25%に相当します。 50/250=0.200は現在の長さを分母にした別の量です。公称ひずみの定義では、最初の200mmに対してどれだけ増えたかを測ります。 ひずみは長さを長さで割るので、mmや%の変換以外の物理単位は残りません。\n【ポイント】公称ひずみは0.250です。\n【引っかけ】1：「0.200」ではなく、0.250です。伸びは$u=l-L=250-200=50$mmです。公称ひずみは$e=u/L=50/200=0.250$で、25%に相当します。 50/250=0.200は現在の長さを分母にした別の量です。公称ひずみの定義では、最初の200mmに対してどれだけ増えたかを測ります。 ひずみは長さを長さで割るので、mmや%の変換以外の物理単位は残りません。",
+          "relatedFormulas": [
+            "s1ch1-6",
+            "s1ch1-7"
+          ],
+          "editorialReview": {
+            "officialPoint": "公称・真の応力とひずみ／個別の質問：公称ひずみ",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「0.200」ではなく、0.250です。伸びは$u=l-L=250-200=50$mmです。公称ひずみは$e=u/L=50/200=0.250$で、25%に相当します。\n\n50/250=0.200は現在の長さを分母にした別の量です。公称ひずみの定義では、最初の200mmに対してどれだけ増えたかを測ります。\n\nひずみは長さを長さで割るので、mmや%の変換以外の物理単位は残りません。"
+            },
+            "sha256": "80fbcc1d771a1694a37dbffa9d11fef98212592f56d74c44788cfae9533b1ae7"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "solid1-1-9-item-log",
+          "number": "1-16",
+          "officialRef": "問1-16",
+          "officialQuestionItem": "log",
+          "title": "対数ひずみ",
+          "topic": "真応力換算",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "対数ひずみに最も近い値はどれか。",
+          "choices": [
+            "0.223",
+            "0.250"
+          ],
+          "answer": 1,
+          "answerSummary": "対数ひずみは約0.223です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "現在の長さを一時的に$s$と書くと、その時点での小さな伸び$ds$の割合は$ds/s$です。これを初期長さから最後の長さまで足す、つまり積分すると、$\\varepsilon=\\int_L^l ds/s=\\ln l-\\ln L=\\ln(l/L)$です。\n\n今回は$\\ln1.25\\simeq0.22314$です。lnは自然対数です。\n\n単に全伸びを現在の長さで一度に割った0.200とは異なります。",
+              "figures": [
+                {
+                  "figureImage": "s1e1StressConv",
+                  "caption": "応力は面積、ひずみは長さの測り方に注目します。元と現在の値を入れ替えないようにします。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】対数ひずみは約0.223です。\n【考え方】正解は1です。現在の長さを一時的に$s$と書くと、その時点での小さな伸び$ds$の割合は$ds/s$です。これを初期長さから最後の長さまで足す、つまり積分すると、$\\varepsilon=\\int_L^l ds/s=\\ln l-\\ln L=\\ln(l/L)$です。 今回は$\\ln1.25\\simeq0.22314$です。lnは自然対数です。 単に全伸びを現在の長さで一度に割った0.200とは異なります。\n【ポイント】対数ひずみは約0.223です。\n【引っかけ】2：「0.250」ではなく、0.223です。現在の長さを一時的に$s$と書くと、その時点での小さな伸び$ds$の割合は$ds/s$です。これを初期長さから最後の長さまで足す、つまり積分すると、$\\varepsilon=\\int_L^l ds/s=\\ln l-\\ln L=\\ln(l/L)$です。 今回は$\\ln1.25\\simeq0.22314$です。lnは自然対数です。 単に全伸びを現在の長さで一度に割った0.200とは異なります。",
+          "relatedFormulas": [
+            "s1ch1-6",
+            "s1ch1-7"
+          ],
+          "editorialReview": {
+            "officialPoint": "公称・真の応力とひずみ／個別の質問：対数ひずみ",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「0.250」ではなく、0.223です。現在の長さを一時的に$s$と書くと、その時点での小さな伸び$ds$の割合は$ds/s$です。これを初期長さから最後の長さまで足す、つまり積分すると、$\\varepsilon=\\int_L^l ds/s=\\ln l-\\ln L=\\ln(l/L)$です。\n\n今回は$\\ln1.25\\simeq0.22314$です。lnは自然対数です。\n\n単に全伸びを現在の長さで一度に割った0.200とは異なります。"
+            },
+            "sha256": "aac920f252cafd186cc87ce57a33dab54e039e84aa44639b18a9fef5abf2c079"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "solid1-1-19",
@@ -1682,7 +2467,7 @@
           "3": "W12とW21の符号逆転",
           "4": "半分にしない"
         },
-        "sha256": "f528324c35a5e382508c8e99fceffbd0130cfe6871d69c11c846ef6617b94fd4"
+        "sha256": "0eee0d4129b9964bbb7e7598658a2a3e94ca5100c4bbf0dfd4dc74327e836901"
       },
       "easyExplanation": [
         {
@@ -1720,7 +2505,7 @@
           "body": "求める二つはどちらも0.03s⁻¹なので①です。②はLの12成分をそのままDに入れ、Wを落としています。\n\n③はWの12成分と21成分を取り違えています。④は両方で1/2を忘れています。\n\n最後に、Dは転置して同じ、Wは転置で符号が逆、二つの和がL、という三つの確認をすると、平均・差・符号の間違いを見つけられます。"
         }
       ],
-      "answerSummary": "対称部分は平均、反対称部分は差の半分です。足し合わせると元の速度勾配に戻ります。",
+      "answerSummary": "対称部分D：$D_{ij}=\\tfrac12(\\partial v_i/\\partial x_j+\\partial v_j/\\partial x_i)$です。$\\mathbf D=\\begin{bmatrix}0.02&0.03\\\\0.03&0.04\\end{bmatrix}\\,\\mathrm{s^{-1}}$です。\n反対称部分W：$W_{ij}=\\tfrac12(\\partial v_i/\\partial x_j-\\partial v_j/\\partial x_i)$です。$\\mathbf W=\\begin{bmatrix}0&0.03\\\\-0.03&0\\end{bmatrix}\\,\\mathrm{s^{-1}}$で、$\\mathbf D+\\mathbf W=\\mathbf L$です。",
       "sharedQuestion": "速度勾配テンソル $L_{ij}=\\partial v_i/\\partial x_j$ の平面成分が $L_{11}=0.02,\\ L_{12}=0.06,\\ L_{21}=0.00,\\ L_{22}=0.04$ （単位はいずれもs⁻¹）で与えられる。速度勾配を$\\mathbf L=\\mathbf D+\\mathbf W$へ分けます。",
       "studyParts": [
         {
@@ -1770,8 +2555,10 @@
             "officialPoint": "1-17の公式記述式：対称部分D",
             "alignment": "保存済み公式の記述形式と論点を確認。現アプリの数値条件で導出し、独自表現の解答例と自己確認点を作成。",
             "distractorMisconceptions": {},
-            "sha256": "edb3f965e4fa81c84fd418d53d8be9d4d7f48aa5007246fcf507a01557d0d547"
-          }
+            "sha256": "fb7174d4299baf9220dfbceb9bda338af662cba9bfff80351c64e8ba84ebf074"
+          },
+          "officialQuestionItem": "existing-1",
+          "explanationMode": "guided"
         },
         {
           "number": "1-17",
@@ -1823,9 +2610,15 @@
             "officialPoint": "1-17の公式記述式：反対称部分W",
             "alignment": "保存済み公式の記述形式と論点を確認。現アプリの数値条件で導出し、独自表現の解答例と自己確認点を作成。",
             "distractorMisconceptions": {},
-            "sha256": "80257102ec44478eb14247732a809c789e65948eefd18a1b59fcdf4088628754"
-          }
+            "sha256": "71ee5cbcc5f978734bf019f12e6d940c79060f7ccb237dd48e56ed7856199182"
+          },
+          "officialQuestionItem": "existing-2",
+          "explanationMode": "guided"
         }
+      ],
+      "officialQuestionItems": [
+        "existing-1",
+        "existing-2"
       ]
     },
     {
@@ -1863,7 +2656,7 @@
           "2": "TDだけ符号逆転",
           "3": "回転補正を二重に行う"
         },
-        "sha256": "fa4304407440a3c3c7258d17087cb163248a32910b5ff9d3113c6ea2dc9a9be6"
+        "sha256": "f2ffb343ab7c499d6ad51c5e18a3a5a000d12fc858ac85f1e04a9d9e66c521f5"
       },
       "easyExplanation": [
         {
@@ -1905,7 +2698,7 @@
           "body": "$\\mathbf D=\\mathbf0$なら、二つの速度は一致します。差がDの二項だけになっている結果と整合します。\n\n①は二項の符号が両方逆、②はTDの符号が逆です。③はヤウマン速度へ既に含めた回転Wの項をもう一度引いています。\n\n④だけが代入・転置・括弧の展開と一致します。難しい名称に引かれず、まず$\\mathbf L^T=\\mathbf D-\\mathbf W$から一行ずつ追うことが大切です。"
         }
       ],
-      "answerSummary": "$\\mathbf L^T=\\mathbf D-\\mathbf W$を代入して整理すると、二つの応力速度の差は$-\\mathbf D\\mathbf T-\\mathbf T\\mathbf D$です。",
+      "answerSummary": "二つの応力速度の関係を導く：$\\mathbf L^T=\\mathbf D-\\mathbf W$なので、$\\dot{\\mathbf S}=\\dot{\\mathbf T}-(\\mathbf D+\\mathbf W)\\mathbf T-\\mathbf T(\\mathbf D-\\mathbf W)+(\\mathrm{tr}\\mathbf D)\\mathbf T$です。整理して$\\dot{\\mathbf S}=\\widehat{\\mathbf T}_{(J)}-\\mathbf D\\mathbf T-\\mathbf T\\mathbf D$を得ます。",
       "sharedQuestion": "公式の表記で、トゥルーズデル応力速度を $\\dot{\\mathbf S}=\\dot{\\mathbf T}-\\mathbf L\\mathbf T-\\mathbf T\\mathbf L^T+(\\mathrm{tr}\\mathbf D)\\mathbf T$、体積変化項を含むヤウマン速度を $\\widehat{\\mathbf T}_{(J)}=\\dot{\\mathbf T}-\\mathbf W\\mathbf T+\\mathbf T\\mathbf W+(\\mathrm{tr}\\mathbf D)\\mathbf T$ とする。$\\mathbf L=\\mathbf D+\\mathbf W$、$\\mathbf D^T=\\mathbf D$、$\\mathbf W^T=-\\mathbf W$ を用います。",
       "studyParts": [
         {
@@ -1974,9 +2767,14 @@
             "officialPoint": "1-18の公式記述式：二つの応力速度の関係を導く",
             "alignment": "保存済み公式の記述形式と論点を確認。現アプリの数値条件で導出し、独自表現の解答例と自己確認点を作成。",
             "distractorMisconceptions": {},
-            "sha256": "6f1d467d708b4b5b1e46cbab5d42c375233e63b9200f94b2c7773dd2659981c6"
-          }
+            "sha256": "1164334a1988c1b72955173f05f0abd39ca113bdf2ccc428d036bf206a6781ff"
+          },
+          "officialQuestionItem": "existing-1",
+          "explanationMode": "guided"
         }
+      ],
+      "officialQuestionItems": [
+        "existing-1"
       ]
     }
   ]

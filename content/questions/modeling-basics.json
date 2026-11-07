@@ -8,7 +8,8 @@
     "count": 27,
     "officialCount": 27,
     "explanationMode": "guided",
-    "presentationStyle": "cae-standard-v1"
+    "presentationStyle": "cae-standard-v1",
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -67,9 +68,12 @@
           "3": "解析の用途を破損後だけに限る",
           "4": "全ての実験を必ず置換できるとする"
         },
-        "sha256": "0b2d27fce3214bba62bf03f1e1d05396738f50427d4fd01fb9edcef0c3fbd513"
+        "sha256": "d1e470d2264ce6be805e8c3b98cba8c63ca95d2b706f1746cc3b1c627cabc10f"
       },
-      "answerSummary": "正解は①です。解析は、開発の複数の段階で判断を助けます。"
+      "answerSummary": "正解は①です。解析は、開発の複数の段階で判断を助けます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "model-8-2",
@@ -127,7 +131,7 @@
           "3": "使用できない長手面も使って四分の一にする",
           "4": "利用可能なy対称面まで否定する"
         },
-        "sha256": "e5f5f5a7cf3a5120fb5b7c31baa406e3bad5d0fedd277266c950177b2365d82c"
+        "sha256": "fb317e70584650d3eb9ec103356339787f580b648c109004a844cd9056ab3f6a"
       },
       "answerSummary": "正解は①です。y＝0の面で切った半モデルです。",
       "preFigures": [
@@ -135,6 +139,9 @@
           "figureImage": "model8SaddleAxialSetup",
           "caption": "問題の形状・座標・荷重条件を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -193,7 +200,7 @@
           "2": "固定と滑動の入替えを無視する",
           "4": "上下の支持形状の違いを無視する"
         },
-        "sha256": "7cddf141ded5b8c404a0ca7ccd21cb68e4a40a36b684e1fb1758f5802f98c9ee"
+        "sha256": "8188a89addc70864acefe41011e30b40f5a3ea3e37b6dbe67c8b7b9447107f51"
       },
       "answerSummary": "正解は③です。今回は容器と支持の全体を残します。",
       "preFigures": [
@@ -201,6 +208,9 @@
           "figureImage": "model8SaddleTransverseSetup",
           "caption": "問題の形状・座標・荷重条件を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -259,7 +269,7 @@
           "2": "沈下の入力位置を含めない",
           "3": "連続する橋を途中の自由端で切る"
         },
-        "sha256": "4a5e13ba097c20b06dc9a7f8ec4c0cbeddba614577aa8bfdae7978a1768d2fbd"
+        "sha256": "0b9767bbc6098e495fc386fb7be53142e8a3e6298d0bdce633523c4eb9deb909"
       },
       "answerSummary": "正解は④です。中央の対称面から、実際の端までを残します。",
       "preFigures": [
@@ -267,6 +277,9 @@
           "figureImage": "model8ArchBridgeSetup",
           "caption": "問題の形状・座標・荷重条件を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -305,7 +318,7 @@
           "3": "局所化だけで薄肉シェルの厚さ方向の近似制約も解消されるとする",
           "4": "局所応力に必要な肉厚変化を省略する"
         },
-        "sha256": "86ec854414b60f5e8f85a8941c7884f3fbeb7150e8fdb15252326cd38009c493"
+        "sha256": "c3e168350bffe183ddb6265ed6f35f925ae8238b5a5f6abfb4bf5856de64477a"
       },
       "easyExplanation": [
         {
@@ -331,6 +344,9 @@
           "figureImage": "s2Before8_5",
           "caption": "問題の形状・座標・荷重条件を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -391,7 +407,7 @@
           "3": "局所評価なのに全体を同じ極小寸法とする",
           "4": "厚肉部の表現をシェルの局所細分化だけで代替する"
         },
-        "sha256": "a48cdc89e6c6cbff266899968570e69ecf5f63d135bc52c6a9509c99a87db62d"
+        "sha256": "3e81eddac8983d3614fa44b9ad46ca3352103db7a61b1f03888a821bcf4a14e5"
       },
       "answerSummary": "正解は②です。軸対称ソリッドで、取付け部を重点的に細分します。",
       "preFigures": [
@@ -399,6 +415,9 @@
           "figureImage": "model8SkirtVesselSetup",
           "caption": "問題の形状・座標・荷重条件を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -457,7 +476,7 @@
           "2": "利用可能な軸対称性を使わず全周立体モデルとする",
           "4": "断面モデルで済む問題を一ラジアンの立体で扱う"
         },
-        "sha256": "40ccc548c36347c45656076114e99a5b04bac639aed62e8e8094df14d550549f"
+        "sha256": "8d9490520681a0d8ee930f5f94b4925c5c6c38f77ffe0ea0f6624aa94d65dad3"
       },
       "answerSummary": "正解は③です。厚肉を持つr-z断面を軸対称ソリッドで表します。",
       "preFigures": [
@@ -465,6 +484,9 @@
           "figureImage": "model8LNGTankSetup",
           "caption": "問題の形状・座標・荷重条件を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -523,7 +545,7 @@
           "2": "丸棒を厚さのない平板の平面応力とする",
           "3": "対称性があっても全周三次元だけが可能とする"
         },
-        "sha256": "cdd57689255826ce16ae63b02098888ae3b3ae66ac1bdd38567b4c46cc08e07c"
+        "sha256": "afafdf5fa7db251a718d08022668816625023e48d6ec6b9a7240472c297371e3"
       },
       "answerSummary": "正解は④です。丸棒の断面を軸対称ソリッドで解きます。",
       "preFigures": [
@@ -531,6 +553,9 @@
           "figureImage": "model8DumbbellSetup",
           "caption": "問題の形状・座標・荷重条件を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -589,7 +614,7 @@
           "3": "円孔があるだけで荷重と全形状も軸対称とする",
           "4": "利用できる平面応力近似を使わず立体化する"
         },
-        "sha256": "82f213ed7088cdd045a2cd6b1ff68213243dea8757a15919f0a90c50e3f5ef65"
+        "sha256": "baa8ad07c8bd366eadb76179c1bfa75ea0ba71677fdb6bcfed95d6052550f02d"
       },
       "answerSummary": "正解は①です。薄板の面内応力には平面応力要素です。",
       "preFigures": [
@@ -597,6 +622,9 @@
           "figureImage": "model8PlateHoleSetup",
           "caption": "問題の形状・座標・荷重条件を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -656,7 +684,7 @@
           "3": "軸対称シェルで離散した接触と根元を扱う",
           "4": "局所の厚さ内部の応力を一般シェルだけで評価する"
         },
-        "sha256": "c88a40ace574f804d9f1d6cf83c64bdfb4bd2350709634747a2770d8bb32c204"
+        "sha256": "7bcaeed2ad70ccebc8d0e5107f57bf69145e7bb8024a0ef39f17433003608a79"
       },
       "answerSummary": "正解は②です。ボルト周りの局所形状を三次元で残します。",
       "preFigures": [
@@ -664,6 +692,9 @@
           "figureImage": "model8BoltCircleSetup",
           "caption": "問題の形状・座標・荷重条件を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -723,7 +754,7 @@
           "2": "曲げを伝える柱と横材をトラスにする",
           "4": "斜材をモーメントも伝える配管要素にする"
         },
-        "sha256": "cb430c182cf289e13e117b5f135f959e84c9b48fc7f84bd6838333bc38f1f25f"
+        "sha256": "c712c7adcca71abbb5e58f61c03dac4dd51bbc2c6546879c59c6b6f024c4416a"
       },
       "answerSummary": "正解は③です。曲げを負担する部材ははり、軸力だけの斜材はトラスです。",
       "preFigures": [
@@ -731,6 +762,9 @@
           "figureImage": "model8TowerSetup",
           "caption": "問題の形状・座標・荷重条件を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -789,7 +823,7 @@
           "2": "長手のひずみ拘束を応力0とする",
           "3": "立体の代替表現を横断面の標準二次元要素と混同する"
         },
-        "sha256": "f95034020b24f2c2346327d8eaf70ddba32ff2a4c8a6812969e0e1e84f76bd8f"
+        "sha256": "0c9b0e7a45d2d3723fbfdf0a18e8e47cd1d582ef59ce48b796b2a830a34d0aa1"
       },
       "answerSummary": "正解は④です。長手方向のひずみを0とする平面ひずみです。",
       "preFigures": [
@@ -797,6 +831,9 @@
           "figureImage": "model8TunnelSetup",
           "caption": "問題の形状・座標・荷重条件を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -855,7 +892,7 @@
           "3": "円形の厚い断面を平面応力へ置換する",
           "4": "曲がった立体を平面ひずみへ置換する"
         },
-        "sha256": "57d09f9b27220ea5b08f3793bfd75ec85d8432e0055b20bd4f5fa2bcd04e713e"
+        "sha256": "6816025a7fc5440b3641e6afcbd6612e73b100dd76d64f5de2e9e74d8c37d388"
       },
       "answerSummary": "正解は①です。太い曲がったフックの局所応力を立体で扱います。",
       "preFigures": [
@@ -863,6 +900,9 @@
           "figureImage": "model8HookSetup",
           "caption": "問題の形状・座標・荷重条件を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -922,7 +962,7 @@
           "3": "ねじりを平面ひずみだけで扱う",
           "4": "ねじりを平面応力だけで扱う"
         },
-        "sha256": "f46fbc329f20010bc197fd8b1c5a39b8864800d9aa5aa2cfd6fcff593b41cb57"
+        "sha256": "545b6b7638bf7cd796522e3eb15719f84a6416e4df5550456167e3e9e4143f5a"
       },
       "answerSummary": "正解は②です。反りを含む局所の軸ひずみを三次元で評価します。",
       "preFigures": [
@@ -930,6 +970,9 @@
           "figureImage": "model8ChannelBeamSetup",
           "caption": "問題の形状・座標・荷重条件を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -969,7 +1012,7 @@
           "2": "対応要素があるのに過度な全周立体細分化を選ぶ",
           "4": "回転体の周方向作用を平面応力板へ置き換える"
         },
-        "sha256": "7a8a51c8a67b0a44a35bc54e6e64d406ef895521b2ea09b85f5c673fd0c1d268"
+        "sha256": "ac8177148ac85a20551da315b2737f9589f2daab2d87c229f926cb42d695004c"
       },
       "easyExplanation": [
         {
@@ -1005,6 +1048,9 @@
           "figureImage": "model8SiloSetup",
           "caption": "問題の形状・座標・荷重条件を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1071,7 +1117,7 @@
           "2": "平均だけでは正確さを保証できない記述を誤りとする",
           "3": "界面の向きで成分を分ける必要を否定する"
         },
-        "sha256": "345d34445b5e79bcb6b5d99fced6bb56ef91d5974b32810674b40b27d1780d23"
+        "sha256": "426a75d7e24f7d4219f078b5b0c3dc8dfc338b17c7f007738d45b8d4bf7f38fc"
       },
       "answerSummary": "正解は④です。主応力の最大値・最小値だけでは足りません。",
       "preFigures": [
@@ -1079,6 +1125,9 @@
           "figureImage": "model8InterfaceSetup",
           "caption": "問題の形状・座標・荷重条件を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1140,9 +1189,12 @@
           "3": "異材両側を分けた未平均化評価を誤りとする",
           "4": "界面の表面力と面内成分を区別する方針を誤りとする"
         },
-        "sha256": "76291c52ff944390238b3794eadbe479838a9813befb577d7cffebaf023c6f96"
+        "sha256": "9c87528b5adcf820ce7dd9bc956c827c6c4209ba0bb0c1f628726cb45070ba26"
       },
-      "answerSummary": "正解は①です。せん断応力も要素別に出力できます。"
+      "answerSummary": "正解は①です。せん断応力も要素別に出力できます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "model-8-18",
@@ -1203,9 +1255,12 @@
           "3": "平面ひずみの3行3列を三次元に使う",
           "4": "材料係数を含まない単位行列を材料則とする"
         },
-        "sha256": "38f19f34fbad59ba998f18dd8533b0c1ac869cee24256c954dd6d8869e9d7124"
+        "sha256": "a6920bdd809f9c29b227eab66dcc341b967191ae41d1b0d04d06d4ae711c3dc9"
       },
-      "answerSummary": "正解は②です。六つの応力に、六つのひずみが対応します。"
+      "answerSummary": "正解は②です。六つの応力に、六つのひずみが対応します。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "model-8-19",
@@ -1263,9 +1318,12 @@
           "2": "平面応力のDを平面ひずみへ使う",
           "4": "変形しても応力が全て0の材料とする"
         },
-        "sha256": "1866b07da81166d721b279b42dd6b7217013093af1345c2af4a025571d86a4b7"
+        "sha256": "7d95787e21e5f417306d3475cf3d8724552bb8dd08059ae1ddc00b9f450924b9"
       },
-      "answerSummary": "正解は③です。まず面外ひずみ0から、面外応力を求めます。"
+      "answerSummary": "正解は③です。まず面外ひずみ0から、面外応力を求めます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "model-8-20",
@@ -1315,9 +1373,12 @@
           "2": "せん断の柔らかさの係数をDの前係数とする",
           "3": "分母の1+νを落とす"
         },
-        "sha256": "3398f916c8d7a0a84b7635dd4a9a456b3b2f80a827d16a6d5dd22cbe7fee61e3"
+        "sha256": "dd711619369bd67afdcf7788e9393946b271bb30aeb3663b65cb0b56dafa1c50"
       },
-      "answerSummary": "正解は④です。せん断の一成分からCを取り出せます。"
+      "answerSummary": "正解は④です。せん断の一成分からCを取り出せます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "model-8-21",
@@ -1376,7 +1437,7 @@
           "3": "二軸応力の比をひずみ比と同一視する",
           "4": "xひずみの係数だけで比の計算を止める"
         },
-        "sha256": "66f7538eb95e366fd37ddb8ed532154121eae31c8124f50f3c2dac865ad41caf"
+        "sha256": "862d1f011a1bf26d4d01fc87da15ee9fe90815a5ae048d46b38b15952951397e"
       },
       "answerSummary": "正解は①です。面外応力を含めると、比は3/7です。",
       "preFigures": [
@@ -1384,6 +1445,9 @@
           "figureImage": "model8BiaxialSetup",
           "caption": "問題の形状・座標・荷重条件を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1450,7 +1514,7 @@
           "3": "局所軸方向と直交方向を交換する",
           "4": "両端変位の差でなく和に力を比例させる"
         },
-        "sha256": "8248f318b01da4e7228e329ae9574097cffa23d346ff23b4bf97fba46434d516"
+        "sha256": "c26098776ad17bdc62737019b7e22386b3bbb4dae6509822c343b48376d9de78"
       },
       "answerSummary": "正解は②です。軸方向だけが、微小な伸びへ抵抗します。",
       "preFigures": [
@@ -1458,6 +1522,9 @@
           "figureImage": "model8TrussKSetup",
           "caption": "問題の形状・座標・荷重条件を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1496,7 +1563,7 @@
           "2": "中立軸からの距離zを落とす",
           "4": "回転角の代わりにたわみ自体をzへ掛ける"
         },
-        "sha256": "efce57e812611d4df76667f7ca9145e4863675a49ffd04c5229df5f9af4b1c30"
+        "sha256": "f4a58450049dc690dac1828d88efe8389f64416f33dfc00d9f6cf9f35b7e1300"
       },
       "easyExplanation": [
         {
@@ -1532,6 +1599,9 @@
           "figureImage": "s2Before8_23",
           "caption": "問題の形状・座標・荷重条件を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1590,9 +1660,12 @@
           "2": "軸対称の周方向応力を落とす",
           "3": "異なる面外条件でも解が必ず同じとする"
         },
-        "sha256": "922207fca3854d4542761240f846fd3d56df57fca3c2cc003d69595e2ec63bd3"
+        "sha256": "4fdd5febdb522a1bc37f32b7f09e856af5d0f832e79266b3f6e19036fceb7218"
       },
-      "answerSummary": "正解は④です。平面ひずみはεzを0とし、σzは一般に残ります。"
+      "answerSummary": "正解は④です。平面ひずみはεzを0とし、σzは一般に残ります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "model-8-25",
@@ -1650,7 +1723,7 @@
           "3": "面外拘束によるポアソン効果を無視する",
           "4": "面外拘束をx方向も完全固定とする"
         },
-        "sha256": "57a64db61b189e942cd3ff1daea0fc8d6ba22effee236731e8a48db0d5cf5186"
+        "sha256": "49b570d347cba27ff7beb74f9d34dc9f770fbbf9b0c6e304db5aa03e15dab190"
       },
       "answerSummary": "正解は①です。本来のひずみの1−ν²倍になり、小さくなります。",
       "preFigures": [
@@ -1658,6 +1731,9 @@
           "figureImage": "model8ThinPlateSetup",
           "caption": "問題の形状・座標・荷重条件を確認します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1709,15 +1785,151 @@
       ],
       "editorialReview": {
         "officialPoint": "面外拘束",
-        "alignment": "保存済み公式第8章の同番号の問題・解説を照合。四択・組合せの構成を維持し、結論、必要な導出、図の読み方、誤答理由を標準解説へ統合。文字数用の重複補足は整理。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "平面ひずみの条件と式を平面応力と呼ぶ",
           "3": "面外応力0の別モデルを選ぶ",
           "4": "モデル名と面外成分の式を混在させる"
         },
-        "sha256": "722e1634df8157f2d8122b4ab6c80164baedf5d9c44d7d0811fd0deebbf04943"
+        "sha256": "ca0bc5cbe267593c0f196a840070d2d9f9ad36aa3810b22ee0bf7b1d61a2bb69"
       },
-      "answerSummary": "正解は②です。平面ひずみと、その面外応力の式です。"
+      "answerSummary": "モデル名：平面ひずみです。\n面外ひずみ：$\\varepsilon_z=0$です。\n面外応力：面外ひずみが0でも、それを保つ応力は一般に生じます。",
+      "sharedQuestion": "厚い等方線形弾性体のz方向の伸縮と面外せん断を無視し、x-y断面で解析する。初期ひずみはなく、ヤング率E、ポアソン比 $0<\\nu<0.5$ とする。モデル名と面外成分をそれぞれ答えてください。",
+      "studyParts": [
+        {
+          "id": "model-8-26-item-m",
+          "number": "8-26",
+          "officialRef": "問8-26",
+          "officialQuestionItem": "m",
+          "title": "モデル名",
+          "topic": "平面ひずみ",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "適切なモデルはどれか。",
+          "choices": [
+            "平面ひずみ",
+            "平面応力"
+          ],
+          "answer": 1,
+          "answerSummary": "平面ひずみです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "z方向の伸縮を無視するので、面外のひずみを0に置くモデルです。面外応力を0とする平面応力とは、0にする量が違います。"
+            }
+          ],
+          "explanation": "【基礎】平面ひずみです。\n【考え方】正解は1です。z方向の伸縮を無視するので、面外のひずみを0に置くモデルです。面外応力を0とする平面応力とは、0にする量が違います。\n【ポイント】平面ひずみです。\n【引っかけ】2：「平面応力」ではなく、平面ひずみです。z方向の伸縮を無視するので、面外のひずみを0に置くモデルです。面外応力を0とする平面応力とは、0にする量が違います。",
+          "relatedFormulas": [
+            "plane-stress-strain"
+          ],
+          "editorialReview": {
+            "officialPoint": "面外拘束／個別の質問：モデル名",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「平面応力」ではなく、平面ひずみです。z方向の伸縮を無視するので、面外のひずみを0に置くモデルです。面外応力を0とする平面応力とは、0にする量が違います。"
+            },
+            "sha256": "c3953d0e488d0dcc40b2a355925fa7c0898b15d83f6a6edd06f53b634a7e578e"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "model-8-26-item-e",
+          "number": "8-26",
+          "officialRef": "問8-26",
+          "officialQuestionItem": "e",
+          "title": "面外ひずみ",
+          "topic": "平面ひずみ",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$\\varepsilon_z$はどう置くか。",
+          "choices": [
+            "0",
+            "$-\\frac{\\nu}{1-\\nu}(\\varepsilon_x+\\varepsilon_y)$"
+          ],
+          "answer": 1,
+          "answerSummary": "$\\varepsilon_z=0$です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "伸縮を止める仮定そのものが $\\varepsilon_z=0$ です。もう一つの式は面外に自由に伸縮する平面応力の関係で、この仮定には使いません。"
+            }
+          ],
+          "explanation": "【基礎】$\\varepsilon_z=0$です。\n【考え方】正解は1です。伸縮を止める仮定そのものが $\\varepsilon_z=0$ です。もう一つの式は面外に自由に伸縮する平面応力の関係で、この仮定には使いません。\n【ポイント】$\\varepsilon_z=0$です。\n【引っかけ】2：「$-\\frac{\\nu}{1-\\nu}(\\varepsilon_x+\\varepsilon_y)$」ではなく、0です。伸縮を止める仮定そのものが $\\varepsilon_z=0$ です。もう一つの式は面外に自由に伸縮する平面応力の関係で、この仮定には使いません。",
+          "relatedFormulas": [
+            "plane-stress-strain"
+          ],
+          "editorialReview": {
+            "officialPoint": "面外拘束／個別の質問：面外ひずみ",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$-\\frac{\\nu}{1-\\nu}(\\varepsilon_x+\\varepsilon_y)$」ではなく、0です。伸縮を止める仮定そのものが $\\varepsilon_z=0$ です。もう一つの式は面外に自由に伸縮する平面応力の関係で、この仮定には使いません。"
+            },
+            "sha256": "ac0399fe2eadce8545c48514afb1c68371378da40791e810c93d4dda8265dbce"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "model-8-26-item-s",
+          "number": "8-26",
+          "officialRef": "問8-26",
+          "officialQuestionItem": "s",
+          "title": "面外応力",
+          "topic": "平面ひずみ",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$\\sigma_z$はどう求めるか。",
+          "choices": [
+            "$\\frac{\\nu E}{(1+\\nu)(1-2\\nu)}(\\varepsilon_x+\\varepsilon_y)$",
+            "0"
+          ],
+          "answer": 1,
+          "answerSummary": "面外ひずみが0でも、それを保つ応力は一般に生じます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "z方向の伸縮と面外せん断を無視するので、$\\varepsilon_z=\\gamma_{yz}=\\gamma_{zx}=0$ の平面ひずみです。まず $0=[\\sigma_z-\\nu(\\sigma_x+\\sigma_y)]/E$ より、$\\sigma_z=\\nu(\\sigma_x+\\sigma_y)$ を得ます。厚いという形の印象だけでなく、面外ひずみを無視できるという指定を使っています。"
+            },
+            {
+              "title": "面内ひずみの和へ書き換えます",
+              "body": "三次元のxとyのフックの式を足すと、$E(\\varepsilon_x+\\varepsilon_y)=(1-\\nu)(\\sigma_x+\\sigma_y)-2\\nu\\sigma_z$ です。先ほどのσzを入れると、右辺は $(1-\\nu-2\\nu^2)(\\sigma_x+\\sigma_y)$、つまり $(1+\\nu)(1-2\\nu)(\\sigma_x+\\sigma_y)$ です。したがって $\\sigma_z=\\frac{\\nu E}{(1+\\nu)(1-2\\nu)}(\\varepsilon_x+\\varepsilon_y)$ です。",
+              "figures": [
+                {
+                  "figureImage": "model8ThickStrain",
+                  "caption": "面外に伸縮できなくても、伸縮を止める応力は生じます。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】面外ひずみが0でも、それを保つ応力は一般に生じます。\n【考え方】正解は1です。z方向の伸縮と面外せん断を無視するので、$\\varepsilon_z=\\gamma_{yz}=\\gamma_{zx}=0$ の平面ひずみです。まず $0=[\\sigma_z-\\nu(\\sigma_x+\\sigma_y)]/E$ より、$\\sigma_z=\\nu(\\sigma_x+\\sigma_y)$ を得ます。厚いという形の印象だけでなく、面外ひずみを無視できるという指定を使っています。\n【ポイント】三次元のxとyのフックの式を足すと、$E(\\varepsilon_x+\\varepsilon_y)=(1-\\nu)(\\sigma_x+\\sigma_y)-2\\nu\\sigma_z$ です。先ほどのσzを入れると、右辺は $(1-\\nu-2\\nu^2)(\\sigma_x+\\sigma_y)$、つまり $(1+\\nu)(1-2\\nu)(\\sigma_x+\\sigma_y)$ です。したがって $\\sigma_z=\\frac{\\nu E}{(1+\\nu)(1-2\\nu)}(\\varepsilon_x+\\varepsilon_y)$ で②です。\n【引っかけ】2：「0」ではなく、$\\frac{\\nu E}{(1+\\nu)(1-2\\nu)}(\\varepsilon_x+\\varepsilon_y)$です。z方向の伸縮と面外せん断を無視するので、$\\varepsilon_z=\\gamma_{yz}=\\gamma_{zx}=0$ の平面ひずみです。まず $0=[\\sigma_z-\\nu(\\sigma_x+\\sigma_y)]/E$ より、$\\sigma_z=\\nu(\\sigma_x+\\sigma_y)$ を得ます。厚いという形の印象だけでなく、面外ひずみを無視できるという指定を使っています。",
+          "relatedFormulas": [
+            "plane-stress-strain"
+          ],
+          "editorialReview": {
+            "officialPoint": "面外拘束／個別の質問：面外応力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「0」ではなく、$\\frac{\\nu E}{(1+\\nu)(1-2\\nu)}(\\varepsilon_x+\\varepsilon_y)$です。z方向の伸縮と面外せん断を無視するので、$\\varepsilon_z=\\gamma_{yz}=\\gamma_{zx}=0$ の平面ひずみです。まず $0=[\\sigma_z-\\nu(\\sigma_x+\\sigma_y)]/E$ より、$\\sigma_z=\\nu(\\sigma_x+\\sigma_y)$ を得ます。厚いという形の印象だけでなく、面外ひずみを無視できるという指定を使っています。"
+            },
+            "sha256": "e005652ea02d47a57316484a56be89b355a360f0d1f060a93d8da99341d9f4c3"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "m",
+        "e",
+        "s"
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "model-8-27",
@@ -1779,9 +1991,12 @@
           "2": "軸対称を一次要素だけに制限する",
           "4": "軸対称を高次要素だけに制限する"
         },
-        "sha256": "c76522f4a0d20ce5f1d97c5fc57b4d7e9bce9d8d939659c7cb0073aafa178068"
+        "sha256": "5dfa88df802723cd5b93061098e45b1203959ae012cf46a02cc5ab058c53f46f"
       },
-      "answerSummary": "正解は③です。条件がそろえば立体をr-z断面で解けます。"
+      "answerSummary": "正解は③です。条件がそろえば立体をr-z断面で解けます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     }
   ]
 }

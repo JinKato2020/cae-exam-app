@@ -8,7 +8,8 @@
     "officialCount": 12,
     "count": 12,
     "explanationMode": "guided",
-    "presentationStyle": "cae-standard-v1"
+    "presentationStyle": "cae-standard-v1",
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -75,9 +76,12 @@
           "3": "整合する右辺と矛盾する右辺を逆にする",
           "4": "行列式0を解なしと同一視する"
         },
-        "sha256": "89cdcda4ac84c3a413a5fc6dbffdc02db4970e2d29bc91692a82e46850597224"
+        "sha256": "908dde9243c860aca2e172e379d210da5dded335f9c48ba3ec10eaf5e274d3e8"
       },
-      "answerSummary": "②。右辺が $(3,6)^T$ なら同じ条件が重なって解は無数、$(3,7)^T$ なら二式が矛盾して解はありません。"
+      "answerSummary": "②。右辺が $(3,6)^T$ なら同じ条件が重なって解は無数、$(3,7)^T$ なら二式が矛盾して解はありません。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "math-1-2",
@@ -136,15 +140,147 @@
       ],
       "editorialReview": {
         "officialPoint": "行列式の基本性質",
-        "alignment": "保存済み公式の該当番号と選択式の論点を照合。通常4節を旧本体用に保持し、標準詳解は結論・必要な導出・具体例・誤答理由へ統合。重複を削り、式と数値例の整合、単位、図の対応を確認。文字数で水増ししない。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "定数倍の次数を無視する",
           "3": "定数倍と和をともに線形と誤認する",
           "4": "積の性質を和にも適用する"
         },
-        "sha256": "3464b756f707394267049871f5fa79e63e11cb3e32a32a2aef8a542c00f0efea"
+        "sha256": "6c4cb36590b455e21bb2eee087e1772c282d226d5a6167e93e85e92ac53ee954"
       },
-      "answerSummary": "②（イだけ）。定数倍は $c^n$、積は行列式同士の積になります。和には同じ法則を使えません。"
+      "answerSummary": "定数倍：$\\det(cA)=c^n\\det A$です。\n積：$\\det(AB)=\\det A\\det B$です。\n和：行列式に、行列全体の和の線形性はありません。",
+      "sharedQuestion": "$n\\ge 2$ とし、$\\mathbf A,\\mathbf B$ を $n$ 次正方行列、$c$ を実数とする。次の各式が一般に成り立つか、それぞれ判定してください。",
+      "studyParts": [
+        {
+          "id": "math-1-2-item-a",
+          "number": "1-2",
+          "officialRef": "問1-2",
+          "officialQuestionItem": "a",
+          "title": "定数倍",
+          "topic": "行列式の性質",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "ア：$\\det(c\\mathbf A)=c\\det(\\mathbf A)$ は一般に正しいですか。",
+          "choices": [
+            "誤り",
+            "正しい"
+          ],
+          "answer": 1,
+          "answerSummary": "$\\det(cA)=c^n\\det A$です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "行列には $n$ 本の行があります。各行を $c$ 倍するごとに行列式が $c$ 倍になるため、全体では $\\det(c\\mathbf A)=c^n\\det\\mathbf A$ です。\n\n例えば二次の単位行列 $\\mathbf I$ を2倍すると、対角成分は2と2です。行列式は $2\\times2=4$ で、アが述べる $2\\det\\mathbf I=2$ ではありません。\n\n図の正方形も、横と縦を2倍にすれば面積は4倍です。"
+            }
+          ],
+          "explanation": "【基礎】$\\det(cA)=c^n\\det A$です。\n【考え方】正解は1です。行列には $n$ 本の行があります。各行を $c$ 倍するごとに行列式が $c$ 倍になるため、全体では $\\det(c\\mathbf A)=c^n\\det\\mathbf A$ です。 例えば二次の単位行列 $\\mathbf I$ を2倍すると、対角成分は2と2です。行列式は $2\\times2=4$ で、アが述べる $2\\det\\mathbf I=2$ ではありません。 図の正方形も、横と縦を2倍にすれば面積は4倍です。\n【ポイント】$\\det(cA)=c^n\\det A$です。\n【引っかけ】2：「正しい」ではなく、誤りです。行列には $n$ 本の行があります。各行を $c$ 倍するごとに行列式が $c$ 倍になるため、全体では $\\det(c\\mathbf A)=c^n\\det\\mathbf A$ です。 例えば二次の単位行列 $\\mathbf I$ を2倍すると、対角成分は2と2です。行列式は $2\\times2=4$ で、アが述べる $2\\det\\mathbf I=2$ ではありません。 図の正方形も、横と縦を2倍にすれば面積は4倍です。",
+          "relatedFormulas": [
+            "determinant"
+          ],
+          "editorialReview": {
+            "officialPoint": "行列式の基本性質／個別の質問：定数倍",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「正しい」ではなく、誤りです。行列には $n$ 本の行があります。各行を $c$ 倍するごとに行列式が $c$ 倍になるため、全体では $\\det(c\\mathbf A)=c^n\\det\\mathbf A$ です。\n\n例えば二次の単位行列 $\\mathbf I$ を2倍すると、対角成分は2と2です。行列式は $2\\times2=4$ で、アが述べる $2\\det\\mathbf I=2$ ではありません。\n\n図の正方形も、横と縦を2倍にすれば面積は4倍です。"
+            },
+            "sha256": "acc2657a35261424091f1a31dec1bfc116070b275024597a35e7412e20005c87"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "math-1-2-item-b",
+          "number": "1-2",
+          "officialRef": "問1-2",
+          "officialQuestionItem": "b",
+          "title": "積",
+          "topic": "行列式の性質",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "イ：$\\det(\\mathbf A\\mathbf B)=\\det(\\mathbf A)\\det(\\mathbf B)$ は一般に正しいですか。",
+          "choices": [
+            "誤り",
+            "正しい"
+          ],
+          "answer": 2,
+          "answerSummary": "$\\det(AB)=\\det A\\det B$です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$\\det(\\mathbf A\\mathbf B)=\\det\\mathbf A\\det\\mathbf B$ が成り立ちます。例えば $\\mathbf A=\\operatorname{diag}(2,3)$、$\\mathbf B=\\operatorname{diag}(4,5)$ なら、$\\det\\mathbf A=6$、$\\det\\mathbf B=20$ です。\n\n積は $\\mathbf A\\mathbf B=\\operatorname{diag}(8,15)$ で、行列式は $8\\times15=120=6\\times20$。図形の面積の倍率を続けて掛けるイメージです。"
+            }
+          ],
+          "explanation": "【基礎】$\\det(AB)=\\det A\\det B$です。\n【考え方】正解は2です。$\\det(\\mathbf A\\mathbf B)=\\det\\mathbf A\\det\\mathbf B$ が成り立ちます。例えば $\\mathbf A=\\operatorname{diag}(2,3)$、$\\mathbf B=\\operatorname{diag}(4,5)$ なら、$\\det\\mathbf A=6$、$\\det\\mathbf B=20$ です。 積は $\\mathbf A\\mathbf B=\\operatorname{diag}(8,15)$ で、行列式は $8\\times15=120=6\\times20$。図形の面積の倍率を続けて掛けるイメージです。\n【ポイント】$\\det(AB)=\\det A\\det B$です。\n【引っかけ】1：「誤り」ではなく、正しいです。$\\det(\\mathbf A\\mathbf B)=\\det\\mathbf A\\det\\mathbf B$ が成り立ちます。例えば $\\mathbf A=\\operatorname{diag}(2,3)$、$\\mathbf B=\\operatorname{diag}(4,5)$ なら、$\\det\\mathbf A=6$、$\\det\\mathbf B=20$ です。 積は $\\mathbf A\\mathbf B=\\operatorname{diag}(8,15)$ で、行列式は $8\\times15=120=6\\times20$。図形の面積の倍率を続けて掛けるイメージです。",
+          "relatedFormulas": [
+            "determinant"
+          ],
+          "editorialReview": {
+            "officialPoint": "行列式の基本性質／個別の質問：積",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「誤り」ではなく、正しいです。$\\det(\\mathbf A\\mathbf B)=\\det\\mathbf A\\det\\mathbf B$ が成り立ちます。例えば $\\mathbf A=\\operatorname{diag}(2,3)$、$\\mathbf B=\\operatorname{diag}(4,5)$ なら、$\\det\\mathbf A=6$、$\\det\\mathbf B=20$ です。\n\n積は $\\mathbf A\\mathbf B=\\operatorname{diag}(8,15)$ で、行列式は $8\\times15=120=6\\times20$。図形の面積の倍率を続けて掛けるイメージです。"
+            },
+            "sha256": "e1870c4218c0e0b28bb56e982a0716303d12e43cb13a5c333309625c35e88512"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "math-1-2-item-c",
+          "number": "1-2",
+          "officialRef": "問1-2",
+          "officialQuestionItem": "c",
+          "title": "和",
+          "topic": "行列式の性質",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "ウ：$\\det(\\mathbf A+\\mathbf B)=\\det(\\mathbf A)+\\det(\\mathbf B)$ は一般に正しいですか。",
+          "choices": [
+            "誤り",
+            "正しい"
+          ],
+          "answer": 1,
+          "answerSummary": "行列式に、行列全体の和の線形性はありません。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "二次で $\\mathbf A=\\mathbf B=\\mathbf I$ とすると、左辺は $\\det(2\\mathbf I)=4$、右辺は $\\det\\mathbf I+\\det\\mathbf I=1+1=2$ です。一致しない例があるので、一般に成り立つとはいえません。\n\n正しい記述はイだけで、②です。",
+              "figures": [
+                {
+                  "figureImage": "mathDeterminantRules",
+                  "caption": "二次の行列では横・縦を2倍にすると面積は4倍。定数倍と行列式の倍率を区別します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】行列式に、行列全体の和の線形性はありません。\n【考え方】正解は1です。二次で $\\mathbf A=\\mathbf B=\\mathbf I$ とすると、左辺は $\\det(2\\mathbf I)=4$、右辺は $\\det\\mathbf I+\\det\\mathbf I=1+1=2$ です。一致しない例があるので、一般に成り立つとはいえません。 正しい記述はイだけで、②です。\n【ポイント】行列式に、行列全体の和の線形性はありません。\n【引っかけ】2：「正しい」ではなく、誤りです。二次で $\\mathbf A=\\mathbf B=\\mathbf I$ とすると、左辺は $\\det(2\\mathbf I)=4$、右辺は $\\det\\mathbf I+\\det\\mathbf I=1+1=2$ です。一致しない例があるので、一般に成り立つとはいえません。 正しい記述はイだけで、②です。",
+          "relatedFormulas": [
+            "determinant"
+          ],
+          "editorialReview": {
+            "officialPoint": "行列式の基本性質／個別の質問：和",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「正しい」ではなく、誤りです。二次で $\\mathbf A=\\mathbf B=\\mathbf I$ とすると、左辺は $\\det(2\\mathbf I)=4$、右辺は $\\det\\mathbf I+\\det\\mathbf I=1+1=2$ です。一致しない例があるので、一般に成り立つとはいえません。\n\n正しい記述はイだけで、②です。"
+            },
+            "sha256": "1c6197f88175679626b6dea99c465490edbdd4480a7e705aee7a8525a36634a6"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "math-1-3",
@@ -207,15 +343,115 @@
       ],
       "editorialReview": {
         "officialPoint": "固有値と固有ベクトルの名称",
-        "alignment": "保存済み公式の該当番号と選択式の論点を照合。通常4節を旧本体用に保持し、標準詳解は結論・必要な導出・具体例・誤答理由へ統合。重複を削り、式と数値例の整合、単位、図の対応を確認。文字数で水増ししない。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "数とベクトルの名称を逆転する",
           "2": "固有値を次数、固有ベクトルを単位ベクトルとする",
           "4": "ベクトルの長さや行列式と混同する"
         },
-        "sha256": "a5966ff97e9a5a30aad707121a4e7d0093d74404536b6812aa5cfa52b31df541"
+        "sha256": "e68b69040e13f23ba543d289aad4bd848988c098164871dd4d8da06ba0956711"
       },
-      "answerSummary": "③。数 $\\mu$ が固有値、零でない矢印 $\\mathbf v$ が固有ベクトルです。"
+      "answerSummary": "μの名称：μは、行列を掛けた結果が元のベクトルの何倍になるかを表す固有値です。\nvの名称：vは、行列を掛けると同じ直線上の定数倍になる固有ベクトルです。",
+      "officialQuestionItems": [
+        "value",
+        "vector"
+      ],
+      "sharedQuestion": "実正方行列$M$、零でない実ベクトル$v$、実数$\\mu$が$Mv=\\mu v$を満たします。$\\mu$と$v$の名称をそれぞれ選んでください。",
+      "studyParts": [
+        {
+          "id": "math-1-3-item-value",
+          "number": "1-3",
+          "officialRef": "問1-3",
+          "officialQuestionItem": "value",
+          "title": "μの名称",
+          "topic": "固有値・固有ベクトル",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$\\mu$の名称はどちらですか。",
+          "choices": [
+            "行列式",
+            "固有値"
+          ],
+          "answer": 2,
+          "answerSummary": "μは、行列を掛けた結果が元のベクトルの何倍になるかを表す固有値です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "行列をベクトルに掛けると、普通は矢印の向きや長さが変わります。その中で、掛けた結果が元のベクトルの定数倍になる特別な関係が $\\mathbf M\\mathbf v=\\mu\\mathbf v$ です。\n\nこれを満たす零でないベクトル $\\mathbf v$ を「固有ベクトル」、倍率を表す数 $\\mu$ を「固有値」と呼びます。本問では実行列・実ベクトル・実数を扱います。\n\n固有ベクトルは矢印、固有値はその矢印に掛ける倍率、と役割を分けて読みます。"
+            },
+            {
+              "title": "掛け算で二つの固有値を確認する",
+              "body": "式の左辺は「行列で変換した後のベクトル」、右辺は「元のベクトルに倍率を掛けたもの」です。この計算から、$\\mu$ は固有値、$\\mathbf v$ は固有ベクトルに対応します。\n\n例えば $\\mathbf M=\\begin{pmatrix}2&0\\\\0&-1\\end{pmatrix}$、$\\mathbf v=(1,0)^T$ なら、$\\mathbf M\\mathbf v=(2,0)^T=2\\mathbf v$ です。このベクトルに対応する固有値は2です。\n\n別のベクトル $(0,1)^T$ に対しては $\\mathbf M(0,1)^T=(0,-1)^T=-1(0,1)^T$ なので、対応する固有値は $-1$ です。本問で必要なのは新たに固有値を計算することではなく、式の中の数とベクトルに正しい名称を付けることです。"
+            }
+          ],
+          "explanation": "【基礎】μは、行列を掛けた結果が元のベクトルの何倍になるかを表す固有値です。\n【考え方】正解は2です。行列をベクトルに掛けると、普通は矢印の向きや長さが変わります。その中で、掛けた結果が元のベクトルの定数倍になる特別な関係が $\\mathbf M\\mathbf v=\\mu\\mathbf v$ です。 これを満たす零でないベクトル $\\mathbf v$ を「固有ベクトル」、倍率を表す数 $\\mu$ を「固有値」と呼びます。本問では実行列・実ベクトル・実数を扱います。 固有ベクトルは矢印、固有値はその矢印に掛ける倍率、と役割を分けて読みます。\n【ポイント】式の左辺は「行列で変換した後のベクトル」、右辺は「元のベクトルに倍率を掛けたもの」です。両者が一致するので、$\\mu$ が固有値、$\\mathbf v$ が固有ベクトルとなり、正解は3です。 例えば $\\mathbf M=\\begin{pmatrix}2&0\\\\0&-1\\end{pmatrix}$、$\\mathbf v=(1,0)^T$ なら、$\\mathbf M\\mathbf v=(2,0)^T=2\\mathbf v$ です。このベクトルに対応する固有値は2です。 別のベクトル $(0,1)^T$ に対しては $\\mathbf M(0,1)^T=(0,-1)^T=-1(0,1)^T$ なので、対応する固有値は $-1$ です。本問で必要なのは新たに固有値を計算することではなく、式の中の数とベクトルに正しい名称を付けることです。\n【引っかけ】1：「行列式」ではなく、固有値です。行列をベクトルに掛けると、普通は矢印の向きや長さが変わります。その中で、掛けた結果が元のベクトルの定数倍になる特別な関係が $\\mathbf M\\mathbf v=\\mu\\mathbf v$ です。 これを満たす零でないベクトル $\\mathbf v$ を「固有ベクトル」、倍率を表す数 $\\mu$ を「固有値」と呼びます。本問では実行列・実ベクトル・実数を扱います。 固有ベクトルは矢印、固有値はその矢印に掛ける倍率、と役割を分けて読みます。",
+          "relatedFormulas": [
+            "eigenvalue"
+          ],
+          "editorialReview": {
+            "officialPoint": "固有値と固有ベクトルの名称／個別の質問：μの名称",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「行列式」ではなく、固有値です。行列をベクトルに掛けると、普通は矢印の向きや長さが変わります。その中で、掛けた結果が元のベクトルの定数倍になる特別な関係が $\\mathbf M\\mathbf v=\\mu\\mathbf v$ です。\n\nこれを満たす零でないベクトル $\\mathbf v$ を「固有ベクトル」、倍率を表す数 $\\mu$ を「固有値」と呼びます。本問では実行列・実ベクトル・実数を扱います。\n\n固有ベクトルは矢印、固有値はその矢印に掛ける倍率、と役割を分けて読みます。"
+            },
+            "sha256": "454cc4b4c5ea101c552df2c419c3949166d76aff762f774c9b7e9898ed0f1af3"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "math-1-3-item-vector",
+          "number": "1-3",
+          "officialRef": "問1-3",
+          "officialQuestionItem": "vector",
+          "title": "vの名称",
+          "topic": "固有値・固有ベクトル",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$v$の名称はどちらですか。",
+          "choices": [
+            "単位ベクトル",
+            "固有ベクトル"
+          ],
+          "answer": 2,
+          "answerSummary": "vは、行列を掛けると同じ直線上の定数倍になる固有ベクトルです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "例の$\\mathbf M$に対して$(3,0)^T$を掛けると$(6,0)^T=2(3,0)^T$です。$(1,0)^T$から長さを3倍にしても、変換の倍率は2のままです。\n\nここで3は自分が選んだベクトルの大きさ、2は行列がその方向へ作用する倍率であり、役割が違います。また$(0,1)^T$の固有値は$-1$ですが、負号は長さが負という意味ではありません。\n\n長さは変わらず、矢印が逆向きになることを表します。問題の式を読むときは、右辺の「数×矢印」をひとまとまりで確認しましょう。"
+            },
+            {
+              "title": "零ベクトルを除く理由",
+              "body": "$\\mathbf v=\\mathbf0$ なら、どんな $\\mu$ でも $\\mathbf M\\mathbf0=\\mu\\mathbf0$ が成立してしまいます。特別な方向や倍率を選べないため、固有ベクトルは零でないものに限ります。\n\n固有値の方は0でも構いません。その場合、零でない矢印が行列の作用で零へつぶれます。",
+              "figures": [
+                {
+                  "figureImage": "mathEigenvalueSign",
+                  "caption": "図は三次元へ広げた例です。倍率2は同じ向き、−1は反対向き、0は矢印が零へつぶれることを示します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】vは、行列を掛けると同じ直線上の定数倍になる固有ベクトルです。\n【考え方】正解は2です。例の$\\mathbf M$に対して$(3,0)^T$を掛けると$(6,0)^T=2(3,0)^T$です。$(1,0)^T$から長さを3倍にしても、変換の倍率は2のままです。 ここで3は自分が選んだベクトルの大きさ、2は行列がその方向へ作用する倍率であり、役割が違います。また$(0,1)^T$の固有値は$-1$ですが、負号は長さが負という意味ではありません。 長さは変わらず、矢印が逆向きになることを表します。問題の式を読むときは、右辺の「数×矢印」をひとまとまりで確認しましょう。\n【ポイント】$\\mathbf v=\\mathbf0$ なら、どんな $\\mu$ でも $\\mathbf M\\mathbf0=\\mu\\mathbf0$ が成立してしまいます。特別な方向や倍率を選べないため、固有ベクトルは零でないものに限ります。 固有値の方は0でも構いません。その場合、零でない矢印が行列の作用で零へつぶれます。\n【引っかけ】1：「単位ベクトル」ではなく、固有ベクトルです。例の$\\mathbf M$に対して$(3,0)^T$を掛けると$(6,0)^T=2(3,0)^T$です。$(1,0)^T$から長さを3倍にしても、変換の倍率は2のままです。 ここで3は自分が選んだベクトルの大きさ、2は行列がその方向へ作用する倍率であり、役割が違います。また$(0,1)^T$の固有値は$-1$ですが、負号は長さが負という意味ではありません。 長さは変わらず、矢印が逆向きになることを表します。問題の式を読むときは、右辺の「数×矢印」をひとまとまりで確認しましょう。",
+          "relatedFormulas": [
+            "eigenvalue"
+          ],
+          "editorialReview": {
+            "officialPoint": "固有値と固有ベクトルの名称／個別の質問：vの名称",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「単位ベクトル」ではなく、固有ベクトルです。例の$\\mathbf M$に対して$(3,0)^T$を掛けると$(6,0)^T=2(3,0)^T$です。$(1,0)^T$から長さを3倍にしても、変換の倍率は2のままです。\n\nここで3は自分が選んだベクトルの大きさ、2は行列がその方向へ作用する倍率であり、役割が違います。また$(0,1)^T$の固有値は$-1$ですが、負号は長さが負という意味ではありません。\n\n長さは変わらず、矢印が逆向きになることを表します。問題の式を読むときは、右辺の「数×矢印」をひとまとまりで確認しましょう。"
+            },
+            "sha256": "9438c3b09e6de5fbb3b258f091fe9dccf77efb8403b63cc162c77e90c1259924"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "math-1-4",
@@ -280,9 +516,12 @@
           "3": "y方向の一次係数を1とする",
           "4": "y方向の一次係数を負の1とする"
         },
-        "sha256": "2f839998bf0c03b118182c8d9c45e6f40f4a4d528988bac2eee4673fd58280cc"
+        "sha256": "ceb6d8346fb32d38a929db70fc576476c87820d2148abb6006be291bac9e986d"
       },
-      "answerSummary": "①。原点の高さ1、x方向の傾き1、y方向の傾き0から、一次近似は $1+x$ です。"
+      "answerSummary": "①。原点の高さ1、x方向の傾き1、y方向の傾き0から、一次近似は $1+x$ です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "math-1-5",
@@ -344,9 +583,12 @@
           "3": "半径方向と角度方向の係数を取り違える",
           "4": "二乗和を差にする"
         },
-        "sha256": "698dcde4b848068363dc176b5ccf79676ce4f1da84c08414e289866d90bacaf0"
+        "sha256": "bffeabddc291b1db250044d8c674a2ada4fcbdc3a190fb662d4c331103f045f7"
       },
-      "answerSummary": "②。角度方向は距離 $r\\,d\\theta$ に換算するため、二乗和では $1/r^2$ が付きます。"
+      "answerSummary": "②。角度方向は距離 $r\\,d\\theta$ に換算するため、二乗和では $1/r^2$ が付きます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "math-1-6",
@@ -380,7 +622,7 @@
           "2": "勾配の成分順を逆にする",
           "4": "法線成分を発散と混同する"
         },
-        "sha256": "4f6a3ed6a51022dff12aba9d8fe44ff072f0544717f43e3d194224db560d01b9"
+        "sha256": "35dcb53b768e6ed2dcfb51e78795d89187c635f3f21fb95634d54b674f7eda07"
       },
       "easyExplanation": [
         {
@@ -414,7 +656,10 @@
           "body": "(1)は領域項の符号がプラスで、移項のマイナスを落としています。(2)は勾配のx成分とy成分を交換しています。\n\n勾配は $(w_x,w_y)$ の順です。(4)は境界の法線成分を発散と取り違えています。\n\n単位正方形と $\\mathbf u=(1,0)$ で検算すると、I=0、境界項は1、正しい領域項も1なので $1-1=0$ です。(1)は2、(2)と(4)は $-1$ となり一致しません。"
         }
       ],
-      "answerSummary": "③。積の微分を並べ替え、内部の積分を境界の流出量へ直します。重みを微分した補正項は引き算です。"
+      "answerSummary": "③。積の微分を並べ替え、内部の積分を境界の流出量へ直します。重みを微分した補正項は引き算です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "math-1-7",
@@ -476,9 +721,12 @@
           "3": "初期状態が外力と境界条件を代替するとする",
           "4": "メッシュの接続を固定条件とみなす"
         },
-        "sha256": "c3c897c55d95d4005b8203970536768d73535b51ca7057fa1f59f3c20dbdcc31"
+        "sha256": "2a012a98a5250447aa24d19675baea18e714bbe2645b1f535853ffa83f7527a4"
       },
-      "answerSummary": "①。静的な釣合いに必要なのは外力と境界条件です。剛体運動を止め、初期変位・初期速度とは区別します。"
+      "answerSummary": "①。静的な釣合いに必要なのは外力と境界条件です。剛体運動を止め、初期変位・初期速度とは区別します。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "math-1-8",
@@ -530,15 +778,153 @@
       ],
       "editorialReview": {
         "officialPoint": "三次元の力の釣合い方程式",
-        "alignment": "保存済み公式の該当番号と選択式の論点を照合。通常4節を旧本体用に保持し、標準詳解は結論・必要な導出・具体例・誤答理由へ統合。重複を削り、式と数値例の整合、単位、図の対応を確認。文字数で水増ししない。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "zxせん断をyz成分と取り違える",
           "3": "y方向の垂直応力をx方向とする",
           "4": "z方向の垂直応力をx方向とする"
         },
-        "sha256": "fffb923fd0b985381055ac722dd5f71b8cd3badde8473faea30df550af23cc09"
+        "sha256": "120dae1172230e831d12b809030fc1a2796e04f13d8d2b063c4a2e19da8f879d"
       },
-      "answerSummary": "②。$A=\\tau_{zx}$、$B=\\sigma_y$、$C=\\sigma_z$。各方向の力を、向かい合う三組の面について足します。"
+      "answerSummary": "A：z面のx方向成分：x方向の釣合いには、z面でx方向へ作用するせん断応力を使います。\nB：y方向の垂直応力：y方向の釣合いで、y面に垂直に働く成分はσyです。\nC：z方向の垂直応力：z方向の釣合いで、z面に垂直に働く成分はσzです。",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "sharedQuestion": "三次元線形弾性体の静的な問題を考える。物体力は無視し、応力を垂直応力 $\\sigma_x,\\sigma_y,\\sigma_z$ とせん断応力 $\\tau_{xy},\\tau_{yz},\\tau_{zx}$ の6成分で表す。各方向の力の釣合い式が次のように書かれるとき、空欄 $A,B,C$ に入る応力成分をそれぞれ答えてください。\n$\\frac{\\partial\\sigma_x}{\\partial x}+\\frac{\\partial\\tau_{xy}}{\\partial y}+\\frac{\\partial A}{\\partial z}=0$\n$\\frac{\\partial\\tau_{xy}}{\\partial x}+\\frac{\\partial B}{\\partial y}+\\frac{\\partial\\tau_{yz}}{\\partial z}=0$\n$\\frac{\\partial A}{\\partial x}+\\frac{\\partial\\tau_{yz}}{\\partial y}+\\frac{\\partial C}{\\partial z}=0$",
+      "studyParts": [
+        {
+          "id": "math-1-8-item-a",
+          "number": "1-8",
+          "officialRef": "問1-8",
+          "officialQuestionItem": "a",
+          "title": "A：z面のx方向成分",
+          "topic": "応力の釣合い方程式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "空欄$A$に入る成分はどちらですか。",
+          "choices": [
+            "$\\tau_{zx}$",
+            "$\\tau_{yz}$"
+          ],
+          "answer": 1,
+          "answerSummary": "x方向の釣合いには、z面でx方向へ作用するせん断応力を使います。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "第1式はx方向の力の釣合いです。x面の垂直応力は$\\sigma_x$、y面でx方向の成分は$\\tau_{xy}$、z面でx方向の成分は$\\tau_{zx}$です。従って最後の項は$\\partial\\tau_{zx}/\\partial z$です。$\\tau_{yz}$はyとzに関係する成分で、この項とは違います。"
+            },
+            {
+              "title": "小さな直方体に働く力を集める",
+              "body": "応力は、面に働く力を面積で割った量です。面をまっすぐ引く成分が垂直応力、面に沿ってずらす成分がせん断応力です。\n\n小さな直方体に働く力を、x・y・z方向に分けて考えます。向かい合う面の応力が同じなら、その方向の力は打ち消し合います。\n\n応力が場所によって変わると、面同士の差が残ります。その差を三組の面について足して0にするのが、物体力のない静的な力の釣り合い式です。"
+            }
+          ],
+          "explanation": "【基礎】x方向の釣合いには、z面でx方向へ作用するせん断応力を使います。\n【考え方】正解は1です。第1式はx方向の力の釣合いです。x面の垂直応力は$\\sigma_x$、y面でx方向の成分は$\\tau_{xy}$、z面でx方向の成分は$\\tau_{zx}$です。従って最後の項は$\\partial\\tau_{zx}/\\partial z$です。$\\tau_{yz}$はyとzに関係する成分で、この項とは違います。\n【ポイント】応力は、面に働く力を面積で割った量です。面をまっすぐ引く成分が垂直応力、面に沿ってずらす成分がせん断応力です。 小さな直方体に働く力を、x・y・z方向に分けて考えます。向かい合う面の応力が同じなら、その方向の力は打ち消し合います。 応力が場所によって変わると、面同士の差が残ります。その差を三組の面について足して0にするのが、物体力のない静的な力の釣り合い式です。\n【引っかけ】2：「$\\tau_{yz}$」ではなく、$\\tau_{zx}$です。第1式はx方向の力の釣合いです。x面の垂直応力は$\\sigma_x$、y面でx方向の成分は$\\tau_{xy}$、z面でx方向の成分は$\\tau_{zx}$です。従って最後の項は$\\partial\\tau_{zx}/\\partial z$です。$\\tau_{yz}$はyとzに関係する成分で、この項とは違います。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "三次元の力の釣合い方程式／個別の質問：A：z面のx方向成分",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$\\tau_{yz}$」ではなく、$\\tau_{zx}$です。第1式はx方向の力の釣合いです。x面の垂直応力は$\\sigma_x$、y面でx方向の成分は$\\tau_{xy}$、z面でx方向の成分は$\\tau_{zx}$です。従って最後の項は$\\partial\\tau_{zx}/\\partial z$です。$\\tau_{yz}$はyとzに関係する成分で、この項とは違います。"
+            },
+            "sha256": "eb30c207de575279889759f1b6ad76382289862f81b55f8af512df22a0d3532e"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "math-1-8-item-b",
+          "number": "1-8",
+          "officialRef": "問1-8",
+          "officialQuestionItem": "b",
+          "title": "B：y方向の垂直応力",
+          "topic": "応力の釣合い方程式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "空欄$B$に入る成分はどちらですか。",
+          "choices": [
+            "$\\sigma_x$",
+            "$\\sigma_y$"
+          ],
+          "answer": 2,
+          "answerSummary": "y方向の釣合いで、y面に垂直に働く成分はσyです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "第2式はy方向の釣合いです。yの向きに位置を変えたときの、y方向の垂直応力の差が必要なので、$\\partial\\sigma_y/\\partial y$になります。従って$B=\\sigma_y$です。"
+            }
+          ],
+          "explanation": "【基礎】y方向の釣合いで、y面に垂直に働く成分はσyです。\n【考え方】正解は2です。第2式はy方向の釣合いです。yの向きに位置を変えたときの、y方向の垂直応力の差が必要なので、$\\partial\\sigma_y/\\partial y$になります。従って$B=\\sigma_y$です。\n【ポイント】y方向の釣合いで、y面に垂直に働く成分はσyです。\n【引っかけ】1：「$\\sigma_x$」ではなく、$\\sigma_y$です。第2式はy方向の釣合いです。yの向きに位置を変えたときの、y方向の垂直応力の差が必要なので、$\\partial\\sigma_y/\\partial y$になります。従って$B=\\sigma_y$です。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "三次元の力の釣合い方程式／個別の質問：B：y方向の垂直応力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$\\sigma_x$」ではなく、$\\sigma_y$です。第2式はy方向の釣合いです。yの向きに位置を変えたときの、y方向の垂直応力の差が必要なので、$\\partial\\sigma_y/\\partial y$になります。従って$B=\\sigma_y$です。"
+            },
+            "sha256": "1fa843d33a2e9101f9d7a28268aa822db54eddc3c52b7d856e8ba955ac2cb271"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "math-1-8-item-c",
+          "number": "1-8",
+          "officialRef": "問1-8",
+          "officialQuestionItem": "c",
+          "title": "C：z方向の垂直応力",
+          "topic": "応力の釣合い方程式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "空欄$C$に入る成分はどちらですか。",
+          "choices": [
+            "$\\sigma_z$",
+            "$\\sigma_x$"
+          ],
+          "answer": 1,
+          "answerSummary": "z方向の釣合いで、z面に垂直に働く成分はσzです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "第3式はz方向の釣合いです。z面の垂直応力の位置による差を加えるので、最後の項は$\\partial\\sigma_z/\\partial z$です。従って$C=\\sigma_z$です。"
+            },
+            {
+              "title": "面の応力差から釣合い式へ進む",
+              "body": "まずx方向の力だけを集めます。x面の垂直応力は $\\sigma_x$、y面から受けるx方向のせん断応力は $\\tau_{xy}$、z面から受けるx方向のせん断応力は $\\tau_{zx}$ です。\n\n例えばx方向に幅 $\\Delta x$ の小要素を取ると、二つのx面の応力差は、およそ $(\\partial\\sigma_x/\\partial x)\\Delta x$。面積 $\\Delta y\\Delta z$ を掛けると、差の力は $(\\partial\\sigma_x/\\partial x)\\Delta x\\Delta y\\Delta z$ です。\n\n他の二組の面も同じように計算し、共通の体積で割ると、$\\partial\\sigma_x/\\partial x+\\partial\\tau_{xy}/\\partial y+\\partial\\tau_{zx}/\\partial z=0$。第1式との比較で $A=\\tau_{zx}$ と分かります。\n\ny方向の垂直応力は $\\sigma_y$ なので $B=\\sigma_y$、z方向の垂直応力は $\\sigma_z$ なので $C=\\sigma_z$。",
+              "figures": [
+                {
+                  "figureImage": "mathStressEquilibrium",
+                  "caption": "一行は同じ方向の力、一列は同じ向きの面です。行を横にたどって釣合い式を組み立てます。"
+                }
+              ]
+            },
+            {
+              "title": "単位をたどって微分の意味を確かめる",
+              "body": "応力を$\\mathrm{N/mm^2}$、座標を$\\mathrm{mm}$で表すと、$\\partial\\sigma_x/\\partial x$の単位は$\\mathrm{N/mm^3}$です。これに小さな体積$\\mathrm{mm^3}$を掛けると、差の力$\\mathrm N$になります。\n\n他の二項も同じ単位なので足すことができます。応力そのものを三つ足す式ではなく、向かい合う面の応力の変化を同じ体積当たりに直して足す式です。\n\n静止していて物体力もないので、この合計が0になります。"
+            }
+          ],
+          "explanation": "【基礎】z方向の釣合いで、z面に垂直に働く成分はσzです。\n【考え方】正解は1です。第3式はz方向の釣合いです。z面の垂直応力の位置による差を加えるので、最後の項は$\\partial\\sigma_z/\\partial z$です。従って$C=\\sigma_z$です。\n【ポイント】まずx方向の力だけを集めます。x面の垂直応力は $\\sigma_x$、y面から受けるx方向のせん断応力は $\\tau_{xy}$、z面から受けるx方向のせん断応力は $\\tau_{zx}$ です。 例えばx方向に幅 $\\Delta x$ の小要素を取ると、二つのx面の応力差は、およそ $(\\partial\\sigma_x/\\partial x)\\Delta x$。面積 $\\Delta y\\Delta z$ を掛けると、差の力は $(\\partial\\sigma_x/\\partial x)\\Delta x\\Delta y\\Delta z$ です。 他の二組の面も同じように計算し、共通の体積で割ると、$\\partial\\sigma_x/\\partial x+\\partial\\tau_{xy}/\\partial y+\\partial\\tau_{zx}/\\partial z=0$。第1式との比較で $A=\\tau_{zx}$ と分かります。 y方向の垂直応力は $\\sigma_y$ なので $B=\\sigma_y$、z方向の垂直応力は $\\sigma_z$ なので $C=\\sigma_z$。よって正解は2です。\n【引っかけ】2：「$\\sigma_x$」ではなく、$\\sigma_z$です。第3式はz方向の釣合いです。z面の垂直応力の位置による差を加えるので、最後の項は$\\partial\\sigma_z/\\partial z$です。従って$C=\\sigma_z$です。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "三次元の力の釣合い方程式／個別の質問：C：z方向の垂直応力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$\\sigma_x$」ではなく、$\\sigma_z$です。第3式はz方向の釣合いです。z面の垂直応力の位置による差を加えるので、最後の項は$\\partial\\sigma_z/\\partial z$です。従って$C=\\sigma_z$です。"
+            },
+            "sha256": "7612b75fff81837e6c71b7518d919e056e36d6877e2fe70dccc9f080205b6d2e"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "math-1-9",
@@ -600,9 +986,12 @@
           "3": "荷重と解を逆比例と考える",
           "4": "比例関係が使えても再求解が必須とする"
         },
-        "sha256": "f6728d507d45fa6c632aa33853b0166b154697f16d8c5044335f7c1c331c98c0"
+        "sha256": "a574eb42afe1e47dd805b98514d200a62b6c31a7568ad3b71b5773d0bd29a452"
       },
-      "answerSummary": "②。行列を変えずに荷重だけ4倍にすると、節点値も内部の近似解も4倍です。"
+      "answerSummary": "②。行列を変えずに荷重だけ4倍にすると、節点値も内部の近似解も4倍です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "math-1-10",
@@ -634,13 +1023,13 @@
       "figureHint": "回答後専用。同じ曲線上の前進B・後退C・中央Aの二点、割線と評価点の接線、刻みと精度を標準図で比較。",
       "editorialReview": {
         "officialPoint": "前進・後退・中央差分の式と精度",
-        "alignment": "保存済み公式の該当番号と選択式の論点を照合。通常4節を旧本体用に保持し、標準詳解は結論・必要な導出・具体例・誤答理由へ統合。重複を削り、式と数値例の整合、単位、図の対応を確認。文字数で水増ししない。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "前進と後退を逆にする",
           "3": "微分の階数と精度を混同する",
           "4": "中央を前進と取り違える"
         },
-        "sha256": "499cb28f64a7d3315c95b52e55c77fac22f26d6c7252208438cea2c5a7f2a627"
+        "sha256": "167963007d490b5915d8a9d023dfc7c687c60869849bbacddfe837c017f3ad28"
       },
       "easyExplanation": [
         {
@@ -674,7 +1063,265 @@
           "body": "(2)は前進と後退の式を逆にしています。(3)は、片側二点を使う式を二次精度、左右対称の式を一次精度としており、残る誤差の次数が逆です。\n\n(4)は左右の点を使うAを前進、xとx+hを使うBを中央と呼んでいます。式の見た目だけでなく「どの二点を使うか」「二点間の距離はいくつか」を図と対応させて確認しましょう。"
         }
       ],
-      "answerSummary": "①。右側を見るBが前進、左側を見るCが後退、両側を見るAが中央差分です。中央差分では一次の誤差が打ち消されます。"
+      "answerSummary": "A：名称：中央差分です。差を取る2点の位置で区別します。\nA：精度：主要な誤差が刻み幅の2乗に比例する二次精度です。\nB：名称：前進差分です。差を取る2点の位置で区別します。\nB：精度：主要な誤差が刻み幅の1乗に比例する一次精度です。\nC：名称：後退差分です。差を取る2点の位置で区別します。\nC：精度：主要な誤差が刻み幅の1乗に比例する一次精度です。",
+      "officialQuestionItems": [
+        "a-name",
+        "a-accuracy",
+        "b-name",
+        "b-accuracy",
+        "c-name",
+        "c-accuracy"
+      ],
+      "sharedQuestion": "十分滑らかな関数 $f(x)$ の一階微分 $f'(x)$ を、刻み幅 $h>0$ を使って近似する。次の三つの差分式について、名称と精度をそれぞれ答えてください。\n$A=\\frac{f(x+h)-f(x-h)}{2h}$\n$B=\\frac{f(x+h)-f(x)}{h}$\n$C=\\frac{f(x)-f(x-h)}{h}$",
+      "studyParts": [
+        {
+          "id": "math-1-10-item-a-name",
+          "number": "1-10",
+          "officialRef": "問1-10",
+          "officialQuestionItem": "a-name",
+          "title": "A：名称",
+          "topic": "数値微分の精度",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$[f(x+h)-f(x-h)]/(2h)$の名称はどちらですか。",
+          "choices": [
+            "前進差分",
+            "中央差分"
+          ],
+          "answer": 2,
+          "answerSummary": "中央差分です。差を取る2点の位置で区別します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "評価する点xの両側、x−hとx＋hを使います。その中央xでの傾きを求めるので中央差分です。"
+            }
+          ],
+          "explanation": "【基礎】中央差分です。差を取る2点の位置で区別します。\n【考え方】正解は2です。評価する点xの両側、x−hとx＋hを使います。その中央xでの傾きを求めるので中央差分です。\n【ポイント】中央差分です。差を取る2点の位置で区別します。\n【引っかけ】1：「前進差分」ではなく、中央差分です。評価する点xの両側、x−hとx＋hを使います。その中央xでの傾きを求めるので中央差分です。",
+          "relatedFormulas": [
+            "finite-difference",
+            "taylor"
+          ],
+          "editorialReview": {
+            "officialPoint": "前進・後退・中央差分の式と精度／個別の質問：A：名称",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「前進差分」ではなく、中央差分です。評価する点xの両側、x−hとx＋hを使います。その中央xでの傾きを求めるので中央差分です。"
+            },
+            "sha256": "124231db594af5f5afd09c38bcc7e38cd00f32e1c801f0686709f7c438090511"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "math-1-10-item-a-accuracy",
+          "number": "1-10",
+          "officialRef": "問1-10",
+          "officialQuestionItem": "a-accuracy",
+          "title": "A：精度",
+          "topic": "数値微分の精度",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$[f(x+h)-f(x-h)]/(2h)$の一般的な精度はどちらですか。",
+          "choices": [
+            "一次精度",
+            "二次精度"
+          ],
+          "answer": 2,
+          "answerSummary": "主要な誤差が刻み幅の2乗に比例する二次精度です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$f(x\\pm h)=f(x)\\pm hf'(x)+h^2f''(x)/2\\pm h^3f'''(x)/6+\\cdots$です。差を取って$2h$で割ると$f'(x)+h^2f'''(x)/6+\\cdots$となり、主要な誤差は$h^2$に比例します。"
+            }
+          ],
+          "explanation": "【基礎】主要な誤差が刻み幅の2乗に比例する二次精度です。\n【考え方】正解は2です。$f(x\\pm h)=f(x)\\pm hf'(x)+h^2f''(x)/2\\pm h^3f'''(x)/6+\\cdots$です。差を取って$2h$で割ると$f'(x)+h^2f'''(x)/6+\\cdots$となり、主要な誤差は$h^2$に比例します。\n【ポイント】主要な誤差が刻み幅の2乗に比例する二次精度です。\n【引っかけ】1：「一次精度」ではなく、二次精度です。$f(x\\pm h)=f(x)\\pm hf'(x)+h^2f''(x)/2\\pm h^3f'''(x)/6+\\cdots$です。差を取って$2h$で割ると$f'(x)+h^2f'''(x)/6+\\cdots$となり、主要な誤差は$h^2$に比例します。",
+          "relatedFormulas": [
+            "finite-difference",
+            "taylor"
+          ],
+          "editorialReview": {
+            "officialPoint": "前進・後退・中央差分の式と精度／個別の質問：A：精度",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「一次精度」ではなく、二次精度です。$f(x\\pm h)=f(x)\\pm hf'(x)+h^2f''(x)/2\\pm h^3f'''(x)/6+\\cdots$です。差を取って$2h$で割ると$f'(x)+h^2f'''(x)/6+\\cdots$となり、主要な誤差は$h^2$に比例します。"
+            },
+            "sha256": "8b8e07e2c777ca1e04296f54ed5a24202d2b797bcd3832332b80ab7764db3105"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "math-1-10-item-b-name",
+          "number": "1-10",
+          "officialRef": "問1-10",
+          "officialQuestionItem": "b-name",
+          "title": "B：名称",
+          "topic": "数値微分の精度",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$[f(x+h)-f(x)]/h$の名称はどちらですか。",
+          "choices": [
+            "前進差分",
+            "後退差分"
+          ],
+          "answer": 1,
+          "answerSummary": "前進差分です。差を取る2点の位置で区別します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "評価する点xと、その前方のx＋hを使うので前進差分です。"
+            }
+          ],
+          "explanation": "【基礎】前進差分です。差を取る2点の位置で区別します。\n【考え方】正解は1です。評価する点xと、その前方のx＋hを使うので前進差分です。\n【ポイント】前進差分です。差を取る2点の位置で区別します。\n【引っかけ】2：「後退差分」ではなく、前進差分です。評価する点xと、その前方のx＋hを使うので前進差分です。",
+          "relatedFormulas": [
+            "finite-difference",
+            "taylor"
+          ],
+          "editorialReview": {
+            "officialPoint": "前進・後退・中央差分の式と精度／個別の質問：B：名称",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「後退差分」ではなく、前進差分です。評価する点xと、その前方のx＋hを使うので前進差分です。"
+            },
+            "sha256": "854073e7dfb665b35b3fe2a474102649f664c69226f1cb5e1806dd80f045e3e8"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "math-1-10-item-b-accuracy",
+          "number": "1-10",
+          "officialRef": "問1-10",
+          "officialQuestionItem": "b-accuracy",
+          "title": "B：精度",
+          "topic": "数値微分の精度",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$[f(x+h)-f(x)]/h$の一般的な精度はどちらですか。",
+          "choices": [
+            "一次精度",
+            "二次精度"
+          ],
+          "answer": 1,
+          "answerSummary": "主要な誤差が刻み幅の1乗に比例する一次精度です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$f(x+h)=f(x)+hf'(x)+h^2f''(x)/2+\\cdots$です。$f(x)$を引き$h$で割ると$f'(x)+hf''(x)/2+\\cdots$となり、主要な誤差は$h$に比例します。"
+            }
+          ],
+          "explanation": "【基礎】主要な誤差が刻み幅の1乗に比例する一次精度です。\n【考え方】正解は1です。$f(x+h)=f(x)+hf'(x)+h^2f''(x)/2+\\cdots$です。$f(x)$を引き$h$で割ると$f'(x)+hf''(x)/2+\\cdots$となり、主要な誤差は$h$に比例します。\n【ポイント】主要な誤差が刻み幅の1乗に比例する一次精度です。\n【引っかけ】2：「二次精度」ではなく、一次精度です。$f(x+h)=f(x)+hf'(x)+h^2f''(x)/2+\\cdots$です。$f(x)$を引き$h$で割ると$f'(x)+hf''(x)/2+\\cdots$となり、主要な誤差は$h$に比例します。",
+          "relatedFormulas": [
+            "finite-difference",
+            "taylor"
+          ],
+          "editorialReview": {
+            "officialPoint": "前進・後退・中央差分の式と精度／個別の質問：B：精度",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「二次精度」ではなく、一次精度です。$f(x+h)=f(x)+hf'(x)+h^2f''(x)/2+\\cdots$です。$f(x)$を引き$h$で割ると$f'(x)+hf''(x)/2+\\cdots$となり、主要な誤差は$h$に比例します。"
+            },
+            "sha256": "bfce03797878363c891343da8968e592a15ac3400c3fdf4e1efd1372d3cf5fa9"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "math-1-10-item-c-name",
+          "number": "1-10",
+          "officialRef": "問1-10",
+          "officialQuestionItem": "c-name",
+          "title": "C：名称",
+          "topic": "数値微分の精度",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$[f(x)-f(x-h)]/h$の名称はどちらですか。",
+          "choices": [
+            "前進差分",
+            "後退差分"
+          ],
+          "answer": 2,
+          "answerSummary": "後退差分です。差を取る2点の位置で区別します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "評価する点xと、その後方のx−hを使うので後退差分です。"
+            }
+          ],
+          "explanation": "【基礎】後退差分です。差を取る2点の位置で区別します。\n【考え方】正解は2です。評価する点xと、その後方のx−hを使うので後退差分です。\n【ポイント】後退差分です。差を取る2点の位置で区別します。\n【引っかけ】1：「前進差分」ではなく、後退差分です。評価する点xと、その後方のx−hを使うので後退差分です。",
+          "relatedFormulas": [
+            "finite-difference",
+            "taylor"
+          ],
+          "editorialReview": {
+            "officialPoint": "前進・後退・中央差分の式と精度／個別の質問：C：名称",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「前進差分」ではなく、後退差分です。評価する点xと、その後方のx−hを使うので後退差分です。"
+            },
+            "sha256": "da9d8dcae0bc6e7459c3110909a4576a1a2d38e68691e435f6a505d04a65d7a0"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "math-1-10-item-c-accuracy",
+          "number": "1-10",
+          "officialRef": "問1-10",
+          "officialQuestionItem": "c-accuracy",
+          "title": "C：精度",
+          "topic": "数値微分の精度",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$[f(x)-f(x-h)]/h$の一般的な精度はどちらですか。",
+          "choices": [
+            "二次精度",
+            "一次精度"
+          ],
+          "answer": 2,
+          "answerSummary": "主要な誤差が刻み幅の1乗に比例する一次精度です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$f(x-h)=f(x)-hf'(x)+h^2f''(x)/2+\\cdots$です。$f(x)$から引き$h$で割ると$f'(x)-hf''(x)/2+\\cdots$となり、主要な誤差は$h$に比例します。",
+              "figures": [
+                {
+                  "figureImage": "mathDiffCompare",
+                  "caption": "各赤線は二点を結ぶ割線です。使う二点の位置と距離を、三つの差分式の分子・分母へ対応させます。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】主要な誤差が刻み幅の1乗に比例する一次精度です。\n【考え方】正解は2です。$f(x-h)=f(x)-hf'(x)+h^2f''(x)/2+\\cdots$です。$f(x)$から引き$h$で割ると$f'(x)-hf''(x)/2+\\cdots$となり、主要な誤差は$h$に比例します。\n【ポイント】主要な誤差が刻み幅の1乗に比例する一次精度です。\n【引っかけ】1：「二次精度」ではなく、一次精度です。$f(x-h)=f(x)-hf'(x)+h^2f''(x)/2+\\cdots$です。$f(x)$から引き$h$で割ると$f'(x)-hf''(x)/2+\\cdots$となり、主要な誤差は$h$に比例します。",
+          "relatedFormulas": [
+            "finite-difference",
+            "taylor"
+          ],
+          "editorialReview": {
+            "officialPoint": "前進・後退・中央差分の式と精度／個別の質問：C：精度",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「二次精度」ではなく、一次精度です。$f(x-h)=f(x)-hf'(x)+h^2f''(x)/2+\\cdots$です。$f(x)$から引き$h$で割ると$f'(x)-hf''(x)/2+\\cdots$となり、主要な誤差は$h$に比例します。"
+            },
+            "sha256": "4811f1af1390217331a1f33daad421f9e1c8cca3154b91539162c6067ff4bd9a"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "math-1-11",
@@ -712,7 +1359,7 @@
           "2": "中央点の係数を誤る",
           "3": "片側三点をxで二次精度とする"
         },
-        "sha256": "6b0fddc790109b339f1d2670a0def3cae576bb6fec029409598516ad5bd0da68"
+        "sha256": "dc85a1eb207848b74db08ee270769a6a5dd92da7182280311976d576b4d1d670"
       },
       "easyExplanation": [
         {
@@ -746,7 +1393,10 @@
           "body": "(1)は値の差を2hで割る一階微分の式です。(2)は中央の重みが−1なので、定数cでも $[c-c+c]/h^2=c/h^2$ となり、本来の二階微分0を再現しません。\n\n(3)の三点はx,x+h,x+2hで、中心はx+hです。その場所の二階微分を二次精度で近似できますが、求める場所xでは一般に $hf'''(x)$ の一次誤差が残ります。\n\n例えば $f(t)=t^3,x=0$ なら(3)は6h、真の二階微分は0となり、評価点を変えてはいけないことが分かります。"
         }
       ],
-      "answerSummary": "④。右と左の傾きの差を距離で割り、$[f(x+h)-2f(x)+f(x-h)]/h^2$ を得ます。"
+      "answerSummary": "④。右と左の傾きの差を距離で割り、$[f(x+h)-2f(x)+f(x-h)]/h^2$ を得ます。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "math-1-12",
@@ -808,9 +1458,12 @@
           "2": "最大寸法固定でも要素数だけで収束するとする",
           "4": "最小寸法の減少を全体の細分化と同一視する"
         },
-        "sha256": "dfd95283334b32c3a1fb432ee05ca2a1c3d03c45ad5cf2c81fea8e770701dc91"
+        "sha256": "e3ebafd4c7c9729b39831482302995484033179c1c087207fc85e74364d5967b"
       },
-      "answerSummary": "③。最小寸法だけでなく最大寸法も0へ近づけ、形状品質を保って全体を細分化します。"
+      "answerSummary": "③。最小寸法だけでなく最大寸法も0へ近づけ、形状品質を保って全体を細分化します。",
+      "officialQuestionItems": [
+        "main"
+      ]
     }
   ]
 }

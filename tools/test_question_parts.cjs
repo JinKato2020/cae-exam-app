@@ -46,7 +46,7 @@ for (const file of solid1Files) {
 }
 assert.equal(parts.expandChapter(chapter([{ ...ordinary, studyParts: grouped }])).questions.length, 1,
   'grouped study remains one official question in navigation and progress');
-// 熱流体1級1〜8章も同じ殻で、公式番号107件の中に145設問を表示する。
+// 熱流体1級1〜8章も同じ殻で、公式番号107件の中に243設問を表示する。
 let thermalAnswers = 0, thermalWritten = 0;
 for (const file of ['thermal1-01-single-phase-physics', 'thermal1-02-single-phase-calc1', 'thermal1-03-single-phase-calc2', 'thermal1-04-grid-handling', 'thermal1-05-turbulence-models', 'thermal1-06-design-application', 'thermal1-07-acceleration-and-postprocessing', 'thermal1-08-results-and-evaluation']) {
   const raw = JSON.parse(fs.readFileSync(`content/questions/${file}.json`, 'utf8'));
@@ -65,8 +65,8 @@ for (const file of ['thermal1-01-single-phase-physics', 'thermal1-02-single-phas
     }
   }
 }
-assert.equal(thermalAnswers, 145);
-assert.equal(thermalWritten, 41);
+assert.equal(thermalAnswers, 243);
+assert.equal(thermalWritten, 64);
 const root = { ...simple('root'), sharedQuestion: 'common conditions', figureImage: 'parent-only', relatedFormulas: ['term'], parts: [simple('a'), simple('b')] };
 const before = JSON.stringify(root);
 const expanded = parts.expandChapter(chapter([ordinary, root]));
@@ -110,16 +110,15 @@ const realExpanded = parts.expandChapter(real);
 assert.equal(realExpanded.questions.length, real.questions.length);
 const visco = realExpanded.questions.find(q => q.id === 'solid1-11-06');
 const sample = visco.studyParts;
-assert.equal(sample.length, 3);
-assert.equal(sample[0].answer, 3);
-assert.equal(sample[1].responseType, 'written');
-assert.equal(sample[2].answer, 1);
+assert.equal(sample.length, 5);
+assert.deepEqual(sample.map(p=>p.officialQuestionItem),['tension','compression','loop','storage','loss']);
+assert.equal(sample[2].responseType, 'written');
 assert.equal(sample[0].id, 'solid1-11-06-timing');
-assert.equal(sample[2].id, 'solid1-11-06-moduli');
-assert.equal(sample[2].figureImage, 's1e11DynViscoModuli');
+assert.equal(sample[3].id, 'solid1-11-06-moduli');
+assert(sample[3].easyExplanation.some(s=>s.figures?.some(f=>f.figureImage==='s1e11DynViscoModuli')));
 data = real; catalog.rebuildCatalog();
-assert.equal(catalog.questionsByIds([sample[2].id])[0].id, visco.id, 'old child bookmark must open grouped page');
-const oldChild = { ...sample[2], rootQuestionId: visco.id, groupSize: 2 };
+assert.equal(catalog.questionsByIds([sample[3].id])[0].id, visco.id, 'old child bookmark must open grouped page');
+const oldChild = { ...sample[3], rootQuestionId: visco.id, groupSize: 2 };
 const mergedSession = parts.refreshQuestionSession([oldChild], 0, realExpanded.questions);
 assert.equal(mergedSession.questions.length, 1, 'one old child must survive consolidation');
 assert.equal(mergedSession.questions[0].id, visco.id);
@@ -149,6 +148,8 @@ assert not editorial_errors(d)
 # Retain explicit legacy-parts coverage after the real chapter moves to studyParts.
 source=next(q for q in d['questions'] if q['number']=='11(2)-2')
 children=[copy.deepcopy(q) for q in source['studyParts'] if q['responseType']=='choice']
+for q in children:
+ q['choices']=['a','b','c','d'];q['answer']=2
 legacy=copy.deepcopy(children[0]);legacy['id']='legacy-parent';legacy['parts']=children
 d={'questions':[legacy]}
 assert not part_structure_errors(d)
@@ -170,7 +171,7 @@ assert not study_parts_errors(d)
 from unittest.mock import patch
 with patch.object(Path,'is_file',return_value=False):
  assert not study_parts_errors(d),'verified official evidence must work in CI without private source files'
- bad=copy.deepcopy(d);q=next(q for q in bad['questions'] if q.get('studyParts'))
+ bad=copy.deepcopy(d);q=next(q for q in bad['questions'] if q.get('studyParts') and q['studyParts'][0].get('responseType')=='written')
  q['studyParts'][0]['officialWrittenEvidence']['excerpt']+=' invented'
  assert study_parts_errors(bad),'unverified written evidence must fail even without private source files'
 thermal=json.loads(Path('content/questions/thermal1-07-acceleration-and-postprocessing.json').read_bytes())
@@ -180,7 +181,7 @@ with patch.object(Path,'is_file',return_value=False):
  bad=copy.deepcopy(thermal)
  next(q for q in bad['questions'] if q['number']=='7-1')['studyParts'][0]['officialWrittenEvidence']=next(q for q in thermal['questions'] if q['number']=='7-10')['studyParts'][0]['officialWrittenEvidence']
  assert study_parts_errors(bad),'7-10 evidence must not authorize 7-1'
-q=next(q for q in d['questions'] if q.get('studyParts'))
+q=next(q for q in d['questions'] if q.get('studyParts') and q['studyParts'][0].get('responseType')=='written')
 q['studyParts'][0].pop('officialWrittenEvidence')
 assert study_parts_errors(d),'original written questions without official evidence must be blocked'
 d=json.loads(Path('content/questions/solid1-02-material-nonlinear.json').read_bytes())
@@ -216,7 +217,7 @@ assert any('制御文字' in e for e in easy_explanation_errors(d)),'escaped mat
 
 `], { stdio: 'pipe' });
 console.log('Guided grouped study: official written evidence, self-check, inline figures and data immutability PASS');
-// 選択式の組合せ問題は分割せず、章の統一表示設定を全問へ継承する。
+// 公式番号ごとのページを保持し、章の統一表示設定と個別回答の小問を確認する。
 for (const [file, count] of [['math-basics', 12], ['solid-basics', 44], ['heat-basics', 17], ['fem-basics', 29], ['fem-practice', 29], ['numerical-basics', 15], ['element-tech', 17], ['modeling-basics', 27], ['boundary-conditions', 33], ['prepost-basics', 41], ['verification-basics', 17], ['computer-basics', 33], ['ethics', 12], ['thermal2-01-math-basics', 11], ['thermal2-02-fluid-basics', 22], ['thermal2-03-thermo-heat', 19], ['thermal2-04-numerical-methods', 13], ['thermal2-05-grid-generation', 15], ['thermal2-06-turbulence', 16], ['thermal2-07-boundary-conditions', 12], ['thermal2-08-post-processing', 14], ['thermal2-09-verification', 18], ['thermal2-10-computer-basics', 32], ['thermal2-11-ethics', 12]]) {
   const source = JSON.parse(fs.readFileSync('content/questions/' + file + '.json', 'utf8'));
   const expanded = parts.expandChapter(source);
@@ -225,11 +226,11 @@ for (const [file, count] of [['math-basics', 12], ['solid-basics', 44], ['heat-b
   assert(expanded.questions.every(q => q.explanationMode === 'guided' && q.answerSummary && q.easyExplanation.length));
   assert(expanded.questions.every(q => !q.parts && (q.studyParts?.length
     ? q.studyParts.every(p => p.responseType === 'choice' && [2, 4].includes(p.choices.length))
-    : q.choices.length === 4)), 'keep combination questions intact; permit grouped choice subquestions');
+    : q.choices.length === 4)), 'retain one page per official question; answer each choice subquestion independently');
   for (const q of expanded.questions) {
     if (q.preFigureImage) assert(q.preFigures.some(f => f.figureImage === q.preFigureImage && f.caption));
     if (q.figureImage && q.figureImage !== q.preFigureImage) {
-      assert(q.easyExplanation.some(s => s.figures?.some(f => f.figureImage === q.figureImage && f.caption)), q.number + ': explanation figure lost');
+      assert([...q.easyExplanation,...(q.studyParts??[]).flatMap(p=>p.easyExplanation??[])].some(s => s.figures?.some(f => f.figureImage === q.figureImage && f.caption)), q.number + ': explanation figure lost');
     }
   }
 }
@@ -272,9 +273,675 @@ for name in ('math-basics','solid-basics','heat-basics','fem-basics','fem-practi
  bad=copy.deepcopy(d);bad['questions'][0].pop('answerSummary')
  assert easy_explanation_errors(bad),'guided mode needs an answer summary even without a length floor'
  bad=copy.deepcopy(d);bad['meta']['explanationMode']='standard'
+ for q in bad['questions']: q.pop('explanationMode',None)
  bad['questions'][0]['easyExplanation']=[{'title':'test','body':'short'}]
  assert any('1200' in e for e in easy_explanation_errors(bad)),'non-guided explanations retain their existing rule'
  bad=copy.deepcopy(d);bad['questions'][0]['answerSummary']='unrendered ^T'
  assert presentation_errors(bad),'unrendered formulas must still fail'
 `], {stdio: 'pipe'});
 console.log('Solid2 and Thermal2 unified chapters: IDs, choice grouping, inline figures and quality gates PASS');
+
+// 質問の数だけ回答できる小問を置く。組合せ形式を例外にしない。
+for (const [file, pageCount, responseCount] of [['vib2-01-math-basics',18,30],['vib2-02-dynamics',23,40],['vib2-03-strength-of-materials',17,24],['vib2-04-vibration-acoustics',44,64],['vib2-05-fem-basics',19,37],['vib2-06-element-meshing',13,22],['vib2-09-numerical-methods',19,51],['vib2-10-post-processing',19,39],["vib2-07-modeling-basics",19,49],["vib2-08-boundary-load-conditions",21,44],["vib2-11-result-verification",23,66],["vib2-12-computer-basics",17,19],["vib2-13-ethics",7,15]]) {
+ const source=JSON.parse(fs.readFileSync('content/questions/'+file+'.json','utf8'));
+ const expanded=parts.expandChapter(source);
+ assert.equal(expanded.questions.length,pageCount);
+ assert.equal(source.questions.reduce((n,q)=>n+(q.studyParts?.length??1),0),responseCount);
+ assert(expanded.questions.every(q=>q.explanationMode==='guided'));
+ for(const q of source.questions) {
+   assert.deepEqual(q.officialQuestionItems,q.studyParts?.map(p=>p.officialQuestionItem)??['main']);
+   if(q.studyParts?.length) {
+     const answered=Object.fromEntries(q.studyParts.map(p=>[p.id,{choice:p.answer}]));
+     assert(parts.studyResult(q.studyParts,answered).correct);
+     delete answered[q.studyParts.at(-1).id];
+     assert(!parts.studyResult(q.studyParts,answered).complete);
+   }
+ }
+}
+require('node:child_process').execFileSync('python',['-c',`
+import json,copy,sys
+from pathlib import Path
+sys.path.insert(0,'tools')
+from check_quality import require_editorial_review,study_parts_errors
+for file in ('vib2-01-math-basics','vib2-02-dynamics','vib2-03-strength-of-materials','vib2-04-vibration-acoustics','vib2-05-fem-basics','vib2-06-element-meshing','vib2-09-numerical-methods','vib2-10-post-processing','vib2-07-modeling-basics','vib2-08-boundary-load-conditions','vib2-11-result-verification','vib2-12-computer-basics','vib2-13-ethics'):
+ d=json.loads(Path('content/questions/'+file+'.json').read_bytes())
+ require_editorial_review(d)
+ bad=copy.deepcopy(d)
+ q=next(q for q in bad['questions'] if len(q.get('studyParts',[]))>1)
+ q['studyParts'].pop()
+ assert study_parts_errors(bad),'missing combination item must block release'
+ bad=copy.deepcopy(d)
+ q=next(q for q in bad['questions'] if len(q.get('studyParts',[]))>1)
+ q['studyParts'][1]['officialQuestionItem']=q['studyParts'][0]['officialQuestionItem']
+ assert study_parts_errors(bad),'duplicate item cannot cover another question'
+`],{stdio:'pipe'});
+console.log('Vibration2: all question items independently answerable on shared pages PASS');
+
+// 固体・熱流体の既存教材も、公式番号のページと各回答項目の対応を保持する。
+const expectedCoverage = {
+  '固体力学 1級': [212,443,107], '固体力学 2級': [326,400,0],
+  '熱流体力学 1級': [352,628,78], '熱流体力学 2級': [184,263,0],
+};
+const actualCoverage = Object.fromEntries(Object.keys(expectedCoverage).map(k=>[k,[0,0,0]]));
+for(const file of fs.readdirSync('content/questions').filter(f=>f.endsWith('.json'))) {
+ const source=JSON.parse(fs.readFileSync('content/questions/'+file,'utf8'));
+ const totals=actualCoverage[source.meta?.grade];if(!totals)continue;
+ assert.equal(source.meta.questionCoverageVersion,'all-items-v1');
+ const expanded=parts.expandChapter(source);
+ assert.deepEqual(Array.from(expanded.questions,q=>q.id),source.questions.map(q=>q.id));
+ for(const q of source.questions) {
+   totals[0]++;totals[1]+=q.studyParts?.length||1;
+   totals[2]+=(q.studyParts||[]).filter(p=>p.responseType==='written').length;
+   assert.deepEqual(q.officialQuestionItems,q.studyParts?.map(p=>p.officialQuestionItem)??['main']);
+   if(q.studyParts?.length>1) {
+     assert(q.sharedQuestion?.trim());
+     const responses=Object.fromEntries(q.studyParts.map(p=>[p.id,p.responseType==='written'?{revealed:true,understood:true}:{choice:p.answer}]));
+     assert(parts.studyResult(q.studyParts,responses).correct);
+     delete responses[q.studyParts.at(-1).id];
+     assert(!parts.studyResult(q.studyParts,responses).complete);
+   }
+ }
+}
+assert.deepEqual(actualCoverage,expectedCoverage);
+console.log('Registered official-question items: stable pages, separate responses, written evidence and totals PASS');
+
+// 複数図を、小問ごとに保持する。
+const layer=JSON.parse(fs.readFileSync('content/questions/thermal1-22-turbulent-flame.json','utf8')).questions.find(q=>q.number==='22-13');
+assert(layer.preFigures.some(f=>f.figureImage==='t1e22MixLayerPdf'));
+assert.deepEqual(layer.studyParts.map(p=>p.easyExplanation.flatMap(s=>s.figures||[]).map(f=>f.figureImage).filter(k=>k.startsWith('t1e22MixLayerPdfPoint'))),[1,2,3,4].map(n=>['t1e22MixLayerPdfPoint'+n]));
+console.log('Multiple figures: shared setup and a matching figure for each response PASS');
+
+// 第3・4章は保存済み公式の各質問・空欄と照合した項目を固定する。
+const vibration34Items = {
+  "3": {
+    "4": [
+      "a",
+      "b"
+    ],
+    "5": [
+      "a",
+      "b",
+      "c"
+    ],
+    "8": [
+      "a",
+      "b"
+    ],
+    "14": [
+      "a",
+      "b"
+    ],
+    "16": [
+      "moment",
+      "shear"
+    ],
+    "17": [
+      "deflection",
+      "moment"
+    ]
+  },
+  "4": {
+    "11": [
+      "a",
+      "b"
+    ],
+    "12": [
+      "a",
+      "b"
+    ],
+    "17": [
+      "a",
+      "b"
+    ],
+    "20": [
+      "value",
+      "unit"
+    ],
+    "21": [
+      "zeta",
+      "omega-d"
+    ],
+    "24": [
+      "mass",
+      "stiffness"
+    ],
+    "26": [
+      "translation",
+      "rotation"
+    ],
+    "28": [
+      "omega1",
+      "omega2"
+    ],
+    "29": [
+      "a",
+      "b",
+      "c"
+    ],
+    "30": [
+      "omega1",
+      "omega2"
+    ],
+    "31": [
+      "phi1",
+      "phi2"
+    ],
+    "32": [
+      "modal-mass",
+      "modal-stiffness"
+    ],
+    "33": [
+      "max",
+      "norm",
+      "mass"
+    ],
+    "34": [
+      "amplitude1",
+      "amplitude2"
+    ],
+    "36": [
+      "initial",
+      "boundary"
+    ],
+    "39": [
+      "a",
+      "b",
+      "c"
+    ],
+    "40": [
+      "a",
+      "b"
+    ]
+  }
+};
+for(const [file,ch] of [['vib2-03-strength-of-materials',3],['vib2-04-vibration-acoustics',4]]) {
+ const data=JSON.parse(fs.readFileSync('content/questions/'+file+'.json','utf8'));
+ for(const q of data.questions) {
+  const n=Number(q.number.split('-')[1]);
+  assert.deepEqual(q.studyParts?.map(p=>p.officialQuestionItem)??['main'],vibration34Items[ch][n]??['main'],q.number+': official question item missing');
+ }
+}
+
+// 保存済み公式第5・6章の質問・空欄と照合して確定した項目。
+const vibration56Items = {
+  "5": {
+    "3": [
+      "displacement",
+      "slope"
+    ],
+    "6": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "7": [
+      "a",
+      "b",
+      "c"
+    ],
+    "8": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "9": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e"
+    ],
+    "10": [
+      "a",
+      "b"
+    ],
+    "17": [
+      "a",
+      "b",
+      "c"
+    ],
+    "18": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  "6": {
+    "1": [
+      "a",
+      "b"
+    ],
+    "3": [
+      "a",
+      "b",
+      "c"
+    ],
+    "4": [
+      "a",
+      "b",
+      "c"
+    ],
+    "5": [
+      "a",
+      "b"
+    ],
+    "9": [
+      "a",
+      "b"
+    ],
+    "12": [
+      "a",
+      "b"
+    ],
+    "13": [
+      "a",
+      "b"
+    ]
+  }
+};
+for(const [file,ch] of [['vib2-05-fem-basics',5],['vib2-06-element-meshing',6]]) {
+ const data=JSON.parse(fs.readFileSync('content/questions/'+file+'.json','utf8'));
+ for(const q of data.questions){
+  const n=Number(q.number.split('-')[1]);
+  assert.deepEqual(q.studyParts?.map(p=>p.officialQuestionItem)??['main'],vibration56Items[ch][n]??['main'],q.number+': official question item missing');
+ }
+}
+
+// 保存済み公式第9・10章の質問・空欄・分類項目と照合した対応。
+const vibration910Items = {
+  "9": {
+    "1": [
+      "matrix",
+      "solution"
+    ],
+    "2": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "3": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e"
+    ],
+    "5": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "9": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e"
+    ],
+    "10": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e"
+    ],
+    "11": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "12": [
+      "a",
+      "b",
+      "c"
+    ],
+    "13": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e"
+    ],
+    "16": [
+      "a",
+      "b",
+      "c"
+    ],
+    "17": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  "10": {
+    "2": [
+      "a",
+      "b"
+    ],
+    "3": [
+      "a",
+      "b",
+      "c"
+    ],
+    "4": [
+      "a",
+      "b",
+      "c"
+    ],
+    "5": [
+      "a",
+      "b",
+      "c"
+    ],
+    "6": [
+      "a",
+      "b"
+    ],
+    "8": [
+      "a",
+      "b",
+      "c"
+    ],
+    "11": [
+      "a",
+      "b",
+      "c"
+    ],
+    "12": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e"
+    ],
+    "13": [
+      "a",
+      "b",
+      "c"
+    ],
+    "15": [
+      "formula",
+      "reference"
+    ],
+    "19": [
+      "a",
+      "b"
+    ]
+  }
+};
+for(const [file,ch] of [['vib2-09-numerical-methods',9],['vib2-10-post-processing',10]]) {
+ const data=JSON.parse(fs.readFileSync('content/questions/'+file+'.json','utf8'));
+ for(const q of data.questions) {
+  assert.deepEqual(q.studyParts?.map(p=>p.officialQuestionItem)??['main'],vibration910Items[ch][Number(q.number.split('-')[1])]??['main'],q.number+': official question item missing');
+ }
+}
+
+// 第7・8・11〜13章：保存済み公式の独立した空欄・判定項目を保持。
+const vibrationRemainingItems = {
+  "7": {
+    "2": [
+      "a",
+      "b"
+    ],
+    "3": [
+      "a",
+      "b",
+      "c"
+    ],
+    "5": [
+      "a",
+      "b",
+      "c"
+    ],
+    "7": [
+      "a",
+      "b",
+      "c"
+    ],
+    "8": [
+      "a",
+      "b"
+    ],
+    "9": [
+      "a",
+      "b"
+    ],
+    "10": [
+      "a",
+      "b",
+      "c"
+    ],
+    "11": [
+      "a",
+      "b"
+    ],
+    "13": [
+      "a",
+      "b",
+      "c"
+    ],
+    "14": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "15": [
+      "a",
+      "b",
+      "c"
+    ],
+    "16": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "17": [
+      "a",
+      "b",
+      "c"
+    ],
+    "18": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "19": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ]
+  },
+  "8": {
+    "4": [
+      "tx",
+      "ty",
+      "tz",
+      "rx",
+      "ry",
+      "rz"
+    ],
+    "5": [
+      "tx",
+      "ty",
+      "tz",
+      "rx",
+      "ry",
+      "rz"
+    ],
+    "6": [
+      "a",
+      "b"
+    ],
+    "7": [
+      "a",
+      "b"
+    ],
+    "9": [
+      "a",
+      "b"
+    ],
+    "10": [
+      "a",
+      "b",
+      "c"
+    ],
+    "11": [
+      "a",
+      "b"
+    ],
+    "12": [
+      "a",
+      "b"
+    ],
+    "14": [
+      "a",
+      "b"
+    ],
+    "18": [
+      "a",
+      "b",
+      "c"
+    ],
+    "20": [
+      "a",
+      "b",
+      "c"
+    ],
+    "21": [
+      "a",
+      "b"
+    ]
+  },
+  "11": {
+    "2": [
+      "a",
+      "b"
+    ],
+    "4": [
+      "a",
+      "b"
+    ],
+    "8": [
+      "a",
+      "b",
+      "c"
+    ],
+    "11": [
+      "a",
+      "b",
+      "c"
+    ],
+    "12": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e"
+    ],
+    "13": [
+      "a",
+      "b",
+      "c"
+    ],
+    "14": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e"
+    ],
+    "15": [
+      "a",
+      "b",
+      "c"
+    ],
+    "16": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e"
+    ],
+    "17": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "18": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e"
+    ],
+    "19": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e"
+    ],
+    "20": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "21": [
+      "a",
+      "b",
+      "c"
+    ],
+    "22": [
+      "a",
+      "b",
+      "c"
+    ],
+    "23": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ]
+  },
+  "12": {
+    "5": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  "13": {
+    "4": [
+      "a",
+      "b",
+      "c"
+    ],
+    "6": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "7": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ]
+  }
+};
+for(const [file,ch] of [["vib2-07-modeling-basics",7],["vib2-08-boundary-load-conditions",8],["vib2-11-result-verification",11],["vib2-12-computer-basics",12],["vib2-13-ethics",13]]) {
+ const data=JSON.parse(fs.readFileSync("content/questions/"+file+".json","utf8"));
+ for(const q of data.questions) assert.deepEqual(q.studyParts?.map(p=>p.officialQuestionItem)??["main"],vibrationRemainingItems[ch][Number(q.number.split("-")[1])]??["main"],q.number+": official item missing");
+}

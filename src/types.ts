@@ -26,6 +26,8 @@ export type Question = {
   answerSummary?: string; // 正解の理由を一息で読める要点。詳しい手順はeasyExplanationへ
   preFigures?: LearningFigure[]; // 共通条件・候補図。回答後も問題のそばに保持する
   studyParts?: Question[]; // 同じ公式番号の中で学ぶ小問。旧本体では親の4択を維持
+  officialQuestionItems?: string[]; // 公式で問われる全項目の固定キー。組合せ形式も項目ごとに対応
+  officialQuestionItem?: string; // この小問が担当する親の質問キー
   responseType?: 'choice' | 'written';
   modelAnswer?: string; // 記述式の独自表現による解答例
   answerCheckpoints?: string[]; // 記述式の自己確認点。完全一致採点はしない

@@ -6,7 +6,8 @@
     "source": "完全オリジナル(公式標準問題集 平均化モデル 問4-1〜4-13にテーマ対応)",
     "origin": "original",
     "count": 13,
-    "officialCount": 13
+    "officialCount": 13,
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -55,7 +56,196 @@
       "figure": "required",
       "figureImage": "t1e12InterfacialAreaConc",
       "preFigureImage": "t1e12InterfacialAreaConcPre",
-      "figureHint": "白地660x420で検査体積V内に一様な直径dの球形気泡が多数分散する気泡流を描く(気泡径はすべて同じに揃える)。球1個の直径d・体積πd³/6・表面積πd²を、記号πを明瞭に(nと紛れないよう)・注記どうしが重ならないように配置する。ボイド率α=気相体積/V、界面積濃度a_int=6α/dの定義を模式的に示す。数値の答えは書かない。"
+      "figureHint": "白地660x420で検査体積V内に一様な直径dの球形気泡が多数分散する気泡流を描く(気泡径はすべて同じに揃える)。球1個の直径d・体積πd³/6・表面積πd²を、記号πを明瞭に(nと紛れないよう)・注記どうしが重ならないように配置する。ボイド率α=気相体積/V、界面積濃度a_int=6α/dの定義を模式的に示す。数値の答えは書かない。",
+      "editorialReview": {
+        "officialPoint": "界面積濃度, ボイド率, 気泡径, ザウター平均径",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "2": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "0fd432fabee2dda9b1d2c7feb092d28ad8f74a5f66024278034a83cc67c3619f"
+      },
+      "sharedQuestion": "体積Vの中に、直径dが等しい球形気泡が体積率αで分布します。",
+      "studyParts": [
+        {
+          "id": "thermal1-12-1-item-volume",
+          "number": "12-1",
+          "officialRef": "混相流4-1",
+          "officialQuestionItem": "volume",
+          "title": "気相体積",
+          "topic": "界面積濃度, ボイド率, 気泡径, ザウター平均径",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "気体の総体積はどれですか。",
+          "choices": [
+            "$\\alpha V$",
+            "$V/\\alpha$"
+          ],
+          "answer": 1,
+          "answerSummary": "全体積に割合を掛けます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "全体積に割合を掛けます。"
+            },
+            {
+              "title": "界面積濃度は、混合物の体積当たりの接触面積です",
+              "body": "気泡の中へ気体がどれだけ入るかだけでなく、気体と液体がどれだけ広い面で接するかが、熱や物質、運動量の交換へ効きます。界面積濃度 $a_{\\rm int}$ は、その面積を混合物の体積で割った量です。単位は $\\mathrm{m^2/m^3}=\\mathrm{m^{-1}}$ です。濃度という名前でも、質量の濃さや個数そのものではありません。気泡を細かく分けると、気体の総体積が同じでも界面積は増えます。球を8個へ分けて径を半分にする例では、体積の合計は変わらず表面積の合計は2倍になることから、径が重要だと分かります。"
+            }
+          ],
+          "explanation": "【基礎】全体積に割合を掛けます。\n【考え方】正解は1です。全体積に割合を掛けます。\n【ポイント】気泡の中へ気体がどれだけ入るかだけでなく、気体と液体がどれだけ広い面で接するかが、熱や物質、運動量の交換へ効きます。界面積濃度 $a_{\\rm int}$ は、その面積を混合物の体積で割った量です。単位は $\\mathrm{m^2/m^3}=\\mathrm{m^{-1}}$ です。濃度という名前でも、質量の濃さや個数そのものではありません。気泡を細かく分けると、気体の総体積が同じでも界面積は増えます。球を8個へ分けて径を半分にする例では、体積の合計は変わらず表面積の合計は2倍になることから、径が重要だと分かります。\n【引っかけ】2：「$V/\\alpha$」ではなく、$\\alpha V$です。全体積に割合を掛けます。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "界面積濃度, ボイド率, 気泡径, ザウター平均径／個別の質問：気相体積",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$V/\\alpha$」ではなく、$\\alpha V$です。全体積に割合を掛けます。"
+            },
+            "sha256": "e886adcab28d1935abf7c72806eb58436ba591015f7115889d1fa82ed3fcaea3"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-12-1-item-count",
+          "number": "12-1",
+          "officialRef": "混相流4-1",
+          "officialQuestionItem": "count",
+          "title": "気泡数",
+          "topic": "界面積濃度, ボイド率, 気泡径, ザウター平均径",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "気泡の個数はどれですか。",
+          "choices": [
+            "$8\\alpha V/(\\pi d^3)$",
+            "$6\\alpha V/(\\pi d^3)$"
+          ],
+          "answer": 2,
+          "answerSummary": "球一個の体積πd³/6で気体総体積を割ります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "球一個の体積πd³/6で気体総体積を割ります。"
+            },
+            {
+              "title": "球一個の体積と面積から係数6を導きます",
+              "body": "検査体積を $V$、気相の割合を $\\alpha$ とすると、気体の総体積は $\\alpha V$ です。一個の球の体積は $\\pi d^3/6$ なので、個数は $N=6\\alpha V/(\\pi d^3)$ です。一個の界面積は $\\pi d^2$ ですから、全部の面積は $N\\pi d^2=6\\alpha V/d$ です。最後に検査体積Vで割ると $a_{\\rm int}=6\\alpha/d$ となります。投影面積 $\\pi d^2/4$ と表面全体の面積 $\\pi d^2$ は別なので、熱をやり取りする面と抗力の基準面を入れ替えません。径がそろわない球群なら、総体積と総面積をそろえるザウター平均径を使えます。"
+            }
+          ],
+          "explanation": "【基礎】球一個の体積πd³/6で気体総体積を割ります。\n【考え方】正解は2です。球一個の体積πd³/6で気体総体積を割ります。\n【ポイント】検査体積を $V$、気相の割合を $\\alpha$ とすると、気体の総体積は $\\alpha V$ です。一個の球の体積は $\\pi d^3/6$ なので、個数は $N=6\\alpha V/(\\pi d^3)$ です。一個の界面積は $\\pi d^2$ ですから、全部の面積は $N\\pi d^2=6\\alpha V/d$ です。最後に検査体積Vで割ると $a_{\\rm int}=6\\alpha/d$ となります。投影面積 $\\pi d^2/4$ と表面全体の面積 $\\pi d^2$ は別なので、熱をやり取りする面と抗力の基準面を入れ替えません。径がそろわない球群なら、総体積と総面積をそろえるザウター平均径を使えます。\n【引っかけ】1：「$8\\alpha V/(\\pi d^3)$」ではなく、$6\\alpha V/(\\pi d^3)$です。球一個の体積πd³/6で気体総体積を割ります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "界面積濃度, ボイド率, 気泡径, ザウター平均径／個別の質問：気泡数",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$8\\alpha V/(\\pi d^3)$」ではなく、$6\\alpha V/(\\pi d^3)$です。球一個の体積πd³/6で気体総体積を割ります。"
+            },
+            "sha256": "6d78e102e74f132fb646817bbdedb21379e0a52163db9e49163b1489df717dcc"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-12-1-item-area",
+          "number": "12-1",
+          "officialRef": "混相流4-1",
+          "officialQuestionItem": "area",
+          "title": "総界面積",
+          "topic": "界面積濃度, ボイド率, 気泡径, ザウター平均径",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "気液界面の総面積はどれですか。",
+          "choices": [
+            "$6\\alpha V/d^2$",
+            "$6\\alpha V/d$"
+          ],
+          "answer": 2,
+          "answerSummary": "気泡数に一個の面積πd²を掛けると6αV/dです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "気泡数に一個の面積πd²を掛けると6αV/dです。"
+            }
+          ],
+          "explanation": "【基礎】気泡数に一個の面積πd²を掛けると6αV/dです。\n【考え方】正解は2です。気泡数に一個の面積πd²を掛けると6αV/dです。\n【ポイント】気泡数に一個の面積πd²を掛けると6αV/dです。\n【引っかけ】1：「$6\\alpha V/d^2$」ではなく、$6\\alpha V/d$です。気泡数に一個の面積πd²を掛けると6αV/dです。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "界面積濃度, ボイド率, 気泡径, ザウター平均径／個別の質問：総界面積",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$6\\alpha V/d^2$」ではなく、$6\\alpha V/d$です。気泡数に一個の面積πd²を掛けると6αV/dです。"
+            },
+            "sha256": "e4542b4ce5f309f0adc924618d31554fcde5b4793f6d3483ed17962e9c6dd3fc"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-12-1-item-concentration",
+          "number": "12-1",
+          "officialRef": "混相流4-1",
+          "officialQuestionItem": "concentration",
+          "title": "界面積濃度",
+          "topic": "界面積濃度, ボイド率, 気泡径, ザウター平均径",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "単位全体積当たりの面積はどれですか。",
+          "choices": [
+            "$6\\alpha d$",
+            "$6\\alpha/d$"
+          ],
+          "answer": 2,
+          "answerSummary": "総界面積をVで割ります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "総界面積をVで割ります。単位はm⁻¹で、α＝0.06、d＝0.003mなら120m⁻¹です。",
+              "figures": [
+                {
+                  "figureImage": "t1e12InterfacialAreaConc",
+                  "caption": "球形気泡群の界面積濃度の計算の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】総界面積をVで割ります。\n【考え方】正解は2です。総界面積をVで割ります。単位はm⁻¹で、α＝0.06、d＝0.003mなら120m⁻¹です。\n【ポイント】総界面積をVで割ります。\n【引っかけ】1：「$6\\alpha d$」ではなく、$6\\alpha/d$です。総界面積をVで割ります。単位はm⁻¹で、α＝0.06、d＝0.003mなら120m⁻¹です。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "界面積濃度, ボイド率, 気泡径, ザウター平均径／個別の質問：界面積濃度",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$6\\alpha d$」ではなく、$6\\alpha/d$です。総界面積をVで割ります。単位はm⁻¹で、α＝0.06、d＝0.003mなら120m⁻¹です。"
+            },
+            "sha256": "61aae41e3a0509cfef7086b6f5410ea457addc8d470aa3f911baedfdd5a87a51"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "volume",
+        "count",
+        "area",
+        "concentration"
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "気相体積：全体積に割合を掛けます。\n気泡数：球一個の体積πd³/6で気体総体積を割ります。\n総界面積：気泡数に一個の面積πd²を掛けると6αV/dです。\n界面積濃度：総界面積をVで割ります。",
+      "preFigures": [
+        {
+          "figureImage": "t1e12InterfacialAreaConcPre",
+          "caption": "各小問に共通する位置・形状・条件をこの図で確認してください。"
+        }
+      ]
     },
     {
       "id": "thermal1-12-2",
@@ -102,7 +292,148 @@
       "role": "primary",
       "figure": "required",
       "figureImage": "t1e12InterphaseDrag",
-      "figureHint": "白地660x420で液中を上昇する球形気泡群に働く相間抗力を描く。気相速度V_G・液相速度V_L・相対速度V_R=V_G-V_Lの矢印、気泡径d、抗力係数C_D、界面積濃度a_int=6α/dを示し、単位体積あたりの抗力M_D∝ρ_L|V_R|²と、気泡1個に働く抗力を区別して模式化する。式は描画領域内に収め右端で切れないようにする。答えの数値は書かない。"
+      "figureHint": "白地660x420で液中を上昇する球形気泡群に働く相間抗力を描く。気相速度V_G・液相速度V_L・相対速度V_R=V_G-V_Lの矢印、気泡径d、抗力係数C_D、界面積濃度a_int=6α/dを示し、単位体積あたりの抗力M_D∝ρ_L|V_R|²と、気泡1個に働く抗力を区別して模式化する。式は描画領域内に収め右端で切れないようにする。答えの数値は書かない。",
+      "editorialReview": {
+        "officialPoint": "相間運動量輸送, 抗力, 界面積濃度, 相対速度",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "1": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "1e7fa7fdbc785efe0be08a2841a6a9776bfa267e17b1a436e98ab80deb4679f7"
+      },
+      "officialQuestionItems": [
+        "drag",
+        "lift",
+        "virtual"
+      ],
+      "sharedQuestion": "相対速度 $\\boldsymbol V_R=\\boldsymbol V_G-\\boldsymbol V_L$、液渦度 $\\boldsymbol\\omega_L$、体積率α、気泡径dを使います。式は液相側に加える相間力の規約で示し、気相側へは反対符号で加えます。各係数を $C_D,C_L,C_V$ とします。",
+      "studyParts": [
+        {
+          "id": "thermal1-12-2-item-drag",
+          "number": "12-2",
+          "officialRef": "混相流4-2",
+          "officialQuestionItem": "drag",
+          "title": "抗力",
+          "topic": "相間運動量輸送, 抗力, 界面積濃度, 相対速度",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "抗力のベクトル式はどれですか。",
+          "choices": [
+            "$\\dfrac{3\\alpha}{4d}C_D\\rho_L\\boldsymbol V_R$",
+            "$\\dfrac{3\\alpha}{4d}C_D\\rho_L|\\boldsymbol V_R|\\boldsymbol V_R$"
+          ],
+          "answer": 2,
+          "answerSummary": "抗力は速度の大きさと速度ベクトルの積です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "抗力は速度の大きさと速度ベクトルの積です。単位体積当たりへ気泡数を掛けて集計します。 ここで$\\boldsymbol V_R=\\boldsymbol V_G-\\boldsymbol V_L$とし、液体が受ける力を正の式で表します。気泡が受ける力は逆向きです。"
+            },
+            {
+              "title": "気泡一個の抗力を単位体積へ集計します",
+              "body": "一個の抗力の大きさは $F_D=C_D(\\pi d^2/4)(\\rho_LV_R^2/2)$ です。単位体積当たりの個数 $N/V=6\\alpha/(\\pi d^3)$ を掛ければ、$M_D=(3\\alpha/4d)C_D\\rho_LV_R^2=(a_{\\rm int}/8)C_D\\rho_LV_R^2$ です。$M_D$ は気泡一個の力ではなく、平均した領域の体積当たりの相間抗力です。界面積濃度の逆長さと、動圧に相当するPaを掛けてN/m³になります。相対速度 $V_R$ は気相と液相の速度差です。両相の絶対速度が同じだけ増えても、速度差が同じなら、この抵抗の式の値は変わりません。",
+              "figures": [
+                {
+                  "figureImage": "t1e12InterphaseDrag",
+                  "caption": "上昇する気泡は下向きの抵抗を受け、液体は上向きに引かれます。式は液体側の力を表します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】抗力は速度の大きさと速度ベクトルの積です。\n【考え方】正解は2です。抗力は速度の大きさと速度ベクトルの積です。単位体積当たりへ気泡数を掛けて集計します。\n【ポイント】一個の抗力の大きさは $F_D=C_D(\\pi d^2/4)(\\rho_LV_R^2/2)$ です。単位体積当たりの個数 $N/V=6\\alpha/(\\pi d^3)$ を掛ければ、$M_D=(3\\alpha/4d)C_D\\rho_LV_R^2=(a_{\\rm int}/8)C_D\\rho_LV_R^2$ です。$M_D$ は気泡一個の力ではなく、平均した領域の体積当たりの相間抗力です。界面積濃度の逆長さと、動圧に相当するPaを掛けてN/m³になります。相対速度 $V_R$ は気相と液相の速度差です。両相の絶対速度が同じだけ増えても、速度差が同じなら、この抵抗の式の値は変わりません。\n【引っかけ】1：「$\\dfrac{3\\alpha}{4d}C_D\\rho_L\\boldsymbol V_R$」ではなく、$\\dfrac{3\\alpha}{4d}C_D\\rho_L|\\boldsymbol V_R|\\boldsymbol V_R$です。抗力は速度の大きさと速度ベクトルの積です。単位体積当たりへ気泡数を掛けて集計します。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "相間運動量輸送, 抗力, 界面積濃度, 相対速度／個別の質問：抗力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$\\dfrac{3\\alpha}{4d}C_D\\rho_L\\boldsymbol V_R$」ではなく、$\\dfrac{3\\alpha}{4d}C_D\\rho_L|\\boldsymbol V_R|\\boldsymbol V_R$です。抗力は速度の大きさと速度ベクトルの積です。単位体積当たりへ気泡数を掛けて集計します。"
+            },
+            "sha256": "c5ab5601c34c2d8bbc80f090503a3d2e9d3fd46fbe02dc941fbc60e867c256e2"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-12-2-item-lift",
+          "number": "12-2",
+          "officialRef": "混相流4-2",
+          "officialQuestionItem": "lift",
+          "title": "揚力",
+          "topic": "相間運動量輸送, 抗力, 界面積濃度, 相対速度",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "揚力の式はどれですか。",
+          "choices": [
+            "$\\alpha C_L\\rho_L\\boldsymbol V_R\\times\\boldsymbol\\omega_L$",
+            "$\\alpha C_L\\rho_L(\\boldsymbol V_R\\cdot\\boldsymbol\\omega_L)$"
+          ],
+          "answer": 1,
+          "answerSummary": "揚力は外積によるベクトルです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "揚力は外積によるベクトルです。内積ではスカラーになり、横向きの力を表せません。"
+            }
+          ],
+          "explanation": "【基礎】揚力は外積によるベクトルです。\n【考え方】正解は1です。揚力は外積によるベクトルです。内積ではスカラーになり、横向きの力を表せません。\n【ポイント】揚力は外積によるベクトルです。\n【引っかけ】2：「$\\alpha C_L\\rho_L(\\boldsymbol V_R\\cdot\\boldsymbol\\omega_L)$」ではなく、$\\alpha C_L\\rho_L\\boldsymbol V_R\\times\\boldsymbol\\omega_L$です。揚力は外積によるベクトルです。内積ではスカラーになり、横向きの力を表せません。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "相間運動量輸送, 抗力, 界面積濃度, 相対速度／個別の質問：揚力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$\\alpha C_L\\rho_L(\\boldsymbol V_R\\cdot\\boldsymbol\\omega_L)$」ではなく、$\\alpha C_L\\rho_L\\boldsymbol V_R\\times\\boldsymbol\\omega_L$です。揚力は外積によるベクトルです。内積ではスカラーになり、横向きの力を表せません。"
+            },
+            "sha256": "3a6a29f04761c012d5ef6ad5afa552d77da41600c74c0c4bca5b24c8936cf5b4"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-12-2-item-virtual",
+          "number": "12-2",
+          "officialRef": "混相流4-2",
+          "officialQuestionItem": "virtual",
+          "title": "仮想質量力",
+          "topic": "相間運動量輸送, 抗力, 界面積濃度, 相対速度",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "仮想質量力の式はどれですか。",
+          "choices": [
+            "$\\alpha C_V\\rho_L(D_G\\boldsymbol V_G/Dt-D_L\\boldsymbol V_L/Dt)$",
+            "$\\alpha C_V\\rho_L(\\boldsymbol V_G-\\boldsymbol V_L)$"
+          ],
+          "answer": 1,
+          "answerSummary": "両相の加速度差に比例する項です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "両相の加速度差に比例する項です。各実質微分はその相の速度で移流します。周囲の液体も加速する効果で、速度差だけの抵抗とは異なります。"
+            }
+          ],
+          "explanation": "【基礎】両相の加速度差に比例する項です。\n【考え方】正解は1です。両相の加速度差に比例する項です。各実質微分はその相の速度で移流します。周囲の液体も加速する効果で、速度差だけの抵抗とは異なります。\n【ポイント】両相の加速度差に比例する項です。\n【引っかけ】2：「$\\alpha C_V\\rho_L(\\boldsymbol V_G-\\boldsymbol V_L)$」ではなく、$\\alpha C_V\\rho_L(D_G\\boldsymbol V_G/Dt-D_L\\boldsymbol V_L/Dt)$です。両相の加速度差に比例する項です。各実質微分はその相の速度で移流します。周囲の液体も加速する効果で、速度差だけの抵抗とは異なります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "相間運動量輸送, 抗力, 界面積濃度, 相対速度／個別の質問：仮想質量力",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$\\alpha C_V\\rho_L(\\boldsymbol V_G-\\boldsymbol V_L)$」ではなく、$\\alpha C_V\\rho_L(D_G\\boldsymbol V_G/Dt-D_L\\boldsymbol V_L/Dt)$です。両相の加速度差に比例する項です。各実質微分はその相の速度で移流します。周囲の液体も加速する効果で、速度差だけの抵抗とは異なります。"
+            },
+            "sha256": "448373fcca380f3cbfc283866dfa3cc0ba705fbb66f63a3d3b61ea7971f4a71c"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "抗力：抗力は速度の大きさと速度ベクトルの積です。\n揚力：揚力は外積によるベクトルです。\n仮想質量力：両相の加速度差に比例する項です。"
     },
     {
       "id": "thermal1-12-3",
@@ -153,7 +484,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e12HomogVsMultifluid",
-      "figureHint": "白地660x420で均質流モデルと多流体モデルの対比表を描く。左=均質流(気液を同一速度Vの一流体とみなす模式)、右=多流体(気相速度V_G・液相速度V_Lを別々に解く模式)。速度の扱い(等しい/別変数)の違いを矢印で対比する。"
+      "figureHint": "白地660x420で均質流モデルと多流体モデルの対比表を描く。左=均質流(気液を同一速度Vの一流体とみなす模式)、右=多流体(気相速度V_G・液相速度V_Lを別々に解く模式)。速度の扱い(等しい/別変数)の違いを矢印で対比する。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-12-4",
@@ -204,7 +538,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e12FlowRegimeMap",
-      "figureHint": "白地660x420で鉛直管の流動様式の順序を示す模式図を描く。縦軸=質量速度(kg/m²s)、横軸=ボイド率(0〜1)。低ボイド率側から気泡流・スラグ流・環状流・噴霧流の順序を帯状に並べる(定量的な境界線や特定コードの線図ではなく、順序を示す模式図であることを注記)。各様式の管内スケッチを小さく添える。"
+      "figureHint": "白地660x420で鉛直管の流動様式の順序を示す模式図を描く。縦軸=質量速度(kg/m²s)、横軸=ボイド率(0〜1)。低ボイド率側から気泡流・スラグ流・環状流・噴霧流の順序を帯状に並べる(定量的な境界線や特定コードの線図ではなく、順序を示す模式図であることを注記)。各様式の管内スケッチを小さく添える。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-12-5",
@@ -251,7 +588,10 @@
       "role": "primary",
       "figure": "required",
       "figureImage": "t1e12DriftFluxVelocity",
-      "figureHint": "白地660x420で管断面のボイド率・速度分布を描く。横軸は直径方向の位置(中心r=0〜管壁)とし、流束・速度分布は中心r=0で最大・両壁でゼロとなるように描く。中央で気泡が多い分布を示し、断面平均気相速度が分布定数C₀による項(中央集中効果)とドリフト速度項v_gj(全体積流束に対する相対速度)の和で表される様子を模式化する。式の各項を矢印で対応づけるが答えの数値は書かない。"
+      "figureHint": "白地660x420で管断面のボイド率・速度分布を描く。横軸は直径方向の位置(中心r=0〜管壁)とし、流束・速度分布は中心r=0で最大・両壁でゼロとなるように描く。中央で気泡が多い分布を示し、断面平均気相速度が分布定数C₀による項(中央集中効果)とドリフト速度項v_gj(全体積流束に対する相対速度)の和で表される様子を模式化する。式の各項を矢印で対応づけるが答えの数値は書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-12-6",
@@ -298,7 +638,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e12DistributionParam",
-      "figureHint": "白地660x420で管断面の気泡分布を2ケース描く。左=中央集中(C₀大)、右=均一分布(C₀=1)。壁でのすべりなしにより中央で速度分布が凸になる様子を添え、分布定数C₀が気泡分布の偏りを表す量であることを模式化する。"
+      "figureHint": "白地660x420で管断面の気泡分布を2ケース描く。左=中央集中(C₀大)、右=均一分布(C₀=1)。壁でのすべりなしにより中央で速度分布が凸になる様子を添え、分布定数C₀が気泡分布の偏りを表す量であることを模式化する。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-12-7",
@@ -349,7 +692,10 @@
       "role": "primary",
       "figure": "required",
       "figureImage": "t1e12TaylorBubbleDrift",
-      "figureHint": "白地660x420で鉛直円管(内径D)内を上昇する砲弾状の単一テイラー気泡を描く。気泡先端が管中心を上昇、周囲を液膜が下降する様子、終端上昇速度v_gjの矢印、密度ρ_L・ρ_Gと重力gを添える。式v_gj=0.35√(gDΔρ/ρ_L)の記号を対応づけるが答えの数値は書かない。"
+      "figureHint": "白地660x420で鉛直円管(内径D)内を上昇する砲弾状の単一テイラー気泡を描く。気泡先端が管中心を上昇、周囲を液膜が下降する様子、終端上昇速度v_gjの矢印、密度ρ_L・ρ_Gと重力gを添える。式v_gj=0.35√(gDΔρ/ρ_L)の記号を対応づけるが答えの数値は書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-12-8",
@@ -400,7 +746,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e12TwoFluidModel",
-      "figureHint": "白地660x420で二流体モデルの構成を描く。気相と液相それぞれに質量・運動量・エネルギーの保存式ブロックを置き、両者を結ぶ相間相互作用項(抗力・揚力・仮想質量力・界面熱伝達・相変化)を双方向矢印で示す。速度差は相関式を介して定まることを注記する。"
+      "figureHint": "白地660x420で二流体モデルの構成を描く。気相と液相それぞれに質量・運動量・エネルギーの保存式ブロックを置き、両者を結ぶ相間相互作用項(抗力・揚力・仮想質量力・界面熱伝達・相変化)を双方向矢印で示す。速度差は相関式を介して定まることを注記する。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-12-9",
@@ -451,7 +800,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e12MultifluidBoiling",
-      "figureHint": "白地660x420で鉛直加熱管内の沸騰二相流を下から上へ描く。気泡流(壁面加熱・気泡発生)→スラグ流(テイラー気泡)→環状噴霧流(液膜・蒸気コア・液滴)の遷移を示し、各領域で必要な相関式(壁面摩擦・熱伝達・抗力・相変化)を注記する。様式名のラベルと相関式の説明枠が重ならないよう配置する。どれが誤りかは書かない。"
+      "figureHint": "白地660x420で鉛直加熱管内の沸騰二相流を下から上へ描く。気泡流(壁面加熱・気泡発生)→スラグ流(テイラー気泡)→環状噴霧流(液膜・蒸気コア・液滴)の遷移を示し、各領域で必要な相関式(壁面摩擦・熱伝達・抗力・相変化)を注記する。様式名のラベルと相関式の説明枠が重ならないよう配置する。どれが誤りかは書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-12-10",
@@ -502,7 +854,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e12AnnularMistEnergy",
-      "figureHint": "白地660x420で環状噴霧流の縦断面を描く。壁面の液膜(壁から加熱)、中心の蒸気コア、蒸気中に飛散する液滴を示し、壁→液膜、液膜↔蒸気、蒸気↔液滴の各エネルギー輸送経路を矢印で表す。液膜-蒸気界面の蒸発を強調する。"
+      "figureHint": "白地660x420で環状噴霧流の縦断面を描く。壁面の液膜(壁から加熱)、中心の蒸気コア、蒸気中に飛散する液滴を示し、壁→液膜、液膜↔蒸気、蒸気↔液滴の各エネルギー輸送経路を矢印で表す。液膜-蒸気界面の蒸発を強調する。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-12-11",
@@ -553,7 +908,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e12MultidimTwoFluid",
-      "figureHint": "白地660x420で多次元二流体モデルの計算格子を描く。噴霧流の広がり(噴霧の空間スケール)に対して計算セルを重ね、セルサイズは液滴径ではなく流れのスケールで決める点を対比的に示す。界面追跡法との使い分けも小さく添える。どれが誤りかは書かない。"
+      "figureHint": "白地660x420で多次元二流体モデルの計算格子を描く。噴霧流の広がり(噴霧の空間スケール)に対して計算セルを重ね、セルサイズは液滴径ではなく流れのスケールで決める点を対比的に示す。界面追跡法との使い分けも小さく添える。どれが誤りかは書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-12-12",
@@ -604,7 +962,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e12OnePressureModel",
-      "figureHint": "白地660x420で計算格子と気泡径の関係を描く。左=セルが気泡径より大きい(1セルに気泡が収まる/平均化が成立)、右=セルが気泡径より小さい(1つの気泡が複数セルにまたがり数値的に分散)。格子を細かくしすぎる弊害を対比的に示す(ラベルや注記が重ならないよう配置)。特定のモデル・閉じ式・格子条件で起こり得る例である旨を小さく添える。どれが正しいかは書かない。"
+      "figureHint": "白地660x420で計算格子と気泡径の関係を描く。左=セルが気泡径より大きい(1セルに気泡が収まる/平均化が成立)、右=セルが気泡径より小さい(1つの気泡が複数セルにまたがり数値的に分散)。格子を細かくしすぎる弊害を対比的に示す(ラベルや注記が重ならないよう配置)。特定のモデル・閉じ式・格子条件で起こり得る例である旨を小さく添える。どれが正しいかは書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-12-13",
@@ -655,7 +1016,232 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e12NumericalStability",
-      "figureHint": "白地660x420で一圧力二流体モデルの数値不安定と安定化策を図解する。中央に『基礎式=楕円型→初期値問題として不適切→細メッシュで不安定』の流れ、周囲に安定化策4つ(数値粘性大の風上差分・仮想質量力・乱流分散力∝∇α・相間圧力差)をブロックで配置する。答えは書かない。"
+      "figureHint": "白地660x420で一圧力二流体モデルの数値不安定と安定化策を図解する。中央に『基礎式=楕円型→初期値問題として不適切→細メッシュで不安定』の流れ、周囲に安定化策4つ(数値粘性大の風上差分・仮想質量力・乱流分散力∝∇α・相間圧力差)をブロックで配置する。答えは書かない。",
+      "editorialReview": {
+        "officialPoint": "一圧力二流体モデル, 初期値問題, 楕円型, 数値粘性, 安定化",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "2": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "8e3c52b55e88a8a166e0679c909156cdadb339483c5915e08344e1110e73df31"
+      },
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e"
+      ],
+      "sharedQuestion": "相対速度によって双曲性を失う場合の一圧力二流体モデルを考えます。すべての二流体モデルが常に不安定という意味ではありません。",
+      "studyParts": [
+        {
+          "id": "thermal1-12-13-item-a",
+          "number": "12-13",
+          "officialRef": "混相流4-13",
+          "officialQuestionItem": "a",
+          "title": "初期値問題",
+          "topic": "一圧力二流体モデル, 初期値問題, 楕円型, 数値粘性, 安定化",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "双曲性を失った状態は初期値問題としてどちらですか。",
+          "choices": [
+            "不適切になり得る",
+            "必ず適切"
+          ],
+          "answer": 1,
+          "answerSummary": "ごく小さい短波長の乱れが極端に増幅され得ます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "ごく小さい短波長の乱れが極端に増幅され得ます。初期値を精密に与えるだけでは解決できません。"
+            },
+            {
+              "title": "不適切な初期値問題とは何か",
+              "body": "初めの状態がほんの少し違えば結果も少しだけ違う、という連続的な関係が、時間を進める問題では重要です。ところが短い波長ほど限度なく速く育つ形を方程式が許すと、非常に小さな誤差が計算結果を支配し、細分化しても一定の解へ近づかない場合があります。この意味で初期値問題が不適切になり得ます。これは非圧縮流体の圧力計算に楕円型の方程式が現れることを一律に否定する説明ではありません。各相の移流を表す方程式の特性が、複素になって双曲性を失うという本問の問題を区別します。"
+            }
+          ],
+          "explanation": "【基礎】ごく小さい短波長の乱れが極端に増幅され得ます。\n【考え方】正解は1です。ごく小さい短波長の乱れが極端に増幅され得ます。初期値を精密に与えるだけでは解決できません。\n【ポイント】初めの状態がほんの少し違えば結果も少しだけ違う、という連続的な関係が、時間を進める問題では重要です。ところが短い波長ほど限度なく速く育つ形を方程式が許すと、非常に小さな誤差が計算結果を支配し、細分化しても一定の解へ近づかない場合があります。この意味で初期値問題が不適切になり得ます。これは非圧縮流体の圧力計算に楕円型の方程式が現れることを一律に否定する説明ではありません。各相の移流を表す方程式の特性が、複素になって双曲性を失うという本問の問題を区別します。\n【引っかけ】2：「必ず適切」ではなく、不適切になり得るです。ごく小さい短波長の乱れが極端に増幅され得ます。初期値を精密に与えるだけでは解決できません。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "一圧力二流体モデル, 初期値問題, 楕円型, 数値粘性, 安定化／個別の質問：初期値問題",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「必ず適切」ではなく、不適切になり得るです。ごく小さい短波長の乱れが極端に増幅され得ます。初期値を精密に与えるだけでは解決できません。"
+            },
+            "sha256": "a6bf752b4ac1d36acc73239d69860a6bebf2130126b23db57738b88e3e31f857"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-12-13-item-b",
+          "number": "12-13",
+          "officialRef": "混相流4-13",
+          "officialQuestionItem": "b",
+          "title": "方程式の性質",
+          "topic": "一圧力二流体モデル, 初期値問題, 楕円型, 数値粘性, 安定化",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "複素特性根を持つ場合に現れる性質はどれですか。",
+          "choices": [
+            "実特性速度だけをもつ双曲型",
+            "楕円型的な性質"
+          ],
+          "answer": 2,
+          "answerSummary": "実数の情報伝播速度で初期値から進む性質が失われます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "実数の情報伝播速度で初期値から進む性質が失われます。"
+            }
+          ],
+          "explanation": "【基礎】実数の情報伝播速度で初期値から進む性質が失われます。\n【考え方】正解は2です。実数の情報伝播速度で初期値から進む性質が失われます。\n【ポイント】実数の情報伝播速度で初期値から進む性質が失われます。\n【引っかけ】1：「実特性速度だけをもつ双曲型」ではなく、楕円型的な性質です。実数の情報伝播速度で初期値から進む性質が失われます。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "一圧力二流体モデル, 初期値問題, 楕円型, 数値粘性, 安定化／個別の質問：方程式の性質",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「実特性速度だけをもつ双曲型」ではなく、楕円型的な性質です。実数の情報伝播速度で初期値から進む性質が失われます。"
+            },
+            "sha256": "22db2628dbe24cad754b53d5b9b3b8c8c9e9620137ffbd6006dc1f3e4087a779"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-12-13-item-c",
+          "number": "12-13",
+          "officialRef": "混相流4-13",
+          "officialQuestionItem": "c",
+          "title": "数値的な抑制",
+          "topic": "一圧力二流体モデル, 初期値問題, 楕円型, 数値粘性, 安定化",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "不安定を抑える差分式では何を大きくする場合がありますか。",
+          "choices": [
+            "数値粘性",
+            "数値分散だけ"
+          ],
+          "answer": 1,
+          "answerSummary": "数値粘性が細かい変動をならします。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "数値粘性が細かい変動をならします。ただし元のモデルの物理的問題を解決したこととは別です。"
+            },
+            {
+              "title": "数値粘性は細かい波をならします",
+              "body": "拡散項 $\\nu_{\\rm num}\\partial^2q/\\partial x^2$ をイメージすると、波 $q\\propto e^{ikx}$ へは $-\\nu_{\\rm num}k^2q$ が働き、波数kが大きい細かな変化ほど強く抑えます。一次精度の風上差分などの数値粘性も、乱れをならす役割を持ちます。ただし、見かけ上滑らかに計算できても、元の方程式の適切性を回復した証明にはなりません。細かい格子で数値粘性が減ると再び不安定さが見える場合もあります。人工的な抑制と、基礎モデルの修正を別の対策として読みます。"
+            }
+          ],
+          "explanation": "【基礎】数値粘性が細かい変動をならします。\n【考え方】正解は1です。数値粘性が細かい変動をならします。ただし元のモデルの物理的問題を解決したこととは別です。\n【ポイント】拡散項 $\\nu_{\\rm num}\\partial^2q/\\partial x^2$ をイメージすると、波 $q\\propto e^{ikx}$ へは $-\\nu_{\\rm num}k^2q$ が働き、波数kが大きい細かな変化ほど強く抑えます。一次精度の風上差分などの数値粘性も、乱れをならす役割を持ちます。ただし、見かけ上滑らかに計算できても、元の方程式の適切性を回復した証明にはなりません。細かい格子で数値粘性が減ると再び不安定さが見える場合もあります。人工的な抑制と、基礎モデルの修正を別の対策として読みます。\n【引っかけ】2：「数値分散だけ」ではなく、数値粘性です。数値粘性が細かい変動をならします。ただし元のモデルの物理的問題を解決したこととは別です。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "一圧力二流体モデル, 初期値問題, 楕円型, 数値粘性, 安定化／個別の質問：数値的な抑制",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「数値分散だけ」ではなく、数値粘性です。数値粘性が細かい変動をならします。ただし元のモデルの物理的問題を解決したこととは別です。"
+            },
+            "sha256": "d6202fb4992529994154af6420bb6fbe1a61b429bc4653a5c0ca5b99fb02ea2f"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-12-13-item-d",
+          "number": "12-13",
+          "officialRef": "混相流4-13",
+          "officialQuestionItem": "d",
+          "title": "加速度差の項",
+          "topic": "一圧力二流体モデル, 初期値問題, 楕円型, 数値粘性, 安定化",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "安定化で追加・調整する質量係数はどれですか。",
+          "choices": [
+            "気体の分子質量だけ",
+            "仮想（付加）質量"
+          ],
+          "answer": 2,
+          "answerSummary": "周囲の流体も加速する相間作用を補います。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "周囲の流体も加速する相間作用を補います。"
+            },
+            {
+              "title": "付加項は、省略した相間作用を補います",
+              "body": "付加質量は一方の相を加速すると周囲の相も動かす負担を表し、相対運動の応答を変えます。乱流分散などは体積率の偏りに対する相互作用を表し、相間圧力差モデルは圧力を完全に同じにした簡略化を見直します。こうした項を適切に入れることは、単に計算を丸めるのでなく、方程式が表す物理や数学的な性質を改める方向です。効果は定式化と係数へ依存し、係数を大きくすれば何でも正確になるわけではありません。対象条件で必要な作用と妥当な範囲を確認します。"
+            }
+          ],
+          "explanation": "【基礎】周囲の流体も加速する相間作用を補います。\n【考え方】正解は2です。周囲の流体も加速する相間作用を補います。\n【ポイント】付加質量は一方の相を加速すると周囲の相も動かす負担を表し、相対運動の応答を変えます。乱流分散などは体積率の偏りに対する相互作用を表し、相間圧力差モデルは圧力を完全に同じにした簡略化を見直します。こうした項を適切に入れることは、単に計算を丸めるのでなく、方程式が表す物理や数学的な性質を改める方向です。効果は定式化と係数へ依存し、係数を大きくすれば何でも正確になるわけではありません。対象条件で必要な作用と妥当な範囲を確認します。\n【引っかけ】1：「気体の分子質量だけ」ではなく、仮想（付加）質量です。周囲の流体も加速する相間作用を補います。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "一圧力二流体モデル, 初期値問題, 楕円型, 数値粘性, 安定化／個別の質問：加速度差の項",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「気体の分子質量だけ」ではなく、仮想（付加）質量です。周囲の流体も加速する相間作用を補います。"
+            },
+            "sha256": "f01e9760200dfdad6dbc844eb438560f3bc32f879f683f4c8ef4006a7f989b50"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-12-13-item-e",
+          "number": "12-13",
+          "officialRef": "混相流4-13",
+          "officialQuestionItem": "e",
+          "title": "体積率勾配の作用",
+          "topic": "一圧力二流体モデル, 初期値問題, 楕円型, 数値粘性, 安定化",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "分散相を広げる相間力として考慮するのはどれですか。",
+          "choices": [
+            "乱流分散力",
+            "重力のみ"
+          ],
+          "answer": 1,
+          "answerSummary": "体積率の偏りをならす作用を補うモデルです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "体積率の偏りをならす作用を補うモデルです。相間圧力差などの導入も検討します。",
+              "figures": [
+                {
+                  "figureImage": "t1e12NumericalStability",
+                  "caption": "一圧力二流体モデルの数値的性質と安定化策の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】体積率の偏りをならす作用を補うモデルです。\n【考え方】正解は1です。体積率の偏りをならす作用を補うモデルです。相間圧力差などの導入も検討します。\n【ポイント】体積率の偏りをならす作用を補うモデルです。\n【引っかけ】2：「重力のみ」ではなく、乱流分散力です。体積率の偏りをならす作用を補うモデルです。相間圧力差などの導入も検討します。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "一圧力二流体モデル, 初期値問題, 楕円型, 数値粘性, 安定化／個別の質問：体積率勾配の作用",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「重力のみ」ではなく、乱流分散力です。体積率の偏りをならす作用を補うモデルです。相間圧力差などの導入も検討します。"
+            },
+            "sha256": "8d913d930513dbb1ca91e1a720c107e3769e88313e4c4abc8c8bcd5924454d4a"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "初期値問題：ごく小さい短波長の乱れが極端に増幅され得ます。\n方程式の性質：実数の情報伝播速度で初期値から進む性質が失われます。\n数値的な抑制：数値粘性が細かい変動をならします。\n加速度差の項：周囲の流体も加速する相間作用を補います。\n体積率勾配の作用：体積率の偏りをならす作用を補うモデルです。"
     }
   ]
 }

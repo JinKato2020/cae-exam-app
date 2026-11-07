@@ -6,7 +6,8 @@
     "source": "完全オリジナル(燃焼流7章 7-1〜7-15 と1:1でテーマ対応)",
     "origin": "original",
     "count": 15,
-    "officialCount": 15
+    "officialCount": 15,
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -63,7 +64,188 @@
       "figure": "helpful",
       "preFigureImage": "t1e23DragCurve",
       "figureImage": "t1e23DragCurveAns",
-      "figureHint": "白地660x420。横軸Re_p・縦軸C_Dの両対数グラフで、ストークス則C_D=24/Re_pの右肩下がり直線と実測抗力曲線(Re_p増で頭打ち)を描き、Re_p≪1域を破線枠で示す(数値の答えは書かない)"
+      "figureHint": "白地660x420。横軸Re_p・縦軸C_Dの両対数グラフで、ストークス則C_D=24/Re_pの右肩下がり直線と実測抗力曲線(Re_p増で頭打ち)を描き、Re_p≪1域を破線枠で示す(数値の答えは書かない)",
+      "editorialReview": {
+        "officialPoint": "粒子運動・抗力",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "1": "通常解説の各肢の理由を参照。",
+          "2": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "86ab49c3fbf905c91415780a6aca39c02c96d14b89dea7e765be4659c6e72f46"
+      },
+      "sharedQuestion": "粒子の抗力を、流体密度 $\\rho$、粘性係数 $\\mu$、流体速度 $V$、粒子速度 $V_p$、直径 $d_p$ で表します。",
+      "studyParts": [
+        {
+          "id": "thermal1-23-1-item-a",
+          "number": "23-1",
+          "officialRef": "燃焼流7-1",
+          "officialQuestionItem": "a",
+          "title": "係数の意味",
+          "topic": "粒子運動・抗力",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$C_D$ は何を表しますか？",
+          "choices": [
+            "熱拡散率",
+            "抗力係数"
+          ],
+          "answer": 2,
+          "answerSummary": "相対流れから粒子へ作用する抵抗を、動圧と投影面積で無次元化した係数です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "相対流れから粒子へ作用する抵抗を、動圧と投影面積で無次元化した係数です。"
+            }
+          ],
+          "explanation": "【基礎】相対流れから粒子へ作用する抵抗を、動圧と投影面積で無次元化した係数です。\n【考え方】正解は2です。相対流れから粒子へ作用する抵抗を、動圧と投影面積で無次元化した係数です。\n【ポイント】相対流れから粒子へ作用する抵抗を、動圧と投影面積で無次元化した係数です。\n【引っかけ】1：「熱拡散率」ではなく、抗力係数です。相対流れから粒子へ作用する抵抗を、動圧と投影面積で無次元化した係数です。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "粒子運動・抗力／個別の質問：係数の意味",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「熱拡散率」ではなく、抗力係数です。相対流れから粒子へ作用する抵抗を、動圧と投影面積で無次元化した係数です。"
+            },
+            "sha256": "ef4be56c7f8359fde40ced113d4fd43ffee6b5b1a1c73680bb760940ee155e33"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-1-item-b",
+          "number": "23-1",
+          "officialRef": "燃焼流7-1",
+          "officialQuestionItem": "b",
+          "title": "粒子レイノルズ数",
+          "topic": "粒子運動・抗力",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "粒子レイノルズ数は？",
+          "choices": [
+            "$Re_p=\\rho|V-V_p|d_p/\\mu$",
+            "$Re_p=\\rho|V|d_p/\\mu$"
+          ],
+          "answer": 1,
+          "answerSummary": "粒子が流体と一緒に動けば相対速度はゼロです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "粒子が流体と一緒に動けば相対速度はゼロです。地面から見た流速だけでは抵抗の大きさは決まりません。"
+            }
+          ],
+          "explanation": "【基礎】粒子が流体と一緒に動けば相対速度はゼロです。\n【考え方】正解は1です。粒子が流体と一緒に動けば相対速度はゼロです。地面から見た流速だけでは抵抗の大きさは決まりません。\n【ポイント】粒子が流体と一緒に動けば相対速度はゼロです。\n【引っかけ】2：「$Re_p=\\rho|V|d_p/\\mu$」ではなく、$Re_p=\\rho|V-V_p|d_p/\\mu$です。粒子が流体と一緒に動けば相対速度はゼロです。地面から見た流速だけでは抵抗の大きさは決まりません。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "粒子運動・抗力／個別の質問：粒子レイノルズ数",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$Re_p=\\rho|V|d_p/\\mu$」ではなく、$Re_p=\\rho|V-V_p|d_p/\\mu$です。粒子が流体と一緒に動けば相対速度はゼロです。地面から見た流速だけでは抵抗の大きさは決まりません。"
+            },
+            "sha256": "5d9f693e4d9795e1e6ef9d9c4f1ffa12138195c06bcfcc660a505d7fd26fbdf3"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-1-item-c",
+          "number": "23-1",
+          "officialRef": "燃焼流7-1",
+          "officialQuestionItem": "c",
+          "title": "Stokes域",
+          "topic": "粒子運動・抗力",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$Re_p\\ll1$ の球に対する $C_D$ は？",
+          "choices": [
+            "$24Re_p$",
+            "$24/Re_p$"
+          ],
+          "answer": 2,
+          "answerSummary": "抗力 $F=3\\pi\\mu d_p|V-V_p|$ を $\\rho|V-V_p|^2(\\pi d_p^2/4)/2$ で割ると $24/Re_p$ です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "抗力 $F=3\\pi\\mu d_p|V-V_p|$ を $\\rho|V-V_p|^2(\\pi d_p^2/4)/2$ で割ると $24/Re_p$ です。",
+              "figures": [
+                {
+                  "figureImage": "t1e23DragCurveAns",
+                  "caption": "粒子の抗力係数とストークス則の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】抗力 $F=3\\pi\\mu d_p|V-V_p|$ を $\\rho|V-V_p|^2(\\pi d_p^2/4)/2$ で割ると $24/Re_p$ です。\n【考え方】正解は2です。抗力 $F=3\\pi\\mu d_p|V-V_p|$ を $\\rho|V-V_p|^2(\\pi d_p^2/4)/2$ で割ると $24/Re_p$ です。\n【ポイント】抗力 $F=3\\pi\\mu d_p|V-V_p|$ を $\\rho|V-V_p|^2(\\pi d_p^2/4)/2$ で割ると $24/Re_p$ です。\n【引っかけ】1：「$24Re_p$」ではなく、$24/Re_p$です。抗力 $F=3\\pi\\mu d_p|V-V_p|$ を $\\rho|V-V_p|^2(\\pi d_p^2/4)/2$ で割ると $24/Re_p$ です。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "粒子運動・抗力／個別の質問：Stokes域",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$24Re_p$」ではなく、$24/Re_p$です。抗力 $F=3\\pi\\mu d_p|V-V_p|$ を $\\rho|V-V_p|^2(\\pi d_p^2/4)/2$ で割ると $24/Re_p$ です。"
+            },
+            "sha256": "2fa9b7dd6d51af9bf8a027062d7101c1210c073f6867bc0427ff82ec178b66ac"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-1-item-d",
+          "number": "23-1",
+          "officialRef": "燃焼流7-1",
+          "officialQuestionItem": "d",
+          "title": "蒸発の影響",
+          "topic": "粒子運動・抗力",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "表面から吹き出しを伴う蒸発粒子では、抗力係数は一般にどちらへ変化しますか？",
+          "choices": [
+            "低下する方向",
+            "増加する方向"
+          ],
+          "answer": 1,
+          "answerSummary": "表面からの流出が周囲の境界層を変え、同じ相対速度に対する摩擦抵抗を弱める効果があります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "表面からの流出が周囲の境界層を変え、同じ相対速度に対する摩擦抵抗を弱める効果があります。"
+            }
+          ],
+          "explanation": "【基礎】表面からの流出が周囲の境界層を変え、同じ相対速度に対する摩擦抵抗を弱める効果があります。\n【考え方】正解は1です。表面からの流出が周囲の境界層を変え、同じ相対速度に対する摩擦抵抗を弱める効果があります。\n【ポイント】表面からの流出が周囲の境界層を変え、同じ相対速度に対する摩擦抵抗を弱める効果があります。\n【引っかけ】2：「増加する方向」ではなく、低下する方向です。表面からの流出が周囲の境界層を変え、同じ相対速度に対する摩擦抵抗を弱める効果があります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "粒子運動・抗力／個別の質問：蒸発の影響",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「増加する方向」ではなく、低下する方向です。表面からの流出が周囲の境界層を変え、同じ相対速度に対する摩擦抵抗を弱める効果があります。"
+            },
+            "sha256": "e807e3d4da65de40adf36f8c63705172dda6cda423166fa2f2ab7cbd0cdd7bba"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "係数の意味：相対流れから粒子へ作用する抵抗を、動圧と投影面積で無次元化した係数です。\n粒子レイノルズ数：粒子が流体と一緒に動けば相対速度はゼロです。\nStokes域：抗力 $F=3\\pi\\mu d_p|V-V_p|$ を $\\rho|V-V_p|^2(\\pi d_p^2/4)/2$ で割ると $24/Re_p$ です。\n蒸発の影響：表面からの流出が周囲の境界層を変え、同じ相対速度に対する摩擦抵抗を弱める効果があります。",
+      "preFigures": [
+        {
+          "figureImage": "t1e23DragCurve",
+          "caption": "各小問に共通する位置・形状・条件をこの図で確認してください。"
+        }
+      ]
     },
     {
       "id": "thermal1-23-2",
@@ -118,7 +300,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e23Preferential",
-      "figureHint": "白地660x420。乱流渦の場に粒子を点で散布し、渦中心(渦度大)からはじき出され渦と渦の間の歪速度の強い帯に粒子が集まって空隙ができる様子を示す模式図"
+      "figureHint": "白地660x420。乱流渦の場に粒子を点で散布し、渦中心(渦度大)からはじき出され渦と渦の間の歪速度の強い帯に粒子が集まって空隙ができる様子を示す模式図",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-23-3",
@@ -173,7 +358,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e23CollisionModes",
-      "figureHint": "白地660x420。2液滴の衝突結果を3枚並べ、左=すれ違い衝突なし、中=1つに合体、右=一度接触後に2つに分離(grazing)を軌跡の矢印付きで示す模式図"
+      "figureHint": "白地660x420。2液滴の衝突結果を3枚並べ、左=すれ違い衝突なし、中=1つに合体、右=一度接触後に2つに分離(grazing)を軌跡の矢印付きで示す模式図",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-23-4",
@@ -228,7 +416,144 @@
       "role": "primary",
       "figure": "required",
       "figureImage": "t1e23WeberBreakup",
-      "figureHint": "白地660x420。気流中の球状液滴が動圧P_Dで前よどみ点から扁平化し、表面張力P_Sと拮抗する様子を矢印で描き、P_D/P_S≥1で分裂する過程を段階的に示す模式図(数値は書かない)"
+      "figureHint": "白地660x420。気流中の球状液滴が動圧P_Dで前よどみ点から扁平化し、表面張力P_Sと拮抗する様子を矢印で描き、P_D/P_S≥1で分裂する過程を段階的に示す模式図(数値は書かない)",
+      "editorialReview": {
+        "officialPoint": "微粒化・ウェーバー数",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "1": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "6f2a7872aaf40c2ea1afd6023264534fc89365444f48a648506539361ff0163d"
+      },
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "sharedQuestion": "直径 $d$ の液滴と気流の相対速度を $U$、気体密度を $\\rho_g$、表面張力を $\\sigma$ とします。比較用の圧力を $P_D=\\rho_gU^2/2$、$P_S=4\\sigma/d$ と定義します。",
+      "studyParts": [
+        {
+          "id": "thermal1-23-4-item-a",
+          "number": "23-4",
+          "officialRef": "燃焼流7-4",
+          "officialQuestionItem": "a",
+          "title": "動圧",
+          "topic": "微粒化・ウェーバー数",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "変形を与える動圧は？",
+          "choices": [
+            "$P_D=\\rho_gU^2/2$",
+            "$P_D=\\rho_gU/2$"
+          ],
+          "answer": 1,
+          "answerSummary": "流れの慣性による圧力は相対速度の二乗に比例します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "流れの慣性による圧力は相対速度の二乗に比例します。圧力の単位になることも確認します。"
+            }
+          ],
+          "explanation": "【基礎】流れの慣性による圧力は相対速度の二乗に比例します。\n【考え方】正解は1です。流れの慣性による圧力は相対速度の二乗に比例します。圧力の単位になることも確認します。\n【ポイント】流れの慣性による圧力は相対速度の二乗に比例します。\n【引っかけ】2：「$P_D=\\rho_gU/2$」ではなく、$P_D=\\rho_gU^2/2$です。流れの慣性による圧力は相対速度の二乗に比例します。圧力の単位になることも確認します。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "微粒化・ウェーバー数／個別の質問：動圧",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$P_D=\\rho_gU/2$」ではなく、$P_D=\\rho_gU^2/2$です。流れの慣性による圧力は相対速度の二乗に比例します。圧力の単位になることも確認します。"
+            },
+            "sha256": "5dec56f0a8a895bb48d6b817d350775f87a5ff07c2cc84d588986361d72c4ab0"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-4-item-b",
+          "number": "23-4",
+          "officialRef": "燃焼流7-4",
+          "officialQuestionItem": "b",
+          "title": "変形",
+          "topic": "微粒化・ウェーバー数",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "強い気流を正面から受ける液滴は、まずどのように変形しますか？",
+          "choices": [
+            "流れ方向に細長く伸びるだけ",
+            "流れ方向につぶれて扁平になる"
+          ],
+          "answer": 2,
+          "answerSummary": "上流側の圧力に押され、流れと直交する方向へ広がります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "上流側の圧力に押され、流れと直交する方向へ広がります。さらに強い作用では不安定化して分裂します。"
+            }
+          ],
+          "explanation": "【基礎】上流側の圧力に押され、流れと直交する方向へ広がります。\n【考え方】正解は2です。上流側の圧力に押され、流れと直交する方向へ広がります。さらに強い作用では不安定化して分裂します。\n【ポイント】上流側の圧力に押され、流れと直交する方向へ広がります。\n【引っかけ】1：「流れ方向に細長く伸びるだけ」ではなく、流れ方向につぶれて扁平になるです。上流側の圧力に押され、流れと直交する方向へ広がります。さらに強い作用では不安定化して分裂します。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "微粒化・ウェーバー数／個別の質問：変形",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「流れ方向に細長く伸びるだけ」ではなく、流れ方向につぶれて扁平になるです。上流側の圧力に押され、流れと直交する方向へ広がります。さらに強い作用では不安定化して分裂します。"
+            },
+            "sha256": "2202196a1fe2e4fb9d8e5d1573a49d58204e2a1343f479af9288f10b8bc6d964"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-4-item-c",
+          "number": "23-4",
+          "officialRef": "燃焼流7-4",
+          "officialQuestionItem": "c",
+          "title": "分裂の目安",
+          "topic": "微粒化・ウェーバー数",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "この圧力の定義で動圧が表面張力圧を上回る目安は？",
+          "choices": [
+            "$P_D/P_S=We_{gl}/8\\gtrsim1$",
+            "$P_D/P_S=8We_{gl}\\gtrsim1$"
+          ],
+          "answer": 1,
+          "answerSummary": "比を取ると $(\\rho_gU^2/2)/(4\\sigma/d)=\\rho_gU^2d/(8\\sigma)$ です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "比を取ると $(\\rho_gU^2/2)/(4\\sigma/d)=\\rho_gU^2d/(8\\sigma)$ です。$We_{gl}=\\rho_gU^2d/\\sigma$ と対応させます。係数は圧力の定義とそろえます。",
+              "figures": [
+                {
+                  "figureImage": "t1e23WeberBreakup",
+                  "caption": "ウェーバー数による液滴分裂判定の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】比を取ると $(\\rho_gU^2/2)/(4\\sigma/d)=\\rho_gU^2d/(8\\sigma)$ です。\n【考え方】正解は1です。比を取ると $(\\rho_gU^2/2)/(4\\sigma/d)=\\rho_gU^2d/(8\\sigma)$ です。$We_{gl}=\\rho_gU^2d/\\sigma$ と対応させます。係数は圧力の定義とそろえます。\n【ポイント】比を取ると $(\\rho_gU^2/2)/(4\\sigma/d)=\\rho_gU^2d/(8\\sigma)$ です。\n【引っかけ】2：「$P_D/P_S=8We_{gl}\\gtrsim1$」ではなく、$P_D/P_S=We_{gl}/8\\gtrsim1$です。比を取ると $(\\rho_gU^2/2)/(4\\sigma/d)=\\rho_gU^2d/(8\\sigma)$ です。$We_{gl}=\\rho_gU^2d/\\sigma$ と対応させます。係数は圧力の定義とそろえます。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "微粒化・ウェーバー数／個別の質問：分裂の目安",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$P_D/P_S=8We_{gl}\\gtrsim1$」ではなく、$P_D/P_S=We_{gl}/8\\gtrsim1$です。比を取ると $(\\rho_gU^2/2)/(4\\sigma/d)=\\rho_gU^2d/(8\\sigma)$ です。$We_{gl}=\\rho_gU^2d/\\sigma$ と対応させます。係数は圧力の定義とそろえます。"
+            },
+            "sha256": "a3359b045b2d85990c262bc612f17a4216773bf913b08859d13931323b067a61"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "動圧：流れの慣性による圧力は相対速度の二乗に比例します。\n変形：上流側の圧力に押され、流れと直交する方向へ広がります。\n分裂の目安：比を取ると $(\\rho_gU^2/2)/(4\\sigma/d)=\\rho_gU^2d/(8\\sigma)$ です。"
     },
     {
       "id": "thermal1-23-5",
@@ -284,7 +609,166 @@
       "figure": "helpful",
       "preFigureImage": "t1e23Atomization",
       "figureImage": "t1e23AtomizationAns",
-      "figureHint": "白地660x420。左に大きな1個の球状液滴(直径D)、右に微粒化された多数の小液滴群(直径D/α)を描き、体積は同じで表面積総和が増えることを矢印で示す模式図(倍率の数値は書かない)"
+      "figureHint": "白地660x420。左に大きな1個の球状液滴(直径D)、右に微粒化された多数の小液滴群(直径D/α)を描き、体積は同じで表面積総和が増えることを矢印で示す模式図(倍率の数値は書かない)",
+      "editorialReview": {
+        "officialPoint": "微粒化の比例関係",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "1": "通常解説の各肢の理由を参照。",
+          "2": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "f7c133d6ce9de549df3515a8e525cf5ec3c3651cbf9255d77ba6e52f1f460c45"
+      },
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "sharedQuestion": "体積を保って、直径 $D$ の球形液滴を直径 $D/\\alpha$ の等しい小液滴へ分けます。$\\alpha>1$ とします。",
+      "studyParts": [
+        {
+          "id": "thermal1-23-5-item-a",
+          "number": "23-5",
+          "officialRef": "燃焼流7-5",
+          "officialQuestionItem": "a",
+          "title": "個数",
+          "topic": "微粒化の比例関係",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "小液滴の数は元の1個に対し何個ですか？",
+          "choices": [
+            "$\\alpha^2$",
+            "$\\alpha^3$"
+          ],
+          "answer": 2,
+          "answerSummary": "1個の体積は直径の三乗に比例します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "1個の体積は直径の三乗に比例します。小液滴1個は元の $1/\\alpha^3$ の体積なので、体積保存から $\\alpha^3$ 個必要です。"
+            },
+            {
+              "title": "一個の体積から個数を導く",
+              "body": "球の体積は $\\pi D^3/6$ です。小液滴の直径は $D/\\alpha$ なので、一個の体積は $\\pi(D/\\alpha)^3/6=(\\pi D^3/6)/\\alpha^3$ です。元の体積の $\\alpha^{-3}$ 倍になります。小液滴が $N$ 個あるなら、体積保存は $N(\\pi D^3/6)/\\alpha^3=\\pi D^3/6$ です。両辺の共通部分を約分すると $N=\\alpha^3$。今回は $100^3=1000000=10^6$ 個となります。"
+            }
+          ],
+          "explanation": "【基礎】1個の体積は直径の三乗に比例します。\n【考え方】正解は2です。1個の体積は直径の三乗に比例します。小液滴1個は元の $1/\\alpha^3$ の体積なので、体積保存から $\\alpha^3$ 個必要です。\n【ポイント】球の体積は $\\pi D^3/6$ です。小液滴の直径は $D/\\alpha$ なので、一個の体積は $\\pi(D/\\alpha)^3/6=(\\pi D^3/6)/\\alpha^3$ です。元の体積の $\\alpha^{-3}$ 倍になります。小液滴が $N$ 個あるなら、体積保存は $N(\\pi D^3/6)/\\alpha^3=\\pi D^3/6$ です。両辺の共通部分を約分すると $N=\\alpha^3$。今回は $100^3=1000000=10^6$ 個となります。\n【引っかけ】1：「$\\alpha^2$」ではなく、$\\alpha^3$です。1個の体積は直径の三乗に比例します。小液滴1個は元の $1/\\alpha^3$ の体積なので、体積保存から $\\alpha^3$ 個必要です。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "微粒化の比例関係／個別の質問：個数",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$\\alpha^2$」ではなく、$\\alpha^3$です。1個の体積は直径の三乗に比例します。小液滴1個は元の $1/\\alpha^3$ の体積なので、体積保存から $\\alpha^3$ 個必要です。"
+            },
+            "sha256": "f3403f6fa324c9085d588fe6c57a223bed540f094fdf883c113f8a94c44af703"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-5-item-b",
+          "number": "23-5",
+          "officialRef": "燃焼流7-5",
+          "officialQuestionItem": "b",
+          "title": "1個の質量",
+          "topic": "微粒化の比例関係",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "小液滴1個の質量は元の何倍ですか？",
+          "choices": [
+            "$1/\\alpha^3$",
+            "$1/\\alpha$"
+          ],
+          "answer": 1,
+          "answerSummary": "密度が同じなら質量は体積に比例します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "密度が同じなら質量は体積に比例します。例えば $\\alpha=100$ なら1個の質量は100万分の1です。"
+            }
+          ],
+          "explanation": "【基礎】密度が同じなら質量は体積に比例します。\n【考え方】正解は1です。密度が同じなら質量は体積に比例します。例えば $\\alpha=100$ なら1個の質量は100万分の1です。\n【ポイント】密度が同じなら質量は体積に比例します。\n【引っかけ】2：「$1/\\alpha$」ではなく、$1/\\alpha^3$です。密度が同じなら質量は体積に比例します。例えば $\\alpha=100$ なら1個の質量は100万分の1です。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "微粒化の比例関係／個別の質問：1個の質量",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$1/\\alpha$」ではなく、$1/\\alpha^3$です。密度が同じなら質量は体積に比例します。例えば $\\alpha=100$ なら1個の質量は100万分の1です。"
+            },
+            "sha256": "0e1dde442565a9941371e7bb11758412f7cdb78133eee32290ac03dc6cffe7f9"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-5-item-c",
+          "number": "23-5",
+          "officialRef": "燃焼流7-5",
+          "officialQuestionItem": "c",
+          "title": "総表面積",
+          "topic": "微粒化の比例関係",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "小液滴全部の表面積は元の何倍ですか？",
+          "choices": [
+            "$\\alpha^2$",
+            "$\\alpha$"
+          ],
+          "answer": 2,
+          "answerSummary": "1個の表面積は $1/\\alpha^2$、個数は $\\alpha^3$。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "1個の表面積は $1/\\alpha^2$、個数は $\\alpha^3$。掛けると $\\alpha$ 倍です。直径を100分の1にすると総面積は100倍になります。"
+            },
+            {
+              "title": "表面積は一個と全部を分ける",
+              "body": "球の表面積は $\\pi D^2$ です。小液滴一個なら $\\pi(D/\\alpha)^2=\\pi D^2/\\alpha^2$ なので、元の一個の面積の1万分の1です。しかし、小液滴は100万個あります。合計の表面積は $N\\pi D^2/\\alpha^2=\\alpha^3\\pi D^2/\\alpha^2=\\alpha\\pi D^2$ です。元の表面積で割ると倍率は $\\alpha=100$ になります。一個の面積は減るのに、全部を足すと増えることが、この計算の中心です。"
+            },
+            {
+              "title": "小さな数字で確かめる",
+              "body": "直径を半分にする簡単な場合なら、一個の体積は8分の1になるので、元の体積を保つには8個必要です。一個の表面積は4分の1ですが、8個分を足すと $8/4=2$ 倍になります。直径の縮小倍率が2なら、総面積の倍率も2です。この小さな例を先に思い浮かべると、今回の100倍、100万個という大きな数でも、同じ仕組みで計算していることが分かります。個数の三乗と総面積の一乗を区別しましょう。"
+            },
+            {
+              "title": "微粒化が蒸発を助ける理由",
+              "body": "蒸発や気体との熱交換は、主に液滴の表面を通して進みます。同じ燃料量でも、表面積が増えれば、周囲と接する場所が多くなります。また、小さな液滴では内部まで熱が伝わる距離も短くなります。これが、燃料を細かい霧にして燃やす理由の一つです。ただし、面積が100倍なら燃焼速度も必ず100倍というわけではありません。温度や酸素の供給、液滴同士の影響も関係します。ここで厳密に100倍と求めたのは、幾何学的な表面積の合計です。",
+              "figures": [
+                {
+                  "figureImage": "t1e23AtomizationAns",
+                  "caption": "微粒化による個数・表面積の変化の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】1個の表面積は $1/\\alpha^2$、個数は $\\alpha^3$。\n【考え方】正解は2です。1個の表面積は $1/\\alpha^2$、個数は $\\alpha^3$。掛けると $\\alpha$ 倍です。直径を100分の1にすると総面積は100倍になります。\n【ポイント】球の表面積は $\\pi D^2$ です。小液滴一個なら $\\pi(D/\\alpha)^2=\\pi D^2/\\alpha^2$ なので、元の一個の面積の1万分の1です。しかし、小液滴は100万個あります。合計の表面積は $N\\pi D^2/\\alpha^2=\\alpha^3\\pi D^2/\\alpha^2=\\alpha\\pi D^2$ です。元の表面積で割ると倍率は $\\alpha=100$ になります。一個の面積は減るのに、全部を足すと増えることが、この計算の中心です。\n【引っかけ】1：「$\\alpha^2$」ではなく、$\\alpha$です。1個の表面積は $1/\\alpha^2$、個数は $\\alpha^3$。掛けると $\\alpha$ 倍です。直径を100分の1にすると総面積は100倍になります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "微粒化の比例関係／個別の質問：総表面積",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$\\alpha^2$」ではなく、$\\alpha$です。1個の表面積は $1/\\alpha^2$、個数は $\\alpha^3$。掛けると $\\alpha$ 倍です。直径を100分の1にすると総面積は100倍になります。"
+            },
+            "sha256": "02b043669faeb9e7dfcc38825cb1e59f9491bfee0a7dc855e3598b60fe820706"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "個数：1個の体積は直径の三乗に比例します。\n1個の質量：密度が同じなら質量は体積に比例します。\n総表面積：1個の表面積は $1/\\alpha^2$、個数は $\\alpha^3$。",
+      "preFigures": [
+        {
+          "figureImage": "t1e23Atomization",
+          "caption": "各小問に共通する位置・形状・条件をこの図で確認してください。"
+        }
+      ]
     },
     {
       "id": "thermal1-23-6",
@@ -339,7 +823,182 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e23LiquidColumn",
-      "figureHint": "白地660x420。ノズルから噴出する液柱の表面に不安定波が成長して分裂し(WAVE)、初期粒径=ノズル直径のblobから多数のparcel液滴が生じる過程を左から右へ描いた模式図"
+      "figureHint": "白地660x420。ノズルから噴出する液柱の表面に不安定波が成長して分裂し(WAVE)、初期粒径=ノズル直径のblobから多数のparcel液滴が生じる過程を左から右へ描いた模式図",
+      "editorialReview": {
+        "officialPoint": "噴霧分裂モデル",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "1": "通常解説の各肢の理由を参照。",
+          "2": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "fdbdfc467bf37430ba357ce1ad6035b828aa2d391d52248af8e6cd12cf2f687c"
+      },
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "sharedQuestion": "DDMによる噴霧計算で、blobモデルとWAVEモデルの基本的な扱いを選んでください。",
+      "studyParts": [
+        {
+          "id": "thermal1-23-6-item-a",
+          "number": "23-6",
+          "officialRef": "燃焼流7-6",
+          "officialQuestionItem": "a",
+          "title": "代表液滴",
+          "topic": "噴霧分裂モデル",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "多数の液滴をまとめて計算する代表集団の名称は？",
+          "choices": [
+            "パーセル",
+            "計算セル"
+          ],
+          "answer": 1,
+          "answerSummary": "パーセルは同じような液滴をまとめた代表です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "パーセルは同じような液滴をまとめた代表です。流体の空間を分割するセルとは異なります。"
+            }
+          ],
+          "explanation": "【基礎】パーセルは同じような液滴をまとめた代表です。\n【考え方】正解は1です。パーセルは同じような液滴をまとめた代表です。流体の空間を分割するセルとは異なります。\n【ポイント】パーセルは同じような液滴をまとめた代表です。\n【引っかけ】2：「計算セル」ではなく、パーセルです。パーセルは同じような液滴をまとめた代表です。流体の空間を分割するセルとは異なります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "噴霧分裂モデル／個別の質問：代表液滴",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「計算セル」ではなく、パーセルです。パーセルは同じような液滴をまとめた代表です。流体の空間を分割するセルとは異なります。"
+            },
+            "sha256": "8cf81baca67d27518a606d5342c0d96fae50334f820cb553b7078486a131c473"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-6-item-b",
+          "number": "23-6",
+          "officialRef": "燃焼流7-6",
+          "officialQuestionItem": "b",
+          "title": "初期径",
+          "topic": "噴霧分裂モデル",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "blobモデルの初期液滴径の代表的な設定は？",
+          "choices": [
+            "最終的な最小液滴径",
+            "ノズル直径"
+          ],
+          "answer": 2,
+          "answerSummary": "最初の液柱をノズル径ほどのblobとして置き、その後の分裂で細かくします。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "最初の液柱をノズル径ほどのblobとして置き、その後の分裂で細かくします。"
+            }
+          ],
+          "explanation": "【基礎】最初の液柱をノズル径ほどのblobとして置き、その後の分裂で細かくします。\n【考え方】正解は2です。最初の液柱をノズル径ほどのblobとして置き、その後の分裂で細かくします。\n【ポイント】最初の液柱をノズル径ほどのblobとして置き、その後の分裂で細かくします。\n【引っかけ】1：「最終的な最小液滴径」ではなく、ノズル直径です。最初の液柱をノズル径ほどのblobとして置き、その後の分裂で細かくします。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "噴霧分裂モデル／個別の質問：初期径",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「最終的な最小液滴径」ではなく、ノズル直径です。最初の液柱をノズル径ほどのblobとして置き、その後の分裂で細かくします。"
+            },
+            "sha256": "394680d11440b827d11c7e283c12b66e1b67f861c8c4e6e19bc38f5b2da2a6d3"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-6-item-c",
+          "number": "23-6",
+          "officialRef": "燃焼流7-6",
+          "officialQuestionItem": "c",
+          "title": "投入個数",
+          "topic": "噴霧分裂モデル",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "初期液滴やパーセルの投入数を整合させる基準は？",
+          "choices": [
+            "噴射流量",
+            "気相格子の総数だけ"
+          ],
+          "answer": 1,
+          "answerSummary": "投入した質量の合計が実際の噴射量と一致するように決めます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "投入した質量の合計が実際の噴射量と一致するように決めます。計算上の代表数を増やして燃料総量まで増やしてはいけません。"
+            }
+          ],
+          "explanation": "【基礎】投入した質量の合計が実際の噴射量と一致するように決めます。\n【考え方】正解は1です。投入した質量の合計が実際の噴射量と一致するように決めます。計算上の代表数を増やして燃料総量まで増やしてはいけません。\n【ポイント】投入した質量の合計が実際の噴射量と一致するように決めます。\n【引っかけ】2：「気相格子の総数だけ」ではなく、噴射流量です。投入した質量の合計が実際の噴射量と一致するように決めます。計算上の代表数を増やして燃料総量まで増やしてはいけません。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "噴霧分裂モデル／個別の質問：投入個数",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「気相格子の総数だけ」ではなく、噴射流量です。投入した質量の合計が実際の噴射量と一致するように決めます。計算上の代表数を増やして燃料総量まで増やしてはいけません。"
+            },
+            "sha256": "961f3866c0646c3eeda2180ace8b9c620a41ce5f4828f95e344ea5189b203301"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-6-item-d",
+          "number": "23-6",
+          "officialRef": "燃焼流7-6",
+          "officialQuestionItem": "d",
+          "title": "WAVEモデル",
+          "topic": "噴霧分裂モデル",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "WAVEモデルの分裂機構は？",
+          "choices": [
+            "液柱内部の化学平衡反応だけ",
+            "液柱表面に成長する不安定波"
+          ],
+          "answer": 2,
+          "answerSummary": "気液の相対流れで表面の波が成長し、液体がちぎれる過程をモデル化します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "気液の相対流れで表面の波が成長し、液体がちぎれる過程をモデル化します。",
+              "figures": [
+                {
+                  "figureImage": "t1e23LiquidColumn",
+                  "caption": "液柱分裂モデル(DDM・blob・WAVE)の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】気液の相対流れで表面の波が成長し、液体がちぎれる過程をモデル化します。\n【考え方】正解は2です。気液の相対流れで表面の波が成長し、液体がちぎれる過程をモデル化します。\n【ポイント】気液の相対流れで表面の波が成長し、液体がちぎれる過程をモデル化します。\n【引っかけ】1：「液柱内部の化学平衡反応だけ」ではなく、液柱表面に成長する不安定波です。気液の相対流れで表面の波が成長し、液体がちぎれる過程をモデル化します。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "噴霧分裂モデル／個別の質問：WAVEモデル",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「液柱内部の化学平衡反応だけ」ではなく、液柱表面に成長する不安定波です。気液の相対流れで表面の波が成長し、液体がちぎれる過程をモデル化します。"
+            },
+            "sha256": "f3bfe60182c9ddb8a9ed4f98d0664eb1b7c282ff01985e8cbe73c4865b773807"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "代表液滴：パーセルは同じような液滴をまとめた代表です。\n初期径：最初の液柱をノズル径ほどのblobとして置き、その後の分裂で細かくします。\n投入個数：投入した質量の合計が実際の噴射量と一致するように決めます。\nWAVEモデル：気液の相対流れで表面の波が成長し、液体がちぎれる過程をモデル化します。"
     },
     {
       "id": "thermal1-23-7",
@@ -394,7 +1053,144 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e23DdmScheme",
-      "figureHint": "白地660x420。オイラー格子(気相)の上をラグランジュ的に運動する代表液滴(parcel)の軌跡を描き、セルごとに気液の質量・運動量・熱交換が生成項として双方向にやり取りされる(PSI-Cell)様子を矢印で示す模式図"
+      "figureHint": "白地660x420。オイラー格子(気相)の上をラグランジュ的に運動する代表液滴(parcel)の軌跡を描き、セルごとに気液の質量・運動量・熱交換が生成項として双方向にやり取りされる(PSI-Cell)様子を矢印で示す模式図",
+      "editorialReview": {
+        "officialPoint": "噴霧流モデル",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "1": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "00a84874fadf7e371bc996ac6c9635d2de0f70b3a7d82f89e68d8f7d3d779e51"
+      },
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "sharedQuestion": "気相と液滴を別々に計算するDDMの基本的な扱いを選んでください。",
+      "studyParts": [
+        {
+          "id": "thermal1-23-7-item-a",
+          "number": "23-7",
+          "officialRef": "燃焼流7-7",
+          "officialQuestionItem": "a",
+          "title": "粒子の追跡",
+          "topic": "噴霧流モデル",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "代表液滴の運動をどの見方で求めますか？",
+          "choices": [
+            "固定点だけのオイラー的な記録",
+            "ラグランジュ的な追跡"
+          ],
+          "answer": 2,
+          "answerSummary": "各代表液滴に乗って位置と速度を時間更新します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "各代表液滴に乗って位置と速度を時間更新します。気相の場は固定格子で解くことができます。"
+            }
+          ],
+          "explanation": "【基礎】各代表液滴に乗って位置と速度を時間更新します。\n【考え方】正解は2です。各代表液滴に乗って位置と速度を時間更新します。気相の場は固定格子で解くことができます。\n【ポイント】各代表液滴に乗って位置と速度を時間更新します。\n【引っかけ】1：「固定点だけのオイラー的な記録」ではなく、ラグランジュ的な追跡です。各代表液滴に乗って位置と速度を時間更新します。気相の場は固定格子で解くことができます。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "噴霧流モデル／個別の質問：粒子の追跡",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「固定点だけのオイラー的な記録」ではなく、ラグランジュ的な追跡です。各代表液滴に乗って位置と速度を時間更新します。気相の場は固定格子で解くことができます。"
+            },
+            "sha256": "f0ac0fe6d336771335ed392fd4d72c90e1150cbb867b6ecce0cd582c73ad8405"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-7-item-b",
+          "number": "23-7",
+          "officialRef": "燃焼流7-7",
+          "officialQuestionItem": "b",
+          "title": "相互作用",
+          "topic": "噴霧流モデル",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "液滴との運動量交換を気相方程式のどこへ加えますか？",
+          "choices": [
+            "生成項（ソース項）",
+            "対流項の速度を無条件に液滴速度へ置換"
+          ],
+          "answer": 1,
+          "answerSummary": "液滴が受けた力の反作用を気相へ戻します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "液滴が受けた力の反作用を気相へ戻します。作用と反作用をそろえることで全体の運動量が保存されます。"
+            }
+          ],
+          "explanation": "【基礎】液滴が受けた力の反作用を気相へ戻します。\n【考え方】正解は1です。液滴が受けた力の反作用を気相へ戻します。作用と反作用をそろえることで全体の運動量が保存されます。\n【ポイント】液滴が受けた力の反作用を気相へ戻します。\n【引っかけ】2：「対流項の速度を無条件に液滴速度へ置換」ではなく、生成項（ソース項）です。液滴が受けた力の反作用を気相へ戻します。作用と反作用をそろえることで全体の運動量が保存されます。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "噴霧流モデル／個別の質問：相互作用",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「対流項の速度を無条件に液滴速度へ置換」ではなく、生成項（ソース項）です。液滴が受けた力の反作用を気相へ戻します。作用と反作用をそろえることで全体の運動量が保存されます。"
+            },
+            "sha256": "959069f543491b1f107467734493338a4faf12d36a4eb3ec8489ef3821c8af4e"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-7-item-c",
+          "number": "23-7",
+          "officialRef": "燃焼流7-7",
+          "officialQuestionItem": "c",
+          "title": "統計表現",
+          "topic": "噴霧流モデル",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "液滴集団の状態のばらつきを統計的に表すものは？",
+          "choices": [
+            "単一の最大値だけ",
+            "確率密度関数（PDF）"
+          ],
+          "answer": 2,
+          "answerSummary": "粒径や速度がどの程度現れるかを分布で表します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "粒径や速度がどの程度現れるかを分布で表します。すべての実液滴を個別に計算する負担を減らすために用いられます。",
+              "figures": [
+                {
+                  "figureImage": "t1e23DdmScheme",
+                  "caption": "噴霧流の数値計算法の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】粒径や速度がどの程度現れるかを分布で表します。\n【考え方】正解は2です。粒径や速度がどの程度現れるかを分布で表します。すべての実液滴を個別に計算する負担を減らすために用いられます。\n【ポイント】粒径や速度がどの程度現れるかを分布で表します。\n【引っかけ】1：「単一の最大値だけ」ではなく、確率密度関数（PDF）です。粒径や速度がどの程度現れるかを分布で表します。すべての実液滴を個別に計算する負担を減らすために用いられます。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "噴霧流モデル／個別の質問：統計表現",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「単一の最大値だけ」ではなく、確率密度関数（PDF）です。粒径や速度がどの程度現れるかを分布で表します。すべての実液滴を個別に計算する負担を減らすために用いられます。"
+            },
+            "sha256": "5d078281615ffaee1ea0376ce88e823da8e11b40572b87f5eb0ece80c0cae4c5"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "粒子の追跡：各代表液滴に乗って位置と速度を時間更新します。\n相互作用：液滴が受けた力の反作用を気相へ戻します。\n統計表現：粒径や速度がどの程度現れるかを分布で表します。"
     },
     {
       "id": "thermal1-23-8",
@@ -447,10 +1243,185 @@
       "reviewed": true,
       "officialRef": "燃焼流7-8",
       "role": "primary",
-      "figure": "helpful",
+      "figure": "none",
       "preFigureImage": "t1e23SauterD32",
-      "figureImage": "t1e23SauterD32Ans",
-      "figureHint": "白地660x420。多数の径の異なる液滴群と、それと同じ全体積かつ同じ全表面積を持つ一様径の液滴群(直径D32)を左右に対比し、体積(3乗)と表面積(2乗)を一致させる代表径であることを示す模式図"
+      "figureHint": "白地660x420。多数の径の異なる液滴群と、それと同じ全体積かつ同じ全表面積を持つ一様径の液滴群(直径D32)を左右に対比し、体積(3乗)と表面積(2乗)を一致させる代表径であることを示す模式図",
+      "editorialReview": {
+        "officialPoint": "平均粒径",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "2": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "78e6ce7eca02c92d78b449f3ba96a7b62f2570a8916f69d1e2e39724df33db90"
+      },
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "sharedQuestion": "液滴の蒸発・燃焼と、粒径分布を代表する平均直径について答えてください。",
+      "studyParts": [
+        {
+          "id": "thermal1-23-8-item-a",
+          "number": "23-8",
+          "officialRef": "燃焼流7-8",
+          "officialQuestionItem": "a",
+          "title": "時間に対する変化",
+          "topic": "平均粒径",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "準定常な液滴蒸発で時間にほぼ直線的に減る量は？",
+          "choices": [
+            "直径の二乗",
+            "直径の三乗"
+          ],
+          "answer": 1,
+          "answerSummary": "基本的なD²則では、直径そのものではなく二乗を時間に対して描くと直線になります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "基本的なD²則では、直径そのものではなく二乗を時間に対して描くと直線になります。"
+            }
+          ],
+          "explanation": "【基礎】基本的なD²則では、直径そのものではなく二乗を時間に対して描くと直線になります。\n【考え方】正解は1です。基本的なD²則では、直径そのものではなく二乗を時間に対して描くと直線になります。\n【ポイント】基本的なD²則では、直径そのものではなく二乗を時間に対して描くと直線になります。\n【引っかけ】2：「直径の三乗」ではなく、直径の二乗です。基本的なD²則では、直径そのものではなく二乗を時間に対して描くと直線になります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "平均粒径／個別の質問：時間に対する変化",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「直径の三乗」ではなく、直径の二乗です。基本的なD²則では、直径そのものではなく二乗を時間に対して描くと直線になります。"
+            },
+            "sha256": "ddee9c1d5b20260f53aadf50218fbe2b170bae83bdfad67b46cd1309b93981cf"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-8-item-b",
+          "number": "23-8",
+          "officialRef": "燃焼流7-8",
+          "officialQuestionItem": "b",
+          "title": "交換する面",
+          "topic": "平均粒径",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "周囲と熱や物質を交換する量に直接関係する幾何量は？",
+          "choices": [
+            "体積だけ",
+            "表面積"
+          ],
+          "answer": 2,
+          "answerSummary": "蒸発は液滴表面を通じて進みます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "蒸発は液滴表面を通じて進みます。同じ体積でも細かく分けるほど総表面積が増えます。"
+            }
+          ],
+          "explanation": "【基礎】蒸発は液滴表面を通じて進みます。\n【考え方】正解は2です。蒸発は液滴表面を通じて進みます。同じ体積でも細かく分けるほど総表面積が増えます。\n【ポイント】蒸発は液滴表面を通じて進みます。\n【引っかけ】1：「体積だけ」ではなく、表面積です。蒸発は液滴表面を通じて進みます。同じ体積でも細かく分けるほど総表面積が増えます。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "平均粒径／個別の質問：交換する面",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「体積だけ」ではなく、表面積です。蒸発は液滴表面を通じて進みます。同じ体積でも細かく分けるほど総表面積が増えます。"
+            },
+            "sha256": "bbe3096860f7b66c59012d1de0379be4d48cb09d849101289b00e918f12475ce"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-8-item-c",
+          "number": "23-8",
+          "officialRef": "燃焼流7-8",
+          "officialQuestionItem": "c",
+          "title": "蓄えられる量",
+          "topic": "平均粒径",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "同じ密度で液体の総質量に比例する幾何量は？",
+          "choices": [
+            "体積",
+            "表面積だけ"
+          ],
+          "answer": 1,
+          "answerSummary": "質量は密度と体積の積です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "質量は密度と体積の積です。交換面と蓄えている量の両方をそろえた代表径が役立ちます。"
+            }
+          ],
+          "explanation": "【基礎】質量は密度と体積の積です。\n【考え方】正解は1です。質量は密度と体積の積です。交換面と蓄えている量の両方をそろえた代表径が役立ちます。\n【ポイント】質量は密度と体積の積です。\n【引っかけ】2：「表面積だけ」ではなく、体積です。質量は密度と体積の積です。交換面と蓄えている量の両方をそろえた代表径が役立ちます。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "平均粒径／個別の質問：蓄えられる量",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「表面積だけ」ではなく、体積です。質量は密度と体積の積です。交換面と蓄えている量の両方をそろえた代表径が役立ちます。"
+            },
+            "sha256": "4baefdbb234decaa82e63366ea17502985eb993f252a250212eb11427941c343"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-8-item-d",
+          "number": "23-8",
+          "officialRef": "燃焼流7-8",
+          "officialQuestionItem": "d",
+          "title": "ザウター平均",
+          "topic": "平均粒径",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "個数 $n_i$、直径 $D_i$ からザウター平均径を求める式は？",
+          "choices": [
+            "$D_{32}=\\sum n_iD_i^2/\\sum n_iD_i^3$",
+            "$D_{32}=\\sum n_iD_i^3/\\sum n_iD_i^2$"
+          ],
+          "answer": 2,
+          "answerSummary": "総体積と総表面積の比を同じにする直径です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "総体積と総表面積の比を同じにする直径です。体積の三乗和を面積の二乗和で割るので、答えの単位も長さになります。",
+              "figures": []
+            }
+          ],
+          "explanation": "【基礎】総体積と総表面積の比を同じにする直径です。\n【考え方】正解は2です。総体積と総表面積の比を同じにする直径です。体積の三乗和を面積の二乗和で割るので、答えの単位も長さになります。\n【ポイント】総体積と総表面積の比を同じにする直径です。\n【引っかけ】1：「$D_{32}=\\sum n_iD_i^2/\\sum n_iD_i^3$」ではなく、$D_{32}=\\sum n_iD_i^3/\\sum n_iD_i^2$です。総体積と総表面積の比を同じにする直径です。体積の三乗和を面積の二乗和で割るので、答えの単位も長さになります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "平均粒径／個別の質問：ザウター平均",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$D_{32}=\\sum n_iD_i^2/\\sum n_iD_i^3$」ではなく、$D_{32}=\\sum n_iD_i^3/\\sum n_iD_i^2$です。総体積と総表面積の比を同じにする直径です。体積の三乗和を面積の二乗和で割るので、答えの単位も長さになります。"
+            },
+            "sha256": "588fa7f9cdbfc0946e18b4867538fc950490bb32b05513037ce9ecc187008f8e"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "時間に対する変化：基本的なD²則では、直径そのものではなく二乗を時間に対して描くと直線になります。\n交換する面：蒸発は液滴表面を通じて進みます。\n蓄えられる量：質量は密度と体積の積です。\nザウター平均：総体積と総表面積の比を同じにする直径です。",
+      "preFigures": [
+        {
+          "figureImage": "t1e23SauterD32",
+          "caption": "各小問に共通する位置・形状・条件をこの図で確認してください。"
+        }
+      ]
     },
     {
       "id": "thermal1-23-9",
@@ -505,7 +1476,118 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e23BoilingAltitude",
-      "figureHint": "白地660x420。横軸温度・縦軸飽和蒸気圧の曲線を描き、1気圧の水平線との交点が100℃、低い山上気圧の水平線との交点がより低温であることを示し、蒸発潜熱が低圧ほど大きいことを併記した模式図"
+      "figureHint": "白地660x420。横軸温度・縦軸飽和蒸気圧の曲線を描き、1気圧の水平線との交点が100℃、低い山上気圧の水平線との交点がより低温であることを示し、蒸発潜熱が低圧ほど大きいことを併記した模式図",
+      "editorialReview": {
+        "officialPoint": "沸騰・蒸発潜熱",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "2": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "50a7578460a8e68289f97e560791eb89e02576fc686722984a455af92d0a7a0f"
+      },
+      "officialQuestionItems": [
+        "boiling",
+        "latent"
+      ],
+      "sharedQuestion": "同じ水を、地上より気圧の低い山の上で沸騰させます。",
+      "studyParts": [
+        {
+          "id": "thermal1-23-9-item-boiling",
+          "number": "23-9",
+          "officialRef": "燃焼流7-9",
+          "officialQuestionItem": "boiling",
+          "title": "沸点が下がる理由",
+          "topic": "沸騰・蒸発潜熱",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "山で沸騰温度が下がる主な理由は？",
+          "choices": [
+            "低い周囲圧力に、より低温で飽和蒸気圧が達するため",
+            "山の気温が低いと沸点が気温と等しくなるため"
+          ],
+          "answer": 1,
+          "answerSummary": "沸騰の目安は飽和蒸気圧と周囲圧力の一致です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "沸騰の目安は飽和蒸気圧と周囲圧力の一致です。沸点は周囲の空気の温度と同じになるわけではありません。"
+            },
+            {
+              "title": "沸騰温度を決めるのは圧力",
+              "body": "水中に蒸気の泡ができても、周囲から押す圧力が強ければ、泡はつぶれやすくなります。加熱して水の飽和蒸気圧が周囲の圧力へ達すると、泡が成長して沸騰します。このときの温度が、その圧力での沸騰温度です。周囲の圧力が低ければ、蒸気圧がそれほど高くなくても釣り合えるため、低温で沸きます。逆に圧力鍋では圧力を高め、100℃を超える温度で水を沸騰させることができます。山での沸騰と逆の利用です。"
+            }
+          ],
+          "explanation": "【基礎】沸騰の目安は飽和蒸気圧と周囲圧力の一致です。\n【考え方】正解は1です。沸騰の目安は飽和蒸気圧と周囲圧力の一致です。沸点は周囲の空気の温度と同じになるわけではありません。\n【ポイント】水中に蒸気の泡ができても、周囲から押す圧力が強ければ、泡はつぶれやすくなります。加熱して水の飽和蒸気圧が周囲の圧力へ達すると、泡が成長して沸騰します。このときの温度が、その圧力での沸騰温度です。周囲の圧力が低ければ、蒸気圧がそれほど高くなくても釣り合えるため、低温で沸きます。逆に圧力鍋では圧力を高め、100℃を超える温度で水を沸騰させることができます。山での沸騰と逆の利用です。\n【引っかけ】2：「山の気温が低いと沸点が気温と等しくなるため」ではなく、低い周囲圧力に、より低温で飽和蒸気圧が達するためです。沸騰の目安は飽和蒸気圧と周囲圧力の一致です。沸点は周囲の空気の温度と同じになるわけではありません。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "沸騰・蒸発潜熱／個別の質問：沸点が下がる理由",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「山の気温が低いと沸点が気温と等しくなるため」ではなく、低い周囲圧力に、より低温で飽和蒸気圧が達するためです。沸騰の目安は飽和蒸気圧と周囲圧力の一致です。沸点は周囲の空気の温度と同じになるわけではありません。"
+            },
+            "sha256": "1a6befe99a12af8b6a9cd84e13f1dc3bbda630fb1192ce420e5d1511f72342c5"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-9-item-latent",
+          "number": "23-9",
+          "officialRef": "燃焼流7-9",
+          "officialQuestionItem": "latent",
+          "title": "蒸発潜熱",
+          "topic": "沸騰・蒸発潜熱",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "この範囲で山での蒸発潜熱は地上よりどうなりますか？",
+          "choices": [
+            "大きくなる",
+            "小さくなる"
+          ],
+          "answer": 1,
+          "answerSummary": "水の飽和状態では、低い温度ほど液体から蒸気へ変わるのに必要な潜熱は大きくなります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "水の飽和状態では、低い温度ほど液体から蒸気へ変わるのに必要な潜熱は大きくなります。沸く温度が低いことと、1 kgを蒸発させる熱が少ないことは同じではありません。"
+            },
+            {
+              "title": "温度を上げる熱と相変化の熱",
+              "body": "水を温める段階では、入れた熱によって温度が上がります。沸騰して液体と蒸気が共存する段階では、一定の圧力なら温度がほぼ一定のまま、水が蒸気へ変わります。この相変化に必要な熱が蒸発潜熱です。質量を $m$、単位質量当たりの蒸発潜熱を $L$ とすると、相変化だけに必要な熱は $Q=mL$ です。例えば、1 kgを蒸発させる熱と2 kgを蒸発させる熱は2倍違いますが、同じ状態の水なら潜熱 $L$ 自体は同じです。"
+            },
+            {
+              "title": "低圧で潜熱が大きくなる理由",
+              "body": "蒸発潜熱は、飽和蒸気と飽和液体の比エンタルピーの差、$L=h_g-h_l$ で表されます。温度が上がって気液の臨界点へ近づくほど、液体と気体の状態の違いは小さくなり、潜熱も小さくなります。山と平地のような水の通常の沸騰条件では、低圧側ほど沸騰温度が低く、その状態での潜熱は大きくなります。低温だから熱が不要という話ではなく、同じ質量を液相から気相へ移すときの状態の差を比べています。",
+              "figures": [
+                {
+                  "figureImage": "t1e23BoilingAltitude",
+                  "caption": "沸騰と蒸発潜熱の圧力依存の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】水の飽和状態では、低い温度ほど液体から蒸気へ変わるのに必要な潜熱は大きくなります。\n【考え方】正解は1です。水の飽和状態では、低い温度ほど液体から蒸気へ変わるのに必要な潜熱は大きくなります。沸く温度が低いことと、1 kgを蒸発させる熱が少ないことは同じではありません。\n【ポイント】水を温める段階では、入れた熱によって温度が上がります。沸騰して液体と蒸気が共存する段階では、一定の圧力なら温度がほぼ一定のまま、水が蒸気へ変わります。この相変化に必要な熱が蒸発潜熱です。質量を $m$、単位質量当たりの蒸発潜熱を $L$ とすると、相変化だけに必要な熱は $Q=mL$ です。例えば、1 kgを蒸発させる熱と2 kgを蒸発させる熱は2倍違いますが、同じ状態の水なら潜熱 $L$ 自体は同じです。\n【引っかけ】2：「小さくなる」ではなく、大きくなるです。水の飽和状態では、低い温度ほど液体から蒸気へ変わるのに必要な潜熱は大きくなります。沸く温度が低いことと、1 kgを蒸発させる熱が少ないことは同じではありません。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "沸騰・蒸発潜熱／個別の質問：蒸発潜熱",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「小さくなる」ではなく、大きくなるです。水の飽和状態では、低い温度ほど液体から蒸気へ変わるのに必要な潜熱は大きくなります。沸く温度が低いことと、1 kgを蒸発させる熱が少ないことは同じではありません。"
+            },
+            "sha256": "e0e3fe3a339c0d923ea3891906b11783ef4164fb2fe33dcd5b16a9c45221ceaf"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "沸点が下がる理由：沸騰の目安は飽和蒸気圧と周囲圧力の一致です。\n蒸発潜熱：水の飽和状態では、低い温度ほど液体から蒸気へ変わるのに必要な潜熱は大きくなります。"
     },
     {
       "id": "thermal1-23-10",
@@ -560,7 +1642,106 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e23KelvinEq",
-      "figureHint": "白地660x420。横軸液滴直径D・縦軸P/P_sの曲線(Dが小さいほどP/P_sが1より大きく急上昇)を描き、平面(D→∞)でP/P_s=1に漸近する様子を示す模式図"
+      "figureHint": "白地660x420。横軸液滴直径D・縦軸P/P_sの曲線(Dが小さいほどP/P_sが1より大きく急上昇)を描き、平面(D→∞)でP/P_s=1に漸近する様子を示す模式図",
+      "editorialReview": {
+        "officialPoint": "液滴蒸発・Kelvin式",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "2": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "ea16177b11ed0b1070e15c7aafb28439b245e213714e206ea78e5b5c65947828"
+      },
+      "officialQuestionItems": [
+        "surface",
+        "molar"
+      ],
+      "sharedQuestion": "直径 $D$ の球形液滴が大きくなる場合を考えます。表面張力 $\\sigma$、密度 $\\rho$、モル質量 $M$ は一定とします。",
+      "studyParts": [
+        {
+          "id": "thermal1-23-10-item-surface",
+          "number": "23-10",
+          "officialRef": "燃焼流7-10",
+          "officialQuestionItem": "surface",
+          "title": "表面エネルギー",
+          "topic": "液滴蒸発・Kelvin式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "直径が $dD$ 増すとき、表面自由エネルギーの増分は？",
+          "choices": [
+            "$dG=\\pi\\sigma D^2\\,dD$",
+            "$dG=2\\pi\\sigma D\\,dD$"
+          ],
+          "answer": 2,
+          "answerSummary": "面積は $A=\\pi D^2$ です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "面積は $A=\\pi D^2$ です。$G=\\sigma A$ を微分して $dG=\\sigma\\,2\\pi D\\,dD$ とします。"
+            }
+          ],
+          "explanation": "【基礎】面積は $A=\\pi D^2$ です。\n【考え方】正解は2です。面積は $A=\\pi D^2$ です。$G=\\sigma A$ を微分して $dG=\\sigma\\,2\\pi D\\,dD$ とします。\n【ポイント】面積は $A=\\pi D^2$ です。\n【引っかけ】1：「$dG=\\pi\\sigma D^2\\,dD$」ではなく、$dG=2\\pi\\sigma D\\,dD$です。面積は $A=\\pi D^2$ です。$G=\\sigma A$ を微分して $dG=\\sigma\\,2\\pi D\\,dD$ とします。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "液滴蒸発・Kelvin式／個別の質問：表面エネルギー",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$dG=\\pi\\sigma D^2\\,dD$」ではなく、$dG=2\\pi\\sigma D\\,dD$です。面積は $A=\\pi D^2$ です。$G=\\sigma A$ を微分して $dG=\\sigma\\,2\\pi D\\,dD$ とします。"
+            },
+            "sha256": "6f031e97195b386bf64513b759825337eb4e7cf2f0ab494e942c2c8d88b02b63"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-10-item-molar",
+          "number": "23-10",
+          "officialRef": "燃焼流7-10",
+          "officialQuestionItem": "molar",
+          "title": "1 molあたりの増分",
+          "topic": "液滴蒸発・Kelvin式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "表面エネルギーのモル数に対する微分は？",
+          "choices": [
+            "$dG/dn=4\\sigma\\rho D/M$",
+            "$dG/dn=4\\sigma M/(\\rho D)$"
+          ],
+          "answer": 2,
+          "answerSummary": "$n=\\rho\\pi D^3/(6M)$ より $dn=\\rho\\pi D^2dD/(2M)$。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$n=\\rho\\pi D^3/(6M)$ より $dn=\\rho\\pi D^2dD/(2M)$。これで $dG$ を割ると $4\\sigma M/(\\rho D)$ となります。小さな液滴ほど表面の影響が強く、Kelvin式では表面蒸気圧が高くなります。",
+              "figures": [
+                {
+                  "figureImage": "t1e23KelvinEq",
+                  "caption": "Kelvinの式と微小液滴の蒸気圧の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】$n=\\rho\\pi D^3/(6M)$ より $dn=\\rho\\pi D^2dD/(2M)$。\n【考え方】正解は2です。$n=\\rho\\pi D^3/(6M)$ より $dn=\\rho\\pi D^2dD/(2M)$。これで $dG$ を割ると $4\\sigma M/(\\rho D)$ となります。小さな液滴ほど表面の影響が強く、Kelvin式では表面蒸気圧が高くなります。\n【ポイント】$n=\\rho\\pi D^3/(6M)$ より $dn=\\rho\\pi D^2dD/(2M)$。\n【引っかけ】1：「$dG/dn=4\\sigma\\rho D/M$」ではなく、$dG/dn=4\\sigma M/(\\rho D)$です。$n=\\rho\\pi D^3/(6M)$ より $dn=\\rho\\pi D^2dD/(2M)$。これで $dG$ を割ると $4\\sigma M/(\\rho D)$ となります。小さな液滴ほど表面の影響が強く、Kelvin式では表面蒸気圧が高くなります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "液滴蒸発・Kelvin式／個別の質問：1 molあたりの増分",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$dG/dn=4\\sigma\\rho D/M$」ではなく、$dG/dn=4\\sigma M/(\\rho D)$です。$n=\\rho\\pi D^3/(6M)$ より $dn=\\rho\\pi D^2dD/(2M)$。これで $dG$ を割ると $4\\sigma M/(\\rho D)$ となります。小さな液滴ほど表面の影響が強く、Kelvin式では表面蒸気圧が高くなります。"
+            },
+            "sha256": "a8c5105e2f015205271cc2611d78c054c782d41a2fe17e2dbffadcbd8600f1ec"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "表面エネルギー：面積は $A=\\pi D^2$ です。\n1 molあたりの増分：$n=\\rho\\pi D^3/(6M)$ より $dn=\\rho\\pi D^2dD/(2M)$。"
     },
     {
       "id": "thermal1-23-11",
@@ -615,7 +1796,164 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e23DsquaredHistory",
-      "figureHint": "白地660x420。横軸時間t・縦軸(粒径)^2=D^2の曲線を、A(ほぼ平坦の加熱)→B(t1で折れ蒸発)→C(t2で燃えつき燃焼)の3期間に区切って描き、t1に着火・t2に燃えつきを注記した模式図"
+      "figureHint": "白地660x420。横軸時間t・縦軸(粒径)^2=D^2の曲線を、A(ほぼ平坦の加熱)→B(t1で折れ蒸発)→C(t2で燃えつき燃焼)の3期間に区切って描き、t1に着火・t2に燃えつきを注記した模式図",
+      "editorialReview": {
+        "officialPoint": "単一液滴燃焼",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "1": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "c224ce08d6534d8b1f3a74bb95befe46855f5983f7f6ef62e5c1fec029c21100"
+      },
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "sharedQuestion": "高温中の液滴が、A：加熱開始直後、B：自然着火前、C：着火後から燃え尽きるまでの順に変化します。D²の時間変化と対応する期間名を選んでください。",
+      "studyParts": [
+        {
+          "id": "thermal1-23-11-item-a",
+          "number": "23-11",
+          "officialRef": "燃焼流7-11",
+          "officialQuestionItem": "a",
+          "title": "期間A",
+          "topic": "単一液滴燃焼",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "温度が上がり、蒸発がまだ少ない期間Aは？",
+          "choices": [
+            "加熱期間",
+            "燃焼期間"
+          ],
+          "answer": 1,
+          "answerSummary": "周囲から入る熱が主に液滴の温度を上げるために使われます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "周囲から入る熱が主に液滴の温度を上げるために使われます。"
+            },
+            {
+              "title": "Aは主として加熱される期間",
+              "body": "Aでは、周囲から受け取った熱が、主に液滴の温度を上げるために使われます。液滴がまだ低温なら、蒸発は後の段階ほど強くありません。そのため、温度は上がっていても、直径の二乗はあまり減らない形になります。冷たい鍋の水を火にかけた直後に、温まりはするが大量の湯気はまだ出ない様子に似ています。ただし、全く蒸発しないと決め付けるのではなく、加熱の効果が目立つ期間と捉えます。"
+            }
+          ],
+          "explanation": "【基礎】周囲から入る熱が主に液滴の温度を上げるために使われます。\n【考え方】正解は1です。周囲から入る熱が主に液滴の温度を上げるために使われます。\n【ポイント】Aでは、周囲から受け取った熱が、主に液滴の温度を上げるために使われます。液滴がまだ低温なら、蒸発は後の段階ほど強くありません。そのため、温度は上がっていても、直径の二乗はあまり減らない形になります。冷たい鍋の水を火にかけた直後に、温まりはするが大量の湯気はまだ出ない様子に似ています。ただし、全く蒸発しないと決め付けるのではなく、加熱の効果が目立つ期間と捉えます。\n【引っかけ】2：「燃焼期間」ではなく、加熱期間です。周囲から入る熱が主に液滴の温度を上げるために使われます。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "単一液滴燃焼／個別の質問：期間A",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「燃焼期間」ではなく、加熱期間です。周囲から入る熱が主に液滴の温度を上げるために使われます。"
+            },
+            "sha256": "4d3539e67fce9c9cfef30284571fe1849507021c9d2b6f4f4def70570277a56c"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-11-item-b",
+          "number": "23-11",
+          "officialRef": "燃焼流7-11",
+          "officialQuestionItem": "b",
+          "title": "期間B",
+          "topic": "単一液滴燃焼",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "着火前に燃料蒸気が発生する期間Bは？",
+          "choices": [
+            "燃焼期間",
+            "蒸発期間"
+          ],
+          "answer": 2,
+          "answerSummary": "蒸気が周囲へ供給されますが、まだ火炎は成立していません。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "蒸気が周囲へ供給されますが、まだ火炎は成立していません。AとBを合わせて着火までの遅れと考えます。"
+            },
+            {
+              "title": "Bは着火する前の蒸発期間",
+              "body": "Bでは、液滴が温まり、燃料が蒸気として周囲へ移る効果がはっきり現れます。液滴の直径は減りますが、まだ着火時刻 $t_1$ より前です。蒸発は液体が気体へ変わる現象、燃焼は燃料と酸素が反応して熱を出す現象なので、同じではありません。燃料蒸気ができ、空気と混ざり、反応が十分進める条件がそろうまで待つ時間があります。液滴が減ったという観察だけから、すでに燃焼していると判断してはいけません。"
+            },
+            {
+              "title": "着火遅れはどこまでか",
+              "body": "着火遅れは、油滴を高温の場へ入れた時点から、実際に着火するまでの時間です。本問ではAとBを合わせた時間になります。Aの加熱だけを着火遅れとしたり、着火後のCを含めたりしないようにしましょう。例えば、加熱に0.02秒、着火前の蒸発・混合などに0.03秒を要した模式例なら、着火遅れは0.05秒です。燃焼が続く時間とは別に数えます。図中の $t_2$ は後の燃焼の終わりを表し、着火開始の時刻ではありません。"
+            }
+          ],
+          "explanation": "【基礎】蒸気が周囲へ供給されますが、まだ火炎は成立していません。\n【考え方】正解は2です。蒸気が周囲へ供給されますが、まだ火炎は成立していません。AとBを合わせて着火までの遅れと考えます。\n【ポイント】Bでは、液滴が温まり、燃料が蒸気として周囲へ移る効果がはっきり現れます。液滴の直径は減りますが、まだ着火時刻 $t_1$ より前です。蒸発は液体が気体へ変わる現象、燃焼は燃料と酸素が反応して熱を出す現象なので、同じではありません。燃料蒸気ができ、空気と混ざり、反応が十分進める条件がそろうまで待つ時間があります。液滴が減ったという観察だけから、すでに燃焼していると判断してはいけません。\n【引っかけ】1：「燃焼期間」ではなく、蒸発期間です。蒸気が周囲へ供給されますが、まだ火炎は成立していません。AとBを合わせて着火までの遅れと考えます。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "単一液滴燃焼／個別の質問：期間B",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「燃焼期間」ではなく、蒸発期間です。蒸気が周囲へ供給されますが、まだ火炎は成立していません。AとBを合わせて着火までの遅れと考えます。"
+            },
+            "sha256": "15bb9b0a891c483a8371831e6d4a74328ac44ec2f77c4306f57fff770577886d"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-11-item-c",
+          "number": "23-11",
+          "officialRef": "燃焼流7-11",
+          "officialQuestionItem": "c",
+          "title": "期間C",
+          "topic": "単一液滴燃焼",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "自然着火後に燃え尽きるまでの期間Cは？",
+          "choices": [
+            "燃焼期間",
+            "着火前の加熱期間"
+          ],
+          "answer": 1,
+          "answerSummary": "火炎からも熱が供給され、燃料蒸気が燃えながら液滴は小さくなります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "火炎からも熱が供給され、燃料蒸気が燃えながら液滴は小さくなります。"
+            },
+            {
+              "title": "Cは着火後の燃焼期間",
+              "body": "時刻 $t_1$ に着火すると、その後のCでは、蒸発した燃料が周囲で燃え、その熱がさらに液滴の蒸発を支えます。代表的な近似では、直径の二乗は $D^2=D_1^2-K(t-t_1)$ のように減ります。$D_1$ は着火時の直径、$K$ はこの期間の減少率です。横軸を時間、縦軸を直径の二乗とすると、傾きは $-K$ になります。実際の初期加熱や終末期まで、同じ傾きの一本の直線で表せるとは限りません。"
+            },
+            {
+              "title": "二乗のグラフを読むコツ",
+              "body": "縦軸が直径そのものではなく直径の二乗であることを確認します。直径の二乗が一定の速さで減っても、直径自体は一定の速さでは減りません。また、曲線の傾きが変われば、単に粒が小さくなっただけでなく、加熱・蒸発・反応の状態が変わった可能性があります。まずA、B、Cの物理現象を言葉で整理し、次に着火時刻と線の傾きを対応させると、グラフを形だけで覚える必要がなくなります。",
+              "figures": [
+                {
+                  "figureImage": "t1e23DsquaredHistory",
+                  "caption": "単一油粒燃焼の3期間の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】火炎からも熱が供給され、燃料蒸気が燃えながら液滴は小さくなります。\n【考え方】正解は1です。火炎からも熱が供給され、燃料蒸気が燃えながら液滴は小さくなります。\n【ポイント】時刻 $t_1$ に着火すると、その後のCでは、蒸発した燃料が周囲で燃え、その熱がさらに液滴の蒸発を支えます。代表的な近似では、直径の二乗は $D^2=D_1^2-K(t-t_1)$ のように減ります。$D_1$ は着火時の直径、$K$ はこの期間の減少率です。横軸を時間、縦軸を直径の二乗とすると、傾きは $-K$ になります。実際の初期加熱や終末期まで、同じ傾きの一本の直線で表せるとは限りません。\n【引っかけ】2：「着火前の加熱期間」ではなく、燃焼期間です。火炎からも熱が供給され、燃料蒸気が燃えながら液滴は小さくなります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "単一液滴燃焼／個別の質問：期間C",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「着火前の加熱期間」ではなく、燃焼期間です。火炎からも熱が供給され、燃料蒸気が燃えながら液滴は小さくなります。"
+            },
+            "sha256": "f2e638d1f289f0ca8561627483e332d48001232950d6fbfdde4ac9a6f7e1985e"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "期間A：周囲から入る熱が主に液滴の温度を上げるために使われます。\n期間B：蒸気が周囲へ供給されますが、まだ火炎は成立していません。\n期間C：火炎からも熱が供給され、燃料蒸気が燃えながら液滴は小さくなります。"
     },
     {
       "id": "thermal1-23-12",
@@ -671,7 +2009,150 @@
       "figure": "helpful",
       "preFigureImage": "t1e23Extinction",
       "figureImage": "t1e23ExtinctionAns",
-      "figureHint": "白地660x420。燃料液滴を取り巻く球殻状の火炎と、液滴表面から外向きの燃料蒸気質量流束の矢印を描き、直径が小さくなると滞留時間が短くDa≪1で火炎が消える過程を段階的に示す模式図(消炎条件の値は書かない)"
+      "figureHint": "白地660x420。燃料液滴を取り巻く球殻状の火炎と、液滴表面から外向きの燃料蒸気質量流束の矢印を描き、直径が小さくなると滞留時間が短くDa≪1で火炎が消える過程を段階的に示す模式図(消炎条件の値は書かない)",
+      "editorialReview": {
+        "officialPoint": "液滴消炎",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "1": "通常解説の各肢の理由を参照。",
+          "2": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "e2c91cb872e0b53b962c60091634129d4b2bf2a14504d94dc0cef030504a3268"
+      },
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "sharedQuestion": "液滴が小さくなって消炎する過程を、流れと反応の時間尺度から考えます。",
+      "studyParts": [
+        {
+          "id": "thermal1-23-12-item-a",
+          "number": "23-12",
+          "officialRef": "燃焼流7-12",
+          "officialQuestionItem": "a",
+          "title": "時間の比",
+          "topic": "液滴消炎",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "反応が追い付かず消炎しやすい条件は？",
+          "choices": [
+            "$Da\\gg1$",
+            "$Da\\ll1$"
+          ],
+          "answer": 2,
+          "answerSummary": "$Da=\\tau_{flow}/\\tau_{chem}$ です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$Da=\\tau_{flow}/\\tau_{chem}$ です。反応に必要な時間に対して滞在時間が短いと、反応が十分進みません。"
+            }
+          ],
+          "explanation": "【基礎】$Da=\\tau_{flow}/\\tau_{chem}$ です。\n【考え方】正解は2です。$Da=\\tau_{flow}/\\tau_{chem}$ です。反応に必要な時間に対して滞在時間が短いと、反応が十分進みません。\n【ポイント】$Da=\\tau_{flow}/\\tau_{chem}$ です。\n【引っかけ】1：「$Da\\gg1$」ではなく、$Da\\ll1$です。$Da=\\tau_{flow}/\\tau_{chem}$ です。反応に必要な時間に対して滞在時間が短いと、反応が十分進みません。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "液滴消炎／個別の質問：時間の比",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$Da\\gg1$」ではなく、$Da\\ll1$です。$Da=\\tau_{flow}/\\tau_{chem}$ です。反応に必要な時間に対して滞在時間が短いと、反応が十分進みません。"
+            },
+            "sha256": "2950399e2914bc29ff7b1e9053ec5140cedb74f2297a6facf142f35d96785f50"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-12-item-b",
+          "number": "23-12",
+          "officialRef": "燃焼流7-12",
+          "officialQuestionItem": "b",
+          "title": "蒸気流束",
+          "topic": "液滴消炎",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "基本的な準定常モデルで、単位表面積あたりの燃料蒸気流束と直径の関係は？",
+          "choices": [
+            "直径に反比例",
+            "直径に比例"
+          ],
+          "answer": 1,
+          "answerSummary": "全蒸発量は直径に比例し、表面積は直径の二乗に比例するため、単位面積あたりでは直径に反比例します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "全蒸発量は直径に比例し、表面積は直径の二乗に比例するため、単位面積あたりでは直径に反比例します。"
+            }
+          ],
+          "explanation": "【基礎】全蒸発量は直径に比例し、表面積は直径の二乗に比例するため、単位面積あたりでは直径に反比例します。\n【考え方】正解は1です。全蒸発量は直径に比例し、表面積は直径の二乗に比例するため、単位面積あたりでは直径に反比例します。\n【ポイント】全蒸発量は直径に比例し、表面積は直径の二乗に比例するため、単位面積あたりでは直径に反比例します。\n【引っかけ】2：「直径に比例」ではなく、直径に反比例です。全蒸発量は直径に比例し、表面積は直径の二乗に比例するため、単位面積あたりでは直径に反比例します。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "液滴消炎／個別の質問：蒸気流束",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「直径に比例」ではなく、直径に反比例です。全蒸発量は直径に比例し、表面積は直径の二乗に比例するため、単位面積あたりでは直径に反比例します。"
+            },
+            "sha256": "426891a7b6b3dcad3c581af1a0fd0d4a70dacb0e7c16246633f690e987f3f7a5"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-12-item-c",
+          "number": "23-12",
+          "officialRef": "燃焼流7-12",
+          "officialQuestionItem": "c",
+          "title": "滞在時間",
+          "topic": "液滴消炎",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "液滴が小さくなったとき、反応場の滞在時間は？",
+          "choices": [
+            "増加する",
+            "減少する"
+          ],
+          "answer": 2,
+          "answerSummary": "代表長さが小さく、流束に対応する速度が増すため、反応に使える時間が短くなります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "代表長さが小さく、流束に対応する速度が増すため、反応に使える時間が短くなります。",
+              "figures": [
+                {
+                  "figureImage": "t1e23ExtinctionAns",
+                  "caption": "単一液滴の消炎とダムケラー数の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】代表長さが小さく、流束に対応する速度が増すため、反応に使える時間が短くなります。\n【考え方】正解は2です。代表長さが小さく、流束に対応する速度が増すため、反応に使える時間が短くなります。\n【ポイント】代表長さが小さく、流束に対応する速度が増すため、反応に使える時間が短くなります。\n【引っかけ】1：「増加する」ではなく、減少するです。代表長さが小さく、流束に対応する速度が増すため、反応に使える時間が短くなります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "液滴消炎／個別の質問：滞在時間",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「増加する」ではなく、減少するです。代表長さが小さく、流束に対応する速度が増すため、反応に使える時間が短くなります。"
+            },
+            "sha256": "8142f70ffc311f6e5ee6b8db51f1621b0111f189e6efb6a3b9d95bad0c633748"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "時間の比：$Da=\\tau_{flow}/\\tau_{chem}$ です。\n蒸気流束：全蒸発量は直径に比例し、表面積は直径の二乗に比例するため、単位面積あたりでは直径に反比例します。\n滞在時間：代表長さが小さく、流束に対応する速度が増すため、反応に使える時間が短くなります。",
+      "preFigures": [
+        {
+          "figureImage": "t1e23Extinction",
+          "caption": "各小問に共通する位置・形状・条件をこの図で確認してください。"
+        }
+      ]
     },
     {
       "id": "thermal1-23-13",
@@ -726,7 +2207,144 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e23GroupCombustion",
-      "figureHint": "白地660x420。液滴塊を4枚並べ、Gの小さい順に 単一液滴燃焼(各液滴に火炎)→内部群燃焼→外部群燃焼→外殻燃焼(塊の外周だけに火炎)を、火炎位置の違いで示す模式図"
+      "figureHint": "白地660x420。液滴塊を4枚並べ、Gの小さい順に 単一液滴燃焼(各液滴に火炎)→内部群燃焼→外部群燃焼→外殻燃焼(塊の外周だけに火炎)を、火炎位置の違いで示す模式図",
+      "editorialReview": {
+        "officialPoint": "群燃焼",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "2": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "615885b6e42340b27f2ba0ce09798831f2cab97ea3a99b6fe712be4898ccba03"
+      },
+      "officialQuestionItems": [
+        "spacing",
+        "diameter",
+        "single"
+      ],
+      "sharedQuestion": "液滴群の総蒸発と、外側とのガス交換の比を表す群燃焼数Gについて、他の条件をそろえて考えます。",
+      "studyParts": [
+        {
+          "id": "thermal1-23-13-item-spacing",
+          "number": "23-13",
+          "officialRef": "燃焼流7-13",
+          "officialQuestionItem": "spacing",
+          "title": "液滴間隔",
+          "topic": "群燃焼",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "液滴間隔が大きくなるとGはどちらへ変わりますか？",
+          "choices": [
+            "小さくなる（負の相関）",
+            "大きくなる（正の相関）"
+          ],
+          "answer": 1,
+          "answerSummary": "液滴が離れると周囲のガスと交換しやすくなり、一つの群としての干渉が弱くなります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "液滴が離れると周囲のガスと交換しやすくなり、一つの群としての干渉が弱くなります。"
+            }
+          ],
+          "explanation": "【基礎】液滴が離れると周囲のガスと交換しやすくなり、一つの群としての干渉が弱くなります。\n【考え方】正解は1です。液滴が離れると周囲のガスと交換しやすくなり、一つの群としての干渉が弱くなります。\n【ポイント】液滴が離れると周囲のガスと交換しやすくなり、一つの群としての干渉が弱くなります。\n【引っかけ】2：「大きくなる（正の相関）」ではなく、小さくなる（負の相関）です。液滴が離れると周囲のガスと交換しやすくなり、一つの群としての干渉が弱くなります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "群燃焼／個別の質問：液滴間隔",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「大きくなる（正の相関）」ではなく、小さくなる（負の相関）です。液滴が離れると周囲のガスと交換しやすくなり、一つの群としての干渉が弱くなります。"
+            },
+            "sha256": "c93a913cf2be910b3f485740fc9d1124fabc451364015065a3ef138975d7ed5e"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-13-item-diameter",
+          "number": "23-13",
+          "officialRef": "燃焼流7-13",
+          "officialQuestionItem": "diameter",
+          "title": "液滴径",
+          "topic": "群燃焼",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "液滴径が大きくなるとGはどちらへ変わりますか？",
+          "choices": [
+            "大きくなる（正の相関）",
+            "小さくなる（負の相関）"
+          ],
+          "answer": 1,
+          "answerSummary": "同じ群の条件で液滴径が増すと、群の総蒸発の影響が大きくなります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "同じ群の条件で液滴径が増すと、群の総蒸発の影響が大きくなります。"
+            }
+          ],
+          "explanation": "【基礎】同じ群の条件で液滴径が増すと、群の総蒸発の影響が大きくなります。\n【考え方】正解は1です。同じ群の条件で液滴径が増すと、群の総蒸発の影響が大きくなります。\n【ポイント】同じ群の条件で液滴径が増すと、群の総蒸発の影響が大きくなります。\n【引っかけ】2：「小さくなる（負の相関）」ではなく、大きくなる（正の相関）です。同じ群の条件で液滴径が増すと、群の総蒸発の影響が大きくなります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "群燃焼／個別の質問：液滴径",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「小さくなる（負の相関）」ではなく、大きくなる（正の相関）です。同じ群の条件で液滴径が増すと、群の総蒸発の影響が大きくなります。"
+            },
+            "sha256": "361b33a5a6c31186c3b1c8556369160abc2d5d6b662b962a40d42acf0419f0dd"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-13-item-single",
+          "number": "23-13",
+          "officialRef": "燃焼流7-13",
+          "officialQuestionItem": "single",
+          "title": "個別燃焼",
+          "topic": "群燃焼",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "各液滴が比較的独立して燃えるのはGがどちらの場合ですか？",
+          "choices": [
+            "大きい",
+            "小さい"
+          ],
+          "answer": 2,
+          "answerSummary": "群の蒸発よりガス交換が十分な場合に、酸素が各液滴の周囲へ届きやすくなります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "群の蒸発よりガス交換が十分な場合に、酸素が各液滴の周囲へ届きやすくなります。",
+              "figures": [
+                {
+                  "figureImage": "t1e23GroupCombustion",
+                  "caption": "群燃焼数と噴霧火炎の燃焼形態の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】群の蒸発よりガス交換が十分な場合に、酸素が各液滴の周囲へ届きやすくなります。\n【考え方】正解は2です。群の蒸発よりガス交換が十分な場合に、酸素が各液滴の周囲へ届きやすくなります。\n【ポイント】群の蒸発よりガス交換が十分な場合に、酸素が各液滴の周囲へ届きやすくなります。\n【引っかけ】1：「大きい」ではなく、小さいです。群の蒸発よりガス交換が十分な場合に、酸素が各液滴の周囲へ届きやすくなります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "群燃焼／個別の質問：個別燃焼",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「大きい」ではなく、小さいです。群の蒸発よりガス交換が十分な場合に、酸素が各液滴の周囲へ届きやすくなります。"
+            },
+            "sha256": "958267cebff31443bffbe269e25844598b736399dcc0b8cbf65021efc455abeb"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "液滴間隔：液滴が離れると周囲のガスと交換しやすくなり、一つの群としての干渉が弱くなります。\n液滴径：同じ群の条件で液滴径が増すと、群の総蒸発の影響が大きくなります。\n個別燃焼：群の蒸発よりガス交換が十分な場合に、酸素が各液滴の周囲へ届きやすくなります。"
     },
     {
       "id": "thermal1-23-14",
@@ -781,7 +2399,122 @@
       "role": "primary",
       "figure": "required",
       "figureImage": "t1e23CoalProximate",
-      "figureHint": "白地660x420。石炭1本の積み上げ棒で水分・揮発分・固定炭素・灰分の質量割合を示し、可燃分(揮発分+固定炭素)と不燃分(水分+灰分)を区分して、燃料比=固定炭素/揮発分の定義を矢印で示す模式図(数値の答えは書かない)"
+      "figureHint": "白地660x420。石炭1本の積み上げ棒で水分・揮発分・固定炭素・灰分の質量割合を示し、可燃分(揮発分+固定炭素)と不燃分(水分+灰分)を区分して、燃料比=固定炭素/揮発分の定義を矢印で示す模式図(数値の答えは書かない)",
+      "editorialReview": {
+        "officialPoint": "石炭・工業分析",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "1": "通常解説の各肢の理由を参照。",
+          "2": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "fe20596002a653f9277e4aa8f50ae51a4a525f84ede085adc170f9fa51ddab24"
+      },
+      "officialQuestionItems": [
+        "ratio",
+        "trend"
+      ],
+      "sharedQuestion": "石炭の工業分析値は水分5%、揮発分30%、固定炭素60%、灰分5%です。燃料比は固定炭素を揮発分で割った値です。",
+      "studyParts": [
+        {
+          "id": "thermal1-23-14-item-ratio",
+          "number": "23-14",
+          "officialRef": "燃焼流7-14",
+          "officialQuestionItem": "ratio",
+          "title": "燃料比",
+          "topic": "石炭・工業分析",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "この石炭の燃料比は？",
+          "choices": [
+            "$0.5$",
+            "$2.0$"
+          ],
+          "answer": 2,
+          "answerSummary": "$60/30=2.0$ です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$60/30=2.0$ です。水分や灰分を分母へ加える定義ではありません。"
+            },
+            {
+              "title": "工業分析の四つの項目",
+              "body": "問題には、水分5％、揮発分30％、固定炭素60％、灰分5％が与えられています。合計は100％です。水分は石炭に含まれる水、揮発分は所定の加熱条件で放出される成分、固定炭素は揮発分を除いた後に残る燃焼可能な成分、灰分は燃焼後に残る無機成分に対応します。この区分は分析方法に基づくもので、石炭中のすべてを単純な純物質四種類に分けたという意味ではありません。まず各割合が何を表すかを確認します。"
+            },
+            {
+              "title": "燃料比の計算を飛ばさず行う",
+              "body": "燃料比は、固定炭素の質量を揮発分の質量で割った値です。式で書けば $F_R=m_c/m_v$ です。石炭100 gを考えると、固定炭素は60 g、揮発分は30 gなので、$F_R=60/30=2$ となります。割合のまま $60\\%/30\\%=2$ と計算しても同じです。質量を質量で割るため単位はありません。逆に $30/60=0.5$ とすると、揮発分を固定炭素で割った別の比になってしまいます。"
+            }
+          ],
+          "explanation": "【基礎】$60/30=2.0$ です。\n【考え方】正解は2です。$60/30=2.0$ です。水分や灰分を分母へ加える定義ではありません。\n【ポイント】問題には、水分5％、揮発分30％、固定炭素60％、灰分5％が与えられています。合計は100％です。水分は石炭に含まれる水、揮発分は所定の加熱条件で放出される成分、固定炭素は揮発分を除いた後に残る燃焼可能な成分、灰分は燃焼後に残る無機成分に対応します。この区分は分析方法に基づくもので、石炭中のすべてを単純な純物質四種類に分けたという意味ではありません。まず各割合が何を表すかを確認します。\n【引っかけ】1：「$0.5$」ではなく、$2.0$です。$60/30=2.0$ です。水分や灰分を分母へ加える定義ではありません。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "石炭・工業分析／個別の質問：燃料比",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$0.5$」ではなく、$2.0$です。$60/30=2.0$ です。水分や灰分を分母へ加える定義ではありません。"
+            },
+            "sha256": "5536e896b698ca27273f584a80ce7a233c9e4188501d2c63bd76c576e3f779d6"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-14-item-trend",
+          "number": "23-14",
+          "officialRef": "燃焼流7-14",
+          "officialQuestionItem": "trend",
+          "title": "未燃焼率の傾向",
+          "topic": "石炭・工業分析",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "他の条件が同程度なら、燃料比が高いほど火炉出口の未燃焼率は？",
+          "choices": [
+            "減少する傾向",
+            "増加する傾向"
+          ],
+          "answer": 2,
+          "answerSummary": "燃えやすい揮発分に対して固体のチャーが多くなり、燃え切る時間が不足しやすくなります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "燃えやすい揮発分に対して固体のチャーが多くなり、燃え切る時間が不足しやすくなります。粒径や滞留時間も影響するため、燃料比だけで全条件の値を断定するわけではありません。"
+            },
+            {
+              "title": "燃料比が高いと何を意味するか",
+              "body": "燃料比が高いことは、揮発分に対して固定炭素が多いことを意味します。揮発分は放出されて気相で燃えますが、固体のチャーが燃え切るには、酸素が表面や細孔へ届き、固体と反応し、生成物が外へ出る過程が必要です。そのため、一般に固定炭素の比率が高い石炭は燃え切るまで時間がかかり、同じ炉の条件では未燃分が増える方向になります。これは燃焼可能な量が多いほど自動的に燃えやすい、という意味ではありません。"
+            },
+            {
+              "title": "未燃率との関係は条件をそろえて読む",
+              "body": "炉の出口に未燃の炭素が残るかどうかは、燃料比以外に、粒径、炉内温度、酸素濃度、滞留時間などにも左右されます。例えば、燃料比が高くても粒を細かくし、十分な時間と酸素を与えれば、燃え切りやすくできます。本問は、こうした条件をそろえたときの代表的な傾向を問うものです。「燃料比が高い石炭は、どんな条件でも必ず未燃率が高い」と断定するのではなく、燃え残りやすさを判断する指標の一つと考えます。",
+              "figures": [
+                {
+                  "figureImage": "t1e23CoalProximate",
+                  "caption": "石炭の工業分析と燃料比の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】燃えやすい揮発分に対して固体のチャーが多くなり、燃え切る時間が不足しやすくなります。\n【考え方】正解は2です。燃えやすい揮発分に対して固体のチャーが多くなり、燃え切る時間が不足しやすくなります。粒径や滞留時間も影響するため、燃料比だけで全条件の値を断定するわけではありません。\n【ポイント】燃料比が高いことは、揮発分に対して固定炭素が多いことを意味します。揮発分は放出されて気相で燃えますが、固体のチャーが燃え切るには、酸素が表面や細孔へ届き、固体と反応し、生成物が外へ出る過程が必要です。そのため、一般に固定炭素の比率が高い石炭は燃え切るまで時間がかかり、同じ炉の条件では未燃分が増える方向になります。これは燃焼可能な量が多いほど自動的に燃えやすい、という意味ではありません。\n【引っかけ】1：「減少する傾向」ではなく、増加する傾向です。燃えやすい揮発分に対して固体のチャーが多くなり、燃え切る時間が不足しやすくなります。粒径や滞留時間も影響するため、燃料比だけで全条件の値を断定するわけではありません。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "石炭・工業分析／個別の質問：未燃焼率の傾向",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「減少する傾向」ではなく、増加する傾向です。燃えやすい揮発分に対して固体のチャーが多くなり、燃え切る時間が不足しやすくなります。粒径や滞留時間も影響するため、燃料比だけで全条件の値を断定するわけではありません。"
+            },
+            "sha256": "cc1b3ac26359a70c23a8036eb1f3b05c6f7b814311aabcd54633d40ff8e1ddef"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "燃料比：$60/30=2.0$ です。\n未燃焼率の傾向：燃えやすい揮発分に対して固体のチャーが多くなり、燃え切る時間が不足しやすくなります。"
     },
     {
       "id": "thermal1-23-15",
@@ -836,7 +2569,182 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e23PulverizedCoal",
-      "figureHint": "白地660x420。1個の石炭粒子が加熱→揮発分放出(気相で火炎)→多孔質チャー粒子の表面燃焼へと進む過程を左から右へ時系列で描き、揮発分は速く・チャー燃焼は遅いことを時間軸で示す模式図"
+      "figureHint": "白地660x420。1個の石炭粒子が加熱→揮発分放出(気相で火炎)→多孔質チャー粒子の表面燃焼へと進む過程を左から右へ時系列で描き、揮発分は速く・チャー燃焼は遅いことを時間軸で示す模式図",
+      "editorialReview": {
+        "officialPoint": "微粉炭燃焼",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "1": "通常解説の各肢の理由を参照。",
+          "2": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "6f88c9dd044b4bc515f0e2bfdd66844534465d06abf269c122189b3b6ae22c92"
+      },
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "sharedQuestion": "微粉炭の代表的な燃焼過程を、揮発分と残った固体に分けて考えます。",
+      "studyParts": [
+        {
+          "id": "thermal1-23-15-item-a",
+          "number": "23-15",
+          "officialRef": "燃焼流7-15",
+          "officialQuestionItem": "a",
+          "title": "加熱後の過程",
+          "topic": "微粉炭燃焼",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "加熱によってまず進む気体成分の供給過程は？",
+          "choices": [
+            "揮発分の放出",
+            "灰分の酸化だけ"
+          ],
+          "answer": 1,
+          "answerSummary": "加熱・分解によって気体成分が放出され、周囲で燃焼します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "加熱・分解によって気体成分が放出され、周囲で燃焼します。"
+            }
+          ],
+          "explanation": "【基礎】加熱・分解によって気体成分が放出され、周囲で燃焼します。\n【考え方】正解は1です。加熱・分解によって気体成分が放出され、周囲で燃焼します。\n【ポイント】加熱・分解によって気体成分が放出され、周囲で燃焼します。\n【引っかけ】2：「灰分の酸化だけ」ではなく、揮発分の放出です。加熱・分解によって気体成分が放出され、周囲で燃焼します。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "微粉炭燃焼／個別の質問：加熱後の過程",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「灰分の酸化だけ」ではなく、揮発分の放出です。加熱・分解によって気体成分が放出され、周囲で燃焼します。"
+            },
+            "sha256": "fc108ee66e4e11477323af700d1c26a33ca8a55e301a432ba8053d1245f9d560"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-15-item-b",
+          "number": "23-15",
+          "officialRef": "燃焼流7-15",
+          "officialQuestionItem": "b",
+          "title": "残る固体の燃焼",
+          "topic": "微粉炭燃焼",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "揮発分放出後も続く主な反応は？",
+          "choices": [
+            "水分だけの蒸発",
+            "チャー粒子の固体燃焼"
+          ],
+          "answer": 2,
+          "answerSummary": "炭素に富む多孔質固体が酸素などと反応します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "炭素に富む多孔質固体が酸素などと反応します。二つの過程が時間的に重なる場合もあります。"
+            }
+          ],
+          "explanation": "【基礎】炭素に富む多孔質固体が酸素などと反応します。\n【考え方】正解は2です。炭素に富む多孔質固体が酸素などと反応します。二つの過程が時間的に重なる場合もあります。\n【ポイント】炭素に富む多孔質固体が酸素などと反応します。\n【引っかけ】1：「水分だけの蒸発」ではなく、チャー粒子の固体燃焼です。炭素に富む多孔質固体が酸素などと反応します。二つの過程が時間的に重なる場合もあります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "微粉炭燃焼／個別の質問：残る固体の燃焼",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「水分だけの蒸発」ではなく、チャー粒子の固体燃焼です。炭素に富む多孔質固体が酸素などと反応します。二つの過程が時間的に重なる場合もあります。"
+            },
+            "sha256": "b3e645f03b9fc7ef7cad75573fc61c0223459baf45d4dae40a81cdefb12fb04f"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-15-item-c",
+          "number": "23-15",
+          "officialRef": "燃焼流7-15",
+          "officialQuestionItem": "c",
+          "title": "揮発分の成分",
+          "topic": "微粉炭燃焼",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "揮発分に含まれる代表例は？",
+          "choices": [
+            "低分子量の炭化水素・CO・水素",
+            "固定炭素だけの固体粒子"
+          ],
+          "answer": 1,
+          "answerSummary": "揮発分は周囲で気相反応する成分です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "揮発分は周囲で気相反応する成分です。残留した固体と区別します。"
+            }
+          ],
+          "explanation": "【基礎】揮発分は周囲で気相反応する成分です。\n【考え方】正解は1です。揮発分は周囲で気相反応する成分です。残留した固体と区別します。\n【ポイント】揮発分は周囲で気相反応する成分です。\n【引っかけ】2：「固定炭素だけの固体粒子」ではなく、低分子量の炭化水素・CO・水素です。揮発分は周囲で気相反応する成分です。残留した固体と区別します。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "微粉炭燃焼／個別の質問：揮発分の成分",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「固定炭素だけの固体粒子」ではなく、低分子量の炭化水素・CO・水素です。揮発分は周囲で気相反応する成分です。残留した固体と区別します。"
+            },
+            "sha256": "93a9103fd312c6b3c6c4b3381759661a5ec051b448fa0db4cd06f0611f02311e"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-23-15-item-d",
+          "number": "23-15",
+          "officialRef": "燃焼流7-15",
+          "officialQuestionItem": "d",
+          "title": "チャーの主成分",
+          "topic": "微粉炭燃焼",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "チャーの主成分は？",
+          "choices": [
+            "水分",
+            "固定炭素"
+          ],
+          "answer": 2,
+          "answerSummary": "純粋な液体炭素ではなく、固定炭素を主体とする多孔質固体です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "純粋な液体炭素ではなく、固定炭素を主体とする多孔質固体です。",
+              "figures": [
+                {
+                  "figureImage": "t1e23PulverizedCoal",
+                  "caption": "微粉炭の反応過程の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】純粋な液体炭素ではなく、固定炭素を主体とする多孔質固体です。\n【考え方】正解は2です。純粋な液体炭素ではなく、固定炭素を主体とする多孔質固体です。\n【ポイント】純粋な液体炭素ではなく、固定炭素を主体とする多孔質固体です。\n【引っかけ】1：「水分」ではなく、固定炭素です。純粋な液体炭素ではなく、固定炭素を主体とする多孔質固体です。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "微粉炭燃焼／個別の質問：チャーの主成分",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「水分」ではなく、固定炭素です。純粋な液体炭素ではなく、固定炭素を主体とする多孔質固体です。"
+            },
+            "sha256": "3909cbad2bacd49b219fe0989fdee4a1a81d4dd6b983be8fb330a95219b935ca"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "加熱後の過程：加熱・分解によって気体成分が放出され、周囲で燃焼します。\n残る固体の燃焼：炭素に富む多孔質固体が酸素などと反応します。\n揮発分の成分：揮発分は周囲で気相反応する成分です。\nチャーの主成分：純粋な液体炭素ではなく、固定炭素を主体とする多孔質固体です。"
     }
   ]
 }

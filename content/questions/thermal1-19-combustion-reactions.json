@@ -6,7 +6,8 @@
     "source": "完全オリジナル(公式標準問題集 燃焼流 第3章 3-1〜3-14 にテーマ対応)",
     "origin": "original",
     "count": 14,
-    "officialCount": 14
+    "officialCount": 14,
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -62,7 +63,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e19MechScale",
-      "figureHint": "白地660x420。左に水素系(素反応 数十)、右に炭化水素系(素反応 数百)の箱を大小で対比し、素反応の集合が機構を成す様子を模式化。具体的数値は書かない。"
+      "figureHint": "白地660x420。左に水素系(素反応 数十)、右に炭化水素系(素反応 数百)の箱を大小で対比し、素反応の集合が機構を成す様子を模式化。具体的数値は書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-19-2",
@@ -117,7 +121,182 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e19H2ChainFlow",
-      "figureHint": "白地660x420。起鎖→分枝→(競合する三体再結合)→再結合の流れを矢印でつなぐ連鎖反応フロー図。活性基H/OH/Oを丸で示し、第三体Mが関わる枝を破線で区別。具体反応式は空欄扱いで書かない。"
+      "figureHint": "白地660x420。起鎖→分枝→(競合する三体再結合)→再結合の流れを矢印でつなぐ連鎖反応フロー図。活性基H/OH/Oを丸で示し、第三体Mが関わる枝を破線で区別。具体反応式は空欄扱いで書かない。",
+      "editorialReview": {
+        "officialPoint": "連鎖反応(起鎖・分枝・再結合)",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "1": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "efb819704b2db9b4484b9491d426d1524f53d5728d1170bcbe92abbe049dd7de"
+      },
+      "sharedQuestion": "水素の酸化で、起鎖・連鎖分枝・競合する再結合・最終的な失活に対応する代表的な反応を選んでください。Mは第三体です。",
+      "studyParts": [
+        {
+          "id": "thermal1-19-2-item-a",
+          "number": "19-2",
+          "officialRef": "燃焼流3-2",
+          "officialQuestionItem": "a",
+          "title": "起鎖反応",
+          "topic": "連鎖反応(起鎖・分枝・再結合)",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "安定分子から活性基を作る起鎖反応は？",
+          "choices": [
+            "$\\mathrm{H+O_2\\to OH+O}$",
+            "$\\mathrm{H_2+O_2\\to HO_2+H}$"
+          ],
+          "answer": 2,
+          "answerSummary": "出発物質が安定な分子で、反応を進める活性基を新しく作ります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "出発物質が安定な分子で、反応を進める活性基を新しく作ります。後者は既にある活性基Hを使う分枝反応です。"
+            }
+          ],
+          "explanation": "【基礎】出発物質が安定な分子で、反応を進める活性基を新しく作ります。\n【考え方】正解は2です。出発物質が安定な分子で、反応を進める活性基を新しく作ります。後者は既にある活性基Hを使う分枝反応です。\n【ポイント】出発物質が安定な分子で、反応を進める活性基を新しく作ります。\n【引っかけ】1：「$\\mathrm{H+O_2\\to OH+O}$」ではなく、$\\mathrm{H_2+O_2\\to HO_2+H}$です。出発物質が安定な分子で、反応を進める活性基を新しく作ります。後者は既にある活性基Hを使う分枝反応です。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "連鎖反応(起鎖・分枝・再結合)／個別の質問：起鎖反応",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$\\mathrm{H+O_2\\to OH+O}$」ではなく、$\\mathrm{H_2+O_2\\to HO_2+H}$です。出発物質が安定な分子で、反応を進める活性基を新しく作ります。後者は既にある活性基Hを使う分枝反応です。"
+            },
+            "sha256": "77686623ab3beb52c2ba0ea30e65c0cf0ba7da7ffbd4fca834e565deffce1232"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-19-2-item-b",
+          "number": "19-2",
+          "officialRef": "燃焼流3-2",
+          "officialQuestionItem": "b",
+          "title": "連鎖分枝反応",
+          "topic": "連鎖反応(起鎖・分枝・再結合)",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "活性基の数を増やす連鎖分枝反応は？",
+          "choices": [
+            "$\\mathrm{H+O_2\\to OH+O}$",
+            "$\\mathrm{H+OH+M\\to H_2O+M}$"
+          ],
+          "answer": 1,
+          "answerSummary": "活性基Hが1個からOHとOの2個へ増えます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "活性基Hが1個からOHとOの2個へ増えます。活性基の増殖が急激な反応を支えます。"
+            }
+          ],
+          "explanation": "【基礎】活性基Hが1個からOHとOの2個へ増えます。\n【考え方】正解は1です。活性基Hが1個からOHとOの2個へ増えます。活性基の増殖が急激な反応を支えます。\n【ポイント】活性基Hが1個からOHとOの2個へ増えます。\n【引っかけ】2：「$\\mathrm{H+OH+M\\to H_2O+M}$」ではなく、$\\mathrm{H+O_2\\to OH+O}$です。活性基Hが1個からOHとOの2個へ増えます。活性基の増殖が急激な反応を支えます。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "連鎖反応(起鎖・分枝・再結合)／個別の質問：連鎖分枝反応",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$\\mathrm{H+OH+M\\to H_2O+M}$」ではなく、$\\mathrm{H+O_2\\to OH+O}$です。活性基Hが1個からOHとOの2個へ増えます。活性基の増殖が急激な反応を支えます。"
+            },
+            "sha256": "9f19aacc6235448eb7111237d002c9fcac7f2c9a8f5200870b123a674e97426e"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-19-2-item-c",
+          "number": "19-2",
+          "officialRef": "燃焼流3-2",
+          "officialQuestionItem": "c",
+          "title": "分枝と競合する反応",
+          "topic": "連鎖反応(起鎖・分枝・再結合)",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Hを消費して分枝と競合する三体反応は？",
+          "choices": [
+            "$\\mathrm{H_2+O_2\\to HO_2+H}$",
+            "$\\mathrm{H+O_2+M\\to HO_2+M}$"
+          ],
+          "answer": 2,
+          "answerSummary": "HがHO₂へ取り込まれ、分枝に回るHが減ります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "HがHO₂へ取り込まれ、分枝に回るHが減ります。Mは余分なエネルギーを受け取って生成物を安定させます。"
+            }
+          ],
+          "explanation": "【基礎】HがHO₂へ取り込まれ、分枝に回るHが減ります。\n【考え方】正解は2です。HがHO₂へ取り込まれ、分枝に回るHが減ります。Mは余分なエネルギーを受け取って生成物を安定させます。\n【ポイント】HがHO₂へ取り込まれ、分枝に回るHが減ります。\n【引っかけ】1：「$\\mathrm{H_2+O_2\\to HO_2+H}$」ではなく、$\\mathrm{H+O_2+M\\to HO_2+M}$です。HがHO₂へ取り込まれ、分枝に回るHが減ります。Mは余分なエネルギーを受け取って生成物を安定させます。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "連鎖反応(起鎖・分枝・再結合)／個別の質問：分枝と競合する反応",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$\\mathrm{H_2+O_2\\to HO_2+H}$」ではなく、$\\mathrm{H+O_2+M\\to HO_2+M}$です。HがHO₂へ取り込まれ、分枝に回るHが減ります。Mは余分なエネルギーを受け取って生成物を安定させます。"
+            },
+            "sha256": "3c991c269c13c4191a7f2af7f1bebd022c47d1d96ec0cab7a26ee97d8a16adfb"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-19-2-item-d",
+          "number": "19-2",
+          "officialRef": "燃焼流3-2",
+          "officialQuestionItem": "d",
+          "title": "失活と発熱",
+          "topic": "連鎖反応(起鎖・分枝・再結合)",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "HとOHを安定な水へ変える反応は？",
+          "choices": [
+            "$\\mathrm{H+OH+M\\to H_2O+M}$",
+            "$\\mathrm{H+O_2\\to OH+O}$"
+          ],
+          "answer": 1,
+          "answerSummary": "二つの活性基が安定分子へまとまり、活性基が減ります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "二つの活性基が安定分子へまとまり、活性基が減ります。第三体が存在しても、分枝か停止かは反応の中身で判断します。",
+              "figures": [
+                {
+                  "figureImage": "t1e19H2ChainFlow",
+                  "caption": "水素の酸化連鎖反応の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】二つの活性基が安定分子へまとまり、活性基が減ります。\n【考え方】正解は1です。二つの活性基が安定分子へまとまり、活性基が減ります。第三体が存在しても、分枝か停止かは反応の中身で判断します。\n【ポイント】二つの活性基が安定分子へまとまり、活性基が減ります。\n【引っかけ】2：「$\\mathrm{H+O_2\\to OH+O}$」ではなく、$\\mathrm{H+OH+M\\to H_2O+M}$です。二つの活性基が安定分子へまとまり、活性基が減ります。第三体が存在しても、分枝か停止かは反応の中身で判断します。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "連鎖反応(起鎖・分枝・再結合)／個別の質問：失活と発熱",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$\\mathrm{H+O_2\\to OH+O}$」ではなく、$\\mathrm{H+OH+M\\to H_2O+M}$です。二つの活性基が安定分子へまとまり、活性基が減ります。第三体が存在しても、分枝か停止かは反応の中身で判断します。"
+            },
+            "sha256": "756a305f16a8182d509ca3db89933d067d7d351b66e539eb26a364a59c7a0053"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "起鎖反応：出発物質が安定な分子で、反応を進める活性基を新しく作ります。\n連鎖分枝反応：活性基Hが1個からOHとOの2個へ増えます。\n分枝と競合する反応：HがHO₂へ取り込まれ、分枝に回るHが減ります。\n失活と発熱：二つの活性基が安定分子へまとまり、活性基が減ります。"
     },
     {
       "id": "thermal1-19-3",
@@ -172,7 +351,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e19GlobalRateOrder",
-      "figureHint": "白地660x420。多数の素反応(小さな矢印の束)を1本の太い矢印(総括反応)に束ねる模式図。片側に $\\omega=k[\\ ]^{\\alpha}[\\ ]^{\\beta}$ の枠だけ添える。数値は書かない。"
+      "figureHint": "白地660x420。多数の素反応(小さな矢印の束)を1本の太い矢印(総括反応)に束ねる模式図。片側に $\\omega=k[\\ ]^{\\alpha}[\\ ]^{\\beta}$ の枠だけ添える。数値は書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-19-4",
@@ -228,7 +410,10 @@
       "figure": "helpful",
       "preFigureImage": "t1e19PotentialEnergyCurves",
       "figureImage": "t1e19PotentialEnergyAns",
-      "figureHint": "白地660x420。横軸=反応過程、縦軸=ポテンシャルエネルギー。共通の反応物レベルから山を越え、A=生成物が高い/B=生成物が同レベル/C=生成物が低い の3曲線をA,B,Cとだけラベル。どれが発熱かの答えは書かない。"
+      "figureHint": "白地660x420。横軸=反応過程、縦軸=ポテンシャルエネルギー。共通の反応物レベルから山を越え、A=生成物が高い/B=生成物が同レベル/C=生成物が低い の3曲線をA,B,Cとだけラベル。どれが発熱かの答えは書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-19-5",
@@ -283,7 +468,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e19EnthalpyCycle",
-      "figureHint": "白地660x420。反応物(CH4+2O2)と生成物(CO2+2H2O)をエンタルピー準位の高低で結ぶ図。低位=気相水/高位=液相水で準位がわずかに異なることを2本の破線で示す。計算値は書かない。"
+      "figureHint": "白地660x420。反応物(CH4+2O2)と生成物(CO2+2H2O)をエンタルピー準位の高低で結ぶ図。低位=気相水/高位=液相水で準位がわずかに異なることを2本の破線で示す。計算値は書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-19-6",
@@ -338,7 +526,83 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e19FallOffCurve",
-      "figureHint": "白地660x420。横軸=logP、縦軸=logk。低圧側は傾き1の直線、そこから傾きが1→0へ単調に減少して高圧側の水平漸近線へつながる上に凸(concave)のfall-off曲線を描く。S字（途中で傾きが増す形）にしない。低圧・高圧の漸近線は破線、傾きの数値は書かない。"
+      "figureHint": "白地660x420。横軸=logP、縦軸=logk。低圧側は傾き1の直線、そこから傾きが1→0へ単調に減少して高圧側の水平漸近線へつながる上に凸(concave)のfall-off曲線を描く。S字（途中で傾きが増す形）にしない。低圧・高圧の漸近線は破線、傾きの数値は書かない。",
+      "editorialReview": {
+        "officialPoint": "fall-off・圧力依存性",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "2": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "63234d55bd99efa39b957575df906ab23f18e9dba222162d5c7c83d2886bd5b7"
+      },
+      "officialQuestionItems": [
+        "curve"
+      ],
+      "sharedQuestion": "素反応 $\\mathrm{CH_3+CH_3+(M)\\rightleftharpoons C_2H_6+(M)}$ の反応速度定数は $k=k_{\\infty}\\dfrac{P_r}{1+P_r},\\ P_r=\\dfrac{k_0[\\mathrm{M}]}{k_{\\infty}}$ で表される($k_0$:低圧極限、$k_{\\infty}$:高圧極限、$[\\mathrm{M}]$:第三体濃度)。",
+      "studyParts": [
+        {
+          "id": "thermal1-19-6-item-curve",
+          "number": "19-6",
+          "officialRef": "燃焼流3-6",
+          "officialQuestionItem": "curve",
+          "title": "反応速度定数の圧力依存性",
+          "topic": "fall-off・圧力依存性",
+          "type": "記述",
+          "responseType": "written",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "温度一定で横軸を対数圧力、縦軸を対数速度定数とした概形と、低圧・高圧の極限を説明してください。",
+          "choices": [],
+          "answer": 0,
+          "answerSummary": "低圧では $k\\approx k_0[\\mathrm{M}]\\propto P$ なので傾き1の直線、高圧では $k\\approx k_\\infty$ なので水平線へ滑らかに近づきます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "低圧では $P_r\\ll1$ として分母を1に近似します。高圧では $P_r\\gg1$ として分子・分母を $P_r$ で割れば比が1へ近づきます。第三体が十分ある高圧で、圧力だけを増やしても反応速度定数は無限には増えません。"
+            },
+            {
+              "title": "第三体は余分なエネルギーを受け取ります",
+              "body": "二つのメチル基が結び付いても、結合で生じたエネルギーが残ると、すぐ元へ分かれる場合があります。周囲の第三体へエネルギーを渡せれば、エタンとして安定化しやすくなります。圧力が低いと第三体との衝突が少なく、圧力を上げる効果が大きい側です。十分に衝突がある高圧側では、さらに第三体を増やしても有効速度定数が同じ比例では増えず、上限へ近づきます。"
+            },
+            {
+              "title": "低圧の近似を作ります",
+              "body": "$P_r\\ll1$ なら分母 $1+P_r\\approx1$ です。したがって $k\\approx k_\\infty P_r=k_\\infty k_0[\\mathrm M]/k_\\infty=k_0[\\mathrm M]$ です。固定温度で $[\\mathrm M]\\propto P$ とすれば、$\\log k=\\log B+\\log P$ の形となり、$\\log P$ に対する傾きは1です。ここでBは温度を固定したときの比例係数であり、温度まで変えた比較とは別です。"
+            },
+            {
+              "title": "高圧の近似を作ります",
+              "body": "$P_r\\gg1$ なら $P_r/(1+P_r)=1/(1+1/P_r)\\approx1$ です。よって $k\\approx k_\\infty$ で、両対数図では水平へ近づきます。有限の正の $P_r$ では分数は1未満なので、kが $k_\\infty$ を超えて増え続ける式ではありません。中間の $P_r=1$ では $k=k_\\infty/2$ となります。二つの極限に加えて、この中間点も概形の検算になります。",
+              "figures": [
+                {
+                  "figureImage": "t1e19FallOffCurve",
+                  "caption": "三体再結合反応のフォールオフの条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】反応速度定数の圧力依存性を確認します。\n【考え方】低圧では $k\\approx k_0[\\mathrm{M}]\\propto P$ なので傾き1の直線、高圧では $k\\approx k_\\infty$ なので水平線へ滑らかに近づきます。\n【ポイント】低圧では $P_r\\ll1$ として分母を1に近似します。高圧では $P_r\\gg1$ として分子・分母を $P_r$ で割れば比が1へ近づきます。第三体が十分ある高圧で、圧力だけを増やしても反応速度定数は無限には増えません。\n【引っかけ】",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "fall-off・圧力依存性／個別の質問：反応速度定数の圧力依存性",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {},
+            "sha256": "ec6c3d6e634c238019608ef50687d30d855f1c5e0cf933a161f4331eba83ccc6"
+          },
+          "modelAnswer": "低圧では $k\\approx k_0[\\mathrm{M}]\\propto P$ なので傾き1の直線、高圧では $k\\approx k_\\infty$ なので水平線へ滑らかに近づきます。",
+          "answerCheckpoints": [
+            "低圧では $P_r\\ll1$ として分母を1に近似します。高圧では $P_r\\gg1$ として分子・分母を $P_r$ で割れば比が1へ近づきます。第三体が十分ある高圧で、圧力だけを増やしても反応速度定数は無限には増えません。"
+          ],
+          "officialWrittenEvidence": {
+            "file": "_原本(非公開)/_抽出テキスト/熱流体1級_19_燃焼反応.md",
+            "excerpt": "- **問3-6** 素反応 CH3+CH3+(M)=C2H6+(M) について、ある温度において圧力 P に対し反応速度定数 k が変化する傾向の概略を描く作図問題。k=k∞・Pr/(1+Pr)、Pr=k0[M]/k∞。k0, k∞ はアレニウス型反応速度定数、[M] は第三体濃度。反応系温度は反応が生じるのに十分高い温度とする。"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "反応速度定数の圧力依存性：低圧では $k\\approx k_0[\\mathrm{M}]\\propto P$ なので傾き1の直線、高圧では $k\\approx k_\\infty$ なので水平線へ滑らかに近づきます。"
     },
     {
       "id": "thermal1-19-7",
@@ -393,7 +657,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e19ThirdBody",
-      "figureHint": "白地660x420。2つの原子/ラジカルが結合する際、第三体Mが衝突して余剰エネルギーを持ち去る様子を矢印で表す模式図。M候補(Ar,N2,H2O,CO2)を効率の大小を示す矢印の太さで区別。数値は書かない。"
+      "figureHint": "白地660x420。2つの原子/ラジカルが結合する際、第三体Mが衝突して余剰エネルギーを持ち去る様子を矢印で表す模式図。M候補(Ar,N2,H2O,CO2)を効率の大小を示す矢印の太さで区別。数値は書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-19-8",
@@ -446,10 +713,109 @@
       "reviewed": true,
       "officialRef": "燃焼流3-8",
       "role": "primary",
-      "figure": "helpful",
+      "figure": "none",
       "preFigureImage": "t1e19ArrheniusUnits",
-      "figureImage": "t1e19ArrheniusUnitsAns",
-      "figureHint": "白地660x420。反応I(二分子, 濃度2つ)と反応II(三分子, 濃度3つ+第三体M)の反応式を並べ、頻度係数の単位が cm^3系 と cm^6系 で異なることを枠で対比する表形式。数値の答えは書かない。"
+      "figureHint": "白地660x420。反応I(二分子, 濃度2つ)と反応II(三分子, 濃度3つ+第三体M)の反応式を並べ、頻度係数の単位が cm^3系 と cm^6系 で異なることを枠で対比する表形式。数値の答えは書かない。",
+      "editorialReview": {
+        "officialPoint": "修正アレニウス型・単位系",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "1": "通常解説の各肢の理由を参照。",
+          "2": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "7905b5117889c5ffd2b5a3fc13c647718eaabcf7cd70cc227c82634cd0b8c138"
+      },
+      "officialQuestionItems": [
+        "a",
+        "b"
+      ],
+      "sharedQuestion": "修正アレニウス式 $k=A\\,T^{n}\\exp(-E/R^{0}T)$ で表される2反応がある。反応I(二分子)の速度は $\\omega_I=[\\mathrm{S_1}][\\mathrm{S_2}]\\,k_I$、反応II(三分子)の速度は $\\omega_{II}=[\\mathrm{S_1}][\\mathrm{S_2}][\\mathrm{M}]\\,k_{II}$(いずれも $\\mathrm{mol/(cm^3\\cdot s)}$)。cm-mol-cal-K-s 単位系で頻度係数が $A_I=3.0\\times10^{18}$、$A_{II}=4.0\\times10^{15}$($n_I=0,\\ n_{II}=1$)と与えられている。それぞれの頻度係数をSI単位系へ換算してください。",
+      "studyParts": [
+        {
+          "id": "thermal1-19-8-item-a",
+          "number": "19-8",
+          "officialRef": "燃焼流3-8",
+          "officialQuestionItem": "a",
+          "title": "二分子反応",
+          "topic": "修正アレニウス型・単位系",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "SIでの $A_I$ は？",
+          "choices": [
+            "$3.0\\times10^{24}$",
+            "$3.0\\times10^{12}$"
+          ],
+          "answer": 2,
+          "answerSummary": "二分子反応の速度定数の体積因子は $\\mathrm{cm^3}$ です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "二分子反応の速度定数の体積因子は $\\mathrm{cm^3}$ です。$1\\,\\mathrm{cm^3}=10^{-6}\\,\\mathrm{m^3}$ なので、$A_I=3.0\\times10^{18}\\times10^{-6}$ です。"
+            }
+          ],
+          "explanation": "【基礎】二分子反応の速度定数の体積因子は $\\mathrm{cm^3}$ です。\n【考え方】正解は2です。二分子反応の速度定数の体積因子は $\\mathrm{cm^3}$ です。$1\\,\\mathrm{cm^3}=10^{-6}\\,\\mathrm{m^3}$ なので、$A_I=3.0\\times10^{18}\\times10^{-6}$ です。\n【ポイント】二分子反応の速度定数の体積因子は $\\mathrm{cm^3}$ です。\n【引っかけ】1：「$3.0\\times10^{24}$」ではなく、$3.0\\times10^{12}$です。二分子反応の速度定数の体積因子は $\\mathrm{cm^3}$ です。$1\\,\\mathrm{cm^3}=10^{-6}\\,\\mathrm{m^3}$ なので、$A_I=3.0\\times10^{18}\\times10^{-6}$ です。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "修正アレニウス型・単位系／個別の質問：二分子反応",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$3.0\\times10^{24}$」ではなく、$3.0\\times10^{12}$です。二分子反応の速度定数の体積因子は $\\mathrm{cm^3}$ です。$1\\,\\mathrm{cm^3}=10^{-6}\\,\\mathrm{m^3}$ なので、$A_I=3.0\\times10^{18}\\times10^{-6}$ です。"
+            },
+            "sha256": "22411d054eecb64636dcdd3a3e1488e38c0cbfadda7d7488bd528df7b876a14b"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-19-8-item-b",
+          "number": "19-8",
+          "officialRef": "燃焼流3-8",
+          "officialQuestionItem": "b",
+          "title": "三分子反応",
+          "topic": "修正アレニウス型・単位系",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "SIでの $A_{II}$ は？",
+          "choices": [
+            "$4.0\\times10^{3}$",
+            "$4.0\\times10^{9}$"
+          ],
+          "answer": 1,
+          "answerSummary": "三分子反応では濃度を3個掛けるため、速度定数の体積因子は $\\mathrm{cm^6}$ です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "三分子反応では濃度を3個掛けるため、速度定数の体積因子は $\\mathrm{cm^6}$ です。変換係数は $(10^{-6})^2=10^{-12}$。温度の単位Kは変わらないので、$A_{II}=4.0\\times10^{15}\\times10^{-12}$ となります。",
+              "figures": []
+            }
+          ],
+          "explanation": "【基礎】三分子反応では濃度を3個掛けるため、速度定数の体積因子は $\\mathrm{cm^6}$ です。\n【考え方】正解は1です。三分子反応では濃度を3個掛けるため、速度定数の体積因子は $\\mathrm{cm^6}$ です。変換係数は $(10^{-6})^2=10^{-12}$。温度の単位Kは変わらないので、$A_{II}=4.0\\times10^{15}\\times10^{-12}$ となります。\n【ポイント】三分子反応では濃度を3個掛けるため、速度定数の体積因子は $\\mathrm{cm^6}$ です。\n【引っかけ】2：「$4.0\\times10^{9}$」ではなく、$4.0\\times10^{3}$です。三分子反応では濃度を3個掛けるため、速度定数の体積因子は $\\mathrm{cm^6}$ です。変換係数は $(10^{-6})^2=10^{-12}$。温度の単位Kは変わらないので、$A_{II}=4.0\\times10^{15}\\times10^{-12}$ となります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "修正アレニウス型・単位系／個別の質問：三分子反応",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$4.0\\times10^{9}$」ではなく、$4.0\\times10^{3}$です。三分子反応では濃度を3個掛けるため、速度定数の体積因子は $\\mathrm{cm^6}$ です。変換係数は $(10^{-6})^2=10^{-12}$。温度の単位Kは変わらないので、$A_{II}=4.0\\times10^{15}\\times10^{-12}$ となります。"
+            },
+            "sha256": "d067babe0adb1d76612bb593bce75edccd4306b790df30ff174aad4e4a607e6d"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "二分子反応：二分子反応の速度定数の体積因子は $\\mathrm{cm^3}$ です。\n三分子反応：三分子反応では濃度を3個掛けるため、速度定数の体積因子は $\\mathrm{cm^6}$ です。",
+      "preFigures": [
+        {
+          "figureImage": "t1e19ArrheniusUnits",
+          "caption": "各小問に共通する位置・形状・条件をこの図で確認してください。"
+        }
+      ]
     },
     {
       "id": "thermal1-19-9",
@@ -505,7 +871,10 @@
       "figure": "helpful",
       "preFigureImage": "t1e19SensitivityBars",
       "figureImage": "t1e19SensitivityAns",
-      "figureHint": "白地660x420。横軸=反応1〜5、縦軸=感度係数(0を中心に正負)の棒グラフ。反応1=大きな正、反応3=大きな負、反応2・4・5=小さい棒。数値目盛は概略のみ、解釈の文言は書かない。"
+      "figureHint": "白地660x420。横軸=反応1〜5、縦軸=感度係数(0を中心に正負)の棒グラフ。反応1=大きな正、反応3=大きな負、反応2・4・5=小さい棒。数値目盛は概略のみ、解釈の文言は書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-19-10",
@@ -560,7 +929,182 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e19NOxPathways",
-      "figureHint": "白地660x420。火炎帯と火炎背後(既燃領域)を左右に配し、サーマルNO(空気N2→火炎背後)、プロンプトNO(火炎帯)、フューエルNO(燃料N分)の3経路を矢印で示す。空欄の答えは書かない。"
+      "figureHint": "白地660x420。火炎帯と火炎背後(既燃領域)を左右に配し、サーマルNO(空気N2→火炎背後)、プロンプトNO(火炎帯)、フューエルNO(燃料N分)の3経路を矢印で示す。空欄の答えは書かない。",
+      "editorialReview": {
+        "officialPoint": "サーマル/プロンプト/フューエルNO",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "1": "通常解説の各肢の理由を参照。",
+          "2": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "ffa165c2895a922d1884f193f090239d08edd06f108ac0a08d768ffcc15bda0a"
+      },
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "sharedQuestion": "NOの生成経路について、それぞれの窒素源や主な生成位置を選んでください。",
+      "studyParts": [
+        {
+          "id": "thermal1-19-10-item-a",
+          "number": "19-10",
+          "officialRef": "燃焼流3-10",
+          "officialQuestionItem": "a",
+          "title": "サーマルNOの窒素源",
+          "topic": "サーマル/プロンプト/フューエルNO",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "サーマルNOの窒素源は？",
+          "choices": [
+            "空気",
+            "燃料中に化合物として含まれる窒素"
+          ],
+          "answer": 1,
+          "answerSummary": "高温で空気中の窒素が酸化されます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "高温で空気中の窒素が酸化されます。燃料自体に窒素を含まなくても生成します。"
+            }
+          ],
+          "explanation": "【基礎】高温で空気中の窒素が酸化されます。\n【考え方】正解は1です。高温で空気中の窒素が酸化されます。燃料自体に窒素を含まなくても生成します。\n【ポイント】高温で空気中の窒素が酸化されます。\n【引っかけ】2：「燃料中に化合物として含まれる窒素」ではなく、空気です。高温で空気中の窒素が酸化されます。燃料自体に窒素を含まなくても生成します。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "サーマル/プロンプト/フューエルNO／個別の質問：サーマルNOの窒素源",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「燃料中に化合物として含まれる窒素」ではなく、空気です。高温で空気中の窒素が酸化されます。燃料自体に窒素を含まなくても生成します。"
+            },
+            "sha256": "09fbf2377594c69282f1ac9673bea2587eebab50f87037889060adba5e83d4bc"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-19-10-item-b",
+          "number": "19-10",
+          "officialRef": "燃焼流3-10",
+          "officialQuestionItem": "b",
+          "title": "サーマルNOの位置",
+          "topic": "サーマル/プロンプト/フューエルNO",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "サーマルNOが高温を保つ間に生成しやすい場所は？",
+          "choices": [
+            "点火前の低温未燃領域",
+            "火炎背後の高温既燃領域"
+          ],
+          "answer": 2,
+          "answerSummary": "高温での反応速度と滞留時間が重要です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "高温での反応速度と滞留時間が重要です。熱くなる前の領域では生成しにくくなります。"
+            }
+          ],
+          "explanation": "【基礎】高温での反応速度と滞留時間が重要です。\n【考え方】正解は2です。高温での反応速度と滞留時間が重要です。熱くなる前の領域では生成しにくくなります。\n【ポイント】高温での反応速度と滞留時間が重要です。\n【引っかけ】1：「点火前の低温未燃領域」ではなく、火炎背後の高温既燃領域です。高温での反応速度と滞留時間が重要です。熱くなる前の領域では生成しにくくなります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "サーマル/プロンプト/フューエルNO／個別の質問：サーマルNOの位置",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「点火前の低温未燃領域」ではなく、火炎背後の高温既燃領域です。高温での反応速度と滞留時間が重要です。熱くなる前の領域では生成しにくくなります。"
+            },
+            "sha256": "87a9672a5d07a81e8127f2d42335205f1a8de84c8399f7705004a629932fe1c0"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-19-10-item-c",
+          "number": "19-10",
+          "officialRef": "燃焼流3-10",
+          "officialQuestionItem": "c",
+          "title": "プロンプトNO",
+          "topic": "サーマル/プロンプト/フューエルNO",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "プロンプトNOが速く生成する場所は？",
+          "choices": [
+            "火炎帯",
+            "火炎から遠い低温未燃領域"
+          ],
+          "answer": 1,
+          "answerSummary": "火炎帯の炭化水素系活性基と窒素が関わる経路です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "火炎帯の炭化水素系活性基と窒素が関わる経路です。火炎背後の高温滞留を重視するサーマルNOと分けます。"
+            }
+          ],
+          "explanation": "【基礎】火炎帯の炭化水素系活性基と窒素が関わる経路です。\n【考え方】正解は1です。火炎帯の炭化水素系活性基と窒素が関わる経路です。火炎背後の高温滞留を重視するサーマルNOと分けます。\n【ポイント】火炎帯の炭化水素系活性基と窒素が関わる経路です。\n【引っかけ】2：「火炎から遠い低温未燃領域」ではなく、火炎帯です。火炎帯の炭化水素系活性基と窒素が関わる経路です。火炎背後の高温滞留を重視するサーマルNOと分けます。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "サーマル/プロンプト/フューエルNO／個別の質問：プロンプトNO",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「火炎から遠い低温未燃領域」ではなく、火炎帯です。火炎帯の炭化水素系活性基と窒素が関わる経路です。火炎背後の高温滞留を重視するサーマルNOと分けます。"
+            },
+            "sha256": "189abbf45290cd4997a9ea5f729c03d670db3cc6e889e11e3eff33e2bca9c885"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-19-10-item-d",
+          "number": "19-10",
+          "officialRef": "燃焼流3-10",
+          "officialQuestionItem": "d",
+          "title": "フューエルNO",
+          "topic": "サーマル/プロンプト/フューエルNO",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "フューエルNOの窒素源は？",
+          "choices": [
+            "空気中の窒素だけ",
+            "燃料に含まれる窒素分"
+          ],
+          "answer": 2,
+          "answerSummary": "石炭などの燃料に含まれる窒素化合物が起源です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "石炭などの燃料に含まれる窒素化合物が起源です。窒素源を確認すると三つの名称を整理できます。",
+              "figures": [
+                {
+                  "figureImage": "t1e19NOxPathways",
+                  "caption": "窒素酸化物(NOx)の生成経路の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】石炭などの燃料に含まれる窒素化合物が起源です。\n【考え方】正解は2です。石炭などの燃料に含まれる窒素化合物が起源です。窒素源を確認すると三つの名称を整理できます。\n【ポイント】石炭などの燃料に含まれる窒素化合物が起源です。\n【引っかけ】1：「空気中の窒素だけ」ではなく、燃料に含まれる窒素分です。石炭などの燃料に含まれる窒素化合物が起源です。窒素源を確認すると三つの名称を整理できます。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "サーマル/プロンプト/フューエルNO／個別の質問：フューエルNO",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「空気中の窒素だけ」ではなく、燃料に含まれる窒素分です。石炭などの燃料に含まれる窒素化合物が起源です。窒素源を確認すると三つの名称を整理できます。"
+            },
+            "sha256": "38802048cd161edc9830ab4561adc581b2555098145a9b9362044cf41c30d1a0"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "サーマルNOの窒素源：高温で空気中の窒素が酸化されます。\nサーマルNOの位置：高温での反応速度と滞留時間が重要です。\nプロンプトNO：火炎帯の炭化水素系活性基と窒素が関わる経路です。\nフューエルNO：石炭などの燃料に含まれる窒素化合物が起源です。"
     },
     {
       "id": "thermal1-19-11",
@@ -615,7 +1159,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e19NOxReduction",
-      "figureHint": "白地660x420。当量比(横軸)に対する最高火炎温度とNOx生成量(縦軸)の山型概念曲線を示し、希薄側/過濃側の低減方向を矢印で表す。具体的な数値やどれが誤りかは書かない。"
+      "figureHint": "白地660x420。当量比(横軸)に対する最高火炎温度とNOx生成量(縦軸)の山型概念曲線を示し、希薄側/過濃側の低減方向を矢印で表す。具体的な数値やどれが誤りかは書かない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-19-12",
@@ -670,7 +1217,10 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e19AdiabaticFlameTemp",
-      "figureHint": "白地660x420。4種の燃料(メタン/オクタン/エチレン/アセチレン)の断熱火炎温度を棒グラフの高低で相対比較する概念図。実際の温度値は書かず、順位を示唆する数値も入れない。"
+      "figureHint": "白地660x420。4種の燃料(メタン/オクタン/エチレン/アセチレン)の断熱火炎温度を棒グラフの高低で相対比較する概念図。実際の温度値は書かず、順位を示唆する数値も入れない。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "thermal1-19-13",
@@ -725,7 +1275,182 @@
       "role": "primary",
       "figure": "helpful",
       "figureImage": "t1e19SootFormation",
-      "figureHint": "白地660x420。前駆体(C2H2/PAH)→核生成→凝集→表面成長→酸化 の各過程を矢印で並べ、拡散燃焼領域(燃料過濃側)で粒子が生成される位置を示す模式図。空欄の答えは書かない。"
+      "figureHint": "白地660x420。前駆体(C2H2/PAH)→核生成→凝集→表面成長→酸化 の各過程を矢印で並べ、拡散燃焼領域(燃料過濃側)で粒子が生成される位置を示す模式図。空欄の答えは書かない。",
+      "editorialReview": {
+        "officialPoint": "すす生成・PAH",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "2": "通常解説の各肢の理由を参照。",
+          "3": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "26f11ed41b90a29e5b4e7cd769f42b42941ca1e462e052eea094fc5456159889"
+      },
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "sharedQuestion": "すすの代表的な生成モデルについて、前駆体・粒子の成長過程・消失過程・主な生成領域を選んでください。",
+      "studyParts": [
+        {
+          "id": "thermal1-19-13-item-a",
+          "number": "19-13",
+          "officialRef": "燃焼流3-13",
+          "officialQuestionItem": "a",
+          "title": "前駆体",
+          "topic": "すす生成・PAH",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "前駆体として使う代表例は？",
+          "choices": [
+            "二酸化炭素と水だけ",
+            "アセチレンや多環芳香族炭化水素（PAH）"
+          ],
+          "answer": 2,
+          "answerSummary": "燃料が分解・反応する途中で、炭素を含む小分子や環構造がすすの核の形成へつながります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "燃料が分解・反応する途中で、炭素を含む小分子や環構造がすすの核の形成へつながります。"
+            }
+          ],
+          "explanation": "【基礎】燃料が分解・反応する途中で、炭素を含む小分子や環構造がすすの核の形成へつながります。\n【考え方】正解は2です。燃料が分解・反応する途中で、炭素を含む小分子や環構造がすすの核の形成へつながります。\n【ポイント】燃料が分解・反応する途中で、炭素を含む小分子や環構造がすすの核の形成へつながります。\n【引っかけ】1：「二酸化炭素と水だけ」ではなく、アセチレンや多環芳香族炭化水素（PAH）です。燃料が分解・反応する途中で、炭素を含む小分子や環構造がすすの核の形成へつながります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "すす生成・PAH／個別の質問：前駆体",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「二酸化炭素と水だけ」ではなく、アセチレンや多環芳香族炭化水素（PAH）です。燃料が分解・反応する途中で、炭素を含む小分子や環構造がすすの核の形成へつながります。"
+            },
+            "sha256": "6b4b0df73929ec40bee364dedc8b1fc30383f3606aee26ca224e9886eaa8ec11"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-19-13-item-b",
+          "number": "19-13",
+          "officialRef": "燃焼流3-13",
+          "officialQuestionItem": "b",
+          "title": "粒子同士の過程",
+          "topic": "すす生成・PAH",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "粒子が衝突してまとまる過程は？",
+          "choices": [
+            "凝集",
+            "分裂"
+          ],
+          "answer": 1,
+          "answerSummary": "小さな粒子同士が集まる過程です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "小さな粒子同士が集まる過程です。気相から炭素が加わる表面成長とも区別します。"
+            }
+          ],
+          "explanation": "【基礎】小さな粒子同士が集まる過程です。\n【考え方】正解は1です。小さな粒子同士が集まる過程です。気相から炭素が加わる表面成長とも区別します。\n【ポイント】小さな粒子同士が集まる過程です。\n【引っかけ】2：「分裂」ではなく、凝集です。小さな粒子同士が集まる過程です。気相から炭素が加わる表面成長とも区別します。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "すす生成・PAH／個別の質問：粒子同士の過程",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「分裂」ではなく、凝集です。小さな粒子同士が集まる過程です。気相から炭素が加わる表面成長とも区別します。"
+            },
+            "sha256": "342de6d2d8a8182bc700bd312bb26bad1b1dea4aa656bc873f96d7f2724dedc9"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-19-13-item-c",
+          "number": "19-13",
+          "officialRef": "燃焼流3-13",
+          "officialQuestionItem": "c",
+          "title": "消失過程",
+          "topic": "すす生成・PAH",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "生成したすすを消費する主な反応は？",
+          "choices": [
+            "還元反応",
+            "酸化反応"
+          ],
+          "answer": 2,
+          "answerSummary": "酸素やOHなどとの反応で炭素が気体成分へ変わります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "酸素やOHなどとの反応で炭素が気体成分へ変わります。生成だけでなく消失も同時に計算します。"
+            }
+          ],
+          "explanation": "【基礎】酸素やOHなどとの反応で炭素が気体成分へ変わります。\n【考え方】正解は2です。酸素やOHなどとの反応で炭素が気体成分へ変わります。生成だけでなく消失も同時に計算します。\n【ポイント】酸素やOHなどとの反応で炭素が気体成分へ変わります。\n【引っかけ】1：「還元反応」ではなく、酸化反応です。酸素やOHなどとの反応で炭素が気体成分へ変わります。生成だけでなく消失も同時に計算します。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "すす生成・PAH／個別の質問：消失過程",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「還元反応」ではなく、酸化反応です。酸素やOHなどとの反応で炭素が気体成分へ変わります。生成だけでなく消失も同時に計算します。"
+            },
+            "sha256": "03672ceb0720d6faead2cb08b89e0d202590117d08fd45f83cee644afbeb850e"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-19-13-item-d",
+          "number": "19-13",
+          "officialRef": "燃焼流3-13",
+          "officialQuestionItem": "d",
+          "title": "生成する領域",
+          "topic": "すす生成・PAH",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "噴霧火炎で、すすが生じやすい燃焼領域は？",
+          "choices": [
+            "燃料過濃な拡散燃焼領域",
+            "十分希薄で均一な予混合燃焼領域"
+          ],
+          "answer": 1,
+          "answerSummary": "燃料が多く酸素が届きにくい領域では、完全酸化の前にすすが生成しやすくなります。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "燃料が多く酸素が届きにくい領域では、完全酸化の前にすすが生成しやすくなります。",
+              "figures": [
+                {
+                  "figureImage": "t1e19SootFormation",
+                  "caption": "すすの生成モデルの条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】燃料が多く酸素が届きにくい領域では、完全酸化の前にすすが生成しやすくなります。\n【考え方】正解は1です。燃料が多く酸素が届きにくい領域では、完全酸化の前にすすが生成しやすくなります。\n【ポイント】燃料が多く酸素が届きにくい領域では、完全酸化の前にすすが生成しやすくなります。\n【引っかけ】2：「十分希薄で均一な予混合燃焼領域」ではなく、燃料過濃な拡散燃焼領域です。燃料が多く酸素が届きにくい領域では、完全酸化の前にすすが生成しやすくなります。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "すす生成・PAH／個別の質問：生成する領域",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「十分希薄で均一な予混合燃焼領域」ではなく、燃料過濃な拡散燃焼領域です。燃料が多く酸素が届きにくい領域では、完全酸化の前にすすが生成しやすくなります。"
+            },
+            "sha256": "4878c5410850b36766ad83d706bb09b1f2ebac94f1d74f8e02cacd5311e37e75"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "前駆体：燃料が分解・反応する途中で、炭素を含む小分子や環構造がすすの核の形成へつながります。\n粒子同士の過程：小さな粒子同士が集まる過程です。\n消失過程：酸素やOHなどとの反応で炭素が気体成分へ変わります。\n生成する領域：燃料が多く酸素が届きにくい領域では、完全酸化の前にすすが生成しやすくなります。"
     },
     {
       "id": "thermal1-19-14",
@@ -778,10 +1503,185 @@
       "reviewed": true,
       "officialRef": "燃焼流3-14",
       "role": "primary",
-      "figure": "helpful",
+      "figure": "none",
       "preFigureImage": "t1e19ExplosionLimits",
-      "figureImage": "t1e19ExplosionLimitsAns",
-      "figureHint": "白地660x420。横軸=温度、縦軸=圧力。低温側からA→B→C→Dへ。BC=右上がり(低圧ほど低温で点火)、CD=左上がり(高圧ほど低温で爆発)と本文の向きに一致させ、突起(半島)を示す。曲線をAB/BC/CDと点でラベルするのみで、第1/第2/第3や半島名の答えは書かない。"
+      "figureHint": "白地660x420。横軸=温度、縦軸=圧力。低温側からA→B→C→Dへ。BC=右上がり(低圧ほど低温で点火)、CD=左上がり(高圧ほど低温で爆発)と本文の向きに一致させ、突起(半島)を示す。曲線をAB/BC/CDと点でラベルするのみで、第1/第2/第3や半島名の答えは書かない。",
+      "editorialReview": {
+        "officialPoint": "爆発限界・爆発半島",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
+        "distractorMisconceptions": {
+          "1": "通常解説の各肢の理由を参照。",
+          "2": "通常解説の各肢の理由を参照。",
+          "4": "通常解説の各肢の理由を参照。"
+        },
+        "sha256": "3c367e4fc16e81b2594381703a6aeb47c37eaec83d8f8669e39194b56b91095a"
+      },
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "sharedQuestion": "図は酸素-水素混合気の爆発限界を温度(横軸)-圧力(縦軸)平面に示したもので、低温側から曲線AB・BC・CDが並び、ABC付近に突起がある。",
+      "studyParts": [
+        {
+          "id": "thermal1-19-14-item-a",
+          "number": "19-14",
+          "officialRef": "燃焼流3-14",
+          "officialQuestionItem": "a",
+          "title": "突起の名称",
+          "topic": "爆発限界・爆発半島",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "ABC付近の突起の名称は？",
+          "choices": [
+            "爆発半島",
+            "消炎半島"
+          ],
+          "answer": 1,
+          "answerSummary": "低圧側で爆発域が突き出す形を地図の半島にたとえた呼び名です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "低圧側で爆発域が突き出す形を地図の半島にたとえた呼び名です。"
+            }
+          ],
+          "explanation": "【基礎】低圧側で爆発域が突き出す形を地図の半島にたとえた呼び名です。\n【考え方】正解は1です。低圧側で爆発域が突き出す形を地図の半島にたとえた呼び名です。\n【ポイント】低圧側で爆発域が突き出す形を地図の半島にたとえた呼び名です。\n【引っかけ】2：「消炎半島」ではなく、爆発半島です。低圧側で爆発域が突き出す形を地図の半島にたとえた呼び名です。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "爆発限界・爆発半島／個別の質問：突起の名称",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「消炎半島」ではなく、爆発半島です。低圧側で爆発域が突き出す形を地図の半島にたとえた呼び名です。"
+            },
+            "sha256": "d820472dc4e14ca45b2218de958450255d22bbdaa809ad96195cba4b0f037cfb"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-19-14-item-b",
+          "number": "19-14",
+          "officialRef": "燃焼流3-14",
+          "officialQuestionItem": "b",
+          "title": "ABの限界",
+          "topic": "爆発限界・爆発半島",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "ABは何限界ですか？",
+          "choices": [
+            "第3限界",
+            "第1限界"
+          ],
+          "answer": 2,
+          "answerSummary": "低圧側では活性基が壁へ拡散して失われる作用が重要で、分枝との競合によって第1限界が現れます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "低圧側では活性基が壁へ拡散して失われる作用が重要で、分枝との競合によって第1限界が現れます。"
+            }
+          ],
+          "explanation": "【基礎】低圧側では活性基が壁へ拡散して失われる作用が重要で、分枝との競合によって第1限界が現れます。\n【考え方】正解は2です。低圧側では活性基が壁へ拡散して失われる作用が重要で、分枝との競合によって第1限界が現れます。\n【ポイント】低圧側では活性基が壁へ拡散して失われる作用が重要で、分枝との競合によって第1限界が現れます。\n【引っかけ】1：「第3限界」ではなく、第1限界です。低圧側では活性基が壁へ拡散して失われる作用が重要で、分枝との競合によって第1限界が現れます。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "爆発限界・爆発半島／個別の質問：ABの限界",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「第3限界」ではなく、第1限界です。低圧側では活性基が壁へ拡散して失われる作用が重要で、分枝との競合によって第1限界が現れます。"
+            },
+            "sha256": "4ba5dce05286c21fe8bc7ef020716646a92117a7511330edcd2d4baf3d94251d"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-19-14-item-c",
+          "number": "19-14",
+          "officialRef": "燃焼流3-14",
+          "officialQuestionItem": "c",
+          "title": "CDの限界",
+          "topic": "爆発限界・爆発半島",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "CDは何限界ですか？",
+          "choices": [
+            "第3限界",
+            "第1限界"
+          ],
+          "answer": 1,
+          "answerSummary": "高圧側の限界を第3限界と呼びます。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "高圧側の限界を第3限界と呼びます。ABとCDを左右の名前だけで取り違えないようにします。"
+            }
+          ],
+          "explanation": "【基礎】高圧側の限界を第3限界と呼びます。\n【考え方】正解は1です。高圧側の限界を第3限界と呼びます。ABとCDを左右の名前だけで取り違えないようにします。\n【ポイント】高圧側の限界を第3限界と呼びます。\n【引っかけ】2：「第1限界」ではなく、第3限界です。高圧側の限界を第3限界と呼びます。ABとCDを左右の名前だけで取り違えないようにします。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "爆発限界・爆発半島／個別の質問：CDの限界",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「第1限界」ではなく、第3限界です。高圧側の限界を第3限界と呼びます。ABとCDを左右の名前だけで取り違えないようにします。"
+            },
+            "sha256": "a763c63e2015f3873bbd1ac11fba0780e5d3ac2ed213aad6b30e5ab8dfe69686"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "thermal1-19-14-item-d",
+          "number": "19-14",
+          "officialRef": "燃焼流3-14",
+          "officialQuestionItem": "d",
+          "title": "第2限界",
+          "topic": "爆発限界・爆発半島",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "第2限界で連鎖分枝と釣り合うものは？",
+          "choices": [
+            "活性基の数を保つ連鎖移動反応",
+            "活性基を減らす停止反応"
+          ],
+          "answer": 2,
+          "answerSummary": "圧力の増加で三体再結合が進みやすくなり、活性基の増殖と競合します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "圧力の増加で三体再結合が進みやすくなり、活性基の増殖と競合します。数を増やす分枝と減らす停止の競合です。",
+              "figures": []
+            }
+          ],
+          "explanation": "【基礎】圧力の増加で三体再結合が進みやすくなり、活性基の増殖と競合します。\n【考え方】正解は2です。圧力の増加で三体再結合が進みやすくなり、活性基の増殖と競合します。数を増やす分枝と減らす停止の競合です。\n【ポイント】圧力の増加で三体再結合が進みやすくなり、活性基の増殖と競合します。\n【引っかけ】1：「活性基の数を保つ連鎖移動反応」ではなく、活性基を減らす停止反応です。圧力の増加で三体再結合が進みやすくなり、活性基の増殖と競合します。数を増やす分枝と減らす停止の競合です。",
+          "relatedFormulas": [],
+          "editorialReview": {
+            "officialPoint": "爆発限界・爆発半島／個別の質問：第2限界",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「活性基の数を保つ連鎖移動反応」ではなく、活性基を減らす停止反応です。圧力の増加で三体再結合が進みやすくなり、活性基の増殖と競合します。数を増やす分枝と減らす停止の競合です。"
+            },
+            "sha256": "5092da8428828f7de95b4a0b29ca95fe745a86a6375c2ac2c220c9409e15bd5f"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided",
+      "answerSummary": "突起の名称：低圧側で爆発域が突き出す形を地図の半島にたとえた呼び名です。\nABの限界：低圧側では活性基が壁へ拡散して失われる作用が重要で、分枝との競合によって第1限界が現れます。\nCDの限界：高圧側の限界を第3限界と呼びます。\n第2限界：圧力の増加で三体再結合が進みやすくなり、活性基の増殖と競合します。",
+      "preFigures": [
+        {
+          "figureImage": "t1e19ExplosionLimits",
+          "caption": "各小問に共通する位置・形状・条件をこの図で確認してください。"
+        }
+      ]
     }
   ]
 }

@@ -8,7 +8,8 @@
     "count": 29,
     "officialCount": 29,
     "explanationMode": "guided",
-    "presentationStyle": "cae-standard-v1"
+    "presentationStyle": "cae-standard-v1",
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -71,9 +72,12 @@
           "3": "共通の局所座標で定義する性質を誤りとする",
           "4": "一次と二次の存在を否定する"
         },
-        "sha256": "6a381cc2a67b5e9ee112600e3e00dbc7cf6a924621cc6eb1695afede47a22c5f"
+        "sha256": "ef0bd58055ac860d1a5a44094214eb75d000661247bff761be3b0bc694867b00"
       },
-      "answerSummary": "正解は②です。位置と変位に同じ形状関数を使うことが定義です。「必ず二次以上」という②が誤りです。"
+      "answerSummary": "正解は②です。位置と変位に同じ形状関数を使うことが定義です。「必ず二次以上」という②が誤りです。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "title": "補間の分類",
@@ -131,9 +135,12 @@
           "3": "座標側が高い場合と低い場合を逆にする",
           "4": "節点数の一致だけで同一補間と判定する"
         },
-        "sha256": "fd4cb1d065dad8250e01792d8a13e2216d792dd861300090e71cdf19aa9db4b2"
+        "sha256": "7e299a8eb0fffd0c12b25d013a450014e3062e0b49dfb6d7d812e30ed3a9d179"
       },
-      "answerSummary": "正解は②です。座標と変位の補間が同じならアイソ、座標の次数が高ければスーパー、低ければサブです。"
+      "answerSummary": "正解は②です。座標と変位の補間が同じならアイソ、座標の次数が高ければスーパー、低ければサブです。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "title": "四辺形要素の次数",
@@ -186,15 +193,109 @@
       ],
       "editorialReview": {
         "officialPoint": "四辺形要素の次数",
-        "alignment": "保存済み公式第5章の同番号の問題・解説を照合。4択の論点を保ち、結論・必要な途中式・具体例・誤答理由を統合し、重複説明を整理。独立した小問ではなく組合せを選ぶ設問は分割しない。図と数値例の対応を確認。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "Q4とQ8の次数を逆にする",
           "3": "節点値が異なっても定数補間とする",
           "4": "Q8を三次ラグランジュとする"
         },
-        "sha256": "9b8ad900cdc1a0bfa858ced376a84a4715ad6fd0359139129ba506df74c51fa7"
+        "sha256": "5d63c2bf714b1a9c455b074c7b01559f81d4d39347dd63d95f8daa6e929f1c62"
       },
-      "answerSummary": "正解は②です。Q4は4隅、Q8は4隅と辺の中点に節点を置き、それぞれ双一次・二次の補間を使います。"
+      "answerSummary": "Q4の補間：Q4は双一次です。\nQ8の補間：Q8は二次セレンディピティです。",
+      "sharedQuestion": "標準的な四辺形要素Q4（隅4節点）とQ8（隅と辺の中間の8節点）の補間を比較します。",
+      "studyParts": [
+        {
+          "id": "fem-5-3-item-q4",
+          "number": "5-3",
+          "officialRef": "問5-3",
+          "officialQuestionItem": "q4",
+          "title": "Q4の補間",
+          "topic": "要素次数の比較",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Q4の補間はどれか。",
+          "choices": [
+            "完全二次",
+            "双一次"
+          ],
+          "answer": 2,
+          "answerSummary": "Q4は双一次です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$N_1=(1-\\xi)(1-\\eta)/4=(1-\\xi-\\eta+\\xi\\eta)/4$ です。各座標について一次で、$\\xi\\eta$ があっても $\\xi^2,\\eta^2$ まで自由に含む完全二次ではありません。"
+            }
+          ],
+          "explanation": "【基礎】Q4は双一次です。\n【考え方】正解は2です。$N_1=(1-\\xi)(1-\\eta)/4=(1-\\xi-\\eta+\\xi\\eta)/4$ です。各座標について一次で、$\\xi\\eta$ があっても $\\xi^2,\\eta^2$ まで自由に含む完全二次ではありません。\n【ポイント】Q4は双一次です。\n【引っかけ】1：「完全二次」ではなく、双一次です。$N_1=(1-\\xi)(1-\\eta)/4=(1-\\xi-\\eta+\\xi\\eta)/4$ です。各座標について一次で、$\\xi\\eta$ があっても $\\xi^2,\\eta^2$ まで自由に含む完全二次ではありません。",
+          "relatedFormulas": [
+            "shape-func-4node",
+            "higher-order"
+          ],
+          "editorialReview": {
+            "officialPoint": "四辺形要素の次数／個別の質問：Q4の補間",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「完全二次」ではなく、双一次です。$N_1=(1-\\xi)(1-\\eta)/4=(1-\\xi-\\eta+\\xi\\eta)/4$ です。各座標について一次で、$\\xi\\eta$ があっても $\\xi^2,\\eta^2$ まで自由に含む完全二次ではありません。"
+            },
+            "sha256": "e836f7074888a06a041cd30c1a03de87d1653cf951e020abbffe66909ec654e2"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-5-3-item-q8",
+          "number": "5-3",
+          "officialRef": "問5-3",
+          "officialQuestionItem": "q8",
+          "title": "Q8の補間",
+          "topic": "要素次数の比較",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "Q8の補間はどれか。",
+          "choices": [
+            "三次ラグランジュ",
+            "二次セレンディピティ"
+          ],
+          "answer": 2,
+          "answerSummary": "Q8は二次セレンディピティです。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "辺の中間にも節点があり、辺上の二次的な変化を表せます。8は節点数で、多項式の次数ではありません。中央にも節点を置く9節点の二次ラグランジュ要素とは区別します。",
+              "figures": [
+                {
+                  "figureImage": "f5NodeOrder",
+                  "caption": "四辺形要素の次数の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】Q8は二次セレンディピティです。\n【考え方】正解は2です。辺の中間にも節点があり、辺上の二次的な変化を表せます。8は節点数で、多項式の次数ではありません。中央にも節点を置く9節点の二次ラグランジュ要素とは区別します。\n【ポイント】Q8は二次セレンディピティです。\n【引っかけ】1：「三次ラグランジュ」ではなく、二次セレンディピティです。辺の中間にも節点があり、辺上の二次的な変化を表せます。8は節点数で、多項式の次数ではありません。中央にも節点を置く9節点の二次ラグランジュ要素とは区別します。",
+          "relatedFormulas": [
+            "shape-func-4node",
+            "higher-order"
+          ],
+          "editorialReview": {
+            "officialPoint": "四辺形要素の次数／個別の質問：Q8の補間",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「三次ラグランジュ」ではなく、二次セレンディピティです。辺の中間にも節点があり、辺上の二次的な変化を表せます。8は節点数で、多項式の次数ではありません。中央にも節点を置く9節点の二次ラグランジュ要素とは区別します。"
+            },
+            "sha256": "1bfac9db1726ee20c34817fc11b1ab0c62d24dac476ede579c2110c853509cc2"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "officialQuestionItems": [
+        "q4",
+        "q8"
+      ],
+      "explanationMode": "guided"
     },
     {
       "title": "アイソパラメトリック要素の座標",
@@ -253,9 +354,12 @@
           "3": "正常な要素の一対一対応を否定する",
           "4": "同じ形状関数の使用を誤りとする"
         },
-        "sha256": "5e939bb297f262ad79f363c53bdab394dfd305c6ea6786a9b480d0ea8c9baee4"
+        "sha256": "5666ff21738d41ab505995a6ccb17355b1ca028b949e7952e6450462828a3636"
       },
-      "answerSummary": "正解は①です。三角形の面積座標と、四辺形の正規化された局所座標を混同した①が誤りです。"
+      "answerSummary": "正解は①です。三角形の面積座標と、四辺形の正規化された局所座標を混同した①が誤りです。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "title": "正規化局所座標と全体座標",
@@ -288,13 +392,13 @@
       "preFigureImage": "s2Before5_5",
       "editorialReview": {
         "officialPoint": "正規化局所座標と全体座標",
-        "alignment": "保存済み公式第5章の同番号の問題・解説を照合。4択の論点を保ち、結論・必要な途中式・具体例・誤答理由を統合し、重複説明を整理。独立した小問ではなく組合せを選ぶ設問は分割しない。図と数値例の対応を確認。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "位置補間に形状関数の微分を使う",
           "3": "形状関数を二乗して重みを変える",
           "4": "節点座標を形状関数で割る"
         },
-        "sha256": "7b2b670de288b1a1635ae0dc35710d05f48d34dc066bf3db1e7ab410f2196fea"
+        "sha256": "583d5d897fc4ff4f52ab34dd3365bf12719ef4b74fb3139e69d55e11c27f316f"
       },
       "easyExplanation": [
         {
@@ -324,13 +428,123 @@
           "body": "節点1の局所座標を入れると $N_1=1$、ほかは0なので、変換先は必ず $(x_1,y_1)$ へ戻ります。②は位置の重みを微分へ変えており、座標変換の式ではありません。③の二乗では、中心で重みの和が1ではなく1/4になります。④は節点で0になる形状関数で割るため、そのまま定義できません。同番号の対応、重みの和、節点へ戻る性質を確認すれば、①を自分で検算できます。"
         }
       ],
-      "answerSummary": "正解は①です。局所位置から重みを求め、$x=\\sum_iN_ix_i$、$y=\\sum_iN_iy_i$ と節点座標を足します。",
+      "answerSummary": "全体x座標：正規化された四角形の中の位置に応じた重み $N_i$ で、実際の節点のx座標を足します。\n全体y座標：y座標にも同じ形状関数を使います。",
       "preFigures": [
         {
           "figureImage": "s2Before5_5",
           "caption": "同じ要素を、正規化された局所座標と全体座標で示した与件図です。"
         }
-      ]
+      ],
+      "officialQuestionItems": [
+        "x",
+        "y"
+      ],
+      "sharedQuestion": "図の正規化された局所座標と全体座標の関係を考える。四辺形アイソパラメトリック要素で、正規化された局所座標を $(\\xi,\\eta)$、節点の全体座標を $(x_i,y_i)$、形状関数を $N_i(\\xi,\\eta)$ とする。",
+      "studyParts": [
+        {
+          "id": "fem-5-5-item-x",
+          "number": "5-5",
+          "officialRef": "問5-5",
+          "officialQuestionItem": "x",
+          "title": "全体x座標",
+          "topic": "座標変換(iso要素)",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "局所座標で指定した点の全体x座標は？",
+          "choices": [
+            "$x=\\sum_{i=1}^4N_i(\\xi,\\eta)x_i$",
+            "$x=\\sum_{i=1}^4N_i(\\xi,\\eta)\\xi_i$"
+          ],
+          "answer": 1,
+          "answerSummary": "正規化された四角形の中の位置に応じた重み $N_i$ で、実際の節点のx座標を足します。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "正規化された四角形の中の位置に応じた重み $N_i$ で、実際の節点のx座標を足します。局所座標をもう一度足すのではありません。"
+            },
+            {
+              "title": "局所座標は計算用、全体座標は実物の位置です",
+              "body": "四辺形では、要素ごとの計算用の座標 $\\xi,\\eta$ を使います。正規化された局所座標では、標準の四角形の各辺を−1から1までとして扱います。一方、全体座標 $x,y$ はモデル全体で共通の向きと長さを表します。局所座標の1は1mmという意味ではありません。同じ点を二つの座標で表し、節点座標と形状関数を使って対応を付けます。これにより大きさや向きが違う要素も、共通の基準上で形状関数を定義して計算できます。正常な要素でこの対応が壊れないことも大切です。"
+            },
+            {
+              "title": "同じ番号の形状関数と節点座標を掛けます",
+              "body": "求めるのは、局所座標で指定された点の全体座標です。形状関数を使い、$x=\\sum_iN_ix_i$、$y=\\sum_iN_iy_i$ と計算します。$N_i$ は無次元の重み、$x_i,y_i$ は節点iの実物上の座標なので、掛けて足した結果には長さの単位が残ります。まず「どの場所か」を求める式であり、ひずみを求める微分の式とは区別します。"
+            }
+          ],
+          "explanation": "【基礎】正規化された四角形の中の位置に応じた重み $N_i$ で、実際の節点のx座標を足します。\n【考え方】正解は1です。正規化された四角形の中の位置に応じた重み $N_i$ で、実際の節点のx座標を足します。局所座標をもう一度足すのではありません。\n【ポイント】四辺形では、要素ごとの計算用の座標 $\\xi,\\eta$ を使います。正規化された局所座標では、標準の四角形の各辺を−1から1までとして扱います。一方、全体座標 $x,y$ はモデル全体で共通の向きと長さを表します。局所座標の1は1mmという意味ではありません。同じ点を二つの座標で表し、節点座標と形状関数を使って対応を付けます。これにより大きさや向きが違う要素も、共通の基準上で形状関数を定義して計算できます。正常な要素でこの対応が壊れないことも大切です。\n【引っかけ】2：「$x=\\sum_{i=1}^4N_i(\\xi,\\eta)\\xi_i$」ではなく、$x=\\sum_{i=1}^4N_i(\\xi,\\eta)x_i$です。正規化された四角形の中の位置に応じた重み $N_i$ で、実際の節点のx座標を足します。局所座標をもう一度足すのではありません。",
+          "relatedFormulas": [
+            "isoparametric",
+            "shape-func-4node"
+          ],
+          "editorialReview": {
+            "officialPoint": "正規化局所座標と全体座標／個別の質問：全体x座標",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$x=\\sum_{i=1}^4N_i(\\xi,\\eta)\\xi_i$」ではなく、$x=\\sum_{i=1}^4N_i(\\xi,\\eta)x_i$です。正規化された四角形の中の位置に応じた重み $N_i$ で、実際の節点のx座標を足します。局所座標をもう一度足すのではありません。"
+            },
+            "sha256": "fe2f30c28983aae221c10e17bab1bb107a709383f4c86b98dc05f72f94d7a110"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-5-5-item-y",
+          "number": "5-5",
+          "officialRef": "問5-5",
+          "officialQuestionItem": "y",
+          "title": "全体y座標",
+          "topic": "座標変換(iso要素)",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "同じ点の全体y座標は？",
+          "choices": [
+            "$y=\\sum_{i=1}^4N_i(\\xi,\\eta)\\eta_i$",
+            "$y=\\sum_{i=1}^4N_i(\\xi,\\eta)y_i$"
+          ],
+          "answer": 2,
+          "answerSummary": "y座標にも同じ形状関数を使います。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "y座標にも同じ形状関数を使います。節点位置で対応する $N_i=1$、他は0になるので、その節点の全体座標へ正しく戻ります。"
+            },
+            {
+              "title": "四つの重みを求める",
+              "body": "Q4の節点を左下から反時計回りに1・2・3・4とすると、$N_1=(1-\\xi)(1-\\eta)/4$、$N_2=(1+\\xi)(1-\\eta)/4$、$N_3=(1+\\xi)(1+\\eta)/4$、$N_4=(1-\\xi)(1+\\eta)/4$です。図の点$(\\xi,\\eta)=(0.5,0)$を代入すると、順に$1/8,3/8,3/8,1/8$になります。右側に近い点なので、右の節点2・3の重みが大きくなっています。和は1です。"
+            },
+            {
+              "title": "同じ重みでxとyを別々に足す",
+              "body": "図の節点座標はmmで$(10,20),(50,20),(60,40),(20,40)$です。$x=(10+3\\times50+3\\times60+20)/8=360/8=45$mm、$y=(20+3\\times20+3\\times40+40)/8=240/8=30$mmです。局所の$(0.5,0)$と全体の$(45,30)$mmは同じ場所です。局所座標の0を、そのまま全体の0mmとしてはいけません。",
+              "figures": [
+                {
+                  "figureImage": "f5CoordMap",
+                  "caption": "局所の点(0.5,0)と、全体の点(45,30)mmは同じ点です。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】y座標にも同じ形状関数を使います。\n【考え方】正解は2です。y座標にも同じ形状関数を使います。節点位置で対応する $N_i=1$、他は0になるので、その節点の全体座標へ正しく戻ります。\n【ポイント】Q4の節点を左下から反時計回りに1・2・3・4とすると、$N_1=(1-\\xi)(1-\\eta)/4$、$N_2=(1+\\xi)(1-\\eta)/4$、$N_3=(1+\\xi)(1+\\eta)/4$、$N_4=(1-\\xi)(1+\\eta)/4$です。図の点$(\\xi,\\eta)=(0.5,0)$を代入すると、順に$1/8,3/8,3/8,1/8$になります。右側に近い点なので、右の節点2・3の重みが大きくなっています。和は1です。\n【引っかけ】1：「$y=\\sum_{i=1}^4N_i(\\xi,\\eta)\\eta_i$」ではなく、$y=\\sum_{i=1}^4N_i(\\xi,\\eta)y_i$です。y座標にも同じ形状関数を使います。節点位置で対応する $N_i=1$、他は0になるので、その節点の全体座標へ正しく戻ります。",
+          "relatedFormulas": [
+            "isoparametric",
+            "shape-func-4node"
+          ],
+          "editorialReview": {
+            "officialPoint": "正規化局所座標と全体座標／個別の質問：全体y座標",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$y=\\sum_{i=1}^4N_i(\\xi,\\eta)\\eta_i$」ではなく、$y=\\sum_{i=1}^4N_i(\\xi,\\eta)y_i$です。y座標にも同じ形状関数を使います。節点位置で対応する $N_i=1$、他は0になるので、その節点の全体座標へ正しく戻ります。"
+            },
+            "sha256": "26a460208709ac4f30f9d161f50c5a98511a8adf443701742a9b57d4c35eb9ea"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "title": "Q4の曲げ表現",
@@ -370,7 +584,7 @@
           "2": "y方向の一次変位が表せないとする",
           "3": "一次のせん断変位が表せないとする"
         },
-        "sha256": "bca30798f2dda81f712b59fb8d89f0a68c8ba33602a91565ae37c11e4b233dc9"
+        "sha256": "f7fdf6090f01583bc886bebeb1d4585d63bc51cb0e9d9a29e4e25db416ea4a72"
       },
       "easyExplanation": [
         {
@@ -398,6 +612,9 @@
           "figureImage": "s2Before5_6",
           "caption": "長方形Q4の節点配置と、比較する変位場です。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -459,15 +676,117 @@
       ],
       "editorialReview": {
         "officialPoint": "ヤコビ行列の成分と微分の変換",
-        "alignment": "保存済み公式第5章の同番号の問題・解説を照合。4択の論点を保ち、結論・必要な途中式・具体例・誤答理由を統合し、重複説明を整理。独立した小問ではなく組合せを選ぶ設問は分割しない。図と数値例の対応を確認。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "非対角成分を入れ替える",
           "2": "微分する量と基準を逆にする",
           "4": "対角成分を非対角に入れる"
         },
-        "sha256": "6bec27ec11d7bf94ec9ab9dabbf7bd7daba24b0dfdba4d3579464a4751749440"
+        "sha256": "3d90d880355a461dfb92adc6017aba08be33b439051f1d3e07b3d41625d9bacf"
       },
-      "answerSummary": "正解は③です。アは$\\partial y/\\partial\\xi$、イは$\\partial x/\\partial\\eta$です。各行は一つの局所座標方向の変化を表します。"
+      "answerSummary": "ヤコビ行列のア：アは $\\partial y/\\partial\\xi$ です。\nヤコビ行列のイ：イは $\\partial x/\\partial\\eta$ です。",
+      "officialQuestionItems": [
+        "a",
+        "i"
+      ],
+      "sharedQuestion": "形状関数$N_i$の微分について、$\\begin{bmatrix}\\partial N_i/\\partial\\xi\\\\\\partial N_i/\\partial\\eta\\end{bmatrix}=\\mathbf J\\begin{bmatrix}\\partial N_i/\\partial x\\\\\\partial N_i/\\partial y\\end{bmatrix}$とする。$\\mathbf J=\\begin{bmatrix}\\partial x/\\partial\\xi&\\text{ア}\\\\\\text{イ}&\\partial y/\\partial\\eta\\end{bmatrix}$のア・イをそれぞれ答えてください。",
+      "studyParts": [
+        {
+          "id": "fem-5-7-item-a",
+          "number": "5-7",
+          "officialRef": "問5-7",
+          "officialQuestionItem": "a",
+          "title": "ヤコビ行列のア",
+          "topic": "ヤコビ行列と[B]の評価",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "アに入る成分はどれか。",
+          "choices": [
+            "$\\partial x/\\partial\\eta$",
+            "$\\partial y/\\partial\\xi$"
+          ],
+          "answer": 2,
+          "answerSummary": "アは $\\partial y/\\partial\\xi$ です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "第1行はξによる微分です。連鎖律 $\\partial N_i/\\partial\\xi=(\\partial x/\\partial\\xi)(\\partial N_i/\\partial x)+(\\partial y/\\partial\\xi)(\\partial N_i/\\partial y)$ の後半の係数を読みます。"
+            },
+            {
+              "title": "なぜひずみを求める前に微分を換算するのか",
+              "body": "ひずみを求めるには $\\partial u/\\partial x$ など、実物の距離に対する変位の変化が必要です。しかし形状関数は $\\xi,\\eta$ で定義しています。この二つの微分を結ぶのが、問題で定義されたヤコビ行列です。材料の硬さを決める行列ではなく、座標の対応による変化の換算です。"
+            }
+          ],
+          "explanation": "【基礎】アは $\\partial y/\\partial\\xi$ です。\n【考え方】正解は2です。第1行はξによる微分です。連鎖律 $\\partial N_i/\\partial\\xi=(\\partial x/\\partial\\xi)(\\partial N_i/\\partial x)+(\\partial y/\\partial\\xi)(\\partial N_i/\\partial y)$ の後半の係数を読みます。\n【ポイント】ひずみを求めるには $\\partial u/\\partial x$ など、実物の距離に対する変位の変化が必要です。しかし形状関数は $\\xi,\\eta$ で定義しています。この二つの微分を結ぶのが、問題で定義されたヤコビ行列です。材料の硬さを決める行列ではなく、座標の対応による変化の換算です。\n【引っかけ】1：「$\\partial x/\\partial\\eta$」ではなく、$\\partial y/\\partial\\xi$です。第1行はξによる微分です。連鎖律 $\\partial N_i/\\partial\\xi=(\\partial x/\\partial\\xi)(\\partial N_i/\\partial x)+(\\partial y/\\partial\\xi)(\\partial N_i/\\partial y)$ の後半の係数を読みます。",
+          "relatedFormulas": [
+            "isoparametric",
+            "jacobian"
+          ],
+          "editorialReview": {
+            "officialPoint": "ヤコビ行列の成分と微分の変換／個別の質問：ヤコビ行列のア",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$\\partial x/\\partial\\eta$」ではなく、$\\partial y/\\partial\\xi$です。第1行はξによる微分です。連鎖律 $\\partial N_i/\\partial\\xi=(\\partial x/\\partial\\xi)(\\partial N_i/\\partial x)+(\\partial y/\\partial\\xi)(\\partial N_i/\\partial y)$ の後半の係数を読みます。"
+            },
+            "sha256": "382b655390e206b1fc51206d89b2f3726a2e299cf61f6c7fda6e97adf5069f42"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-5-7-item-i",
+          "number": "5-7",
+          "officialRef": "問5-7",
+          "officialQuestionItem": "i",
+          "title": "ヤコビ行列のイ",
+          "topic": "ヤコビ行列と[B]の評価",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "question": "イに入る成分はどれか。",
+          "choices": [
+            "$\\partial y/\\partial\\xi$",
+            "$\\partial x/\\partial\\eta$"
+          ],
+          "answer": 2,
+          "answerSummary": "イは $\\partial x/\\partial\\eta$ です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "第2行はηによる微分です。$\\partial N_i/\\partial\\eta=(\\partial x/\\partial\\eta)(\\partial N_i/\\partial x)+(\\partial y/\\partial\\eta)(\\partial N_i/\\partial y)$ の前半がイです。Jの並べ方には別の流儀もあるため、与えられた関係式に合わせます。"
+            },
+            {
+              "title": "幅4mm・高さ2mmの長方形で換算する",
+              "body": "図の長方形では$x=2(1+\\xi)$mm、$y=1+\\eta$mmです。$\\xi$が2変わる間にxは4mm変わるので$\\partial x/\\partial\\xi=2$mmです。一方、xは$\\eta$に依存せず、yは$\\xi$に依存しません。したがって$\\mathbf J=\\begin{bmatrix}2&0\\\\0&1\\end{bmatrix}$、$\\mathbf J^{-1}=\\begin{bmatrix}1/2&0\\\\0&1\\end{bmatrix}$です。結果は$\\partial N_i/\\partial x=(1/2)\\partial N_i/\\partial\\xi$、$\\partial N_i/\\partial y=\\partial N_i/\\partial\\eta$となります。局所座標の単位幅と実物の1mmの違いを換算しています。",
+              "figures": [
+                {
+                  "figureImage": "f5Jacobian",
+                  "caption": "幅4mm、高さ2mmの要素で、局所座標の変化を実際の距離へ換算します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】イは $\\partial x/\\partial\\eta$ です。\n【考え方】正解は2です。第2行はηによる微分です。$\\partial N_i/\\partial\\eta=(\\partial x/\\partial\\eta)(\\partial N_i/\\partial x)+(\\partial y/\\partial\\eta)(\\partial N_i/\\partial y)$ の前半がイです。Jの並べ方には別の流儀もあるため、与えられた関係式に合わせます。\n【ポイント】図の長方形では$x=2(1+\\xi)$mm、$y=1+\\eta$mmです。$\\xi$が2変わる間にxは4mm変わるので$\\partial x/\\partial\\xi=2$mmです。一方、xは$\\eta$に依存せず、yは$\\xi$に依存しません。したがって$\\mathbf J=\\begin{bmatrix}2&0\\\\0&1\\end{bmatrix}$、$\\mathbf J^{-1}=\\begin{bmatrix}1/2&0\\\\0&1\\end{bmatrix}$です。結果は$\\partial N_i/\\partial x=(1/2)\\partial N_i/\\partial\\xi$、$\\partial N_i/\\partial y=\\partial N_i/\\partial\\eta$となります。局所座標の単位幅と実物の1mmの違いを換算しています。\n【引っかけ】1：「$\\partial y/\\partial\\xi$」ではなく、$\\partial x/\\partial\\eta$です。第2行はηによる微分です。$\\partial N_i/\\partial\\eta=(\\partial x/\\partial\\eta)(\\partial N_i/\\partial x)+(\\partial y/\\partial\\eta)(\\partial N_i/\\partial y)$ の前半がイです。Jの並べ方には別の流儀もあるため、与えられた関係式に合わせます。",
+          "relatedFormulas": [
+            "isoparametric",
+            "jacobian"
+          ],
+          "editorialReview": {
+            "officialPoint": "ヤコビ行列の成分と微分の変換／個別の質問：ヤコビ行列のイ",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$\\partial y/\\partial\\xi$」ではなく、$\\partial x/\\partial\\eta$です。第2行はηによる微分です。$\\partial N_i/\\partial\\eta=(\\partial x/\\partial\\eta)(\\partial N_i/\\partial x)+(\\partial y/\\partial\\eta)(\\partial N_i/\\partial y)$ の前半がイです。Jの並べ方には別の流儀もあるため、与えられた関係式に合わせます。"
+            },
+            "sha256": "7b032933054bcaea83b77ab40d55f70bbe02ce62a73a15b8fbab26d76ea0e265"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "title": "節点を持たない変数と求解時間",
@@ -506,7 +825,7 @@
           "2": "節点での一致と辺全体の適合性を混同する",
           "3": "要素内での追加変数の消去を否定する"
         },
-        "sha256": "24a8b7da1779976ada648baec261fa200ce760f48257717315ecb141ea0b795c"
+        "sha256": "2683d5246b292e7ac2264a72a203e3688c28acee692b7080d3fba5035b35e68e"
       },
       "easyExplanation": [
         {
@@ -538,6 +857,9 @@
           "figureImage": "s2Before5_8",
           "caption": "通常の節点変位と、要素内部の付加変位の設定です。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -596,9 +918,12 @@
           "3": "同じ節点数だけで精度優劣を保証する",
           "4": "内部節点の有無だけで積分点数を決める"
         },
-        "sha256": "851bf4db94405f1d23138036b2bf57cd9793169b89bece2b10ff82f0249cc7d2"
+        "sha256": "d659a164f01db68501b0c6a8391b7532eb2a2efd70be1f415ae61f577b6c74cf"
       },
-      "answerSummary": "正解は②です。二次の六面体要素は、セレンディピティ系が20節点、ラグランジュ系が27節点です。"
+      "answerSummary": "正解は②です。二次の六面体要素は、セレンディピティ系が20節点、ラグランジュ系が27節点です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "title": "補間と微分",
@@ -656,9 +981,12 @@
           "3": "二次式の微分を定数とする",
           "4": "補間できている変位のひずみを0とする"
         },
-        "sha256": "1151f8ab3d0a40e544da9424cb2848f638e2ea78a7389443c15a318b1aef7b02"
+        "sha256": "7b90fa4c803e7e988bb3d3a2c58ff602195481d1b69f3af247a30d94d7bedf7c"
       },
-      "answerSummary": "正解は①です。変位を位置で微分するとひずみです。$u=ax^2$なら$\\varepsilon_x=2ax$となります。"
+      "answerSummary": "正解は①です。変位を位置で微分するとひずみです。$u=ax^2$なら$\\varepsilon_x=2ax$となります。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "fem-5-11",
@@ -720,7 +1048,7 @@
           "3": "圧力の単位を節点力へそのまま使う",
           "4": "圧力を法線でなく接線方向へ置く"
         },
-        "sha256": "5cd5025daee0578e4a98f6e7cbf962bd8b9acd0c273398739412851c1aa5b3a6"
+        "sha256": "605dbc392eaa2005e8fb4d233b917853a3d43a5143526f89d32caeb08c110e2a"
       },
       "answerSummary": "正解は②です。面を内向きに押す圧力を、形状関数で積分して等価節点力へ換算します。",
       "preFigures": [
@@ -728,6 +1056,9 @@
           "figureImage": "f5PressureSetup",
           "caption": "長さL・厚さtの辺に、一定圧力pを加える二節点要素の例です。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -786,9 +1117,12 @@
           "2": "各部分へ働く遠心力を表面力とする",
           "3": "指定された等価分布モデルを元の表面圧力と混同する"
         },
-        "sha256": "87874b7d0463e263da8e505398bd753312c63c6fdca37fcdc054bb058e45850a"
+        "sha256": "fb17a527a65b3ef5c4a4bfcacf4a66a7faded558a078ae24b358dd0e2c18831c"
       },
-      "answerSummary": "正解は④です。圧力は面に作用する表面力です。重力など、物体内部に分布して扱う物体力と区別します。"
+      "answerSummary": "正解は④です。圧力は面に作用する表面力です。重力など、物体内部に分布して扱う物体力と区別します。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "title": "死荷重",
@@ -846,9 +1180,12 @@
           "3": "時間変化する移動力を一定荷重とする",
           "4": "変位依存のばね力を一定荷重とする"
         },
-        "sha256": "108dba0361c43e532f35779da909324d6edfd9bcccdbbe9c0088dc5680eaf54d"
+        "sha256": "02026581b0fefb8d69f47e73ac2c90cccb76481e4535b7b01b5c9745f7c26975"
       },
-      "answerSummary": "正解は①です。死荷重は、変形によって大きさや全体座標での向きが変わらない荷重です。"
+      "answerSummary": "正解は①です。死荷重は、変形によって大きさや全体座標での向きが変わらない荷重です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "fem-5-14",
@@ -900,15 +1237,107 @@
       ],
       "editorialReview": {
         "officialPoint": "境界条件の呼び方",
-        "alignment": "保存済み公式第5章の同番号の問題・解説を照合。4択の論点を保ち、結論・必要な途中式・具体例・誤答理由を統合し、重複説明を整理。独立した小問ではなく組合せを選ぶ設問は分割しない。図と数値例の対応を確認。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "1": "第1種と第2種および基本と自然を交換する",
           "3": "異なる二種類をともに第1種とする",
           "4": "変位と表面力の指定先を交換する"
         },
-        "sha256": "0b73f3339a5896c096ebde6163d01fcf226bdf0fd17ee125f8fed30a2072cf1a"
+        "sha256": "93eeef73d9fedda8d3f9929dfd127bce81fe737c6ff3564920b54e4fef1af1d9"
       },
-      "answerSummary": "正解は②です。変位を指定するのがディリクレ境界条件、表面力を指定するのがノイマン境界条件です。"
+      "answerSummary": "ディリクレ条件：ディリクレ条件は第1種・基本境界条件です。\nノイマン条件：ノイマン条件は第2種・自然境界条件です。",
+      "officialQuestionItems": [
+        "d",
+        "n"
+      ],
+      "sharedQuestion": "境界で値を指定する方法と、力や流束を指定する方法を区別します。",
+      "studyParts": [
+        {
+          "id": "fem-5-14-item-d",
+          "number": "5-14",
+          "officialRef": "問5-14",
+          "officialQuestionItem": "d",
+          "title": "ディリクレ条件",
+          "topic": "ディリクレ・ノイマンと第1種・第2種",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "ディリクレ条件の別名はどれか。",
+          "choices": [
+            "第1種・基本境界条件",
+            "第2種・自然境界条件"
+          ],
+          "answer": 1,
+          "answerSummary": "ディリクレ条件は第1種・基本境界条件です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "構造解析なら端を1mm動かす、熱伝導なら境界を100℃とするように、求める物理量の値を指定します。0の指定に限定されません。"
+            }
+          ],
+          "explanation": "【基礎】ディリクレ条件は第1種・基本境界条件です。\n【考え方】正解は1です。構造解析なら端を1mm動かす、熱伝導なら境界を100℃とするように、求める物理量の値を指定します。0の指定に限定されません。\n【ポイント】ディリクレ条件は第1種・基本境界条件です。\n【引っかけ】2：「第2種・自然境界条件」ではなく、第1種・基本境界条件です。構造解析なら端を1mm動かす、熱伝導なら境界を100℃とするように、求める物理量の値を指定します。0の指定に限定されません。",
+          "relatedFormulas": [
+            "bc-types"
+          ],
+          "editorialReview": {
+            "officialPoint": "境界条件の呼び方／個別の質問：ディリクレ条件",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「第2種・自然境界条件」ではなく、第1種・基本境界条件です。構造解析なら端を1mm動かす、熱伝導なら境界を100℃とするように、求める物理量の値を指定します。0の指定に限定されません。"
+            },
+            "sha256": "65a6f8d63361e28d3d26403b39d0d79860ba2a1eedc277487e19438264b27208"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-5-14-item-n",
+          "number": "5-14",
+          "officialRef": "問5-14",
+          "officialQuestionItem": "n",
+          "title": "ノイマン条件",
+          "topic": "ディリクレ・ノイマンと第1種・第2種",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "question": "ノイマン条件の別名はどれか。",
+          "choices": [
+            "第2種・自然境界条件",
+            "第1種・基本境界条件"
+          ],
+          "answer": 1,
+          "answerSummary": "ノイマン条件は第2種・自然境界条件です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "構造解析では表面力、熱伝導では熱流束を指定します。例えば端を10Nで引く条件です。変位や温度の値を直接決めるディリクレ条件とは、指定する物理量が違います。",
+              "figures": [
+                {
+                  "figureImage": "f5DirichletNeumann",
+                  "caption": "境界条件の呼び方の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】ノイマン条件は第2種・自然境界条件です。\n【考え方】正解は1です。構造解析では表面力、熱伝導では熱流束を指定します。例えば端を10Nで引く条件です。変位や温度の値を直接決めるディリクレ条件とは、指定する物理量が違います。\n【ポイント】ノイマン条件は第2種・自然境界条件です。\n【引っかけ】2：「第1種・基本境界条件」ではなく、第2種・自然境界条件です。構造解析では表面力、熱伝導では熱流束を指定します。例えば端を10Nで引く条件です。変位や温度の値を直接決めるディリクレ条件とは、指定する物理量が違います。",
+          "relatedFormulas": [
+            "bc-types"
+          ],
+          "editorialReview": {
+            "officialPoint": "境界条件の呼び方／個別の質問：ノイマン条件",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「第1種・基本境界条件」ではなく、第2種・自然境界条件です。構造解析では表面力、熱伝導では熱流束を指定します。例えば端を10Nで引く条件です。変位や温度の値を直接決めるディリクレ条件とは、指定する物理量が違います。"
+            },
+            "sha256": "27da72f3fa16cc4fb0e631c905eda224028a7bf5abed2f93c9763b8748fda958"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "fem-5-15",
@@ -966,9 +1395,12 @@
           "2": "未知数処理と節点そのものの削除を混同する",
           "3": "材料を硬くすることで変位指定を代用する"
         },
-        "sha256": "78abb5ec826c1a243cbb69c5a48b253ab2ca82864ac704c0d1e53d42ba88657c"
+        "sha256": "2e80b74bb6197a1b5d8634a4e58e0fe790a3c0aae6ca0985f6ad9f683173ce52"
       },
-      "answerSummary": "正解は④です。既知変位に対応する自由度を未知数から除き、未指定の変位を解きます。節点そのものを消すのではありません。"
+      "answerSummary": "正解は④です。既知変位に対応する自由度を未知数から除き、未指定の変位を解きます。節点そのものを消すのではありません。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "title": "ディリクレ条件と剛体運動",
@@ -1026,9 +1458,12 @@
           "2": "表面力指定と変位指定を混同する",
           "4": "一つの変位成分で全剛体運動が除けるとする"
         },
-        "sha256": "98e549958d1b80b92de6549b918509dedcc9adeb85b8cd85cb6b5fb431293775"
+        "sha256": "904186933145b80f646acc3a83f728c826dee0e9a11781c633e132a819b98938"
       },
-      "answerSummary": "正解は③です。変位の指定値は0に限りません。剛体運動を止めつつ、実際の支持条件を表します。"
+      "answerSummary": "正解は③です。変位の指定値は0に限りません。剛体運動を止めつつ、実際の支持条件を表します。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "fem-5-17",
@@ -1086,9 +1521,12 @@
           "2": "法線だけでなく接線の変位まで固定する",
           "4": "形状だけの対称性で半分モデルを正当化する"
         },
-        "sha256": "5d043bf0b93e968f5d371dffb6eb569fa01571ef499c2e3662550bcb8d613d9b"
+        "sha256": "aed78fbe190b09d226a5ed0737ffad3f5c833a2af3170153df5b3ecd9aba6104"
       },
-      "answerSummary": "正解は③です。対称面を突き抜ける変位を0にします。面に沿う変位まで一律に0にはしません。"
+      "answerSummary": "正解は③です。対称面を突き抜ける変位を0にします。面に沿う変位まで一律に0にはしません。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "title": "温度境界",
@@ -1146,9 +1584,12 @@
           "2": "断熱を温度固定とする",
           "4": "熱伝達係数と流体温度を表面温度の直接指定とする"
         },
-        "sha256": "09ffe54f7204106041d9a2f5b86dffef445ef9c2c7caed289637541d71bf3101"
+        "sha256": "64dbcbd4acbd249e533c594487327fdb2ee2b85c6bf790a23dc2e173b76c8262"
       },
-      "answerSummary": "正解は③です。温度を指定する条件と、表面を通る熱流束を指定する条件を区別します。断熱は熱流束0です。"
+      "answerSummary": "正解は③です。温度を指定する条件と、表面を通る熱流束を指定する条件を区別します。断熱は熱流束0です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "fem-5-19",
@@ -1215,7 +1656,7 @@
           "3": "非零の既知変位の影響を捨てる",
           "4": "逆行列でなく元の剛性を掛ける"
         },
-        "sha256": "67d5bf2bbc4015f959177ea52bb5f2397e9f32061b338df4cd7348c5a6811dd6"
+        "sha256": "c43d9e4c9c207d6ee27e32672f909d1b7f81ac07e0446ac735765b6b75ba8548"
       },
       "answerSummary": "正解は①です。既知変位の項を右辺へ移し、$\\boldsymbol\\delta_\\alpha=\\mathbf K_{\\alpha\\alpha}^{-1}(\\mathbf F_\\alpha-\\mathbf K_{\\alpha\\beta}\\boldsymbol\\delta_\\beta)$ とします。",
       "preFigures": [
@@ -1223,6 +1664,9 @@
           "figureImage": "f5SeriesSpringsSetup",
           "caption": "未知の変位と、あらかじめ与えた変位を区別した設定です。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1286,7 +1730,7 @@
           "2": "既知変位項の移項符号を逆にする",
           "3": "未知自由度と異なる行と列を取り出す"
         },
-        "sha256": "ebd082510ac09f869e4b4a08c5bf542c49b3d93936e0829d562c1def089f1421"
+        "sha256": "98540f3a612d824c24a0380903d820493cc0d2b24d99ab326f4a202ebc7d6b79"
       },
       "answerSummary": "正解は④です。$u_2=2,u_3=0$を代入すると、未知の$u_1,u_4$に対する右辺は$(14,2)^{\\mathsf T}$となります。",
       "preFigures": [
@@ -1294,6 +1738,9 @@
           "figureImage": "f5BarSeries2ElSetup",
           "caption": "各自由度の番号、荷重、指定変位を元の式と対応させます。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1352,9 +1799,12 @@
           "3": "載荷方向の変位を固定する",
           "4": "荷重自由度を方程式から削除する"
         },
-        "sha256": "753bbeabdce5579de48b28263d5002a884c55e7276c133df1e3f575c35184695"
+        "sha256": "9d2fab1c8fc8c4c4bec73a1e293a72e47f6d856547a46b28fe5904e77ffa2f0f"
       },
-      "answerSummary": "正解は①です。微小変形の線形解析では、荷重を加える操作は右辺への加算です。剛性行列を変更する操作ではありません。"
+      "answerSummary": "正解は①です。微小変形の線形解析では、荷重を加える操作は右辺への加算です。剛性行列を変更する操作ではありません。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "fem-5-22",
@@ -1408,9 +1858,12 @@
           "2": "熱ひずみの換算に比熱を選ぶ",
           "4": "温度が既知なのに熱伝導率を選ぶ"
         },
-        "sha256": "22d7cf240fc1c277bb5fcd85a458fe98639dce11c5a6001452b58c03bbf44461"
+        "sha256": "1f1dd6fe5b4e97b81aaa615843c2bbf75a80072650f24ff1a26ef3e33f00ff37"
       },
-      "answerSummary": "正解は③です。温度差から自由な伸び縮みを求めるには、線膨張係数が必要です。"
+      "answerSummary": "正解は③です。温度差から自由な伸び縮みを求めるには、線膨張係数が必要です。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "fem-5-23",
@@ -1466,15 +1919,151 @@
       ],
       "editorialReview": {
         "officialPoint": "熱ひずみベクトルの垂直・せん断成分",
-        "alignment": "保存済み公式第5章の同番号の問題・解説を照合。4択の論点を保ち、結論・必要な途中式・具体例・誤答理由を統合し、重複説明を整理。独立した小問ではなく組合せを選ぶ設問は分割しない。図と数値例の対応を確認。",
+        "alignment": "保存済み公式抽出の問題・解説と照合し、公式番号内で質問・空欄・判定項目ごとに回答できる小問へ再編。共通の条件・図と必要な導出を保持した。",
         "distractorMisconceptions": {
           "2": "指数を一桁小さくする",
           "3": "一様熱膨張にせん断ひずみも生じるとする",
           "4": "二方向にひずみを半分ずつ配る"
         },
-        "sha256": "66795fdffc1540adda2c63f42f41fef624f4bd717ff39a16791e67e30fba77fc"
+        "sha256": "fcf315e50f5f834d9d99e61f465028bfeb67b0b047f5568d4582b40a6fa4a9eb"
       },
-      "answerSummary": "正解は①です。各方向の垂直熱ひずみは$6\\times10^{-4}$、せん断熱ひずみは0です。"
+      "answerSummary": "x方向の熱ひずみ：$\\varepsilon_x^{\\mathrm{th}}=6\\times10^{-4}$です。\ny方向の熱ひずみ：$\\varepsilon_y^{\\mathrm{th}}=6\\times10^{-4}$です。\n熱せん断ひずみ：熱せん断ひずみは0です。",
+      "officialQuestionItems": [
+        "x",
+        "y",
+        "g"
+      ],
+      "sharedQuestion": "等方性材料を拘束せず一様に加熱する。線膨張係数$\\alpha=1.2\\times10^{-5}\\,\\mathrm{K}^{-1}$、温度上昇$\\Delta T=50\\,\\mathrm K$のとき、各熱ひずみ成分を求めます。$\\gamma_{xy}$は工学せん断ひずみとする。",
+      "studyParts": [
+        {
+          "id": "fem-5-23-item-x",
+          "number": "5-23",
+          "officialRef": "問5-23",
+          "officialQuestionItem": "x",
+          "title": "x方向の熱ひずみ",
+          "topic": "熱ひずみベクトル",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$\\varepsilon_x^{\\mathrm{th}}$はいくらか。",
+          "choices": [
+            "$6\\times10^{-4}$",
+            "$6\\times10^{-5}$"
+          ],
+          "answer": 1,
+          "answerSummary": "$\\varepsilon_x^{\\mathrm{th}}=6\\times10^{-4}$です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "$\\alpha\\Delta T=(1.2\\times10^{-5})\\times50=60\\times10^{-5}=6\\times10^{-4}$です。小数なら0.0006で、0.06％に相当します。1/KとKが打ち消され、ひずみには単位が残りません。長さ1000mmなら$1000\\times0.0006=0.6$mm伸びます。これがx・yそれぞれの垂直ひずみです。"
+            },
+            {
+              "title": "温度で自然な長さが変わる",
+              "body": "線膨張係数αは、1Kの温度上昇による長さの変化の割合です。等方性とは、材料の性質が方向によらないことです。x方向の長さもy方向の長さも、同じ割合$\\alpha\\Delta T$で伸びようとします。"
+            }
+          ],
+          "explanation": "【基礎】$\\varepsilon_x^{\\mathrm{th}}=6\\times10^{-4}$です。\n【考え方】正解は1です。$\\alpha\\Delta T=(1.2\\times10^{-5})\\times50=60\\times10^{-5}=6\\times10^{-4}$です。小数なら0.0006で、0.06％に相当します。1/KとKが打ち消され、ひずみには単位が残りません。長さ1000mmなら$1000\\times0.0006=0.6$mm伸びます。これがx・yそれぞれの垂直ひずみです。\n【ポイント】線膨張係数αは、1Kの温度上昇による長さの変化の割合です。等方性とは、材料の性質が方向によらないことです。x方向の長さもy方向の長さも、同じ割合$\\alpha\\Delta T$で伸びようとします。\n【引っかけ】2：「$6\\times10^{-5}$」ではなく、$6\\times10^{-4}$です。$\\alpha\\Delta T=(1.2\\times10^{-5})\\times50=60\\times10^{-5}=6\\times10^{-4}$です。小数なら0.0006で、0.06％に相当します。1/KとKが打ち消され、ひずみには単位が残りません。長さ1000mmなら$1000\\times0.0006=0.6$mm伸びます。これがx・yそれぞれの垂直ひずみです。",
+          "relatedFormulas": [
+            "thermal-strain-vector"
+          ],
+          "editorialReview": {
+            "officialPoint": "熱ひずみベクトルの垂直・せん断成分／個別の質問：x方向の熱ひずみ",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "2": "「$6\\times10^{-5}$」ではなく、$6\\times10^{-4}$です。$\\alpha\\Delta T=(1.2\\times10^{-5})\\times50=60\\times10^{-5}=6\\times10^{-4}$です。小数なら0.0006で、0.06％に相当します。1/KとKが打ち消され、ひずみには単位が残りません。長さ1000mmなら$1000\\times0.0006=0.6$mm伸びます。これがx・yそれぞれの垂直ひずみです。"
+            },
+            "sha256": "0cdba7dcee2d4492f68ce2f266c36ed0071cc62ed97263b2e7d6deef88d2fb4d"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-5-23-item-y",
+          "number": "5-23",
+          "officialRef": "問5-23",
+          "officialQuestionItem": "y",
+          "title": "y方向の熱ひずみ",
+          "topic": "熱ひずみベクトル",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$\\varepsilon_y^{\\mathrm{th}}$はいくらか。",
+          "choices": [
+            "$3\\times10^{-4}$",
+            "$6\\times10^{-4}$"
+          ],
+          "answer": 2,
+          "answerSummary": "$\\varepsilon_y^{\\mathrm{th}}=6\\times10^{-4}$です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "等方性で自由に膨張できるので、y方向も $\\alpha\\Delta T=1.2\\times10^{-5}\\times50=6\\times10^{-4}$ です。伸びをxとyへ半分ずつ分配するのではありません。"
+            }
+          ],
+          "explanation": "【基礎】$\\varepsilon_y^{\\mathrm{th}}=6\\times10^{-4}$です。\n【考え方】正解は2です。等方性で自由に膨張できるので、y方向も $\\alpha\\Delta T=1.2\\times10^{-5}\\times50=6\\times10^{-4}$ です。伸びをxとyへ半分ずつ分配するのではありません。\n【ポイント】$\\varepsilon_y^{\\mathrm{th}}=6\\times10^{-4}$です。\n【引っかけ】1：「$3\\times10^{-4}$」ではなく、$6\\times10^{-4}$です。等方性で自由に膨張できるので、y方向も $\\alpha\\Delta T=1.2\\times10^{-5}\\times50=6\\times10^{-4}$ です。伸びをxとyへ半分ずつ分配するのではありません。",
+          "relatedFormulas": [
+            "thermal-strain-vector"
+          ],
+          "editorialReview": {
+            "officialPoint": "熱ひずみベクトルの垂直・せん断成分／個別の質問：y方向の熱ひずみ",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$3\\times10^{-4}$」ではなく、$6\\times10^{-4}$です。等方性で自由に膨張できるので、y方向も $\\alpha\\Delta T=1.2\\times10^{-5}\\times50=6\\times10^{-4}$ です。伸びをxとyへ半分ずつ分配するのではありません。"
+            },
+            "sha256": "7959104526c00ab904a849c56065b4ebb50381f43ca92146f0285e824abbf9dc"
+          },
+          "explanationMode": "guided"
+        },
+        {
+          "id": "fem-5-23-item-g",
+          "number": "5-23",
+          "officialRef": "問5-23",
+          "officialQuestionItem": "g",
+          "title": "熱せん断ひずみ",
+          "topic": "熱ひずみベクトル",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "question": "$\\gamma_{xy}^{\\mathrm{th}}$はいくらか。",
+          "choices": [
+            "$6\\times10^{-4}$",
+            "0"
+          ],
+          "answer": 2,
+          "answerSummary": "熱せん断ひずみは0です。",
+          "easyExplanation": [
+            {
+              "title": "考え方と途中手順",
+              "body": "自由な一様加熱では、正方形は大きな正方形になり、角度は変わりません。工学せん断ひずみは直角からの角度変化なので0です。拘束された場合の全ひずみや応力とは区別します。",
+              "figures": [
+                {
+                  "figureImage": "f5ThermalStrainFree",
+                  "caption": "熱ひずみの成分の条件と、解説の式・現象を対応させて確認します。"
+                }
+              ]
+            }
+          ],
+          "explanation": "【基礎】熱せん断ひずみは0です。\n【考え方】正解は2です。自由な一様加熱では、正方形は大きな正方形になり、角度は変わりません。工学せん断ひずみは直角からの角度変化なので0です。拘束された場合の全ひずみや応力とは区別します。\n【ポイント】熱せん断ひずみは0です。\n【引っかけ】1：「$6\\times10^{-4}$」ではなく、0です。自由な一様加熱では、正方形は大きな正方形になり、角度は変わりません。工学せん断ひずみは直角からの角度変化なので0です。拘束された場合の全ひずみや応力とは区別します。",
+          "relatedFormulas": [
+            "thermal-strain-vector"
+          ],
+          "editorialReview": {
+            "officialPoint": "熱ひずみベクトルの垂直・せん断成分／個別の質問：熱せん断ひずみ",
+            "alignment": "保存済み公式抽出の同じ論点を、親の公式番号内で質問ごとに個別回答する。共通条件は親に保持し、自作の記述問題は追加しない。",
+            "distractorMisconceptions": {
+              "1": "「$6\\times10^{-4}$」ではなく、0です。自由な一様加熱では、正方形は大きな正方形になり、角度は変わりません。工学せん断ひずみは直角からの角度変化なので0です。拘束された場合の全ひずみや応力とは区別します。"
+            },
+            "sha256": "6ab400f94f820081442b37518150c3bcc07d4c574014bcedc9e7fc5b8cae9946"
+          },
+          "explanationMode": "guided"
+        }
+      ],
+      "explanationMode": "guided"
     },
     {
       "id": "fem-5-24",
@@ -1529,7 +2118,7 @@
           "3": "三次元変形を平面ひずみだけで表す",
           "4": "体積内の応力を軸力だけのトラスで表す"
         },
-        "sha256": "73ad858345a083b455accc8e6b0bbe8d5c496b8b4be490bc2c823d7d05347533"
+        "sha256": "ffa5bbe303467e94b9a40c0417ec3b42136f2196f864c281a1b59790df2e9e85"
       },
       "answerSummary": "正解は①です。厚さ方向にも応力や変形が変化する厚肉部材は、三次元ソリッド要素で扱います。",
       "preFigures": [
@@ -1537,6 +2126,9 @@
           "figureImage": "femThickSolidSetup",
           "caption": "厚さ方向の応力や変形も調べたい厚肉部材です。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1592,9 +2184,12 @@
           "2": "面外ひずみを0として反りを求める",
           "3": "長方形板へ回転対称を仮定する"
         },
-        "sha256": "1bc017840573bbc001073c82f139f5de4566f97dd24567b7af78f0fc2c108f49"
+        "sha256": "94ad5f3d28a07406ac34bdf817f6a14c178997b4759fcbb3387ee20bdaa7dfef"
       },
-      "answerSummary": "正解は④です。接着層を含む厚さ方向の状態まで求める設定では、各層を三次元ソリッド要素で表します。"
+      "answerSummary": "正解は④です。接着層を含む厚さ方向の状態まで求める設定では、各層を三次元ソリッド要素で表します。",
+      "officialQuestionItems": [
+        "main"
+      ]
     },
     {
       "id": "fem-5-26",
@@ -1656,7 +2251,7 @@
           "3": "しめしろを全く与えず残留応力を求める",
           "4": "分布した接触を中心の一点の力だけで代用する"
         },
-        "sha256": "6406c12adcab1da671be18e3d0f541e343f1d5b4c8c56829f1d5c2e1c6bab5b2"
+        "sha256": "248a7a485012ee30de908fa4148a34167575429f6df61df93bd66a61f5760846"
       },
       "answerSummary": "正解は②です。基準寸法より大きい軸の自然寸法を、正の初期ひずみ$\\delta/D$として与えます。",
       "preFigures": [
@@ -1664,6 +2259,9 @@
           "figureImage": "f5ShrinkFitSetup",
           "caption": "基準の穴径Dと、組付け前の軸径D＋δを比べます。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1730,7 +2328,7 @@
           "2": "上下の初期ひずみ差による曲げを無視する",
           "4": "完全接着なのに滑って無応力へ戻るとする"
         },
-        "sha256": "fd819e6a5a115f39a80a4b1f0fda2aec92ea3d39bba4ccf59a80d99946f1f77e"
+        "sha256": "803adeb26b7a1ac98bdce2110e5aa831b38f9e7e0e1d6b8905fba470bcc1342e"
       },
       "answerSummary": "正解は③です。引っ張ってから貼った板Aは、除荷後に短く戻ろうとします。Aを内側に曲がり、両層に残留応力が生じます。",
       "preFigures": [
@@ -1738,6 +2336,9 @@
           "figureImage": "f5BimetalSetup",
           "caption": "板Aを伸ばしたまま、自然な状態の板Bを下側へ貼り付け、除荷します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1796,7 +2397,7 @@
           "2": "自然形状と参照形状の違いを0とする",
           "4": "軸だけ反転し横の回復の符号を反転しない"
         },
-        "sha256": "714df5893284dd064c6a540140b53ba8c468ba039ba06f3ae9de592854201121"
+        "sha256": "55c0637fbbc7e39bfdfe8ce0baa3950c3dc5391f2d342e09da157cc40ddadc1a"
       },
       "answerSummary": "正解は③です。引張状態から戻ろうとする初期ひずみは、軸方向$-0.001$、横方向各$+0.0003$です。",
       "preFigures": [
@@ -1804,6 +2405,9 @@
           "figureImage": "f5ResidualStrainSetup",
           "caption": "板Aを引っ張っている状態で板Bを接着し、その後に除荷します。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     },
     {
@@ -1843,7 +2447,7 @@
           "2": "変位の求解前に応力を出発点とする",
           "3": "要素剛性より前に組立と求解を行う"
         },
-        "sha256": "545ab942d3e0e9520a03653cea40502b2abdab2652fb2d56baabc1acea872361"
+        "sha256": "9827e07995e4d6ef08d4cb6f227fb3958d5ea1caf42c04fa51c5431c81e2d930"
       },
       "easyExplanation": [
         {
@@ -1887,6 +2491,9 @@
           "figureImage": "s2Before5_29",
           "caption": "空欄を含む解析手順です。前の処理の結果を次に使います。"
         }
+      ],
+      "officialQuestionItems": [
+        "main"
       ]
     }
   ]
