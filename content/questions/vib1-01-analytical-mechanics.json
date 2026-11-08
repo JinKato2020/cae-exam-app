@@ -7,13 +7,15 @@
     "origin": "original",
     "count": 22,
     "officialCount": 22,
-    "presentationStyle": "cae-standard-v1"
+    "presentationStyle": "cae-standard-v1",
+    "explanationMode": "guided",
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
       "id": "vib1-1-1",
       "number": "1-1",
-      "title": "ダランベールの原理と慣性力",
+      "title": "力と加速度の表し方",
       "topic": "ダランベールの原理",
       "type": "mc",
       "difficulty": 2,
@@ -43,7 +45,7 @@
           "2": "慣性力を速度比例の減衰力と混同する誤解。",
           "4": "静力学の形に書けることを静止系専用と誤読する誤解。"
         },
-        "sha256": "0ea394b15f23372482628243cda4a10495eef507bf7944040e19d800290f0914"
+        "sha256": "3c34a1992eefc646444d1a5c37c1b347593c6e85b04cd3a91cb3b539cf6c4914"
       },
       "easyExplanation": [
         {
@@ -67,16 +69,159 @@
           "body": "多数の部材や質点を含む系でも、実際の力と慣性力を並べ、仮想的な動きに対する仕事を考えられます。すると、仕事をしない拘束力を消し、少ない未知量で運動方程式を作れます。この先の仮想仕事やラグランジュ法へつながる入口です。①の反作用、②の減衰力という説明では、この役割を説明できません。④も、物体が加速していることと、座標系が加速していることを混同しています。まず慣性系で $F-ma=0$ と書けるという今回の出発点を押さえれば、③を選べます。"
         },
         {
-          "title": "正解への整理",
-          "body": "$-ma$ を実在の外力のように加えると、運動している系でも力の総和が零という静力学のつり合い式の形になり、動力学の問題を静力学のつり合い問題として解けるのが最大の利点です。よって③が正しいです。"
-        },
-        {
-          "title": "条件と公式の要点",
-          "body": "慣性力は実在の相互作用ではなく、運動方程式をつり合いの形に書くために導入する見かけの力で、向きは加速度と逆、大きさは $ma$ です。"
-        },
-        {
           "title": "各選択肢の確認",
           "body": "①は慣性力を第三法則の反作用（実在力）と誤解したもので、慣性力は反作用ではありません。②は慣性力を速度に比例する減衰力（ダンパ力）と取り違えた誤りで、慣性力は加速度に比例します。④は静力学の形に書けることを静止系専用と誤読したもので、慣性系から見た加速運動にも用います。非慣性座標では座標系に応じた見かけの力も整理する必要があります。"
+        }
+      ],
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "answerSummary": "$-ma$ を実在の外力のように加えると、運動している系でも力の総和が零という静力学のつり合い式の形になり、動力学の問題を静力学のつり合い問題として解けるのが最大の利点です。よって③が正しいです。",
+      "sharedQuestion": "質量$m$の台車に合力$F$が働き、加速度$a$が生じます。運動方程式、その書き換えに用いる原理、移項した項の名称を順に答えてください。",
+      "studyParts": [
+        {
+          "id": "vib1-1-1-item-a",
+          "number": "1-1",
+          "officialRef": "問1-1",
+          "officialQuestionItem": "a",
+          "title": "力と加速度の関係",
+          "topic": "ダランベールの原理",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "ニュートンの運動第二法則を表す式はどれですか。",
+          "choices": [
+            "$ma=F$",
+            "$m\\dot a=F$",
+            "$ma=-F$",
+            "$m/a=F$"
+          ],
+          "answer": 1,
+          "answerSummary": "合力は質量と加速度の積です。",
+          "easyExplanation": [
+            {
+              "title": "加速度は、速度の変わり方です",
+              "body": "質量2 kgの台車を合力6 Nで押すと、$a=F/m=6/2=3\\,\\mathrm{m/s^2}$です。毎秒3 m/sずつ速度が変わります。$ma=F$も$F=ma$も同じ関係で、左右を入れ替えただけで誤りにはなりません。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。合力は質量と加速度の積です。 2：加速度をさらに微分する必要はありません。 3：同じ座標で表す合力と加速度は同じ向きです。 4：質量を加速度で割るのでなく掛けます。"
+            }
+          ],
+          "explanation": "【基礎】質量2 kgの台車を合力6 Nで押すと、$a=F/m=6/2=3\\,\\mathrm{m/s^2}$です。毎秒3 m/sずつ速度が変わります。$ma=F$も$F=ma$も同じ関係で、左右を入れ替えただけで誤りにはなりません。\n【考え方】正解は1です。合力は質量と加速度の積です。\n【ポイント】合力は質量と加速度の積です。\n【引っかけ】2：加速度をさらに微分する必要はありません。 3：同じ座標で表す合力と加速度は同じ向きです。 4：質量を加速度で割るのでなく掛けます。",
+          "relatedFormulas": [
+            "v1ch1-1"
+          ],
+          "editorialReview": {
+            "officialPoint": "力と加速度の関係。合力は質量と加速度の積です。",
+            "alignment": "保存済み公式問1-1の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "加速度をさらに微分する必要はありません。",
+              "3": "同じ座標で表す合力と加速度は同じ向きです。",
+              "4": "質量を加速度で割るのでなく掛けます。"
+            },
+            "sha256": "0a317c982774b101ee34288989979799780b6468c38fe1ab0c474d404deeb60a"
+          }
+        },
+        {
+          "id": "vib1-1-1-item-b",
+          "number": "1-1",
+          "officialRef": "問1-1",
+          "officialQuestionItem": "b",
+          "title": "つり合いの形へ書き換える原理",
+          "topic": "ダランベールの原理",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$F-ma=0$と書き、運動の問題をつり合いの形で扱う原理はどれですか。",
+          "choices": [
+            "ハミルトンの原理",
+            "ダランベールの原理",
+            "最小ポテンシャルエネルギーの原理",
+            "エネルギー保存則"
+          ],
+          "answer": 2,
+          "answerSummary": "慣性の項を左辺へ移すのがダランベールの原理です。",
+          "easyExplanation": [
+            {
+              "title": "動いているのに、右辺を0にできます",
+              "body": "$F=ma$の両辺から$ma$を引くだけで$F-ma=0$です。台車が止まったのではなく、同じ運動を別の形で書いています。力を足して0とする書き方を使えるため、仮想仕事の原理などへつなげやすくなります。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。慣性の項を左辺へ移すのがダランベールの原理です。 1：時間全体の作用積分の停留を用いる原理です。 3：保存力が働く静的なつり合いの安定性に関する原理です。 4：移項の操作とエネルギーの保存は別です。"
+            }
+          ],
+          "explanation": "【基礎】$F=ma$の両辺から$ma$を引くだけで$F-ma=0$です。台車が止まったのではなく、同じ運動を別の形で書いています。力を足して0とする書き方を使えるため、仮想仕事の原理などへつなげやすくなります。\n【考え方】正解は2です。慣性の項を左辺へ移すのがダランベールの原理です。\n【ポイント】慣性の項を左辺へ移すのがダランベールの原理です。\n【引っかけ】1：時間全体の作用積分の停留を用いる原理です。 3：保存力が働く静的なつり合いの安定性に関する原理です。 4：移項の操作とエネルギーの保存は別です。",
+          "relatedFormulas": [
+            "v1ch1-1"
+          ],
+          "editorialReview": {
+            "officialPoint": "つり合いの形へ書き換える原理。慣性の項を左辺へ移すのがダランベールの原理です。",
+            "alignment": "保存済み公式問1-1の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "時間全体の作用積分の停留を用いる原理です。",
+              "3": "保存力が働く静的なつり合いの安定性に関する原理です。",
+              "4": "移項の操作とエネルギーの保存は別です。"
+            },
+            "sha256": "195b4e0067335428672c396ac7a8cdafb6e329fd8c1f9d36f4eb3dd903a08889"
+          }
+        },
+        {
+          "id": "vib1-1-1-item-c",
+          "number": "1-1",
+          "officialRef": "問1-1",
+          "officialQuestionItem": "c",
+          "title": "移項した項の名称",
+          "topic": "ダランベールの原理",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "見かけの力として扱う$-ma$を何と呼びますか。",
+          "choices": [
+            "減衰力",
+            "復元力",
+            "慣性力",
+            "反作用力"
+          ],
+          "answer": 3,
+          "answerSummary": "慣性力は加速度と逆向きの項です。",
+          "easyExplanation": [
+            {
+              "title": "速度ではなく加速度に比例します",
+              "body": "先ほどの台車なら$-ma=-6\\,\\mathrm N$です。これを合力6 Nと足すと0になります。手が台車から受ける反作用は別の物体に働く実在の力ですが、$-ma$は台車自身の式を書き換えるための項です。等速なら$a=0$なのでこの慣性力は0です。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は3です。慣性力は加速度と逆向きの項です。 1：粘性減衰力は速度に比例する抵抗です。 2：ばねなどが変位を戻そうとする力です。 4：作用・反作用は異なる物体に働く実在の力の組です。"
+            }
+          ],
+          "explanation": "【基礎】先ほどの台車なら$-ma=-6\\,\\mathrm N$です。これを合力6 Nと足すと0になります。手が台車から受ける反作用は別の物体に働く実在の力ですが、$-ma$は台車自身の式を書き換えるための項です。等速なら$a=0$なのでこの慣性力は0です。\n【考え方】正解は3です。慣性力は加速度と逆向きの項です。\n【ポイント】慣性力は加速度と逆向きの項です。\n【引っかけ】1：粘性減衰力は速度に比例する抵抗です。 2：ばねなどが変位を戻そうとする力です。 4：作用・反作用は異なる物体に働く実在の力の組です。",
+          "relatedFormulas": [
+            "v1ch1-1"
+          ],
+          "editorialReview": {
+            "officialPoint": "移項した項の名称。慣性力は加速度と逆向きの項です。",
+            "alignment": "保存済み公式問1-1の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "粘性減衰力は速度に比例する抵抗です。",
+              "2": "ばねなどが変位を戻そうとする力です。",
+              "4": "作用・反作用は異なる物体に働く実在の力の組です。"
+            },
+            "sha256": "134404eb2542a760d5a9c49292a271284af8ec30af2a84f4d17e801f4bdf3891"
+          }
         }
       ]
     },
@@ -115,7 +260,7 @@
           "3": "拘束力を保存力と取り違える誤解。",
           "4": "時間平均零という無関係な理由に置き換える誤解。"
         },
-        "sha256": "811f90d5f67dd58128a3c7423e3367ebac8a2ea8d6b4d8fce5b3a9cdfc0e02f9"
+        "sha256": "91e829db7c3fb1389533cb2988085ec68fdf1193532d53034a0d7f857b0f1c67"
       },
       "easyExplanation": [
         {
@@ -139,16 +284,197 @@
           "body": "レールが曲がっていれば、物体は進行方向を変える加速度を持ちます。そのため、法線方向の拘束力は一般に0ではありません。仮想仕事の式から消せたのは、接線方向の運動を求める際に不要だからです。拘束力自体を知りたい場合は、得られた運動を法線方向の運動方程式へ戻して求めます。また、摩擦があって接線方向にも力を受ける場合、その摩擦の仕事まで0にはできません。「なめらか」と「拘束条件を満たす変位」の両方が、②を支える条件です。"
         },
         {
-          "title": "正解への整理",
-          "body": "拘束力 $S$（法線方向）と仮想変位 $\\delta r$（接線方向）は直交するため、その内積 $S\\cdot\\delta r=0$、すなわち拘束力の仮想仕事が零になり、仮想仕事の式 $\\delta W=(F-ma)\\cdot\\delta r=0$ には拘束力が現れません。よって②が正しいです。"
-        },
-        {
-          "title": "条件と公式の要点",
-          "body": "仕事をしない拘束力を消せることが仮想仕事の原理・ラグランジュ法の利点で、摩擦があると接線方向にも力が生じこの利点は成り立ちません。"
-        },
-        {
           "title": "各選択肢の確認",
           "body": "①は未知だから消えるという誤った理由づけで、未知でも法線力が接線変位に仕事をすれば残ります。③は拘束力を保存力と取り違えた誤りです。④は時間平均零という無関係な理由で、仮想仕事が零になることとは別物です。"
+        }
+      ],
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "answerSummary": "拘束力 $S$（法線方向）と仮想変位 $\\delta r$（接線方向）は直交するため、その内積 $S\\cdot\\delta r=0$、すなわち拘束力の仮想仕事が零になり、仮想仕事の式 $\\delta W=(F-ma)\\cdot\\delta r=0$ には拘束力が現れません。よって②が正しいです。",
+      "sharedQuestion": "質点が摩擦のない固定レールに沿って動きます。外力を$F$、レールからの拘束力を$S$、質量を$m$、加速度を$a$とします。レールに沿う微小な仮想移動$\\delta r$を考えます。",
+      "studyParts": [
+        {
+          "id": "vib1-1-2-item-a",
+          "number": "1-2",
+          "officialRef": "問1-2",
+          "officialQuestionItem": "a",
+          "title": "慣性力を含む式",
+          "topic": "仮想仕事の原理",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "ダランベールの原理による式はどれですか。",
+          "choices": [
+            "$F+S-ma=0$",
+            "$F+S+ma=0$"
+          ],
+          "answer": 1,
+          "answerSummary": "実際の合力$F+S=ma$を移項します。",
+          "easyExplanation": [
+            {
+              "title": "レールの力も、実際に働いています",
+              "body": "運動方程式は$F+S=ma$です。レールから外れない運動に必要な$S$を初めから捨てず、慣性力$-ma$と並べます。この段階では拘束力は式に残ります。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。実際の合力$F+S=ma$を移項します。 2：加速度の項を移項すると負号が付きます。"
+            }
+          ],
+          "explanation": "【基礎】運動方程式は$F+S=ma$です。レールから外れない運動に必要な$S$を初めから捨てず、慣性力$-ma$と並べます。この段階では拘束力は式に残ります。\n【考え方】正解は1です。実際の合力$F+S=ma$を移項します。\n【ポイント】実際の合力$F+S=ma$を移項します。\n【引っかけ】2：加速度の項を移項すると負号が付きます。",
+          "relatedFormulas": [
+            "v1ch1-2"
+          ],
+          "editorialReview": {
+            "officialPoint": "慣性力を含む式。実際の合力$F+S=ma$を移項します。",
+            "alignment": "保存済み公式問1-2の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "加速度の項を移項すると負号が付きます。"
+            },
+            "sha256": "811f34edd25d55cee4fc1e61632bc4a937efdda52f16040b45fc2cf16cafe44e"
+          }
+        },
+        {
+          "id": "vib1-1-2-item-b",
+          "number": "1-2",
+          "officialRef": "問1-2",
+          "officialQuestionItem": "b",
+          "title": "拘束を満たす仮想的な移動",
+          "topic": "仮想仕事の原理",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "同じ時刻に、拘束条件を守って想定する微小な移動の名称はどれですか。",
+          "choices": [
+            "仮想変位",
+            "実際の時間増分による変位"
+          ],
+          "answer": 1,
+          "answerSummary": "仮想変位は、動ける方向に想定した微小な移動です。",
+          "easyExplanation": [
+            {
+              "title": "レールから外れる向きには動かしません",
+              "body": "レールの位置を固定したまま、質点をほんの少しずらすと考えます。許される向きは曲線の接線方向です。時間を進めて実際の位置を計算する操作とは異なります。",
+              "figures": [
+                {
+                  "figureImage": "v1e1ConstraintVirtual",
+                  "caption": "レールに沿う仮想変位と、それに直角な拘束力を見比べます。"
+                }
+              ]
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。仮想変位は、動ける方向に想定した微小な移動です。 2：仮想変位は時刻を固定した変化です。"
+            }
+          ],
+          "explanation": "【基礎】レールの位置を固定したまま、質点をほんの少しずらすと考えます。許される向きは曲線の接線方向です。時間を進めて実際の位置を計算する操作とは異なります。\n【考え方】正解は1です。仮想変位は、動ける方向に想定した微小な移動です。\n【ポイント】仮想変位は、動ける方向に想定した微小な移動です。\n【引っかけ】2：仮想変位は時刻を固定した変化です。",
+          "relatedFormulas": [
+            "v1ch1-2"
+          ],
+          "editorialReview": {
+            "officialPoint": "拘束を満たす仮想的な移動。仮想変位は、動ける方向に想定した微小な移動です。",
+            "alignment": "保存済み公式問1-2の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "仮想変位は時刻を固定した変化です。"
+            },
+            "sha256": "7667a1ef614538a0fae5d69e409d0e70e1026594e6192b71f0cd2f67c1f3a467"
+          }
+        },
+        {
+          "id": "vib1-1-2-item-c",
+          "number": "1-2",
+          "officialRef": "問1-2",
+          "officialQuestionItem": "c",
+          "title": "各力の仮想仕事",
+          "topic": "仮想仕事の原理",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "慣性力も含む仮想仕事はどれですか。",
+          "choices": [
+            "$\\delta W=(F+S-ma)\\cdot\\delta r$",
+            "$\\delta W=(F+S-ma)\\cdot a$"
+          ],
+          "answer": 1,
+          "answerSummary": "仕事は力と移動量の内積です。",
+          "easyExplanation": [
+            {
+              "title": "直角な力は仕事をしません",
+              "body": "内積は「力×変位×そのなす角の余弦」です。摩擦のないレールでは$S$は法線方向、$\\delta r$は接線方向なので、$S\\cdot\\delta r=0$です。よって$\\delta W=(F-ma)\\cdot\\delta r$まで整理でき、未知の拘束力を解かずに済みます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。仕事は力と移動量の内積です。 2：加速度を掛けても仕事の単位になりません。"
+            }
+          ],
+          "explanation": "【基礎】内積は「力×変位×そのなす角の余弦」です。摩擦のないレールでは$S$は法線方向、$\\delta r$は接線方向なので、$S\\cdot\\delta r=0$です。よって$\\delta W=(F-ma)\\cdot\\delta r$まで整理でき、未知の拘束力を解かずに済みます。\n【考え方】正解は1です。仕事は力と移動量の内積です。\n【ポイント】仕事は力と移動量の内積です。\n【引っかけ】2：加速度を掛けても仕事の単位になりません。",
+          "relatedFormulas": [
+            "v1ch1-2"
+          ],
+          "editorialReview": {
+            "officialPoint": "各力の仮想仕事。仕事は力と移動量の内積です。",
+            "alignment": "保存済み公式問1-2の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "加速度を掛けても仕事の単位になりません。"
+            },
+            "sha256": "48c60d608933432b11f79787c8ee97a1c151894b2cda232af451a5b983a35633"
+          }
+        },
+        {
+          "id": "vib1-1-2-item-d",
+          "number": "1-2",
+          "officialRef": "問1-2",
+          "officialQuestionItem": "d",
+          "title": "仕事の形で表す原理",
+          "topic": "仮想仕事の原理",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "任意の許容される$\\delta r$に対し$(F-ma)\\cdot\\delta r=0$とする考え方はどれですか。",
+          "choices": [
+            "仮想仕事の原理",
+            "仕事の時間平均が0という条件"
+          ],
+          "answer": 1,
+          "answerSummary": "慣性力を含めた仮想仕事の原理です。",
+          "easyExplanation": [
+            {
+              "title": "拘束力を無視したのではありません",
+              "body": "拘束力は質点の運動を支えていますが、許される仮想変位に対して仕事をしないため式から消えます。時間平均で偶然相殺するのではなく、その時刻の任意の許容仮想変位について0です。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。慣性力を含めた仮想仕事の原理です。 2：一周期の平均ではなく、その時刻の仮想的な移動で判定します。"
+            }
+          ],
+          "explanation": "【基礎】拘束力は質点の運動を支えていますが、許される仮想変位に対して仕事をしないため式から消えます。時間平均で偶然相殺するのではなく、その時刻の任意の許容仮想変位について0です。\n【考え方】正解は1です。慣性力を含めた仮想仕事の原理です。\n【ポイント】慣性力を含めた仮想仕事の原理です。\n【引っかけ】2：一周期の平均ではなく、その時刻の仮想的な移動で判定します。",
+          "relatedFormulas": [
+            "v1ch1-2"
+          ],
+          "editorialReview": {
+            "officialPoint": "仕事の形で表す原理。慣性力を含めた仮想仕事の原理です。",
+            "alignment": "保存済み公式問1-2の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "一周期の平均ではなく、その時刻の仮想的な移動で判定します。"
+            },
+            "sha256": "49b56695ffb90189b9c0c720d8ec022b3fc00eb6a9c4b9049eb70c916d58e748"
+          }
         }
       ]
     },
@@ -185,7 +511,7 @@
           "2": "停留 $\\delta U=0$ を値が零 $U=0$ と取り違える誤解。",
           "3": "符号誤りに加え $\\delta W=-\\delta U$ の負号を落とす誤解。"
         },
-        "sha256": "271d64c3303ff51ea01a4287bdacc20b31071b30556e0ef0a38762f01a6431a5"
+        "sha256": "222f1b7df3ebf42b8545dc125307eabfd9ae223047d12892fdd0e396a7d918c0"
       },
       "easyExplanation": [
         {
@@ -209,23 +535,158 @@
           "body": "谷底では、少し動かすとポテンシャルが上がり、元へ戻そうとする力が働きます。山頂でもちょうど頂上なら一次の勾配は0ですが、少しずれると離れる向きに動きます。どちらも停留であり、安定性はその次の変化まで見て判断します。拘束がある場合も、許された動きに沿う変化が0であればよく、拘束方向の力まで全て0になる必要はありません。①の最大に限る説明も、安定な谷底を落としてしまいます。試験では、負の勾配と、ポテンシャルの停留という二つを対応させて選びます。"
         },
         {
-          "title": "正解への整理",
-          "body": "つり合い（加速度零）では仮想仕事 $\\delta W=F\\cdot\\delta r=-\\delta U$ となり、任意の仮想変位に対し $\\delta W=0$ が成り立つには $\\delta U=0$、すなわちポテンシャルが停留していなければなりません。よって④が正しいです。"
-        },
-        {
-          "title": "条件と公式の要点",
-          "body": "停留（$\\delta U=0$）は極小（安定）だけでなく極大や鞍点も含み、$U=0$（値が零）や $U$ が最大であることとは別の概念です。"
-        },
-        {
           "title": "各選択肢の確認",
           "body": "①は符号を誤り、かつ停留を最大に限定した誤りです。②は符号は正しいものの $\\delta U=0$（停留）を $U=0$（値が零）と取り違えています。③は符号の誤りに加え $\\delta W=-\\delta U$ の負号を落としています。"
+        }
+      ],
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "answerSummary": "つり合い（加速度零）では仮想仕事 $\\delta W=F\\cdot\\delta r=-\\delta U$ となり、任意の仮想変位に対し $\\delta W=0$ が成り立つには $\\delta U=0$、すなわちポテンシャルが停留していなければなりません。よって④が正しいです。",
+      "sharedQuestion": "保存力$F$のポテンシャルエネルギーを$U(x,y,z)$とします。静的につり合う状態を、力・仮想仕事・エネルギー変化の関係から考えます。",
+      "studyParts": [
+        {
+          "id": "vib1-1-3-item-a",
+          "number": "1-3",
+          "officialRef": "問1-3",
+          "officialQuestionItem": "a",
+          "title": "保存力とポテンシャル",
+          "topic": "保存力とポテンシャル",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$x$方向の保存力はどちらですか。他の方向も同じ規則です。",
+          "choices": [
+            "$F_x=+\\partial U/\\partial x$",
+            "$F_x=-\\partial U/\\partial x$"
+          ],
+          "answer": 2,
+          "answerSummary": "保存力は、ポテンシャルが減る向きに働きます。",
+          "easyExplanation": [
+            {
+              "title": "ばねで符号を確かめます",
+              "body": "ばねを右へ$x$伸ばすと$U=kx^2/2$が蓄えられます。微分は$dU/dx=kx$ですが、ばねの力は左向きなので$F=-dU/dx=-kx$です。エネルギーの坂を下る向き、と考えると負号を覚えやすくなります。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。保存力は、ポテンシャルが減る向きに働きます。 1：この符号では、伸ばすほどさらに伸ばす向きの力になってしまいます。"
+            }
+          ],
+          "explanation": "【基礎】ばねを右へ$x$伸ばすと$U=kx^2/2$が蓄えられます。微分は$dU/dx=kx$ですが、ばねの力は左向きなので$F=-dU/dx=-kx$です。エネルギーの坂を下る向き、と考えると負号を覚えやすくなります。\n【考え方】正解は2です。保存力は、ポテンシャルが減る向きに働きます。\n【ポイント】保存力は、ポテンシャルが減る向きに働きます。\n【引っかけ】1：この符号では、伸ばすほどさらに伸ばす向きの力になってしまいます。",
+          "relatedFormulas": [
+            "v1ch1-3"
+          ],
+          "editorialReview": {
+            "officialPoint": "保存力とポテンシャル。保存力は、ポテンシャルが減る向きに働きます。",
+            "alignment": "保存済み公式問1-3の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "この符号では、伸ばすほどさらに伸ばす向きの力になってしまいます。"
+            },
+            "sha256": "5d6e31fc77374d82a9af0758afcc9a591596fb1879558cf985aee717f434df56"
+          }
+        },
+        {
+          "id": "vib1-1-3-item-b",
+          "number": "1-3",
+          "officialRef": "問1-3",
+          "officialQuestionItem": "b",
+          "title": "仮想仕事とエネルギー変化",
+          "topic": "保存力とポテンシャル",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "保存力の仮想仕事$\\delta W=F\\cdot\\delta r$はどちらですか。",
+          "choices": [
+            "$\\delta W=-\\delta U$",
+            "$\\delta W=+\\delta U$"
+          ],
+          "answer": 1,
+          "answerSummary": "保存力がする正の仕事の分だけ、ポテンシャルは減ります。",
+          "easyExplanation": [
+            {
+              "title": "各方向の変化を足します",
+              "body": "$\\delta U=U_{,x}\\delta x+U_{,y}\\delta y+U_{,z}\\delta z$です。各力に$F_x=-U_{,x}$などを代入すると、$F\\cdot\\delta r=-U_{,x}\\delta x-U_{,y}\\delta y-U_{,z}\\delta z=-\\delta U$になります。カンマの後の文字は、その座標での偏微分を表します。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。保存力がする正の仕事の分だけ、ポテンシャルは減ります。 2：力はエネルギーの勾配と逆向きなので負号が必要です。"
+            }
+          ],
+          "explanation": "【基礎】$\\delta U=U_{,x}\\delta x+U_{,y}\\delta y+U_{,z}\\delta z$です。各力に$F_x=-U_{,x}$などを代入すると、$F\\cdot\\delta r=-U_{,x}\\delta x-U_{,y}\\delta y-U_{,z}\\delta z=-\\delta U$になります。カンマの後の文字は、その座標での偏微分を表します。\n【考え方】正解は1です。保存力がする正の仕事の分だけ、ポテンシャルは減ります。\n【ポイント】保存力がする正の仕事の分だけ、ポテンシャルは減ります。\n【引っかけ】2：力はエネルギーの勾配と逆向きなので負号が必要です。",
+          "relatedFormulas": [
+            "v1ch1-3"
+          ],
+          "editorialReview": {
+            "officialPoint": "仮想仕事とエネルギー変化。保存力がする正の仕事の分だけ、ポテンシャルは減ります。",
+            "alignment": "保存済み公式問1-3の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "力はエネルギーの勾配と逆向きなので負号が必要です。"
+            },
+            "sha256": "790982cc1eedd3fbe7b07e3aaecc658a94fe116037941bbc3457697ed8c76e16"
+          }
+        },
+        {
+          "id": "vib1-1-3-item-c",
+          "number": "1-3",
+          "officialRef": "問1-3",
+          "officialQuestionItem": "c",
+          "title": "つり合いの条件",
+          "topic": "保存力とポテンシャル",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "許容される任意の仮想変位について、つり合いで満たす条件はどれですか。",
+          "choices": [
+            "$U=0$",
+            "$\\delta U>0$",
+            "$\\delta U=0$",
+            "$\\delta U<0$"
+          ],
+          "answer": 3,
+          "answerSummary": "エネルギーの値でなく、一次の変化が0です。",
+          "easyExplanation": [
+            {
+              "title": "谷底と山頂には共通点があります",
+              "body": "谷底も山頂も、その点での傾きは0です。このような条件を停留と呼びます。谷底なら安定ですが、停留だけで安定とは決まりません。また、エネルギーの基準を100 Jずらしても力やつり合いは変わらないため、$U=0$を要求するのは誤りです。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は3です。エネルギーの値でなく、一次の変化が0です。 1：基準によって変わるUの値は、つり合いの判定量ではありません。 2：任意の変化に対して一次変化は0です。 4：任意の変化に対して一次変化は0です。"
+            }
+          ],
+          "explanation": "【基礎】谷底も山頂も、その点での傾きは0です。このような条件を停留と呼びます。谷底なら安定ですが、停留だけで安定とは決まりません。また、エネルギーの基準を100 Jずらしても力やつり合いは変わらないため、$U=0$を要求するのは誤りです。\n【考え方】正解は3です。エネルギーの値でなく、一次の変化が0です。\n【ポイント】エネルギーの値でなく、一次の変化が0です。\n【引っかけ】1：基準によって変わるUの値は、つり合いの判定量ではありません。 2：任意の変化に対して一次変化は0です。 4：任意の変化に対して一次変化は0です。",
+          "relatedFormulas": [
+            "v1ch1-3"
+          ],
+          "editorialReview": {
+            "officialPoint": "つり合いの条件。エネルギーの値でなく、一次の変化が0です。",
+            "alignment": "保存済み公式問1-3の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "基準によって変わるUの値は、つり合いの判定量ではありません。",
+              "2": "任意の変化に対して一次変化は0です。",
+              "4": "任意の変化に対して一次変化は0です。"
+            },
+            "sha256": "4c37939d68175cc0463357ea57e5681bc0206ed76830b12075b009591e250a18"
+          }
         }
       ]
     },
     {
       "id": "vib1-1-4",
       "number": "1-4",
-      "title": "一般化座標と自由度",
+      "title": "拘束のある運動の表し方",
       "topic": "一般化座標・自由度",
       "type": "mc",
       "difficulty": 1,
@@ -256,7 +717,7 @@
           "3": "拘束による自由度減少を無視し自由度=質点数とする誤解。",
           "4": "一般化座標をデカルト座標に限定する誤解。"
         },
-        "sha256": "e8d04922082f151b9e0ff818620407b42177b47cb13c8e2c6d0190efae6c0800"
+        "sha256": "f64373f642323265bd138de7592bcb460ef9b7433a98060e2b234664277eb675"
       },
       "easyExplanation": [
         {
@@ -280,16 +741,154 @@
           "body": "水平変位 $q=x$ の質点なら $L=m\\dot x^2/2-kx^2/2$。$\\partial L/\\partial\\dot x=m\\dot x$ を時間微分すると $m\\ddot x$、$\\partial L/\\partial x=-kx$ です。後者を引くので $m\\ddot x-(-kx)=m\\ddot x+kx=0$ になります。外側のマイナスをプラスにする②では、復元力の向きが逆になります。一般化座標と自由度の定義を正しく述べた①を選び、他の選択肢は、符号・独立性・座標の種類のどこを取り違えているかで判断します。"
         },
         {
-          "title": "正解への整理",
-          "body": "①は自由度と一般化座標の定義を正しく述べており、ラグランジュの運動方程式は $\\frac{d}{dt}\\left(\\frac{\\partial L}{\\partial\\dot q_r}\\right)-\\frac{\\partial L}{\\partial q_r}=0$ で第2項の符号はマイナスです。よって①が正しいです。"
-        },
-        {
-          "title": "条件と公式の要点",
-          "body": "自由度は「質点数×次元数−拘束条件数」で決まり質点の個数そのものとは限らず、一般化座標は角度 $\\theta$ のように非デカルトでもかまいません。"
-        },
-        {
           "title": "各選択肢の確認",
           "body": "②は運動方程式の第2項の符号を誤ったもので、正しくは $-\\partial L/\\partial q$ です。③は拘束条件による自由度の減少を無視し自由度＝質点数と誤解しています。④は一般化座標をデカルト座標に限定した誤りで、単振子の $\\theta$ のように角度も一般化座標になります。"
+        }
+      ],
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "answerSummary": "①は自由度と一般化座標の定義を正しく述べており、ラグランジュの運動方程式は $\\frac{d}{dt}\\left(\\frac{\\partial L}{\\partial\\dot q_r}\\right)-\\frac{\\partial L}{\\partial q_r}=0$ で第2項の符号はマイナスです。よって①が正しいです。",
+      "sharedQuestion": "拘束のある質点系の位置を、必要な数だけの独立変数$q_1,\\ldots,q_n$で表します。運動エネルギーを$T$、ポテンシャルを$U$、$L=T-U$とします。",
+      "studyParts": [
+        {
+          "id": "vib1-1-4-item-a",
+          "number": "1-4",
+          "officialRef": "問1-4",
+          "officialQuestionItem": "a",
+          "title": "位置を表す変数の名称",
+          "topic": "一般化座標・自由度",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "系の位置を表すために選んだ独立変数の名称はどれですか。",
+          "choices": [
+            "一般化座標",
+            "一般化力"
+          ],
+          "answer": 1,
+          "answerSummary": "距離でも角度でも、配置を決める変数なら一般化座標にできます。",
+          "easyExplanation": [
+            {
+              "title": "振り子なら角度一つで足ります",
+              "body": "長さ$l$の振り子は、横位置と高さを別々に選べません。$x=l\\sin\\theta$、$y=-l\\cos\\theta$なので、角度$\\theta$一つで位置が決まります。便利な変数を選ぶのが一般化座標の考え方です。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。距離でも角度でも、配置を決める変数なら一般化座標にできます。 2：一般化力は、その座標の変化に対して仕事をする力側の量です。"
+            }
+          ],
+          "explanation": "【基礎】長さ$l$の振り子は、横位置と高さを別々に選べません。$x=l\\sin\\theta$、$y=-l\\cos\\theta$なので、角度$\\theta$一つで位置が決まります。便利な変数を選ぶのが一般化座標の考え方です。\n【考え方】正解は1です。距離でも角度でも、配置を決める変数なら一般化座標にできます。\n【ポイント】距離でも角度でも、配置を決める変数なら一般化座標にできます。\n【引っかけ】2：一般化力は、その座標の変化に対して仕事をする力側の量です。",
+          "relatedFormulas": [
+            "v1ch1-4",
+            "v1ch1-5"
+          ],
+          "editorialReview": {
+            "officialPoint": "位置を表す変数の名称。距離でも角度でも、配置を決める変数なら一般化座標にできます。",
+            "alignment": "保存済み公式問1-4の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "一般化力は、その座標の変化に対して仕事をする力側の量です。"
+            },
+            "sha256": "e20a2a951dd6c571e3f6bbb0c5c830cff922dea41f52d263a918afcce1d55652"
+          }
+        },
+        {
+          "id": "vib1-1-4-item-b",
+          "number": "1-4",
+          "officialRef": "問1-4",
+          "officialQuestionItem": "b",
+          "title": "独立変数の数",
+          "topic": "一般化座標・自由度",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "配置を決めるために必要な独立変数の数を何と呼びますか。",
+          "choices": [
+            "節点数",
+            "自由度",
+            "要素数",
+            "質点数"
+          ],
+          "answer": 2,
+          "answerSummary": "自由度は独立に動ける量の数です。",
+          "easyExplanation": [
+            {
+              "title": "物体の個数と同じとは限りません",
+              "body": "平面を自由に動く質点は横・縦の2自由度ですが、固定レール上の質点はレールに沿う位置だけの1自由度です。質点はどちらも1個でも、拘束が違えば自由度が変わります。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。自由度は独立に動ける量の数です。 1：節点が何個あるかと、拘束後の独立変数の数は異なります。 3：領域を分割した要素の数ではありません。 4：一つの質点にも複数の運動方向があります。"
+            }
+          ],
+          "explanation": "【基礎】平面を自由に動く質点は横・縦の2自由度ですが、固定レール上の質点はレールに沿う位置だけの1自由度です。質点はどちらも1個でも、拘束が違えば自由度が変わります。\n【考え方】正解は2です。自由度は独立に動ける量の数です。\n【ポイント】自由度は独立に動ける量の数です。\n【引っかけ】1：節点が何個あるかと、拘束後の独立変数の数は異なります。 3：領域を分割した要素の数ではありません。 4：一つの質点にも複数の運動方向があります。",
+          "relatedFormulas": [
+            "v1ch1-4",
+            "v1ch1-5"
+          ],
+          "editorialReview": {
+            "officialPoint": "独立変数の数。自由度は独立に動ける量の数です。",
+            "alignment": "保存済み公式問1-4の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "節点が何個あるかと、拘束後の独立変数の数は異なります。",
+              "3": "領域を分割した要素の数ではありません。",
+              "4": "一つの質点にも複数の運動方向があります。"
+            },
+            "sha256": "1b9c79952bf40cb6bf9f969842c1d23be864bf0bc3844bea45624b67142f1f44"
+          }
+        },
+        {
+          "id": "vib1-1-4-item-c",
+          "number": "1-4",
+          "officialRef": "問1-4",
+          "officialQuestionItem": "c",
+          "title": "エネルギーから作る運動方程式",
+          "topic": "一般化座標・自由度",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$\\frac{d}{dt}\\frac{\\partial L}{\\partial\\dot q_r}-\\frac{\\partial L}{\\partial q_r}=0$の名称はどれですか。",
+          "choices": [
+            "ハミルトンの正準方程式",
+            "ラグランジュの運動方程式"
+          ],
+          "answer": 2,
+          "answerSummary": "一般化座標ごとにラグランジュの運動方程式を立てます。",
+          "easyExplanation": [
+            {
+              "title": "ばね質点系で式の使い方を確かめます",
+              "body": "$L=m\\dot x^2/2-kx^2/2$なら、$\\partial L/\\partial\\dot x=m\\dot x$、その時間微分が$m\\ddot x$、$\\partial L/\\partial x=-kx$です。式へ入れると$m\\ddot x-(-kx)=0$、つまり$m\\ddot x+kx=0$になります。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。一般化座標ごとにラグランジュの運動方程式を立てます。 1：一般化座標と共役運動量を使う別の形式です。"
+            }
+          ],
+          "explanation": "【基礎】$L=m\\dot x^2/2-kx^2/2$なら、$\\partial L/\\partial\\dot x=m\\dot x$、その時間微分が$m\\ddot x$、$\\partial L/\\partial x=-kx$です。式へ入れると$m\\ddot x-(-kx)=0$、つまり$m\\ddot x+kx=0$になります。\n【考え方】正解は2です。一般化座標ごとにラグランジュの運動方程式を立てます。\n【ポイント】一般化座標ごとにラグランジュの運動方程式を立てます。\n【引っかけ】1：一般化座標と共役運動量を使う別の形式です。",
+          "relatedFormulas": [
+            "v1ch1-4",
+            "v1ch1-5"
+          ],
+          "editorialReview": {
+            "officialPoint": "エネルギーから作る運動方程式。一般化座標ごとにラグランジュの運動方程式を立てます。",
+            "alignment": "保存済み公式問1-4の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "一般化座標と共役運動量を使う別の形式です。"
+            },
+            "sha256": "f683fc02f7109a964bdf0357893aaae48a695c3592e4e89a4f99bd908a3d6fad"
+          }
         }
       ]
     },
@@ -328,7 +927,7 @@
           "3": "上昇高さの三角関数の誤り",
           "4": "復元項の符号の誤り"
         },
-        "sha256": "05a5c5810925eabd672864a15d5dc61fab8545a4dbef99a2d5d33dcde190e5cb"
+        "sha256": "d6e502e320ce396fe98efb3dfe9f907d1f6a6f7797810c2d811b3bac011eee4f"
       },
       "easyExplanation": [
         {
@@ -356,20 +955,215 @@
           "body": "$l=1\\ \\mathrm{m}$、$\\theta=30^\\circ$ なら $\\ddot\\theta=-(9.8/1)\\sin30^\\circ=-4.9\\ \\mathrm{rad/s^2}$ です。正の角度から、角度を減らす向きへ加速するので、復元作用と一致します。最下点なら角加速度は0ですが、角速度が0とは限りません。なお、ここでは $\\sin\\theta$ をそのまま残しており、微小角の近似はまだ使っていません。角度が小さい場合に限って $\\sin\\theta\\simeq\\theta$ とできるので、最初から置き換えないようにします。"
         },
         {
-          "title": "正解への整理",
-          "body": "$T=mv^2/2$ と $U=mgh$ に入れると $T=ml^2\\dot\\theta^2/2$、$U=mgl(1-\\cos\\theta)$ です。$L=T-U$ より $\\partial L/\\partial\\dot\\theta=ml^2\\dot\\theta$、$\\partial L/\\partial\\theta=-mgl\\sin\\theta$ です。前者を時間微分し、後者を引くと $ml^2\\ddot\\theta+mgl\\sin\\theta=0$ なので②です。"
-        },
-        {
-          "title": "条件と公式の要点",
-          "body": "ドット1個は角速度、2個は角加速度です。全項を $ml^2$ で割ると $\\ddot\\theta+(g/l)\\sin\\theta=0$ です。"
-        },
-        {
           "title": "各選択肢の確認",
           "body": "①は角度と角速度を混同しています。③は上昇高さを $l\\sin\\theta$ としています。④は復元作用の符号が逆です。"
         }
       ],
       "preFigureImage": "v1e1PendulumSetupPre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "answerSummary": "$T=mv^2/2$ と $U=mgh$ に入れると $T=ml^2\\dot\\theta^2/2$、$U=mgl(1-\\cos\\theta)$ です。$L=T-U$ より $\\partial L/\\partial\\dot\\theta=ml^2\\dot\\theta$、$\\partial L/\\partial\\theta=-mgl\\sin\\theta$ です。前者を時間微分し、後者を引くと $ml^2\\ddot\\theta+mgl\\sin\\theta=0$ なので②です。",
+      "sharedQuestion": "質量を無視できる長さ$l$の糸に、おもり$m$をつるします。糸は伸びず、たるみません。鉛直下向きからの角度を$\\theta$、重力加速度を$g$とし、最下点を位置エネルギーの基準にします。",
+      "studyParts": [
+        {
+          "id": "vib1-1-5-item-a",
+          "number": "1-5",
+          "officialRef": "問1-5",
+          "officialQuestionItem": "a",
+          "title": "おもりの運動エネルギー",
+          "topic": "単振子の運動方程式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "運動エネルギー$T$はどれですか。",
+          "choices": [
+            "$ml^2\\theta^2/2$",
+            "$ml^2\\dot\\theta^2/2$",
+            "$ml^2\\ddot\\theta^2/2$",
+            "$ml\\dot\\theta^2/2$"
+          ],
+          "answer": 2,
+          "answerSummary": "速さは$l\\dot\\theta$なので、$T=ml^2\\dot\\theta^2/2$です。",
+          "easyExplanation": [
+            {
+              "title": "角速度を、円弧に沿う速さへ直します",
+              "body": "角度はラジアンで表します。円弧の長さは$l\\theta$なので、その時間変化が速さ$l\\dot\\theta$です。これを$T=mv^2/2$へ代入します。角度そのものや角加速度ではなく、角速度を使います。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。速さは$l\\dot\\theta$なので、$T=ml^2\\dot\\theta^2/2$です。 1：角度を速さの代わりに使っています。 3：加速度は速さではありません。 4：速さの二乗には長さも二乗で入ります。"
+            }
+          ],
+          "explanation": "【基礎】角度はラジアンで表します。円弧の長さは$l\\theta$なので、その時間変化が速さ$l\\dot\\theta$です。これを$T=mv^2/2$へ代入します。角度そのものや角加速度ではなく、角速度を使います。\n【考え方】正解は2です。速さは$l\\dot\\theta$なので、$T=ml^2\\dot\\theta^2/2$です。\n【ポイント】速さは$l\\dot\\theta$なので、$T=ml^2\\dot\\theta^2/2$です。\n【引っかけ】1：角度を速さの代わりに使っています。 3：加速度は速さではありません。 4：速さの二乗には長さも二乗で入ります。",
+          "relatedFormulas": [
+            "v1ch1-7"
+          ],
+          "editorialReview": {
+            "officialPoint": "おもりの運動エネルギー。速さは$l\\dot\\theta$なので、$T=ml^2\\dot\\theta^2/2$です。",
+            "alignment": "保存済み公式問1-5の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "角度を速さの代わりに使っています。",
+              "3": "加速度は速さではありません。",
+              "4": "速さの二乗には長さも二乗で入ります。"
+            },
+            "sha256": "cd45b64eaf4cd2be62b9e96b1b293da9098c5a4968956995e29221d5f97ac7c6"
+          }
+        },
+        {
+          "id": "vib1-1-5-item-b",
+          "number": "1-5",
+          "officialRef": "問1-5",
+          "officialQuestionItem": "b",
+          "title": "位置エネルギー",
+          "topic": "単振子の運動方程式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "最下点からの位置エネルギー$U$はどちらですか。",
+          "choices": [
+            "$mgl(1-\\cos\\theta)$",
+            "$mgl\\sin\\theta$"
+          ],
+          "answer": 1,
+          "answerSummary": "上昇した高さは$l-l\\cos\\theta$です。",
+          "easyExplanation": [
+            {
+              "title": "図の縦方向の差を読みます",
+              "body": "支点からおもりまでの鉛直距離は$l\\cos\\theta$、最下点では$l$です。差$l(1-\\cos\\theta)$が上昇高さなので、重力$mg$を掛けます。左右どちらへ傾けても上がるため、$U$は$\\theta$の正負で変わりません。",
+              "figures": [
+                {
+                  "figureImage": "v1e1SimplePendulum",
+                  "caption": "縦の高さの差が位置エネルギー、円弧に沿う速さが運動エネルギーに対応します。"
+                }
+              ]
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。上昇した高さは$l-l\\cos\\theta$です。 2：sinθは横方向のずれを表し、左右で符号も変わります。"
+            }
+          ],
+          "explanation": "【基礎】支点からおもりまでの鉛直距離は$l\\cos\\theta$、最下点では$l$です。差$l(1-\\cos\\theta)$が上昇高さなので、重力$mg$を掛けます。左右どちらへ傾けても上がるため、$U$は$\\theta$の正負で変わりません。\n【考え方】正解は1です。上昇した高さは$l-l\\cos\\theta$です。\n【ポイント】上昇した高さは$l-l\\cos\\theta$です。\n【引っかけ】2：sinθは横方向のずれを表し、左右で符号も変わります。",
+          "relatedFormulas": [
+            "v1ch1-7"
+          ],
+          "editorialReview": {
+            "officialPoint": "位置エネルギー。上昇した高さは$l-l\\cos\\theta$です。",
+            "alignment": "保存済み公式問1-5の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "sinθは横方向のずれを表し、左右で符号も変わります。"
+            },
+            "sha256": "ec564c1d8675a038394635013a33d3a64b423d81aaf2502d7f26264b1d3a3993"
+          }
+        },
+        {
+          "id": "vib1-1-5-item-c",
+          "number": "1-5",
+          "officialRef": "問1-5",
+          "officialQuestionItem": "c",
+          "title": "ラグランジアンの定義",
+          "topic": "単振子の運動方程式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "ラグランジアン$L$はどちらですか。",
+          "choices": [
+            "$L=T+U$",
+            "$L=T-U$"
+          ],
+          "answer": 2,
+          "answerSummary": "ラグランジアンは運動エネルギーから位置エネルギーを引いた量です。",
+          "easyExplanation": [
+            {
+              "title": "全エネルギーとは使い道が違います",
+              "body": "$T+U$は保存を調べる全力学的エネルギーです。一方、運動方程式を作るラグランジアンは$T-U$です。二つは同じ材料から作っても、同じ量ではありません。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。ラグランジアンは運動エネルギーから位置エネルギーを引いた量です。 1：力学的エネルギーの和と混同しています。"
+            }
+          ],
+          "explanation": "【基礎】$T+U$は保存を調べる全力学的エネルギーです。一方、運動方程式を作るラグランジアンは$T-U$です。二つは同じ材料から作っても、同じ量ではありません。\n【考え方】正解は2です。ラグランジアンは運動エネルギーから位置エネルギーを引いた量です。\n【ポイント】ラグランジアンは運動エネルギーから位置エネルギーを引いた量です。\n【引っかけ】1：力学的エネルギーの和と混同しています。",
+          "relatedFormulas": [
+            "v1ch1-7"
+          ],
+          "editorialReview": {
+            "officialPoint": "ラグランジアンの定義。ラグランジアンは運動エネルギーから位置エネルギーを引いた量です。",
+            "alignment": "保存済み公式問1-5の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "力学的エネルギーの和と混同しています。"
+            },
+            "sha256": "d2c05cec183d52ac060201f69be08b170b8f80eedf39fedd5daf3999e981a09d"
+          }
+        },
+        {
+          "id": "vib1-1-5-item-d",
+          "number": "1-5",
+          "officialRef": "問1-5",
+          "officialQuestionItem": "d",
+          "title": "単振子の式を導く",
+          "topic": "単振子の運動方程式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "用いるラグランジュ方程式はどちらですか。",
+          "choices": [
+            "$\\frac{d}{dt}\\frac{\\partial L}{\\partial\\dot\\theta}-\\frac{\\partial L}{\\partial\\theta}=0$",
+            "$\\frac{\\partial L}{\\partial\\dot\\theta}-\\frac{\\partial L}{\\partial\\theta}=0$"
+          ],
+          "answer": 1,
+          "answerSummary": "速度で偏微分した後、さらに時間で微分します。",
+          "easyExplanation": [
+            {
+              "title": "二つの微分を順に計算します",
+              "body": "$L=ml^2\\dot\\theta^2/2-mgl(1-\\cos\\theta)$です。$\\partial L/\\partial\\dot\\theta=ml^2\\dot\\theta$、その時間微分は$ml^2\\ddot\\theta$です。もう一方は$\\partial L/\\partial\\theta=-mgl\\sin\\theta$です。"
+            },
+            {
+              "title": "引き算の負号も残して代入します",
+              "body": "$ml^2\\ddot\\theta-(-mgl\\sin\\theta)=0$です。$ml^2$で割ると$\\ddot\\theta+(g/l)\\sin\\theta=0$が得られます。ここまでは微小角近似を使っていません。小さく揺れる場合にだけ$\\sin\\theta\\simeq\\theta$として単振動の式にします。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。速度で偏微分した後、さらに時間で微分します。 2：時間微分を落とすと角加速度の項が得られません。"
+            }
+          ],
+          "explanation": "【基礎】$L=ml^2\\dot\\theta^2/2-mgl(1-\\cos\\theta)$です。$\\partial L/\\partial\\dot\\theta=ml^2\\dot\\theta$、その時間微分は$ml^2\\ddot\\theta$です。もう一方は$\\partial L/\\partial\\theta=-mgl\\sin\\theta$です。\n【考え方】正解は1です。速度で偏微分した後、さらに時間で微分します。\n【ポイント】$ml^2\\ddot\\theta-(-mgl\\sin\\theta)=0$です。$ml^2$で割ると$\\ddot\\theta+(g/l)\\sin\\theta=0$が得られます。ここまでは微小角近似を使っていません。小さく揺れる場合にだけ$\\sin\\theta\\simeq\\theta$として単振動の式にします。\n【引っかけ】2：時間微分を落とすと角加速度の項が得られません。",
+          "relatedFormulas": [
+            "v1ch1-7"
+          ],
+          "editorialReview": {
+            "officialPoint": "単振子の式を導く。速度で偏微分した後、さらに時間で微分します。",
+            "alignment": "保存済み公式問1-5の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "時間微分を落とすと角加速度の項が得られません。"
+            },
+            "sha256": "6194161b83939d797b20a72ed3e6291e2f419d458b6c038e95feab66b6cee145"
+          }
+        }
+      ],
+      "preFigures": [
+        {
+          "figureImage": "v1e1PendulumSetupPre",
+          "caption": "角度は鉛直下向きから測り、支点からおもりまでの長さは一定です。"
+        }
+      ]
     },
     {
       "id": "vib1-1-6",
@@ -406,7 +1200,7 @@
           "2": "交差項を落として足す誤解。",
           "4": "交差項で $\\cos60^\\circ$ を掛け忘れる誤解。"
         },
-        "sha256": "9bfb1dd281e08133c2c703dd9248cd672990890ac45822a8b0e83a939656c194"
+        "sha256": "a86e269da5719c6dcaf3d07093b895f1629a9dfff38d0665b3f19056ceca0a8d"
       },
       "preFigureImage": "v1e1CartPendulumPre",
       "easyExplanation": [
@@ -433,6 +1227,165 @@
         {
           "title": "式の読み方を、止めた場合で検算します",
           "body": "台車を止めれば $\\dot x=0$ となり、$v^2=l^2\\dot\\theta^2$ で、固定した振り子の式に戻ります。振り子の相対的な動きを止めれば $\\dot\\theta=0$ となり、$v^2=\\dot x^2$ で、おもりは台車と同じ速さです。両方が動くときだけ交差項が必要になります。また、この問題はある瞬間の速度からエネルギーを計算するので、ばねの硬さや角加速度を求める必要はありません。まず「誰の、どの基準から見た速度か」を決めると、余分な式を立てずに解けます。"
+        }
+      ],
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "answerSummary": "速さの2乗は $v^2=\\dot x^2+2l\\dot x\\dot\\theta\\cos\\theta+l^2\\dot\\theta^2$ で連成を表す交差項 $2l\\dot x\\dot\\theta\\cos\\theta$ を含み、$v^2=1+2\\times0.5\\times1\\times2\\times0.5+0.25\\times4=3\\ \\mathrm{m^2/s^2}$、運動エネルギー $T=\\tfrac12 m_2 v^2=\\tfrac12\\times2\\times3=3\\ \\mathrm{J}$ です。よって③が正しいです。",
+      "sharedQuestion": "ばね$k$で壁につながる台車$m_1$から、長さ$l$の糸でおもり$m_2$をつるします。台車の水平変位を$x$、糸の鉛直下向きからの角度を$\\theta$とし、摩擦・糸の質量を無視します。",
+      "studyParts": [
+        {
+          "id": "vib1-1-6-item-a",
+          "number": "1-6",
+          "officialRef": "問1-6",
+          "officialQuestionItem": "a",
+          "title": "おもりの運動エネルギー",
+          "topic": "多自由度系のエネルギー",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "台車の$T_1=m_1\\dot x^2/2$に加える、おもりの運動エネルギー$T_2$はどちらですか。",
+          "choices": [
+            "$\\frac{m_2}{2}\\{(\\dot x+l\\dot\\theta\\cos\\theta)^2+(l\\dot\\theta\\sin\\theta)^2\\}$",
+            "$\\frac{m_2}{2}\\{\\dot x^2+(l\\dot\\theta\\sin\\theta)^2\\}$"
+          ],
+          "answer": 1,
+          "answerSummary": "台車の移動と振り子の回転が、水平速度に同時に入ります。",
+          "easyExplanation": [
+            {
+              "title": "まず、おもりの位置を二方向に書きます",
+              "body": "固定した座標から見ると、おもりの水平位置は$x_s=x+l\\sin\\theta$、鉛直下向きの位置は$y_s=l\\cos\\theta$です。時間で微分すると$\\dot x_s=\\dot x+l\\dot\\theta\\cos\\theta$、$\\dot y_s=-l\\dot\\theta\\sin\\theta$です。"
+            },
+            {
+              "title": "速さの二乗は、二方向の速度の二乗和です",
+              "body": "$T_2=m_2(\\dot x_s^2+\\dot y_s^2)/2$へ代入すると①になります。展開し$\\cos^2\\theta+\\sin^2\\theta=1$を使うと、$T_2=m_2\\dot x^2/2+m_2l\\dot x\\dot\\theta\\cos\\theta+m_2l^2\\dot\\theta^2/2$です。真ん中の積が、台車と振り子の運動のつながりを表します。",
+              "figures": [
+                {
+                  "figureImage": "v1e1CartPendulum",
+                  "caption": "おもりの水平速度には台車の速度が加わります。図の鉛直矢印は上向きを正とした表示です。"
+                }
+              ]
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。台車の移動と振り子の回転が、水平速度に同時に入ります。 2：回転による水平速度を落としており、台車と振り子の連成項が出ません。"
+            }
+          ],
+          "explanation": "【基礎】固定した座標から見ると、おもりの水平位置は$x_s=x+l\\sin\\theta$、鉛直下向きの位置は$y_s=l\\cos\\theta$です。時間で微分すると$\\dot x_s=\\dot x+l\\dot\\theta\\cos\\theta$、$\\dot y_s=-l\\dot\\theta\\sin\\theta$です。\n【考え方】正解は1です。台車の移動と振り子の回転が、水平速度に同時に入ります。\n【ポイント】$T_2=m_2(\\dot x_s^2+\\dot y_s^2)/2$へ代入すると①になります。展開し$\\cos^2\\theta+\\sin^2\\theta=1$を使うと、$T_2=m_2\\dot x^2/2+m_2l\\dot x\\dot\\theta\\cos\\theta+m_2l^2\\dot\\theta^2/2$です。真ん中の積が、台車と振り子の運動のつながりを表します。\n【引っかけ】2：回転による水平速度を落としており、台車と振り子の連成項が出ません。",
+          "relatedFormulas": [
+            "v1ch1-5"
+          ],
+          "editorialReview": {
+            "officialPoint": "おもりの運動エネルギー。台車の移動と振り子の回転が、水平速度に同時に入ります。",
+            "alignment": "保存済み公式問1-6の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "回転による水平速度を落としており、台車と振り子の連成項が出ません。"
+            },
+            "sha256": "0aafd1413add7db3f62197596cbc74a0331c2ef5774550fe36c61c44b1f8773f"
+          }
+        },
+        {
+          "id": "vib1-1-6-item-b",
+          "number": "1-6",
+          "officialRef": "問1-6",
+          "officialQuestionItem": "b",
+          "title": "おもりの重力ポテンシャル",
+          "topic": "多自由度系のエネルギー",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "ばねの$kx^2/2$に加える重力の位置エネルギーはどちらですか。",
+          "choices": [
+            "$m_2gl\\sin\\theta$",
+            "$m_2gl(1-\\cos\\theta)$"
+          ],
+          "answer": 2,
+          "answerSummary": "最下点から$l(1-\\cos\\theta)$だけ上がります。",
+          "easyExplanation": [
+            {
+              "title": "台車は水平に動くだけです",
+              "body": "台車の水平移動$x$は、おもりの高さを直接変えません。高さを変えるのは角度$\\theta$です。したがって全ポテンシャルは$U=kx^2/2+m_2gl(1-\\cos\\theta)$となります。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。最下点から$l(1-\\cos\\theta)$だけ上がります。 1：横方向のずれを高さと取り違えています。"
+            }
+          ],
+          "explanation": "【基礎】台車の水平移動$x$は、おもりの高さを直接変えません。高さを変えるのは角度$\\theta$です。したがって全ポテンシャルは$U=kx^2/2+m_2gl(1-\\cos\\theta)$となります。\n【考え方】正解は2です。最下点から$l(1-\\cos\\theta)$だけ上がります。\n【ポイント】最下点から$l(1-\\cos\\theta)$だけ上がります。\n【引っかけ】1：横方向のずれを高さと取り違えています。",
+          "relatedFormulas": [
+            "v1ch1-5"
+          ],
+          "editorialReview": {
+            "officialPoint": "おもりの重力ポテンシャル。最下点から$l(1-\\cos\\theta)$だけ上がります。",
+            "alignment": "保存済み公式問1-6の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "横方向のずれを高さと取り違えています。"
+            },
+            "sha256": "b7a5584ebcd39b8359d530711ba4431f9fb4a84e37ad4f1193488fc13c2afe95"
+          }
+        },
+        {
+          "id": "vib1-1-6-item-c",
+          "number": "1-6",
+          "officialRef": "問1-6",
+          "officialQuestionItem": "c",
+          "title": "必要な運動方程式の数",
+          "topic": "多自由度系のエネルギー",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "この系の独立した運動方程式は何個ですか。",
+          "choices": [
+            "1個",
+            "2個",
+            "3個",
+            "4個"
+          ],
+          "answer": 2,
+          "answerSummary": "独立な座標は台車変位と振り子角の二つです。",
+          "easyExplanation": [
+            {
+              "title": "おもりの二方向の位置は、別々の自由度ではありません",
+              "body": "$x$と$\\theta$が決まれば、台車とおもりの全位置が決まります。糸の長さは一定なので、おもりの横位置と高さをさらに独立に指定することはできません。各一般化座標について1本ずつ、合計2本です。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。独立な座標は台車変位と振り子角の二つです。 1：台車と振り子は独立に動けます。 3：糸長一定の拘束を数え落としています。 4：位置の成分数を、そのまま自由度にしてはいけません。"
+            }
+          ],
+          "explanation": "【基礎】$x$と$\\theta$が決まれば、台車とおもりの全位置が決まります。糸の長さは一定なので、おもりの横位置と高さをさらに独立に指定することはできません。各一般化座標について1本ずつ、合計2本です。\n【考え方】正解は2です。独立な座標は台車変位と振り子角の二つです。\n【ポイント】独立な座標は台車変位と振り子角の二つです。\n【引っかけ】1：台車と振り子は独立に動けます。 3：糸長一定の拘束を数え落としています。 4：位置の成分数を、そのまま自由度にしてはいけません。",
+          "relatedFormulas": [
+            "v1ch1-5"
+          ],
+          "editorialReview": {
+            "officialPoint": "必要な運動方程式の数。独立な座標は台車変位と振り子角の二つです。",
+            "alignment": "保存済み公式問1-6の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "台車と振り子は独立に動けます。",
+              "3": "糸長一定の拘束を数え落としています。",
+              "4": "位置の成分数を、そのまま自由度にしてはいけません。"
+            },
+            "sha256": "ea1a0584074125537d0dd1bd9df9bcb721ff20c8730a23e819c3894429f2ccdc"
+          }
+        }
+      ],
+      "preFigures": [
+        {
+          "figureImage": "v1e1CartPendulumPre",
+          "caption": "台車の水平変位と振り子の角度を、独立した座標にします。"
         }
       ]
     },
@@ -471,7 +1424,7 @@
           "2": "cosθの時間微分の脱落",
           "3": "cosθの微分の負号の誤り"
         },
-        "sha256": "9ee3049b7cc49f6831521ec5053ce6462606abede6f15ca66702ee2153744b7d"
+        "sha256": "2afb3ad6d2b60242a150218c573e036e240d764dc4c12cae5ed3842f20d9dea7"
       },
       "preFigureImage": "v1e1CartPendulumPre",
       "easyExplanation": [
@@ -499,12 +1452,175 @@
           "title": "単位と、極端な場合で検算します",
           "body": "$(m_1+m_2)\\ddot x$ は質量×加速度でNです。$m_2l\\ddot\\theta$ と $m_2l\\dot\\theta^2$ も、radを無次元として扱えばどちらもNで、$kx$ と足せます。おもりの質量を0へ近づければ、二つの連成項が消えて $m_1\\ddot x+kx=0$ となり、普通のばね付き台車へ戻ります。振り子側にも別の式を作り、この式と一緒に解きます。台車の式だけから、振り子の動きを自由に指定してよいわけではありません。"
         }
+      ],
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "answerSummary": "$\\partial L/\\partial\\dot x=(m_1+m_2)\\dot x+m_2l\\dot\\theta\\cos\\theta$ です。積 $\\dot\\theta\\cos\\theta$ の時間微分は $\\ddot\\theta\\cos\\theta-\\dot\\theta^2\\sin\\theta$ です。この結果を使って $d(\\partial L/\\partial\\dot x)/dt$ を求め、$\\partial L/\\partial x=-kx$ を引いて零とおくと④です。",
+      "sharedQuestion": "ばね$k$で支持された台車$m_1$と振り子$m_2$を考えます。座標は台車変位$x$と鉛直下向きからの角度$\\theta$、糸長は$l$です。運動エネルギーは$T=(m_1+m_2)\\dot x^2/2+m_2l^2\\dot\\theta^2/2+m_2l\\dot x\\dot\\theta\\cos\\theta$です。ポテンシャルと二つの運動方程式を求めます。",
+      "studyParts": [
+        {
+          "id": "vib1-1-7-item-a",
+          "number": "1-7",
+          "officialRef": "問1-7",
+          "officialQuestionItem": "a",
+          "title": "重力によるポテンシャル",
+          "topic": "連成運動方程式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$U=kx^2/2+U_g$とすると、$U_g$はどちらですか。",
+          "choices": [
+            "$m_2gl(1-\\cos\\theta)$",
+            "$m_2gl(1-\\sin\\theta)$"
+          ],
+          "answer": 1,
+          "answerSummary": "基準は鉛直下向きの最下点です。",
+          "easyExplanation": [
+            {
+              "title": "角度0で高さ0になるか確認します",
+              "body": "上昇量は$l-l\\cos\\theta$です。$\\theta=0$で0になり、左右へ傾けると増えるので$U_g=m_2gl(1-\\cos\\theta)$となります。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。基準は鉛直下向きの最下点です。 2：角度0で最下点を基準にした高さ0になりません。"
+            }
+          ],
+          "explanation": "【基礎】上昇量は$l-l\\cos\\theta$です。$\\theta=0$で0になり、左右へ傾けると増えるので$U_g=m_2gl(1-\\cos\\theta)$となります。\n【考え方】正解は1です。基準は鉛直下向きの最下点です。\n【ポイント】基準は鉛直下向きの最下点です。\n【引っかけ】2：角度0で最下点を基準にした高さ0になりません。",
+          "relatedFormulas": [
+            "v1ch1-5"
+          ],
+          "editorialReview": {
+            "officialPoint": "重力によるポテンシャル。基準は鉛直下向きの最下点です。",
+            "alignment": "保存済み公式問1-7の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "角度0で最下点を基準にした高さ0になりません。"
+            },
+            "sha256": "9b9ab73367a338896629e018eb692acdaf31294d803b97ffeaba9d98cb81f77b"
+          }
+        },
+        {
+          "id": "vib1-1-7-item-b",
+          "number": "1-7",
+          "officialRef": "問1-7",
+          "officialQuestionItem": "b",
+          "title": "台車の運動方程式",
+          "topic": "連成運動方程式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$x$に関する運動方程式はどちらですか。",
+          "choices": [
+            "$(m_1+m_2)\\ddot x+m_2l\\ddot\\theta\\cos\\theta+kx=0$",
+            "$(m_1+m_2)\\ddot x+m_2l\\ddot\\theta\\cos\\theta-m_2l\\dot\\theta^2\\sin\\theta+kx=0$"
+          ],
+          "answer": 2,
+          "answerSummary": "積を時間微分すると、角加速度の項と角速度の二乗の項が出ます。",
+          "easyExplanation": [
+            {
+              "title": "xの速度で偏微分します",
+              "body": "$L=T-U$から$\\partial L/\\partial\\dot x=(m_1+m_2)\\dot x+m_2l\\dot\\theta\\cos\\theta$です。後半は$\\dot\\theta$と$\\cos\\theta$の積なので、両方の時間変化を数えます。"
+            },
+            {
+              "title": "積の微分を飛ばさず計算します",
+              "body": "$d(\\dot\\theta\\cos\\theta)/dt=\\ddot\\theta\\cos\\theta-\\dot\\theta^2\\sin\\theta$です。従って$d(\\partial L/\\partial\\dot x)/dt=(m_1+m_2)\\ddot x+m_2l\\ddot\\theta\\cos\\theta-m_2l\\dot\\theta^2\\sin\\theta$です。"
+            },
+            {
+              "title": "ばねの項と合わせます",
+              "body": "$\\partial L/\\partial x=-kx$を引くので$+kx$が加わり②になります。①は微小振動の線形化では現れますが、ここでは角度を小さいと仮定していないため、二乗項を勝手に捨てられません。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。積を時間微分すると、角加速度の項と角速度の二乗の項が出ます。 1：近似指定なしで非線形の角速度二乗項を落としています。"
+            }
+          ],
+          "explanation": "【基礎】$L=T-U$から$\\partial L/\\partial\\dot x=(m_1+m_2)\\dot x+m_2l\\dot\\theta\\cos\\theta$です。後半は$\\dot\\theta$と$\\cos\\theta$の積なので、両方の時間変化を数えます。\n【考え方】正解は2です。積を時間微分すると、角加速度の項と角速度の二乗の項が出ます。\n【ポイント】$d(\\dot\\theta\\cos\\theta)/dt=\\ddot\\theta\\cos\\theta-\\dot\\theta^2\\sin\\theta$です。従って$d(\\partial L/\\partial\\dot x)/dt=(m_1+m_2)\\ddot x+m_2l\\ddot\\theta\\cos\\theta-m_2l\\dot\\theta^2\\sin\\theta$です。\n【引っかけ】1：近似指定なしで非線形の角速度二乗項を落としています。",
+          "relatedFormulas": [
+            "v1ch1-5"
+          ],
+          "editorialReview": {
+            "officialPoint": "台車の運動方程式。積を時間微分すると、角加速度の項と角速度の二乗の項が出ます。",
+            "alignment": "保存済み公式問1-7の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "近似指定なしで非線形の角速度二乗項を落としています。"
+            },
+            "sha256": "e6da1f025722c745c91df5ab6a45ef165dab2e8e925108919f2d309457492f63"
+          }
+        },
+        {
+          "id": "vib1-1-7-item-c",
+          "number": "1-7",
+          "officialRef": "問1-7",
+          "officialQuestionItem": "c",
+          "title": "振り子側の連成項",
+          "topic": "連成運動方程式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "振り子の式は$(\\text{空欄})+m_2l^2\\ddot\\theta+m_2gl\\sin\\theta=0$です。空欄はどちらですか。",
+          "choices": [
+            "$m_2l\\ddot x\\sin\\theta$",
+            "$m_2l\\ddot x\\cos\\theta$"
+          ],
+          "answer": 2,
+          "answerSummary": "振り子の接線方向へ台車の加速度を投影します。",
+          "easyExplanation": [
+            {
+              "title": "角速度による微分を計算します",
+              "body": "$\\partial L/\\partial\\dot\\theta=m_2l^2\\dot\\theta+m_2l\\dot x\\cos\\theta$です。時間微分は$m_2l^2\\ddot\\theta+m_2l\\ddot x\\cos\\theta-m_2l\\dot x\\dot\\theta\\sin\\theta$です。",
+              "figures": [
+                {
+                  "figureImage": "v1e1CartPendulum",
+                  "caption": "水平速度には台車の速度と振り子の相対速度が加わります。図の鉛直成分は上向きが正です。"
+                }
+              ]
+            },
+            {
+              "title": "同じ積の項が打ち消し合います",
+              "body": "$\\partial L/\\partial\\theta=-m_2l\\dot x\\dot\\theta\\sin\\theta-m_2gl\\sin\\theta$です。これを引くと、$\\dot x\\dot\\theta\\sin\\theta$の項同士が消え、$m_2l\\ddot x\\cos\\theta+m_2l^2\\ddot\\theta+m_2gl\\sin\\theta=0$が残ります。鉛直付近でも台車の横加速度は振り子を揺らすため、$\\theta=0$で連成項が消える①は不適切です。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。振り子の接線方向へ台車の加速度を投影します。 1：鉛直姿勢で水平加速度の影響が消える形になっています。"
+            }
+          ],
+          "explanation": "【基礎】$\\partial L/\\partial\\dot\\theta=m_2l^2\\dot\\theta+m_2l\\dot x\\cos\\theta$です。時間微分は$m_2l^2\\ddot\\theta+m_2l\\ddot x\\cos\\theta-m_2l\\dot x\\dot\\theta\\sin\\theta$です。\n【考え方】正解は2です。振り子の接線方向へ台車の加速度を投影します。\n【ポイント】$\\partial L/\\partial\\theta=-m_2l\\dot x\\dot\\theta\\sin\\theta-m_2gl\\sin\\theta$です。これを引くと、$\\dot x\\dot\\theta\\sin\\theta$の項同士が消え、$m_2l\\ddot x\\cos\\theta+m_2l^2\\ddot\\theta+m_2gl\\sin\\theta=0$が残ります。鉛直付近でも台車の横加速度は振り子を揺らすため、$\\theta=0$で連成項が消える①は不適切です。\n【引っかけ】1：鉛直姿勢で水平加速度の影響が消える形になっています。",
+          "relatedFormulas": [
+            "v1ch1-5"
+          ],
+          "editorialReview": {
+            "officialPoint": "振り子側の連成項。振り子の接線方向へ台車の加速度を投影します。",
+            "alignment": "保存済み公式問1-7の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "鉛直姿勢で水平加速度の影響が消える形になっています。"
+            },
+            "sha256": "f531dd74012f3ab9c4b92ee354f112c8199e8d0bb84779dc191c1d3738f8345a"
+          }
+        }
+      ],
+      "preFigures": [
+        {
+          "figureImage": "v1e1CartPendulumPre",
+          "caption": "台車の水平変位と振り子の角度を、独立した座標にします。"
+        }
       ]
     },
     {
       "id": "vib1-1-8",
       "number": "1-8",
-      "title": "ハミルトンの原理",
+      "title": "実際の運動経路を選ぶ条件",
       "topic": "ハミルトンの原理",
       "type": "mc",
       "difficulty": 1,
@@ -534,7 +1650,7 @@
           "3": "ハミルトンの原理をエネルギー保存則と混同する誤解。",
           "4": "$L=T+U$ と符号を取り違える誤解。"
         },
-        "sha256": "d9b4d3d6f17c83cdf9695a081c7f9fc9024c970072ce16df5c558cee012f5b1f"
+        "sha256": "9f084927cc92c194bd768830d9ead92941e270875934bf1c2b3953a86c0620f0"
       },
       "easyExplanation": [
         {
@@ -560,6 +1676,153 @@
         {
           "title": "ラグランジュ方程式へのつながり",
           "body": "作用を少し変えたとき、$\\delta S=\\int(\\partial L/\\partial q)\\delta q\\,dt+\\int(\\partial L/\\partial\\dot q)\\delta\\dot q\\,dt$ です。後半を部分積分すると、両端の $\\delta q=0$ により端の項が消えます。途中の $\\delta q$ が任意であるため、$\\partial L/\\partial q-d(\\partial L/\\partial\\dot q)/dt=0$ が得られます。これがラグランジュ方程式です。途中の運動を変分することと、各時刻の運動方程式が同じ問題を表していると分かります。"
+        }
+      ],
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "answerSummary": "停留とは変分が零（$\\delta\\int L\\,dt=0$）になることで、必ずしも最小・最大ではありません。よって①が正しいです。",
+      "sharedQuestion": "保存力を受ける系について、始めと終わりの時刻・位置を固定し、途中の動き方を少し変えて比較します。$T$は運動エネルギー、$U$はポテンシャルです。",
+      "studyParts": [
+        {
+          "id": "vib1-1-8-item-a",
+          "number": "1-8",
+          "officialRef": "問1-8",
+          "officialQuestionItem": "a",
+          "title": "T−Uの名称",
+          "topic": "ハミルトンの原理",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$L=T-U$を何と呼びますか。",
+          "choices": [
+            "ラグランジュ関数",
+            "ハミルトン関数"
+          ],
+          "answer": 1,
+          "answerSummary": "ラグランジュ関数、またはラグランジアンです。",
+          "easyExplanation": [
+            {
+              "title": "時間の経過に沿って足し合わせる材料です",
+              "body": "運動が速いほど$T$が増え、配置が変わると$U$が変わります。その差$L$を時刻ごとに計算します。全エネルギー$T+U$と区別してください。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。ラグランジュ関数、またはラグランジアンです。 2：ここで定義したT−Uはラグランジュ関数です。"
+            }
+          ],
+          "explanation": "【基礎】運動が速いほど$T$が増え、配置が変わると$U$が変わります。その差$L$を時刻ごとに計算します。全エネルギー$T+U$と区別してください。\n【考え方】正解は1です。ラグランジュ関数、またはラグランジアンです。\n【ポイント】ラグランジュ関数、またはラグランジアンです。\n【引っかけ】2：ここで定義したT−Uはラグランジュ関数です。",
+          "relatedFormulas": [
+            "v1ch1-6"
+          ],
+          "editorialReview": {
+            "officialPoint": "T−Uの名称。ラグランジュ関数、またはラグランジアンです。",
+            "alignment": "保存済み公式問1-8の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "ここで定義したT−Uはラグランジュ関数です。"
+            },
+            "sha256": "792d9f95412cb9b032bf2749d2eb0e6041dcf989f162f5ffc5f436e3bc7a6f2e"
+          }
+        },
+        {
+          "id": "vib1-1-8-item-b",
+          "number": "1-8",
+          "officialRef": "問1-8",
+          "officialQuestionItem": "b",
+          "title": "作用の停留を使う原理",
+          "topic": "ハミルトンの原理",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$\\delta\\int_{t_1}^{t_2}L\\,dt=0$の名称はどれですか。",
+          "choices": [
+            "ダランベールの原理",
+            "ハミルトンの原理"
+          ],
+          "answer": 2,
+          "answerSummary": "運動の経路全体を比べるハミルトンの原理です。",
+          "easyExplanation": [
+            {
+              "title": "積分は時間ごとの値を足す計算です",
+              "body": "$S=\\int_{t_1}^{t_2}L\\,dt$を作用と呼びます。ここで比べるのは、一つの時刻の力だけでなく、出発から到着までの運動です。端の位置は変えず、途中の経路だけを変えます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。運動の経路全体を比べるハミルトンの原理です。 1：ダランベールは慣性力を使う瞬間ごとのつり合い形です。"
+            }
+          ],
+          "explanation": "【基礎】$S=\\int_{t_1}^{t_2}L\\,dt$を作用と呼びます。ここで比べるのは、一つの時刻の力だけでなく、出発から到着までの運動です。端の位置は変えず、途中の経路だけを変えます。\n【考え方】正解は2です。運動の経路全体を比べるハミルトンの原理です。\n【ポイント】運動の経路全体を比べるハミルトンの原理です。\n【引っかけ】1：ダランベールは慣性力を使う瞬間ごとのつり合い形です。",
+          "relatedFormulas": [
+            "v1ch1-6"
+          ],
+          "editorialReview": {
+            "officialPoint": "作用の停留を使う原理。運動の経路全体を比べるハミルトンの原理です。",
+            "alignment": "保存済み公式問1-8の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "ダランベールは慣性力を使う瞬間ごとのつり合い形です。"
+            },
+            "sha256": "1e71f8bfc7417eafbc940f9b2a288c821e795553474e0b910ad554a82003c45a"
+          }
+        },
+        {
+          "id": "vib1-1-8-item-c",
+          "number": "1-8",
+          "officialRef": "問1-8",
+          "officialQuestionItem": "c",
+          "title": "実際の経路の条件",
+          "topic": "ハミルトンの原理",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "実際の運動の作用$S$は、経路を微小に変えるときどの条件を満たしますか。",
+          "choices": [
+            "必ず最大になる",
+            "必ず0になる",
+            "停留する",
+            "常に一定の正の値になる"
+          ],
+          "answer": 3,
+          "answerSummary": "経路変化に対する作用の一次変化が0です。",
+          "easyExplanation": [
+            {
+              "title": "停留を、ゼロや最小と混同しません",
+              "body": "$\\delta S=0$は、作用$S$そのものが0という意味ではありません。グラフの頂点で傾きが0になるように、経路を少し変えたときの一次変化が0になる条件です。必ず最小とは限らないため、原理は「停留」と述べます。"
+            },
+            {
+              "title": "この条件から運動方程式が出ます",
+              "body": "一つの座標$q$なら$\\delta S=\\int(L_{,q}\\delta q+L_{,\\dot q}\\delta\\dot q)dt$です。後半を部分積分し、始終時刻で$\\delta q=0$とすると$\\int\\{L_{,q}-dL_{,\\dot q}/dt\\}\\delta q\\,dt=0$です。途中の$\\delta q$が任意なので、括弧が0となりラグランジュ方程式を得ます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は3です。経路変化に対する作用の一次変化が0です。 1：最大と断定できません。 2：ゼロになるのは一次変化です。 4：作用の値を特定する原理ではありません。"
+            }
+          ],
+          "explanation": "【基礎】$\\delta S=0$は、作用$S$そのものが0という意味ではありません。グラフの頂点で傾きが0になるように、経路を少し変えたときの一次変化が0になる条件です。必ず最小とは限らないため、原理は「停留」と述べます。\n【考え方】正解は3です。経路変化に対する作用の一次変化が0です。\n【ポイント】一つの座標$q$なら$\\delta S=\\int(L_{,q}\\delta q+L_{,\\dot q}\\delta\\dot q)dt$です。後半を部分積分し、始終時刻で$\\delta q=0$とすると$\\int\\{L_{,q}-dL_{,\\dot q}/dt\\}\\delta q\\,dt=0$です。途中の$\\delta q$が任意なので、括弧が0となりラグランジュ方程式を得ます。\n【引っかけ】1：最大と断定できません。 2：ゼロになるのは一次変化です。 4：作用の値を特定する原理ではありません。",
+          "relatedFormulas": [
+            "v1ch1-6"
+          ],
+          "editorialReview": {
+            "officialPoint": "実際の経路の条件。経路変化に対する作用の一次変化が0です。",
+            "alignment": "保存済み公式問1-8の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "最大と断定できません。",
+              "2": "ゼロになるのは一次変化です。",
+              "4": "作用の値を特定する原理ではありません。"
+            },
+            "sha256": "0c221a887a34db4dda107f4d731c9c60205ef3e568c907d1079e089f8d530991"
+          }
         }
       ]
     },
@@ -599,7 +1862,7 @@
           "3": "空間2階微分項の符号を誤り端を一律固定とする誤解。",
           "4": "力学的(勾配型)境界条件を見落とす誤解。"
         },
-        "sha256": "f6e3ff3b9f02cdec8f4084d615756282b0ad9c592af340f348d14c83d3f7e16e"
+        "sha256": "60779fecd0552022985d547c0b7b45a4ec311c6c8dd826b9c160140ae10d567e"
       },
       "easyExplanation": [
         {
@@ -625,6 +1888,158 @@
         {
           "title": "内部と端では、力の単位も違います",
           "body": "内部の $\\rho A y_{tt}$ と $EAy_{xx}$ は、単位長さあたりの力でN/mです。短い区間dxを掛けると、その区間の慣性力と軸力の差になります。一方、端の $EAy_x$ は軸力そのものでNです。内部の運動を表す式と、一点の端で力を指定する式が違うことを、単位からも確かめられます。"
+        }
+      ],
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "answerSummary": "区間内部で仮想変位 $\\delta y$ が任意であることから運動方程式 $\\rho A\\,\\partial^2 y/\\partial t^2-EA\\,\\partial^2 y/\\partial x^2=0$ が、端部では境界項から $y=0$（幾何学的）または $EA\\,\\partial y/\\partial x=0$（力学的）が得られます。よって②が正しいです。",
+      "sharedQuestion": "長さ$l$の棒の縦振動を考えます。変位は$y(x,t)$、密度は$\\rho$、ヤング率は$E$、断面積$A(x)$は位置によって変わってもよいとします。端は固定端または軸力のない自由端です。ハミルトンの原理を部分積分したときの内部と端の条件を答えます。",
+      "studyParts": [
+        {
+          "id": "vib1-1-9-item-a",
+          "number": "1-9",
+          "officialRef": "問1-9",
+          "officialQuestionItem": "a",
+          "title": "棒の内部から得る条件",
+          "topic": "棒の縦振動",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "内部で任意の仮想変位に対して成立する式は、何の方程式ですか。",
+          "choices": [
+            "構成方程式",
+            "運動方程式"
+          ],
+          "answer": 2,
+          "answerSummary": "各部分の慣性と軸力の差を結び付ける運動方程式です。",
+          "easyExplanation": [
+            {
+              "title": "小さな部分のエネルギーを足します",
+              "body": "長さ$dx$の質量は$\\rho A\\,dx$、速度は$y_{,t}$、軸ひずみは$y_{,x}$です。従って$T=\\int_0^l\\rho Ay_{,t}^2/2\\,dx$、$U=\\int_0^lEAy_{,x}^2/2\\,dx$です。下付きのカンマは、その変数での微分を意味します。"
+            },
+            {
+              "title": "微分を、仮想変位から別の項へ移します",
+              "body": "変分は$\\int\\!\\int(\\rho Ay_{,t}\\delta y_{,t}-EAy_{,x}\\delta y_{,x})\\,dx\\,dt$です。時間・空間について部分積分すると、内部は$[-\\rho Ay_{,tt}+\\partial_x(EAy_{,x})]\\delta y$となります。任意の$\\delta y$に対して0なので、$\\rho Ay_{,tt}-\\partial_x(EAy_{,x})=0$です。一定断面なら$\\rho Ay_{,tt}-EAy_{,xx}=0$に簡単化します。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。各部分の慣性と軸力の差を結び付ける運動方程式です。 1：材料の応力とひずみの関係ではなく、慣性を含む運動の式です。"
+            }
+          ],
+          "explanation": "【基礎】長さ$dx$の質量は$\\rho A\\,dx$、速度は$y_{,t}$、軸ひずみは$y_{,x}$です。従って$T=\\int_0^l\\rho Ay_{,t}^2/2\\,dx$、$U=\\int_0^lEAy_{,x}^2/2\\,dx$です。下付きのカンマは、その変数での微分を意味します。\n【考え方】正解は2です。各部分の慣性と軸力の差を結び付ける運動方程式です。\n【ポイント】変分は$\\int\\!\\int(\\rho Ay_{,t}\\delta y_{,t}-EAy_{,x}\\delta y_{,x})\\,dx\\,dt$です。時間・空間について部分積分すると、内部は$[-\\rho Ay_{,tt}+\\partial_x(EAy_{,x})]\\delta y$となります。任意の$\\delta y$に対して0なので、$\\rho Ay_{,tt}-\\partial_x(EAy_{,x})=0$です。一定断面なら$\\rho Ay_{,tt}-EAy_{,xx}=0$に簡単化します。\n【引っかけ】1：材料の応力とひずみの関係ではなく、慣性を含む運動の式です。",
+          "relatedFormulas": [
+            "v1ch1-8",
+            "v1ch1-9"
+          ],
+          "editorialReview": {
+            "officialPoint": "棒の内部から得る条件。各部分の慣性と軸力の差を結び付ける運動方程式です。",
+            "alignment": "保存済み公式問1-9の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "材料の応力とひずみの関係ではなく、慣性を含む運動の式です。"
+            },
+            "sha256": "00d4bc4326d4c1afd6a7e57d30d72d47f34991578a09edcdc246db771a469c64"
+          }
+        },
+        {
+          "id": "vib1-1-9-item-b",
+          "number": "1-9",
+          "officialRef": "問1-9",
+          "officialQuestionItem": "b",
+          "title": "端から得る条件",
+          "topic": "棒の縦振動",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "部分積分で残る端の項から得るものはどれですか。",
+          "choices": [
+            "境界条件",
+            "初期条件"
+          ],
+          "answer": 1,
+          "answerSummary": "棒の端の変位や軸力に関する境界条件です。",
+          "easyExplanation": [
+            {
+              "title": "内部の積分と、端での評価は別です",
+              "body": "空間の部分積分から、端の項$-[EAy_{,x}\\delta y]_0^l$が残ります。これは両端の状態を表します。運動開始時の変位や速度を決める初期条件とは異なります。",
+              "figures": [
+                {
+                  "figureImage": "v1e1BarLongitudinal",
+                  "caption": "固定端では変位を止め、自由端では軸力を0にします。図は一定断面棒の例です。"
+                }
+              ]
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。棒の端の変位や軸力に関する境界条件です。 2：初期条件は最初の時刻の状態であり、端の位置に関する条件ではありません。"
+            }
+          ],
+          "explanation": "【基礎】空間の部分積分から、端の項$-[EAy_{,x}\\delta y]_0^l$が残ります。これは両端の状態を表します。運動開始時の変位や速度を決める初期条件とは異なります。\n【考え方】正解は1です。棒の端の変位や軸力に関する境界条件です。\n【ポイント】棒の端の変位や軸力に関する境界条件です。\n【引っかけ】2：初期条件は最初の時刻の状態であり、端の位置に関する条件ではありません。",
+          "relatedFormulas": [
+            "v1ch1-8",
+            "v1ch1-9"
+          ],
+          "editorialReview": {
+            "officialPoint": "端から得る条件。棒の端の変位や軸力に関する境界条件です。",
+            "alignment": "保存済み公式問1-9の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "初期条件は最初の時刻の状態であり、端の位置に関する条件ではありません。"
+            },
+            "sha256": "2b51c72b6fc79c45a77e14ac43a3244e6cf24b58c779ccb6b295a2d3984cc6ea"
+          }
+        },
+        {
+          "id": "vib1-1-9-item-c",
+          "number": "1-9",
+          "officialRef": "問1-9",
+          "officialQuestionItem": "c",
+          "title": "自由端の軸力条件",
+          "topic": "棒の縦振動",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "外力のない自由端で成り立つのはどちらですか。",
+          "choices": [
+            "$EAy_{,t}=0$",
+            "$EAy_{,x}=0$"
+          ],
+          "answer": 2,
+          "answerSummary": "軸力はEAと軸ひずみの積です。",
+          "easyExplanation": [
+            {
+              "title": "自由に動けるので、仮想変位は0に固定しません",
+              "body": "自由端では$\\delta y$を任意に選べます。それでも$EAy_{,x}\\delta y=0$になるには、係数の軸力$EAy_{,x}$が0でなければなりません。固定端なら逆に$y=0$を指定し、$\\delta y=0$にします。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。軸力はEAと軸ひずみの積です。 1：時間微分は速度であり、軸ひずみではありません。"
+            }
+          ],
+          "explanation": "【基礎】自由端では$\\delta y$を任意に選べます。それでも$EAy_{,x}\\delta y=0$になるには、係数の軸力$EAy_{,x}$が0でなければなりません。固定端なら逆に$y=0$を指定し、$\\delta y=0$にします。\n【考え方】正解は2です。軸力はEAと軸ひずみの積です。\n【ポイント】軸力はEAと軸ひずみの積です。\n【引っかけ】1：時間微分は速度であり、軸ひずみではありません。",
+          "relatedFormulas": [
+            "v1ch1-8",
+            "v1ch1-9"
+          ],
+          "editorialReview": {
+            "officialPoint": "自由端の軸力条件。軸力はEAと軸ひずみの積です。",
+            "alignment": "保存済み公式問1-9の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "時間微分は速度であり、軸ひずみではありません。"
+            },
+            "sha256": "9ee02ba12a077777cd2865cc7c781fff03857e6e2d8be63b4fa3d58221ee52a2"
+          }
         }
       ]
     },
@@ -662,7 +2077,7 @@
           "2": "両方を厳密に満たす必要があるとする誤解。",
           "4": "境界条件を全く無視できるとする誤解。"
         },
-        "sha256": "0c50180f3ca33ca5b23d8f499185ee1be84960c35fed54ac220b1f429d84add1"
+        "sha256": "f58c06436c86023ce8771eac5c3c1dac763ed99c3aadd19299b20eb11c41810f"
       },
       "easyExplanation": [
         {
@@ -693,24 +2108,211 @@
           "title": "固定端が二つなら、その二つを先に満たします",
           "body": "両端が固定された棒なら、候補は $\\phi(0)=\\phi(l)=0$ を満たす必要があります。例えば $\\sin(\\pi x/l)$ は両端で0です。この場合は両端の力を0にする必要はなく、固定具が反力を伝えます。支持が変われば、候補へ組み込む幾何学的条件も変えることを確認してください。"
         }
+      ],
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "answerSummary": "したがって幾何学的境界条件を先に満たし、力学的境界条件は近似的に満足されるとする③が正しいです。",
+      "sharedQuestion": "連続体の振動を、ハミルトンの原理に基づくレイリー・リッツ法で近似します。境界条件をどの段階で満たすかを整理してください。",
+      "studyParts": [
+        {
+          "id": "vib1-1-10-item-a",
+          "number": "1-10",
+          "officialRef": "問1-10",
+          "officialQuestionItem": "a",
+          "title": "近似変位が必ず満たす条件",
+          "topic": "境界条件と近似解法",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "候補となる変位に、あらかじめ満たさせる条件はどちらですか。",
+          "choices": [
+            "幾何学的境界条件",
+            "力学的境界条件"
+          ],
+          "answer": 1,
+          "answerSummary": "動けない端の変位などを、近似する形に組み込みます。",
+          "easyExplanation": [
+            {
+              "title": "固定端が動く候補では、別の問題になります",
+              "body": "$x=0$で固定された棒なら$y(0,t)=0$です。$y=\\phi(x)q(t)$と仮定するときも$\\phi(0)=0$を満たさせます。壁に固定した端が動く形を候補に入れてはいけません。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。動けない端の変位などを、近似する形に組み込みます。 2：軸力などの自然境界条件は、弱形式の境界項で扱います。"
+            }
+          ],
+          "explanation": "【基礎】$x=0$で固定された棒なら$y(0,t)=0$です。$y=\\phi(x)q(t)$と仮定するときも$\\phi(0)=0$を満たさせます。壁に固定した端が動く形を候補に入れてはいけません。\n【考え方】正解は1です。動けない端の変位などを、近似する形に組み込みます。\n【ポイント】動けない端の変位などを、近似する形に組み込みます。\n【引っかけ】2：軸力などの自然境界条件は、弱形式の境界項で扱います。",
+          "relatedFormulas": [
+            "v1ch1-9",
+            "v1ch1-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "近似変位が必ず満たす条件。動けない端の変位などを、近似する形に組み込みます。",
+            "alignment": "保存済み公式問1-10の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "軸力などの自然境界条件は、弱形式の境界項で扱います。"
+            },
+            "sha256": "2d7fe5f1d9b99be79c14b0dcf97d69f30df87e5abd727d5ce7afc34e986e9a8f"
+          }
+        },
+        {
+          "id": "vib1-1-10-item-b",
+          "number": "1-10",
+          "officialRef": "問1-10",
+          "officialQuestionItem": "b",
+          "title": "変分原理から現れる条件",
+          "topic": "境界条件と近似解法",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "端の軸力や曲げモーメントなどに関する条件はどちらですか。",
+          "choices": [
+            "幾何学的境界条件",
+            "力学的境界条件"
+          ],
+          "answer": 2,
+          "answerSummary": "端に働く力側の条件です。",
+          "easyExplanation": [
+            {
+              "title": "変位と力を区別します",
+              "body": "棒の固定端の$y=0$は幾何学的条件、自由端の$EAy_{,x}=0$は力学的条件です。後者はエネルギーの式を部分積分した端の項から現れます。指定した端力は外力の仕事として式に入れます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。端に働く力側の条件です。 1：変位や回転角を指定する条件と、力側の条件は異なります。"
+            }
+          ],
+          "explanation": "【基礎】棒の固定端の$y=0$は幾何学的条件、自由端の$EAy_{,x}=0$は力学的条件です。後者はエネルギーの式を部分積分した端の項から現れます。指定した端力は外力の仕事として式に入れます。\n【考え方】正解は2です。端に働く力側の条件です。\n【ポイント】端に働く力側の条件です。\n【引っかけ】1：変位や回転角を指定する条件と、力側の条件は異なります。",
+          "relatedFormulas": [
+            "v1ch1-9",
+            "v1ch1-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "変分原理から現れる条件。端に働く力側の条件です。",
+            "alignment": "保存済み公式問1-10の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "変位や回転角を指定する条件と、力側の条件は異なります。"
+            },
+            "sha256": "c5be866ef26b6467be4183bd4f43ca7a6e66e9f42ca63e9714155c62d8e137c8"
+          }
+        },
+        {
+          "id": "vib1-1-10-item-c",
+          "number": "1-10",
+          "officialRef": "問1-10",
+          "officialQuestionItem": "c",
+          "title": "同じ考え方を用いる数値解法",
+          "topic": "境界条件と近似解法",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "要素ごとの形状関数を使い、この考え方で離散化する方法はどれですか。",
+          "choices": [
+            "有限要素法",
+            "単純な固有モードの正規化"
+          ],
+          "answer": 1,
+          "answerSummary": "有限要素法は局所的な近似関数から系の方程式を組み立てます。",
+          "easyExplanation": [
+            {
+              "title": "動きの候補を、扱える個数の未知量で表します",
+              "body": "連続体には無数の位置があります。節点の変位など有限個の数で内部の動きを近似し、エネルギーや仮想仕事から連立方程式を作るのが有限要素法です。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。有限要素法は局所的な近似関数から系の方程式を組み立てます。 2：正規化は既に得たモードの倍率をそろえる操作です。"
+            }
+          ],
+          "explanation": "【基礎】連続体には無数の位置があります。節点の変位など有限個の数で内部の動きを近似し、エネルギーや仮想仕事から連立方程式を作るのが有限要素法です。\n【考え方】正解は1です。有限要素法は局所的な近似関数から系の方程式を組み立てます。\n【ポイント】有限要素法は局所的な近似関数から系の方程式を組み立てます。\n【引っかけ】2：正規化は既に得たモードの倍率をそろえる操作です。",
+          "relatedFormulas": [
+            "v1ch1-9",
+            "v1ch1-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "同じ考え方を用いる数値解法。有限要素法は局所的な近似関数から系の方程式を組み立てます。",
+            "alignment": "保存済み公式問1-10の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "正規化は既に得たモードの倍率をそろえる操作です。"
+            },
+            "sha256": "3626f0f5b3832c75cfb98b6cb5992127cc2aeeaec9618353ef899d43825f42b9"
+          }
+        },
+        {
+          "id": "vib1-1-10-item-d",
+          "number": "1-10",
+          "officialRef": "問1-10",
+          "officialQuestionItem": "d",
+          "title": "近似解が満たす精度",
+          "topic": "境界条件と近似解法",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "一般の有限個の近似関数では、内部の運動方程式や力学的境界条件を各点でどの程度満たしますか。",
+          "choices": [
+            "常に厳密に満たす",
+            "一般には近似的に満たす"
+          ],
+          "answer": 2,
+          "answerSummary": "幾何学的条件は守り、残りは弱形式として近似します。",
+          "easyExplanation": [
+            {
+              "title": "自由端の勾配を候補で0に固定する必要はありません",
+              "body": "固定―自由の棒を$\\phi=x/l$で近似すると、固定端の$\\phi(0)=0$は厳密ですが、自由端の$\\phi'(l)=0$は満たしません。それでもエネルギーに基づく近似には使えます。関数を増やすなどして、運動や力の釣合いの精度を高めます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。幾何学的条件は守り、残りは弱形式として近似します。 1：有限個の候補で任意の連続体の厳密解が得られるわけではありません。"
+            }
+          ],
+          "explanation": "【基礎】固定―自由の棒を$\\phi=x/l$で近似すると、固定端の$\\phi(0)=0$は厳密ですが、自由端の$\\phi'(l)=0$は満たしません。それでもエネルギーに基づく近似には使えます。関数を増やすなどして、運動や力の釣合いの精度を高めます。\n【考え方】正解は2です。幾何学的条件は守り、残りは弱形式として近似します。\n【ポイント】幾何学的条件は守り、残りは弱形式として近似します。\n【引っかけ】1：有限個の候補で任意の連続体の厳密解が得られるわけではありません。",
+          "relatedFormulas": [
+            "v1ch1-9",
+            "v1ch1-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "近似解が満たす精度。幾何学的条件は守り、残りは弱形式として近似します。",
+            "alignment": "保存済み公式問1-10の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "有限個の候補で任意の連続体の厳密解が得られるわけではありません。"
+            },
+            "sha256": "c68db7808050782a37ea6c782836e64ca050ffe97700d9fa6f4119cc0f174e40"
+          }
+        }
       ]
     },
     {
       "id": "vib1-1-11",
       "number": "1-11",
-      "title": "レイリー法による固有角振動数の見積り",
+      "title": "棒の振動を一つの形で近似する",
       "topic": "レイリー法",
       "type": "mc",
       "difficulty": 3,
-      "question": "一端固定・他端自由の一様棒(長さ $l=1\\,\\mathrm{m}$、$E=200\\,\\mathrm{GPa}$、$\\rho=8000\\,\\mathrm{kg/m^3}$)の縦振動の基本固有角振動数を、仮定変位 $\\phi(x)=x/l$ を用いたレイリー法で見積もる。得られる $\\omega$ に最も近い値はどれか。",
+      "question": "棒の変位を$y=\\phi(x)q(t)$と1項で近似するレイリー法について、正しい説明はどれですか。",
       "choices": [
-        "$5000\\ \\mathrm{rad/s}$",
-        "$7854\\ \\mathrm{rad/s}$",
-        "$15000\\ \\mathrm{rad/s}$",
-        "$8660\\ \\mathrm{rad/s}$"
+        "形は幾何学的境界条件を満たさなくてよい",
+        "等価質量は時刻ごとに変わる",
+        "厳密な振動形を未知関数として求める",
+        "幾何学的境界条件を満たす形を仮定し、固有角振動数を近似する"
       ],
       "answer": 4,
-      "explanation": "【基礎】レイリー法は変位を $y=\\phi(x)q(t)$ と1関数近似し、等価質量 $m^*=\\int_0^l\\rho A\\phi^2 dx$、等価剛性 $k^*=\\int_0^l EA(\\phi')^2 dx$ から $\\omega=\\sqrt{k^*/m^*}$ を求めます。\n【考え方】$\\phi=x/l$ より $\\phi'=1/l$ で $m^*=\\rho A\\,l/3$、$k^*=EA/l$ となり $\\omega^2=\\dfrac{EA/l}{\\rho A l/3}=\\dfrac{3E}{\\rho l^2}$、$E/\\rho=2.5\\times10^7$ を入れて $\\omega=\\dfrac{1}{l}\\sqrt{3\\times2.5\\times10^7}\\approx 8660\\ \\mathrm{rad/s}$ です。よって④が正しいです。積分の中身は $\\int_0^l x^2/l^2dx=[x^3/(3l^2)]_0^l=l/3$ です。上端の値から下端の値を引くので、等価質量に $1/3$ が付きます。\n【ポイント】レイリー法は真の固有角振動数の上界（過大評価）を与え、$\\phi=x/l$ の見積り $\\sqrt3\\,c/l$（$c=\\sqrt{E/\\rho}=5000$）は厳密値 $\\tfrac{\\pi}{2}c/l$ よりやや大きくなります。\n【引っかけ】①$5000$ は係数 $\\sqrt3$ を落とした $c/l$ です。②$7854$ は厳密解 $\\tfrac{\\pi}{2}c/l$ で、レイリー法の見積りではありません。③$15000$ は $3c/l$ とし係数3の平方根を取り忘れた誤りです。",
+      "explanation": "【基礎】変位を空間の形と時間変化の積で近似します。\n【考え方】形を仮定し、等価質量と剛性から固有角振動数を近似するため④です。\n【ポイント】$\\bar m=\\int\\rho A\\phi^2dx$、$\\bar k=\\int EA(\\phi')^2dx$を用い、$\\omega\\simeq\\sqrt{\\bar k/\\bar m}$です。\n【引っかけ】①は固定端の条件を省いています。②は一定の形・材料から得る定数を時間関数と取り違えています。③は形を先に仮定することと逆です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -724,38 +2326,193 @@
       ],
       "editorialReview": {
         "officialPoint": "レイリー法は1関数近似 $y=\\phi q$ から等価質量・剛性で $\\omega=\\sqrt{k^*/m^*}$ を求め、真値の上界(過大評価)を与える。",
-        "alignment": "$\\phi=x/l$ で $\\omega=\\sqrt{3E/(\\rho l^2)}\\approx8660$ を得る④が公式の解法に一致する。",
+        "alignment": "保存済み公式問1-11の三空欄（幾何学的境界条件・定数・固有角振動数）を個別化。旧来の数値一問への置換を改め、公式の概念の問いを回復した。",
         "distractorMisconceptions": {
-          "1": "係数 $\\sqrt3$ を落とし $c/l$ とする誤解。",
-          "2": "厳密解 $\\tfrac{\\pi}{2}c/l$ をレイリー法の見積りと取り違える誤解。",
-          "3": "係数3の平方根を取り忘れ $3c/l$ とする誤解。"
+          "1": "幾何学的境界条件は必須です。",
+          "2": "空間積分の結果は定数です。",
+          "3": "形は先に仮定します。"
         },
-        "sha256": "83fd835a37b45ad3a2fe8b7721a836f5f1a9738f086782649bed0efeef401514"
+        "sha256": "ba73545fd71dcffe89bd55d7400339e28e1950d3a4d070b5e9e71f465aa4e749"
       },
       "easyExplanation": [
         {
-          "title": "棒全体の動きを、一つの形で近似します",
-          "body": "固定した端は動かず、自由な端は大きく動く、と棒の変形の形を仮定する方法です。$y(x,t)=\\phi(x)q(t)$ と書き、$\\phi$ が場所による形、$q$ が時間で変わる大きさです。今回の $\\phi=x/l$ では、左端が0、右端が1なので、$q(t)$ は右端変位になります。棒全体の無数の変位を、一つの未知量へまとめています。形は近似ですが、固定端が動かない条件は正しく満たしています。"
+          "title": "全体を一つの形で動かします",
+          "body": "左端固定なら$\\phi(0)=0$が必要です。例えば$\\phi=x/l$なら、右端が$q(t)$動くと中央は$q(t)/2$動きます。形を決めたので、残る未知量は大きさ$q(t)$だけです。",
+          "figures": [
+            {
+              "figureImage": "v1e1RayleighBar",
+              "caption": "赤い直線はφ＝x/lという近似の形です。形の倍率を時間関数qで変えます。"
+            }
+          ]
         },
         {
-          "title": "等価質量の積分が表すこと",
-          "body": "各点の速度は $\\dot y=\\phi\\dot q$ です。微小区間 $dx$ の質量は $\\rho A dx$ なので、$T=\\int_0^l\\rho A\\phi^2\\dot q^2/2\\,dx=m^*\\dot q^2/2$ と書けます。ここで $m^*=\\int_0^l\\rho A\\phi^2dx$ です。右端より遅く動く場所もあるため、全質量をそのまま右端の速度で動く質量にはしません。今回、$m^*=\\rho A\\int_0^l x^2/l^2dx=\\rho A[x^3/(3l^2)]_0^l=\\rho Al/3$。全質量の3分の1です。"
+          "title": "棒全体の質量と硬さを、選んだ形で集計します",
+          "body": "速度$y_{,t}=\\phi\\dot q$、ひずみ$y_{,x}=\\phi' q$をエネルギーへ代入すると、$\\bar m=\\int_0^l\\rho A\\phi^2dx$、$\\bar k=\\int_0^lEA(\\phi')^2dx$です。$x$は積分で消え、$q(t)$だけが時間変化を受け持ちます。"
         },
         {
-          "title": "等価剛性の積分も計算します",
-          "body": "ひずみは $y_x=\\phi' q$、そのエネルギーは $U=\\int_0^lEA(\\phi')^2q^2/2\\,dx=k^*q^2/2$ です。したがって $k^*=\\int_0^lEA(\\phi')^2dx$。$\\phi=x/l$ を微分すると $\\phi'=1/l$ なので、$k^*=EA\\int_0^l1/l^2dx=EA[l/l^2]=EA/l$ です。質量側では変位の形の二乗、剛性側ではその空間微分の二乗を積分する違いが重要です。"
+          "title": "エネルギーから一自由度の運動方程式へ",
+          "body": "ラグランジュ方程式に入れると$\\bar m\\ddot q+\\bar kq=0$です。$\\ddot q+\\omega^2q=0$と比べて$\\omega^2\\simeq\\bar k/\\bar m$となります。振動の形は仮定したものなので、ここで厳密なモード形を解いたわけではありません。"
         },
         {
-          "title": "一自由度の式から振動数へ進みます",
-          "body": "二つのエネルギーをラグランジュ方程式へ入れると $m^*\\ddot q+k^*q=0$ です。$q=Q\\cos\\omega t$ を代入すれば $(-m^*\\omega^2+k^*)Q\\cos\\omega t=0$。振動が0でないためには $\\omega^2=k^*/m^*$ です。よって $\\omega^2=(EA/l)/(\\rho Al/3)=3E/(\\rho l^2)$。同じ断面積Aが慣性と剛性に掛かるため、比を取ると消えます。"
+          "title": "簡単な形なら積分も追えます",
+          "body": "一様棒で$\\phi=x/l$なら、$\\bar m=\\rho A\\int_0^l x^2/l^2dx=\\rho Al/3$、$\\bar k=EA\\int_0^l1/l^2dx=EA/l$です。従って$\\omega\\simeq\\sqrt{3E/\\rho}/l$です。実際の振動形に近い候補ほど、近似値も良くなります。"
+        }
+      ],
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "answerSummary": "正解は④です。幾何学的境界条件を満たす形を仮定し、等価質量と等価剛性から固有角振動数を近似します。",
+      "sharedQuestion": "棒の縦振動を$y(x,t)=\\phi(x)q(t)$という1項で近似します。棒の長さは$l$、密度・断面積・ヤング率は$\\rho,A,E$です。形$\\phi(x)$を先に選び、時間変化$q(t)$を求めます。",
+      "studyParts": [
+        {
+          "id": "vib1-1-11-item-a",
+          "number": "1-11",
+          "officialRef": "問1-11",
+          "officialQuestionItem": "a",
+          "title": "仮定する形が満たす条件",
+          "topic": "レイリー法",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$\\phi(x)$に必須の条件はどちらですか。",
+          "choices": [
+            "幾何学的境界条件を満たす",
+            "力学的境界条件だけを満たす"
+          ],
+          "answer": 1,
+          "answerSummary": "変位を固定した端が、近似でも動かないようにします。",
+          "easyExplanation": [
+            {
+              "title": "全体を一つの形で動かします",
+              "body": "左端固定なら$\\phi(0)=0$が必要です。例えば$\\phi=x/l$なら、右端が$q(t)$動くと中央は$q(t)/2$動きます。形を決めたので、残る未知量は大きさ$q(t)$だけです。",
+              "figures": [
+                {
+                  "figureImage": "v1e1RayleighBar",
+                  "caption": "赤い直線はφ＝x/lという近似の形です。形の倍率を時間関数qで変えます。"
+                }
+              ]
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。変位を固定した端が、近似でも動かないようにします。 2：固定された端の変位条件を省けません。"
+            }
+          ],
+          "explanation": "【基礎】左端固定なら$\\phi(0)=0$が必要です。例えば$\\phi=x/l$なら、右端が$q(t)$動くと中央は$q(t)/2$動きます。形を決めたので、残る未知量は大きさ$q(t)$だけです。\n【考え方】正解は1です。変位を固定した端が、近似でも動かないようにします。\n【ポイント】変位を固定した端が、近似でも動かないようにします。\n【引っかけ】2：固定された端の変位条件を省けません。",
+          "relatedFormulas": [
+            "v1ch1-10"
+          ],
+          "editorialReview": {
+            "officialPoint": "仮定する形が満たす条件。変位を固定した端が、近似でも動かないようにします。",
+            "alignment": "保存済み公式問1-11の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "固定された端の変位条件を省けません。"
+            },
+            "sha256": "45334275f00d58dd192309d88b3eaf30b43cf09c8e55e0a18819f1bfdb2ff5e2"
+          }
         },
         {
-          "title": "単位をそろえて数値を入れます",
-          "body": "$E=200\\times10^9\\ \\mathrm{Pa}$、$\\rho=8000\\ \\mathrm{kg/m^3}$、$l=1\\ \\mathrm m$ です。$E/\\rho=25\\times10^6\\ \\mathrm{m^2/s^2}$ より、$\\omega=\\sqrt{75\\times10^6}=8660.25\\ldots\\ \\mathrm{rad/s}$ です。最も近い④を選びます。平方根の中の3は、外へ出すと $\\sqrt3$ であって3ではありません。角振動数はrad/sで、一秒あたりの回数Hzとは違います。Hzが必要なら、さらに $2\\pi$ で割ります。"
+          "id": "vib1-1-11-item-b",
+          "number": "1-11",
+          "officialRef": "問1-11",
+          "officialQuestionItem": "b",
+          "title": "等価質量と等価剛性",
+          "topic": "レイリー法",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$T=\\bar m\\dot q^2/2$、$U=\\bar kq^2/2$の$\\bar m,\\bar k$は、時間不変の材料と形状では何ですか。",
+          "choices": [
+            "位置xの関数",
+            "時間tの関数",
+            "定数",
+            "qの速度に比例する量"
+          ],
+          "answer": 3,
+          "answerSummary": "空間について積分した後は、決まった数になります。",
+          "easyExplanation": [
+            {
+              "title": "棒全体の質量と硬さを、選んだ形で集計します",
+              "body": "速度$y_{,t}=\\phi\\dot q$、ひずみ$y_{,x}=\\phi' q$をエネルギーへ代入すると、$\\bar m=\\int_0^l\\rho A\\phi^2dx$、$\\bar k=\\int_0^lEA(\\phi')^2dx$です。$x$は積分で消え、$q(t)$だけが時間変化を受け持ちます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は3です。空間について積分した後は、決まった数になります。 1：積分変数xは区間全体の積分後には残りません。 2：時間変化はqが受け持ちます。 4：等価質量・剛性は速度比例の減衰係数ではありません。"
+            }
+          ],
+          "explanation": "【基礎】速度$y_{,t}=\\phi\\dot q$、ひずみ$y_{,x}=\\phi' q$をエネルギーへ代入すると、$\\bar m=\\int_0^l\\rho A\\phi^2dx$、$\\bar k=\\int_0^lEA(\\phi')^2dx$です。$x$は積分で消え、$q(t)$だけが時間変化を受け持ちます。\n【考え方】正解は3です。空間について積分した後は、決まった数になります。\n【ポイント】空間について積分した後は、決まった数になります。\n【引っかけ】1：積分変数xは区間全体の積分後には残りません。 2：時間変化はqが受け持ちます。 4：等価質量・剛性は速度比例の減衰係数ではありません。",
+          "relatedFormulas": [
+            "v1ch1-10"
+          ],
+          "editorialReview": {
+            "officialPoint": "等価質量と等価剛性。空間について積分した後は、決まった数になります。",
+            "alignment": "保存済み公式問1-11の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "積分変数xは区間全体の積分後には残りません。",
+              "2": "時間変化はqが受け持ちます。",
+              "4": "等価質量・剛性は速度比例の減衰係数ではありません。"
+            },
+            "sha256": "9e86f45dfdc9db00c7d650f618dc07c10d01c98eb0021bfb8f6d3eaa6da31b0d"
+          }
         },
         {
-          "title": "厳密解が選択肢にあっても、指定した方法で選びます",
-          "body": "この棒の厳密な基本固有角振動数は $(\\pi/2)\\sqrt{E/\\rho}/l\\approx7854\\ \\mathrm{rad/s}$ で、②です。しかし今回は直線の形を仮定したレイリー法の値を尋ねています。真のモードより使える変形の候補を制限しているので、今回の基本振動数の見積りは厳密値より大きくなります。①は形の積分で生じる $\\sqrt3$ を落とした値、③は平方根を取り違えた値です。仮定形と計算結果を対応させることが、単に厳密値を知っていることより大切です。"
+          "id": "vib1-1-11-item-c",
+          "number": "1-11",
+          "officialRef": "問1-11",
+          "officialQuestionItem": "c",
+          "title": "レイリー法で近似する量",
+          "topic": "レイリー法",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "選んだ形から主に求める量はどれですか。",
+          "choices": [
+            "厳密な振動モード",
+            "固有角振動数",
+            "減衰係数",
+            "任意の外力波形"
+          ],
+          "answer": 2,
+          "answerSummary": "一自由度の式から$\\omega\\simeq\\sqrt{\\bar k/\\bar m}$を求めます。",
+          "easyExplanation": [
+            {
+              "title": "エネルギーから一自由度の運動方程式へ",
+              "body": "ラグランジュ方程式に入れると$\\bar m\\ddot q+\\bar kq=0$です。$\\ddot q+\\omega^2q=0$と比べて$\\omega^2\\simeq\\bar k/\\bar m$となります。振動の形は仮定したものなので、ここで厳密なモード形を解いたわけではありません。"
+            },
+            {
+              "title": "簡単な形なら積分も追えます",
+              "body": "一様棒で$\\phi=x/l$なら、$\\bar m=\\rho A\\int_0^l x^2/l^2dx=\\rho Al/3$、$\\bar k=EA\\int_0^l1/l^2dx=EA/l$です。従って$\\omega\\simeq\\sqrt{3E/\\rho}/l$です。実際の振動形に近い候補ほど、近似値も良くなります。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。一自由度の式から$\\omega\\simeq\\sqrt{\\bar k/\\bar m}$を求めます。 1：形は解析者が先に仮定しています。 3：減衰を与えていないエネルギーから減衰係数は求まりません。 4：無外力の固有振動の問題です。"
+            }
+          ],
+          "explanation": "【基礎】ラグランジュ方程式に入れると$\\bar m\\ddot q+\\bar kq=0$です。$\\ddot q+\\omega^2q=0$と比べて$\\omega^2\\simeq\\bar k/\\bar m$となります。振動の形は仮定したものなので、ここで厳密なモード形を解いたわけではありません。\n【考え方】正解は2です。一自由度の式から$\\omega\\simeq\\sqrt{\\bar k/\\bar m}$を求めます。\n【ポイント】一様棒で$\\phi=x/l$なら、$\\bar m=\\rho A\\int_0^l x^2/l^2dx=\\rho Al/3$、$\\bar k=EA\\int_0^l1/l^2dx=EA/l$です。従って$\\omega\\simeq\\sqrt{3E/\\rho}/l$です。実際の振動形に近い候補ほど、近似値も良くなります。\n【引っかけ】1：形は解析者が先に仮定しています。 3：減衰を与えていないエネルギーから減衰係数は求まりません。 4：無外力の固有振動の問題です。",
+          "relatedFormulas": [
+            "v1ch1-10"
+          ],
+          "editorialReview": {
+            "officialPoint": "レイリー法で近似する量。一自由度の式から$\\omega\\simeq\\sqrt{\\bar k/\\bar m}$を求めます。",
+            "alignment": "保存済み公式問1-11の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "形は解析者が先に仮定しています。",
+              "3": "減衰を与えていないエネルギーから減衰係数は求まりません。",
+              "4": "無外力の固有振動の問題です。"
+            },
+            "sha256": "8222d7fe13e1db3e77e4ea603cc1d16db4f3e48c5e8989c11ba1438b31bcf1c6"
+          }
         }
       ]
     },
@@ -792,7 +2549,7 @@
           "3": "列×行と行×列の混同",
           "4": "剛性と減衰の混同"
         },
-        "sha256": "3ed450c6f9ecc0be3d6f75fded83862001fd87cad71298cc7505b67bb3da66a5"
+        "sha256": "e89643d008844307be74c444aed92d639cb67222552a191777af3d4afa8332b8"
       },
       "easyExplanation": [
         {
@@ -818,6 +2575,329 @@
         {
           "title": "行列には何を掛けるのでしょうか",
           "body": "ラグランジュ方程式から $[M]\\{\\ddot q\\}+[K]\\{q\\}=\\{f\\}$ となり、①です。質量行列へ掛けるのは加速度、剛性行列へ掛けるのは変位です。例えば一行目は $M_{11}\\ddot q_1+M_{12}\\ddot q_2+K_{11}q_1+K_{12}q_2=f_1$ という普通の連立方程式です。④は剛性に速度を掛け、変位で決まる復元力を別の力へ変えてしまっています。行列という大きな記号も、各行の係数を整理したものとして読むと追いやすくなります。"
+        }
+      ],
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a-T",
+        "a-U",
+        "a-W",
+        "b-M",
+        "b-K",
+        "b-F",
+        "c"
+      ],
+      "answerSummary": "運動エネルギーは速度の2乗から作るので $T=\\{\\dot q\\}^T[M]\\{\\dot q\\}/2$ です。伸び縮みの割合は $\\partial y/\\partial x=\\{\\phi\\prime\\}^T\\{q\\}$ なので、ひずみエネルギーは $U=\\{q\\}^T[K]\\{q\\}/2$、$[K]=\\int_0^lEA\\{\\phi\\prime\\}\\{\\phi\\prime\\}^Tdx$ です。ラグランジュ方程式に入れると $[M]\\{\\ddot q\\}+[K]\\{q\\}=\\{f\\}$ となるので①です。",
+      "sharedQuestion": "棒の軸変位を$y=\\boldsymbol\\phi^T\\mathbf q$と近似します。$\\boldsymbol\\phi$は幾何学的境界条件を満たす$n$個の形状関数の列、$\\mathbf q(t)$は未知係数の列です。密度$\\rho$、断面積$A(x)$、ヤング率$E$、長さ$l$、単位長さ当たりの外力$p(x,t)$を用います。プライムは$x$微分、ドットは時間微分です。",
+      "studyParts": [
+        {
+          "id": "vib1-1-12-item-a-T",
+          "number": "1-12",
+          "officialRef": "問1-12",
+          "officialQuestionItem": "a-T",
+          "title": "運動エネルギー",
+          "topic": "レイリー・リッツ法の離散化",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "棒全体の$T$はどちらですか。",
+          "choices": [
+            "$T=\\frac12\\int_0^l\\rho A\\dot y^2dx$",
+            "$T=\\frac12\\int_0^lEA\\dot y^2dx$"
+          ],
+          "answer": 1,
+          "answerSummary": "各部分の質量と速度の二乗を掛けて足します。",
+          "easyExplanation": [
+            {
+              "title": "積分する前の小さな部分を見ます",
+              "body": "長さ$dx$の質量は$dm=\\rho A\\,dx$です。その運動エネルギー$dT=(dm)\\dot y^2/2$を棒全体で足すので①です。$EA$は軸剛性であって質量ではありません。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。各部分の質量と速度の二乗を掛けて足します。 2：運動エネルギーへ軸剛性EAを入れています。"
+            }
+          ],
+          "explanation": "【基礎】長さ$dx$の質量は$dm=\\rho A\\,dx$です。その運動エネルギー$dT=(dm)\\dot y^2/2$を棒全体で足すので①です。$EA$は軸剛性であって質量ではありません。\n【考え方】正解は1です。各部分の質量と速度の二乗を掛けて足します。\n【ポイント】各部分の質量と速度の二乗を掛けて足します。\n【引っかけ】2：運動エネルギーへ軸剛性EAを入れています。",
+          "relatedFormulas": [
+            "v1ch1-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "運動エネルギー。各部分の質量と速度の二乗を掛けて足します。",
+            "alignment": "保存済み公式問1-12の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "運動エネルギーへ軸剛性EAを入れています。"
+            },
+            "sha256": "a80d2c5895e32ab6572965982221e8df118682a417a5b8ea439a2f04d28f531c"
+          }
+        },
+        {
+          "id": "vib1-1-12-item-a-U",
+          "number": "1-12",
+          "officialRef": "問1-12",
+          "officialQuestionItem": "a-U",
+          "title": "ひずみエネルギー",
+          "topic": "レイリー・リッツ法の離散化",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "棒全体の$U$はどちらですか。",
+          "choices": [
+            "$U=\\frac12\\int_0^lEAy^2dx$",
+            "$U=\\frac12\\int_0^lEA(y')^2dx$"
+          ],
+          "answer": 2,
+          "answerSummary": "変位そのものではなく、その場所による変化がひずみです。",
+          "easyExplanation": [
+            {
+              "title": "棒が伸びたかどうかを測ります",
+              "body": "全点が同じだけ平行移動しても棒は伸びません。伸び縮みは$\\varepsilon=y'$、応力は$E\\varepsilon$です。単位体積のエネルギー$E\\varepsilon^2/2$に体積$A\\,dx$を掛けて積分します。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。変位そのものではなく、その場所による変化がひずみです。 1：一様な平行移動にも弾性エネルギーを与えてしまいます。"
+            }
+          ],
+          "explanation": "【基礎】全点が同じだけ平行移動しても棒は伸びません。伸び縮みは$\\varepsilon=y'$、応力は$E\\varepsilon$です。単位体積のエネルギー$E\\varepsilon^2/2$に体積$A\\,dx$を掛けて積分します。\n【考え方】正解は2です。変位そのものではなく、その場所による変化がひずみです。\n【ポイント】変位そのものではなく、その場所による変化がひずみです。\n【引っかけ】1：一様な平行移動にも弾性エネルギーを与えてしまいます。",
+          "relatedFormulas": [
+            "v1ch1-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "ひずみエネルギー。変位そのものではなく、その場所による変化がひずみです。",
+            "alignment": "保存済み公式問1-12の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "一様な平行移動にも弾性エネルギーを与えてしまいます。"
+            },
+            "sha256": "4dd3142f12030d4dd9c7f0ebc8ebfb9a5d28ca306693d97e08540277a8da8572"
+          }
+        },
+        {
+          "id": "vib1-1-12-item-a-W",
+          "number": "1-12",
+          "officialRef": "問1-12",
+          "officialQuestionItem": "a-W",
+          "title": "外力の仮想仕事",
+          "topic": "レイリー・リッツ法の離散化",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "分布外力$p(x,t)$による仮想仕事はどちらですか。",
+          "choices": [
+            "$\\delta W=\\int_0^l p\\delta y\\,dx$",
+            "$\\delta W=\\int_0^l py\\,dx$"
+          ],
+          "answer": 1,
+          "answerSummary": "仮想仕事には仮想変位を掛けます。",
+          "easyExplanation": [
+            {
+              "title": "実際の変位と、比較用の変化を分けます",
+              "body": "小区間の力は$p\\,dx$です。それが仮に$\\delta y$動くときの仕事は$p\\,dx\\,\\delta y$です。全体で足すと①になります。$y$そのものを掛ける②は、仮想変位に対する仕事を表していません。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。仮想仕事には仮想変位を掛けます。 2：変位yと仮想変位δyを取り違えています。"
+            }
+          ],
+          "explanation": "【基礎】小区間の力は$p\\,dx$です。それが仮に$\\delta y$動くときの仕事は$p\\,dx\\,\\delta y$です。全体で足すと①になります。$y$そのものを掛ける②は、仮想変位に対する仕事を表していません。\n【考え方】正解は1です。仮想仕事には仮想変位を掛けます。\n【ポイント】仮想仕事には仮想変位を掛けます。\n【引っかけ】2：変位yと仮想変位δyを取り違えています。",
+          "relatedFormulas": [
+            "v1ch1-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "外力の仮想仕事。仮想仕事には仮想変位を掛けます。",
+            "alignment": "保存済み公式問1-12の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "変位yと仮想変位δyを取り違えています。"
+            },
+            "sha256": "d2137f0cd9bb0b8888efd2a22e2b3cbe874ffac922cc507fd870ab7cb3cdfae9"
+          }
+        },
+        {
+          "id": "vib1-1-12-item-b-M",
+          "number": "1-12",
+          "officialRef": "問1-12",
+          "officialQuestionItem": "b-M",
+          "title": "質量行列",
+          "topic": "レイリー・リッツ法の離散化",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$T=\\dot{\\mathbf q}^TM\\dot{\\mathbf q}/2$となる質量行列はどちらですか。",
+          "choices": [
+            "$M=\\int_0^l\\rho A\\boldsymbol\\phi^T\\boldsymbol\\phi\\,dx$",
+            "$M=\\int_0^l\\rho A\\boldsymbol\\phi\\boldsymbol\\phi^Tdx$"
+          ],
+          "answer": 2,
+          "answerSummary": "列×行の外積で、未知係数の組合せを残します。",
+          "easyExplanation": [
+            {
+              "title": "形を二つ以上に増やすと、未知数も増えます",
+              "body": "棒の変位を $y(x,t)=\\sum_i\\phi_i(x)q_i(t)$ と近似します。一つの形だけでは表せない動きも、複数の形を足せば表しやすくなります。例えば二つなら $y=\\phi_1q_1+\\phi_2q_2$。$\\{\\phi\\}=(\\phi_1,\\phi_2)^T$ と $\\{q\\}=(q_1,q_2)^T$ は縦に並べた列で、$\\{\\phi\\}^T\\{q\\}$ はこの二つの積を足す計算です。上付きTは、縦と横を入れ替える転置の印です。"
+            },
+            {
+              "title": "速度の二乗を順序どおり展開します",
+              "body": "$\\dot y=\\boldsymbol\\phi^T\\dot{\\mathbf q}$は一つの数です。その二乗は$\\dot{\\mathbf q}^T\\boldsymbol\\phi\\boldsymbol\\phi^T\\dot{\\mathbf q}$です。時間だけに依存する$\\dot{\\mathbf q}$を空間積分の外へ出すと②の$M$が残ります。成分は$M_{ij}=\\int\\rho A\\phi_i\\phi_jdx$です。行×列では一つの数になり、全ての組の係数を保存できません。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。列×行の外積で、未知係数の組合せを残します。 1：内積は一つの数になり、n×nの質量行列になりません。"
+            }
+          ],
+          "explanation": "【基礎】棒の変位を $y(x,t)=\\sum_i\\phi_i(x)q_i(t)$ と近似します。一つの形だけでは表せない動きも、複数の形を足せば表しやすくなります。例えば二つなら $y=\\phi_1q_1+\\phi_2q_2$。$\\{\\phi\\}=(\\phi_1,\\phi_2)^T$ と $\\{q\\}=(q_1,q_2)^T$ は縦に並べた列で、$\\{\\phi\\}^T\\{q\\}$ はこの二つの積を足す計算です。上付きTは、縦と横を入れ替える転置の印です。\n【考え方】正解は2です。列×行の外積で、未知係数の組合せを残します。\n【ポイント】$\\dot y=\\boldsymbol\\phi^T\\dot{\\mathbf q}$は一つの数です。その二乗は$\\dot{\\mathbf q}^T\\boldsymbol\\phi\\boldsymbol\\phi^T\\dot{\\mathbf q}$です。時間だけに依存する$\\dot{\\mathbf q}$を空間積分の外へ出すと②の$M$が残ります。成分は$M_{ij}=\\int\\rho A\\phi_i\\phi_jdx$です。行×列では一つの数になり、全ての組の係数を保存できません。\n【引っかけ】1：内積は一つの数になり、n×nの質量行列になりません。",
+          "relatedFormulas": [
+            "v1ch1-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "質量行列。列×行の外積で、未知係数の組合せを残します。",
+            "alignment": "保存済み公式問1-12の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "内積は一つの数になり、n×nの質量行列になりません。"
+            },
+            "sha256": "d61b8ba4d899e46c0d903202fa491b0146e84aa828d21066db2050af95929c11"
+          }
+        },
+        {
+          "id": "vib1-1-12-item-b-K",
+          "number": "1-12",
+          "officialRef": "問1-12",
+          "officialQuestionItem": "b-K",
+          "title": "剛性行列",
+          "topic": "レイリー・リッツ法の離散化",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$U=\\mathbf q^TK\\mathbf q/2$となる剛性行列はどちらですか。",
+          "choices": [
+            "$K=\\int_0^lEA\\boldsymbol\\phi'\\boldsymbol\\phi'^Tdx$",
+            "$K=\\int_0^lEA\\boldsymbol\\phi\\boldsymbol\\phi^Tdx$"
+          ],
+          "answer": 1,
+          "answerSummary": "ひずみには形状関数の空間微分を使います。",
+          "easyExplanation": [
+            {
+              "title": "二乗の展開から行列の成分を読みます",
+              "body": "二つの形で、ひずみの二乗は $(\\phi_1'q_1+\\phi_2'q_2)^2=(\\phi_1')^2q_1^2+2\\phi_1'\\phi_2'q_1q_2+(\\phi_2')^2q_2^2$ です。これを $EA/2$ 倍して積分すると、$U=(K_{11}q_1^2+2K_{12}q_1q_2+K_{22}q_2^2)/2$ です。各係数は $K_{ij}=\\int_0^lEA\\phi_i'\\phi_j'dx$。この係数を並べたものが剛性行列です。二つの形の組合せごとに、棒全体の寄与を足しています。"
+            },
+            {
+              "title": "具体的な二つの形で、剛性を計算します",
+              "body": "$\\phi_1=x/l$、$\\phi_2=(x/l)^2$ なら、微分は $1/l$ と $2x/l^2$ です。よって $K_{11}=EA/l$、$K_{12}=EA\\int_0^l2x/l^3dx=EA/l$、$K_{22}=EA\\int_0^l4x^2/l^4dx=4EA/(3l)$ です。共通係数をくくれば $[K]=(EA/l)\\begin{pmatrix}1&1\\\\1&4/3\\end{pmatrix}$。交差する成分も必要であることが、実際の積分から分かります。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。ひずみには形状関数の空間微分を使います。 2：変位からひずみへ変換する空間微分を落としています。"
+            }
+          ],
+          "explanation": "【基礎】二つの形で、ひずみの二乗は $(\\phi_1'q_1+\\phi_2'q_2)^2=(\\phi_1')^2q_1^2+2\\phi_1'\\phi_2'q_1q_2+(\\phi_2')^2q_2^2$ です。これを $EA/2$ 倍して積分すると、$U=(K_{11}q_1^2+2K_{12}q_1q_2+K_{22}q_2^2)/2$ です。各係数は $K_{ij}=\\int_0^lEA\\phi_i'\\phi_j'dx$。この係数を並べたものが剛性行列です。二つの形の組合せごとに、棒全体の寄与を足しています。\n【考え方】正解は1です。ひずみには形状関数の空間微分を使います。\n【ポイント】$\\phi_1=x/l$、$\\phi_2=(x/l)^2$ なら、微分は $1/l$ と $2x/l^2$ です。よって $K_{11}=EA/l$、$K_{12}=EA\\int_0^l2x/l^3dx=EA/l$、$K_{22}=EA\\int_0^l4x^2/l^4dx=4EA/(3l)$ です。共通係数をくくれば $[K]=(EA/l)\\begin{pmatrix}1&1\\\\1&4/3\\end{pmatrix}$。交差する成分も必要であることが、実際の積分から分かります。\n【引っかけ】2：変位からひずみへ変換する空間微分を落としています。",
+          "relatedFormulas": [
+            "v1ch1-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "剛性行列。ひずみには形状関数の空間微分を使います。",
+            "alignment": "保存済み公式問1-12の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "変位からひずみへ変換する空間微分を落としています。"
+            },
+            "sha256": "9690425c597c33f628ca6ed419cb79427433a3d65a1f5f015ffb9872939b4234"
+          }
+        },
+        {
+          "id": "vib1-1-12-item-b-F",
+          "number": "1-12",
+          "officialRef": "問1-12",
+          "officialQuestionItem": "b-F",
+          "title": "一般化外力ベクトル",
+          "topic": "レイリー・リッツ法の離散化",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$\\delta W=\\delta\\mathbf q^T\\mathbf F$となる$\\mathbf F$はどちらですか。",
+          "choices": [
+            "$\\mathbf F=\\int_0^l p\\boldsymbol\\phi'\\,dx$",
+            "$\\mathbf F=\\int_0^l p\\boldsymbol\\phi\\,dx$"
+          ],
+          "answer": 2,
+          "answerSummary": "力は変位に対して仕事をするため、形状関数そのものを使います。",
+          "easyExplanation": [
+            {
+              "title": "仮想仕事からδqの係数を取り出します",
+              "body": "$\\delta y=\\boldsymbol\\phi^T\\delta\\mathbf q$を代入し、$\\delta W=\\int p\\boldsymbol\\phi^T\\delta\\mathbf q\\,dx=\\delta\\mathbf q^T\\int p\\boldsymbol\\phi\\,dx$です。最後の積分が一般化外力です。各成分は$F_i=\\int p\\phi_i dx$となります。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。力は変位に対して仕事をするため、形状関数そのものを使います。 1：ひずみに関する微分と、外力が仕事をする変位を混同しています。"
+            }
+          ],
+          "explanation": "【基礎】$\\delta y=\\boldsymbol\\phi^T\\delta\\mathbf q$を代入し、$\\delta W=\\int p\\boldsymbol\\phi^T\\delta\\mathbf q\\,dx=\\delta\\mathbf q^T\\int p\\boldsymbol\\phi\\,dx$です。最後の積分が一般化外力です。各成分は$F_i=\\int p\\phi_i dx$となります。\n【考え方】正解は2です。力は変位に対して仕事をするため、形状関数そのものを使います。\n【ポイント】力は変位に対して仕事をするため、形状関数そのものを使います。\n【引っかけ】1：ひずみに関する微分と、外力が仕事をする変位を混同しています。",
+          "relatedFormulas": [
+            "v1ch1-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "一般化外力ベクトル。力は変位に対して仕事をするため、形状関数そのものを使います。",
+            "alignment": "保存済み公式問1-12の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "ひずみに関する微分と、外力が仕事をする変位を混同しています。"
+            },
+            "sha256": "256a28070eb82250f0b57ab1be40e44bfb4727adfd5cf1c6610616f41a5dea5b"
+          }
+        },
+        {
+          "id": "vib1-1-12-item-c",
+          "number": "1-12",
+          "officialRef": "問1-12",
+          "officialQuestionItem": "c",
+          "title": "離散化した運動方程式",
+          "topic": "レイリー・リッツ法の離散化",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "ラグランジュ方程式から得る式はどちらですか。",
+          "choices": [
+            "$M\\ddot{\\mathbf q}+K\\mathbf q=\\mathbf F$",
+            "$M\\ddot{\\mathbf q}+K\\dot{\\mathbf q}=\\mathbf F$"
+          ],
+          "answer": 1,
+          "answerSummary": "質量には加速度、剛性には変位を掛けます。",
+          "easyExplanation": [
+            {
+              "title": "エネルギーを微分して確認します",
+              "body": "$T=\\dot{\\mathbf q}^TM\\dot{\\mathbf q}/2$なので$\\partial T/\\partial\\dot{\\mathbf q}=M\\dot{\\mathbf q}$、その時間微分が$M\\ddot{\\mathbf q}$です。$U=\\mathbf q^TK\\mathbf q/2$からは$\\partial U/\\partial\\mathbf q=K\\mathbf q$です。外力の仕事係数$\\mathbf F$を右辺に置くと①です。行列の各行は、対応する係数に対する運動方程式です。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。質量には加速度、剛性には変位を掛けます。 2：変位で決まる復元項へ速度を掛けています。"
+            }
+          ],
+          "explanation": "【基礎】$T=\\dot{\\mathbf q}^TM\\dot{\\mathbf q}/2$なので$\\partial T/\\partial\\dot{\\mathbf q}=M\\dot{\\mathbf q}$、その時間微分が$M\\ddot{\\mathbf q}$です。$U=\\mathbf q^TK\\mathbf q/2$からは$\\partial U/\\partial\\mathbf q=K\\mathbf q$です。外力の仕事係数$\\mathbf F$を右辺に置くと①です。行列の各行は、対応する係数に対する運動方程式です。\n【考え方】正解は1です。質量には加速度、剛性には変位を掛けます。\n【ポイント】質量には加速度、剛性には変位を掛けます。\n【引っかけ】2：変位で決まる復元項へ速度を掛けています。",
+          "relatedFormulas": [
+            "v1ch1-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "離散化した運動方程式。質量には加速度、剛性には変位を掛けます。",
+            "alignment": "保存済み公式問1-12の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "変位で決まる復元項へ速度を掛けています。"
+            },
+            "sha256": "c27ec4039324a8dad5866979bdd21452e5b80d49fa3975bce6651e09fcc2e842"
+          }
         }
       ]
     },
@@ -856,7 +2936,7 @@
           "3": "デルタ関数の値を積分後もう一度掛ける二重計上の誤解。",
           "4": "変位でなく勾配 $\\phi'$ を使う誤解。"
         },
-        "sha256": "bce14aec86de9be0272e23432332592a63317d83493481546775f48bc7cefd83"
+        "sha256": "459d494ea13473d4037e699bdf4d7448e4d307b4e55a2053cbd472a197708aad"
       },
       "easyExplanation": [
         {
@@ -882,6 +2962,151 @@
         {
           "title": "正解と、三つの取り違え",
           "body": "列ベクトルへまとめると $\\{f\\}=f(t)\\{\\phi(x_f)\\}$ で、②です。①はデルタがない一様な分布荷重のように全長を積分しており、集中力の位置の情報が失われています。③は積分でデルタを使った後に、もう一度その値を掛けています。④は形の勾配を使っていますが、今回の集中力は作用点の変位に対して仕事をします。軸ひずみを求めるときの空間微分と、外力の仕事に使う変位を区別すれば、右辺を正しく組み立てられます。"
+        }
+      ],
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "answerSummary": "デルタ関数の選別性 $\\int g(x)\\delta(x-x_f)dx=g(x_f)$ により $\\delta W=\\{\\delta q\\}^T f(t)\\{\\phi(x_f)\\}$ となり、運動方程式の右辺（一般化外力）は $f(t)\\{\\phi(x_f)\\}$ です。よって②が正しいです。",
+      "sharedQuestion": "棒の点$x_f$へ集中力$P(t)$を加えます。変位は$y=\\boldsymbol\\phi^T\\mathbf q$、作用点の変位は$y_f=\\boldsymbol\\phi(x_f)^T\\mathbf q$です。分布荷重としては$p(x,t)=\\delta(x-x_f)P(t)$と書けます。",
+      "studyParts": [
+        {
+          "id": "vib1-1-13-item-a",
+          "number": "1-13",
+          "officialRef": "問1-13",
+          "officialQuestionItem": "a",
+          "title": "集中力の仮想仕事",
+          "topic": "集中外力と仮想仕事",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "仮想仕事はどちらですか。",
+          "choices": [
+            "$\\delta W=\\delta\\mathbf q^TP(t)\\boldsymbol\\phi(x_f)$",
+            "$\\delta W=\\delta\\mathbf q^T\\delta(x_f)P(t)\\boldsymbol\\phi(x_f)$"
+          ],
+          "answer": 1,
+          "answerSummary": "デルタ関数は積分で作用点の値を取り出し、積分後には残りません。",
+          "easyExplanation": [
+            {
+              "title": "力のある場所だけの仕事を取り出します",
+              "body": "$\\delta W=\\int_0^l\\delta(x-x_f)P(t)\\delta y\\,dx=P(t)\\delta y_f$です。$\\delta y_f=\\boldsymbol\\phi(x_f)^T\\delta\\mathbf q$を代入し、同じスカラーを転置すると①になります。一般化外力は$P(t)\\boldsymbol\\phi(x_f)$です。",
+              "figures": [
+                {
+                  "figureImage": "v1e1PointLoadDistrib",
+                  "caption": "力の作用点での仮想変位を使います。図のf(t)は本文のP(t)に相当します。"
+                }
+              ]
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。デルタ関数は積分で作用点の値を取り出し、積分後には残りません。 2：積分で処理したデルタ関数を二重に掛けています。"
+            }
+          ],
+          "explanation": "【基礎】$\\delta W=\\int_0^l\\delta(x-x_f)P(t)\\delta y\\,dx=P(t)\\delta y_f$です。$\\delta y_f=\\boldsymbol\\phi(x_f)^T\\delta\\mathbf q$を代入し、同じスカラーを転置すると①になります。一般化外力は$P(t)\\boldsymbol\\phi(x_f)$です。\n【考え方】正解は1です。デルタ関数は積分で作用点の値を取り出し、積分後には残りません。\n【ポイント】デルタ関数は積分で作用点の値を取り出し、積分後には残りません。\n【引っかけ】2：積分で処理したデルタ関数を二重に掛けています。",
+          "relatedFormulas": [
+            "v1ch1-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "集中力の仮想仕事。デルタ関数は積分で作用点の値を取り出し、積分後には残りません。",
+            "alignment": "保存済み公式問1-13の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "積分で処理したデルタ関数を二重に掛けています。"
+            },
+            "sha256": "b90969116e65b2bc30593d9bdf879117ec1ac2a3929738684ca67eca9b795416"
+          }
+        },
+        {
+          "id": "vib1-1-13-item-b",
+          "number": "1-13",
+          "officialRef": "問1-13",
+          "officialQuestionItem": "b",
+          "title": "変位側から見る形状関数",
+          "topic": "集中外力と仮想仕事",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$y_f=\\sum_i\\phi_i(x_f)q_i$で、$\\phi_i(x_f)$は何を表しますか。",
+          "choices": [
+            "各座標の作用点変位への寄与",
+            "各座標の質量への換算率"
+          ],
+          "answer": 1,
+          "answerSummary": "座標qを1だけ変えたとき、作用点がどれだけ動くかを表します。",
+          "easyExplanation": [
+            {
+              "title": "一つの係数の役割を見ます",
+              "body": "$\\phi_1(x_f)=0.5$なら、$q_1$だけを1 mm増やすと作用点は0.5 mm動きます。形状関数値は、この座標が実際の変位へどれだけ寄与するかという倍率です。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。座標qを1だけ変えたとき、作用点がどれだけ動くかを表します。 2：形状関数値は質量ではなく変位の組立ての係数です。"
+            }
+          ],
+          "explanation": "【基礎】$\\phi_1(x_f)=0.5$なら、$q_1$だけを1 mm増やすと作用点は0.5 mm動きます。形状関数値は、この座標が実際の変位へどれだけ寄与するかという倍率です。\n【考え方】正解は1です。座標qを1だけ変えたとき、作用点がどれだけ動くかを表します。\n【ポイント】座標qを1だけ変えたとき、作用点がどれだけ動くかを表します。\n【引っかけ】2：形状関数値は質量ではなく変位の組立ての係数です。",
+          "relatedFormulas": [
+            "v1ch1-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "変位側から見る形状関数。座標qを1だけ変えたとき、作用点がどれだけ動くかを表します。",
+            "alignment": "保存済み公式問1-13の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "形状関数値は質量ではなく変位の組立ての係数です。"
+            },
+            "sha256": "3231273c35a87de1899dfa4d685a15ac8c27b56c0cf32c442ac255b8b05471ed"
+          }
+        },
+        {
+          "id": "vib1-1-13-item-c",
+          "number": "1-13",
+          "officialRef": "問1-13",
+          "officialQuestionItem": "c",
+          "title": "力側から見る形状関数",
+          "topic": "集中外力と仮想仕事",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$F_i=P\\phi_i(x_f)$で、同じ形状関数値は何を表しますか。",
+          "choices": [
+            "集中力の一般化座標への分配",
+            "集中力を断面応力に変える除数"
+          ],
+          "answer": 1,
+          "answerSummary": "仕事が一致するように、各座標の力へ分配します。",
+          "easyExplanation": [
+            {
+              "title": "分配した数の和が元の力になるとは限りません",
+              "body": "例えば$P=8\\,\\mathrm N$、$(\\phi_1,\\phi_2)=(0.5,0.25)$なら$(F_1,F_2)=(4,2)\\,\\mathrm N$です。両座標を1 mmだけ仮想変化させると仕事は$4\\times0.001+2\\times0.001=0.006\\,\\mathrm J$です。作用点の変位0.75 mmへ元の8 Nを掛けても同じです。一般化外力は仕事の係数なので、単なる実在荷重の分割とは違います。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。仕事が一致するように、各座標の力へ分配します。 2：断面積で割って応力へ変える操作ではありません。"
+            }
+          ],
+          "explanation": "【基礎】例えば$P=8\\,\\mathrm N$、$(\\phi_1,\\phi_2)=(0.5,0.25)$なら$(F_1,F_2)=(4,2)\\,\\mathrm N$です。両座標を1 mmだけ仮想変化させると仕事は$4\\times0.001+2\\times0.001=0.006\\,\\mathrm J$です。作用点の変位0.75 mmへ元の8 Nを掛けても同じです。一般化外力は仕事の係数なので、単なる実在荷重の分割とは違います。\n【考え方】正解は1です。仕事が一致するように、各座標の力へ分配します。\n【ポイント】仕事が一致するように、各座標の力へ分配します。\n【引っかけ】2：断面積で割って応力へ変える操作ではありません。",
+          "relatedFormulas": [
+            "v1ch1-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "力側から見る形状関数。仕事が一致するように、各座標の力へ分配します。",
+            "alignment": "保存済み公式問1-13の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "断面積で割って応力へ変える操作ではありません。"
+            },
+            "sha256": "12453329c736ee5d3dc3dda1132d44277091cb332a30c359fdd687dd871532c0"
+          }
         }
       ]
     },
@@ -921,7 +3146,7 @@
           "2": "$\\phi(l)=0$ でばね端を固定端扱いする誤解。",
           "4": "$\\phi(0)\\neq0$ で左端の固定条件を満たさない誤解。"
         },
-        "sha256": "b6c0aa6a6a7de9ab1e2bc18b7ea4f10b08a13fed78527f2bb4c23c8d45d3a678"
+        "sha256": "028a1191198214c423ab60a4c75c8a28acf2be63dc9da1b2db9d0f09da41a8ef"
       },
       "easyExplanation": [
         {
@@ -954,7 +3179,222 @@
         }
       ],
       "preFigureImage": "v1e1SpringEndedRodPre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "candidate-1",
+        "candidate-2",
+        "candidate-3",
+        "candidate-4"
+      ],
+      "answerSummary": "右端はばね支持で固定ではないため変位を許し、$\\phi(l)\\neq0$ でなければばねの伸縮を表現できないので、求める条件は $\\phi(0)=0$ かつ $\\phi(l)\\neq0$ で、これを満たすのは $\\phi=x/l$ だけです。よって③が正しいです。",
+      "sharedQuestion": "左端$x=0$を固定、右端$x=l$をばねで支持した棒を、ただ一つの形$y=\\phi(x)q(t)$で近似します。各候補が左端固定を守り、右端のばねの伸縮も表せるか、個別に判定してください。",
+      "studyParts": [
+        {
+          "id": "vib1-1-14-item-candidate-1",
+          "number": "1-14",
+          "officialRef": "問1-14",
+          "officialQuestionItem": "candidate-1",
+          "title": "候補1の判定",
+          "topic": "形状関数の選択",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$\\phi=x/l$は今回の一関数近似に使えますか。",
+          "choices": [
+            "使える",
+            "使えない"
+          ],
+          "answer": 1,
+          "answerSummary": "$\\phi(0)=0$、$\\phi(l)=1$なので、左を固定したまま右端を動かせます。",
+          "easyExplanation": [
+            {
+              "title": "両端の値を代入します",
+              "body": "$\\phi(0)=0$、$\\phi(l)=1$なので、左を固定したまま右端を動かせます。"
+            },
+            {
+              "title": "なぜ右端を動かせる必要があるか",
+              "body": "端ばねのエネルギーは$U_s=k\\phi(l)^2q^2/2$です。一関数の$\\phi(l)$が0だと、ばねの硬さを変えても近似式へ反映されません。複数関数を使い、その中に右端の動きを表せるものがあれば、右端で0になる関数も内部変形の表現に利用できます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。$\\phi(0)=0$、$\\phi(l)=1$なので、左を固定したまま右端を動かせます。 2：固定条件とばね端の動きを両立しています。"
+            }
+          ],
+          "explanation": "【基礎】$\\phi(0)=0$、$\\phi(l)=1$なので、左を固定したまま右端を動かせます。\n【考え方】正解は1です。$\\phi(0)=0$、$\\phi(l)=1$なので、左を固定したまま右端を動かせます。\n【ポイント】端ばねのエネルギーは$U_s=k\\phi(l)^2q^2/2$です。一関数の$\\phi(l)$が0だと、ばねの硬さを変えても近似式へ反映されません。複数関数を使い、その中に右端の動きを表せるものがあれば、右端で0になる関数も内部変形の表現に利用できます。\n【引っかけ】2：固定条件とばね端の動きを両立しています。",
+          "relatedFormulas": [
+            "v1ch1-9",
+            "v1ch1-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "$\\phi=x/l$の判定。$\\phi(0)=0$、$\\phi(l)=1$なので、左を固定したまま右端を動かせます。",
+            "alignment": "保存済み公式問1-14の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "固定条件とばね端の動きを両立しています。"
+            },
+            "sha256": "2b72961719419f02b4cca74b6b659597e8fa08e81972b15da844e27877aaa4d4"
+          }
+        },
+        {
+          "id": "vib1-1-14-item-candidate-2",
+          "number": "1-14",
+          "officialRef": "問1-14",
+          "officialQuestionItem": "candidate-2",
+          "title": "候補2の判定",
+          "topic": "形状関数の選択",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$\\phi=x(l-x)/l^2$は今回の一関数近似に使えますか。",
+          "choices": [
+            "使える",
+            "使えない"
+          ],
+          "answer": 2,
+          "answerSummary": "両端で0です。端ばねのエネルギー$k\\phi(l)^2q^2/2$が常に0となり、一関数だけではばねの効果を表せません。",
+          "easyExplanation": [
+            {
+              "title": "両端の値を代入します",
+              "body": "両端で0です。端ばねのエネルギー$k\\phi(l)^2q^2/2$が常に0となり、一関数だけではばねの効果を表せません。"
+            },
+            {
+              "title": "なぜ右端を動かせる必要があるか",
+              "body": "端ばねのエネルギーは$U_s=k\\phi(l)^2q^2/2$です。一関数の$\\phi(l)$が0だと、ばねの硬さを変えても近似式へ反映されません。複数関数を使い、その中に右端の動きを表せるものがあれば、右端で0になる関数も内部変形の表現に利用できます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。両端で0です。端ばねのエネルギー$k\\phi(l)^2q^2/2$が常に0となり、一関数だけではばねの効果を表せません。 1：この一関数だけでは右端変位を表せません。"
+            }
+          ],
+          "explanation": "【基礎】両端で0です。端ばねのエネルギー$k\\phi(l)^2q^2/2$が常に0となり、一関数だけではばねの効果を表せません。\n【考え方】正解は2です。両端で0です。端ばねのエネルギー$k\\phi(l)^2q^2/2$が常に0となり、一関数だけではばねの効果を表せません。\n【ポイント】端ばねのエネルギーは$U_s=k\\phi(l)^2q^2/2$です。一関数の$\\phi(l)$が0だと、ばねの硬さを変えても近似式へ反映されません。複数関数を使い、その中に右端の動きを表せるものがあれば、右端で0になる関数も内部変形の表現に利用できます。\n【引っかけ】1：この一関数だけでは右端変位を表せません。",
+          "relatedFormulas": [
+            "v1ch1-9",
+            "v1ch1-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "$\\phi=x(l-x)/l^2$の判定。両端で0です。端ばねのエネルギー$k\\phi(l)^2q^2/2$が常に0となり、一関数だけではばねの効果を表せません。",
+            "alignment": "保存済み公式問1-14の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "この一関数だけでは右端変位を表せません。"
+            },
+            "sha256": "1ec79592702cc83500f61973cf7e60f27ff6d20653c8c3f2832f1f7de509362c"
+          }
+        },
+        {
+          "id": "vib1-1-14-item-candidate-3",
+          "number": "1-14",
+          "officialRef": "問1-14",
+          "officialQuestionItem": "candidate-3",
+          "title": "候補3の判定",
+          "topic": "形状関数の選択",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$\\phi=\\sin\\{\\pi(l-x)/l\\}$は今回の一関数近似に使えますか。",
+          "choices": [
+            "使える",
+            "使えない"
+          ],
+          "answer": 2,
+          "answerSummary": "左は$\\sin\\pi=0$、右は$\\sin0=0$です。左固定は守りますが右も動けず、端ばねの伸縮を表せません。",
+          "easyExplanation": [
+            {
+              "title": "両端の値を代入します",
+              "body": "左は$\\sin\\pi=0$、右は$\\sin0=0$です。左固定は守りますが右も動けず、端ばねの伸縮を表せません。"
+            },
+            {
+              "title": "なぜ右端を動かせる必要があるか",
+              "body": "端ばねのエネルギーは$U_s=k\\phi(l)^2q^2/2$です。一関数の$\\phi(l)$が0だと、ばねの硬さを変えても近似式へ反映されません。複数関数を使い、その中に右端の動きを表せるものがあれば、右端で0になる関数も内部変形の表現に利用できます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。左は$\\sin\\pi=0$、右は$\\sin0=0$です。左固定は守りますが右も動けず、端ばねの伸縮を表せません。 1：この一関数だけでは右端変位を表せません。"
+            }
+          ],
+          "explanation": "【基礎】左は$\\sin\\pi=0$、右は$\\sin0=0$です。左固定は守りますが右も動けず、端ばねの伸縮を表せません。\n【考え方】正解は2です。左は$\\sin\\pi=0$、右は$\\sin0=0$です。左固定は守りますが右も動けず、端ばねの伸縮を表せません。\n【ポイント】端ばねのエネルギーは$U_s=k\\phi(l)^2q^2/2$です。一関数の$\\phi(l)$が0だと、ばねの硬さを変えても近似式へ反映されません。複数関数を使い、その中に右端の動きを表せるものがあれば、右端で0になる関数も内部変形の表現に利用できます。\n【引っかけ】1：この一関数だけでは右端変位を表せません。",
+          "relatedFormulas": [
+            "v1ch1-9",
+            "v1ch1-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "$\\phi=\\sin\\{\\pi(l-x)/l\\}$の判定。左は$\\sin\\pi=0$、右は$\\sin0=0$です。左固定は守りますが右も動けず、端ばねの伸縮を表せません。",
+            "alignment": "保存済み公式問1-14の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "この一関数だけでは右端変位を表せません。"
+            },
+            "sha256": "b83d06f0bd94dc27a4f23c2194b7f1bcbccf1f344e0fca124f14f4e5cf26ab92"
+          }
+        },
+        {
+          "id": "vib1-1-14-item-candidate-4",
+          "number": "1-14",
+          "officialRef": "問1-14",
+          "officialQuestionItem": "candidate-4",
+          "title": "候補4の判定",
+          "topic": "形状関数の選択",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$\\phi=\\cos\\{\\pi(l-x)/(2l)\\}$は今回の一関数近似に使えますか。",
+          "choices": [
+            "使える",
+            "使えない"
+          ],
+          "answer": 1,
+          "answerSummary": "左は$\\cos(\\pi/2)=0$、右は$\\cos0=1$です。固定条件を守り、ばね端の変位も表せます。",
+          "easyExplanation": [
+            {
+              "title": "両端の値を代入します",
+              "body": "左は$\\cos(\\pi/2)=0$、右は$\\cos0=1$です。固定条件を守り、ばね端の変位も表せます。",
+              "figures": [
+                {
+                  "figureImage": "v1e1FixedSpringBar",
+                  "caption": "右端のばねが伸縮するには、右端変位を表せる必要があります。"
+                }
+              ]
+            },
+            {
+              "title": "なぜ右端を動かせる必要があるか",
+              "body": "端ばねのエネルギーは$U_s=k\\phi(l)^2q^2/2$です。一関数の$\\phi(l)$が0だと、ばねの硬さを変えても近似式へ反映されません。複数関数を使い、その中に右端の動きを表せるものがあれば、右端で0になる関数も内部変形の表現に利用できます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。左は$\\cos(\\pi/2)=0$、右は$\\cos0=1$です。固定条件を守り、ばね端の変位も表せます。 2：固定条件とばね端の動きを両立しています。"
+            }
+          ],
+          "explanation": "【基礎】左は$\\cos(\\pi/2)=0$、右は$\\cos0=1$です。固定条件を守り、ばね端の変位も表せます。\n【考え方】正解は1です。左は$\\cos(\\pi/2)=0$、右は$\\cos0=1$です。固定条件を守り、ばね端の変位も表せます。\n【ポイント】端ばねのエネルギーは$U_s=k\\phi(l)^2q^2/2$です。一関数の$\\phi(l)$が0だと、ばねの硬さを変えても近似式へ反映されません。複数関数を使い、その中に右端の動きを表せるものがあれば、右端で0になる関数も内部変形の表現に利用できます。\n【引っかけ】2：固定条件とばね端の動きを両立しています。",
+          "relatedFormulas": [
+            "v1ch1-9",
+            "v1ch1-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "$\\phi=\\cos\\{\\pi(l-x)/(2l)\\}$の判定。左は$\\cos(\\pi/2)=0$、右は$\\cos0=1$です。固定条件を守り、ばね端の変位も表せます。",
+            "alignment": "保存済み公式問1-14の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "固定条件とばね端の動きを両立しています。"
+            },
+            "sha256": "fdb1a23e1fb1a7174d080ee7132be36e84a38ad083c1f75771fc98015510178d"
+          }
+        }
+      ],
+      "preFigures": [
+        {
+          "figureImage": "v1e1SpringEndedRodPre",
+          "caption": "左端は固定、右端はばねで支持されています。"
+        }
+      ]
     },
     {
       "id": "vib1-1-15",
@@ -991,7 +3431,7 @@
           "2": "$\\phi(0)\\neq0$ でたわみ条件を満たさない誤解。",
           "3": "$\\phi'(0)\\neq0$ でたわみ角条件を満たさない誤解。"
         },
-        "sha256": "796c8979e0af6223fab2b8eaf6e3d248b434e2cced16437893c21068a3fa9090"
+        "sha256": "99bb863412dbbdbcea5d05b3bfb8899d1853b360fd8b0704cf2c54d4dffb279b"
       },
       "easyExplanation": [
         {
@@ -1024,7 +3464,266 @@
         }
       ],
       "preFigureImage": "v1e1CantileverSetupPre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "candidate-1",
+        "candidate-2",
+        "candidate-3",
+        "candidate-4",
+        "candidate-5"
+      ],
+      "answerSummary": "この2条件を同時に満たすものを選ぶと、$\\phi=x^2$ は $\\phi(0)=0$、$\\phi'(x)=2x$ より $\\phi'(0)=0$ で両方を満たします。よって④が正しいです。",
+      "sharedQuestion": "左端$x=0$が固定、右端$x=l$が自由のはりの曲げ振動を、$y=\\phi(x)q(t)$で近似します。各候補が固定端の幾何学的境界条件を満たすか、個別に判定してください。",
+      "studyParts": [
+        {
+          "id": "vib1-1-15-item-candidate-1",
+          "number": "1-15",
+          "officialRef": "問1-15",
+          "officialQuestionItem": "candidate-1",
+          "title": "候補1の判定",
+          "topic": "はりの曲げ振動の形状関数",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$\\phi=x$は固定端の条件を満たしますか。",
+          "choices": [
+            "満たす",
+            "満たさない"
+          ],
+          "answer": 2,
+          "answerSummary": "$\\phi(0)=0$ですが、$\\phi'=1$で固定端が傾いてしまいます。",
+          "easyExplanation": [
+            {
+              "title": "端の位置と向きを確認します",
+              "body": "机に定規を固定すると、端は上下に動かず回転もしません。必要なのは$\\phi(0)=0$と$\\phi'(0)=0$です。"
+            },
+            {
+              "title": "関数値と微分を順に調べます",
+              "body": "$\\phi(0)=0$ですが、$\\phi'=1$で固定端が傾いてしまいます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。$\\phi(0)=0$ですが、$\\phi'=1$で固定端が傾いてしまいます。 1：固定端の変位か傾きが0になりません。"
+            }
+          ],
+          "explanation": "【基礎】机に定規を固定すると、端は上下に動かず回転もしません。必要なのは$\\phi(0)=0$と$\\phi'(0)=0$です。\n【考え方】正解は2です。$\\phi(0)=0$ですが、$\\phi'=1$で固定端が傾いてしまいます。\n【ポイント】$\\phi(0)=0$ですが、$\\phi'=1$で固定端が傾いてしまいます。\n【引っかけ】1：固定端の変位か傾きが0になりません。",
+          "relatedFormulas": [
+            "v1ch1-9"
+          ],
+          "editorialReview": {
+            "officialPoint": "$\\phi=x$の判定。$\\phi(0)=0$ですが、$\\phi'=1$で固定端が傾いてしまいます。",
+            "alignment": "保存済み公式問1-15の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "固定端の変位か傾きが0になりません。"
+            },
+            "sha256": "41811246993708219f522e029e1dbfa0f8881d95c489c755f28f05c33d2a81c8"
+          }
+        },
+        {
+          "id": "vib1-1-15-item-candidate-2",
+          "number": "1-15",
+          "officialRef": "問1-15",
+          "officialQuestionItem": "candidate-2",
+          "title": "候補2の判定",
+          "topic": "はりの曲げ振動の形状関数",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$\\phi=x^2$は固定端の条件を満たしますか。",
+          "choices": [
+            "満たす",
+            "満たさない"
+          ],
+          "answer": 1,
+          "answerSummary": "$\\phi(0)=0$、$\\phi'=2x$なので$\\phi'(0)=0$です。変位と傾きの両方が0になります。",
+          "easyExplanation": [
+            {
+              "title": "端の位置と向きを確認します",
+              "body": "机に定規を固定すると、端は上下に動かず回転もしません。必要なのは$\\phi(0)=0$と$\\phi'(0)=0$です。"
+            },
+            {
+              "title": "関数値と微分を順に調べます",
+              "body": "$\\phi(0)=0$、$\\phi'=2x$なので$\\phi'(0)=0$です。変位と傾きの両方が0になります。",
+              "figures": [
+                {
+                  "figureImage": "v1e1CantileverBeam",
+                  "caption": "固定端を水平に保ちながら曲がる二乗の形です。自由端の力の条件まで候補に強制する必要はありません。"
+                }
+              ]
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。$\\phi(0)=0$、$\\phi'=2x$なので$\\phi'(0)=0$です。変位と傾きの両方が0になります。 2：固定端の変位と傾きはともに0です。"
+            }
+          ],
+          "explanation": "【基礎】机に定規を固定すると、端は上下に動かず回転もしません。必要なのは$\\phi(0)=0$と$\\phi'(0)=0$です。\n【考え方】正解は1です。$\\phi(0)=0$、$\\phi'=2x$なので$\\phi'(0)=0$です。変位と傾きの両方が0になります。\n【ポイント】$\\phi(0)=0$、$\\phi'=2x$なので$\\phi'(0)=0$です。変位と傾きの両方が0になります。\n【引っかけ】2：固定端の変位と傾きはともに0です。",
+          "relatedFormulas": [
+            "v1ch1-9"
+          ],
+          "editorialReview": {
+            "officialPoint": "$\\phi=x^2$の判定。$\\phi(0)=0$、$\\phi'=2x$なので$\\phi'(0)=0$です。変位と傾きの両方が0になります。",
+            "alignment": "保存済み公式問1-15の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "固定端の変位と傾きはともに0です。"
+            },
+            "sha256": "f789dbb642db58bfa1dcebf3b20519dbf6bc7ac8d9239544c77447469830731e"
+          }
+        },
+        {
+          "id": "vib1-1-15-item-candidate-3",
+          "number": "1-15",
+          "officialRef": "問1-15",
+          "officialQuestionItem": "candidate-3",
+          "title": "候補3の判定",
+          "topic": "はりの曲げ振動の形状関数",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$\\phi=(x-l)^2$は固定端の条件を満たしますか。",
+          "choices": [
+            "満たす",
+            "満たさない"
+          ],
+          "answer": 2,
+          "answerSummary": "$\\phi(0)=l^2\\ne0$、$\\phi'(0)=-2l\\ne0$です。固定端が動き、傾きも変わります。",
+          "easyExplanation": [
+            {
+              "title": "端の位置と向きを確認します",
+              "body": "机に定規を固定すると、端は上下に動かず回転もしません。必要なのは$\\phi(0)=0$と$\\phi'(0)=0$です。"
+            },
+            {
+              "title": "関数値と微分を順に調べます",
+              "body": "$\\phi(0)=l^2\\ne0$、$\\phi'(0)=-2l\\ne0$です。固定端が動き、傾きも変わります。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。$\\phi(0)=l^2\\ne0$、$\\phi'(0)=-2l\\ne0$です。固定端が動き、傾きも変わります。 1：固定端の変位か傾きが0になりません。"
+            }
+          ],
+          "explanation": "【基礎】机に定規を固定すると、端は上下に動かず回転もしません。必要なのは$\\phi(0)=0$と$\\phi'(0)=0$です。\n【考え方】正解は2です。$\\phi(0)=l^2\\ne0$、$\\phi'(0)=-2l\\ne0$です。固定端が動き、傾きも変わります。\n【ポイント】$\\phi(0)=l^2\\ne0$、$\\phi'(0)=-2l\\ne0$です。固定端が動き、傾きも変わります。\n【引っかけ】1：固定端の変位か傾きが0になりません。",
+          "relatedFormulas": [
+            "v1ch1-9"
+          ],
+          "editorialReview": {
+            "officialPoint": "$\\phi=(x-l)^2$の判定。$\\phi(0)=l^2\\ne0$、$\\phi'(0)=-2l\\ne0$です。固定端が動き、傾きも変わります。",
+            "alignment": "保存済み公式問1-15の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "固定端の変位か傾きが0になりません。"
+            },
+            "sha256": "1ba72ab4ab5f33796df40557428eaca67afdf38444299f59f312b46e4c8e0d0c"
+          }
+        },
+        {
+          "id": "vib1-1-15-item-candidate-4",
+          "number": "1-15",
+          "officialRef": "問1-15",
+          "officialQuestionItem": "candidate-4",
+          "title": "候補4の判定",
+          "topic": "はりの曲げ振動の形状関数",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$\\phi=x(x-l)$は固定端の条件を満たしますか。",
+          "choices": [
+            "満たす",
+            "満たさない"
+          ],
+          "answer": 2,
+          "answerSummary": "$\\phi(0)=0$ですが、$\\phi'=2x-l$から$\\phi'(0)=-l\\ne0$です。傾きを固定できません。",
+          "easyExplanation": [
+            {
+              "title": "端の位置と向きを確認します",
+              "body": "机に定規を固定すると、端は上下に動かず回転もしません。必要なのは$\\phi(0)=0$と$\\phi'(0)=0$です。"
+            },
+            {
+              "title": "関数値と微分を順に調べます",
+              "body": "$\\phi(0)=0$ですが、$\\phi'=2x-l$から$\\phi'(0)=-l\\ne0$です。傾きを固定できません。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。$\\phi(0)=0$ですが、$\\phi'=2x-l$から$\\phi'(0)=-l\\ne0$です。傾きを固定できません。 1：固定端の変位か傾きが0になりません。"
+            }
+          ],
+          "explanation": "【基礎】机に定規を固定すると、端は上下に動かず回転もしません。必要なのは$\\phi(0)=0$と$\\phi'(0)=0$です。\n【考え方】正解は2です。$\\phi(0)=0$ですが、$\\phi'=2x-l$から$\\phi'(0)=-l\\ne0$です。傾きを固定できません。\n【ポイント】$\\phi(0)=0$ですが、$\\phi'=2x-l$から$\\phi'(0)=-l\\ne0$です。傾きを固定できません。\n【引っかけ】1：固定端の変位か傾きが0になりません。",
+          "relatedFormulas": [
+            "v1ch1-9"
+          ],
+          "editorialReview": {
+            "officialPoint": "$\\phi=x(x-l)$の判定。$\\phi(0)=0$ですが、$\\phi'=2x-l$から$\\phi'(0)=-l\\ne0$です。傾きを固定できません。",
+            "alignment": "保存済み公式問1-15の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "固定端の変位か傾きが0になりません。"
+            },
+            "sha256": "3196dc4a45dc92f49f298b07cca84aea02afa483668bc567562660a9248c58fd"
+          }
+        },
+        {
+          "id": "vib1-1-15-item-candidate-5",
+          "number": "1-15",
+          "officialRef": "問1-15",
+          "officialQuestionItem": "candidate-5",
+          "title": "候補5の判定",
+          "topic": "はりの曲げ振動の形状関数",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$\\phi=\\cos\\{\\pi x/(2l)\\}-1$は固定端の条件を満たしますか。",
+          "choices": [
+            "満たす",
+            "満たさない"
+          ],
+          "answer": 1,
+          "answerSummary": "$\\phi(0)=1-1=0$、$\\phi'=-\\{\\pi/(2l)\\}\\sin\\{\\pi x/(2l)\\}$なので$\\phi'(0)=0$です。負のたわみ方向を向くことは不適切な理由になりません。",
+          "easyExplanation": [
+            {
+              "title": "端の位置と向きを確認します",
+              "body": "机に定規を固定すると、端は上下に動かず回転もしません。必要なのは$\\phi(0)=0$と$\\phi'(0)=0$です。"
+            },
+            {
+              "title": "関数値と微分を順に調べます",
+              "body": "$\\phi(0)=1-1=0$、$\\phi'=-\\{\\pi/(2l)\\}\\sin\\{\\pi x/(2l)\\}$なので$\\phi'(0)=0$です。負のたわみ方向を向くことは不適切な理由になりません。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。$\\phi(0)=1-1=0$、$\\phi'=-\\{\\pi/(2l)\\}\\sin\\{\\pi x/(2l)\\}$なので$\\phi'(0)=0$です。負のたわみ方向を向くことは不適切な理由になりません。 2：固定端の変位と傾きはともに0です。"
+            }
+          ],
+          "explanation": "【基礎】机に定規を固定すると、端は上下に動かず回転もしません。必要なのは$\\phi(0)=0$と$\\phi'(0)=0$です。\n【考え方】正解は1です。$\\phi(0)=1-1=0$、$\\phi'=-\\{\\pi/(2l)\\}\\sin\\{\\pi x/(2l)\\}$なので$\\phi'(0)=0$です。負のたわみ方向を向くことは不適切な理由になりません。\n【ポイント】$\\phi(0)=1-1=0$、$\\phi'=-\\{\\pi/(2l)\\}\\sin\\{\\pi x/(2l)\\}$なので$\\phi'(0)=0$です。負のたわみ方向を向くことは不適切な理由になりません。\n【引っかけ】2：固定端の変位と傾きはともに0です。",
+          "relatedFormulas": [
+            "v1ch1-9"
+          ],
+          "editorialReview": {
+            "officialPoint": "$\\phi=\\cos\\{\\pi x/(2l)\\}-1$の判定。$\\phi(0)=1-1=0$、$\\phi'=-\\{\\pi/(2l)\\}\\sin\\{\\pi x/(2l)\\}$なので$\\phi'(0)=0$です。負のたわみ方向を向くことは不適切な理由になりません。",
+            "alignment": "保存済み公式問1-15の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "固定端の変位と傾きはともに0です。"
+            },
+            "sha256": "f0851dca568f0d941ed1622e90cc6ef9cbd0107cb3c24a97522ac29c14079562"
+          }
+        }
+      ],
+      "preFigures": [
+        {
+          "figureImage": "v1e1CantileverSetupPre",
+          "caption": "左端固定・右端自由のはりです。横方向のたわみを考えます。"
+        }
+      ]
     },
     {
       "id": "vib1-1-16",
@@ -1062,7 +3761,7 @@
           "3": "端ばね力の脱落",
           "4": "ばね支持と固定の混同"
         },
-        "sha256": "e7a65ca651221e80c92609da97f4a1f40a050f3015cf4f0acc92efb497364389"
+        "sha256": "0ad84c2171648552db8257aeb0f62f59c30f2fbad46af1b9ed9c23f64887107b"
       },
       "easyExplanation": [
         {
@@ -1095,7 +3794,169 @@
         }
       ],
       "preFigureImage": "v1e1SpringEndedRodPre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "answerSummary": "右端が右へ $y(l,t)$ 動くと、ばねは左へ $-k\\,y(l,t)$ の力を加えます。棒の軸力 $N=EA\\,\\partial y/\\partial x$ は右端で $N=-k\\,y$ を満たすので、移項して $EA\\,\\partial y/\\partial x+k\\,y=0$ です。正解は①です。",
+      "sharedQuestion": "左端を固定、右端をばね$k$で壁へつないだ一様棒の縦振動です。長さ$l$、密度$\\rho$、断面積$A$、ヤング率$E$、変位$y(x,t)$を用い、外力・減衰はありません。端ばねの作用がエネルギー・内部・端のどこに入るかを答えます。",
+      "studyParts": [
+        {
+          "id": "vib1-1-16-item-a",
+          "number": "1-16",
+          "officialRef": "問1-16",
+          "officialQuestionItem": "a",
+          "title": "端ばねのエネルギー",
+          "topic": "ばね支持棒の縦振動",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "棒のひずみエネルギーに加える項はどちらですか。",
+          "choices": [
+            "$U_s=ky(l,t)^2/2$",
+            "$U_s=\\frac12\\int_0^lky(x,t)^2dx$"
+          ],
+          "answer": 1,
+          "answerSummary": "ばねは端に一つだけなので、全長で積分しません。",
+          "easyExplanation": [
+            {
+              "title": "ばねは、棒の端に一つだけあります",
+              "body": "右端変位を $y(l,t)$ とすると、壁につながるばねの伸び縮みはこの変位で決まります。ばねの自然な位置を基準にしたエネルギーは $U_s=ky(l,t)^2/2$ です。棒の内部のひずみエネルギーは全長に分布しますが、このばねは端の一点にあります。位置に沿ってばねのエネルギーをさらに積分すると、棒の各部分に別のばねを付けたモデルへ変えてしまいます。",
+              "figures": [
+                {
+                  "figureImage": "v1e1FixedSpringBar",
+                  "caption": "右端のばねが伸縮するには、右端変位を表せる必要があります。"
+                }
+              ]
+            },
+            {
+              "title": "ばねの力とエネルギーは同じ符号関係です",
+              "body": "右向き変位を正にすると、ばねは元へ戻す左向きの力 $F_s=-ky(l,t)$ を棒へ加えます。エネルギーからも $F_s=-dU_s/dy=-ky$ です。例えば $k=1000\\ \\mathrm{N/m}$、右端が右へ0.001 m動けば、力は−1 Nです。エネルギーは正の $0.0005\\ \\mathrm J$ です。エネルギーの正負と力の向きの負号を混同せず、エネルギーの勾配にマイナスを付ける関係で確かめます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。ばねは端に一つだけなので、全長で積分しません。 2：端ばねを全長に分布するばねへ変えてしまいます。"
+            }
+          ],
+          "explanation": "【基礎】右端変位を $y(l,t)$ とすると、壁につながるばねの伸び縮みはこの変位で決まります。ばねの自然な位置を基準にしたエネルギーは $U_s=ky(l,t)^2/2$ です。棒の内部のひずみエネルギーは全長に分布しますが、このばねは端の一点にあります。位置に沿ってばねのエネルギーをさらに積分すると、棒の各部分に別のばねを付けたモデルへ変えてしまいます。\n【考え方】正解は1です。ばねは端に一つだけなので、全長で積分しません。\n【ポイント】右向き変位を正にすると、ばねは元へ戻す左向きの力 $F_s=-ky(l,t)$ を棒へ加えます。エネルギーからも $F_s=-dU_s/dy=-ky$ です。例えば $k=1000\\ \\mathrm{N/m}$、右端が右へ0.001 m動けば、力は−1 Nです。エネルギーは正の $0.0005\\ \\mathrm J$ です。エネルギーの正負と力の向きの負号を混同せず、エネルギーの勾配にマイナスを付ける関係で確かめます。\n【引っかけ】2：端ばねを全長に分布するばねへ変えてしまいます。",
+          "relatedFormulas": [
+            "v1ch1-9",
+            "v1ch1-10"
+          ],
+          "editorialReview": {
+            "officialPoint": "端ばねのエネルギー。ばねは端に一つだけなので、全長で積分しません。",
+            "alignment": "保存済み公式問1-16の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "端ばねを全長に分布するばねへ変えてしまいます。"
+            },
+            "sha256": "c4aeb24f1a76163c4b7a133ce706ff824cf400ebc89b38c24836ad8360badb7c"
+          }
+        },
+        {
+          "id": "vib1-1-16-item-b",
+          "number": "1-16",
+          "officialRef": "問1-16",
+          "officialQuestionItem": "b",
+          "title": "棒の内部の運動方程式",
+          "topic": "ばね支持棒の縦振動",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$0<x<l$で成り立つ式はどちらですか。",
+          "choices": [
+            "$\\rho Ay_{,tt}-EAy_{,xx}+ky=0$",
+            "$\\rho Ay_{,tt}-EAy_{,xx}=0$"
+          ],
+          "answer": 2,
+          "answerSummary": "端ばねは境界で働き、内部へ一様な力を加えません。",
+          "easyExplanation": [
+            {
+              "title": "内部の小区間には、両隣から軸力が働きます",
+              "body": "軸力$N=EAy_{,x}$の左右の差は、長さ$dx$に対して$N_{,x}dx$です。質量$\\rho A\\,dx$の運動方程式は$\\rho A\\,dx\\,y_{,tt}=N_{,x}dx$です。$dx$で割れば②です。右端にしかないばね力を、全ての内部点へ加えません。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。端ばねは境界で働き、内部へ一様な力を加えません。 1：端ばねを分布支持のように扱っています。"
+            }
+          ],
+          "explanation": "【基礎】軸力$N=EAy_{,x}$の左右の差は、長さ$dx$に対して$N_{,x}dx$です。質量$\\rho A\\,dx$の運動方程式は$\\rho A\\,dx\\,y_{,tt}=N_{,x}dx$です。$dx$で割れば②です。右端にしかないばね力を、全ての内部点へ加えません。\n【考え方】正解は2です。端ばねは境界で働き、内部へ一様な力を加えません。\n【ポイント】端ばねは境界で働き、内部へ一様な力を加えません。\n【引っかけ】1：端ばねを分布支持のように扱っています。",
+          "relatedFormulas": [
+            "v1ch1-9",
+            "v1ch1-10"
+          ],
+          "editorialReview": {
+            "officialPoint": "棒の内部の運動方程式。端ばねは境界で働き、内部へ一様な力を加えません。",
+            "alignment": "保存済み公式問1-16の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "端ばねを分布支持のように扱っています。"
+            },
+            "sha256": "0ccbc9bfbefe182a0d37badaf265303c238e2b3949fe2289f1c9a9587ea65c00"
+          }
+        },
+        {
+          "id": "vib1-1-16-item-c",
+          "number": "1-16",
+          "officialRef": "問1-16",
+          "officialQuestionItem": "c",
+          "title": "ばね端の境界条件",
+          "topic": "ばね支持棒の縦振動",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "右端$x=l$で成り立つ式はどちらですか。",
+          "choices": [
+            "$EAy_{,x}+ky=0$",
+            "$EAy_{,x}=0$"
+          ],
+          "answer": 1,
+          "answerSummary": "棒の軸力と、右端ばねの復元力を釣り合わせます。",
+          "easyExplanation": [
+            {
+              "title": "棒の軸力を、端ばねの力と釣り合わせます",
+              "body": "棒の軸ひずみは $y_x=\\partial y/\\partial x$、応力は $Ey_x$、断面積を掛けた軸力は $N=EAy_x$ です。右端に与える外力はばね力なので、$EAy_x=-ky$ です。全てを左辺へ移すと $EAy_x+ky=0$。これがばね端の力学的境界条件です。左端は固定なので、別に $y(0,t)=0$ を課します。右端にも変位0を課してしまうと、ばねが伸びる自由を消してしまいます。"
+            },
+            {
+              "title": "変分を使っても同じ端の式が出ます",
+              "body": "棒のひずみエネルギーの変分を部分積分すると、右端に $EAy_x\\delta y(l,t)$ が現れます。端ばねの変分は、二乗を微分して $\\delta U_s=ky(l,t)\\delta y(l,t)$ です。作用では $U$ を引くので、右端の寄与は $-(EAy_x+ky)\\delta y(l,t)$ です。右端は固定されず、$\\delta y(l,t)$ が任意なので、係数を0にする必要があります。全体のマイナスは、0という条件には影響しません。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。棒の軸力と、右端ばねの復元力を釣り合わせます。 2：ばねのない自由端の条件にしてしまいます。"
+            }
+          ],
+          "explanation": "【基礎】棒の軸ひずみは $y_x=\\partial y/\\partial x$、応力は $Ey_x$、断面積を掛けた軸力は $N=EAy_x$ です。右端に与える外力はばね力なので、$EAy_x=-ky$ です。全てを左辺へ移すと $EAy_x+ky=0$。これがばね端の力学的境界条件です。左端は固定なので、別に $y(0,t)=0$ を課します。右端にも変位0を課してしまうと、ばねが伸びる自由を消してしまいます。\n【考え方】正解は1です。棒の軸力と、右端ばねの復元力を釣り合わせます。\n【ポイント】棒のひずみエネルギーの変分を部分積分すると、右端に $EAy_x\\delta y(l,t)$ が現れます。端ばねの変分は、二乗を微分して $\\delta U_s=ky(l,t)\\delta y(l,t)$ です。作用では $U$ を引くので、右端の寄与は $-(EAy_x+ky)\\delta y(l,t)$ です。右端は固定されず、$\\delta y(l,t)$ が任意なので、係数を0にする必要があります。全体のマイナスは、0という条件には影響しません。\n【引っかけ】2：ばねのない自由端の条件にしてしまいます。",
+          "relatedFormulas": [
+            "v1ch1-9",
+            "v1ch1-10"
+          ],
+          "editorialReview": {
+            "officialPoint": "ばね端の境界条件。棒の軸力と、右端ばねの復元力を釣り合わせます。",
+            "alignment": "保存済み公式問1-16の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "ばねのない自由端の条件にしてしまいます。"
+            },
+            "sha256": "f5f3a78efba314e0872bb686304dd973c8d4d318a4204e56cd608c1bc50bbb56"
+          }
+        }
+      ],
+      "preFigures": [
+        {
+          "figureImage": "v1e1SpringEndedRodPre",
+          "caption": "左端は固定、右端はばねで支持されています。"
+        }
+      ]
     },
     {
       "id": "vib1-1-17",
@@ -1133,7 +3994,7 @@
           "3": "重みつき残差法を常に低精度で一致しないとする誤解。",
           "4": "空間側の部分積分で重みの空間微分が現れることを見落とす"
         },
-        "sha256": "8ad6fde1598e04b3c61a53de07c0d33e96c9ac1c0cad2be3c60b7b54c2ae031d"
+        "sha256": "40e6410398b0cd1c6bfeae7860611d4b2e88a40682d5452de7a57d4535bf6c82"
       },
       "easyExplanation": [
         {
@@ -1160,12 +4021,164 @@
           "title": "同じ条件と候補で比べることが大切です",
           "body": "①は、重みを仮想変位として力学的に読めることを見落としています。③のように、この書き換えだけで一方が低精度になるわけではありません。近似精度が変わるのは、使う関数や分割などを変えた場合です。④は空間の部分積分で生じる $y_xw_x$ を落としています。重みが端で0という条件も任意の都合ではなく、固定した端を仮想的にも動かさないためです。微分を移した結果、端の条件と内部の積分が別々に現れることを確認してください。"
         }
+      ],
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "answerSummary": "時間・空間で部分積分し両時刻 $t_1,t_2$ と両端で $w=0$（両端固定の幾何学的境界条件に対応）とすると弱形式 $\\int\\int(\\rho A\\,y_t w_t-EA\\,y_x w_x)dx\\,dt=0$ が得られ、$w=\\delta y$ とみなせばハミルトンの原理の変分そのもので両者は等価です。よって②が正しいです。",
+      "sharedQuestion": "両端固定の一様棒について、残差$R=\\rho Ay_{,tt}-EAy_{,xx}$に重み$w(x,t)$を掛け、$\\int_{t_1}^{t_2}\\int_0^l Rw\\,dx\\,dt=0$とします。$w$は両端と始終時刻で0です。",
+      "studyParts": [
+        {
+          "id": "vib1-1-17-item-a",
+          "number": "1-17",
+          "officialRef": "問1-17",
+          "officialQuestionItem": "a",
+          "title": "部分積分した形",
+          "topic": "重みつき残差法の等価性",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "時間と空間で部分積分し、式全体の符号をそろえた形はどちらですか。",
+          "choices": [
+            "$\\int\\!\\int(\\rho Ay_{,t}w_{,x}-EAy_{,x}w_{,t})dx\\,dt=0$",
+            "$\\int\\!\\int(\\rho Ay_{,t}w_{,t}-EAy_{,x}w_{,x})dx\\,dt=0$"
+          ],
+          "answer": 2,
+          "answerSummary": "時間微分は時間側、空間微分は空間側へ一回ずつ移します。",
+          "easyExplanation": [
+            {
+              "title": "時間について部分積分します",
+              "body": "慣性の項は $\\int y_{tt}w\\,dt=[y_tw]_{t_1}^{t_2}-\\int y_tw_tdt$ です。始点・終点の時刻で $w=0$ とするので端の積が消え、$-\\int\\rho A y_tw_tdt$ が残ります。部分積分は積の微分を積分した関係で、二回微分を含む変位から、重み側へ一回の微分を移しています。時間の端を固定して経路を比べる、ハミルトンの原理の条件に対応します。"
+            },
+            {
+              "title": "空間についても部分積分します",
+              "body": "剛性の項は $-\\int EAy_{xx}w\\,dx=-[EAy_xw]_0^l+\\int EAy_xw_xdx$ です。両端固定では許される仮想変位は端で0なので、同じ条件を $w$ に課すと端の項が消えます。全体で $\\int\\int(-\\rho A y_tw_t+EAy_xw_x)dx\\,dt=0$ です。式全体を−1倍しても0という条件は同じなので、$\\int\\int(\\rho A y_tw_t-EAy_xw_x)dx\\,dt=0$ と書けます。時間・空間の両方で微分が現れます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。時間微分は時間側、空間微分は空間側へ一回ずつ移します。 1：部分積分する変数を入れ替えています。"
+            }
+          ],
+          "explanation": "【基礎】慣性の項は $\\int y_{tt}w\\,dt=[y_tw]_{t_1}^{t_2}-\\int y_tw_tdt$ です。始点・終点の時刻で $w=0$ とするので端の積が消え、$-\\int\\rho A y_tw_tdt$ が残ります。部分積分は積の微分を積分した関係で、二回微分を含む変位から、重み側へ一回の微分を移しています。時間の端を固定して経路を比べる、ハミルトンの原理の条件に対応します。\n【考え方】正解は2です。時間微分は時間側、空間微分は空間側へ一回ずつ移します。\n【ポイント】剛性の項は $-\\int EAy_{xx}w\\,dx=-[EAy_xw]_0^l+\\int EAy_xw_xdx$ です。両端固定では許される仮想変位は端で0なので、同じ条件を $w$ に課すと端の項が消えます。全体で $\\int\\int(-\\rho A y_tw_t+EAy_xw_x)dx\\,dt=0$ です。式全体を−1倍しても0という条件は同じなので、$\\int\\int(\\rho A y_tw_t-EAy_xw_x)dx\\,dt=0$ と書けます。時間・空間の両方で微分が現れます。\n【引っかけ】1：部分積分する変数を入れ替えています。",
+          "relatedFormulas": [
+            "v1ch1-12",
+            "v1ch1-6"
+          ],
+          "editorialReview": {
+            "officialPoint": "部分積分した形。時間微分は時間側、空間微分は空間側へ一回ずつ移します。",
+            "alignment": "保存済み公式問1-17の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "部分積分する変数を入れ替えています。"
+            },
+            "sha256": "f3fb8ddc0bdafde700c28acc8ebea2060030fc14638face1fab5fbc7b28f4964"
+          }
+        },
+        {
+          "id": "vib1-1-17-item-b",
+          "number": "1-17",
+          "officialRef": "問1-17",
+          "officialQuestionItem": "b",
+          "title": "重みの力学的な意味",
+          "topic": "重みつき残差法の等価性",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "ハミルトンの原理と比べるとき、$w$を何とみなしますか。",
+          "choices": [
+            "実際の速度",
+            "仮想変位"
+          ],
+          "answer": 2,
+          "answerSummary": "$w=\\delta y$とみなします。",
+          "easyExplanation": [
+            {
+              "title": "二乗の変分と同じ形になります",
+              "body": "$w=\\delta y$なら$\\rho Ay_{,t}w_{,t}=\\delta(\\rho Ay_{,t}^2/2)$です。空間側も$EAy_{,x}w_{,x}=\\delta(EAy_{,x}^2/2)$となります。両方を積分すると$\\delta\\int(T-U)dt=0$です。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。$w=\\delta y$とみなします。 1：経路を比較する仮想変位であり、実際の時間変化ではありません。"
+            }
+          ],
+          "explanation": "【基礎】$w=\\delta y$なら$\\rho Ay_{,t}w_{,t}=\\delta(\\rho Ay_{,t}^2/2)$です。空間側も$EAy_{,x}w_{,x}=\\delta(EAy_{,x}^2/2)$となります。両方を積分すると$\\delta\\int(T-U)dt=0$です。\n【考え方】正解は2です。$w=\\delta y$とみなします。\n【ポイント】$w=\\delta y$とみなします。\n【引っかけ】1：経路を比較する仮想変位であり、実際の時間変化ではありません。",
+          "relatedFormulas": [
+            "v1ch1-12",
+            "v1ch1-6"
+          ],
+          "editorialReview": {
+            "officialPoint": "重みの力学的な意味。$w=\\delta y$とみなします。",
+            "alignment": "保存済み公式問1-17の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "経路を比較する仮想変位であり、実際の時間変化ではありません。"
+            },
+            "sha256": "57d4ccf8a5a2bb33dd2bb79aecec4e860f1e4c56eb09fec84181755d0b62f09e"
+          }
+        },
+        {
+          "id": "vib1-1-17-item-c",
+          "number": "1-17",
+          "officialRef": "問1-17",
+          "officialQuestionItem": "c",
+          "title": "二つの方法の関係",
+          "topic": "重みつき残差法の等価性",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "同じ棒・同じ境界条件で重みを仮想変位とした二つの式は、どの関係にありますか。",
+          "choices": [
+            "等価である",
+            "重みつき残差法の方が必ず低精度である"
+          ],
+          "answer": 1,
+          "answerSummary": "同じ積分式へ変形できるので等価です。",
+          "easyExplanation": [
+            {
+              "title": "出発点が違っても、同じ場所へ着きます",
+              "body": "運動方程式から重みを掛けて部分積分する道と、エネルギーから変分を取る道がつながります。この書き換え自体が近似精度を下げるわけではありません。精度の差は、近似に使う関数や分割などを変えた場合に生じます。",
+              "figures": [
+                {
+                  "figureImage": "v1e1WeightedResidual",
+                  "caption": "上からたどると、残差の積分を変分原理の式へ読み替える流れが分かります。"
+                }
+              ]
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。同じ積分式へ変形できるので等価です。 2：同じ式への書き換えを、精度が落ちる操作と取り違えています。"
+            }
+          ],
+          "explanation": "【基礎】運動方程式から重みを掛けて部分積分する道と、エネルギーから変分を取る道がつながります。この書き換え自体が近似精度を下げるわけではありません。精度の差は、近似に使う関数や分割などを変えた場合に生じます。\n【考え方】正解は1です。同じ積分式へ変形できるので等価です。\n【ポイント】同じ積分式へ変形できるので等価です。\n【引っかけ】2：同じ式への書き換えを、精度が落ちる操作と取り違えています。",
+          "relatedFormulas": [
+            "v1ch1-12",
+            "v1ch1-6"
+          ],
+          "editorialReview": {
+            "officialPoint": "二つの方法の関係。同じ積分式へ変形できるので等価です。",
+            "alignment": "保存済み公式問1-17の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "同じ式への書き換えを、精度が落ちる操作と取り違えています。"
+            },
+            "sha256": "7119c96b0a2502271cbe3a8c548b880d121ed843f1e97660bda5bfa998df0f43"
+          }
+        }
       ]
     },
     {
       "id": "vib1-1-18",
       "number": "1-18",
-      "title": "ガラーキン法と係数行列の対称性",
+      "title": "重み関数と係数行列",
       "topic": "ガラーキン法",
       "type": "mc",
       "difficulty": 1,
@@ -1198,7 +4211,7 @@
           "2": "選点法(デルタ関数)を対称の理由とする誤解。",
           "4": "疎性の理由(局所性)を対称性の理由と混同する誤解。"
         },
-        "sha256": "64e01c38de1dd614ec2f06cca95296e4e57d082fe2d0e2f13f800788ea5a6829"
+        "sha256": "1e0913dc3382f123664c686de747f0d38ffa9c87735ed62d73a03849dbe9a9dc"
       },
       "easyExplanation": [
         {
@@ -1229,12 +4242,119 @@
           "title": "同じ交差係数は、エネルギーからも確認できます",
           "body": "$U=(k_{11}q_1^2+2k_{12}q_1q_2+k_{22}q_2^2)/2$ と置くと、qの微分で得る復元項は $\\partial U/\\partial q_1=k_{11}q_1+k_{12}q_2$、$\\partial U/\\partial q_2=k_{12}q_1+k_{22}q_2$ です。二つの式へ同じ交差係数が現れ、剛性行列の対称性と対応します。"
         }
+      ],
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b"
+      ],
+      "answerSummary": "重み関数と基底関数が同じだと係数行列の $(i,j)$ 成分と $(j,i)$ 成分が同じ積分形になり、対象の双線形形式が対称な自己随伴問題（弾性・慣性）では行列が対称になります。よって③が正しいです。",
+      "sharedQuestion": "自己随伴な弾性・慣性の問題を、重みつき残差法から有限要素法で近似します。変位を表す基底関数と、残差に掛ける重み関数の関係を考えます。",
+      "studyParts": [
+        {
+          "id": "vib1-1-18-item-a",
+          "number": "1-18",
+          "officialRef": "問1-18",
+          "officialQuestionItem": "a",
+          "title": "重み関数の選び方",
+          "topic": "ガラーキン法",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "通常のガラーキン有限要素法はどちらの選び方ですか。",
+          "choices": [
+            "重みと基底に同じ関数を使う",
+            "重みと基底に異なる関数を使う"
+          ],
+          "answer": 1,
+          "answerSummary": "ガラーキン法は重みを基底とそろえます。",
+          "easyExplanation": [
+            {
+              "title": "近似の形と、調べる重みを同じにします",
+              "body": "変位を $y=\\sum_j\\phi_j q_j$ と近似し、i番目の重みを $w_i$ と書きます。ガラーキン法は $w_i=\\phi_i$ と選ぶ方法です。重みも基底と同じ関数で、残差を調べます。異なる関数を使うペトロフ・ガラーキン法や、ある点だけを選ぶデルタ関数の重みとは、この選び方が違います。形を表す関数と、残差を測る関数の関係を確認する問題です。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。ガラーキン法は重みを基底とそろえます。 2：異なる重みを使うのはペトロフ・ガラーキン法です。"
+            }
+          ],
+          "explanation": "【基礎】変位を $y=\\sum_j\\phi_j q_j$ と近似し、i番目の重みを $w_i$ と書きます。ガラーキン法は $w_i=\\phi_i$ と選ぶ方法です。重みも基底と同じ関数で、残差を調べます。異なる関数を使うペトロフ・ガラーキン法や、ある点だけを選ぶデルタ関数の重みとは、この選び方が違います。形を表す関数と、残差を測る関数の関係を確認する問題です。\n【考え方】正解は1です。ガラーキン法は重みを基底とそろえます。\n【ポイント】ガラーキン法は重みを基底とそろえます。\n【引っかけ】2：異なる重みを使うのはペトロフ・ガラーキン法です。",
+          "relatedFormulas": [
+            "v1ch1-12",
+            "v1ch1-13"
+          ],
+          "editorialReview": {
+            "officialPoint": "重み関数の選び方。ガラーキン法は重みを基底とそろえます。",
+            "alignment": "保存済み公式問1-18の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "異なる重みを使うのはペトロフ・ガラーキン法です。"
+            },
+            "sha256": "ca081f9e42310fa0214f3c8e1f46804cbbdf260c272d1ff460c39e0f57e3e14c"
+          }
+        },
+        {
+          "id": "vib1-1-18-item-b",
+          "number": "1-18",
+          "officialRef": "問1-18",
+          "officialQuestionItem": "b",
+          "title": "行列の性質",
+          "topic": "ガラーキン法",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 1,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "この問題で、同じ関数を重みと基底に用いたとき、係数行列はどちらの性質をもちますか。",
+          "choices": [
+            "対称",
+            "非対称"
+          ],
+          "answer": 1,
+          "answerSummary": "行と列を入れ替えた係数が一致します。",
+          "easyExplanation": [
+            {
+              "title": "対称行列は、対角線の両側の値が同じです",
+              "body": "行列の $K_{ij}$ はi行j列の成分です。対称とは $K_{ij}=K_{ji}$、つまり行と列を入れ替えても値が同じになることです。例えば $\\begin{pmatrix}3&1\\\\1&4\\end{pmatrix}$ は対称ですが、右上を2、左下を1にすると対称ではありません。今回の問題は、弾性や慣性の対称な積分形を持つ問題について、なぜこの一致が生じるかを尋ねています。",
+              "figures": [
+                {
+                  "figureImage": "v1e1GalerkinSymmetry",
+                  "caption": "局所性は疎行列、同じ重みと対称な問題は対称行列につながります。"
+                }
+              ]
+            },
+            {
+              "title": "成分の式で、入れ替えを確かめます",
+              "body": "一様な棒の弾性なら $K_{ij}=\\int_0^lEA\\phi_i'\\phi_j'dx$ です。行と列を入れ替えると $K_{ji}=\\int_0^lEA\\phi_j'\\phi_i'dx$。普通の数の積では掛ける順序を入れ替えても同じなので、二つの積分も同じです。質量も $M_{ij}=\\int_0^l\\rho A\\phi_i\\phi_jdx$ で、同じ確認ができます。積分する領域と係数が共通で、同じ関数の組を使っていることが効いています。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。行と列を入れ替えた係数が一致します。 2：この積分形ではiとjを入れ替えても同じ積になります。"
+            }
+          ],
+          "explanation": "【基礎】行列の $K_{ij}$ はi行j列の成分です。対称とは $K_{ij}=K_{ji}$、つまり行と列を入れ替えても値が同じになることです。例えば $\\begin{pmatrix}3&1\\\\1&4\\end{pmatrix}$ は対称ですが、右上を2、左下を1にすると対称ではありません。今回の問題は、弾性や慣性の対称な積分形を持つ問題について、なぜこの一致が生じるかを尋ねています。\n【考え方】正解は1です。行と列を入れ替えた係数が一致します。\n【ポイント】一様な棒の弾性なら $K_{ij}=\\int_0^lEA\\phi_i'\\phi_j'dx$ です。行と列を入れ替えると $K_{ji}=\\int_0^lEA\\phi_j'\\phi_i'dx$。普通の数の積では掛ける順序を入れ替えても同じなので、二つの積分も同じです。質量も $M_{ij}=\\int_0^l\\rho A\\phi_i\\phi_jdx$ で、同じ確認ができます。積分する領域と係数が共通で、同じ関数の組を使っていることが効いています。\n【引っかけ】2：この積分形ではiとjを入れ替えても同じ積になります。",
+          "relatedFormulas": [
+            "v1ch1-12",
+            "v1ch1-13"
+          ],
+          "editorialReview": {
+            "officialPoint": "行列の性質。行と列を入れ替えた係数が一致します。",
+            "alignment": "保存済み公式問1-18の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "この積分形ではiとjを入れ替えても同じ積になります。"
+            },
+            "sha256": "1e68b3634370c24e65c1d45dac32d2624dd02df7c3291f75e373a1b3f488ae4b"
+          }
+        }
       ]
     },
     {
       "id": "vib1-1-19",
       "number": "1-19",
-      "title": "重みつき残差法の分類と疎行列",
+      "title": "重みつき残差法と行列の構造",
       "topic": "重みつき残差法の分類",
       "type": "mc",
       "difficulty": 2,
@@ -1267,7 +4387,7 @@
           "2": "定義を入れ替え三角行列とする誤解。",
           "3": "疎になる理由を大域関数だからと正反対にする誤解。"
         },
-        "sha256": "1d38c95eb96adaa491ab6d6bb1c58a7309ff6c11ba329e497da279385c3872d6"
+        "sha256": "4006d113072dfe1e9f94c0fba63016e1eb3fb867459d0a306fdef03f28224774"
       },
       "easyExplanation": [
         {
@@ -1297,6 +4417,158 @@
         {
           "title": "隣り合う節点の係数を一つ計算します",
           "body": "長さhの一次要素内では、$N_1=1-x/h$、$N_2=x/h$ なので微分は $-1/h$ と $1/h$ です。交差係数は $EA\\int_0^h(-1/h)(1/h)dx=-EA/h$ です。同じ要素に関わる節点間には係数が生じ、形が重ならない遠い節点との間には生じないという区別が、実際の積分にも表れています。"
+        }
+      ],
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "answerSummary": "有限要素法はガラーキン法に基づき各節点まわりだけで零でない局所的な基底関数を用いるため、離れた節点間の積分が零になり非零成分が対角付近に集中する疎行列となります。よって④が正しいです。",
+      "sharedQuestion": "重みつき残差法の分類と、有限要素法の行列に零成分が多い理由を、別々に答えてください。",
+      "studyParts": [
+        {
+          "id": "vib1-1-19-item-a",
+          "number": "1-19",
+          "officialRef": "問1-19",
+          "officialQuestionItem": "a",
+          "title": "基底と同じ関数を重みにする方法",
+          "topic": "重みつき残差法の分類",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "重みを近似の基底関数と同じにする方法はどれですか。",
+          "choices": [
+            "選点法",
+            "ガラーキン法"
+          ],
+          "answer": 2,
+          "answerSummary": "基底と同じ関数で残差の分布を調べます。",
+          "easyExplanation": [
+            {
+              "title": "ガラーキン法は、近似と同じ関数で測ります",
+              "body": "近似解を $y=\\sum_j\\phi_jq_j$ と表します。i番目の方程式を作る重みを $w_i=\\phi_i$ と選ぶ方法がガラーキン法です。例えば二つの形で近似するなら、$\\int R\\phi_1dx=0$ と $\\int R\\phi_2dx=0$ の二つを作ります。係数が二つあれば、それらを決める二つの方程式が必要になります。基底と違う重みを選ぶのがペトロフ・ガラーキン法で、名前を入れ替えないようにします。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。基底と同じ関数で残差の分布を調べます。 1：選点法は指定した点で残差を0にします。"
+            }
+          ],
+          "explanation": "【基礎】近似解を $y=\\sum_j\\phi_jq_j$ と表します。i番目の方程式を作る重みを $w_i=\\phi_i$ と選ぶ方法がガラーキン法です。例えば二つの形で近似するなら、$\\int R\\phi_1dx=0$ と $\\int R\\phi_2dx=0$ の二つを作ります。係数が二つあれば、それらを決める二つの方程式が必要になります。基底と違う重みを選ぶのがペトロフ・ガラーキン法で、名前を入れ替えないようにします。\n【考え方】正解は2です。基底と同じ関数で残差の分布を調べます。\n【ポイント】基底と同じ関数で残差の分布を調べます。\n【引っかけ】1：選点法は指定した点で残差を0にします。",
+          "relatedFormulas": [
+            "v1ch1-12",
+            "v1ch1-13"
+          ],
+          "editorialReview": {
+            "officialPoint": "基底と同じ関数を重みにする方法。基底と同じ関数で残差の分布を調べます。",
+            "alignment": "保存済み公式問1-19の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "選点法は指定した点で残差を0にします。"
+            },
+            "sha256": "fb2d3d368bf7fccfb3d1543ee11b0ca24b5d9b4ba6e4891329275485921b1ed0"
+          }
+        },
+        {
+          "id": "vib1-1-19-item-b",
+          "number": "1-19",
+          "officialRef": "問1-19",
+          "officialQuestionItem": "b",
+          "title": "デルタ関数を重みにする方法",
+          "topic": "重みつき残差法の分類",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "重みにディラックのデルタ関数を用いる方法はどれですか。",
+          "choices": [
+            "選点法",
+            "ガラーキン法"
+          ],
+          "answer": 1,
+          "answerSummary": "一点の残差を取り出すので選点法です。",
+          "easyExplanation": [
+            {
+              "title": "選点法は、指定した点で残差を0にします",
+              "body": "重みに $w_i=\\delta(x-x_i)$ を使うと、$\\int R(x)\\delta(x-x_i)dx=R(x_i)$ です。したがって重みつき積分を0にする条件は、指定した点の残差を0にする条件になります。これが選点法です。デルタ関数は積分で一点の値を取り出すので、名前の「点を選ぶ」と対応します。ガラーキン法は関数全体を重みにし、選点法は点の値を取り出す、という違いです。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。一点の残差を取り出すので選点法です。 2：ガラーキン法は、近似に使う基底関数と同じ関数を重みにします。デルタ関数で点の値を取り出す方法は選点法です。"
+            }
+          ],
+          "explanation": "【基礎】重みに $w_i=\\delta(x-x_i)$ を使うと、$\\int R(x)\\delta(x-x_i)dx=R(x_i)$ です。したがって重みつき積分を0にする条件は、指定した点の残差を0にする条件になります。これが選点法です。デルタ関数は積分で一点の値を取り出すので、名前の「点を選ぶ」と対応します。ガラーキン法は関数全体を重みにし、選点法は点の値を取り出す、という違いです。\n【考え方】正解は1です。一点の残差を取り出すので選点法です。\n【ポイント】一点の残差を取り出すので選点法です。\n【引っかけ】2：ガラーキン法は、近似に使う基底関数と同じ関数を重みにします。デルタ関数で点の値を取り出す方法は選点法です。",
+          "relatedFormulas": [
+            "v1ch1-12",
+            "v1ch1-13"
+          ],
+          "editorialReview": {
+            "officialPoint": "デルタ関数を重みにする方法。一点の残差を取り出すので選点法です。",
+            "alignment": "保存済み公式問1-19の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "ガラーキン法は、近似に使う基底関数と同じ関数を重みにします。デルタ関数で点の値を取り出す方法は選点法です。"
+            },
+            "sha256": "aea261aa5ca652073bab2fa9863d1b984ce36a8d212cffe62ad5f9c7fdbfc35a"
+          }
+        },
+        {
+          "id": "vib1-1-19-item-c",
+          "number": "1-19",
+          "officialRef": "問1-19",
+          "officialQuestionItem": "c",
+          "title": "局所性から生じる行列の性質",
+          "topic": "重みつき残差法の分類",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "形状関数が節点の近傍だけで0でないことから、行列はどの性質を持ちますか。",
+          "choices": [
+            "疎になる",
+            "直交行列になる"
+          ],
+          "answer": 1,
+          "answerSummary": "離れた節点の形状関数が重ならず、多くの係数が0になります。",
+          "easyExplanation": [
+            {
+              "title": "遠い節点の形が重ならないと、積分は0です",
+              "body": "標準的な有限要素法では、節点付近だけで0でない形状関数を使います。棒の節点1・2・3が隣り合い、要素が1と2、2と3をつなぐ例なら、節点1と3の形は区間の内部で重なりません。剛性の $K_{13}=\\int EA\\phi_1'\\phi_3'dx$ は0になります。隣同士の1と2、2と3は重なるため、結合する係数が残ります。これが局所性です。接する一点だけは積分する長さを持たないので、遠い節点同士の結合にはなりません。",
+              "figures": [
+                {
+                  "figureImage": "v1e1GalerkinSymmetry",
+                  "caption": "局所性は疎行列、同じ重みと対称な問題は対称行列につながります。"
+                }
+              ]
+            },
+            {
+              "title": "疎行列は、零が多い行列です",
+              "body": "等しい二つの一次棒要素なら、拘束を課す前の行列の例は $[K]=(EA/h)\\begin{pmatrix}1&-1&0\\\\-1&2&-1\\\\0&-1&1\\end{pmatrix}$ です。$h$ は各要素の長さです。右上と左下が0で、離れた節点が直接は結ばれないことを表します。節点が増えても各節点が近所とだけつながるので、全成分に比べ非零の割合が小さくなります。行列の上半分や下半分が丸ごと0になる三角行列、という意味ではありません。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。離れた節点の形状関数が重ならず、多くの係数が0になります。 2：零成分が多いことと、列同士の正規直交性は別です。"
+            }
+          ],
+          "explanation": "【基礎】標準的な有限要素法では、節点付近だけで0でない形状関数を使います。棒の節点1・2・3が隣り合い、要素が1と2、2と3をつなぐ例なら、節点1と3の形は区間の内部で重なりません。剛性の $K_{13}=\\int EA\\phi_1'\\phi_3'dx$ は0になります。隣同士の1と2、2と3は重なるため、結合する係数が残ります。これが局所性です。接する一点だけは積分する長さを持たないので、遠い節点同士の結合にはなりません。\n【考え方】正解は1です。離れた節点の形状関数が重ならず、多くの係数が0になります。\n【ポイント】等しい二つの一次棒要素なら、拘束を課す前の行列の例は $[K]=(EA/h)\\begin{pmatrix}1&-1&0\\\\-1&2&-1\\\\0&-1&1\\end{pmatrix}$ です。$h$ は各要素の長さです。右上と左下が0で、離れた節点が直接は結ばれないことを表します。節点が増えても各節点が近所とだけつながるので、全成分に比べ非零の割合が小さくなります。行列の上半分や下半分が丸ごと0になる三角行列、という意味ではありません。\n【引っかけ】2：零成分が多いことと、列同士の正規直交性は別です。",
+          "relatedFormulas": [
+            "v1ch1-12",
+            "v1ch1-13"
+          ],
+          "editorialReview": {
+            "officialPoint": "局所性から生じる行列の性質。離れた節点の形状関数が重ならず、多くの係数が0になります。",
+            "alignment": "保存済み公式問1-19の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "零成分が多いことと、列同士の正規直交性は別です。"
+            },
+            "sha256": "9e048a6eb37fae6feab123c2e107c1b382eacc8c0181f856a43f6e79a5cbd83f"
+          }
         }
       ]
     },
@@ -1335,7 +4607,7 @@
           "3": "ガラーキン法の対称性を見落とし非対称とする誤解。",
           "4": "疎性・対称性の両方を取り違える誤解。"
         },
-        "sha256": "74f4bca2ed4e2c64e0c56b7945996afdc00f5cae5abd13bd8b3ab15a4ec21b5e"
+        "sha256": "a384530bc3ed897ecbe3d63208f8661b072a22cdf5dd050e35575cb2438182fd"
       },
       "easyExplanation": [
         {
@@ -1366,12 +4638,165 @@
           "title": "遠い節点との係数が0でも、影響が届かないわけではありません",
           "body": "節点1と3が直接結合しなくても、1と2、2と3がつながれば、全体の連立方程式を通じて互いに影響します。鎖の一部を動かすと隣を介して先へ動きが伝わるようなイメージです。疎行列の零は、ある組の直接の係数がないことを表し、物体がばらばらで独立に動くという意味ではありません。"
         }
+      ],
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "answerSummary": "ガラーキン有限要素法は両方の性質を併せ持つため、自己随伴な弾性・慣性問題では係数行列は疎かつ対称となります。よって①が正しいです。",
+      "sharedQuestion": "対称な弾性・慣性問題をガラーキン有限要素法で解きます。重み、形状関数の広がり、行列の性質を対応させてください。",
+      "studyParts": [
+        {
+          "id": "vib1-1-20-item-a",
+          "number": "1-20",
+          "officialRef": "問1-20",
+          "officialQuestionItem": "a",
+          "title": "重みとして使う関数",
+          "topic": "ガラーキン有限要素法",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "重み関数はどちらですか。",
+          "choices": [
+            "形状関数と同じ関数",
+            "ディラックのデルタ関数"
+          ],
+          "answer": 1,
+          "answerSummary": "同じ関数を用いるのがガラーキン法です。",
+          "easyExplanation": [
+            {
+              "title": "同じ関数を重みにすることが、対称性を作ります",
+              "body": "ガラーキン法では、近似の基底と重み関数を同じにします。今回の対称な弾性の積分形では、$K_{ij}=\\int EA\\phi_i'\\phi_j'dx$、$K_{ji}=\\int EA\\phi_j'\\phi_i'dx$ です。積の順序を入れ替えても値は同じなので、$K_{ij}=K_{ji}$ です。質量行列も同様です。ここでは対称な問題という前提も必要で、ガラーキンという名前だけで、どんな方程式の係数でも対称とするわけではありません。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。同じ関数を用いるのがガラーキン法です。 2：デルタ関数を用いて点を選ぶ方法は選点法です。"
+            }
+          ],
+          "explanation": "【基礎】ガラーキン法では、近似の基底と重み関数を同じにします。今回の対称な弾性の積分形では、$K_{ij}=\\int EA\\phi_i'\\phi_j'dx$、$K_{ji}=\\int EA\\phi_j'\\phi_i'dx$ です。積の順序を入れ替えても値は同じなので、$K_{ij}=K_{ji}$ です。質量行列も同様です。ここでは対称な問題という前提も必要で、ガラーキンという名前だけで、どんな方程式の係数でも対称とするわけではありません。\n【考え方】正解は1です。同じ関数を用いるのがガラーキン法です。\n【ポイント】同じ関数を用いるのがガラーキン法です。\n【引っかけ】2：デルタ関数を用いて点を選ぶ方法は選点法です。",
+          "relatedFormulas": [
+            "v1ch1-13"
+          ],
+          "editorialReview": {
+            "officialPoint": "重みとして使う関数。同じ関数を用いるのがガラーキン法です。",
+            "alignment": "保存済み公式問1-20の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "デルタ関数を用いて点を選ぶ方法は選点法です。"
+            },
+            "sha256": "05522d92e7e38687cdbdd622e5a23415b6e6135b4e58d349e6f3ff17d527a7c1"
+          }
+        },
+        {
+          "id": "vib1-1-20-item-b",
+          "number": "1-20",
+          "officialRef": "問1-20",
+          "officialQuestionItem": "b",
+          "title": "形状関数の広がり",
+          "topic": "ガラーキン有限要素法",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "標準的な有限要素法の形状関数の広がり方はどちらですか。",
+          "choices": [
+            "全ての節点で全領域に一様に広がる",
+            "節点の近傍へ局所的に広がる"
+          ],
+          "answer": 2,
+          "answerSummary": "ある節点の関数は、その近くの要素に限って値を持ちます。",
+          "easyExplanation": [
+            {
+              "title": "局所的な形状関数が、疎性を作ります",
+              "body": "節点の値を使って近くの要素内の変位を表す関数が形状関数です。ある節点から遠い場所では、その節点の関数は0になります。二つの関数が重なる領域を持たなければ、$M_{ij}=\\int\\rho A\\phi_i\\phi_jdx$ や $K_{ij}=\\int EA\\phi_i'\\phi_j'dx$ の積分も0です。遠く離れた節点間に直接の係数がないため、大きな行列でも近所との結合だけが残ります。これが、疎になる理由です。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。ある節点の関数は、その近くの要素に限って値を持ちます。 1：局所的な要素ごとの補間を、大域関数と混同しています。"
+            }
+          ],
+          "explanation": "【基礎】節点の値を使って近くの要素内の変位を表す関数が形状関数です。ある節点から遠い場所では、その節点の関数は0になります。二つの関数が重なる領域を持たなければ、$M_{ij}=\\int\\rho A\\phi_i\\phi_jdx$ や $K_{ij}=\\int EA\\phi_i'\\phi_j'dx$ の積分も0です。遠く離れた節点間に直接の係数がないため、大きな行列でも近所との結合だけが残ります。これが、疎になる理由です。\n【考え方】正解は2です。ある節点の関数は、その近くの要素に限って値を持ちます。\n【ポイント】ある節点の関数は、その近くの要素に限って値を持ちます。\n【引っかけ】1：局所的な要素ごとの補間を、大域関数と混同しています。",
+          "relatedFormulas": [
+            "v1ch1-13"
+          ],
+          "editorialReview": {
+            "officialPoint": "形状関数の広がり。ある節点の関数は、その近くの要素に限って値を持ちます。",
+            "alignment": "保存済み公式問1-20の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "局所的な要素ごとの補間を、大域関数と混同しています。"
+            },
+            "sha256": "3f5d9c4bd7dec94c291e7bdc06cdb1ca1db2478f4d269444c6a91224bfebbd6a"
+          }
+        },
+        {
+          "id": "vib1-1-20-item-c",
+          "number": "1-20",
+          "officialRef": "問1-20",
+          "officialQuestionItem": "c",
+          "title": "二つの性質を合わせる",
+          "topic": "ガラーキン有限要素法",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "この係数行列の性質はどれですか。",
+          "choices": [
+            "密で対称",
+            "疎で対称",
+            "疎で直交",
+            "密で直交"
+          ],
+          "answer": 2,
+          "answerSummary": "局所性が疎性を、対称な積分形と同じ重みが対称性を生みます。",
+          "easyExplanation": [
+            {
+              "title": "疎と対称は、それぞれ何を比べる言葉？",
+              "body": "疎は、行列に零が多いという性質です。対称は、対角線を挟む位置の値が等しいという性質です。例えば2行3列の成分と3行2列の成分が同じか、を調べるのが対称性の確認です。零があるかとは別の問いです。標準的なガラーキン有限要素法は、今回の対称な弾性・慣性問題で、この二つの性質を併せ持ちます。"
+            },
+            {
+              "title": "零の多さと、対角線を挟む対応は別です",
+              "body": "$K_{ij}=\\int EA\\phi_i'\\phi_j'dx$は$i,j$を入れ替えても同じなので対称です。さらに関数が重ならない組では積分が0なので疎です。対称$K^T=K$と直交$K^TK=I$は異なり、剛性行列が単位長さの列ベクトルを持つ必要はありません。",
+              "figures": [
+                {
+                  "figureImage": "v1e1GalerkinSymmetry",
+                  "caption": "零の多さと、対角線を挟んで値が一致することを別々に確認します。"
+                }
+              ]
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。局所性が疎性を、対称な積分形と同じ重みが対称性を生みます。 1：局所的な形状関数から生じる零成分を見落としています。 3：対称と直交を混同しています。 4：局所性と対称性の両方を取り違えています。"
+            }
+          ],
+          "explanation": "【基礎】疎は、行列に零が多いという性質です。対称は、対角線を挟む位置の値が等しいという性質です。例えば2行3列の成分と3行2列の成分が同じか、を調べるのが対称性の確認です。零があるかとは別の問いです。標準的なガラーキン有限要素法は、今回の対称な弾性・慣性問題で、この二つの性質を併せ持ちます。\n【考え方】正解は2です。局所性が疎性を、対称な積分形と同じ重みが対称性を生みます。\n【ポイント】$K_{ij}=\\int EA\\phi_i'\\phi_j'dx$は$i,j$を入れ替えても同じなので対称です。さらに関数が重ならない組では積分が0なので疎です。対称$K^T=K$と直交$K^TK=I$は異なり、剛性行列が単位長さの列ベクトルを持つ必要はありません。\n【引っかけ】1：局所的な形状関数から生じる零成分を見落としています。 3：対称と直交を混同しています。 4：局所性と対称性の両方を取り違えています。",
+          "relatedFormulas": [
+            "v1ch1-13"
+          ],
+          "editorialReview": {
+            "officialPoint": "二つの性質を合わせる。局所性が疎性を、対称な積分形と同じ重みが対称性を生みます。",
+            "alignment": "保存済み公式問1-20の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "局所的な形状関数から生じる零成分を見落としています。",
+              "3": "対称と直交を混同しています。",
+              "4": "局所性と対称性の両方を取り違えています。"
+            },
+            "sha256": "47276ad21bc200f8a079fb0d3d088825e177b354dae48cc589cdbfe1b0209b55"
+          }
+        }
       ]
     },
     {
       "id": "vib1-1-21",
       "number": "1-21",
-      "title": "変分・オイラー方程式と直接法",
+      "title": "関数の微小変化と停留条件",
       "topic": "変分法・オイラー方程式",
       "type": "mc",
       "difficulty": 2,
@@ -1401,7 +4826,7 @@
           "3": "汎関数の停留と被積分関数の零の混同",
           "4": "直接法に厳密解が必要と誤解"
         },
-        "sha256": "5a9a70bf71244c08ab13e93dd81688c9f7f2876b09093c28f823eeee7c995e08"
+        "sha256": "58c3955a0a12df08c1bd1ba293dd84f569cec4b3900cc6785053e21f5a35a081"
       },
       "easyExplanation": [
         {
@@ -1427,6 +4852,157 @@
         {
           "title": "式を解く道と、積分を近似する道の関係",
           "body": "②は、変分からオイラー方程式が得られ、リッツ法では形状関数の和の係数を停留条件で直接求めると説明しているので正解です。①は微分と変分、値0と変分0を混同しています。③は積分全体の停留をfそのものが0だという条件に変えています。④は直接法なのに厳密解を先に要求しています。有限要素法でも要素ごとの形状関数を使い、同じように未知係数へ問題を移します。難しい関数全体を、計算可能な数の未知数で近似するための考え方です。"
+        }
+      ],
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "answerSummary": "$\\delta I=\\int_a^b(f_y\\delta y+f_{y\\prime}\\delta y\\prime)dx$ の第2項を部分積分します。端で $\\delta y=0$ なので $\\delta I=\\int_a^b\\{f_y-d(f_{y\\prime})/dx\\}\\delta y\\,dx$ です。どの変分でも零となるには括弧内が零、すなわちオイラー方程式が必要です。リッツ法は $y=\\sum_iN_iq_i$ と近似し、停留条件から係数を直接求めるので②です。",
+      "sharedQuestion": "両端の値を固定した関数$y(x)$に対して、$I[y]=\\int_a^b f(x,y,y')dx$を考えます。候補を$y+\\delta y$へ少し変え、$I$が停留する条件を求めます。",
+      "studyParts": [
+        {
+          "id": "vib1-1-21-item-a",
+          "number": "1-21",
+          "officialRef": "問1-21",
+          "officialQuestionItem": "a",
+          "title": "関数そのものの微小変化",
+          "topic": "変分法・オイラー方程式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$\\delta y$は何と呼びますか。",
+          "choices": [
+            "微分",
+            "変分"
+          ],
+          "answer": 2,
+          "answerSummary": "グラフの上を進むのでなく、グラフ自体を少し変える操作です。",
+          "easyExplanation": [
+            {
+              "title": "一本のグラフを動くことと、グラフを変えること",
+              "body": "普通の微分 $y'=dy/dx$ は、一本のグラフの上で横へ進むと縦の値がどう変わるかを表します。変分は、そのグラフ自体を少し別の形へ変える操作です。$y(x)$ を $y(x)+\\eta h(x)$ へ変え、$\\delta y=\\eta h$ と書きます。両端の値は保つので $h(a)=h(b)=0$ です。$\\delta y$ は、xの増分や時間微分ではありません。"
+            },
+            {
+              "title": "汎関数は、グラフ全体を一つの値へ変えます",
+              "body": "$I[y]=\\int_a^b f(x,y,y')dx$ は、候補のグラフを入れると一つの数が出る仕組みです。これを汎関数といいます。このfは積分の中身を表す関数で、必ずしも力の意味ではありません。グラフを少し変えれば、yだけでなく傾き $y'$ も変わるので、その両方がIの変化へ効きます。一次の変化は $\\delta I=\\int_a^b(f_y\\delta y+f_{y'}\\delta y')dx$ です。下付きは、どの変数で偏微分するかを表しています。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。グラフの上を進むのでなく、グラフ自体を少し変える操作です。 1：微分は同じ関数内で独立変数を動かす操作です。"
+            }
+          ],
+          "explanation": "【基礎】普通の微分 $y'=dy/dx$ は、一本のグラフの上で横へ進むと縦の値がどう変わるかを表します。変分は、そのグラフ自体を少し別の形へ変える操作です。$y(x)$ を $y(x)+\\eta h(x)$ へ変え、$\\delta y=\\eta h$ と書きます。両端の値は保つので $h(a)=h(b)=0$ です。$\\delta y$ は、xの増分や時間微分ではありません。\n【考え方】正解は2です。グラフの上を進むのでなく、グラフ自体を少し変える操作です。\n【ポイント】$I[y]=\\int_a^b f(x,y,y')dx$ は、候補のグラフを入れると一つの数が出る仕組みです。これを汎関数といいます。このfは積分の中身を表す関数で、必ずしも力の意味ではありません。グラフを少し変えれば、yだけでなく傾き $y'$ も変わるので、その両方がIの変化へ効きます。一次の変化は $\\delta I=\\int_a^b(f_y\\delta y+f_{y'}\\delta y')dx$ です。下付きは、どの変数で偏微分するかを表しています。\n【引っかけ】1：微分は同じ関数内で独立変数を動かす操作です。",
+          "relatedFormulas": [
+            "v1ch1-14"
+          ],
+          "editorialReview": {
+            "officialPoint": "関数そのものの微小変化。グラフの上を進むのでなく、グラフ自体を少し変える操作です。",
+            "alignment": "保存済み公式問1-21の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "微分は同じ関数内で独立変数を動かす操作です。"
+            },
+            "sha256": "923fdf81b0a933ae27de5dc2c1971ad25460bd1b5fc1603379fb8e7744a566a3"
+          }
+        },
+        {
+          "id": "vib1-1-21-item-b",
+          "number": "1-21",
+          "officialRef": "問1-21",
+          "officialQuestionItem": "b",
+          "title": "停留条件から得る方程式",
+          "topic": "変分法・オイラー方程式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "任意の$\\delta y$で$\\delta I=0$となる条件から得られるのはどちらですか。",
+          "choices": [
+            "$f_y-\\frac{d}{dx}f_{y'}=0$というオイラーの微分方程式",
+            "$f=0$という条件だけ"
+          ],
+          "answer": 1,
+          "answerSummary": "部分積分でδyの係数を取り出して0にします。",
+          "easyExplanation": [
+            {
+              "title": "部分積分で、変分の微分を移します",
+              "body": "後半は $\\int f_{y'}\\delta y'dx=[f_{y'}\\delta y]_a^b-\\int\\{d(f_{y'})/dx\\}\\delta ydx$ です。端では $\\delta y=0$ なので、最初の項が消えます。したがって $\\delta I=\\int_a^b\\{f_y-d(f_{y'})/dx\\}\\delta ydx$。どの許される変分に対しても0になるには、括弧内を0とする必要があり、$f_y-d(f_{y'})/dx=0$ が得られます。これがオイラーの微分方程式です。"
+            },
+            {
+              "title": "具体例なら、微分方程式は直線を与えます",
+              "body": "数学の例として $I[y]=\\int_0^1(y')^2/2\\,dx$、$y(0)=0$、$y(1)=1$ とします。$f_y=0$、$f_{y'}=y'$ なので、オイラー方程式は $-y''=0$ です。一回積分で $y'=C_1$、二回で $y=C_1x+C_2$。端の値を入れると $C_2=0$、$C_1=1$ なので $y=x$ です。このとき $I=1/2$ で、0ではありません。停留はIの値が0という意味ではないと確かめられます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。部分積分でδyの係数を取り出して0にします。 2：積分全体の一次変化0と、積分の中身の値0は異なります。"
+            }
+          ],
+          "explanation": "【基礎】後半は $\\int f_{y'}\\delta y'dx=[f_{y'}\\delta y]_a^b-\\int\\{d(f_{y'})/dx\\}\\delta ydx$ です。端では $\\delta y=0$ なので、最初の項が消えます。したがって $\\delta I=\\int_a^b\\{f_y-d(f_{y'})/dx\\}\\delta ydx$。どの許される変分に対しても0になるには、括弧内を0とする必要があり、$f_y-d(f_{y'})/dx=0$ が得られます。これがオイラーの微分方程式です。\n【考え方】正解は1です。部分積分でδyの係数を取り出して0にします。\n【ポイント】数学の例として $I[y]=\\int_0^1(y')^2/2\\,dx$、$y(0)=0$、$y(1)=1$ とします。$f_y=0$、$f_{y'}=y'$ なので、オイラー方程式は $-y''=0$ です。一回積分で $y'=C_1$、二回で $y=C_1x+C_2$。端の値を入れると $C_2=0$、$C_1=1$ なので $y=x$ です。このとき $I=1/2$ で、0ではありません。停留はIの値が0という意味ではないと確かめられます。\n【引っかけ】2：積分全体の一次変化0と、積分の中身の値0は異なります。",
+          "relatedFormulas": [
+            "v1ch1-14"
+          ],
+          "editorialReview": {
+            "officialPoint": "停留条件から得る方程式。部分積分でδyの係数を取り出して0にします。",
+            "alignment": "保存済み公式問1-21の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "積分全体の一次変化0と、積分の中身の値0は異なります。"
+            },
+            "sha256": "25ed34888882baee7897c3d715e23774f88130173f7078b4b83ecb8b4deaee9b"
+          }
+        },
+        {
+          "id": "vib1-1-21-item-c",
+          "number": "1-21",
+          "officialRef": "問1-21",
+          "officialQuestionItem": "c",
+          "title": "有限要素法で近似に用いる関数",
+          "topic": "変分法・オイラー方程式",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "未定係数と組み合わせ、解を近似する関数はどれですか。",
+          "choices": [
+            "形状関数",
+            "正準運動量"
+          ],
+          "answer": 1,
+          "answerSummary": "候補の形を決め、残る係数を停留条件から求めます。",
+          "easyExplanation": [
+            {
+              "title": "リッツ法なら、係数を直接決めます",
+              "body": "同じ例で、端の値を満たす候補を $y=x+c x(1-x)$ と置きます。未知量はグラフ全体ではなく係数cです。$y'=1+c(1-2x)$ を積分へ入れると、$I=(1/2)\\int_0^1\\{1+2c(1-2x)+c^2(1-2x)^2\\}dx=1/2+c^2/6$ です。一次の項の積分が0で、二次の係数は1/6になります。停留条件 $dI/dc=c/3=0$ から $c=0$、同じ直線が得られます。厳密解を先に求めなくても、候補の係数を直接決められます。"
+            },
+            {
+              "title": "厳密解を先に求める必要はありません",
+              "body": "関数全体を未知にする代わりに、形状関数と少数の未知係数へ置き換えます。有限要素法ではこれを要素ごとに行い、全体の連立方程式を組み立てます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。候補の形を決め、残る係数を停留条件から求めます。 2：運動量は解の形を補間する関数ではありません。"
+            }
+          ],
+          "explanation": "【基礎】同じ例で、端の値を満たす候補を $y=x+c x(1-x)$ と置きます。未知量はグラフ全体ではなく係数cです。$y'=1+c(1-2x)$ を積分へ入れると、$I=(1/2)\\int_0^1\\{1+2c(1-2x)+c^2(1-2x)^2\\}dx=1/2+c^2/6$ です。一次の項の積分が0で、二次の係数は1/6になります。停留条件 $dI/dc=c/3=0$ から $c=0$、同じ直線が得られます。厳密解を先に求めなくても、候補の係数を直接決められます。\n【考え方】正解は1です。候補の形を決め、残る係数を停留条件から求めます。\n【ポイント】関数全体を未知にする代わりに、形状関数と少数の未知係数へ置き換えます。有限要素法ではこれを要素ごとに行い、全体の連立方程式を組み立てます。\n【引っかけ】2：運動量は解の形を補間する関数ではありません。",
+          "relatedFormulas": [
+            "v1ch1-14"
+          ],
+          "editorialReview": {
+            "officialPoint": "有限要素法で近似に用いる関数。候補の形を決め、残る係数を停留条件から求めます。",
+            "alignment": "保存済み公式問1-21の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "運動量は解の形を補間する関数ではありません。"
+            },
+            "sha256": "1457e394cfced26608b75da709551dad9d65a22e40c2cce1585c49f09531ac05"
+          }
         }
       ]
     },
@@ -1466,7 +5042,7 @@
           "2": "自由端を固定端と誤り両端 $\\theta=0$ とする誤解。",
           "4": "固定端を自由端と誤り両端を勾配零とする誤解。"
         },
-        "sha256": "1645bfbe7cc020699acd030d3c0ed41fadcad75d178099e21ab9bbbcc490b5e3"
+        "sha256": "6866da8401b112b9611b8b0c0424d2cd856c014f290f6c71643d5148ac790dba"
       },
       "easyExplanation": [
         {
@@ -1492,6 +5068,162 @@
         {
           "title": "実際に条件を満たす形で確認します",
           "body": "$\\theta(x,t)=q(t)\\sin(\\pi x/(2l))$ を例にすると、左端の角度は0です。空間微分は $\\theta_x=q(t)\\{\\pi/(2l)\\}\\cos(\\pi x/(2l))$ なので、右端ではcosが0になりトルクも0です。一方、右端の角度は $q(t)$ で、振動中には0とは限りません。左端の勾配も一般には0ではありません。この形から、固定端で止める角度と、自由端で止めるトルクが別の量だと確かめられます。"
+        }
+      ],
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "answerSummary": "固定端 $x=0$ ではねじれ角が拘束され幾何学的境界条件 $\\theta=0$（このとき $\\delta\\theta=0$）、自由端 $x=l$ では $\\delta\\theta$ が任意なので境界項が消えるには係数が零、すなわち力学的境界条件 $GJ\\,\\partial\\theta/\\partial x=0$ が要求されます。よって③が正しいです。",
+      "sharedQuestion": "左端$x=0$を固定、右端$x=l$を自由にした丸棒のねじり振動です。ねじれ角$\\theta(x,t)$、ねじり剛性$GJ$を用います。ハミルトンの原理の部分積分で端に$GJ\\theta_{,x}\\delta\\theta$が現れます。端には外部トルクを加えません。",
+      "studyParts": [
+        {
+          "id": "vib1-1-22-item-a",
+          "number": "1-22",
+          "officialRef": "問1-22",
+          "officialQuestionItem": "a",
+          "title": "固定端の仮想回転",
+          "topic": "ねじり振動の境界条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "左端で必ず成り立つのはどちらですか。",
+          "choices": [
+            "$\\delta\\theta=0$",
+            "$\\theta_{,x}=0$"
+          ],
+          "answer": 1,
+          "answerSummary": "固定端は、仮想的にも回転させません。",
+          "easyExplanation": [
+            {
+              "title": "固定端では、仮想的にも角度を変えられません",
+              "body": "左端は固定されているので、$\\theta(0,t)=0$ です。同じ固定条件を満たす配置を比べるため、仮想的な変化も $\\delta\\theta(0,t)=0$ です。したがって左端の境界項は、トルクが0でなくても消えます。固定具は回転を止める反トルクを伝えられます。左端で0にするのは角度であり、角度の空間微分ではありません。固定端をトルク0としてしまうと、固定具の役割を取り違えます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は1です。固定端は、仮想的にも回転させません。 2：固定具は反トルクを伝えるので、トルクに比例する勾配は0とは限りません。"
+            }
+          ],
+          "explanation": "【基礎】左端は固定されているので、$\\theta(0,t)=0$ です。同じ固定条件を満たす配置を比べるため、仮想的な変化も $\\delta\\theta(0,t)=0$ です。したがって左端の境界項は、トルクが0でなくても消えます。固定具は回転を止める反トルクを伝えられます。左端で0にするのは角度であり、角度の空間微分ではありません。固定端をトルク0としてしまうと、固定具の役割を取り違えます。\n【考え方】正解は1です。固定端は、仮想的にも回転させません。\n【ポイント】固定端は、仮想的にも回転させません。\n【引っかけ】2：固定具は反トルクを伝えるので、トルクに比例する勾配は0とは限りません。",
+          "relatedFormulas": [
+            "v1ch1-15",
+            "v1ch1-9"
+          ],
+          "editorialReview": {
+            "officialPoint": "固定端の仮想回転。固定端は、仮想的にも回転させません。",
+            "alignment": "保存済み公式問1-22の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "2": "固定具は反トルクを伝えるので、トルクに比例する勾配は0とは限りません。"
+            },
+            "sha256": "1f1d595c50e80c0467279846ca9a7a80926399fa0ffad2e0c7fa82a145fb9c4e"
+          }
+        },
+        {
+          "id": "vib1-1-22-item-b",
+          "number": "1-22",
+          "officialRef": "問1-22",
+          "officialQuestionItem": "b",
+          "title": "自由端の仮想回転",
+          "topic": "ねじり振動の境界条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "右端の$\\delta\\theta$はどちらですか。",
+          "choices": [
+            "0に固定する",
+            "任意に選べる"
+          ],
+          "answer": 2,
+          "answerSummary": "自由端の角度は拘束されていません。",
+          "easyExplanation": [
+            {
+              "title": "自由端で止めるのは角度ではありません",
+              "body": "端の角度を0にすると、自由端ではなく固定端に変わってしまいます。許される仮想回転は任意なので、それを掛けた端の仕事が常に0になる条件を、トルク側に課します。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。自由端の角度は拘束されていません。 1：自由端の角度まで拘束してしまいます。"
+            }
+          ],
+          "explanation": "【基礎】端の角度を0にすると、自由端ではなく固定端に変わってしまいます。許される仮想回転は任意なので、それを掛けた端の仕事が常に0になる条件を、トルク側に課します。\n【考え方】正解は2です。自由端の角度は拘束されていません。\n【ポイント】自由端の角度は拘束されていません。\n【引っかけ】1：自由端の角度まで拘束してしまいます。",
+          "relatedFormulas": [
+            "v1ch1-15",
+            "v1ch1-9"
+          ],
+          "editorialReview": {
+            "officialPoint": "自由端の仮想回転。自由端の角度は拘束されていません。",
+            "alignment": "保存済み公式問1-22の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "自由端の角度まで拘束してしまいます。"
+            },
+            "sha256": "4b4acaf56d09b0ddf74cf65625501b0ee8b7be832ef69ff75a560eb45471e7b3"
+          }
+        },
+        {
+          "id": "vib1-1-22-item-c",
+          "number": "1-22",
+          "officialRef": "問1-22",
+          "officialQuestionItem": "c",
+          "title": "自由端の力学的条件",
+          "topic": "ねじり振動の境界条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "任意の$\\delta\\theta$について$GJ\\theta_{,x}\\delta\\theta=0$になる条件はどちらですか。",
+          "choices": [
+            "$\\theta=0$",
+            "$\\theta_{,x}=0$"
+          ],
+          "answer": 2,
+          "answerSummary": "トルク$GJ\\theta_{,x}$が0なので、角度の空間勾配が0です。",
+          "easyExplanation": [
+            {
+              "title": "隣り合う断面の角度差が、ねじりの力を作ります",
+              "body": "断面が全て同じ角度だけ回るなら、断面同士の相対的なねじれはありません。ねじれの強さは、隣り合う場所で角度がどう変わるかという $\\theta_x=\\partial\\theta/\\partial x$ で表します。トルクは $M_t=GJ\\theta_x$ です。Gは横弾性係数、Jは断面二次極モーメントで、積 $GJ$ はねじり剛性です。$\\theta_x$ の単位は長さの逆数なので、$GJ\\theta_x$ はN mというトルクの単位になります。"
+            },
+            {
+              "title": "任意の数を掛けても0になるには",
+              "body": "$\\delta\\theta$がどんな小さな値でも積を0にするには、その係数$GJ\\theta_{,x}=0$が必要です。$GJ>0$なので$\\theta_{,x}=0$です。自由端自体は回転でき、隣の断面との角度差によるトルクだけが0になります。",
+              "figures": [
+                {
+                  "figureImage": "v1e1TorsionRod",
+                  "caption": "左は角度0、右はトルク0です。自由端が回れないという意味ではありません。"
+                }
+              ]
+            },
+            {
+              "title": "実際に条件を満たす形で確認します",
+              "body": "$\\theta(x,t)=q(t)\\sin(\\pi x/(2l))$ を例にすると、左端の角度は0です。空間微分は $\\theta_x=q(t)\\{\\pi/(2l)\\}\\cos(\\pi x/(2l))$ なので、右端ではcosが0になりトルクも0です。一方、右端の角度は $q(t)$ で、振動中には0とは限りません。左端の勾配も一般には0ではありません。この形から、固定端で止める角度と、自由端で止めるトルクが別の量だと確かめられます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "正解は2です。トルク$GJ\\theta_{,x}$が0なので、角度の空間勾配が0です。 1：回転角を0にすると固定端の条件になってしまいます。"
+            }
+          ],
+          "explanation": "【基礎】断面が全て同じ角度だけ回るなら、断面同士の相対的なねじれはありません。ねじれの強さは、隣り合う場所で角度がどう変わるかという $\\theta_x=\\partial\\theta/\\partial x$ で表します。トルクは $M_t=GJ\\theta_x$ です。Gは横弾性係数、Jは断面二次極モーメントで、積 $GJ$ はねじり剛性です。$\\theta_x$ の単位は長さの逆数なので、$GJ\\theta_x$ はN mというトルクの単位になります。\n【考え方】正解は2です。トルク$GJ\\theta_{,x}$が0なので、角度の空間勾配が0です。\n【ポイント】$\\delta\\theta$がどんな小さな値でも積を0にするには、その係数$GJ\\theta_{,x}=0$が必要です。$GJ>0$なので$\\theta_{,x}=0$です。自由端自体は回転でき、隣の断面との角度差によるトルクだけが0になります。\n【引っかけ】1：回転角を0にすると固定端の条件になってしまいます。",
+          "relatedFormulas": [
+            "v1ch1-15",
+            "v1ch1-9"
+          ],
+          "editorialReview": {
+            "officialPoint": "自由端の力学的条件。トルク$GJ\\theta_{,x}$が0なので、角度の空間勾配が0です。",
+            "alignment": "保存済み公式問1-22の該当質問を照合し、共通条件を親に残して個別回答と導出を配置。公式指定の選択形式を保持する。",
+            "distractorMisconceptions": {
+              "1": "回転角を0にすると固定端の条件になってしまいます。"
+            },
+            "sha256": "98e919159148a1a82c657ecb9f52be2c4449d31428dfc4ddbdf8a6863cf91dc0"
+          }
         }
       ]
     }

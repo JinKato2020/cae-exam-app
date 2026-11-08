@@ -282,7 +282,7 @@ for name in ('math-basics','solid-basics','heat-basics','fem-basics','fem-practi
 console.log('Solid2 and Thermal2 unified chapters: IDs, choice grouping, inline figures and quality gates PASS');
 
 // 質問の数だけ回答できる小問を置く。組合せ形式を例外にしない。
-for (const [file, pageCount, responseCount] of [['vib2-01-math-basics',18,30],['vib2-02-dynamics',23,40],['vib2-03-strength-of-materials',17,24],['vib2-04-vibration-acoustics',44,64],['vib2-05-fem-basics',19,37],['vib2-06-element-meshing',13,22],['vib2-09-numerical-methods',19,51],['vib2-10-post-processing',19,39],["vib2-07-modeling-basics",19,49],["vib2-08-boundary-load-conditions",21,44],["vib2-11-result-verification",23,66],["vib2-12-computer-basics",17,19],["vib2-13-ethics",7,15]]) {
+for (const [file, pageCount, responseCount] of [['vib1-01-analytical-mechanics',22,75],['vib1-02-vibration-engineering',45,107],['vib1-03-finite-element-technology',30,79],['vib1-04-coupling-boundary',22,53],['vib1-05-structural-coupled-systems',21,63],['vib1-06-acoustic-coupled-systems',37,100],['vib1-07-fluid-coupled-systems',21,65],['vib1-08-numerical-computation',37,93],['vib1-09-result-verification',26,68],['vib2-01-math-basics',18,30],['vib2-02-dynamics',23,40],['vib2-03-strength-of-materials',17,24],['vib2-04-vibration-acoustics',44,64],['vib2-05-fem-basics',19,37],['vib2-06-element-meshing',13,22],['vib2-09-numerical-methods',19,51],['vib2-10-post-processing',19,39],["vib2-07-modeling-basics",19,49],["vib2-08-boundary-load-conditions",21,44],["vib2-11-result-verification",23,66],["vib2-12-computer-basics",17,19],["vib2-13-ethics",7,15]]) {
  const source=JSON.parse(fs.readFileSync('content/questions/'+file+'.json','utf8'));
  const expanded=parts.expandChapter(source);
  assert.equal(expanded.questions.length,pageCount);
@@ -303,7 +303,7 @@ import json,copy,sys
 from pathlib import Path
 sys.path.insert(0,'tools')
 from check_quality import require_editorial_review,study_parts_errors
-for file in ('vib2-01-math-basics','vib2-02-dynamics','vib2-03-strength-of-materials','vib2-04-vibration-acoustics','vib2-05-fem-basics','vib2-06-element-meshing','vib2-09-numerical-methods','vib2-10-post-processing','vib2-07-modeling-basics','vib2-08-boundary-load-conditions','vib2-11-result-verification','vib2-12-computer-basics','vib2-13-ethics'):
+for file in ('vib1-01-analytical-mechanics','vib1-02-vibration-engineering','vib1-03-finite-element-technology','vib1-04-coupling-boundary','vib1-05-structural-coupled-systems','vib1-06-acoustic-coupled-systems','vib1-07-fluid-coupled-systems','vib1-08-numerical-computation','vib1-09-result-verification','vib2-01-math-basics','vib2-02-dynamics','vib2-03-strength-of-materials','vib2-04-vibration-acoustics','vib2-05-fem-basics','vib2-06-element-meshing','vib2-09-numerical-methods','vib2-10-post-processing','vib2-07-modeling-basics','vib2-08-boundary-load-conditions','vib2-11-result-verification','vib2-12-computer-basics','vib2-13-ethics'):
  d=json.loads(Path('content/questions/'+file+'.json').read_bytes())
  require_editorial_review(d)
  bad=copy.deepcopy(d)
@@ -945,3 +945,186 @@ for(const [file,ch] of [["vib2-07-modeling-basics",7],["vib2-08-boundary-load-co
  const data=JSON.parse(fs.readFileSync("content/questions/"+file+".json","utf8"));
  for(const q of data.questions) assert.deepEqual(q.studyParts?.map(p=>p.officialQuestionItem)??["main"],vibrationRemainingItems[ch][Number(q.number.split("-")[1])]??["main"],q.number+": official item missing");
 }
+
+// 振動1級1〜9章：保存済み公式の空欄・候補ごとの問いを保持する。
+const vibration1Items = {
+  1: {1:'a b c',2:'a b c d',3:'a b c',4:'a b c',5:'a b c d',6:'a b c',7:'a b c',8:'a b c',9:'a b c',10:'a b c d',11:'a b c',12:'a-T a-U a-W b-M b-K b-F c',13:'a b c',14:'candidate-1 candidate-2 candidate-3 candidate-4',15:'candidate-1 candidate-2 candidate-3 candidate-4 candidate-5',16:'a b c',17:'a b c',18:'a b',19:'a b c',20:'a b c',21:'a b c',22:'a b c'},
+  2: {3:'a b',5:'a b c',6:'a b c d',7:'a b c',8:'a b',9:'a b c',10:'a b c',11:'a b c',17:'a b c',18:'a b c',19:'a b c',20:'a b c',21:'a b',22:'a b c',23:'a b',25:'a b c',26:'a b c d',27:'a b c',28:'a b c',29:'a b',30:'statement-1 statement-2 statement-3 statement-4 statement-5',31:'a b c',32:'a b',33:'a b',34:'a b c',35:'a b',36:'a b c',37:'a b',38:'a b c d',41:'a b c',42:'a b c',43:'a b c',44:'a b',45:'a b'}
+};
+Object.assign(vibration1Items,{
+  "3": {
+    "1": "a b c",
+    "2": "a b c",
+    "3": "a b c d",
+    "4": "a b c",
+    "5": "a b c",
+    "6": "a b c",
+    "7": "a b c",
+    "8": "a b c d",
+    "9": "a b c",
+    "10": "a b",
+    "12": "a b c d",
+    "13": "a b",
+    "15": "N1 N2",
+    "16": "N1 N2",
+    "18": "a b c d",
+    "19": "a b c",
+    "22": "a b c",
+    "23": "a b c",
+    "24": "a b",
+    "25": "a b c",
+    "26": "a b c",
+    "27": "a b c",
+    "28": "a b c",
+    "29": "a b c d",
+    "30": "M K"
+  },
+  "4": {
+    "1": "a b c",
+    "3": "a b c d e",
+    "4": "a b c",
+    "5": "a b c d",
+    "6": "a b c d",
+    "8": "a b",
+    "9": "a b",
+    "10": "a b",
+    "13": "y I",
+    "14": "a b c d e",
+    "17": "a b c d",
+    "18": "a b c d",
+    "20": "a b c d"
+  }
+});
+Object.assign(vibration1Items,{
+  "5": {
+    "1": "a b c",
+    "2": "a b c",
+    "3": "a b",
+    "4": "a b c",
+    "5": "a b c",
+    "7": "a b c",
+    "8": "a b c d",
+    "9": "a b c",
+    "10": "a b c",
+    "11": "a b c",
+    "12": "a b c d e",
+    "13": "a b c d",
+    "14": "a b c",
+    "15": "a b c",
+    "16": "a b c",
+    "18": "a b c",
+    "19": "a b c d",
+    "20": "a b c",
+    "21": "a b c"
+  },
+  "6": {
+    "1": "a b c d",
+    "2": "a b c",
+    "3": "a b c d",
+    "4": "a b c",
+    "5": "a b c",
+    "6": "a b c",
+    "7": "a b c",
+    "9": "a b c",
+    "10": "a b c d",
+    "11": "a b c",
+    "12": "a b c",
+    "13": "a b",
+    "14": "a b c",
+    "15": "a b c",
+    "16": "a b",
+    "17": "a b c",
+    "18": "a b c d",
+    "19": "a b c",
+    "20": "a b c d",
+    "21": "a b",
+    "22": "a b c",
+    "23": "a b c",
+    "25": "a b c",
+    "28": "a b c",
+    "29": "a b c d",
+    "30": "a b c",
+    "33": "a b c d",
+    "34": "a b c d",
+    "37": "a b c"
+  }
+});
+Object.assign(vibration1Items,{
+  "7": {
+    "1": "a b c",
+    "2": "a b c",
+    "3": "a b c",
+    "4": "a b c",
+    "5": "a b c",
+    "6": "a b c",
+    "7": "a b c",
+    "8": "a b c",
+    "9": "a b c",
+    "10": "a b c",
+    "11": "a b c d",
+    "12": "a b c d",
+    "13": "a b c d",
+    "14": "a b c",
+    "15": "a b c d",
+    "16": "a b c",
+    "19": "a b c",
+    "20": "a b c d",
+    "21": "a b c d"
+  },
+  "8": {
+    "1": "a b c d",
+    "2": "a b c d",
+    "3": "a b c",
+    "4": "a b c",
+    "5": "a b",
+    "6": "a b c",
+    "7": "a b c",
+    "8": "a b c d",
+    "9": "a b c",
+    "10": "a b c",
+    "11": "a b c",
+    "13": "other self",
+    "17": "a b",
+    "21": "a b c d",
+    "22": "a b c d e f",
+    "23": "a b c d",
+    "24": "a b c d",
+    "28": "a b c",
+    "29": "subsystem-1 subsystem-3",
+    "30": "a b c",
+    "31": "a b c d",
+    "32": "a b c d",
+    "33": "a b c",
+    "36": "a b c d"
+  },
+  "9": {
+    "1": "a b",
+    "2": "a b c d",
+    "3": "a b c d",
+    "5": "a b c d",
+    "6": "i ro ha ni",
+    "7": "a b c",
+    "8": "a b c",
+    "10": "a b c",
+    "11": "a b c d",
+    "12": "a b c",
+    "13": "a b c d",
+    "15": "a b c",
+    "17": "a b c",
+    "18": "a b c d",
+    "19": "a b",
+    "22": "a b c",
+    "23": "a b c d",
+    "26": "a b c"
+  }
+});
+for(const [file,ch] of [['vib1-01-analytical-mechanics',1],['vib1-02-vibration-engineering',2],['vib1-03-finite-element-technology',3],['vib1-04-coupling-boundary',4],['vib1-05-structural-coupled-systems',5],['vib1-06-acoustic-coupled-systems',6],['vib1-07-fluid-coupled-systems',7],['vib1-08-numerical-computation',8],['vib1-09-result-verification',9]]){
+ const d=JSON.parse(fs.readFileSync('content/questions/'+file+'.json','utf8'));
+ for(const q of d.questions){
+  assert.deepEqual(q.studyParts?.map(p=>p.officialQuestionItem)??['main'],(vibration1Items[ch][Number(q.number.split('-')[1])]??'main').split(' '),q.id+': official item missing');
+  assert((q.studyParts??[q]).every(p=>p.responseType!=='written'),'公式にない記述問題を加えない');
+  assert((q.studyParts??[q]).every(p=>!p.title.includes('$')),'見出しは通常Textのため数式コードを置かない');
+  for(const p of q.studyParts??[])assert(p.easyExplanation.some(s=>s.title==='選択肢を確かめる'),p.id+': incorrect-choice explanation must be visible');
+ }
+}
+console.log('Vibration1 chapters 1-9: 261 official-number pages, 703 answers PASS');

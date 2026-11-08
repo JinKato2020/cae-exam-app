@@ -590,8 +590,9 @@ def check_file(path, all_titles):
     # 不要な図を省く現行方針。固体1級の統一教材でも文章だけで明快な問へ図を強制しない。
     solid2 = d.get("meta", {}).get("grade") == "固体力学 2級"
     optional_figures = solid2 or (
-        d.get("meta", {}).get("grade") == "固体力学 1級"
-        and d.get("meta", {}).get("explanationMode") == "guided")
+        d.get("meta", {}).get("explanationMode") == "guided"
+        and (d.get("meta", {}).get("grade") == "固体力学 1級"
+             or d.get("meta", {}).get("questionCoverageVersion") == "all-items-v1"))
     # --- 図の必須化＋「回答前/回答後」タグ整合(FAIL・恒久ルール／ユーザー厳命2026-09-18) ---
     #   厳命: 初学者のため【全問に例外なく図を付ける】。かつ各図は回答前/回答後を明示する。
     #   仕組み: App.tsx は figure=='required' の時だけ図を回答前から表示し、'helpful' は回答後(解説と一緒)。
@@ -614,7 +615,7 @@ def check_file(path, all_titles):
     if no_or_bad_fig:
         hard.append(
             f"図なし/不完全な問 {len(no_or_bad_fig)}/{n}: {no_or_bad_fig}"
-            f"（図を付ける問はキーと前後タグをそろえる。固体2級・固体1級の統一教材は不要図の省略可）")
+            f"（図を付ける問はキーと前後タグをそろえる。質問ごとの統一教材も不要図の省略可）")
 
     # --- 回答前(required)の図に答えが写り込む事故ガード(FAIL) ---
     #   過去事故: 答えを図に描いて回答前(required)に出しネタバレ。required図は問題理解用で

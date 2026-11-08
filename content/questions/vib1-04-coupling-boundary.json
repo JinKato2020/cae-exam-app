@@ -7,7 +7,9 @@
     "origin": "original",
     "count": 22,
     "officialCount": 22,
-    "presentationStyle": "cae-standard-v1"
+    "presentationStyle": "cae-standard-v1",
+    "explanationMode": "guided",
+    "questionCoverageVersion": "all-items-v1"
   },
   "questions": [
     {
@@ -68,17 +70,176 @@
         "v1ch4-1"
       ],
       "editorialReview": {
-        "officialPoint": "異なるメッシュを結ぶ多点拘束(MPC)では結合部にエネルギー保存が成り立ち、力の分配は変位係数行列の転置で与えられる。",
-        "alignment": "上板節点Aを下板4節点の線形結合で結ぶMPCとして、力の関係が変位係数の転置になる肢を選ばせる点が公式問4-1と一致する。",
+        "officialPoint": "公式問4-1の全質問項目：異なるメッシュの接合点を多点拘束で補間する。 変位補間の係数の転置で力を分配し、仮想仕事を保つ。 損失のない結合で伝達仕事を保存する。",
+        "alignment": "保存済み公式の質問・空欄を個別回答できる3小問へ整理し、同じ番号で条件を共有。親の4択は旧本体・PDF互換用に保持。",
         "distractorMisconceptions": {
           "1": "メッシュ一致時の節点共有と混同し力の関係式が不要と誤解する。",
           "3": "力の分配を転置でなく変位と同じ係数並びで与えると誤解する。",
           "4": "剛体要素と混同し相対変位が常に0に拘束されると誤解する。"
         },
-        "sha256": "461e786bee8dd5b8aa040ced2483b27063d915d9ff2529e9616f581998d1e4b6"
+        "sha256": "8277243b75ac37d96ac82fa42692e023a690a40f1026ec6e7ea680506fce4837"
       },
       "preFigureImage": "v1e4MpcPlatesPre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "answerSummary": "変位を線形結合で結ぶ多点拘束(MPC)であり、結合部に減衰要素も外力もなく伝達エネルギーが保存されることから、力の関係は変位の係数行列の転置を用いて $\\{F_a\\ F_b\\ F_c\\ F_d\\}^T=\\{\\alpha\\ \\beta\\ \\gamma\\ \\delta\\}^T F_A$ となる。",
+      "preFigures": [
+        {
+          "figureImage": "v1e4MpcPlatesPre",
+          "caption": "上板の接合点Aと下板の節点a〜dは、同じ座標に集まっていません。"
+        }
+      ],
+      "sharedQuestion": "要素分割が異なる2枚の板を結合します。上板の節点Aの変位を、下板の節点a〜dを用い $u_A=\\alpha u_a+\\beta u_b+\\gamma u_c+\\delta u_d$ と表します。結合部に損失はなく、力の正方向は上下で伝達する仕事を比較する向きにそろえます。",
+      "studyParts": [
+        {
+          "id": "vib1-4-1-item-a",
+          "number": "4-1",
+          "officialRef": "問4-1",
+          "officialQuestionItem": "a",
+          "title": "結合方法の名称",
+          "topic": "多点拘束と伝達エネルギー",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "複数節点の変位を、このような関係式で結ぶ方法はどれですか。",
+          "choices": [
+            "節点を一つの座標へ移す節点共有",
+            "多点拘束（MPC）"
+          ],
+          "answer": 2,
+          "answerSummary": "多点拘束（MPC）",
+          "easyExplanation": [
+            {
+              "title": "節点の位置がそろわなくても動きをつなぐ",
+              "body": "上板の節点Aが下板の要素の途中へ来る場合、その真下に節点があるとは限りません。そこで周囲の4節点の動きからAの変位を表します。例えば係数が全部1/4なら $u_A=(u_a+u_b+u_c+u_d)/4$ です。点を同じ場所へ集めるのではなく、変位の関係を追加します。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "1：節点の座標を一致させる操作ではありません。式で複数の運動を結びます。"
+            }
+          ],
+          "explanation": "【基礎】上板の節点Aが下板の要素の途中へ来る場合、その真下に節点があるとは限りません。そこで周囲の4節点の動きからAの変位を表します。例えば係数が全部1/4なら $u_A=(u_a+u_b+u_c+u_d)/4$ です。点を同じ場所へ集めるのではなく、変位の関係を追加します。\n【考え方】2が正解です。異なるメッシュの接合点を多点拘束で補間する。\n【ポイント】異なるメッシュの接合点を多点拘束で補間する。\n【引っかけ】1：節点の座標を一致させる操作ではありません。式で複数の運動を結びます。",
+          "relatedFormulas": [
+            "v1ch4-1"
+          ],
+          "editorialReview": {
+            "officialPoint": "異なるメッシュの接合点を多点拘束で補間する。",
+            "alignment": "保存済み公式問4-1の質問項目 a に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "1": "節点の座標を一致させる操作ではありません。式で複数の運動を結びます。"
+            },
+            "sha256": "d739204d2db1f97c0d00aa0f8123507e105d796fb83c46fd58791b65d147e0ac"
+          }
+        },
+        {
+          "id": "vib1-4-1-item-b",
+          "number": "4-1",
+          "officialRef": "問4-1",
+          "officialQuestionItem": "b",
+          "title": "対応する力の関係",
+          "topic": "多点拘束と伝達エネルギー",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "仕事の対応を保つ力の関係はどれですか。",
+          "choices": [
+            "$\\{F_a,F_b,F_c,F_d\\}^T=\\{\\alpha,\\beta,\\gamma,\\delta\\}^T F_A$",
+            "$F_A=\\alpha F_a+\\beta F_b+\\gamma F_c+\\delta F_d$"
+          ],
+          "answer": 1,
+          "answerSummary": "$\\{F_a,F_b,F_c,F_d\\}^T=\\{\\alpha,\\beta,\\gamma,\\delta\\}^T F_A$",
+          "easyExplanation": [
+            {
+              "title": "小さな変位に対する仕事を合わせる",
+              "body": "下板の任意の微小変位を $\\Delta u_a,\\ldots$ とします。変位の関係から $\\Delta u_A=\\alpha\\Delta u_a+\\beta\\Delta u_b+\\gamma\\Delta u_c+\\delta\\Delta u_d$ です。上板の仕事 $F_A\\Delta u_A$ と、下板の仕事 $F_a\\Delta u_a+F_b\\Delta u_b+F_c\\Delta u_c+F_d\\Delta u_d$ を等しくします。"
+            },
+            {
+              "title": "各節点の係数を比べる",
+              "body": "任意の微小変位に対して仕事が等しいため、$F_a=\\alpha F_A$、$F_b=\\beta F_A$、$F_c=\\gamma F_A$、$F_d=\\delta F_A$ です。変位を行ベクトルで集めた係数が、力では列ベクトルになり、転置が現れます。",
+              "figures": [
+                {
+                  "figureImage": "v1e4MpcPlateJoint",
+                  "caption": "変位をまとめる係数と、力を周囲へ配る係数を、同じ仕事になるように対応させます。"
+                }
+              ]
+            },
+            {
+              "title": "4点に等しく配る例",
+              "body": "係数が各1/4、$F_A=100\\,\\mathrm N$ なら各節点へ25 Nずつ伝えます。4点が同じ1 mm動けば仕事は合計100 N・mmとなり、上板の100 N×1 mmと一致します。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：変位の式と同じ向きへ力をまとめると、任意の節点変位に対する仕事の一致を保証できません。"
+            }
+          ],
+          "explanation": "【基礎】下板の任意の微小変位を $\\Delta u_a,\\ldots$ とします。変位の関係から $\\Delta u_A=\\alpha\\Delta u_a+\\beta\\Delta u_b+\\gamma\\Delta u_c+\\delta\\Delta u_d$ です。上板の仕事 $F_A\\Delta u_A$ と、下板の仕事 $F_a\\Delta u_a+F_b\\Delta u_b+F_c\\Delta u_c+F_d\\Delta u_d$ を等しくします。\n【考え方】1が正解です。任意の微小変位に対して仕事が等しいため、$F_a=\\alpha F_A$、$F_b=\\beta F_A$、$F_c=\\gamma F_A$、$F_d=\\delta F_A$ です。変位を行ベクトルで集めた係数が、力では列ベクトルになり、転置が現れます。\n【ポイント】変位補間の係数の転置で力を分配し、仮想仕事を保つ。\n【引っかけ】2：変位の式と同じ向きへ力をまとめると、任意の節点変位に対する仕事の一致を保証できません。",
+          "relatedFormulas": [
+            "v1ch4-1"
+          ],
+          "editorialReview": {
+            "officialPoint": "変位補間の係数の転置で力を分配し、仮想仕事を保つ。",
+            "alignment": "保存済み公式問4-1の質問項目 b に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "変位の式と同じ向きへ力をまとめると、任意の節点変位に対する仕事の一致を保証できません。"
+            },
+            "sha256": "ec618a2b1b0222f16ff74802fa31d57ea2f97e87d06cd8ad5b720e3974718550"
+          }
+        },
+        {
+          "id": "vib1-4-1-item-c",
+          "number": "4-1",
+          "officialRef": "問4-1",
+          "officialQuestionItem": "c",
+          "title": "力の関係を導く根拠",
+          "topic": "多点拘束と伝達エネルギー",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "変位の式から力の分配式を導く際に合わせた量はどれですか。",
+          "choices": [
+            "運動量",
+            "伝達する仕事・エネルギー"
+          ],
+          "answer": 2,
+          "answerSummary": "伝達する仕事・エネルギー",
+          "easyExplanation": [
+            {
+              "title": "力だけでなく、どれだけ動くかも含める",
+              "body": "仕事は力とその方向の変位の積です。結合部でエネルギーを失わない条件なら、上板から入る仕事と下板へ渡る仕事を一致させます。これを任意の微小変位で成り立たせると、各節点への力の割合が決まります。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "1：運動量だけからは、この変位補間に対応する力の転置関係は導けません。"
+            }
+          ],
+          "explanation": "【基礎】仕事は力とその方向の変位の積です。結合部でエネルギーを失わない条件なら、上板から入る仕事と下板へ渡る仕事を一致させます。これを任意の微小変位で成り立たせると、各節点への力の割合が決まります。\n【考え方】2が正解です。損失のない結合で伝達仕事を保存する。\n【ポイント】損失のない結合で伝達仕事を保存する。\n【引っかけ】1：運動量だけからは、この変位補間に対応する力の転置関係は導けません。",
+          "relatedFormulas": [
+            "v1ch4-1"
+          ],
+          "editorialReview": {
+            "officialPoint": "損失のない結合で伝達仕事を保存する。",
+            "alignment": "保存済み公式問4-1の質問項目 c に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "1": "運動量だけからは、この変位補間に対応する力の転置関係は導けません。"
+            },
+            "sha256": "fae04e4c01c7e82e70953118f680de97e9e7fc1f44cf359a5c881512a3d9c04a"
+          }
+        }
+      ]
     },
     {
       "id": "vib1-4-2",
@@ -89,43 +250,45 @@
           "body": "ばねを小さな重りが並んだものとして見ます。固定端の近くの重りは少ししか動かず、自由端近くは大きく動きます。運動エネルギーは速さの二乗へ比例するので、同じ質量でも位置によって寄与が違います。1/3という値は経験で割り振る数字ではなく、こうした分布の足し合わせから出てきます。全質量が動く場合と、分布して違う速さで動く場合を分ける問題です。"
         },
         {
-          "title": "正解③：ばねの1/3の質量を加えます",
-          "body": "ばね自身にも質量がありますが、全体が先端の構造物と同じ速さで動くわけではありません。固定端の速度は0、動く端では構造物と同じ速度で、その間の速さが徐々に変わります。この運動エネルギーを等しくする質量へ置き換えると、ばねの質量の1/3を構造物へ加えます。したがって $6.0+1.2/3=6.4\\,\\mathrm{kg}$ の③です。"
-        },
-        {
           "title": "ばねの途中の速さを表します",
           "body": "ばねの長さをl、固定端からの距離をs、動く端の変位をxとします。一様なばねが低い振動数で伸縮する本問では、途中の変位を $u(s)=(s/l)x$ と近似します。固定端s＝0では0、動く端s＝lではxで、端の条件に合います。時間で微分すると速度は $\\dot u(s)=(s/l)\\dot x$ です。ばねの中央は、先端の半分の速さで動きます。"
         },
         {
           "title": "小さな質量のエネルギーを足します",
-          "body": "質量の分布は一様なので、長さdsの部分の質量は $dm=(m_s/l)ds$ です。その部分の運動エネルギーは $dT=\\frac12dm\\{(s/l)\\dot x\\}^2$ です。積分は、この小さな部分のエネルギーを固定端から動く端まで全て足す計算です。速度は二乗して効くので、単に平均速度が半分だから質量も半分、としてはいけません。"
+          "body": "質量の分布は一様なので、長さdsの部分の質量は $dm=(m_s/l)ds$ です。その部分の運動エネルギーは $dT=\\frac12dm\\{(s/l)\\dot x\\}^2$ です。積分は、この小さな部分のエネルギーを固定端から動く端まで全て足す計算です。速度は二乗して効くので、単に平均速度が半分だから質量も半分、としてはいけません。",
+          "figures": [
+            {
+              "figureImage": "v1e4CoilSpringMass",
+              "caption": "固定端で速さ0、動端で最大です。途中の速度の二乗を積分します。"
+            }
+          ]
         },
         {
           "title": "積分の途中を追います",
           "body": "ばね全体では $T_s=\\frac12(m_s/l)\\dot x^2\\int_0^l(s/l)^2ds$ です。$\\int_0^l(s/l)^2ds=l/3$ なので、$T_s=\\frac12(m_s/3)\\dot x^2$ です。これは、質量mₛ/3の重りが先端と同じ速度で動くときのエネルギーに等しくなります。ばねの材料が失われたのではなく、運動エネルギーの効果だけを先端の質量へまとめています。"
         },
         {
-          "title": "構造物の分と合計します",
-          "body": "構造物の運動エネルギーは $T_m=\\frac12m\\dot x^2$ です。合計は $T=\\frac12(m+m_s/3)\\dot x^2$ となり、等価質量はm＋mₛ/3です。1.2 kgの1/3は0.4 kgなので6.4 kgになります。もとの構造物6.0 kgだけの場合より慣性が大きくなり、同じ剛性なら固有振動数は少し低くなる方向です。結果の増減も確認できます。"
+          "title": "全体の等価質量",
+          "body": "構造物質量を $m$ とすれば、全運動エネルギーは $T=\\tfrac12(m+m_s/3)\\dot x^2$。例えば $m=6.0\\,\\mathrm{kg}$、$m_s=1.2\\,\\mathrm{kg}$ なら、ばね分は0.4 kg、全体は6.4 kgです。問題が求める「追加分」と「合計」を分けます。"
         },
         {
-          "title": "①②④は何を仮定しているか",
-          "body": "①の6.0 kgはばね質量を全て無視しています。②の6.6 kgは半分を加えていますが、速度の二乗を積分した結果と違います。④の7.2 kgは全質量が先端と同じ速さで動く仮定です。固定端が動かない本問には合いません。ばね単体の内部共振へ近づく高い振動数では途中の動きが単純な直線分布とは限らず、同じ1/3の近似を無条件に使うこともできません。問題の低振動数・一様分布という条件が、この導出を支えます。"
+          "title": "選択肢を確かめる",
+          "body": "①は全ての部分が動端と同じ速さだと見積もっています。②は速さの平均を使ったような値ですが、運動エネルギーは速さの二乗で決まります。④はばね内部も動くことを無視しています。③は位置に比例する速度の二乗を積分した結果です。"
         }
       ],
       "title": "コイルばね質量の等価質量",
       "topic": "分布質量ばねの等価質量",
       "type": "mc",
       "difficulty": 3,
-      "question": "質量 $m=6.0\\,\\mathrm{kg}$ の構造物が、質量 $m_s=1.2\\,\\mathrm{kg}$ のコイルスプリング(質量は一様分布、伸縮方向のみ運動、共振はばね単体最低次共振より十分低振動数)を介して基礎に固定されている。ばね質量の効果を1自由度系の等価質量として取り込むとき、構造物側に設定すべき等価質量として最も近いものはどれか。",
+      "question": "一端を固定した一様なコイルばね（質量 $m_s$、長さ $l$）の他端に構造物を取り付けます。振動数はばね単体の最低次共振より十分低く、ばねは軸方向だけに伸縮します。ばねの運動エネルギーを動端の集中質量で置き換えるとき、構造物の質量へ追加する値はどれですか。",
       "choices": [
-        "$6.0\\,\\mathrm{kg}$(ばね質量は無視してよい)",
-        "$6.6\\,\\mathrm{kg}$",
-        "$6.4\\,\\mathrm{kg}$",
-        "$7.2\\,\\mathrm{kg}$"
+        "$m_s$",
+        "$m_s/2$",
+        "$m_s/3$",
+        "$0$"
       ],
       "answer": 3,
-      "explanation": "【基礎】ばね自身にも質量があり振動に寄与します。一様分布で伸縮方向のみ動く仮定では、構造物側端の変位を $x$、固定端から距離 $s$ の点の変位を $(s/l)x$ と近似します(レイリー法)。\n【考え方】正解は③です。各部分の質量は $(m_s/l)ds$、速度は $(s/l)\\dot x$ なので、その運動エネルギーを全長で足します。$T_s=\\frac12(m_s/l)\\dot x^2\\int_0^l(s/l)^2ds$ です。$\\int_0^l(s/l)^2ds=l/3$ より $T_s=\\frac12(m_s/3)\\dot x^2$ となり、等価質量は $6.0+1.2/3=6.4\\,\\mathrm{kg}$ です。\n【ポイント】固定端は動かず、動端へ近いほど速く動きます。全てのばね質量が動端と同じ速さで動くわけではないため、全部を加えず、運動エネルギーに合わせた1/3を加えます。\n【引っかけ】①はばね質量を無視した値です。②は $m_s/2$ を加えた誤り($6.6$)です。④はばね質量を全部加えた誤り($7.2$)です。",
+      "explanation": "【基礎】ばね内部の速度は固定端0から動端の速度へ直線的に増えると近似します。\n【考え方】位置 $s$ の速度は $(s/l)\\dot x$ なので、$T_s=\\tfrac12(m_s/l)\\int_0^l(s/l)^2\\dot x^2ds=\\tfrac12(m_s/3)\\dot x^2$。追加質量は3の $m_s/3$ です。\n【ポイント】構造物を含む合計は $m+m_s/3$ です。\n【引っかけ】1は全ばねが動端速度で動く仮定、2は速度の二乗の平均を取っていない値、4はばねの慣性の無視です。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -138,15 +301,20 @@
         "v1ch4-2"
       ],
       "editorialReview": {
-        "officialPoint": "一様分布で伸縮方向のみ動くコイルばねの等価質量は、構造物質量にばね質量の1/3を加えた値(レイリー法)である。",
-        "alignment": "m=6.0kg,ms=1.2kgから m+ms/3=6.4kg を選ばせる点が公式問4-2と一致する。",
+        "officialPoint": "一様ばねの運動エネルギーから等価追加質量ms/3を求める。",
+        "alignment": "公式問4-2が求める追加質量を主問へ戻し、全質量の数値例は解説へ配置。",
         "distractorMisconceptions": {
-          "1": "ばね質量を無視して6.0kgとする誤解。",
-          "2": "ばね質量の1/2を加えて6.6kgとする誤解。",
-          "4": "ばね質量を全量加えて7.2kgとする誤解。"
+          "1": "全体を動端速度とする。",
+          "2": "速度でなく速度の二乗を平均すべき。",
+          "4": "ばね内部の慣性を無視。"
         },
-        "sha256": "68ad575223e0200b5173ab0e06976ed102b72b582e1c1755bab2ffd5b1387fd5"
-      }
+        "sha256": "8e006d7ada08ec38ecc98c3c355e40f2edb778f3ccef5f10c3dd4dbad270c0ff"
+      },
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "main"
+      ],
+      "answerSummary": "$m_s/3$ を構造物の質量へ加えます。"
     },
     {
       "id": "vib1-4-3",
@@ -206,17 +374,260 @@
         "v1ch4-3"
       ],
       "editorialReview": {
-        "officialPoint": "圧縮予荷重下の不拘束コイルばねは4個の零剛体モード、2個の不安定な倒れをもつ。",
-        "alignment": "F=100N,l=0.05m,I=1.25e-4から λ=±200 の実数根(不安定)を選ばせる点が公式問4-3と一致する。",
+        "officialPoint": "公式問4-3の全質問項目：圧縮予荷重モデルで零振動数は3並進と軸回転の4個。 軸直角な2方向の回転が倒れモード。 圧縮荷重の倒れ増幅作用は負の幾何剛性。 倒れを増す圧縮モーメントから回転方程式を作る。 負の剛性では実数の正負の指数根となり成長する解を含む。",
+        "alignment": "保存済み公式の質問・空欄を個別回答できる5小問へ整理し、同じ番号で条件を共有。親の4択は旧本体・PDF互換用に保持。",
         "distractorMisconceptions": {
           "2": "倒れ2方向も0Hzと誤解",
           "3": "負の幾何剛性を正と誤解",
           "4": "軸まわり回転の数え落としと固有根の誤り"
         },
-        "sha256": "3b33fdb5a2b404b65a1c5d1319d1c9814b0f26e776de87f028a0c4d06f41db1e"
+        "sha256": "2fb5b8c9f71d704be8add03ce314e200f359ea21cb0142d3598d67c621c7b786"
       },
       "preFigureImage": "v1e4CompressedCoilPre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e"
+      ],
+      "answerSummary": "0Hzは4個、倒れモードは $\\lambda=\\pm200\\,\\mathrm{s^{-1}}$",
+      "preFigures": [
+        {
+          "figureImage": "v1e4CompressedCoilPre",
+          "caption": "一定の軸方向圧縮荷重Fを保ち、ばねがわずかに傾く場合を考えます。"
+        }
+      ],
+      "sharedQuestion": "コイルばねを軸方向の一定圧縮荷重 $F>0$ で長さ $l$ に縮め、その予荷重の幾何剛性を含む不拘束モードを考えます。荷重方向は元の軸方向のままです。軸に直角な重心軸まわりの微小な倒れ角を $\\theta$、慣性モーメントを $I$ とし、$\\theta=\\theta_0e^{\\lambda t}$ と置きます。",
+      "studyParts": [
+        {
+          "id": "vib1-4-3-item-a",
+          "number": "4-3",
+          "officialRef": "問4-3",
+          "officialQuestionItem": "a",
+          "title": "零振動数のモード数",
+          "topic": "幾何剛性・剛体モードの固有値",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "このモデルで0 Hzのまま残る剛体モードは何個ですか。",
+          "choices": [
+            "4個",
+            "6個"
+          ],
+          "answer": 1,
+          "answerSummary": "4個",
+          "easyExplanation": [
+            {
+              "title": "6種類の動きを分ける",
+              "body": "自由な立体には3方向の並進と3方向の回転があります。本問の一定圧縮荷重は、横へ倒れる2方向の回転へ影響します。一方、丸ごとの3並進とコイル軸まわりの1回転には、その倒れを増す作用がありません。したがって0 Hzで残るのは $3+1=4$ 個です。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：無予荷重の自由な物体の数をそのまま使っています。本問では2方向の倒れに負の剛性が働きます。"
+            }
+          ],
+          "explanation": "【基礎】自由な立体には3方向の並進と3方向の回転があります。本問の一定圧縮荷重は、横へ倒れる2方向の回転へ影響します。一方、丸ごとの3並進とコイル軸まわりの1回転には、その倒れを増す作用がありません。したがって0 Hzで残るのは $3+1=4$ 個です。\n【考え方】1が正解です。圧縮予荷重モデルで零振動数は3並進と軸回転の4個。\n【ポイント】圧縮予荷重モデルで零振動数は3並進と軸回転の4個。\n【引っかけ】2：無予荷重の自由な物体の数をそのまま使っています。本問では2方向の倒れに負の剛性が働きます。",
+          "relatedFormulas": [
+            "v1ch4-3"
+          ],
+          "editorialReview": {
+            "officialPoint": "圧縮予荷重モデルで零振動数は3並進と軸回転の4個。",
+            "alignment": "保存済み公式問4-3の質問項目 a に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "無予荷重の自由な物体の数をそのまま使っています。本問では2方向の倒れに負の剛性が働きます。"
+            },
+            "sha256": "39a1e5ae49f1aa40c80ad62043a4058411e62bf152c9fae388f4bb3c33979256"
+          }
+        },
+        {
+          "id": "vib1-4-3-item-b",
+          "number": "4-3",
+          "officialRef": "問4-3",
+          "officialQuestionItem": "b",
+          "title": "倒れモードの数",
+          "topic": "幾何剛性・剛体モードの固有値",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "コイル軸へ直角な軸まわりに倒れる独立な回転は何個ですか。",
+          "choices": [
+            "3個",
+            "2個"
+          ],
+          "answer": 2,
+          "answerSummary": "2個",
+          "easyExplanation": [
+            {
+              "title": "軸まわりと、軸を倒す回転を分ける",
+              "body": "コイルの軸をz方向とすると、x軸まわりとy軸まわりの2回転がコイルを倒します。z軸まわりの回転は軸の向きを変えず、今回の圧縮力による倒れには対応しません。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "1：3回転のうち1つはコイル自身の軸まわりで、倒れではありません。"
+            }
+          ],
+          "explanation": "【基礎】コイルの軸をz方向とすると、x軸まわりとy軸まわりの2回転がコイルを倒します。z軸まわりの回転は軸の向きを変えず、今回の圧縮力による倒れには対応しません。\n【考え方】2が正解です。軸直角な2方向の回転が倒れモード。\n【ポイント】軸直角な2方向の回転が倒れモード。\n【引っかけ】1：3回転のうち1つはコイル自身の軸まわりで、倒れではありません。",
+          "relatedFormulas": [
+            "v1ch4-3"
+          ],
+          "editorialReview": {
+            "officialPoint": "軸直角な2方向の回転が倒れモード。",
+            "alignment": "保存済み公式問4-3の質問項目 b に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "1": "3回転のうち1つはコイル自身の軸まわりで、倒れではありません。"
+            },
+            "sha256": "190b2a7a42a551df33c65efae8fbdcd4152329f2309881afc388a4609597a656"
+          }
+        },
+        {
+          "id": "vib1-4-3-item-c",
+          "number": "4-3",
+          "officialRef": "問4-3",
+          "officialQuestionItem": "c",
+          "title": "復元作用の符号",
+          "topic": "幾何剛性・剛体モードの固有値",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "わずかに傾けたときの圧縮荷重の作用は、どちらに対応しますか。",
+          "choices": [
+            "負の剛性",
+            "正の剛性"
+          ],
+          "answer": 1,
+          "answerSummary": "負の剛性",
+          "easyExplanation": [
+            {
+              "title": "傾いた方へ、さらに倒す力",
+              "body": "荷重方向が固定されたままコイルが傾くと、上下の力の作用線に横のずれが生じます。腕の長さは微小角で約 $l\\theta$、傾きを増すモーメントは $Fl\\theta$ です。元へ戻すのでなく傾きを増すため、復元剛性としては負になります。",
+              "figures": [
+                {
+                  "figureImage": "v1e4CoilBuckleTilt",
+                  "caption": "一定方向の圧縮力は、傾いてずれた作用線を介して、さらに倒すモーメントを作ります。"
+                }
+              ]
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：正の剛性なら傾きと逆向きに戻すモーメントが生じます。本問では逆です。"
+            }
+          ],
+          "explanation": "【基礎】荷重方向が固定されたままコイルが傾くと、上下の力の作用線に横のずれが生じます。腕の長さは微小角で約 $l\\theta$、傾きを増すモーメントは $Fl\\theta$ です。元へ戻すのでなく傾きを増すため、復元剛性としては負になります。\n【考え方】1が正解です。圧縮荷重の倒れ増幅作用は負の幾何剛性。\n【ポイント】圧縮荷重の倒れ増幅作用は負の幾何剛性。\n【引っかけ】2：正の剛性なら傾きと逆向きに戻すモーメントが生じます。本問では逆です。",
+          "relatedFormulas": [
+            "v1ch4-3"
+          ],
+          "editorialReview": {
+            "officialPoint": "圧縮荷重の倒れ増幅作用は負の幾何剛性。",
+            "alignment": "保存済み公式問4-3の質問項目 c に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "正の剛性なら傾きと逆向きに戻すモーメントが生じます。本問では逆です。"
+            },
+            "sha256": "615f0ef7cc44f98abdf94ad51fe94e2aee31796f3537d83ca116c17a6b1aed5e"
+          }
+        },
+        {
+          "id": "vib1-4-3-item-d",
+          "number": "4-3",
+          "officialRef": "問4-3",
+          "officialQuestionItem": "d",
+          "title": "回転の運動方程式",
+          "topic": "幾何剛性・剛体モードの固有値",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "正の $\\theta$ を増す向きに $Fl\\theta$ が作用するとき、運動方程式はどれですか。",
+          "choices": [
+            "$I\\ddot\\theta=-Fl\\theta$",
+            "$I\\ddot\\theta=Fl\\theta$"
+          ],
+          "answer": 2,
+          "answerSummary": "$I\\ddot\\theta=Fl\\theta$",
+          "easyExplanation": [
+            {
+              "title": "回転版の、力＝質量×加速度",
+              "body": "回転では、モーメントが慣性モーメント $I$ と角加速度 $\\ddot\\theta$ の積です。傾きを増す向きを正にしたので $I\\ddot\\theta=Fl\\theta$。左辺へ移すと $I\\ddot\\theta-Fl\\theta=0$ となり、剛性に相当する係数が $-Fl$ であることも分かります。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "1：傾きを元へ戻す正の剛性の式になっており、圧縮荷重の作用と逆です。"
+            }
+          ],
+          "explanation": "【基礎】回転では、モーメントが慣性モーメント $I$ と角加速度 $\\ddot\\theta$ の積です。傾きを増す向きを正にしたので $I\\ddot\\theta=Fl\\theta$。左辺へ移すと $I\\ddot\\theta-Fl\\theta=0$ となり、剛性に相当する係数が $-Fl$ であることも分かります。\n【考え方】2が正解です。倒れを増す圧縮モーメントから回転方程式を作る。\n【ポイント】倒れを増す圧縮モーメントから回転方程式を作る。\n【引っかけ】1：傾きを元へ戻す正の剛性の式になっており、圧縮荷重の作用と逆です。",
+          "relatedFormulas": [
+            "v1ch4-3"
+          ],
+          "editorialReview": {
+            "officialPoint": "倒れを増す圧縮モーメントから回転方程式を作る。",
+            "alignment": "保存済み公式問4-3の質問項目 d に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "1": "傾きを元へ戻す正の剛性の式になっており、圧縮荷重の作用と逆です。"
+            },
+            "sha256": "c84c1af6b6b8aa1eee056c12313e3b13a327d4b198e888de79adfeadd7689eb8"
+          }
+        },
+        {
+          "id": "vib1-4-3-item-e",
+          "number": "4-3",
+          "officialRef": "問4-3",
+          "officialQuestionItem": "e",
+          "title": "指数解の値",
+          "topic": "幾何剛性・剛体モードの固有値",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$I\\ddot\\theta=Fl\\theta$ に $\\theta=\\theta_0e^{\\lambda t}$ を代入して得る $\\lambda$ はどれですか。",
+          "choices": [
+            "$\\lambda=\\pm\\sqrt{Fl/I}$",
+            "$\\lambda=\\pm j\\sqrt{Fl/I}$"
+          ],
+          "answer": 1,
+          "answerSummary": "$\\lambda=\\pm\\sqrt{Fl/I}$",
+          "easyExplanation": [
+            {
+              "title": "微分して代入する",
+              "body": "指数を1回微分すると $\\lambda$、2回なら $\\lambda^2$ が掛かります。したがって $I\\lambda^2\\theta_0e^{\\lambda t}=Fl\\theta_0e^{\\lambda t}$。0でない解について共通因子を消すと $\\lambda^2=Fl/I>0$ なので、実数の正負の平方根です。"
+            },
+            {
+              "title": "振動でなく増大する解を含む",
+              "body": "正の根では $e^{\\lambda t}$ が時間とともに増えます。例えば $F=100\\,\\mathrm N$、$l=0.05\\,\\mathrm m$、$I=1.25\\times10^{-4}\\,\\mathrm{kg\\,m^2}$ なら $\\lambda=\\pm200\\,\\mathrm{s^{-1}}$ です。これを200 Hzの振動と読んではいけません。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：純虚数の根は周期的に振動する正の復元剛性の式に対応します。"
+            }
+          ],
+          "explanation": "【基礎】指数を1回微分すると $\\lambda$、2回なら $\\lambda^2$ が掛かります。したがって $I\\lambda^2\\theta_0e^{\\lambda t}=Fl\\theta_0e^{\\lambda t}$。0でない解について共通因子を消すと $\\lambda^2=Fl/I>0$ なので、実数の正負の平方根です。\n【考え方】1が正解です。正の根では $e^{\\lambda t}$ が時間とともに増えます。例えば $F=100\\,\\mathrm N$、$l=0.05\\,\\mathrm m$、$I=1.25\\times10^{-4}\\,\\mathrm{kg\\,m^2}$ なら $\\lambda=\\pm200\\,\\mathrm{s^{-1}}$ です。これを200 Hzの振動と読んではいけません。\n【ポイント】負の剛性では実数の正負の指数根となり成長する解を含む。\n【引っかけ】2：純虚数の根は周期的に振動する正の復元剛性の式に対応します。",
+          "relatedFormulas": [
+            "v1ch4-3"
+          ],
+          "editorialReview": {
+            "officialPoint": "負の剛性では実数の正負の指数根となり成長する解を含む。",
+            "alignment": "保存済み公式問4-3の質問項目 e に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "純虚数の根は周期的に振動する正の復元剛性の式に対応します。"
+            },
+            "sha256": "49cc1e863e11e8b2c66942906bfdbe4ab67484399c312720b839b3ab8747eaa2"
+          }
+        }
+      ]
     },
     {
       "id": "vib1-4-4",
@@ -280,17 +691,172 @@
         "v1ch4-4"
       ],
       "editorialReview": {
-        "officialPoint": "加速度入力の基礎励振は相対変位y=x2-x1で記述し、右辺は慣性力 -m×(基礎加速度) となる。",
-        "alignment": "x2=y+x1を代入して得る m×(相対加速度)+k y=-m×(基礎加速度) を選ばせる点が公式問4-4と一致する。",
+        "officialPoint": "公式問4-4の全質問項目：基礎変位入力を絶対座標の等価力kx1へ変換する。 相対座標の等価慣性力は−m基礎加速度。 基礎との差を取ったyは相対座標の変位。",
+        "alignment": "保存済み公式の質問・空欄を個別回答できる3小問へ整理し、同じ番号で条件を共有。親の4択は旧本体・PDF互換用に保持。",
         "distractorMisconceptions": {
           "1": "変換前の絶対座標の右辺 kx1 のままと誤解する。",
           "2": "慣性力の符号を誤り +m×(基礎加速度) とする誤解。",
           "3": "質量でなく剛性kを掛け次元が合わない誤解。"
         },
-        "sha256": "4b529309c7860d672a7380e71abf60eff19281d399735a4b55a5b13812089a60"
+        "sha256": "1c37a987dcd358c969be7d7c520ee8035cc1cfc2f826d9da323af59dbac083a5"
       },
       "preFigureImage": "v1e4BaseStructurePre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c"
+      ],
+      "answerSummary": "$m\\ddot y+k y=-m\\ddot x_1$",
+      "preFigures": [
+        {
+          "figureImage": "v1e4BaseStructurePre",
+          "caption": "基礎x₁と構造物x₂は、同じ向きを正とした絶対変位です。"
+        }
+      ],
+      "sharedQuestion": "基礎の絶対変位を $x_1$、構造物の絶対変位を $x_2$ とします。構造物の質量は $m$、ばね定数は $k$。減衰はなく、ばねの伸びは $x_2-x_1$ です。",
+      "studyParts": [
+        {
+          "id": "vib1-4-4-item-a",
+          "number": "4-4",
+          "officialRef": "問4-4",
+          "officialQuestionItem": "a",
+          "title": "変位入力の右辺",
+          "topic": "変位入力・加速度入力と座標系",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "絶対変位の式 $m\\ddot x_2+kx_2=\\square$ の右辺はどれですか。",
+          "choices": [
+            "$kx_1$",
+            "$-kx_1$"
+          ],
+          "answer": 1,
+          "answerSummary": "$kx_1$",
+          "easyExplanation": [
+            {
+              "title": "ばねが構造物へ与える力から作る",
+              "body": "構造物に働くばね力は $-k(x_2-x_1)$ です。$m\\ddot x_2=-k(x_2-x_1)$ を開いて $m\\ddot x_2=-kx_2+kx_1$。構造物変位の項だけを左へ移せば、右辺は $kx_1$ になります。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：ばねの伸びの中のマイナスと、復元力のマイナスを掛けると基礎変位項はプラスです。"
+            }
+          ],
+          "explanation": "【基礎】構造物に働くばね力は $-k(x_2-x_1)$ です。$m\\ddot x_2=-k(x_2-x_1)$ を開いて $m\\ddot x_2=-kx_2+kx_1$。構造物変位の項だけを左へ移せば、右辺は $kx_1$ になります。\n【考え方】1が正解です。基礎変位入力を絶対座標の等価力kx1へ変換する。\n【ポイント】基礎変位入力を絶対座標の等価力kx1へ変換する。\n【引っかけ】2：ばねの伸びの中のマイナスと、復元力のマイナスを掛けると基礎変位項はプラスです。",
+          "relatedFormulas": [
+            "v1ch4-4"
+          ],
+          "editorialReview": {
+            "officialPoint": "基礎変位入力を絶対座標の等価力kx1へ変換する。",
+            "alignment": "保存済み公式問4-4の質問項目 a に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "ばねの伸びの中のマイナスと、復元力のマイナスを掛けると基礎変位項はプラスです。"
+            },
+            "sha256": "d1b096cf0efce011350f3d20aab0f8097eb6665d235fc1d81633ac036bdf90c6"
+          }
+        },
+        {
+          "id": "vib1-4-4-item-b",
+          "number": "4-4",
+          "officialRef": "問4-4",
+          "officialQuestionItem": "b",
+          "title": "加速度入力の右辺",
+          "topic": "変位入力・加速度入力と座標系",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "相対変位 $y=x_2-x_1$ とした式 $m\\ddot y+ky=\\square$ の右辺はどれですか。",
+          "choices": [
+            "$+m\\ddot x_1$",
+            "$-m\\ddot x_1$"
+          ],
+          "answer": 2,
+          "answerSummary": "$-m\\ddot x_1$",
+          "easyExplanation": [
+            {
+              "title": "座標の式を、加速度にも使う",
+              "body": "$x_2=y+x_1$ より $\\ddot x_2=\\ddot y+\\ddot x_1$。元の式へ入れると $m(\\ddot y+\\ddot x_1)+k(y+x_1)=kx_1$ です。両辺の $kx_1$ を消し、$m\\ddot x_1$ を右へ移して $m\\ddot y+ky=-m\\ddot x_1$ となります。"
+            },
+            {
+              "title": "乗り物の中から見た向き",
+              "body": "基礎が右へ急に加速すると、基礎から見た物体は左へ取り残されるように動きます。この逆向きの見かけの力がマイナスです。質量2 kg、基礎加速度 $0.3\\,\\mathrm{m/s^2}$ なら等価力は $-0.6\\,\\mathrm N$ です。",
+              "figures": [
+                {
+                  "figureImage": "v1e4SeismicRelative",
+                  "caption": "基礎の動きを引いたyを使うと、基礎加速度は逆向きの等価力に変わります。"
+                }
+              ]
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "1：加速度項を右辺へ移す際の符号が逆です。"
+            }
+          ],
+          "explanation": "【基礎】$x_2=y+x_1$ より $\\ddot x_2=\\ddot y+\\ddot x_1$。元の式へ入れると $m(\\ddot y+\\ddot x_1)+k(y+x_1)=kx_1$ です。両辺の $kx_1$ を消し、$m\\ddot x_1$ を右へ移して $m\\ddot y+ky=-m\\ddot x_1$ となります。\n【考え方】2が正解です。基礎が右へ急に加速すると、基礎から見た物体は左へ取り残されるように動きます。この逆向きの見かけの力がマイナスです。質量2 kg、基礎加速度 $0.3\\,\\mathrm{m/s^2}$ なら等価力は $-0.6\\,\\mathrm N$ です。\n【ポイント】相対座標の等価慣性力は−m基礎加速度。\n【引っかけ】1：加速度項を右辺へ移す際の符号が逆です。",
+          "relatedFormulas": [
+            "v1ch4-4"
+          ],
+          "editorialReview": {
+            "officialPoint": "相対座標の等価慣性力は−m基礎加速度。",
+            "alignment": "保存済み公式問4-4の質問項目 b に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "1": "加速度項を右辺へ移す際の符号が逆です。"
+            },
+            "sha256": "e2848b94ac86d52914151ff4db2285a4e6b93d88a370bec636a21c6db70bac8f"
+          }
+        },
+        {
+          "id": "vib1-4-4-item-c",
+          "number": "4-4",
+          "officialRef": "問4-4",
+          "officialQuestionItem": "c",
+          "title": "解いている変位",
+          "topic": "変位入力・加速度入力と座標系",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$y=x_2-x_1$ を未知量とする式の座標系はどれですか。",
+          "choices": [
+            "相対座標系",
+            "絶対座標系"
+          ],
+          "answer": 1,
+          "answerSummary": "相対座標系",
+          "easyExplanation": [
+            {
+              "title": "どこからの動きかを読む",
+              "body": "$x_2$ は外から見た構造物の動き、$y$ は動く基礎に対する構造物の動きです。ばねの伸びも $y$ になります。計算した $y$ に基礎変位を足すと、絶対変位 $x_2=y+x_1$ へ戻せます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：絶対変位はx2です。yはそこから基礎の動きを引いています。"
+            }
+          ],
+          "explanation": "【基礎】$x_2$ は外から見た構造物の動き、$y$ は動く基礎に対する構造物の動きです。ばねの伸びも $y$ になります。計算した $y$ に基礎変位を足すと、絶対変位 $x_2=y+x_1$ へ戻せます。\n【考え方】1が正解です。基礎との差を取ったyは相対座標の変位。\n【ポイント】基礎との差を取ったyは相対座標の変位。\n【引っかけ】2：絶対変位はx2です。yはそこから基礎の動きを引いています。",
+          "relatedFormulas": [
+            "v1ch4-4"
+          ],
+          "editorialReview": {
+            "officialPoint": "基礎との差を取ったyは相対座標の変位。",
+            "alignment": "保存済み公式問4-4の質問項目 c に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "絶対変位はx2です。yはそこから基礎の動きを引いています。"
+            },
+            "sha256": "8ab4db7c9314fe5a9d1f587efa82a5046a459eb303109d261a7fe1e9b00b79b5"
+          }
+        }
+      ]
     },
     {
       "id": "vib1-4-5",
@@ -354,17 +920,224 @@
         "v1ch4-4"
       ],
       "editorialReview": {
-        "officialPoint": "強制入力は入力点を0拘束して等価外力に置換でき、変位入力は絶対変位、加速度入力は相対変位が得られる。",
-        "alignment": "変位x10は0拘束しk1x10の力で絶対変位、加速度a10は0拘束し-mi a10の力で相対変位、という組合せを選ばせる点が公式問4-5と一致する。",
+        "officialPoint": "公式問4-5の全質問項目：変位入力を等価力へ移したモデルでは入力端を0拘束する。 変位入力を剛性から等価力にした式は絶対変位を解く。 相対座標の基準点は0拘束する。 加速度を慣性力へ置換した相対座標の解を読む。",
+        "alignment": "保存済み公式の質問・空欄を個別回答できる4小問へ整理し、同じ番号で条件を共有。親の4択は旧本体・PDF互換用に保持。",
         "distractorMisconceptions": {
           "1": "変位入力時に入力点を拘束しないと誤解する。",
           "3": "変位入力を相対・加速度入力を絶対と取り違える誤解。",
           "4": "拘束を外し相対と絶対も取り違える誤解。"
         },
-        "sha256": "c3b92df31e6c5b5ae75f6f65e6ae172a0b2e05c65f27c587247e9b40e5dee5cf"
+        "sha256": "f4a41b8c18faa49e16716c32ba6e4e1496bce8beafdc755e31dcf7add79bedfe"
       },
       "preFigureImage": "v1e4ThreeMassesPre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "answerSummary": "(a)0に拘束し (b)絶対 (c)0に拘束し (d)相対",
+      "preFigures": [
+        {
+          "figureImage": "v1e4ThreeMassesPre",
+          "caption": "入力するm₁から、二つのばねを介してm₂、m₃へ力が伝わります。"
+        }
+      ],
+      "sharedQuestion": "直列系 $m_1$―$k_1$―$m_2$―$k_2$―$m_3$ を考えます。$m_1$ に既知の変位 $x_{10}(t)$ または加速度 $a_{10}(t)=\\ddot x_{10}$ を与え、その影響を力入力へ置き換えます。相対変位は $m_1$ を基準にします。",
+      "studyParts": [
+        {
+          "id": "vib1-4-5-item-a",
+          "number": "4-5",
+          "officialRef": "問4-5",
+          "officialQuestionItem": "a",
+          "title": "変位入力を力へ置換する拘束",
+          "topic": "拘束条件と絶対/相対変位",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$m_2$ に $k_1x_{10}$ を加える計算モデルでは、入力端 $m_1$ の変位をどうしますか。",
+          "choices": [
+            "拘束しない",
+            "0に拘束する"
+          ],
+          "answer": 2,
+          "answerSummary": "0に拘束する",
+          "easyExplanation": [
+            {
+              "title": "まず変位入力の式を作ります",
+              "body": "m₂には、左のばねから $-k_1(x_2-x_{10})$、右のばねから $-k_2(x_2-x_3)$ の力が働きます。したがって $m_2\\ddot x_2+(k_1+k_2)x_2-k_2x_3=k_1x_{10}$ です。m₃の式は $m_3\\ddot x_3+k_2x_3-k_2x_2=0$ です。x₂とx₃は、まだ空間固定の基準から測る絶対変位です。"
+            },
+            {
+              "title": "動く左端を、力へ置き換えます",
+              "body": "置換モデルでm₁側を0へ固定すると、m₂側へk₁のばねが残ります。そのままでは左端が動く効果が消えるので、右辺へ $k_1x_{10}$ を加えます。例えばk₁＝1000 N/m、x₁₀＝0.002 mなら2 Nです。こうすれば、未知のx₂・x₃に対する式は元と同じになります。拘束と等価な力は一組の操作です。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "1：動く端の効果を右辺の力へ移した置換モデルで、入力端を未知のまま自由にすると別の系になります。"
+            }
+          ],
+          "explanation": "【基礎】m₂には、左のばねから $-k_1(x_2-x_{10})$、右のばねから $-k_2(x_2-x_3)$ の力が働きます。したがって $m_2\\ddot x_2+(k_1+k_2)x_2-k_2x_3=k_1x_{10}$ です。m₃の式は $m_3\\ddot x_3+k_2x_3-k_2x_2=0$ です。x₂とx₃は、まだ空間固定の基準から測る絶対変位です。\n【考え方】2が正解です。置換モデルでm₁側を0へ固定すると、m₂側へk₁のばねが残ります。そのままでは左端が動く効果が消えるので、右辺へ $k_1x_{10}$ を加えます。例えばk₁＝1000 N/m、x₁₀＝0.002 mなら2 Nです。こうすれば、未知のx₂・x₃に対する式は元と同じになります。拘束と等価な力は一組の操作です。\n【ポイント】変位入力を等価力へ移したモデルでは入力端を0拘束する。\n【引っかけ】1：動く端の効果を右辺の力へ移した置換モデルで、入力端を未知のまま自由にすると別の系になります。",
+          "relatedFormulas": [
+            "v1ch4-4"
+          ],
+          "editorialReview": {
+            "officialPoint": "変位入力を等価力へ移したモデルでは入力端を0拘束する。",
+            "alignment": "保存済み公式問4-5の質問項目 a に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "1": "動く端の効果を右辺の力へ移した置換モデルで、入力端を未知のまま自由にすると別の系になります。"
+            },
+            "sha256": "f202418fae31dce1f610ee324f33a0c0e2a3a390b837eedbd532a3fed65fcb3b"
+          }
+        },
+        {
+          "id": "vib1-4-5-item-b",
+          "number": "4-5",
+          "officialRef": "問4-5",
+          "officialQuestionItem": "b",
+          "title": "変位入力の置換で得る量",
+          "topic": "拘束条件と絶対/相対変位",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "この $k_1x_{10}$ を加える置換で得られる $m_2,m_3$ の変位はどれですか。",
+          "choices": [
+            "絶対変位",
+            "m1に対する相対変位"
+          ],
+          "answer": 1,
+          "answerSummary": "絶対変位",
+          "easyExplanation": [
+            {
+              "title": "未知量は変えていない",
+              "body": "元の式 $m_2\\ddot x_2+(k_1+k_2)x_2-k_2x_3=k_1x_{10}$ の $x_2,x_3$ は絶対変位です。既知の端の変位を右辺へ移しただけで、変位の基準は変えていません。計算上の入力端を0拘束しても、実物の基礎が止まっているという意味ではありません。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：基礎変位を引く座標変換はしていないため、相対変位ではありません。"
+            }
+          ],
+          "explanation": "【基礎】元の式 $m_2\\ddot x_2+(k_1+k_2)x_2-k_2x_3=k_1x_{10}$ の $x_2,x_3$ は絶対変位です。既知の端の変位を右辺へ移しただけで、変位の基準は変えていません。計算上の入力端を0拘束しても、実物の基礎が止まっているという意味ではありません。\n【考え方】1が正解です。変位入力を剛性から等価力にした式は絶対変位を解く。\n【ポイント】変位入力を剛性から等価力にした式は絶対変位を解く。\n【引っかけ】2：基礎変位を引く座標変換はしていないため、相対変位ではありません。",
+          "relatedFormulas": [
+            "v1ch4-4"
+          ],
+          "editorialReview": {
+            "officialPoint": "変位入力を剛性から等価力にした式は絶対変位を解く。",
+            "alignment": "保存済み公式問4-5の質問項目 b に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "基礎変位を引く座標変換はしていないため、相対変位ではありません。"
+            },
+            "sha256": "34a9fb3f1dd9ff1af348cccd571d93d122fd8a6bc21d07e7fddde649b5079a56"
+          }
+        },
+        {
+          "id": "vib1-4-5-item-c",
+          "number": "4-5",
+          "officialRef": "問4-5",
+          "officialQuestionItem": "c",
+          "title": "加速度入力を力へ置換する拘束",
+          "topic": "拘束条件と絶対/相対変位",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "各質量へ $-m_2a_{10},-m_3a_{10}$ を加え、基礎に対する変位を解く場合、入力端はどうしますか。",
+          "choices": [
+            "0に拘束する",
+            "拘束しない"
+          ],
+          "answer": 1,
+          "answerSummary": "0に拘束する",
+          "easyExplanation": [
+            {
+              "title": "基準点は、自分自身に対して動かない",
+              "body": "$y_i=x_i-x_{10}$ と置けば、入力端の相対変位は $y_1=x_{10}-x_{10}=0$ です。そのため置換後のモデルでは入力端を0に拘束します。実物では基礎が加速していても、基礎から見た基礎自身の変位は0です。"
+            },
+            {
+              "title": "加速度入力では、変位の基準をm₁へ移します",
+              "body": "$y_2=x_2-x_{10}$、$y_3=x_3-x_{10}$ とします。従って $\\ddot x_2=\\ddot y_2+a_{10}$、$\\ddot x_3=\\ddot y_3+a_{10}$ です。ばねの伸びは $x_2-x_{10}=y_2$、$x_3-x_2=y_3-y_2$ となります。基礎と同じ平行移動分は、ばねの相対変形から消えます。慣性項には加速度が残る点が重要です。"
+            },
+            {
+              "title": "各質量へ見かけの力が現れます",
+              "body": "代入して整理すると $m_2\\ddot y_2+(k_1+k_2)y_2-k_2y_3=-m_2a_{10}$、$m_3\\ddot y_3+k_2y_3-k_2y_2=-m_3a_{10}$ です。基準のm₁に対する変位は0なので、置換モデルではそこを拘束します。右辺へ各質量×基礎加速度の逆向きの力を与えると、y₂・y₃という相対変位が得られます。m₂だけでなくm₃にも入力があることを見てください。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：相対変位の基準となる入力端まで自由にすると、必要な条件が失われます。"
+            }
+          ],
+          "explanation": "【基礎】$y_i=x_i-x_{10}$ と置けば、入力端の相対変位は $y_1=x_{10}-x_{10}=0$ です。そのため置換後のモデルでは入力端を0に拘束します。実物では基礎が加速していても、基礎から見た基礎自身の変位は0です。\n【考え方】1が正解です。$y_2=x_2-x_{10}$、$y_3=x_3-x_{10}$ とします。従って $\\ddot x_2=\\ddot y_2+a_{10}$、$\\ddot x_3=\\ddot y_3+a_{10}$ です。ばねの伸びは $x_2-x_{10}=y_2$、$x_3-x_2=y_3-y_2$ となります。基礎と同じ平行移動分は、ばねの相対変形から消えます。慣性項には加速度が残る点が重要です。\n【ポイント】相対座標の基準点は0拘束する。\n【引っかけ】2：相対変位の基準となる入力端まで自由にすると、必要な条件が失われます。",
+          "relatedFormulas": [
+            "v1ch4-4"
+          ],
+          "editorialReview": {
+            "officialPoint": "相対座標の基準点は0拘束する。",
+            "alignment": "保存済み公式問4-5の質問項目 c に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "相対変位の基準となる入力端まで自由にすると、必要な条件が失われます。"
+            },
+            "sha256": "9fab1b4c4c9ccbfbdb3992ef481a6a3894a14eb1a15bc285a2ae324a5810b113"
+          }
+        },
+        {
+          "id": "vib1-4-5-item-d",
+          "number": "4-5",
+          "officialRef": "問4-5",
+          "officialQuestionItem": "d",
+          "title": "加速度入力の置換で得る量",
+          "topic": "拘束条件と絶対/相対変位",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "この $-m_i a_{10}$ による置換で得る変位はどれですか。",
+          "choices": [
+            "絶対変位",
+            "m1に対する相対変位"
+          ],
+          "answer": 2,
+          "answerSummary": "m1に対する相対変位",
+          "easyExplanation": [
+            {
+              "title": "基礎の動きを差し引いた量",
+              "body": "未知量は $y_2=x_2-x_{10}$、$y_3=x_3-x_{10}$ です。各質量の加速度を $\\ddot x_i=\\ddot y_i+a_{10}$ と書き換えることで、右辺に $-m_ia_{10}$ が現れました。絶対変位が必要なら、求めた各 $y_i$ へ同じ基礎変位 $x_{10}$ を足します。",
+              "figures": [
+                {
+                  "figureImage": "v1e4SeismicRelative",
+                  "caption": "図は1自由度での座標の考え方です。今回も各質点から同じ基礎変位を引きます。"
+                }
+              ]
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "1：基礎の変位を既に差し引いた座標なので、そのまま絶対変位とは読めません。"
+            }
+          ],
+          "explanation": "【基礎】未知量は $y_2=x_2-x_{10}$、$y_3=x_3-x_{10}$ です。各質量の加速度を $\\ddot x_i=\\ddot y_i+a_{10}$ と書き換えることで、右辺に $-m_ia_{10}$ が現れました。絶対変位が必要なら、求めた各 $y_i$ へ同じ基礎変位 $x_{10}$ を足します。\n【考え方】2が正解です。加速度を慣性力へ置換した相対座標の解を読む。\n【ポイント】加速度を慣性力へ置換した相対座標の解を読む。\n【引っかけ】1：基礎の変位を既に差し引いた座標なので、そのまま絶対変位とは読めません。",
+          "relatedFormulas": [
+            "v1ch4-4"
+          ],
+          "editorialReview": {
+            "officialPoint": "加速度を慣性力へ置換した相対座標の解を読む。",
+            "alignment": "保存済み公式問4-5の質問項目 d に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "1": "基礎の変位を既に差し引いた座標なので、そのまま絶対変位とは読めません。"
+            },
+            "sha256": "5ca7d6c158e6a57f6baef11b6db3894e843a880714edc21c3886408ee65e8934"
+          }
+        }
+      ]
     },
     {
       "id": "vib1-4-6",
@@ -428,17 +1201,210 @@
         "v1ch4-4"
       ],
       "editorialReview": {
-        "officialPoint": "基礎励振は等価外力に置換し基礎接合部を0拘束して解き、加速度励振は相対変位、変位励振は絶対変位が得られる。",
-        "alignment": "加速度励振(a)拘束(b)相対・変位励振(c)拘束(d)絶対の組合せを選ばせる点が公式問4-6と一致する。",
+        "officialPoint": "公式問4-6の全質問項目：加速度入力を相対慣性力へ移したモデルの基礎を拘束する。 基礎加速度の等価慣性力では相対変位を解く。 変位入力を剛性項から等価力へ移したモデルの基礎を拘束する。 剛性の既知変位項を右辺に移す置換では絶対変位を解く。",
+        "alignment": "保存済み公式の質問・空欄を個別回答できる4小問へ整理し、同じ番号で条件を共有。親の4択は旧本体・PDF互換用に保持。",
         "distractorMisconceptions": {
           "1": "変位励振側で基礎を拘束しないと誤解する。",
           "2": "加速度励振で絶対・変位励振で相対と取り違える誤解。",
           "4": "加速度・変位励振のいずれも拘束を外す誤解。"
         },
-        "sha256": "24e1eac608b068217d563b5c523347949d89a7f0dbbc89db05e3adb4a054414e"
+        "sha256": "e9a6222001b723fed8100d989b95cea5899004c702e760314d7394664cc303ce"
       },
       "preFigureImage": "v1e4DiscretizedCantileverPre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "answerSummary": "(a)拘束して (b)相対変位 (c)拘束して (d)絶対変位",
+      "preFigures": [
+        {
+          "figureImage": "v1e4DiscretizedCantileverPre",
+          "caption": "支持部0の既知の並進zと、残る節点1〜nの移動・回転を分けます。"
+        }
+      ],
+      "sharedQuestion": "片持ちはりを要素分割し、質量を節点へ集中させます。支持部の並進運動を既知入力とし、回転入力はありません。基礎の変位や加速度を、運動を直接指定する代わりに等価な力へ置き換えて解きます。",
+      "studyParts": [
+        {
+          "id": "vib1-4-6-item-a",
+          "number": "4-6",
+          "officialRef": "問4-6",
+          "officialQuestionItem": "a",
+          "title": "加速度入力時の基礎",
+          "topic": "加速度励振・変位励振の境界条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "各節点へ質量と基礎加速度から決まる慣性力を与えるとき、相対座標で基礎部をどうしますか。",
+          "choices": [
+            "拘束する",
+            "拘束しない"
+          ],
+          "answer": 1,
+          "answerSummary": "拘束する",
+          "easyExplanation": [
+            {
+              "title": "集中質量の各点へ、加速度の入力を配ります",
+              "body": "基礎の変位をz、各節点の絶対変位をxᵢとし、相対変位は $y_i=x_i-z$ です。加速度は $\\ddot x_i=\\ddot y_i+\\ddot z$ なので、慣性力から基礎加速度の分を右辺へ移すと $-m_i\\ddot z$ が現れます。例えば質量0.5 kg、基礎加速度2 m/s²なら−1 Nです。基礎と一緒に動く座標では、その逆向きの力で揺れが生じる形になります。"
+            },
+            {
+              "title": "なぜ基礎の相対変位は0か",
+              "body": "基礎自身を基準にした基礎の変位は、常に0です。固定されたはりの根元の相対回転も0です。ここを拘束せずに解けば、基礎とのつながり方が違う構造になります。基礎加速度を右辺へ与えることと、基礎の相対自由度を拘束することは矛盾しません。右辺が動く基準の効果を引き受けています。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：基礎に対する基礎自身の変位は0なので、自由にしてはいけません。"
+            }
+          ],
+          "explanation": "【基礎】基礎の変位をz、各節点の絶対変位をxᵢとし、相対変位は $y_i=x_i-z$ です。加速度は $\\ddot x_i=\\ddot y_i+\\ddot z$ なので、慣性力から基礎加速度の分を右辺へ移すと $-m_i\\ddot z$ が現れます。例えば質量0.5 kg、基礎加速度2 m/s²なら−1 Nです。基礎と一緒に動く座標では、その逆向きの力で揺れが生じる形になります。\n【考え方】1が正解です。基礎自身を基準にした基礎の変位は、常に0です。固定されたはりの根元の相対回転も0です。ここを拘束せずに解けば、基礎とのつながり方が違う構造になります。基礎加速度を右辺へ与えることと、基礎の相対自由度を拘束することは矛盾しません。右辺が動く基準の効果を引き受けています。\n【ポイント】加速度入力を相対慣性力へ移したモデルの基礎を拘束する。\n【引っかけ】2：基礎に対する基礎自身の変位は0なので、自由にしてはいけません。",
+          "relatedFormulas": [
+            "v1ch4-4"
+          ],
+          "editorialReview": {
+            "officialPoint": "加速度入力を相対慣性力へ移したモデルの基礎を拘束する。",
+            "alignment": "保存済み公式問4-6の質問項目 a に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "基礎に対する基礎自身の変位は0なので、自由にしてはいけません。"
+            },
+            "sha256": "105a143a6452f46ab39e70834fd83607b8c1822aacbb1f33b58ef0be1274216a"
+          }
+        },
+        {
+          "id": "vib1-4-6-item-b",
+          "number": "4-6",
+          "officialRef": "問4-6",
+          "officialQuestionItem": "b",
+          "title": "加速度入力で得られる変位",
+          "topic": "加速度励振・変位励振の境界条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "この等価慣性力で解く変位はどれですか。",
+          "choices": [
+            "絶対変位",
+            "基礎に対する相対変位"
+          ],
+          "answer": 2,
+          "answerSummary": "基礎に対する相対変位",
+          "easyExplanation": [
+            {
+              "title": "一緒に動く分を差し引く",
+              "body": "$x=y+Iz$ と書きます。$z$ は基礎並進、$I$ はその動きを並進自由度へ配るベクトルです。加速度は $\\ddot x=\\ddot y+I\\ddot z$ なので、基礎加速度の項を右へ移すと $M\\ddot y+Ky=-MI\\ddot z$。求まるのは $y$ です。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "1：絶対変位へ戻すには基礎の並進Izを足す必要があります。"
+            }
+          ],
+          "explanation": "【基礎】$x=y+Iz$ と書きます。$z$ は基礎並進、$I$ はその動きを並進自由度へ配るベクトルです。加速度は $\\ddot x=\\ddot y+I\\ddot z$ なので、基礎加速度の項を右へ移すと $M\\ddot y+Ky=-MI\\ddot z$。求まるのは $y$ です。\n【考え方】2が正解です。基礎加速度の等価慣性力では相対変位を解く。\n【ポイント】基礎加速度の等価慣性力では相対変位を解く。\n【引っかけ】1：絶対変位へ戻すには基礎の並進Izを足す必要があります。",
+          "relatedFormulas": [
+            "v1ch4-4"
+          ],
+          "editorialReview": {
+            "officialPoint": "基礎加速度の等価慣性力では相対変位を解く。",
+            "alignment": "保存済み公式問4-6の質問項目 b に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "1": "絶対変位へ戻すには基礎の並進Izを足す必要があります。"
+            },
+            "sha256": "6e77f5a14576e281fcd244c5dbd2ac2a7895dcdd0c4e1dbf6d693356f0ec4269"
+          }
+        },
+        {
+          "id": "vib1-4-6-item-c",
+          "number": "4-6",
+          "officialRef": "問4-6",
+          "officialQuestionItem": "c",
+          "title": "変位入力時の基礎",
+          "topic": "加速度励振・変位励振の境界条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "基礎に接する要素の剛性から作る等価力へ変位入力を移す場合、置換後の基礎部をどうしますか。",
+          "choices": [
+            "拘束しない",
+            "0に拘束する"
+          ],
+          "answer": 2,
+          "answerSummary": "0に拘束する",
+          "easyExplanation": [
+            {
+              "title": "変位入力では、剛性の項から力を作ります",
+              "body": "1本のばねなら、根元変位zで生じる項を移すことで $m\\ddot x+kx=kz$ となります。はりの要素では、これに相当する結合剛性の成分と基礎変位から等価な節点荷重を作ります。並進だけでなく、要素の自由度の並びに応じた成分を使います。力へ移した後の根元は0に拘束し、その力を自由側の端節点へ加えて、絶対変位を求めます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "1：既知の基礎変位の効果は等価力へ移しています。置換後も基礎を自由にすると元の式と一致しません。"
+            }
+          ],
+          "explanation": "【基礎】1本のばねなら、根元変位zで生じる項を移すことで $m\\ddot x+kx=kz$ となります。はりの要素では、これに相当する結合剛性の成分と基礎変位から等価な節点荷重を作ります。並進だけでなく、要素の自由度の並びに応じた成分を使います。力へ移した後の根元は0に拘束し、その力を自由側の端節点へ加えて、絶対変位を求めます。\n【考え方】2が正解です。変位入力を剛性項から等価力へ移したモデルの基礎を拘束する。\n【ポイント】変位入力を剛性項から等価力へ移したモデルの基礎を拘束する。\n【引っかけ】1：既知の基礎変位の効果は等価力へ移しています。置換後も基礎を自由にすると元の式と一致しません。",
+          "relatedFormulas": [
+            "v1ch4-4"
+          ],
+          "editorialReview": {
+            "officialPoint": "変位入力を剛性項から等価力へ移したモデルの基礎を拘束する。",
+            "alignment": "保存済み公式問4-6の質問項目 c に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "1": "既知の基礎変位の効果は等価力へ移しています。置換後も基礎を自由にすると元の式と一致しません。"
+            },
+            "sha256": "cb56b6938ba6a62d30cfb3fc4fd32a11ad27d2649a073ce9b157c22e4aa90c2c"
+          }
+        },
+        {
+          "id": "vib1-4-6-item-d",
+          "number": "4-6",
+          "officialRef": "問4-6",
+          "officialQuestionItem": "d",
+          "title": "変位入力で得られる変位",
+          "topic": "加速度励振・変位励振の境界条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "基礎変位による剛性項を右辺の力へ移した式で解く変位はどれですか。",
+          "choices": [
+            "絶対変位",
+            "基礎に対する相対変位"
+          ],
+          "answer": 1,
+          "answerSummary": "絶対変位",
+          "easyExplanation": [
+            {
+              "title": "拘束の形だけでは変位の基準は決まらない",
+              "body": "元の未知変位は絶対変位のままで、既知の基礎変位に掛かる項だけを右へ移しています。このため解は絶対変位です。加速度入力の置換も基礎部を拘束しますが、そちらは座標自体を基礎からの差へ変更しています。両者を同じものと読まないようにします。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：この操作では未知量から基礎変位を差し引く変換はしていません。"
+            }
+          ],
+          "explanation": "【基礎】元の未知変位は絶対変位のままで、既知の基礎変位に掛かる項だけを右へ移しています。このため解は絶対変位です。加速度入力の置換も基礎部を拘束しますが、そちらは座標自体を基礎からの差へ変更しています。両者を同じものと読まないようにします。\n【考え方】1が正解です。剛性の既知変位項を右辺に移す置換では絶対変位を解く。\n【ポイント】剛性の既知変位項を右辺に移す置換では絶対変位を解く。\n【引っかけ】2：この操作では未知量から基礎変位を差し引く変換はしていません。",
+          "relatedFormulas": [
+            "v1ch4-4"
+          ],
+          "editorialReview": {
+            "officialPoint": "剛性の既知変位項を右辺に移す置換では絶対変位を解く。",
+            "alignment": "保存済み公式問4-6の質問項目 d に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "この操作では未知量から基礎変位を差し引く変換はしていません。"
+            },
+            "sha256": "67498f46cb39b2758d254d1ca0bfdb43788868faad0d24d0a44892a51f6383ee"
+          }
+        }
+      ]
     },
     {
       "id": "vib1-4-7",
@@ -473,10 +1439,6 @@
           "body": "②は全節点を固定した要素があると精度が上がるとしますが、計算を動かなくして数値的に扱いやすくすることと、実物の変形を正しく表すことは違います。③は要素数と形状だけを見て、拘束との位置関係を無視しています。④は図1を選んでいても、対角線が長い方向へ必ず硬いという一般則を理由にしており、本問の比較の根拠ではありません。"
         },
         {
-          "title": "図で確認する手順",
-          "body": "まず2つの固定辺をたどり、どの節点が完全固定かを印で確認します。次に隅の三角形の3つの頂点を調べ、自由に動ける節点が残っているかを見ます。図2で全頂点が固定されるなら、その部分の補間変位は全て0です。対角線の見た目だけでよい悪いを決めず、節点が持つ未知量へ戻して判断すると理由がはっきりします。"
-        },
-        {
           "title": "この判断を使える範囲",
           "body": "全ての三角形要素や高次要素で、対角線を一方向にすれば必ず高精度という意味ではありません。内部自由度や辺上の追加節点を持つ要素なら、表現できる動きも変わります。本問は図に示された分割と完全固定の関係を比較しています。改善後は対象モードの形と固有振動数を、さらに細かい分割などと比較して確かめます。"
         }
@@ -485,7 +1447,7 @@
       "topic": "メッシュ分割パターンと固有モード精度",
       "type": "mc",
       "difficulty": 2,
-      "question": "二辺を完全固定した均質正方形平板の固有モードを三角形要素で求める。対角線の向きが異なる2通りの分割(図1と図2)で精度を比べる。図2では固定された二辺が交わる隅の三角形要素が、3節点とも固定辺上にある。精度に関する記述として最も適切なものはどれか。",
+      "question": "左辺と下辺を完全固定した均質な正方形平板を、図1・図2の三角形要素でモデル化します。材料・板厚・要素数は同じで、要素には節点以外の独立な内部自由度を持たせません。固有モードの精度について最も適切な説明はどれですか。",
       "choices": [
         "図1の方が精度がよい。図2は隅の要素の全節点が固定され、その要素が解に有効に寄与できず精度が落ちるため。",
         "図2の方が精度がよい。全節点が固定された要素があると系が安定し精度が上がるため。",
@@ -511,9 +1473,20 @@
           "3": "対角線の向きは精度に影響しないと誤解する。",
           "4": "対角線長さと剛性を短絡した無関係な理由づけ。"
         },
-        "sha256": "8e84eff587ddf728f8ffee17ffb017f5039c7b01fb4c558a4d0bb4bea0ccf415"
+        "sha256": "d5a8d7a141b9ace735ac9103009e720ab1f87d8d3aec81abf03454f3a9a3aab8"
       },
-      "preFigureImage": "v1e4TriMeshPatternPre"
+      "preFigureImage": "v1e4TriMeshPatternPre",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "main"
+      ],
+      "answerSummary": "図1の方が精度がよい。図2は隅の要素の全節点が固定され、その要素が解に有効に寄与できず精度が落ちるため。",
+      "preFigures": [
+        {
+          "figureImage": "v1e4TriMeshPatternPre",
+          "caption": "左辺と下辺の固定条件は共通です。隅の三角形を構成する節点を比較します。"
+        }
+      ]
     },
     {
       "id": "vib1-4-8",
@@ -581,17 +1554,128 @@
         "v1ch4-6"
       ],
       "editorialReview": {
-        "officialPoint": "離れた2節点への逆向き等大の力は合力0・モーメント有限の偶力となり、端部はモーメント励振を受ける。",
-        "alignment": "節点1に正・節点3に負の力を与えた偶力でモーメント励振となる肢を選ばせる点が公式問4-8と一致する。",
+        "officialPoint": "公式問4-8の全質問項目：逆向き等大で作用線が異なる二力は偶力。 偶力によりモーメント励振を与える。",
+        "alignment": "保存済み公式の質問・空欄を個別回答できる2小問へ整理し、同じ番号で条件を共有。親の4択は旧本体・PDF互換用に保持。",
         "distractorMisconceptions": {
           "1": "逆向きの力を同じ向きの斥力と読み違えせん断励振とする誤解。",
           "2": "合力0を見落とし純並進励振とする誤解。",
           "3": "偶力を軸方向の引張励振と取り違える誤解。"
         },
-        "sha256": "411078e8c869ad7c2c94830c146baa3b4b1f4eb55c950ed6815472058675791f"
+        "sha256": "49bc884a2d181c75cc8d773f2b6ce407df73a04aca019163aad08b8c40cda16b"
       },
       "preFigureImage": "v1e4BeamEndForcesPre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b"
+      ],
+      "answerSummary": "2力は逆向き・等大の偶力であり、左端はモーメント励振を受ける。",
+      "preFigures": [
+        {
+          "figureImage": "v1e4BeamEndForcesPre",
+          "caption": "上下に離れた節点1・3へ、同じ大きさで逆向きの力を与えます。"
+        }
+      ],
+      "sharedQuestion": "はりの左端に上下に並ぶ節点1・2・3があります。節点1へ $x$ 方向の力 $f_0\\cos\\omega t$、節点3へ逆向きの $-f_0\\cos\\omega t$ を与えます。節点2は無負荷です。節点1と3の作用線の間隔を $h$ とします。",
+      "studyParts": [
+        {
+          "id": "vib1-4-8-item-a",
+          "number": "4-8",
+          "officialRef": "問4-8",
+          "officialQuestionItem": "a",
+          "title": "力の対の名称",
+          "topic": "節点力の組合せと励振の種類",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "大きさが等しく逆向きで、作用線が離れたこの力の対はどれですか。",
+          "choices": [
+            "偶力",
+            "同じ作用点で打ち消す二力"
+          ],
+          "answer": 1,
+          "answerSummary": "偶力",
+          "easyExplanation": [
+            {
+              "title": "合力が0でも、回す働きは残る",
+              "body": "$f_0\\cos\\omega t-f_0\\cos\\omega t=0$ なので合力は0です。しかし上と下で押す位置が異なるため、二つの力は同じ向きへ回転させます。このような力の対を偶力といいます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：作用線が離れているので、力の和だけを見て全作用が消えたとはいえません。"
+            }
+          ],
+          "explanation": "【基礎】$f_0\\cos\\omega t-f_0\\cos\\omega t=0$ なので合力は0です。しかし上と下で押す位置が異なるため、二つの力は同じ向きへ回転させます。このような力の対を偶力といいます。\n【考え方】1が正解です。逆向き等大で作用線が異なる二力は偶力。\n【ポイント】逆向き等大で作用線が異なる二力は偶力。\n【引っかけ】2：作用線が離れているので、力の和だけを見て全作用が消えたとはいえません。",
+          "relatedFormulas": [
+            "v1ch4-6"
+          ],
+          "editorialReview": {
+            "officialPoint": "逆向き等大で作用線が異なる二力は偶力。",
+            "alignment": "保存済み公式問4-8の質問項目 a に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "作用線が離れているので、力の和だけを見て全作用が消えたとはいえません。"
+            },
+            "sha256": "8e670ba51ab8178db8dcacf33113e2de49c10f443fadeb92a13aac98e35c9b61"
+          }
+        },
+        {
+          "id": "vib1-4-8-item-b",
+          "number": "4-8",
+          "officialRef": "問4-8",
+          "officialQuestionItem": "b",
+          "title": "加振の種類",
+          "topic": "節点力の組合せと励振の種類",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "この偶力によって左端に与える加振はどれですか。",
+          "choices": [
+            "せん断力だけによる励振",
+            "モーメント励振"
+          ],
+          "answer": 2,
+          "answerSummary": "モーメント励振",
+          "easyExplanation": [
+            {
+              "title": "力と腕の長さを掛ける",
+              "body": "モーメントの大きさは $M(t)=h f_0\\cos\\omega t$（符号は回転の正方向による）です。中央を基準にすると、上の力が $f h/2$、下の力も同じ回転方向に $f h/2$ を作り、合計 $fh$ になります。",
+              "figures": [
+                {
+                  "figureImage": "v1e4CoupleMoment",
+                  "caption": "逆向きの力の和は0でも、二つの回す作用は足し合わされます。"
+                }
+              ]
+            },
+            {
+              "title": "節点力で回転作用を与える理由",
+              "body": "ソリッド要素の節点は通常、並進の自由度を持ちます。そのため節点へ直接回転モーメントを入れる代わりに、離れた節点へ力の対を与えて同等の回転作用を作れます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "1：合力は0で、回転させる作用が残るためモーメント励振です。"
+            }
+          ],
+          "explanation": "【基礎】モーメントの大きさは $M(t)=h f_0\\cos\\omega t$（符号は回転の正方向による）です。中央を基準にすると、上の力が $f h/2$、下の力も同じ回転方向に $f h/2$ を作り、合計 $fh$ になります。\n【考え方】2が正解です。ソリッド要素の節点は通常、並進の自由度を持ちます。そのため節点へ直接回転モーメントを入れる代わりに、離れた節点へ力の対を与えて同等の回転作用を作れます。\n【ポイント】偶力によりモーメント励振を与える。\n【引っかけ】1：合力は0で、回転させる作用が残るためモーメント励振です。",
+          "relatedFormulas": [
+            "v1ch4-6"
+          ],
+          "editorialReview": {
+            "officialPoint": "偶力によりモーメント励振を与える。",
+            "alignment": "保存済み公式問4-8の質問項目 b に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "1": "合力は0で、回転させる作用が残るためモーメント励振です。"
+            },
+            "sha256": "1f8ca3c98a1f159b742111e1e7c603780a5ab66a2ece1d5665bc8614d19eb600"
+          }
+        }
+      ]
     },
     {
       "id": "vib1-4-9",
@@ -659,15 +1743,124 @@
         "v1ch4-7"
       ],
       "editorialReview": {
-        "officialPoint": "ボルト締結は接触面の節点を2枚の板で共有させ、共有節点の個数で固着範囲(締結強さ)を実験値に合わせ込む。",
-        "alignment": "節点を共有し共有節点の個数を変える手法を選ばせる点が公式問4-9と一致する。",
+        "officialPoint": "公式問4-9の全質問項目：接触面の節点共有で固着を表す。 共有節点の個数・位置で固着範囲を調整する。",
+        "alignment": "保存済み公式の質問・空欄を個別回答できる2小問へ整理し、同じ番号で条件を共有。親の4択は旧本体・PDF互換用に保持。",
         "distractorMisconceptions": {
           "1": "節点の物性値(ヤング率)で締結強さを調整できると誤解する。",
           "3": "剛体要素の本数で固着範囲を表せると誤解する。",
           "4": "減衰要素で固有振動数(固着範囲)を調整できると誤解する。"
         },
-        "sha256": "58d68e007dd84caacf381261ac8280783518ea11a4f1083c74ad3704e14ec06f"
-      }
+        "sha256": "47330a9753b53cc4492ce5f559816e11d4777b61d2849f262027d6d81b7baf2d"
+      },
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b"
+      ],
+      "answerSummary": "接触面の節点を2枚の板で共有させ、共有させる節点の個数を変えて締結の固着範囲を調整する。",
+      "sharedQuestion": "ボルトで締結した2枚の板について、ボルト付近で滑らず一緒に動く固着範囲を、共有による拘束で近似します。メッシュの間隔は同じまま比較します。",
+      "studyParts": [
+        {
+          "id": "vib1-4-9-item-a",
+          "number": "4-9",
+          "officialRef": "問4-9",
+          "officialQuestionItem": "a",
+          "title": "共有するもの",
+          "topic": "接触面の節点共有と締結強さ",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "接触面で2枚の板の動きを同一にするため、何を共有させますか。",
+          "choices": [
+            "節点",
+            "材料のヤング率だけ"
+          ],
+          "answer": 1,
+          "answerSummary": "節点",
+          "easyExplanation": [
+            {
+              "title": "節点共有は、2枚の板の動きを一致させます",
+              "body": "上板と下板の対応する位置を一つの節点として扱えば、同じ自由度に対する変位が一致します。そこでは独立に滑ったり離れたりできません。共有しない部分には別々の変位が残ります。この違いを使って、全面が一体ではないボルト締結を、固着部分とそれ以外へ分けて表します。ボルトの本数だけを数える方法とは違います。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：同じ材料定数でも板どうしが同じ変位になるとは限りません。"
+            }
+          ],
+          "explanation": "【基礎】上板と下板の対応する位置を一つの節点として扱えば、同じ自由度に対する変位が一致します。そこでは独立に滑ったり離れたりできません。共有しない部分には別々の変位が残ります。この違いを使って、全面が一体ではないボルト締結を、固着部分とそれ以外へ分けて表します。ボルトの本数だけを数える方法とは違います。\n【考え方】1が正解です。接触面の節点共有で固着を表す。\n【ポイント】接触面の節点共有で固着を表す。\n【引っかけ】2：同じ材料定数でも板どうしが同じ変位になるとは限りません。",
+          "relatedFormulas": [
+            "v1ch4-7"
+          ],
+          "editorialReview": {
+            "officialPoint": "接触面の節点共有で固着を表す。",
+            "alignment": "保存済み公式問4-9の質問項目 a に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "同じ材料定数でも板どうしが同じ変位になるとは限りません。"
+            },
+            "sha256": "6b9e6b42d69294f1f1b21bf886d178aee77f91fb87db8018ddd6c160aac1ac82"
+          }
+        },
+        {
+          "id": "vib1-4-9-item-b",
+          "number": "4-9",
+          "officialRef": "問4-9",
+          "officialQuestionItem": "b",
+          "title": "固着範囲の調整",
+          "topic": "接触面の節点共有と締結強さ",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "実験の固有振動数と比較しながら、共有する節点の何を変えて固着範囲を調整しますか。",
+          "choices": [
+            "各節点に直接設定したヤング率",
+            "個数とそれが覆う範囲"
+          ],
+          "answer": 2,
+          "answerSummary": "個数とそれが覆う範囲",
+          "easyExplanation": [
+            {
+              "title": "節点数を変える意味を面積へ結び付けます",
+              "body": "同じ細かさの分割なら、ボルト近傍で共有する節点を増やすと、より広い領域が一体で動きやすくなります。ただし節点数だけで物理的な固着面積が一意に決まるわけではありません。分割の細かさや節点の配置も関係します。別のメッシュで同じ個数を共有しても、同じ固着範囲になっているかは図で確認する必要があります。",
+              "figures": [
+                {
+                  "figureImage": "v1e4BoltNodeShare",
+                  "caption": "同じメッシュで、共有する節点を周囲へ増やすと固着範囲が広がります。"
+                }
+              ]
+            },
+            {
+              "title": "固着範囲は剛性へ影響します",
+              "body": "2枚の板が別々に曲がる場合と、一緒に曲がる場合では、曲げにくさが変わります。結合が強くなると対象モードのモード剛性も変わり、固有振動数へ影響します。1自由度なら $f=\\frac{1}{2\\pi}\\sqrt{k/m}$ です。質量が同じで剛性が高くなると、振動数を上げる方向です。ただし多自由度系ではモード形も確認し、同じモードを比べます。"
+            },
+            {
+              "title": "個数だけを別メッシュへ持ち込まない",
+              "body": "同じメッシュなら共有節点を周辺へ増やすほど固着範囲が広がります。メッシュを細かくすれば同じ面積でも節点数は増えるため、比較すべき物理量は固着範囲です。一つの固有振動数が合うだけで全ての結合特性が正しいと断定せず、対象モードも照合します。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "1：ヤング率は材料の硬さで、節点そのものの固着範囲を表すパラメータではありません。"
+            }
+          ],
+          "explanation": "【基礎】同じ細かさの分割なら、ボルト近傍で共有する節点を増やすと、より広い領域が一体で動きやすくなります。ただし節点数だけで物理的な固着面積が一意に決まるわけではありません。分割の細かさや節点の配置も関係します。別のメッシュで同じ個数を共有しても、同じ固着範囲になっているかは図で確認する必要があります。\n【考え方】2が正解です。2枚の板が別々に曲がる場合と、一緒に曲がる場合では、曲げにくさが変わります。結合が強くなると対象モードのモード剛性も変わり、固有振動数へ影響します。1自由度なら $f=\\frac{1}{2\\pi}\\sqrt{k/m}$ です。質量が同じで剛性が高くなると、振動数を上げる方向です。ただし多自由度系ではモード形も確認し、同じモードを比べます。\n【ポイント】共有節点の個数・位置で固着範囲を調整する。\n【引っかけ】1：ヤング率は材料の硬さで、節点そのものの固着範囲を表すパラメータではありません。",
+          "relatedFormulas": [
+            "v1ch4-7"
+          ],
+          "editorialReview": {
+            "officialPoint": "共有節点の個数・位置で固着範囲を調整する。",
+            "alignment": "保存済み公式問4-9の質問項目 b に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "1": "ヤング率は材料の硬さで、節点そのものの固着範囲を表すパラメータではありません。"
+            },
+            "sha256": "0858f4647604fa1411c75a9435809a5544f41b1c99950efc5025490ad280355d"
+          }
+        }
+      ]
     },
     {
       "id": "vib1-4-10",
@@ -735,15 +1928,128 @@
         "v1ch4-8"
       ],
       "editorialReview": {
-        "officialPoint": "大質量法は十分大きい仮想質量を加振点に剛体要素で結合し、力加振して加速度加振を近似する手法である。",
-        "alignment": "大質量・剛体結合・力加振の組合せを選ばせる点が公式問4-10と一致する。",
+        "officialPoint": "公式問4-10の全質問項目：大質量を加振部へ剛体結合する。 大質量への力入力で所定加速度を近似する。",
+        "alignment": "保存済み公式の質問・空欄を個別回答できる2小問へ整理し、同じ番号で条件を共有。親の4択は旧本体・PDF互換用に保持。",
         "distractorMisconceptions": {
           "1": "仮想質量を小さくし変位加振すると誤解する。",
           "2": "減衰要素で加速度入力を再現できると誤解する。",
           "4": "ばね変位加振を大質量法と混同する誤解。"
         },
-        "sha256": "225f09e4d6f0b4ecc45a4164f33a6ebb5246755f56ebfd791d442421b31057b4"
-      }
+        "sha256": "444af171f1d5bb2df0f7fa09608a7af3787a22a6c0766eb591d7362321cd629d"
+      },
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b"
+      ],
+      "answerSummary": "解析対象より十分大きい仮想質量を加振位置に置き、剛体要素で構造物の加振部位と結合し、その大質量を力加振することで加速度加振を近似する。",
+      "sharedQuestion": "解析対象より十分大きい仮想質量を加振位置へ置き、所定の加速度を近似的に与える「大質量法」を考えます。",
+      "studyParts": [
+        {
+          "id": "vib1-4-10-item-a",
+          "number": "4-10",
+          "officialRef": "問4-10",
+          "officialQuestionItem": "a",
+          "title": "構造物との結合",
+          "topic": "大質量法の原理",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "大質量と構造物の加振部は、どの要素で同じ運動へ結びますか。",
+          "choices": [
+            "柔らかいばね要素",
+            "剛体要素"
+          ],
+          "answer": 2,
+          "answerSummary": "剛体要素",
+          "easyExplanation": [
+            {
+              "title": "なぜ剛体で入力部を結ぶのか",
+              "body": "仮想質量と構造物の加振部の間で、余分な弾性変形を生じさせないためです。柔らかいばねで結べば、そのばねの変形や共振が新たに入り、仮想質量の加速度と入力部の加速度が一致しなくなります。ただし剛体で結ぶ範囲も、実際に同じ動きを与えたい入力部へ限定します。構造物全体を剛体へ変える方法ではありません。"
+            },
+            {
+              "title": "入力が途中で変わらないようにする",
+              "body": "柔らかいばねでつなぐと大質量と構造物の加振点が別々に動き、ばねの伸縮が新たに加わります。剛体結合により、指定方向の加速度を構造物の入力位置へ伝えます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "1：ばねが変形すると入力点と大質量の加速度が一致しません。"
+            }
+          ],
+          "explanation": "【基礎】仮想質量と構造物の加振部の間で、余分な弾性変形を生じさせないためです。柔らかいばねで結べば、そのばねの変形や共振が新たに入り、仮想質量の加速度と入力部の加速度が一致しなくなります。ただし剛体で結ぶ範囲も、実際に同じ動きを与えたい入力部へ限定します。構造物全体を剛体へ変える方法ではありません。\n【考え方】2が正解です。柔らかいばねでつなぐと大質量と構造物の加振点が別々に動き、ばねの伸縮が新たに加わります。剛体結合により、指定方向の加速度を構造物の入力位置へ伝えます。\n【ポイント】大質量を加振部へ剛体結合する。\n【引っかけ】1：ばねが変形すると入力点と大質量の加速度が一致しません。",
+          "relatedFormulas": [
+            "v1ch4-8"
+          ],
+          "editorialReview": {
+            "officialPoint": "大質量を加振部へ剛体結合する。",
+            "alignment": "保存済み公式問4-10の質問項目 a に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "1": "ばねが変形すると入力点と大質量の加速度が一致しません。"
+            },
+            "sha256": "c620a76940966b18b638ba663e8a96ae48cf8aef914c0d5a24e04fabd684f6dd"
+          }
+        },
+        {
+          "id": "vib1-4-10-item-b",
+          "number": "4-10",
+          "officialRef": "問4-10",
+          "officialQuestionItem": "b",
+          "title": "大質量へ与える入力",
+          "topic": "大質量法の原理",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 2,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "所定加速度 $a(t)$ を近似するため、大質量へ与える入力はどれですか。",
+          "choices": [
+            "力",
+            "変位を直接指定するだけ"
+          ],
+          "answer": 1,
+          "answerSummary": "力",
+          "easyExplanation": [
+            {
+              "title": "基本は、力＝質量×加速度です",
+              "body": "仮想質量をM、与えたい加速度をaとすれば、加振力の基本は $F=Ma$ です。例えばM＝1000000 kg、a＝0.1 m/s²ならF＝100000 Nです。この非常に大きな質量は実物を表すのでなく、構造物からの反力の影響を相対的に小さくし、加速度を指定値へ近付けるために導入します。力と質量の両方を組として設定します。"
+            },
+            {
+              "title": "構造物の反力が誤差を生みます",
+              "body": "構造物から仮想質量へ返る力をRとし、その向きに合わせ $M\\ddot z=F-R$ と書けば、F＝Maのとき $\\ddot z=a-R/M$ です。Mが十分大きく、R/Mが小さければ、実際の入力加速度はaへ近付きます。これが近似である理由です。Mが有限である以上、反力の影響が常に厳密に0になるという説明ではありません。",
+              "figures": [
+                {
+                  "figureImage": "v1e4LargeMassMethod",
+                  "caption": "大質量へ与えたF＝Maが、対象構造からの反力より十分大きい条件を使います。"
+                }
+              ]
+            },
+            {
+              "title": "質量を大きくする理由と限界",
+              "body": "仮想質量を $M_L$、構造物から戻る反力を $R$ とすれば、$M_L\\ddot x=F-R$ です。$F=M_La$ とすると $\\ddot x=a-R/M_L$。大きな質量ほど反力による加速度誤差を小さくできます。ただし極端な値は数値条件を悪くするため、十分な値を選びます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：大質量へ力を与え、F＝Maを使って加速度入力を近似する点がこの方法の特徴です。"
+            }
+          ],
+          "explanation": "【基礎】仮想質量をM、与えたい加速度をaとすれば、加振力の基本は $F=Ma$ です。例えばM＝1000000 kg、a＝0.1 m/s²ならF＝100000 Nです。この非常に大きな質量は実物を表すのでなく、構造物からの反力の影響を相対的に小さくし、加速度を指定値へ近付けるために導入します。力と質量の両方を組として設定します。\n【考え方】1が正解です。構造物から仮想質量へ返る力をRとし、その向きに合わせ $M\\ddot z=F-R$ と書けば、F＝Maのとき $\\ddot z=a-R/M$ です。Mが十分大きく、R/Mが小さければ、実際の入力加速度はaへ近付きます。これが近似である理由です。Mが有限である以上、反力の影響が常に厳密に0になるという説明ではありません。\n【ポイント】大質量への力入力で所定加速度を近似する。\n【引っかけ】2：大質量へ力を与え、F＝Maを使って加速度入力を近似する点がこの方法の特徴です。",
+          "relatedFormulas": [
+            "v1ch4-8"
+          ],
+          "editorialReview": {
+            "officialPoint": "大質量への力入力で所定加速度を近似する。",
+            "alignment": "保存済み公式問4-10の質問項目 b に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "大質量へ力を与え、F＝Maを使って加速度入力を近似する点がこの方法の特徴です。"
+            },
+            "sha256": "33d4fb62c727454921e2b28eeabd575ae64ba2dbad547fd75f3791eb8d7b089b"
+          }
+        }
+      ]
     },
     {
       "id": "vib1-4-11",
@@ -771,7 +2077,13 @@
         },
         {
           "title": "単純な2点の例で確かめます",
-          "body": "説明用に $M=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}$、$I=(1,1)^T$ とします。質量正規化した同相モード $\\phi=(1,1)^T/\\sqrt2$ なら $\\beta=\\sqrt2$、逆相モード $(1,-1)^T/\\sqrt2$ ならβ＝0です。同じ基礎加速度でも、各形へ入る入力が違うことが分かります。0のモードが一般に存在しないという意味ではなく、この入力では励起されないという関係です。"
+          "body": "説明用に $M=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}$、$I=(1,1)^T$ とします。質量正規化した同相モード $\\phi=(1,1)^T/\\sqrt2$ なら $\\beta=\\sqrt2$、逆相モード $(1,-1)^T/\\sqrt2$ ならβ＝0です。同じ基礎加速度でも、各形へ入る入力が違うことが分かります。0のモードが一般に存在しないという意味ではなく、この入力では励起されないという関係です。",
+          "figures": [
+            {
+              "figureImage": "v1e4StimulusSign",
+              "caption": "モードを反転すると刺激係数も反転します。係数は百分率ではありません。"
+            }
+          ]
         },
         {
           "title": "①②③との違い",
@@ -814,10 +2126,21 @@
           "2": "有効質量(刺激係数の2乗相当)と混同する誤解。",
           "3": "固有ベクトル{φi}自身と混同する誤解。"
         },
-        "sha256": "d98177e6bcc2d98b605c10669de6ba3a7e05fadaaab7936f14118fd8e05abac9"
+        "sha256": "6c6eaad3ad95a420503adb5a8f471e09bca032a4638d1ba09f91cfe022faed6b"
       },
       "preFigureImage": "v1e4DiscretizedCantileverPre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "main"
+      ],
+      "answerSummary": "刺激係数",
+      "preFigures": [
+        {
+          "figureImage": "v1e4DiscretizedCantileverPre",
+          "caption": "支持部0の既知の並進zと、残る節点1〜nの移動・回転を分けます。"
+        }
+      ]
     },
     {
       "id": "vib1-4-12",
@@ -837,11 +2160,17 @@
         },
         {
           "title": "物理的な変位は変わりません",
-          "body": "モードの式は $\\ddot q_i+\\omega_i^2q_i=-\\beta_i\\ddot z$ です。モードの向きとβを反転させると、同じ初期状態に対応するqも反転します。変位へ戻す積は $(-\\phi_i)(-q_i)=\\phi_iq_i$ なので、実際の節点変位は同じです。座標の符号の約束を替えただけで、実物の応答が反対になるわけではありません。"
+          "body": "モードの式は $\\ddot q_i+\\omega_i^2q_i=-\\beta_i\\ddot z$ です。モードの向きとβを反転させると、同じ初期状態に対応するqも反転します。変位へ戻す積は $(-\\phi_i)(-q_i)=\\phi_iq_i$ なので、実際の節点変位は同じです。座標の符号の約束を替えただけで、実物の応答が反対になるわけではありません。",
+          "figures": [
+            {
+              "figureImage": "v1e4StimulusSign",
+              "caption": "φとβの両方が反転するので、実際の応答は同じです。"
+            }
+          ]
         },
         {
           "title": "二つの質点の例で考えます",
-          "body": "単位質量が二つあり、入力方向がI＝(1,1)の例を考えます。同相の正規化モードφ＝(1,1)/√2ならβ＝√2です。φ＝(−1,−1)/√2を選べばβ＝−√2になります。一方φ＝(1,−1)/√2なら足し合わせが相殺しβ＝0です。負のβは負の質量を意味せず、正の向きを選び直した結果です。"
+          "body": "説明用に $M=\\mathrm{diag}(1,1)$、$I=(1,1)^T$ とします。$\\phi=(1,1)^T/\\sqrt2$ なら $\\beta=\\sqrt2$、その符号を逆にすれば $\\beta=-\\sqrt2$ です。$\\phi=(1,-1)^T/\\sqrt2$ なら相殺して0です。負の係数は負の質量ではなく、モードの向きの選び方に対応します。"
         },
         {
           "title": "①③④の誤りを分けます",
@@ -850,17 +2179,13 @@
         {
           "title": "有効質量と比率は別の段階です",
           "body": "質量正規化では、対応する有効質量がβ²へ結び付きます。二乗なので、モードの符号を変えても値は同じです。さらに全質量などで割れば、質量に対する割合を考えられます。しかしβそのものがその割合なのではありません。問題がどの量を定義しているかを確認し、似た名称を数式の操作なしに置き換えないようにします。"
-        },
-        {
-          "title": "励起の強さと応答の大きさも区別します",
-          "body": "βが0でなければ、その入力からモードの式へ力が入ります。ただし応答振幅には入力の周波数、固有振動数、減衰が関係します。βが大きいモードでも、入力にその近くの周波数成分が少なければ応答が支配的とは限りません。今回問うのは刺激係数自体の正負の性質であり、全応答への寄与の順位を決める問題ではありません。"
         }
       ],
       "title": "刺激係数の性質",
       "topic": "刺激係数の符号・意味",
       "type": "mc",
       "difficulty": 2,
-      "question": "前問の刺激係数 $\\beta_i=\\{\\phi_i\\}^T[M]\\{I\\}$ に関する記述として正しいものはどれか。",
+      "question": "基礎並進の影響ベクトルを $I$、質量行列を $M$、質量正規化した固有モードを $\\phi_i$ とします。刺激係数 $\\beta_i=\\phi_i^TMI$ に関する正しい説明はどれですか。",
       "choices": [
         "$\\beta_i$ は常に正の値をとる。",
         "$\\beta_i$ はモードの向き(符号)により正にも負にもなる。",
@@ -888,10 +2213,21 @@
           "3": "単純に加速度の逆数の次元をもつと誤解する。",
           "4": "寄与率(総和1)の性質と混同する誤解。"
         },
-        "sha256": "40efb180a47e895aea247e517c910cc346e0c0874dd2acdbe38a38c7b9d837b2"
+        "sha256": "72f8d0d40ee9140e71773f6c668dffa5a303c07e35bffce533252226465703ac"
       },
       "preFigureImage": "v1e4DiscretizedCantileverPre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "main"
+      ],
+      "answerSummary": "$\\beta_i$ はモードの向き(符号)により正にも負にもなる。",
+      "preFigures": [
+        {
+          "figureImage": "v1e4DiscretizedCantileverPre",
+          "caption": "支持部0の既知の並進zと、残る節点1〜nの移動・回転を分けます。"
+        }
+      ]
     },
     {
       "id": "vib1-4-13",
@@ -959,17 +2295,136 @@
         "v1ch4-4"
       ],
       "editorialReview": {
-        "officialPoint": "相対変位ベクトルは節点1〜nの並進yiと回転θiを並べた2n次元で、影響ベクトル{I}は並進成分1・回転成分0とし支持節点y0は含めない。",
-        "alignment": "{y}が2n次元・{I}={1 0 1 0…}を選ばせる点が、公式問4-13解説の支持節点相対変位0と並進のみ慣性力の主旨と一致する(問題文は原本未スキャンで解説から主題を照合)。",
+        "officialPoint": "公式問4-13の全質問項目：相対並進と回転を並べた2n成分の未知ベクトル。 基礎並進の影響ベクトルは並進1・回転0。",
+        "alignment": "保存済み公式の質問・空欄を個別回答できる2小問へ整理し、同じ番号で条件を共有。親の4択は旧本体・PDF互換用に保持。",
         "distractorMisconceptions": {
           "2": "回転自由度に1を置く誤解。",
           "3": "相対変位0のy0を未知数に含め2n+1次元とする誤解。",
           "4": "全成分を1とし回転自由度にも剛体並進の影響を与える誤解。"
         },
-        "sha256": "3ab632984b3b44b842b4f9ba92391d615d2b40312d7786abc55a2b05c70abfd9"
+        "sha256": "f05cf536b656c1b7ddfa01bfb444de7f16e7b56be38c7df9769b5f956344cd58"
       },
       "preFigureImage": "v1e4DiscretizedCantileverPre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "y",
+        "I"
+      ],
+      "answerSummary": "$\\{y\\}=\\{y_1\\ \\theta_1\\ y_2\\ \\theta_2\\ \\cdots\\ y_n\\ \\theta_n\\}^T$、$\\{I\\}=\\{1\\ 0\\ 1\\ 0\\ \\cdots\\ 1\\ 0\\}^T$（$\\{I\\}$ は $2n$ 次元）",
+      "preFigures": [
+        {
+          "figureImage": "v1e4DiscretizedCantileverPre",
+          "caption": "支持部0の既知の並進zと、残る節点1〜nの移動・回転を分けます。"
+        }
+      ],
+      "sharedQuestion": "片持ちはりの支持部（節点0）へ一様な並進 $z(t)$ を与えます。節点 $i=1,\\ldots,n$ の支持部に対する横変位を $y_i$、断面回転を $\\theta_i$ とします。$[M]\\{\\ddot y\\}+[K]\\{y\\}=-[M]\\{I\\}\\ddot z$ の未知ベクトルと影響ベクトルを考えます。",
+      "studyParts": [
+        {
+          "id": "vib1-4-13-item-y",
+          "number": "4-13",
+          "officialRef": "問4-13",
+          "officialQuestionItem": "y",
+          "title": "未知変数の並び",
+          "topic": "基礎励振・相対座標系・影響ベクトル",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "支持部の既知運動を除いた未知ベクトルはどれですか。",
+          "choices": [
+            "$\\{y\\}=\\{y_1,\\theta_1,y_2,\\theta_2,\\ldots,y_n,\\theta_n\\}^T$",
+            "$\\{y\\}=\\{y_0,y_1,\\theta_1,y_2,\\theta_2,\\ldots,y_n,\\theta_n\\}^T$"
+          ],
+          "answer": 1,
+          "answerSummary": "$\\{y\\}=\\{y_1,\\theta_1,y_2,\\theta_2,\\ldots,y_n,\\theta_n\\}^T$",
+          "easyExplanation": [
+            {
+              "title": "一節点につき二つの未知量",
+              "body": "各節点の横移動と断面の回転を順番に並べます。動く節点がn個で各2成分なので、合計 $2n$ 成分です。支持部は自分自身に対して動かず、$y_0=0$。回転も支持条件で既知のため、独立な未知数へ重ねて入れません。"
+            },
+            {
+              "title": "未知量を並べる順序を保つ",
+              "body": "例えば2節点なら $(y_1,\\theta_1,y_2,\\theta_2)^T$ です。質量行列や剛性行列も、この順番へ合わせて作ります。並進の単位は長さ、回転角はradなので、成分ごとの意味を混同しないようにします。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：既知の相対変位y0＝0を未知数へ余分に加えています。"
+            }
+          ],
+          "explanation": "【基礎】各節点の横移動と断面の回転を順番に並べます。動く節点がn個で各2成分なので、合計 $2n$ 成分です。支持部は自分自身に対して動かず、$y_0=0$。回転も支持条件で既知のため、独立な未知数へ重ねて入れません。\n【考え方】1が正解です。例えば2節点なら $(y_1,\\theta_1,y_2,\\theta_2)^T$ です。質量行列や剛性行列も、この順番へ合わせて作ります。並進の単位は長さ、回転角はradなので、成分ごとの意味を混同しないようにします。\n【ポイント】相対並進と回転を並べた2n成分の未知ベクトル。\n【引っかけ】2：既知の相対変位y0＝0を未知数へ余分に加えています。",
+          "relatedFormulas": [
+            "v1ch4-4"
+          ],
+          "editorialReview": {
+            "officialPoint": "相対並進と回転を並べた2n成分の未知ベクトル。",
+            "alignment": "保存済み公式問4-13の質問項目 y に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "既知の相対変位y0＝0を未知数へ余分に加えています。"
+            },
+            "sha256": "7cd7c72cdb4ba10981c501f553312a966d17302752fd1739c2b2da793eb89ec6"
+          }
+        },
+        {
+          "id": "vib1-4-13-item-I",
+          "number": "4-13",
+          "officialRef": "問4-13",
+          "officialQuestionItem": "I",
+          "title": "基礎並進を配るベクトル",
+          "topic": "基礎励振・相対座標系・影響ベクトル",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "$(y_1,\\theta_1,y_2,\\theta_2,\\ldots)^T$ の順序に対応する $\\{I\\}$ はどれですか。",
+          "choices": [
+            "$\\{0,1,0,1,\\ldots,0,1\\}^T$",
+            "$\\{1,0,1,0,\\ldots,1,0\\}^T$"
+          ],
+          "answer": 2,
+          "answerSummary": "$\\{1,0,1,0,\\ldots,1,0\\}^T$",
+          "easyExplanation": [
+            {
+              "title": "基礎だけを同じだけ動かす",
+              "body": "基礎が横へ $z$ 動くと、各点の絶対並進へ同じ $z$ が加わります。一方、一様な並進だけでは断面は回転しません。したがって並進位置へ1、回転位置へ0を置きます。",
+              "figures": [
+                {
+                  "figureImage": "v1e4CantileverSeismic",
+                  "caption": "自由度の並びを読み、並進の位置に1、回転の位置に0を置きます。"
+                }
+              ]
+            },
+            {
+              "title": "加速度の式へ代入する",
+              "body": "絶対変位は $\\{x\\}=\\{y\\}+\\{I\\}z$ です。加速度も $\\{\\ddot x\\}=\\{\\ddot y\\}+\\{I\\}\\ddot z$。基礎加速度に対する項を右へ移すことで $-[M]\\{I\\}\\ddot z$ になります。"
+            },
+            {
+              "title": "0を入れた成分の意味",
+              "body": "0は「一様な基礎並進が回転角を直接増やさない」という意味です。一般の非対角の質量行列を掛けた後も回転位置の等価荷重が必ず0になる、とまではいえません。まず入力運動を表すIと、掛け算後の荷重を分けます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "1：並進と回転を逆に配っています。基礎並進は回転だけへ入力される運動ではありません。"
+            }
+          ],
+          "explanation": "【基礎】基礎が横へ $z$ 動くと、各点の絶対並進へ同じ $z$ が加わります。一方、一様な並進だけでは断面は回転しません。したがって並進位置へ1、回転位置へ0を置きます。\n【考え方】2が正解です。絶対変位は $\\{x\\}=\\{y\\}+\\{I\\}z$ です。加速度も $\\{\\ddot x\\}=\\{\\ddot y\\}+\\{I\\}\\ddot z$。基礎加速度に対する項を右へ移すことで $-[M]\\{I\\}\\ddot z$ になります。\n【ポイント】基礎並進の影響ベクトルは並進1・回転0。\n【引っかけ】1：並進と回転を逆に配っています。基礎並進は回転だけへ入力される運動ではありません。",
+          "relatedFormulas": [
+            "v1ch4-4"
+          ],
+          "editorialReview": {
+            "officialPoint": "基礎並進の影響ベクトルは並進1・回転0。",
+            "alignment": "保存済み公式問4-13の質問項目 I に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "1": "並進と回転を逆に配っています。基礎並進は回転だけへ入力される運動ではありません。"
+            },
+            "sha256": "f2b874605195e6c56de525d0a04a442edbf6fb748ae6c4f848e5793d0b805a6e"
+          }
+        }
+      ]
     },
     {
       "id": "vib1-4-14",
@@ -1037,17 +2492,256 @@
         "v1ch4-12"
       ],
       "editorialReview": {
-        "officialPoint": "面接触でモーメントを伝えるヒンジ・ロックは板とはり要素で詳細に(ヒンジは開く方向に回転)、細いゴムのW/Sはばね要素でモデル化する。",
-        "alignment": "ヒンジ回転・板とはり詳細・W/Sばねの組合せを選ばせる点が公式問4-14と一致する。",
+        "officialPoint": "公式問4-14の全質問項目：ヒンジ鋼板部を板要素で表し、取付部の柔らかさを残す。 ヒンジの開閉方向の回転を許す。 ロック部を板とはり要素でモデル化する。 ロックの力・モーメント伝達に効く変形を詳細に残す。 全周W/Sの柔らかい支持をばね要素で表す。",
+        "alignment": "保存済み公式の質問・空欄を個別回答できる5小問へ整理し、同じ番号で条件を共有。親の4択は旧本体・PDF互換用に保持。",
         "distractorMisconceptions": {
           "1": "剛体・ソリッドでヒンジを回転させずW/Sをソリッドとする誤解。",
           "2": "ヒンジを回転しないとし板要素で表す誤解。",
           "3": "ヒンジをソリッドで回転させずW/Sをソリッドとする誤解。"
         },
-        "sha256": "0348d8e75ab9f5ae71520abb7b62e361799b67dc66f3a1724360158561388d0e"
+        "sha256": "dbbce3af122dfed2e4f542e13cc554b23b21c766063d4b43369fd64c346bf7f5"
       },
       "preFigureImage": "v1e4BackdoorSetupPre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e"
+      ],
+      "answerSummary": "ヒンジは板とはり要素で開く方向に回転するように、ロックは板とはり要素で詳細に、W/Sはばね要素でモデル化する。",
+      "preFigures": [
+        {
+          "figureImage": "v1e4BackdoorSetupPre",
+          "caption": "上端ヒンジ、下端ロック、全周W/Sの位置と役割を分けます。"
+        }
+      ],
+      "sharedQuestion": "鋼板とガラスからなる車のバックドアは、上端の2個のヒンジ、下端中央のロック、全周の細いゴム製ウェザーストリップ（W/S）で車体へつながっています。中央が大きく動く1次曲げを調べ、ヒンジ・ロック部の柔らかさも残します。",
+      "studyParts": [
+        {
+          "id": "vib1-4-14-item-a",
+          "number": "4-14",
+          "officialRef": "問4-14",
+          "officialQuestionItem": "a",
+          "title": "ヒンジ部の要素",
+          "topic": "ヒンジ・ロック・ウェザーストリップの要素選択",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "鋼板製ヒンジの取付面の変形を残す基本的なモデルはどれですか。",
+          "choices": [
+            "板要素を使う",
+            "全体を完全な剛体で置く"
+          ],
+          "answer": 1,
+          "answerSummary": "板要素を使う",
+          "easyExplanation": [
+            {
+              "title": "開く機構と、金具のたわみを分ける",
+              "body": "ヒンジは回転を許す軸を持ちますが、その金具と取付面も変形して力やモーメントを伝えます。鋼板部を板要素で表し、必要な結合を設ければ、曲げの柔らかさを残せます。全部を剛体にすると、この柔らかさを消します。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：結合部の弾性変形を調べる条件なのに、その変形を拘束してしまいます。"
+            }
+          ],
+          "explanation": "【基礎】ヒンジは回転を許す軸を持ちますが、その金具と取付面も変形して力やモーメントを伝えます。鋼板部を板要素で表し、必要な結合を設ければ、曲げの柔らかさを残せます。全部を剛体にすると、この柔らかさを消します。\n【考え方】1が正解です。ヒンジ鋼板部を板要素で表し、取付部の柔らかさを残す。\n【ポイント】ヒンジ鋼板部を板要素で表し、取付部の柔らかさを残す。\n【引っかけ】2：結合部の弾性変形を調べる条件なのに、その変形を拘束してしまいます。",
+          "relatedFormulas": [
+            "v1ch4-12"
+          ],
+          "editorialReview": {
+            "officialPoint": "ヒンジ鋼板部を板要素で表し、取付部の柔らかさを残す。",
+            "alignment": "保存済み公式問4-14の質問項目 a に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "結合部の弾性変形を調べる条件なのに、その変形を拘束してしまいます。"
+            },
+            "sha256": "1e46e0183339e8efb3bcbd87a115a737f4e3485e53df94373c6d10dfb3d82c92"
+          }
+        },
+        {
+          "id": "vib1-4-14-item-b",
+          "number": "4-14",
+          "officialRef": "問4-14",
+          "officialQuestionItem": "b",
+          "title": "開閉方向の拘束",
+          "topic": "ヒンジ・ロック・ウェザーストリップの要素選択",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "ヒンジの開閉方向の回転をどう扱いますか。",
+          "choices": [
+            "回転できないよう固定する",
+            "回転を許す"
+          ],
+          "answer": 2,
+          "answerSummary": "回転を許す",
+          "easyExplanation": [
+            {
+              "title": "実物ができる動きを残す",
+              "body": "ドアが開く向きの回転を完全固定すると、実車にはない回転抵抗を加えます。開閉軸まわりの回転を許し、他の拘束と合わせて実際のヒンジの働きを表します。閉じたドア全体の動きは、ロックや周囲ゴムの作用も含めて決まります。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "1：ヒンジ本来の回転を消し、境界条件を実物より硬くします。"
+            }
+          ],
+          "explanation": "【基礎】ドアが開く向きの回転を完全固定すると、実車にはない回転抵抗を加えます。開閉軸まわりの回転を許し、他の拘束と合わせて実際のヒンジの働きを表します。閉じたドア全体の動きは、ロックや周囲ゴムの作用も含めて決まります。\n【考え方】2が正解です。ヒンジの開閉方向の回転を許す。\n【ポイント】ヒンジの開閉方向の回転を許す。\n【引っかけ】1：ヒンジ本来の回転を消し、境界条件を実物より硬くします。",
+          "relatedFormulas": [
+            "v1ch4-12"
+          ],
+          "editorialReview": {
+            "officialPoint": "ヒンジの開閉方向の回転を許す。",
+            "alignment": "保存済み公式問4-14の質問項目 b に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "1": "ヒンジ本来の回転を消し、境界条件を実物より硬くします。"
+            },
+            "sha256": "b1c3bfa803f1663aee9c82d23ba000b39709a3a3911d4cc86b822e6072a46fb8"
+          }
+        },
+        {
+          "id": "vib1-4-14-item-c",
+          "number": "4-14",
+          "officialRef": "問4-14",
+          "officialQuestionItem": "c",
+          "title": "ロック部の要素",
+          "topic": "ヒンジ・ロック・ウェザーストリップの要素選択",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "ロックと取付部の変形・モーメント伝達を表す要素の組合せはどれですか。",
+          "choices": [
+            "板要素とはり要素",
+            "質量要素だけ"
+          ],
+          "answer": 1,
+          "answerSummary": "板要素とはり要素",
+          "easyExplanation": [
+            {
+              "title": "どの力を伝えるかで選ぶ",
+              "body": "ロックは質量だけでなく、ドアと車体の間の力やモーメントを伝えます。取付面の曲げを板要素、棒状の結合をはり要素などで表すことで、結合部の変形を評価できます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：質量要素だけでは結合の硬さやモーメントの伝達を表せません。"
+            }
+          ],
+          "explanation": "【基礎】ロックは質量だけでなく、ドアと車体の間の力やモーメントを伝えます。取付面の曲げを板要素、棒状の結合をはり要素などで表すことで、結合部の変形を評価できます。\n【考え方】1が正解です。ロック部を板とはり要素でモデル化する。\n【ポイント】ロック部を板とはり要素でモデル化する。\n【引っかけ】2：質量要素だけでは結合の硬さやモーメントの伝達を表せません。",
+          "relatedFormulas": [
+            "v1ch4-12"
+          ],
+          "editorialReview": {
+            "officialPoint": "ロック部を板とはり要素でモデル化する。",
+            "alignment": "保存済み公式問4-14の質問項目 c に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "質量要素だけでは結合の硬さやモーメントの伝達を表せません。"
+            },
+            "sha256": "4372fbbda23548ff19be12234ec70cd8f86fa507a7197e1e9fdf45bde49fd21c"
+          }
+        },
+        {
+          "id": "vib1-4-14-item-d",
+          "number": "4-14",
+          "officialRef": "問4-14",
+          "officialQuestionItem": "d",
+          "title": "ロックの表現の細かさ",
+          "topic": "ヒンジ・ロック・ウェザーストリップの要素選択",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "取付部の柔らかさが1次曲げへ影響するとき、ロック部はどうモデル化しますか。",
+          "choices": [
+            "変形を省いて簡易な剛体へ置換する",
+            "必要な変形を残して詳細に表す"
+          ],
+          "answer": 2,
+          "answerSummary": "必要な変形を残して詳細に表す",
+          "easyExplanation": [
+            {
+              "title": "節に近くても支持の硬さは重要",
+              "body": "ロック付近の変位が小さくても、そこでどれだけ力を支えるかが全体の振動の形を左右します。面での取付けと曲げの柔らかさが重要なら、それを残す詳細さが必要です。何でも細かくするのではなく、対象モードに効く変形を省かないことが目的です。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "1：本問では結合部の柔らかさを残すため、剛体への置換では条件に合いません。"
+            }
+          ],
+          "explanation": "【基礎】ロック付近の変位が小さくても、そこでどれだけ力を支えるかが全体の振動の形を左右します。面での取付けと曲げの柔らかさが重要なら、それを残す詳細さが必要です。何でも細かくするのではなく、対象モードに効く変形を省かないことが目的です。\n【考え方】2が正解です。ロックの力・モーメント伝達に効く変形を詳細に残す。\n【ポイント】ロックの力・モーメント伝達に効く変形を詳細に残す。\n【引っかけ】1：本問では結合部の柔らかさを残すため、剛体への置換では条件に合いません。",
+          "relatedFormulas": [
+            "v1ch4-12"
+          ],
+          "editorialReview": {
+            "officialPoint": "ロックの力・モーメント伝達に効く変形を詳細に残す。",
+            "alignment": "保存済み公式問4-14の質問項目 d に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "1": "本問では結合部の柔らかさを残すため、剛体への置換では条件に合いません。"
+            },
+            "sha256": "4583e08435b696ff5ee6d70c18cb266f5d0b8502758ba5f15e744fc21626364f"
+          }
+        },
+        {
+          "id": "vib1-4-14-item-e",
+          "number": "4-14",
+          "officialRef": "問4-14",
+          "officialQuestionItem": "e",
+          "title": "周囲ゴムのモデル",
+          "topic": "ヒンジ・ロック・ウェザーストリップの要素選択",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "細いW/Sが全周で伝える主な並進力を簡潔に表す要素はどれですか。",
+          "choices": [
+            "ばね要素",
+            "全周を完全固定する剛体拘束"
+          ],
+          "answer": 1,
+          "answerSummary": "ばね要素",
+          "easyExplanation": [
+            {
+              "title": "一か所は軟らかくても、全周で支える",
+              "body": "短い区間ごとのW/Sは軟らかくても、全周に分布するとドアの曲げを支えます。相対変位に応じた力を、周囲に配置したばねで表します。この条件では長手方向まわりのモーメント伝達が小さいため、複雑な立体モデルを必須としません。",
+              "figures": [
+                {
+                  "figureImage": "v1e4BackdoorHinge",
+                  "caption": "上のヒンジは回転を許し、下のロックと周囲のゴムも力を伝えます。"
+                }
+              ]
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：ゴムが変形する柔らかさを消し、実物の支持条件と異なります。"
+            }
+          ],
+          "explanation": "【基礎】短い区間ごとのW/Sは軟らかくても、全周に分布するとドアの曲げを支えます。相対変位に応じた力を、周囲に配置したばねで表します。この条件では長手方向まわりのモーメント伝達が小さいため、複雑な立体モデルを必須としません。\n【考え方】1が正解です。全周W/Sの柔らかい支持をばね要素で表す。\n【ポイント】全周W/Sの柔らかい支持をばね要素で表す。\n【引っかけ】2：ゴムが変形する柔らかさを消し、実物の支持条件と異なります。",
+          "relatedFormulas": [
+            "v1ch4-12"
+          ],
+          "editorialReview": {
+            "officialPoint": "全周W/Sの柔らかい支持をばね要素で表す。",
+            "alignment": "保存済み公式問4-14の質問項目 e に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "ゴムが変形する柔らかさを消し、実物の支持条件と異なります。"
+            },
+            "sha256": "b847356e649d226fd73e35e7fd691fdbcf2f986c0f63db99df0ad48d9375dab6"
+          }
+        }
+      ]
     },
     {
       "id": "vib1-4-15",
@@ -1067,7 +2761,13 @@
         },
         {
           "title": "ペナルティ法は、わずかな貫入へ抵抗を与えます",
-          "body": "概念的には、食い込み量gに対し $F_c=k_pg$ という大きなばねの反力を与えます。kₚが大きいほど同じ力での貫入は小さくなります。しかし接触の高い固有振動数も生じやすく、細かな時間刻みが必要になったり、高周波の揺れが結果へ入ったりします。小さな貫入だけを見て、定数が大きいほど常に正解へ近いと考えてはいけません。"
+          "body": "概念的には、食い込み量gに対し $F_c=k_pg$ という大きなばねの反力を与えます。kₚが大きいほど同じ力での貫入は小さくなります。しかし接触の高い固有振動数も生じやすく、細かな時間刻みが必要になったり、高周波の揺れが結果へ入ったりします。小さな貫入だけを見て、定数が大きいほど常に正解へ近いと考えてはいけません。",
+          "figures": [
+            {
+              "figureImage": "v1e4StopperContact",
+              "caption": "すきまが閉じた後に接触力が働きます。接触の硬さや数値減衰で結果が変わる点を確認します。"
+            }
+          ]
         },
         {
           "title": "減衰は高い周波数を抑えることがあります",
@@ -1122,84 +2822,94 @@
           "2": "ペナルティ定数は大きいほど常に実現象に近いと誤解する。",
           "4": "初期貫入は自動解消され初期座標調整は不要と誤解する。"
         },
-        "sha256": "a52536f81b56fba02722c296a339d14ce76e800a7fc594b8163451b7fbeb0411"
+        "sha256": "6d5ed022df03694a0d7e79252d691bd7cc5d5cab0808f74350164665d5ff1f76"
       },
       "preFigureImage": "v1e4StopperSetupPre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "main"
+      ],
+      "answerSummary": "解析コードによっては収束性・安定性のため自動的に系へ減衰を導入する設定があり有効だが、ピーク値や周波数特性など応答特性を評価する際はその影響に注意する。",
+      "preFigures": [
+        {
+          "figureImage": "v1e4StopperSetupPre",
+          "caption": "振れた主構造がすきまを閉じると、ストッパー側へ接触力が伝わります。"
+        }
+      ]
     },
     {
       "id": "vib1-4-16",
       "number": "4-16",
       "easyExplanation": [
         {
-          "title": "正解④：0.15秒遅れ、指数の符号は負です",
-          "body": "第2軸は第1軸が通過した地点へ後から到着します。遅れ時間は軸間距離を走行速度で割ったものです。ただし距離はm、速度はkm/hなので単位を合わせます。72 km/hは20 m/s、3 mを進む時間は3÷20＝0.15秒です。遅れを表す係数は $e^{-j\\omega\\tau_2}$ なので④です。"
+          "title": "後ろの軸は、同じ地点へ遅れて来る",
+          "body": "先頭軸が凹凸を踏んでから後続軸がそこへ来るまで、軸間距離を進む時間が必要です。全ての軸の入力を独立に用意する代わりに、先頭入力を時間だけずらして表します。$H_i$ は各軸の入力が出力へどのように伝わるかを表す伝達関数です。"
         },
         {
-          "title": "まず速度の単位を直します",
-          "body": "1 km＝1000 m、1時間＝3600秒です。従って $72\\,\\mathrm{km/h}=72\\times1000/3600=20\\,\\mathrm{m/s}$ です。km/hをm/sへするには3.6で割ります。距離3 mを72という数値でそのまま割ると、mとkm/hが混在し、秒になりません。公式に代入する前に、この換算を行います。"
+          "title": "まず速度をm/sへ直す",
+          "body": "$v\\,\\mathrm{km/h}=v\\times1000/3600=v/3.6\\,\\mathrm{m/s}$。したがって遅れは $\\tau_i=L_i/(v/3.6)=3.6L_i/v$ 秒です。図の例なら $72/3.6=20\\,\\mathrm{m/s}$、$\\tau_2=3.0/20=0.15\\,\\mathrm s$ です。"
         },
         {
-          "title": "距離÷速さが時間です",
-          "body": "$\\tau_2=L_2/(v/3.6)=3.6L_2/v$ です。今回なら $\\tau_2=3.6\\times3/72=0.15\\,\\mathrm{s}$ です。速度を2倍にすれば同じ軸間距離を半分の時間で通るので、遅れも半分になります。軸間を長くすれば遅れは長くなります。この増減で、速度と距離を逆にした式を見分けられます。"
+          "title": "時間遅れを指数へ変える",
+          "body": "後続入力は $w_i(t)=w_1(t-\\tau_i)$。$e^{j\\omega(t-\\tau_i)}=e^{j\\omega t}e^{-j\\omega\\tau_i}$ なので、$W_i=e^{-j\\omega\\tau_i}W_1$ です。遅れは負の位相になります。"
         },
         {
-          "title": "遅れた波形は、時刻を前へずらして参照します",
-          "body": "第1軸の入力をw₁(t)とすれば、第2軸は $w_2(t)=w_1(t-\\tau_2)$ です。第2軸が今受ける凹凸は、第1軸がτ₂秒前に受けたものだからです。t＋τ₂なら未来の第1軸の入力を今受ける形になり、後続軸という条件と逆です。この時間の式で符号を考えると、指数を暗記するより確実です。"
+          "title": "4軸の式へ戻す",
+          "body": "$Z=H_1W_1+H_2W_2+H_3W_3+H_4W_4$ の各 $W_i$ を置き換えます。共通の $W_1$ を外へ出すと $Z=(H_1+\\sum_{i=2}^4H_i e^{-j\\omega3.6L_i/v})W_1$ となり④です。"
         },
         {
-          "title": "調和成分へすると指数が現れます",
-          "body": "第1軸の成分を $W_1e^{j\\omega t}$ とします。時刻へt−τ₂を入れると $W_1e^{j\\omega(t-\\tau_2)}=W_1e^{-j\\omega\\tau_2}e^{j\\omega t}$ です。共通の時間変化eの部分を除けば、第2軸の成分は第1軸へ $e^{-j\\omega\\tau_2}$ を掛けた形です。jは虚数単位で、ここでは波の大きさを減らすのでなく位相を遅らせます。"
-        },
-        {
-          "title": "位相の大きさも確認できます",
-          "body": "角周波数ωと時間τ₂の積は、位相の角度をradで表します。例えば周波数1 Hzならω＝2π rad/sなので、位相遅れは $2\\pi\\times0.15=0.3\\pi$ rad、54度です。同じ時間遅れでも周波数が高いほど、周期の中でのずれは大きくなります。0.15秒という時間と、54度という位相を同じ量として扱わないようにします。"
-        },
-        {
-          "title": "①②③はどこが違うか",
-          "body": "①は3÷72に相当する値で、速度の単位換算が不足しています。②は時間が正しくても指数が正で、位相が進む入力です。③の0.30秒は本問の軸間距離と速度から得られません。④だけが時間と位相の向きを両方満たします。時間の計算と指数の符号を独立に確認してください。"
-        },
-        {
-          "title": "4軸の入力をまとめる意味",
-          "body": "各軸から応答への伝達関数をHᵢとすれば、全応答は各入力へHᵢを掛けて足します。同じ凹凸でも到着時刻が違うので、各Wᵢへ対応する遅れ係数を入れます。全てを同時刻の同位相入力にすると、応答が助け合うか打ち消すかの関係を変えてしまいます。今回求めた第2軸の係数が、この重ね合わせを正しく作る一つの要素です。"
+          "title": "選択肢を確かめる",
+          "body": "①は速度単位の3.6を省いています。②は時間遅れの位相を進みにしています。③は単位換算と符号の両方が違います。④は距離÷速さで時間を求め、遅れの負符号を保っています。"
         }
       ],
       "title": "多軸鉄道車両の入力の時間遅れ",
       "topic": "走行入力の時間遅れと単位換算",
       "type": "mc",
       "difficulty": 3,
-      "question": "4対の輪軸をもつ鉄道車両が軌道の上下加振を受ける。各軸は同一波形の変位加振を受け、後続軸ほど遅れて入力される。走行速度 $v=72\\,\\mathrm{km/h}$、第1軸から第2軸までの距離 $L_2=3.0\\,\\mathrm{m}$ のとき、第2軸入力の第1軸入力に対する時間遅れ $\\tau_2$ に最も近いものはどれか。 調和成分を $e^{j\\omega t}$ と表すとき、この時間遅れに対応する第2軸入力の係数も選ぶ。",
+      "question": "4輪軸をもつ鉄道車両で、出力を $Z=\\sum_{i=1}^4 H_iW_i$ とします。第1軸を基準に、後続軸までの距離は $L_2,L_3,L_4$ [m]、速さは $v$ [km/h]。全軸が同じ軌道の波形を時間差で受け、調和成分を $e^{j\\omega t}$ と表します。$Z$ を第1軸入力 $W_1$ だけで表す正しい式はどれですか。図の $v=72\\,\\mathrm{km/h}$、$L_2=3.0\\,\\mathrm m$ は数値例です。",
       "choices": [
-        "$\\tau_2=0.042\\,\\mathrm{s}$、$e^{-j\\omega\\tau_2}$",
-        "$\\tau_2=0.15\\,\\mathrm{s}$、$e^{+j\\omega\\tau_2}$",
-        "$\\tau_2=0.30\\,\\mathrm{s}$、$e^{-j\\omega\\tau_2}$",
-        "$\\tau_2=0.15\\,\\mathrm{s}$、$e^{-j\\omega\\tau_2}$"
+        "$(H_1+\\sum_{i=2}^4H_i e^{-j\\omega L_i/v})W_1$",
+        "$(H_1+\\sum_{i=2}^4H_i e^{+j\\omega 3.6L_i/v})W_1$",
+        "$(H_1+\\sum_{i=2}^4H_i e^{+j\\omega L_i/v})W_1$",
+        "$(H_1+\\sum_{i=2}^4H_i e^{-j\\omega 3.6L_i/v})W_1$"
       ],
       "answer": 4,
-      "explanation": "【基礎】後続軸は距離 $L$ を走り終えてから同じ路面変位を受けるので時間遅れは $\\tau=L/v$ であり、周波数応答では $e^{-j\\omega\\tau}$ で表されます。\n【考え方】正解は④です。速度が $\\mathrm{km/h}$、距離が $\\mathrm{m}$ なので換算係数3.6を用い $\\tau=L\\cdot3.6/v=3.0\\times3.6/72=0.15\\,\\mathrm{s}$ です($v=72\\,\\mathrm{km/h}=20\\,\\mathrm{m/s}$ として $\\tau=3.0/20=0.15\\,\\mathrm{s}$ と同じです)。\n【ポイント】遅れた入力は $w_2(t)=w_1(t-\\tau_2)$ です。$e^{j\\omega(t-\\tau_2)}=e^{j\\omega t}e^{-j\\omega\\tau_2}$ と分けると、係数の負号を確かめられます。\n【引っかけ】①はkm/hをm/sへ直さず $3/72$ としています。②は遅れを位相の進みとしています。③は距離または時間を2倍に数えています。",
+      "explanation": "【基礎】同じ軌道を後続軸が通ると、先頭入力を時間だけ遅らせた入力になります。\n【考え方】速度は $v/3.6$ m/s、遅れは $\\tau_i=3.6L_i/v$。$W_i=e^{-j\\omega\\tau_i}W_1$ を $Z=\\sum H_iW_i$ に代入して4が正解です。\n【ポイント】時間遅れは負の位相を与えます。\n【引っかけ】1は単位換算欠落、2は位相符号が逆、3は両方の誤りです。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
       "officialRef": "問4-16",
       "role": "primary",
       "figure": "helpful",
-      "figureImage": "v1e4RailwayAxles",
       "figureHint": "回答後の標準図で、解説に対応する条件・変形・計算手順を示します。",
       "relatedFormulas": [
         "v1ch4-10"
       ],
       "editorialReview": {
-        "officialPoint": "後続軸の時間遅れはτ=L/vで、km/hとmが混在するときは換算係数3.6を用いτ=3.6L/vとなる。",
-        "alignment": "v=72km/h,L=3.0mから τ=0.15s を選ばせる点が公式問4-16と一致する。",
+        "officialPoint": "四つの入力を遅れと伝達関数で一つの入力へまとめる。",
+        "alignment": "公式問4-16と同じ全軸の伝達関数の式へ復元。独自数値は導出の確認に用いる。",
         "distractorMisconceptions": {
-          "1": "速度単位換算の脱落",
-          "2": "時間遅れの位相符号の逆転",
-          "3": "遅れ時間を2倍に数える"
+          "1": "km/hとmの換算欠落。",
+          "2": "遅れを進みへ反転。",
+          "3": "単位換算と符号の二重誤り。"
         },
-        "sha256": "16ecde3b42ebdaa31743df250e7db7ea081d1f06e68005dc2c72b753b6a505c4"
+        "sha256": "a3df512943028a784e4061492cb47523d1e0abe584b299be63ccd9fa06697027"
       },
       "preFigureImage": "v1e4RailAxleSetupPre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "main"
+      ],
+      "answerSummary": "$(H_1+\\sum_{i=2}^4H_i e^{-j\\omega 3.6L_i/v})W_1$",
+      "preFigures": [
+        {
+          "figureImage": "v1e4RailAxleSetupPre",
+          "caption": "左へ進む車両を示しています。先頭軸1から後続軸までの距離で入力遅れが決まります。"
+        }
+      ],
+      "figureImage": "v1e4RailAxleSetupPre"
     },
     {
       "id": "vib1-4-17",
@@ -1267,17 +2977,216 @@
         "v1ch4-10"
       ],
       "editorialReview": {
-        "officialPoint": "後輪入力は前輪入力を時間L/V遅らせたもので、位相遅れはω(L/V)の遅れた入力となる。",
-        "alignment": "(a)L/V,(b)ω(L/V),(c)遅れた の組合せを選ばせる点が公式問4-17と一致する。",
+        "officialPoint": "公式問4-17の全質問項目：前後輪の入力遅れ時間はL/V。 位相差は角振動数×時間差。 後輪入力は前輪入力より遅れる。 モードの位相差と入力位相差が一致すると強く励起されやすい。",
+        "alignment": "保存済み公式の質問・空欄を個別回答できる4小問へ整理し、同じ番号で条件を共有。親の4択は旧本体・PDF互換用に保持。",
         "distractorMisconceptions": {
           "1": "遅れをV/Lとし位相も進むとする誤解。",
           "3": "時間遅れは正しいが位相が進むとする誤解。",
           "4": "遅れをV/Lとして次元を誤る誤解。"
         },
-        "sha256": "152b93d55182a2a129dbd5f1b0ec42b3fcd75f11a9fd1f51d71962a6ad05350f"
+        "sha256": "82feafd4d693e1e69e53d21709dba320d3b807270acefcbf1f7b004b4d87c7aa"
       },
       "preFigureImage": "v1e4RoadCarPre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "answerSummary": "(a)$L/V$ (b)$\\omega(L/V)$ (c)遅れた",
+      "preFigures": [
+        {
+          "figureImage": "v1e4RoadCarPre",
+          "caption": "前輪が通った凹凸へ、後輪は車輪間隔Lだけ進んでから到達します。"
+        }
+      ],
+      "sharedQuestion": "車速 $V$ [m/s]、前後輪間隔 $L$ [m] の車が、同じ路面凹凸を順に通過します。前輪入力は $F(\\omega t)$、前後のタイヤ・サスペンションは同じです。車体モードの前後輪位置の位相差を $\\theta$ とします。",
+      "studyParts": [
+        {
+          "id": "vib1-4-17-item-a",
+          "number": "4-17",
+          "officialRef": "問4-17",
+          "officialQuestionItem": "a",
+          "title": "入力の時間差",
+          "topic": "時間遅れ・位相と共振条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "後輪が同じ凹凸へ来るまでの時間はどれですか。",
+          "choices": [
+            "$V/L$",
+            "$L/V$"
+          ],
+          "answer": 2,
+          "answerSummary": "$L/V$",
+          "easyExplanation": [
+            {
+              "title": "距離÷速さ",
+              "body": "後輪が到達するまで、車は前後輪間隔 $L$ だけ進みます。時間は $\\tau=L/V$ です。例えば $L=2.8\\,\\mathrm m$、$V=20\\,\\mathrm{m/s}$ なら $\\tau=0.14\\,\\mathrm s$。路面の波長ではなく、二つの車輪の間隔を使います。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "1：V/Lの単位は1/sで、時間ではありません。"
+            }
+          ],
+          "explanation": "【基礎】後輪が到達するまで、車は前後輪間隔 $L$ だけ進みます。時間は $\\tau=L/V$ です。例えば $L=2.8\\,\\mathrm m$、$V=20\\,\\mathrm{m/s}$ なら $\\tau=0.14\\,\\mathrm s$。路面の波長ではなく、二つの車輪の間隔を使います。\n【考え方】2が正解です。前後輪の入力遅れ時間はL/V。\n【ポイント】前後輪の入力遅れ時間はL/V。\n【引っかけ】1：V/Lの単位は1/sで、時間ではありません。",
+          "relatedFormulas": [
+            "v1ch4-10"
+          ],
+          "editorialReview": {
+            "officialPoint": "前後輪の入力遅れ時間はL/V。",
+            "alignment": "保存済み公式問4-17の質問項目 a に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "1": "V/Lの単位は1/sで、時間ではありません。"
+            },
+            "sha256": "b83af7d43da5be9af6b77bb728b5dd9588ff849aa9c59b7999bec3e154f3c830"
+          }
+        },
+        {
+          "id": "vib1-4-17-item-b",
+          "number": "4-17",
+          "officialRef": "問4-17",
+          "officialQuestionItem": "b",
+          "title": "位相差の大きさ",
+          "topic": "時間遅れ・位相と共振条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "時間差に対応する位相差の大きさはどれですか。",
+          "choices": [
+            "$\\omega L/V$",
+            "$\\omega V/L$"
+          ],
+          "answer": 1,
+          "answerSummary": "$\\omega L/V$",
+          "easyExplanation": [
+            {
+              "title": "1秒に進む角度を、時間差へ掛ける",
+              "body": "角振動数 $\\omega$ は1秒に位相が何rad進むかです。時間差 $\\tau$ による位相差は $\\omega\\tau=\\omega L/V$。例えば $\\omega=10\\,\\mathrm{rad/s}$、$\\tau=0.14\\,\\mathrm s$ なら1.4 radです。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：時間ではないV/Lを掛けており、位相の単位にも合いません。"
+            }
+          ],
+          "explanation": "【基礎】角振動数 $\\omega$ は1秒に位相が何rad進むかです。時間差 $\\tau$ による位相差は $\\omega\\tau=\\omega L/V$。例えば $\\omega=10\\,\\mathrm{rad/s}$、$\\tau=0.14\\,\\mathrm s$ なら1.4 radです。\n【考え方】1が正解です。位相差は角振動数×時間差。\n【ポイント】位相差は角振動数×時間差。\n【引っかけ】2：時間ではないV/Lを掛けており、位相の単位にも合いません。",
+          "relatedFormulas": [
+            "v1ch4-10"
+          ],
+          "editorialReview": {
+            "officialPoint": "位相差は角振動数×時間差。",
+            "alignment": "保存済み公式問4-17の質問項目 b に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "時間ではないV/Lを掛けており、位相の単位にも合いません。"
+            },
+            "sha256": "376a7ce61a110af4fa5571cb19bb1fd226be0b7fd5d34384e3d4ff2e0301987f"
+          }
+        },
+        {
+          "id": "vib1-4-17-item-c",
+          "number": "4-17",
+          "officialRef": "問4-17",
+          "officialQuestionItem": "c",
+          "title": "位相の向き",
+          "topic": "時間遅れ・位相と共振条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "後輪への入力は前輪に比べ、位相がどちらへずれますか。",
+          "choices": [
+            "進む",
+            "遅れる"
+          ],
+          "answer": 2,
+          "answerSummary": "遅れる",
+          "easyExplanation": [
+            {
+              "title": "後輪は過去の前輪と同じ入力を受ける",
+              "body": "時刻tの後輪には、前輪が $t-\\tau$ に受けた入力が来ます。したがって $F(\\omega(t-\\tau))=F(\\omega t-\\omega L/V)$ です。位相にマイナスが付くので遅れです。",
+              "figures": [
+                {
+                  "figureImage": "v1e4RailwayAxles",
+                  "caption": "図は前後2輪の模式図です。同じ凹凸への到達の遅れが、入力の位相遅れになります。"
+                }
+              ]
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "1：先に凹凸へ到達するのは前輪です。後輪の波形を時間的に前へ進めてはいけません。"
+            }
+          ],
+          "explanation": "【基礎】時刻tの後輪には、前輪が $t-\\tau$ に受けた入力が来ます。したがって $F(\\omega(t-\\tau))=F(\\omega t-\\omega L/V)$ です。位相にマイナスが付くので遅れです。\n【考え方】2が正解です。後輪入力は前輪入力より遅れる。\n【ポイント】後輪入力は前輪入力より遅れる。\n【引っかけ】1：先に凹凸へ到達するのは前輪です。後輪の波形を時間的に前へ進めてはいけません。",
+          "relatedFormulas": [
+            "v1ch4-10"
+          ],
+          "editorialReview": {
+            "officialPoint": "後輪入力は前輪入力より遅れる。",
+            "alignment": "保存済み公式問4-17の質問項目 c に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "1": "先に凹凸へ到達するのは前輪です。後輪の波形を時間的に前へ進めてはいけません。"
+            },
+            "sha256": "da3f3d32b0847d500f9e97b240d3543e438ea8aeeab405c02683fd2e5b2f74df"
+          }
+        },
+        {
+          "id": "vib1-4-17-item-d",
+          "number": "4-17",
+          "officialRef": "問4-17",
+          "officialQuestionItem": "d",
+          "title": "モードを強く励起する条件",
+          "topic": "時間遅れ・位相と共振条件",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "対象モードと入力の振動数が一致するとき、前後の入力がそのモードを助け合う位相差 $\\theta-\\omega L/V$ はどれですか（1周期を法とする）。",
+          "choices": [
+            "$0$",
+            "$\\pi$"
+          ],
+          "answer": 1,
+          "answerSummary": "$0$",
+          "easyExplanation": [
+            {
+              "title": "動きたいタイミングに合わせて押す",
+              "body": "二人でブランコを押すとき、ブランコの動きに合うタイミングで押せば助け合います。同様に、前後の入力の位相差がモードの前後の動きに合うと、両入力がそのモードを強く励起します。差は0です。"
+            },
+            {
+              "title": "逆のタイミングでは打ち消す側になる",
+              "body": "差が $\\pi$ なら、片方が助けるとき他方が妨げる側です。ただし「必ず応答が完全に0」になるには各位置の寄与の大きさも一致する必要があります。本問は強く励起しやすいタイミングを問います。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：πだけずれるとモードへの寄与を打ち消す側で、最大に助け合う条件ではありません。"
+            }
+          ],
+          "explanation": "【基礎】二人でブランコを押すとき、ブランコの動きに合うタイミングで押せば助け合います。同様に、前後の入力の位相差がモードの前後の動きに合うと、両入力がそのモードを強く励起します。差は0です。\n【考え方】1が正解です。差が $\\pi$ なら、片方が助けるとき他方が妨げる側です。ただし「必ず応答が完全に0」になるには各位置の寄与の大きさも一致する必要があります。本問は強く励起しやすいタイミングを問います。\n【ポイント】モードの位相差と入力位相差が一致すると強く励起されやすい。\n【引っかけ】2：πだけずれるとモードへの寄与を打ち消す側で、最大に助け合う条件ではありません。",
+          "relatedFormulas": [
+            "v1ch4-10"
+          ],
+          "editorialReview": {
+            "officialPoint": "モードの位相差と入力位相差が一致すると強く励起されやすい。",
+            "alignment": "保存済み公式問4-17の質問項目 d に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "πだけずれるとモードへの寄与を打ち消す側で、最大に助け合う条件ではありません。"
+            },
+            "sha256": "9c77074cfb187c802599827dece50069b8ca76637e1758c4325739af1121374d"
+          }
+        }
+      ]
     },
     {
       "id": "vib1-4-18",
@@ -1341,17 +3250,216 @@
         "v1ch4-11"
       ],
       "editorialReview": {
-        "officialPoint": "上下接触荷重に摩擦係数を掛けた左右摩擦力が非対称剛性を生み、複素固有値の実部の符号で安定性を判断する。",
-        "alignment": "(a)摩擦力は上下相対変位で生じる,(b)非対称,(c)複素,(d)安定性 の組合せを選ばせる点が公式問4-18と一致する。",
+        "officialPoint": "公式問4-18の全質問項目：摩擦力の変化は上下接触荷重の変化へ比例する。 摩擦連成で剛性行列は非対称になる。 摩擦連成系を複素固有値で評価する。 時間指数の実部で振幅成長と安定性を判断する。",
+        "alignment": "保存済み公式の質問・空欄を個別回答できる4小問へ整理し、同じ番号で条件を共有。親の4択は旧本体・PDF互換用に保持。",
         "distractorMisconceptions": {
           "2": "摩擦力を左右相対変位で書き対称・実固有値で固有振動数を見るとする誤解。",
           "3": "摩擦力を左右相対変位で書き連成にならず対称剛性とする誤解。",
           "4": "剛性を対称とし実固有値で固有振動数を見るとする誤解。"
         },
-        "sha256": "8375d4988ea6ec5f6c19028e331a2d66b7d464b61eb50094387aa59ac48a3150"
+        "sha256": "bbb50eed607f8aea3fe3fd200e2e7688da2a5906c8a8efc96faa3418ff417015"
       },
       "preFigureImage": "v1e4BrakeContactPre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "answerSummary": "(a)$F_y=\\mu K_c(w_z^P-w_z^R)$ (b)非対称 (c)複素 (d)安定性",
+      "preFigures": [
+        {
+          "figureImage": "v1e4BrakeContactPre",
+          "caption": "上下zの接触変形と、左右yの摩擦力を別々の方向として見ます。"
+        }
+      ],
+      "sharedQuestion": "ブレーキのパッドPとローターRの相対運動を考えます。上下z方向の接触荷重は $F_z=K_c(w_z^P-w_z^R)$、摩擦係数は $\\mu$。滑り方向を一定とした微小振動で、その接触荷重の変動が左右y方向の摩擦力へ伝わります。",
+      "studyParts": [
+        {
+          "id": "vib1-4-18-item-a",
+          "number": "4-18",
+          "officialRef": "問4-18",
+          "officialQuestionItem": "a",
+          "title": "摩擦力の式",
+          "topic": "摩擦連成と非対称剛性・複素固有値",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "選んだ摩擦力の正方向で、上下接触荷重に比例する $F_y$ はどれですか。",
+          "choices": [
+            "$\\mu K_c(w_z^P-w_z^R)$",
+            "$\\mu K_c(w_y^P-w_y^R)$"
+          ],
+          "answer": 1,
+          "answerSummary": "$\\mu K_c(w_z^P-w_z^R)$",
+          "easyExplanation": [
+            {
+              "title": "押し付けの変化が、横の力へ伝わる",
+              "body": "摩擦力の大きさは $\\mu$×接触荷重です。したがって $F_y=\\mu F_z=\\mu K_c(w_z^P-w_z^R)$。出力の力はy方向ですが、その大きさを変えている変位は接触の押し付けに関わるz方向です。"
+            },
+            {
+              "title": "具体的な値で対応を見る",
+              "body": "接触荷重が10 N増し、$\\mu=0.4$ なら摩擦力の変化は4 Nです。y方向に同じだけずれたかどうかではなく、上下の押し付けがどう変わったかを使います。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：摩擦力がy方向だからといって、入力側の接触変位をy方向に置き換えてはいけません。"
+            }
+          ],
+          "explanation": "【基礎】摩擦力の大きさは $\\mu$×接触荷重です。したがって $F_y=\\mu F_z=\\mu K_c(w_z^P-w_z^R)$。出力の力はy方向ですが、その大きさを変えている変位は接触の押し付けに関わるz方向です。\n【考え方】1が正解です。接触荷重が10 N増し、$\\mu=0.4$ なら摩擦力の変化は4 Nです。y方向に同じだけずれたかどうかではなく、上下の押し付けがどう変わったかを使います。\n【ポイント】摩擦力の変化は上下接触荷重の変化へ比例する。\n【引っかけ】2：摩擦力がy方向だからといって、入力側の接触変位をy方向に置き換えてはいけません。",
+          "relatedFormulas": [
+            "v1ch4-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "摩擦力の変化は上下接触荷重の変化へ比例する。",
+            "alignment": "保存済み公式問4-18の質問項目 a に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "摩擦力がy方向だからといって、入力側の接触変位をy方向に置き換えてはいけません。"
+            },
+            "sha256": "ff3d728bc63e5c6531cd51d3e276de74ebdca1dc6b5f3f6927376d170fc58c97"
+          }
+        },
+        {
+          "id": "vib1-4-18-item-b",
+          "number": "4-18",
+          "officialRef": "問4-18",
+          "officialQuestionItem": "b",
+          "title": "剛性行列の性質",
+          "topic": "摩擦連成と非対称剛性・複素固有値",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "z方向の変位からy方向の力へ、対応する逆向きの弾性連成とは異なる作用が加わると、剛性行列はどうなりますか。",
+          "choices": [
+            "常に対称",
+            "非対称になり得る"
+          ],
+          "answer": 2,
+          "answerSummary": "非対称になり得る",
+          "easyExplanation": [
+            {
+              "title": "一方向の連成で対称性が崩れる",
+              "body": "一般の弾性ばねの連成では、二つの自由度間の係数が転置位置で対応します。ここでは摩擦により「上下変位→横の力」という係数が加わり、逆の「横変位→上下の力」へ同じ係数が加わるとは限りません。そのため $K_{yz}=K_{zy}$ を保証できず、非対称になります。",
+              "figures": [
+                {
+                  "figureImage": "v1e4BrakeSqueal",
+                  "caption": "上下の接触力が横の摩擦力へつながる、一方向の連成を見ます。"
+                }
+              ]
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "1：摩擦の連成は保存的な弾性力だけの対称関係に従うとは限りません。"
+            }
+          ],
+          "explanation": "【基礎】一般の弾性ばねの連成では、二つの自由度間の係数が転置位置で対応します。ここでは摩擦により「上下変位→横の力」という係数が加わり、逆の「横変位→上下の力」へ同じ係数が加わるとは限りません。そのため $K_{yz}=K_{zy}$ を保証できず、非対称になります。\n【考え方】2が正解です。摩擦連成で剛性行列は非対称になる。\n【ポイント】摩擦連成で剛性行列は非対称になる。\n【引っかけ】1：摩擦の連成は保存的な弾性力だけの対称関係に従うとは限りません。",
+          "relatedFormulas": [
+            "v1ch4-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "摩擦連成で剛性行列は非対称になる。",
+            "alignment": "保存済み公式問4-18の質問項目 b に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "1": "摩擦の連成は保存的な弾性力だけの対称関係に従うとは限りません。"
+            },
+            "sha256": "6e3e6c53267f7c67a5b6d43c77d5559436892eeda562994862fc6919c8430f74"
+          }
+        },
+        {
+          "id": "vib1-4-18-item-c",
+          "number": "4-18",
+          "officialRef": "問4-18",
+          "officialQuestionItem": "c",
+          "title": "使う固有値解析",
+          "topic": "摩擦連成と非対称剛性・複素固有値",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "この連成系の時間的な増大・減衰も調べるため、何を許した固有値解析を行いますか。",
+          "choices": [
+            "複素固有値",
+            "実固有値だけ"
+          ],
+          "answer": 1,
+          "answerSummary": "複素固有値",
+          "easyExplanation": [
+            {
+              "title": "振動と成長を一つの式で表す",
+              "body": "時間の解を $e^{\\lambda t}$、$\\lambda=a+jb$ とすれば $e^{\\lambda t}=e^{at}e^{jbt}$ です。$b$ が振動の角振動数、$a$ が振幅の増減を表せるので、複素固有値を求めて両方を評価します。非対称なら必ず不安定という意味ではなく、求めた根を調べます。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：実数だけに限定すると、振動しながら成長する解などを取り逃がします。"
+            }
+          ],
+          "explanation": "【基礎】時間の解を $e^{\\lambda t}$、$\\lambda=a+jb$ とすれば $e^{\\lambda t}=e^{at}e^{jbt}$ です。$b$ が振動の角振動数、$a$ が振幅の増減を表せるので、複素固有値を求めて両方を評価します。非対称なら必ず不安定という意味ではなく、求めた根を調べます。\n【考え方】1が正解です。摩擦連成系を複素固有値で評価する。\n【ポイント】摩擦連成系を複素固有値で評価する。\n【引っかけ】2：実数だけに限定すると、振動しながら成長する解などを取り逃がします。",
+          "relatedFormulas": [
+            "v1ch4-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "摩擦連成系を複素固有値で評価する。",
+            "alignment": "保存済み公式問4-18の質問項目 c に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "実数だけに限定すると、振動しながら成長する解などを取り逃がします。"
+            },
+            "sha256": "ce3bc6c2495ae71005d6d1e2fbc4c5031bd9f8cce7a45fdd9184481f7c8b4b9a"
+          }
+        },
+        {
+          "id": "vib1-4-18-item-d",
+          "number": "4-18",
+          "officialRef": "問4-18",
+          "officialQuestionItem": "d",
+          "title": "固有値から判断するもの",
+          "topic": "摩擦連成と非対称剛性・複素固有値",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "解を $e^{\\lambda t}$ と置いたとき、$\\lambda$ の実部の正負から主に何を判断しますか。",
+          "choices": [
+            "振動の角振動数だけ",
+            "系の安定性"
+          ],
+          "answer": 2,
+          "answerSummary": "系の安定性",
+          "easyExplanation": [
+            {
+              "title": "正の実部は時間とともに増える",
+              "body": "実部aが正なら $e^{at}$ が増加します。小さな振動が増えていく不安定な解を含むことになり、鳴きの発生を考える手掛かりです。全ての根が負の実部なら減衰します。実部0の境界は、それだけで減衰する状態とはいえません。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "1：指数を $e^{\\lambda t}$ とする定義では、角振動数は虚部に対応します。実部は振幅の成長・減衰を表します。"
+            }
+          ],
+          "explanation": "【基礎】実部aが正なら $e^{at}$ が増加します。小さな振動が増えていく不安定な解を含むことになり、鳴きの発生を考える手掛かりです。全ての根が負の実部なら減衰します。実部0の境界は、それだけで減衰する状態とはいえません。\n【考え方】2が正解です。時間指数の実部で振幅成長と安定性を判断する。\n【ポイント】時間指数の実部で振幅成長と安定性を判断する。\n【引っかけ】1：指数を $e^{\\lambda t}$ とする定義では、角振動数は虚部に対応します。実部は振幅の成長・減衰を表します。",
+          "relatedFormulas": [
+            "v1ch4-11"
+          ],
+          "editorialReview": {
+            "officialPoint": "時間指数の実部で振幅成長と安定性を判断する。",
+            "alignment": "保存済み公式問4-18の質問項目 d に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "1": "eの指数λを使う定義では、振動の角振動数は虚部に対応します。実部は振幅の成長・減衰です。"
+            },
+            "sha256": "6e68631f7dea8c25f0f3a0de7438023d9882f6f0d8c5590924771071cb259a9b"
+          }
+        }
+      ]
     },
     {
       "id": "vib1-4-19",
@@ -1367,7 +3475,13 @@
         },
         {
           "title": "ばね一本の式から考えます",
-          "body": "タイヤをばね定数k、車軸の絶対変位をx、路面変位をzとすると、タイヤの伸縮はx−zです。質量mの式は $m\\ddot x=-k(x-z)$ で、整理すると $m\\ddot x+kx=kz$ です。左側は下端を0へ固定したばねの式、右側は路面変位が作る等価な入力です。同じ未知量xへ対して元と同じ式を作れます。"
+          "body": "タイヤをばね定数k、車軸の絶対変位をx、路面変位をzとすると、タイヤの伸縮はx−zです。質量mの式は $m\\ddot x=-k(x-z)$ で、整理すると $m\\ddot x+kx=kz$ です。左側は下端を0へ固定したばねの式、右側は路面変位が作る等価な入力です。同じ未知量xへ対して元と同じ式を作れます。",
+          "figures": [
+            {
+              "figureImage": "v1e4RoadRoughBC",
+              "caption": "動く路面の効果を右辺の力へ移し、車軸の絶対変位を解きます。"
+            }
+          ]
         },
         {
           "title": "力の値は、路面変位へ比例します",
@@ -1426,10 +3540,21 @@
           "2": "0拘束した接地節点自体を力加振し励振できないとする誤解。",
           "4": "拘束せず車軸を力加振しタイヤ経由の路面入力を表せないとする誤解。"
         },
-        "sha256": "f7475ef25f0c64e81acf04732433a5c44fe747f5cc80b68a539de74b6a0e27b1"
+        "sha256": "539a903ec1f591cd301fcc26a7840c91541c6265f32697442e140b70148554e4"
       },
       "preFigureImage": "v1e4RoadCarPre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "main"
+      ],
+      "answerSummary": "接地節点の上下変位を0に拘束し、タイヤ剛性と路面凹凸変位から決まる力を車軸に加える。",
+      "preFigures": [
+        {
+          "figureImage": "v1e4RoadCarPre",
+          "caption": "前輪が通った凹凸へ、後輪は車輪間隔Lだけ進んでから到達します。"
+        }
+      ]
     },
     {
       "id": "vib1-4-20",
@@ -1497,17 +3622,216 @@
         "v1ch4-13"
       ],
       "editorialReview": {
-        "officialPoint": "タイヤ・サス・D/Sも含めてモデル化し、タイヤ接地面を拘束してトルク変動をモーメントとしてエンジンに加える。",
-        "alignment": "(a)含めた,(b)接地面拘束,(c)モーメント,(d)エンジン の組合せを選ばせる点が公式問4-20と一致する。",
+        "officialPoint": "公式問4-20の全質問項目：対象帯域に関係するタイヤ・サスペンション等をモデル化する。 路面支持を表すためタイヤ接地面を拘束する。 トルク変動をモーメント入力として扱う。 指定されたトルク源であるエンジンに入力する。",
+        "alignment": "保存済み公式の質問・空欄を個別回答できる4小問へ整理し、同じ番号で条件を共有。親の4択は旧本体・PDF互換用に保持。",
         "distractorMisconceptions": {
           "2": "タイヤ・サスを除き自由支持とする誤解。",
           "3": "車軸拘束・力とモーメント・ボデー入力とする誤解。",
           "4": "タイヤ・サスを除き自由支持でボデー入力とする誤解。"
         },
-        "sha256": "e084944be6d36d88c5a108bf5524e7c6d0be94410384cebcadde4c9461245aef"
+        "sha256": "2a7eabaf34f985d817676eaf4609eb2305d006627d44ccfd600adfa75d60a885"
       },
       "preFigureImage": "v1e4IdleVehiclePre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "answerSummary": "(a)を含めた (b)タイヤの接地面拘束 (c)モーメント (d)エンジン",
+      "preFigures": [
+        {
+          "figureImage": "v1e4IdleVehiclePre",
+          "caption": "エンジン、マウント、車体、サスペンション、タイヤの結合をたどります。"
+        }
+      ],
+      "sharedQuestion": "アイドリング中のエンジントルク変動による車体振動を調べます。エンジンはマウントで車体と結合し、ドライブシャフト（D/S）を通じた車軸へのトルク入力はありません。対象振動数域にはタイヤ・サスペンションに関係するモードがあります。",
+      "studyParts": [
+        {
+          "id": "vib1-4-20-item-a",
+          "number": "4-20",
+          "officialRef": "問4-20",
+          "officialQuestionItem": "a",
+          "title": "モデルに含める範囲",
+          "topic": "エンジントルク変動入力とタイヤ接地拘束",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "対象帯域のモードを残すため、タイヤ・サスペンション・D/Sをどう扱いますか。",
+          "choices": [
+            "関係する車両部品として含める",
+            "エンジンへ入力するので全て除く"
+          ],
+          "answer": 1,
+          "answerSummary": "関係する車両部品として含める",
+          "easyExplanation": [
+            {
+              "title": "入力源だけで応答は決まらない",
+              "body": "エンジンからの力が車体へ伝わっても、車体はタイヤやサスペンションの柔らかさの上で動きます。この帯域に関連モードがあるなら、それらの質量・剛性を含む車両モデルが必要です。D/Sへ外部トルクを与えないことと、部品としての慣性・結合を省くことも別です。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：励振する場所だけ残すと、対象帯域の支持とモードを失います。"
+            }
+          ],
+          "explanation": "【基礎】エンジンからの力が車体へ伝わっても、車体はタイヤやサスペンションの柔らかさの上で動きます。この帯域に関連モードがあるなら、それらの質量・剛性を含む車両モデルが必要です。D/Sへ外部トルクを与えないことと、部品としての慣性・結合を省くことも別です。\n【考え方】1が正解です。対象帯域に関係するタイヤ・サスペンション等をモデル化する。\n【ポイント】対象帯域に関係するタイヤ・サスペンション等をモデル化する。\n【引っかけ】2：励振する場所だけ残すと、対象帯域の支持とモードを失います。",
+          "relatedFormulas": [
+            "v1ch4-13"
+          ],
+          "editorialReview": {
+            "officialPoint": "対象帯域に関係するタイヤ・サスペンション等をモデル化する。",
+            "alignment": "保存済み公式問4-20の質問項目 a に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "励振する場所だけ残すと、対象帯域の支持とモードを失います。"
+            },
+            "sha256": "6bfef7260115f9d0adda39976ec22c34aac75820b9854bf08d90f4de55a2d922"
+          }
+        },
+        {
+          "id": "vib1-4-20-item-b",
+          "number": "4-20",
+          "officialRef": "問4-20",
+          "officialQuestionItem": "b",
+          "title": "支持する位置",
+          "topic": "エンジントルク変動入力とタイヤ接地拘束",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "実車の支持に対応する拘束位置はどれですか。",
+          "choices": [
+            "車軸を直接固定する",
+            "タイヤの接地面を拘束する"
+          ],
+          "answer": 2,
+          "answerSummary": "タイヤの接地面を拘束する",
+          "easyExplanation": [
+            {
+              "title": "車軸を固定すると、タイヤの柔らかさを消します",
+              "body": "実車はタイヤの接地面で路面に支えられ、そこから上の車軸はタイヤやサスペンションを介して動きます。車軸の位置を直接0へ固定すれば、本来動く部分を止めてしまいます。タイヤの変形や車軸周辺のモードが変わるため、その境界条件では今回の帯域の応答を適切に再現できません。どこで動きが止まるかを実物と対応させます。"
+            },
+            {
+              "title": "どこに柔らかさが残るかを見る",
+              "body": "接地面を固定すれば、そこから車軸までのタイヤの変形と、車軸から車体までのサスペンションの変形が残ります。車軸を直接固定するとタイヤのたわみを消してしまい、想定したモードが変わります。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "1：タイヤを通じた支持の柔らかさを消す拘束になっています。"
+            }
+          ],
+          "explanation": "【基礎】実車はタイヤの接地面で路面に支えられ、そこから上の車軸はタイヤやサスペンションを介して動きます。車軸の位置を直接0へ固定すれば、本来動く部分を止めてしまいます。タイヤの変形や車軸周辺のモードが変わるため、その境界条件では今回の帯域の応答を適切に再現できません。どこで動きが止まるかを実物と対応させます。\n【考え方】2が正解です。接地面を固定すれば、そこから車軸までのタイヤの変形と、車軸から車体までのサスペンションの変形が残ります。車軸を直接固定するとタイヤのたわみを消してしまい、想定したモードが変わります。\n【ポイント】路面支持を表すためタイヤ接地面を拘束する。\n【引っかけ】1：タイヤを通じた支持の柔らかさを消す拘束になっています。",
+          "relatedFormulas": [
+            "v1ch4-13"
+          ],
+          "editorialReview": {
+            "officialPoint": "路面支持を表すためタイヤ接地面を拘束する。",
+            "alignment": "保存済み公式問4-20の質問項目 b に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "1": "タイヤを通じた支持の柔らかさを消す拘束になっています。"
+            },
+            "sha256": "65a7c8af095c6d266034b6a71b523201ffb01c30736688409d1641517fa62e8a"
+          }
+        },
+        {
+          "id": "vib1-4-20-item-c",
+          "number": "4-20",
+          "officialRef": "問4-20",
+          "officialQuestionItem": "c",
+          "title": "入力の種類",
+          "topic": "エンジントルク変動入力とタイヤ接地拘束",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "エンジンのトルク変動は、どの入力として与えますか。",
+          "choices": [
+            "モーメント",
+            "並進力だけ"
+          ],
+          "answer": 1,
+          "answerSummary": "モーメント",
+          "easyExplanation": [
+            {
+              "title": "回そうとする作用をそのまま与える",
+              "body": "トルクは軸まわりに回そうとする作用で、モーメントです。単位はN・m。並進力はNで、同じものではありません。エンジンの回転方向の作用を入力し、それに対するマウントの反力や車体応答を計算します。"
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "2：トルクを単一の並進力へ置き換えるだけでは回転作用を保てません。"
+            }
+          ],
+          "explanation": "【基礎】トルクは軸まわりに回そうとする作用で、モーメントです。単位はN・m。並進力はNで、同じものではありません。エンジンの回転方向の作用を入力し、それに対するマウントの反力や車体応答を計算します。\n【考え方】1が正解です。トルク変動をモーメント入力として扱う。\n【ポイント】トルク変動をモーメント入力として扱う。\n【引っかけ】2：トルクを単一の並進力へ置き換えるだけでは回転作用を保てません。",
+          "relatedFormulas": [
+            "v1ch4-13"
+          ],
+          "editorialReview": {
+            "officialPoint": "トルク変動をモーメント入力として扱う。",
+            "alignment": "保存済み公式問4-20の質問項目 c に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "2": "トルクを単一の並進力へ置き換えるだけでは回転作用を保てません。"
+            },
+            "sha256": "64a2672ed6e2df74f455c12b923593c52e691eeaca02be182052f1d7b5df4854"
+          }
+        },
+        {
+          "id": "vib1-4-20-item-d",
+          "number": "4-20",
+          "officialRef": "問4-20",
+          "officialQuestionItem": "d",
+          "title": "入力する場所",
+          "topic": "エンジントルク変動入力とタイヤ接地拘束",
+          "type": "mc",
+          "responseType": "choice",
+          "difficulty": 3,
+          "origin": "original",
+          "reviewed": true,
+          "explanationMode": "guided",
+          "question": "本問のトルク変動を外部入力として与える場所はどれですか。",
+          "choices": [
+            "エンジンとD/Sへ同じ入力を重ねる",
+            "エンジン"
+          ],
+          "answer": 2,
+          "answerSummary": "エンジン",
+          "easyExplanation": [
+            {
+              "title": "発生源と伝達経路を区別する",
+              "body": "変動トルクはエンジンで発生し、マウントを介して車体へ伝わります。問題はD/S経由の車軸へのトルク入力がないと指定しています。そこでエンジンへモーメントを入れ、結合部を通って生じる反力はモデルの応答として求めます。",
+              "figures": [
+                {
+                  "figureImage": "v1e4IdleEngineTorque",
+                  "caption": "入力はエンジンのモーメント、支持はタイヤ接地面です。間の結合を残します。"
+                }
+              ]
+            },
+            {
+              "title": "選択肢を確かめる",
+              "body": "1：指定のないD/Sへの入力を追加すると、荷重条件を変えてしまいます。"
+            }
+          ],
+          "explanation": "【基礎】変動トルクはエンジンで発生し、マウントを介して車体へ伝わります。問題はD/S経由の車軸へのトルク入力がないと指定しています。そこでエンジンへモーメントを入れ、結合部を通って生じる反力はモデルの応答として求めます。\n【考え方】2が正解です。指定されたトルク源であるエンジンに入力する。\n【ポイント】指定されたトルク源であるエンジンに入力する。\n【引っかけ】1：指定のないD/Sへの入力を追加すると、荷重条件を変えてしまいます。",
+          "relatedFormulas": [
+            "v1ch4-13"
+          ],
+          "editorialReview": {
+            "officialPoint": "指定されたトルク源であるエンジンに入力する。",
+            "alignment": "保存済み公式問4-20の質問項目 d に対応。同じページで条件を共有し個別に回答する。",
+            "distractorMisconceptions": {
+              "1": "指定のないD/Sへの入力を追加すると、荷重条件を変えてしまいます。"
+            },
+            "sha256": "60e93007005ce028922da17bfb7d31a26ead88d70ff374e3785ba80c5e507649"
+          }
+        }
+      ]
     },
     {
       "id": "vib1-4-21",
@@ -1519,7 +3843,13 @@
         },
         {
           "title": "正解④：柔らかいAとEを残し、硬いB・Cで切ります",
-          "body": "ゴムクッションの付け根が動けば、ラジエータの剛体的な振動にも影響します。部材Aと結合部材Eは十分硬くないので、その弾性を残す必要があります。AからB・Cへの直接経路と、E・Dを通る経路をモデル化し、硬いB・Cの切断部で拘束する④が適切です。"
+          "body": "ゴムクッションの付け根が動けば、ラジエータの剛体的な振動にも影響します。部材Aと結合部材Eは十分硬くないので、その弾性を残す必要があります。AからB・Cへの直接経路と、E・Dを通る経路をモデル化し、硬いB・Cの切断部で拘束する④が適切です。",
+          "figures": [
+            {
+              "figureImage": "v1e4RadiatorMount",
+              "caption": "AとEの変形と、E・Dを通る力の経路を残し、硬いB・Cの切断部で拘束します。"
+            }
+          ]
         },
         {
           "title": "本体が剛体でも、支持部は弾性です",
@@ -1540,10 +3870,6 @@
         {
           "title": "③は大きくし過ぎています",
           "body": "ボデー全体をモデル化すれば、さらに広い範囲の動きを扱える場合があります。しかし今回は、追加モデルを極力少なくし、対象の剛体運動を予測することが条件です。十分硬いB・Cで適切に切って拘束できるので、全体を自由支持で作る③は、この工数と計算量の条件に合いません。細かく大きくすること自体を正解にしないでください。"
-        },
-        {
-          "title": "④は切る場所を選んでいます",
-          "body": "B・C・Dはゴムに比べ十分硬いという条件ですが、Dを含む接続の経路まで省いてよいとは限りません。④はA・Eの変形とDを介する接続を残し、外へ続くB・Cのカット部分を拘束します。節点が動かない条件をどこへ置くかで、残した部材の変形の仕方が変わることを意識します。"
         },
         {
           "title": "十分硬い、は目的に対する比較です",
@@ -1582,10 +3908,21 @@
           "2": "結合部材Eを省き結合経路の弾性が抜ける誤解。",
           "3": "ボデー全体まで作り工数削減条件に反する誤解。"
         },
-        "sha256": "454de4720b2c0de733ae4242af37f9018343723c4200c4d815a72def38dea05e"
+        "sha256": "f49f3c8199edfbdcf91320e67fe39d7a22f73935a9b3aa09541cf24b364d9e79"
       },
       "preFigureImage": "v1e4RadiatorMembersPre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "main"
+      ],
+      "answerSummary": "部材A・B・C・Dおよび結合部材Eをモデル化し、剛性の十分高い部材B・Cのカット部分を拘束する。",
+      "preFigures": [
+        {
+          "figureImage": "v1e4RadiatorMembersPre",
+          "caption": "ラジエータからクッション、A、E・D、B・Cへつながる経路を確認します。"
+        }
+      ]
     },
     {
       "id": "vib1-4-22",
@@ -1605,7 +3942,13 @@
         },
         {
           "title": "硬い支えと柔らかい支えを比べます",
-          "body": "薄い定規を机の頑丈な端へ固定する場合と、柔らかい板へ固定する場合を想像します。同じ定規でも後者では付け根の板も動くので、揺れ方が変わります。フロアとE〜Gも同様です。パネルの形と材料だけ正確でも、付け根を止め過ぎれば固有振動数やモード形が違ってしまいます。"
+          "body": "薄い定規を机の頑丈な端へ固定する場合と、柔らかい板へ固定する場合を想像します。同じ定規でも後者では付け根の板も動くので、揺れ方が変わります。フロアとE〜Gも同様です。パネルの形と材料だけ正確でも、付け根を止め過ぎれば固有振動数やモード形が違ってしまいます。",
+          "figures": [
+            {
+              "figureImage": "v1e4FloorPanelFrame",
+              "caption": "内側のE〜Gまで固定線にせず、部材としてパネルと一緒に動けるようにします。"
+            }
+          ]
         },
         {
           "title": "ばねの式でも支持の影響が見えます",
@@ -1622,10 +3965,6 @@
         {
           "title": "③の切断部で何を仮定するか",
           "body": "外周のカット部分を拘束するとは、対象の振動に対し、その外側の動きが十分小さいと近似することです。切った端が実物で物理的に溶接固定されていると主張するのではありません。パネル、内側骨格、周囲骨格の変形を残したうえで、外側を境界条件へまとめています。切断場所の仮定が対象モードに対して妥当かが重要です。"
-        },
-        {
-          "title": "モデルの最適範囲は、対象によって変わります",
-          "body": "車両全体のねじりを求める場合と、一部フロアの振動を見る場合では、必要な部材が違います。本問は外周が十分硬いという条件を与えているため③を選べます。目的を変えたときも同じ切断条件でよいと一般化せず、どの部分が一緒に動き、どの部分を静止へ近似するかを、対象の揺れ方から判断してください。"
         }
       ],
       "title": "フロアパネル振動のモデル化範囲",
@@ -1660,10 +3999,21 @@
           "2": "ボデー全体を作り自由支持とし工数削減条件に反する誤解。",
           "4": "車両全体まで作り工数削減条件に反する誤解。"
         },
-        "sha256": "245a1cf845d91447ca1655e9f3d1d57fa01bb1a2582a80b789a41aaa37e92caa"
+        "sha256": "74a25a92d4eb8add59a88d469543d4622e1a4362cb7a2403db273f2bb81170ce"
       },
       "preFigureImage": "v1e4FloorFramePre",
-      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。"
+      "preFigureHint": "問題の配置・記号・与件を示す図。正解の式や結論は表示しない。",
+      "explanationMode": "guided",
+      "officialQuestionItems": [
+        "main"
+      ],
+      "answerSummary": "骨格A〜Gを有限要素でモデル化し、剛性の十分高い骨格A〜Dのカット部分を拘束する。",
+      "preFigures": [
+        {
+          "figureImage": "v1e4FloorFramePre",
+          "caption": "周囲のA〜Dと、内側でパネルと一緒に変形するE〜Gを分けます。"
+        }
+      ]
     }
   ]
 }
