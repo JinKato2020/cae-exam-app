@@ -1993,6 +1993,7 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   t1f24ThermalNO: require('../assets/figures/t1f24ThermalNO.png'),
   t1f24Unsteady: require('../assets/figures/t1f24Unsteady.png'),
   t1f24VandV: require('../assets/figures/t1f24VandV.png'),
+  t1f4BilinearWeights: require('../assets/figures/t1f4BilinearWeights.png'),
   t1f6Helicity: require('../assets/figures/t1f6Helicity.png'),
   t1f7Interpolation: require('../assets/figures/t1f7Interpolation.png'),
   t1f7Runge: require('../assets/figures/t1f7Runge.png'),
