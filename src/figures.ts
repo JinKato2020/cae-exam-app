@@ -1362,6 +1362,7 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   v2e10ModelCheck: require('../assets/figures/v2e10ModelCheck.png'),
   v2e10PowerplantPre: require('../assets/figures/v2e10PowerplantPre.png'),
   v2e10Procedure: require('../assets/figures/v2e10Procedure.png'),
+  v2fFRFThreeForms: require('../assets/figures/v2fFRFThreeForms.png'),
   v2e10RadiatorPre: require('../assets/figures/v2e10RadiatorPre.png'),
   v2e10RailCarPre: require('../assets/figures/v2e10RailCarPre.png'),
   v2e10ResonanceShift: require('../assets/figures/v2e10ResonanceShift.png'),

@@ -53,6 +53,7 @@ const documents = [
   ...Array.from({ length: 13 }, (_, i) => ({ scope: `solid2-ch${i + 1}`, ...JSON.parse(fs.readFileSync(`content/formulas/ch${i + 1}.json`, 'utf8')) })),
   ...Array.from({ length: 11 }, (_, i) => ({ scope: 'thermal2', ...JSON.parse(fs.readFileSync(`content/formulas/thermal2-ch${i + 1}.json`, 'utf8')) })),
   ...Array.from({ length: 8 }, (_, i) => ({ scope: 'thermal1', ...JSON.parse(fs.readFileSync(`content/formulas/thermal1-ch${i + 1}.json`, 'utf8')) })),
+  ...Array.from({ length: 13 }, (_, i) => ({ scope: 'vib2', ...JSON.parse(fs.readFileSync(`content/formulas/vib2-ch${i + 1}.json`, 'utf8')) })),
 ];
 const ids = new Set();
 for (const doc of documents) for (const it of doc.items) {
@@ -131,4 +132,4 @@ vm.runInNewContext(mathSource.slice(mathSource.indexOf('  function post(){'), ma
   window: { ReactNativeWebView: { postMessage: value => { reported = Number(value); } } },
 });
 assert.equal(reported, 120);
-console.log(`Formula cards/search: PASS (${ids.size} solid1/solid2/thermal1/thermal2 items; legacy OTA; scroll; locked results; return position)`);
+console.log(`Formula cards/search: PASS (${ids.size} solid1/solid2/thermal1/thermal2/vib2 items; legacy OTA; scroll; locked results; return position)`);
