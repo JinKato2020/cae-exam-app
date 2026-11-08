@@ -2011,6 +2011,7 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   t1f9VoidQualitySlip: require('../assets/figures/t1f9VoidQualitySlip.png'),
   t1f9VoidRelations: require('../assets/figures/t1f9VoidRelations.png'),
   t1f9WoodSpeed: require('../assets/figures/t1f9WoodSpeed.png'),
+  t2f9WallGrid: require('../assets/figures/t2f9WallGrid.png'),
   twolayerwall: require('../assets/figures/twolayerwall.png'),
   v2e3SimpleSupportBC: require('../assets/figures/v2e3SimpleSupportBC.png'),
   v2e430: require('../assets/figures/v2e430.png'),

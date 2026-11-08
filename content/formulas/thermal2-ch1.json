@@ -2,112 +2,146 @@
   "grade": "2級",
   "chapter": 1,
   "title": "第1章 計算力学のための数学の基礎",
-  "intro": "第1章で使う数学の記号・意味と、問題を解くための途中手順を確認します。",
+  "intro": "式を何のために使うかを先に確認し、移流・拡散、ベクトルと座標、積分と級数を具体例で結び付けます。",
   "items": [
     {
       "id": "t2ch1-advection",
       "kind": "formula",
       "term": "移流方程式（双曲型）",
       "formula": "$\\dfrac{\\partial f}{\\partial t}+c\\dfrac{\\partial f}{\\partial x}=0$",
-      "body": "移流方程式 $\\partial f/\\partial t+c\\,\\partial f/\\partial x=0$ の一般解は $f(x,t)=f(x-ct,0)$ で、初期分布が形を保ったまま正の一定速度 $c$ で $+x$ 方向へ平行移動します（双曲型の性質）。頂点は $x-ct=1$ を満たす位置 $x=1+ct$ へ動くので、$x=1+2\\times3=7\\,\\mathrm{m}$ となり、振幅も形も変わりません。移流（対流）は分布を運ぶだけで、なまし（平滑化）や増幅は起こしません。運ぶ速さ $c$ と向き（符号）が本質です。",
-      "example": "問1-1の解説と図で確認できます。",
-      "figureImage": "t2e1Advection"
+      "body": "流れる水に染料を入れた場面を考えます。混ざり広がる作用を無視し、全体が一定速度で運ばれるのが純粋な移流です。$f$ は濃度などの分布、$t$ は時間、$x$ は位置、$c$ は一定の移動速度です。\n\n式は「その場所の値の時間変化」と「流れが運んでくる分」の和が0という意味です。解は $f(x,t)=f(x-ct,0)$。今の位置 $x$ の値は、最初の位置 $x-ct$ にあった値です。$c>0$ なら右、$c<0$ なら左へ進みます。拡散項がないので、この式そのものは山を低くしません。",
+      "example": "図では頂点の初期位置が $1\\,\\mathrm m$、速度が $2\\,\\mathrm{m/s}$ です。3秒間の移動距離は $2\\times3=6\\,\\mathrm m$、頂点は $1+6=7\\,\\mathrm m$ です。",
+      "figureImage": "t2e1Advection",
+      "summary": "分布の形を変えず、速度に応じて場所だけを移す式です。",
+      "exampleLabel": "具体例・確かめ方",
+      "figureCaption": "青い初期分布と赤い3秒後の分布は、高さも幅も同じです。変わるのは横の位置です。"
     },
     {
       "id": "t2ch1-diffusion",
       "kind": "formula",
       "term": "拡散方程式（放物型）と拡散流束",
       "formula": "$\\dfrac{\\partial f}{\\partial t}=A\\dfrac{\\partial^2f}{\\partial x^2},\\quad A>0$",
-      "body": "拡散は、高温部から周囲の低温部へ熱が移り、温度差が小さくなる現象です。この方程式は放物型で、山の頂付近では温度が下がり、周囲では上がります。両端が断熱なので、外との熱の出入りはありません。内部発熱もないため全体の熱量は一定で、中央の熱が周囲へ広がって山は低くなります。棒を $0\\le x\\le L$ とすると、$\\dfrac{d}{dt}\\int_0^L f\\,dx=A\\{f_x(L,t)-f_x(0,t)\\}=0$ です。$f_x$ は温度の傾きで、断熱端では0です。一様な棒では、この積分に一定の体積熱容量と断面積を掛けた量が熱量です。一定の拡散係数なら、拡散流束 $q=-A\\partial f/\\partial x$ と収支 $\\partial f/\\partial t=-\\partial q/\\partial x$ からも式が得られます。温度の場合、実際の熱流束は熱伝導率を掛けて表し、拡散係数と区別します。",
-      "example": "問1-2の解説と図で確認できます。",
-      "figureImage": "t2e1Diffusion"
+      "body": "中央だけ熱い棒では、中央から周りへ熱が流れます。$f$ を温度、$A>0$ を一定の熱拡散率とすると、2階微分は温度分布の曲がり具合を表します。山の頂付近では2階微分が負なので温度が下がり、周囲では上がります。\n\n総量が保存されるかは境界条件で決まります。均一な棒で両端断熱・内部発熱なしなら、外への熱の出入りがないので全体の熱量は一定です。端を冷やす場合まで保存されるわけではありません。\n\n温度勾配による熱流束は $q=-\\lambda\\,\\partial f/\\partial x$、熱拡散率は $A=\\lambda/(\\rho c_p)$ です。$\\lambda$ は熱伝導率、$\\rho c_p$ は体積あたりの熱容量で、熱伝導率と拡散率は別の量です。",
+      "example": "両端断熱では $f_x(0,t)=f_x(L,t)=0$。方程式を棒全体で足すと $\\frac{d}{dt}\\int_0^L f\\,dx=A\\{f_x(L,t)-f_x(0,t)\\}=0$ です。$\\int$ は小区間の値を全部足す操作で、この積分に一定の断面積と体積熱容量を掛ければ熱量になります。",
+      "figureImage": "t2e1Diffusion",
+      "summary": "高い所から低い所へ広がり、分布の山をなだらかにする式です。",
+      "exampleLabel": "具体例・確かめ方",
+      "figureCaption": "赤い曲線は青より低く広くなります。両端断熱なので、曲線の下の面積は変わりません。"
     },
     {
       "id": "t2ch1-pde-types",
       "kind": "term",
       "term": "2階PDEの型分類と初期・境界条件",
-      "body": "拡散方程式は放物型です。温度の変化を求めるには、「最初にどの場所が何度か」と「両端をどう扱うか」を決めます。最初の温度分布 $f(x,0)$ が初期条件です。端を一定温度にする、または断熱する、などが境界条件です。この有限長の棒では両方を与えるので、初期条件は時間の出発点、境界条件は空間の端での約束です。同じ初期温度でも、端を冷やす場合と断熱する場合では、その後の温度が異なります。",
-      "example": "問1-3の解説と図で確認できます。",
-      "figureImage": "t2e1PdeTypes"
+      "body": "偏微分方程式（PDE）は、時間や場所によって変わる量を微分で結び付けた式です。双曲型は波などの伝播、放物型は熱が広がる時間変化、楕円型は定常の温度や圧力の分布が代表例です。\n\n有限長の棒の非定常熱伝導は放物型です。初期条件で「最初に各場所が何度か」、境界条件で「両端を一定温度にするか、断熱するか」などを指定します。型の名前だけでなく、時間の出発点と空間の端を区別してください。",
+      "example": "最初は棒全体が80℃でも、両端を20℃に保てば冷えていきます。両端を断熱し発熱もなければ80℃のままです。同じ初期条件でも、境界条件が違えば結果が変わります。",
+      "figureImage": "t2e1PdeTypes",
+      "summary": "最初の状態と空間の端での条件を、方程式の性質に合わせて与えます。",
+      "exampleLabel": "具体例・確かめ方",
+      "figureCaption": "上段は棒全体に与える最初の温度、下段は両端の扱いです。指定する場所と役割を比較します。"
     },
     {
       "id": "t2ch1-taylor",
       "kind": "formula",
       "term": "テイラー展開・マクローリン展開",
-      "formula": "$f(x)\\approx f(0)+xf\\prime(0)+\\dfrac{x^2}{2}f\\prime\\prime(0)$",
-      "body": "マクローリン展開は、$x=0$ での値・傾き・曲がり具合を使い、近くの関数を多項式で近似します。第3項までなら $f(x)\\approx f(0)+xf\\prime(0)+\\dfrac{x^2}{2}f\\prime\\prime(0)$ です。べきの微分で $f\\prime(x)=-\\dfrac12(1+x)^{-3/2}$、もう一度微分して $f\\prime\\prime(x)=\\dfrac34(1+x)^{-5/2}$ です。$x=0$ を入れると順に $1,-1/2,3/4$ なので、$f(x)\\approx1-\\dfrac12x+\\dfrac{3/4}{2}x^2=1-\\dfrac12x+\\dfrac38x^2$。2次の係数を2で割るのは、$x^2$ を2回微分すると2が出るためです。近似は $x=0$ に近い範囲で使います。一般の点 $a$ のまわりでは、微分を $a$ で評価し、$x$ を $(x-a)$ に置き換えます。",
-      "example": "問1-4の途中手順で確認できます。"
+      "formula": "$f(x)\\approx f(a)+f^{\\prime}(a)(x-a)+\\dfrac{f^{\\prime\\prime}(a)}{2}(x-a)^2$",
+      "body": "テイラー展開は、基準点 $a$ の近くの関数を多項式で表す方法です。$f(a)$ が基準の値、$f^{\\prime}(a)(x-a)$ が傾きによる補正、2次項が曲がり具合による補正です。$a=0$ の場合をマクローリン展開と呼びます。\n\n2次項を $2!$ で割るのは、$x^2$ を2回微分すると2が出るためです。「第3項まで」は定数項・1次項・2次項までで、3次までという意味ではありません。有限差分の式や誤差の導出にも使います。",
+      "example": "アプリの例 $f(x)=(1+x)^{-1/2}$ では、$f^{\\prime}(x)=-\\frac12(1+x)^{-3/2}$、$f^{\\prime\\prime}(x)=\\frac34(1+x)^{-5/2}$。0での値は $1,-1/2,3/4$ なので、$f(x)\\approx1-\\frac12x+\\frac38x^2$ です。$x=0.1$ なら約0.95375で、実際の $1/\\sqrt{1.1}\\approx0.95346$ に近くなります。",
+      "summary": "近くの値を、基準点の値・傾き・曲がり具合から見積もります。",
+      "exampleLabel": "具体例・確かめ方"
     },
     {
       "id": "t2ch1-cross-product",
       "kind": "formula",
       "term": "ベクトルの外積",
       "formula": "$\\boldsymbol{u}\\times\\boldsymbol{v}=\\begin{pmatrix}u_2v_3-u_3v_2\\\\u_3v_1-u_1v_3\\\\u_1v_2-u_2v_1\\end{pmatrix}$",
-      "body": "外積は $\\boldsymbol{u}\\times\\boldsymbol{v}=\\begin{pmatrix}u_2v_3-u_3v_2\\\\u_3v_1-u_1v_3\\\\u_1v_2-u_2v_1\\end{pmatrix}$ で、大きさは2ベクトルが作る平行四辺形の面積、向きは右ねじの進む向きです。外積は順序を入れ替えると符号が反転する反交換 $\\boldsymbol{u}\\times\\boldsymbol{v}=-\\boldsymbol{v}\\times\\boldsymbol{u}$ なので、交換則 $\\boldsymbol{u}\\times\\boldsymbol{v}=\\boldsymbol{v}\\times\\boldsymbol{u}$ とした記述が誤りです。正解（誤っている記述）は選択肢3です。外積に交換則は成り立ちません。交換則が成り立つ内積との違いが要点です。",
-      "example": "問1-5の解説と図で確認できます。",
-      "figureImage": "t2e1CrossProduct"
+      "body": "外積の大きさは $|\\boldsymbol u|\\,|\\boldsymbol v|\\sin\\theta$ です。$\\theta$ は2本のなす角で、これは平行四辺形の面積に等しくなります。向きは、右手の指を $\\boldsymbol u$ から $\\boldsymbol v$ へ曲げたときの親指の向きです。\n\n順序を逆にすると向きが反転するため、$\\boldsymbol u\\times\\boldsymbol v=-\\boldsymbol v\\times\\boldsymbol u$。平行な2本や自分自身との外積は0です。内積は数値、外積はベクトルになる点も区別します。",
+      "example": "$\\boldsymbol u=(1,0,0)$、$\\boldsymbol v=(0,2,0)$ なら外積は $(0,0,2)$ です。順序を逆にすると $(0,0,-2)$ となり、面積2は同じで向きだけが変わります。",
+      "figureImage": "t2e1CrossProduct",
+      "summary": "2本のベクトルに垂直な方向と、囲む面積を表します。",
+      "exampleLabel": "具体例・確かめ方",
+      "figureCaption": "左右で青い2本は同じです。赤い外積の矢印だけが逆向きになることを見ます。"
     },
     {
       "id": "t2ch1-tensor-eigen",
       "kind": "formula",
       "term": "2階テンソルの固有値",
       "formula": "$\\mathbf A\\boldsymbol u=\\lambda\\boldsymbol u,\\quad\\boldsymbol u\\ne\\boldsymbol0$\n$\\det(\\lambda\\mathbf E-\\mathbf A)=0$",
-      "body": "行列はベクトルを別のベクトルに変える働きをします。$\\mathbf A\\boldsymbol u=\\lambda\\boldsymbol u$（$\\boldsymbol u\\ne\\boldsymbol0$）となる特別な方向のベクトルが固有ベクトル、その倍率 $\\lambda$ が固有値です。負の倍率なら向きも逆になります。非零の固有ベクトルをもつ条件が $\\det(\\lambda\\mathbf E-\\mathbf A)=0$ です。この式の根は固有値です。同じテンソルを回転した座標軸から見ても、この方程式の係数は変わりません。座標軸の回転は同じ対象の見方を変える操作です。第1不変量は固有値の和、第2は2つずつの積の和、第3は3つの積です。例として固有値 $1,3,3$ なら、順に $7,15,9$ で、軸を回しても同じです。",
-      "example": "問1-6の解説と図で確認できます。",
-      "figureImage": "t2e1Invariants"
+      "body": "行列 $\\mathbf A$ はベクトルを別のベクトルへ変えます。その中で $\\mathbf A\\boldsymbol u=\\lambda\\boldsymbol u$ となる、0でない $\\boldsymbol u$ が固有ベクトル、倍率 $\\lambda$ が固有値です。負の倍率なら向きが反転します。\n\n式を $(\\lambda\\mathbf E-\\mathbf A)\\boldsymbol u=0$ と整理します。$\\mathbf E$ は単位行列です。0でない解を持つ条件が行列式0なので、基本の式の特性方程式を解いて $\\lambda$ を探します。同じテンソルを回転した座標軸で表しても固有値は変わりません。",
+      "example": "対角行列 $\\mathbf A=\\operatorname{diag}(1,3,3)$ では、$x$ 方向は1倍、$y,z$ 方向は3倍です。特性方程式は $(\\lambda-1)(\\lambda-3)^2=0$ なので、重複を含む固有値は1・3・3です。",
+      "figureImage": "t2e1Invariants",
+      "summary": "行列を作用させても、同じ直線上に残る特別な方向と倍率です。",
+      "exampleLabel": "具体例・確かめ方",
+      "figureCaption": "座標軸を回した左右の図で固有値は1・3・3のままです。対象を変える操作と、見方を変える操作を分けます。"
     },
     {
       "id": "t2ch1-tensor-invariants",
       "kind": "formula",
       "term": "2階テンソルの3つの不変量",
       "formula": "$\\lambda^3-\\mathrm{I_A}\\lambda^2+\\mathrm{II_A}\\lambda-\\mathrm{III_A}=0$",
-      "body": "行列はベクトルを別のベクトルに変える働きをします。$\\mathbf A\\boldsymbol u=\\lambda\\boldsymbol u$（$\\boldsymbol u\\ne\\boldsymbol0$）となる特別な方向のベクトルが固有ベクトル、その倍率 $\\lambda$ が固有値です。負の倍率なら向きも逆になります。非零の固有ベクトルをもつ条件が $\\det(\\lambda\\mathbf E-\\mathbf A)=0$ です。この式の根は固有値です。同じテンソルを回転した座標軸から見ても、この方程式の係数は変わりません。座標軸の回転は同じ対象の見方を変える操作です。第1不変量は固有値の和、第2は2つずつの積の和、第3は3つの積です。例として固有値 $1,3,3$ なら、順に $7,15,9$ で、軸を回しても同じです。成分では $\\mathrm I_A=a_{11}+a_{22}+a_{33}$、第2不変量は $a_{22}a_{33}-a_{23}a_{32}$、$a_{33}a_{11}-a_{31}a_{13}$、$a_{11}a_{22}-a_{12}a_{21}$ の和、$\\mathrm {III}_A=\\det\\mathbf A$ です。直交行列 $\\mathbf P$ で $\\mathbf B=\\mathbf P\\mathbf A\\mathbf P^{\\mathrm T}=\\mathbf P\\mathbf A\\mathbf P^{-1}$ と座標を変えても同じです。",
-      "example": "問1-6の解説と図で確認できます。",
-      "figureImage": "t2e1Invariants"
+      "body": "3次元の固有値を $\\lambda_1,\\lambda_2,\\lambda_3$ とします。第1不変量は和、第2は2つずつの積の和、第3は3つの積です。\n\n特性方程式 $(\\lambda-\\lambda_1)(\\lambda-\\lambda_2)(\\lambda-\\lambda_3)=0$ を展開すると、基本の式の各係数になります。成分で求める場合、第1は対角成分の和 $\\operatorname{tr}\\mathbf A$、第3は $\\det\\mathbf A$ です。第2は $\\{(\\operatorname{tr}\\mathbf A)^2-\\operatorname{tr}(\\mathbf A^2)\\}/2$ でも求められます。",
+      "example": "固有値が1・3・3なら、$\\mathrm I_A=1+3+3=7$、$\\mathrm{II}_A=1\\times3+3\\times3+3\\times1=15$、$\\mathrm{III}_A=1\\times3\\times3=9$。特性方程式は $\\lambda^3-7\\lambda^2+15\\lambda-9=0$ です。",
+      "figureImage": "t2e1Invariants",
+      "summary": "座標軸を回しても変わらない、テンソルを特徴付ける3つの数です。",
+      "exampleLabel": "具体例・確かめ方",
+      "figureCaption": "下段の和7・積の和15・積9を、本文の計算と対応させます。左右の座標表示が変わっても同じ値です。"
     },
     {
       "id": "t2ch1-nabla-product",
       "kind": "formula",
       "term": "ナブラ演算子と∇·(fv)：積の微分",
       "formula": "$\\nabla\\cdot(f\\boldsymbol{v})=(\\nabla f)\\cdot\\boldsymbol{v}+f(\\nabla\\cdot\\boldsymbol{v})$",
-      "body": "積の微分 $(fg)\\prime=f\\prime g+fg\\prime$ と同じく、片方ずつ微分した2項を足します。$\\nabla f$ は各方向の変化率を並べた勾配、$\\nabla\\cdot\\boldsymbol v$ は各成分を対応する方向に微分して足した発散です。まず $x$ 方向では $\\dfrac{\\partial(fv_x)}{\\partial x}=\\dfrac{\\partial f}{\\partial x}v_x+f\\dfrac{\\partial v_x}{\\partial x}$ です。$y,z$ 方向も同じ操作で足すと、前半が $(\\nabla f)\\cdot\\boldsymbol v$、後半が $f(\\nabla\\cdot\\boldsymbol v)$ です。$f$ も $\\boldsymbol v$ も場所によって変わるため、一般には片方の変化だけを残せません。ナブラの記号があっても、土台は積の微分です。",
-      "example": "問1-7の途中手順で確認できます。"
+      "body": "$f$ は濃度や密度のようなスカラー、$\\boldsymbol v$ は速度のようなベクトルです。$\\nabla f$ は各方向の変化率を並べた勾配、$\\nabla\\cdot\\boldsymbol v$ は周囲への正味の流出を表す発散です。\n\n1方向なら $\\partial(fv_x)/\\partial x=(\\partial f/\\partial x)v_x+f(\\partial v_x/\\partial x)$。$y,z$ 方向も同様に足すと基本の式になります。「値の分布が変わる分」と「流れが広がる分」の2項であり、一般にはどちらも省けません。",
+      "example": "1次元で $f=x^2,v_x=3x$ とします。積を先に微分すると $(3x^3)^{\\prime}=9x^2$。片方ずつ微分しても $(2x)(3x)+x^2\\times3=9x^2$ となります。",
+      "summary": "濃度などの値と流速の両方が変わるので、積を片方ずつ微分します。",
+      "exampleLabel": "具体例・確かめ方"
     },
     {
       "id": "t2ch1-cylindrical",
       "kind": "formula",
       "term": "デカルト⇔円柱座標の偏微分",
       "formula": "$\\dfrac{\\partial}{\\partial x}=\\cos\\theta\\dfrac{\\partial}{\\partial r}-\\dfrac{\\sin\\theta}{r}\\dfrac{\\partial}{\\partial\\theta}$",
-      "body": "点を右へ少し動かすと、距離 $r$ も角度 $\\theta$ も変わります。したがって $x$ 方向の変化は、$r$ の変化による分と $\\theta$ の変化による分を足します。これが連鎖律です。$r=\\sqrt{x^2+y^2}$ より $\\dfrac{\\partial r}{\\partial x}=x/r=\\cos\\theta$ です。$y=r\\sin\\theta$ を $y$ 一定で微分すると $0=\\sin\\theta\\dfrac{\\partial r}{\\partial x}+r\\cos\\theta\\dfrac{\\partial\\theta}{\\partial x}$ より $\\dfrac{\\partial\\theta}{\\partial x}=-\\sin\\theta/r$ です（$\\cos\\theta=0$ では $x=r\\cos\\theta$ を微分して同じ結果です）。連鎖律 $\\dfrac{\\partial}{\\partial x}=\\dfrac{\\partial r}{\\partial x}\\dfrac{\\partial}{\\partial r}+\\dfrac{\\partial\\theta}{\\partial x}\\dfrac{\\partial}{\\partial\\theta}$ に代入し、図の第1象限では、右へ動くと $r$ は増え、$\\theta$ は減ります。この増減がプラスとマイナスです。角度の変化率には距離 $r$ が分母に入り、原点では式を使えません。同様に $\\partial/\\partial y=\\sin\\theta\\,\\partial/\\partial r+(\\cos\\theta/r)\\,\\partial/\\partial\\theta$ です。",
-      "example": "問1-8の解説と図で確認できます。",
-      "figureImage": "t2e1Cylindrical"
+      "body": "$x=r\\cos\\theta,y=r\\sin\\theta$ で、$r$ は原点からの距離、$\\theta$ は角度です。$y$ を固定して $x$ を動かしても、普通は $r$ と $\\theta$ の両方が変わります。\n\n連鎖律は $\\partial f/\\partial x=(\\partial f/\\partial r)(\\partial r/\\partial x)+(\\partial f/\\partial\\theta)(\\partial\\theta/\\partial x)$。ここに $\\partial r/\\partial x=\\cos\\theta$、$\\partial\\theta/\\partial x=-\\sin\\theta/r$ を代入すると基本の式になります。角度を動かす効果には $1/r$ が必要です。原点 $r=0$ ではこの座標式をそのまま使えません。",
+      "example": "$f=r^2=x^2+y^2$ なら角度依存は0です。式へ入れると $\\partial f/\\partial x=\\cos\\theta\\,(2r)=2x$。デカルト座標で直接微分した結果と一致します。",
+      "figureImage": "t2e1Cylindrical",
+      "summary": "横へ少し動いたときの変化を、半径の変化と角度の変化に分けます。",
+      "exampleLabel": "具体例・確かめ方",
+      "figureCaption": "第1象限で点Pを右へ動かすと、半径は増え、角度は減ります。この増減が式の正負に対応します。"
     },
     {
       "id": "t2ch1-gauss",
       "kind": "formula",
       "term": "ガウスの発散定理",
       "formula": "$\\iiint_V \\nabla\\cdot\\boldsymbol{v}\\,dV=\\iint_S \\boldsymbol{v}\\cdot\\boldsymbol{n}\\,dS$",
-      "body": "発散は小さな領域の流出と流入の差を、単位体積あたりで表したものです。ガウスの定理は、その値を全体で足す体積積分を、領域を囲む表面の積分に置き換えます。領域を小さな箱に分けると、共有面で一方の流出が他方の流入となり、足し合わせると相殺します。外周を通る分だけが残り、外向き成分は内積 $\\boldsymbol v\\cdot\\boldsymbol n$ なので、$\\boldsymbol n$ は長さ1の外向き法線です。$\\boldsymbol v\\cdot\\boldsymbol n$ が正なら流出、負なら流入で、面積 $dS$ を掛けて足します。同じ時刻の十分なめらかなベクトル場に成り立つ関係です。",
-      "example": "問1-9の解説と図で確認できます。",
-      "figureImage": "t2e1Gauss"
+      "body": "$V$ は体積、$S$ はそれを囲む閉じた表面、$\\boldsymbol n$ は外向きで長さ1の法線です。左辺は発散を内部全体で足す体積積分、右辺は表面を通る量を足す面積分です。\n\n領域を小さな箱に分けると、共有面では一方の流出が隣の流入になります。足すと打ち消し合い、外周だけが残ります。$\\boldsymbol v\\cdot\\boldsymbol n$ は表面に垂直な成分で、流出を正、流入を負として数えます。有限体積法の保存則にもつながる考え方です。",
+      "example": "外周から毎秒5の量が入り、毎秒8の量が出ると、外向きの正味流量は $8-5=3$ です。発散の体積積分も3になります。内部に引いた区切り線の本数は、この合計を変えません。",
+      "figureImage": "t2e1Gauss",
+      "summary": "小さな領域の出入りを全部足すと、外側の境界を通る分だけが残ります。",
+      "exampleLabel": "具体例・確かめ方",
+      "figureCaption": "中央の共有面の2本の矢印は相殺します。外周の赤い矢印を足すのが右辺です。"
     },
     {
       "id": "t2ch1-kronecker-epsilon",
       "kind": "formula",
       "term": "クロネッカーのデルタと置換記号（総和規約）",
       "formula": "$\\delta_{ii}=3,\\quad\\delta_{ij}\\delta_{ij}=3$\n$\\epsilon_{ijk}\\epsilon_{ljk}=2\\delta_{il}$\n$\\epsilon_{ijk}\\epsilon_{ijk}=6$",
-      "body": "同じ添字が1項に2回出たら、その添字について1〜3を足します。$\\delta_{ij}$ は添字が同じときだけ1です。$\\epsilon_{ijk}$ は $(123),(231),(312)$ で $+1$、$(132),(213),(321)$ で $-1$、数字の重複があれば0です。$\\epsilon_{ijk}\\epsilon_{ijk}$ は、全27通りの各値の2乗を足します。0でないのは6通りで、$1^2$ も $(-1)^2$ も1です。合計6なので、値は2ではありません。選択肢3は $i,l$ を残して $j,k$ だけを足します。$i=l$ なら2通りの2乗の和が2、$i\\ne l$ なら全項0で、$2\\delta_{il}$ です。全添字を足す場合と区別します。",
-      "example": "問1-10の解説と図で確認できます。",
-      "figureImage": "t2e1KroneckerEps"
+      "body": "3次元では添字は1〜3です。$\\delta_{ij}$ は $i=j$ のとき1、それ以外は0です。$\\epsilon_{ijk}$ は123・231・312なら1、132・213・321なら−1、同じ数字が重なれば0です。\n\n同じ添字が1項に2回出たら、その添字の全ての値について足します。$\\delta_{ii}=\\delta_{11}+\\delta_{22}+\\delta_{33}=3$。一方 $\\epsilon_{ijk}\\epsilon_{ljk}$ で足すのは $j,k$ だけで、$i,l$ は残ります。足す添字と残す添字を先に確認すると混乱しません。",
+      "example": "$\\epsilon_{ijk}\\epsilon_{ijk}$ は27通りの2乗の和です。0でないのは図の6通りで、1も−1も2乗すると1。したがって合計は6です。$\\epsilon_{ijk}\\epsilon_{ljk}=2\\delta_{il}$ から $i=l$ としてさらに足しても $2\\times3=6$ です。",
+      "figureImage": "t2e1KroneckerEps",
+      "summary": "添字の一致や並ぶ順序を、0・1・−1で表す記号です。",
+      "exampleLabel": "具体例・確かめ方",
+      "figureCaption": "左右の6組だけが0でない成分です。各値を2乗すると全て1になるので、合計6と数えられます。"
     },
     {
       "id": "t2ch1-fourier",
       "kind": "formula",
       "term": "フーリエ級数の係数公式",
       "formula": "$a_n=\\dfrac1L\\displaystyle\\int_{-L}^{L}f(x)\\cos\\!\\big(\\tfrac{n\\pi x}{L}\\big)dx$\n$b_n=\\dfrac1L\\displaystyle\\int_{-L}^{L}f(x)\\sin\\!\\big(\\tfrac{n\\pi x}{L}\\big)dx$",
-      "body": "フーリエ級数は関数を正弦・余弦の波の和で表します。係数は各波の大きさを示し、$a_n=\\dfrac1\\pi\\int_{-\\pi}^{\\pi}f(x)\\cos(nx)\\,dx$、$b_n=\\dfrac1\\pi\\int_{-\\pi}^{\\pi}f(x)\\sin(nx)\\,dx$ です。$x$ は原点対称の奇関数です。$x\\cos(nx)$ は左右で打ち消し $a_n=0$、$x\\sin(nx)$ は左右で同じなので $b_n=\\dfrac2\\pi\\int_0^\\pi x\\sin(nx)\\,dx$ です。部分積分により、この積分は、端点での値 $[-x\\cos(nx)/n]_0^\\pi$ と、残りの積分 $\\dfrac1n\\int_0^\\pi\\cos(nx)\\,dx$ の和になります。後半は $[\\sin(nx)/n^2]_0^\\pi=0$、前半は $-\\pi(-1)^n/n$ なので、$b_n=2(-1)^{n+1}/n$ です。部分積分は $\\int u\\,dv=uv-\\int v\\,du$ です。$u=x,dv=\\sin(nx)dx$ として $du=dx,v=-\\cos(nx)/n$ を使いました。$b_1=2,b_2=-1,b_3=2/3$ と符号が交互になります。周期的につないだ両端では級数は左右の平均0に収束し、区間内部で元の直線を表します。一般の区間 $[-L,L]$ では公式欄の係数を使い、正弦・余弦の引数は $n\\pi x/L$ となります。偶関数なら正弦側の $b_n=0$ です。",
-      "example": "問1-11の解説と図で確認できます。",
-      "figureImage": "t2e1FourierLine"
+      "body": "周期 $2L$ の関数を $f(x)=a_0/2+\\sum_{n=1}^{\\infty}\\{a_n\\cos(n\\pi x/L)+b_n\\sin(n\\pi x/L)\\}$ と表します。係数は各波をどれだけ混ぜるかを示します。基本の式は、調べたい波を掛けて1周期分足すことで、その波の成分を取り出す式です。\n\n原点対称の奇関数なら余弦の係数 $a_n$ は0、左右対称の偶関数なら正弦の係数 $b_n$ は0です。先に対称性を見ると計算を減らせます。",
+      "example": "図の $f(x)=x$、$-\\pi<x<\\pi$ では $a_n=0$、$b_n=\\frac2\\pi\\int_0^\\pi x\\sin(nx)\\,dx$。部分積分すると $\\int_0^\\pi x\\sin(nx)\\,dx=[-x\\cos(nx)/n]_0^\\pi+[\\sin(nx)/n^2]_0^\\pi=-\\pi(-1)^n/n$。よって $b_n=2(-1)^{n+1}/n$ です。最初の3係数は2・−1・2/3となります。周期の継ぎ目では左右の値の平均0に収束します。",
+      "figureImage": "t2e1FourierLine",
+      "summary": "複雑な周期的分布を、正弦波と余弦波の足し算で表します。",
+      "exampleLabel": "具体例・確かめ方",
+      "figureCaption": "青は直線、赤は正弦波の和です。波を増やすと内部の直線へ近づきますが、周期の継ぎ目付近には振動が残ります。"
     }
   ]
 }
