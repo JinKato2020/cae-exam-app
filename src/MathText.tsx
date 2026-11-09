@@ -13,7 +13,7 @@ export type MathTextBlock = { label: string; text: string };
 
 // $...$（インライン）と $$...$$（ブロック）を含む1ブロックの HTML を作る。
 // scroll=true のときは「文字サイズを揃えたまま、はみ出す表示数式は横スクロール」で見せる
-// （縮小しない）。bg は右端フェードの色＝公式ボックスの背景色。
+// （縮小しない）。横スクロールの目印は数式の行だけに付ける。
 function buildHtml(
   text: string,
   color: string,
@@ -30,8 +30,7 @@ function buildHtml(
     ? `.katex-display{margin:.35em 0;overflow-x:auto;overflow-y:hidden;text-align:left;-webkit-overflow-scrolling:touch;}
        .math-scroll{display:block;max-width:100%;box-sizing:border-box;overflow-x:auto;overflow-y:hidden;padding:6px 0;white-space:nowrap;-webkit-overflow-scrolling:touch;}
        .math-scroll>.katex,.katex-display>.katex{display:inline-block;min-width:max-content;text-align:left;}
-       html,body{max-width:100%;overflow-x:hidden;}
-       #fade{position:fixed;top:0;right:0;bottom:0;width:22px;background:linear-gradient(90deg,transparent,${bg});display:none;pointer-events:none;}`
+       html,body{max-width:100%;overflow-x:hidden;}`
     : `.katex-display{margin:.35em 0;overflow:visible;}`;
   return `<!DOCTYPE html><html><head>
 <meta charset="utf-8">
@@ -60,7 +59,6 @@ function buildHtml(
   ${displayCss}
 </style></head><body>
 <div id="c"></div>
-${scroll ? '<div id="fade"></div>' : ''}
 <script>
   var SCROLL=${scroll ? 'true' : 'false'};
   var SCROLL_ONLY_OVERFLOW=${scrollOnlyOverflow ? 'true' : 'false'};
@@ -121,9 +119,11 @@ ${scroll ? '<div id="fade"></div>' : ''}
         if (k.getBoundingClientRect().width <= avail + 1) continue; // はみ出す式だけ対象
         box = document.createElement('span');
         box.className='fitbox'; box.style.display='block'; box.style.overflow='hidden';
+        // 縮小後の実寸だけを枠に使うため、通常行のベースライン余白を入れない。
+        box.style.lineHeight='0';
         p.insertBefore(box, k); box.appendChild(k);
       }
-      k.style.display='inline-block';
+      k.style.display='inline-block'; k.style.verticalAlign='top';
       k.style.transform=''; k.style.transformOrigin=''; box.style.height='';
       var need = k.getBoundingClientRect().width;
       if (need > avail + 1){
@@ -156,13 +156,15 @@ ${scroll ? '<div id="fade"></div>' : ''}
       parent.insertBefore(row,k); row.appendChild(k);
     }
   }
-  // 横スクロールできる（はみ出している）ときだけ右端フェードを出す。
+  // 横スクロールできる数式の右端だけに目印を付け、本文の行末は隠さない。
   function updateFade(){
     if (!SCROLL) return;
-    var f=document.getElementById('fade'); if(!f) return;
-    var over=false, ds=document.querySelectorAll('.katex-display,.math-scroll');
-    for (var i=0;i<ds.length;i++){ if (ds[i].scrollWidth > ds[i].clientWidth + 1){ over=true; break; } }
-    f.style.display = over ? 'block' : 'none';
+    var ds=document.querySelectorAll('.katex-display,.math-scroll');
+    for (var i=0;i<ds.length;i++){
+      var d=ds[i], remaining=d.scrollWidth-d.clientWidth-d.scrollLeft;
+      var mask=remaining > 1 ? 'linear-gradient(90deg,#000 calc(100% - 22px),transparent)' : 'none';
+      d.style.maskImage=mask; d.style.webkitMaskImage=mask;
+    }
   }
   function post(){
     if (SCROLL_ONLY_OVERFLOW) prepareMathScroll();
@@ -172,6 +174,13 @@ ${scroll ? '<div id="fade"></div>' : ''}
     // 高さが縮まず巨大な空白が残る。余白を含む本文の実寸だけを送る。
     var h = Math.ceil(Math.max(el.scrollHeight, el.getBoundingClientRect().height));
     if (h && window.ReactNativeWebView) window.ReactNativeWebView.postMessage(String(h));
+  }
+  // フォント・折返しの再配置を、固定時間の再測定だけに頼らず追跡する。
+  var measurePending = false;
+  function schedulePost(){
+    if (measurePending) return;
+    measurePending = true;
+    requestAnimationFrame(function(){ measurePending = false; post(); });
   }
   function run(){
     try {
@@ -188,11 +197,17 @@ ${scroll ? '<div id="fade"></div>' : ''}
       c.style.visibility = 'visible';
     }
     post();
-    // KaTeXフォントはCDNから遅延読込。読み込み完了・複数タイミングで高さ等を取り直す
-    [120,300,600,1200].forEach(function(ms){ setTimeout(post, ms); });
-    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(post).catch(function(){}); }
+    // 本文そのものを監視する。WebViewの高さを監視すると自己更新を繰り返すため対象にしない。
+    if (typeof ResizeObserver !== 'undefined') {
+      new ResizeObserver(schedulePost).observe(document.getElementById('c'));
+    }
+    if (document.fonts) {
+      document.fonts.ready.then(schedulePost).catch(function(){});
+      document.fonts.addEventListener('loadingdone', schedulePost);
+    }
   }
-  window.addEventListener('resize', post);
+  window.addEventListener('resize', schedulePost);
+  document.addEventListener('scroll', updateFade, true);
   if (document.readyState === 'complete') run(); else window.addEventListener('load', run);
 </script></body></html>`;
 }
@@ -224,7 +239,9 @@ export function MathText(props: {
       source={{ html: buildHtml(props.text, props.color, fontSize, props.bold ?? false, scroll, props.bg ?? '#ffffff', bodyBg, props.scrollOnlyOverflow ?? false, props.blocks) }}
       style={verticalScroll
         ? { flex: 1, minHeight: 0, backgroundColor: bodyBg, width: '100%' }
-        : { height, backgroundColor: bodyBg, width: '100%' }}
+        : { flex: 0, height, backgroundColor: bodyBg, width: '100%' }}
+      // WebView標準のflex:1で実測した本文枠が縮まないよう、外枠にも高さを指定する。
+      containerStyle={verticalScroll ? { flex: 1, minHeight: 0 } : { flex: 0, height }}
       // 通常は本文に高さを合わせて横だけスクロール。verticalScroll時は画面内で縦もスクロール。
       scrollEnabled={scroll || verticalScroll}
       showsVerticalScrollIndicator={verticalScroll}

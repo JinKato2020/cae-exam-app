@@ -96,6 +96,11 @@ def main():
         question_paths = sorted((Path(root) / "content" / "questions").glob("*.json"))
     for question_path in question_paths:
         require_editorial_review(json.loads(question_path.read_bytes()))
+    # 用語だけをレビューした章も、問題側の監査状態と分けて標準図を確認する。
+    for formula_path in sorted((Path(root) / "content" / "formulas").glob("*.json")):
+        formula_data = json.loads(formula_path.read_bytes())
+        if formula_data.get("meta", {}).get("presentationStyle"):
+            require_editorial_review(formula_data)
     manifest = {
         "appId": APP_ID,
         "schema": 1,

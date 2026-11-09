@@ -52,7 +52,7 @@ const documents = [
   ...Array.from({ length: 11 }, (_, i) => ({ scope: 'solid1', ...JSON.parse(fs.readFileSync(`content/formulas/solid1-ch${i + 1}.json`, 'utf8')) })),
   ...Array.from({ length: 13 }, (_, i) => ({ scope: `solid2-ch${i + 1}`, ...JSON.parse(fs.readFileSync(`content/formulas/ch${i + 1}.json`, 'utf8')) })),
   ...Array.from({ length: 11 }, (_, i) => ({ scope: 'thermal2', ...JSON.parse(fs.readFileSync(`content/formulas/thermal2-ch${i + 1}.json`, 'utf8')) })),
-  ...Array.from({ length: 8 }, (_, i) => ({ scope: 'thermal1', ...JSON.parse(fs.readFileSync(`content/formulas/thermal1-ch${i + 1}.json`, 'utf8')) })),
+  ...Array.from({ length: 16 }, (_, i) => ({ scope: 'thermal1', ...JSON.parse(fs.readFileSync(`content/formulas/thermal1-ch${i + 1}.json`, 'utf8')) })),
   ...Array.from({ length: 13 }, (_, i) => ({ scope: 'vib2', ...JSON.parse(fs.readFileSync(`content/formulas/vib2-ch${i + 1}.json`, 'utf8')) })),
   ...Array.from({ length: 9 }, (_, i) => ({ scope: 'vib1', ...JSON.parse(fs.readFileSync(`content/formulas/vib1-ch${i + 1}.json`, 'utf8')) })),
 ];
@@ -133,4 +133,45 @@ vm.runInNewContext(mathSource.slice(mathSource.indexOf('  function post(){'), ma
   window: { ReactNativeWebView: { postMessage: value => { reported = Number(value); } } },
 });
 assert.equal(reported, 120);
+// 初回の測定が終わった後の折返し・文字サイズ変更でも、現在の本文高を送り直す。
+let bodyHeight = 120, pendingFrame;
+const reflowEnvironment = {
+  SCROLL_ONLY_OVERFLOW: false, prepareMathScroll() {}, fitDisplays() {}, updateFade() {},
+  document: { getElementById: () => ({ get scrollHeight() { return bodyHeight; }, getBoundingClientRect: () => ({ height: bodyHeight }) }) },
+  window: { ReactNativeWebView: { postMessage: value => { reported = Number(value); } } },
+  requestAnimationFrame: fn => { assert(!pendingFrame); pendingFrame = fn; },
+};
+vm.createContext(reflowEnvironment);
+vm.runInContext(mathSource.slice(mathSource.indexOf('  function post(){'), mathSource.indexOf('  function run(){')), reflowEnvironment);
+reflowEnvironment.post();
+bodyHeight = 270;
+reflowEnvironment.schedulePost(); reflowEnvironment.schedulePost();
+pendingFrame(); pendingFrame = null;
+assert.equal(reported, 270, '遅れて増えた本文高を取り込み、末尾を切らない');
+bodyHeight = 90; reflowEnvironment.schedulePost(); pendingFrame(); pendingFrame = null;
+assert.equal(reported, 90, '短くなった場合も旧高さを残さない');
+// 長い式の目印は式自身に限定し、末尾へ達したら解除する。
+const mathRow = { scrollWidth: 500, clientWidth: 280, scrollLeft: 0, style: {} };
+const fadeEnvironment = { SCROLL: true, document: { querySelectorAll: () => [mathRow] } };
+vm.createContext(fadeEnvironment);
+vm.runInContext(mathSource.slice(mathSource.indexOf('  function updateFade(){'), mathSource.indexOf('  function post(){')), fadeEnvironment);
+fadeEnvironment.updateFade(); assert.match(mathRow.style.maskImage, /linear-gradient/);
+mathRow.scrollLeft = 220; fadeEnvironment.updateFade(); assert.equal(mathRow.style.maskImage, 'none');
+mathRow.clientWidth = 600; mathRow.scrollLeft = 0; fadeEnvironment.updateFade(); assert.equal(mathRow.style.maskImage, 'none');
+assert(!mathSource.includes('id="fade"'), '本文の右端全体を覆うフェードを作らない');
+// Native側も測定高を保持する。画面内スクロールの復習表示だけは残り高さを使用する。
+native.Platform = { OS: 'ios' };
+const { MathText } = compile(mathSource, { react: { useState }, 'react-native-webview': { WebView: 'WebView' } });
+slots = []; cursor = 0;
+let mathView = MathText({ text: '$x=1$', color: '#111' });
+mathView.props.onMessage({ nativeEvent: { data: '270' } }); cursor = 0;
+mathView = MathText({ text: '$x=1$', color: '#111' });
+assert.equal(mathView.props.style.height, 270);
+assert.equal(mathView.props.style.flex, 0);
+assert.equal(mathView.props.containerStyle.height, 270);
+assert.equal(mathView.props.containerStyle.flex, 0);
+cursor = 0;
+mathView = MathText({ text: '$x=1$', color: '#111', verticalScroll: true });
+assert.equal(mathView.props.style.flex, 1);
+assert.equal(mathView.props.containerStyle.height, undefined);
 console.log(`Formula cards/search: PASS (${ids.size} solid1/solid2/thermal1/thermal2/vib2/vib1 items; legacy OTA; scroll; locked results; return position)`);
