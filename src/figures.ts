@@ -980,6 +980,7 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   s1e8Formulation: require('../assets/figures/s1e8Formulation.png'),
   s1e8FourierMode: require('../assets/figures/s1e8FourierMode.png'),
   s1e8GaussPoints: require('../assets/figures/s1e8GaussPoints.png'),
+  s1e8TrapezoidCompare: require('../assets/figures/s1e8TrapezoidCompare.png'),
   s1e8Hourglass: require('../assets/figures/s1e8Hourglass.png'),
   s1e8HourglassChoices: require('../assets/figures/s1e8HourglassChoices.png'),
   s1e8HourglassDOF: require('../assets/figures/s1e8HourglassDOF.png'),
