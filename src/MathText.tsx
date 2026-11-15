@@ -31,7 +31,8 @@ function buildHtml(
        .math-scroll{display:block;max-width:100%;box-sizing:border-box;overflow-x:auto;overflow-y:hidden;padding:6px 0;white-space:nowrap;-webkit-overflow-scrolling:touch;}
        .math-scroll>.katex,.katex-display>.katex{display:inline-block;min-width:max-content;text-align:left;}
        html,body{max-width:100%;overflow-x:hidden;}`
-    : `.katex-display{margin:.35em 0;overflow:visible;}`;
+    : `.katex-display{margin:.35em 0;overflow:visible;}
+       .katex-display>.katex{display:inline-block;width:max-content;vertical-align:top;}`;
   return `<!DOCTYPE html><html><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -90,9 +91,12 @@ function buildHtml(
     for (var i=0;i<ds.length;i++){
       var d = ds[i], k = d.querySelector('.katex');
       if (!k) continue;
-      k.style.transform=''; k.style.transformOrigin=''; d.style.height='';
+      k.style.transform=''; k.style.transformOrigin='';
+      d.style.height=''; d.style.textAlign=''; d.style.lineHeight='';
       var avail = d.clientWidth, need = k.getBoundingClientRect().width;
-      if (need > avail + 1){
+      if (avail > 0 && need > avail){
+        d.style.textAlign='left';
+        d.style.lineHeight='0';
         k.style.transformOrigin='left top';
         k.style.transform='scale('+(avail/need)+')';
         d.style.height = Math.ceil(k.getBoundingClientRect().height) + 'px';
@@ -116,7 +120,7 @@ function buildHtml(
         box = p; // 再実行時(フォント遅延読込後など)は既存の箱を測り直す
       } else {
         k.style.transform=''; k.style.transformOrigin='';
-        if (k.getBoundingClientRect().width <= avail + 1) continue; // はみ出す式だけ対象
+        if (k.getBoundingClientRect().width <= avail) continue; // はみ出す式だけ対象
         box = document.createElement('span');
         box.className='fitbox'; box.style.display='block'; box.style.overflow='hidden';
         // 縮小後の実寸だけを枠に使うため、通常行のベースライン余白を入れない。
@@ -126,7 +130,7 @@ function buildHtml(
       k.style.display='inline-block'; k.style.verticalAlign='top';
       k.style.transform=''; k.style.transformOrigin=''; box.style.height='';
       var need = k.getBoundingClientRect().width;
-      if (need > avail + 1){
+      if (need > avail){
         k.style.transformOrigin='left top';
         k.style.transform='scale('+(avail/need)+')';
         box.style.height = Math.ceil(k.getBoundingClientRect().height) + 'px';
@@ -143,7 +147,7 @@ function buildHtml(
     for(var i=0;i<roots.length;i++){
       var k=roots[i], parent=k.parentElement;
       if(!parent || parent.classList.contains('katex-display')) continue;
-      var fits=k.getBoundingClientRect().width <= avail + 1;
+      var fits=k.getBoundingClientRect().width <= avail;
       if(parent.classList.contains('math-scroll')){
         // 回転・再レイアウト後は再判定し、収まる式を本文内へ戻す。
         if(SCROLL_ONLY_OVERFLOW && fits && parent.parentNode){
@@ -249,7 +253,7 @@ export function MathText(props: {
       onMessage={(e) => {
         if (verticalScroll) return; // 本文の高さへ広げず、画面の残りの高さを保つ
         const h = Number(e.nativeEvent.data);
-        if (h && Math.abs(h - height) > 1) setHeight(h);
+        if (Number.isFinite(h) && h > 0) setHeight(h);
       }}
       // 透過に頼らずベタ塗り（Android の黒潰れ対策）。iOS も不透明（従来と同じ）。
       opaque
@@ -297,7 +301,11 @@ export function RichText(props: {
         style={[
           // iOSの末尾行も親の本文幅で折り返す。右端の字形・句読点用の余白を残す。
           { color: props.color, fontSize: props.fontSize ?? 16, lineHeight: Math.ceil((props.fontSize ?? 16) * 1.4),
-            width: '100%', maxWidth: '100%', minWidth: 0, flexShrink: 1, paddingRight: 4 },
+            width: '100%', maxWidth: '100%', minWidth: 0, flexShrink: 1, paddingRight: 4,
+            // iOS/Yogaの端数丸めで本文高が僅かに不足すると、最終行が折り返されず右端で切れる。
+            // 整数の余白では同じ誤差が残るため、端数で文字枠を次の画素まで切り上げる。
+            // https://github.com/react/react-native/issues/58970
+            paddingBottom: Platform.OS === 'ios' ? 0.01 : undefined },
           props.bold ? { fontWeight: '600' } : null,
           props.style,
         ]}

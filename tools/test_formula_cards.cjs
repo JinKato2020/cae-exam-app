@@ -52,7 +52,7 @@ const documents = [
   ...Array.from({ length: 11 }, (_, i) => ({ scope: 'solid1', ...JSON.parse(fs.readFileSync(`content/formulas/solid1-ch${i + 1}.json`, 'utf8')) })),
   ...Array.from({ length: 13 }, (_, i) => ({ scope: `solid2-ch${i + 1}`, ...JSON.parse(fs.readFileSync(`content/formulas/ch${i + 1}.json`, 'utf8')) })),
   ...Array.from({ length: 11 }, (_, i) => ({ scope: 'thermal2', ...JSON.parse(fs.readFileSync(`content/formulas/thermal2-ch${i + 1}.json`, 'utf8')) })),
-  ...Array.from({ length: 16 }, (_, i) => ({ scope: 'thermal1', ...JSON.parse(fs.readFileSync(`content/formulas/thermal1-ch${i + 1}.json`, 'utf8')) })),
+  ...Array.from({ length: 24 }, (_, i) => ({ scope: 'thermal1', ...JSON.parse(fs.readFileSync(`content/formulas/thermal1-ch${i + 1}.json`, 'utf8')) })),
   ...Array.from({ length: 13 }, (_, i) => ({ scope: 'vib2', ...JSON.parse(fs.readFileSync(`content/formulas/vib2-ch${i + 1}.json`, 'utf8')) })),
   ...Array.from({ length: 9 }, (_, i) => ({ scope: 'vib1', ...JSON.parse(fs.readFileSync(`content/formulas/vib1-ch${i + 1}.json`, 'utf8')) })),
 ];
@@ -161,7 +161,7 @@ mathRow.clientWidth = 600; mathRow.scrollLeft = 0; fadeEnvironment.updateFade();
 assert(!mathSource.includes('id="fade"'), '本文の右端全体を覆うフェードを作らない');
 // Native側も測定高を保持する。画面内スクロールの復習表示だけは残り高さを使用する。
 native.Platform = { OS: 'ios' };
-const { MathText } = compile(mathSource, { react: { useState }, 'react-native-webview': { WebView: 'WebView' } });
+const { MathText, RichText } = compile(mathSource, { react: { useState }, 'react-native-webview': { WebView: 'WebView' } });
 slots = []; cursor = 0;
 let mathView = MathText({ text: '$x=1$', color: '#111' });
 mathView.props.onMessage({ nativeEvent: { data: '270' } }); cursor = 0;
@@ -170,8 +170,66 @@ assert.equal(mathView.props.style.height, 270);
 assert.equal(mathView.props.style.flex, 0);
 assert.equal(mathView.props.containerStyle.height, 270);
 assert.equal(mathView.props.containerStyle.flex, 0);
+const receiveHeight = data => mathView.props.onMessage({ nativeEvent: { data } });
+receiveHeight('300');
+receiveHeight('270');
+cursor = 0;
+mathView = MathText({ text: '$x=1$', color: '#111' });
+assert.equal(mathView.props.containerStyle.height, 270, 'use the newest measurement before React rerenders');
+receiveHeight('271');
+receiveHeight('Infinity');
+cursor = 0;
+mathView = MathText({ text: '$x=1$', color: '#111' });
+assert.equal(mathView.props.containerStyle.height, 271, 'keep one-pixel growth and ignore invalid measurements');
 cursor = 0;
 mathView = MathText({ text: '$x=1$', color: '#111', verticalScroll: true });
 assert.equal(mathView.props.style.flex, 1);
 assert.equal(mathView.props.containerStyle.height, undefined);
+
+// iOS Native Text: 最終行の右端切れ。ブラウザのDOM検査だけでは拾えない。
+// Yoga 0.81.5 PixelGrid.cpp のfloat丸めを再現する（RN issue #58970）。
+const checkpoint = JSON.parse(fs.readFileSync('content/questions/solid1-04-contact-nonlinear.json', 'utf8'))
+  .questions.find(q => q.number === '4-4').studyParts[0].answerCheckpoints.at(-1);
+assert.equal(checkpoint, '面接触でも近似誤差があり、粗い界面メッシュでは精度が落ち得ること。');
+const prose = RichText({ text: '・' + checkpoint, color: '#111', fontSize: 17, scroll: true, style: { lineHeight: 29 } });
+assert.equal(prose.type, 'Text', 'この実例はKaTeXを通らないNative本文');
+assert.equal(prose.props.children, '・' + checkpoint, '文章を短縮して表示の不具合を隠さない');
+const proseStyle = Object.assign({}, ...prose.props.style.filter(Boolean));
+assert.equal(proseStyle.lineHeight, 29, '本文の指定行間を維持する');
+assert(proseStyle.paddingBottom > 0 && proseStyle.paddingBottom < 0.1, '端数余白で文字枠の切上げを保つ');
+function nativePixelRound(value, scale, ceil, floor) {
+  let scaled = value * scale, fraction = scaled % 1;
+  if (fraction < 0) fraction++;
+  if (Math.abs(fraction) < .0001) scaled -= fraction;
+  else if (Math.abs(fraction - 1) < .0001) scaled += 1 - fraction;
+  else if (ceil) scaled += 1 - fraction;
+  else if (floor) scaled -= fraction;
+  else scaled += (fraction > .5 || Math.abs(fraction - .5) < .0001 ? 1 : 0) - fraction;
+  return Math.fround(scaled / scale);
+}
+function nativeContentHeight(top, textHeight, scale, padding) {
+  top = Math.fround(top);
+  const height = Math.fround(textHeight + padding), scaled = height * scale;
+  const fractional = Math.abs(Math.round(scaled) - scaled) >= .0001;
+  return Math.fround(Math.fround(nativePixelRound(top + height, scale, fractional, !fractional)
+    - nativePixelRound(top, scale, false, true)) - Math.fround(padding));
+}
+assert(nativeContentHeight(2028 + 1 / 3, 44, 3, 0) < 44,
+  '従来の高さが44ptを僅かに下回り、TextKitで最終行を失う条件を再現');
+let nativeCases = 0;
+for (const scale of [2, 3]) for (const boundary of [1024, 2048, 4096, 8192, 16384, 32768])
+  for (const lineHeight of [20, 24, 29, 33]) for (const lines of [1, 2, 3, 8, 30])
+    for (const fraction of [0, 1 / 3, 2 / 3]) {
+      const needed = lineHeight * lines, top = boundary - needed / 2 + fraction;
+      assert(nativeContentHeight(top, needed, scale, proseStyle.paddingBottom) >= needed,
+        '最後の行に必要な高さを保持: ' + JSON.stringify({ scale, top, needed }));
+      nativeCases++;
+    }
+native.Platform.OS = 'android';
+const androidProse = RichText({ text: checkpoint, color: '#111' });
+assert.equal(Object.assign({}, ...androidProse.props.style.filter(Boolean)).paddingBottom, undefined,
+  'このiOS対策でAndroidの行間・余白を変更しない');
+native.Platform.OS = 'ios';
+console.log('Native prose pixel-rounding: PASS (' + nativeCases + ' cases; actual solid1 4-4 checkpoint)');
+
 console.log(`Formula cards/search: PASS (${ids.size} solid1/solid2/thermal1/thermal2/vib2/vib1 items; legacy OTA; scroll; locked results; return position)`);
