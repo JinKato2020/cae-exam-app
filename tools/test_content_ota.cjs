@@ -21,6 +21,10 @@ async function main() {
     documentDirectory: 'file:///docs/', cacheDirectory: 'file:///cache/',
     async getInfoAsync(uri) { return { exists: disk.has(nativePath(uri)) }; },
     async makeDirectoryAsync(uri) { disk.set(nativePath(uri), null); },
+    async deleteAsync(uri) {
+      const p = nativePath(uri);
+      for (const k of [...disk.keys()]) if (k === p || k.startsWith(p.endsWith('/') ? p : p + '/')) disk.delete(k);
+    },
     async moveAsync() { throw Error('no old directory'); },
     async readAsStringAsync(uri) { const p = nativePath(uri); if (!disk.has(p)) throw Error('missing'); return disk.get(p); },
     async writeAsStringAsync(uri, text) { disk.set(nativePath(uri), text); },
@@ -44,7 +48,7 @@ async function main() {
     plugins: [{ name: 'native-boundary', setup(b) {
       b.onResolve({ filter: /^expo-file-system\/legacy$/ }, () => ({ path: 'filesystem', namespace: 'test' }));
       b.onLoad({ filter: /.*/, namespace: 'test' }, () => ({ contents: 'module.exports = globalThis.__otaFsMock;' }));
-      b.onLoad({ filter: /[\\/]content[\\/]_manifest\.json$/ }, () => ({ contents: '{"files":{}}', loader: 'json' }));
+      b.onLoad({ filter: /[\\/]content[\\/]_manifest\.json$/ }, () => ({ contents: '{"files":{"content/bundled.json":{"sha256":"bundled"}}}', loader: 'json' }));
     } }],
   })).outputFiles[0].text;
   const oldFetch = globalThis.fetch;
@@ -90,6 +94,56 @@ async function main() {
       const expected = order.includes(currentName) ? latest : legacy;
       assert.deepEqual(chapter, expected, 'iOS cache must prefer v2 regardless of directory order');
     }
+    // Successful sync removes retired, untracked, duplicate and bundled-identical files only.
+    disk.clear(); disk.set(dir, null); iosCache = true;
+    const file = key => dir + 'v2-' + encodeURIComponent(key).replace(/~/g, '%7E').replace(/%/g, '~');
+    disk.set(dir + '_bundle.tag', tag);
+    disk.set(dir + '_shas.json', JSON.stringify({
+      [contentKey]: revision, [figureKey]: 'image',
+      'figures/retired.png': 'old', 'content/bundled.json': 'bundled',
+    }));
+    disk.set(file(contentKey), payload()); disk.set(file(figureKey), 'PNG');
+    disk.set(dir + encodeURIComponent(contentKey), 'old duplicate');
+    disk.set(file('figures/retired.png'), 'old image');
+    disk.set(file('figures/untracked.png'), 'abandoned download');
+    disk.set(file('content/bundled.json'), '{}');
+    disk.set('/cache/cae-content/', null);
+    disk.set('/cache/cae-content/old.png', 'old');
+    disk.set('/docs/progress.json', 'learning history');
+    const stableFetch = globalThis.fetch;
+    const obsolete = file('figures/retired.png');
+    globalThis.fetch = async () => ({ ok: true, text: async () => '{"files":{}}' });
+    await syncContent();
+    assert.ok(disk.has(obsolete), 'empty manifest must not trigger deletion');
+    globalThis.fetch = async () => { throw Error('offline'); };
+    await syncContent();
+    assert.ok(disk.has(obsolete), 'offline must preserve existing data');
+    globalThis.fetch = stableFetch;
+    // Incomplete download defers all pruning.
+    revision = 'retry';
+    failFigure = true;
+    disk.set(dir + '_shas.json', JSON.stringify({ [contentKey]: 'old', [figureKey]: 'old', 'figures/retired.png': 'old' }));
+    await syncContent();
+    assert.ok(disk.has(obsolete), 'partial sync must defer pruning');
+    failFigure = false;
+    await syncContent();
+    assert.ok(!disk.has(obsolete));
+    assert.ok(!disk.has(file('figures/untracked.png')));
+    assert.ok(!disk.has(dir + encodeURIComponent(contentKey)));
+    assert.ok(!disk.has(file('content/bundled.json')));
+    assert.ok(!disk.has('/cache/cae-content/old.png'));
+    assert.equal(disk.get('/docs/progress.json'), 'learning history');
+    assert.equal((await loadCache()).content[contentKey].questions[0].easyExplanation[0].body, revision);
+    assert.ok(disk.has(file(figureKey)));
+    assert.deepEqual(Object.keys(JSON.parse(disk.get(dir + '_shas.json'))).sort(), [contentKey, figureKey].sort());
+    const settled = downloads;
+    assert.deepEqual(await syncContent(), { updated: 0 });
+    assert.equal(downloads, settled, 'cleanup must not trigger repeat downloads');
+    // A retired-only update must notify the caller to reapply cached overrides.
+    disk.set(file('figures/retired.png'), 'old');
+    disk.set(dir + '_shas.json', JSON.stringify({ [contentKey]: revision, [figureKey]: 'image', 'figures/retired.png': 'old' }));
+    assert.equal((await syncContent()).updated, 1);
+    console.log('OTA cleanup: complete/partial/offline/empty, duplicates, retired, bundle, history and refresh PASS');
     console.log('OTA: Android URI decoding, restart cache, partial retry, unchanged and revised content PASS');
     console.log('OTA: iOS chapter 9 legacy/v2 duplicates, both directory orders and legacy-only compatibility PASS');
   } finally {

@@ -125,6 +125,49 @@ async function downloadWithRetry(url: string, local: string, tries = 3): Promise
   return false;
 }
 
+/** 完全な同期後だけ、OTA専用領域の不要ファイルを整理する。
+ * 学習履歴・設定はこの領域外なので触れない。失敗時は次回同期で再試行する。 */
+async function pruneCache(remote: ManifestLike, cachedShas: Record<string, string>): Promise<number> {
+  const bundled = ((bundledManifest as ManifestLike).files) ?? {};
+  const names = await FileSystem.readDirectoryAsync(DIR);
+  const preferred = new Map<string, string>();
+  for (const name of names) {
+    let key: string;
+    try { key = dec(name); } catch { continue; }
+    // ネイティブ側でURIが復号されても専用領域を逸脱しない既知の名前だけ扱う。
+    if (!isOtaTarget(key) || key.split('/').some(p => !p || p === '.' || p === '..') ||
+        /[\\?#]/.test(key)) continue;
+    if (name !== enc(key) && name !== encodeURIComponent(key)) continue;
+    if (!preferred.has(key) || name === enc(key)) preferred.set(key, name);
+  }
+  const keep = new Set<string>();
+  const next: Record<string, string> = {};
+  for (const [key, name] of preferred) {
+    if (remote.files[key] && cachedShas[key] === remote.files[key].sha256 &&
+        cachedShas[key] !== bundled[key]?.sha256) {
+      keep.add(name);
+      next[key] = cachedShas[key];
+    }
+  }
+  const removedOverrides = Object.keys(cachedShas).filter(k => !(k in next)).length;
+  // 先に追跡を更新。途中終了しても削除対象の旧版を次回復活させない。
+  await FileSystem.writeAsStringAsync(SHA_PATH, JSON.stringify(next));
+  for (const name of names) {
+    if (keep.has(name)) continue;
+    let key: string;
+    try { key = dec(name); } catch { continue; }
+    if (!preferred.has(key)) continue;
+    if (name !== enc(key) && name !== encodeURIComponent(key)) continue;
+    // 旧%形式はAndroidでスラッシュへ復号されるため、存在する場合だけ削除する。
+    await FileSystem.deleteAsync(DIR + name, { idempotent: true }).catch(() => {});
+  }
+  // 引越し後に残った旧保存先も、最新一式が揃ってから削除する。
+  if (FileSystem.cacheDirectory && OLD_DIR !== DIR) {
+    await FileSystem.deleteAsync(OLD_DIR, { idempotent: true }).catch(() => {});
+  }
+  return removedOverrides;
+}
+
 /** 裏で最新を取り込む：棚のmanifestと差分を取り、変わったファイルだけDLしてキャッシュ保存。
  *  ★途中で中断(アプリ終了・回線断)されても進捗を失わないよう、タグを先に書き・進捗はバッチ毎に保存する。
  *    こうすると次回起動は「残りだけ」DLして続きから完了できる(全やり直しを防ぐ)。
@@ -138,6 +181,12 @@ export async function syncContent(): Promise<{ updated: number }> {
     const remoteText = await fetchTextTimeout(BASE + `_manifest.json?t=${Date.now()}`, 15000);
     if (!remoteText) return { updated: 0 };
     const remote = JSON.parse(remoteText) as ManifestLike;
+    // 壊れた/空の目次を全削除の指示として扱わない。
+    if (!remote?.files || Array.isArray(remote.files) ||
+        !Object.keys(remote.files).some(isOtaTarget) ||
+        Object.values(remote.files).some(v => !v || typeof v.sha256 !== 'string' || !v.sha256)) {
+      return { updated: 0 };
+    }
     const storedTag = await FileSystem.readAsStringAsync(BUNDLE_TAG_PATH).catch(() => '');
     const cachedShas = storedTag === bundleTag()
       ? await readJson<Record<string, string>>(SHA_PATH, {})
@@ -152,7 +201,8 @@ export async function syncContent(): Promise<{ updated: number }> {
     if (need.length === 0) {
       // 既に最新。タグだけ確実に残し、部分DL済みキャッシュを次回loadCacheが信用できるようにする。
       await FileSystem.writeAsStringAsync(BUNDLE_TAG_PATH, bundleTag()).catch(() => {});
-      return { updated: 0 };
+      const removed = await pruneCache(remote, cachedShas);
+      return { updated: removed };
     }
     // ★DL開始前にタグを書く＝この起動で落とした分を、次回のloadCache/effectiveShasが
     //   「この土台(ビルド)のキャッシュ」として採用でき、中断しても続きから再開できる。
@@ -177,6 +227,8 @@ export async function syncContent(): Promise<{ updated: number }> {
     }
     await FileSystem.writeAsStringAsync(SHA_PATH, JSON.stringify(cachedShas)).catch(() => {});
     await FileSystem.writeAsStringAsync(BUNDLE_TAG_PATH, bundleTag()).catch(() => {});
+    // 一つでも取得失敗があれば、旧ファイルの整理は次回の完全同期まで保留する。
+    if (updated === need.length) updated += await pruneCache(remote, cachedShas);
     return { updated };
   } catch { return { updated: 0 }; }
 }
