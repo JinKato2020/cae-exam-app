@@ -994,6 +994,11 @@ const home = StyleSheet.create({
   card: { backgroundColor: HOME.surface, borderWidth: 1, borderColor: HOME.border, borderRadius: 20, padding: 16 },
   cardGlow: { borderColor: HOME.borderStrong },
   mapAll: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor: HOME.surface, borderWidth: 1, borderColor: HOME.cyan, borderRadius: 12, paddingVertical: 13, paddingHorizontal: 14, marginTop: 4 },
+  reviewShortcuts: { flexDirection: 'row', gap: 8, marginTop: 14, alignItems: 'stretch' },
+  reviewShortcut: { flex: 1, minWidth: 0, minHeight: 70, marginTop: 0, paddingHorizontal: 10, gap: 4 },
+  reviewShortcutCopy: { flex: 1, minWidth: 0 },
+  reviewShortcutTitle: { fontSize: 14, lineHeight: 21 },
+  reviewShortcutMeta: { color: HOME.muted, fontSize: 12, lineHeight: 18, marginTop: 3 },
   mapAllH: { color: HOME.text, fontWeight: '800', fontSize: 15 },
   mapChev: { color: HOME.cyan, fontWeight: '900', fontSize: 18 },
   mapListH: { color: HOME.muted, fontWeight: '800', fontSize: 12, marginTop: 14, marginBottom: 2 },
@@ -1346,12 +1351,28 @@ function HomeTab(props: {
               <View style={home.wtile}><Text style={home.wtileV}>{weekN}</Text><Text style={home.wtileL}>今週の問題</Text></View>
               <View style={home.wtile}><Text style={[home.wtileV, { color: wdColor }]}>{wdText}</Text><Text style={home.wtileL}>今週正答率</Text></View>
             </View>
-            <Pressable style={[home.cta, { marginTop: 14 }]} onPress={props.onReview} disabled={props.bookmarkCount === 0}>
-              <Text style={home.ctaTxt}>⭐ ブックマークを復習{props.bookmarkCount > 0 ? `（${props.bookmarkCount}問）` : '（なし）'}</Text>
-            </Pressable>
-            <Pressable style={[home.cta, { marginTop: 8 }]} onPress={props.onReviewFormula} disabled={props.formulaFavCount === 0}>
-              <Text style={home.ctaTxt}>⭐ お気に入りの公式・用語を復習{props.formulaFavCount > 0 ? `（${props.formulaFavCount}件）` : '（なし）'}</Text>
-            </Pressable>
+            <View style={home.reviewShortcuts}>
+              <Pressable accessibilityRole="button" accessibilityLabel={'ブックマークした問題を復習、' + props.bookmarkCount + '問'}
+                accessibilityState={{ disabled: props.bookmarkCount === 0 }}
+                style={[home.mapAll, home.reviewShortcut, props.bookmarkCount === 0 && { opacity: 0.5 }]}
+                onPress={props.onReview} disabled={props.bookmarkCount === 0}>
+                <View style={home.reviewShortcutCopy}>
+                  <Text style={[home.mapAllH, home.reviewShortcutTitle]}>ブックマーク</Text>
+                  <Text style={home.reviewShortcutMeta}>{props.bookmarkCount}問を復習</Text>
+                </View>
+                <Text style={home.mapChev}>›</Text>
+              </Pressable>
+              <Pressable accessibilityRole="button" accessibilityLabel={'お気に入りの公式・用語を復習、' + props.formulaFavCount + '件'}
+                accessibilityState={{ disabled: props.formulaFavCount === 0 }}
+                style={[home.mapAll, home.reviewShortcut, props.formulaFavCount === 0 && { opacity: 0.5 }]}
+                onPress={props.onReviewFormula} disabled={props.formulaFavCount === 0}>
+                <View style={home.reviewShortcutCopy}>
+                  <Text style={[home.mapAllH, home.reviewShortcutTitle]}>公式・用語</Text>
+                  <Text style={home.reviewShortcutMeta}>お気に入り {props.formulaFavCount}件</Text>
+                </View>
+                <Text style={home.mapChev}>›</Text>
+              </Pressable>
+            </View>
             {/* 復習を促すさりげない一言（控えめに） */}
             <Text style={{ color: t.sub, fontSize: 11, lineHeight: 16, marginTop: 6, textAlign: 'center', opacity: 0.85 }}>
               苦手な問題や公式・用語をブックマークで登録して、隙間時間に復習すると記憶が定着します。
