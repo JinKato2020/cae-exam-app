@@ -233,3 +233,167 @@ native.Platform.OS = 'ios';
 console.log('Native prose pixel-rounding: PASS (' + nativeCases + ' cases; actual solid1 4-4 checkpoint)');
 
 console.log(`Formula cards/search: PASS (${ids.size} solid1/solid2/thermal1/thermal2/vib2/vib1 items; legacy OTA; scroll; locked results; return position)`);
+
+
+// Review cards link to current app questions; old OTA bodies never render.
+{
+  const read = key => JSON.parse(fs.readFileSync(key, 'utf8'));
+  const catalog = compile(fs.readFileSync('src/catalog.ts', 'utf8'), {
+    './data/contentStore': { getContent: read },
+    './questionParts': compile(fs.readFileSync('src/questionParts.ts', 'utf8')),
+  });
+  let doc = read('content/exam/written-review.json');
+  let slots = [], cursor = 0, effects = [], dependencies = [];
+  const react = {
+    useState(initial) {
+      const i = cursor++; if (!(i in slots)) slots[i] = initial;
+      return [slots[i], value => { slots[i] = typeof value === 'function' ? value(slots[i]) : value; }];
+    },
+    useRef(initial) { const i = cursor++; return slots[i] ?? (slots[i] = { current: initial }); },
+    useEffect(fn, deps) {
+      const i = cursor++;
+      if (!dependencies[i] || deps.some((v,j) => v !== dependencies[i][j])) effects.push(fn);
+      dependencies[i] = deps;
+    },
+  };
+  const review = compile(fs.readFileSync('src/WrittenReview.tsx', 'utf8'), {
+    react,
+    'react-native-safe-area-context': { SafeAreaProvider: 'SafeAreaProvider', SafeAreaView: 'SafeAreaView' },
+    './catalog': catalog, './data/contentStore': { getContent: () => doc },
+  });
+  for (const entry of doc.entries) {
+    assert(review.reviewQuestion(entry), entry.id + ': app destination missing');
+    assert(!Object.keys(entry).some(k => /^(question|questionBody|choices|answer|explanation|questionImages|explanationImages|source)$/.test(k)),
+      entry.id + ': official-derived payload must not be distributed');
+  }
+  const entry = doc.entries.find(e => e.field === 'solid' && e.grade === 'g1' && e.officialNumber === '1-8');
+  assert.equal(review.reviewQuestion(entry).id, 'solid1-1-10');
+  assert.equal(review.reviewQuestion({ ...entry, field: 'thermal' }), undefined);
+  assert.equal(review.reviewQuestion({ ...entry, questionId: 'deleted' }), undefined);
+  let opened;
+  const props = { field: 'solid', grade: 'g1', chapters: null, subjectLabel: '固体1級', t,
+    proState: { devPro: false, owned: [] }, onOpenPaywall() {}, onOpenQuestion: (...args) => { opened = args; } };
+  const render = () => {
+    cursor = 0; const tree = review.WrittenReviewButton(props);
+    const pending = effects; effects = []; pending.forEach(fn => fn()); return nodes(tree);
+  };
+  render();
+  let tree = render();
+  tree.find(n => n.props?.accessibilityLabel === '記述・計算・導出を復習').props.onPress();
+  tree = render();
+  tree.find(n => n.props?.accessibilityLabel === '問1-8のアプリ問題を開く').props.onPress();
+  assert.deepEqual(opened, ['solid1-1-10', entry.id]);
+  assert.equal(render().find(n => n.props && 'visible' in n.props).props.visible, false);
+  // Remount after studying: restore the same card, independent of onLayout event ordering.
+  for (const order of ['card-first', 'viewport-first']) {
+    slots = []; dependencies = []; props.resumeCardId = entry.id;
+    render(); tree = render();
+    const list = tree.find(n => n.type === 'ScrollView'); const scrolls = [];
+    list.props.ref.current = { scrollTo: value => scrolls.push(value) };
+    const card = tree.find(n => n.props?.accessibilityLabel === '問1-8のアプリ問題を開く');
+    const holder = tree.find(n => n.type === 'View' && n.props.onLayout && nodes(n).includes(card));
+    const layoutCard = () => holder.props.onLayout({ nativeEvent: { layout: { y: 864 } } });
+    const layoutList = () => {
+      list.props.onLayout({ nativeEvent: { layout: { height: 600 } } });
+      list.props.onContentSizeChange(390, 3000);
+    };
+    if (order === 'card-first') { layoutCard(); layoutList(); } else { layoutList(); layoutCard(); }
+    assert.equal(tree.find(n => n.props && 'visible' in n.props).props.visible, true);
+    assert.equal(scrolls.at(-1).y, 856);
+  }
+  // Legacy OTA index still containing copied text cannot re-enable the old reader.
+  doc = { ...doc, entries: [{ ...entry, question: 'COPY_SENTINEL', explanation: 'COPY_SENTINEL', explanationImages: [{key:'private'}] }] };
+  slots = []; dependencies = []; render(); tree = render();
+  assert(!JSON.stringify(tree).includes('COPY_SENTINEL'));
+  assert(!tree.some(n => n.type === 'MathText' || n.type === 'Image'));
+  console.log('Review links: 387 app destinations, matrix 1-8, course/ID guard, resume card in 2 layout orders, legacy payload suppression PASS');
+}
+
+
+// Use the app's real route handlers to verify card -> actual problem -> card context.
+{
+  function fn(name) {
+    const start = app.indexOf('  function ' + name + '(');
+    assert(start >= 0);
+    const body = app.indexOf('{', start);
+    let depth = 1, end = body + 1;
+    for (; depth; end++) { if (app[end] === '{') depth++; if (app[end] === '}') depth--; }
+    return 'export ' + app.slice(start, end).trim();
+  }
+  const state = {};
+  const q = {id:'solid1-1-10',number:'1-8'};
+  const globals = { reviewReturnCardId: 'solid-g1-1-8', questionsByIds: ids => ids.includes(q.id) ? [q] : [] };
+  for (const name of ['ReviewReturnCardId','ReviewResumeCardId','ActiveList','ActiveTitle','QIndex','Answers','StudyResponses','StudyView','Tab'])
+    globals['set'+name] = value => { state[name] = value; };
+  const routes = compile(['openProblems','openReviewQuestion','returnToReviewCards'].map(fn).join('\n'), {}, globals);
+  routes.openReviewQuestion(q.id, 'solid-g1-1-8');
+  assert.equal(state.ActiveList[0], q);
+  assert.equal(state.ActiveList.length, 1);
+  assert.equal(state.Tab, 'study');
+  assert.equal(state.ReviewReturnCardId, 'solid-g1-1-8');
+  assert.equal(state.ReviewResumeCardId, null);
+  routes.returnToReviewCards();
+  assert.equal(state.Tab, 'home');
+  assert.equal(state.ReviewResumeCardId, 'solid-g1-1-8');
+  assert.equal(state.ReviewReturnCardId, null);
+  routes.openProblems([q], '通常学習');
+  assert.equal(state.ReviewResumeCardId, null);
+  assert.equal(state.ReviewReturnCardId, null);
+  assert(app.includes("reviewReturnCardId ? returnToReviewCards() : setStudyView(v)"));
+  assert(app.includes("BackHandler.addEventListener('hardwareBackPress'"));
+  console.log('Actual App routes: review question, return card, normal-study reset and Android back binding PASS');
+}
+
+
+// Operator announcements: OTA payload, offline read state and unread revisions.
+(async () => {
+  let slots = [], cursor = 0, effects = [], deps = [], saved = [];
+  const react = {
+    useState(initial) {const i=cursor++;if(!(i in slots))slots[i]=initial;return[slots[i],v=>{slots[i]=typeof v==='function'?v(slots[i]):v;}];},
+    useRef(initial) {const i=cursor++;return slots[i]??(slots[i]={current:initial});},
+    useEffect(fn,next) {const i=cursor++;if(!deps[i]||next.some((v,j)=>v!==deps[i][j]))effects.push(fn);deps[i]=next;},
+  };
+  const now = Date.now();
+  const first = {id:'update-one',title:'教材のお知らせ',body:'お知らせ本文',publishedAt:now-1000};
+  let document = {schema:1,items:[first]};
+  const api = compile(fs.readFileSync('src/Announcements.tsx','utf8'), {
+    react, 'react-native-safe-area-context': {SafeAreaProvider:'SafeAreaProvider',SafeAreaView:'SafeAreaView'},
+    'react-native-svg': {default:'Svg',Path:'Path'},
+    '@react-native-async-storage/async-storage': {default:{getItem:async()=>null,setItem:async(k,v)=>{saved.push([k,v]);}}},
+    './data/contentStore': {getContent:()=>document}, './MathText': {RichText:'RichText'},
+  });
+  assert.equal(api.parseAnnouncements({schema:1,items:[first,{...first,id:'future',publishedAt:now+1000},
+    {...first,id:'expired',publishedAt:now-2000,expiresAt:now-1}]},now).length,1);
+  assert.equal(api.parseAnnouncements({schema:1,items:[first,first]},now).length,1);
+  assert.equal(api.parseAnnouncements({schema:1,items:[{...first,body:''}]},now).length,0);
+  assert.equal(api.parseAnnouncements({schema:99,items:[first]},now).length,0);
+  assert.equal(Object.keys(api.parseAnnouncementRead('broken')).length,0);
+  assert.notEqual(api.announcementVersion(first),api.announcementVersion({...first,revision:2}));
+  const render = () => {cursor=0;const tree=nodes(api.AnnouncementsBell({colors:t}));const jobs=effects;effects=[];jobs.forEach(fn=>fn());return tree;};
+  render(); await Promise.resolve(); await Promise.resolve();
+  let tree=render();
+  assert(tree.some(n=>n.props?.accessibilityLabel==='お知らせ、未読1件'));
+  tree.find(n=>n.props?.accessibilityLabel==='お知らせ、未読1件').props.onPress();
+  tree=render();
+  assert(!tree.some(n=>n.type==='RichText'), 'list does not mark unread content read');
+  tree.find(n=>n.type==='Pressable'&&nodes(n).some(c=>c.props?.children===first.title)).props.onPress();
+  tree=render();tree=render();
+  assert(tree.some(n=>n.type==='RichText'&&n.props.text===first.body));
+  await Promise.resolve(); await Promise.resolve(); await Promise.resolve();
+  assert.equal(JSON.parse(saved.at(-1)[1])[first.id],api.announcementVersion(first));
+  assert(tree.some(n=>n.props?.accessibilityLabel==='お知らせ'));
+  document={schema:1,items:[{...first,revision:2,body:'改稿版'}]};
+  tree=render();tree=render(); // already-open revised article becomes read
+  assert(tree.some(n=>n.type==='RichText'&&n.props.text==='改稿版'));
+  tree.find(n=>n.props?.accessibilityLabel==='お知らせを閉じる').props.onPress();
+  document={schema:1,items:[first,{...first,id:'update-two',publishedAt:now-500}]};
+  tree=render();
+  assert(tree.some(n=>n.props?.accessibilityLabel?.startsWith('お知らせ、未読')));
+  document={schema:1,items:[]};tree=render();
+  assert(tree.some(n=>n.props?.children==='お知らせはまだありません。'));
+  assert(app.includes('<AnnouncementsBell colors={ht} />'));
+  assert(app.includes('const [mapChaptersExpanded, setMapChaptersExpanded] = useState(false)'));
+  assert(app.includes('{mapChaptersExpanded && stats.map'));
+  assert(app.includes('accessibilityState={{ expanded: mapChaptersExpanded }}'));
+  console.log('Announcements: parsing, schedules, revisions, read persistence, OTA replacement, empty state and bell; map collapse bindings PASS');
+})().catch(error => {console.error(error);process.exitCode=1;});

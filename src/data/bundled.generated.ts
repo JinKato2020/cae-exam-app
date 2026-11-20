@@ -2,6 +2,7 @@
 // アプリ本体に同梱する content/*.json の登録表（＝OTA前の土台データ）。
 // キーは manifest と同じ相対パス。値は require（Metro が JSON をバンドルする）。
 export const BUNDLED: Record<string, unknown> = {
+  'content/announcements.json': require('../../content/announcements.json'),
   'content/catalog.json': require('../../content/catalog.json'),
   'content/exam/passrule-solid-1.json': require('../../content/exam/passrule-solid-1.json'),
   'content/exam/passrule-solid-2.json': require('../../content/exam/passrule-solid-2.json'),

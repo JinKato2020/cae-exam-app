@@ -3,6 +3,7 @@ import { FormulaCard } from './src/FormulaCard';
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import {
   ActivityIndicator,
+  BackHandler,
   Alert,
   AppState,
   Image,
@@ -36,6 +37,7 @@ import { FIGURE_ASPECT } from './src/figures';
 import { figureSource, hasFigure } from './src/data/figureStore';
 import { getMapDataUri } from './src/mapData';
 import { RichText } from './src/MathText';
+import { AnnouncementsBell } from './src/Announcements';
 import { WrittenReviewButton } from './src/WrittenReview';
 import { EasyExplanation } from './src/EasyExplanation';
 import { LearningFigure } from './src/LearningFigure';
@@ -283,6 +285,20 @@ function AppInner(props: { contentVersion: number }) {
   const insets = useSafeAreaInsets();
 
   const [tab, setTab] = useState<Tab>('home');
+  const [reviewReturnCardId, setReviewReturnCardId] = useState<string | null>(null);
+  const [reviewResumeCardId, setReviewResumeCardId] = useState<string | null>(null);
+  function returnToReviewCards() {
+    setReviewResumeCardId(reviewReturnCardId);
+    setReviewReturnCardId(null);
+    setTab('home');
+  }
+  useEffect(() => {
+    if (!reviewReturnCardId || tab !== 'study') return;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      returnToReviewCards(); return true;
+    });
+    return () => sub.remove();
+  }, [reviewReturnCardId, tab]);
   const [mapViewerOpen, setMapViewerOpen] = useState(false); // 相関図ビューア(全画面モーダル)表示中はタブ横スワイプを無効化
   // 公式欄の横スクロール中はタブ横スワイプを無効化。state だと setState の反映が非同期で、
   // 最初の横移動判定（キャプチャ）に間に合わず取りこぼす→ ref に入れて指を置いた瞬間に同期反映する。
@@ -485,6 +501,8 @@ function AppInner(props: { contentVersion: number }) {
   // 出題を開始（章 or 復習）。startIndex から表示。
   function openProblems(list: Question[], title: string, startIndex = 0) {
     if (list.length === 0) return;
+    setReviewReturnCardId(null);
+    setReviewResumeCardId(null);
     setActiveList(list);
     setActiveTitle(title);
     setQIndex(Math.min(Math.max(startIndex, 0), list.length - 1));
@@ -492,6 +510,13 @@ function AppInner(props: { contentVersion: number }) {
     setStudyResponses({});
     setStudyView('problem');
     setTab('study');
+  }
+
+  function openReviewQuestion(questionId: string, cardId: string) {
+    const q = questionsByIds([questionId])[0];
+    if (!q) return;
+    openProblems([q], '記述・計算・導出の復習');
+    setReviewReturnCardId(cardId);
   }
 
   // 今日のミッション：未挑戦（まだ一度も解いていない）問題を集めて出題（踏破率アップ）。
@@ -615,6 +640,8 @@ function AppInner(props: { contentVersion: number }) {
             onGoFormulaList={() => openFormulaList('formula')}
             onSolveUnattempted={solveUnattempted}
             onOpenChapter={openChapterById}
+            onOpenReviewQuestion={openReviewQuestion}
+            reviewResumeCardId={reviewResumeCardId}
             onOpenQuestion={openQuestionById}
             onMapViewerChange={setMapViewerOpen}
             proState={proSt}
@@ -655,7 +682,8 @@ function AppInner(props: { contentVersion: number }) {
             }
             onSelectAnswer={onSelectAnswer}
             setQIndex={setQIndex}
-            goBack={(v) => setStudyView(v)}
+            goBack={(v) => reviewReturnCardId ? returnToReviewCards() : setStudyView(v)}
+            backLabel={reviewReturnCardId ? '復習カードへ戻る' : undefined}
             proState={proSt}
             onOpenPaywall={openPaywall}
             onOpenFormula={(formulaId, itemId) => {
@@ -728,7 +756,7 @@ function AppInner(props: { contentVersion: number }) {
         </View>
       </SafeAreaView>
 
-      <TabBar t={t} tab={tab} insetsBottom={insets.bottom} onChange={(k) => { setFormulaFrom(null); setTab(k); }} />
+      <TabBar t={t} tab={tab} insetsBottom={insets.bottom} onChange={(k) => { setFormulaFrom(null); if (k === 'home' && reviewReturnCardId) returnToReviewCards(); else setTab(k); }} />
 
       {showPaywall && (
         <View style={StyleSheet.absoluteFill}>
@@ -948,7 +976,7 @@ const home = StyleSheet.create({
   scroll: { paddingBottom: 28 },
   hero: { height: 300, justifyContent: 'flex-end' },
   heroImg: {},
-  heroTop: { position: 'absolute', top: 14, left: 16, right: 16, flexDirection: 'row', justifyContent: 'flex-start' },
+  heroTop: { position: 'absolute', top: 14, left: 16, right: 16, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   nowtag: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 8, paddingHorizontal: 14, borderRadius: 999, backgroundColor: 'rgba(59,230,242,0.16)', borderWidth: 1, borderColor: HOME.cyan },
   nowdot: { width: 7, height: 7, borderRadius: 4, backgroundColor: HOME.cyan },
   nowtagTxt: { color: '#EAF2FF', fontWeight: '800', fontSize: 14 },
@@ -1082,6 +1110,8 @@ function HomeTab(props: {
   onSolveUnattempted: (gradeId: GradeId, fieldId: FieldId) => void;
   onOpenChapter: (gradeId: GradeId, chapterId: string, fieldId: FieldId) => void;
   onOpenQuestion: (gradeId: GradeId, chapterId: string, questionId: string, fieldId: FieldId) => void;
+  onOpenReviewQuestion: (questionId: string, cardId: string) => void;
+  reviewResumeCardId: string | null;
   onMapViewerChange?: (open: boolean) => void; // 相関図ビューア(モーダル)の開閉を親へ通知→表示中はタブ横スワイプを無効化
   proState: ProState; // 相関図の章ロック判定（無課金は全章マップ＋先頭3章のみ）
   onOpenPaywall: (target: PayTarget | null) => void;
@@ -1132,6 +1162,8 @@ function HomeTab(props: {
     ? new Set(fieldGradeChapters(field, grade).filter((ch) => props.subChapterIds!.has(ch.id)).map((ch) => ch.data.meta.chapter))
     : null, [field, grade, props.subChapterIds]);
   // 「全体の相関図」カードの図ビューア（全章マップ／各章マップをモーダルで拡大表示）。
+  const [mapChaptersExpanded, setMapChaptersExpanded] = useState(false);
+  useEffect(() => { setMapChaptersExpanded(false); }, [field, grade, props.subLabel]);
   const [mapView, setMapView] = useState<{ title: string; key: string; chapterId: string } | null>(null);
   const [mapAspect, setMapAspect] = useState<number | null>(null); // 相関図の縦横比（iOS: onLoadで取得→全幅表示＋ピンチ拡大）
   // Android はコアRNのScrollViewにピンチ拡大が無いため、相関図をWebViewへ data URI で渡し、
@@ -1264,11 +1296,12 @@ function HomeTab(props: {
       <ImageBackground source={HOME_IMG.header} style={home.hero} imageStyle={home.heroImg}>
         <Veil id="heroVeil" stops={[{ o: 0, op: 0.72 }, { o: 0.3, op: 0 }, { o: 0.58, op: 0 }, { o: 1, op: 1 }]} />
         <View style={home.heroTop}>
-          <Pressable style={home.nowtag} onPress={() => setShowGrade(true)}>
+          <Pressable style={[home.nowtag, { flexShrink: 1 }]} onPress={() => setShowGrade(true)}>
             <View style={home.nowdot} />
-            <Text style={home.nowtagTxt}>{subjectLabel}</Text>
+            <Text style={[home.nowtagTxt, { flexShrink: 1 }]} numberOfLines={1}>{subjectLabel}</Text>
             <Text style={home.nowchev}>▾</Text>
           </Pressable>
+          <AnnouncementsBell colors={ht} />
         </View>
         <View style={home.heroCopy}>
           <View>
@@ -1336,8 +1369,13 @@ function HomeTab(props: {
             <Text style={home.mapAllH}>🗺 全章の相関図</Text>
             <Text style={home.mapChev}>›</Text>
           </Pressable>
-          <Text style={home.mapListH}>各章の相関図</Text>
-          {stats.map((c) => {
+          <Pressable accessibilityRole="button" accessibilityLabel="各章の相関図"
+            accessibilityState={{ expanded: mapChaptersExpanded }}
+            style={home.mapRow} onPress={() => setMapChaptersExpanded(value => !value)}>
+            <Text style={home.mapRowT}>各章の相関図（{stats.length}章）</Text>
+            <Text style={home.mapChev}>{mapChaptersExpanded ? '▴' : '▾'}</Text>
+          </Pressable>
+          {mapChaptersExpanded && stats.map((c) => {
             const locked = isChapterLocked(props.proState, field, grade, c.id);
             return (
               <Pressable
@@ -1434,7 +1472,8 @@ function HomeTab(props: {
             </Pressable>
             <WrittenReviewButton field={field} grade={grade}
               chapters={writtenReviewChapters}
-              subjectLabel={subjectLabel} t={t} proState={props.proState} onOpenPaywall={props.onOpenPaywall} />
+              subjectLabel={subjectLabel} t={t} proState={props.proState} onOpenPaywall={props.onOpenPaywall}
+              onOpenQuestion={props.onOpenReviewQuestion} resumeCardId={props.reviewResumeCardId} />
           </View>
         </View>
 
@@ -1784,6 +1823,7 @@ function StudyTab(props: {
   onPickTile: (i: number) => void;
   onSelectAnswer: (q: Question, n: number) => void;
   setQIndex: (i: number) => void;
+  backLabel?: string;
   goBack: (v: StudyView) => void;
   proState: ProState;
   onOpenPaywall: (target: PayTarget | null) => void;
@@ -1896,6 +1936,7 @@ function StudyTab(props: {
         onPrev={() => props.setQIndex(Math.max(props.qIndex - 1, 0))}
         onNext={() => props.setQIndex(Math.min(props.qIndex + 1, props.activeList.length - 1))}
         onBack={() => props.goBack(props.chapter ? 'tiles' : 'chapters')}
+        backLabel={props.backLabel}
         locked={isLocked(q, props.proState)}
         onOpenPaywall={() => props.onOpenPaywall(payTargetOf(q))}
         onOpenFormula={props.onOpenFormula}
@@ -2041,6 +2082,7 @@ function ProblemScreen(props: {
   onPrev: () => void;
   onNext: () => void;
   onBack: () => void;
+  backLabel?: string;
   locked: boolean;
   onOpenPaywall: () => void;
   onOpenFormula: (formulaId: string, itemId: string) => void;
@@ -2062,6 +2104,7 @@ function ProblemScreen(props: {
 
   return (
     <View style={{ flex: 1 }} {...pan}>
+    {props.backLabel && <BackLink t={t} label={props.backLabel} onPress={props.onBack} />}
     <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled" keyboardDismissMode="on-drag" automaticallyAdjustKeyboardInsets>
       {/* 上部バー：戻る・課程/章・問番号 */}
       <View style={styles.qTopbar}>
