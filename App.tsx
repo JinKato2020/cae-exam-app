@@ -40,7 +40,7 @@ import { RichText } from './src/MathText';
 import { AnnouncementsBell } from './src/Announcements';
 import { WrittenReviewButton } from './src/WrittenReview';
 import { EasyExplanation } from './src/EasyExplanation';
-import { LearningFigure } from './src/LearningFigure';
+import { FigureViewerProvider, LearningFigure } from './src/LearningFigure';
 import { StudyParts } from './src/StudyParts';
 import { refreshQuestionSession, studyResult } from './src/questionParts';
 import { ProblemCalculator } from './src/Calculator';
@@ -269,7 +269,7 @@ export default function App() {
   }, []);
   return (
     <SafeAreaProvider>
-      {contentReady ? <AppInner contentVersion={contentVersion} /> : <View style={{ flex: 1, backgroundColor: '#0b1526' }} />}
+      {contentReady ? <FigureViewerProvider><AppInner contentVersion={contentVersion} /></FigureViewerProvider> : <View style={{ flex: 1, backgroundColor: '#0b1526' }} />}
     </SafeAreaProvider>
   );
 }

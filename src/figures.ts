@@ -975,6 +975,7 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   model8Tunnel: require('../assets/figures/model8Tunnel.png'),
   model8TunnelSetup: require('../assets/figures/model8TunnelSetup.png'),
   s1e8BeamPlateMap: require('../assets/figures/s1e8BeamPlateMap.png'),
+  s1e8CantileverShearAngle: require('../assets/figures/s1e8CantileverShearAngle.png'),
   s1e8Conforming: require('../assets/figures/s1e8Conforming.png'),
   s1e8Drilling: require('../assets/figures/s1e8Drilling.png'),
   s1e8Formulation: require('../assets/figures/s1e8Formulation.png'),

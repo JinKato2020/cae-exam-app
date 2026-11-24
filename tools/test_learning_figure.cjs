@@ -11,26 +11,36 @@ const png = fs.readFileSync('assets/figures/s1e1SmallLarge.png');
 const bundled = { uri: 'bundled.png', width: png.readUInt32BE(16), height: png.readUInt32BE(20) };
 const ratio = 660 / 420;
 const colors = { bg: '#fff', card: '#fff', text: '#111', sub: '#666', primary: '#123', border: '#888' };
-const slots = []; let cursor = 0, pending = [], dirty = false;
+const providerSlots = [], cardSlots = [];
+let viewerSlots = [], slots, selection, cursor, pending, dirty;
 const hooks = {
+  createContext: value => ({ Provider: 'FigureSelection', defaultValue: value }),
+  useContext: () => selection,
+  useId: () => 'figure-card',
   useState(initial) {
-    const i = cursor++;
-    if (!(i in slots)) slots[i] = initial;
-    return [slots[i], value => {
-      const next = typeof value === 'function' ? value(slots[i]) : value;
-      if (!Object.is(next, slots[i])) { slots[i] = next; dirty = true; }
-    }];
+    const i = cursor++, owner = slots;
+    if (!owner[i]) {
+      const state = [initial, update => {
+        const next = typeof update === 'function' ? update(state[0]) : update;
+        if (!Object.is(next, state[0])) { state[0] = next; dirty = true; }
+      }];
+      owner[i] = state;
+    }
+    return owner[i];
   },
   useEffect(fn, deps) {
-    const i = cursor++;
-    if (!slots[i] || deps.some((v, j) => !Object.is(v, slots[i][j]))) { slots[i] = deps; pending.push(fn); }
+    const i = cursor++, previous = slots[i];
+    if (!previous || deps.some((v, j) => !Object.is(v, previous.deps[j]))) {
+      const effect = slots[i] = { deps };
+      pending.push(() => { previous?.cleanup?.(); effect.cleanup = fn(); });
+    }
   },
 };
 const imports = {
   react: hooks, 'react/jsx-runtime': jsx,
   'react-native': Object.fromEntries(['Image', 'Modal', 'Pressable', 'ScrollView', 'Text', 'View']
     .map(name => [name, name]).concat([['StyleSheet', { create: styles => styles }]])),
-  'react-native-safe-area-context': { SafeAreaView: 'SafeAreaView' },
+  'react-native-safe-area-context': { SafeAreaProvider: 'SafeAreaProvider', SafeAreaView: 'SafeAreaView' },
   './figures': { FIGURE_ASPECT: ratio },
   './data/figureStore': { hasFigure: () => true, figureSource: key => key === 'bundled' ? bundled : { uri: 'file:///ota.png' } },
 };
@@ -47,7 +57,18 @@ function render() {
   let retries = 0;
   do {
     dirty = false; cursor = 0; pending = [];
-    tree = exportsObject.LearningFigure({ figure, colors });
+    slots = providerSlots;
+    const host = exportsObject.FigureViewerProvider({ children: 'problem-screen' });
+    selection = host.props.value;
+    const [screen, viewer] = host.props.children;
+    assert.equal(screen, 'problem-screen', 'keep the problem mounted under the viewer');
+    slots = cardSlots; cursor = 0;
+    const card = exportsObject.LearningFigure({ figure, colors });
+    assert(!nodes(card).some(({ node }) => node.type === 'Modal'), 'viewer must be outside the swipe/scroll card');
+    slots = viewerSlots; cursor = 0;
+    const modal = viewer && viewer.type(viewer.props);
+    if (!modal) viewerSlots = [];
+    tree = { props: { children: [card, modal] } };
     pending.forEach(effect => effect());
     assert(++retries < 12, 'render must settle');
   } while (dirty);
@@ -81,6 +102,15 @@ function inlineBounds(parentWidth) {
 function fittedBounds(width, height) {
   const modal = one(n => n.type === 'Modal');
   assert(modal.props.visible);
+  const provider = modal.props.children;
+  assert.equal(provider.type, 'SafeAreaProvider', 'measure insets inside the native modal');
+  const safeArea = provider.props.children;
+  assert(safeArea.props.edges.includes('top'));
+  const [toolbar, viewer] = safeArea.props.children;
+  assert.equal(flat(toolbar.props.style).flexShrink, 0);
+  assert(flat(toolbar.props.style).zIndex > 0);
+  assert(nodes(toolbar).some(({ node }) => node.props?.accessibilityLabel === '図を閉じる'));
+  assert.equal(flat(viewer.props.style).overflow, 'hidden');
   const image = nodes(modal).find(({ node }) => node.type === 'Image').node;
   const style = flat(image.props.style);
   assert(style.width > 0 && style.width <= width - 31, '100% image must fit viewport width');
@@ -99,15 +129,15 @@ for (const key of ['bundled', 'ota']) {
     const modalImage = nodes(one(n => n.type === 'Modal')).find(({ node }) => node.type === 'Image').node;
     assert.equal(flat(modalImage.props.style).width, fitted.width * 1.5);
     press('図を閉じる');
-    assert.equal(one(n => n.type === 'Modal').props.visible, false);
+    assert.equal(nodes().some(({ node }) => node.type === 'Modal'), false);
     press(`図を拡大：${figure.caption}`);
-    fittedBounds(width, height);
+    layout(width, height); fittedBounds(width, height);
   }
   press('図を拡大'); layout(330, 460); fittedBounds(330, 460);
   one(n => n.type === 'Modal').props.onRequestClose(); render();
-  assert.equal(one(n => n.type === 'Modal').props.visible, false);
+  assert.equal(nodes().some(({ node }) => node.type === 'Modal'), false);
 }
 press(`図を拡大：${figure.caption}`); press('図を拡大');
 figure = { ...figure, figureImage: 'next-question' }; render();
-assert.equal(one(n => n.type === 'Modal').props.visible, false, 'changing question must dismiss the old zoomed image');
+assert.equal(nodes().some(({ node }) => node.type === 'Modal'), false, 'changing question must dismiss the old zoomed image');
 console.log('LearningFigure: bundled/OTA sizing, narrow cards, landscape, zoom, reopen, rotation and dismissal PASS');
