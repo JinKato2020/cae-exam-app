@@ -176,6 +176,7 @@ export const FIGURES: Record<string, ImageSourcePropType> = {
   s2StressStrainCurve: require('../assets/figures/s2StressStrainCurve.png'),
   s2StressStrainCurveSetup: require('../assets/figures/s2StressStrainCurveSetup.png'),
   s2TaperBarSetup: require('../assets/figures/s2TaperBarSetup.png'),
+  s2ThermalPlateBalance: require('../assets/figures/s2ThermalPlateBalance.png'),
   s2CylinderPressureEnd: require('../assets/figures/s2CylinderPressureEnd.png'),
   s2CylinderPressureProjection: require('../assets/figures/s2CylinderPressureProjection.png'),
   s2ThinCylinder: require('../assets/figures/s2ThinCylinder.png'),
