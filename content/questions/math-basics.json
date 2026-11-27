@@ -538,7 +538,7 @@
         "$\\left(\\frac{\\partial U}{\\partial r}\\right)^2-\\frac{1}{r^2}\\left(\\frac{\\partial U}{\\partial\\theta}\\right)^2$"
       ],
       "answer": 2,
-      "explanation": "【基礎】$U(r,\\theta)$は同じ関数を極座標で表したものです。連鎖律で$x,y$を経由する変化を足します。\n【考え方】$U_r=u_x\\cos\\theta+u_y\\sin\\theta$、$U_\\theta/r=-u_x\\sin\\theta+u_y\\cos\\theta$です。二乗して足すと交差項が消え、$\\sin^2\\theta+\\cos^2\\theta=1$より$u_x^2+u_y^2=U_r^2+U_\\theta^2/r^2$。正解は2です。\n【ポイント】円弧の距離は半径×角度なので、角度当たりの変化を距離当たりへ直すには$r$で割ります。二乗するため係数は$1/r^2$です。\n【引っかけ】(1)は$r$を掛ける方向が逆です。(3)は係数を付ける微分が逆です。(4)は二乗の和を差としているため誤りです。",
+      "explanation": "【基礎】連鎖律は、変化が伝わる道に沿って変化率を掛け、道が二つあれば両方の寄与を足す計算です。小文字の $u(x,y)$ と大文字の $U(r,\\theta)$ は、同じ点での同じ値を、別の座標で表しています。\n【考え方】半径を動かすと $U_r=u_x\\cos\\theta+u_y\\sin\\theta$。角度を動かし、円に沿う距離あたりに直すと $U_\\theta/r=-u_x\\sin\\theta+u_y\\cos\\theta$ です。二つを二乗して足すと真ん中の項が打ち消し合い、$u_x^2+u_y^2=U_r^2+(U_\\theta/r)^2$ となります。正解は②です。\n【ポイント】例えば $u=x+2y$ なら、右へ単位距離進むと値は1、上へ進むと2増えます。半径3の円の右端では、角度あたりの変化率は6です。円に沿う距離あたりでは $6/3=2$ となり、元の上向きの変化率と一致します。\n【引っかけ】①は角度の項に掛ける係数が逆です。③は半径の項に距離換算を付けています。④は二方向の二乗を引いています。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -549,30 +549,34 @@
       "figureHint": "回答後専用。極座標の半径と接線方向を示し、角度微分の係数1/r²を説明する。",
       "easyExplanation": [
         {
-          "title": "位置の表し方を変えても同じ量を求める",
-          "body": "極座標では、点を横・縦の位置 $(x,y)$ の代わりに、原点からの距離 $r$ と角度 $\\theta$ で表します。$U(r,\\theta)$ は、同じ関数 $u(x,y)$ を極座標で書き直したものです。\n\n$r$ を変えても $\\theta$ を変えても、$x$ と $y$ の両方が変わり得ます。そこで、一つの変数の変化が別の変数へ伝わる経路をたどって微分する「連鎖律」を使います。\n\n半径方向の変化と角度方向の変化では、進む距離の換算が異なる点に注意します。"
+          "title": "一本道をたどる練習",
+          "body": "練習　$x=3t$、$u=x^2$ のとき、$t$ が少し動くと $u$ はどれくらい変わるでしょうか。$u$ の式の中に別の式 $x=3t$ が入っているので、これを合成関数といいます。\n\n変化が伝わる順番は $t\\to x\\to u$ です。最初の道では $t$ に対する $x$ の変化率が3、次の道では $x$ に対する $u$ の変化率が $2x$ です。例えば $x=2$ の瞬間なら、前半が3倍、後半が4倍なので、全体の変化率は $3\\times4=12$ です。\n\n文字のまま計算すると、$\\frac{du}{dt}=\\frac{du}{dx}\\frac{dx}{dt}=2x\\times3=6x$。$x=3t$ を戻すと答えは $18t$ です。先に代入して $u=(3t)^2=9t^2$ を微分しても、同じ答えになります。"
         },
         {
-          "title": "角度当たりと距離当たりの違い",
-          "body": "角度を少し変えたときの円弧の長さは、角度の変化だけでなく半径rにも比例します。そのため角度微分にはrが含まれ、距離当たりの変化に直すには $U_\\theta/r$ を使います。\n\nこれを二乗するので係数が $1/r^2$ になります。導出では「角度微分の式を作る」「rで割る」「二乗して足す」の順を崩さないことが大切です。\n\n原点では極座標の角度が定まらないため、本問は $r>0$ としています。",
+          "title": "道が二つあれば、それぞれ計算して足す",
+          "body": "練習　$x=3t$、$y=t$、$u=x+2y$ とします。今回は $t$ を動かすと $x$ と $y$ の両方が変わります。\n\n横の道 $t\\to x\\to u$ では、$t$ が1増えると $x$ が3増えます。$x$ の係数は1なので、$u$ に届く分は $3\\times1=3$ です。\n\n縦の道 $t\\to y\\to u$ では、$y$ が1増え、その2倍が $u$ に入ります。こちらは $1\\times2=2$。合わせると答えは $3+2=5$ です。確かに、直接代入した $u=3t+2t=5t$ の変化率も5です。\n\nこれを記号で表したのが二変数の連鎖律です。\n\n$\\frac{du}{dt}=\\frac{\\partial u}{\\partial x}\\frac{dx}{dt}+\\frac{\\partial u}{\\partial y}\\frac{dy}{dt}$\n\n$\\partial u/\\partial x$ は、$y$ を固定して $x$ だけを動かしたときの変化率です。一つの道では掛け、別々の道から届く分は足します。"
+        },
+        {
+          "title": "同じ値を、半径と角度で表してみる",
+          "body": "練習　引き続き $u=x+2y$ を使います。点の位置を、横と縦の座標の代わりに、原点からの距離 $r$ と角度 $\\theta$ で表します。$x=r\\cos\\theta$、$y=r\\sin\\theta$ を代入し、書き直した関数を大文字の $U$ と呼びます。\n\n$U(r,\\theta)=r\\cos\\theta+2r\\sin\\theta$\n\n半径だけを動かすときは、角度は一定です。$\\cos\\theta$ と $\\sin\\theta$ は数字と同じ扱いなので、$r$ の係数が残ります。\n\n$U_r=\\frac{\\partial U}{\\partial r}=\\cos\\theta+2\\sin\\theta$\n\n角度だけを動かすときは、$r$ が一定です。角度をラジアンで測ると、$\\cos\\theta$ の微分は $-\\sin\\theta$、$\\sin\\theta$ の微分は $\\cos\\theta$ です。\n\n$U_\\theta=\\frac{\\partial U}{\\partial\\theta}=-r\\sin\\theta+2r\\cos\\theta$"
+        },
+        {
+          "title": "半径3の円で、なぜ6を3で割るのか",
+          "body": "半径 $r=3$ の円のいちばん右の点を考えます。ここは $\\theta=0$ なので $\\cos 0=1$、$\\sin 0=0$。先ほどの式に入れると、半径あたりの変化率は $U_r=1$、角度あたりの変化率は $U_\\theta=6$ です。\n\n元の式 $u=x+2y$ では、真上へ距離1進むと値は2増えます。円の右端で角度を増やすと、動き始める向きもちょうど真上です。同じ向きなのに、どうして2と6が出たのでしょうか。\n\n角度と距離で、ものさしが違うからです。半径3の円では、角度を $0.01$ ラジアン動かしたときの円弧の長さは $3\\times0.01=0.03$。その短い移動で値はおよそ $6\\times0.01=0.06$ 増えます。距離あたりにすればおよそ $0.06/0.03=2$ です。移動を限りなく小さくした点での変化率は、ちょうど $6/3=2$ になります。\n\nどの半径でも、円弧の長さは $\\Delta s=r\\,\\Delta\\theta$。だから円に沿う単位距離あたりの変化率は $U_\\theta/r$ です。半径方向は $r$ 自体がすでに距離なので、$U_r$ をそのまま使います。",
           "figures": [
             {
               "figureImage": "mathPolarChain",
-              "caption": "半径方向はそのままの距離、角度方向は半径を掛けた距離で測ります。赤い矢印は円の接線方向です。"
+              "caption": "半径を変えると原点から遠ざかり、角度を変えると円周に沿って進みます。赤い矢印は、その点での円の接線方向です。"
             }
           ]
         },
         {
-          "title": "連鎖律から二乗の和を導く",
-          "body": "$u_x=\\partial u/\\partial x$、$u_y=\\partial u/\\partial y$ と書きます。$x=r\\cos\\theta,y=r\\sin\\theta$ をrで微分すると $x_r=\\cos\\theta,y_r=\\sin\\theta$ なので、$U_r=u_x\\cos\\theta+u_y\\sin\\theta$ です。\n\n角度で微分すると $x_\\theta=-r\\sin\\theta,y_\\theta=r\\cos\\theta$ なので、$U_\\theta=r(-u_x\\sin\\theta+u_y\\cos\\theta)$ です。$r>0$ だから、二つ目をrで割れます。\n\n二乗すると、$U_r^2=u_x^2\\cos^2\\theta+2u_xu_y\\sin\\theta\\cos\\theta+u_y^2\\sin^2\\theta$、$(U_\\theta/r)^2=u_x^2\\sin^2\\theta-2u_xu_y\\sin\\theta\\cos\\theta+u_y^2\\cos^2\\theta$ です。足せば交差項が消え、$\\sin^2\\theta+\\cos^2\\theta=1$ から $u_x^2+u_y^2=U_r^2+U_\\theta^2/r^2$ となります。\n\nよって正解は2です。"
+          "title": "本問に戻る　関数の中身が分からないとき",
+          "body": "今度は具体的な $u$ が与えられていません。ある点での横方向の変化率を $A=\\partial u/\\partial x$、縦方向の変化率を $B=\\partial u/\\partial y$ と呼びます。本問が尋ねている量は $A^2+B^2$ です。\n\n半径を動かすと、横の変化率は $\\partial x/\\partial r=\\cos\\theta$、縦の変化率は $\\partial y/\\partial r=\\sin\\theta$。横を通る分に $A$、縦を通る分に $B$ を掛けて足すと、\n\n$U_r=A\\cos\\theta+B\\sin\\theta$\n\n角度を動かした場合も同じです。$\\partial x/\\partial\\theta=-r\\sin\\theta$、$\\partial y/\\partial\\theta=r\\cos\\theta$ なので、\n\n$U_\\theta=-Ar\\sin\\theta+Br\\cos\\theta$\n\n角度方向だけ距離あたりに直すため、両辺を $r$ で割ります。本問では $r>0$ です。\n\n$U_\\theta/r=-A\\sin\\theta+B\\cos\\theta$"
         },
         {
-          "title": "u=xという簡単な関数で検算する",
-          "body": "直交座標では$u_x=1,\\ u_y=0$なので二乗和は1です。極座標では$U=r\\cos\\theta$、$U_r=\\cos\\theta$、$U_\\theta=-r\\sin\\theta$です。\n\n正しい式へ入れると$\\cos^2\\theta+(-r\\sin\\theta)^2/r^2=\\cos^2\\theta+\\sin^2\\theta=1$となります。$r^2$を掛ける誤答では、この一致が一般には得られません。"
-        },
-        {
-          "title": "簡単な関数で候補を検算する",
-          "body": "(1)はrで割るところをr倍しており、係数が逆です。(3)は距離換算が必要な角度微分ではなく、半径微分に $1/r^2$ を付けています。\n\n(4)は二乗の和を差にしています。確認例として $u(x,y)=y,r=2,\\theta=0$ を入れると、求める量は1、$U_r=0,U_\\theta=2$ です。\n\n選択肢(1)は16、(3)は4、(4)は $-1$ となり、(2)だけが1になります。"
+          "title": "二乗すると、どの項が消えるか",
+          "body": "ひとまず $c=\\cos\\theta$、$s=\\sin\\theta$ と短く書きます。半径方向は $Ac+Bs$、円に沿う方向は $-As+Bc$ でした。それぞれを二乗します。\n\n$(Ac+Bs)^2$\n$=A^2c^2+2ABcs+B^2s^2$\n\n$(-As+Bc)^2$\n$=A^2s^2-2ABcs+B^2c^2$\n\n二つを足すと、真ん中の $+2ABcs$ と $-2ABcs$ が消えます。$A^2$ を含む項を集めると $A^2(c^2+s^2)=A^2$。同じように $B^2$ を含む項は $B^2(s^2+c^2)=B^2$ です。ここで $\\cos^2\\theta+\\sin^2\\theta=1$ を使いました。\n\n求める二乗和は $A^2+B^2=U_r^2+(U_\\theta/r)^2$。角度の項を二乗すると分母も $r^2$ になるので、正解は②です。\n\n$(\\partial u/\\partial x)^2+(\\partial u/\\partial y)^2$\n$=(\\partial U/\\partial r)^2+\\frac{1}{r^2}(\\partial U/\\partial\\theta)^2$\n\n半径3の例で答え合わせをすると、横・縦で数えた値は $1^2+2^2=5$。半径・角度で数えても $1^2+(6/3)^2=5$ です。①は距離換算が逆、③は半径の項に距離換算を付けています。④は足すところを引いています。"
         }
       ],
       "editorialReview": {
@@ -583,9 +587,9 @@
           "3": "半径方向と角度方向の係数を取り違える",
           "4": "二乗和を差にする"
         },
-        "sha256": "bffeabddc291b1db250044d8c674a2ada4fcbdc3a190fb662d4c331103f045f7"
+        "sha256": "ea8b8b507873acda4cedabcea6b3e0615bfa77a2832856e2c7e3344e9ee49993"
       },
-      "answerSummary": "②。角度方向は距離 $r\\,d\\theta$ に換算するため、二乗和では $1/r^2$ が付きます。",
+      "answerSummary": "正解は②です。半径3の円では、角度を少し動かすと、その3倍の距離を円に沿って進みます。角度あたりの変化率を距離あたりに直すには3で割ります。本問では半径が $r$ で、さらに二乗するため、角度方向の項に $1/r^2$ が付きます。",
       "officialQuestionItems": [
         "main"
       ]
@@ -605,7 +609,7 @@
         "$I=\\int_\\Gamma w\\,\\operatorname{div}\\mathbf u\\,d\\Gamma-\\int_\\Omega(2x,4y)\\cdot\\mathbf u\\,d\\Omega$"
       ],
       "answer": 3,
-      "explanation": "【基礎】発散定理は$\\int_\\Omega\\operatorname{div}\\mathbf F\\,d\\Omega=\\int_\\Gamma\\mathbf F\\cdot\\mathbf n\\,d\\Gamma$です。\n【考え方】積の微分より$w\\operatorname{div}\\mathbf u=\\operatorname{div}(w\\mathbf u)-\\operatorname{grad}w\\cdot\\mathbf u$。$\\operatorname{grad}w=(2x,4y)^{\\mathsf T}=\\begin{pmatrix}2x\\\\4y\\end{pmatrix}$なので、$I=\\int_\\Gamma w(\\mathbf u\\cdot\\mathbf n)\\,d\\Gamma-\\int_\\Omega(2x,4y)\\cdot\\mathbf u\\,d\\Omega$となり、正解は3です。\n【ポイント】選択肢の$(2x,4y)$は勾配の成分を順に示します。内積は$(2x,4y)\\cdot\\mathbf u=2xu_1+4yu_2$です。境界項から、重みを微分した領域項を引きます。境界では外向き法線成分を積分します。\n【引っかけ】(1)は移項の負号が逆です。(2)は勾配の成分順が逆です。(4)は法線成分を発散に置き換えています。",
+      "explanation": "【基礎】隣り合う区画では、一方の出口がもう一方の入口です。中の正味の流出を足すと外周の出入りだけが残ります。これが $\\int_\\Omega\\operatorname{div}\\mathbf u\\,d\\Omega=\\int_\\Gamma\\mathbf u\\cdot\\mathbf n\\,d\\Gamma$ です。\n【考え方】$w\\,\\operatorname{div}\\mathbf u$ は出入りを数えてから重みを掛けます。$\\operatorname{div}(w\\mathbf u)$ は先に矢印に重みを掛けるので、重みの変化も含みます。積の微分を並べ替えると $w\\,\\operatorname{div}\\mathbf u=\\operatorname{div}(w\\mathbf u)-(\\operatorname{grad}w)\\cdot\\mathbf u$。領域で積分し、最初の項を外周で数えるのが③です。\n【ポイント】重み $w=1+x^2+2y^2$ の勾配は $\\operatorname{grad}w=(2x,4y)^{\\mathsf T}=\\begin{pmatrix}2x\\\\4y\\end{pmatrix}$。上が横方向、下が縦方向の変化率で、内積は $2xu_1+4yu_2$ です。引くのは、この値を内部で足した分です。\n【引っかけ】①は重みの変化分を足しています。②は横と縦の成分が逆です。④は外周を横切る成分 $\\mathbf u\\cdot\\mathbf n$ の場所に、内部の発散を入れています。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -622,21 +626,35 @@
           "2": "勾配の成分順を逆にする",
           "4": "法線成分を発散と混同する"
         },
-        "sha256": "ef0c90c524e5a8dcb508b35f0d85a6f114d64a622b36f59b7499ef6daf496fb8"
+        "sha256": "7a39e5bb46784d5e53675c368ec4e0ddd8804fbc5f6bc4994e27091c5a7a2130"
       },
       "easyExplanation": [
         {
-          "title": "何を数える問題か",
-          "body": "平面の領域 $\\Omega$ を、流れが通る床に見立てます。小さな区画で「出た量から入った量を引く」と、正味の流出が分かります。それを単位面積あたりで表すのが発散 $\\operatorname{div}\\mathbf u$ です。$\\mathbf u$ は各場所での向きと強さを表す矢印です。\n\n本問は、区画ごとの流出に、その場所の重み $w$ を掛けて合計します。これが $I=\\int_\\Omega w\\,\\operatorname{div}\\mathbf u\\,d\\Omega$ です。重みは「その場所の値を何倍して数えるか」を表します。\n\n重みがどこでも同じなら、内部の境目で同じ量が一方から出て他方へ入り、外周での出入りを数えれば済みます。本問の重みは場所ごとに違います。その違いがどの項に残るかを、次の三段階で追います。",
+          "title": "中の出入りを足すと、外周の出入りが残る",
+          "body": "二つの部屋を、左から右へ水が通ります。図のAには毎秒2入って6出るので、出た量から入った量を引くと $6-2=4$。Bにはその6が入り、8出るので $8-6=2$。両方を足すと、\n\n$(6-2)+(8-6)=8-2=6$\n\n中央の6は、Aで数えると出口、Bで数えると入口です。同じ水を反対の符号で数えるので消えます。外周だけを見ても、出口8から入口2を引いて6です。領域をいくつに分けても、隣り合う区画の境目では同じことが起きます。\n\n領域全体を $\\Omega$、その外周を $\\Gamma$ と書きます。この二通りの数え方を結ぶのが、ガウス・グリーンの公式です。\n\n$\\underbrace{\\int_\\Omega\\operatorname{div}\\mathbf u\\,d\\Omega}_{\\text{中の区画で足す}}=\\underbrace{\\int_\\Gamma\\mathbf u\\cdot\\mathbf n\\,d\\Gamma}_{\\text{外周で数える}}$\n\n左辺の $\\operatorname{div}\\mathbf u$ は、小区画で「出た量 − 入った量」を単位面積あたりにしたものです。小さな面積 $d\\Omega$ を掛けて足します。右辺の $\\mathbf n$ は外向きの矢印です。$\\mathbf u\\cdot\\mathbf n$ で、外へ出る分はプラス、入る分はマイナス、ふちに沿って通る分はゼロと数えます。",
           "figures": [
             {
-              "figureImage": "mathGaussGreen",
-              "caption": "青い領域が床、ふちが外周です。外向き法線に沿う矢印の成分が、境界を通る量を決めます。"
+              "figureImage": "mathGaussBoundarySum",
+              "caption": "中央を通る6を、部屋AとBでそれぞれどの符号で数えたか見てください。外周には入口2と出口8が残ります。"
             }
           ]
         },
         {
-          "title": "導出①　積を微分すると二つの項が出る",
+          "title": "重みを掛ける順番で、何が変わる？",
+          "body": "重み $w$ は「その場所の値を何倍して数えるか」です。次の二つを、かっこの内側から読んでください。\n\n$w\\,\\operatorname{div}\\mathbf u$　先に流れの出入りを数え、あとでその場所の重みを掛けます。本問で求めたい量です。\n\n$\\operatorname{div}(w\\mathbf u)$　先に各場所の矢印に重みを掛け、その矢印の出入りを数えます。こちらには、流れそのものと重みの両方の変化が入ります。\n\n例えば、まっすぐな流路で、水がどこでも毎秒2ずつ右へ流れているとします。流れそのものの出入りは $2-2=0$。ところが入口では1倍、出口では2倍してから数えると、出口は $2\\times2=4$、入口は $1\\times2=2$ で、差は2です。水の流れが一定でも、数え方の倍率が変わるだけで差が生まれます。\n\nこの違いを各点で書いたのが、掛け算の微分です。\n\n$\\operatorname{div}(w\\mathbf u)$\n$=\\underbrace{w\\,\\operatorname{div}\\mathbf u}_{\\text{流れの変化による分}}+\\underbrace{(\\operatorname{grad}w)\\cdot\\mathbf u}_{\\text{重みの変化による分}}$\n\n$\\operatorname{grad}w$（勾配）は「右へ進むと重みがどれだけ変わるか」と「上へ進むとどれだけ変わるか」を並べた矢印です。流れ $\\mathbf u$ との内積を取ると、その流れに沿って重みが変わる分が分かります。"
+        },
+        {
+          "title": "欲しい分を取り出すと、部分積分になる",
+          "body": "②の右辺にある二項のうち、欲しいのは最初の「流れの変化による分」です。両辺から「重みの変化による分」を引きます。ここでマイナスが決まります。\n\n$w\\,\\operatorname{div}\\mathbf u=\\operatorname{div}(w\\mathbf u)-(\\operatorname{grad}w)\\cdot\\mathbf u$\n\n次に、両辺を領域全体で足します。右辺の最初の項にだけ①を使います。①の「流れの矢印」に、重み付きの矢印 $w\\mathbf u$ をそのまま入れられるからです。\n\n$\\int_\\Omega\\operatorname{div}(w\\mathbf u)\\,d\\Omega=\\int_\\Gamma w(\\mathbf u\\cdot\\mathbf n)\\,d\\Gamma$\n\nしたがって、求める積分 $I=\\int_\\Omega w\\,\\operatorname{div}\\mathbf u\\,d\\Omega$ は次の形になります。\n\n$I=\\underbrace{\\int_\\Gamma w(\\mathbf u\\cdot\\mathbf n)\\,d\\Gamma}_{\\text{外周で数えた分}}$\n$\\phantom{I={}}-\\underbrace{\\int_\\Omega(\\operatorname{grad}w)\\cdot\\mathbf u\\,d\\Omega}_{\\text{中で重みが変わった分}}$\n\n最初は $\\operatorname{div}\\mathbf u$ として流れを微分していました。最後に内部に残る項では、$\\operatorname{grad}w$ として重みを微分しています。これが本問の部分積分です。\n\n本問の重みは $w=1+x^2+2y^2$。$y$ を固定して $x$ で微分した上の成分は $2x$、$x$ を固定して $y$ で微分した下の成分は $4y$ です。\n\n$\\operatorname{grad}w=(2x,4y)^{\\mathsf T}=\\begin{pmatrix}2x\\\\4y\\end{pmatrix}$\n\n選択肢の $(2x,4y)$ は同じ順番の成分です。流れの横成分を $u_1$、縦成分を $u_2$ とすれば、内積は $2xu_1+4yu_2$。したがって答えは、外周の項からこの内積の領域積分を引く③です。\n\n$I=\\int_\\Gamma w(\\mathbf u\\cdot\\mathbf n)\\,d\\Gamma$\n$\\phantom{I={}}-\\int_\\Omega(2x,4y)\\cdot\\mathbf u\\,d\\Omega$",
+          "figures": [
+            {
+              "figureImage": "mathGaussGradientColumn",
+              "caption": "上段の2xには横向きの流れ、下段の4yには縦向きの流れを掛けます。二つを足したものが、引く積分の中身です。"
+            }
+          ]
+        },
+        {
+          "title": "補足　長方形で見る「流れの分＋重みの分」",
           "body": "横が $f$、縦が $g$ の長方形の面積は $fg$ です。位置 $x$ を少し動かし、横が $\\Delta f$、縦が $\\Delta g$ だけ伸びたとします。右に増える帯の面積は $g\\,\\Delta f$、上に増える帯は $f\\,\\Delta g$ です。\n\n右上の小さな角の面積は $\\Delta f\\,\\Delta g$ です。刻み $\\Delta x$ を小さくすると、$(\\Delta f/\\Delta x)\\,\\Delta g$ の前半は横の変化率に近づき、後半はゼロに近づきます。このため面積の変化率には二つの帯の分が残ります。肩のプライムは $x$ による微分です。\n\n$(fg)'=f'g+fg'$\n\n本問で欲しいのは、重みを掛けたあとで全部を微分した量ではなく、「流れだけを微分して重みを掛けた量」です。一次元なら右の $fg'$ に当たります。両辺から $f'g$ を引くと、$fg'=(fg)'-f'g$。後で出てくるマイナスは、この引き算で決まります。",
           "figures": [
             {
@@ -646,8 +664,8 @@
           ]
         },
         {
-          "title": "高校の部分積分で、どちらを微分するか",
-          "body": "①の等式を、区間 $a$ から $b$ まで積分します。\n\n$\\int_a^b fg'\\,dx=\\int_a^b(fg)'\\,dx-\\int_a^b f'g\\,dx$\n\n最初の積分は、積 $fg$ の小さな変化を全部足す計算です。途中の値は前後で消え、右端の値から左端の値を引いた $[fg]_a^b=f(b)g(b)-f(a)g(a)$ が残ります。これで高校の部分積分の式になります。\n\n$\\int_a^b fg'\\,dx=[fg]_a^b-\\int_a^b f'g\\,dx$\n\n例えば $\\int_0^1 x(3x^2)\\,dx$ では、左の $f=x$ を微分すると $1$、右の $g'=3x^2$ を積分して戻すと $g=x^3$ です。両端で使う積は $x\\cdot x^3$、引く積分の中は $1\\cdot x^3$ なので、答えは $[x^4]_0^1-[x^4/4]_0^1=1-1/4=3/4$ です。",
+          "title": "補足　高校の部分積分とのつながり",
+          "body": "積の微分を並べ替えた $fg^\\prime=(fg)^\\prime-f^\\prime g$ の両辺を、区間 $a$ から $b$ まで積分します。\n\n$\\int_a^b fg'\\,dx=\\int_a^b(fg)'\\,dx-\\int_a^b f'g\\,dx$\n\n最初の積分は、積 $fg$ の小さな変化を全部足す計算です。途中の値は前後で消え、右端の値から左端の値を引いた $[fg]_a^b=f(b)g(b)-f(a)g(a)$ が残ります。これで高校の部分積分の式になります。\n\n$\\int_a^b fg'\\,dx=[fg]_a^b-\\int_a^b f'g\\,dx$\n\n例えば $\\int_0^1 x(3x^2)\\,dx$ では、左の $f=x$ を微分すると $1$、右の $g'=3x^2$ を積分して戻すと $g=x^3$ です。両端で使う積は $x\\cdot x^3$、引く積分の中は $1\\cdot x^3$ なので、答えは $[x^4]_0^1-[x^4/4]_0^1=1-1/4=3/4$ です。",
           "figures": [
             {
               "figureImage": "mathGaussPartsFactors",
@@ -656,39 +674,21 @@
           ]
         },
         {
-          "title": "面では、積のどの項を取り出すか",
-          "body": "流れの横成分を $u_1$、縦成分を $u_2$ とします。重み付きの流れ $w\\mathbf u$ の発散は、横向きの変化と縦向きの変化を足したものです。\n\n$\\operatorname{div}(w\\mathbf u)=\\frac{\\partial(wu_1)}{\\partial x}+\\frac{\\partial(wu_2)}{\\partial y}$\n\n横の積を微分すると $w_xu_1+w\\,\\partial u_1/\\partial x$、縦の積を微分すると $w_yu_2+w\\,\\partial u_2/\\partial y$ です。ここで $w_x$ と $w_y$ は、それぞれ重みの横と縦の変化率です。\n\n重みを微分した二項を集めると $w_xu_1+w_yu_2=\\operatorname{grad}w\\cdot\\mathbf u$。流れを微分した二項を集めると $w\\,\\operatorname{div}\\mathbf u$ です。後者を左辺に残すと、一次元の $fg'=(fg)'-f'g$ と同じ引き算になります。\n\n$w\\,\\operatorname{div}\\mathbf u=\\operatorname{div}(w\\mathbf u)-\\operatorname{grad}w\\cdot\\mathbf u$"
-        },
-        {
-          "title": "導出②　ガウス・グリーンの公式で中から外周へ",
-          "body": "前の式を領域全体で積分します。右辺の最初の項に、ガウス・グリーンの公式を使います。高校で積の変化を「両端の差」に直したところに当たります。面の場合に残るのは外周です。\n\n図の数字を、重みをすでに掛けた流れ $\\mathbf F=w\\mathbf u$ が境目を右へ通る量とします。上下からの出入りはありません。Aでは $6-2$、Bでは $8-6$。足すと中央の $+6$ と $-6$ が消え、外側の $8-2$ が残ります。同じ境目の同じ点では重みも同じなので、重みを掛けた後でも相殺されます。\n\n外周 $\\Gamma$ で外側へ向く長さ1の矢印を $\\mathbf n$ とすると、$\\mathbf F\\cdot\\mathbf n$ は外への流出でプラス、流入でマイナス、ふちに沿う流れでゼロです。これを外周に沿って足した値と、各区画の正味の流出を中で足した値は一致します。\n\n$\\int_\\Omega \\operatorname{div}\\mathbf F\\,d\\Omega=\\int_\\Gamma\\mathbf F\\cdot\\mathbf n\\,d\\Gamma$\n\n$\\mathbf F$ に $w\\mathbf u$ を戻せば、$(w\\mathbf u)\\cdot\\mathbf n=w(\\mathbf u\\cdot\\mathbf n)$ です。これで最初の項だけが外周の積分に変わり、引き算の項は領域の中に残ります。",
-          "figures": [
-            {
-              "figureImage": "mathGaussBoundarySum",
-              "caption": "中央を通る6は、Aでは出口、Bでは入口です。二つの部屋で数える場合と、外周だけで数える場合を比べてください。"
-            }
-          ]
-        },
-        {
-          "title": "導出③　重みの勾配を入れて答えを出す",
-          "body": "本問の重みは $w=1+x^2+2y^2$ です。$y$ を固定して $x$ で微分すると $2x$ です。逆に $x$ を固定して $y$ で微分すると $2\\times2y=4y$ です。まだ二つを足しません。上に横方向、下に縦方向の変化率を並べます。\n\n$\\operatorname{grad}w=(2x,4y)^{\\mathsf T}=\\begin{pmatrix}2x\\\\4y\\end{pmatrix}$\n\n肩の $\\mathsf T$ は転置です。選択肢で横に記した $(2x,4y)$ と、成分の順番は同じです。点「$\\cdot$」は内積で、ここで初めて同じ方向どうしを掛けて足します。\n\n$\\operatorname{grad}w\\cdot\\mathbf u=2xu_1+4yu_2$\n\nしたがって、引くのはこの値を内部全体で足した項です。領域の外周で数えた項と合わせると、正解は③です。\n\n$I=\\int_\\Gamma w(\\mathbf u\\cdot\\mathbf n)\\,d\\Gamma-\\int_\\Omega(2x,4y)\\cdot\\mathbf u\\,d\\Omega$",
-          "figures": [
-            {
-              "figureImage": "mathGaussGradientColumn",
-              "caption": "上の 2x は横成分、下の 4y は縦成分です。流れの横成分と縦成分をそれぞれ掛けたあとで足します。"
-            }
-          ]
-        },
-        {
           "title": "自分で確かめる　右向きに一様な流れなら？",
-          "body": "一辺1の正方形 $0\\le x,y\\le1$ で、流れを $\\mathbf u=(1,0)$ とします。全ての区画で右から出る量と左から入る量が等しく、$\\operatorname{div}\\mathbf u=0$。元の積分は $I=0$ です。\n\n外周では上下の辺を横切りません。右辺の重みは $w(1,y)=2+2y^2$、左辺の重みは $w(0,y)=1+2y^2$。同じ高さで出口と入口の差はちょうど1なので、高さ1の辺全体で境界項は1です。\n\n一方、内部の内積は $2x\\times1+4y\\times0=2x$。横に足すと $\\int_0^1 2x\\,dx=1$ で、縦の長さも1です。したがって右辺も $1-1=0$ となり、元の積分と一致します。\n\n①は内部の項を足すため $1+1=2$。②は横と縦を入れ替えるため、この例では内部の積分が $\\int_0^1 4y\\,dy=2$ となります。④は境界で実際の流出入を表す $\\mathbf u\\cdot\\mathbf n$ の場所に発散を入れています。"
+          "body": "一辺1の正方形 $0\\le x,y\\le1$ で、流れを $\\mathbf u=(1,0)$ とします。全ての区画で右から出る量と左から入る量が等しく、$\\operatorname{div}\\mathbf u=0$。元の積分は $I=0$ です。\n\n外周では上下の辺を横切りません。右辺の重みは $w(1,y)=2+2y^2$、左辺の重みは $w(0,y)=1+2y^2$。同じ高さで出口と入口の差はちょうど1なので、高さ1の辺全体で境界項は1です。\n\n一方、内部の内積は $2x\\times1+4y\\times0=2x$。横に足すと $\\int_0^1 2x\\,dx=1$ で、縦の長さも1です。したがって右辺も $1-1=0$ となり、元の積分と一致します。\n\n①は内部の項を足すため $1+1=2$。②は横と縦を入れ替えるため、この例では内部の積分が $\\int_0^1 4y\\,dy=2$ となります。④は境界で実際の流出入を表す $\\mathbf u\\cdot\\mathbf n$ の場所に発散を入れています。",
+          "figures": [
+            {
+              "figureImage": "mathGaussGreen",
+              "caption": "青い領域が床、ふちが外周です。外向き法線に沿う矢印の成分が、境界を通る量を決めます。"
+            }
+          ]
         },
         {
           "title": "応用　別の重みや、温度から作った矢印なら？",
           "body": "重みを $w=e^{xy}$ に変えても、手順③は同じです。$x$ で微分するときは $y$ を固定します。指数 $xy$ の微分は $y$ なので、$\\partial w/\\partial x=y e^{xy}$。次に $y$ で微分すると $\\partial w/\\partial y=x e^{xy}$ です。列に並べれば $\\operatorname{grad}w=e^{xy}(y,x)^{\\mathsf T}$。内積を取ったときに初めて $e^{xy}(yu_1+xu_2)$ と足します。\n\n温度 $T=x^2+y^2$ から、温度が上がる向きの矢印 $\\mathbf u=\\operatorname{grad}T=(2x,2y)$ を作れます。この矢印の発散は、横成分を $x$ で、縦成分を $y$ で微分して足した $2+2=4$ です。\n\n温度から勾配を作り、その勾配の発散を取る操作をラプラシアンと呼び、$\\Delta T=\\operatorname{div}(\\operatorname{grad}T)$ と書きます。この場合にも同じ部分積分が使えます。もとは温度を2回微分していた領域項を、部分積分後には $\\operatorname{grad}w\\cdot\\operatorname{grad}T$ として、重みと温度を1回ずつ微分する形で扱えます。"
         }
       ],
-      "answerSummary": "③。各区画で数えた流出を外周で数え直し、重みが場所によって変わる分を引きます。なぜ引くのかは積の微分、なぜ外周が現れるのかはガウス・グリーンの公式で分かります。",
+      "answerSummary": "正解は③です。内部で「出た量 − 入った量」を足すと、外周の出入りが残ります。場所ごとに重みが違うときは、外周で数えた値から、重み自身が変わる分を引きます。",
       "officialQuestionItems": [
         "main"
       ]
