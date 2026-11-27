@@ -605,7 +605,7 @@
         "$I=\\int_\\Gamma w\\,\\operatorname{div}\\mathbf u\\,d\\Gamma-\\int_\\Omega(2x,4y)\\cdot\\mathbf u\\,d\\Omega$"
       ],
       "answer": 3,
-      "explanation": "【基礎】発散定理は$\\int_\\Omega\\operatorname{div}\\mathbf F\\,d\\Omega=\\int_\\Gamma\\mathbf F\\cdot\\mathbf n\\,d\\Gamma$です。\n【考え方】積の微分より$w\\operatorname{div}\\mathbf u=\\operatorname{div}(w\\mathbf u)-\\operatorname{grad}w\\cdot\\mathbf u$。$\\operatorname{grad}w=(2x,4y)$なので、$I=\\int_\\Gamma w(\\mathbf u\\cdot\\mathbf n)\\,d\\Gamma-\\int_\\Omega(2x,4y)\\cdot\\mathbf u\\,d\\Omega$となり、正解は3です。\n【ポイント】境界項から、重みを微分した領域項を引きます。境界では外向き法線成分を積分します。\n【引っかけ】(1)は移項の負号が逆です。(2)は勾配の成分順が逆です。(4)は法線成分を発散に置き換えています。",
+      "explanation": "【基礎】発散定理は$\\int_\\Omega\\operatorname{div}\\mathbf F\\,d\\Omega=\\int_\\Gamma\\mathbf F\\cdot\\mathbf n\\,d\\Gamma$です。\n【考え方】積の微分より$w\\operatorname{div}\\mathbf u=\\operatorname{div}(w\\mathbf u)-\\operatorname{grad}w\\cdot\\mathbf u$。$\\operatorname{grad}w=(2x,4y)^{\\mathsf T}=\\begin{pmatrix}2x\\\\4y\\end{pmatrix}$なので、$I=\\int_\\Gamma w(\\mathbf u\\cdot\\mathbf n)\\,d\\Gamma-\\int_\\Omega(2x,4y)\\cdot\\mathbf u\\,d\\Omega$となり、正解は3です。\n【ポイント】選択肢の$(2x,4y)$は勾配の成分を順に示します。内積は$(2x,4y)\\cdot\\mathbf u=2xu_1+4yu_2$です。境界項から、重みを微分した領域項を引きます。境界では外向き法線成分を積分します。\n【引っかけ】(1)は移項の負号が逆です。(2)は勾配の成分順が逆です。(4)は法線成分を発散に置き換えています。",
       "hasMath": true,
       "origin": "original",
       "reviewed": true,
@@ -622,41 +622,73 @@
           "2": "勾配の成分順を逆にする",
           "4": "法線成分を発散と混同する"
         },
-        "sha256": "35dcb53b768e6ed2dcfb51e78795d89187c635f3f21fb95634d54b674f7eda07"
+        "sha256": "ef0c90c524e5a8dcb508b35f0d85a6f114d64a622b36f59b7499ef6daf496fb8"
       },
       "easyExplanation": [
         {
-          "title": "広がり・勾配・外向き法線を理解する",
-          "body": "$\\operatorname{grad}w$ は、関数wのx・y方向の傾きを並べたベクトルです。$\\operatorname{div}\\mathbf u$ は、ベクトル場がその場所からどれだけ外へ広がるかを表す数です。\n\n外向き単位法線 $\\mathbf n$ は、境界から外へ向く長さ1の矢印なので、$\\mathbf u\\cdot\\mathbf n$ が境界を外向きに通る成分になります。ガウス・グリーンの公式の基になる発散定理は、$\\int_\\Omega\\operatorname{div}\\mathbf F\\,d\\Omega=\\int_\\Gamma\\mathbf F\\cdot\\mathbf n\\,d\\Gamma$ です。\n\n内部の広がりを合計すると、外周から出る流れの合計になると考えます。"
-        },
-        {
-          "title": "一次元の部分積分から負号を確認する",
-          "body": "普通の積の微分は$(wu)^\\prime=w^\\prime u+wu^\\prime$です。求めたい項を残して$wu^\\prime=(wu)^\\prime-w^\\prime u$とし、区間で足すと$\\int_a^bwu^\\prime\\,dx=[wu]_a^b-\\int_a^bw^\\prime u\\,dx$です。\n\n二次元でも「積の微分を分け、微分をもう一方へ移す」という同じ操作をします。"
-        },
-        {
-          "title": "積の微分から部分積分を導く",
-          "body": "まず重み $w=1+x^2+2y^2$ を微分します。yを固定してxで微分すると $w_x=2x$、xを固定してyで微分すると $w_y=4y$ なので、$\\operatorname{grad}w=(2x,4y)$ です。\n\n次に、積の微分をベクトル場へ使います。$\\mathbf u=(u_1,u_2)$ なら、$\\operatorname{div}(w\\mathbf u)=\\partial(wu_1)/\\partial x+\\partial(wu_2)/\\partial y$。\n\nそれぞれを積の微分で展開すると、$\\operatorname{div}(w\\mathbf u)=\\operatorname{grad}w\\cdot\\mathbf u+w\\operatorname{div}\\mathbf u$ になります。求めたい項だけを残すため、$w\\operatorname{div}\\mathbf u=\\operatorname{div}(w\\mathbf u)-\\operatorname{grad}w\\cdot\\mathbf u$ と移項します。\n\n領域で積分し、最初の項に発散定理を使えば、$I=\\int_\\Gamma w(\\mathbf u\\cdot\\mathbf n)\\,d\\Gamma-\\int_\\Omega(2x,4y)\\cdot\\mathbf u\\,d\\Omega$。よって正解は3です。"
-        },
-        {
-          "title": "内部の出入りを足すと外周に残る",
-          "body": "$\\Omega$は領域の内部、$\\Gamma$はふちです。$\\operatorname{div}\\mathbf u$は小さな場所からの正味の流出を表す量です。\n\n内部の出入りを全部足すと、隣り合う場所で打ち消し合い、外周を横切る分が残る、というのがガウス・グリーンの公式のイメージです。",
+          "title": "何を数える問題か",
+          "body": "平面の領域 $\\Omega$ を、流れが通る床に見立てます。小さな区画で「出た量から入った量を引く」と、正味の流出が分かります。それを単位面積あたりで表すのが発散 $\\operatorname{div}\\mathbf u$ です。$\\mathbf u$ は各場所での向きと強さを表す矢印です。\n\n本問は、区画ごとの流出に、その場所の重み $w$ を掛けて合計します。これが $I=\\int_\\Omega w\\,\\operatorname{div}\\mathbf u\\,d\\Omega$ です。重みは「その場所の値を何倍して数えるか」を表します。\n\n重みがどこでも同じなら、内部の境目で同じ量が一方から出て他方へ入り、外周での出入りを数えれば済みます。本問の重みは場所ごとに違います。その違いがどの項に残るかを、次の三段階で追います。",
           "figures": [
             {
               "figureImage": "mathGaussGreen",
-              "caption": "隣り合う小区画の流入と流出は打ち消し合います。外周を通る量と、重みの変化の補正を残します。"
+              "caption": "青い領域が床、ふちが外周です。外向き法線に沿う矢印の成分が、境界を通る量を決めます。"
             }
           ]
         },
         {
-          "title": "境界項と領域項の役割",
-          "body": "覚える形は「境界項から、重みを微分した領域項を引く」です。境界項の積分は外周に沿って行い、領域項は内部全体で行います。\n\n境界に出てくるのは発散ではなく外向き法線成分です。一変数の部分積分 $\\int w u'=[wu]-\\int w'u$ と比べると、微分を重みへ移した項にマイナスが付く理由を思い出せます。\n\n重みを定数1にすればその勾配は0となり、発散定理そのものへ戻ります。"
+          "title": "導出①　積を微分すると二つの項が出る",
+          "body": "横が $f$、縦が $g$ の長方形の面積は $fg$ です。位置 $x$ を少し動かし、横が $\\Delta f$、縦が $\\Delta g$ だけ伸びたとします。右に増える帯の面積は $g\\,\\Delta f$、上に増える帯は $f\\,\\Delta g$ です。\n\n右上の小さな角の面積は $\\Delta f\\,\\Delta g$ です。刻み $\\Delta x$ を小さくすると、$(\\Delta f/\\Delta x)\\,\\Delta g$ の前半は横の変化率に近づき、後半はゼロに近づきます。このため面積の変化率には二つの帯の分が残ります。肩のプライムは $x$ による微分です。\n\n$(fg)'=f'g+fg'$\n\n本問で欲しいのは、重みを掛けたあとで全部を微分した量ではなく、「流れだけを微分して重みを掛けた量」です。一次元なら右の $fg'$ に当たります。両辺から $f'g$ を引くと、$fg'=(fg)'-f'g$。後で出てくるマイナスは、この引き算で決まります。",
+          "figures": [
+            {
+              "figureImage": "mathGaussProductArea",
+              "caption": "右の帯では横だけ、上の帯では縦だけが伸びます。二つの面積変化に対応するのが積の微分の二項です。"
+            }
+          ]
         },
         {
-          "title": "符号と成分を検算する",
-          "body": "(1)は領域項の符号がプラスで、移項のマイナスを落としています。(2)は勾配のx成分とy成分を交換しています。\n\n勾配は $(w_x,w_y)$ の順です。(4)は境界の法線成分を発散と取り違えています。\n\n単位正方形と $\\mathbf u=(1,0)$ で検算すると、I=0、境界項は1、正しい領域項も1なので $1-1=0$ です。(1)は2、(2)と(4)は $-1$ となり一致しません。"
+          "title": "高校の部分積分で、どちらを微分するか",
+          "body": "①の等式を、区間 $a$ から $b$ まで積分します。\n\n$\\int_a^b fg'\\,dx=\\int_a^b(fg)'\\,dx-\\int_a^b f'g\\,dx$\n\n最初の積分は、積 $fg$ の小さな変化を全部足す計算です。途中の値は前後で消え、右端の値から左端の値を引いた $[fg]_a^b=f(b)g(b)-f(a)g(a)$ が残ります。これで高校の部分積分の式になります。\n\n$\\int_a^b fg'\\,dx=[fg]_a^b-\\int_a^b f'g\\,dx$\n\n例えば $\\int_0^1 x(3x^2)\\,dx$ では、左の $f=x$ を微分すると $1$、右の $g'=3x^2$ を積分して戻すと $g=x^3$ です。両端で使う積は $x\\cdot x^3$、引く積分の中は $1\\cdot x^3$ なので、答えは $[x^4]_0^1-[x^4/4]_0^1=1-1/4=3/4$ です。",
+          "figures": [
+            {
+              "figureImage": "mathGaussPartsFactors",
+              "caption": "上段が最初の積、下段が引く積分に残る積です。左は微分し、右は積分して戻します。"
+            }
+          ]
+        },
+        {
+          "title": "面では、積のどの項を取り出すか",
+          "body": "流れの横成分を $u_1$、縦成分を $u_2$ とします。重み付きの流れ $w\\mathbf u$ の発散は、横向きの変化と縦向きの変化を足したものです。\n\n$\\operatorname{div}(w\\mathbf u)=\\frac{\\partial(wu_1)}{\\partial x}+\\frac{\\partial(wu_2)}{\\partial y}$\n\n横の積を微分すると $w_xu_1+w\\,\\partial u_1/\\partial x$、縦の積を微分すると $w_yu_2+w\\,\\partial u_2/\\partial y$ です。ここで $w_x$ と $w_y$ は、それぞれ重みの横と縦の変化率です。\n\n重みを微分した二項を集めると $w_xu_1+w_yu_2=\\operatorname{grad}w\\cdot\\mathbf u$。流れを微分した二項を集めると $w\\,\\operatorname{div}\\mathbf u$ です。後者を左辺に残すと、一次元の $fg'=(fg)'-f'g$ と同じ引き算になります。\n\n$w\\,\\operatorname{div}\\mathbf u=\\operatorname{div}(w\\mathbf u)-\\operatorname{grad}w\\cdot\\mathbf u$"
+        },
+        {
+          "title": "導出②　ガウス・グリーンの公式で中から外周へ",
+          "body": "前の式を領域全体で積分します。右辺の最初の項に、ガウス・グリーンの公式を使います。高校で積の変化を「両端の差」に直したところに当たります。面の場合に残るのは外周です。\n\n図の数字を、重みをすでに掛けた流れ $\\mathbf F=w\\mathbf u$ が境目を右へ通る量とします。上下からの出入りはありません。Aでは $6-2$、Bでは $8-6$。足すと中央の $+6$ と $-6$ が消え、外側の $8-2$ が残ります。同じ境目の同じ点では重みも同じなので、重みを掛けた後でも相殺されます。\n\n外周 $\\Gamma$ で外側へ向く長さ1の矢印を $\\mathbf n$ とすると、$\\mathbf F\\cdot\\mathbf n$ は外への流出でプラス、流入でマイナス、ふちに沿う流れでゼロです。これを外周に沿って足した値と、各区画の正味の流出を中で足した値は一致します。\n\n$\\int_\\Omega \\operatorname{div}\\mathbf F\\,d\\Omega=\\int_\\Gamma\\mathbf F\\cdot\\mathbf n\\,d\\Gamma$\n\n$\\mathbf F$ に $w\\mathbf u$ を戻せば、$(w\\mathbf u)\\cdot\\mathbf n=w(\\mathbf u\\cdot\\mathbf n)$ です。これで最初の項だけが外周の積分に変わり、引き算の項は領域の中に残ります。",
+          "figures": [
+            {
+              "figureImage": "mathGaussBoundarySum",
+              "caption": "中央を通る6は、Aでは出口、Bでは入口です。二つの部屋で数える場合と、外周だけで数える場合を比べてください。"
+            }
+          ]
+        },
+        {
+          "title": "導出③　重みの勾配を入れて答えを出す",
+          "body": "本問の重みは $w=1+x^2+2y^2$ です。$y$ を固定して $x$ で微分すると $2x$ です。逆に $x$ を固定して $y$ で微分すると $2\\times2y=4y$ です。まだ二つを足しません。上に横方向、下に縦方向の変化率を並べます。\n\n$\\operatorname{grad}w=(2x,4y)^{\\mathsf T}=\\begin{pmatrix}2x\\\\4y\\end{pmatrix}$\n\n肩の $\\mathsf T$ は転置です。選択肢で横に記した $(2x,4y)$ と、成分の順番は同じです。点「$\\cdot$」は内積で、ここで初めて同じ方向どうしを掛けて足します。\n\n$\\operatorname{grad}w\\cdot\\mathbf u=2xu_1+4yu_2$\n\nしたがって、引くのはこの値を内部全体で足した項です。領域の外周で数えた項と合わせると、正解は③です。\n\n$I=\\int_\\Gamma w(\\mathbf u\\cdot\\mathbf n)\\,d\\Gamma-\\int_\\Omega(2x,4y)\\cdot\\mathbf u\\,d\\Omega$",
+          "figures": [
+            {
+              "figureImage": "mathGaussGradientColumn",
+              "caption": "上の 2x は横成分、下の 4y は縦成分です。流れの横成分と縦成分をそれぞれ掛けたあとで足します。"
+            }
+          ]
+        },
+        {
+          "title": "自分で確かめる　右向きに一様な流れなら？",
+          "body": "一辺1の正方形 $0\\le x,y\\le1$ で、流れを $\\mathbf u=(1,0)$ とします。全ての区画で右から出る量と左から入る量が等しく、$\\operatorname{div}\\mathbf u=0$。元の積分は $I=0$ です。\n\n外周では上下の辺を横切りません。右辺の重みは $w(1,y)=2+2y^2$、左辺の重みは $w(0,y)=1+2y^2$。同じ高さで出口と入口の差はちょうど1なので、高さ1の辺全体で境界項は1です。\n\n一方、内部の内積は $2x\\times1+4y\\times0=2x$。横に足すと $\\int_0^1 2x\\,dx=1$ で、縦の長さも1です。したがって右辺も $1-1=0$ となり、元の積分と一致します。\n\n①は内部の項を足すため $1+1=2$。②は横と縦を入れ替えるため、この例では内部の積分が $\\int_0^1 4y\\,dy=2$ となります。④は境界で実際の流出入を表す $\\mathbf u\\cdot\\mathbf n$ の場所に発散を入れています。"
+        },
+        {
+          "title": "応用　別の重みや、温度から作った矢印なら？",
+          "body": "重みを $w=e^{xy}$ に変えても、手順③は同じです。$x$ で微分するときは $y$ を固定します。指数 $xy$ の微分は $y$ なので、$\\partial w/\\partial x=y e^{xy}$。次に $y$ で微分すると $\\partial w/\\partial y=x e^{xy}$ です。列に並べれば $\\operatorname{grad}w=e^{xy}(y,x)^{\\mathsf T}$。内積を取ったときに初めて $e^{xy}(yu_1+xu_2)$ と足します。\n\n温度 $T=x^2+y^2$ から、温度が上がる向きの矢印 $\\mathbf u=\\operatorname{grad}T=(2x,2y)$ を作れます。この矢印の発散は、横成分を $x$ で、縦成分を $y$ で微分して足した $2+2=4$ です。\n\n温度から勾配を作り、その勾配の発散を取る操作をラプラシアンと呼び、$\\Delta T=\\operatorname{div}(\\operatorname{grad}T)$ と書きます。この場合にも同じ部分積分が使えます。もとは温度を2回微分していた領域項を、部分積分後には $\\operatorname{grad}w\\cdot\\operatorname{grad}T$ として、重みと温度を1回ずつ微分する形で扱えます。"
         }
       ],
-      "answerSummary": "③。積の微分を並べ替え、内部の積分を境界の流出量へ直します。重みを微分した補正項は引き算です。",
+      "answerSummary": "③。各区画で数えた流出を外周で数え直し、重みが場所によって変わる分を引きます。なぜ引くのかは積の微分、なぜ外周が現れるのかはガウス・グリーンの公式で分かります。",
       "officialQuestionItems": [
         "main"
       ]
